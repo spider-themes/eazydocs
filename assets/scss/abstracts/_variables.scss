@@ -1,0 +1,98 @@
+$container-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1170px,
+  xxl: 1170px,
+) !default;
+
+// Responsive Variables
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1441px,
+) !default;
+
+$columns: 12 !default;
+$gutter-width: 30px;
+
+// Font Family
+
+$font: var(--ff-roboto);
+$global-font: $font;
+
+//Heading H1 Responsive Font Size
+$min_width: 20rem;
+$max_width: 75rem;
+$h1_min_font: 2rem;
+$h1_max_font: 3.75rem;
+
+//Heading H2 Responsive Font Size
+$h2_min_font: 2rem;
+$h2_max_font: 3rem;
+
+//Heading H3 Responsive Font Size
+$h3_min_font: 1.375rem;
+$h3_max_font: 1.5rem;
+
+//Heading H4 Responsive Font Size
+$h4_min_font: 1rem;
+$h4_max_font: 1.125rem;
+
+// Global Font Size
+$global-font-size: var(--fs-15);
+
+// Global Color
+
+// Colors ---------------
+$black: var(--clr-black) !default;
+$white: var(--clr-white) !default;
+$blue: var(--clr-blue);
+$light-gree: var(--clr-light-green);
+$sunshade: var(--clr-sunshade);
+
+$global-color: $black !default;
+
+$active-prefix: rem;
+
+// Brand Color
+$fb: #3b64d4;
+$tw: #58d7ff;
+$yt: #fd253b;
+$in: #fd6533;
+
+$fb: #3b5998;
+$twitter: #1da1f2;
+$linkedin: #0077b5;
+$pin: #bd081c;
+$youtube: #ff0000;
+$insta: #bb00f2;
+$snapchat: #fdac33;
+$snapchat: #fdac33;
+$acc: #B97654;
+$text-color: #14183E;
+$st-color: #757575;
+// Browser Prefixes - Which CSS prefixes should be used?
+$webkit: true !default;
+$moz: false !default;
+$ms: false !default;
+$o: false !default;
+
+$nameSpace: true;
+
+// Responsive Variables
+$desktop: "(min-width: 1367px)";
+$xl: "(min-width: 1200px)";
+$lg: "(min-width: 992px)";
+$md: "(min-width: 768px)";
+$sm: "(min-width: 576px)";
+$xsm: "(min-width: 425px)";
+$mobile: "(max-width: 576)";
+$xs: "(max-width: 767px)";
+// $laptop: 'only screen and (min-width: 1200px) and (max-width: 1500px)';
+// $lg : 'only screen and (min-width: 992px) and (max-width: 1200px)';
+// $md:'only screen and (min-width: 768px) and (max-width: 991px)';
+// $sm: 'only screen and (min-width: 576px) and (max-width: 767px)';

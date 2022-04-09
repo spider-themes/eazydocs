@@ -1,0 +1,69 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "flaticon";
+  src: url("./flaticon.ttf?3d30912bc481d1d97a4a86f85f1d4d38") format("truetype"), url("./flaticon.woff?3d30912bc481d1d97a4a86f85f1d4d38") format("woff"), url("./flaticon.woff2?3d30912bc481d1d97a4a86f85f1d4d38") format("woff2"), url("./flaticon.eot?3d30912bc481d1d97a4a86f85f1d4d38#iefix") format("embedded-opentype"), url("./flaticon.svg?3d30912bc481d1d97a4a86f85f1d4d38#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+  font-family: flaticon !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-add-to-basket:before {
+  content: "";
+}
+
+.flaticon-user:before {
+  content: "";
+}
+
+.flaticon-mobile-phone:before {
+  content: "";
+}
+
+.flaticon-camera:before {
+  content: "";
+}
+
+.flaticon-handbag:before {
+  content: "";
+}
+
+.flaticon-office-chair:before {
+  content: "";
+}
+
+.flaticon-dress:before {
+  content: "";
+}
+
+.flaticon-laptop:before {
+  content: "";
+}
+
+.flaticon-steering-wheel:before {
+  content: "";
+}
+
+.flaticon-tshirt:before {
+  content: "";
+}
+
+.flaticon-user-1:before {
+  content: "";
+}
+
+.flaticon-shopping-list:before {
+  content: "";
+}
+
+.flaticon-lock:before {
+  content: "";
+}
+/*# sourceMappingURL=flaticon.css.map */

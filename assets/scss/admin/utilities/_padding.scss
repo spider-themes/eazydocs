@@ -1,0 +1,22 @@
+/*--- 
+-- Padding 
+-------------------------------------------*/ 
+// Padding Top
+//@include padding-class(pt-1, pt, 0.25);
+//@include padding-class(pt-9, pt, 2.5);
+//@include padding-class(pt-16, pt, 4);
+//@include padding-class(pt-18, pt, 4.5);
+//@include padding-class(pt-36, pt, 9);
+//@include padding-class(pt-40, pt, 10);
+
+// Padding Bottom 
+// @include padding-class(pb-8, pb, 2);
+//@include padding-class(pb-16, pb, 4);
+//@include padding-class(pb-18, pb, 4.5);
+//@include padding-class(pb-36, pb, 9);
+//@include padding-class(pb-40, pb, 10);
+// @include padding-class(pb-49, pb, 12.5);
+
+//Responsive Padding
+// @include padding-class-rs(pl-xl-15, pl, xl, 3.75);
+//@include padding-class-rs(pb-lg-36, pb, lg, 9);

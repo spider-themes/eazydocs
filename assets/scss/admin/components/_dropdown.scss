@@ -1,0 +1,25 @@
+// Dropdown Menu
+.easydocs-dropdown {
+    @include absolute(top 170% right -30px);
+    @include shadow(0, 10px, 35px, #000, 0.06);
+    width: 260px;
+    background-color: var(--clr-white);
+    border-radius: 0.5rem;
+    z-index: 999;
+    @include property;
+    display: none;
+
+    &.is-active {
+        opacity: 1;
+        visibility: visible;
+        top: 130%;
+    }
+}
+
+.notification-dropdown {
+    width: 360px;
+
+    @include pseudo(top rem(-10px) right 2.5rem){
+        @include triangle(top, 20px, 10px, var(--clr-white));
+    }
+}

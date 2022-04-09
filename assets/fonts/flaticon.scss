@@ -1,0 +1,77 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?3d30912bc481d1d97a4a86f85f1d4d38") format("truetype"),
+url("./flaticon.woff?3d30912bc481d1d97a4a86f85f1d4d38") format("woff"),
+url("./flaticon.woff2?3d30912bc481d1d97a4a86f85f1d4d38") format("woff2"),
+url("./flaticon.eot?3d30912bc481d1d97a4a86f85f1d4d38#iefix") format("embedded-opentype"),
+url("./flaticon.svg?3d30912bc481d1d97a4a86f85f1d4d38#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "add-to-basket": "\f101",
+    "user": "\f102",
+    "mobile-phone": "\f103",
+    "camera": "\f104",
+    "handbag": "\f105",
+    "office-chair": "\f106",
+    "dress": "\f107",
+    "laptop": "\f108",
+    "steering-wheel": "\f109",
+    "tshirt": "\f10a",
+    "user-1": "\f10b",
+    "shopping-list": "\f10c",
+    "lock": "\f10d",
+);
+
+.flaticon-add-to-basket:before {
+    content: map-get($flaticon-map, "add-to-basket");
+}
+.flaticon-user:before {
+    content: map-get($flaticon-map, "user");
+}
+.flaticon-mobile-phone:before {
+    content: map-get($flaticon-map, "mobile-phone");
+}
+.flaticon-camera:before {
+    content: map-get($flaticon-map, "camera");
+}
+.flaticon-handbag:before {
+    content: map-get($flaticon-map, "handbag");
+}
+.flaticon-office-chair:before {
+    content: map-get($flaticon-map, "office-chair");
+}
+.flaticon-dress:before {
+    content: map-get($flaticon-map, "dress");
+}
+.flaticon-laptop:before {
+    content: map-get($flaticon-map, "laptop");
+}
+.flaticon-steering-wheel:before {
+    content: map-get($flaticon-map, "steering-wheel");
+}
+.flaticon-tshirt:before {
+    content: map-get($flaticon-map, "tshirt");
+}
+.flaticon-user-1:before {
+    content: map-get($flaticon-map, "user-1");
+}
+.flaticon-shopping-list:before {
+    content: map-get($flaticon-map, "shopping-list");
+}
+.flaticon-lock:before {
+    content: map-get($flaticon-map, "lock");
+}

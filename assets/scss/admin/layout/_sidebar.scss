@@ -1,0 +1,209 @@
+/*----------------------------------------*/
+/*  03. Sidebar Area
+/*----------------------------------------*/
+.tab-container {
+    display: flex;
+}
+
+.tab-menu {
+    background: var(--clr-black-100);
+    flex: 0 0 auto;
+    width: 28%;
+    &.short {
+        height: 100vh
+    }
+    @media (max-width: 1400px) {
+        width: 30%;
+    }
+}
+
+.easydocs-tab {
+    display: none;
+    &.tab-active {
+        display: block;
+    }
+}
+
+.easydocs-navitem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 30px 13px 25px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    @include property;
+    position: relative;
+    border-left: 5px solid transparent;
+    @media (max-width: 1400px) {
+        padding: 13px 25px 13px 20px;
+    }
+
+    &.is-active {
+        border-left-color: var(--clr-blue);
+        background: rgba(#9FA2B4, 0.2);
+        --title-opacity: 1;
+        --total-page-opacity: 1;
+        @include pseudo(right 0) {
+            @include triangle(left, 14px, 10px, var(--clr-white));
+        }
+        .total-page {
+            display: none;
+        }
+        .link {
+            display: flex;
+        }
+    }
+
+    .title {
+        display: flex;
+        align-items: center;
+        gap: rem(10px);
+        @include property;
+        text-decoration: none;
+        font-size: var(--fs-16);
+        font-weight: 500;
+        color: var(--clr-white);
+        opacity: var(--title-opacity, 0.7);
+    }
+
+    .total-page {
+        font-size: var(--fs-12);
+        color: var(--clr-white);
+        opacity: var(--total-page-opacity, 0.5);
+        @include property;
+    }
+
+    &:hover {
+        background: rgba(#9FA2B4, 0.2);
+        --title-opacity: 1;
+        --total-page-opacity: 1;
+        .total-page {
+            display: none;
+        }
+        .link {
+            display: flex;
+            a {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.link {
+    align-items: center;
+    gap: 0.325rem;
+    display: none;
+    @include property;
+    a {
+        text-decoration: none;
+    }
+    &:hover svg {
+        color: #fff;
+        fill-color: #fff;
+    }
+}
+
+.easydocs-tab-content {
+    flex: 0 0 auto;
+    width: 72%;
+    background: #E5E5E5;
+    padding: var(--gutter-40);
+    @media (max-width: 1400px) {
+        width: 70%;
+        padding: 20px;
+    }
+}
+
+.easydocs-filter-container {
+    background: var(--clr-white);
+    padding: var(--gutter-15) var(--gutter-30);
+    border-radius: rem(6px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 1400px) {
+        padding: 10px 20px;
+    }
+}
+
+.single-item-filter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    .easydocs-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(5px);
+        --btn-py: 0.25rem;
+        --btn-px: 0.75rem;
+        --btn-fs: var(--fs-14);
+        &.easydocs-btn-black-light {
+            --btn-icon: #0D0E2B;
+            &.mixitup-control-active {
+                --btn-bg: #0D0E2B;
+                --btn-clr: var(--clr-white);
+                --btn-icon: var(--clr-white);
+            }
+        }
+
+        &.easydocs-btn-green-light {
+            --btn-icon: #2DB22D;
+            &.mixitup-control-active {
+                --btn-bg: #2DB22D;
+                --btn-clr: var(--clr-white);
+                --btn-icon: var(--clr-white);
+            }
+        }
+
+        &.easydocs-btn-blue-light {
+            --btn-icon: #0275D8;
+            &.mixitup-control-active {
+                --btn-bg: #0275D8;
+                --btn-clr: var(--clr-white);
+                --btn-icon: var(--clr-white);
+            }
+        }
+
+        &.easydocs-btn-orange-light {
+            --btn-icon: #CC8033;
+            &.mixitup-control-active {
+                --btn-bg: #CC8033;
+                --btn-clr: var(--clr-white);
+                --btn-icon: var(--clr-white);
+            }
+        }
+
+        &.easydocs-btn-gray-light {
+            --btn-icon: #424242;
+            &.mixitup-control-active {
+                --btn-bg: #424242;
+                --btn-clr: var(--clr-white);
+                --btn-icon: var(--clr-white);
+            }
+        }
+    }
+}
+
+.single-grid-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #EDEAE9;
+    border-radius: rem(6px);
+    --grid-icon: #9199A1;
+
+    a {
+        text-decoration: none;
+        padding: 0.3rem 0.5rem 0.5rem;
+        height: rem(30px);
+
+        &:first-child {
+            border-right: 1px solid #EDEAE9;
+        }
+    }
+
+    .is-active {
+        background: rgba(37, 39, 51, 0.05);
+        --grid-icon: var(--clr-blue);
+    }
+}

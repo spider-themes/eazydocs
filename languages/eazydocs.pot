@@ -1,0 +1,551 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-04-05 15:26+0600\n"
+"PO-Revision-Date: 2022-04-05 15:26+0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: esc_html__;esc_attr__;esc_html_e;esc_attr_e;_e;__;_x\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/Admin/Admin.php:22 includes/Admin/Admin.php:23
+#: includes/Post_Types.php:33 vendor/settings-api/fields/settings-fields.php:29
+msgid "EazyDocs"
+msgstr ""
+
+#: includes/Admin/Assets.php:55
+msgid "Enter Docs Title"
+msgstr ""
+
+#: includes/Admin/Assets.php:56
+msgid "Are you sure to delete?"
+msgstr ""
+
+#: includes/Admin/Assets.php:57
+msgid "You won't be able to revert this!"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:97
+msgid "Globe icon"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:107
+#: includes/Admin/template/parent-docs.php:66
+msgid "Edit Icon"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:110
+#: includes/Admin/template/parent-docs.php:69
+msgid "External icon"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:113
+#: includes/Admin/template/child-docs.php:101
+#: includes/Admin/template/child-docs.php:172
+#: includes/Admin/template/parent-docs.php:72
+msgid "Delete Icon"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:136
+#: includes/Admin/template/child-docs.php:18
+msgid "All articles"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:140
+#: includes/Admin/template/child-docs.php:22
+msgid "Public"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:144
+#: includes/Admin/template/child-docs.php:26
+msgid "Private"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:148
+#: includes/Admin/template/child-docs.php:30
+msgid "Protected"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:152
+#: includes/Admin/template/child-docs.php:34
+msgid "Draft"
+msgstr ""
+
+#: includes/Admin/Create_Docs/Parent_Doc.php:161
+#: includes/Admin/template/child-docs.php:252
+msgid "Add Section"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:91
+#: includes/Admin/template/child-docs.php:162
+msgid "Plus Icon"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:96
+#: includes/Admin/template/child-docs.php:167
+msgid "View Icon"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:110
+#: includes/Admin/template/child-docs.php:181
+#: includes/Admin/template/child-docs.php:218
+msgid "No Positive votes, "
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:111
+#: includes/Admin/template/child-docs.php:182
+#: includes/Admin/template/child-docs.php:219
+msgid "No Negative votes."
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:118
+#: includes/Admin/template/child-docs.php:189
+#: includes/Admin/template/child-docs.php:226
+msgid "No rates"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:207
+msgid "View icon"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:210
+msgid "Delete icon"
+msgstr ""
+
+#: includes/Admin/template/header.php:8
+msgid "Documentations"
+msgstr ""
+
+#: includes/Admin/template/header.php:13 includes/Post_Types.php:37
+msgid "Add Doc"
+msgstr ""
+
+#: includes/Admin/template/header.php:32
+msgid "Go to Classic UI"
+msgstr ""
+
+#: includes/Admin/template/header.php:33
+msgid "Classic UI"
+msgstr ""
+
+#: includes/Frontend/Ajax.php:25
+msgid "Sorry, you've already recorded your feedback!"
+msgstr ""
+
+#: includes/Frontend/Ajax.php:40
+msgid "Thanks for your feedback!"
+msgstr ""
+
+#: includes/Frontend/Mailer.php:30
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/Frontend/Mailer.php:37
+msgid "Please provide a subject line."
+msgstr ""
+
+#: includes/Frontend/Mailer.php:41
+msgid "Please provide the message details."
+msgstr ""
+
+#: includes/Frontend/Mailer.php:49
+#, php-format
+msgid "[%1$s] New Doc Feedback: \"%2$s\""
+msgstr ""
+
+#: includes/Frontend/Mailer.php:51
+#, php-format
+msgid "New feedback on your doc \"%s\""
+msgstr ""
+
+#: includes/Frontend/Mailer.php:52
+#, php-format
+msgid "Author: %1$s"
+msgstr ""
+
+#: includes/Frontend/Mailer.php:53
+#, php-format
+msgid "Email: %s"
+msgstr ""
+
+#: includes/Frontend/Mailer.php:54
+#, php-format
+msgid "Feedback: %s"
+msgstr ""
+
+#: includes/Frontend/Mailer.php:55
+#, php-format
+msgid "Doc Permalink: %s"
+msgstr ""
+
+#: includes/Frontend/Mailer.php:56
+#, php-format
+msgid "Edit Doc: %s"
+msgstr ""
+
+#: includes/Frontend/Walker_Docs.php:140
+#, php-format
+msgid "#%d (no title)"
+msgstr ""
+
+#: includes/Frontend/Walker_Docs.php:145
+msgid "folder icon closed"
+msgstr ""
+
+#: includes/Frontend/Walker_Docs.php:145
+msgid "folder icon"
+msgstr ""
+
+#: includes/Frontend/post-views.php:8
+msgid "views"
+msgstr ""
+
+#: includes/Post_Types.php:31 includes/functions.php:257
+msgid "Docs"
+msgstr ""
+
+#: includes/Post_Types.php:32
+msgid "Doc"
+msgstr ""
+
+#: includes/Post_Types.php:34
+msgid "Parent Doc"
+msgstr ""
+
+#: includes/Post_Types.php:35
+msgid "All Docs"
+msgstr ""
+
+#: includes/Post_Types.php:36
+msgid "View Doc"
+msgstr ""
+
+#: includes/Post_Types.php:38
+msgid "Add New"
+msgstr ""
+
+#: includes/Post_Types.php:39
+msgid "Edit Doc"
+msgstr ""
+
+#: includes/Post_Types.php:40
+msgid "Update Doc"
+msgstr ""
+
+#: includes/Post_Types.php:41
+msgid "Search Doc"
+msgstr ""
+
+#: includes/Post_Types.php:42
+msgid "Not Doc found"
+msgstr ""
+
+#: includes/Post_Types.php:43
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/Post_Types.php:81 includes/Post_Types.php:83
+msgid "Tags"
+msgstr ""
+
+#: includes/Post_Types.php:82
+msgid "Tag"
+msgstr ""
+
+#: includes/Post_Types.php:84
+msgid "All Tags"
+msgstr ""
+
+#: includes/Post_Types.php:85
+msgid "Parent Tag"
+msgstr ""
+
+#: includes/Post_Types.php:86
+msgid "Parent Tag:"
+msgstr ""
+
+#: includes/Post_Types.php:87
+msgid "New Tag"
+msgstr ""
+
+#: includes/Post_Types.php:88
+msgid "Add New Item"
+msgstr ""
+
+#: includes/Post_Types.php:89
+msgid "Edit Tag"
+msgstr ""
+
+#: includes/Post_Types.php:90
+msgid "Update Tag"
+msgstr ""
+
+#: includes/Post_Types.php:91
+msgid "View Tag"
+msgstr ""
+
+#: includes/Post_Types.php:92
+msgid "Separate items with commas"
+msgstr ""
+
+#: includes/Post_Types.php:93
+msgid "Add or remove items"
+msgstr ""
+
+#: includes/Post_Types.php:94
+msgid "Choose from the most used"
+msgstr ""
+
+#: includes/Post_Types.php:95
+msgid "Popular Tags"
+msgstr ""
+
+#: includes/Post_Types.php:96
+msgid "Search Tags"
+msgstr ""
+
+#: includes/Post_Types.php:97
+msgid "Not Found"
+msgstr ""
+
+#: includes/Post_Types.php:98
+msgid "No items"
+msgstr ""
+
+#: includes/Post_Types.php:99
+msgid "Tags list"
+msgstr ""
+
+#: includes/Post_Types.php:100
+msgid "Tags list navigation"
+msgstr ""
+
+#: includes/functions.php:90
+msgid " minute"
+msgstr ""
+
+#: includes/functions.php:92
+msgid " minutes"
+msgstr ""
+
+#: includes/functions.php:110
+msgid "Pages"
+msgstr ""
+
+#: includes/functions.php:241
+msgid "Home"
+msgstr ""
+
+#: includes/notices.php:12 includes/notices.php:35
+msgid "We have detected another Knowledge Base Plugin installed in this site."
+msgstr ""
+
+#: includes/notices.php:13 includes/notices.php:36
+msgid ""
+"For EazyDocs to work efficiently, you need to migrate the data and "
+"deactivate that plugin to avoid conflict."
+msgstr ""
+
+#: includes/notices.php:17
+msgid "Deactivate weDocs"
+msgstr ""
+
+#: includes/notices.php:40
+msgid "Deactivate BetterDocs"
+msgstr ""
+
+#: templates/breadcrumbs.php:12
+msgid "Updated on"
+msgstr ""
+
+#: templates/content-feedback.php:9 templates/content-feedback.php:10
+msgid "No votes yet"
+msgstr ""
+
+#: templates/content-feedback.php:11
+msgid "Still stuck?"
+msgstr ""
+
+#: templates/content-feedback.php:12 templates/content-modal.php:18
+msgid "How can we help?"
+msgstr ""
+
+#: templates/content-feedback.php:13
+msgid "Was this page helpful?"
+msgstr ""
+
+#: templates/content-feedback.php:21
+msgid "Tagged:"
+msgstr ""
+
+#: templates/content-feedback.php:51
+msgid "Yes"
+msgstr ""
+
+#: templates/content-feedback.php:57
+msgid "No"
+msgstr ""
+
+#: templates/content-modal.php:24
+msgid "Name"
+msgstr ""
+
+#: templates/content-modal.php:27
+msgid "Email"
+msgstr ""
+
+#: templates/content-modal.php:30
+msgid "Subject"
+msgstr ""
+
+#: templates/content-modal.php:33
+msgid "Massage"
+msgstr ""
+
+#: templates/content-modal.php:38
+msgid "Send"
+msgstr ""
+
+#: templates/content-related.php:26
+msgid "Related articles"
+msgstr ""
+
+#: templates/content-related.php:44 templates/content-related.php:79
+msgid " See More..."
+msgstr ""
+
+#: templates/content-related.php:57
+msgid "Recently viewed articles"
+msgstr ""
+
+#: templates/docs-right-sidebar.php:15
+msgid "Decrease font size"
+msgstr ""
+
+#: templates/docs-right-sidebar.php:16
+msgid "A-"
+msgstr ""
+
+#: templates/docs-right-sidebar.php:18
+msgid "Default font size"
+msgstr ""
+
+#: templates/docs-right-sidebar.php:19
+msgid "A"
+msgstr ""
+
+#: templates/docs-right-sidebar.php:21
+msgid "Increase font size"
+msgstr ""
+
+#: templates/docs-right-sidebar.php:22
+msgid "A+"
+msgstr ""
+
+#: templates/docs-right-sidebar.php:35
+msgid "CONTENTS"
+msgstr ""
+
+#: templates/docs-sidebar.php:37
+msgid "Filter"
+msgstr ""
+
+#: templates/shortcode.php:42
+msgid "View Details"
+msgstr ""
+
+#: templates/single-doc-content.php:8
+msgid "Hide category"
+msgstr ""
+
+#: templates/single-doc-content.php:9
+msgid "Show category"
+msgstr ""
+
+#: templates/single-doc-content.php:18
+msgid "Estimated reading: "
+msgstr ""
+
+#: templates/single-doc-content.php:34
+msgid "Articles"
+msgstr ""
+
+#: templates/single-doc-content.php:41
+msgid "Docs:"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:30
+#: vendor/settings-api/fields/settings-fields.php:41
+msgid "Settings"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:58
+msgid "Docs Home"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:59
+#, php-format
+msgid ""
+"Home page for docs page. Preferably use <code>[eazydocs]</code> <a href=\"%s"
+"\" target=\"_blank\">shortcode</a> or design your own."
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:66
+msgid "Email feedback"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:67
+msgid "Enable Email feedback form"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:73
+msgid "Email Address"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:74
+msgid "The email address where the feedbacks should sent to"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:75
+msgid "Text Input placeholder"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:81
+msgid "Helpful feedback"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:82
+msgid "Enable helpful feedback links"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:88
+msgid "Comments"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:89
+msgid "Allow Comments"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:94
+msgid "Print article"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:95
+msgid "Enable article printing"
+msgstr ""
+
+#: vendor/settings-api/fields/settings-fields.php:119
+msgid "&mdash; Select Page &mdash;"
+msgstr ""
+
+#: vendor/settings-api/src/class.settings-api.php:369
+msgid "Choose File"
+msgstr ""

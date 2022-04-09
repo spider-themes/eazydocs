@@ -1,0 +1,62 @@
+/*----------------------------------------*/
+/*  Grid Layout
+/*----------------------------------------*/
+@include container();
+@include container-fluid(container-fluid);
+@include row(row);
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// .col-6 {
+//   @include col-ready();
+//   @include column(6);
+// }
+
+// .col-12 {
+//   @include col-ready();
+// }
+
+// Small screen / phone
+// @include col (col, 4, sm);
+//  @include col (col, 6, sm);
+// @include col (col, 8, sm);
+
+// Medium screen / tablet
+// @include col (col, 2, md);
+
+// Large screen / desktop
+// @include col (col, 1, lg);
+// @include col(col, 2, lg);
+ @include col (col, 3, lg);
+@include col(col, 4, lg);
+@include col(col, 5, lg);
+@include col(col, 6, lg);
+// @include col(col, 7, lg);
+// @include col(col, 8, lg);
+// @include col (col, 9, lg);
+// @include col(col, 10, lg);
+// @include col (col, 12,lg);
+
+// Extra large screen / wide desktop
+// @include col (col, 5, xl);
+// @include col (col, 6, xl);
+// @include col (col, 7, xl);
+
+// Offset large screen / wide desktop
+// @include offset(offset, 4, lg);
+// @include offset(offset, 5, lg);
+// @include offset(offset, 6, lg);
+
+
+// Offset Extra large screen / wide desktop
+// @include offset(offset, 1, xl);
+// @include offset(offset, 1);

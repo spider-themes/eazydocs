@@ -1,0 +1,84 @@
+.easydocs-search-form input#easydocs-search {
+    color: #9199a1;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #EDEAE9;
+    border-radius: 0.625rem;
+    box-sizing: border-box;
+    line-height: unset;
+}
+
+.easydocs-tab.tab-inactive {
+    display: none;
+}
+
+.accordion-title .light-green {
+    display: inline-flex;
+    margin: 0px;
+    height: auto !important;
+    width: auto !important;
+    padding: 3px;
+    line-height: 0px !important;
+}
+
+.accordion-title .light-green.block-color-draft {
+    background: rgba(66, 66, 66, 0.1);
+}
+
+.accordion-title .light-green.block-color-protected {
+    background: rgba(204, 128, 51, 0.1);
+}
+
+.accordion-title .light-green.block-color-private {
+    background: rgba(2, 117, 216, 0.1);
+}
+
+.accordion-title .light-green img {
+    width: auto;
+    max-width: 12px;
+    height: auto;
+    max-height: 12px;
+    margin: 0px;
+}
+
+.easydocs-accordion-body.child-docs a {
+    text-decoration: none;
+    color: rgb(87, 87, 102);
+}
+
+.easydocs-accordion-body.child-docs a::first-letter {
+    text-transform: uppercase;
+}
+
+.easydocs-navitem.is-active::before {
+    border-color: transparent #e5e5e5 transparent transparent !important
+}
+
+div.search_result {
+    display: none;
+}
+
+.edit-img {
+    max-width: 12px;
+    margin-top: 2px;
+}
+
+.eazydocs-classi-ui {
+    position: absolute;
+    bottom: 10px;
+    z-index: 9;
+}
+
+.easydocs-settings {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.easydocs-settings a:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.child-one .accordion-title.has-child h4{
+    font-weight: normal;
+}

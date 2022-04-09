@@ -1,0 +1,49 @@
+.form-control {
+    @include form-input($fs: var(--fs-14), $color: #9199A1, $py: 0.75rem, $max_width: rem(600px), $mx: auto, $border-color: #EDEAE9, $radius-size: 0.625rem);
+
+    @include focus {
+        background: white;
+        box-shadow: none !important;
+        border: 1px solid #4c4cf1 !important;
+        border-radius: 0.625rem;
+        box-sizing: border-box !important;
+        line-height: unset !important;
+
+        ~.search-icon {
+            background: var(--clr-blue);
+            --search-icon: var(--clr-white);
+            .dashicons {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.easydocs-search-form {
+    position: relative;
+    max-width: rem(600px);
+    @include margin(mx, auto);
+
+    .search-icon {
+        top: 5px;
+        right: 5px;
+        position: absolute;
+        width: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        border-radius: 0.625rem;
+        background: rgba(76, 76, 241, 0.1);
+        text-align: center;
+        cursor: pointer;
+        -webkit-transition: 0.3s ease-out;
+        transition: 0.3s ease-out;
+        --search-icon: var(--clr-blue);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include hover {
+            background: rgba(#4C4CF1, 1);
+            --search-icon: var(--clr-white);
+        }
+    }
+}

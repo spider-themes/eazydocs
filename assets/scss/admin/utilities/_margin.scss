@@ -1,0 +1,56 @@
+/*--
+    - Margin
+-------------------------------------------*/
+// Nagative Margin
+@include margin-class(mt-n3, mt, -0.4375);
+@include margin-class(mt-n4, mt, -0.75);
+
+// Margin auto
+@include margin-class(m-auto, m, auto);
+@include margin-class(mx-auto, mx, auto);
+// @include margin-class(ml-auto, ml, auto);
+// @include margin-class(mr-auto, mr, auto);
+
+// Margin Top
+@include margin-class(mt-0, mt, 0);
+//@include margin-class(mt-4, mt, 1);
+//@include margin-class(mt-5, mt, 1.25);
+// @include margin-class(mt-8, mt, 2);
+// @include margin-class(mt-16, mt, 4);
+// @include margin-class(mt-9, mt, 2.5);
+@include margin-class(mt-73, mt, 4.5625);
+
+// Margin Bottom
+//@include margin-class(mb-0, mb, 0);
+//@include margin-class(mb-3, mb, .75);
+// @include margin-class(mb-4, mb, 1);
+//@include margin-class(mb-5, mb, 1.25);
+//@include margin-class(mb-6, mb, 1.5);
+@include margin-class(mb-8, mb, 2);
+//@include margin-class(mb-13, mb, 3.125);
+//@include margin-class(mb-16, mb, 4);
+
+// Margin Right
+@include margin-class(mr-1, mr, 0.25);
+
+// Margin Top Responsive
+@include margin-class-rs(mt-md-n4, mt, md, -0.75);
+// @include margin-class-rs(ml-md-auto, ml, md, auto);
+//@include margin-class-rs(mt-lg-0, mt, lg, 0);
+//@include margin-class-rs(mt-lg-8, mt, lg, 2);
+//@include margin-class-rs(mt-md-8, mt, md, 2);
+
+// Margin Bottom Responsive
+//@include margin-class-rs(mb-md-0, mb, md, 0);
+//@include margin-class-rs(mb-md-16, mb, md, 4);
+//@include margin-class-rs(mb-xl-18, mb, xl, 4.5);
+
+// .ml-md-auto {
+//     @include md {
+//         margin-left: auto !important;
+//     }
+// }
+
+.mt-40{
+    margin-top: 40px;
+}

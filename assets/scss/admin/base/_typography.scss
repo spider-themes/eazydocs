@@ -1,0 +1,86 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font;
+  color: $text-color;
+  line-height: 1.4;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+}
+
+h1 {
+  @include fluid-type($min_width, $max_width, $h1_min_font, $h1_max_font);
+}
+
+h2 {
+  @include fluid-type($min_width, $max_width, $h2_min_font, $h2_max_font);
+}
+
+h3 {
+  @include fluid-type($min_width, $max_width, $h3_min_font, $h3_max_font);
+}
+
+h4 {
+  @include fluid-type($min_width, $max_width, $h4_min_font, $h4_max_font);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none
+}
+
+hr {
+  background: #c2cfff;
+  width: 50px;
+  height: 3px;
+  margin: 35px 0;
+  padding: 0;
+  border: none;
+
+  @include md {
+    margin: {
+      top: 25px;
+      bottom: 25px;
+    }
+  }
+}
+
+p{
+  margin: 0;
+}
+
+label {
+  color: $black;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/*Home 3 Default Font Family*/
+.home-3{
+  font-size: var(--fs-15);
+  font-weight: var(--fw-400);
+  color: var(--clr-black);
+  font-family: var(--font-quicksand);  
+} 
+
+/*Home 3 Default Font Family*/
+.home-4{
+  font-size: var(--fs-15);
+  font-weight: var(--fw-400);
+  font-family: var(--font-arimo);  
+} 

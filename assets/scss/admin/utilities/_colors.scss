@@ -1,0 +1,9 @@
+/*--------------------------------------
+	- Color
+----------------------------------------*/
+.color {
+  color: $global-color;
+}
+
+@include color(black, $black);
+@include color(white, $white);

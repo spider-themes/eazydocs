@@ -1,0 +1,55 @@
+/** === WordPress default notices === **/
+.notice {
+    padding: 10px;
+}
+
+.eazydocs-close-notice {
+    display: inline-block;
+}
+
+a.eazydocs-close-notice:focus,
+a.eazydocs-close-notice:active {
+    outline: none;
+    box-shadow: none;
+}
+
+.eazydocs-close-notice,
+.notice ul li a {
+    text-decoration: none;
+}
+
+.eazydocs-close-notice i {
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 2px;
+    margin-left: -5px;
+    color: #dc3232;
+}
+
+.eazydocs-close-notice span {
+    margin-left: -3px;
+}
+
+.eazydocs-close-notice:hover,
+.eazydocs-close-notice {
+    color: #dc3232;
+    font-weight: 600;
+}
+
+.notice .notice-action {
+    position: relative;
+    color: #00a0d2;
+}
+
+.notice .notice-action:after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background: #00a0d2;
+    width: 100%;
+    left: 0;
+    bottom: -2px;
+}
+.metabox-holder #eazydocs_basics.group{
+    display: block !important;
+}

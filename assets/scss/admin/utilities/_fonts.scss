@@ -1,0 +1,50 @@
+/*--
+    - Font Famaly 
+-----------------------------------------*/
+// .font-mulish {
+//     font-family: $font;
+// }
+
+/*--
+    - Font weight
+-----------------------------------------*/
+.font-regular{
+    font-weight: var(--fw-400);
+}
+
+.font-medium {
+    font-weight: var(--fw-500);
+}
+
+.font-semi-bold{
+    font-weight: var(--fw-600);
+}
+
+.font-bold{
+    font-weight: var(--fw-700);
+}
+
+.font-black{
+    font-weight: var(--fw-900);
+}
+
+/*--
+    - Font Size
+-----------------------------------------*/
+// .font-small {
+//     font-size: rem(15px);
+// }
+ //@include font(15);
+// @include font(20);
+// @include font(22);
+// @include font(24); 
+// @include font(26);
+// @include font(28);
+// @include font(32);
+// @include font(36);
+// @include font(50);
+
+//Responsive Font Size
+//@include font(40, xl);
+// @include font(38, md);
+// @include font(60, lg);

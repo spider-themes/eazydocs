@@ -1,0 +1,57 @@
+/* Colors */
+:root {
+  --brand_color: #4c4cf1;
+  --secondary_color: #1d2746;
+  --p_color: #425466;
+  --body_bg: #fff;
+  --black_50: #ebebeb;
+  --black_100: #d6d9dc;
+  --black_150: #c8ccd0;
+  --black_200: #bbc0c4;
+  --black_300: #7d848d;
+  --black_350: #9199a1;
+  --black_400: #848d95;
+  --black_500: #6a737c;
+  --black_600: #535a60;
+  --black_700: #3c4146;
+  --black_750: #2f3337;
+  --black_800: #242729;
+  --black_900: #0c0d0e;
+  --bs_sm: 0 1px 2px rgba(0, 0, 0, 0.05),0 1px 4px rgba(0, 0, 0, 0.05),0 2px 8px rgba(0, 0, 0, 0.05);
+  --bs_md: 0 1px 3px rgba(0, 0, 0, 0.06),0 2px 6px rgba(0, 0, 0, 0.06),0 3px 8px rgba(0, 0, 0, 0.09);
+  --bs_lg: 0 1px 4px rgba(0, 0, 0, 0.09),0 3px 8px rgba(0, 0, 0, 0.09),0 4px 13px rgba(0, 0, 0, 0.13);
+}
+
+/*font Variables*/
+$rob: "Roboto", sans-serif;
+
+// Mixins
+@mixin transition(
+  $property: all,
+  $duration: 300ms,
+  $animate: linear,
+  $delay: 0s
+) {
+  transition: $property $duration $animate $delay;
+}
+
+/**=== Functions ===**/
+@function brand_color_rgba($alpha) {
+  @return rgba(76, 76, 241, $alpha);
+}
+
+// Placeholder Mixins
+@mixin placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}

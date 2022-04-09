@@ -1,0 +1,43 @@
+/**
+ * Convert font-size from px to rem with px fallback
+ *
+ * @param $size - the value in pixel you want to convert
+ *
+ * e.g. p font-size: fs-rem(12px);
+ * e.g. p {@include fontSize(12px);}
+ *
+ */
+
+// Function for converting a px based font-size to rem.
+@function rem($size) {
+  @return $size / 16px * 1rem;
+}
+
+// Font Responsive
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    576px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min !=0, $min, null);
+}
+
+// Maximum breakpoint width.
+// The maximum value is reduced by 0.02px to work around the limitations of
+// `min-` and `max-` prefixes and viewports with fractional widths.
+// See https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+// Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
+// See https://bugs.webkit.org/show_bug.cgi?id=178261
+//
+//    >> breakpoint-max(md, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    767.98px
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $max: map-get($breakpoints, $name);
+  @return if($max and $max > 0, $max - .02, null);
+}
+

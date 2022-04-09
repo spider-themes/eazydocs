@@ -1,0 +1,11 @@
+@import 'abstracts/index';
+@import 'admin/base/index';
+@import 'admin/utilities/index';
+@import 'admin/components/index';
+@import 'admin/layout/index';
+
+@include xl {
+  .container {
+    max-width: 1170px;
+  }
+}

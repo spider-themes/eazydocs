@@ -1,0 +1,20 @@
+{
+    "name": "delwer/eazydocs",
+    "description": "short info",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Delwer Hossain",
+            "email": "delweratjk@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "eazyDocs\\": "includes/"
+        },
+        "files": []
+    }
+}

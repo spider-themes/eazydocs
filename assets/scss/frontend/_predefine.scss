@@ -1,0 +1,38 @@
+a {
+  text-decoration: none;
+}
+
+section {
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.doc-scrollable {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+  table {
+    margin-bottom: 25px;
+  }
+}
+
+.col-md-offset-right-1,
+.col-lg-offset-right-1 {
+  margin-right: 8.33333333%;
+}
+
+.meta {
+  color: var(--black_500);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.dot-sep .sep::before {
+  content: "•";
+  margin: 0 5px;
+}

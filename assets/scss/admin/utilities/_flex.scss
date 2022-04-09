@@ -1,0 +1,40 @@
+// Flex Direction
+@include flex-direction(flex-row, row);
+@include flex-direction(flex-reverse, row-reverse);
+@include flex-direction(flex-column, column);
+@include flex-direction(flex-column-reverse, column-reverse);
+
+// Responsive Flex Direction
+// @include flex-direction(flex-lg-row, row, lg);
+// @include flex-direction(row-reverse-lg, row-reverse);
+
+// Flex Wrap
+//@include flex-wrap(flex-wrap, wrap);
+//@include flex-wrap(flex-nowrap, nowrap);
+//@include flex-wrap(flex-wrap-reverse, wrap-reverse);
+
+// Responsive Flex Wrap
+//@include flex-wrap(flex-md-wrap, wrap, sm);
+
+//Flex
+//@include flex(flex-1, 1);
+//@include flex(flex-auto, auto);
+//@include flex(flex-initial, initial);
+//@include flex(flex-none, none);
+
+// Responsive Flex
+//@include flex(flex-md-1, 1, md);
+
+// Flex Grow
+//@include flex-grow(flex-grow-0, 0);
+//@include flex-grow(flex-grow-sm-0, 0, sm);
+//
+//@include flex-grow(flex-grow-1, 1);
+//@include flex-grow(flex-grow-md-1, 1, md);
+
+// Flex Shrink
+//@include flex-shrink(flex-shrink-0, 0);
+//@include flex-shrink(flex-shrink-md-0, 0, md);
+//
+//@include flex-shrink(flex-shrink-1, 1);
+//@include flex-shrink(flex-shrink-md, 1, md);
