@@ -15,8 +15,8 @@ class Section_Doc {
      * @return int Post ID
      */
     public function post() {
-        $parent_id = $_GET['parentID'];
-        $section_title = $_GET['section'];
+        $parent_id = sanitize_text_field($_GET['parentID']);
+        $section_title = sanitize_text_field($_GET['section']);
 
         // Create post object
         return wp_insert_post( array(

@@ -1,6 +1,6 @@
 <?php
-$options            = get_option( 'eazydocs_basics' );
-$comment_visibility = $options['comment_visibility'] ?? '';
+$options            = get_option( 'eazydocs_settings' );
+$comment_visibility = $options['enable-comment'] ?? '';
 eazydocs_set_post_view();
 ?>
 
@@ -16,7 +16,7 @@ eazydocs_set_post_view();
             <div class="meta dot-sep">
             <span class="read-time">
                 <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
-                docs_reading_time();
+                eazydocs_reading_time();
                 ?>
             </span>
                 <span class="views sep">
@@ -51,7 +51,7 @@ eazydocs_set_post_view();
 eazydocs_get_template_part( 'content-related' );
 eazydocs_get_template_part( 'content-modal' );
 
-if ( $comment_visibility == 'on' )  :
+if ( $comment_visibility == '1' )  :
 	if ( comments_open() || get_comments_number() )  :
 		?>
         <div class="eazydocs-comments-wrap">

@@ -5,7 +5,7 @@
  */
 function eazydocs_get_post_view() {
 	$count = get_post_meta( get_the_ID(), 'post_views_count', true );
-	return "$count ".esc_html__('views', 'docly');
+	return "$count ".esc_html__( 'views', 'eazydocs' );
 }
 
 /**
@@ -24,7 +24,7 @@ function eazydocs_set_post_view() {
  * View post views in post column
  */
 add_filter( 'manage_doc_posts_columns', function () {
-    $columns['post_views'] = 'Views';
+    $columns['post_views'] = esc_html__( 'Views', 'eazydocs' );
     return $columns;
 });
 

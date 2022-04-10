@@ -20,7 +20,6 @@ class Admin {
 	 */
 	public function eazyDocs_menu() {
 		add_menu_page( __( 'EazyDocs', 'eazyDocs' ), __( 'EazyDocs', 'eazyDocs' ), 'manage_options', 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
-		add_submenu_page( 'eazydocs', __( 'EazyDocs', 'eazyDocs' ), __( 'EazyDocs', 'eazyDocs' ), 'manage_options', 'eazydocs', [ $this, 'eazydocs_page' ] );
 	}
 
 	/**

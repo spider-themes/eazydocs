@@ -82,7 +82,7 @@ function eazydocs_get_option( $option, $section, $default = '' ) {
 /**
  * estimated reading time
  **/
-function docs_reading_time() {
+function eazydocs_reading_time() {
 	$content     = get_post_field( 'post_content', get_the_ID() );
 	$word_count  = str_word_count( strip_tags( $content ) );
 	$readingtime = ceil( $word_count / 200 );
@@ -193,7 +193,7 @@ add_action( 'template_redirect', 'eazydocs_posts_visited' );
 function eazydocs_posts_visited() {
 	if ( is_single() && get_post_type() == 'docs' ) {
 		$cooki    = 'eazydocs_recent_posts';
-		$ft_posts = isset( $_COOKIE[ $cooki ] ) ? json_decode( $_COOKIE[ $cooki ], true ) : null;
+		$ft_posts = isset( $_COOKIE[ $cooki ] ) ? json_decode( htmlspecialchars( $_COOKIE[ $cooki ], true ) ): null;
 		if ( isset( $ft_posts ) ) {
 			// Remove current post in the cookie
 			$ft_posts = array_diff( $ft_posts, array( get_the_ID() ) );
@@ -249,7 +249,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
         $html .= eazydocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
         $html .= $args['delimiter'];
 
-        $docs_home = eazydocs_get_option( 'docs_home', 'eazydocs_basics' );
+        $docs_home = eazydocs_get_option( 'docs-slug', 'eazydocs_settings' );
 
         if ( $docs_home ) {
             ++$breadcrumb_position;

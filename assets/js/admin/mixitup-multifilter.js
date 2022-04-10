@@ -1,11 +1,11 @@
 /**!
-* MixItUp MultiFilter v3.3.4
+* MixItUp MultiFilter v2.1.11
 * A UI-builder for powerful multidimensional filtering
 * Build 6bbb142d-9851-4ca8-b6d4-f760362d93ec
 *
-* Requires mixitup.js >= v^3.1.2
+* Requires mixitup.js >= v2.1.11
 *
-* @copyright Copyright 2014-2018 KunkaLabs Limited.
+* @copyright Copyright 2015 KunkaLabs Limited.
 * @author KunkaLabs Limited.
 * @link https://www.kunkalabs.com/mixitup-multifilter/
 *
@@ -15,6 +15,7 @@
 * Non-commercial use permitted under same terms as license.
 * http://creativecommons.org/licenses/by-nc/3.0/
 */
+
 (function(window) {
 'use strict';
 

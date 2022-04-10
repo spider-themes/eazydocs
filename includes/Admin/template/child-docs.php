@@ -10,7 +10,7 @@ if ( is_array( $depth_one_parents ) ) :
 		$container ++;
 		$active = $ids == 1 ? ' tab-active' : '';
 		?>
-        <div class="easydocs-tab<?php echo $active; ?>" id="tab-<?php echo esc_attr( $item ); ?>">
+        <div class="easydocs-tab<?php echo esc_attr($active); ?>" id="tab-<?php echo esc_attr($item); ?>">
             <div class="easydocs-filter-container">
                 <ul class="single-item-filter">
                     <li class="easydocs-btn easydocs-btn-black-light easydocs-btn-rounded easydocs-btn-sm is-active" data-filter="all">
@@ -72,7 +72,7 @@ if ( is_array( $depth_one_parents ) ) :
 							$post_status = 'protected';
 						}
 						?>
-                        <li <?php post_class( "easydocs-accordion-item accordion ez-section-acc-item mix ". $post_status ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
+                        <li <?php post_class( "easydocs-accordion-item accordion ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                             <div class="accordion-title ez-section-title <?php echo count($doc_items) > 0 ? 'has-child' : ''; ?>">
                                 <h4>
                                     <a href="<?php echo get_edit_post_link( $child ); ?>" target="_blank">
@@ -168,7 +168,7 @@ if ( is_array( $depth_one_parents ) ) :
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo $doc_item->ID . ',' . $last_section_ids; ?>" class="section-delete">
+                                                                <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo esc_attr( $doc_item->ID . ',' . $last_section_ids ); ?>" class="section-delete">
                                                                     <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete.svg" alt="<?php esc_attr_e( 'Delete Icon', 'eazydocs' ); ?>">
                                                                 </a>
                                                             </li>

@@ -15,16 +15,19 @@ class Delete_Post {
 	 */
 	public function delete_doc() {
 
-		if ( isset ( $_GET['ID'] ) ) {
+		if ( ! empty ( $_GET['ID'] ) ) {
 
-			$doc_ids     = explode( ',', $_GET['ID'] );
+			$id = sanitize_text_field( $_GET['ID'] );
+
+			$doc_ids = explode( ',', $id );
+
 			$doc_ids_int = array_map( 'intval', $doc_ids );
 
 			foreach ( $doc_ids_int as $item ) {
 				wp_delete_post( $item, true );
 			}
 
-			header("Location:". admin_url('admin.php?page=eazydocs'));
+			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
 		}
 
 	}

@@ -1,15 +1,15 @@
 <?php
-$name           = $email = '';
+$name = $email = '';
 if ( ! is_user_logged_in() ) {
-	$email_from = isset( $_POST['email'] ) ? filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL ) : false;
+	$email_from     = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
 } else {
-	$email_from = wp_get_current_user()->user_email;
-	$name       = wp_get_current_user()->display_name;
+	$email_from     = wp_get_current_user()->user_email;
+	$name           = wp_get_current_user()->display_name;
 }
 ?>
 
-<div class="modal fade img_modal" id="exampleModal3" tabindex="-3" role="dialog" aria-hidden="false">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade img_modal" id="eazydocs_feedback" tabindex="-3" role="dialog" aria-hidden="false">
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
         <i class=" icon_close"></i>
     </button>
     <div class="modal-dialog help_form" role="document">
@@ -30,7 +30,7 @@ if ( ! is_user_logged_in() ) {
                         <input type="text" class="form-control" name="subject" id="subject" placeholder="<?php esc_attr_e( 'Subject', 'eazydocs' ); ?>" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <textarea name="Message" id="massage" placeholder="<?php esc_attr_e( 'Massage', 'eazydocs' ); ?>" required></textarea>
+                        <textarea name="message" id="massage" placeholder="<?php esc_attr_e( 'Massage', 'eazydocs' ); ?>" required></textarea>
                     </div>
                     <div class="form-group col-md-12">
                         <input type="hidden" name="doc_id" value="<?php the_ID(); ?>">

@@ -12,19 +12,19 @@ class Mailer {
 	 */
 	function eazydocs_feedback_email() {
 
-		$options = get_option( 'eazydocs_basics' );
-		$admin_email = ! empty ( $options['email_address'] ) ? $options['email_address']  : '';
+		$options = get_option( 'eazydocs_settings' );
+		$admin_email = ! empty ( $options['feedback-admin-email'] ) ? $options['feedback-admin-email']  : '';
 
 		if ( isset( $_POST['eazydoc_feedback_submit'] ) ) {
 
-			$author  = isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
-			$subject = isset( $_POST['subject'] ) ? sanitize_text_field( $_POST['subject'] ) : '';
-			$email   = isset( $_POST['email'] ) ? sanitize_text_field( $_POST['email'] ) : '';
-			$message = isset( $_POST['Message'] ) ? strip_tags( $_POST['Message'] ) : '';
-			$doc_id  = isset( $_POST['doc_id'] ) ? intval( $_POST['doc_id'] ) : 0;
+			$author  = ! empty ( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
+			$subject = ! empty ( $_POST['subject'] ) ? sanitize_text_field( $_POST['subject'] ) : '';
+			$email   = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
+			$message = ! empty ( $_POST['message'] ) ? sanitize_text_field( $_POST['message'] ) : '';
+			$doc_id  = ! empty ( $_POST['doc_id'] ) ? intval( $_POST['doc_id'] ) : 0;
 
 			if ( ! is_user_logged_in() ) {
-				$email = isset( $_POST['email'] ) ? filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL ) : false;
+				$email = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
 
 				if ( ! $email ) {
 					wp_send_json_error( __( 'Please enter a valid email address.', 'eazydocs' ) );
@@ -33,15 +33,15 @@ class Mailer {
 				$email = wp_get_current_user()->user_email;
 			}
 
-			if ( empty( $subject ) ) {
+			if ( empty ( $subject ) ) {
 				wp_send_json_error( __( 'Please provide a subject line.', 'eazydocs' ) );
 			}
 
-			if ( empty( $message ) ) {
+			if ( ! isset ( $message ) ) {
 				wp_send_json_error( __( 'Please provide the message details.', 'eazydocs' ) );
 			}
 
-			$wp_email = 'wordpress@' . preg_replace( '#^www\.#', '', strtolower( $_SERVER['SERVER_NAME'] ) );
+			$wp_email = 'wordpress@' . preg_replace( '#^www\.#', '', htmlspecialchars( filter_var( $_SERVER[ 'SERVER_NAME' ], FILTER_SANITIZE_URL ), ENT_QUOTES, 'UTF-8') );
 			$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 			$document = get_post( $doc_id );
 

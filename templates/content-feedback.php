@@ -1,9 +1,9 @@
 <?php
 global $post;
-$options             = get_option( 'eazydocs_basics' );
-$email_feedback      = $options['email_feedback'] ?? 'on';
-$helpful_feedback    = $options['helpful_feedback'] ?? 'on';
-$right_alignment     = $email_feedback == 'on' ? 'right' : 'left';
+$options             = get_option( 'eazydocs_settings' );
+$email_feedback      = $options['docs-feedback'] ?? '0';
+$helpful_feedback    = $options['helpful_feedback'] ?? '0';
+$right_alignment     = $email_feedback == '1' ? 'right' : 'left';
 $positive            = (int) get_post_meta( $post->ID, 'positive', true );
 $negative            = (int) get_post_meta( $post->ID, 'negative', true );
 $positive_title      = $positive ? sprintf( _n( '%d person found this useful', '%d persons found this useful', $positive, 'eazydocs' ), number_format_i18n( $positive ) ) : esc_html__( 'No votes yet', 'eazydocs' );
@@ -24,24 +24,24 @@ $tags                = get_the_terms( get_the_ID(), 'doc_tag' );
 		}
 		echo '</ul>';
 	}
-	if ( $email_feedback == 'on' || $helpful_feedback == 'on' ) :
+	if ( $email_feedback == '1' || $helpful_feedback == '1' ) :
 		?>
         <footer class="help_text" id="help">
             <div class="border_bottom"></div>
             <div class="row feedback_link">
 				<?php
-				if ( $email_feedback == 'on' ) :
+				if ( $email_feedback == '1' ) :
 					?>
                     <div class="col-lg-5">
                         <p class="left"><i class="icon_mail_alt"></i><?php echo esc_html( $still_stuck_text ) ?>
-                            <a href="#" data-toggle="modal" data-target="#exampleModal3">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#eazydocs_feedback">
 								<?php echo esc_html( $help_form_link_text ) ?>
                             </a>
                         </p>
                     </div>
 				    <?php
 				endif;
-				if ( $helpful_feedback == 'on' ) :
+				if ( $helpful_feedback == '1' ) :
 					?>
                     <div class="col-lg-7 eazydocs-feedback-wrap eazydocs-hide-print">
                         <p class="<?php echo esc_attr( $right_alignment ) ?>">

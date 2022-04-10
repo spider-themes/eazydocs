@@ -5,7 +5,7 @@
  * Plugin URI: https://wordpress-theme.spider-themes.net/docy/docs/
  * Author: spider-themes
  * Author URI: #
- * Version: 1.0
+ * Version: 1.0.0
  * Requires at least: 5.0
  * Requires PHP: 7.2
  * Text Domain: easydocs
@@ -40,7 +40,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 *
 		 * @var string The plugin version.
 		 */
-		const version = '1.0';
+		const version = '1.0.0';
 
 		/**
 		 * Constructor.
@@ -85,8 +85,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Post_Types.php';
 			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
-			require_once __DIR__ . '/vendor/settings-api/plugin.php';
-			require_once __DIR__ . '/vendor/settings-api/fields/settings-fields.php';
+
+			require_once __DIR__ .'/libs/codestar-framework/codestar-framework.php';
+			require_once __DIR__ .'/libs/codestar-framework/samples/settings-options.php';
 		}
 
 		/**
@@ -123,6 +124,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		public function init_plugin() {
 			$this->theme_dir_path = apply_filters( 'eazydocs_theme_dir_path', 'eazydocs/' );
 			if ( is_admin() ) {
+				new eazyDocs\Admin\Admin();
 				new eazyDocs\Admin\Create_Post();
 				new eazyDocs\Admin\Create_Docs\Parent_Doc();
 				//new eazyDocs\Admin\Create_Docs\Section_Doc();
@@ -151,16 +153,18 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			}
 			update_option( 'EazyDocs_version', 'EAZYDOCS_VERSION' );
 
-			// Create page object
-			$docs_page = array(
-				'post_title'   => wp_strip_all_tags( 'Documentation' ),
-				'post_content' => '[eazydocs]',
-				'post_status'  => 'publish',
-				'post_author'  => 1,
-				'post_type'    => 'page',
-			);
-			// Insert the documentation page into the database
-			wp_insert_post( $docs_page );
+			// Insert the documentation page into the database if not exists
+			if( ! get_page_by_title( 'Documentation', OBJECT, 'page' ) ){
+				// Create page object
+				$docs_page = array(
+					'post_title'   => wp_strip_all_tags( 'Documentation' ),
+					'post_content' => '[eazydocs]',
+					'post_status'  => 'publish',
+					'post_author'  => 1,
+					'post_type'    => 'page',
+				);
+				wp_insert_post( $docs_page );
+			}
 
 		}
 	}

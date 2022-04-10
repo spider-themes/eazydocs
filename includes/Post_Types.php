@@ -1,8 +1,7 @@
 <?php
-namespace Post_Types;
 
 /**
- * Post type class
+ * Class Docs
  */
 class Docs {
 

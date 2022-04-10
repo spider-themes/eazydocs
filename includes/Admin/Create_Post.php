@@ -1,4 +1,5 @@
 <?php
+
 namespace eazyDocs\Admin;
 
 class Create_Post {
@@ -17,16 +18,16 @@ class Create_Post {
 	public function create_section_doc() {
 		if ( isset ( $_GET['section'] ) && ! empty ( $_GET['section'] ) ) {
 
-			$parentID           = isset( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;
-			$section_title      = isset( $_GET['section'] ) ? esc_html($_GET['section']) : '';
-			$parent_item        = get_children( array(
-				'post_parent'   => $parentID,
-				'post_type'     => 'docs'
+			$parentID      = ! empty ( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;
+			$section_title = ! empty ( $_GET['section'] ) ? sanitize_text_field( $_GET['section'] ) : '';
+			$parent_item   = get_children( array(
+				'post_parent' => $parentID,
+				'post_type'   => 'docs'
 			) );
 
-			$add    = 2;
-			$order  = count($parent_item);
-			$order  = $order + $add;
+			$add   = 2;
+			$order = count( $parent_item );
+			$order = $order + $add;
 
 			// Create post object
 			$post = array(
@@ -49,17 +50,17 @@ class Create_Post {
 
 		if ( isset ( $_GET['child'] ) && ! empty ( $_GET['child'] ) ) {
 
-			$child_id           = isset( $_GET['childID'] ) ? absint( $_GET['childID'] ) : 0;
-			$child_title      = isset( $_GET['child'] ) ? esc_html($_GET['child']) : '';
+			$child_id    = ! empty ( $_GET['childID'] ) ? absint( $_GET['childID'] ) : 0;
+			$child_title = ! empty ( $_GET['child'] ) ? sanitize_text_field( $_GET['child'] ) : '';
 
-			$child_item        = get_children( array(
-				'post_parent'   => $child_id,
-				'post_type'     => 'docs'
+			$child_item = get_children( array(
+				'post_parent' => $child_id,
+				'post_type'   => 'docs'
 			) );
 
-			$add    = 2;
-			echo $order  = count($child_item);
-			$order  = $order + $add;
+			$add = 2;
+			echo $order = count( $child_item );
+			$order = $order + $add;
 
 			// Create post object
 			$post = array(
@@ -71,7 +72,7 @@ class Create_Post {
 				'menu_order'   => $order
 			);
 			wp_insert_post( $post, $wp_error = '' );
-			header("Location:". admin_url('admin.php?page=eazydocs'));
+			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
 		}
 	}
 }
