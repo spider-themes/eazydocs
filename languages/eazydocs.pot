@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-04-05 15:26+0600\n"
+"POT-Creation-Date: 2022-04-10 16:09+0600\n"
 "PO-Revision-Date: 2022-04-05 15:26+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,8 +16,7 @@ msgstr ""
 "X-Poedit-KeywordsList: esc_html__;esc_attr__;esc_html_e;esc_attr_e;_e;__;_x\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/Admin/Admin.php:22 includes/Admin/Admin.php:23
-#: includes/Post_Types.php:33 vendor/settings-api/fields/settings-fields.php:29
+#: includes/Admin/Admin.php:22 includes/Post_Types.php:32
 msgid "EazyDocs"
 msgstr ""
 
@@ -38,19 +37,19 @@ msgid "Globe icon"
 msgstr ""
 
 #: includes/Admin/Create_Docs/Parent_Doc.php:107
-#: includes/Admin/template/parent-docs.php:66
+#: includes/Admin/template/parent-docs.php:75
 msgid "Edit Icon"
 msgstr ""
 
 #: includes/Admin/Create_Docs/Parent_Doc.php:110
-#: includes/Admin/template/parent-docs.php:69
+#: includes/Admin/template/parent-docs.php:78
 msgid "External icon"
 msgstr ""
 
 #: includes/Admin/Create_Docs/Parent_Doc.php:113
 #: includes/Admin/template/child-docs.php:101
 #: includes/Admin/template/child-docs.php:172
-#: includes/Admin/template/parent-docs.php:72
+#: includes/Admin/template/parent-docs.php:81
 msgid "Delete Icon"
 msgstr ""
 
@@ -79,7 +78,7 @@ msgstr ""
 msgid "Draft"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:161
+#: includes/Admin/Create_Docs/Parent_Doc.php:159
 #: includes/Admin/template/child-docs.php:252
 msgid "Add Section"
 msgstr ""
@@ -124,7 +123,7 @@ msgstr ""
 msgid "Documentations"
 msgstr ""
 
-#: includes/Admin/template/header.php:13 includes/Post_Types.php:37
+#: includes/Admin/template/header.php:13 includes/Post_Types.php:36
 msgid "Add Doc"
 msgstr ""
 
@@ -145,6 +144,8 @@ msgid "Thanks for your feedback!"
 msgstr ""
 
 #: includes/Frontend/Mailer.php:30
+#: libs/codestar-framework/functions/validate.php:14
+#: libs/codestar-framework/functions/validate.php:86
 msgid "Please enter a valid email address."
 msgstr ""
 
@@ -208,123 +209,129 @@ msgstr ""
 msgid "views"
 msgstr ""
 
-#: includes/Post_Types.php:31 includes/functions.php:257
+#: includes/Frontend/post-views.php:27
+msgid "Views"
+msgstr ""
+
+#: includes/Post_Types.php:30 includes/functions.php:257
 msgid "Docs"
 msgstr ""
 
-#: includes/Post_Types.php:32
+#: includes/Post_Types.php:31
 msgid "Doc"
 msgstr ""
 
-#: includes/Post_Types.php:34
+#: includes/Post_Types.php:33
 msgid "Parent Doc"
 msgstr ""
 
-#: includes/Post_Types.php:35
+#: includes/Post_Types.php:34
 msgid "All Docs"
 msgstr ""
 
-#: includes/Post_Types.php:36
+#: includes/Post_Types.php:35
 msgid "View Doc"
 msgstr ""
 
-#: includes/Post_Types.php:38
+#: includes/Post_Types.php:37
+#: libs/codestar-framework/classes/shortcode-options.class.php:253
+#: libs/codestar-framework/fields/group/group.php:23
 msgid "Add New"
 msgstr ""
 
-#: includes/Post_Types.php:39
+#: includes/Post_Types.php:38
 msgid "Edit Doc"
 msgstr ""
 
-#: includes/Post_Types.php:40
+#: includes/Post_Types.php:39
 msgid "Update Doc"
 msgstr ""
 
-#: includes/Post_Types.php:41
+#: includes/Post_Types.php:40
 msgid "Search Doc"
 msgstr ""
 
-#: includes/Post_Types.php:42
+#: includes/Post_Types.php:41
 msgid "Not Doc found"
 msgstr ""
 
-#: includes/Post_Types.php:43
+#: includes/Post_Types.php:42
 msgid "Not found in Trash"
 msgstr ""
 
-#: includes/Post_Types.php:81 includes/Post_Types.php:83
+#: includes/Post_Types.php:80 includes/Post_Types.php:82
 msgid "Tags"
 msgstr ""
 
-#: includes/Post_Types.php:82
+#: includes/Post_Types.php:81
 msgid "Tag"
 msgstr ""
 
-#: includes/Post_Types.php:84
+#: includes/Post_Types.php:83
 msgid "All Tags"
 msgstr ""
 
-#: includes/Post_Types.php:85
+#: includes/Post_Types.php:84
 msgid "Parent Tag"
 msgstr ""
 
-#: includes/Post_Types.php:86
+#: includes/Post_Types.php:85
 msgid "Parent Tag:"
 msgstr ""
 
-#: includes/Post_Types.php:87
+#: includes/Post_Types.php:86
 msgid "New Tag"
 msgstr ""
 
-#: includes/Post_Types.php:88
+#: includes/Post_Types.php:87
 msgid "Add New Item"
 msgstr ""
 
-#: includes/Post_Types.php:89
+#: includes/Post_Types.php:88
 msgid "Edit Tag"
 msgstr ""
 
-#: includes/Post_Types.php:90
+#: includes/Post_Types.php:89
 msgid "Update Tag"
 msgstr ""
 
-#: includes/Post_Types.php:91
+#: includes/Post_Types.php:90
 msgid "View Tag"
 msgstr ""
 
-#: includes/Post_Types.php:92
+#: includes/Post_Types.php:91
 msgid "Separate items with commas"
 msgstr ""
 
-#: includes/Post_Types.php:93
+#: includes/Post_Types.php:92
 msgid "Add or remove items"
 msgstr ""
 
-#: includes/Post_Types.php:94
+#: includes/Post_Types.php:93
 msgid "Choose from the most used"
 msgstr ""
 
-#: includes/Post_Types.php:95
+#: includes/Post_Types.php:94
 msgid "Popular Tags"
 msgstr ""
 
-#: includes/Post_Types.php:96
+#: includes/Post_Types.php:95
 msgid "Search Tags"
 msgstr ""
 
-#: includes/Post_Types.php:97
+#: includes/Post_Types.php:96
 msgid "Not Found"
 msgstr ""
 
-#: includes/Post_Types.php:98
+#: includes/Post_Types.php:97
 msgid "No items"
 msgstr ""
 
-#: includes/Post_Types.php:99
+#: includes/Post_Types.php:98
 msgid "Tags list"
 msgstr ""
 
-#: includes/Post_Types.php:100
+#: includes/Post_Types.php:99
 msgid "Tags list navigation"
 msgstr ""
 
@@ -360,6 +367,743 @@ msgstr ""
 
 #: includes/notices.php:40
 msgid "Deactivate BetterDocs"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:230
+msgid "Error while saving the changes."
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:290
+msgid "Settings successfully imported."
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:302
+#: libs/codestar-framework/classes/admin-options.class.php:318
+msgid "Default settings restored."
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:389
+msgid "Settings saved."
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:570
+msgid "You have unsaved changes, save your changes!"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:572
+msgid "show all settings"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:574
+#: libs/codestar-framework/fields/icon/icon.php:57
+#: libs/codestar-framework/fields/map/map.php:23
+msgid "Search..."
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:577
+#: libs/codestar-framework/classes/admin-options.class.php:700
+msgid "Save"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:577
+#: libs/codestar-framework/classes/admin-options.class.php:700
+msgid "Saving..."
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:578
+#: libs/codestar-framework/classes/admin-options.class.php:701
+msgid "Reset Section"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:578
+#: libs/codestar-framework/classes/admin-options.class.php:701
+msgid "Are you sure to reset this section options?"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:579
+#: libs/codestar-framework/classes/admin-options.class.php:702
+msgid "Reset All"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:579
+#: libs/codestar-framework/classes/admin-options.class.php:702
+#: libs/codestar-framework/classes/comment-options.class.php:216
+#: libs/codestar-framework/classes/metabox-options.class.php:294
+#: libs/codestar-framework/fields/backup/backup.php:31
+msgid "Reset"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:579
+#: libs/codestar-framework/classes/admin-options.class.php:702
+msgid "Are you sure you want to reset all settings to default values?"
+msgstr ""
+
+#: libs/codestar-framework/classes/admin-options.class.php:677
+#: libs/codestar-framework/classes/comment-options.class.php:199
+#: libs/codestar-framework/classes/metabox-options.class.php:277
+#: libs/codestar-framework/fields/button_set/button_set.php:56
+#: libs/codestar-framework/fields/checkbox/checkbox.php:76
+#: libs/codestar-framework/fields/radio/radio.php:75
+#: libs/codestar-framework/fields/select/select.php:113
+#: libs/codestar-framework/functions/actions.php:41
+msgid "No data available."
+msgstr ""
+
+#: libs/codestar-framework/classes/comment-options.class.php:217
+#: libs/codestar-framework/classes/metabox-options.class.php:295
+msgid "update post"
+msgstr ""
+
+#: libs/codestar-framework/classes/comment-options.class.php:217
+#: libs/codestar-framework/classes/metabox-options.class.php:295
+msgid "Cancel"
+msgstr ""
+
+#: libs/codestar-framework/classes/setup.class.php:599
+msgid "Are you sure?"
+msgstr ""
+
+#: libs/codestar-framework/classes/setup.class.php:600
+#, php-format
+msgid "Please enter %s or more characters"
+msgstr ""
+
+#: libs/codestar-framework/classes/setup.class.php:601
+msgid "Searching..."
+msgstr ""
+
+#: libs/codestar-framework/classes/setup.class.php:602
+msgid "No results found."
+msgstr ""
+
+#: libs/codestar-framework/classes/setup.class.php:703
+msgid "Oops! Not allowed."
+msgstr ""
+
+#: libs/codestar-framework/classes/setup.class.php:771
+#: libs/codestar-framework/classes/setup.class.php:775
+msgid "Field not found!"
+msgstr ""
+
+#: libs/codestar-framework/classes/shortcode-options.class.php:290
+#: libs/codestar-framework/functions/actions.php:16
+#: libs/codestar-framework/functions/actions.php:68
+#: libs/codestar-framework/functions/actions.php:106
+#: libs/codestar-framework/functions/actions.php:141
+#: libs/codestar-framework/functions/actions.php:170
+msgid "Error: Invalid nonce verification."
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:36
+#: libs/codestar-framework/fields/media/media.php:59
+msgid "Not selected"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:72
+#: libs/codestar-framework/fields/date/date.php:31
+#: libs/codestar-framework/fields/datetime/datetime.php:36
+msgid "From"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:90
+#: libs/codestar-framework/fields/date/date.php:32
+#: libs/codestar-framework/fields/datetime/datetime.php:37
+msgid "To"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:108
+msgid "Direction"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:114
+msgid "Gradient Direction"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:115
+msgid "&#8659; top to bottom"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:116
+msgid "&#8658; left to right"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:117
+msgid "&#8664; corner top to right"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:118
+msgid "&#8665; corner top to left"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:161
+msgid "Background Position"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:162
+msgid "Left Top"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:163
+msgid "Left Center"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:164
+msgid "Left Bottom"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:165
+msgid "Center Top"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:166
+msgid "Center Center"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:167
+msgid "Center Bottom"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:168
+msgid "Right Top"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:169
+msgid "Right Center"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:170
+msgid "Right Bottom"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:184
+msgid "Background Repeat"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:185
+msgid "Repeat"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:186
+msgid "No Repeat"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:187
+msgid "Repeat Horizontally"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:188
+msgid "Repeat Vertically"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:202
+msgid "Background Attachment"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:203
+msgid "Scroll"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:204
+msgid "Fixed"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:218
+msgid "Background Size"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:219
+msgid "Cover"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:220
+msgid "Contain"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:221
+msgid "Auto"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:235
+msgid "Background Origin"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:236
+#: libs/codestar-framework/fields/background/background.php:254
+msgid "Padding Box"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:237
+#: libs/codestar-framework/fields/background/background.php:253
+msgid "Border Box"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:238
+#: libs/codestar-framework/fields/background/background.php:255
+msgid "Content Box"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:252
+msgid "Background Clip"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:269
+msgid "Background Blend Mode"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:270
+#: libs/codestar-framework/fields/link_color/link_color.php:36
+#: libs/codestar-framework/fields/typography/typography.php:186
+msgid "Normal"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:271
+msgid "Multiply"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:272
+msgid "Screen"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:273
+msgid "Overlay"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:274
+msgid "Darken"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:275
+msgid "Lighten"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:276
+msgid "Color Dodge"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:277
+msgid "Saturation"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:278
+msgid "Color"
+msgstr ""
+
+#: libs/codestar-framework/fields/background/background.php:279
+msgid "Luminosity"
+msgstr ""
+
+#: libs/codestar-framework/fields/backup/backup.php:26
+msgid "Import"
+msgstr ""
+
+#: libs/codestar-framework/fields/backup/backup.php:29
+msgid "Export & Download"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:25
+#: libs/codestar-framework/fields/spacing/spacing.php:25
+msgid "top"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:26
+#: libs/codestar-framework/fields/spacing/spacing.php:26
+msgid "right"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:27
+#: libs/codestar-framework/fields/spacing/spacing.php:27
+msgid "bottom"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:28
+#: libs/codestar-framework/fields/spacing/spacing.php:28
+msgid "left"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:29
+#: libs/codestar-framework/fields/spacing/spacing.php:29
+msgid "all"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:51
+#: libs/codestar-framework/fields/typography/typography.php:214
+msgid "Solid"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:52
+#: libs/codestar-framework/fields/typography/typography.php:217
+msgid "Dashed"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:53
+#: libs/codestar-framework/fields/typography/typography.php:216
+msgid "Dotted"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:54
+#: libs/codestar-framework/fields/typography/typography.php:215
+msgid "Double"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:55
+msgid "Inset"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:56
+msgid "Outset"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:57
+msgid "Groove"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:58
+msgid "ridge"
+msgstr ""
+
+#: libs/codestar-framework/fields/border/border.php:59
+#: libs/codestar-framework/fields/typography/typography.php:199
+#: libs/codestar-framework/fields/typography/typography.php:213
+msgid "None"
+msgstr ""
+
+#: libs/codestar-framework/fields/dimensions/dimensions.php:22
+msgid "width"
+msgstr ""
+
+#: libs/codestar-framework/fields/dimensions/dimensions.php:23
+msgid "height"
+msgstr ""
+
+#: libs/codestar-framework/fields/gallery/gallery.php:20
+msgid "Add Gallery"
+msgstr ""
+
+#: libs/codestar-framework/fields/gallery/gallery.php:21
+msgid "Edit Gallery"
+msgstr ""
+
+#: libs/codestar-framework/fields/gallery/gallery.php:22
+msgid "Clear"
+msgstr ""
+
+#: libs/codestar-framework/fields/group/group.php:41
+#: libs/codestar-framework/fields/repeater/repeater.php:27
+msgid "Error: Field ID conflict."
+msgstr ""
+
+#: libs/codestar-framework/fields/group/group.php:52
+#: libs/codestar-framework/fields/group/group.php:107
+#: libs/codestar-framework/fields/repeater/repeater.php:48
+#: libs/codestar-framework/fields/repeater/repeater.php:76
+msgid "Are you sure to delete this item?"
+msgstr ""
+
+#: libs/codestar-framework/fields/group/group.php:141
+#: libs/codestar-framework/fields/repeater/repeater.php:89
+msgid "You cannot add more."
+msgstr ""
+
+#: libs/codestar-framework/fields/group/group.php:142
+#: libs/codestar-framework/fields/repeater/repeater.php:90
+msgid "You cannot remove more."
+msgstr ""
+
+#: libs/codestar-framework/fields/icon/icon.php:20
+#: libs/codestar-framework/fields/icon/icon.php:53
+msgid "Add Icon"
+msgstr ""
+
+#: libs/codestar-framework/fields/icon/icon.php:21
+msgid "Remove Icon"
+msgstr ""
+
+#: libs/codestar-framework/fields/link/link.php:20
+msgid "Add Link"
+msgstr ""
+
+#: libs/codestar-framework/fields/link/link.php:21
+msgid "Edit Link"
+msgstr ""
+
+#: libs/codestar-framework/fields/link/link.php:22
+msgid "Remove Link"
+msgstr ""
+
+#: libs/codestar-framework/fields/link_color/link_color.php:37
+msgid "Hover"
+msgstr ""
+
+#: libs/codestar-framework/fields/link_color/link_color.php:38
+msgid "Active"
+msgstr ""
+
+#: libs/codestar-framework/fields/link_color/link_color.php:39
+msgid "Visited"
+msgstr ""
+
+#: libs/codestar-framework/fields/link_color/link_color.php:40
+msgid "Focus"
+msgstr ""
+
+#: libs/codestar-framework/fields/map/map.php:24
+msgid "Latitude"
+msgstr ""
+
+#: libs/codestar-framework/fields/map/map.php:25
+msgid "Longitude"
+msgstr ""
+
+#: libs/codestar-framework/fields/media/media.php:25
+#: libs/codestar-framework/fields/upload/upload.php:24
+msgid "Upload"
+msgstr ""
+
+#: libs/codestar-framework/fields/media/media.php:26
+#: libs/codestar-framework/fields/upload/upload.php:25
+msgid "Remove"
+msgstr ""
+
+#: libs/codestar-framework/fields/sorter/sorter.php:21
+msgid "Enabled"
+msgstr ""
+
+#: libs/codestar-framework/fields/sorter/sorter.php:22
+msgid "Disabled"
+msgstr ""
+
+#: libs/codestar-framework/fields/switcher/switcher.php:20
+msgid "On"
+msgstr ""
+
+#: libs/codestar-framework/fields/switcher/switcher.php:21
+msgid "Off"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:96
+msgid "Font Family"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:97
+msgid "Select a font"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:105
+msgid "Backup Font Family"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:119
+#: libs/codestar-framework/fields/typography/typography.php:132
+#: libs/codestar-framework/fields/typography/typography.php:145
+#: libs/codestar-framework/fields/typography/typography.php:160
+#: libs/codestar-framework/fields/typography/typography.php:176
+#: libs/codestar-framework/fields/typography/typography.php:189
+#: libs/codestar-framework/fields/typography/typography.php:203
+#: libs/codestar-framework/fields/typography/typography.php:221
+msgid "Default"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:130
+msgid "Font Style"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:144
+#: libs/codestar-framework/fields/typography/typography.php:145
+msgid "Load Extra Styles"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:158
+msgid "Subset"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:168
+msgid "Text Align"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:170
+msgid "Inherit"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:171
+msgid "Left"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:172
+msgid "Center"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:173
+msgid "Right"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:174
+msgid "Justify"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:175
+msgid "Initial"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:184
+msgid "Font Variant"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:187
+msgid "Small Caps"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:188
+msgid "All Small Caps"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:197
+msgid "Text Transform"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:200
+msgid "Capitalize"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:201
+msgid "Uppercase"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:202
+msgid "Lowercase"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:211
+msgid "Text Decoration"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:218
+msgid "Wavy"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:219
+msgid "Overline"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:220
+msgid "Line-through"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:233
+msgid "Font Size"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:245
+msgid "Line Height"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:257
+msgid "Letter Spacing"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:269
+msgid "Word Spacing"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:284
+msgid "Font Color"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:295
+msgid "Custom Style"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:362
+msgid "Custom Web Fonts"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:368
+msgid "Safe Web Fonts"
+msgstr ""
+
+#: libs/codestar-framework/fields/typography/typography.php:388
+msgid "Google Web Fonts"
+msgstr ""
+
+#: libs/codestar-framework/functions/actions.php:72
+#: libs/codestar-framework/functions/actions.php:110
+msgid "Error: Invalid key."
+msgstr ""
+
+#: libs/codestar-framework/functions/actions.php:114
+msgid "Error: The response is not a valid JSON response."
+msgstr ""
+
+#: libs/codestar-framework/functions/actions.php:174
+msgid "Error: Invalid term ID."
+msgstr ""
+
+#: libs/codestar-framework/functions/actions.php:180
+msgid "Error: You do not have permission to do that."
+msgstr ""
+
+#: libs/codestar-framework/functions/validate.php:32
+#: libs/codestar-framework/functions/validate.php:106
+msgid "Please enter a valid number."
+msgstr ""
+
+#: libs/codestar-framework/functions/validate.php:50
+#: libs/codestar-framework/functions/validate.php:126
+msgid "This field is required."
+msgstr ""
+
+#: libs/codestar-framework/functions/validate.php:68
+#: libs/codestar-framework/functions/validate.php:146
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:14
+msgid "Settings"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:23
+msgid "General"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:31
+msgid "Docs Home"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:33
+msgid ""
+"Home page for docs page. Preferably use <code>[eazydocs]</code> shortcode or "
+"design your own"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:39
+msgid "Feedback Area"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:40
+msgid "Show"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:41
+msgid "Hide"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:49
+msgid "Email Address"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:54
+msgid "The email address where the feedbacks should sent to"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:60
+msgid "Comment"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:66
+msgid "Print article"
+msgstr ""
+
+#: libs/codestar-framework/samples/settings-options.php:72
+msgid "Helpful feedback"
 msgstr ""
 
 #: templates/breadcrumbs.php:12
@@ -480,72 +1224,4 @@ msgstr ""
 
 #: templates/single-doc-content.php:41
 msgid "Docs:"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:30
-#: vendor/settings-api/fields/settings-fields.php:41
-msgid "Settings"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:58
-msgid "Docs Home"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:59
-#, php-format
-msgid ""
-"Home page for docs page. Preferably use <code>[eazydocs]</code> <a href=\"%s"
-"\" target=\"_blank\">shortcode</a> or design your own."
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:66
-msgid "Email feedback"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:67
-msgid "Enable Email feedback form"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:73
-msgid "Email Address"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:74
-msgid "The email address where the feedbacks should sent to"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:75
-msgid "Text Input placeholder"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:81
-msgid "Helpful feedback"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:82
-msgid "Enable helpful feedback links"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:88
-msgid "Comments"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:89
-msgid "Allow Comments"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:94
-msgid "Print article"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:95
-msgid "Enable article printing"
-msgstr ""
-
-#: vendor/settings-api/fields/settings-fields.php:119
-msgid "&mdash; Select Page &mdash;"
-msgstr ""
-
-#: vendor/settings-api/src/class.settings-api.php:369
-msgid "Choose File"
 msgstr ""
