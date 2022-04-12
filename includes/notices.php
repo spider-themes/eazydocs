@@ -49,10 +49,11 @@ add_action( 'admin_notices', function () {
  * Deactivate Other Knowledge-base plugins
  */
 if ( isset($_GET['deactivate']) && !empty($_GET['deactivate']) ) {
-    $plugin = $_GET['deactivate'];
+
+	$plugin = ! empty ( $_GET['deactivate'] ) ? sanitize_text_field( $_GET['deactivate'] ) : '';
     add_action( 'admin_init', "eazydocs_deactivate_other_plugin" );
     function eazydocs_deactivate_other_plugin() {
-        $plugin = $_GET['deactivate'];
+	    $plugin = ! empty ( $_GET['deactivate'] ) ? sanitize_text_field( $_GET['deactivate'] ) : '';
         deactivate_plugins("$plugin/$plugin.php");
     }
 }

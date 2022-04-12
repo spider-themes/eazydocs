@@ -1,5 +1,5 @@
 <?php
-$name = $email = '';
+$name               = $email    = '';
 if ( ! is_user_logged_in() ) {
 	$email_from     = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
 } else {

@@ -188,26 +188,7 @@ function eazydocs_list_pages( $args = '' ) {
 	}
 }
 
-// Recently Viewed Docs
-add_action( 'template_redirect', 'eazydocs_posts_visited' );
-function eazydocs_posts_visited() {
-	if ( is_single() && get_post_type() == 'docs' ) {
-		$cooki    = 'eazydocs_recent_posts';
-		$ft_posts = isset( $_COOKIE[ $cooki ] ) ? json_decode( htmlspecialchars( $_COOKIE[ $cooki ], true ) ): null;
-		if ( isset( $ft_posts ) ) {
-			// Remove current post in the cookie
-			$ft_posts = array_diff( $ft_posts, array( get_the_ID() ) );
-			// update cookie with current post
-			array_unshift( $ft_posts, get_the_ID() );
-		} else {
-			$ft_posts = array( get_the_ID() );
-		}
-		setcookie( $cooki, json_encode( $ft_posts ), time() + ( DAY_IN_SECONDS * 31 ), COOKIEPATH, COOKIE_DOMAIN );
-	}
-}
-
 if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
-
     /**
      * Schema.org breadcrumb item wrapper for a link.
      *

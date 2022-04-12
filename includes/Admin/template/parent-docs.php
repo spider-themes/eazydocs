@@ -30,9 +30,6 @@ $count = $query->found_posts;
             }
             $child_docs  = implode( ",", $child_counter );
 
-
-
-
 	        $post_status =  get_post_status(get_the_ID());
 	        global $post;
 

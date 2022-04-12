@@ -19,10 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-if ( class_exists( 'EazyDocsPro' ) ) {
-	return;
-}
-
 // Make sure the same class is not loaded.
 if ( ! class_exists( 'EazyDocs' ) ) {
 
@@ -86,8 +82,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
 
-			require_once __DIR__ .'/libs/codestar-framework/codestar-framework.php';
-			require_once __DIR__ .'/libs/codestar-framework/samples/settings-options.php';
+			if ( ! class_exists('EazyDocsPro')) {
+				require_once __DIR__ . '/libs/codestar-framework/codestar-framework.php';
+				require_once __DIR__ .'/libs/codestar-framework/samples/settings-options.php';
+			}
 		}
 
 		/**

@@ -33,7 +33,7 @@ class Section_Doc {
      * @return void Ajax Success Content
      */
     public function create_parent_doc() {
-        if ( isset ( $_GET['section'] ) && ! empty ( $_GET['section'] ) ) {
+        if ( isset ( $_GET['section'] ) && ! empty ( sanitize_text_field( $_GET['section'] ) ) ) {
 
             $post = $this->post();
 

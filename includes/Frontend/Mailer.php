@@ -41,7 +41,7 @@ class Mailer {
 				wp_send_json_error( __( 'Please provide the message details.', 'eazydocs' ) );
 			}
 
-			$wp_email = 'wordpress@' . preg_replace( '#^www\.#', '', htmlspecialchars( filter_var( $_SERVER[ 'SERVER_NAME' ], FILTER_SANITIZE_URL ), ENT_QUOTES, 'UTF-8') );
+			$wp_email = 'wordpress@' . preg_replace( '#^www\.#', '', strtolower( $_SERVER[ 'SERVER_NAME' ] ) );
 			$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 			$document = get_post( $doc_id );
 

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-04-10 16:09+0600\n"
+"POT-Creation-Date: 2022-04-12 18:16+0600\n"
 "PO-Revision-Date: 2022-04-05 15:26+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,106 +16,106 @@ msgstr ""
 "X-Poedit-KeywordsList: esc_html__;esc_attr__;esc_html_e;esc_attr_e;_e;__;_x\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/Admin/Admin.php:22 includes/Post_Types.php:32
+#: includes/Admin/Admin.php:21 includes/Post_Types.php:32
 msgid "EazyDocs"
 msgstr ""
 
-#: includes/Admin/Assets.php:55
+#: includes/Admin/Assets.php:54
 msgid "Enter Docs Title"
 msgstr ""
 
-#: includes/Admin/Assets.php:56
+#: includes/Admin/Assets.php:55
 msgid "Are you sure to delete?"
 msgstr ""
 
-#: includes/Admin/Assets.php:57
+#: includes/Admin/Assets.php:56
 msgid "You won't be able to revert this!"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:97
+#: includes/Admin/Create_Docs/Parent_Doc.php:96
 msgid "Globe icon"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:107
-#: includes/Admin/template/parent-docs.php:75
+#: includes/Admin/Create_Docs/Parent_Doc.php:106
+#: includes/Admin/template/parent-docs.php:72
 msgid "Edit Icon"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:110
-#: includes/Admin/template/parent-docs.php:78
+#: includes/Admin/Create_Docs/Parent_Doc.php:109
+#: includes/Admin/template/parent-docs.php:75
 msgid "External icon"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:113
-#: includes/Admin/template/child-docs.php:101
-#: includes/Admin/template/child-docs.php:172
-#: includes/Admin/template/parent-docs.php:81
+#: includes/Admin/Create_Docs/Parent_Doc.php:112
+#: includes/Admin/template/child-docs.php:102
+#: includes/Admin/template/child-docs.php:173
+#: includes/Admin/template/parent-docs.php:78
 msgid "Delete Icon"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:136
+#: includes/Admin/Create_Docs/Parent_Doc.php:135
 #: includes/Admin/template/child-docs.php:18
 msgid "All articles"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:140
+#: includes/Admin/Create_Docs/Parent_Doc.php:139
 #: includes/Admin/template/child-docs.php:22
 msgid "Public"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:144
+#: includes/Admin/Create_Docs/Parent_Doc.php:143
 #: includes/Admin/template/child-docs.php:26
 msgid "Private"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:148
+#: includes/Admin/Create_Docs/Parent_Doc.php:147
 #: includes/Admin/template/child-docs.php:30
 msgid "Protected"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:152
+#: includes/Admin/Create_Docs/Parent_Doc.php:151
 #: includes/Admin/template/child-docs.php:34
 msgid "Draft"
 msgstr ""
 
-#: includes/Admin/Create_Docs/Parent_Doc.php:159
-#: includes/Admin/template/child-docs.php:252
+#: includes/Admin/Create_Docs/Parent_Doc.php:158
+#: includes/Admin/template/child-docs.php:253
 msgid "Add Section"
 msgstr ""
 
-#: includes/Admin/template/child-docs.php:91
-#: includes/Admin/template/child-docs.php:162
+#: includes/Admin/template/child-docs.php:92
+#: includes/Admin/template/child-docs.php:163
 msgid "Plus Icon"
 msgstr ""
 
-#: includes/Admin/template/child-docs.php:96
-#: includes/Admin/template/child-docs.php:167
+#: includes/Admin/template/child-docs.php:97
+#: includes/Admin/template/child-docs.php:168
 msgid "View Icon"
-msgstr ""
-
-#: includes/Admin/template/child-docs.php:110
-#: includes/Admin/template/child-docs.php:181
-#: includes/Admin/template/child-docs.php:218
-msgid "No Positive votes, "
 msgstr ""
 
 #: includes/Admin/template/child-docs.php:111
 #: includes/Admin/template/child-docs.php:182
 #: includes/Admin/template/child-docs.php:219
+msgid "No Positive votes, "
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:112
+#: includes/Admin/template/child-docs.php:183
+#: includes/Admin/template/child-docs.php:220
 msgid "No Negative votes."
 msgstr ""
 
-#: includes/Admin/template/child-docs.php:118
-#: includes/Admin/template/child-docs.php:189
-#: includes/Admin/template/child-docs.php:226
+#: includes/Admin/template/child-docs.php:119
+#: includes/Admin/template/child-docs.php:190
+#: includes/Admin/template/child-docs.php:227
 msgid "No rates"
 msgstr ""
 
-#: includes/Admin/template/child-docs.php:207
+#: includes/Admin/template/child-docs.php:208
 msgid "View icon"
 msgstr ""
 
-#: includes/Admin/template/child-docs.php:210
+#: includes/Admin/template/child-docs.php:211
 msgid "Delete icon"
 msgstr ""
 
@@ -213,7 +213,7 @@ msgstr ""
 msgid "Views"
 msgstr ""
 
-#: includes/Post_Types.php:30 includes/functions.php:257
+#: includes/Post_Types.php:30 includes/functions.php:238
 msgid "Docs"
 msgstr ""
 
@@ -347,7 +347,7 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: includes/functions.php:241
+#: includes/functions.php:222
 msgid "Home"
 msgstr ""
 
@@ -1065,7 +1065,7 @@ msgid "General"
 msgstr ""
 
 #: libs/codestar-framework/samples/settings-options.php:31
-msgid "Docs Home"
+msgid "Docs Page"
 msgstr ""
 
 #: libs/codestar-framework/samples/settings-options.php:33
@@ -1158,16 +1158,17 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: templates/content-related.php:26
-msgid "Related articles"
+#: templates/content-related.php:6 templates/content-related.php:16
+msgid "Related Articles"
 msgstr ""
 
-#: templates/content-related.php:44 templates/content-related.php:79
-msgid " See More..."
+#: templates/content-related.php:7 templates/content-related.php:20
+msgid "Recently Viewed Articles"
 msgstr ""
 
-#: templates/content-related.php:57
-msgid "Recently viewed articles"
+#: templates/content-related.php:10 templates/content-related.php:11
+#: templates/content-related.php:18 templates/content-related.php:22
+msgid "See More"
 msgstr ""
 
 #: templates/docs-right-sidebar.php:15
@@ -1194,7 +1195,7 @@ msgstr ""
 msgid "A+"
 msgstr ""
 
-#: templates/docs-right-sidebar.php:35
+#: templates/docs-right-sidebar.php:32
 msgid "CONTENTS"
 msgstr ""
 
@@ -1202,26 +1203,26 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: templates/shortcode.php:42
+#: templates/shortcode.php:3
 msgid "View Details"
 msgstr ""
 
-#: templates/single-doc-content.php:8
+#: templates/single-doc-content.php:16
 msgid "Hide category"
 msgstr ""
 
-#: templates/single-doc-content.php:9
+#: templates/single-doc-content.php:17
 msgid "Show category"
 msgstr ""
 
-#: templates/single-doc-content.php:18
+#: templates/single-doc-content.php:27
 msgid "Estimated reading: "
 msgstr ""
 
-#: templates/single-doc-content.php:34
+#: templates/single-doc-content.php:43
 msgid "Articles"
 msgstr ""
 
-#: templates/single-doc-content.php:41
+#: templates/single-doc-content.php:50
 msgid "Docs:"
 msgstr ""

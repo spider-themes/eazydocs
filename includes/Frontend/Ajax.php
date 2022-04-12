@@ -16,9 +16,9 @@ class Ajax {
         check_ajax_referer( 'eazydocs-ajax' );
 
         $template = '<div class="eazydocs-alert alert-%s">%s</div>';
-        $previous = isset( $_COOKIE['eazydocs_response'] ) ? explode( ',', $_COOKIE['eazydocs_response'] ) : [];
+        $previous = isset( $_COOKIE['eazydocs_response'] ) ? explode( ',', htmlspecialchars( $_COOKIE['eazydocs_response'] ) ) : [];
         $post_id  = intval( $_POST['post_id'] );
-        $type     = in_array( $_POST['type'], [ 'positive', 'negative' ] ) ? $_POST['type'] : false;
+        $type     = in_array( $_POST['type'], [ 'positive', 'negative' ] ) ? sanitize_text_field( $_POST['type'] ) : false;
 
         // check previous response
         if ( in_array( $post_id, $previous ) ) {

@@ -1,5 +1,4 @@
 <?php
-
 namespace eazyDocs\Admin\Create_Docs;
 
 class Parent_Doc {
@@ -42,7 +41,7 @@ class Parent_Doc {
 	 * @return int Post ID
 	 */
 	public function post() {
-		$title = $_POST['parent_title'] ?? '';
+		$title = ! empty ( $_POST['parent_title'] ) ? sanitize_text_field( $_POST['parent_title'] ) : '';
 
 		$args = [
 			'post_type'   => 'docs',

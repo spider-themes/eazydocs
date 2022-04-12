@@ -11,7 +11,7 @@ class Assets {
 	 * Assets constructor.
 	 */
 	public function __construct() {
-        $current_url = !empty($_GET["page"]) ? admin_url( "admin.php?page=".$_GET["page"] ) : '';
+       $current_url = !empty($_GET["page"]) ? admin_url( "admin.php?page=".sanitize_text_field( $_GET["page"] ) ) : '';
         $target_url = admin_url( '/admin.php?page=eazydocs' );
 
         if ( $current_url == $target_url ) {
@@ -27,7 +27,6 @@ class Assets {
 	public function eazydocs_dashboard_scripts() {
 		wp_enqueue_style( 'normalize', EAZYDOCS_ASSETS . '/css/admin/normalize.css' );
 		wp_enqueue_style( 'nice-select', EAZYDOCS_ASSETS . '/css/admin/nice-select.css' );
-		wp_enqueue_style( 'jquery-ui', EAZYDOCS_ASSETS . '/css/admin/jquery-ui.css' );
 		wp_enqueue_style( 'eazydocs-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css' );
 		wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
 		wp_enqueue_style( 'eazyDocs-main', EAZYDOCS_ASSETS . '/css/admin.css' );

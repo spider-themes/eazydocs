@@ -34,6 +34,7 @@ if ( is_array( $depth_one_parents ) ) :
 						<?php esc_html_e( 'Draft', 'eazydocs' ); ?>
                     </li>
                 </ul>
+
             </div>
 
             <ul class="easydocs-accordion sortable accordionjs">

@@ -28,7 +28,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'      => 'docs-slug',
 			'type'    => 'select',
-			'title'   => esc_html__( 'Docs Home', 'eazydocs' ),
+			'title'   => esc_html__( 'Docs Page', 'eazydocs' ),
 			'options' => 'pages',
 			'desc'    => sprintf( wp_kses_post( __( 'Home page for docs page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs' ) ) )
 		),

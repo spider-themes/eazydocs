@@ -2,7 +2,7 @@
 $options       = get_option( 'eazydocs_settings' );
 $article_print = $options['pr-icon-switcher'] ?? '';
 ?>
-<div class="col-lg-2 col-md-4 doc_right_mobile_menu">
+<div class="col-lg-2 col-md-4 doc_right_mobile_menus">
     <div class="open_icon" id="right">
         <i class="arrow_carrot-left"></i>
         <i class="arrow_carrot-right"></i>
@@ -24,12 +24,9 @@ $article_print = $options['pr-icon-switcher'] ?? '';
                     </div>
                 </div>
 				<?php
-				if ( $article_print == '1' ) :
-					?>
+				if ( $article_print == '1' ) : ?>
                     <a href="#" class="print"><i class="icon_printer"></i></a>
-				<?php
-				endif;
-				?>
+				<?php endif; ?>
             </div>
             <div class="table-of-content">
                 <h6><i class="icon_ul"></i> <?php esc_html_e( 'CONTENTS', 'eazydocs' ); ?></h6>
