@@ -8,3 +8,8 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
   background-color: #27ae60;
 }
+.ez-section-title progress {
+  height: 6px;
+  border-radius: 32px;
+  width: 100px;
+}
