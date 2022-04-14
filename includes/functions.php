@@ -41,8 +41,8 @@ function eazydocs_get_template_part( $template ) {
     if ( is_plugin_active('betterdocs/betterdocs.php') ) {
         $plugins[] = array('betterdocs', 'BetterDocs');
     }
-    if ( is_plugin_active('eazydocs/eazydocs.php') ) {
-        $plugins[] = array('eazydocs', 'eazydocs');
+    if ( is_plugin_active('wedocs/wedocs.php') ) {
+        $plugins[] = array('wedocs', 'weDocs');
     }
     if ( is_plugin_active('bsf-docs/bsf-docs.php') ) {
         $plugins[] = array('bsf-docs', 'BSF docs');
