@@ -41,10 +41,7 @@ $query             = new WP_Query( [
                     </a>
                     <ul class="list-unstyled tag_list">
 						<?php
-						$args = array(
-							'post_parent' => get_the_ID()
-						);
-						$children = get_children( $args );
+						$children = get_children( ['post_parent' => get_the_ID()] );
 						if ( is_array( $children ) ) :
 							foreach ( $children as $item ) :
 								?>
