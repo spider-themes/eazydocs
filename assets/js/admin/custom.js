@@ -2,6 +2,27 @@
     'use sticky'
     $(document).ready(function(){
 
+        // NEW DOC
+        function add_new_doc() {
+            $(document).on('click', '#new-doc', function (e) {
+                e.preventDefault();
+                let href = $(this).attr('href')
+                Swal.fire({
+                    title: eazydocs_local_object.create_prompt_title,
+                    input: 'text',
+                    showCancelButton: true,
+                    inputAttributes: {
+                        name: 'new_doc'
+                    },
+                }).then((result) => {
+                    if (result.value) {
+                        document.location.href = href + result.value;
+                    }
+                })
+            })
+        }
+        add_new_doc()
+
         // ADD PARENT DOC
         $(document).on('click', '#parent-doc', function (e) {
             e.preventDefault();
@@ -156,6 +177,12 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             })
         });
+
+        // If nav item is active with cookie / else
+        if (!$('.easydocs-navitem').hasClass("is-active")) {
+            $('.easydocs-navitem:first-child').addClass('is-active');
+            $('.easydocs-tab:first-child').css('display','block');
+        }
 
     });
 })(jQuery);

@@ -1,10 +1,17 @@
 <?php
-$name               = $email    = '';
+$name = $email = '';
 if ( ! is_user_logged_in() ) {
-	$email_from     = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
+	$email_from = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
 } else {
-	$email_from     = wp_get_current_user()->user_email;
-	$name           = wp_get_current_user()->display_name;
+	$email_from = wp_get_current_user()->user_email;
+	$name       = wp_get_current_user()->display_name;
+}
+$options = get_option( 'eazydocs_settings' );
+$title   = __( 'How can we help?', 'eazydocs' );
+$desc    = __( 'A premium WordPress theme with integrated Knowledge Base, providing 24/7 community based support.', 'eazydocs' );
+if ( class_exists( 'EazyDocsPro' ) ) {
+	$title = ! empty ( $options['feedback-form-title'] ) ? $options['feedback-form-title'] : $title;
+	$desc        = ! empty ( $options['feedback-form-desc'] ) ? $options['feedback-form-desc'] : $desc;
 }
 ?>
 
@@ -15,8 +22,8 @@ if ( ! is_user_logged_in() ) {
     <div class="modal-dialog help_form" role="document">
         <div class="modal-content">
             <div class="shortcode_title">
-                <h2> <?php esc_html_e( 'How can we help?', 'eazydocs' ); ?> </h2>
-				<?php echo wpautop( 'A premium WordPress theme with integrated Knowledge Base, providing 24/7 community based support.' ); ?>
+                <h2> <?php echo esc_html( $title ); ?> </h2>
+	            <?php echo wpautop( $desc ); ?>
             </div>
             <form method="post" id="edocs-contact-form" class="contact_form">
                 <div class="row">
@@ -24,7 +31,8 @@ if ( ! is_user_logged_in() ) {
                         <input type="text" class="form-control" value="<?php echo esc_attr( $name ); ?>" name="name" id="name" placeholder="<?php esc_attr_e( 'Name', 'eazydocs' ); ?>" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <input type="email" class="form-control" value="<?php echo esc_attr( $email_from ); ?>" name="email" id="email" placeholder="<?php esc_attr_e( 'Email', 'eazydocs' ); ?>" <?php disabled( is_user_logged_in() ); ?> required>
+                        <input type="email" class="form-control" value="<?php echo esc_attr( $email_from ); ?>" name="email" id="email"
+                               placeholder="<?php esc_attr_e( 'Email', 'eazydocs' ); ?>" <?php disabled( is_user_logged_in() ); ?> required>
                     </div>
                     <div class="form-group col-md-12">
                         <input type="text" class="form-control" name="subject" id="subject" placeholder="<?php esc_attr_e( 'Subject', 'eazydocs' ); ?>" required>

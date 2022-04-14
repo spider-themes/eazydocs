@@ -34,9 +34,9 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'docs-feedback',
+			'id'         => 'message-feedback',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Feedback Area', 'eazydocs' ),
+			'title'      => esc_html__( 'Message Feedback', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => true,
@@ -55,6 +55,13 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'      => 'helpful_feedback',
+			'type'    => 'switcher',
+			'title'   => esc_html__( 'Voting Feedback', 'eazydocs' ),
+			'default' => true
+		),
+
+		array(
 			'id'      => 'enable-comment',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Comment', 'eazydocs' ),
@@ -65,12 +72,7 @@ CSF::createSection( $prefix, array(
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Print article', 'eazydocs' ),
 			'default' => true
-		),
-		array(
-			'id'      => 'helpful_feedback',
-			'type'    => 'switcher',
-			'title'   => esc_html__( 'Helpful feedback', 'eazydocs' ),
-			'default' => true
 		)
+
 	)
 ) );

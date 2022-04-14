@@ -82,3 +82,29 @@ div.search_result {
 .child-one .accordion-title.has-child h4{
     font-weight: normal;
 }
+.eazydocs-no-content{
+    display: block;
+    text-align: center;
+    margin-top: 250px
+}
+.eazydocs-no-content a,
+.eazydocs-no-content span {
+    padding: 60px 0px;
+    color: #777;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-size: 13px;
+    line-height: 1.4em;
+}
+.eazydocs-no-content a {
+    color: #2271b1;
+}
+.eazydocs-no-content a:focus {
+    outline: none;
+    box-shadow: none;
+}
+.eazydocs-no-content img {
+    width: auto;
+    max-width: 50px;
+    height: auto;
+    margin: 0px auto 10px;
+}

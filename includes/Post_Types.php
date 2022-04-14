@@ -17,6 +17,7 @@ class Docs {
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_post_type' ] );
 		add_action( 'init', [ $this, 'register_taxonomy' ] );
+
 	}
 
 	/**
@@ -25,6 +26,17 @@ class Docs {
 	 * @return void
 	 */
 	public function register_post_type() {
+
+		/**
+		 * Docs slug
+		 * @var string
+		 */
+		$slug = 'docs';
+		if ( class_exists( 'EazyDocsPro' ) ) {
+			$settings_options   = get_option( 'eazydocs_settings' );
+			$slug               = $settings_options['docs-type-slug'] ?? 'docs';
+		}
+
 		$labels = [
 			'name'               => _x( 'Docs', 'Post Type General Name', 'eazydocs' ),
 			'singular_name'      => _x( 'Doc', 'Post Type Singular Name', 'eazydocs' ),
@@ -41,7 +53,7 @@ class Docs {
 			'not_found_in_trash' => __( 'Not found in Trash', 'eazydocs' ),
 		];
 		$rewrite = [
-			'slug'       => 'docs',
+			'slug'       => $slug,
 			'with_front' => true,
 			'pages'      => true,
 			'feeds'      => true,

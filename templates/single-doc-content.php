@@ -3,12 +3,13 @@ eazydocs_set_post_view();
 $cz_options             = '';
 $layout                 = 'both_sidebar';
 $cz_options             = '';
-$comment_visibility     = '';
+$options                = get_option( 'eazydocs_settings' );
+$comment_visibility     = $options['enable-comment'] ?? '';
+$docs_feedback          = '1';
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$cz_options         = get_option( 'eazydocs_customizer' ); // prefix of framework
 	$layout             = $cz_options['docs-single-layout']; // id of field
-	$options            = get_option( 'eazydocs_settings' );
-	$comment_visibility = $options['enable-comment'] ?? '';
+	$docs_feedback      = $options['docs-feedback'] ?? '1';
 }
 
 if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) : ?>
@@ -53,12 +54,15 @@ if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' 
 				?>
             </div>
         </div>
-		<?php eazydocs_get_template_part( 'content-feedback' ); ?>
+		<?php
+        if( $docs_feedback == '1' ) {
+	        eazydocs_get_template_part( 'content-feedback' );
+        }
+        ?>
     </article>
 
 <?php
 eazydocs_get_template_part( 'content-related' );
-eazydocs_get_template_part( 'content-modal' );
 
 if ( $comment_visibility == '1' )  :
 	if ( comments_open() || get_comments_number() )  :
