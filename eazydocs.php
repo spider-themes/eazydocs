@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: EazyDocs
- * Description: A simple documentation creator plugin.
+ * Description: A powerful and beautiful documentation builder plugin.
  * Plugin URI: https://wordpress-theme.spider-themes.net/docy/docs/
  * Author: spider-themes
  * Author URI: #
@@ -97,7 +97,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			define( 'EAZYDOCS_PATH', __DIR__ );
 			define( 'EAZYDOCS_URL', plugins_url( '', EAZYDOCS_FILE ) );
 			define( 'EAZYDOCS_ASSETS', EAZYDOCS_URL . '/assets' );
-			define( 'EAZYDOCS_FRONT_CSS', EAZYDOCS_URL . '/assets/frontend/css' );
+			define( 'EAZYDOCS_FRONT_CSS', EAZYDOCS_URL . '/assets/css/frontend' );
 			define( 'EAZYDOCS_IMG', EAZYDOCS_URL . '/assets/images' );
 			define( 'EAZYDOCS_VEND', EAZYDOCS_URL . '/assets/vendors' );
 		}

@@ -36,7 +36,7 @@ class Walker_Docs extends Walker_Page {
 
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat("\t", $depth);
-        $output .= '<span class="icon"><i class="arrow_carrot-down"></i></span>'."\n$indent<ul class='list-unstyled dropdown_nav'>\n";
+        $output .= '<span class="icon"><i class="arrow_carrot-down"></i></span>'."\n$indent<ul class='dropdown_nav'>\n";
 
         if ( $args['has_children'] && $depth == 0 ) {
             $classes = isset($parent_item->ID) ? array( 'page_item', 'extra-class', 'page-item-' . self::$parent_item->ID ) : '';

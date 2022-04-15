@@ -3,6 +3,8 @@
 
     $(document).ready(function() {
 
+        $('body').attr({'data-bs-spy': 'scroll', 'data-bs-target': "#eazydocs-toc"})
+
         /** === Contact Form Ajax === **/
         $(document).on('submit', '#edocs-contact-form', function (e) {
             e.preventDefault();
@@ -88,7 +90,9 @@
          */
         $('.pageSideSection .print').on('click', function (e) {
             e.preventDefault()
-            $(".doc-middle-content .doc-post-content").printThis()
+            $(".doc-middle-content .doc-post-content").printThis({
+                'loadCSS': eazydocs_local_object.EAZYDOCS_FRONT_CSS + '/print.css',
+            })
         })
 
         /**
@@ -154,11 +158,11 @@
 
 
             function onThisPageID(item, index) {
-                document.getElementById("navbar-example3").innerHTML += "<a class='nav-link link-"+index+"' href='#" + item + "'>" + item + " </a>"
+                document.getElementById("eazydocs-toc").innerHTML += "<a class='nav-link link-"+index+"' href='#" + item + "'>" + item + " </a>"
             }
 
             function onThisPageTitle(item, index) {
-                $('#navbar-example3 .link-'+index).text(item)
+                $('#eazydocs-toc .link-'+index).text(item)
             }
 
             // table of contents on top
@@ -188,7 +192,7 @@
         // Doc on this page nav
         function doc_toc_enable(ajax = false) {
             if ( ajax == true ) {
-                $("#navbar-example3").html('');
+                $("#eazydocs-toc").html('');
             }
             if ( $(".doc-middle-content #post h2").length ) {
                 anchors.options = {

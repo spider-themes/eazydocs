@@ -1,6 +1,6 @@
-=== EazyDocs - Knowledgebase and Documentation Plugin for WordPress ===
+=== EazyDocs - #1 Powerful and beautiful documentation builder ===
 Contributors: mdjwel, spiderdevs
-Tags: document, docs, documentation, knowledge base, knowledgebase, support, faq
+Tags: document, docs, documentation, knowledge base, knowledgebase, kb, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center
 Requires at least: 5.0
 Tested up to: 5.9.3
 Requires PHP: 7.0

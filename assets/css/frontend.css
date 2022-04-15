@@ -1827,6 +1827,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 0 0 32px;
   width: 100% !important;
   display: none;
+  list-style: none;
 }
 .nav-sidebar .nav-item .dropdown_nav li {
   margin: 5px 0;
@@ -2270,7 +2271,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #27ae60;
   transition: all 0.2s linear;
   margin-left: 10px;
-  border-radius: 2px;
+  border-radius: 15px;
 }
 .feedback_link .h_btn.red {
   background: #e74c3c;
@@ -6248,10 +6249,6 @@ p .footnotes-link::after {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#03ffffff", endColorstr="#ffffff", GradientType=0 );
   background: linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
   display: block;
-}
-
-#comments {
-  margin: 50px 0 0;
 }
 
 .doc-scrollable img {

@@ -30,7 +30,7 @@ $article_print = $options['pr-icon-switcher'] ?? '';
             </div>
             <div class="table-of-content">
                 <h6><i class="icon_ul"></i> <?php esc_html_e( 'CONTENTS', 'eazydocs' ); ?></h6>
-                <nav class="list-unstyled doc_menu" id="navbar-example3"></nav>
+                <nav class="list-unstyled doc_menu" id="eazydocs-toc"></nav>
             </div>
         </div>
     </div>

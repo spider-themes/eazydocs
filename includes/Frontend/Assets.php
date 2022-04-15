@@ -33,7 +33,10 @@ class Assets {
 			);
 
 			wp_register_style( 'print', EAZYDOCS_ASSETS . '/css/frontend/print.css' );
+            wp_enqueue_style( 'mCustomScrollbar', EAZYDOCS_VEND . '/mcustomscrollbar/jquery.mCustomScrollbar.min.css' );
 			wp_enqueue_style( 'rvfs', EAZYDOCS_VEND . '/font-size/css/rvfs.css' );
+            // Scripts
+            wp_enqueue_script( 'mCustomScrollbar', EAZYDOCS_VEND . '/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '3.1.13', true );
 			wp_enqueue_script( 'rv-jquery-fontsize', EAZYDOCS_VEND . '/font-size/js/rv-jquery-fontsize-2.0.3.js' );
 			wp_enqueue_script( 'printThis', EAZYDOCS_ASSETS . '/js/frontend/printThis.js' );
 			wp_enqueue_script( 'anchor', EAZYDOCS_ASSETS . '/js/frontend/anchor.js' );

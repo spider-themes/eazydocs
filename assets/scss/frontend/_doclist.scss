@@ -150,6 +150,7 @@
       padding: 10px 0 0 32px;
       width: 100% !important;
       display: none;
+      list-style: none;
       li {
         margin: 5px 0;
         padding: 0;
@@ -608,7 +609,7 @@
     background-color: #27ae60;
     transition: all 0.2s linear;
     margin-left: 10px;
-    border-radius: 2px;
+    border-radius: 15px;
     &.red {
       background: #e74c3c;
     }

@@ -37,7 +37,7 @@ class Ajax {
             $val = setcookie( 'eazydocs_response', $cookie_val, time() + WEEK_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
         }
 
-        $message = sprintf( $template, 'success', __( 'Thanks for your feedback!', 'eazydocs' ) );
+        $message = sprintf( $template, 'success', esc_html__( 'Thanks for your feedback!', 'eazydocs' ) );
         wp_send_json_success($message);
     }
 }
