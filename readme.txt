@@ -12,7 +12,7 @@ EazyDocs assist you in easily creating beautifully designed documentation for yo
 
 == Description ==
 
-EazyDocs is a WordPress plugin that can assist you in quickly and easily creating great looking documentation for your products. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+EazyDocs assist you in quickly and easily creating great looking documentation for your products. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 
 ### 🌟 Top Features ###
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
