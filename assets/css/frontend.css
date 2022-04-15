@@ -1836,7 +1836,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-sidebar .nav-item .dropdown_nav li a {
   font-size: 14px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 1.3;
   color: var(--p_color);
   padding: 0;
 }
@@ -2708,6 +2708,9 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   padding: 5px 0;
   color: var(--p_color);
 }
+.onepage-doc .nav-sidebar .nav-item .dropdown_nav .nav-item .active.nav-link {
+  color: var(--brand_color);
+}
 .onepage-doc .nav-sidebar .nav-item .dropdown_nav .nav-item.active .nav-link {
   color: var(--brand_color);
 }
@@ -2715,7 +2718,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   padding-top: 0;
 }
 .onepage-doc .doc-container {
-  padding-top: 100px;
+  padding-top: 130px;
 }
 
 .doc_rightsidebar .bootstrap-select .dropdown-toggle .filter-option-inner-inner {

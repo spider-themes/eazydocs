@@ -4,7 +4,6 @@ namespace eazyDocs\Frontend;
 class Frontend {
 	public function __construct() {
 		add_filter( 'single_template', [ $this, 'template_loader' ], 20, 99 );
-		//add_filter( 'body_class', [ $this, 'eazydocs_body_class' ], 9999 );
 	}
 
 	/**
@@ -25,12 +24,5 @@ class Frontend {
 			}
 		}
 		return apply_filters( 'eazydocs_template_' . $template, $file );
-	}
-
-	public function eazydocs_body_class( $classes ) {
-		if ( is_singular('docs') ) {
-			$classes[] = '"data-spy="scroll" data-target="#eazydocs-toc';
-		}
-		return $classes;
 	}
 }

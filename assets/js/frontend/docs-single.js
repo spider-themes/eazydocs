@@ -20,13 +20,13 @@
                 error:function (){
                     $(thisForm).append('<p> Ohh no! Something went wrong!! </p>');
                 }
-            });
+            })
         })
 
         /** === Feedback Handler === **/
         $('.vote-link-wrap a.h_btn').on('click', function (e) {
-            e.preventDefault();
-            let self = $(this);
+            e.preventDefault()
+            let self = $(this)
             $.ajax({
                 url: eazydocs_local_object.ajaxurl,
                 method: "post",
@@ -37,14 +37,14 @@
                     _wpnonce: eazydocs_local_object.nonce,
                 },
                 beforeSend: function () {
-                    $(".eazydocs-feedback-wrap").append('<i class="eazydocs-icon icon_loading"></i>');
+                    $(".eazydocs-feedback-wrap").append('<i class="eazydocs-icon icon_loading"></i>')
                 },
                 success: function (response) {
                     $(".eazydocs-feedback-wrap").html(response.data)
                     console.log(response.data)
                 },
                 error: function () {
-                    console.log("Oops! Something wrong, try again!");
+                    console.log("Oops! Something wrong, try again!")
                 }
             })
         })
