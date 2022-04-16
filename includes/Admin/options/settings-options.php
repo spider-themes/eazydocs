@@ -34,6 +34,15 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'         => 'brand_color',
+			'type'       => 'color',
+			'title'      => esc_html__( 'Frontend Brand Color', 'eazydocs' ),
+            'default'    => '#4c4cf1',
+            'output'     => ':root',
+            'output_mode' => '--ezd_brand_color',
+        ),
+
+		array(
 			'id'         => 'message-feedback',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Message Feedback', 'eazydocs' ),

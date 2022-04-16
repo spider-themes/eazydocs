@@ -3,7 +3,7 @@
   height: 750px;
   display: flex;
   align-items: center;
-  background-image: linear-gradient(60deg, var(--brand_color) 0%, var(--secondary_color) 100%);
+  background-image: linear-gradient(60deg, var(--ezd_brand_color) 0%, var(--secondary_color) 100%);
   position: relative;
   overflow: hidden;
   .star {
@@ -212,7 +212,7 @@
     .input-group-append button {
       padding: 5px 25px;
       font-size: 20px;
-      background: var(--brand_color);
+      background: var(--ezd_brand_color);
       color: #fff;
       text-align: center;
       border: 0;
@@ -293,7 +293,7 @@
     top: 160px;
     width: 8px;
     height: 8px;
-    background: var(--brand_color);
+    background: var(--ezd_brand_color);
     animation: spin2 2s infinite alternate;
   }
 
@@ -346,7 +346,7 @@
       font-size: 18px;
       font-weight: 400;
       box-shadow: 0 10px 20px 0 rgba(12, 118, 142, 0.1);
-      background: var(--brand_color);
+      background: var(--ezd_brand_color);
       padding: 5px 42px;
     }
   }
@@ -386,7 +386,7 @@
       background: transparent;
       border: 0;
       padding-right: 20px;
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
       font-size: 20px;
     }
   }
@@ -456,7 +456,7 @@
         background: transparent;
         border: 0;
         padding-right: 20px;
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
         font-size: 24px;
 
         i {
@@ -902,14 +902,14 @@
         height: 0;
         position: absolute;
         left: 0;
-        background: var(--brand_color);
+        background: var(--ezd_brand_color);
         transition: all 0.2s linear;
       }
 
       &:hover,
       &.selected {
         background: #f4f9fa;
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
         font-weight: 500;
 
         &:before {
@@ -1068,7 +1068,7 @@
     a {
       color: var(--black_500);
       &:hover {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
     }
     & + .breadcrumb-item {
@@ -1335,7 +1335,7 @@
                   position: absolute;
                   left: -1px;
                   top: 0;
-                  background: var(--brand_color);
+                  background: var(--ezd_brand_color);
                   opacity: 0;
                   transition: all 0.2s linear;
                 }
@@ -1453,7 +1453,7 @@
           max-width: 650px;
           margin-right: 0;
           i {
-            color: var(--brand_color);
+            color: var(--ezd_brand_color);
           }
           input {
             font-size: 14px;

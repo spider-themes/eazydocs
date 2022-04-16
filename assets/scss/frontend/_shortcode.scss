@@ -11,7 +11,7 @@
       a {
         color: #6b707f;
         &:hover {
-          color: var(--brand_color);
+          color: var(--ezd_brand_color);
         }
       }
     }
@@ -83,7 +83,7 @@ body.doc.test.remove {
           content: "";
           width: 0;
           height: 2.1px;
-          background: var(--brand_color);
+          background: var(--ezd_brand_color);
           position: absolute;
           top: 0;
           left: 0;
@@ -138,7 +138,7 @@ body.doc.test.remove {
     right: 30px;
     transform: rotate(180deg);
     transition: all 0.2s linear;
-    color: var(--brand_color);
+    color: var(--ezd_brand_color);
   }
   &.collapsed {
     &:before {
@@ -178,7 +178,7 @@ body.doc.test.remove {
       text-align: left;
       width: 100%;
       font-size: 16px;
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
       font-weight: 500;
       background: #F2F6F7;
       text-decoration: none;
@@ -273,7 +273,7 @@ body.doc.test.remove {
   border-color: #a0e3f2;
   i,
   h5 {
-    color: var(--brand_color);
+    color: var(--ezd_brand_color);
   }
 }
 /*=========== message_alert Shortcode css ========*/
@@ -491,7 +491,7 @@ button.mfp-close {
       vertical-align: middle;
     }
     a {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
     }
   }
   .text-decoration {
@@ -501,7 +501,7 @@ button.mfp-close {
       content: "";
       width: 100%;
       height: 1px;
-      background: var(--brand_color);
+      background: var(--ezd_brand_color);
       position: absolute;
       bottom: 5px;
       left: 0;
@@ -586,7 +586,7 @@ button.mfp-close {
     h6 {
       margin-top: 35px;
       a {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
     }
   }
@@ -739,7 +739,7 @@ button.mfp-close {
 }
 .blue {
   background: #e6f8fc;
-  color: var(--brand_color);
+  color: var(--ezd_brand_color);
 }
 
 .caniuse_section_legend {
@@ -760,7 +760,7 @@ button.mfp-close {
       border-radius: 2px;
       &.blue {
         &:hover {
-          background: var(--brand_color);
+          background: var(--ezd_brand_color);
           color: #fff;
         }
       }
@@ -817,7 +817,7 @@ button.mfp-close {
     tr {
       background: #f0f2f5;
       th {
-        background: var(--brand_color);
+        background: var(--ezd_brand_color);
       }
       td,
       th {
@@ -860,7 +860,7 @@ button.mfp-close {
   &.table-hover tbody tr {
     transition: all 0.3s linear;
     &:hover {
-      background: var(--brand_color);
+      background: var(--ezd_brand_color);
       color: #fff;
     }
   }
@@ -909,7 +909,7 @@ button.mfp-close {
     content: "[" counter(footnotes) "]";
   }
   &:target,&:target {
-    outline: 2px solid var(--brand_color);
+    outline: 2px solid var(--ezd_brand_color);
     outline-offset: 2px;
   }
 }
@@ -936,7 +936,7 @@ button.mfp-close {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--brand_color);
+      background: var(--ezd_brand_color);
       position: absolute;
       left: 0;
       top: 9px;
@@ -994,7 +994,7 @@ ul.ordered-list {
       border-radius: 50%;
       font-weight: 500;
       font-size: 12px;
-      background-color: var(--brand_color);
+      background-color: var(--ezd_brand_color);
       text-align: center;
       line-height: 23px;
       top: -4px;
@@ -1092,7 +1092,7 @@ ul.ordered-list {
     letter-spacing: 0.8px;
     background: #0ed193;
     &.improve {
-      background: var(--brand_color);
+      background: var(--ezd_brand_color);
     }
     &.update {
       background: #ffa100;
@@ -1116,7 +1116,7 @@ ul.ordered-list {
       margin-right: 5px;
     }
     &:hover {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
     }
     & + .changelog_btn {
       margin-left: 28px;
@@ -1244,6 +1244,6 @@ ul.ordered-list {
   }
   h5 {
     margin-bottom: 0;
-    color: var(--brand_color);
+    color: var(--ezd_brand_color);
   }
 }

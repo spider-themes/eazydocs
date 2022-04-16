@@ -73,9 +73,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Changelog ==
 
 = v1.0.1 (17 April 2022) =
+* New: Brand Color changing option added to Settings page.
 * Fixed: Doc archive page was rendering doc lists incorrectly
 * Fixed: JS error on single doc
 * Tweaked: Some style improved on doc frontend
+* Tweaked: Was this doc helpful? Voting design and ajax loading icon improved
 * Tweaked: Code and file structure re-organized
 
 = v1.0.0 (09 April 2022) =

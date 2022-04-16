@@ -129,10 +129,10 @@
     &:hover,
     &.active {
       > .nav-link {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
       > .icon {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
       svg {
         path {
@@ -164,7 +164,7 @@
           &.active {
             color: #3c4257;
             i {
-              color: var(--brand_color);
+              color: var(--ezd_brand_color);
             }
           }
         }
@@ -220,7 +220,7 @@
       display: none;
     }
     .title {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
     }
   }
 }
@@ -269,7 +269,7 @@
     }
     &:hover {
       a {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
     }
   }
@@ -294,7 +294,7 @@
   padding-bottom: 50px;
   .c_head {
     i {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
       font-size: 16px;
       margin-left: 8px;
     }
@@ -302,7 +302,7 @@
   p {
     color: var(--p_color);
     a {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
     }
   }
 }
@@ -365,11 +365,11 @@
       }
       &.active,
       &:hover {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
         border: 0;
         background: transparent;
         span {
-          background: var(--brand_color);
+          background: var(--ezd_brand_color);
           color: #fff;
         }
       }
@@ -423,7 +423,7 @@
   padding: 34px 0 20px;
   p {
     a {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
     }
   }
   .tag_list li {
@@ -455,7 +455,7 @@
           position: relative;
         }
         &:hover {
-          color: var(--brand_color);
+          color: var(--ezd_brand_color);
         }
       }
     }
@@ -481,7 +481,7 @@
     border-radius: 0;
     background: #e1ebf0;
     border: 0;
-    color: var(--brand_color);
+    color: var(--ezd_brand_color);
     outline: none;
     box-shadow: none;
     transition: all 0.4s linear;
@@ -495,7 +495,7 @@
     &:hover {
       outline: none;
       box-shadow: none;
-      background: var(--brand_color);
+      background: var(--ezd_brand_color);
       color: #fff;
     }
   }
@@ -528,7 +528,7 @@
     }
     p {
       a {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
     }
   }
@@ -559,7 +559,7 @@
         border: 0;
         font-size: 16px;
         font-weight: 500;
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
         padding: 0 20px;
         position: relative;
         &:before {
@@ -575,22 +575,21 @@
     }
   }
 }
+
 .feedback_link {
   align-items: center;
   padding-top: 20px;
+  .eazydocs-feedback-wrap {
+    justify-content: end;
+    display: flex;
+  }
   p {
     font-weight: 500;
     font-size: 14px !important;
     color: var(--p_color);
     margin-bottom: 0 !important;
-    &.left {
-      margin-top: 2px;
-    }
-    &.right {
-      margin-top: -10px;
-    }
     a {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
     }
     i {
       padding-right: 8px;
@@ -708,7 +707,7 @@
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   left: -40px;
-  color: var(--brand_color);
+  color: var(--ezd_brand_color);
   display: none;
   top: 30px;
   i {
@@ -802,7 +801,7 @@
     position: relative;
     margin-bottom: 6px;
     &.active {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
       font-weight: 500;
       + .nav .active::before {
         display: none;
@@ -813,7 +812,7 @@
         content: " ";
         position: absolute;
         border-left: 2px solid;
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
 
       }
     }
@@ -931,7 +930,7 @@ body:not(.onepage-doc) .sticky_menu {
     padding-top: 15px;
     p {
       a {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
     }
   }
@@ -1009,7 +1008,7 @@ body:not(.onepage-doc) .sticky_menu {
         line-height: 48px;
         font-size: 18px;
         position: absolute;
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
         transform: rotate(0deg);
         i {
           display: inline-block;
@@ -1056,7 +1055,7 @@ body:not(.onepage-doc) .sticky_menu {
             left: 0;
             top: 0;
             font-family: "ElegantIcons";
-            color: var(--brand_color);
+            color: var(--ezd_brand_color);
           }
           .docs-progress-bar {
             display: none;
@@ -1066,11 +1065,11 @@ body:not(.onepage-doc) .sticky_menu {
             color: var(--p_color);
           }
           .active.nav-link {
-            color: var(--brand_color);
+            color: var(--ezd_brand_color);
           }
           &.active {
             .nav-link {
-              color: var(--brand_color);
+              color: var(--ezd_brand_color);
             }
           }
         }
@@ -1134,7 +1133,7 @@ body:not(.onepage-doc) .sticky_menu {
                 position: absolute;
                 left: 0;
                 top: 0;
-                background: var(--brand_color);
+                background: var(--ezd_brand_color);
                 transition: all 0.2s linear;
               }
               i {
@@ -1143,7 +1142,7 @@ body:not(.onepage-doc) .sticky_menu {
               &.active,
               &:hover {
                 background: #f6f6f6;
-                color: var(--brand_color);
+                color: var(--ezd_brand_color);
                 &:before {
                   height: 100%;
                 }
@@ -1266,7 +1265,7 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
         font-size: 14px;
         font-weight: 400;
         &:hover {
-          color: var(--brand_color);
+          color: var(--ezd_brand_color);
           background: brand_color_rgba(0.15);
         }
       }
@@ -1301,15 +1300,15 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
           font-size: 16px;
           transition: all 300ms linear 0s;
           i {
-            color: var(--brand_color);
+            color: var(--ezd_brand_color);
             padding-right: 12px;
           }
         }
         &:hover {
           a {
-            color: var(--brand_color);
+            color: var(--ezd_brand_color);
             i {
-              color: var(--brand_color);
+              color: var(--ezd_brand_color);
             }
           }
         }
@@ -1354,7 +1353,7 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
         color: var(--p_color);
       }
       &:focus {
-        border-color: var(--brand_color);
+        border-color: var(--ezd_brand_color);
       }
     }
     label {
@@ -1365,7 +1364,7 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
       top: -10px;
       left: 26px;
       font-size: 12px;
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
       background-color: #fff;
       padding: 0 5px 0 5px;
     }
@@ -1380,7 +1379,7 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
       font-size: 14px;
     }
     .action_btn {
-      background: var(--brand_color);
+      background: var(--ezd_brand_color);
       border-radius: 4px;
       &hover {
         box-shadow: 0 15px 35px -3px brand_color_rgba(0.3);
@@ -1435,7 +1434,7 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
 .small-dialog {
   padding: 50px 40px;
   .count {
-    background: var(--brand_color);
+    background: var(--ezd_brand_color);
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -1480,7 +1479,7 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
       text-align: center;
       margin: 0;
       &:hover {
-        background: var(--brand_color);
+        background: var(--ezd_brand_color);
         &:after {
           color: #fff;
         }
@@ -1715,9 +1714,9 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
       &:focus {
-        border-bottom: 1px solid var(--brand_color);
-        -webkit-box-shadow: 0 1px 0 0 var(--brand_color);
-        box-shadow: 0 1px 0 0 var(--brand_color);
+        border-bottom: 1px solid var(--ezd_brand_color);
+        -webkit-box-shadow: 0 1px 0 0 var(--ezd_brand_color);
+        box-shadow: 0 1px 0 0 var(--ezd_brand_color);
       }
     }
   }
@@ -1805,9 +1804,9 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
         }
         &.current {
           box-shadow: none !important;
-          background: var(--brand_color) !important;
+          background: var(--ezd_brand_color) !important;
           color: #fff !important;
-          border-color: var(--brand_color) !important;
+          border-color: var(--ezd_brand_color) !important;
         }
       }
 
@@ -1854,7 +1853,7 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
       .swiper-button-next {
         opacity: 0;
         @include transition;
-        background: var(--brand_color);
+        background: var(--ezd_brand_color);
 
         &:after {
           font-size: 16px;
@@ -2435,8 +2434,8 @@ button.swiper-pagination-bullet {
     border: none;
     background: transparent;
     &.active {
-      color: var(--brand_color);
-      border-bottom: 3px solid var(--brand_color);
+      color: var(--ezd_brand_color);
+      border-bottom: 3px solid var(--ezd_brand_color);
     }
     &:last-child {
       margin-right: 0;
@@ -2488,7 +2487,7 @@ button.swiper-pagination-bullet {
     .nav-link {
       font-size: 14px;
       font-weight: 400;
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
       border: 1px solid brand_color_rgba(.2);
       border-radius: 4px;
       background-color: rgba(16, 179, 214, 0.031);
@@ -2499,8 +2498,8 @@ button.swiper-pagination-bullet {
 
       &:hover,
       &.active {
-        background-color: var(--brand_color);
-        border-color: var(--brand_color);
+        background-color: var(--ezd_brand_color);
+        border-color: var(--ezd_brand_color);
         box-shadow: 0 10px 20px 0 brand_color_rgba(0.2);
         color: #fff;
       }
@@ -2568,7 +2567,7 @@ button.swiper-pagination-bullet {
       }
 
       &:hover {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
     }
   }
@@ -2600,7 +2599,7 @@ button.swiper-pagination-bullet {
         bottom: 0;
         left: auto;
         right: 0;
-        background: var(--brand_color);
+        background: var(--ezd_brand_color);
         transition: width 0.3s linear;
         border-top-right-radius: 2px;
         border-top-left-radius: 2px;
@@ -2608,7 +2607,7 @@ button.swiper-pagination-bullet {
 
       &.active,
       &:hover {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
 
         &:before {
           width: 100%;
@@ -2681,7 +2680,7 @@ button.swiper-pagination-bullet {
       margin: 0 0 10px;
       transition: color 0.2s linear;
       &:hover {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
       }
     }
 
@@ -2726,7 +2725,7 @@ button.swiper-pagination-bullet {
           font-size: 18px;
           line-height: 30px;
           font-weight: 500;
-          color: var(--brand_color);
+          color: var(--ezd_brand_color);
           text-decoration: none;
           padding: 19px 40px 19px 30px;
           position: relative;
@@ -2866,7 +2865,7 @@ button.swiper-pagination-bullet {
 
 /*============== Start doc_fun_fact_area css =============*/
 .doc_fun_fact_area {
-  background: var(--brand_color);
+  background: var(--ezd_brand_color);
   padding: 105px 0;
   position: relative;
   z-index: 1;
@@ -2990,7 +2989,7 @@ button.swiper-pagination-bullet {
     .counter {
       font-size: 34px;
       font-weight: 500;
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
       margin-bottom: 10px;
     }
 
@@ -3094,7 +3093,7 @@ button.swiper-pagination-bullet {
     transition: color 0.2s linear;
 
     &:hover {
-      color: var(--brand_color);
+      color: var(--ezd_brand_color);
     }
   }
 
@@ -3267,7 +3266,7 @@ button.swiper-pagination-bullet {
         display: block;
         width: 6px;
         height: 10px;
-        border: solid var(--brand_color);
+        border: solid var(--ezd_brand_color);
         border-width: 0 2px 2px 0;
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
@@ -3280,7 +3279,7 @@ button.swiper-pagination-bullet {
 
       &:checked {
         &:before {
-          border-color: var(--brand_color);
+          border-color: var(--ezd_brand_color);
         }
 
         &:after {
@@ -3345,10 +3344,10 @@ button.swiper-pagination-bullet {
 
       &.active,
       &:hover {
-        color: var(--brand_color);
+        color: var(--ezd_brand_color);
         background: transparent !important;
         &:before {
-          color: var(--brand_color);
+          color: var(--ezd_brand_color);
         }
       }
     }

@@ -37,7 +37,9 @@
                     _wpnonce: eazydocs_local_object.nonce,
                 },
                 beforeSend: function () {
-                    $(".eazydocs-feedback-wrap").append('<i class="eazydocs-icon icon_loading"></i>')
+                    $(".eazydocs-feedback-wrap .vote-link-wrap").html('<div class="spinner-border spinner-border-sm" role="status">\n' +
+                        '  <span class="visually-hidden">Loading...</span>\n' +
+                        '</div>')
                 },
                 success: function (response) {
                     $(".eazydocs-feedback-wrap").html(response.data)

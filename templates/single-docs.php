@@ -16,12 +16,13 @@ $content_wrapper    = '';
 $breadcrumb         = '1';
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
-	$layout     = $cz_options['docs-single-layout'] ?? ''; // id of field
-	$doc_container = ! empty ( $cz_options['docs-page-width'] == 'full-width' ) ? 'container-fluid pl-60 pr-60' : 'container custom_container'; // id of field
-	$content_wrapper = ! empty ( $cz_options['docs-page-width'] == 'full-width' ) ? 'doc_documentation_full_area' : ''; // id of field
+	$layout     = $cz_options['docs-single-layout'] ?? '';
+    $doc_width          = $cz_options['docs-page-width'] ?? '';
+    $doc_container      = $doc_width == 'full-width' ? 'container-fluid pl-60 pr-60' : 'container custom_container';
+	$content_wrapper    = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
 
 	$settings_options = get_option( 'eazydocs_settings' ); // prefix of framework
-	$breadcrumb       = $settings_options['docs-breadcrumb'] ?? ''; // id of field
+	$breadcrumb       = $settings_options['docs-breadcrumb'] ?? '';
 
 	switch ( $layout ) {
 		case 'left_sidebar':
