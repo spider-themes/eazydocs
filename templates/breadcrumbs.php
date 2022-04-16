@@ -1,26 +1,29 @@
 <?php
-$settings_options       = '';
-$update_text            = '';
+$settings_options = '';
+$update_text      = '';
+$doc_container    = 'container custom_container';
 if ( class_exists( 'EazyDocsPro' ) ) {
-	$settings_options   = get_option( 'eazydocs_settings' ); // prefix of framework
-	$update_text        = $settings_options['breadcrumb-update-text'] ?? ''; // id of field
+	$settings_options = get_option( 'eazydocs_settings' ); // prefix of framework
+	$update_text      = $settings_options['breadcrumb-update-text'] ?? ''; // id of field
+	$cz_options       = get_option( 'eazydocs_customizer' ); // prefix of framework
+	$doc_container    = ! empty ( $cz_options['docs-page-width'] == 'full-width' ) ? 'container-fluid pl-60 pr-60' : 'container custom_container'; // id of field
 }
 ?>
 <section class="page_breadcrumb">
-	<div class="container custom_container">
-		<div class="row">
-			<div class="col-lg-9 col-md-8">
-				<nav aria-label="breadcrumb">
-					<?php eazydocs_breadcrumbs();  ?>
-				</nav>
-			</div>
-			<div class="col-lg-3 col-md-4">
-                <time itemprop="dateModified" datetime="<?php the_modified_time(get_option('date_format')); ?>" class="date">
+    <div class="<?php echo esc_attr($doc_container); ?>">
+        <div class="row">
+            <div class="col-lg-9 col-md-8">
+                <nav aria-label="breadcrumb">
+					<?php eazydocs_breadcrumbs(); ?>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <time itemprop="dateModified" datetime="<?php the_modified_time( get_option( 'date_format' ) ); ?>" class="date">
                     <i class="icon_clock_alt"></i>
-                    <?php echo esc_html( $update_text ); ?>
-	                <?php the_modified_time(get_option('date_format')); ?>
+					<?php echo esc_html( $update_text ); ?>
+					<?php the_modified_time( get_option( 'date_format' ) ); ?>
                 </time>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </section>

@@ -1,4 +1,5 @@
 <?php
+
 namespace eazyDocs\Admin;
 
 /**
@@ -18,7 +19,10 @@ class Admin {
 	 * Register Menu
 	 */
 	public function eazyDocs_menu() {
-		add_menu_page( __( 'EazyDocs', 'eazyDocs' ), __( 'EazyDocs', 'eazyDocs' ), 'manage_options', 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
+		add_menu_page( __( 'EazyDocss', 'eazyDocs' ), __( 'EazyDocs', 'eazyDocs' ), 'manage_options', 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
+		if ( class_exists( 'EazyDocsPro' ) ) {
+			add_submenu_page( 'eazydocs', __( 'Customize', 'eazydocs' ), __( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
+		}
 	}
 
 	/**

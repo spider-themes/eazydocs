@@ -8,13 +8,17 @@
  */
 get_header();
 
-$md_content_col = 'col-lg-7';
-$cz_options     = '';
-$layout         = 'both_sidebar';
-$breadcrumb     = '1';
+$md_content_col     = 'col-lg-7';
+$cz_options         = '';
+$layout             = 'both_sidebar';
+$doc_container      = 'container custom_container';
+$content_wrapper    = '';
+$breadcrumb         = '1';
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
 	$layout     = $cz_options['docs-single-layout'] ?? ''; // id of field
+	$doc_container = ! empty ( $cz_options['docs-page-width'] == 'full-width' ) ? 'container-fluid pl-60 pr-60' : 'container custom_container'; // id of field
+	$content_wrapper = ! empty ( $cz_options['docs-page-width'] == 'full-width' ) ? 'doc_documentation_full_area' : ''; // id of field
 
 	$settings_options = get_option( 'eazydocs_settings' ); // prefix of framework
 	$breadcrumb       = $settings_options['docs-breadcrumb'] ?? ''; // id of field
@@ -34,14 +38,14 @@ if ( class_exists( 'EazyDocsPro' ) ) {
 	}
 }
 ?>
-    <section class="doc_documentation_area" id="sticky_doc">
+    <section class="doc_documentation_area <?php echo esc_attr($content_wrapper); ?>" id="sticky_doc">
         <div class="overlay_bg"></div>
 		<?php
 		if ( $breadcrumb == '1' ) {
 			eazydocs_get_template_part( 'breadcrumbs' );
 		}
 		?>
-        <div class="container custom_container">
+        <div class="<?php echo esc_attr($doc_container); ?>">
             <div class="row">
 				<?php
 				while ( have_posts() ) : the_post();

@@ -81,10 +81,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Post_Types.php';
 			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
+			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
 
 			if ( ! class_exists('EazyDocsPro')) {
-				require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
-				require_once __DIR__ .'/vendor/codestar-framework/samples/settings-options.php';
+				require_once __DIR__ .'/includes/admin/options/settings-options.php';
 			}
 		}
 

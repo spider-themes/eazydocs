@@ -6257,5 +6257,10 @@ p .footnotes-link::after {
 .doc-scrollable img {
   max-width: 100%;
 }
-
+.pl-60{
+  padding-left: 60px;
+}
+.pr-60{
+  padding-right: 60px;
+}
 /*# sourceMappingURL=frontend.css.map */
