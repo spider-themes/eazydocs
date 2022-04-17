@@ -28,7 +28,7 @@ class Assets {
 			// Localize the script with new data
 			$ajax_url              = admin_url( 'admin-ajax.php' );
 			$wpml_current_language = apply_filters( 'wpml_current_language', null );
-			if ( ! empty( $wpml_current_language ) ) {
+			if ( !empty( $wpml_current_language ) ) {
 				$ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
 			}
 
@@ -48,6 +48,7 @@ class Assets {
 			wp_enqueue_script( 'rv-jquery-fontsize', EAZYDOCS_VEND . '/font-size/js/rv-jquery-fontsize-2.0.3.js' );
 			wp_enqueue_script( 'printThis', EAZYDOCS_ASSETS . '/js/frontend/printThis.js' );
 			wp_enqueue_script( 'anchor', EAZYDOCS_ASSETS . '/js/frontend/anchor.js' );
+			wp_enqueue_script( 'bootstrap-toc', EAZYDOCS_ASSETS . '/js/frontend/bootstrap-toc.min.js' );
 			wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js' );
 		}
 		if ( is_single() && get_post_type() == 'docs' || shortcode_exists( 'eazydocs' ) ) {

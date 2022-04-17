@@ -791,7 +791,18 @@
     }
   }
 }
-.doc_menu {
+
+#eazydocs-toc {
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      margin: 0;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  }
   .nav-link {
     font-size: 14px;
     font-weight: 400;
@@ -799,7 +810,7 @@
     padding: 0;
     color: #677681;
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     &.active {
       color: var(--ezd_brand_color);
       font-weight: 500;
@@ -816,9 +827,6 @@
 
       }
     }
-  }
-  .nav {
-    padding-left: 20px;
   }
 }
 
@@ -1250,12 +1258,14 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
 
 .doc-btm {
   margin-top: 70px;
-  .card_tagged {
+  ul.card_tagged {
+    padding-left: 0;
+    margin: 0;
     li {
       font-size: 14px;
       font-weight: 500;
       color: #616366;
-      margin-right: 9.32px;
+      margin: 0 10px 0 0;
       a {
         background: #edf0f5;
         color: #616366;
@@ -2662,19 +2672,21 @@ button.swiper-pagination-bullet {
   display: flex;
   .icon {
     border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 10px 30px 0 brand_color_rgba(0.12);
+    background-color: white;
+    box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
     width: 70px;
     height: 70px;
     text-align: center;
-    line-height: 66px;
     margin-right: 30px;
     padding: 0 12px 0 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: content-box;
+    flex-basis: 10%;
   }
   .media-body {
+    flex-basis: 90%;
     h5 {
       font-weight: 500;
       font-size: 18px;

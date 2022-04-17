@@ -24,14 +24,14 @@ if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' 
             <div class="shortcode_title">
 				<?php the_title( '<h1>', '</h1>' ); ?>
                 <div class="meta dot-sep">
-            <span class="read-time">
-                <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
-                eazydocs_reading_time();
-                ?>
-            </span>
+                    <span class="read-time">
+                        <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
+                        eazydocs_reading_time();
+                        ?>
+                    </span>
                     <span class="views sep">
-                <?php echo eazydocs_get_post_view(); ?>
-            </span>
+                        <?php echo eazydocs_get_post_view(); ?>
+                    </span>
                 </div>
             </div>
             <div class="doc-scrollable">

@@ -4,6 +4,12 @@
     $(document).ready(function() {
 
         $('body').attr({'data-bs-spy': 'scroll', 'data-bs-target': "#eazydocs-toc"})
+        /**
+         * Example 3
+         * If no selector is provided, it falls back to a default selector of:
+         * 'h2, h3, h4, h5, h6'
+         */
+        anchors.add('.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4');
 
         /** === Contact Form Ajax === **/
         $(document).on('submit', '#edocs-contact-form', function (e) {
@@ -71,7 +77,6 @@
                 })
             }
         }
-
         active_dropdown()
 
         $('.nav-sidebar > li .icon').each(function () {
@@ -96,130 +101,6 @@
                 'loadCSS': eazydocs_local_object.EAZYDOCS_FRONT_CSS + '/print.css',
             })
         })
-
-        /**
-         * Doc : On this page
-         * @param str
-         * @returns {string}
-         */
-        var slug = function(str) {
-            str = str.replace(/^\s+|\s+$/g, ''); // trim
-            str = str.toLowerCase();
-
-            // remove accents, swap ñ for n, etc
-            var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-            var to   = "aaaaaeeeeeiiiiooooouuuunc------";
-            for (var i=0, l=from.length ; i<l ; i++) {
-                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-            }
-
-            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-                .replace(/\s+/g, '-') // collapse whitespace and replace by -
-                .replace(/-+/g, '-'); // collapse dashes
-
-            return str;
-        }
-
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
-        function convertToTitle(Text) {
-            let title = Text.replaceAll('-', ' ');
-            return capitalizeFirstLetter(title)
-        }
-
-        function isNumeric(value) {
-            let firstStr = value.charAt(0);
-            return /^-?\d+$/.test(firstStr);
-        }
-
-        function onThisPageTitles( divs, changelogs = false ) {
-            let ids = [];
-            let titles = [];
-            jQuery(divs).each(function () {
-                let idText = $(this).attr("id")
-
-                // Add title attribute
-                if ( changelogs === false ) {
-                    let titleText = $(this).text()
-                    $(this).attr("title", titleText)
-                }
-
-                // Modify the ID
-                let isFirstCharNumber = isNumeric(idText)
-                if ( isFirstCharNumber === true ) {
-                    $(this).attr("id", 'docy-'+idText)
-                }
-                // ID and Title pushing into the arrays
-                ids.push( $(this).attr("id") );
-                titles.push( $(this).attr("title") )
-            });
-            ids.forEach(onThisPageID)
-            titles.forEach(onThisPageTitle)
-
-
-            function onThisPageID(item, index) {
-                document.getElementById("eazydocs-toc").innerHTML += "<a class='nav-link link-"+index+"' href='#" + item + "'>" + item + " </a>"
-            }
-
-            function onThisPageTitle(item, index) {
-                $('#eazydocs-toc .link-'+index).text(item)
-            }
-
-            // table of contents on top
-            ids.forEach(onThisPageIDTop);
-            function onThisPageIDTop(item, index) {
-                if ( $('#docy-top-toc').length ) {
-                    let selector = "#"+item +' \+ p';
-                    let content = document.querySelector(selector).innerHTML;
-                    if(content.length > 80) content = content.substring(0, 80);
-
-                    // header table of contents
-                    document.getElementById("docy-top-toc").innerHTML += " <div class='col-lg-4 col-md-6'>" +
-                        "<a class='tip_item link-"+index+"' href='#" + item + "'>" +
-                        "<div class='tip_box'>" +
-                        "<h4 class='tip_title title-"+index+"'></h4>" +
-                        "<p class='tip_para'>"+ content +"...</p>"+
-                        "</div></a></div>"
-                }
-            }
-
-            titles.forEach(onThisPageTitleTop);
-            function onThisPageTitleTop(item, index) {
-                $('#docy-top-toc .title-'+index).text(item)
-            }
-        }
-
-        // Doc on this page nav
-        function doc_toc_enable(ajax = false) {
-            if ( ajax == true ) {
-                $("#eazydocs-toc").html('');
-            }
-            if ( $(".doc-middle-content #post h2").length ) {
-                anchors.options = {
-                    icon: '#'
-                };
-                anchors.add('.doc-middle-content #post h2');
-                onThisPageTitles($(".doc-middle-content #post h2").toArray())
-            }
-
-            // Anchor enabled titles
-            if ( $(".anchor-enabled h2").length ) {
-                anchors.options = {
-                    icon: '#'
-                };
-                anchors.add('.anchor-enabled h2');
-                onThisPageTitles($(".anchor-enabled h2").toArray())
-            }
-
-            // Changelog on this page nav
-            if ( $(".changelog_inner .changelog_info").length ) {
-                onThisPageTitles( $(".changelog_inner .changelog_info").toArray(), true );
-            }
-        }
-
-        doc_toc_enable()
 
         /**
          * Doc Menu
