@@ -1,5 +1,5 @@
 .doc_documentation_area {
-  padding-bottom: 110px;
+  padding-bottom: 5px;
   z-index: 0;
   @media (max-width: 1400px) {
     min-height: 1000px;
@@ -21,6 +21,7 @@
       position: fixed;
       top: 0;
       width: 270px;
+      z-index: 2;
       @media (min-width: 1500px) {
         width: 323px;
       }

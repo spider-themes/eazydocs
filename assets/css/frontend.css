@@ -1754,7 +1754,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .doc_documentation_area {
-  padding-bottom: 110px;
+  padding-bottom: 5px;
   z-index: 0;
 }
 @media (max-width: 1400px) {
@@ -1778,6 +1778,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   top: 0;
   width: 270px;
+  z-index: 2;
 }
 @media (min-width: 1500px) {
   .doc_documentation_area.body_fixed .doc_left_sidebarlist {
@@ -6336,6 +6337,13 @@ p .footnotes-link::after {
   width: 100%;
   height: 1px;
   background: #e8f0f1;
+}
+
+.section.eazydocx-credit-text p {
+  margin-bottom: 0;
+  padding-top: 30px;
+  background: #fafcfc;
+  padding-bottom: 30px;
 }
 
 /*# sourceMappingURL=frontend.css.map */

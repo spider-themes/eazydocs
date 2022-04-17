@@ -511,5 +511,26 @@
 
         Menu_js();
 
+
+        $(window).on('scroll', function() {
+            var $elem = $('.eazydocx-credit-text');
+            var $window = $(window);
+
+            var docViewTop = $window.scrollTop();
+            var docViewBottom = docViewTop + $window.height();
+            var elemTop = $elem.offset().top;
+            var elemBottom = elemTop + $elem.height();
+            if (elemBottom < docViewBottom) {
+                $('.doc_documentation_area').removeClass('body_fixed');
+                $('.left-sidebar-toggle').hide();
+            }else{
+                $('.left-sidebar-toggle').show();
+            }
+        });
+
+
+
+
+
     })
 })(jQuery);
