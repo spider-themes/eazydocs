@@ -1,4 +1,9 @@
 <?php
+$options                = get_option( 'eazydocs_settings' );
+$sec_excerpt            = '8';
+if ( class_exists( 'EazyDocsPro' ) ) {
+	$sec_excerpt        = $options['doc_sec_excerpt_limit'] ?? '8';
+}
 $sections = get_children( array(
 	'post_parent'    => $post->ID,
 	'post_type'      => 'docs',
@@ -29,7 +34,7 @@ if ( $sections ) :
                         <a href="<?php echo get_permalink( $section->ID ); ?>">
                             <h5> <?php echo wp_kses_post( $section->post_title ); ?> </h5>
                         </a>
-                        <p> <?php echo wp_trim_words( $section->post_content, 8, '' ); ?> </p>
+                        <p> <?php echo wp_trim_words( $section->post_content, $sec_excerpt, '' ); ?> </p>
                     </div>
                 </div>
             </div>

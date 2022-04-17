@@ -22,7 +22,7 @@
       top: 0;
       width: 270px;
       @media (min-width: 1500px) {
-        width: 307px;
+        width: 323px;
       }
     }
     .doc_rightsidebar {
@@ -731,7 +731,6 @@
   }
 }
 .doc_rightsidebar {
-  margin-left: -20px;
   padding-top: 70px;
   height: 100%;
   position: relative;
@@ -1215,6 +1214,7 @@ body:not(.onepage-doc) .sticky_menu {
   color: var(--p_color);
   font-size: 18px;
   text-decoration: none;
+  z-index: 1;
 }
 .nav_title {
   font-size: 16px;

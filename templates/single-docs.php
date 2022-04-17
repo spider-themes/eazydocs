@@ -39,6 +39,38 @@ if ( class_exists( 'EazyDocsPro' ) ) {
 	}
 }
 ?>
+
+
+
+    <section class="doc_banner_area search-banner-light sbnr-global">
+        <div class="container">
+            <div class="doc_banner_content">
+                <form action="<?php echo esc_url(home_url('/')) ?>" role="search" method="get" class="header_search_form">
+                    <div class="header_search_form_info">
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <label for="searchInput">
+                                    <i class="icon_search"></i>
+                                </label>
+                                <input type='search' id="searchInput" name="s" onkeyup="fetchResults()" placeholder='Search ("/" to focus)' autocomplete="off" value="<?php echo get_search_query() ?>"/>
+								<?php include('search-spinner.php'); ?>
+
+								<?php if ( defined('ICL_LANGUAGE_CODE') ) : ?>
+                                    <input type="hidden" name="lang" value="<?php echo(ICL_LANGUAGE_CODE); ?>"/>
+								<?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+
+					<?php
+					include('ajax-search-results.php');
+					include('keywords.php');
+					?>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <section class="doc_documentation_area <?php echo esc_attr($content_wrapper); ?>" id="sticky_doc">
         <div class="overlay_bg"></div>
 		<?php

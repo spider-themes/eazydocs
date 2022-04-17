@@ -1348,7 +1348,7 @@ h1, h2, h3, h4, h5, h6 {
 ============================================================================================ */
 .doc_banner_area.search-banner-light {
   background-color: #fafafa;
-  padding-top: 130px;
+  padding-top: 100px;
   padding-bottom: 70px;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -1433,7 +1433,9 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 .search-banner-light .header_search_keyword ul li {
-  margin-right: 4px;
+  margin-left: 0;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 .search-banner-light .header_search_keyword ul li a {
   background: transparent;
@@ -1679,6 +1681,78 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
 }
 
+.header_search_form {
+  max-width: 720px;
+  margin: 57px auto 0;
+}
+
+.header_search_form_info {
+  position: relative;
+}
+
+.header_search_form .form-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header_search_form .input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.doc_banner_area .input-wrapper label {
+  position: absolute;
+  top: 48%;
+  left: -2px;
+}
+
+.header_search_form .input-wrapper i {
+  position: absolute;
+  left: 25px;
+  font-size: 16px;
+  color: #b6bac3;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.header_search_form .input-wrapper input {
+  background: #fff;
+  border: 0;
+  height: 60px;
+  font-size: 16px;
+  padding-left: 52px;
+  width: 100%;
+  border-radius: 45px;
+  padding-right: 155px;
+}
+
+.header_search_keyword {
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-weight: 500;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.header_search_keyword span {
+  font-size: 14px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.header_search_keyword ul {
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.header_search_keyword ul li {
+  display: inline-block;
+  margin-right: 7px;
+}
+
 .doc_documentation_area {
   padding-bottom: 110px;
   z-index: 0;
@@ -1707,7 +1781,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 1500px) {
   .doc_documentation_area.body_fixed .doc_left_sidebarlist {
-    width: 307px;
+    width: 323px;
   }
 }
 .doc_documentation_area.body_fixed .doc_rightsidebar {
@@ -2404,7 +2478,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .doc_rightsidebar {
-  margin-left: -20px;
   padding-top: 70px;
   height: 100%;
   position: relative;
@@ -2840,6 +2913,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   color: var(--p_color);
   font-size: 18px;
   text-decoration: none;
+  z-index: 1;
 }
 
 .nav_title {
