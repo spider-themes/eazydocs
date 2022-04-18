@@ -50,7 +50,7 @@ $query             = new WP_Query( [
 										<?php echo $item->post_title; ?>
                                     </a>
                                 </li>
-							<?php
+							    <?php
 							endforeach;
 						endif;
 						?>

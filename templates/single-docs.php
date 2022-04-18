@@ -110,7 +110,7 @@ if( $search_banner == '1') : ?>
             <div class="col-lg-12 text-center">
                 <?php if( $credit_enable == '1' ) : ?>
                 <div class="eazydocx-credit-text">
-                    <?php echo wp_kses_post($credit_text); ?>
+                    <?php echo wp_kses_post(wpautop($credit_text)); ?>
                 </div>
                 <?php endif; ?>
             </div>
