@@ -54,6 +54,7 @@ class Assets {
                 'create_prompt_title'   => esc_html__( 'Enter Docs Title', 'eazydocs' ),
                 'delete_prompt_title'   => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
                 'no_revert_title'       => esc_html__( "You won't be able to revert this!", "eazydocs" ),
+                'clone_prompt_title'       => esc_html__( "Are you sure to clone", "eazydocs" ),
                 'nonce'                 => wp_create_nonce( 'eazydocs-admin-nonce' ),
             )
         );

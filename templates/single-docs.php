@@ -15,6 +15,8 @@ $doc_container      = 'container custom_container';
 $content_wrapper    = '';
 $breadcrumb         = '1';
 $search_banner      = '0';
+$credit_enable      = '1';
+$credit_text        = sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>');
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
 	$layout     = $cz_options['docs-single-layout'] ?? '';
@@ -23,8 +25,10 @@ if ( class_exists( 'EazyDocsPro' ) ) {
     $doc_container      = $doc_width == 'full-width' ? 'container-fluid pl-60 pr-60' : 'container custom_container';
 	$content_wrapper    = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
 
-	$settings_options = get_option( 'eazydocs_settings' ); // prefix of framework
-	$breadcrumb       = $settings_options['docs-breadcrumb'] ?? '';
+	$settings_options   = get_option( 'eazydocs_settings' ); // prefix of framework
+	$credit_enable      = $settings_options['eazydocs-enable-credit'] ?? '1';
+	$credit_text        = $settings_options['eazydocs-credit-text'] ?? sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>');
+	$breadcrumb         = $settings_options['docs-breadcrumb'] ?? '';
 
 	switch ( $layout ) {
 		case 'left_sidebar':
@@ -100,12 +104,18 @@ if( $search_banner == '1') : ?>
 
         </div>
     </section>
-    <div class="section eazydocx-credit-text">
+
+    <div class="section eazydocs-footer">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <p>Powered By <a href="">EazyDocs</a></p>
+                <?php if( $credit_enable == '1' ) : ?>
+                <div class="eazydocx-credit-text">
+                    <?php echo wp_kses_post($credit_text); ?>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 <?php
+
 get_footer();

@@ -204,6 +204,9 @@ if ( is_array( $depth_one_parents ) ) :
                                                                    <?php echo get_the_title( $dep3 ); ?>
                                                                 </a>
                                                                 <div class="child-right-content d-flex">
+
+                                                                   <?php do_action('eazydocs_item_clone', $dep3->ID); ?>
+
                                                                     <a href="<?php echo get_permalink( $dep3 ); ?>" target="_blank" class="child-view-link">
                                                                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View icon', 'eazydocs' ); ?>">
                                                                     </a>

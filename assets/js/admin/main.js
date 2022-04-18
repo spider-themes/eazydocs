@@ -89,7 +89,6 @@
     // Remain the last active doc tab
     function keep_last_active_doc_tab() {
         let doc_last_current_tab = readCookie('eazydocs_doc_current_tab')
-        console.log(doc_last_current_tab)
         if ( doc_last_current_tab ) {
             // Tab item
             $('.tab-menu .easydocs-navitem').removeClass('is-active')
@@ -117,6 +116,29 @@
                 e(this).parent().fadeOut()
             })
         }
+
+
+        e(".header-notify-icon").click(function () {
+            var t = e(this).parents(".easydocs-notification").children(".easydocs-dropdown").is(":hidden");
+            e(".easydocs-notification .easydocs-dropdown").hide();
+            e(".easydocs-notification .header-notify-icon").removeClass("active");
+            if (t) {
+                e(this).parents(".easydocs-notification").children(".easydocs-dropdown").toggle().parents(".easydocs-notification").children(".header-notify-icon").addClass("active")
+            }
+        });
+        e(document).bind("click", function (t) {
+            var n = e(t.target);
+            if (!n.parents().hasClass("easydocs-notification")) e(".easydocs-notification .easydocs-dropdown").hide();
+        });
+        e(document).bind("click", function (t) {
+            var n = e(t.target);
+            if (!n.parents().hasClass("easydocs-notification")) e(".easydocs-notification .header-notify-icon").removeClass("active");
+        })
+
+
+
+
+
     });
 
 })(jQuery);
@@ -140,3 +162,14 @@ var config = {
 for (let i = 0; i < docContainer.length; i++) {
     var mixer1 = mixitup(docContainer[i], config);
 }
+
+
+
+
+var containerEl1 = document.querySelector('[data-ref="container-1"]');
+var config = {
+    controls: {
+        scope: 'local'
+    }
+};
+var mixer1 = mixitup(containerEl1, config);

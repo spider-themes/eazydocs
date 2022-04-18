@@ -392,9 +392,8 @@
 
         Menu_js();
 
-
         $(window).on('scroll', function() {
-            var $elem = $('.eazydocx-credit-text');
+            var $elem = $('.section.eazydocs-footer');
             var $window = $(window);
 
             var docViewTop = $window.scrollTop();
@@ -408,10 +407,6 @@
                 $('.left-sidebar-toggle').show();
             }
         });
-
-
-
-
 
     })
 })(jQuery);

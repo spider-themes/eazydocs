@@ -108,3 +108,22 @@ div.search_result {
     height: auto;
     margin: 0px auto 10px;
 }
+
+.clone-docs {
+    line-height: 0px;
+    vertical-align: sub;
+}
+.easydocs-accordion-item a:focus,
+.clone-docs:focus{
+    outline:none;
+    box-shadow: none;
+}
+.clone-docs img {
+    width: auto;
+    max-width: 15px;
+    margin: 2.7px 7px 0;
+    opacity: .7;
+}
+.clone-docs img:hover{
+    opacity: 1
+}

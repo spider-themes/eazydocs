@@ -6354,7 +6354,7 @@ p .footnotes-link::after {
   background: #e8f0f1;
 }
 
-.section.eazydocx-credit-text p {
+.eazydocx-credit-text {
   margin-bottom: 0;
   padding-top: 30px;
   background: #fafcfc;

@@ -1,4 +1,3 @@
-
 <header class="easydocs-header-area">
     <div class="container-fluid">
         <div class="row alignment-center justify-content-between">
@@ -44,6 +43,11 @@
                                 </div>
                             </div>
                         </li>
+
+
+                        <?php do_action('eazydocs_notification'); ?>
+
+
                     </ul>
                 </div>
             </div>
