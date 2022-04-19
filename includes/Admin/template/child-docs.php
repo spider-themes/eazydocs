@@ -139,6 +139,14 @@ if ( is_array( $depth_one_parents ) ) :
 			                                }
 		                                }
 		                                $last_section_ids = implode( ",", $last_section_docs );
+
+                                        foreach($depth_two_parents as $sec2){
+	                                        $parent = $sec2;
+                                        }
+		                                $parent;
+
+		                                $dep2 = $doc_item->ID .','. $last_section_ids;
+
 		                                ?>
                                         <ul class="accordionjs">
                                             <li <?php post_class( "easydocs-accordion-item accordion mix child-one ". $post_status ); ?>>
@@ -158,6 +166,9 @@ if ( is_array( $depth_one_parents ) ) :
 
                                                     <div class="right-content">
                                                         <ul>
+                                                            <li>
+	                                                            <?php do_action('eazydocs_item_clone', $dep2, $parent); ?>
+                                                            </li>
                                                             <li>
                                                                 <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $doc_item->ID; ?>&child=" class="child-doc">
                                                                     <img src="<?php echo EAZYDOCS_IMG ?>/admin/plus.svg" alt="<?php esc_attr_e( 'Plus Icon', 'eazydocs' ); ?>">
@@ -205,7 +216,7 @@ if ( is_array( $depth_one_parents ) ) :
                                                                 </a>
                                                                 <div class="child-right-content d-flex">
 
-                                                                   <?php do_action('eazydocs_item_clone', $dep3->ID); ?>
+                                                                   <?php do_action('eazydocs_item_clone', $dep3->ID, ''); ?>
 
                                                                     <a href="<?php echo get_permalink( $dep3 ); ?>" target="_blank" class="child-view-link">
                                                                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View icon', 'eazydocs' ); ?>">

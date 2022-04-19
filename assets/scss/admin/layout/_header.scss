@@ -208,7 +208,7 @@
       --btn-py: 0.4rem;
       display: flex;
       align-items: center;
-      gap: var(--gutter-10);
+      gap: var(--gutter-5);
 
       &.mixitup-control-active {
         background-color: var(--clr-blue);
@@ -266,20 +266,27 @@
       border-radius: 50%;
       text-align: center;
 
-      svg {
+      .dashicons {
         top: 0;
       }
     }
 
     .notify-badge-blue {
       @include gradient(180deg, #22AAF1, #066BDA);
+      .dashicons {
+        font-size: 12px;
+        color: white;
+        padding-top: 2.5px;
+      }
     }
 
     .notify-badge-green {
       @include gradient(180deg, #62D77E, #2BB64E);
 
-      svg {
-        top: 2px;
+      .dashicons {
+        font-size: 12px;
+        color: white;
+        padding-top: 4px;
       }
     }
   }
@@ -297,6 +304,9 @@
     padding-right: 0.5rem;
     margin: 0;
     line-height: 1;
+    a{
+      text-decoration: none;
+    }
   }
 
   .reply-text {

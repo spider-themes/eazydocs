@@ -44,9 +44,7 @@
                             </div>
                         </li>
 
-
                         <?php do_action('eazydocs_notification'); ?>
-
 
                     </ul>
                 </div>

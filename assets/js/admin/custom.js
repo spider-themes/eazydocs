@@ -183,8 +183,8 @@
                     cancelButtonColor: '#3085d6',
                     confirmButtonText: 'Yes'
                 }).then((result) => {
-                    if (result.value) {
-                        document.location.href = href + result.value;
+                    if (result) {
+                        document.location.href = href;
                     }
                 })
             })

@@ -38,6 +38,7 @@
   --container-xxl: 90rem;
   --container-fluid: 100%;
   --gutter-x: 1.875rem;
+  --gutter-5: 0.225rem;
   --gutter-10: 0.625rem;
   --gutter-15: 0.9375rem;
   --gutter-20: 1.25rem;
@@ -1315,7 +1316,7 @@ a.child-delete {
   --btn-py: 0.4rem;
   display: flex;
   align-items: center;
-  gap: var(--gutter-10);
+  gap: var(--gutter-5);
 }
 .notification-body .filter-button-group .easydocs-btn.mixitup-control-active {
   background-color: var(--clr-blue);
@@ -1372,19 +1373,26 @@ a.child-delete {
   border-radius: 50%;
   text-align: center;
 }
-.notification-item .notification-image .notify-badge svg {
+.notification-item .notification-image .notify-badge .dashicons {
   top: 0;
 }
 .notification-item .notification-image .notify-badge-blue {
   background-color: #22AAF1;
   background-image: linear-gradient(180deg, #22AAF1 0%, #066BDA 100%);
 }
+.notification-item .notification-image .notify-badge-blue .dashicons {
+  font-size: 12px;
+  color: white;
+  padding-top: 2.5px;
+}
 .notification-item .notification-image .notify-badge-green {
   background-color: #62D77E;
   background-image: linear-gradient(180deg, #62D77E 0%, #2BB64E 100%);
 }
-.notification-item .notification-image .notify-badge-green svg {
-  top: 2px;
+.notification-item .notification-image .notify-badge-green .dashicons {
+  font-size: 12px;
+  color: white;
+  padding-top: 4px;
 }
 .notification-item:hover {
   background: rgba(76, 76, 241, 0.05);
@@ -1397,6 +1405,9 @@ a.child-delete {
   padding-right: 0.5rem;
   margin: 0;
   line-height: 1;
+}
+.notification-content .notify-name a {
+  text-decoration: none;
 }
 .notification-content .reply-text {
   font-size: var(--fs-12);
