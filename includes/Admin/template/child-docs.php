@@ -145,7 +145,7 @@ if ( is_array( $depth_one_parents ) ) :
                                         }
 		                                $parent;
 
-		                                $dep2 = $doc_item->ID .','. $last_section_ids;
+		                                $dep2 = $doc_item->ID;
 
 		                                ?>
                                         <ul class="accordionjs">
@@ -167,7 +167,7 @@ if ( is_array( $depth_one_parents ) ) :
                                                     <div class="right-content">
                                                         <ul>
                                                             <li>
-	                                                            <?php do_action('eazydocs_item_clone', $dep2, $parent); ?>
+	                                                            <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
                                                             </li>
                                                             <li>
                                                                 <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $doc_item->ID; ?>&child=" class="child-doc">
@@ -216,7 +216,7 @@ if ( is_array( $depth_one_parents ) ) :
                                                                 </a>
                                                                 <div class="child-right-content d-flex">
 
-                                                                   <?php do_action('eazydocs_item_clone', $dep3->ID, ''); ?>
+                                                                   <?php do_action('eazydocs_single_duplicate', $dep3->ID); ?>
 
                                                                     <a href="<?php echo get_permalink( $dep3 ); ?>" target="_blank" class="child-view-link">
                                                                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View icon', 'eazydocs' ); ?>">
