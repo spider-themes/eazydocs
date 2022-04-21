@@ -69,6 +69,9 @@ $count = $query->found_posts;
                 </div>
                 <div class="link">
                     <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank">
+	                    <?php do_action('eazydocs_parent_doc_duplicate', get_the_ID()); ?>
+                    </a>
+                    <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank">
                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/edit.svg" alt="<?php esc_attr_e( 'Edit Icon', 'eazydocs' ); ?>" class="edit-img">
                     </a>
                     <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>">

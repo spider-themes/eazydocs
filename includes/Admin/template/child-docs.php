@@ -43,6 +43,7 @@ if ( is_array( $depth_one_parents ) ) :
 				        'post_parent'   => $item,
                         'orderby'       => 'menu_order'
                 ));
+
 				if ( is_array( $children ) ) :
 					foreach ( $children as $child )  :
 
@@ -87,6 +88,9 @@ if ( is_array( $depth_one_parents ) ) :
                                 </h4>
                                 <div class="right-content">
                                     <ul>
+                                        <li>
+	                                        <?php do_action('eazydocs_section_doc_duplicate', $child->ID, $item); ?>
+                                        </li>
                                         <li>
                                             <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $child->ID; ?>&child=" class="child-doc">
                                                 <img src="<?php echo EAZYDOCS_IMG ?>/admin/plus.svg" alt="<?php esc_attr_e( 'Plus Icon', 'eazydocs' ); ?>">
@@ -144,9 +148,7 @@ if ( is_array( $depth_one_parents ) ) :
 	                                        $parent = $sec2;
                                         }
 		                                $parent;
-
 		                                $dep2 = $doc_item->ID;
-
 		                                ?>
                                         <ul class="accordionjs">
                                             <li <?php post_class( "easydocs-accordion-item accordion mix child-one ". $post_status ); ?>>

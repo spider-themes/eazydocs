@@ -170,27 +170,6 @@
         }
         delete_child_doc()
 
-        // DUPLICATE DOC
-        function duplicate_doc() {
-            $('.clone-docs').on('click', function (e) {
-                e.preventDefault();
-                let href = $(this).attr('href')
-                Swal.fire({
-                    title: eazydocs_local_object.clone_prompt_title,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes'
-                }).then((result) => {
-                    if (result) {
-                        document.location.href = href;
-                    }
-                })
-            })
-        }
-        duplicate_doc()
-
         // Docs Search
         $("#easydocs-search").on("keyup", function() {
             var value = $(this).val().toLowerCase();

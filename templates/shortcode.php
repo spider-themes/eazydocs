@@ -15,6 +15,7 @@ $query             = new WP_Query( [
 	'post_type'      => 'docs',
 	'posts_per_page' => $showpost,
 	'orderby'        => $orderby,
+	'post_status'    => 'publish',
 	'order'          => $order,
 	'post_parent'    => 0
 ] );
@@ -41,7 +42,7 @@ $query             = new WP_Query( [
                     </a>
                     <ul class="list-unstyled tag_list">
 						<?php
-						$children = get_children( ['post_parent' => get_the_ID()] );
+						$children = get_children( ['post_parent' => get_the_ID(), 'post_status'    => 'publish'] );
 						if ( is_array( $children ) ) :
 							foreach ( $children as $item ) :
 								?>
