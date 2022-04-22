@@ -97,7 +97,7 @@
   padding: 13px 30px 13px 50px;
   display: block;
   cursor: pointer;
-  @media (max-width: 1400px) {
+  @media (max-width: 1440px) {
     padding: 12px 20px 12px 34px;
   }
   &.ez-section-title{
@@ -110,7 +110,7 @@
       transform: translateY(-50%);
       @include property;
     }
-    @media (max-width: 1400px) {
+    @media (max-width: 1440px) {
       &::before {
         left: 20px;
       }
@@ -123,7 +123,7 @@
       transform: translateY(-50%);
       @include property;
     }
-    @media (max-width: 1400px) {
+    @media (max-width: 1440px) {
       &::before {
         left: 20px;
       }
@@ -248,7 +248,7 @@
     text-decoration: none;
     color: var(--clr-text);
     display: block;
-    @media (max-width: 1400px) {
+    @media (max-width: 1440px) {
       padding: 10px 50px 10px 34px;
     }
   }

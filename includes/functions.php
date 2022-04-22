@@ -87,9 +87,9 @@ function eazydocs_reading_time() {
 	$word_count  = str_word_count( strip_tags( $content ) );
 	$readingtime = ceil( $word_count / 200 );
 	if ( $readingtime == 1 ) {
-		$timer = esc_html__( " minute", 'docy' );
+		$timer = esc_html__( " minute", 'eazydocs' );
 	} else {
-		$timer = esc_html__( " minutes", 'docy' );
+		$timer = esc_html__( " minutes", 'eazydocs' );
 	}
 	$totalreadingtime = $readingtime . $timer;
 	echo esc_html( $totalreadingtime );
@@ -107,7 +107,7 @@ function eazydocs_list_pages( $args = '' ) {
 		'date_format'  => get_option( 'date_format' ),
 		'child_of'     => 0,
 		'exclude'      => '',
-		'title_li'     => esc_html__( 'Pages', 'docy' ),
+		'title_li'     => esc_html__( 'Pages', 'eazydocs' ),
 		'echo'         => 1,
 		'authors'      => '',
 		'sort_column'  => 'menu_order, post_title',

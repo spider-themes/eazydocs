@@ -137,12 +137,12 @@ class Walker_Docs extends Walker_Page {
 
         if ( '' === $page->post_title ) {
             /* translators: %d: ID of a post */
-            $page->post_title = sprintf( esc_html__( '#%d (no title)', 'docy' ), $page->ID );
+            $page->post_title = sprintf( esc_html__( '#%d (no title)', 'eazydocs' ), $page->ID );
         }
 
         $thumb = '';
         if ( $depth == 0 ) {
-            $folder = '<img src="' . EAZYDOCS_IMG . '/icon/folder-closed.png" alt="' . esc_attr__('folder icon closed', 'docy') . '"> <img src="' . EAZYDOCS_IMG . '/icon/folder-open.png" alt="' . esc_attr__('folder icon', 'docy') . '">';
+            $folder = '<img src="' . EAZYDOCS_IMG . '/icon/folder-closed.png" alt="' . esc_attr__('folder icon closed', 'eazydocs') . '"> <img src="' . EAZYDOCS_IMG . '/icon/folder-open.png" alt="' . esc_attr__('folder icon', 'eazydocs') . '">';
             $thumb = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
         }
 

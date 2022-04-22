@@ -3,9 +3,11 @@
 
     $(document).ready(function() {
 
+        // Add scroll spy attributes to body
         $('body').attr({'data-bs-spy': 'scroll', 'data-bs-target': "#eazydocs-toc"})
+
         /**
-         * Example 3
+         * Make the Titles clickable
          * If no selector is provided, it falls back to a default selector of:
          * 'h2, h3, h4, h5, h6'
          */
@@ -386,12 +388,13 @@
                     var location = $(this).attr('href');
                     window.location.href = location;
                     return false;
-                });
+                })
             }
         }
 
         Menu_js();
 
+        // Disable left sidebar sticky on ending scroll
         $(window).on('scroll', function() {
             var $elem = $('.section.eazydocs-footer');
             var $window = $(window);
@@ -406,7 +409,7 @@
             }else{
                 $('.left-sidebar-toggle').show();
             }
-        });
+        })
 
     })
 })(jQuery);

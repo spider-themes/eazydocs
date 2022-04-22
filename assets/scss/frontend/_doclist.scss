@@ -1,7 +1,7 @@
 .doc_documentation_area {
   padding-bottom: 5px;
   z-index: 0;
-  @media (max-width: 1400px) {
+  @media (max-width: 1440px) {
     min-height: 1000px;
   }
   .overlay_bg {
@@ -163,7 +163,7 @@
           padding: 0;
           &:hover,
           &.active {
-            color: #3c4257;
+            color: #000;
             i {
               color: var(--ezd_brand_color);
             }
@@ -1293,7 +1293,7 @@ body:not(.onepage-doc) .body_fixed #font-switcher {
     border-radius: 5px;
     padding: 37px 35px 35px;
     box-shadow: none !important;
-    @media (max-width: 1400px) {
+    @media (max-width: 1440px) {
       padding: 30px 30px 20px;
     }
     h4 {
@@ -2684,9 +2684,16 @@ button.swiper-pagination-bullet {
     align-items: center;
     box-sizing: content-box;
     flex-basis: 10%;
+    @media (max-width: 1440px) {
+      flex-basis: 12%;
+      margin-right: 20px;
+    }
   }
   .media-body {
     flex-basis: 90%;
+    @media (max-width: 1440px) {
+      flex-basis: 88%;
+    }
     h5 {
       font-weight: 500;
       font-size: 18px;
