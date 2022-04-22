@@ -62,13 +62,26 @@
 
   .easydocs-badge {
     @include absolute(top rem(-7px) right rem(-8px));
-    @include size(1.25rem);
-    line-height: 1.25rem;
-    border-radius: 50%;
+
+
     background: #FA3E3E;
     color: var(--clr-white);
-    font-size: var(--fs-12);
+
+    top: -0.4375rem;
+    right: -0.2rem;
+    position: absolute;
+    padding: 0 4px;
+    min-width: 18px;
+    max-width: 18px;
+    border-radius: 50%;
     text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    height: 16px;
+    display: inline-table;
+
+
   }
 }
 
@@ -190,7 +203,7 @@
 }
 
 .notification-body {
-  padding: var(--gutter-30) 0 0;
+  padding: 18px 0;
 
   .filter-button-group {
     display: flex;
@@ -208,7 +221,7 @@
       --btn-py: 0.4rem;
       display: flex;
       align-items: center;
-      gap: var(--gutter-5);
+      gap: var(--gutter-3);
 
       &.mixitup-control-active {
         background-color: var(--clr-blue);
@@ -224,7 +237,7 @@
 }
 
 .notify-column {
-  padding: var(--gutter-20) 0;
+  margin-top: 16px;
   max-height: rem(300px);
   overflow-y: auto;
   scrollbar-width: thin;
@@ -248,9 +261,10 @@
 .notification-item {
   display: flex;
   align-items: flex-start;
+  cursor: pointer;
   gap: var(--gutter-10);
-  padding: var(--gutter-10) var(--gutter-20);
-  @include margin(mx, var(--gutter-20));
+  padding: var(--gutter-10) 15px;
+  @include margin(mx, var(--gutter-10));
   @include property;
   border-radius: rem(5px);
 

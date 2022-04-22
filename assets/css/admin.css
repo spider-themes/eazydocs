@@ -38,6 +38,7 @@
   --container-xxl: 90rem;
   --container-fluid: 100%;
   --gutter-x: 1.875rem;
+  --gutter-3: 0.125rem;
   --gutter-5: 0.225rem;
   --gutter-10: 0.625rem;
   --gutter-15: 0.9375rem;
@@ -1183,14 +1184,21 @@ a.child-delete {
   top: -0.4375rem;
   right: -0.5rem;
   position: absolute;
-  width: 1.25rem;
-  height: 1.25rem;
-  line-height: 1.25rem;
-  border-radius: 50%;
   background: #FA3E3E;
   color: var(--clr-white);
-  font-size: var(--fs-12);
+  top: -0.4375rem;
+  right: -0.2rem;
+  position: absolute;
+  padding: 0 4px;
+  min-width: 18px;
+  max-width: 18px;
+  border-radius: 50%;
   text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  height: 16px;
+  display: inline-table;
 }
 
 .easydocs-settings {
@@ -1298,7 +1306,7 @@ a.child-delete {
 }
 
 .notification-body {
-  padding: var(--gutter-30) 0 0;
+  padding: 18px 0;
 }
 .notification-body .filter-button-group {
   display: flex;
@@ -1316,7 +1324,7 @@ a.child-delete {
   --btn-py: 0.4rem;
   display: flex;
   align-items: center;
-  gap: var(--gutter-5);
+  gap: var(--gutter-3);
 }
 .notification-body .filter-button-group .easydocs-btn.mixitup-control-active {
   background-color: var(--clr-blue);
@@ -1328,7 +1336,7 @@ a.child-delete {
 }
 
 .notify-column {
-  padding: var(--gutter-20) 0;
+  margin-top: 16px;
   max-height: 18.75rem;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -1349,10 +1357,11 @@ a.child-delete {
 .notification-item {
   display: flex;
   align-items: flex-start;
+  cursor: pointer;
   gap: var(--gutter-10);
-  padding: var(--gutter-10) var(--gutter-20);
-  margin-left: var(--gutter-20);
-  margin-right: var(--gutter-20);
+  padding: var(--gutter-10) 15px;
+  margin-left: var(--gutter-10);
+  margin-right: var(--gutter-10);
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   border-radius: 0.3125rem;

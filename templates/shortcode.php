@@ -2,11 +2,13 @@
 $orderby  = 'ID';
 $order    = 'desc';
 $showpost = - 1;
+$layout   = 'grid';
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$settings_options = get_option( 'eazydocs_settings' ); // prefix of framework
 	$orderby          = $settings_options['docs-order-by'] ?? 'ID'; // id of field
 	$order            = $settings_options['docs-order'] ?? 'desc'; // id of field
 	$showpost         = $settings_options['docs-number'] ?? - 1; // id of field
+	$layout           = $settings_options['docs-archive-layout'] ?? 'masonry'; // id of field
 }
 
 $depth_one_parents = [];
@@ -15,15 +17,16 @@ $query             = new WP_Query( [
 	'post_type'      => 'docs',
 	'posts_per_page' => $showpost,
 	'orderby'        => $orderby,
-	'post_status'    => 'publish',
+	'post_status'    => ['publish'],
 	'order'          => $order,
 	'post_parent'    => 0
 ] );
 ?>
     <div class="container">
-        <div class="row">
+        <div class="row" <?php do_action('eazydocs_masonry_wrap', $layout); ?>>
 			<?php
 			$i = 1;
+
 			while ( $query->have_posts() ) : $query->the_post();
 				$col_wrapper         = $i == 1;
 				if ( class_exists( 'EazyDocsPro' ) ) {
@@ -42,7 +45,7 @@ $query             = new WP_Query( [
                     </a>
                     <ul class="list-unstyled tag_list">
 						<?php
-						$children = get_children( ['post_parent' => get_the_ID(), 'post_status'    => 'publish'] );
+						$children = get_children( ['post_parent' => get_the_ID(), 'post_status'    => ['publish']] );
 						if ( is_array( $children ) ) :
 							foreach ( $children as $item ) :
 								?>
@@ -54,6 +57,7 @@ $query             = new WP_Query( [
 							    <?php
 							endforeach;
 						endif;
+
 						?>
                     </ul>
                     <a href="<?php the_permalink(); ?>" class="doc_border_btn">

@@ -12,7 +12,6 @@ $count = $query->found_posts;
 <div class="tab-menu <?php echo $count > 12 ? '' : 'short'; ?>">
     <ul class="easydocs-navbar">
         <?php
-        $child_counter = [];
         $i              = '';
         while ( $query->have_posts() ) : $query->the_post();
             $i ++;
@@ -22,13 +21,6 @@ $count = $query->found_posts;
                 'child_of'  => get_the_ID(),
                 'post_type' => 'docs'
             ]);
-
-            if ( is_array( $doc_counter ) ) {
-                foreach ( $doc_counter as $docs ) {
-                    $child_counter[] = $docs->ID;
-                }
-            }
-            $child_docs  = implode( ",", $child_counter );
 
 	        $post_status =  get_post_status(get_the_ID());
 	        global $post;
@@ -51,11 +43,6 @@ $count = $query->found_posts;
 		        $post_format = 'lock';
 	        }
 
-	        $doc_count = get_pages( array( 'child_of' => get_the_ID(), 'post_type' => 'docs'));
-	        $child_counter = [];
-	        foreach($doc_count as $count){
-		        $child_counter[] = $count->ID;
-	        }
             ?>
             <li class="easydocs-navitem <?php echo esc_attr( $is_active ); ?>" data-rel="tab-<?php the_ID(); ?>">
                 <div class="title">
@@ -77,7 +64,7 @@ $count = $query->found_posts;
                     <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>">
                         <img src="<?php echo EAZYDOCS_IMG ?>/icon/external.svg" alt="<?php esc_attr_e('External icon', 'eazydocs') ?>">
                     </a>
-                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo implode(", ", $child_counter) .','.get_the_ID(); ?>" class="link delete parent-delete">
+                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?parentID=<?php echo get_the_ID(); ?>" class="link delete parent-delete">
                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete2.svg" alt="<?php esc_attr_e( 'Delete Icon', 'eazydocs' ); ?>">
                     </a>
                 </div>
