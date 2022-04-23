@@ -6,8 +6,8 @@
 
 <div class="header_search_keyword">
 
-    <span class="header-search-form__keywords-label">
-        Popular Searches
+    <span class="label">
+        <?php esc_html_e( 'Popular Searches', 'eazydocs' ) ?>
     </span>
     <!-- Search Keywords -->
 
@@ -21,7 +21,5 @@
         <li class="wow fadeInUp" data-wow-delay="0.2s">
             <a href="#"> Layout </a>
         </li>
-
     </ul>
-
 </div>

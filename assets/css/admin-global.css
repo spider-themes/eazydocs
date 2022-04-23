@@ -53,3 +53,7 @@ a.eazydocs-close-notice:active {
 .metabox-holder #eazydocs_basics.group{
     display: block !important;
 }
+
+.csf-siblings.csf--image-group {
+    display: flex;
+}

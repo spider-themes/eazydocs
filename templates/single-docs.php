@@ -16,7 +16,7 @@ $content_wrapper    = '';
 $breadcrumb         = '1';
 $search_banner      = '0';
 $credit_enable      = '1';
-$credit_text        = sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>');
+$credit_text        = sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>');
 if ( class_exists('EazyDocsPro') ) {
 	$cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
 	$layout     = $cz_options['docs-single-layout'] ?? '';
@@ -27,7 +27,7 @@ if ( class_exists('EazyDocsPro') ) {
 
 	$settings_options   = get_option( 'eazydocs_settings' ); // prefix of framework
 	$credit_enable      = $settings_options['eazydocs-enable-credit'] ?? '1';
-	$credit_text        = $settings_options['eazydocs-credit-text'] ?? sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>');
+	$credit_text        = $settings_options['eazydocs-credit-text'] ?? sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>');
 	$breadcrumb         = $settings_options['docs-breadcrumb'] ?? '';
 
 	switch ( $layout ) {
