@@ -221,16 +221,25 @@
       --btn-py: 0.4rem;
       display: flex;
       align-items: center;
-      gap: var(--gutter-3);
-
+      gap: 1px;
+      --btn-bg: #e4e6eb;
+      --btn-clr: var(--clr-dark);
+      --btn-bc: transparent;
       &.mixitup-control-active {
-        background-color: var(--clr-blue);
-        color: var(--clr-white);
-        --notification-icon: var(--clr-white);
+        background-color: #e7f3ff;
+        color: #1877f2;
+        --notification-icon: #1877f2;
+        .dashicons-screenoptions:before{
+          color: #1877f2;
+        }
+        @include hover {
+          background-color:#d2e6f9;
+        }
       }
 
       @include hover {
         --notification-icon: var(--clr-white);
+        background: #cdcdcd;
       }
     }
   }

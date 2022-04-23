@@ -70,7 +70,7 @@
                 Swal.fire({
                     title: eazydocs_local_object.delete_prompt_title,
                     text: eazydocs_local_object.no_revert_title,
-                    icon: 'warning',
+                    icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
@@ -134,7 +134,7 @@
                 Swal.fire({
                     title: eazydocs_local_object.delete_prompt_title,
                     text: eazydocs_local_object.no_revert_title,
-                    icon: 'warning',
+                    icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
@@ -156,7 +156,7 @@
                 Swal.fire({
                     title: eazydocs_local_object.delete_prompt_title,
                     text: eazydocs_local_object.no_revert_title,
-                    icon: 'warning',
+                    icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',

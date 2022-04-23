@@ -74,7 +74,10 @@ class Docs {
 			'publicly_queryable'  => true,
 			'show_in_rest'        => true,
 			'rewrite'             => $rewrite,
-			'capability_type'     => 'post',
+			'map_meta_cap'          => true,
+			'capability_type'     => [
+				'editor', 'docs'
+			],
 			'taxonomies'          => [ 'doc_tag' ],
 		];
 

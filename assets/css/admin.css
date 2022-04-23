@@ -1324,15 +1324,25 @@ a.child-delete {
   --btn-py: 0.4rem;
   display: flex;
   align-items: center;
-  gap: var(--gutter-3);
+  gap: 1px;
+  --btn-bg: #e4e6eb;
+  --btn-clr: var(--clr-dark);
+  --btn-bc: transparent;
 }
 .notification-body .filter-button-group .easydocs-btn.mixitup-control-active {
-  background-color: var(--clr-blue);
-  color: var(--clr-white);
-  --notification-icon: var(--clr-white);
+  background-color: #e7f3ff;
+  color: #1877f2;
+  --notification-icon: #1877f2;
+}
+.notification-body .filter-button-group .easydocs-btn.mixitup-control-active .dashicons-screenoptions:before {
+  color: #1877f2;
+}
+.notification-body .filter-button-group .easydocs-btn.mixitup-control-active:hover {
+  background-color: #d2e6f9;
 }
 .notification-body .filter-button-group .easydocs-btn:hover {
   --notification-icon: var(--clr-white);
+  background: #cdcdcd;
 }
 
 .notify-column {

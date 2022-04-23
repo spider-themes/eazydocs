@@ -38,11 +38,9 @@ $count = $query->found_posts;
                 $post_format = 'edit-page';
                 break;
             }
-
 	        if ( !empty($post->post_password) ) {
 		        $post_format = 'lock';
 	        }
-
             ?>
             <li class="easydocs-navitem <?php echo esc_attr( $is_active ); ?>" data-rel="tab-<?php the_ID(); ?>">
                 <div class="title">
@@ -55,9 +53,7 @@ $count = $query->found_posts;
                     </span>
                 </div>
                 <div class="link">
-                    <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank">
-	                    <?php do_action('eazydocs_parent_doc_duplicate', get_the_ID()); ?>
-                    </a>
+                    <?php do_action('eazydocs_parent_doc_duplicate', get_the_ID()); ?>
                     <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank">
                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/edit.svg" alt="<?php esc_attr_e( 'Edit Icon', 'eazydocs' ); ?>" class="edit-img">
                     </a>

@@ -1297,7 +1297,7 @@ input[type=search]::-webkit-search-results-decoration {
   display: none;
   background: #fff;
   z-index: 999;
-  bottom: 15px;
+  bottom: 10px;
   border-width: 2px;
 }
 #searchInput + .spinner img {
