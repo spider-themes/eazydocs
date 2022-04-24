@@ -75,9 +75,6 @@ class Docs {
 			'show_in_rest'        => true,
 			'rewrite'             => $rewrite,
 			'map_meta_cap'          => true,
-			'capability_type'     => [
-				'editor', 'docs'
-			],
 			'taxonomies'          => [ 'doc_tag' ],
 		];
 
