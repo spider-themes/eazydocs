@@ -17,6 +17,7 @@ EazyDocs assist you in quickly and easily creating great looking documentation f
 ### 🌟 Top Features ###
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 - **No Limitation:** There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
+- **Structured Instant Search:** The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
 - **Look Beautiful by Default:** EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
 - **Get Feedback from Real Visitors**: Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
 - **Designed for Reader:** We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
@@ -73,10 +74,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Changelog ==
 
 = v1.0.1 (17 April 2022) =
+* New: Search Banner
 * New: Brand Color changing option added to Settings page.
+* Dropped: Add New Doc via Ajax feature dropped due to this feature was not working for some users
 * Fixed: Doc archive page was rendering doc lists incorrectly
 * Fixed: JS error on single doc
-* Tweaked: Some style improved on doc frontend
+* Tweaked: Some UI & UX improved on doc frontend
+* Tweaked: Left sidebar toggle position
 * Tweaked: Was this doc helpful? Voting design and ajax loading icon improved
 * Tweaked: Code and file structure re-organized
 

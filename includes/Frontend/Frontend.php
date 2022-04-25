@@ -4,6 +4,7 @@ namespace eazyDocs\Frontend;
 class Frontend {
 	public function __construct() {
 		add_filter( 'single_template', [ $this, 'template_loader' ], 20, 99 );
+        add_filter( 'body_class', [ $this, 'body_class' ] );
 	}
 
 	/**
@@ -25,4 +26,12 @@ class Frontend {
 		}
 		return apply_filters( 'eazydocs_template_' . $template, $file );
 	}
+
+    public function body_class() {
+        $classes = [];
+        if ( eazydocs_has_shortcode() ) {
+            $classes[] = 'eazydocs_shortcode';
+        }
+        return $classes;
+    }
 }

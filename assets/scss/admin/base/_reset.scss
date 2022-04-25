@@ -114,7 +114,18 @@ button {
   }
 }
 
-
 .no-scroll-y {
   overflow-y: hidden;
+}
+
+.text-blue {
+  color: var(--clr-blue);
+}
+
+.green {
+  color: #27ae60;
+}
+
+.red {
+  color: #e74c3c;
 }

@@ -281,6 +281,18 @@ button {
   overflow-y: hidden;
 }
 
+.text-blue {
+  color: var(--clr-blue);
+}
+
+.green {
+  color: #27ae60;
+}
+
+.red {
+  color: #e74c3c;
+}
+
 h1,
 h2,
 h3,
@@ -1310,7 +1322,7 @@ a.child-delete {
 }
 .notification-body .filter-button-group {
   display: flex;
-  gap: var(--gutter-15);
+  gap: 8px;
   padding-left: var(--gutter-25);
   padding-right: var(--gutter-25);
 }
@@ -1429,12 +1441,10 @@ a.child-delete {
   text-decoration: none;
 }
 .notification-content .reply-text {
-  font-size: var(--fs-12);
+  font-size: 14px;
   color: var(--clr-text-light);
   line-height: 1;
-}
-.notification-content .reply-text.text-blue {
-  color: var(--clr-blue);
+  margin-top: 5px;
 }
 
 .notify-short-description {
@@ -1446,7 +1456,6 @@ a.child-delete {
 
 .notify-date {
   text-align: left;
-  font-size: var(--fs-14);
   color: var(--clr-text-light);
   line-height: 1;
   margin-top: 0.375rem;

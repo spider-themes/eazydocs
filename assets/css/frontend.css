@@ -30,7 +30,7 @@ a {
   color: var(--ezd_brand_color);
 }
 
-section {
+main, main#main, section {
   padding: 0;
 }
 
@@ -132,6 +132,7 @@ input[type=search]::-webkit-search-results-decoration {
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: contain;
+  margin: 0;
 }
 .doc_banner_area.has_bg_dark {
   background: url("../images/search-bg.jpeg");
@@ -351,11 +352,10 @@ input[type=search]::-webkit-search-results-decoration {
   display: none;
   background: #fff;
   z-index: 999;
-  bottom: 10px;
+  bottom: 17px;
   border-width: 2px;
-}
-#searchInput + .spinner img {
-  width: 22px;
+  width: 18px;
+  height: 18px;
 }
 
 .has_drop #searchInput + .spinner {
@@ -367,7 +367,6 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 .header_search_form {
-  max-width: 720px;
   margin: 10px auto 0;
 }
 .header_search_form .form-group {
@@ -426,8 +425,9 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 .doc_documentation_area {
-  padding-bottom: 5px;
   z-index: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 @media (max-width: 1440px) {
   .doc_documentation_area {
@@ -1013,7 +1013,7 @@ input[type=search]::-webkit-search-results-decoration {
   font-weight: 500;
   color: #fff;
   display: inline-block;
-  padding: 1px 14px 0;
+  padding: 1px 15px 2px;
   background-color: #27ae60;
   transition: all 0.2s linear;
   margin-left: 10px;
@@ -1156,7 +1156,8 @@ input[type=search]::-webkit-search-results-decoration {
   position: relative;
 }
 .doc_rightsidebar .pageSideSection {
-  margin-left: 25px;
+  padding-left: 20px;
+  position: relative;
 }
 .doc_rightsidebar .pageSideSection::before {
   content: "";
@@ -1236,7 +1237,7 @@ input[type=search]::-webkit-search-results-decoration {
   display: none;
 }
 #eazydocs-toc .nav-link.active::before {
-  left: -25px;
+  left: -20px;
   height: 100%;
   content: " ";
   position: absolute;
@@ -3009,18 +3010,18 @@ button.swiper-pagination-bullet {
     flex-basis: 88%;
   }
 }
-.documentation_item .media-body h5 {
+.documentation_item .media-body .title {
   font-weight: 500;
-  font-size: 18px;
-  margin: 0 0 10px;
+  font-size: 1.4rem;
+  margin: 0 0 8px;
   transition: color 0.2s linear;
+  display: block;
 }
-.documentation_item .media-body h5:hover {
+.documentation_item .media-body .title:hover {
   color: var(--ezd_brand_color);
 }
 .documentation_item .media-body p {
   margin-bottom: 0;
-  line-height: 24px;
 }
 
 /*============== End documentation_area css =============*/
@@ -3111,6 +3112,7 @@ button.swiper-pagination-bullet {
 .categories_guide_item img {
   margin-bottom: 34px;
   max-width: 50px;
+  height: auto;
 }
 .categories_guide_item .doc_tag_title .title {
   margin: 0 0 24px;
@@ -3559,7 +3561,12 @@ button.swiper-pagination-bullet {
   border-top: 1px solid #e6eeef;
 }
 
-/*=========== End doc_faq_area_two ============*/
+.eazydocs-footer {
+  overflow-x: hidden;
+  padding-top: 10px;
+  margin-top: 0;
+}
+
 /*========== shortcode_text css ==============*/
 .shortcode_text .shortcode_title p {
   margin-bottom: 20px;
@@ -3586,6 +3593,7 @@ button.swiper-pagination-bullet {
   padding-left: 15px;
   padding-right: 60px;
   padding-top: 60px;
+  position: relative;
 }
 @media (max-width: 1440px) {
   .doc-middle-content {
@@ -3601,25 +3609,6 @@ button.swiper-pagination-bullet {
 body.doc.test.remove .shortcode_info h4 {
   padding-top: 100px;
   margin-top: -100px;
-}
-
-.shortcode_info h4 {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 25px;
-  padding-top: 40px;
-  margin-top: -40px;
-}
-.shortcode_info h6 {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 16px;
-}
-.shortcode_info p {
-  margin-bottom: 30px;
-}
-.shortcode_info footer {
-  padding-top: 25px;
 }
 
 .tab_shortcode {
@@ -4806,7 +4795,8 @@ ul.ordered-list li::before {
 }
 
 @media (min-width: 1200px) {
-  .container {
+  .eazydocs_shortcode .container,
+.container {
     max-width: 1200px;
   }
 }
@@ -4918,8 +4908,8 @@ p .footnotes-link::after {
 }
 
 .left-sidebar-toggle {
-  position: fixed;
-  top: 500px;
+  position: absolute;
+  top: 65px;
   margin-left: -72px;
   color: #656565;
   line-height: 22px;
@@ -4974,7 +4964,8 @@ p .footnotes-link::after {
 
 .body_fixed .left-sidebar-toggle {
   top: 65px;
-  margin-left: -80px;
+  margin-left: -64px;
+  position: fixed;
 }
 
 .navbar_fixed.fadeInDown ~ .body_fixed .left-sidebar-toggle {

@@ -125,7 +125,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Admin\Admin();
 				new eazyDocs\Admin\Create_Post();
 				new eazyDocs\Admin\Create_Docs\Parent_Doc();
-				//new eazyDocs\Admin\Create_Docs\Section_Doc();
 				new eazyDocs\Admin\Delete_Post();
 				new eazyDocs\Admin\Assets();
 			} else {

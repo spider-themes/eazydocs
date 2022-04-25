@@ -31,8 +31,8 @@ if ( $sections ) :
 						?>
                     </div>
                     <div class="media-body">
-                        <a href="<?php echo get_permalink( $section->ID ); ?>">
-                            <h5> <?php echo wp_kses_post( $section->post_title ); ?> </h5>
+                        <a href="<?php echo get_permalink( $section->ID ); ?>" class="doc-sec title">
+                            <?php echo wp_kses_post( $section->post_title ); ?>
                         </a>
                         <p> <?php echo wp_trim_words( $section->post_content, $sec_excerpt, '' ); ?> </p>
                     </div>

@@ -42,14 +42,24 @@ CSF::createSection( $prefix, array(
             'output_mode' => '--ezd_brand_color',
         ),
 
+        array(
+            'id'          => 'is_search_banner',
+            'type'        => 'switcher',
+            'title'       => esc_html__( 'Search Banner', 'eazydocs-pro' ),
+            'text_on'     => esc_html__( 'Show', 'eazydocs-pro' ),
+            'text_off'    => esc_html__( 'Hide', 'eazydocs-pro' ),
+            'default'     => true,
+            'text_width'  => 72
+        ),
+
 		array(
 			'id'         => 'message-feedback',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Message Feedback', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
 			'default'    => true,
-			'text_width' => 70
+			'text_width' => 80
 		),
 
 		array(

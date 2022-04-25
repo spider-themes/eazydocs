@@ -266,3 +266,73 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
 	}
 }
+
+/**
+ * Get the unfiltered value of a global $post's key
+ *
+ * Used most frequently when editing a forum/topic/reply
+ *
+ * @since 1.0.1 eazyDocs
+ *
+ * @param string $field Name of the key
+ * @param string $context How to sanitize - raw|edit|db|display|attribute|js
+ * @return string Field value
+ */
+function eazydocs_get_global_post_field( $field = 'ID', $context = 'edit' ) {
+
+    // Get the post, and maybe get a field from it
+    $post   = get_post();
+    $retval = isset( $post->{$field} )
+        ? sanitize_post_field( $field, $post->{$field}, $post->ID, $context )
+        : '';
+
+    // Filter & return
+    return apply_filters( 'eazydocs_get_global_post_field', $retval, $post, $field, $context );
+}
+
+/**
+ * Check if text contains a EazyDocs shortcode.
+ *
+ * Loops through registered EazyDocs shortcodes and keeps track of which ones
+ * were used in a blob of text. If no text is passed, the current global post
+ * content is assumed.
+ *
+ * A preliminary strpos() is performed before looping through each shortcode, to
+ * prevent unnecessarily processing.
+ *
+ * @since 1.0.1
+ *
+ * @param string $text
+ * @return bool
+ */
+function eazydocs_has_shortcode( $text = '' ) {
+
+    // Default return value
+    $retval = false;
+    $found  = array();
+
+    // Fallback to global post_content
+    if ( empty( $text ) && is_singular() ) {
+        $text = eazydocs_get_global_post_field( 'post_content', 'raw' );
+    }
+
+    // Skip if empty, or string doesn't contain the eazydocs shortcode prefix
+    if ( ! empty( $text ) && ( false !== strpos( $text, '[eazydocs' ) ) ) {
+
+        // Get possible shortcodes
+        $codes = array('eazydocs', 'eazydocs_tab');
+
+        // Loop through codes
+        foreach ( $codes as $code ) {
+
+            // Looking for shortcode in text
+            if ( has_shortcode( $text, $code ) ) {
+                $retval  = true;
+                $found[] = $code;
+            }
+        }
+    }
+
+    // Filter & return
+    return (bool) apply_filters( 'eazydocs_has_shortcode', $retval, $found, $text );
+}

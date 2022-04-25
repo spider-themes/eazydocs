@@ -16,12 +16,12 @@
   }
 }
 
+.eazydocs_shortcode .container,
 .container {
   @media (min-width: 1200px) {
     max-width: 1200px;
   }
 }
-
 
 .modal-content .shortcode_info .row {
   margin-top: 20px;
@@ -143,8 +143,8 @@ p .footnotes-link::after {
 }
 
 .left-sidebar-toggle {
-  position: fixed;
-  top: 500px;
+  position: absolute;
+  top: 65px;
   margin-left: -72px;
   color: #656565;
   line-height: 22px;
@@ -200,7 +200,8 @@ p .footnotes-link::after {
 .body_fixed {
   .left-sidebar-toggle {
     top: 65px;
-    margin-left: -80px;
+    margin-left: -64px;
+    position: fixed;
   }
 }
 

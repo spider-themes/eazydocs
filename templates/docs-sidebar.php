@@ -19,8 +19,7 @@ $children       = wp_list_pages( array(
 	'echo'      => false,
 	'post_type' => 'docs',
 	'walker'    => $walker,
-) );
-
+));
 ?>
 
 <div class="col-lg-3 doc_mobile_menu">

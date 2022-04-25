@@ -28,6 +28,7 @@
   padding-left: 15px;
   padding-right: 60px;
   padding-top: 60px;
+  position: relative;
   @media (max-width: 1440px) {
     padding-right: 40px;
   }
@@ -42,30 +43,6 @@ body.doc.test.remove {
     padding-top: 100px;
     margin-top: -100px;
   }
-}
-
-.shortcode_info {
-    h4 {
-      font-size: 22px;
-      font-weight: 500;
-      margin-bottom: 25px;
-      padding-top: 40px;
-      margin-top: -40px;
-    }
-
-    h6 {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 16px;
-    }
-
-    p {
-      margin-bottom: 30px;
-    }
-
-    footer {
-      padding-top: 25px;
-    }
 }
 
 .tab_shortcode {

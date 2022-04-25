@@ -63,6 +63,7 @@
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: contain;
+  margin: 0;
   &.has_bg_dark {
     background: url("../images/search-bg.jpeg");
     background-size: cover;
@@ -282,11 +283,10 @@
   display: none;
   background: #fff;
   z-index: 999;
-  bottom: 10px;
+  bottom: 17px;
   border-width: 2px;
-  img {
-    width: 22px;
-  }
+  width: 18px;
+  height: 18px;
 }
 
 .has_drop #searchInput {
@@ -300,7 +300,6 @@
 }
 
 .header_search_form {
-  max-width: 720px;
   margin: 10px auto 0;
   .form-group {
     display: flex;

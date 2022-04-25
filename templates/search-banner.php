@@ -1,6 +1,6 @@
 <?php
-$cz_options         = get_option( 'eazydocs_customizer' );;
-$search_banner      = $cz_options['docs-search-banner'] ?? '0';
+$cz_options    = get_option( 'eazydocs_settings' );;
+$search_banner = $cz_options['is_search_banner'] ?? '0';
 
 if( $search_banner == '1' ) :
     ?>

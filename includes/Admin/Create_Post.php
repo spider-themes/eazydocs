@@ -3,18 +3,51 @@
 namespace eazyDocs\Admin;
 
 class Create_Post {
-
 	/**
 	 * Create_Post constructor.
 	 */
 	public function __construct() {
+		add_action( 'admin_init', [ $this, 'create_parent_doc' ] );
 		add_action( 'admin_init', [ $this, 'create_new_doc' ] );
 		add_action( 'admin_init', [ $this, 'create_section_doc' ] );
 		add_action( 'admin_init', [ $this, 'create_child_doc' ] );
 	}
 
+    /**
+     * Create parent Doc post
+     */
+    public function create_parent_doc() {
+        if ( isset ( $_POST['parent_title'] ) && ! empty ( $_POST['parent_title'] ) ) {
+
+            $title = ! empty ( $_POST['parent_title'] ) ? sanitize_text_field( $_POST['parent_title'] ) : '';
+
+            $args = [
+                'post_type'   => 'docs',
+                'post_parent' => 0
+            ];
+
+            $query = new \WP_Query( $args );
+            $total = $query->found_posts;
+            $add   = 2;
+            $order = $total + $add;
+
+            // Create post object
+            $post = wp_insert_post( array(
+                'post_title'   => $title,
+                'post_parent'  => 0,
+                'post_content' => '',
+                'post_type'    => 'docs',
+                'post_status'  => 'publish',
+                'post_author'  => get_current_user_id(),
+                'menu_order'   => $order,
+            ) );
+            wp_insert_post( $post, $wp_error = '' );
+            header("Location:". admin_url('admin.php?page=eazydocs'));
+        }
+    }
+
 	/**
-	 * Create new post
+	 * Create new Doc post
 	 */
 	public function create_new_doc() {
 		if ( isset ( $_GET['new_doc'] ) && ! empty ( $_GET['new_doc'] ) ) {
@@ -36,7 +69,7 @@ class Create_Post {
 	}
 
 	/**
-	 * Create section post
+	 * Create section doc post
 	 */
 	public function create_section_doc() {
 		if ( isset ( $_GET['section'] ) && ! empty ( $_GET['section'] ) ) {
@@ -67,7 +100,7 @@ class Create_Post {
 	}
 
 	/**
-	 *  Create section post
+	 *  Create child doc post
 	 */
 	public function create_child_doc() {
 

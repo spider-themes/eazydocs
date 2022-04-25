@@ -3,6 +3,13 @@
 
     $(document).ready(function() {
 
+        // Match Fade gradient Shadow color
+        let bgColor = window.getComputedStyle(document.body, null).getPropertyValue('background-color'),
+            bgColorRGBA = bgColor.replace(')', ', 0)').replace('rgb', 'rgba')
+        if ( bgColor ) {
+            $('.fadeGradient').css( 'background', '-webkit-linear-gradient(bottom, '+bgColor+' 15%, '+bgColorRGBA+' 100%)' )
+        }
+
         // Add scroll spy attributes to body
         $('body').attr({'data-bs-spy': 'scroll', 'data-bs-target': "#eazydocs-toc"})
 
@@ -64,7 +71,7 @@
             $(".nav-sidebar > li.active").find('ul').slideDown(700);
         }
 
-        function active_dropdown(is_ajax = false) {
+        function active_dropdown( is_ajax = false ) {
             if ( is_ajax == true) {
                 $(document).on('click', '.nav-sidebar .nav-item .nav-link', function (e) {
                     $('.nav-sidebar .nav-item').removeClass('active')
