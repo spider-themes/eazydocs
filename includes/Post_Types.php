@@ -75,7 +75,7 @@ class Docs {
 			'show_in_rest'        => true,
 			'rewrite'             => $rewrite,
 			'map_meta_cap'          => true,
-			'taxonomies'          => [ 'doc_tag' ],
+			'taxonomies'          => [ 'doc_tag' ]
 		];
 
 		register_post_type( $this->post_type, apply_filters( 'eazydocs_post_type', $args ) );

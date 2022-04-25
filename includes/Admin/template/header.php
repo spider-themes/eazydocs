@@ -28,11 +28,17 @@
                     <ul class="d-flex justify-content-end">
                         <li>
                             <div class="easydocs-settings">
+
+                                <?php
+                                if( current_user_can('edit_posts') ) :
+                                ?>
                                 <div class="header-notify-icons">
                                     <a href="<?php echo admin_url('edit.php?post_type=docs'); ?>" title="<?php esc_html_e( 'Go to Classic UI', 'eazydocs' );?>">
                                         <?php esc_html_e( 'Classic UI', 'eazydocs' );?>
                                     </a>
                                 </div>
+                                <?php endif; ?>
+
                                 <div class="header-notify-icon">
                                     <a href="admin.php?page=eazydocs-settings">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -34,7 +34,6 @@ if ( is_array( $depth_one_parents ) ) :
 						<?php esc_html_e( 'Draft', 'eazydocs' ); ?>
                     </li>
                 </ul>
-
             </div>
 
             <ul class="easydocs-accordion sortable accordionjs">
@@ -76,8 +75,16 @@ if ( is_array( $depth_one_parents ) ) :
 						?>
                         <li <?php post_class( "easydocs-accordion-item accordion ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                             <div class="accordion-title ez-section-title <?php echo count($doc_items) > 0 ? 'has-child' : ''; ?>">
+                                <?php
+                                $edit_link = 'javascript:void(0)';
+                                $target = '_self';
+                                if( current_user_can('editor') || current_user_can('administrator') ) {
+						            $edit_link = get_edit_post_link( $child );
+						            $target = '_blank';
+                                }
+                                ?>
                                 <h4>
-                                    <a href="<?php echo get_edit_post_link( $child ); ?>" target="_blank">
+                                    <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>">
 										<?php echo get_the_title( $child ); ?>
                                     </a>
                                     <?php if ( count($doc_items) > 0 ) : ?>
@@ -88,6 +95,9 @@ if ( is_array( $depth_one_parents ) ) :
                                 </h4>
                                 <div class="right-content">
                                     <ul>
+                                        <?php
+						                if( current_user_can('editor') || current_user_can('administrator') ) :
+                                        ?>
                                         <li>
 	                                        <?php do_action('eazydocs_section_doc_duplicate', $child->ID, $item); ?>
                                         </li>
@@ -96,16 +106,21 @@ if ( is_array( $depth_one_parents ) ) :
                                                 <img src="<?php echo EAZYDOCS_IMG ?>/admin/plus.svg" alt="<?php esc_attr_e( 'Plus Icon', 'eazydocs' ); ?>">
                                             </a>
                                         </li>
+                                        <?php endif; ?>
                                         <li>
                                             <a href="<?php echo get_permalink( $child ); ?>" target="_blank">
                                                 <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View Icon', 'eazydocs' ); ?>">
                                             </a>
                                         </li>
+                                        <?php
+                                        if( current_user_can('editor') || current_user_can('administrator') ) :
+                                        ?>
                                         <li>
                                             <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo $depth_docs; ?>" class="section-delete">
                                                 <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete.svg" alt="<?php esc_attr_e( 'Delete Icon', 'eazydocs' ); ?>">
                                             </a>
                                         </li>
+                                        <?php endif; ?>
                                     </ul>
                                     <span class="progress-text">
                                         <?php
@@ -153,9 +168,17 @@ if ( is_array( $depth_one_parents ) ) :
                                         <ul class="accordionjs">
                                             <li <?php post_class( "easydocs-accordion-item accordion mix child-one ". $post_status ); ?>>
                                                 <div class="accordion-title <?php echo count($child_depth) > 0 ? 'has-child' : ''; ?>">
+	                                                <?php
+	                                                $edit_link = 'javascript:void(0)';
+	                                                $target = '_self';
+						                            if( current_user_can('editor') || current_user_can('administrator') ) {
+		                                                $edit_link = get_edit_post_link( $doc_item );
+		                                                $target = '_blank';
+	                                                }
+	                                                ?>
                                                     <h4>
-                                                        <a href="<?php echo get_edit_post_link( $doc_item ); ?>" target="_blank" class="section-last-label">
-                                                            <?php echo get_the_title( $doc_item ); ?>
+                                                        <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="section-last-label">
+                                                            <?php echo get_the_title($doc_item); ?>
                                                         </a>
 	                                                    <?php
                                                         if ( count($child_depth) > 0 ) : ?>
@@ -168,6 +191,9 @@ if ( is_array( $depth_one_parents ) ) :
 
                                                     <div class="right-content">
                                                         <ul>
+                                                            <?php
+                                                            if( current_user_can('editor') || current_user_can('administrator') ) :
+                                                            ?>
                                                             <li>
 	                                                            <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
                                                             </li>
@@ -176,16 +202,22 @@ if ( is_array( $depth_one_parents ) ) :
                                                                     <img src="<?php echo EAZYDOCS_IMG ?>/admin/plus.svg" alt="<?php esc_attr_e( 'Plus Icon', 'eazydocs' ); ?>">
                                                                 </a>
                                                             </li>
+                                                            <?php endif; ?>
+
                                                             <li>
                                                                 <a href="<?php echo get_permalink( $doc_item ); ?>" target="_blank">
                                                                     <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View Icon', 'eazydocs' ); ?>">
                                                                 </a>
                                                             </li>
+		                                                    <?php
+		                                                    if( current_user_can('editor') || current_user_can('administrator') ) :
+                                                            ?>
                                                             <li>
                                                                 <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo esc_attr( $doc_item->ID . ',' . $last_section_ids ); ?>" class="section-delete">
                                                                     <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete.svg" alt="<?php esc_attr_e( 'Delete Icon', 'eazydocs' ); ?>">
                                                                 </a>
                                                             </li>
+                                                            <?php endif; ?>
                                                         </ul>
                                                         <span class="progress-text">
                                                             <?php
@@ -213,19 +245,35 @@ if ( is_array( $depth_one_parents ) ) :
                                                         foreach( $child_depth as $dep3 ) :
                                                             ?>
                                                             <div class="child-docs-wrap d-flex justify-content-between">
-                                                                <a href="<?php echo get_edit_post_link( $dep3 ); ?>" target="_blank" class="child-last-label">
+
+	                                                            <?php
+	                                                            $edit_link = 'javascript:void(0)';
+	                                                            $target = '_self';
+						                                        if( current_user_can('editor') || current_user_can('administrator') ) {
+		                                                            $edit_link = get_edit_post_link( $dep3 );
+		                                                            $target = '_blank';
+	                                                            }
+	                                                            ?>
+                                                                <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="child-last-label">
                                                                    <?php echo get_the_title( $dep3 ); ?>
                                                                 </a>
                                                                 <div class="child-right-content d-flex">
 
-                                                                   <?php do_action('eazydocs_single_duplicate', $dep3->ID); ?>
-
+                                                                    <?php
+						                                            if( current_user_can('editor') || current_user_can('administrator') ) {
+                                                                        do_action( 'eazydocs_single_duplicate', $dep3->ID );
+                                                                    }
+                                                                    ?>
                                                                     <a href="<?php echo get_permalink( $dep3 ); ?>" target="_blank" class="child-view-link">
                                                                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View icon', 'eazydocs' ); ?>">
                                                                     </a>
+                                                                    <?php
+                                                                    if( current_user_can('editor') || current_user_can('administrator') ) :
+                                                                    ?>
                                                                     <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo $dep3->ID; ?>" class="child-delete">
                                                                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete.svg" alt="<?php esc_attr_e( 'Delete icon', 'eazydocs' ); ?>">
                                                                     </a>
+                                                                    <?php endif; ?>
 
                                                                     <span class="progress-text">
                                                                         <?php

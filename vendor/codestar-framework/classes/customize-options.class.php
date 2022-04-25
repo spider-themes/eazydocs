@@ -21,7 +21,7 @@ if ( ! class_exists( 'CSF_Customize_Options' ) ) {
     public $args        = array(
       'database'        => 'option',
       'transport'       => 'refresh',
-      'capability'      => 'manage_options',
+      'capability'      => 'publish_pages',
       'save_defaults'   => true,
       'enqueue_webfont' => true,
       'async_webfont'   => false,
