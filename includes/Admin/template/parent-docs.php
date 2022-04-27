@@ -68,7 +68,7 @@ $count = $query->found_posts;
                     <?php
                     if( current_user_can('editor') || current_user_can('administrator') ) :
                     ?>
-                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?parentID=<?php echo get_the_ID(); ?>" class="link delete parent-delete">
+                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete">
                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete2.svg" alt="<?php esc_attr_e( 'Delete Icon', 'eazydocs' ); ?>">
                     </a>
                     <?php endif; ?>

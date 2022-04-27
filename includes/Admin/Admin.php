@@ -29,9 +29,19 @@ class Admin {
 			$cz_access = eazydocspro_get_option( 'customizer-edit-access', 'eazydocs_settings' );
 			$sz_access = eazydocspro_get_option( 'settings-edit-access', 'eazydocs_settings' );
 
-			$all_roles = ! empty( $access ) ? implode( ',', $access ) : '';
-			$cz_roles  = ! empty( $cz_access ) ? implode( ',', $cz_access ) : '';
-			$sz_roles  = ! empty( $sz_access ) ? implode( ',', $sz_access ) : '';
+			$all_roles = '';
+			$cz_roles = '';
+			$sz_roles = '';
+
+			if( is_array($access)) {
+				$all_roles = ! empty( $access ) ? implode( ',', $access ) : '';
+			}
+			if( is_array($cz_roles)) {
+				$cz_roles  = ! empty( $cz_access ) ? implode( ',', $cz_access ) : '';
+			}
+			if( is_array($sz_roles)) {
+				$sz_roles  = ! empty( $sz_access ) ? implode( ',', $sz_access ) : '';
+			}
 
 			$cz_roled = explode( ',', $cz_roles );
 			$sz_roled = explode( ',', $sz_roles );

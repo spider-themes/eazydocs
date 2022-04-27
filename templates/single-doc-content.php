@@ -8,7 +8,7 @@ $comment_visibility     = $options['enable-comment'] ?? '';
 $docs_feedback          = '1';
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$cz_options         = get_option( 'eazydocs_customizer' ); // prefix of framework
-	$layout             = $cz_options['docs-single-layout']; // id of field
+	$layout             = $cz_options['docs-single-layout'] ?? ''; // id of field
 	$docs_feedback      = $options['docs-feedback'] ?? '1';
 }
 

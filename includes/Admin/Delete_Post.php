@@ -19,12 +19,12 @@ class Delete_Post {
 	 */
 	public function delete_doc() {
 
-		if ( ! empty ( $_GET['parentID'] ) ) {
-			$posts                  = sanitize_text_field( $_GET['parentID'] );
+		if ( ! empty ( $_GET['DeleteID'] ) ) {
+			$posts                  = sanitize_text_field( $_GET['DeleteID'] );
 			$parent_id              = $posts . ',';
 
 			/**
-			 * Section Docs Duplicate by Parent duplicator
+			 * Section Docs
 			 **/
 			$parent                 = get_children( [
 				'post_parent'       => $posts

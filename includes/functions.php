@@ -336,3 +336,12 @@ function eazydocs_has_shortcode( $text = '' ) {
     // Filter & return
     return (bool) apply_filters( 'eazydocs_has_shortcode', $retval, $found, $text );
 }
+
+function date_sort($a, $b) {
+	return strtotime($b) - strtotime($a);
+}
+function main_date_sort($a, $b) {
+	$date1 = DateTime::createFromFormat('d/m/Y', $a);
+	$date2 = DateTime::createFromFormat('d/m/Y', $b);
+	return $b > $a;
+}

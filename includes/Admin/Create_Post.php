@@ -1,5 +1,4 @@
 <?php
-
 namespace eazyDocs\Admin;
 
 class Create_Post {
@@ -17,9 +16,9 @@ class Create_Post {
      * Create parent Doc post
      */
     public function create_parent_doc() {
-        if ( isset ( $_POST['parent_title'] ) && ! empty ( $_POST['parent_title'] ) ) {
+	        if ( isset ( $_GET['parent_title'] ) && ! empty ( $_GET['parent_title'] ) ) {
 
-            $title = ! empty ( $_POST['parent_title'] ) ? sanitize_text_field( $_POST['parent_title'] ) : '';
+            $title = ! empty ( $_GET['parent_title'] ) ? sanitize_text_field( $_GET['parent_title'] ) : '';
 
             $args = [
                 'post_type'   => 'docs',
@@ -72,6 +71,7 @@ class Create_Post {
 	 * Create section doc post
 	 */
 	public function create_section_doc() {
+
 		if ( isset ( $_GET['section'] ) && ! empty ( $_GET['section'] ) ) {
 
 			$parentID      = ! empty ( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;

@@ -8,10 +8,12 @@
 							<?php esc_html_e( 'Documentations', 'eazydocs' ); ?>
                         </a>
                     </div>
-                    <button type="button" data-url="<?php echo admin_url('admin.php'); ?>/Create_Post.php?parent=" id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round">
+
+                    <button type="button" data-url="<?php echo admin_url('admin.php'); ?>/Create_Post.php?parent_title=" id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round">
                         <span class="dashicons dashicons-plus-alt2"></span>
 						<?php esc_html_e( 'Add Doc', 'eazydocs' ); ?>
                     </button>
+
                 </div>
             </div>
 

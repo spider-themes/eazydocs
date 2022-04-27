@@ -21,24 +21,70 @@
                 })
             })
         }
-        add_new_doc()
+        add_new_doc();
 
         // ADD PARENT DOC
-        $(document).on('click', '#parent-doc', function (e) {
-            e.preventDefault();
-            Swal.fire({
-                title: eazydocs_local_object.create_prompt_title,
-                input: 'text',
-                showCancelButton: true,
-                inputAttributes: {
-                    name: 'parent_title'
-                },
-            }).then((result) => {
-                if (result.value) {
-                    document.location.href = href;
-                }
+        function add_parent_doc() {
+            $(document).on('click', '#parent-doc', function (e) {
+                e.preventDefault();
+                let href = $(this).attr('data-url')
+                Swal.fire({
+                    title: eazydocs_local_object.create_prompt_title,
+                    input: 'text',
+                    showCancelButton: true,
+                    inputAttributes: {
+                        name: 'parent_title'
+                    },
+                }).then((result) => {
+                    if (result.value) {
+                        document.location.href = href + result.value;
+                    }
+                })
             })
-        })
+        }
+        add_parent_doc();
+
+        // SECTION DOC
+        function create_section_doc() {
+            $(document).on('click', '#section-doc', function (e) {
+                e.preventDefault();
+                let href = $(this).attr('data-url')
+                Swal.fire({
+                    title: eazydocs_local_object.create_prompt_title,
+                    input: 'text',
+                    showCancelButton: true,
+                    inputAttributes: {
+                        name: 'section'
+                    },
+                }).then((result) => {
+                    if (result.value) {
+                        document.location.href = href + result.value;
+                    }
+                })
+            })
+        }
+        create_section_doc();
+
+        // ADD CHILD DOC
+        function add_child_doc() {
+            $('.child-doc').on('click', function (e) {
+                e.preventDefault();
+                let href = $(this).attr('href')
+                Swal.fire({
+                    title: eazydocs_local_object.create_prompt_title,
+                    input: 'text',
+                    showCancelButton: true,
+                    inputAttributes: {
+                        name: 'child_title'
+                    },
+                }).then((result) => {
+                    if (result.value) {
+                        document.location.href = href + result.value;
+                    }
+                })
+            })
+        }
+        add_child_doc();
 
         // Delete parent doc
         function delete_parent_doc() {
@@ -60,49 +106,7 @@
                 })
             })
         }
-        delete_parent_doc()
-
-        // SECTION DOC
-        function add_doc_section() {
-            $(document).on('click', '.section-doc', function (e) {
-                e.preventDefault();
-                let href = $(this).attr('data-url')
-                Swal.fire({
-                    title: eazydocs_local_object.create_prompt_title,
-                    input: 'text',
-                    showCancelButton: true,
-                    inputAttributes: {
-                        name: 'section_title'
-                    },
-                }).then((result) => {
-                    if (result.value) {
-                        document.location.href = href + result.value;
-                    }
-                })
-            })
-        }
-        add_doc_section()
-
-        // ADD CHILD DOC
-        function add_child_doc() {
-            $('.child-doc').on('click', function (e) {
-                e.preventDefault();
-                let href = $(this).attr('href')
-                Swal.fire({
-                    title: eazydocs_local_object.create_prompt_title,
-                    input: 'text',
-                    showCancelButton: true,
-                    inputAttributes: {
-                        name: 'child_title'
-                    },
-                }).then((result) => {
-                    if (result.value) {
-                        document.location.href = href + result.value;
-                    }
-                })
-            })
-        }
-        add_child_doc()
+        delete_parent_doc();
 
         // DELETE DOC SECTION
         function delete_doc_sec() {
@@ -124,7 +128,7 @@
                 })
             })
         }
-        delete_doc_sec()
+        delete_doc_sec();
 
         // DELETE CHILD DOC
         function delete_child_doc() {
@@ -146,7 +150,7 @@
                 })
             })
         }
-        delete_child_doc()
+        delete_child_doc();
 
         // Docs Search
         $("#easydocs-search").on("keyup", function() {

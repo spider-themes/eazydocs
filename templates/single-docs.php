@@ -18,7 +18,7 @@ $credit_enable      = '1';
 $credit_text        = sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>');
 if ( class_exists('EazyDocsPro') ) {
 	$cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
-	$layout     = $cz_options['doc_elements']['docs_single_layout'] ?? '';
+	$layout     = $cz_options['doc_elements']['docs_single_layout'] ?? 'both_sidebar';
     $doc_width          = $cz_options['doc_elements']['docs_page_width'] ?? '';
     $doc_container      = $doc_width == 'full-width' ? 'container-fluid pl-60 pr-60' : 'container custom_container';
 	$content_wrapper    = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';

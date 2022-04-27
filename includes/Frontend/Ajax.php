@@ -34,7 +34,16 @@ class Ajax {
         // seems new
         if ( $type ) {
             $count = (int) get_post_meta( $post_id, $type, true );
-            update_post_meta( $post_id, $type, $count + 1 );
+
+	        $timestamp = current_time('mysql');
+
+            update_post_meta( $post_id, $type, $count + 1);
+
+            if( $type == 'positive') {
+	            update_post_meta( $post_id, 'positive_time', $timestamp );
+            }else{
+	            update_post_meta( $post_id, 'negative_time', $timestamp );
+            }
 
             array_push( $previous, $post_id );
             $cookie_val = implode( ',', $previous );

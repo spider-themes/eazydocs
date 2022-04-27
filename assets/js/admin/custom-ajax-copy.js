@@ -23,44 +23,6 @@
         }
         add_new_doc()
 
-        // ADD PARENT DOC
-        $(document).on('click', '#parent-doc', function (e) {
-            e.preventDefault();
-            Swal.fire({
-                title: eazydocs_local_object.create_prompt_title,
-                input: 'text',
-                showCancelButton: true,
-                inputAttributes: {
-                    name: 'parent_title'
-                },
-            }).then((result) => {
-                if (result.isDismissed) {
-                    return;
-                }
-                //document.location.href =  href+result.value;
-                $.ajax({
-                    url: eazydocs_local_object.ajaxurl,
-                    method: "post",
-                    data: {
-                        action: 'create_parent_doc',
-                        parent_title: result.value.trim(),
-                    },
-                    success: function (response) {
-                        $(".easydocs-navbar").prepend(response.data.added_doc)
-                        delete_parent_doc(); add_doc_section(); add_child_doc(); delete_child_doc(); delete_doc_sec()
-                        $('.easydocs-navitem').removeClass('is-active')
-                        $('.tab-'+response.data.post.id).addClass('is-active')
-                        // child docs
-                        $(".easydocs-tab-content").prepend(response.data.child_docs)
-                        $('.easydocs-tab').removeClass('tab-active').hide()
-                        $('#tab-'+response.data.post.id).addClass('tab-active').show()
-                    },
-                    error: function () {
-                        console.log("Oops! Something wrong, try again!");
-                    }
-                })
-            })
-        })
 
         // Delete parent doc
         function delete_parent_doc() {
