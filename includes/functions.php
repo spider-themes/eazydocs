@@ -32,34 +32,6 @@ function eazydocs_get_template_part( $template ) {
 }
 
 /**
- * Check the existing doc plugins
- * @return array
- */
- function eazydocs_docs_plugins() {
-    include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-    $plugins = array();
-    if ( is_plugin_active('betterdocs/betterdocs.php') ) {
-        $plugins[] = array('betterdocs', 'BetterDocs');
-    }
-    if ( is_plugin_active('wedocs/wedocs.php') ) {
-        $plugins[] = array('wedocs', 'weDocs');
-    }
-    if ( is_plugin_active('bsf-docs/bsf-docs.php') ) {
-        $plugins[] = array('bsf-docs', 'BSF docs');
-    }
-    if ( is_plugin_active('documentor-lite/documentor-lite.php') ) {
-        $plugins[] = array('documentor-lite', 'Documentor');
-    }
-    if ( is_plugin_active('echo-knowledge-base/echo-knowledge-base.php') ) {
-        $plugins[] = array('echo-knowledge-base', 'Echo Knowledge Base');
-    }
-    if ( is_plugin_active('pressapps-knowledge-base/pressapps-knowledge-base.php') ) {
-        $plugins[] = array('pressapps-knowledge-base', 'PressApps Knowledge Base');
-    }
-    return $plugins;
-}
-
-/**
  * Get the value of a settings field.
  *
  * @param string $option settings field name

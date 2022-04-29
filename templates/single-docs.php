@@ -44,11 +44,16 @@ if ( class_exists('EazyDocsPro') ) {
 }
 ?>
 
-<?php eazydocs_get_template_part('search-banner') ?>
+<?php
+$theme = wp_get_theme();
+if ( $theme->Name != 'Docy' & $theme->Name != 'Docly' ) {
+    eazydocs_get_template_part('search-banner');
+}
+?>
 <section class="doc_documentation_area <?php echo esc_attr($content_wrapper); ?>" id="sticky_doc">
     <div class="overlay_bg"></div>
     <?php
-    if ( $breadcrumb == '1' ) {
+    if ( $breadcrumb == '1' && $theme->Name != 'Docy' && $theme->Name != 'Docly' ) {
         eazydocs_get_template_part( 'breadcrumbs' );
     }
     ?>

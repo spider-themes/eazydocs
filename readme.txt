@@ -21,8 +21,11 @@ EazyDocs assist you in quickly and easily creating great looking documentation f
 - **Look Beautiful by Default:** EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
 - **Get Feedback from Real Visitors**: Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
 - **Designed for Reader:** We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
+- **SEO Optimized:** EazyDocs is SEO ready right from the first line of code.
+- **Integrated Schema:** EazyDocs is coded out of the box valid schema markup and Google structured data.
+- **Sticky Sidebars:** Make the sidebars to follow you as you scroll and show the important content.
 - **Multilingual Ready:** EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one!
-- **Responsive & Retina Ready:** EazyDocs is 100% responsive to make your Knowledge base look beautiful on all major devices.
+- **Responsive & Retina Ready:** EazyDocs is 100% responsive to make your Knowledge base look beautiful and effective on all major devices.
 - **Reading Assistant Tools:** There are available some important tools for better reading experience. Font Size switcher, Print option, TOC are developed for a consistent reading experience.
 - **Simple Navigation:** The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
 - **Read time, Views Count:** Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
@@ -73,12 +76,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.0.1 (17 April 2022) =
+= v1.0.1 (29 April 2022) =
 * New: Search Banner
 * New: Brand Color changing option added to Settings page.
 * Dropped: Add New Doc via Ajax feature dropped due to this feature was not working for some users
 * Fixed: Doc archive page was rendering doc lists incorrectly
 * Fixed: JS error on single doc
+* Tweaked: Add prefix to HTML classes, IDs to avoid conflict with other plugins and themes
 * Tweaked: Some UI & UX improved on doc frontend
 * Tweaked: Left sidebar toggle position
 * Tweaked: Was this doc helpful? Voting design and ajax loading icon improved

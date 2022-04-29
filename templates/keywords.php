@@ -10,7 +10,7 @@ $keywords = $opt['keywords'] ?? '';
 ?>
 
 <?php if ( $is_keywords == '1' ) : ?>
-    <div class="header_search_keyword">
+    <div class="ezd_search_keywords">
         <?php if ( !empty($keywords_label) ) :  ?>
             <span class="label">
                 <?php echo esc_html($keywords_label) ?>

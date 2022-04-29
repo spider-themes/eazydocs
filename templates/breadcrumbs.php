@@ -1,4 +1,5 @@
 <?php
+
 $settings_options = '';
 $update_text      = '';
 $doc_container    = 'container custom_container';
