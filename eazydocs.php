@@ -31,18 +31,22 @@ if ( ! function_exists( 'eaz_fs' ) ) {
 			$eaz_fs = fs_dynamic_init( array(
 				'id'                  => '10290',
 				'slug'                => 'eazydocs',
+				'premium_slug'        => 'eazydocs-pro',
 				'type'                => 'plugin',
 				'public_key'          => 'pk_8474e4208f0893a7b28c04faf5045',
-				'is_premium'          => false,
+				'is_premium'          => true,
+				'is_premium_only'     => false,
 				'has_addons'          => false,
-				'has_paid_plans'      => false,
+				'has_paid_plans'      => true,
 				'menu'                => array(
 					'slug'           => 'eazydocs',
 					'first-path'     => 'admin.php?page=eazydocs',
-					'account'        => false,
 					'contact'        => false,
 					'support'        => false,
 				),
+				// Set the SDK to work in a sandbox mode (for development & testing).
+				// IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
+				'secret_key'          => 'sk_BWE>Guw~IF@(8czeEjdF->!6MZE+N',
 			) );
 		}
 
