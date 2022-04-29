@@ -19,6 +19,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 
+if ( ! function_exists( 'eaz_fs' ) ) {
+	// Create a helper function for easy SDK access.
+	function eaz_fs() {
+		global $eaz_fs;
+
+		if ( ! isset( $eaz_fs ) ) {
+			// Include Freemius SDK.
+			require_once dirname(__FILE__) . '/freemius/start.php';
+
+			$eaz_fs = fs_dynamic_init( array(
+				'id'                  => '10290',
+				'slug'                => 'eazydocs',
+				'type'                => 'plugin',
+				'public_key'          => 'pk_8474e4208f0893a7b28c04faf5045',
+				'is_premium'          => false,
+				'has_addons'          => false,
+				'has_paid_plans'      => false,
+				'menu'                => array(
+					'slug'           => 'eazydocs',
+					'first-path'     => 'admin.php?page=eazydocs',
+					'account'        => false,
+					'contact'        => false,
+					'support'        => false,
+				),
+			) );
+		}
+
+		return $eaz_fs;
+	}
+
+	// Init Freemius.
+	eaz_fs();
+	// Signal that SDK was initiated.
+	do_action( 'eaz_fs_loaded' );
+}
+
 // Make sure the same class is not loaded.
 if ( ! class_exists( 'EazyDocs' ) ) {
 
