@@ -131,13 +131,13 @@
             $("#right").on("click", function (e) {
                 e.preventDefault();
                 if (switchs) {
-                    $(".doc_documentation_area,#right").addClass("overlay");
+                    $(".doc_documentation_area").addClass("overlay");
                     $(".doc_right_mobile_menu").animate({
                         "right": "0px"
                     }, 100);
                     switchs = false;
                 } else {
-                    $(".doc_documentation_area,#right").removeClass("overlay");
+                    $(".doc_documentation_area").removeClass("overlay");
                     $(".doc_right_mobile_menu").animate({
                         "right": "-250px"
                     }, 100);
@@ -148,15 +148,15 @@
             $("#left").on("click", function (e) {
                 e.preventDefault()
                 if (switchs) {
-                    $(".doc_documentation_area,#left").addClass("overlay");
+                    $(".doc_documentation_area").addClass("overlay");
                     $(".doc_mobile_menu").animate({
                         "left": "0px"
                     }, 300);
                     switchs = false;
                 } else {
-                    $(".doc_documentation_area,#left").removeClass("overlay");
+                    $(".doc_documentation_area").removeClass("overlay");
                     $(".doc_mobile_menu").animate({
-                        "left": "-245px"
+                        "left": "-260px"
                     }, 300);
                     switchs = true
                 }
@@ -402,7 +402,7 @@
         Menu_js();
 
         // Disable left sidebar sticky on ending scroll
-        $(window).on('scroll', function() {
+        /*$(window).on('scroll', function() {
             var $elem = $('.section.eazydocs-footer');
             var $window = $(window);
 
@@ -416,7 +416,7 @@
             }else{
                 $('.left-sidebar-toggle').show();
             }
-        })
+        })*/
 
     })
 })(jQuery);

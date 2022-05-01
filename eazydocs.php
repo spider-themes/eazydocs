@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: EazyDocs
- * Description: A powerful and beautiful documentation builder plugin.
+ * Description: A powerful & beautiful documentation builder plugin.
  * Plugin URI: https://wordpress-theme.spider-themes.net/docy/docs/
  * Author: spider-themes
  * Author URI: #
@@ -34,7 +34,7 @@ if ( ! function_exists( 'eaz_fs' ) ) {
 				'premium_slug'        => 'eazydocs-pro',
 				'type'                => 'plugin',
 				'public_key'          => 'pk_8474e4208f0893a7b28c04faf5045',
-				'is_premium'          => true,
+				'is_premium'          => false,
 				'is_premium_only'     => false,
 				'has_addons'          => false,
 				'has_paid_plans'      => true,
@@ -124,7 +124,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
 
 			if ( ! class_exists('EazyDocsPro')) {
-				require_once __DIR__ .'/includes/admin/options/settings-options.php';
+				require_once __DIR__ .'/includes/Admin/options/settings-options.php';
 			}
 		}
 

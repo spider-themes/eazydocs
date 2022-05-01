@@ -34,6 +34,11 @@ input[type="search"]::-webkit-search-results-decoration {
   margin-right: 8.33333333%;
 }
 
+.sticky-top {
+  align-self: flex-start !important;
+  z-index: 1;
+}
+
 .meta {
   color: var(--black_500);
   font-size: 14px;

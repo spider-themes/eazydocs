@@ -4,7 +4,7 @@ namespace eazyDocs\Frontend;
 class Frontend {
 	public function __construct() {
 		add_filter( 'single_template', [ $this, 'template_loader' ], 20, 99 );
-        add_filter( 'body_class', [ $this, 'body_class' ] );
+        //add_filter( 'body_class', [ $this, 'body_class' ] );
 	}
 
 	/**

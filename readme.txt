@@ -1,4 +1,4 @@
-=== EazyDocs - #1 Powerful and beautiful documentation builder ===
+=== EazyDocs - #1 Powerful & beautiful documentation builder ===
 Contributors: mdjwel, spiderdevs
 Tags: document, docs, documentation, knowledge base, knowledgebase, kb, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center
 Requires at least: 5.0
@@ -82,6 +82,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 * Dropped: Add New Doc via Ajax feature dropped due to this feature was not working for some users
 * Fixed: Doc archive page was rendering doc lists incorrectly
 * Fixed: JS error on single doc
+* Tweaked: Responsive view improved
 * Tweaked: Add prefix to HTML classes, IDs to avoid conflict with other plugins and themes
 * Tweaked: Some UI & UX improved on doc frontend
 * Tweaked: Left sidebar toggle position

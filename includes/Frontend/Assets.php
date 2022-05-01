@@ -62,8 +62,10 @@ class Assets {
 	}
 
 	public function enqueue_scripts_after() {
+        wp_register_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css' );
 		if ( is_single() && get_post_type() == 'docs' || shortcode_exists( 'eazydocs' ) ) {
-			wp_enqueue_style( 'frontend', EAZYDOCS_ASSETS . '/css/frontend.css' );
+			wp_enqueue_style( 'eazydocs-frontend' );
+			wp_enqueue_style( 'eazydocs-responsive', EAZYDOCS_ASSETS . '/css/frontend/responsive.css' );
 		}
 	}
 }

@@ -6,29 +6,31 @@ if( $search_banner == '1' ) :
     ?>
     <section class="ezd_search_banner has_bg_dark">
         <div class="container">
-            <div class="doc_banner_content">
-                <form action="<?php echo esc_url(home_url('/')) ?>" role="search" method="get" class="ezd_search_form">
-                    <div class="header_search_form_info">
-                        <div class="form-group">
-                            <div class="input-wrapper">
-                                <label for="ezd_searchInput">
-                                    <i class="icon_search"></i>
-                                </label>
-                                <input type='search' id="ezd_searchInput" name="s" oninput="ezSearchResults()" placeholder='<?php esc_attr_e('Search here', 'eazydocs') ?>' autocomplete="off" value="<?php echo get_search_query() ?>"/>
-                                <div class="spinner-border spinner" role="status">
-                                    <span class="visually-hidden">Loading...</span>
+            <div class="row doc_banner_content">
+                <div class="col-md-12">
+                    <form action="<?php echo esc_url(home_url('/')) ?>" role="search" method="get" class="ezd_search_form">
+                        <div class="header_search_form_info">
+                            <div class="form-group">
+                                <div class="input-wrapper">
+                                    <label for="ezd_searchInput">
+                                        <i class="icon_search"></i>
+                                    </label>
+                                    <input type='search' id="ezd_searchInput" name="s" oninput="ezSearchResults()" placeholder='<?php esc_attr_e('Search here', 'eazydocs') ?>' autocomplete="off" value="<?php echo get_search_query() ?>"/>
+                                    <div class="spinner-border spinner" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <?php if ( defined('ICL_LANGUAGE_CODE') ) : ?>
+                                        <input type="hidden" name="lang" value="<?php echo(ICL_LANGUAGE_CODE); ?>"/>
+                                    <?php endif; ?>
                                 </div>
-                                <?php if ( defined('ICL_LANGUAGE_CODE') ) : ?>
-                                    <input type="hidden" name="lang" value="<?php echo(ICL_LANGUAGE_CODE); ?>"/>
-                                <?php endif; ?>
                             </div>
                         </div>
-                    </div>
-                    <div id="ezd-search-results" data-noresult="<?php esc_attr_e('No Results Found', 'eazydocs'); ?>"></div>
-                    <?php
-                    include('keywords.php');
-                    ?>
-                </form>
+                        <div id="ezd-search-results" data-noresult="<?php esc_attr_e('No Results Found', 'eazydocs'); ?>"></div>
+                        <?php
+                        include('keywords.php');
+                        ?>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

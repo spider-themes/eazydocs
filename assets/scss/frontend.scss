@@ -2,12 +2,13 @@
 @import 'frontend/predefine';
 @import 'frontend/search_banner';
 @import 'frontend/doclist';
-@import 'frontend/shortcode';
+//@import 'frontend/shortcode';
 
+.eazydocs_shortcode {
+  width: 100% !important;
+  max-width: 100% !important;
+}
 .custom_container.container {
-  @media (min-width: 1200px) {
-    max-width: 1200px;
-  }
   @media (min-width: 1300px) {
     max-width: 1240px;
   }
@@ -25,10 +26,6 @@
 
 .modal-content .shortcode_info .row {
   margin-top: 20px;
-}
-
-.doc_left_sidebarlist {
-  padding-top: 60px;
 }
 
 /** === Comments === **/
@@ -55,10 +52,6 @@ p .footnotes-link::after {
 
 .eazydocs-comments-wrap .blog_comment_box.no_comments {
   padding-top: 40px;
-}
-
-.full-width-doc .body_fixed .doc_rightsidebar, .full-width-doc .body_fixed .doc_left_sidebarlist {
-  padding-top: 60px;
 }
 
 .doc_left_sidebarlist h2.doc-title {
@@ -199,8 +192,6 @@ p .footnotes-link::after {
 
 .body_fixed {
   .left-sidebar-toggle {
-    top: 65px;
-    margin-left: -64px;
     position: fixed;
   }
 }
@@ -300,4 +291,37 @@ p .footnotes-link::after {
     padding-top: 30px;
     background: #fafcfc;
     padding-bottom: 30px;
+}
+
+.shortcode_info .elementor-widget-heading h2.elementor-heading-title,
+.shortcode_info h2 {
+  font-weight: 500;
+  margin-bottom: 20px;
+  padding-top: 80px;
+  margin-top: -80px;
+}
+
+.anchor-enabled h2 {
+  padding-top: 80px;
+  margin-top: -80px;
+}
+
+.toggle_btn {
+  margin-top: .25rem !important;
+}
+
+.doc_tag .nav-item .nav-link {
+  letter-spacing: .5px;
+}
+
+.doc_documentation_area {
+  padding-bottom: 0;
+}
+
+.nav-sidebar .nav-item .dropdown_nav li {
+  margin: 6px 0;
+}
+
+.nav-sidebar .nav-item .dropdown_nav li a {
+  line-height: 1.3em;
 }

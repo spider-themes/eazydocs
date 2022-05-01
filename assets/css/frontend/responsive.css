@@ -1,0 +1,162 @@
+@media (max-width: 1680px) {
+    .doc_documentation_full_area .container-fluid,
+    .menu_one .container-fluid,
+    .page_breadcrumb .container-fluid {
+        max-width: 1470px;
+    }
+
+    .doc_documentation_full_area .doc_mobile_menu {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .doc_documentation_full_area .col-lg-8 {
+        flex: 0 0 56.333333%;
+        max-width: 56.333333%;
+    }
+
+    .doc_documentation_full_area .doc_right_mobile_menu {
+        flex: 0 0 18.666667%;
+        max-width: 18.666667%;
+    }
+
+    .doc_documentation_full_area .documentation_item {
+        padding-right: 0;
+    }
+
+    .onepage_doc_area .documentation_info {
+        padding-right: 0;
+    }
+
+    .onepage_doc_area .documentation_item {
+        padding-right: 0;
+    }
+
+    .onepage_doc_area .doc_rightsidebar .bootstrap-select {
+        width: 100% !important;
+    }
+
+    .onepage_doc_area.doc_documentation_area .doc_rightsidebar {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .doc_documentation_area {
+        position: relative;
+        overflow: hidden !important;
+    }
+    .doc_mobile_menu.left-column, .doc_documentation_full_area .doc_mobile_menu {
+        max-width: 290px;
+        width: 100%;
+        left: -260px;
+        position: absolute;
+        z-index: 2;
+        padding: 0;
+    }
+
+    .doc_mobile_menu.left-column {
+        top: 40px;
+    }
+
+    .doc_left_sidebarlist {
+        padding: 15px;
+    }
+
+    .nav-sidebar .nav-item {
+        padding-right: 0;
+    }
+    .filter_form {
+        margin-right: 0;
+    }
+    .nav-sidebar .nav-item .nav-link + .icon {
+        right: 0;
+    }
+
+    .breadcrumb .breadcrumb-item:last-child,
+    .left-sidebar-toggle {
+        display: none;
+    }
+
+    .doc_mobile_menu .open_icon {
+        display: block;
+        right: -40px;
+        left: auto;
+        top: 30px;
+    }
+    .left-sidebar-toggle {
+        display: none;
+    }
+    .shortcode_info {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    article#post {
+        padding-bottom: 0;
+    }
+    .doc-middle-content {
+        padding-right: 20px;
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 767px) {
+    /** === Right Sidebar === **/
+    .doc_right_mobile_menu, .doc_mobile_menu.left-column {
+        top: 40px;
+    }
+    .doc_documentation_area.body_fixed .doc_left_sidebarlist,
+    .body_fixed .doc_right_mobile_menu {
+        position: fixed;
+        top: 0;
+    }
+
+    .doc_right_mobile_menu {
+        max-width: 250px;
+        width: 100%;
+        position: absolute;
+        right: -250px;
+        padding-left: 0;
+        height: 100%;
+        transition: all 0.5s;
+        z-index: 2;
+    }
+
+    .doc_rightsidebar {
+        background: #fafcfd;
+        height: auto;
+    }
+
+    .doc_rightsidebar .pageSideSection::before {
+        display: none;
+    }
+
+    .doc_rightsidebar .pageSideSection {
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 10px;
+    }
+
+    .feedback_link .eazydocs-feedback-wrap {
+        justify-content: start;
+        margin-top: 10px;
+    }
+    #reading-progress-fill {
+        height: 3px;
+    }
+    .doc_right_mobile_menu .doc_rightsidebar {
+        padding-bottom: 10px;
+        padding-top: 30px;
+        padding-left: 20px;
+    }
+    .page_breadcrumb .date {
+        float: left;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container.custom_container {
+        max-width: 990px;
+    }
+}

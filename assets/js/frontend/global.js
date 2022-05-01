@@ -3,7 +3,23 @@
 
     $(document).ready(function() {
 
-        if ($(".bs-select").length) {
+        /**
+         * Make the overflow of ancestor Elements to visible of Position Sticky Element
+         * @type {HTMLElement}
+         */
+        let parent_selector = document.querySelector('.sticky-top');
+        if ( parent_selector ) {
+            let parent = parent_selector.parentElement;
+            while (parent) {
+                const hasOverflow = getComputedStyle(parent).overflow;
+                if (hasOverflow !== 'visible') {
+                    parent.style.overflow = 'visible';
+                }
+                parent = parent.parentElement;
+            }
+        }
+
+        if ( $(".bs-select").length ) {
             $("#condition_options").selectpicker();
         }
 
