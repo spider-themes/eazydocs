@@ -698,10 +698,10 @@ label {
 .accordion-title:hover h4 {
   color: var(--clr-dark);
 }
-.accordion-title:hover .right-content ul {
+.accordion-title:hover ul.actions {
   display: flex;
 }
-.accordion-title:hover .right-content ul li {
+.accordion-title:hover ul.actions li {
   margin: 0;
 }
 .accordion-title h4 {
@@ -738,24 +738,36 @@ label {
   background: rgba(66, 66, 66, 0.1);
   --category-icon: #424242;
 }
-.accordion-title .right-content {
-  display: flex;
-  align-items: center;
-}
-.accordion-title .right-content ul {
+.accordion-title ul.actions {
   display: none;
   align-items: center;
   gap: var(--gutter-10);
   --section-icon: #9199A1;
+  margin-left: 15px;
 }
-.accordion-title .right-content ul li:hover {
+.accordion-title ul.actions li:hover {
   --section-icon: var(--clr-dark);
 }
-.accordion-title .right-content ul li a img {
+.accordion-title ul.actions li a .dashicons {
+  color: var(--black_150);
+  font-size: 18px;
+  padding-top: 3px;
+}
+.accordion-title ul.actions li a .dashicons:hover {
+  color: var(--black_400);
+}
+.accordion-title ul.actions li a img {
   opacity: 0.5;
 }
-.accordion-title .right-content ul li a img:hover {
+.accordion-title ul.actions li a img:hover {
   opacity: 1;
+}
+.accordion-title .left-content {
+  display: flex;
+}
+.accordion-title .right-content {
+  display: flex;
+  align-items: center;
 }
 .accordion-title .right-content .progress-text {
   font-size: var(--fs-12);
@@ -1183,6 +1195,9 @@ a.child-delete {
   text-align: center;
   cursor: pointer;
 }
+:is(.easydocs-notification, .easydocs-settings) .header-notify-icon:hover {
+  background: #cdcdcd;
+}
 :is(.easydocs-notification, .easydocs-settings) .header-notify-icon svg {
   position: relative;
   top: 0.3rem;
@@ -1215,7 +1230,7 @@ a.child-delete {
 }
 
 .easydocs-settings {
-  margin-right: var(--gutter-20);
+  margin-right: 10px;
 }
 .easydocs-settings .header-notify-icons a {
   text-decoration: none;
@@ -1566,7 +1581,7 @@ a.child-delete {
 .tab-menu.short {
   height: 100vh;
 }
-@media (max-width: 1440px) {
+@media (max-width: 1680px) {
   .tab-menu {
     width: 30%;
   }
@@ -1591,7 +1606,7 @@ a.child-delete {
   position: relative;
   border-left: 5px solid transparent;
 }
-@media (max-width: 1440px) {
+@media (max-width: 1680px) {
   .easydocs-navitem {
     padding: 13px 25px 13px 20px;
   }
@@ -1650,7 +1665,8 @@ a.child-delete {
   display: flex;
 }
 .easydocs-navitem:hover .link a {
-  margin-left: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .link {
@@ -1663,6 +1679,14 @@ a.child-delete {
 .link a {
   text-decoration: none;
 }
+.link a .dashicons {
+  color: var(--black_200);
+  font-size: 18px;
+  padding-top: 2px;
+}
+.link a .dashicons:hover {
+  color: #fff;
+}
 .link:hover svg {
   color: #fff;
   fill-color: #fff;
@@ -1673,6 +1697,11 @@ a.child-delete {
   width: 72%;
   background: #E5E5E5;
   padding: var(--gutter-40);
+}
+@media (max-width: 1680px) {
+  .easydocs-tab-content {
+    width: 70%;
+  }
 }
 @media (max-width: 1440px) {
   .easydocs-tab-content {

@@ -57,19 +57,19 @@ $count = $query->found_posts;
                     if( current_user_can('editor') || current_user_can('administrator') ) :
                     do_action('eazydocs_parent_doc_duplicate', get_the_ID());
                     ?>
-                    <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank">
-                        <img src="<?php echo EAZYDOCS_IMG ?>/admin/edit.svg" alt="<?php esc_attr_e( 'Edit Icon', 'eazydocs' ); ?>" class="edit-img">
+                    <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
+                        <span class="dashicons dashicons-edit"></span>
                     </a>
                     <?php endif; ?>
 
-                    <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>">
-                        <img src="<?php echo EAZYDOCS_IMG ?>/icon/external.svg" alt="<?php esc_attr_e('External icon', 'eazydocs') ?>">
+                    <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
+                        <span class="dashicons dashicons-external"></span>
                     </a>
                     <?php
                     if( current_user_can('editor') || current_user_can('administrator') ) :
                     ?>
-                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete">
-                        <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete2.svg" alt="<?php esc_attr_e( 'Delete Icon', 'eazydocs' ); ?>">
+                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                        <span class="dashicons dashicons-trash"></span>
                     </a>
                     <?php endif; ?>
                 </div>

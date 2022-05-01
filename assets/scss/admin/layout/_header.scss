@@ -48,6 +48,9 @@
     background: rgba(#252733, 0.05);
     text-align: center;
     cursor: pointer;
+    &:hover {
+      background: #cdcdcd;
+    }
 
     svg {
       position: relative;
@@ -86,8 +89,7 @@
 }
 
 .easydocs-settings {
-  margin-right: var(--gutter-20);
-
+  margin-right: 10px;
   .header-notify-icons {
     a {
       text-decoration: none;

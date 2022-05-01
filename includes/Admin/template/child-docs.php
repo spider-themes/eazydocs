@@ -83,45 +83,48 @@ if ( is_array( $depth_one_parents ) ) :
 						            $target = '_blank';
                                 }
                                 ?>
-                                <h4>
-                                    <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>">
-										<?php echo get_the_title( $child ); ?>
-                                    </a>
-                                    <?php if ( count($doc_items) > 0 ) : ?>
-                                        <span class="count badge">
-                                            <?php echo count($doc_items) ?>
-                                        </span>
-                                    <?php endif; ?>
-                                </h4>
-                                <div class="right-content">
-                                    <ul>
+                                <div class="left-content">
+                                    <h4>
+                                        <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>">
+                                            <?php echo get_the_title( $child ); ?>
+                                        </a>
+                                        <?php if ( count($doc_items) > 0 ) : ?>
+                                            <span class="count badge">
+                                                <?php echo count($doc_items) ?>
+                                            </span>
+                                        <?php endif; ?>
+                                    </h4>
+                                    <ul class="actions">
                                         <?php
-						                if( current_user_can('editor') || current_user_can('administrator') ) :
-                                        ?>
-                                        <li>
-	                                        <?php do_action('eazydocs_section_doc_duplicate', $child->ID, $item); ?>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $child->ID; ?>&child=" class="child-doc">
-                                                <img src="<?php echo EAZYDOCS_IMG ?>/admin/plus.svg" alt="<?php esc_attr_e( 'Plus Icon', 'eazydocs' ); ?>">
-                                            </a>
-                                        </li>
+                                        if( current_user_can('editor') || current_user_can('administrator') ) :
+                                            ?>
+                                            <li>
+                                                <?php do_action('eazydocs_section_doc_duplicate', $child->ID, $item); ?>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo admin_url('admin.php'); ?>/Create_Post.php?childID=<?php echo $child->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                                                    <span class="dashicons dashicons-plus-alt2"></span>
+                                                </a>
+                                            </li>
                                         <?php endif; ?>
                                         <li>
-                                            <a href="<?php echo get_permalink( $child ); ?>" target="_blank">
-                                                <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View Icon', 'eazydocs' ); ?>">
+                                            <a href="<?php echo get_permalink( $child ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
+                                                <span class="dashicons dashicons-external"></span>
                                             </a>
                                         </li>
                                         <?php
                                         if( current_user_can('editor') || current_user_can('administrator') ) :
-                                        ?>
-                                        <li>
-                                            <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo $depth_docs; ?>" class="section-delete">
-                                                <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete.svg" alt="<?php esc_attr_e( 'Delete Icon', 'eazydocs' ); ?>">
-                                            </a>
-                                        </li>
+                                            ?>
+                                            <li>
+                                                <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo $depth_docs; ?>" class="section-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                                                    <span class="dashicons dashicons-trash"></span>
+                                                </a>
+                                            </li>
                                         <?php endif; ?>
                                     </ul>
+                                </div>
+
+                                <div class="right-content">
                                     <span class="progress-text">
                                         <?php
                                         $positive = (int) get_post_meta( $child->ID, 'positive' );
@@ -176,49 +179,51 @@ if ( is_array( $depth_one_parents ) ) :
 		                                                $target = '_blank';
 	                                                }
 	                                                ?>
-                                                    <h4>
-                                                        <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="section-last-label">
-                                                            <?php echo get_the_title($doc_item); ?>
-                                                        </a>
-	                                                    <?php
-                                                        if ( count($child_depth) > 0 ) : ?>
-                                                            <span class="count badge">
+                                                    <div class="left-content">
+                                                        <h4>
+                                                            <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="section-last-label">
+                                                                <?php echo get_the_title($doc_item); ?>
+                                                            </a>
+                                                            <?php
+                                                            if ( count($child_depth) > 0 ) : ?>
+                                                                <span class="count badge">
                                                                 <?php echo count($child_depth) ?>
                                                             </span>
-	                                                    <?php endif;
-	                                                    ?>
-                                                    </h4>
-
-                                                    <div class="right-content">
-                                                        <ul>
+                                                            <?php endif;
+                                                            ?>
+                                                        </h4>
+                                                        <ul class="actions">
                                                             <?php
                                                             if( current_user_can('editor') || current_user_can('administrator') ) :
-                                                            ?>
-                                                            <li>
-	                                                            <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
-                                                            </li>
-                                                            <li>
-                                                                <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $doc_item->ID; ?>&child=" class="child-doc">
-                                                                    <img src="<?php echo EAZYDOCS_IMG ?>/admin/plus.svg" alt="<?php esc_attr_e( 'Plus Icon', 'eazydocs' ); ?>">
-                                                                </a>
-                                                            </li>
+                                                                ?>
+                                                                <li>
+                                                                    <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $doc_item->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                                                                        <span class="dashicons dashicons-plus-alt2"></span>
+                                                                    </a>
+                                                                </li>
                                                             <?php endif; ?>
 
                                                             <li>
-                                                                <a href="<?php echo get_permalink( $doc_item ); ?>" target="_blank">
-                                                                    <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View Icon', 'eazydocs' ); ?>">
+                                                                <a href="<?php echo get_permalink( $doc_item ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
+                                                                    <span class="dashicons dashicons-external"></span>
                                                                 </a>
                                                             </li>
-		                                                    <?php
-		                                                    if( current_user_can('editor') || current_user_can('administrator') ) :
-                                                            ?>
-                                                            <li>
-                                                                <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo esc_attr( $doc_item->ID . ',' . $last_section_ids ); ?>" class="section-delete">
-                                                                    <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete.svg" alt="<?php esc_attr_e( 'Delete Icon', 'eazydocs' ); ?>">
-                                                                </a>
-                                                            </li>
+                                                            <?php
+                                                            if( current_user_can('editor') || current_user_can('administrator') ) :
+                                                                ?>
+                                                                <li>
+                                                                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo esc_attr( $doc_item->ID . ',' . $last_section_ids ); ?>" class="section-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                                                                        <span class="dashicons dashicons-trash"></span>
+                                                                    </a>
+                                                                </li>
                                                             <?php endif; ?>
                                                         </ul>
+                                                    </div>
+
+                                                    <div class="right-content">
                                                         <span class="progress-text">
                                                             <?php
                                                             $positive = (int) get_post_meta( $doc_item->ID, 'positive' );
@@ -264,14 +269,14 @@ if ( is_array( $depth_one_parents ) ) :
                                                                         do_action( 'eazydocs_single_duplicate', $dep3->ID );
                                                                     }
                                                                     ?>
-                                                                    <a href="<?php echo get_permalink( $dep3 ); ?>" target="_blank" class="child-view-link">
-                                                                        <img src="<?php echo EAZYDOCS_IMG ?>/admin/view.svg" alt="<?php esc_attr_e( 'View icon', 'eazydocs' ); ?>">
+                                                                    <a href="<?php echo get_permalink( $dep3 ); ?>" target="_blank" class="child-view-link" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
+                                                                        <span class="dashicons dashicons-external"></span>
                                                                     </a>
                                                                     <?php
                                                                     if( current_user_can('editor') || current_user_can('administrator') ) :
                                                                     ?>
-                                                                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo $dep3->ID; ?>" class="child-delete">
-                                                                        <img src="<?php echo EAZYDOCS_IMG ?>/admin/delete.svg" alt="<?php esc_attr_e( 'Delete icon', 'eazydocs' ); ?>">
+                                                                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo $dep3->ID; ?>" class="child-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                                                                        <span class="dashicons dashicons-trash"></span>
                                                                     </a>
                                                                     <?php endif; ?>
 
