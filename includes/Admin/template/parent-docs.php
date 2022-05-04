@@ -44,7 +44,7 @@ $count = $query->found_posts;
             ?>
             <li class="easydocs-navitem <?php echo esc_attr( $is_active ); ?>" data-rel="tab-<?php the_ID(); ?>">
                 <div class="title">
-                    <span class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
+                    <span title="<?php echo esc_attr($post_status); ?>" class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
                     <?php the_title(); ?>
                 </div>
                 <div class="total-page">

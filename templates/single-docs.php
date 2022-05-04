@@ -8,39 +8,35 @@
  */
 get_header();
 
-$md_content_col     = 'col-lg-7 col-md-9';
 $cz_options         = '';
-$layout             = 'both_sidebar';
 $doc_container      = 'container custom_container';
 $content_wrapper    = '';
 $breadcrumb         = '1';
 $credit_enable      = '1';
 $credit_text        = sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>');
-if ( class_exists('EazyDocsPro') ) {
-	$cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
-	$layout             = $cz_options['doc_elements']['docs_single_layout'] ?? 'both_sidebar';
-    $doc_width          = $cz_options['doc_elements']['docs_page_width'] ?? '';
-    $doc_container      = $doc_width == 'full-width' ? 'container-fluid pl-60 pr-60' : 'container custom_container';
-	$content_wrapper    = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
 
-	$settings_options   = get_option( 'eazydocs_settings' ); // prefix of framework
-	$credit_enable      = $settings_options['eazydocs-enable-credit'] ?? '1';
-	$credit_text        = $settings_options['eazydocs-credit-text'] ?? sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>');
-	$breadcrumb         = $settings_options['docs-breadcrumb'] ?? '';
+$cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
+$layout             = $cz_options['doc_elements']['docs_single_layout'] ?? 'both_sidebar';
+$doc_width          = $cz_options['doc_elements']['docs_page_width'] ?? '';
+$doc_container      = $doc_width == 'full-width' ? 'container-fluid pl-60 pr-60' : 'container custom_container';
+$content_wrapper    = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
 
-	switch ( $layout ) {
-		case 'left_sidebar':
-			$md_content_col = 'col-md-9';
-			break;
+$settings_options   = get_option( 'eazydocs_settings' ); // prefix of framework
+$credit_enable      = $settings_options['eazydocs-enable-credit'] ?? '1';
+$credit_text        = $settings_options['eazydocs-credit-text'] ?? sprintf(__("%s", 'eazydocs'), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>');
+$breadcrumb         = $settings_options['docs-breadcrumb'] ?? '';
 
-		case 'right_sidebar':
-			$md_content_col = 'col-md-10';
-			break;
+switch ( $layout ) {
+    case 'left_sidebar':
+        $md_content_col = 'col-md-9';
+        break;
 
-		case 'both_sidebar':
-			$md_content_col = 'col-lg-7 col-md-9';
-			break;
-	}
+    case 'right_sidebar':
+        $md_content_col = 'col-md-10';
+        break;
+
+    default:
+        $md_content_col = 'col-lg-7 col-md-9';
 }
 ?>
 

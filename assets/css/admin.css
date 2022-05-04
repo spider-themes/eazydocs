@@ -745,6 +745,12 @@ label {
   --section-icon: #9199A1;
   margin-left: 15px;
 }
+.accordion-title ul.actions .duplicate {
+  order: 1;
+}
+.accordion-title ul.actions .delete {
+  order: 2;
+}
 .accordion-title ul.actions li:hover {
   --section-icon: var(--clr-dark);
 }

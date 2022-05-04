@@ -98,7 +98,7 @@ if ( is_array( $depth_one_parents ) ) :
                                         <?php
                                         if( current_user_can('editor') || current_user_can('administrator') ) :
                                             ?>
-                                            <li>
+                                            <li class="duplicate">
                                                 <?php do_action('eazydocs_section_doc_duplicate', $child->ID, $item); ?>
                                             </li>
                                             <li>
@@ -115,7 +115,7 @@ if ( is_array( $depth_one_parents ) ) :
                                         <?php
                                         if( current_user_can('editor') || current_user_can('administrator') ) :
                                             ?>
-                                            <li>
+                                            <li class="delete">
                                                 <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo $depth_docs; ?>" class="section-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
                                                     <span class="dashicons dashicons-trash"></span>
                                                 </a>
@@ -184,19 +184,15 @@ if ( is_array( $depth_one_parents ) ) :
                                                             <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="section-last-label">
                                                                 <?php echo get_the_title($doc_item); ?>
                                                             </a>
-                                                            <?php
-                                                            if ( count($child_depth) > 0 ) : ?>
+                                                            <?php if ( count($child_depth) > 0 ) : ?>
                                                                 <span class="count badge">
-                                                                <?php echo count($child_depth) ?>
-                                                            </span>
-                                                            <?php endif;
-                                                            ?>
+                                                                    <?php echo count($child_depth) ?>
+                                                                </span>
+                                                            <?php endif; ?>
                                                         </h4>
                                                         <ul class="actions">
-                                                            <?php
-                                                            if( current_user_can('editor') || current_user_can('administrator') ) :
-                                                                ?>
-                                                                <li>
+                                                            <?php if ( current_user_can('editor') || current_user_can('administrator') ) : ?>
+                                                                <li class="duplicate">
                                                                     <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
                                                                 </li>
                                                                 <li>
@@ -205,16 +201,13 @@ if ( is_array( $depth_one_parents ) ) :
                                                                     </a>
                                                                 </li>
                                                             <?php endif; ?>
-
                                                             <li>
                                                                 <a href="<?php echo get_permalink( $doc_item ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
                                                                     <span class="dashicons dashicons-external"></span>
                                                                 </a>
                                                             </li>
-                                                            <?php
-                                                            if( current_user_can('editor') || current_user_can('administrator') ) :
-                                                                ?>
-                                                                <li>
+                                                            <?php if( current_user_can('editor') || current_user_can('administrator') ) : ?>
+                                                                <li class="delete">
                                                                     <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?ID=<?php echo esc_attr( $doc_item->ID . ',' . $last_section_ids ); ?>" class="section-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
                                                                         <span class="dashicons dashicons-trash"></span>
                                                                     </a>
@@ -254,7 +247,7 @@ if ( is_array( $depth_one_parents ) ) :
 	                                                            <?php
 	                                                            $edit_link = 'javascript:void(0)';
 	                                                            $target = '_self';
-						                                        if( current_user_can('editor') || current_user_can('administrator') ) {
+						                                        if ( current_user_can('editor') || current_user_can('administrator') ) {
 		                                                            $edit_link = get_edit_post_link( $dep3 );
 		                                                            $target = '_blank';
 	                                                            }
@@ -265,7 +258,7 @@ if ( is_array( $depth_one_parents ) ) :
                                                                 <div class="child-right-content d-flex">
 
                                                                     <?php
-						                                            if( current_user_can('editor') || current_user_can('administrator') ) {
+						                                            if ( current_user_can('editor') || current_user_can('administrator') ) {
                                                                         do_action( 'eazydocs_single_duplicate', $dep3->ID );
                                                                     }
                                                                     ?>
@@ -306,7 +299,7 @@ if ( is_array( $depth_one_parents ) ) :
                                                 </div>
                                             </li>
                                         </ul>
-	                                <?php
+	                                    <?php
 	                                endforeach;
 	                                ?>
                                 </div>

@@ -5,7 +5,7 @@
  * Plugin URI: https://wordpress-theme.spider-themes.net/docy/docs/
  * Author: spider-themes
  * Author URI: #
- * Version: 1.0.1
+ * Version: 1.1.0
  * Requires at least: 5.0
  * Requires PHP: 7.2
  * Text Domain: easydocs
@@ -124,6 +124,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
 
 			if ( ! class_exists('EazyDocsPro')) {
+                require_once __DIR__ . '/includes/Admin/options/customize-docs.php';
 				require_once __DIR__ .'/includes/Admin/options/settings-options.php';
 			}
 		}
@@ -201,7 +202,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				);
 				wp_insert_post( $docs_page );
 			}
-
 		}
 	}
 }

@@ -54,7 +54,7 @@ class Assets {
                 'create_prompt_title'   => esc_html__( 'Enter Docs Title', 'eazydocs' ),
                 'delete_prompt_title'   => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
                 'no_revert_title'       => esc_html__( "You won't be able to revert this!", "eazydocs" ),
-                'clone_prompt_title'       => esc_html__( "Are you sure to clone", "eazydocs" ),
+                'clone_prompt_title'    => esc_html__( "Are you sure to clone", "eazydocs" ),
                 'nonce'                 => wp_create_nonce( 'eazydocs-admin-nonce' ),
             )
         );
@@ -66,6 +66,10 @@ class Assets {
 	 * Enqueue global scripts and styles by EazyDocs on WordPress dashboard
 	 */
 	public function eazydocs_global_scripts() {
-		wp_enqueue_style( 'eazydocs-global-admin', EAZYDOCS_ASSETS . '/css/admin-global.css' );
+        wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
+        wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css' );
+
+        wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true );
+		wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js' );
 	}
 }

@@ -17,7 +17,6 @@ class Docs {
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_post_type' ] );
 		add_action( 'init', [ $this, 'register_taxonomy' ] );
-
 	}
 
 	/**

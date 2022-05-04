@@ -201,7 +201,12 @@
     gap: var(--gutter-10);
     --section-icon: #9199A1;
     margin-left: 15px;
-
+    .duplicate {
+      order: 1;
+    }
+    .delete {
+      order: 2;
+    }
     li {
       @include hover {
         --section-icon: var(--clr-dark);

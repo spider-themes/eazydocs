@@ -15,7 +15,7 @@ class Frontend {
 	public function template_loader( $template ) {
 		$file = '';
 
-		if ( is_single() && get_post_type() == 'docs' ) {
+		if ( is_singular('docs') ) {
 			$single_template = 'single-docs.php';
 			// Check if a custom template exists in the theme folder, if not, load the plugin template file
 			if ( $theme_file = locate_template( array( 'eazydocs/' . $single_template ) ) ) {

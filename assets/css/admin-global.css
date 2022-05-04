@@ -53,3 +53,104 @@ a.eazydocs-close-notice:active {
 .metabox-holder #eazydocs_basics.group{
     display: block !important;
 }
+
+#get_docs_archive,
+#get_docs_single,
+#get_docs_slug {
+    text-decoration: none;
+    width: 220px;
+    background: #050505;
+    display: block;
+    color: #ffffffb3;
+    text-transform: uppercase;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 2px 2px black;
+    float: left;
+    margin: 0px 20px 0px 0px;
+}
+#get_docs_archive:hover,
+#get_docs_single:hover,
+#get_docs_slug:hover{
+    background: #0d0e2b;
+    color: white;
+}
+#get_docs_archive:focus,
+#get_docs_single:focus,
+#get_docs_slug:focus{
+    outline:none
+}
+
+/** === Codestar options / Pro Alert === **/
+.csf-options {
+    max-width: 1200px;
+}
+.csf-field .csf-title {
+    width: 25%;
+}
+.csf-field .csf-fieldset {
+    width: calc(75% - 20px);
+}
+
+.eazydocs-pro-notice.csf-field {
+    position: relative;
+    cursor: pointer;
+}
+
+.csf .eazydocs-pro-notice .csf-title,
+.csf .eazydocs-pro-notice .csf-fieldset,
+.eazydocs-pro-notice .csf-title,
+.eazydocs-pro-notice .csf-fieldset{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.eazydocs-pro-notice.csf-field::before {
+    content: "Pro";
+    background-color: #f1bd6c;
+    color: #000;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.eazydocs-pro-notice.csf-field::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 2;
+}
+
+.upgrade-link {
+    background-color: #f1bd6c;
+    color: #000;
+    padding: 2px 6px;
+}
+
+.swal2-html-container {
+    line-height: 1.6;
+}
+
+#customize-controls .docs-layout-img-wrap img{
+    width: 90px;
+    height:auto;
+}
+#customize-controls .single-layout-img-wrap img{
+    max-width: 90px;
+    height:auto;
+}
+.notice.is-dismissible.bottom-10{
+    padding-bottom: 15px;
+}
+.header-notify-icon .notify-icon {
+    padding-top: 10px;
+    margin: auto;
+}
