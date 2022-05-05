@@ -12,6 +12,7 @@ class Admin {
 	 */
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'eazyDocs_menu' ] );
+        add_filter( 'admin_body_class', [ $this, 'body_class' ] );
 	}
 
 	/**
@@ -127,4 +128,15 @@ class Admin {
 	public function eazydocs_page() {
 		include __DIR__ . '/admin-template.php';
 	}
+
+    public function body_class() {
+        $theme = wp_get_theme();
+        $classes = '';
+
+        if ( $theme->Name == 'Docy' ) {
+            $classes .= strtolower($theme->Name);
+        }
+
+        return $classes;
+    }
 }

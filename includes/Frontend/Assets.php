@@ -14,6 +14,8 @@ class Assets {
 	 * Scripts enqueue
 	 */
 	public static function enqueue_scripts() {
+        $opt = get_option( 'eazydocs_settings' );
+        $is_doc_ajax = $opt['is_doc_ajax'] ?? '';
 		wp_enqueue_script( 'jquery' );
         wp_register_style( 'font-awesome-5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css' );
         wp_register_style( 'mCustomScrollbar', EAZYDOCS_VEND . '/mcustomscrollbar/jquery.mCustomScrollbar.min.css' );
@@ -38,6 +40,7 @@ class Assets {
 					'ajaxurl'               => $ajax_url,
 					'EAZYDOCS_FRONT_CSS'    => EAZYDOCS_FRONT_CSS,
                     'nonce'                 => wp_create_nonce( 'eazydocs-ajax' ),
+                    'is_doc_ajax'           => $is_doc_ajax
 				)
 			);
 

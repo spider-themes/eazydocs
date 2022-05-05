@@ -101,12 +101,22 @@ a.eazydocs-close-notice:active {
     cursor: pointer;
 }
 
-.csf .eazydocs-pro-notice .csf-title,
-.csf .eazydocs-pro-notice .csf-fieldset,
+
 .eazydocs-pro-notice .csf-title,
-.eazydocs-pro-notice .csf-fieldset{
+.eazydocs-pro-notice .csf-fieldset {
     opacity: 0.5;
     pointer-events: none;
+}
+
+body.docy .doc-ajax-load .csf-title,
+body.docy .doc-ajax-load .csf-fieldset {
+    pointer-events: inherit;
+    opacity: 1;
+}
+
+body.docy .doc-ajax-load.csf-field::before,
+body.docy .doc-ajax-load.csf-field::after {
+    display: none;
 }
 
 .eazydocs-pro-notice.csf-field::before {

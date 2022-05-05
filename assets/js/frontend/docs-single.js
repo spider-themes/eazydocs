@@ -401,6 +401,94 @@
 
         Menu_js();
 
+        /**
+         * Load Doc single page via ajax
+         */
+        if ( eazydocs_local_object.is_doc_ajax == '1' ) {
+            $(document).on('click', '.nav-sidebar .nav-item .dropdown_nav li a', function (e) {
+                e.preventDefault()
+                let self = $(this)
+                let title = self.text()
+                let postid = $(this).attr('data-postid')
+
+                function changeurl(page_title) {
+                    let new_url = self.attr('href');
+                    window.history.pushState("data", "Title", new_url);
+                    document.title = page_title;
+                }
+
+                $.ajax({
+                    url: eazydocs_local_object.ajaxurl,
+                    method: "post",
+                    data: {
+                        action: 'docs_single_content',
+                        postid: postid
+                    },
+                    beforeSend: function () {
+                        $("#reading-progress-fill").css({'width': '100%', 'display': 'block'});
+                    },
+                    success: function (response) {
+                        $("#reading-progress-fill").css({'display': 'none'});
+                        $(".doc-middle-content").html(response);
+                        changeurl(title)
+                        $('.nav-sidebar .nav-item .dropdown_nav li a').removeClass('active')
+                        self.addClass('active')
+                        // Toc
+                        $('#eazydocs-toc').empty();
+                        Toc.init({
+                            $nav: $("#eazydocs-toc"),
+                            $scope: $('.doc-scrollable')
+                        });
+                        docLeftSidebarToggle()
+                    },
+                    error: function () {
+                        console.log("Oops! Something wrong, try again!");
+                    }
+                })
+            })
+
+            $(document).on('click', '.nav-sidebar .nav-item .nav-link', function (e) {
+                e.preventDefault();
+                let self = $(this)
+                let title = self.text()
+                let postid = $(this).attr('data-postid')
+
+                function changeurl(page_title) {
+                    let new_url = self.attr('href');
+                    window.history.pushState("data", "Title", new_url);
+                    document.title = page_title;
+                }
+
+                $.ajax({
+                    url: eazydocs_local_object.ajaxurl,
+                    method: "post",
+                    data: {
+                        action: 'docs_single_content',
+                        postid: postid
+                    },
+                    beforeSend: function () {
+                        $("#reading-progress-fill").css({'width': '100%', 'display': 'block'});
+                    },
+                    success: function (response) {
+                        active_dropdown(true)
+                        $("#reading-progress-fill").css({'display': 'none'});
+                        $(".doc-middle-content").html(response);
+                        changeurl(title)
+                        docLeftSidebarToggle()
+                        // Toc
+                        $('#eazydocs-toc').empty();
+                        Toc.init({
+                            $nav: $("#eazydocs-toc"),
+                            $scope: $('.doc-scrollable')
+                        });
+                    },
+                    error: function () {
+                        console.log("Oops! Something wrong, try again!");
+                    }
+                })
+            })
+        }
+
         // Disable left sidebar sticky on ending scroll
         /*$(window).on('scroll', function() {
             var $elem = $('.section.eazydocs-footer');

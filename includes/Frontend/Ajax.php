@@ -11,6 +11,9 @@ class Ajax {
         // Search Results
         add_action( 'wp_ajax_eazydocs_search_results', [ $this, 'search_data_fetch' ] );
         add_action( 'wp_ajax_nopriv_eazydocs_search_results', [ $this, 'search_data_fetch' ] );
+        // Load Doc single page
+        add_action( 'wp_ajax_docs_single_content', [ $this, 'docs_single_content' ] );
+        add_action( 'wp_ajax_nopriv_docs_single_content', [ $this, 'docs_single_content' ] );
     }
 
     /**
@@ -130,5 +133,19 @@ class Ajax {
         endif;
         wp_reset_query();
         die();
+    }
+
+    /**
+     * Doc single page
+     */
+    function docs_single_content() {
+        $postid    = intval( $_POST['postid'] );
+        $the_query = new WP_Query( array( 'post_type' => 'docs', 'p' => $postid ) );
+
+        while ( $the_query->have_posts() ) : $the_query->the_post();
+            eazydocs_get_template_part( 'single-doc-content' );
+        endwhile;
+        wp_reset_postdata();
+        wp_die(); // this is required to terminate immediately and return a proper response
     }
 }

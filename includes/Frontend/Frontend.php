@@ -29,9 +29,7 @@ class Frontend {
 
     public function body_class() {
         $classes = [];
-        if ( eazydocs_has_shortcode() ) {
-            $classes[] = 'eazydocs_shortcode';
-        }
+
         return $classes;
     }
 }

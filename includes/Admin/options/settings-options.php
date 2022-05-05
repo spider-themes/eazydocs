@@ -142,7 +142,7 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'text_width' => 90,
 			'default'    => false,
-            'class'     => 'eazydocs-pro-notice'
+            'class'     => 'eazydocs-pro-notice doc-ajax-load',
 		),
 		array(
 			'title'    => esc_html__( 'Section Excerpt', 'eazydocs' ),
@@ -204,7 +204,7 @@ CSF::createSection( $prefix, array(
             'title'       => esc_html__( 'Keywords', 'eazydocs' ),
             'text_on'     => esc_html__( 'Enabled', 'eazydocs' ),
             'text_off'    => esc_html__( 'Disabled', 'eazydocs' ),
-            'default'     => true,
+            'default'     => false,
             'text_width'  => 90,
             'dependency'  => array( 'is_search_banner', '==', 'true' ),
             'class'       => 'eazydocs-pro-notice'

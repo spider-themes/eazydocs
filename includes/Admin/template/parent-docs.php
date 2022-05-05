@@ -19,7 +19,8 @@ $count = $query->found_posts;
             $is_active           = $i == 1 ? 'is-active' : '';
             $doc_counter    = get_pages( [
                 'child_of'  => get_the_ID(),
-                'post_type' => 'docs'
+                'post_type' => 'docs',
+                'post_status' => ['publish', 'draft']
             ]);
 
 	        $post_status =  get_post_status(get_the_ID());
