@@ -119,6 +119,8 @@ class Admin {
 			}
 
 			add_submenu_page( 'eazydocs', __( 'Settings', 'eazydocs' ), __( 'Settings', 'eazydocs' ), $sz_capabilites, 'eazydocs-settings' );
+		}else{
+			add_submenu_page( 'eazydocs', __( 'Customize', 'eazydocs' ), __( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
 		}
 	}
 
