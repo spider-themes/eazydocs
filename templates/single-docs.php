@@ -28,15 +28,15 @@ $breadcrumb         = $settings_options['docs-breadcrumb'] ?? '';
 
 switch ( $layout ) {
     case 'left_sidebar':
-        $md_content_col = 'col-md-9';
+        $md_content_col = 'col-lg-9';
         break;
 
     case 'right_sidebar':
-        $md_content_col = 'col-md-10';
+        $md_content_col = 'col-lg-10';
         break;
 
     default:
-        $md_content_col = 'col-lg-7 col-md-9';
+        $md_content_col = 'col-xl-7 col-lg-6';
 }
 ?>
 

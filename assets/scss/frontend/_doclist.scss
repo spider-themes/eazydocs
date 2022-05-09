@@ -31,14 +31,14 @@
   padding-bottom: 30px;
   z-index: 1;
   margin-right: 30px;
-  height: 100%;
+  height: 100vh;
   position: relative;
   &:before {
     content: "";
     width: 200%;
     right: 0;
     height: 100%;
-    background: #fafcfc;
+    background: rgba(245,247,249,1.00);
     position: absolute;
     border-right: 1px solid #E6EDF0;
     top: 0;
@@ -69,14 +69,12 @@
       padding: 0;
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       font-size: 14px;
       line-height: 20px;
       font-weight: 500;
       color: #3c4257;
       position: relative;
       img{
-        margin-top: -2px;
         margin-right: 15px;
         padding-right: 0;
         max-width: 18px;
@@ -134,7 +132,7 @@
           font-size: 14px;
           font-weight: 400;
           line-height: 1.3;
-          color: var(--p_color);
+          color: var(--black_500);
           padding: 0;
           &:hover,
           &.active {
@@ -2646,7 +2644,6 @@ button.swiper-pagination-bullet {
     }
     .title {
       font-weight: 500;
-      font-size: 1.4rem;
       margin: 0 0 8px;
       transition: color 0.2s linear;
       display: block;
@@ -3138,7 +3135,8 @@ button.swiper-pagination-bullet {
   padding-top: 60px;
   position: relative;
   @media (max-width: 1440px) {
-    padding-right: 40px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .full-width-doc .doc-middle-content {

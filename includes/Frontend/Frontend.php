@@ -29,6 +29,11 @@ class Frontend {
 
     public function body_class() {
         $classes = [];
+        $theme = wp_get_theme();
+
+        if ( $theme->Name == 'Docy' ) {
+            $classes[]= strtolower($theme->Name);
+        }
 
         return $classes;
     }

@@ -65,16 +65,21 @@ CSF::createSection( $prefix, array(
                     'title'         => esc_html__( 'Doc Layout', 'eazydocs-pro' ),
                     'fields'        => array(
                         array(
-                            'id'      => 'docs_single_layout',
-                            'type'    => 'image_select',
-                            'class'   => 'single-layout-img-wrap',
-                            'title'   => esc_html__('Select Layout', 'eazydocs-pro'),
-                            'options' => array(
-                                'both_sidebar' => EAZYDOCS_IMG . '/customizer/both_sidebar.jpg',
-                                'left_sidebar' => EAZYDOCS_IMG . '/customizer/sidebar_left.jpg',
+                            'id'        => 'docs_single_layout',
+                            'type'      => 'image_select',
+                            'class'     => 'single-layout-img-wrap',
+                            'title'     => esc_html__('Select Layout', 'eazydocs-pro'),
+                            'options'   => array(
+                                'both_sidebar'  => EAZYDOCS_IMG . '/customizer/both_sidebar.jpg',
+                                'left_sidebar'  => EAZYDOCS_IMG . '/customizer/sidebar_left.jpg',
                                 'right_sidebar' => EAZYDOCS_IMG . '/customizer/sidebar_right.jpg',
                             ),
-                            'default' => 'both_sidebar'
+                            'default'   => 'both_sidebar',
+                            'attributes' => [
+                                'width'  => '90px'
+                            ],
+                            'class'     => 'eazydocs-pro-notice',
+
                         ),
                         array(
                             'id'      => 'docs_page_width',
@@ -105,6 +110,7 @@ CSF::createSection( $prefix, array(
                             'title'         => esc_html__( 'Keywords Label Color', 'eazydocs-pro' ),
                             'output_mode'   => 'color',
                             'output'        => '.doc_banner_area.has_bg_dark .header_search_keyword .label',
+                            'class'         => 'eazydocs-pro-notice'
                         ),
                         array(
                             'id'            => 'keywords_color',
@@ -112,6 +118,7 @@ CSF::createSection( $prefix, array(
                             'title'         => esc_html__( 'Keywords Color', 'eazydocs-pro' ),
                             'output_mode'   => 'color',
                             'output'        => '.doc_banner_area.has_bg_dark .header_search_keyword ul li a',
+                            'class'         => 'eazydocs-pro-notice'
                         ),
                     )
                 ),
@@ -121,19 +128,19 @@ CSF::createSection( $prefix, array(
                     'title'         => esc_html__( 'Left Sidebar', 'eazydocs-pro' ),
                     'fields'        => array(
                         array(
-                            'id'      => 'docs-sidebar-bg',
-                            'type'    => 'color',
-                            'title'   => esc_html__( 'Background Color', 'eazydocs-pro' ),
+                            'id'            => 'docs-sidebar-bg',
+                            'type'          => 'color',
+                            'title'         => esc_html__( 'Background Color', 'eazydocs-pro' ),
                             'output_mode'   => 'background-color',
-                            'output' => '.doc_left_sidebarlist:before'
+                            'output'        => '.doc_left_sidebarlist:before',
                         ),
                         array(
-                            'id'       => 'docs-sidebar-padding',
-                            'type'     => 'spacing',
+                            'id'        => 'docs-sidebar-padding',
+                            'type'      => 'spacing',
                             'top'       => false,
                             'bottom'    => false,
-                            'title'    => esc_html__( 'Sidebar Padding', 'eazydocs-pro' ),
-                            'output' => '.doc_left_sidebarlist',
+                            'title'     => esc_html__( 'Sidebar Padding', 'eazydocs-pro' ),
+                            'output'    => '.doc_left_sidebarlist',
                         ),
                     )
                 ),
@@ -143,11 +150,11 @@ CSF::createSection( $prefix, array(
                     'title'         => esc_html__( 'Body Area', 'eazydocs-pro' ),
                     'fields'        => array(
                         array(
-                            'id'    => 'content-bg',
-                            'type'  => 'color',
-                            'title' => esc_html__('Background Color', 'eazydocs-pro'),
-                            'output' => 'body',
-                            'output_mode' => 'background-color'
+                            'id'            => 'content-bg',
+                            'type'          => 'color',
+                            'title'         => esc_html__('Background Color', 'eazydocs-pro'),
+                            'output'        => 'body',
+                            'output_mode'   => 'background-color',
                         ),
                     )
                 ),

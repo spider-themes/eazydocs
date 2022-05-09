@@ -4,7 +4,7 @@ $is_conditional_dropdown  = $options['is_conditional_dropdown'] ?? '';
 $condition_options  = $options['condition_options'] ?? '';
 $article_print      = $options['pr-icon-switcher'] ?? '';
 ?>
-<div class="col-lg-2 col-md-3 doc_right_mobile_menu sticky-top">
+<div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-top">
     <div class="open_icon" id="right">
         <i class="arrow_carrot-left"></i>
         <i class="arrow_carrot-right"></i>

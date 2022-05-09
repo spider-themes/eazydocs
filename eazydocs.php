@@ -5,7 +5,7 @@
  * Plugin URI: https://wordpress-theme.spider-themes.net/docy/docs/
  * Author: spider-themes
  * Author URI: #
- * Version: 1.1.1
+ * Version: 1.1.2
  * Requires at least: 5.0
  * Requires PHP: 7.2
  * Text Domain: easydocs

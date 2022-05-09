@@ -1,10 +1,10 @@
-=== EazyDocs - #1 Powerful & beautiful documentation builder ===
+=== EazyDocs - #1 Powerful & Beautiful Documentation Builder ===
 Contributors: mdjwel, spiderdevs
 Tags: document, docs, documentation, knowledge base, knowledgebase, kb, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center
 Requires at least: 5.0
 Tested up to: 5.9.3
 Requires PHP: 7.2
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,8 @@ EazyDocs assist you in quickly and easily creating great looking documentation f
 - **No Limitation:** There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
 
 - **Structured Live Search Results:** The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
+
+- **Live Customizer:** Set it and see the changes instantly. The Docs archive page, Doc single page layouts can be customized via the WordPress live customizer panel.
 
 - **Look Beautiful by Default:** EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
 
@@ -88,6 +90,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.1.2 (10 May 2022) =
+New: 'Show/Hide Breadcrumb' option added in EazyDocs > Settings > Single Doc > Breadcrumbs
+Tweaked: Columns (left sidebar, middle content and right sidebar) adjustment improved on medium device
+Tweaked: Doc single page elements (left sidebar navigation, background color, position, height) design improved
 
 = v1.1.1 (09 May 2022) =
 * New: Customizer Options added to customize the Docs Archive & Single page

@@ -39,8 +39,9 @@ if ( is_array( $depth_one_parents ) ) :
             <ul class="easydocs-accordion sortable accordionjs">
 				<?php
 				$children = get_children( array(
-				        'post_parent'   => $item,
-                        'orderby'       => 'menu_order'
+                    'post_parent'   => $item,
+                    'orderby'       => 'menu_order',
+                    'order'         => 'asc'
                 ));
 
 				if ( is_array( $children ) ) :

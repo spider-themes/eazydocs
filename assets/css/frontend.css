@@ -462,7 +462,7 @@ input[type=search]::-webkit-search-results-decoration {
   padding-bottom: 30px;
   z-index: 1;
   margin-right: 30px;
-  height: 100%;
+  height: 100vh;
   position: relative;
 }
 .doc_left_sidebarlist:before {
@@ -470,7 +470,7 @@ input[type=search]::-webkit-search-results-decoration {
   width: 200%;
   right: 0;
   height: 100%;
-  background: #fafcfc;
+  background: #f5f7f9;
   position: absolute;
   border-right: 1px solid #E6EDF0;
   top: 0;
@@ -505,7 +505,6 @@ input[type=search]::-webkit-search-results-decoration {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
@@ -513,7 +512,6 @@ input[type=search]::-webkit-search-results-decoration {
   position: relative;
 }
 .nav-sidebar .nav-item .nav-link img {
-  margin-top: -2px;
   margin-right: 15px;
   padding-right: 0;
   max-width: 18px;
@@ -565,7 +563,7 @@ input[type=search]::-webkit-search-results-decoration {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.3;
-  color: var(--p_color);
+  color: var(--black_500);
   padding: 0;
 }
 .nav-sidebar .nav-item .dropdown_nav li a:hover, .nav-sidebar .nav-item .dropdown_nav li a.active {
@@ -2966,7 +2964,6 @@ button.swiper-pagination-bullet {
 }
 .documentation_item .media-body .title {
   font-weight: 500;
-  font-size: 1.4rem;
   margin: 0 0 8px;
   transition: color 0.2s linear;
   display: block;
@@ -3381,7 +3378,8 @@ button.swiper-pagination-bullet {
 }
 @media (max-width: 1440px) {
   .doc-middle-content {
-    padding-right: 40px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -3565,6 +3563,11 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 12;
   font-size: 0.95rem;
+}
+@media (max-width: 1440px) {
+  .left-sidebar-toggle {
+    margin-left: -57px;
+  }
 }
 .left-sidebar-toggle .left-arrow {
   display: block;

@@ -146,6 +146,9 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 12;
   font-size: 0.95rem;
+  @media (max-width: 1440px) {
+    margin-left: -57px;
+  }
   .left-arrow {
     display: block;
     border: #e8e8e8 solid 1px;

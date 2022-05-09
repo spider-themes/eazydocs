@@ -22,7 +22,7 @@ $children       = wp_list_pages( array(
 ));
 ?>
 
-<div class="col-lg-3 doc_mobile_menu left-column sticky-top">
+<div class="col-xl-3 col-lg-3 doc_mobile_menu left-column sticky-top">
     <aside class="doc_left_sidebarlist">
         <div class="open_icon" id="left">
             <i class="arrow_carrot-right"></i>

@@ -108,14 +108,14 @@ a.eazydocs-close-notice:active {
     pointer-events: none;
 }
 
-body.docy .doc-ajax-load .csf-title,
-body.docy .doc-ajax-load .csf-fieldset {
+body.docy .active-theme .csf-title,
+body.docy .active-theme .csf-fieldset {
     pointer-events: inherit;
     opacity: 1;
 }
 
-body.docy .doc-ajax-load.csf-field::before,
-body.docy .doc-ajax-load.csf-field::after {
+body.docy .active-theme.csf-field::before,
+body.docy .active-theme.csf-field::after {
     display: none;
 }
 
@@ -149,17 +149,15 @@ body.docy .doc-ajax-load.csf-field::after {
     line-height: 1.6;
 }
 
-#customize-controls .docs-layout-img-wrap img{
-    width: 90px;
-    height:auto;
+#customize-controls .csf-field-image_select img {
+    width: 85px;
+    height: auto;
 }
-#customize-controls .single-layout-img-wrap img{
-    max-width: 90px;
-    height:auto;
-}
+
 .notice.is-dismissible.bottom-10{
     padding-bottom: 15px;
 }
+
 .header-notify-icon .notify-icon {
     padding-top: 10px;
     margin: auto;
