@@ -3,8 +3,8 @@ Contributors: mdjwel, spiderdevs
 Tags: document, docs, documentation, knowledge base, knowledgebase, kb, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center
 Requires at least: 5.0
 Tested up to: 5.9.3
-Requires PHP: 7.0
-Stable tag: 1.1.0
+Requires PHP: 7.2
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,18 +16,31 @@ EazyDocs assist you in quickly and easily creating great looking documentation f
 
 ### 🌟 Top Features ###
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+
 - **No Limitation:** There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
-- **Structured Instant Search:** The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
+
+- **Structured Live Search Results:** The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
+
 - **Look Beautiful by Default:** EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
+
 - **Get Feedback from Real Visitors**: Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
+
 - **Designed for Reader:** We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
+
 - **SEO Optimized:** EazyDocs is SEO ready right from the first line of code.
+
 - **Integrated Schema:** EazyDocs is coded out of the box valid schema markup and Google structured data.
+
 - **Sticky Sidebars:** Make the sidebars to follow you as you scroll and show the important content.
+
 - **Multilingual Ready:** EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one!
+
 - **Responsive & Retina Ready:** EazyDocs is 100% responsive to make your Knowledge base look beautiful and effective on all major devices.
+
 - **Reading Assistant Tools:** There are available some important tools for better reading experience. Font Size switcher, Print option, TOC are developed for a consistent reading experience.
+
 - **Simple Navigation:** The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
+
 - **Read time, Views Count:** Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
 
 ### Author ###
@@ -75,6 +88,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.1.1 (09 May 2022) =
+* New: Customizer Options added to customize the Docs Archive & Single page
+* New: Pro Features and Options added (locked)
+* Tweaked: Contact Form modal design improved
+
 
 = v1.1.0 (02 May 2022) =
 * New: Search Banner

@@ -22,7 +22,7 @@ if ( class_exists( 'EazyDocsPro' ) ) {
     <div class="modal-dialog help_form" role="document">
         <div class="modal-content">
             <div class="shortcode_title">
-                <h2> <?php echo esc_html( $title ); ?> </h2>
+                <h3 class="mb-2"> <?php echo esc_html( $title ); ?> </h3>
 	            <?php echo wpautop( $desc ); ?>
             </div>
             <form method="post" id="edocs-contact-form" class="contact_form">

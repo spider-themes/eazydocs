@@ -565,7 +565,7 @@
     font-weight: 500;
     color: #fff;
     display: inline-block;
-    padding: 1px 15px 2px;
+    padding: 1px 15px;
     background-color: #27ae60;
     transition: all 0.2s linear;
     margin-left: 10px;
@@ -610,9 +610,6 @@
   .modal-content {
     border: 0;
     background: transparent;
-    .shortcode_title {
-      margin-bottom: 30px;
-    }
   }
 }
 .contact_form {
@@ -640,15 +637,6 @@
       height: 160px;
       padding-top: 20px;
       display: block;
-    }
-    .action_btn {
-      border: 0;
-      padding: 15px 40px;
-      box-shadow: none;
-      font-weight: 500;
-      &:hover {
-        box-shadow: 0 20px 30px 0 brand_color_rgba(0.24);
-      }
     }
   }
 }
@@ -3156,4 +3144,49 @@ button.swiper-pagination-bullet {
 .full-width-doc .doc-middle-content {
   padding-left: 50px;
   padding-right: 50px;
+}
+
+#eazydocs_feedback {
+  background: #f1f1f1;
+  .action_btn {
+    border: 0;
+    padding: 15px 40px;
+    box-shadow: none;
+    font-weight: 500;
+    background: brand_color_rgba(0.9);
+    color: #fff;
+    &:hover {
+      background: var(--ezd_brand_color);
+      color: #fff;
+    }
+  }
+  .close {
+    font-size: 30px;
+    opacity: 1;
+    color: #fff;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    padding: 5px 8px 7px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--black_350);
+    border-radius: 3px;
+    transition: all .3s;
+    &:hover {
+      background: #cd2653;
+      border: none;
+      box-shadow: none;
+      text-decoration: none;
+    }
+  }
+}
+
+/** == Style while Admin Bar shown === **/
+.admin-bar {
+  #eazydocs_feedback .close {
+    top: 52px;
+  }
 }
