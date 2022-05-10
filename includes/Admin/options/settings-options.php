@@ -29,7 +29,10 @@ CSF::createSection( $prefix, array(
 			'title'   => esc_html__( 'Docs Page', 'eazydocs' ),
 			'options' => 'pages',
 			'class'   => 'docs-page-wrap',
-			'desc'    => sprintf( wp_kses_post( __( 'Home page for docs page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs' ) ) )
+			'desc'    => sprintf( wp_kses_post( __( 'Home page for docs page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs' ) ) ),
+			'query_args'  => array(
+				'posts_per_page' => -1 // for get all pages (also it's same for posts).
+			)
 		),
 
 		array(
