@@ -4,7 +4,9 @@ $cz_options             = '';
 $layout                 = 'both_sidebar';
 $cz_options             = '';
 $options                = get_option( 'eazydocs_settings' );
-$comment_visibility     = $options['enable-comment'] ?? '';
+$comment_visibility          = $options['enable-comment'] ?? '1';
+$reading_time_visibility     = $options['enable-reading-time'] ?? '1';
+$views_visibility            = $options['enable-views'] ?? '1';
 $docs_feedback          = '1';
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$cz_options         = get_option( 'eazydocs_customizer' ); // prefix of framework
@@ -24,14 +26,22 @@ if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' 
             <div class="shortcode_title">
 				<?php the_title( '<h1>', '</h1>' ); ?>
                 <div class="meta dot-sep">
-                    <span class="read-time">
-                        <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
-                        eazydocs_reading_time();
-                        ?>
-                    </span>
-                    <span class="views sep">
-                        <?php echo eazydocs_get_post_view(); ?>
-                    </span>
+                    <?php
+                    if( $reading_time_visibility == '1') : ?>
+                        <span class="read-time">
+                            <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
+                            eazydocs_reading_time();
+                            ?>
+                        </span>
+                        <?php
+                    endif;
+                    if( $views_visibility == '1') : ?>
+                        <span class="views sep">
+                            <?php echo eazydocs_get_post_view(); ?>
+                        </span>
+                        <?php
+                    endif;
+                    ?>
                 </div>
             </div>
             <div class="doc-scrollable">

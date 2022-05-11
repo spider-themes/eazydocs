@@ -45,7 +45,11 @@ input[type="search"]::-webkit-search-results-decoration {
   font-weight: 400;
 }
 
-.dot-sep .sep::before {
+.dot-sep span:nth-child(2) {
+  margin: 0 5px;
+  position:relative;
+}
+.dot-sep span:nth-child(2)::before {
   content: "•";
   margin: 0 5px;
 }

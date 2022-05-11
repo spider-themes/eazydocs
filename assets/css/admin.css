@@ -1693,6 +1693,9 @@ a.child-delete {
 .link a .dashicons:hover {
   color: #fff;
 }
+.link a.eazydocs-pro-notice .dashicons {
+  color: #f1bd6c;
+}
 .link:hover svg {
   color: #fff;
   fill-color: #fff;

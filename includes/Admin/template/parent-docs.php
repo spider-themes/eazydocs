@@ -56,12 +56,22 @@ $count = $query->found_posts;
                 <div class="link">
                     <?php
                     if( current_user_can('editor') || current_user_can('administrator') ) :
-                    do_action('eazydocs_parent_doc_duplicate', get_the_ID());
+                        if ( eaz_fs()->can_use_premium_code() ) :
+                            do_action('eazydocs_parent_doc_duplicate', get_the_ID());
+                        else :
+	                        ?>
+                            <a href="javascript:void(0);" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
+                                <span class="dashicons dashicons-admin-page"></span>
+                            </a>
+                            <?php
+                        endif;
+                        ?>
+                        <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
+                            <span class="dashicons dashicons-edit"></span>
+                        </a>
+                        <?php
+                    endif;
                     ?>
-                    <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
-                        <span class="dashicons dashicons-edit"></span>
-                    </a>
-                    <?php endif; ?>
 
                     <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
                         <span class="dashicons dashicons-external"></span>

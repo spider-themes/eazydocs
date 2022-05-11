@@ -127,3 +127,7 @@ div.search_result {
 .clone-docs img:hover{
     opacity: 1
 }
+
+.eazydocs-pro-notice .dashicons-admin-page:before{
+    color:#f1bd6c
+}

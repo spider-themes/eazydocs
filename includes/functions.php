@@ -309,11 +309,47 @@ function eazydocs_has_shortcode( $text = '' ) {
     return (bool) apply_filters( 'eazydocs_has_shortcode', $retval, $found, $text );
 }
 
+/**
+ * @param $a
+ * @param $b
+ *
+ * @return false|int
+ */
 function date_sort($a, $b) {
 	return strtotime($b) - strtotime($a);
 }
+
+/**
+ * @param $a
+ * @param $b
+ *
+ * @return bool
+ */
 function main_date_sort($a, $b) {
 	$date1 = DateTime::createFromFormat('d/m/Y', $a);
 	$date2 = DateTime::createFromFormat('d/m/Y', $b);
 	return $b > $a;
 }
+
+/**
+ * Visible EazyDocs Menu in classic mode
+ * Tag submenu in Tag screen
+ **/
+add_action('admin_footer', function(){ ?>
+	<script>
+        // EazyDocs screen URL
+        eazyDocsClassic = "edit.php?post_type=docs";
+        // Tag screen URL
+        eazyDocsTag = "edit-tags.php?taxonomy=doc_tag&post_type=docs";
+
+        // EazyDocs menu active when it's EazyDocs screen
+        if(window.location.href.indexOf(eazyDocsTag) > -1) {
+            jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li').has('a[href*="edit-tags.php"]').addClass('current');
+        }
+
+        // Tag Sub menu active when it's Tag screen
+        if(window.location.href.indexOf(eazyDocsClassic) > -1) {
+            jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li.wp-first-item').addClass('current');
+        }
+	</script>
+<?php });

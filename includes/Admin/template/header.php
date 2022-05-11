@@ -52,7 +52,19 @@
                             </div>
                         </li>
 
-                        <?php do_action('eazydocs_notification'); ?>
+                        <?php
+                        if ( eaz_fs()->can_use_premium_code() ) :
+                            do_action('eazydocs_notification');
+                        else :
+	                        ?>
+                            <li class="easydocs-notification eazydocs-pro-notice">
+                                <div class="header-notify-icon">
+                                    <img class="notify-icon" src="<?php echo EAZYDOCS_IMG ?>/admin/notification.svg" alt="<?php esc_html_e( 'Notify Icon', 'eazydocs-pro' ); ?>">
+                                </div>
+                            </li>
+                        <?php
+                        endif;
+                        ?>
 
                     </ul>
                 </div>

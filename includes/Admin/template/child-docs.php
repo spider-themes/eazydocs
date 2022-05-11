@@ -193,15 +193,37 @@ if ( is_array( $depth_one_parents ) ) :
                                                         </h4>
                                                         <ul class="actions">
                                                             <?php if ( current_user_can('editor') || current_user_can('administrator') ) : ?>
-                                                                <li class="duplicate">
-                                                                    <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $doc_item->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
-                                                                        <span class="dashicons dashicons-plus-alt2"></span>
+                                                            <li class="duplicate">
+                                                                <?php
+                                                                if ( eaz_fs()->can_use_premium_code() ) :
+                                                                    do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent);
+                                                                else :
+                                                                    ?>
+                                                                    <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
+                                                                        <span class="dashicons dashicons-admin-page"></span>
                                                                     </a>
-                                                                </li>
+                                                                    <?php
+                                                                endif;
+                                                                ?>
+                                                            </li>
+
+                                                            <li>
+                                                            <?php
+                                                            if ( eaz_fs()->can_use_premium_code() ) : ?>
+                                                                <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $doc_item->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                                                                    <span class="dashicons dashicons-plus-alt2"></span>
+                                                                </a>
+
+                                                           <?php else : ?>
+                                                                <a href="javascript:void(0)" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
+                                                                    <span class="dashicons dashicons-plus-alt2"></span>
+                                                                </a>
+                                                            <?php
+                                                            endif;
+                                                            ?>
+                                                            </li>
                                                             <?php endif; ?>
+
                                                             <li>
                                                                 <a href="<?php echo get_permalink( $doc_item ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
                                                                     <span class="dashicons dashicons-external"></span>
@@ -260,7 +282,15 @@ if ( is_array( $depth_one_parents ) ) :
 
                                                                     <?php
 						                                            if ( current_user_can('editor') || current_user_can('administrator') ) {
-                                                                        do_action( 'eazydocs_single_duplicate', $dep3->ID );
+							                                            if ( eaz_fs()->can_use_premium_code() ) :
+								                                            do_action( 'eazydocs_single_duplicate', $dep3->ID );
+							                                            else :
+								                                            ?>
+                                                                            <a href="javascript:void(0);" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
+                                                                                <span class="dashicons dashicons-admin-page"></span>
+                                                                            </a>
+							                                            <?php
+							                                            endif;
                                                                     }
                                                                     ?>
                                                                     <a href="<?php echo get_permalink( $dep3 ); ?>" target="_blank" class="child-view-link" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">

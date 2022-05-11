@@ -131,6 +131,18 @@ CSF::createSection( $prefix, array(
 	'icon'   => '',
 	'fields' => array(
 		array(
+			'id'      => 'enable-reading-time',
+			'type'    => 'switcher',
+			'title'   => esc_html__( 'Estimated Reading Time', 'eazydocs' ),
+			'default' => true // or false
+		),
+		array(
+			'id'      => 'enable-views',
+			'type'    => 'switcher',
+			'title'   => esc_html__( 'Views', 'eazydocs' ),
+			'default' => true // or false
+		),
+		array(
 			'id'      => 'enable-comment',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Enable Comment', 'eazydocs' ),
