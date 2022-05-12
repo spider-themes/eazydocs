@@ -45,7 +45,8 @@ class Create_Post {
                 'menu_order'   => $order,
             ) );
             wp_insert_post( $post, $wp_error = '' );
-            header("Location:". admin_url('admin.php?page=eazydocs'));
+            
+            wp_safe_redirect( admin_url('admin.php?page=eazydocs') );
         }
     }
 
@@ -67,7 +68,7 @@ class Create_Post {
 				'menu_order'   => 1
 			);
 			wp_insert_post( $post, $wp_error = '' );
-			header("Location:". admin_url('admin.php?page=eazydocs'));
+			wp_safe_redirect( admin_url('admin.php?page=eazydocs') );
 		}
 	}
 
@@ -99,7 +100,7 @@ class Create_Post {
 				'menu_order'   => $order
 			);
 			wp_insert_post( $post, $wp_error = '' );
-			header("Location:". admin_url('admin.php?page=eazydocs'));
+			wp_safe_redirect( admin_url('admin.php?page=eazydocs') );
 		}
 	}
 
@@ -132,7 +133,8 @@ class Create_Post {
 				'menu_order'   => $order
 			);
 			wp_insert_post( $post, $wp_error = '' );
-			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
+
+            wp_safe_redirect( admin_url('admin.php?page=eazydocs') );
 		}
 	}
 }

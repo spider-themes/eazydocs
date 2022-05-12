@@ -181,16 +181,16 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'            => 'eazydocs-credit-text',
 			'type'          => 'wp_editor',
-			'title'         => 'Credit Text',
+			'title'         => esc_html__( 'Credit Text', 'eazydocs' ),
 			'tinymce'       => true,
 			'quicktags'     => false,
 			'media_buttons' => false,
-			'height'        => '50px',
+			'height'        => '80px',
 			'dependency'    => array(
 				array( 'eazydocs-enable-credit', '==', 'true' )
 			),
 			'default'       => sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>' ),
-            'class'     => 'eazydocs-pro-notice'
+            'class'     => 'eazydocs-pro-notice active-theme'
 		),
 
 	)

@@ -91,12 +91,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.1.3 (11 May 2022) =
+= v1.1.3 (13 May 2022) =
+New: Estimated Reading Time, Views options added to EazyDocs > Settings > Single Doc > General
 New: Added Tags under the EazyDocs admin menu
 Tweaked: Unnecessary CSS removed
 Tweaked: Integrate with any theme (compatibility improved)
-Tweaked: Left sidebar toggle show/hide the content column
-
+Tweaked: Left sidebar toggle show/hide
+Tweaked: Doc frontend design
+Fixed: PHP errors in Creat_Post.php file (line numbers 118, 131)
 
 = v1.1.2 (10 May 2022) =
 New: 'Show/Hide Breadcrumb' option added in EazyDocs > Settings > Single Doc > Breadcrumbs
