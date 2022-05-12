@@ -108,14 +108,14 @@ a.eazydocs-close-notice:active {
     pointer-events: none;
 }
 
-body.docy .active-theme .csf-title,
-body.docy .active-theme .csf-fieldset {
+body.valid .active-theme .csf-title,
+body.valid .active-theme .csf-fieldset {
     pointer-events: inherit;
     opacity: 1;
 }
 
-body.docy .active-theme.csf-field::before,
-body.docy .active-theme.csf-field::after {
+body.valid .active-theme.csf-field::before,
+body.valid .active-theme.csf-field::after {
     display: none;
 }
 
@@ -156,6 +156,10 @@ body.docy .active-theme.csf-field::after {
 
 .notice.is-dismissible.bottom-10{
     padding-bottom: 15px;
+}
+
+.notice-warning.eaz-notice {
+    background: #ffffbe;
 }
 
 .header-notify-icon .notify-icon {

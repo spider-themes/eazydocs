@@ -6,7 +6,7 @@
         $('.eazydocs-pro-notice ul li:last-child label input').attr('disabled', true);
         // NEW DOC
         function eazydocs_pro_notice() {
-            if ( $('body').hasClass('docy') ) {
+            if ( $('body').hasClass('valid') ) {
                 $(document).on('click', '.eazydocs-pro-notice:not(.active-theme)', function (e) {
                     e.preventDefault();
                     let href = $(this).attr('href')
@@ -16,7 +16,7 @@
                         icon: "warning",
                         buttons: [false, "Close"],
                         dangerMode: true,
-                        footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
+                        //footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
                     })
                 })
             } else {
@@ -29,7 +29,7 @@
                         icon: "warning",
                         buttons: [false, "Close"],
                         dangerMode: true,
-                        footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
+                        //footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
                     })
                 })
             }

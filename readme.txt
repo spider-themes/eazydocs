@@ -1,10 +1,10 @@
 === EazyDocs - #1 Powerful & Beautiful Documentation Builder ===
 Contributors: mdjwel, spiderdevs
-Tags: document, docs, documentation, knowledge base, knowledgebase, kb, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center
+Tags: docs, documentation, document, knowledge base, knowledgebase, kb, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
 Tested up to: 5.9.3
 Requires PHP: 7.2
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.1.3 (11 May 2022) =
+New: Added Tags under the EazyDocs admin menu
+Tweaked: Unnecessary CSS removed
+Tweaked: Integrate with any theme (compatibility improved)
+Tweaked: Left sidebar toggle show/hide the content column
+
 
 = v1.1.2 (10 May 2022) =
 New: 'Show/Hide Breadcrumb' option added in EazyDocs > Settings > Single Doc > Breadcrumbs

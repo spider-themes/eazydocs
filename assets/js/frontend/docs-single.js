@@ -203,10 +203,10 @@
             $('.left-sidebar-toggle .left-arrow').on('click', function () {
                 $('.doc_mobile_menu').hide(500)
 
-                if (middle_column.hasClass('col-lg-7')) {
-                    $('.doc-middle-content').removeClass('col-lg-7').addClass('col-lg-10')
-                } else if (middle_column.hasClass('col-lg-8')) {
-                    $('.doc-middle-content').removeClass('col-lg-8').addClass('col-lg-10')
+                if (middle_column.hasClass('col-xl-7')) {
+                    $('.doc-middle-content').removeClass('col-xl-7').addClass('col-xl-10')
+                } else if (middle_column.hasClass('col-xl-8')) {
+                    $('.doc-middle-content').removeClass('col-xl-8').addClass('col-xl-10')
                 }
 
                 $('.left-sidebar-toggle .left-arrow').hide(500)
@@ -216,10 +216,10 @@
             $('.left-sidebar-toggle .right-arrow').on('click', function () {
                 $('.doc_mobile_menu').show(500)
 
-                if (middle_column.hasClass('col-lg-10')) {
-                    $('.doc-middle-content').removeClass('col-lg-10').addClass('col-lg-7')
-                } else if (middle_column.hasClass('col-lg-8')) {
-                    $('.doc-middle-content').removeClass('col-lg-10').addClass('col-lg-8')
+                if ( middle_column.hasClass('col-xl-10') ) {
+                    $('.doc-middle-content').removeClass('col-xl-10').addClass('col-xl-7')
+                } else if (middle_column.hasClass('col-xl-8')) {
+                    $('.doc-middle-content').removeClass('col-xl-10').addClass('col-xl-8')
                 }
 
                 $('.left-sidebar-toggle .left-arrow').show(500)

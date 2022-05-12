@@ -328,3 +328,10 @@ p .footnotes-link::after {
 .nav-sidebar .nav-item .dropdown_nav li a {
   line-height: 1.3em;
 }
+
+.eazydocx-credit-text {
+  p {
+    font-size: 14px;
+    color: var(--black_400);
+  }
+}

@@ -19,7 +19,7 @@
 
             <div class="col-lg-5">
                 <form action="#" method="POST" class="easydocs-search-form">
-                    <input type="search" name="keyword" class="form-control" id="easydocs-search" placeholder="Search on ...." onkeyup="fetch()" />
+                    <input type="search" name="keyword" class="form-control" id="easydocs-search" placeholder="<?php esc_attr_e('Search for', 'eazydocs') ?>" onkeyup="fetch()" />
                     <div class="search-icon">
                         <span class="dashicons dashicons-search"></span>
                     </div>

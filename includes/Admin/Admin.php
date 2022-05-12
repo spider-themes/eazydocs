@@ -133,13 +133,9 @@ class Admin {
 	}
 
     public function body_class() {
-        $theme = wp_get_theme();
-        $classes = '';
+        $docy = trim( get_option('docy_purchase_code_status') );
+        $docly = trim( get_option('docly_purchase_code_status') );
 
-        if ( $theme->Name == 'Docy' ) {
-            $classes .= strtolower($theme->Name);
-        }
-
-        return $classes;
+        return $docy.$docly;
     }
 }
