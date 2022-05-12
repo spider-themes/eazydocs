@@ -25,24 +25,31 @@ if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' 
         <div class="doc-post-content">
             <div class="shortcode_title">
 				<?php the_title( '<h1>', '</h1>' ); ?>
-                <div class="meta dot-sep">
+
+                <?php
+                if( $reading_time_visibility == '1' ||  $views_visibility == '1' ) : ?>
+                    <div class="meta dot-sep">
+                        <?php
+                        if( $reading_time_visibility == '1') : ?>
+                            <span class="read-time">
+                                <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
+                                eazydocs_reading_time();
+                                ?>
+                            </span>
+                            <?php
+                        endif;
+                        if( $views_visibility == '1') : ?>
+                            <span class="views sep">
+                                <?php echo eazydocs_get_post_view(); ?>
+                            </span>
+                            <?php
+                        endif;
+                        ?>
+                    </div>
                     <?php
-                    if( $reading_time_visibility == '1') : ?>
-                        <span class="read-time">
-                            <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
-                            eazydocs_reading_time();
-                            ?>
-                        </span>
-                        <?php
-                    endif;
-                    if( $views_visibility == '1') : ?>
-                        <span class="views sep">
-                            <?php echo eazydocs_get_post_view(); ?>
-                        </span>
-                        <?php
-                    endif;
-                    ?>
-                </div>
+                endif;
+                ?>
+
             </div>
             <div class="doc-scrollable">
 				<?php

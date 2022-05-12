@@ -1401,3 +1401,13 @@ body:not(.onepage-doc) .sticky_menu {
     top: 52px;
   }
 }
+
+.dot-sep span:nth-child(2) {
+  margin: 0 5px;
+  position: relative;
+}
+
+.dot-sep span:nth-child(2)::before {
+  content: "•";
+  margin: 0 5px;
+}

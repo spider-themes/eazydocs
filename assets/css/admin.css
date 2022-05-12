@@ -768,6 +768,9 @@ label {
 .accordion-title ul.actions li a img:hover {
   opacity: 1;
 }
+.accordion-title ul.actions li a.eazydocs-pro-notice .dashicons {
+  color: #f1bd6c;
+}
 .accordion-title .left-content {
   display: flex;
 }

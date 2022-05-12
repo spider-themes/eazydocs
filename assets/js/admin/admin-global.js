@@ -20,7 +20,7 @@
                     })
                 })
             } else {
-                $(document).on('click', '.eazydocs-pro-notice', function (e) {
+                $('.eazydocs-pro-notice').on('click', function (e) {
                     e.preventDefault();
                     let href = $(this).attr('href')
                     Swal.fire({
@@ -35,6 +35,33 @@
             }
         }
         eazydocs_pro_notice();
+
+
+
+        $('.easydocs-notification.eazydocs-pro-notice').on('click', function (e) {
+            e.preventDefault();
+            let href = $(this).attr('href')
+            Swal.fire({
+                title: 'Notification is a Premium feature',
+                html: '<span class="pro-notification-body-text">You need to Upgrade the Premium Version to use this feature</span><video height="400px" autoplay="autoplay" loop="loop" src="https://i.imgur.com/2JYBv40.mp4"></video>',
+                icon: false,
+                buttons: false,
+                dangerMode: true,
+                confirmButtonText:
+                    '<a href="admin.php?page=eazydocs-pricing">Upgrade to Premium</a>',
+                showCloseButton: false,
+                footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
+
+                customClass: {
+                    title: 'upgrade-premium-heading',
+                    confirmButton: 'upgrade-premium-button',
+                    footer: 'notification-pro-footer-wrap',
+                },
+                confirmButtonColor: '#f1bd6c',
+                Borderless: true,
+
+            })
+        })
 
         // Remove condition if it has pro notice class
         $('.eazydocs-pro-notice').attr('data-condition', '')

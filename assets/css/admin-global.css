@@ -145,6 +145,36 @@ body.valid .active-theme.csf-field::after {
     padding: 2px 6px;
 }
 
+.swal2-styled.swal2-confirm.upgrade-premium-button {
+    background-color: #f1bd6c;
+    outline:none;
+    box-shadow: none !important;
+}
+
+.swal2-title.upgrade-premium-heading {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    margin-bottom: -9px;
+}
+
+.pro-notification-body-text {
+    font-size: 15px;
+    margin-bottom: 20px;
+    display: block;
+    margin-bottom: 21px;
+}
+.swal2-styled.swal2-confirm.upgrade-premium-button > a {
+    color: black;
+    font-weight: normal;
+}
+
+.swal2-footer.notification-pro-footer-wrap {
+    border-top: none;
+    margin: 8px 0px 0px;
+    padding: 0px;
+}
+
 .swal2-html-container {
     line-height: 1.6;
 }

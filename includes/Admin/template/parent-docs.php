@@ -56,11 +56,11 @@ $count = $query->found_posts;
                 <div class="link">
                     <?php
                     if( current_user_can('editor') || current_user_can('administrator') ) :
-                        if ( eaz_fs()->can_use_premium_code() ) :
+                        if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
                             do_action('eazydocs_parent_doc_duplicate', get_the_ID());
                         else :
 	                        ?>
-                            <a href="javascript:void(0);" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
+                            <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
                                 <span class="dashicons dashicons-admin-page"></span>
                             </a>
                             <?php

@@ -1,6 +1,10 @@
 <?php
 namespace eazyDocs\Admin;
 
+/**
+ * Class Create_Post
+ * @package eazyDocs\Admin
+ */
 class Create_Post {
 	/**
 	 * Create_Post constructor.
@@ -115,7 +119,7 @@ class Create_Post {
 			) );
 
 			$add = 2;
-			echo $order = count( $child_item );
+			$order = count( $child_item );
 			$order = $order + $add;
 
 			// Create post object
