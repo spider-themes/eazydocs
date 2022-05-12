@@ -23,6 +23,12 @@ EazyDocs assist you in quickly and easily creating great looking documentation f
 
 - **Live Customizer:** Set it and see the changes instantly. The Docs archive page, Doc single page layouts can be customized via the WordPress live customizer panel.
 
+- **Recently Viewed Articles:** No need to memorize or remember the last viewed articles by the user. They can see and visit their recently visited articles at the bottom of doc single page
+
+- **Related Articles:** Sometimes readers may be interested to read the Related articles. You can display the Related Articles at the bottom of the Single Doc page to let the readers read articles they interested in.
+
+- **Read time, Views Count:** Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
+
 - **Look Beautiful by Default:** EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
 
 - **Get Feedback from Real Visitors**: Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
@@ -42,8 +48,6 @@ EazyDocs assist you in quickly and easily creating great looking documentation f
 - **Reading Assistant Tools:** There are available some important tools for better reading experience. Font Size switcher, Print option, TOC are developed for a consistent reading experience.
 
 - **Simple Navigation:** The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
-
-- **Read time, Views Count:** Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.com)
@@ -94,6 +98,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 = v1.1.3 (13 May 2022) =
 New: Estimated Reading Time, Views options added to EazyDocs > Settings > Single Doc > General
 New: Added Tags under the EazyDocs admin menu
+New: Recently Viewed articles and Related articles features added on the Single Doc
 Tweaked: Unnecessary CSS removed
 Tweaked: Integrate with any theme (compatibility improved)
 Tweaked: Left sidebar toggle show/hide
