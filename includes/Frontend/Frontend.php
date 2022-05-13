@@ -3,7 +3,8 @@ namespace eazyDocs\Frontend;
 
 class Frontend {
 	public function __construct() {
-		add_filter( 'single_template', [ $this, 'template_loader' ], 20, 99 );
+
+		add_filter( 'template_include', [ $this, 'template_loades' ], 20 );
 		add_action('eazydocs_related_articles', [$this, 'eazydocs_related_articles'], 99, 4);
 		add_action('eazydocs_viewed_articles', [$this, 'recently_viewed_docs'], 99, 4);
         //add_filter( 'body_class', [ $this, 'body_class' ] );
@@ -14,10 +15,9 @@ class Frontend {
 	 *
 	 * @since 1.0.0
 	 */
-	public function template_loader( $template ) {
+	public function template_loades( $template ) {
 		$file = '';
-
-		if ( is_singular('docs') ) {
+		if ( is_single() && 'docs' == get_post_type() ) {
 			$single_template = 'single-docs.php';
 			// Check if a custom template exists in the theme folder, if not, load the plugin template file
 			if ( $theme_file = locate_template( array( 'eazydocs/' . $single_template ) ) ) {
@@ -25,6 +25,8 @@ class Frontend {
 			} else {
 				$file = EAZYDOCS_PATH . '/templates' .'//'. $single_template;
 			}
+		}else {
+			return $template;
 		}
 		return apply_filters( 'eazydocs_template_' . $template, $file );
 	}
