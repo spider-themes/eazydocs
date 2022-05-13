@@ -155,14 +155,13 @@ body.valid .active-theme.csf-field::after {
     font-size: 24px;
     font-weight: 500;
     line-height: 32px;
-    margin-bottom: -9px;
+    margin-bottom: -15px;
 }
 
 .pro-notification-body-text {
     font-size: 15px;
-    margin-bottom: 20px;
     display: block;
-    margin-bottom: 21px;
+    margin-bottom: 25px;
 }
 .swal2-styled.swal2-confirm.upgrade-premium-button > a {
     color: black;

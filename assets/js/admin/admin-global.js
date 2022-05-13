@@ -36,9 +36,8 @@
         }
         eazydocs_pro_notice();
 
-
-
-        $('.easydocs-notification.eazydocs-pro-notice').on('click', function (e) {
+        // Notification pro alert
+        $('.easydocs-notification').on('click', function (e) {
             e.preventDefault();
             let href = $(this).attr('href')
             Swal.fire({
