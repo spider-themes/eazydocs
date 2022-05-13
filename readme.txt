@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, support,
 Requires at least: 5.0
 Tested up to: 5.9.3
 Requires PHP: 7.2
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ EazyDocs assist you in easily creating beautifully designed documentation for yo
 == Description ==
 
 EazyDocs assist you in quickly and easily creating great looking documentation for your products. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+
+See the [Frontend Demo Here](https://wordpress-theme.spider-themes.net/docy/docs/docly-documentation/)
 
 ### 🌟 Top Features ###
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
@@ -25,7 +27,7 @@ EazyDocs assist you in quickly and easily creating great looking documentation f
 
 - **Recently Viewed Articles:** No need to memorize or remember the last viewed articles by the user. They can see and visit their recently visited articles at the bottom of doc single page
 
-- **Related Articles:** Sometimes readers may be interested to read the Related articles. You can display the Related Articles at the bottom of the Single Doc page to let the readers read articles they interested in.
+- **Related Articles:** Sometimes readers might be interested to read the Related articles. You can display the Related Articles at the bottom of the Single Doc page to let the readers read articles they interested in.
 
 - **Read time, Views Count:** Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
 
@@ -94,6 +96,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.1.4 (14 May 2022) =
+Fixed: Was conflicting with theme's single.php template file
+Tweaked: Plugin logo
 
 = v1.1.3 (13 May 2022) =
 New: Estimated Reading Time, Views options added to EazyDocs > Settings > Single Doc > General

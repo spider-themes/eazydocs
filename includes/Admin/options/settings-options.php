@@ -639,7 +639,7 @@ CSF::createSection( $prefix, array(
 
 // Select docs page
 $options      = get_option( 'eazydocs_settings' );
-$doc_id       = $options['docs-slug'];
+$doc_id       = $options['docs-slug'] ?? '';
 $doc_page     = get_post_field( 'post_name', $doc_id );
 $args         = array(
 	'post_type'      => 'docs',

@@ -5,7 +5,7 @@
  * Plugin URI: https://wordpress-theme.spider-themes.net/docy/docs/
  * Author: spider-themes
  * Author URI: #
- * Version: 1.1.3
+ * Version: 1.1.4
  * Requires at least: 5.0
  * Requires PHP: 7.2
  * Text Domain: easydocs
@@ -34,8 +34,8 @@ if ( ! function_exists( 'eaz_fs' ) ) {
                 'premium_slug'        => 'eazydocs-pro',
                 'type'                => 'plugin',
                 'public_key'          => 'pk_8474e4208f0893a7b28c04faf5045',
-                'is_premium'          => true,
-                'is_premium_only'     => true,
+                'is_premium'          => false,
+                'is_premium_only'     => false,
                 'has_addons'          => false,
                 'has_paid_plans'      => true,
                 'trial'               => array(
