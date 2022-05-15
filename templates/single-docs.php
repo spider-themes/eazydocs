@@ -45,15 +45,17 @@ $theme = wp_get_theme();
 $docy = trim( get_option('docy_purchase_code_status') );
 $docly = trim( get_option('docly_purchase_code_status') );
 
-if ( $docy != 'valid' & $docly != 'valid' ) {
+if ( $docy != 'valid' || $docly != 'valid' ) {
     eazydocs_get_template_part('search-banner');
 }
 ?>
 <section class="doc_documentation_area <?php echo esc_attr($content_wrapper); ?>" id="sticky_doc">
     <div class="overlay_bg"></div>
     <?php
-    if ( $breadcrumb == '1' & $docy != 'valid' & $docly != 'valid' ) {
-        eazydocs_get_template_part( 'breadcrumbs' );
+    if( $breadcrumb == '1' ) {
+	    if ( $docy != 'valid' || $docly != 'valid' ) {
+		    eazydocs_get_template_part( 'breadcrumbs' );
+	    }
     }
     ?>
     <div class="<?php echo esc_attr($doc_container); ?>">

@@ -767,3 +767,23 @@ CSF::createSection( $prefix, array(
 		),
 	]
 ) );
+
+
+//
+// Instant Answer
+//
+CSF::createSection( $prefix, array(
+	'id'     => 'eazydocs_instant_answer',
+	'title'  => esc_html__( 'Assistant', 'eazydocs' ),
+	'icon'   => 'fas fa-plus-circle',
+	'fields' => [
+		array(
+			'id'       => 'assistant_contact_mail',
+			'type'     => 'text',
+			'title'    => esc_html__( 'Receiver Email', 'eazydocs' ),
+			'default'  => get_option( 'admin_email' ),
+			'validate' => 'csf_validate_email',
+			'class'     => 'eazydocs-pro-notice'
+		)
+	]
+) );

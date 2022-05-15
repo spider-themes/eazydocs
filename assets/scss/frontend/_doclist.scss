@@ -1411,3 +1411,16 @@ body:not(.onepage-doc) .sticky_menu {
   content: "•";
   margin: 0 5px;
 }
+.doc_left_sidebarlist:after {
+  display: block;
+  clear: both;
+  content: "";
+  width: 200%;
+  right: 0;
+  background: #f5f7f9;
+  position: absolute;
+  border-right: 1px solid #E6EDF0;
+  bottom: -75px;
+  z-index: -1;
+  height: 75px;
+}

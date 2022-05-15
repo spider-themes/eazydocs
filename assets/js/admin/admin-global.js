@@ -7,7 +7,7 @@
         // NEW DOC
         function eazydocs_pro_notice() {
             if ( $('body').hasClass('valid') ) {
-                $(document).on('click', '.eazydocs-pro-notice:not(.active-theme)', function (e) {
+                $('.eazydocs-pro-notice:not(.active-theme)').on('click', function (e) {
                     e.preventDefault();
                     let href = $(this).attr('href')
                     Swal.fire({
@@ -46,9 +46,9 @@
                 icon: false,
                 buttons: false,
                 dangerMode: true,
+                showCloseButton: true,
                 confirmButtonText:
                     '<a href="admin.php?page=eazydocs-pricing">Upgrade to Premium</a>',
-                showCloseButton: false,
                 footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
 
                 customClass: {

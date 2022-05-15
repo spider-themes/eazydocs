@@ -102,14 +102,14 @@ CSF::createSection( $prefix, array(
                             'id'    => 'doc_banner_bg',
                             'type'  => 'background',
                             'title' => esc_html__( 'Background', 'eazydocs-pro' ),
-                            'output' => '.doc_banner_area.has_bg_dark',
+                            'output' => '.ezd_search_banner.has_bg_dark',
                         ),
                         array(
                             'id'            => 'keywords_label_color',
                             'type'          => 'color',
                             'title'         => esc_html__( 'Keywords Label Color', 'eazydocs-pro' ),
                             'output_mode'   => 'color',
-                            'output'        => '.doc_banner_area.has_bg_dark .header_search_keyword .label',
+                            'output'        => '.ezd_search_banner.has_bg_dark .header_search_keyword .label',
                             'class'         => 'eazydocs-pro-notice'
                         ),
                         array(
@@ -117,7 +117,7 @@ CSF::createSection( $prefix, array(
                             'type'          => 'color',
                             'title'         => esc_html__( 'Keywords Color', 'eazydocs-pro' ),
                             'output_mode'   => 'color',
-                            'output'        => '.doc_banner_area.has_bg_dark .header_search_keyword ul li a',
+                            'output'        => '.ezd_search_banner.has_bg_dark .header_search_keyword ul li a',
                             'class'         => 'eazydocs-pro-notice'
                         ),
                     )
@@ -125,14 +125,14 @@ CSF::createSection( $prefix, array(
 
                 // Left Sidebar
                 array(
-                    'title'         => esc_html__( 'Left Sidebar', 'eazydocs-pro' ),
+                    'title'         => esc_html__( 'Sidebar', 'eazydocs-pro' ),
                     'fields'        => array(
                         array(
                             'id'            => 'docs-sidebar-bg',
                             'type'          => 'color',
                             'title'         => esc_html__( 'Background Color', 'eazydocs-pro' ),
                             'output_mode'   => 'background-color',
-                            'output'        => '.doc_left_sidebarlist:before',
+                            'output'        => '.doc_left_sidebarlist:before,.doc_left_sidebarlist:after',
                         ),
                         array(
                             'id'        => 'docs-sidebar-padding',
@@ -157,31 +157,56 @@ CSF::createSection( $prefix, array(
                             'output_mode'   => 'background-color',
                         ),
                     )
-                ),
-
-                // Right Sidebar
-                array(
-                    'title'         => esc_html__( 'Right Sidebar', 'eazydocs-pro' ),
-                    'fields'        => array(
-                        array(
-                            'id'      => 'docs-right-sidebar-bg',
-                            'type'    => 'color',
-                            'title'   => esc_html__( 'Background Color', 'eazydocs-pro' ),
-                            'output_mode'   => 'background-color',
-                            'output' => '.doc_rightsidebar.scroll:before'
-                        ),
-                        array(
-                            'id'       => 'docs-right-sidebar-padding',
-                            'type'     => 'spacing',
-                            'top'       => false,
-                            'bottom'    => false,
-                            'title'    => esc_html__( 'Sidebar Padding', 'eazydocs-pro' ),
-                            'output' => '.doc_right_mobile_menu'
-                        )
-                    )
-                ),
+                )
             )
         ),
+
+	)
+) );
+
+
+// Assistant
+CSF::createSection( $prefix, array(
+	'id'     => 'docs-assistant',
+	'parent' => 'docs-page',
+	'class'     => 'eazydocs-pro-notice',
+	'title'  => esc_html__( 'Assistant', 'eazydocs-pro' ),
+	'fields' => array(
+
+		array(
+			'id'         => 'assistant_visibility',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Visibility', 'eazydocs-pro' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'text_width' => 70,
+			'default'    => false,
+			'class'     => 'eazydocs-pro-notice'
+		),
+
+		array(
+			'id'          => 'assistant_bg',
+			'type'        => 'color',
+			'title'       => esc_html__( 'Background Color', 'eazydocs-pro' ),
+			'output'      => '.chat-toggle a',
+			'output_mode' => 'background-color',
+			'dependency'  => array(
+				array( 'assistant_visibility', '==', 'true' )
+			),
+			'class'     => 'eazydocs-pro-notice'
+		),
+
+		array(
+			'id'     => 'assistant_spacing',
+			'type'   => 'spacing',
+			'title'  => 'Position',
+			'output' => '.chat-toggle,.chatbox-wrapper',
+			'output_mode' => 'margin', // or margin, relative
+			'dependency'  => array(
+				array( 'assistant_visibility', '==', 'true' )
+			),
+			'class'     => 'eazydocs-pro-notice'
+		)
 
 	)
 ) );
