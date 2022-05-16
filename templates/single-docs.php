@@ -80,17 +80,17 @@ if ( $docy != 'valid' || $docly != 'valid' ) {
     </div>
 </section>
 
-<div class="section eazydocs-footer">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <?php if( $credit_enable == '1' ) : ?>
-            <div class="eazydocx-credit-text">
-                <?php echo wp_kses_post(wpautop($credit_text)); ?>
+<?php if( $credit_enable == '1' ) : ?>
+    <div class="section eazydocs-footer">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="eazydocx-credit-text">
+                    <?php echo wp_kses_post(wpautop($credit_text)); ?>
+                </div>
             </div>
-            <?php endif; ?>
         </div>
     </div>
-</div>
+<?php endif; ?>
 
 <?php
 get_footer();

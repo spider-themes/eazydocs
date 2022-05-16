@@ -157,7 +157,7 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'text_width' => 90,
 			'default'    => false,
-            'class'     => 'eazydocs-pro-notice active-theme',
+            'class'     => 'eazydocs-pro-notice active-theme-docy',
 		),
 		array(
 			'title'    => esc_html__( 'Section Excerpt', 'eazydocs' ),
@@ -484,6 +484,17 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 		),
 
+        array(
+            'title'     => esc_html__( 'Dark Mode', 'docly' ),
+            'desc'  => esc_html__( 'Note: The disable Dark Mode will permanently disable and delete the Dark mode and will keep only the light mode.', 'docly' ),
+            'id'        => 'is_dark_switcher',
+            'type'      => 'switcher',
+            'text_on'   => esc_html__( 'Enable', 'docly' ),
+            'text_off'  => esc_html__( 'Disable', 'docly' ),
+            'text_width' => 90,
+            'default'   => false,
+        ),
+
 		array(
 			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
 			'desc'       => __( 'You can display conditional contents using the [conditional_data] shortcode in documentation based on the dropdown value. See the shortcode usage tutorial <a href="https://tinyurl.com/yd46mfax" target="_blank">here</a>.', 'eazydocs' ),
@@ -493,6 +504,7 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
 			'default'    => false,
+            'class'      => 'eazydocs-pro-notice active-theme'
 		),
 
 		array(
@@ -511,7 +523,8 @@ CSF::createSection( $prefix, array(
 					'type'  => 'icon',
 				),
 			),
-			'dependency' => array( 'is_conditional_dropdown', '==', '1' )
+			'dependency' => array( 'is_conditional_dropdown', '==', '1' ),
+            'class'      => 'eazydocs-pro-notice active-theme'
 		),
 	)
 ) );

@@ -52,7 +52,7 @@ See the [Frontend Demo Here](https://wordpress-theme.spider-themes.net/docy/docs
 - **Simple Navigation:** The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
 
 ### Author ###
-Brought to you by Md Jwel from [spider-themes](https://spider-themes.com)
+Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
 
 == Frequently Asked Questions ==
 

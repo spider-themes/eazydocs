@@ -132,10 +132,20 @@ class Admin {
 		include __DIR__ . '/admin-template.php';
 	}
 
-    public function body_class() {
-        $docy = trim( get_option('docy_purchase_code_status') );
-        $docly = trim( get_option('docly_purchase_code_status') );
+    public function body_class( $classes ) {
+        $current_theme = get_template();
+        $classes .= ' '.$current_theme;
+        switch ( $current_theme ) {
+            case 'docy':
+                $classes .= ' '.trim( get_option('docy_purchase_code_status') );
+                break;
+            case 'docly':
+                $classes .= ' '.trim( get_option('docly_purchase_code_status') );
+                break;
+            default:
+                $classes .= '';
+        }
 
-        return $docy.$docly;
+        return $classes;
     }
 }

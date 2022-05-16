@@ -108,12 +108,20 @@ a.eazydocs-close-notice:active {
     pointer-events: none;
 }
 
+body.valid.docy .active-theme-docy .csf-title,
+body.valid.docy .active-theme-docy .csf-fieldset,
+body.valid.docly .active-theme-docly .csf-title,
+body.valid.docly .active-theme-docly .csf-fieldset,
 body.valid .active-theme .csf-title,
 body.valid .active-theme .csf-fieldset {
     pointer-events: inherit;
     opacity: 1;
 }
 
+body.valid.docy .active-theme-docy.csf-field::before,
+body.valid.docy .active-theme-docy.csf-field::after,
+body.valid.docly .active-theme-docly.csf-field::before,
+body.valid.docly .active-theme-docly.csf-field::after,
 body.valid .active-theme.csf-field::before,
 body.valid .active-theme.csf-field::after {
     display: none;
