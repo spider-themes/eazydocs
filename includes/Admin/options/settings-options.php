@@ -781,22 +781,233 @@ CSF::createSection( $prefix, array(
 	]
 ) );
 
-
 //
 // Instant Answer
 //
 CSF::createSection( $prefix, array(
 	'id'     => 'eazydocs_instant_answer',
-	'title'  => esc_html__( 'Assistant', 'eazydocs' ),
+	'title'  => esc_html__( 'Assistant', 'eazydocs-pro' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
+
 		array(
-			'id'       => 'assistant_contact_mail',
-			'type'     => 'text',
-			'title'    => esc_html__( 'Receiver Email', 'eazydocs' ),
-			'default'  => get_option( 'admin_email' ),
-			'validate' => 'csf_validate_email',
-			'class'     => 'eazydocs-pro-notice'
+			'type'  => 'heading',
+			'title' => esc_html__( 'Assistant', 'eazydocs-pro' ),
+		),
+
+		array(
+			'id'         => 'assistant_visibility',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Enable/Disable', 'eazydocs-pro' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'class'     => 'eazydocs-pro-notice',
+			'text_width' => 70,
+			'default'    => false
+		),
+		array(
+			'id'             => 'assistant_open_icon',
+			'type'           => 'media',
+			'title'          => esc_html__( 'Open Icon', 'eazydocs-pro' ),
+			'library'        => 'image',
+			'url'            => false,
+			'preview_width'  => '60',
+			'preview_height' => '60',
+			'class'     => 'eazydocs-pro-notice',
+			'dependency'     => array(
+				array( 'assistant_visibility', '==', 'true' )
+			)
+		),
+
+		array(
+			'id'             => 'assistant_close_icon',
+			'type'           => 'media',
+			'title'          => esc_html__( 'Close Icon', 'eazydocs-pro' ),
+			'library'        => 'image',
+			'class'     => 'eazydocs-pro-notice',
+			'url'            => false,
+			'preview_width'  => '60',
+			'preview_height' => '60',
+			'dependency'     => array(
+				array( 'assistant_visibility', '==', 'true' )
+			)
+		),
+
+		array(
+			'id'    => 'assistant_tab_settings',
+			'type'  => 'tabbed',
+			'class'     => 'eazydocs-pro-notice',
+			'title' => 'Tab Settings',
+			'dependency'     => array(
+				array( 'assistant_visibility', '==', 'true' )
+			),
+			'tabs'  => array(
+				array(
+					'title'  => 'Knowledge Base',
+					'fields' => array(
+
+						array(
+							'id'         => 'kb_visibility',
+							'type'       => 'switcher',
+							'title'      => esc_html__( 'Enable/Disable', 'eazydocs-pro' ),
+							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+							'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+							'text_width' => 70,
+							'default'    => true
+						),
+
+						array(
+							'id'         => 'kb_label',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Heading', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'Knowledge Base', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'kb_visibility', '==', 'true' ),
+							)
+						),
+
+						array(
+							'id'         => 'assistant_search',
+							'type'       => 'switcher',
+							'title'      => esc_html__( 'Search', 'eazydocs-pro' ),
+							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+							'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+							'text_width' => 70,
+							'default'    => false,
+							'dependency' => array(
+								array( 'kb_visibility', '==', 'true' )
+							)
+						),
+
+						array(
+							'id'         => 'kb_search_placeholder',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Search Placeholder', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'Search...', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'assistant_search', '==', 'true' ),
+								array( 'kb_visibility', '==', 'true' )
+							)
+						),
+
+						array(
+							'id'         => 'assistant_breadcrumb',
+							'type'       => 'switcher',
+							'title'      => esc_html__( 'Breadcrumb', 'eazydocs-pro' ),
+							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+							'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+							'text_width' => 70,
+							'default'    => false,
+							'dependency' => array(
+								array( 'kb_visibility', '==', 'true' )
+							)
+						),
+
+						array(
+							'id'         => 'docs_not_found',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Docs not Found', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'Docs not Found', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'kb_visibility', '==', 'true' )
+							)
+						)
+
+					)
+				),
+
+				array(
+					'title'  => 'Contact',
+					'fields' => array(
+
+						array(
+							'id'         => 'contact_visibility',
+							'type'       => 'switcher',
+							'title'      => esc_html__( 'Enable/Disable', 'eazydocs-pro' ),
+							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+							'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+							'text_width' => 70,
+							'default'    => true
+						),
+
+						array(
+							'id'         => 'contact_label',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Heading', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'Contact', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'contact_visibility', '==', 'true' ),
+							)
+						),
+
+						array(
+							'id'         => 'assistant_contact_mail',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Receiver Email', 'eazydocs-pro' ),
+							'default'    => get_option( 'admin_email' ),
+							'validate'   => 'csf_validate_email',
+							'dependency' => array(
+								array( 'contact_visibility', '==', 'true' ),
+							)
+						),
+
+						array(
+							'type'       => 'subheading',
+							'title'      => esc_html__( 'Form Input', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'contact_visibility', '==', 'true' ),
+							)
+						),
+						array(
+							'id'         => 'contact_fullname',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Full name', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'Full name', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'contact_visibility', '==', 'true' ),
+							)
+						),
+						array(
+							'id'         => 'contact_mail',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Email', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'name@example.com', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'contact_visibility', '==', 'true' ),
+							)
+						),
+						array(
+							'id'         => 'contact_subject',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Subject', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'Subject', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'contact_visibility', '==', 'true' ),
+							)
+						),
+						array(
+							'id'         => 'contact_message',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Message', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'Write Your Message', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'contact_visibility', '==', 'true' ),
+							)
+						),
+						array(
+							'id'         => 'contact_submit',
+							'type'       => 'text',
+							'title'      => esc_html__( 'Submit Button', 'eazydocs-pro' ),
+							'default'      => esc_html__( 'Send Message', 'eazydocs-pro' ),
+							'dependency' => array(
+								array( 'contact_visibility', '==', 'true' ),
+							)
+						),
+
+					)
+				),
+			)
 		)
+
 	]
 ) );

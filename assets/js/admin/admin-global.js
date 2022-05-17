@@ -37,7 +37,7 @@
         eazydocs_pro_notice();
 
         // Notification pro alert
-        $('.easydocs-notification').on('click', function (e) {
+        $('.easydocs-notification.pro-notification-alert').on('click', function (e) {
             e.preventDefault();
             let href = $(this).attr('href')
             Swal.fire({

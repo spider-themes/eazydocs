@@ -54,7 +54,7 @@
 		                    do_action('eazydocs_notification');
 	                    else :
 		                    ?>
-                            <li class="easydocs-notification">
+                            <li class="easydocs-notification pro-notification-alert">
                                 <div class="header-notify-icon">
                                     <img class="notify-icon" src="<?php echo EAZYDOCS_IMG ?>/admin/notification.svg" alt="<?php esc_html_e( 'Notify Icon', 'eazydocs' ); ?>">
                                     <img class="settings-pro-icon" src="<?php echo EAZYDOCS_IMG ?>/admin/pro-icon.png" alt="<?php esc_html_e( 'Pro Icon', 'eazydocs' ); ?>">

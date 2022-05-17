@@ -24,7 +24,7 @@ $docs_num          = count( $posts );
 		else :
 		    ?>
             <div class="eazydocs-no-content">
-                <img src="<?php echo EAZYDOCS_IMG ?>/icon/folder-open.png" alt="">
+                <img src="<?php echo EAZYDOCS_IMG ?>/icon/folder-open.png" alt="<?php esc_attr_e( 'Folder Open', 'eazydocs' ); ?>">
 				<span> <?php esc_html_e( 'No docs has been found. Perhaps', 'eazydocs' ); ?> </span>
                 <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?new_doc=" id="new-doc">
 					<?php esc_html_e( 'Create one?', 'eazydocs' ); ?>
