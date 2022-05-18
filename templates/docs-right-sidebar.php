@@ -1,8 +1,8 @@
 <?php
-$options            = get_option( 'eazydocs_settings' );
-$is_conditional_dropdown  = $options['is_conditional_dropdown'] ?? '';
-$condition_options  = $options['condition_options'] ?? '';
-$article_print      = $options['pr-icon-switcher'] ?? '';
+$opt            = get_option( 'eazydocs_settings' );
+$is_conditional_dropdown  = $opt['is_conditional_dropdown'] ?? '';
+$condition_options  = $opt['condition_options'] ?? '';
+$article_print      = $opt['pr-icon-switcher'] ?? '';
 ?>
 <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-top">
     <div class="open_icon" id="right">
@@ -29,22 +29,24 @@ $article_print      = $options['pr-icon-switcher'] ?? '';
                 </select>
                 <script>
                 jQuery(document).ready(function() {
-                <?php
-                foreach ( $condition_options as $option ) {
-                    echo '
-                    if( jQuery("#condition_options").val() == "' . esc_js(sanitize_title( $option['title'] )) . '" ) {
-                        jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").show();
-                    } else {
-                        jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").hide();
-                    }
-                    jQuery("#condition_options").change(function() {
+                    <?php
+                    foreach ( $condition_options as $option ) {
+                        echo '
                         if( jQuery("#condition_options").val() == "' . esc_js(sanitize_title( $option['title'] )) . '" ) {
                             jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").show();
                         } else {
                             jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").hide();
                         }
-                    })';
-                }
+                        jQuery("#condition_options").change(function() {
+                            if( jQuery("#condition_options").val() == "' . esc_js(sanitize_title( $option['title'] )) . '" ) {
+                                jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").show();
+                            } else {
+                                jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").hide();
+                            }
+                        })
+                        ';
+                    }
+                    echo "jQuery('.bs-select').selectpicker();";
                 echo '}) </script>';
             endif;
             ?>
@@ -67,6 +69,15 @@ $article_print      = $options['pr-icon-switcher'] ?? '';
                     <a href="#" class="print"><i class="icon_printer"></i></a>
 				<?php endif; ?>
             </div>
+            <?php
+            $is_dark_switcher = $opt['is_dark_switcher'] ?? '1';
+            if ( $is_dark_switcher == '1' ) : ?>
+                <div class="doc_switch">
+                    <label for="something" class="tab-btn tab-btns light-mode"><i class="icon_lightbulb_alt"></i></label>
+                    <input type="checkbox" name="something" id="something" class="tab_switcher">
+                        <label for="something" class="tab-btn dark-mode"><i class="far fa-moon"></i></label>
+                </div>
+            <?php endif; ?>
             <div class="table-of-content">
                 <h6><i class="icon_ul"></i> <?php esc_html_e( 'CONTENTS', 'eazydocs' ); ?></h6>
                 <nav class="list-unstyled doc_menu" data-toggle="toc" id="eazydocs-toc"></nav>

@@ -19,10 +19,6 @@
             }
         }
 
-        if ( $(".bs-select").length ) {
-            $("#condition_options").selectpicker();
-        }
-
         $('.body_wrapper').addClass('eazydocs_assistant_body');
 
     })

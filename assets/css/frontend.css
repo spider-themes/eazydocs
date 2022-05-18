@@ -25,18 +25,22 @@
 
 /*font Variables*/
 /**=== Functions ===**/
-a {
+.doc-middle-content a {
   text-decoration: none;
   color: var(--ezd_brand_color);
 }
 
-main, main#main, section {
+.single-docs main, .single-docs main#main, .single-docs section {
   padding: 0;
 }
-
-h1, h2, h3, h4, h5, h6 {
+.single-docs h1, .single-docs h2, .single-docs h3, .single-docs h4, .single-docs h5, .single-docs h6 {
   margin-top: 0;
   font-weight: 700;
+}
+.single-docs .meta {
+  color: var(--black_500);
+  font-size: 14px;
+  font-weight: 400;
 }
 
 input[type=search]::-webkit-search-decoration,
@@ -62,12 +66,6 @@ input[type=search]::-webkit-search-results-decoration {
 .sticky-top {
   align-self: flex-start !important;
   z-index: 1;
-}
-
-.meta {
-  color: var(--black_500);
-  font-size: 14px;
-  font-weight: 400;
 }
 
 .dot-sep span:nth-child(2) {
@@ -1079,6 +1077,9 @@ input[type=search]::-webkit-search-results-decoration {
   padding-left: 20px;
   position: relative;
 }
+.doc_rightsidebar .pageSideSection .dropdown.bootstrap-select {
+  width: 100% !important;
+}
 .doc_rightsidebar .pageSideSection::before {
   content: "";
   position: absolute;
@@ -1669,7 +1670,10 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   display: block;
 }
 .documentation_item .media-body .title:hover {
-  color: var(--ezd_brand_color);
+  text-decoration: underline;
+  text-decoration-color: rgba(76, 122, 241, 0.25);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 .documentation_item .media-body p {
   margin-bottom: 0;

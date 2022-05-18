@@ -477,7 +477,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'pr-icon-switcher',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Print article', 'eazydocs' ),
+			'title'      => esc_html__( 'Print Article', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
@@ -485,14 +485,15 @@ CSF::createSection( $prefix, array(
 		),
 
         array(
-            'title'     => esc_html__( 'Dark Mode', 'docly' ),
-            'desc'  => esc_html__( 'Note: The disable Dark Mode will permanently disable and delete the Dark mode and will keep only the light mode.', 'docly' ),
+            'title'     => esc_html__( 'Dark Mode', 'eazydocs' ),
+            'desc'  => esc_html__( 'Note: The disable Dark Mode will permanently disable and delete the Dark mode and will keep only the light mode.', 'eazydocs' ),
             'id'        => 'is_dark_switcher',
             'type'      => 'switcher',
-            'text_on'   => esc_html__( 'Enable', 'docly' ),
-            'text_off'  => esc_html__( 'Disable', 'docly' ),
+            'text_on'   => esc_html__( 'Enable', 'eazydocs' ),
+            'text_off'  => esc_html__( 'Disable', 'eazydocs' ),
             'text_width' => 90,
             'default'   => false,
+            'class'      => 'eazydocs-pro-notice active-theme-docly'
         ),
 
 		array(
@@ -527,7 +528,7 @@ CSF::createSection( $prefix, array(
             'class'      => 'eazydocs-pro-notice active-theme'
 		),
 	)
-) );
+));
 
 CSF::createSection( $prefix, array(
 	'id'     => 'doc_related_articles',
@@ -540,7 +541,6 @@ CSF::createSection( $prefix, array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Related Docs', 'eazydocs' )
 		),
-
 		array(
 			'id'         => 'related-docs',
 			'type'       => 'switcher',
@@ -550,7 +550,6 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 			'text_width' => 72
 		),
-
 		array(
 			'id'         => 'related-docs-title',
 			'type'       => 'text',
@@ -562,7 +561,6 @@ CSF::createSection( $prefix, array(
 				'true'
 			)
 		),
-
 		array(
 			'id'         => 'related-visible-docs',
 			'type'       => 'number',
@@ -574,7 +572,6 @@ CSF::createSection( $prefix, array(
 				'true'
 			)
 		),
-
 		array(
 			'id'         => 'related-docs-more-btn',
 			'type'       => 'text',
@@ -586,7 +583,6 @@ CSF::createSection( $prefix, array(
 				'true'
 			)
 		),
-
 	)
 ) );
 
@@ -708,16 +704,6 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
 			'desc'       => __( 'Know the usage of this shortcode <a href="https://tinyurl.com/yd46mfax" target="_blank"> here </a>', 'eazydocs' ),
 			'default'    => '[conditional_data]',
-			'attributes' => array(
-				'readonly' => 'readonly',
-			),
-		),
-		array(
-			'id'         => 'direction_shortcode',
-			'type'       => 'text',
-			'title'      => esc_html__( 'Direction Shortcode', 'eazydocs' ),
-			'desc'       => __( 'Know the usage of this shortcode <a href="https://tinyurl.com/y2xxhsvx" target="_blank"> here </a>', 'eazydocs' ),
-			'default'    => '[direction]',
 			'attributes' => array(
 				'readonly' => 'readonly',
 			),

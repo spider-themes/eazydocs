@@ -690,7 +690,7 @@ label {
 .accordion-title .count {
   margin-left: 5px;
   color: #fff;
-  background: var(--black_400);
+  background: var(--black_300);
 }
 .accordion-title:hover {
   background: #F9F9F9;

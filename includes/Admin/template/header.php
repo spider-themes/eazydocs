@@ -31,14 +31,12 @@
                         <li>
                             <div class="easydocs-settings">
 
-                                <?php
-                                if( current_user_can('edit_posts') ) :
-                                ?>
-                                <div class="header-notify-icons">
-                                    <a href="<?php echo admin_url('edit.php?post_type=docs'); ?>" title="<?php esc_html_e( 'Go to Classic UI', 'eazydocs' );?>">
-                                        <?php esc_html_e( 'Classic UI', 'eazydocs' );?>
-                                    </a>
-                                </div>
+                                <?php if( current_user_can('edit_posts') ) : ?>
+                                    <div class="header-notify-icons">
+                                        <a href="<?php echo admin_url('edit.php?post_type=docs'); ?>" title="<?php esc_html_e( 'Go to Classic UI', 'eazydocs' );?>">
+                                            <?php esc_html_e( 'Classic UI', 'eazydocs' );?>
+                                        </a>
+                                    </div>
                                 <?php endif; ?>
 
                                 <div class="header-notify-icon">
@@ -54,16 +52,15 @@
 		                    do_action('eazydocs_notification');
 	                    else :
 		                    ?>
-                            <li class="easydocs-notification pro-notification-alert">
+                            <li class="easydocs-notification pro-notification-alert" title="<?php esc_attr_e('Notifications', 'eazydocs'); ?>">
                                 <div class="header-notify-icon">
                                     <img class="notify-icon" src="<?php echo EAZYDOCS_IMG ?>/admin/notification.svg" alt="<?php esc_html_e( 'Notify Icon', 'eazydocs' ); ?>">
                                     <img class="settings-pro-icon" src="<?php echo EAZYDOCS_IMG ?>/admin/pro-icon.png" alt="<?php esc_html_e( 'Pro Icon', 'eazydocs' ); ?>">
                                 </div>
                             </li>
-	                    <?php
+	                        <?php
 	                    endif;
 	                    ?>
-
                     </ul>
                 </div>
             </div>

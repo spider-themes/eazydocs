@@ -646,6 +646,9 @@
   .pageSideSection {
     padding-left: 20px;
     position: relative;
+    .dropdown.bootstrap-select {
+      width: 100% !important;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -1291,7 +1294,10 @@ body:not(.onepage-doc) .sticky_menu {
       transition: color 0.2s linear;
       display: block;
       &:hover {
-        color: var(--ezd_brand_color);
+        text-decoration: underline;
+        text-decoration-color: rgba(76,122,241,.25);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
       }
     }
 

@@ -7,7 +7,7 @@
         // NEW DOC
         function eazydocs_pro_notice() {
             if ( $('body').hasClass('valid') ) {
-                $('.eazydocs-pro-notice:not(.active-theme)').on('click', function (e) {
+                $('.eazydocs-pro-notice:not(div[class*="active-theme"])').on('click', function (e) {
                     e.preventDefault();
                     let href = $(this).attr('href')
                     Swal.fire({

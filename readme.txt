@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, support,
 Requires at least: 5.0
 Tested up to: 5.9.3
 Requires PHP: 7.2
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,6 +96,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.1.5 (19 May 2022) =
+Tweaked: Theme compatibility improved
+Tweaked: Backend and frontend design improved
+Updated: Language file updated
 
 = v1.1.4 (14 May 2022) =
 Fixed: Was conflicting with theme's single.php template file
