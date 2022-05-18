@@ -14,14 +14,14 @@ $doc_feedback_label  = esc_html__( 'Was this page helpful?', 'eazydocs' );
 $tags                = get_the_terms( get_the_ID(), 'doc_tag' );
 
 if( class_exists('EazyDocsPro')){
-	$still_stuck     = ! empty ( $options['still-stuck'] ) ? $options['still-stuck'] : $still_stuck;
-	$link_text       = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : $link_text;
-	$doc_feedback_label  = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : $doc_feedback_label;
+	$still_stuck            = ! empty ( $options['still-stuck'] ) ? $options['still-stuck'] : $still_stuck;
+	$link_text              = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : $link_text;
+	$doc_feedback_label     = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : $doc_feedback_label;
 }
 ?>
-
 <div class="doc-btm">
 	<?php
+	$has_next_prev = '';
 	if ( $tags ) {
 		echo '<ul class="nav card_tagged">';
 		echo '<li>' . esc_html__( 'Tagged:', 'eazydocs' ) . '</li>';
@@ -29,7 +29,10 @@ if( class_exists('EazyDocsPro')){
 			echo "<li><a href='" . get_term_link( $tag->term_id, 'doc_tag' ) . "'>{$tag->name}</a></li>";
 		}
 		echo '</ul>';
+		$has_next_prev = 'has_tags_next_prev';
 	}
+	// Next & Previous Link
+	do_action('eazydocs_prev_next_docs', $has_next_prev);
 	?>
     <footer class="help_text" id="help">
         <div class="border_bottom"></div>
