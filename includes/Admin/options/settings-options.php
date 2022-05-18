@@ -149,6 +149,13 @@ CSF::createSection( $prefix, array(
 			'default' => true // or false
 		),
 		array(
+			'id'      => 'enable-next-prev-links',
+			'type'    => 'switcher',
+			'title'   => esc_html__( 'Next & Previous Link', 'eazydocs-pro' ),
+			'default' => false, // or false
+			'class'     => 'eazydocs-pro-notice'
+		),
+		array(
 			'title'      => esc_html__( 'Ajax Loading', 'eazydocs' ),
 			'subtitle'   => esc_html__( 'Load doc pages via Ajax.', 'eazydocs' ),
 			'id'         => 'is_doc_ajax',

@@ -12,11 +12,12 @@ $still_stuck         = esc_html__( 'Still stuck?', 'eazydocs' );
 $link_text           = esc_html__( 'How can we help?', 'eazydocs' );
 $doc_feedback_label  = esc_html__( 'Was this page helpful?', 'eazydocs' );
 $tags                = get_the_terms( get_the_ID(), 'doc_tag' );
-
+$enable_next_prev    = '';
 if( class_exists('EazyDocsPro')){
 	$still_stuck            = ! empty ( $options['still-stuck'] ) ? $options['still-stuck'] : $still_stuck;
 	$link_text              = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : $link_text;
 	$doc_feedback_label     = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : $doc_feedback_label;
+	$enable_next_prev       = ! empty ( $options['enable-next-prev-links'] ) ?? '';
 }
 ?>
 <div class="doc-btm">
@@ -32,7 +33,9 @@ if( class_exists('EazyDocsPro')){
 		$has_next_prev = 'has_tags_next_prev';
 	}
 	// Next & Previous Link
-	do_action('eazydocs_prev_next_docs', $has_next_prev);
+    if( $enable_next_prev == '1' ) {
+	    do_action( 'eazydocs_prev_next_docs', $has_next_prev );
+    }
 	?>
     <footer class="help_text" id="help">
         <div class="border_bottom"></div>
