@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, support,
 Requires at least: 5.0
 Tested up to: 5.9.3
 Requires PHP: 7.2
-Stable tag: 1.1.5
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,8 @@ See the [Frontend Demo Here](https://wordpress-theme.spider-themes.net/docy/docs
 - **Multilingual Ready:** EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one!
 
 - **Responsive & Retina Ready:** EazyDocs is 100% responsive to make your Knowledge base look beautiful and effective on all major devices.
+
+- **On Demand Asset Loading:** Loading only necessary css, javascript assets on the EazyDocs pages and will not load our assets on other pages of your website.
 
 - **Reading Assistant Tools:** There are available some important tools for better reading experience. Font Size switcher, Print option, TOC are developed for a consistent reading experience.
 
@@ -97,10 +99,20 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.1.7 (22 May 2022) =
+Tweaked: Frontend assets are loading on demand (loads the css, js files when needed)
+Tweaked: On Demand Asset Loading (loading only necessary css, javascript assets on the EazyDocs pages and will not load our assets on other pages of your website)
+
+= v1.1.6 (20 May 2022) =
+Tweaked: Doc single page design
+Tweaked: Version number suffix added to plugin's custom stylesheet and scripts file to load the updated files easily
+Tweaked: Removed some unnecessary code
+
 = v1.1.5 (19 May 2022) =
 Tweaked: Theme compatibility improved
 Tweaked: Backend and frontend design improved
 Updated: Language file updated
+Fixed: The conditional dropdown was not working
 
 = v1.1.4 (14 May 2022) =
 Fixed: Was conflicting with theme's single.php template file

@@ -143,10 +143,13 @@ CSF::createSection( $prefix, array(
 			'default' => true // or false
 		),
 		array(
-			'id'      => 'enable-comment',
-			'type'    => 'switcher',
-			'title'   => esc_html__( 'Enable Comment', 'eazydocs' ),
-			'default' => true // or false
+			'id'        => 'enable-comment',
+			'type'      => 'switcher',
+			'title'     => esc_html__( 'Comment', 'eazydocs' ),
+            'text_on'   => esc_html__( 'Enabled', 'eazydocs' ),
+            'text_off'  => esc_html__( 'Disabled', 'eazydocs' ),
+            'text_width' => 90,
+			'default'   => true // or false
 		),
 		array(
 			'id'      => 'enable-next-prev-links',
@@ -490,18 +493,6 @@ CSF::createSection( $prefix, array(
 			'text_width' => 72,
 			'default'    => true,
 		),
-
-        array(
-            'title'     => esc_html__( 'Dark Mode', 'eazydocs' ),
-            'desc'  => esc_html__( 'Note: The disable Dark Mode will permanently disable and delete the Dark mode and will keep only the light mode.', 'eazydocs' ),
-            'id'        => 'is_dark_switcher',
-            'type'      => 'switcher',
-            'text_on'   => esc_html__( 'Enable', 'eazydocs' ),
-            'text_off'  => esc_html__( 'Disable', 'eazydocs' ),
-            'text_width' => 90,
-            'default'   => false,
-            'class'      => 'eazydocs-pro-notice active-theme-docly'
-        ),
 
 		array(
 			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),

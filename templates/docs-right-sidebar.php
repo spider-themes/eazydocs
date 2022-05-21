@@ -69,15 +69,7 @@ $article_print      = $opt['pr-icon-switcher'] ?? '';
                     <a href="#" class="print"><i class="icon_printer"></i></a>
 				<?php endif; ?>
             </div>
-            <?php
-            $is_dark_switcher = $opt['is_dark_switcher'] ?? '1';
-            if ( $is_dark_switcher == '1' ) : ?>
-                <div class="doc_switch">
-                    <label for="something" class="tab-btn tab-btns light-mode"><i class="icon_lightbulb_alt"></i></label>
-                    <input type="checkbox" name="something" id="something" class="tab_switcher">
-                        <label for="something" class="tab-btn dark-mode"><i class="far fa-moon"></i></label>
-                </div>
-            <?php endif; ?>
+
             <div class="table-of-content">
                 <h6><i class="icon_ul"></i> <?php esc_html_e( 'CONTENTS', 'eazydocs' ); ?></h6>
                 <nav class="list-unstyled doc_menu" data-toggle="toc" id="eazydocs-toc"></nav>

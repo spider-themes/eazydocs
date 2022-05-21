@@ -7,7 +7,7 @@ class Frontend {
 		add_filter( 'template_include', [ $this, 'template_loades' ], 20 );
 		add_action('eazydocs_related_articles', [$this, 'eazydocs_related_articles'], 99, 4);
 		add_action('eazydocs_viewed_articles', [$this, 'recently_viewed_docs'], 99, 4);
-        //add_filter( 'body_class', [ $this, 'body_class' ] );
+        add_filter( 'body_class', [ $this, 'body_class' ] );
 	}
 
 	/**
@@ -25,7 +25,7 @@ class Frontend {
 			} else {
 				$file = EAZYDOCS_PATH . '/templates' .'//'. $single_template;
 			}
-		}else {
+		} else {
 			return $template;
 		}
 		return apply_filters( 'eazydocs_template_' . $template, $file );
@@ -36,12 +36,12 @@ class Frontend {
 	 *
 	 * @since 1.0.0
 	 */
-    public function body_class() {
-        $classes = [];
-        $theme = wp_get_theme();
+    public function body_class( $classes ) {
 
-        if ( $theme->Name == 'Docy' ) {
-            $classes[]= strtolower($theme->Name);
+        $classes[]= 'bodddy';
+
+        if ( eazydocs_has_shortcode() ) {
+            $classes[] = 'eazydocs_shortcode';
         }
 
         return $classes;

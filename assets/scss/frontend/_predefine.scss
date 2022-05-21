@@ -3,10 +3,11 @@
   color: var(--ezd_brand_color);
 }
 
+main, main#main, section {
+  padding: 0;
+}
+
 .single-docs {
-  main, main#main, section {
-    padding: 0;
-  }
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     font-weight: 700;
@@ -15,6 +16,7 @@
     color: var(--black_500);
     font-size: 14px;
     font-weight: 400;
+    margin-top: 10px;
   }
 }
 
@@ -43,13 +45,4 @@ input[type="search"]::-webkit-search-results-decoration {
 .sticky-top {
   align-self: flex-start !important;
   z-index: 1;
-}
-
-.dot-sep span:nth-child(2) {
-  margin: 0 5px;
-  position:relative;
-}
-.dot-sep span:nth-child(2)::before {
-  content: "•";
-  margin: 0 5px;
 }

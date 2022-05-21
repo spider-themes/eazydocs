@@ -4,26 +4,6 @@
 @import 'frontend/doclist';
 //@import 'frontend/shortcode';
 
-.eazydocs_shortcode {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-.custom_container.container {
-  @media (min-width: 1300px) {
-    max-width: 1240px;
-  }
-  @media (min-width: 1500px) {
-    max-width: 1470px;
-  }
-}
-
-.eazydocs_shortcode .container,
-.container {
-  @media (min-width: 1200px) {
-    max-width: 1200px;
-  }
-}
-
 .modal-content .shortcode_info .row {
   margin-top: 20px;
 }
@@ -187,6 +167,39 @@ p .footnotes-link::after {
   padding: 0 0 0 20px;
   margin: 0;
   list-style: none;
+  li {
+    margin: 15px 0 0 0;
+    padding: 0;
+    .children {
+      list-style: none;
+    }
+    a {
+      font-size: 16px;
+      color: var(--p_color);
+      line-height: 22px;
+      transition: color 0.2s linear;
+      display: flex;
+      &:before{
+        content: "\68";
+        font-family: 'ElegantIcons';
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        padding-right: 15px;
+      }
+      i {
+        margin-right: 15px;
+      }
+
+      &:hover {
+        color: var(--ezd_brand_color);
+      }
+    }
+  }
 }
 
 .topic_list_item ul li:last-child {

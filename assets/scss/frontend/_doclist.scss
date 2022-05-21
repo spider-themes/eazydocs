@@ -233,7 +233,8 @@
 .doc_documentation_area .shortcode_title {
   margin-bottom: 40px;
   h1 {
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    font-size: 3rem;
   }
   p {
     span {
@@ -1293,11 +1294,13 @@ body:not(.onepage-doc) .sticky_menu {
       margin: 0 0 8px;
       transition: color 0.2s linear;
       display: block;
+      color: var(--black_900);
       &:hover {
         text-decoration: underline;
         text-decoration-color: rgba(76,122,241,.25);
         text-decoration-thickness: 2px;
         text-underline-offset: 3px;
+        color: var(--ezd_brand_color)
       }
     }
 
@@ -1307,37 +1310,6 @@ body:not(.onepage-doc) .sticky_menu {
   }
 }
 
-.categories_guide_item {
-  border-radius: 6px;
-  background: #fff;
-  box-shadow: 0 50px 120px 0 rgba(4, 73, 89, 0.08);
-  padding: 40px 35px 50px;
-  margin-bottom: 30px;
-
-  img {
-    margin-bottom: 34px;
-    max-width: 50px;
-    height: auto;
-  }
-
-  .doc_tag_title .title {
-    margin: 0 0 24px;
-  }
-
-  .tag_list {
-    margin-bottom: 42px;
-    margin-left: 0;
-  }
-
-}
-
-.all_doc_btn {
-  padding: 10px 40px;
-  margin-top: 30px;
-  &:hover {
-    box-shadow: 0 20px 30px 0 brand_color_rgba(.24)
-  }
-}
 /*============== End doc_categories_guide_area css =============*/
 
 .eazydocs-footer {

@@ -40,9 +40,10 @@
         $('.easydocs-notification.pro-notification-alert').on('click', function (e) {
             e.preventDefault();
             let href = $(this).attr('href')
+            let assets = eazydocs_local_object.EAZYDOCS_ASSETS;
             Swal.fire({
                 title: 'Notification is a Premium feature',
-                html: '<span class="pro-notification-body-text">You need to Upgrade the Premium Version to use this feature</span><video height="400px" autoplay="autoplay" loop="loop" src="https://i.imgur.com/2JYBv40.mp4"></video>',
+                html: '<span class="pro-notification-body-text">You need to Upgrade the Premium Version to use this feature</span><video height="400px" autoplay="autoplay" loop="loop" src="'+assets+'/videos/noti.mp4"></video>',
                 icon: false,
                 buttons: false,
                 dangerMode: true,

@@ -20,7 +20,7 @@ $query             = new WP_Query( [
 	'post_status'    => ['publish'],
 	'order'          => $order,
 	'post_parent'    => 0
-] );
+]);
 ?>
 
 <div class="eazydocs_shortcode">
@@ -30,6 +30,11 @@ $query             = new WP_Query( [
             $i = 1;
 
             while ( $query->have_posts() ) : $query->the_post();
+                $doc_counter    = get_pages( [
+                    'child_of'  => get_the_ID(),
+                    'post_type' => 'docs',
+                ]);
+
                 $col_wrapper         = $i == 1;
                 if ( class_exists( 'EazyDocsPro' ) ) {
                     $cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
@@ -41,19 +46,28 @@ $query             = new WP_Query( [
                 <?php } ?>
 
                 <div class="categories_guide_item wow fadeInUp">
-                    <?php the_post_thumbnail( 'full' ) ?>
-                    <a class="doc_tag_title" href="<?php the_permalink(); ?>">
-                        <h4 class="title"> <?php the_title(); ?> </h4>
-                    </a>
-                    <ul class="list-unstyled tag_list">
+                    <div class="doc-top d-flex align-items-center">
+                        <?php the_post_thumbnail( 'full', array('class', 'featured-image') ) ?>
+                        <a class="doc_tag_title" href="<?php the_permalink(); ?>">
+                            <h4 class="title"> <?php the_title(); ?> </h4>
+                            <span>
+                                <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
+                                <?php esc_html_e( 'Topics', 'eazyedocs' ) ?>
+                            </span>
+                        </a>
+                    </div>
+                    <ul class="list-unstyled article_list">
                         <?php
-                        $children = get_children( ['post_parent' => get_the_ID(), 'post_status'    => ['publish']] );
+                        $children = get_children([
+                            'post_parent'   => get_the_ID(),
+                            'post_status'   => ['publish']
+                        ]);
                         if ( is_array( $children ) ) :
                             foreach ( $children as $item ) :
                                 ?>
                                 <li>
                                     <a href="<?php echo get_permalink( $item->ID ); ?>">
-                                        <?php echo $item->post_title; ?>
+                                        <?php echo esc_html($item->post_title); ?>
                                     </a>
                                 </li>
                                 <?php

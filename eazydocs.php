@@ -4,8 +4,8 @@
  * Description: A powerful & beautiful documentation builder plugin.
  * Plugin URI: https://wordpress-theme.spider-themes.net/docy/docs/
  * Author: spider-themes
- * Author URI: #
- * Version: 1.1.5
+ * Author URI: http://spider-themes.net/
+ * Version: 1.1.6
  * Requires at least: 5.0
  * Requires PHP: 7.2
  * Text Domain: easydocs
@@ -39,7 +39,7 @@ if ( ! function_exists( 'eaz_fs' ) ) {
                 'has_addons'          => false,
                 'has_paid_plans'      => true,
                 'trial'               => array(
-                    'days'               => 14,
+                    'days'               => 7,
                     'is_require_payment' => true,
                 ),
                 'menu'                => array(
@@ -80,7 +80,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 *
 		 * @var string The plugin version.
 		 */
-		const version = '1.0.0';
+		const version = '1.1.6';
 
 		/**
 		 * Constructor.
@@ -97,6 +97,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'i18n' ] );
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+			add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ] );
 		}
 
 		/**
@@ -179,6 +180,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			}
 		}
 
+        public function after_setup_theme() {
+
+        }
+
 		public function init_hooked() {
 			new eazyDocs\Frontend\Ajax();
 		}
@@ -192,7 +197,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			if ( ! $installed ) {
 				update_option( 'eazyDocs_installed', time() );
 			}
-			update_option( 'EazyDocs_version', 'EAZYDOCS_VERSION' );
+			update_option( 'EazyDocs_version', EAZYDOCS_VERSION );
 
 			// Insert the documentation page into the database if not exists
 			if( ! get_page_by_title( 'Documentation', OBJECT, 'page' ) ){
