@@ -489,22 +489,66 @@
             })
         }
 
-        // Disable left sidebar sticky on ending scroll
-        /*$(window).on('scroll', function() {
-            var $elem = $('.section.eazydocs-footer');
-            var $window = $(window);
-
-            var docViewTop = $window.scrollTop();
-            var docViewBottom = docViewTop + $window.height();
-            var elemTop = $elem.offset().top;
-            var elemBottom = elemTop + $elem.height();
-            if (elemBottom < docViewBottom) {
-                $('.doc_documentation_area').removeClass('body_fixed');
-                $('.left-sidebar-toggle').hide();
-            }else{
-                $('.left-sidebar-toggle').show();
+        /*------------ Cookie functions and color js ------------*/
+        function createCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
             }
-        })*/
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function eraseCookie(name) {
+            createCookie(name, "", -1);
+        }
+
+        let prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let selectedNightTheme = readCookie("body_dark");
+
+        if (selectedNightTheme == "true" || (selectedNightTheme === null && prefersDark)) {
+            applyNight();
+            $('#ezd_dark_switch').prop('checked', true);
+        } else {
+            applyDay();
+            $('#ezd_dark_switch').prop('checked', false);
+        }
+
+        function applyNight() {
+            $("body").addClass("body_dark");
+            $(".light-mode").removeClass("active");
+            $(".dark-mode").addClass("active");
+        }
+
+        function applyDay() {
+            $("body").removeClass("body_dark");
+            $(".dark-mode").removeClass("active");
+            $(".light-mode").addClass("active");
+        }
+
+        $('#ezd_dark_switch').change(function () {
+            if ($(this).is(':checked')) {
+                applyNight();
+                $(".tab-btns").removeClass("active");
+                createCookie("body_dark", true, 999)
+            } else {
+                applyDay();
+                $(".tab-btns").addClass("active");
+                createCookie("body_dark", false, 999);
+            }
+        });
 
     })
 })(jQuery);

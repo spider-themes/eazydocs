@@ -63,36 +63,6 @@ CSF::createSection( $prefix, array(
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
 		array(
-			'id'      => 'docs-archive-layout',
-			'type'    => 'radio',
-			'title'   => esc_html__( 'Docs Layout', 'eazydocs' ),
-			'options' => array(
-				'grid'    => esc_html__( 'Grid', 'eazydocs' ),
-				'masonry' => esc_html__( 'Masonry', 'eazydocs' ),
-			),
-			'default'   => 'grid',
-            'class'     => 'eazydocs-pro-notice'
-		),
-		array(
-			'id'      => 'docs-order-by',
-			'type'    => 'select',
-			'title'   => esc_html__( 'Docs Order By', 'eazydocs' ),
-			'options' => array(
-				'none'          => esc_html__( 'No Order', 'eazydocs' ),
-				'ID'            => esc_html__( 'Post ID', 'eazydocs' ),
-				'author'        => esc_html__( 'Post Author', 'eazydocs' ),
-				'title'         => esc_html__( 'Title', 'eazydocs' ),
-				'date'          => esc_html__( 'Date', 'eazydocs' ),
-				'modified'      => esc_html__( 'Last Modified Date', 'eazydocs' ),
-				'rand'          => esc_html__( 'Random', 'eazydocs' ),
-				'comment_count' => esc_html__( 'Comment Count', 'eazydocs' ),
-				'menu_order'    => esc_html__( 'Menu Order', 'eazydocs' ),
-			),
-			'default'   => 'menu_order',
-            'class'     => 'eazydocs-pro-notice'
-		),
-
-		array(
 			'id'      => 'docs-order',
 			'type'    => 'select',
 			'title'   => esc_html__( 'Docs Order', 'eazydocs' ),
@@ -107,9 +77,47 @@ CSF::createSection( $prefix, array(
 			'id'        => 'docs-number',
 			'type'      => 'text',
 			'title'     => esc_html__( 'Number of Docs', 'eazydocs' ),
-			'subtitle'  => esc_html__( 'Number of Docs', 'eazydocs' ),
+			'subtitle'  => esc_html__( 'Number of Docs to show', 'eazydocs' ),
 			'default'   => 5,
-		)
+		),
+
+		array(
+			'id'        => 'articles_number',
+			'type'      => 'text',
+			'title'     => esc_html__( 'Number of Articles', 'eazydocs' ),
+			'desc'      => esc_html__( 'Number of Articles to show under each Docs.', 'eazydocs' ),
+			'default'   => 4,
+		),
+
+        array(
+            'id'      => 'docs-archive-layout',
+            'type'    => 'radio',
+            'title'   => esc_html__( 'Docs Layout', 'eazydocs' ),
+            'options' => array(
+                'grid'    => esc_html__( 'Grid', 'eazydocs' ),
+                'masonry' => esc_html__( 'Masonry', 'eazydocs' ),
+            ),
+            'default'   => 'grid',
+            'class'     => 'eazydocs-pro-notice'
+        ),
+        array(
+            'id'      => 'docs-order-by',
+            'type'    => 'select',
+            'title'   => esc_html__( 'Docs Order By', 'eazydocs' ),
+            'options' => array(
+                'none'          => esc_html__( 'No Order', 'eazydocs' ),
+                'ID'            => esc_html__( 'Post ID', 'eazydocs' ),
+                'author'        => esc_html__( 'Post Author', 'eazydocs' ),
+                'title'         => esc_html__( 'Title', 'eazydocs' ),
+                'date'          => esc_html__( 'Date', 'eazydocs' ),
+                'modified'      => esc_html__( 'Last Modified Date', 'eazydocs' ),
+                'rand'          => esc_html__( 'Random', 'eazydocs' ),
+                'comment_count' => esc_html__( 'Comment Count', 'eazydocs' ),
+                'menu_order'    => esc_html__( 'Menu Order', 'eazydocs' ),
+            ),
+            'default'   => 'menu_order',
+            'class'     => 'eazydocs-pro-notice'
+        ),
 	)
 ) );
 
@@ -504,6 +512,29 @@ CSF::createSection( $prefix, array(
 			'text_width' => 72,
 			'default'    => false,
             'class'      => 'eazydocs-pro-notice active-theme'
+		),
+
+		array(
+			'title'      => esc_html__( 'Dark Mode Switcher', 'eazydocs' ),
+			'id'         => 'is_dark_switcher',
+			'type'       => 'switcher',
+			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+			'text_width' => 90,
+			'default'    => false,
+            'class'      => 'eazydocs-pro-notice active-theme-docly'
+		),
+
+		array(
+			'title'      => esc_html__( 'Widgets Area', 'eazydocs' ),
+			'desc'       => esc_html__( "Enable to register a Sidebar Widgets area named 'Doc Right Sidebar' in Appearance > Widgets.", 'eazydocs' ),
+			'id'         => 'is_widget_sidebar',
+			'type'       => 'switcher',
+			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+			'text_width' => 90,
+			'default'    => false,
+            'class'      => 'eazydocs-pro-notice active-theme-docly'
 		),
 
 		array(

@@ -1,8 +1,8 @@
 <?php
-$opt            = get_option( 'eazydocs_settings' );
-$is_conditional_dropdown  = $opt['is_conditional_dropdown'] ?? '';
-$condition_options  = $opt['condition_options'] ?? '';
-$article_print      = $opt['pr-icon-switcher'] ?? '';
+$opt                        = get_option( 'eazydocs_settings' );
+$is_conditional_dropdown    = $opt['is_conditional_dropdown'] ?? '';
+$condition_options          = $opt['condition_options'] ?? '';
+$article_print              = $opt['pr-icon-switcher'] ?? '';
 ?>
 <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-top">
     <div class="open_icon" id="right">
@@ -47,7 +47,10 @@ $article_print      = $opt['pr-icon-switcher'] ?? '';
                         ';
                     }
                     echo "jQuery('.bs-select').selectpicker();";
-                echo '}) </script>';
+                    ?>
+                })
+                </script>
+                <?php
             endif;
             ?>
             <div id="font-switcher" class="d-flex justify-content-between align-items-center">
@@ -70,10 +73,31 @@ $article_print      = $opt['pr-icon-switcher'] ?? '';
 				<?php endif; ?>
             </div>
 
+            <?php
+            $is_dark_switcher = $opt['is_dark_switcher'] ?? '';
+            if ( $is_dark_switcher == '1' ) : ?>
+                <div class="doc_switch d-flex align-items-center">
+                    <label for="ezd_dark_switch" class="tab-btn tab-btns light-mode"><i class="icon_lightbulb_alt"></i></label>
+                    <input type="checkbox" name="ezd_dark_switch" id="ezd_dark_switch" class="tab_switcher">
+                    <label for="ezd_dark_switch" class="tab-btn dark-mode"><i class="far fa-moon"></i></label>
+                </div>
+            <?php endif; ?>
+
             <div class="table-of-content">
                 <h6><i class="icon_ul"></i> <?php esc_html_e( 'CONTENTS', 'eazydocs' ); ?></h6>
                 <nav class="list-unstyled doc_menu" data-toggle="toc" id="eazydocs-toc"></nav>
             </div>
+
+            <?php
+            // Widgets area
+            if ( is_active_sidebar('doc_sidebar') ) :
+                ?>
+                <div class="ezd-widgets">
+                    <?php dynamic_sidebar('doc_sidebar') ?>
+                </div>
+                <?php
+            endif;
+            ?>
         </div>
     </div>
 </div>

@@ -121,7 +121,7 @@
     }
     .dropdown_nav {
       margin: 0;
-      padding: 10px 0 0 32px;
+      padding: 5px 0 0 32px;
       width: 100% !important;
       display: none;
       list-style: none;
@@ -150,10 +150,7 @@
     padding-top: 20px;
   }
 }
-.coding_nav {
-  padding-top: 15px;
-  padding-bottom: 20px;
-}
+
 .bottom_nav {
   .nav-item .nav-link {
     i {
@@ -234,7 +231,7 @@
   margin-bottom: 40px;
   h1 {
     margin-bottom: 0;
-    font-size: 3rem;
+    font-size: 32px;
   }
   p {
     span {
@@ -500,9 +497,6 @@
     font-size: 14px !important;
     color: var(--p_color);
     margin-bottom: 0 !important;
-    a {
-      color: var(--ezd_brand_color);
-    }
     i {
       padding-right: 8px;
     }
@@ -521,8 +515,15 @@
     transition: all 0.2s linear;
     margin-left: 10px;
     border-radius: 15px;
+    text-decoration: none;
+    &:hover {
+      background: #1f9852;
+    }
     &.red {
       background: #e74c3c;
+      &:hover {
+        background: #d84334;
+      }
     }
     span {
       height: 15px;
@@ -592,7 +593,14 @@
   }
 }
 
-/*========== doc_rightsidebar css ============*/
+/*========== doc right sidebar css ============*/
+.ezd-widgets {
+  margin-top: 30px;
+  .widget .title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+}
 .mCSB_scrollTools {
   width: 0;
 }
@@ -634,6 +642,7 @@
     }
   }
 }
+
 .full-width-doc {
   .doc_rightsidebar {
     padding-right: 15px;
@@ -786,12 +795,14 @@
     font-weight: 400;
     line-height: 22px;
     padding: 0;
-    color: #677681;
     position: relative;
     margin-bottom: 8px;
+    &:not(.active) {
+      color: var(--black_500);
+    }
     &.active {
-      color: var(--ezd_brand_color);
       font-weight: 500;
+      color: var(--ezd_brand_color);
       + .nav .active::before {
         display: none;
       }
@@ -802,7 +813,6 @@
         position: absolute;
         border-left: 2px solid;
         color: var(--ezd_brand_color);
-
       }
     }
   }
@@ -1171,7 +1181,7 @@ body:not(.onepage-doc) .sticky_menu {
       color: #616366;
       margin: 0 10px 0 0;
       a {
-        background: #edf0f5;
+        background: #d5d9de94;
         color: #616366;
         line-height: 25px;
         padding: 0 14px;
@@ -1179,6 +1189,7 @@ body:not(.onepage-doc) .sticky_menu {
         border-radius: 12.5px;
         font-size: 14px;
         font-weight: 400;
+        text-decoration: none;
         &:hover {
           color: var(--ezd_brand_color);
           background: brand_color_rgba(0.15);
@@ -1187,6 +1198,66 @@ body:not(.onepage-doc) .sticky_menu {
     }
   }
 }
+
+/** === Dark Mode Switcher === **/
+.doc_switch {
+  margin-bottom: 30px;
+  .tab-btn {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 0;
+    padding-top: 2px;
+    cursor: pointer;
+    transition: color 0.2s linear;
+    &.active {
+      color: var(--ezd_brand_color);
+    }
+    &:hover {
+      color: var(--ezd_brand_color);
+    }
+  }
+  .fa-moon {
+    top: -1px;
+    position: relative;
+  }
+  input[type=checkbox] {
+    width: 50px;
+    height: 22px;
+    border: 1px solid brand_color_rgba(0.3);
+    background: brand_color_rgba(0.25);
+    display: block;
+    border-radius: 25px;
+    margin: 0 12px 0 15px;
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: content-box;
+    padding: 0;
+    + .tab-btn {
+      color: var(--black_500);
+    }
+    &::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      background: var(--ezd_brand_color);
+      position: absolute;
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.2s linear;
+      left: 3px;
+    }
+    &:checked::before {
+      left: calc(100% - 19px);
+    }
+    &:checked + .tab-btn {
+      color: var(--ezd_brand_color);
+    }
+  }
+}
+
 
 .topic_item_tabs {
   margin-top: 100px;
@@ -1214,6 +1285,7 @@ body:not(.onepage-doc) .sticky_menu {
           color: var(--p_color);
           font-size: 16px;
           transition: all 300ms linear 0s;
+          text-decoration: none;
           i {
             color: var(--ezd_brand_color);
             padding-right: 12px;
@@ -1381,7 +1453,6 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 .dot-sep span:nth-child(2) {
-  margin: 0 5px;
   position: relative;
 }
 
@@ -1389,7 +1460,8 @@ body:not(.onepage-doc) .sticky_menu {
   content: "•";
   margin: 0 5px;
 }
-.doc_left_sidebarlist:after {
+
+.doc_left_sidebarlist::after {
   display: block;
   clear: both;
   content: "";

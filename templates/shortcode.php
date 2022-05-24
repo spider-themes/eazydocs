@@ -1,14 +1,15 @@
 <?php
-$orderby  = 'ID';
-$order    = 'desc';
-$showpost = - 1;
-$layout   = 'grid';
+$opt = get_option( 'eazydocs_settings' ); // prefix of framework
+
+$orderby            = 'ID';
+$order              = 'desc';
+$showpost           = $opt['docs-number'] ?? -1;
+$articles_number    = $opt['articles_number'] ?? -1;
+$layout             = 'grid';
 if ( class_exists( 'EazyDocsPro' ) ) {
-	$settings_options = get_option( 'eazydocs_settings' ); // prefix of framework
-	$orderby          = $settings_options['docs-order-by'] ?? 'ID'; // id of field
-	$order            = $settings_options['docs-order'] ?? 'desc'; // id of field
-	$showpost         = $settings_options['docs-number'] ?? - 1; // id of field
-	$layout           = $settings_options['docs-archive-layout'] ?? 'masonry'; // id of field
+	$orderby        = $opt['docs-order-by'] ?? 'ID'; // id of field
+	$order          = $opt['docs-order'] ?? 'desc'; // id of field
+	$layout         = $opt['docs-archive-layout'] ?? 'masonry'; // id of field
 }
 
 $depth_one_parents = [];
@@ -46,7 +47,7 @@ $query             = new WP_Query( [
                 <?php } ?>
 
                 <div class="categories_guide_item wow fadeInUp">
-                    <div class="doc-top d-flex align-items-center">
+                    <div class="doc-top d-flex align-items-start">
                         <?php the_post_thumbnail( 'full', array('class', 'featured-image') ) ?>
                         <a class="doc_tag_title" href="<?php the_permalink(); ?>">
                             <h4 class="title"> <?php the_title(); ?> </h4>
@@ -59,8 +60,9 @@ $query             = new WP_Query( [
                     <ul class="list-unstyled article_list">
                         <?php
                         $children = get_children([
-                            'post_parent'   => get_the_ID(),
-                            'post_status'   => ['publish']
+                            'post_parent'       => get_the_ID(),
+                            'post_status'       => ['publish'],
+                            'posts_per_page'    => $articles_number
                         ]);
                         if ( is_array( $children ) ) :
                             foreach ( $children as $item ) :

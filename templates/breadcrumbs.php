@@ -1,10 +1,10 @@
 <?php
-$settings_options = '';
+$opt = '';
 $update_text      = '';
 $doc_container    = 'container custom_container';
 if ( class_exists( 'EazyDocsPro' ) ) {
-	$settings_options = get_option( 'eazydocs_settings' );
-	$update_text      = $settings_options['breadcrumb-update-text'] ?? '';
+	$opt = get_option( 'eazydocs_settings' );
+	$update_text      = $opt['breadcrumb-update-text'] ?? '';
 	$cz_options       = get_option( 'eazydocs_customizer' );
 	$doc_container    = $cz_options['doc_elements']['docs-page-width'] ?? '';
 	$doc_container    = $doc_container == 'full-width' ? 'container-fluid pl-60 pr-60' : 'container custom_container';

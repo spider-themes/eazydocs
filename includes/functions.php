@@ -191,7 +191,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 		$html = '';
 		$args = apply_filters( 'eazydocs_breadcrumbs', [
 			'delimiter' => '',
-			'home'      => __( 'Home', 'eazydocs' ),
+			'home'      => esc_html__( 'Home', 'eazydocs' ),
             'before'    => '<li class="breadcrumb-item active">',
             'after'     => '</li>',
 		]);

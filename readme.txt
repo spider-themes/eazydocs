@@ -1,10 +1,10 @@
 === EazyDocs - #1 Powerful & Beautiful Documentation Builder ===
 Contributors: mdjwel, spiderdevs
-Tags: docs, documentation, document, knowledge base, knowledgebase, kb, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
+Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
 Tested up to: 5.9.3
 Requires PHP: 7.2
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,9 +99,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.1.7 (22 May 2022) =
+= v1.1.7 (25 May 2022) =
+New: 'Doc Right Sidebar' widget area registered to
+
+= v1.1.7 (23 May 2022) =
+Fixed: There was problem with purchasing the EazyDocs Pro version (payment mode was in test mode).
+New: 'Number of Articles' option added in EazyDocs > Settings > Docs Archive
 Tweaked: Frontend assets are loading on demand (loads the css, js files when needed)
-Tweaked: On Demand Asset Loading (loading only necessary css, javascript assets on the EazyDocs pages and will not load our assets on other pages of your website)
+Tweaked: On demand assets loading (loading only necessary css, javascript assets on the EazyDocs pages and will not load our assets on other pages of your website)
 
 = v1.1.6 (20 May 2022) =
 Tweaked: Doc single page design
