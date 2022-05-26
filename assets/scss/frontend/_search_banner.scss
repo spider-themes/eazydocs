@@ -34,6 +34,7 @@
     }
     a {
       color: var(--black_500);
+      text-decoration: none;
       &:hover {
         color: var(--ezd_brand_color);
       }
@@ -63,9 +64,8 @@
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: contain;
-  margin: 0;
+  margin: 0 !important;
   &.has_bg_dark {
-    background: url("../images/search-bg.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     .ezd_search_keywords {
@@ -75,6 +75,9 @@
       ul li a {
         color: var(--black_200);
       }
+    }
+    &.no_cs_bg{
+      background: url("../images/search-bg.jpeg");
     }
   }
   .input-wrapper label {

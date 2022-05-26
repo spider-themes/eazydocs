@@ -102,7 +102,7 @@ CSF::createSection( $prefix, array(
                             'id'    => 'doc_banner_bg',
                             'type'  => 'background',
                             'title' => esc_html__( 'Background', 'eazydocs-pro' ),
-                            'output' => '.ezd_search_banner.has_bg_dark',
+                            'output' => '.ezd_search_banner.has_bg_dark.has_cs_bg',
                         ),
                         array(
                             'id'            => 'keywords_label_color',

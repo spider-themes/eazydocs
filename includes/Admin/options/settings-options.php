@@ -573,7 +573,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'related-docs',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Visibility', 'eazydocs' ),
+			'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs-pr' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => true,
@@ -593,7 +593,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'related-visible-docs',
 			'type'       => 'number',
-			'title'      => esc_html__( 'Visible Docs', 'eazydocs' ),
+			'title'      => esc_html__( 'Docs Number', 'eazydocs' ),
 			'default'    => esc_html__( '4', 'eazydocs' ),
 			'dependency' => array(
 				'related-docs',
@@ -629,7 +629,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'viewed-docs',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Visibility', 'eazydocs' ),
+			'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs-pr' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => true,
@@ -651,7 +651,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'viewed-visible-docs',
 			'type'       => 'number',
-			'title'      => esc_html__( 'Visible Docs', 'eazydocs' ),
+			'title'      => esc_html__( 'Docs Number', 'eazydocs' ),
 			'default'    => esc_html__( '4', 'eazydocs' ),
 			'dependency' => array(
 				'viewed-docs',

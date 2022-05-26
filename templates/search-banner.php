@@ -1,10 +1,15 @@
 <?php
-$cz_options    = get_option( 'eazydocs_settings' );;
+if ( class_exists( 'EazyDocsPro' ) ) {
+	$cs_options     = get_option( 'eazydocs_customizer' );
+	$cs_banner      = $cs_options['doc_banner_bg'] ?? '';
+	$cs_banner_wrap = $cs_banner ? 'has_cs_bg' : 'no_cs_bg';
+}
+$cz_options    = get_option( 'eazydocs_settings' );
 $search_banner = $cz_options['is_search_banner'] ?? '0';
 
 if( $search_banner == '1' ) :
     ?>
-    <section class="ezd_search_banner has_bg_dark">
+    <section class="ezd_search_banner has_bg_dark <?php echo esc_attr($cs_banner_wrap); ?>">
         <div class="container">
             <div class="row doc_banner_content">
                 <div class="col-md-12">

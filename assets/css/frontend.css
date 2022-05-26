@@ -103,6 +103,7 @@ input[type=search]::-webkit-search-results-decoration {
 }
 .breadcrumb .breadcrumb-item a {
   color: var(--black_500);
+  text-decoration: none;
 }
 .breadcrumb .breadcrumb-item a:hover {
   color: var(--ezd_brand_color);
@@ -127,10 +128,9 @@ input[type=search]::-webkit-search-results-decoration {
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: contain;
-  margin: 0;
+  margin: 0 !important;
 }
 .ezd_search_banner.has_bg_dark {
-  background: url("../images/search-bg.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -139,6 +139,9 @@ input[type=search]::-webkit-search-results-decoration {
 }
 .ezd_search_banner.has_bg_dark .ezd_search_keywords ul li a {
   color: var(--black_200);
+}
+.ezd_search_banner.has_bg_dark.no_cs_bg {
+  background: url("../images/search-bg.jpeg");
 }
 .ezd_search_banner .input-wrapper label {
   position: absolute;
@@ -1620,7 +1623,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .topic_item_tabs {
-  margin-top: 100px;
+  margin-top: 50px;
   overflow: hidden;
 }
 .topic_item_tabs .topic_list_item {
@@ -1662,6 +1665,9 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .topic_item_tabs .topic_list_item .navbar-nav li:hover a i {
   color: var(--ezd_brand_color);
+}
+.topic_item_tabs .topic_list_item:hover {
+  border-color: #e6edf0;
 }
 
 .search .searchbar-tabs {
@@ -1829,6 +1835,33 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   bottom: -75px;
   z-index: -1;
   height: 75px;
+}
+
+.eazydocs-comments-wrap .comments-area {
+  max-width: 100%;
+  margin-left: unset;
+  margin-right: unset;
+}
+
+.doc-post-content .doc-scrollable .page-links {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+}
+.doc-post-content .doc-scrollable .page-links span, .doc-post-content .doc-scrollable .page-links a {
+  background: var(--ezd_brand_color);
+  color: white;
+  padding: 4px 13px;
+  text-decoration: none;
+  border-radius: 3px;
+  margin: 0 2px;
+  text-align: center;
+  min-height: unset;
+  min-width: unset;
+}
+
+.doc-post-content .doc-scrollable figure {
+  max-width: 100%;
 }
 
 .modal-content .shortcode_info .row {
@@ -2065,7 +2098,7 @@ p .footnotes-link::after {
 }
 
 .fadeGradient {
-  z-index: 2;
+  z-index: 1;
   position: relative;
   height: 50px;
   margin-top: -50px;
@@ -2119,7 +2152,8 @@ p .footnotes-link::after {
 }
 
 .doc_documentation_area {
-  padding-bottom: 0;
+  padding: 0;
+  margin: 0 !important;
 }
 
 .nav-sidebar .nav-item .dropdown_nav li {

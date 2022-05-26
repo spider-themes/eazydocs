@@ -20,7 +20,7 @@ if ( class_exists( 'EazyDocsPro' ) ) {
             </div>
             <div class="col-lg-3 col-md-4">
                 <time itemprop="dateModified" datetime="<?php the_modified_time( get_option( 'date_format' ) ); ?>" class="date">
-                    <i class="icon_clock_alt"></i>
+                    <i class="<?php echo is_rtl() ? 'icon_quotations' : 'icon_clock_alt'; ?>"></i>
 					<?php echo esc_html( $update_text ); ?>
 					<?php the_modified_time( get_option( 'date_format' ) ); ?>
                 </time>

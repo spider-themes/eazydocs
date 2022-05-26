@@ -1260,7 +1260,7 @@ body:not(.onepage-doc) .sticky_menu {
 
 
 .topic_item_tabs {
-  margin-top: 100px;
+  margin-top: 50px;
   overflow: hidden;
   .topic_list_item {
     background: transparent;
@@ -1300,6 +1300,9 @@ body:not(.onepage-doc) .sticky_menu {
           }
         }
       }
+    }
+    &:hover {
+      border-color:#e6edf0;
     }
   }
 }
@@ -1473,4 +1476,38 @@ body:not(.onepage-doc) .sticky_menu {
   bottom: -75px;
   z-index: -1;
   height: 75px;
+}
+.eazydocs-comments-wrap {
+  .comments-area{
+    max-width: 100%;
+    margin-left: unset;
+    margin-right: unset;
+  }
+}
+.doc-post-content {
+  .doc-scrollable {
+    .page-links{
+      display: block;
+      width:100%;
+      margin:20px 0;
+      span, a{
+        background: var(--ezd_brand_color);
+        color: white;
+        padding: 4px 13px;
+        text-decoration: none;
+        border-radius: 3px;
+        margin: 0 2px;
+        text-align: center;
+        min-height: unset;
+        min-width: unset;
+      }
+    }
+  }
+}
+.doc-post-content {
+  .doc-scrollable {
+  figure{
+    max-width:100%
+  }
+  }
 }

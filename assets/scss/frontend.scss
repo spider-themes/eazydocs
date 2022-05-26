@@ -255,7 +255,7 @@ p .footnotes-link::after {
 }
 
 .fadeGradient {
-  z-index: 2;
+  z-index: 1;
   position: relative;
   height: 50px;
   margin-top: -50px;
@@ -331,7 +331,8 @@ p .footnotes-link::after {
 }
 
 .doc_documentation_area {
-  padding-bottom: 0;
+  padding: 0;
+  margin: 0 !important;
 }
 
 .nav-sidebar .nav-item .dropdown_nav li {
