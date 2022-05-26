@@ -82,7 +82,7 @@
         display: block;
         right: -40px;
         left: auto;
-        top: 30px;
+        top: 0;
     }
     .left-sidebar-toggle {
         display: none;

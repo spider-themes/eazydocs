@@ -42,7 +42,7 @@ switch ( $layout ) {
 <?php
 $current_theme = get_template();
 
-if ( $current_theme != 'docly' || $current_theme != 'docy' ) {
+if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
     eazydocs_get_template_part('search-banner');
 }
 ?>
@@ -50,7 +50,7 @@ if ( $current_theme != 'docly' || $current_theme != 'docy' ) {
     <div class="overlay_bg"></div>
     <?php
     if ( $breadcrumb == '1' ) {
-	    if ( $current_theme != 'docy' || $current_theme != 'docly' ) {
+	    if ( $current_theme != 'docy' && $current_theme != 'docly' ) {
 		    eazydocs_get_template_part( 'breadcrumbs' );
 	    }
     }

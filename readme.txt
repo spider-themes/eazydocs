@@ -99,8 +99,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.1.7 (25 May 2022) =
+= v1.1.8 (27 May 2022) =
 New: 'Doc Right Sidebar' widget area registered to
+New: RTL compatibility added
+New: Dark Mode switcher in Settings > Single Doc > Right Sidebar (for PRO version)
+Tweaked: Doc single page view improved on mobile
+Tweaked: Shortcode design improved (topics count added)
 
 = v1.1.7 (23 May 2022) =
 Fixed: There was problem with purchasing the EazyDocs Pro version (payment mode was in test mode).
