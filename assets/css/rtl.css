@@ -614,6 +614,12 @@ div.code-toolbar > .toolbar {
     .feedback_link h6 {
         font-size: 15px;
     }
+
+    .doc_left_sidebarlist::after,
+    .doc_left_sidebarlist:before {
+        right: 0 !important
+    }
+    
 }
 
 @media (max-width: 767px) {
@@ -899,18 +905,12 @@ div.code-toolbar > .toolbar {
         padding-left: 0;
         padding-right: 30px;
     }
-    .doc_mobile_menu.left-column{
-        display: none;
-    }
+
     .eazydocs-comments-wrap {
         padding-bottom: 0px;
     }
 }
-@media screen and ( min-width: 768px ) and ( max-width: 991px ) {
-    .doc_documentation_area.body_fixed .doc_rightsidebar{
-        display: none;
-    }
-}
+
 .doc_left_sidebarlist::after {
     right:unset;
     left: 0;

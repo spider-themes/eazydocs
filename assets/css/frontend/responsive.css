@@ -47,7 +47,7 @@
         overflow: hidden !important;
     }
     .doc_mobile_menu.left-column, .doc_documentation_full_area .doc_mobile_menu {
-        max-width: 290px;
+        max-width: 260px;
         width: 100%;
         left: -260px;
         position: absolute;

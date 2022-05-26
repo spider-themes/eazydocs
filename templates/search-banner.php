@@ -1,12 +1,12 @@
 <?php
+$cs_banner_wrap = 'no_cs_bg';
 if ( class_exists( 'EazyDocsPro' ) ) {
-	$cs_options     = get_option( 'eazydocs_customizer' );
-	$cs_banner      = $cs_options['doc_banner_bg'] ?? '';
-	$cs_banner_wrap = $cs_banner ? 'has_cs_bg' : 'no_cs_bg';
+    $cs_options = get_option( 'eazydocs_customizer' );
+    $custom_banner =  $cs_options['doc_elements']['doc_banner_bg'] ?? '';
+    $cs_banner_wrap = empty ( $custom_banner['background-color'] ) && empty ( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
 }
 $cz_options    = get_option( 'eazydocs_settings' );
 $search_banner = $cz_options['is_search_banner'] ?? '0';
-
 if( $search_banner == '1' ) :
     ?>
     <section class="ezd_search_banner has_bg_dark <?php echo esc_attr($cs_banner_wrap); ?>">

@@ -1,5 +1,4 @@
 <?php
-
 $cz_options          = get_option( 'eazydocs_settings' );
 $related_docs_switch = $cz_options['related-docs'] ?? '';
 $related_docs        = $related_docs_switch == '0' ? 'd-none' : '1';
