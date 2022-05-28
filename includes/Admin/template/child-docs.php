@@ -351,6 +351,9 @@ if ( is_array( $depth_one_parents ) ) :
             <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?parentID=<?php echo $item; ?>&section=">
 				<?php esc_html_e( 'Add Section', 'eazydocs' ); ?>
             </button>
+
+            <?php do_action('eazydocs_one_page', $item ); ?>
+
         </div>
 	    <?php
 	endforeach;

@@ -25,7 +25,17 @@ class Frontend {
 			} else {
 				$file = EAZYDOCS_PATH . '/templates' .'//'. $single_template;
 			}
-		} else {
+		} elseif ( is_single() && 'one-page-docs' == get_post_type() ) {
+
+			$single_template = 'single-one-page-docs.php';
+			// Check if a custom template exists in the theme folder, if not, load the plugin template file
+			if ( $theme_file = locate_template( array( 'eazydocs/' . $single_template ) ) ) {
+				$file = $theme_file;
+			} else {
+				$file = EAZYDOCS_PATH . '/templates' .'//'. $single_template;
+			}
+
+        } else {
 			return $template;
 		}
 		return apply_filters( 'eazydocs_template_' . $template, $file );
