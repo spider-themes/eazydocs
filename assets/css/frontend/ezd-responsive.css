@@ -55,12 +55,8 @@
         padding: 0;
     }
 
-    .doc_mobile_menu.left-column {
-        top: 40px;
-    }
-
     .doc_left_sidebarlist {
-        padding: 15px;
+        padding: 30px 15px 15px;
     }
 
     .nav-sidebar .nav-item {
@@ -82,7 +78,6 @@
         display: block;
         right: -40px;
         left: auto;
-        top: 0;
     }
     .left-sidebar-toggle {
         display: none;
@@ -102,9 +97,6 @@
 
 @media (max-width: 767px) {
     /** === Right Sidebar === **/
-    .doc_right_mobile_menu, .doc_mobile_menu.left-column {
-        top: 40px;
-    }
     .doc_documentation_area.body_fixed .doc_left_sidebarlist,
     .body_fixed .doc_right_mobile_menu {
         position: fixed;
@@ -138,7 +130,7 @@
     }
 
     .feedback_link .eazydocs-feedback-wrap {
-        justify-content: start;
+        justify-content: center;
         margin-top: 10px;
     }
     #reading-progress-fill {

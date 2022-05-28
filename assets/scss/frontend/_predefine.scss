@@ -40,4 +40,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .sticky-top {
   align-self: flex-start !important;
   z-index: 1;
+  @media ( max-width: 991px ) {
+    top: auto;
+  }
 }

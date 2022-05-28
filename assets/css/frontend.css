@@ -64,6 +64,11 @@ input[type=search]::-webkit-search-results-decoration {
   align-self: flex-start !important;
   z-index: 1;
 }
+@media (max-width: 991px) {
+  .sticky-top {
+    top: auto;
+  }
+}
 
 /*=========== Start page_breadcrumb css ============*/
 .page_breadcrumb {
@@ -457,6 +462,11 @@ input[type=search]::-webkit-search-results-decoration {
   margin-right: 30px;
   height: 100vh;
   position: relative;
+}
+@media (max-width: 1440px) {
+  .doc_left_sidebarlist {
+    margin-right: 0;
+  }
 }
 .doc_left_sidebarlist:before {
   content: "";
@@ -903,6 +913,11 @@ input[type=search]::-webkit-search-results-decoration {
   color: var(--p_color);
   margin-bottom: 0 !important;
 }
+@media (max-width: 767px) {
+  .feedback_link p {
+    text-align: center;
+  }
+}
 .feedback_link p i {
   padding-right: 8px;
 }
@@ -1034,7 +1049,7 @@ input[type=search]::-webkit-search-results-decoration {
   left: -40px;
   color: var(--ezd_brand_color);
   display: none;
-  top: 0;
+  top: 30px;
 }
 .open_icon#right {
   border-top-left-radius: 3px;
@@ -1754,14 +1769,12 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .doc-middle-content {
-  padding-left: 15px;
   padding-right: 30px;
   padding-top: 60px;
   position: relative;
 }
 @media (max-width: 1440px) {
   .doc-middle-content {
-    padding-left: 0;
     padding-right: 0;
   }
 }
@@ -1843,6 +1856,9 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   margin-right: unset;
 }
 
+.doc-post-content .doc-scrollable section {
+  padding: 0;
+}
 .doc-post-content .doc-scrollable .page-links {
   display: block;
   width: 100%;
@@ -1965,7 +1981,7 @@ p .footnotes-link::after {
 .left-sidebar-toggle {
   position: absolute;
   top: 65px;
-  margin-left: -72px;
+  margin-left: -60px;
   color: #656565;
   line-height: 22px;
   cursor: pointer;

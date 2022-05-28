@@ -33,6 +33,9 @@
   margin-right: 30px;
   height: 100vh;
   position: relative;
+  @media ( max-width: 1440px ) {
+      margin-right: 0;
+  }
   &:before {
     content: "";
     width: 200%;
@@ -497,6 +500,9 @@
     font-size: 14px !important;
     color: var(--p_color);
     margin-bottom: 0 !important;
+    @media ( max-width: 767px ) {
+      text-align: center;
+    }
     i {
       padding-right: 8px;
     }
@@ -615,7 +621,7 @@
   left: -40px;
   color: var(--ezd_brand_color);
   display: none;
-  top: 0;
+  top: 30px;
   &#right {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -1395,12 +1401,10 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 .doc-middle-content {
-  padding-left: 15px;
   padding-right: 30px;
   padding-top: 60px;
   position: relative;
   @media (max-width: 1440px) {
-    padding-left: 0;
     padding-right: 0;
   }
 }
@@ -1486,6 +1490,9 @@ body:not(.onepage-doc) .sticky_menu {
 }
 .doc-post-content {
   .doc-scrollable {
+    section {
+      padding: 0;
+    }
     .page-links{
       display: block;
       width:100%;

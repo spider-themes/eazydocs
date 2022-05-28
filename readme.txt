@@ -99,6 +99,9 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.1.9 (28 May 2022) =
+Tweaked: Doc single page view improved on mobile (left and right sidebar position)
+
 = v1.1.8 (27 May 2022) =
 New: 'Doc Right Sidebar' widget area registered to
 New: RTL compatibility added
