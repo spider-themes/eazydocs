@@ -42,7 +42,6 @@ switch ( $layout ) {
 <?php
 $current_theme = get_template();
 
-eazydocs_get_template_part('search-banner');
 if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
     eazydocs_get_template_part('search-banner');
 }
@@ -50,7 +49,6 @@ if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
 <section class="doc_documentation_area <?php echo esc_attr($content_wrapper); ?>" id="sticky_doc">
     <div class="overlay_bg"></div>
     <?php
-    eazydocs_get_template_part( 'breadcrumbs' );
     if ( $breadcrumb == '1' ) {
 	    if ( $current_theme != 'docy' && $current_theme != 'docly' ) {
 		    eazydocs_get_template_part( 'breadcrumbs' );

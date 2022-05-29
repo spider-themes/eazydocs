@@ -1,19 +1,16 @@
 <?php
 get_header();
-
-
-$post_id = get_page_by_title( get_the_title(get_the_ID()), OBJECT, 'docs' );
+$post_id        = get_page_by_title( get_the_title(get_the_ID()), OBJECT, 'docs' );
 wp_enqueue_script('eazydocs-onpage');
-$walker   = new eazyDocs\Frontend\Walker_Docs();
-$children = wp_list_pages( array(
+$walker         = new eazyDocs\Frontend\Walker_Docs();
+$children       = wp_list_pages( array(
 	'title_li'  => '',
 	'order'     => 'menu_order',
 	'child_of'  => $post_id->ID,
 	'echo'      => false,
 	'post_type' => 'docs',
-	'walker' => new EazyDocs_Walker_Onepage(),
+	'walker'    => new EazyDocs_Walker_Onepage(),
 ) );
-
 ?>
 
 	<section class="doc_documentation_area onepage_doc_area page_wrapper" id="sticky_doc">
