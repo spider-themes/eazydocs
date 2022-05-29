@@ -139,7 +139,7 @@
                 } else {
                     $(".doc_documentation_area").removeClass("overlay");
                     $(".doc_right_mobile_menu").animate({
-                        "right": "-250px"
+                        "right": "-232px"
                     }, 100);
                     switchs = true;
                 }

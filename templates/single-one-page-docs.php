@@ -1,13 +1,9 @@
 <?php
 get_header();
 
-wp_enqueue_script( 'eazydocs-onpage' );
-
 
 $post_id = get_page_by_title( get_the_title(get_the_ID()), OBJECT, 'docs' );
-
-
-
+wp_enqueue_script('eazydocs-onpage');
 $walker   = new eazyDocs\Frontend\Walker_Docs();
 $children = wp_list_pages( array(
 	'title_li'  => '',
@@ -15,7 +11,7 @@ $children = wp_list_pages( array(
 	'child_of'  => $post_id->ID,
 	'echo'      => false,
 	'post_type' => 'docs',
-	'walker'    => $walker,
+	'walker' => new EazyDocs_Walker_Onepage(),
 ) );
 
 ?>
@@ -24,8 +20,12 @@ $children = wp_list_pages( array(
 		<div class="overlay_bg"></div>
 		<div class="container-fluid pl-60 pr-60">
 			<div class="row doc-container">
-				<div class="col-xl-3 col-xxl-2 doc_mobile_menu doc-sidebar display_none">
-					<aside class="doc_left_sidebarlist">
+				<div class="col-xxl-2 col-xl-3 col-lg-3 doc_mobile_menu doc-sidebar sticky-top left-column">
+					<aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap">
+                        <div class="open_icon" id="left">
+                            <i class="arrow_carrot-right"></i>
+                            <i class="arrow_carrot-left"></i>
+                        </div>
 						<h3 class="nav_title">
 							<?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
 						</h3>
@@ -33,7 +33,7 @@ $children = wp_list_pages( array(
 						if ( $children ) :
 							?>
 							<div class="scroll">
-								<ul class="list-unstyled nav-sidebar doc-nav">
+								<ul class="list-unstyled nav-sidebar doc-nav one-page-doc-nav-wrap">
 									<?php
 									echo wp_list_pages(array(
 										'title_li' => '',
@@ -41,7 +41,7 @@ $children = wp_list_pages( array(
 										'child_of' => $post_id->ID,
 										'echo' => false,
 										'post_type' => 'docs',
-										'walker' => new Docy_Walker_Docs_Onepage(),
+										'walker' => new EazyDocs_Walker_Onepage(),
 										'depth' => 2
 									));
 									?>
@@ -52,7 +52,7 @@ $children = wp_list_pages( array(
 						?>
 					</aside>
 				</div>
-				<div class="col-xl-6 col-xxl-8 middle-content">
+				<div class="col-xxl-8 col-xl-6 col-lg-6 middle-content">
 					<div class="documentation_info" id="post">
 						<?php
 						$sections = get_children( array(
@@ -61,7 +61,7 @@ $children = wp_list_pages( array(
 							'post_status'    => 'publish',
 							'orderby'        => 'menu_order',
 							'order'          => 'ASC',
-							'posts_per_page' => !empty($settings['show_section_count']) ? $settings['show_section_count'] : -1,
+							'posts_per_page' =>  -1,
 						));
 
 						$i = 0;
@@ -83,15 +83,14 @@ $children = wp_list_pages( array(
 								<?php endif; ?>
 								<div class="doc-content">
 									<?php
-									$parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content($doc_item->ID);
-									echo !empty($parent_content) ? $parent_content : apply_filters('the_content', $doc_item->post_content);
+									echo  apply_filters('the_content', $doc_item->post_content);
 									?>
 								</div>
 
 								<?php if ( $child_sections ) : ?>
 									<div class="articles-list mt-5">
 										<h4> <?php esc_html_e('Articles', 'docy'); ?></h4>
-										<ul class="article_list tag_list">
+										<ul class="article_list tag_list one-page-docs-tag-list">
 											<?php
 											foreach ( $child_sections as $child_section ):
 												?>
@@ -117,9 +116,7 @@ $children = wp_list_pages( array(
 											<h2> <?php echo esc_html($child_section->post_title) ?> </h2>
 										</div>
 										<div class="doc-content">
-											<?php
-											$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($child_section->ID);
-											echo !empty($child_content) ? $child_content : apply_filters('the_content', $child_section->post_content);
+											<?php echo apply_filters('the_content', $child_section->post_content);
 											?>
 										</div>
 										<div class="border_bottom"></div>
@@ -134,20 +131,23 @@ $children = wp_list_pages( array(
 						?>
 					</div>
 				</div>
-				<div class="col-xl-3 col-xxl-2 doc_right_mobile_menu">
+				<div class="col-xxl-2 col-xl-3 col-lg-3 doc_right_mobile_menu sticky-top">
 					<div class="open_icon" id="right">
 						<i class="arrow_carrot-left"></i>
 						<i class="arrow_carrot-right"></i>
 					</div>
-					<div class="doc_rightsidebar scroll">
+					<div class="doc_rightsidebar scroll one-page-docs-right-sidebar">
 						<div class="pageSideSection">
 							<?php
 							$is_os_dropdown = '1';
 							if ( $is_os_dropdown == '1' ) :
+								wp_enqueue_style( 'bootstrap-select' );
+								wp_enqueue_script( 'bootstrap-select' );
 									?>
-									<select id="mySelect" name="os">
-										<option value=" " data-content=" "> </option>
-									</select>
+                                <select id="mySelect">
+                                    <option value="windows" data-content="<i class='fab fa-windows'></i> Windows"> Windows</option>
+                                    <option value="ios" data-content="<i class='fab fa-apple'></i> IOS">IOS</option>
+                                </select>
 								<?php
 							endif;
 							?>
@@ -172,8 +172,15 @@ $children = wp_list_pages( array(
 							</div>
 
 							 <div class="onepage-sidebar mt-5 doc_sidebar">
-								content
-								</div>
+                                 <div class="hire-us">
+                                     <p class="explanation hire expn-left p-3 small">
+                                         If you need the theme customization or custom development services please contact us.
+                                     </p>
+                                     <a href="mailto:ehjewel2@gmail.com" class="action_btn btn_small"> Email Us<i class="arrow_right"></i> </a>
+
+
+                                 </div>
+							 </div>
 						</div>
 					</div>
 				</div>

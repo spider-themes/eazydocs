@@ -59,6 +59,18 @@
         padding: 30px 15px 15px;
     }
 
+    .onepage_doc_area .documentation_body {
+        padding-top: 70px;
+    }
+
+    .onepage_doc_area .doc_left_sidebarlist {
+        padding: 0;
+    }
+
+    .onepage_doc_area .middle-content {
+        padding: 15px;
+    }
+
     .nav-sidebar .nav-item {
         padding-right: 0;
     }
@@ -93,21 +105,40 @@
         padding-right: 20px;
         padding-top: 100px;
     }
+    .onepage_doc_area .container-fluid.pr-60 {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
 }
 
 @media (max-width: 767px) {
     /** === Right Sidebar === **/
-    .doc_documentation_area.body_fixed .doc_left_sidebarlist,
+    .body_fixed .doc_mobile_menu  {
+        position: fixed;
+        top: 30px;
+    }
     .body_fixed .doc_right_mobile_menu {
         position: fixed;
+        top: 50px;
+    }
+    .open_icon {
         top: 0;
     }
 
+    .body_fixed .open_icon {
+        top: 70px;
+    }
+
+    .body_fixed .doc_left_sidebarlist {
+        width:unset !important;
+    }
+
+
     .doc_right_mobile_menu {
-        max-width: 250px;
+        max-width: 232px;
         width: 100%;
         position: absolute;
-        right: -250px;
+        right: -233px;
         padding-left: 0;
         height: 100%;
         transition: all 0.5s;

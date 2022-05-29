@@ -30,12 +30,12 @@ class Assets {
         wp_register_script( 'mCustomScrollbar', EAZYDOCS_VEND . '/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '3.1.13', true );
         wp_register_script( 'anchor', EAZYDOCS_ASSETS . '/js/frontend/anchor.min.js' );
 
-        if ( is_page_template('page-onepage.php') ) {
+        if (  is_single() && get_post_type() == 'one-page-docs' ) {
             wp_enqueue_style( 'mCustomScrollbar' );
             wp_enqueue_script( 'mCustomScrollbar' );
         }
 
-		if ( is_single() && get_post_type() == 'docs' ) {
+		if ( is_single() && get_post_type() == 'docs' || get_post_type() == 'one-page-docs' ) {
 
 			// Localize the script with new data
 			$ajax_url              = admin_url( 'admin-ajax.php' );
@@ -81,7 +81,7 @@ class Assets {
 		}
 
         // Global Scripts
-        if ( in_array( 'eazydocs_shortcode', get_body_class() ) || is_singular('docs') ) {
+        if ( in_array( 'eazydocs_shortcode', get_body_class() ) || is_singular('docs') || is_singular('one-page-docs') ) {
             wp_enqueue_style( 'bootstrap', EAZYDOCS_VEND . '/bootstrap/bootstrap.min.css' );
 
             wp_enqueue_style( 'elegant-icon', EAZYDOCS_VEND . '/elegant-icon/style.css' );
@@ -92,7 +92,7 @@ class Assets {
 
 	public function enqueue_scripts_after() {
         $version = get_option('EazyDocs_version');
-		if ( is_single() && get_post_type() == 'docs' ) {
+		if ( is_single() && get_post_type() == 'docs' || get_post_type() == 'one-page-docs' ) {
 			wp_enqueue_style( 'eazydocs-responsive', EAZYDOCS_ASSETS . '/css/frontend/ezd-responsive.css' );
 		}
 	}
