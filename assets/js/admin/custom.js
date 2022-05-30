@@ -166,5 +166,26 @@
             $('.easydocs-tab:first-child').css('display','block');
         }
 
+        // One page docs
+        function one_page_doc() {
+            $('.one-page-doc').on('click', function (e) {
+                e.preventDefault();
+                let href = $(this).attr('data-url')
+                Swal.fire({
+                    title: 'Do you want to make one page?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.value) {
+                        document.location.href = href;
+                    }
+                })
+            })
+        }
+        one_page_doc();
+
     });
 })(jQuery);

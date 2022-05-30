@@ -37,9 +37,10 @@ switch ( $layout ) {
     default:
         $md_content_col = 'col-xl-7 col-lg-6';
 }
-?>
 
-<?php
+
+
+
 $current_theme = get_template();
 
 if ( $current_theme != 'docly' && $current_theme != 'docy' ) {

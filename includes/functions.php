@@ -353,3 +353,54 @@ add_action('admin_footer', function(){ ?>
         }
 	</script>
 <?php });
+
+/**
+ * Get all docs without parent
+ * @return string
+ */
+function eazydocs_pro_doc_list() {
+	$args      = array(
+		'posts_per_page' => - 1,
+		'post_type'      => array( 'docs' ),
+		'post_parent'    => 0
+	);
+	$docs      = get_posts( $args );
+	$doc_items = '';
+	foreach ( $docs as $doc ) {
+
+		if( ! get_page_by_title( $doc->post_title, OBJECT, 'one-page-docs' ) ) {
+			$doc_items .= '<option name="' . $doc->post_title . '">' . $doc->post_title . '</option>';
+		}
+	}
+
+	return $doc_items;
+}
+
+/**
+ * @param $doc_id
+ */
+
+function eazydocs_one_page($doc_id){
+	$one_page_title = get_the_title($doc_id);
+
+	$one_page_docs = get_posts([
+		'post_type'  => 'one-page-docs',
+		'title' => $one_page_title,
+	]);
+
+	if ( count( $one_page_docs ) < 1 ) :
+		?>
+        <button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo admin_url( 'admin.php/One_Page.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>">
+			<?php esc_html_e( 'Make One Page', 'eazydocs-pro' ); ?>
+        </button>
+	<?php
+	else :
+		foreach( $one_page_docs as $single_docs ) :
+			?>
+            <a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink($single_docs); ?>" target="_blank">
+				<?php esc_html_e( 'View One Page', 'eazydocs-pro' ); ?>
+            </a>
+		<?php
+		endforeach;
+	endif;
+}

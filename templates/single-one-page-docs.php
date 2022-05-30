@@ -1,15 +1,17 @@
 <?php
 get_header();
-$post_id        = get_page_by_title( get_the_title(get_the_ID()), OBJECT, 'docs' );
+$post_id            = get_page_by_title( get_the_title(get_the_ID()), OBJECT, 'docs' );
 wp_enqueue_script('eazydocs-onpage');
-$walker         = new eazyDocs\Frontend\Walker_Docs();
-$children       = wp_list_pages( array(
-	'title_li'  => '',
-	'order'     => 'menu_order',
-	'child_of'  => $post_id->ID,
-	'echo'      => false,
-	'post_type' => 'docs',
-	'walker'    => new EazyDocs_Walker_Onepage(),
+$walker             = new eazyDocs\Frontend\Walker_Docs();
+$ezd_content        = get_the_content(get_the_ID());
+$ezd_content_none   = ! empty( $ezd_content ) ? 'mt-5' : '';
+$children           = wp_list_pages( array(
+	'title_li'      => '',
+	'order'         => 'menu_order',
+	'child_of'      => $post_id->ID,
+	'echo'          => false,
+	'post_type'     => 'docs',
+	'walker'        => new EazyDocs_Walker_Onepage(),
 ) );
 ?>
 
@@ -79,9 +81,7 @@ $children       = wp_list_pages( array(
 									</div>
 								<?php endif; ?>
 								<div class="doc-content">
-									<?php
-									echo  apply_filters('the_content', $doc_item->post_content);
-									?>
+									<?php echo  apply_filters('the_content', $doc_item->post_content); ?>
 								</div>
 
 								<?php if ( $child_sections ) : ?>
@@ -142,40 +142,36 @@ $children       = wp_list_pages( array(
 								wp_enqueue_script( 'bootstrap-select' );
 									?>
                                 <select id="mySelect">
-                                    <option value="windows" data-content="<i class='fab fa-windows'></i> Windows"> Windows</option>
-                                    <option value="ios" data-content="<i class='fab fa-apple'></i> IOS">IOS</option>
+                                    <option value="windows" data-content="<i class='fab fa-windows'></i> Windows"> <?php esc_html_e( 'Windows', 'eazydocs' ); ?> </option>
+                                    <option value="ios" data-content="<i class='fab fa-apple'></i> IOS"> <?php esc_html_e( 'IOS', 'eazydocs' ); ?> </option>
                                 </select>
 								<?php
 							endif;
 							?>
 							<div id="font-switcher" class="d-flex justify-content-between align-items-center">
-								<?php
-								$is_font_switcher = '1';
-								if ( $is_font_switcher == '1' ) :
-									?>
-									<div id="rvfs-controllers" class="fontsize-controllers group">
-										<div class="btn-group">
-											<button id="switcher-small" class="rvfs-decrease btn" title="<?php esc_attr_e('Decrease font size', 'docy'); ?>">A-</button>
-											<button id="switcher-default" class="rvfs-reset btn" title="<?php esc_attr_e('Default font size', 'docy'); ?>">A</button>
-											<button id="switcher-large" class="rvfs-increase btn" title="<?php esc_attr_e('Increase font size', 'docy'); ?>">A+</button>
-										</div>
-									</div>
-								<?php
-								endif;
-								$is_print_icon = '1';
-								if ( $is_print_icon == '1' ) : ?>
-									<a href="#" class="print"><i class="icon_printer"></i></a>
-								<?php endif; ?>
+                                <div id="rvfs-controllers" class="fontsize-controllers group">
+                                    <div class="btn-group">
+                                        <button id="switcher-small" class="rvfs-decrease btn" title="<?php esc_attr_e('Decrease font size', 'docy'); ?>">A-</button>
+                                        <button id="switcher-default" class="rvfs-reset btn" title="<?php esc_attr_e('Default font size', 'docy'); ?>">A</button>
+                                        <button id="switcher-large" class="rvfs-increase btn" title="<?php esc_attr_e('Increase font size', 'docy'); ?>">A+</button>
+                                    </div>
+                                </div>
+                                <a href="#" class="print"><i class="icon_printer"></i></a>
 							</div>
 
-							 <div class="onepage-sidebar mt-5 doc_sidebar">
+							 <div class="onepage-sidebar doc_sidebar <?php echo esc_attr($ezd_content_none); ?>">
                                  <div class="hire-us">
-                                     <p class="explanation hire expn-left p-3 small">
-                                         If you need the theme customization or custom development services please contact us.
-                                     </p>
-                                     <a href="mailto:ehjewel2@gmail.com" class="action_btn btn_small"> Email Us<i class="arrow_right"></i> </a>
-
-
+                                     <?php
+                                     if( ! empty( $ezd_content ) ) :
+                                         ?>
+                                         <p class="explanation hire expn-left p-3 small">
+                                             <?php echo wp_strip_all_tags( $ezd_content ); ?>
+                                         </p>
+                                        <?php
+                                     endif;
+                                     dynamic_sidebar('doc_sidebar');
+                                     ?>
+                                     <a href="mailto:<?php echo get_option('admin_email'); ?>" class="action_btn btn_small"> Email Us<i class="arrow_right"></i> </a>
                                  </div>
 							 </div>
 						</div>

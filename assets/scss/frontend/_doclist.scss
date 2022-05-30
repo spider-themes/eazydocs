@@ -755,7 +755,7 @@
   left: -40px;
   color: var(--ezd_brand_color);
   display: none;
-  top: 30px;
+  top: 0;
   &#right {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -793,6 +793,9 @@
   padding-top: 70px;
   height: 100%;
   position: relative;
+  @media ( max-width: 767px ) {
+    padding-top: 0;
+  }
   .pageSideSection {
     padding-left: 20px;
     position: relative;

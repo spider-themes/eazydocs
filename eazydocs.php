@@ -53,7 +53,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'i18n' ] );
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
-			add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ] );
 		}
 
 		/**
@@ -81,6 +80,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/Ajax.php';
 			require_once __DIR__ . '/includes/Frontend/Mailer.php';
 			require_once __DIR__ . '/includes/Post_Types.php';
+			require_once __DIR__ . '/includes/One_page_doc_type.php';
 			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
@@ -130,6 +130,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Admin\Create_Post();
 				new eazyDocs\Admin\Delete_Post();
 				new eazyDocs\Admin\Assets();
+				new eazyDocs\One_Page();
 			} else {
 				new eazyDocs\Frontend\Frontend();
 				new eazyDocs\Frontend\Assets();
@@ -137,10 +138,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Frontend\Mailer();
 			}
 		}
-
-        public function after_setup_theme() {
-
-        }
 
 		public function init_hooked() {
 			new eazyDocs\Frontend\Ajax();

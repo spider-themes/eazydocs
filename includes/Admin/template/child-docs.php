@@ -352,8 +352,13 @@ if ( is_array( $depth_one_parents ) ) :
 				<?php esc_html_e( 'Add Section', 'eazydocs' ); ?>
             </button>
 
-            <?php do_action('eazydocs_one_page', $item ); ?>
+            <?php
+                $current_theme = get_template();
+                if ( $current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
+                    echo eazydocs_one_page( $item );
 
+                }
+            ?>
         </div>
 	    <?php
 	endforeach;

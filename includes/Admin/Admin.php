@@ -122,6 +122,12 @@ class Admin {
 		}else{
 			add_submenu_page( 'eazydocs', __( 'Customize', 'eazydocs' ), __( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
 		}
+		$current_theme = get_template();
+		if ( $current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
+			add_submenu_page( 'eazydocs', __( 'One Page', 'eazydocs' ), __( 'One Page', 'eazydocs' ), 'manage_options', '/edit.php?post_type=one-page-docs' );
+		}else{
+			add_submenu_page( 'eazydocs', __( 'One Page', 'eazydocs' ), __( 'One Page', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [$this, 'ezd_onepage_presents'] );
+		}
 		add_submenu_page( 'eazydocs', __( 'Tags', 'eazydocs' ), __( 'Tags', 'eazydocs' ), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
 	}
 
@@ -132,6 +138,11 @@ class Admin {
 		include __DIR__ . '/admin-template.php';
 	}
 
+	/**
+	 * @param $classes
+	 *
+	 * @return string
+	 */
     public function body_class( $classes ) {
         $current_theme = get_template();
         $classes .= ' '.$current_theme;
@@ -148,4 +159,9 @@ class Admin {
 
         return $classes;
     }
+
+    public function ezd_onepage_presents(){
+	   echo "Presentation Page";
+    }
+
 }
