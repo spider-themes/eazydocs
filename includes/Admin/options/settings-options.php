@@ -514,6 +514,26 @@ CSF::createSection( $prefix, array(
             'class'      => 'eazydocs-pro-notice active-theme'
 		),
 
+        array(
+            'title'      => esc_html__( 'Dropdown Options', 'eazydocs' ),
+            'id'         => 'condition_options',
+            'type'       => 'repeater',
+            'fields'     => array(
+                array(
+                    'title' => esc_html__( 'Title', 'eazydocs' ),
+                    'id'    => 'title',
+                    'type'  => 'text',
+                ),
+                array(
+                    'title' => esc_html__( 'Icon', 'eazydocs' ),
+                    'id'    => 'icon',
+                    'type'  => 'icon',
+                ),
+            ),
+            'dependency' => array( 'is_conditional_dropdown', '==', '1' ),
+            'class'      => 'eazydocs-pro-notice active-theme'
+        ),
+
 		array(
 			'title'      => esc_html__( 'Dark Mode Switcher', 'eazydocs' ),
 			'id'         => 'is_dark_switcher',
@@ -535,26 +555,6 @@ CSF::createSection( $prefix, array(
 			'text_width' => 90,
 			'default'    => false,
             'class'      => 'eazydocs-pro-notice active-theme-docly'
-		),
-
-		array(
-			'title'      => esc_html__( 'Dropdown Options', 'eazydocs' ),
-			'id'         => 'condition_options',
-			'type'       => 'repeater',
-			'fields'     => array(
-				array(
-					'title' => esc_html__( 'Title', 'eazydocs' ),
-					'id'    => 'title',
-					'type'  => 'text',
-				),
-				array(
-					'title' => esc_html__( 'Icon', 'eazydocs' ),
-					'id'    => 'icon',
-					'type'  => 'icon',
-				),
-			),
-			'dependency' => array( 'is_conditional_dropdown', '==', '1' ),
-            'class'      => 'eazydocs-pro-notice active-theme'
 		),
 	)
 ));

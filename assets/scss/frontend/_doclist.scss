@@ -524,6 +524,7 @@
     }
   }
 }
+
 .help_text {
   padding: 0 0 0;
   .border_bottom {
@@ -552,6 +553,45 @@
           color: var(--ezd_brand_color);
         }
       }
+    }
+  }
+}
+
+/** === Help Contact Form === **/
+#eazydocs_feedback {
+  .action_btn {
+    border: 0;
+    padding: 15px 40px;
+    box-shadow: none;
+    font-weight: 500;
+    background: brand_color_rgba(0.9);
+    color: #fff;
+    &:hover {
+      background: var(--ezd_brand_color);
+      color: #fff;
+    }
+  }
+  .close {
+    font-size: 30px;
+    opacity: 1;
+    color: #fff;
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    padding: 5px 8px 7px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--black_350);
+    border-radius: 3px;
+    transition: all .3s;
+    border: none;
+    &:hover {
+      background: #cd2653;
+      border: none;
+      box-shadow: none;
+      text-decoration: none;
     }
   }
 }
@@ -696,9 +736,13 @@
   max-width: 730px;
   display: flex;
   align-items: center;
-  height: 100vh;
   margin-top: 0;
   margin-bottom: 0;
+  padding: 60px;
+  background: #f1f1f1;
+  top: 50%;
+  transform: translateY(-50%) !important;
+  border-radius: 15px;
   .modal-content {
     border: 0;
     background: transparent;
@@ -707,6 +751,9 @@
 .contact_form {
   .form-group {
     margin-bottom: 30px;
+    &:last-child {
+      margin-bottom: 0;
+    }
     .form-control,
     textarea {
       border: 1px solid rgb(244, 248, 248);
@@ -1549,51 +1596,6 @@ body:not(.onepage-doc) .sticky_menu {
 .full-width-doc .doc-middle-content {
   padding-left: 50px;
   padding-right: 50px;
-}
-
-#eazydocs_feedback {
-  background: #f1f1f1;
-  .action_btn {
-    border: 0;
-    padding: 15px 40px;
-    box-shadow: none;
-    font-weight: 500;
-    background: brand_color_rgba(0.9);
-    color: #fff;
-    &:hover {
-      background: var(--ezd_brand_color);
-      color: #fff;
-    }
-  }
-  .close {
-    font-size: 30px;
-    opacity: 1;
-    color: #fff;
-    position: absolute;
-    right: 30px;
-    top: 30px;
-    padding: 5px 8px 7px;
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--black_350);
-    border-radius: 3px;
-    transition: all .3s;
-    &:hover {
-      background: #cd2653;
-      border: none;
-      box-shadow: none;
-      text-decoration: none;
-    }
-  }
-}
-
-/** == Style while Admin Bar shown === **/
-.admin-bar {
-  #eazydocs_feedback .close {
-    top: 52px;
-  }
 }
 
 .dot-sep span:nth-child(2) {

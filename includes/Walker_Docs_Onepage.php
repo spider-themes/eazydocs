@@ -1,7 +1,7 @@
 <?php
 
 /**
- * weDocs Docs Walker
+ * EazyDocs Docs Walker
  */
 class EazyDocs_Walker_Onepage extends Walker_Page {
     /**
@@ -123,12 +123,12 @@ class EazyDocs_Walker_Onepage extends Walker_Page {
 
         if ( '' === $page->post_title ) {
             /* translators: %d: ID of a post */
-            $page->post_title = sprintf( esc_html__( '#%d (no title)', 'docly' ), $page->ID );
+            $page->post_title = sprintf( esc_html__( '#%d (no title)', 'eazydocs' ), $page->ID );
         }
 
         $thumb = '';
         if ( $depth == 0 ) {
-            $folder = '<img src="' . EAZYDOCS_IMG . '/icon/folder-closed.png" alt="' . esc_attr__('folder icon closed', 'docly') . '"> <img src="' . EAZYDOCS_IMG . '/icon/folder-open.png" alt="' . esc_attr__('folder icon', 'docly') . '">';
+            $folder = '<img src="' . EAZYDOCS_IMG . '/icon/folder-closed.png" alt="' . esc_attr__('folder icon closed', 'eazydocs') . '"> <img src="' . EAZYDOCS_IMG . '/icon/folder-open.png" alt="' . esc_attr__('folder icon', 'eazydocs') . '">';
             $thumb = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
         }
 
@@ -226,14 +226,14 @@ class EazyDocs_Walker_Onepage extends Walker_Page {
 // end sidebar Function
 // Start Theme Content Function
 
-function docly_list_pages_onepage( $args = '' ) {
+function ezd_list_pages_onepage( $args = '' ) {
     $defaults = array(
         'depth'        => 0,
         'show_date'    => '',
         'date_format'  => get_option( 'date_format' ),
         'child_of'     => 0,
         'exclude'      => '',
-        'title_li'     => esc_html__( 'Pages', 'docly' ),
+        'title_li'     => esc_html__( 'Pages', 'eazyDocs' ),
         'echo'         => 1,
         'authors'      => '',
         'sort_column'  => 'menu_order, post_title',
@@ -299,7 +299,7 @@ function docly_list_pages_onepage( $args = '' ) {
      * @since 1.5.1
      * @since 4.4.0 `$pages` added as arguments.
      *
-     * @see docly_list_pages_onepage()
+     * @see ezd_list_pages_onepage()
      *
      * @param string $output HTML output of the pages list.
      * @param array  $r      An array of page-listing arguments.
@@ -307,8 +307,8 @@ function docly_list_pages_onepage( $args = '' ) {
      */
 
     if ( $r['echo'] ) {
-        echo apply_filters( 'docly_list_pages_onepage', $output, $r, $pages );;
+        echo apply_filters( 'ezd_list_pages_onepage', $output, $r, $pages );;
     } else {
-        return apply_filters( 'docly_list_pages_onepage', $output, $r, $pages );;
+        return apply_filters( 'ezd_list_pages_onepage', $output, $r, $pages );;
     }
 }

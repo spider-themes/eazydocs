@@ -932,6 +932,43 @@ input[type=search]::-webkit-search-results-decoration {
   color: var(--ezd_brand_color);
 }
 
+/** === Help Contact Form === **/
+#eazydocs_feedback .action_btn {
+  border: 0;
+  padding: 15px 40px;
+  box-shadow: none;
+  font-weight: 500;
+  background: rgba(76, 76, 241, 0.9);
+  color: #fff;
+}
+#eazydocs_feedback .action_btn:hover {
+  background: var(--ezd_brand_color);
+  color: #fff;
+}
+#eazydocs_feedback .close {
+  font-size: 30px;
+  opacity: 1;
+  color: #fff;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  padding: 5px 8px 7px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--black_350);
+  border-radius: 3px;
+  transition: all 0.3s;
+  border: none;
+}
+#eazydocs_feedback .close:hover {
+  background: #cd2653;
+  border: none;
+  box-shadow: none;
+  text-decoration: none;
+}
+
 .code_structure {
   padding-top: 50px;
 }
@@ -1079,9 +1116,13 @@ input[type=search]::-webkit-search-results-decoration {
   max-width: 730px;
   display: flex;
   align-items: center;
-  height: 100vh;
   margin-top: 0;
   margin-bottom: 0;
+  padding: 60px;
+  background: #f1f1f1;
+  top: 50%;
+  transform: translateY(-50%) !important;
+  border-radius: 15px;
 }
 .help_form .modal-content {
   border: 0;
@@ -1090,6 +1131,9 @@ input[type=search]::-webkit-search-results-decoration {
 
 .contact_form .form-group {
   margin-bottom: 30px;
+}
+.contact_form .form-group:last-child {
+  margin-bottom: 0;
 }
 .contact_form .form-group .form-control,
 .contact_form .form-group textarea {
@@ -1893,49 +1937,6 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   padding-right: 50px;
 }
 
-#eazydocs_feedback {
-  background: #f1f1f1;
-}
-#eazydocs_feedback .action_btn {
-  border: 0;
-  padding: 15px 40px;
-  box-shadow: none;
-  font-weight: 500;
-  background: rgba(76, 76, 241, 0.9);
-  color: #fff;
-}
-#eazydocs_feedback .action_btn:hover {
-  background: var(--ezd_brand_color);
-  color: #fff;
-}
-#eazydocs_feedback .close {
-  font-size: 30px;
-  opacity: 1;
-  color: #fff;
-  position: absolute;
-  right: 30px;
-  top: 30px;
-  padding: 5px 8px 7px;
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--black_350);
-  border-radius: 3px;
-  transition: all 0.3s;
-}
-#eazydocs_feedback .close:hover {
-  background: #cd2653;
-  border: none;
-  box-shadow: none;
-  text-decoration: none;
-}
-
-/** == Style while Admin Bar shown === **/
-.admin-bar #eazydocs_feedback .close {
-  top: 52px;
-}
-
 .dot-sep span:nth-child(2) {
   position: relative;
 }
@@ -2102,7 +2103,7 @@ p .footnotes-link::after {
 .left-sidebar-toggle {
   position: absolute;
   top: 65px;
-  margin-left: -60px;
+  margin-left: -70px;
   color: #656565;
   line-height: 22px;
   cursor: pointer;
@@ -2113,7 +2114,12 @@ p .footnotes-link::after {
 }
 @media (max-width: 1440px) {
   .left-sidebar-toggle {
-    margin-left: -57px;
+    margin-left: -40px;
+  }
+}
+@media (max-width: 1680px) {
+  .left-sidebar-toggle {
+    margin-left: -60px;
   }
 }
 .left-sidebar-toggle .left-arrow {

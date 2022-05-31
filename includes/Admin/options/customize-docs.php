@@ -155,14 +155,13 @@ CSF::createSection( $prefix, array(
                             'id'            => 'content-bg',
                             'type'          => 'color',
                             'title'         => esc_html__('Background Color', 'eazydocs-pro'),
-                            'output'        => 'body',
+                            'output'        => 'body.single-docs',
                             'output_mode'   => 'background-color',
                         ),
                     )
                 )
             )
         ),
-
 	)
 ) );
 

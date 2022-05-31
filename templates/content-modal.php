@@ -16,11 +16,11 @@ if ( class_exists( 'EazyDocsPro' ) ) {
 ?>
 
 <div class="modal fade img_modal" id="eazydocs_feedback" tabindex="-3" role="dialog" aria-hidden="false">
-    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-        <i class=" icon_close"></i>
-    </button>
     <div class="modal-dialog help_form" role="document">
         <div class="modal-content">
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <i class=" icon_close"></i>
+            </button>
             <div class="shortcode_title">
                 <h3 class="mb-2"> <?php echo esc_html( $title ); ?> </h3>
 	            <?php echo wpautop( $desc ); ?>

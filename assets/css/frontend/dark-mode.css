@@ -5,7 +5,7 @@
 }
 .body_dark .ordered-list li::before,
 .body_dark .body_wrapper,
-.body_dark .img_modal, .body_dark .help_form .modal-content {
+.body_dark .img_modal, .body_dark #eazydocs_feedback {
     background: #131417;
 }
 .body_dark .explanation {
@@ -26,6 +26,9 @@
 .body_dark .sticky_menu .menu_one .menu > .nav-item .nav-link, .body_dark .sticky_menu .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link h5 {
     color: #fff;
 }
+.body_dark .documentation_item .media-body .title {
+    color: var(--black_50)
+}
 .body_dark .search_form .form-control {
     background: #5a5f73;
     border-color: #2c303a;
@@ -38,7 +41,9 @@
 .body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active, .body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:hover {
     background: #444857;
 }
-.body_dark.onepage-doc .nav-sidebar .nav-item, .body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu, .body_dark .doc_rightsidebar .dropdown-toggle, .body_dark .fontsize-controllers .btn-group, .body_dark.onepage-doc .nav-sidebar .nav-item .dropdown_nav, .body_dark .doc_rightsidebar .doc_switch input[type=checkbox],
+.body_dark .help_form,
+.body_dark.onepage-doc .nav-sidebar .nav-item, .body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu,
+.body_dark .doc_rightsidebar .dropdown-toggle, .body_dark .fontsize-controllers .btn-group, .body_dark.onepage-doc .nav-sidebar .nav-item .dropdown_nav, .body_dark .doc_rightsidebar .doc_switch input[type=checkbox],
 .body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu {
     background: #2c303a;
 }
@@ -47,7 +52,8 @@
 .body_dark .doc_left_sidebarlist:before {
     background: #1e1f26;
 }
-.body_dark .doc_rightsidebar .doc_switch input[type=checkbox],
+.body_dark .doc_rightsidebar .doc_switch input[type=checkbox], .body_dark .topic_item_tabs .topic_list_item,
+.body_dark .doc_left_sidebarlist::after,
 .body_dark .doc_rightsidebar .dropdown-toggle, .body_dark .fontsize-controllers .btn-group .btn.rvfs-reset, .body_dark .fontsize-controllers .btn-group,
 .body_dark .doc_left_sidebarlist:before, .body_dark .doc_left_sidebarlist, .body_dark .nav-sidebar + .nav-sidebar, .body_dark .doc_rightsidebar, .body_dark .v_menu, .body_dark .toggle_body, .body_dark .basic_table_info, .body_dark .basic_table_info tbody tr th, .body_dark .basic_table_info tbody tr td, .body_dark .typography_content .code-preview, .body_dark .doc_left_sidebarlist:before {
     border-color: #272830;
@@ -61,7 +67,7 @@
     color: #c7c9d3;
 }
 .body_dark .nav-sidebar .nav-item .nav-link.active, .body_dark .nav-sidebar .nav-item .nav-link:hover {
-    color: var(--brand_color);
+    color: var(--ezd_brand_color);
 }
 .body_dark .nav-sidebar .nav-item .dropdown_nav li a {
     color: #bbb;
@@ -113,7 +119,7 @@
     background: #061f2f;
 }
 .body_dark .toggle_btn {
-    color: var(--brand_color);
+    color: var(--ezd_brand_color);
 }
 .body_dark .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link h5 {
     color: var(--secondary_color);
