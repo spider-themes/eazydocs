@@ -131,6 +131,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Admin\Delete_Post();
 				new eazyDocs\Admin\Assets();
 				new eazyDocs\One_Page();
+				new eazyDocs\One_Page_Edit();
 			} else {
 				new eazyDocs\Frontend\Frontend();
 				new eazyDocs\Frontend\Assets();

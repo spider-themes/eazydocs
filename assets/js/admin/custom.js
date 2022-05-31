@@ -166,23 +166,23 @@
             $('.easydocs-tab:first-child').css('display','block');
         }
 
-        // One page docs
+        // CREATE ONE PAGE DOC
         function one_page_doc() {
-            $('.one-page-doc').on('click', function (e) {
+            $(document).on('click', '.one-page-doc', function (e) {
                 e.preventDefault();
-                let href = $(this).attr('data-url')
-                Swal.fire({
-                    title: 'Do you want to make one page?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes'
-                }).then((result) => {
-                    if (result.value) {
-                        document.location.href = href;
-                    }
-                })
+                let href = $(this).attr('data-url');
+                (async () => {
+                    const {value: formValues} = await Swal.fire({
+                        title: 'Want to make One Page?',
+                        html:
+                            '<label for="ezd_docs_sidebar">Sidebar Content</label><textarea id="ezd_docs_sidebar" class="widefat"></textarea>',
+                        confirmButtonText: 'Submit',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = href + '&content=' + document.getElementById('ezd_docs_sidebar').value
+                        }
+                    })
+                })()
             })
         }
         one_page_doc();

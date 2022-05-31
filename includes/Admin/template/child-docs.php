@@ -355,10 +355,11 @@ if ( is_array( $depth_one_parents ) ) :
             <?php
                 $current_theme = get_template();
                 if ( $current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
-                    echo eazydocs_one_page( $item );
+                    eazydocs_one_page( $item );
 
                 }
             ?>
+
         </div>
 	    <?php
 	endforeach;

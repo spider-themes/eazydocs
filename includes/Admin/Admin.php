@@ -13,6 +13,7 @@ class Admin {
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'eazyDocs_menu' ] );
         add_filter( 'admin_body_class', [ $this, 'body_class' ] );
+		add_filter( 'get_edit_post_link', [$this, 'one_page_docs_edit_content'], 10, 3 );
 	}
 
 	/**
@@ -77,7 +78,7 @@ class Admin {
 			}
 		}
 
-		add_menu_page( __( 'EazyDocss', 'eazyDocs' ), __( 'EazyDocs', 'eazyDocs' ), $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
+		add_menu_page( __( 'EazyDocs', 'eazyDocs' ), __( 'EazyDocs', 'eazyDocs' ), $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
 
 		if ( class_exists( 'EazyDocsPro' ) ) {
 			if ( in_array( $current_user, $cz_roled ) ) {
@@ -163,5 +164,21 @@ class Admin {
     public function ezd_onepage_presents(){
 	   echo "Presentation Page";
     }
+
+	/**
+	 * @param $link
+	 * @param $post_ID
+	 * @param $content
+	 *
+	 * @return mixed|string
+	 */
+	public function one_page_docs_edit_content( $link, $post_ID ){
+		if( 'one-page-docs' == get_post_type( $post_ID ) ){
+			$is_content     = get_the_content($post_ID);
+			$content_null   = ! empty( $is_content ) ? '&content='. $is_content : null;
+			$link           = $link . $content_null;
+		}
+		return $link;
+	}
 
 }

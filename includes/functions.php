@@ -379,7 +379,6 @@ function eazydocs_pro_doc_list() {
 /**
  * @param $doc_id
  */
-
 function eazydocs_one_page($doc_id){
 	$one_page_title = get_the_title($doc_id);
 

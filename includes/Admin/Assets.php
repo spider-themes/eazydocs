@@ -75,13 +75,13 @@ class Assets {
 	public function eazydocs_global_scripts() {
         wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
         wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', '1.1.3' );
-
         wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true );
 		wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js' );
 		wp_enqueue_script( 'eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js' );
 		wp_localize_script( 'jquery', 'eazydocs_local_object',
 			array(
 				'one_page_prompt_docs'  => eazydocs_pro_doc_list(),
+				'edit_one_page_url'     => admin_url('admin.php/One_Page_Edit.php?edit_docs=yes'),
 			)
 		);
 	}
