@@ -193,14 +193,13 @@
   }
   &.one-page-doc-nav-wrap{
     .nav-item{
-      margin-bottom: 0px;
-      a{
-        padding:13px 20px;
-      }
       background: #f8fafb;
-      margin-top: 3px;
+      margin: 3px 0 0;
       @media screen and ( max-width: 991px ) {
         margin-top: 0;
+      }
+      a {
+        padding: 13px 20px;
       }
       .dropdown_nav {
         padding-left: 32px !important;
@@ -559,6 +558,7 @@
 
 /** === Help Contact Form === **/
 #eazydocs_feedback {
+  background: rgb(0 0 0 / 60%);
   .action_btn {
     border: 0;
     padding: 15px 40px;
@@ -742,7 +742,7 @@
   background: #f1f1f1;
   top: 50%;
   transform: translateY(-50%) !important;
-  border-radius: 15px;
+  border-radius: 10px;
   .modal-content {
     border: 0;
     background: transparent;
@@ -1271,6 +1271,21 @@ body:not(.onepage-doc) .sticky_menu {
   .doc-container {
     padding-top: 130px;
   }
+}
+
+.onepage-doc-sec .doc-content h4, .onepage-doc-sec .doc-content h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.onepage-doc-sec .border_bottom {
+  margin: 80px 0;
+}
+
+#post .onepage-doc-sec {
+  padding-top: 100px;
+  margin-top: -100px;
 }
 
 .remove {
