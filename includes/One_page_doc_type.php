@@ -16,8 +16,7 @@ class One_Page_Docs {
 	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_post_type' ] );
-		add_filter( 'post_type_link', [$this, 'remove_onepage_slug_permalink'], 10, 3 );
-		add_action( 'pre_get_posts', [$this, 'update_onepage_slug_permalink'] );
+
 	}
 
 	/**
@@ -50,12 +49,6 @@ class One_Page_Docs {
 			'capabilities'       => array( 'create_posts' => false ),
 
 		];
-		$rewrite = [
-			'slug'       => $slug,
-			'with_front' => true,
-			'pages'      => true,
-			'feeds'      => true,
-		];
 		$args = [
 			'labels'              => $labels,
 			'supports'            => [ 'title', 'editor'],
@@ -71,53 +64,11 @@ class One_Page_Docs {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'show_in_rest'        => true,
-			'rewrite'             => $rewrite,
+			'rewrite' => array( 'slug' => '/', 'with_front' => false ),
 			'map_meta_cap'        => true
 		];
 
 		register_post_type( $this->post_type, apply_filters( 'eazydocs_post_type', $args ) );
-	}
-
-	/**
-	 * @param $post_link
-	 * @param $post
-	 * @param $leavename
-	 *
-	 * @return array|mixed|string|string[]
-	 */
-	public function remove_onepage_slug_permalink( $post_link, $post, $leavename ) {
-
-		if ( 'onepage-docs' != $post->post_type || 'publish' != $post->post_status ) {
-			return $post_link;
-		}
-
-		$post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
-
-		return $post_link;
-	}
-
-	/**
-	 * @param $query
-	 */
-	function update_onepage_slug_permalink( $query ) {
-
-		// Bail if this is not the main query.
-		if ( ! $query->is_main_query() ) {
-			return;
-		}
-
-		// Bail if this query doesn't match our very specific rewrite rule.
-		if ( ! isset( $query->query['page'] ) || 2 !== count( $query->query ) ) {
-			return;
-		}
-
-		// Bail if we're not querying based on the post name.
-		if ( empty( $query->query['name'] ) ) {
-			return;
-		}
-
-		// Add CPT to the list of post types WP will include when it queries based on the post name.
-		$query->set( 'post_type', array( 'onepage-docs' ) );
 	}
 
 }
