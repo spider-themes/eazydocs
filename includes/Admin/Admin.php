@@ -125,7 +125,7 @@ class Admin {
 		}
 		$current_theme = get_template();
 		if ( $current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
-			add_submenu_page( 'eazydocs', __( 'One Page', 'eazydocs' ), __( 'One Page', 'eazydocs' ), 'manage_options', '/edit.php?post_type=one-page-docs' );
+			add_submenu_page( 'eazydocs', __( 'One Page', 'eazydocs' ), __( 'One Page', 'eazydocs' ), 'manage_options', '/edit.php?post_type=onepage-docs' );
 		}else{
 			add_submenu_page( 'eazydocs', __( 'One Page', 'eazydocs' ), __( 'One Page', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [$this, 'ezd_onepage_presents'] );
 		}
@@ -173,7 +173,7 @@ class Admin {
 	 * @return mixed|string
 	 */
 	public function one_page_docs_edit_content( $link, $post_ID ){
-		if( 'one-page-docs' == get_post_type( $post_ID ) ){
+		if( 'onepage-docs' == get_post_type( $post_ID ) ){
 			$is_content     = get_the_content($post_ID);
 			$content_null   = ! empty( $is_content ) ? '&content='. $is_content : null;
 			$link           = $link . $content_null;

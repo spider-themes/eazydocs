@@ -2,11 +2,11 @@
     $(document).ready(function () {
 
         $("body.post-type-docs .wrap #posts-filter .search-box").append(' <a href="admin.php?page=eazydocs" class="button">Grid View</a>');
-        $("body.post-type-one-page-docs .wrap .page-title-action").after(' <a href="admin.php/One_Page.php?single_doc_title=" class="page-title-action add-one-page">Add One Page</a>');
+        $("body.post-type-onepage-docs .wrap .page-title-action").after(' <a href="admin.php/One_Page.php?single_doc_title=" class="page-title-action add-onepage">Add One Page</a>');
 
         // CREATE ONE PAGE DOC
         function create_one_page_doc_doc() {
-            $(document).on('click', '.page-title-action.add-one-page', function (e) {
+            $(document).on('click', '.page-title-action.add-onepage', function (e) {
                 e.preventDefault();
                 let href = $(this).attr('href');
                 (async () => {
@@ -29,7 +29,7 @@
 
         // EDIT ONE PAGE DOC
         function edit_one_page_doc_doc() {
-            $(document).on('click', 'body.post-type-one-page-docs .type-one-page-docs .row-actions span.edit, body.post-type-one-page-docs .type-one-page-docs .page-title > strong', function (e) {
+            $(document).on('click', 'body.post-type-onepage-docs .type-onepage-docs .row-actions span.edit, body.post-type-onepage-docs .type-onepage-docs .page-title > strong', function (e) {
                 e.preventDefault();
 
                 let edit_url = $('a', this).filter("[href]").attr('href');

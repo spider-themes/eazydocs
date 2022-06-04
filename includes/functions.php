@@ -368,7 +368,7 @@ function eazydocs_pro_doc_list() {
 	$doc_items = '';
 	foreach ( $docs as $doc ) {
 
-		if( ! get_page_by_title( $doc->post_title, OBJECT, 'one-page-docs' ) ) {
+		if( ! get_page_by_title( $doc->post_title, OBJECT, 'onepage-docs' ) ) {
 			$doc_items .= '<option name="' . $doc->post_title . '">' . $doc->post_title . '</option>';
 		}
 	}
@@ -383,7 +383,7 @@ function eazydocs_one_page($doc_id){
 	$one_page_title = get_the_title($doc_id);
 
 	$one_page_docs = get_posts([
-		'post_type'  => 'one-page-docs',
+		'post_type'  => 'onepage-docs',
 		'title' => $one_page_title,
 	]);
 

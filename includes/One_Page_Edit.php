@@ -14,7 +14,7 @@ class One_Page_Edit {
 
 		if ( isset ( $_GET['edit_content'] ) ) {
 			if ( isset ( $_GET['edit_docs'] ) ) {
-				$redirect = 'edit.php?post_type=one-page-docs';
+				$redirect = 'edit.php?post_type=onepage-docs';
 			} else {
 				$redirect = 'admin.php?page=eazydocs';
 			}

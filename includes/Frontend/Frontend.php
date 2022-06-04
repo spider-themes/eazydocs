@@ -24,9 +24,9 @@ class Frontend {
 			} else {
 				$file = EAZYDOCS_PATH . '/templates' .'//'. $single_template;
 			}
-		} elseif ( is_single() && 'one-page-docs' == get_post_type() ) {
+		} elseif ( is_single() && 'onepage-docs' == get_post_type() ) {
 
-			$single_template = 'single-one-page-docs.php';
+			$single_template = 'single-onepage-docs.php';
 			// Check if a custom template exists in the theme folder, if not, load the plugin template file
 			if ( $theme_file = locate_template( array( 'eazydocs/' . $single_template ) ) ) {
 				$file = $theme_file;
