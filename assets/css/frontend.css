@@ -599,12 +599,6 @@ input[type=search]::-webkit-search-results-decoration {
   color: var(--ezd_brand_color);
 }
 .nav-sidebar .nav-item span.icon {
-  top: 0;
-  right: 20px;
-  line-height: 48px;
-  font-size: 18px;
-  position: absolute;
-  color: var(--brand_color);
   transform: rotate(0deg);
 }
 .nav-sidebar + .nav-sidebar {
@@ -659,15 +653,19 @@ input[type=search]::-webkit-search-results-decoration {
 .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav .nav-item a.active {
   color: var(--ezd_brand_color);
 }
+.nav-sidebar.one-page-doc-nav-wrap .active .dropdown_nav {
+  display: block;
+}
 .nav-sidebar.one-page-doc-nav-wrap .active .icon {
   transform: none;
 }
 
 .nav-sidebar.one-page-doc-nav-wrap .nav-item .icon {
   right: 20px;
-  line-height: 48px;
   position: absolute;
-  color: var(--ezd_brand_color);
+  top: 0;
+  line-height: 48px;
+  font-size: 18px;
 }
 .nav-sidebar.one-page-doc-nav-wrap .nav-item .icon i.arrow_carrot-down:before {
   content: "\f543";
@@ -1357,17 +1355,17 @@ input[type=search]::-webkit-search-results-decoration {
   margin-bottom: 30px;
 }
 
-#eazydocs-toc ul {
+.toc_right ul {
   padding: 0;
   margin: 0;
 }
-#eazydocs-toc ul li {
+.toc_right ul li {
   margin: 0;
 }
-#eazydocs-toc ul ul {
+.toc_right ul ul {
   padding-left: 20px;
 }
-#eazydocs-toc .nav-link {
+.toc_right .nav-link {
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -1375,17 +1373,17 @@ input[type=search]::-webkit-search-results-decoration {
   position: relative;
   margin-bottom: 8px;
 }
-#eazydocs-toc .nav-link:not(.active) {
+.toc_right .nav-link:not(.active) {
   color: var(--black_500);
 }
-#eazydocs-toc .nav-link.active {
+.toc_right .nav-link.active {
   font-weight: 500;
   color: var(--ezd_brand_color);
 }
-#eazydocs-toc .nav-link.active + .nav .active::before {
+.toc_right .nav-link.active + .nav .active::before {
   display: none;
 }
-#eazydocs-toc .nav-link.active::before {
+.toc_right .nav-link.active::before {
   left: -20px;
   height: 100%;
   content: " ";
@@ -2014,8 +2012,10 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .onepage_doc_area .documentation_body footer .border_bottom {
   margin-top: 100px;
 }
+.onepage_doc_area .doc_left_sidebarlist {
+  padding-right: 40px;
+}
 .onepage_doc_area .middle-content {
-  padding-left: 40px;
   padding-right: 25px;
 }
 

@@ -178,12 +178,6 @@
       }
     }
     span.icon {
-      top: 0;
-      right: 20px;
-      line-height: 48px;
-      font-size: 18px;
-      position: absolute;
-      color: var(--brand_color);
       transform: rotate(0deg);
     }
   }
@@ -239,6 +233,9 @@
       }
     }
     .active {
+      .dropdown_nav {
+        display: block;
+      }
       .icon {
         transform: none;
       }
@@ -250,9 +247,10 @@
   .nav-item {
     .icon {
       right: 20px;
-      line-height: 48px;
       position: absolute;
-      color: var(--ezd_brand_color);
+      top: 0;
+      line-height: 48px;
+      font-size: 18px;
       i.arrow_carrot-down {
         &:before{
           content: "\f543";
@@ -969,7 +967,7 @@
   }
 }
 
-#eazydocs-toc {
+.toc_right {
   ul {
     padding: 0;
     margin: 0;
@@ -1690,8 +1688,10 @@ body:not(.onepage-doc) .sticky_menu {
       }
     }
   }
+  .doc_left_sidebarlist {
+    padding-right: 40px;
+  }
   .middle-content {
-    padding-left: 40px;
     padding-right: 25px;
   }
 }

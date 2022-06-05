@@ -85,7 +85,7 @@ $article_print              = $opt['pr-icon-switcher'] ?? '';
 
             <div class="table-of-content">
                 <h6><i class="icon_ul"></i> <?php esc_html_e( 'CONTENTS', 'eazydocs' ); ?></h6>
-                <nav class="list-unstyled doc_menu" data-toggle="toc" id="eazydocs-toc"></nav>
+                <nav class="list-unstyled doc_menu toc_right" data-toggle="toc" id="eazydocs-toc"></nav>
             </div>
 
             <?php
