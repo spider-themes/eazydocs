@@ -83,7 +83,10 @@ $children           = wp_list_pages( array(
                                     </div>
                                 <?php endif; ?>
                                 <div class="doc-content">
-                                    <?php echo  apply_filters('the_content', $doc_item->post_content); ?>
+                                    <?php
+                                    $parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content($doc_item->ID);
+                                    echo !empty($parent_content) ? $parent_content : apply_filters('the_content', $doc_item->post_content);
+                                    ?>
                                 </div>
 
                                 <?php if ( $child_sections ) : ?>
@@ -91,14 +94,15 @@ $children           = wp_list_pages( array(
                                         <h4> <?php esc_html_e('Articles', 'docy'); ?></h4>
                                         <ul class="article_list tag_list one-page-docs-tag-list">
                                             <?php
-                                            foreach ( $child_sections as $child_section ):
+                                            foreach ( $child_sections as $child_section ) :
                                                 ?>
                                                 <li>
                                                     <a href="#<?php echo sanitize_title($child_section->post_title) ?>">
-                                                        <i class="icon_document_alt"></i><?php echo esc_html($child_section->post_title) ?>
+                                                        <i class="icon_document_alt"></i>
+                                                        <?php echo $child_section->post_title; ?>
                                                     </a>
                                                 </li>
-                                            <?php
+                                                <?php
                                             endforeach;
                                             ?>
                                         </ul>
@@ -112,10 +116,12 @@ $children           = wp_list_pages( array(
                                     ?>
                                     <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($child_section->post_title) ?>">
                                         <div class="shortcode_title">
-                                            <h2> <?php echo esc_html($child_section->post_title) ?> </h2>
+                                            <h2> <?php echo $child_section->post_title ?> </h2>
                                         </div>
                                         <div class="doc-content">
-                                            <?php echo apply_filters('the_content', $child_section->post_content);
+                                            <?php
+                                            $child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($child_section->ID);
+                                            echo !empty($child_content) ? $child_content : apply_filters('the_content', $child_section->post_content);
                                             ?>
                                         </div>
                                         <div class="border_bottom"></div>

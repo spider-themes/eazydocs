@@ -11,11 +11,12 @@
                 let href = $(this).attr('href');
                 (async () => {
                     const {value: formValues} = await Swal.fire({
-                        title: 'Want to make One Page?',
+                        title: 'Create OnePage Doc',
                         html:
                             '<label for="ezd_docs_select">Select the doc that want to work on</label><select class="widefat" id="ezd_docs_select">' + eazydocs_local_object.one_page_prompt_docs + '</select>' +
                             '<label for="ezd_docs_sidebar">Sidebar Content</label><textarea id="ezd_docs_sidebar" class="widefat"></textarea>',
-                        confirmButtonText: 'Submit',
+                        confirmButtonText: 'Publish',
+                        showCancelButton: true,
                     }).then((result) => {
                         if (document.getElementById('ezd_docs_select').value && result.isConfirmed) {
                             window.location.href = href + document.getElementById('ezd_docs_select').value + '&content=' + document.getElementById('ezd_docs_sidebar').value + '&self_doc=ezd-one-page'
@@ -57,6 +58,7 @@
                             '<label for="ezd_edit_docs_sidebar">Sidebar Content</label>' +
                             '<textarea id="ezd_edit_docs_sidebar" class="widefat">'+ edit_doc_content +'</textarea>',
                         confirmButtonText: 'Update',
+                        showCancelButton: true,
                     }).then((result) => {
                         if (document.getElementById('ezd_edit_docs_sidebar').value && result.isConfirmed) {
                             window.location.href = href + '&doc_id=' + edit_doc_id + '&edit_content=' + document.getElementById('ezd_edit_docs_sidebar').value
