@@ -125,9 +125,9 @@ class Admin {
 		}
 		$current_theme = get_template();
 		if ( $current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
-			add_submenu_page( 'eazydocs', __( 'One Page', 'eazydocs' ), __( 'One Page', 'eazydocs' ), 'manage_options', '/edit.php?post_type=onepage-docs' );
+			add_submenu_page( 'eazydocs', __( 'OnePage Doc', 'eazydocs' ), __( 'OnePage Doc', 'eazydocs' ), 'manage_options', '/edit.php?post_type=onepage-docs' );
 		}else{
-			add_submenu_page( 'eazydocs', __( 'One Page', 'eazydocs' ), __( 'One Page', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [$this, 'ezd_onepage_presents'] );
+			add_submenu_page( 'eazydocs', __( 'OnePage Doc', 'eazydocs' ), __( 'OnePage Doc', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [$this, 'ezd_onepage_presents'] );
 		}
 		add_submenu_page( 'eazydocs', __( 'Tags', 'eazydocs' ), __( 'Tags', 'eazydocs' ), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
 	}

@@ -33,9 +33,9 @@ class One_Page_Docs {
 		$slug = 'onepage-docs';
 
 		$labels = [
-			'name'               => _x( 'One Page Docs', 'Post Type General Name', 'eazydocs' ),
-			'singular_name'      => _x( 'One Page Doc', 'Post Type Singular Name', 'eazydocs' ),
-			'menu_name'          => __( 'EazyDocs One Page', 'eazydocs' ),
+			'name'               => _x( 'OnePage Docs', 'Post Type General Name', 'eazydocs' ),
+			'singular_name'      => _x( 'OnePage Doc', 'Post Type Singular Name', 'eazydocs' ),
+			'menu_name'          => __( 'EazyDocs OnePage', 'eazydocs' ),
 			'parent_item_colon'  => __( 'Parent Doc', 'eazydocs' ),
 			'all_items'          => __( 'All Docs', 'eazydocs' ),
 			'view_item'          => __( 'View Doc', 'eazydocs' ),

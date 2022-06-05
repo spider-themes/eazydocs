@@ -173,7 +173,6 @@ $children           = wp_list_pages( array(
                                     endif;
                                     dynamic_sidebar('doc_sidebar');
                                     ?>
-                                    <a href="mailto:<?php echo get_option('admin_email'); ?>" class="action_btn btn_small"> Email Us<i class="arrow_right"></i> </a>
                                 </div>
                             </div>
                         </div>
