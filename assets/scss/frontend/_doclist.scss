@@ -1688,10 +1688,15 @@ body:not(.onepage-doc) .sticky_menu {
       }
     }
   }
-  .doc_left_sidebarlist {
-    padding-right: 40px;
-  }
   .middle-content {
-    padding-right: 25px;
+    padding: 0 25px 0 40px;
+  }
+  @media ( min-width: 1441px ) {
+    .doc_left_sidebarlist {
+      padding-right: 40px;
+    }
+    .middle-content {
+      padding-left: 0;
+    }
   }
 }

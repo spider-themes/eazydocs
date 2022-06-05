@@ -2012,11 +2012,16 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .onepage_doc_area .documentation_body footer .border_bottom {
   margin-top: 100px;
 }
-.onepage_doc_area .doc_left_sidebarlist {
-  padding-right: 40px;
-}
 .onepage_doc_area .middle-content {
-  padding-right: 25px;
+  padding: 0 25px 0 40px;
+}
+@media (min-width: 1441px) {
+  .onepage_doc_area .doc_left_sidebarlist {
+    padding-right: 40px;
+  }
+  .onepage_doc_area .middle-content {
+    padding-left: 0;
+  }
 }
 
 .modal-content .shortcode_info .row {

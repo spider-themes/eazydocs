@@ -92,7 +92,7 @@ class Assets {
 
 	public function enqueue_scripts_after() {
         $version = get_option('EazyDocs_version');
-		if ( is_single() && get_post_type() == 'docs' || get_post_type() == 'one-page-docs' ) {
+		if ( is_single() && get_post_type() == 'docs' || get_post_type() == 'onepage-docs' ) {
 			wp_enqueue_style( 'eazydocs-responsive', EAZYDOCS_ASSETS . '/css/frontend/ezd-responsive.css' );
 		}
 	}
