@@ -243,6 +243,7 @@ textarea#ezd_edit_docs_sidebar{
 }
 body.post-type-onepage-docs .bulkactions select option:nth-child(2),
 body.post-type-onepage-docs .wrap .page-title-action:not(.add-onepage),
+#e-admin-top-bar-root~#wpbody .wrap .page-title-action:not(.add-onepage),
 body.post-type-onepage-docs .type-onepage-docs .row-actions span.inline{
     display: none;
 }
