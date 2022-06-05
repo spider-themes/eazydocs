@@ -126,7 +126,7 @@ $children           = wp_list_pages( array(
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>
-                                <?php
+                                    <?php
                                 endforeach;
                                 ?>
                             </article>

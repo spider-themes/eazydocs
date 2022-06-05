@@ -162,7 +162,26 @@ class Admin {
     }
 
     public function ezd_onepage_presents(){
-	   echo "Presentation Page";
+	   ?>
+        <div class="wrap">
+            <div class="ezd-blank_state">
+                <?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. ?>
+                <img src="<?php echo EAZYDOCS_IMG.'/icon/crown.svg'; ?>" alt="<?php esc_attr_e('crown icon', 'eazydocs'); ?>" width="250px"/>
+                <h2> <?php echo esc_html__( 'Add Your OnePage Doc', 'eazydocs' ); ?> </h2>
+                <p> <?php esc_html_e('Onepage documentation format will generate all the pages of a Doc as sections in a single page which is scrollable by sections.', 'eazydocs'); ?> </p>
+                <p> <?php esc_html_e( 'Onepage documentation is a very effective way to demonstrate your product documentation in a handy way. Visitors can find the all guides on a single page and they can navigate through the different sections very fast.', 'elementor' ); ?></p>
+                <?php // PHPCS - No need to escape a URL. The query arg is sanitized. ?>
+                <div class="button-inline">
+                    <a class="button button-primary ezd-button ezd-btn-pro btn-lg" href="<?php echo admin_url('admin.php?page=eazydocs-pricing'); ?>">
+                        <?php esc_html_e( 'Go Pro', 'elementor' ); ?>
+                    </a>
+                    <a class="button button-secondary ezd-button btn-lg" target="_blank" href="https://wordpress-theme.spider-themes.net/docy/docy-documentation/">
+                        <?php esc_html_e( 'View Demo', 'elementor' ); ?>
+                    </a>
+                </div>
+            </div>
+        </div><!-- /.wrap -->
+        <?php
     }
 
 	/**

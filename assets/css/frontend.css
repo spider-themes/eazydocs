@@ -2074,7 +2074,7 @@ p .footnotes-link::after {
 }
 .nav-sidebar .nav-item .dropdown_nav .nav-item span.icon {
   display: flex;
-  right: -4px;
+  right: 30px;
 }
 .nav-sidebar .nav-item .dropdown_nav .nav-item .dropdown_nav {
   padding-top: 0;

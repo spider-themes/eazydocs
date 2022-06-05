@@ -1,111 +1,115 @@
 /** === WordPress default notices === **/
 .notice {
-    padding: 10px;
+  padding: 10px;
 }
 
 .eazydocs-close-notice {
-    display: inline-block;
+  display: inline-block;
 }
 
 a.eazydocs-close-notice:focus,
 a.eazydocs-close-notice:active {
-    outline: none;
-    box-shadow: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .eazydocs-close-notice,
 .notice ul li a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .eazydocs-close-notice i {
-    font-size: 16px;
-    text-decoration: none;
-    margin-top: 2px;
-    margin-left: -5px;
-    color: #dc3232;
+  font-size: 16px;
+  text-decoration: none;
+  margin-top: 2px;
+  margin-left: -5px;
+  color: #dc3232;
 }
 
 .eazydocs-close-notice span {
-    margin-left: -3px;
+  margin-left: -3px;
 }
 
 .eazydocs-close-notice:hover,
 .eazydocs-close-notice {
-    color: #dc3232;
-    font-weight: 600;
+  color: #dc3232;
+  font-weight: 600;
 }
 
 .notice .notice-action {
-    position: relative;
-    color: #00a0d2;
+  position: relative;
+  color: #00a0d2;
 }
 
 .notice .notice-action:after {
-    content: '';
-    position: absolute;
-    height: 2px;
-    background: #00a0d2;
-    width: 100%;
-    left: 0;
-    bottom: -2px;
+  content: "";
+  position: absolute;
+  height: 2px;
+  background: #00a0d2;
+  width: 100%;
+  left: 0;
+  bottom: -2px;
 }
-.metabox-holder #eazydocs_basics.group{
-    display: block !important;
+
+.metabox-holder #eazydocs_basics.group {
+  display: block !important;
 }
 
 #get_docs_archive,
 #get_docs_single,
 #get_docs_slug {
-    text-decoration: none;
-    width: 220px;
-    background: #050505;
-    display: block;
-    color: #ffffffb3;
-    text-transform: uppercase;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-shadow: 2px 2px black;
-    float: left;
-    margin: 0px 20px 0px 0px;
+  text-decoration: none;
+  width: 220px;
+  background: #050505;
+  display: block;
+  color: #ffffffb3;
+  text-transform: uppercase;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px black;
+  float: left;
+  margin: 0px 20px 0px 0px;
 }
+
 #get_docs_archive:hover,
 #get_docs_single:hover,
-#get_docs_slug:hover{
-    background: #0d0e2b;
-    color: white;
+#get_docs_slug:hover {
+  background: #0d0e2b;
+  color: white;
 }
+
 #get_docs_archive:focus,
 #get_docs_single:focus,
-#get_docs_slug:focus{
-    outline:none
+#get_docs_slug:focus {
+  outline: none;
 }
 
 /** === Codestar options / Pro Alert === **/
 .csf-options {
-    max-width: 1200px;
+  max-width: 1200px;
 }
+
 .csf-field .csf-title {
-    width: 25%;
+  width: 25%;
 }
+
 .csf-field .csf-fieldset {
-    width: calc(75% - 20px);
+  width: calc(75% - 20px);
 }
 
 .eazydocs-pro-notice.csf-field {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
-
 
 .eazydocs-pro-notice .csf-title,
 .eazydocs-pro-notice .csf-fieldset {
-    opacity: 0.5;
-    pointer-events: none;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 body.valid.docy .active-theme-docy .csf-title,
@@ -114,8 +118,8 @@ body.valid.docly .active-theme-docly .csf-title,
 body.valid.docly .active-theme-docly .csf-fieldset,
 body.valid .active-theme .csf-title,
 body.valid .active-theme .csf-fieldset {
-    pointer-events: inherit;
-    opacity: 1;
+  pointer-events: inherit;
+  opacity: 1;
 }
 
 body.valid.docy .active-theme-docy.csf-field::before,
@@ -124,126 +128,182 @@ body.valid.docly .active-theme-docly.csf-field::before,
 body.valid.docly .active-theme-docly.csf-field::after,
 body.valid .active-theme.csf-field::before,
 body.valid .active-theme.csf-field::after {
-    display: none;
+  display: none;
 }
 
 .eazydocs-pro-notice.csf-field::before {
-    content: "Pro";
-    background-color: #f1bd6c;
-    color: #000;
-    padding: 3px 10px;
-    border-radius: 3px;
-    margin-bottom: 10px;
+  content: "Pro";
+  background-color: #f1bd6c;
+  color: #000;
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
 }
 
 .eazydocs-pro-notice.csf-field::after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: transparent;
-    z-index: 2;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: 2;
 }
 
 .upgrade-link {
-    background-color: #f1bd6c;
-    color: #000;
-    padding: 2px 6px;
+  background-color: #f1bd6c;
+  color: #000;
+  padding: 2px 6px;
 }
 
 .swal2-styled.swal2-confirm.upgrade-premium-button {
-    background-color: #f1bd6c;
-    outline:none;
-    box-shadow: none !important;
+  background-color: #f1bd6c;
+  outline: none;
+  box-shadow: none !important;
 }
 
 .swal2-title.upgrade-premium-heading {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 32px;
-    margin-bottom: -15px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: -15px;
 }
 
 .pro-notification-body-text {
-    font-size: 15px;
-    display: block;
-    margin-bottom: 25px;
+  font-size: 15px;
+  display: block;
+  margin-bottom: 25px;
 }
+
 .swal2-styled.swal2-confirm.upgrade-premium-button > a {
-    color: black;
-    font-weight: normal;
+  color: black;
+  font-weight: normal;
 }
 
 .swal2-footer.notification-pro-footer-wrap {
-    border-top: none;
-    margin: 8px 0px 0px;
-    padding: 0px;
+  border-top: none;
+  margin: 8px 0px 0px;
+  padding: 0px;
 }
 
 .swal2-html-container {
-    line-height: 1.6;
+  line-height: 1.6;
 }
 
 #customize-controls .csf-field-image_select img {
-    width: 85px;
-    height: auto;
+  width: 85px;
+  height: auto;
 }
 
-.notice.is-dismissible.bottom-10{
-    padding-bottom: 15px;
+.notice.is-dismissible.bottom-10 {
+  padding-bottom: 15px;
 }
 
 .notice-warning.eaz-notice {
-    background: #ffffbe;
+  background: #ffffbe;
 }
 
 .header-notify-icon .notify-icon {
-    padding-top: 10px;
-    margin: auto;
+  padding-top: 10px;
+  margin: auto;
 }
+
 /** ONE PAGE CSS **/
 body.post-type-onepage-docs .wrap .page-title-action:not(.add-onepage),
 #adminmenu #toplevel_page_eazydocs ul li a:empty {
-    display: none !important;
+  display: none !important;
 }
+
 .ezd-select-full {
-    max-width: 100% !important;
-    padding: 5px 10px !important;
-    font-size: 15px !important;
-    font-weight: 500;
+  max-width: 100% !important;
+  padding: 5px 10px !important;
+  font-size: 15px !important;
+  font-weight: 500;
 }
-select#ezd_docs_select{
-    max-width:100%
+
+select#ezd_docs_select {
+  max-width: 100%;
 }
-label[for="ezd_docs_select"] {
-    display: block;
-    text-align: left;
-    margin: 15px 0 10px;
-    font-weight: 400;
-    font-size: 16px;
+
+label[for=ezd_docs_select] {
+  display: block;
+  text-align: left;
+  margin: 15px 0 10px;
+  font-weight: 400;
+  font-size: 16px;
 }
-label[for="ezd_docs_sidebar"] {
-    display: block;
-    text-align: left;
-    margin: 20px 0 10px;
-    font-weight: 400;
-    font-size: 16px;
+
+label[for=ezd_docs_sidebar] {
+  display: block;
+  text-align: left;
+  margin: 20px 0 10px;
+  font-weight: 400;
+  font-size: 16px;
 }
-label[for="ezd_edit_docs_sidebar"] {
-    display: block;
-    text-align: left;
-    margin: 20px 0 10px;
-    font-weight: 400;
-    font-size: 16px;
+
+label[for=ezd_edit_docs_sidebar] {
+  display: block;
+  text-align: left;
+  margin: 20px 0 10px;
+  font-weight: 400;
+  font-size: 16px;
 }
-textarea#ezd_edit_docs_sidebar{
-    min-height: 100px
+
+textarea#ezd_edit_docs_sidebar {
+  min-height: 100px;
 }
+
 body.post-type-onepage-docs .bulkactions select option:nth-child(2),
 body.post-type-onepage-docs .wrap .page-title-action:not(.add-onepage),
-#e-admin-top-bar-root~#wpbody .wrap .page-title-action:not(.add-onepage),
-body.post-type-onepage-docs .type-onepage-docs .row-actions span.inline{
-    display: none;
+#e-admin-top-bar-root ~ #wpbody .wrap .page-title-action:not(.add-onepage),
+body.post-type-onepage-docs .type-onepage-docs .row-actions span.inline {
+  display: none;
 }
+
+.ezd-blank_state {
+  padding: 5em 0;
+  margin: auto;
+  max-width: 520px;
+  text-align: center;
+  color: #6d7882;
+  font-family: Roboto, sans-serif;
+}
+.ezd-blank_state .ezd-button {
+  font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  outline: none;
+  border-radius: 3px;
+  transition-duration: 0.3s;
+}
+.ezd-blank_state .ezd-button.btn-lg {
+  font-size: 12px;
+  padding: 8px 22px;
+}
+.ezd-blank_state .ezd-button.ezd-btn-pro:hover {
+  background: #d9a95f;
+}
+.ezd-blank_state .ezd-button.ezd-btn-pro {
+  background: #f1bd6c;
+  color: #000;
+  border-color: #f1bd6c;
+}
+.ezd-blank_state h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 40px 0 10px;
+  line-height: 1.2;
+}
+.ezd-blank_state p {
+  font-size: 16px;
+}
+
+.button-inline {
+  margin-top: 40px;
+}
+.button-inline .button + .button {
+  margin-left: 10px;
+}
+
+/*# sourceMappingURL=admin-global.css.map */
