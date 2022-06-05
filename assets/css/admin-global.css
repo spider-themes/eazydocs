@@ -241,7 +241,8 @@ label[for="ezd_edit_docs_sidebar"] {
 textarea#ezd_edit_docs_sidebar{
     min-height: 100px
 }
-body.post-type-one-page-docs .bulkactions select option:nth-child(2),
-body.post-type-one-page-docs .type-one-page-docs .row-actions span.inline{
+body.post-type-onepage-docs .bulkactions select option:nth-child(2),
+body.post-type-onepage-docs .wrap .page-title-action:not(.add-onepage),
+body.post-type-onepage-docs .type-onepage-docs .row-actions span.inline{
     display: none;
 }
