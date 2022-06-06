@@ -135,10 +135,6 @@
             if (!n.parents().hasClass("easydocs-notification")) e(".easydocs-notification .header-notify-icon").removeClass("active");
         })
 
-
-
-
-
     });
 
 })(jQuery);

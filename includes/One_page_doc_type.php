@@ -63,7 +63,6 @@ class One_Page_Docs {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'show_in_rest'        => true,
-			'rewrite' => array( 'slug' => '/', 'with_front' => false ),
 			'map_meta_cap'        => true
 		];
 

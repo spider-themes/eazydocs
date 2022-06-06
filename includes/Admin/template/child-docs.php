@@ -36,7 +36,7 @@ if ( is_array( $depth_one_parents ) ) :
                 </ul>
             </div>
 
-            <ul class="easydocs-accordion sortable accordionjs">
+            <ul class="easydocs-accordion  accordionjs">
 				<?php
 				$children = get_children( array(
                     'post_parent'   => $item,
@@ -74,7 +74,7 @@ if ( is_array( $depth_one_parents ) ) :
 							$post_status = 'protected';
 						}
 						?>
-                        <li <?php post_class( "easydocs-accordion-item accordion ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
+                        <li <?php post_class( "easydocs-accordion-item sortable accordion ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                             <div class="accordion-title ez-section-title <?php echo count($doc_items) > 0 ? 'has-child' : ''; ?>">
                                 <?php
                                 $edit_link = 'javascript:void(0)';
