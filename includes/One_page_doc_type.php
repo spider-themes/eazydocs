@@ -16,7 +16,6 @@ class One_Page_Docs {
 	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_post_type' ] );
-
 	}
 
 	/**
@@ -41,7 +40,7 @@ class One_Page_Docs {
 			'view_item'          => __( 'View Doc', 'eazydocs' ),
 			'add_new_item'       => __( 'Add Doc', 'eazydocs' ),
 			'add_new'            => __( 'Add New', 'eazydocs' ),
-			'edit_item'          => __( 'Edit Doc', 'eazydocs' ),
+			'edit_item'          => false,
 			'update_item'        => __( 'Update Doc', 'eazydocs' ),
 			'search_items'       => __( 'Search Doc', 'eazydocs' ),
 			'not_found'          => __( 'Not Doc found', 'eazydocs' ),
@@ -57,7 +56,7 @@ class One_Page_Docs {
 			'show_ui'             => true,
 			'show_in_menu'        => false,
 			'show_in_nav_menus'   => true,
-			'show_in_admin_bar'   => true,
+			'show_in_admin_bar'   => false,
 			'menu_icon'           => 'dashicons-media-document',
 			'can_export'          => true,
 			'has_archive'         => false,

@@ -2,8 +2,9 @@
 get_header();
 
 wp_enqueue_script('eazydocs-onepage');
-
-$post_id            = get_page_by_title( get_the_title(get_the_ID()), OBJECT, 'docs' );
+global $post;
+$post_slug          = $post->post_name;
+$post_id            = get_page_by_path($post_slug, OBJECT, array( 'docs' ) );
 $walker             = new eazyDocs\Frontend\Walker_Docs();
 $ezd_content        = get_the_content(get_the_ID());
 $ezd_content_none   = ! empty( $ezd_content ) ? 'mt-5' : '';
@@ -83,10 +84,7 @@ $children           = wp_list_pages( array(
                                     </div>
                                 <?php endif; ?>
                                 <div class="doc-content">
-                                    <?php
-                                    $parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content($doc_item->ID);
-                                    echo !empty($parent_content) ? $parent_content : apply_filters('the_content', $doc_item->post_content);
-                                    ?>
+                                    <?php echo apply_filters('the_content', $doc_item->post_content); ?>
                                 </div>
 
                                 <?php if ( $child_sections ) : ?>
@@ -119,10 +117,7 @@ $children           = wp_list_pages( array(
                                             <h2> <?php echo $child_section->post_title ?> </h2>
                                         </div>
                                         <div class="doc-content">
-                                            <?php
-                                            $child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($child_section->ID);
-                                            echo !empty($child_content) ? $child_content : apply_filters('the_content', $child_section->post_content);
-                                            ?>
+                                            <?php echo  apply_filters('the_content', $child_section->post_content); ?>
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>

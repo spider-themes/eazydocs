@@ -29,5 +29,7 @@ class One_Page_Edit {
 			wp_update_post( $edit_data );
 			wp_safe_redirect( admin_url( $redirect ) );
 		}
+
 	}
+
 }

@@ -14,6 +14,10 @@ class One_Page {
 
 		if ( ! empty ( $_GET['single_doc_title'] ) ) {
 
+
+			$post =  get_page_by_title( $_GET['single_doc_title'], OBJECT, 'docs' );
+
+			
 			if ( isset ( $_GET['self_doc'] ) ) {
 				$redirect = 'edit.php?post_type=onepage-docs';
 			} else {
@@ -31,6 +35,7 @@ class One_Page {
 					'post_status'  => 'publish',
 					'post_author'  => 1,
 					'post_type'    => 'onepage-docs',
+					'post_name'    => $post->post_name
 				);
 				wp_insert_post( $one_page_doc );
 			}

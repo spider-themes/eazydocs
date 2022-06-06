@@ -360,7 +360,7 @@ add_action('admin_footer', function(){ ?>
  */
 function eazydocs_pro_doc_list() {
 	$args      = array(
-		'posts_per_page' => - 1,
+		'posts_per_page' => -1,
 		'post_type'      => array( 'docs' ),
 		'post_parent'    => 0
 	);
@@ -368,7 +368,7 @@ function eazydocs_pro_doc_list() {
 	$doc_items = '';
 	foreach ( $docs as $doc ) {
 
-		if( ! get_page_by_title( $doc->post_title, OBJECT, 'onepage-docs' ) ) {
+		if( ! get_page_by_path( $doc->post_name, OBJECT, 'onepage-docs' ) ) {
 			$doc_items .= '<option name="' . $doc->post_title . '">' . $doc->post_title . '</option>';
 		}
 	}
@@ -381,10 +381,12 @@ function eazydocs_pro_doc_list() {
  */
 function eazydocs_one_page($doc_id){
 	$one_page_title = get_the_title($doc_id);
+	$docs           = get_post($doc_id);
+	$post_name      = $docs->post_name;
 
 	$one_page_docs = get_posts([
 		'post_type'  => 'onepage-docs',
-		'title' => $one_page_title,
+		'name'      => $post_name,
 	]);
 
 	if ( count( $one_page_docs ) < 1 ) :
