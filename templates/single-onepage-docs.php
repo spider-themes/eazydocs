@@ -17,7 +17,6 @@ $children           = wp_list_pages( array(
     'walker'        => new EazyDocs_Walker_Onepage(),
 ) );
 ?>
-
     <section class="doc_documentation_area onepage_doc_area page_wrapper" id="sticky_doc">
         <div class="overlay_bg"></div>
         <div class="container-fluid p-lg-5">
@@ -84,7 +83,10 @@ $children           = wp_list_pages( array(
                                     </div>
                                 <?php endif; ?>
                                 <div class="doc-content">
-                                    <?php echo apply_filters('the_content', $doc_item->post_content); ?>
+                                    <?php
+                                    $parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content($doc_item->ID);
+                                    echo !empty($parent_content) ? $parent_content : apply_filters('the_content', $doc_item->post_content);
+                                    ?>
                                 </div>
 
                                 <?php if ( $child_sections ) : ?>
@@ -117,7 +119,10 @@ $children           = wp_list_pages( array(
                                             <h2> <?php echo $child_section->post_title ?> </h2>
                                         </div>
                                         <div class="doc-content">
-                                            <?php echo  apply_filters('the_content', $child_section->post_content); ?>
+                                            <?php
+                                            $child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($child_section->ID);
+                                            echo !empty($child_content) ? $child_content : apply_filters('the_content', $child_section->post_content);
+                                            ?>
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>
