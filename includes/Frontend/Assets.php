@@ -35,7 +35,7 @@ class Assets {
             wp_enqueue_script( 'mCustomScrollbar' );
         }
 
-		if ( is_single() && get_post_type() == 'docs' || get_post_type() == 'onepage-docs' ) {
+		if ( is_singular('docs') || is_singular('onepage-docs') ) {
 
 			// Localize the script with new data
 			$ajax_url              = admin_url( 'admin-ajax.php' );

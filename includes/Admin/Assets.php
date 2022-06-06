@@ -46,25 +46,8 @@ class Assets {
 		//wp_enqueue_script( 'Sortable', EAZYDOCS_ASSETS . '/js/admin/Sortable.min.js', array('jquery'), true, true );
 		wp_enqueue_script( 'eazyDocs-accordion', EAZYDOCS_ASSETS . '/js/admin/accordion.min.js', array('jquery'), '', true );
 		wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), '', true );
-        // Localize the script with new data
-        $ajax_url = admin_url( 'admin-ajax.php' );
-        $wpml_current_language = apply_filters( 'wpml_current_language', null );
-        if ( ! empty( $wpml_current_language ) ) {
-            $ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
-        }
 
-        wp_localize_script( 'jquery', 'eazydocs_local_object',
-            array(
-                'ajaxurl'               => $ajax_url,
-                'EAZYDOCS_FRONT_CSS'    => EAZYDOCS_FRONT_CSS,
-                'EAZYDOCS_ASSETS'       => EAZYDOCS_ASSETS,
-                'create_prompt_title'   => esc_html__( 'Enter Docs Title', 'eazydocs' ),
-                'delete_prompt_title'   => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
-                'no_revert_title'       => esc_html__( "This doc will be deleted with the child docs and you won't be able to revert!", "eazydocs" ),
-                'clone_prompt_title'    => esc_html__( "Are you sure to clone", "eazydocs" ),
-                'nonce'                 => wp_create_nonce( 'eazydocs-admin-nonce' ),
-            )
-        );
+
 		wp_enqueue_script( 'eazyDocs-custom', EAZYDOCS_ASSETS . '/js/admin/custom.js', array('jquery'), $version, true );
 		wp_enqueue_script( 'eazyDocs-main', EAZYDOCS_ASSETS . '/js/admin/main.js', array('jquery'), $version, true );
 	}
@@ -78,11 +61,26 @@ class Assets {
         wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true );
 		wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js' );
 		wp_enqueue_script( 'eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js' );
-		wp_localize_script( 'jquery', 'eazydocs_local_object',
-			array(
-				'one_page_prompt_docs'  => eazydocs_pro_doc_list(),
-				'edit_one_page_url'     => admin_url('admin.php/One_Page_Edit.php?edit_docs=yes'),
-			)
-		);
+
+        // Localize the script with new data
+        $ajax_url = admin_url( 'admin-ajax.php' );
+        $wpml_current_language = apply_filters( 'wpml_current_language', null );
+        if ( ! empty( $wpml_current_language ) ) {
+            $ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
+        }
+        wp_localize_script( 'jquery', 'eazydocs_local_object',
+            array(
+                'ajaxurl'               => $ajax_url,
+                'EAZYDOCS_FRONT_CSS'    => EAZYDOCS_FRONT_CSS,
+                'EAZYDOCS_ASSETS'       => EAZYDOCS_ASSETS,
+                'create_prompt_title'   => esc_html__( 'Enter Docs Title', 'eazydocs' ),
+                'delete_prompt_title'   => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
+                'no_revert_title'       => esc_html__( "This doc will be deleted with the child docs and you won't be able to revert!", "eazydocs" ),
+                'clone_prompt_title'    => esc_html__( "Are you sure to clone", "eazydocs" ),
+                'nonce'                 => wp_create_nonce( 'eazydocs-admin-nonce' ),
+                'one_page_prompt_docs'  => eazydocs_pro_doc_list(),
+                'edit_one_page_url'     => admin_url('admin.php/One_Page_Edit.php?edit_docs=yes'),
+            )
+        );
 	}
 }
