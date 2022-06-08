@@ -94,11 +94,11 @@ a.eazydocs-close-notice:active {
 }
 
 .csf-field .csf-title {
-  width: 25%;
+  width: 30%;
 }
 
 .csf-field .csf-fieldset {
-  width: calc(75% - 20px);
+  width: calc(70% - 20px);
 }
 
 .eazydocs-pro-notice.csf-field {

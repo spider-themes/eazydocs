@@ -1,6 +1,5 @@
 @media (max-width: 1680px) {
     .doc_documentation_full_area .container-fluid,
-    .menu_one .container-fluid,
     .page_breadcrumb .container-fluid {
         max-width: 1470px;
     }

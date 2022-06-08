@@ -474,10 +474,48 @@ CSF::createSection( $prefix, array(
 ) );
 
 //
+// Doc Left Sidebar Fields
+//
+CSF::createSection( $prefix, array(
+	'parent' => 'single_doc',
+	'title'  => esc_html__( 'Left Sidebar', 'eazydocs' ),
+	'icon'   => '',
+	'fields' => array(
+        array(
+            'id'        => 'action_btn_typo',
+            'type'      => 'typography',
+            'title'     => esc_html__( 'Documentation Title Typography', 'eazydocs' ),
+            'output'    => '.doc_left_sidebarlist .doc-title',
+            'class'      => 'eazydocs-pro-notice active-theme'
+        ),
+
+        array(
+            'title'     => esc_html__( 'Doc Section Icon', 'docly' ),
+            'subtitle'  => esc_html__( "This is the Doc's default icon. If you don't use icon for the article section individually, this icon will be shown.", 'eazydocs' ),
+            'id'        => 'doc_sec_icon',
+            'type'      => 'media',
+            'default'   => array(
+                'url'   => EAZYDOCS_IMG.'/icon/folder-closed.png'
+            ),
+            'class'      => 'eazydocs-pro-notice active-theme'
+        ),
+        array(
+            'title'     => esc_html__( 'Doc Section Icon Open', 'eazydocs' ),
+            'subtitle'  => esc_html__( "This is the Doc's default icon. If you don't use icon for the article section individually, this icon will be shown on open states of the Doc sections.", 'eazydocs' ),
+            'id'        => 'doc_sec_icon_open',
+            'type'      => 'media',
+            'default'   => array(
+                'url'   => EAZYDOCS_IMG.'/icon/folder-open.png'
+            ),
+            'class'      => 'eazydocs-pro-notice active-theme'
+        ),
+	)
+));
+
+//
 // Doc Right Sidebar Fields
 //
 CSF::createSection( $prefix, array(
-	'id'     => 'doc_right_sidebar',
 	'parent' => 'single_doc',
 	'title'  => esc_html__( 'Right Sidebar', 'eazydocs' ),
 	'icon'   => '',

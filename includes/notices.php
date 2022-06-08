@@ -60,3 +60,4 @@ if ( isset($_GET['deactivate']) && !empty($_GET['deactivate']) ) {
         wp_safe_redirect( $url );
     }
 }
+

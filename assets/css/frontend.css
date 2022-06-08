@@ -1937,13 +1937,13 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .doc-middle-content {
-  padding-right: 30px;
-  padding-top: 60px;
+  padding: 60px 30px 0;
   position: relative;
 }
-@media (max-width: 1440px) {
+@media (max-width: 768px) {
   .doc-middle-content {
-    padding-right: 0;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
@@ -2132,7 +2132,7 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 12;
   font-size: 0.95rem;
-  margin-left: -40px;
+  margin-left: -58px;
 }
 .left-sidebar-toggle .left-arrow {
   display: block;

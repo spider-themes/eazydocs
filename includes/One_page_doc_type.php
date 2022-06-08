@@ -63,10 +63,11 @@ class One_Page_Docs {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'show_in_rest'        => true,
+            'rewrite'             => array( 'slug' => 'doc', 'with_front' => false ),
 			'map_meta_cap'        => true
 		];
 
-		register_post_type( $this->post_type, apply_filters( 'eazydocs_post_type', $args ) );
+		register_post_type( $this->post_type, apply_filters( 'eazydocs_onepage_post_type', $args ) );
 	}
 
 }
