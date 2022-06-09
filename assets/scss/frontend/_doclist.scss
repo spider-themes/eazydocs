@@ -57,11 +57,9 @@
       border-right: none;
     }
   }
-  .scroll {
-    max-height: 760px;
-    .mCSB_inside > .mCSB_container {
-      margin-right: 0 !important;
-    }
+  .scroll:not(.op-docs-sidebar) {
+    max-height: 650px;
+    overflow: scroll;
     @media (max-height: 630px) {
       padding-bottom: 0;
       max-height: 450px;
@@ -71,6 +69,8 @@
     margin-bottom: 25px;
   }
 }
+
+
 .nav-sidebar {
   margin: 0;
   .nav-item {
@@ -89,7 +89,6 @@
     .nav-link {
       padding: 0;
       display: flex;
-      flex-wrap: wrap;
       font-size: 14px;
       line-height: 20px;
       font-weight: 500;
@@ -159,14 +158,15 @@
       display: none;
       list-style: none;
       li {
-        margin: 5px 0;
+        margin: 10px 10px 10px 0;
         padding: 0;
+        line-height: 1.3;
         a {
           font-size: 14px;
           font-weight: 400;
-          line-height: 1.3;
           color: var(--black_500);
           padding: 0;
+          text-decoration: none;
           &:hover,
           &.active {
             color: #000;

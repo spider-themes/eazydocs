@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
-Tested up to: 5.9.3
+Tested up to: 6.0.0
 Requires PHP: 7.2
-Stable tag: 1.1.8
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.2.0 (09 June 2022) =
+Fixed: OnePage permalink error (PRO feature, unlocked with Docy and Docly theme)
+Fixed: Doc left sidebar content was overflowing with exceeding articles.
+Tweaked: Left sidebar articles line height and gap improved
 
 = v1.1.9 (07 June 2022) =
 New: OnePage Docs (PRO feature, unlocked with Docy and Docly theme)

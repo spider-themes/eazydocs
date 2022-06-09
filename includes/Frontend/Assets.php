@@ -20,20 +20,15 @@ class Assets {
         $is_doc_ajax = $opt['is_doc_ajax'] ?? '';
 		wp_enqueue_script( 'jquery' );
         wp_register_style( 'font-awesome-5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css' );
-        wp_register_style( 'mCustomScrollbar', EAZYDOCS_VEND . '/mcustomscrollbar/jquery.mCustomScrollbar.min.css' );
+        //wp_register_style( 'mCustomScrollbar', EAZYDOCS_VEND . '/mcustomscrollbar/jquery.mCustomScrollbar.min.css' );
 
         // Register Bootstrap Select
         wp_register_style( 'bootstrap-select', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css' );
         wp_register_script( 'bootstrap-select', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js', array('bootstrap') );
 
         wp_register_script( 'bootstrap', EAZYDOCS_VEND . '/bootstrap/bootstrap.bundle.min.js', array( 'jquery' ), '5.1.3', true );
-        wp_register_script( 'mCustomScrollbar', EAZYDOCS_VEND . '/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '3.1.13', true );
+        //wp_register_script( 'mCustomScrollbar', EAZYDOCS_VEND . '/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '3.1.13', true );
         wp_register_script( 'anchor', EAZYDOCS_ASSETS . '/js/frontend/anchor.min.js' );
-
-        if (  is_single() && get_post_type() == 'onepage-docs' ) {
-            wp_enqueue_style( 'mCustomScrollbar' );
-            wp_enqueue_script( 'mCustomScrollbar' );
-        }
 
 		if ( is_singular('docs') || is_singular('onepage-docs') ) {
 

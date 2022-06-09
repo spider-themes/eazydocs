@@ -33,7 +33,7 @@ $children           = wp_list_pages( array(
                         <?php
                         if ( $children ) :
                             ?>
-                            <nav class="scroll bs-docs-sidebar">
+                            <nav class="scroll op-docs-sidebar">
                                 <ul class="list-unstyled nav-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
                                     <?php
                                     echo wp_list_pages(array(
