@@ -1,14 +1,14 @@
 <?php
 $opt = get_option( 'eazydocs_settings' ); // prefix of framework
 
-$orderby            = 'ID';
-$order              = 'desc';
+$orderby            = 'menu_order';
+$order              = 'asc';
 $showpost           = $opt['docs-number'] ?? -1;
 $articles_number    = $opt['articles_number'] ?? -1;
 $layout             = 'grid';
 if ( class_exists( 'EazyDocsPro' ) ) {
-	$orderby        = $opt['docs-order-by'] ?? 'ID'; // id of field
-	$order          = $opt['docs-order'] ?? 'desc'; // id of field
+	$orderby        = $opt['docs-order-by'] ?? 'menu_order'; // id of field
+	$order          = $opt['docs-order'] ?? 'asc'; // id of field
 	$layout         = $opt['docs-archive-layout'] ?? 'masonry'; // id of field
 }
 
@@ -34,6 +34,8 @@ $query             = new WP_Query( [
                 $doc_counter    = get_pages( [
                     'child_of'  => get_the_ID(),
                     'post_type' => 'docs',
+                    'orderby'       => 'menu_order',
+                    'order'         => 'asc'
                 ]);
 
                 $col_wrapper         = $i == 1;
@@ -62,7 +64,9 @@ $query             = new WP_Query( [
                         $children = get_children([
                             'post_parent'       => get_the_ID(),
                             'post_status'       => ['publish'],
-                            'posts_per_page'    => $articles_number
+                            'posts_per_page'    => $articles_number,
+                            'orderby'       => 'menu_order',
+                            'order'         => 'asc'
                         ]);
                         if ( is_array( $children ) ) :
                             foreach ( $children as $item ) :

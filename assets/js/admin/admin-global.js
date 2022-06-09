@@ -63,31 +63,8 @@
             })
         });
 
-        // Order by Sortable ajax
-        if($(".sortable").length) {
-            $(".sortable").sortable({
-                handle: '.accordion-title',
-                placeholder: "ui-state-highlight",
-                update: function (event, ui) {
-                    let page_id_array = [];
-                    $('li.child-one').each(function () {
-                        page_id_array.push($(this).attr("data-id"));
-                    });
-                    $.ajax({
-                        url: eazydocs_local_object.ajaxurl,
-                        method: "POST",
-                        data: {
-                            action: 'eazydocs_sortable_docs',
-                            page_id_array: page_id_array
-                        },
-                    });
-                }
-
-            });
-        }
-
         // Remove condition if it has pro notice class
-        $('.eazydocs-pro-notice').attr('data-condition', '')
+        $('.eazydocs-pro-notice').attr('data-condition', '');
 
     })
 })(jQuery);

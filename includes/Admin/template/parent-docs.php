@@ -4,23 +4,23 @@ $query = new WP_Query( [
     'posts_per_page' => -1,
     'post_parent'    => 0,
     'orderby'        => 'menu_order',
-    'order'          => 'DESC'
+    'order'          => 'ASC',
 ]);
 $count = $query->found_posts;
 ?>
 
 <div class="tab-menu <?php echo $count > 12 ? '' : 'short'; ?>">
-    <ul class="easydocs-navbar">
+    <ul class="easydocs-navbar sortable">
         <?php
         $i              = '';
         while ( $query->have_posts() ) : $query->the_post();
             $i ++;
-            $depth_one_parents[] = get_the_ID();
-            $is_active           = $i == 1 ? 'is-active' : '';
-            $doc_counter    = get_pages( [
-                'child_of'  => get_the_ID(),
-                'post_type' => 'docs',
-                'post_status' => ['publish', 'draft']
+            $depth_one_parents[]    = get_the_ID();
+            $is_active              = $i == 1 ? 'is-active' : '';
+            $doc_counter            = get_pages( [
+                'child_of'          => get_the_ID(),
+                'post_type'         => 'docs',
+                'post_status'       => ['publish', 'draft']
             ]);
 
 	        $post_status =  get_post_status(get_the_ID());
@@ -43,7 +43,7 @@ $count = $query->found_posts;
 		        $post_format = 'lock';
 	        }
             ?>
-            <li class="easydocs-navitem <?php echo esc_attr( $is_active ); ?>" data-rel="tab-<?php the_ID(); ?>">
+            <li class="easydocs-navitem  <?php echo esc_attr( $is_active ); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
                 <div class="title">
                     <span title="<?php echo esc_attr($post_status); ?>" class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
                     <?php the_title(); ?>

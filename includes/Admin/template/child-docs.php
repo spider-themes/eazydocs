@@ -36,12 +36,13 @@ if ( is_array( $depth_one_parents ) ) :
                 </ul>
             </div>
 
-            <ul class="easydocs-accordion accordionjs">
+            <ul class="easydocs-accordion sortable accordionjs">
 				<?php
 				$children = get_children( array(
                     'post_parent'   => $item,
                     'orderby'       => 'menu_order',
-                    'order'         => 'asc'
+                    'order'         => 'asc',
+                     'exclude'      => get_post_thumbnail_id( $item )
                 ));
 
 				if ( is_array( $children ) ) :
@@ -51,16 +52,17 @@ if ( is_array( $depth_one_parents ) ) :
 						$post_status = $child->post_status;
 
 						$doc_items = get_children( array(
-							'post_parent' => $child->ID,
-							'orderby'        => 'menu_order',
-							'order'         => 'asc'
+							'post_parent'   => $child->ID,
+							'orderby'       => 'menu_order',
+							'order'         => 'asc',
+                            'exclude'       => get_post_thumbnail_id( $child )
 						) );
 
 						$child_one = get_children( [
 							'post_parent'       => $child->ID,
-							'order'         => 'asc',
-							'orderby'        => 'menu_order',
-							'fields'            => 'ids',
+							'order'             => 'asc',
+							'orderby'           => 'menu_order',
+							'fields'            => 'ids'
 						] );
 
 						$depth_two = '';
@@ -79,7 +81,7 @@ if ( is_array( $depth_one_parents ) ) :
 							$post_status = 'protected';
 						}
 						?>
-                        <li <?php post_class( "easydocs-accordion-item sortable accordion d ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
+                        <li <?php post_class( "easydocs-accordion-item accordion ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                             <div class="accordion-title ez-section-title <?php echo count($doc_items) > 0 ? 'has-child' : ''; ?>">
                                 <?php
                                 $edit_link = 'javascript:void(0)';
@@ -171,7 +173,8 @@ if ( is_array( $depth_one_parents ) ) :
 		                                $child_depth = get_children( array(
                                             'post_parent' => $doc_item->ID,
                                             'orderby'        => 'menu_order',
-                                            'order'          => 'ASC'
+                                            'order'          => 'ASC',
+                                            'exclude'        => get_post_thumbnail_id( $doc_item )
                                         ) );
 
 		                                $last_section_docs = [];
@@ -273,11 +276,11 @@ if ( is_array( $depth_one_parents ) ) :
 
                                                 </div>
                                                 <div class="easydocs-accordion-body nesting-accordion">
-                                                    <div class="nesting-task sortable">
+                                                    <ul class="nesting-task sortable">
                                                         <?php
                                                         foreach( $child_depth as $dep3 ) :
                                                             ?>
-                                                            <div class="child-docs-wrap d-flex justify-content-between">
+                                                            <li data-id="<?php echo $dep3->ID; ?>" class="child-docs-wrap d-flex justify-content-between">
 
 	                                                            <?php
 	                                                            $edit_link = 'javascript:void(0)';
@@ -287,6 +290,7 @@ if ( is_array( $depth_one_parents ) ) :
 		                                                            $target = '_blank';
 	                                                            }
 	                                                            ?>
+
                                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="child-last-label">
                                                                    <?php echo $dep3->post_title; ?>
                                                                 </a>
@@ -334,11 +338,11 @@ if ( is_array( $depth_one_parents ) ) :
                                                                         ?>
                                                                     </span>
                                                                 </div>
-                                                            </div>
+                                                            </li>
                                                             <?php
                                                         endforeach;
                                                         ?>
-                                                    </div>
+                                                    </ul>
                                                 </div>
                                             </li>
                                         </ul>
