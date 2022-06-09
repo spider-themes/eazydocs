@@ -12,12 +12,15 @@ class One_Page {
 
 	function doc_one_page() {
 
-		if ( ! empty ( $_GET['single_doc_title'] ) ) {
+		/**
+		 *  Current permalink structure
+		 */
+		$current_permalink = get_option( 'permalink_structure' );
 
+		if ( ! empty ( $_GET['single_doc_title'] ) ) {
 
 			$post =  get_page_by_title( $_GET['single_doc_title'], OBJECT, 'docs' );
 
-			
 			if ( isset ( $_GET['self_doc'] ) ) {
 				$redirect = 'edit.php?post_type=onepage-docs';
 			} else {
@@ -38,8 +41,14 @@ class One_Page {
 					'post_name'    => $post->post_name
 				);
 				wp_insert_post( $one_page_doc );
+
+				global $wp_rewrite;
+				$wp_rewrite->set_permalink_structure($current_permalink);
+				$wp_rewrite->flush_rules();
+
 			}
 			wp_safe_redirect( admin_url( $redirect ) );
 		}
 	}
 }
+

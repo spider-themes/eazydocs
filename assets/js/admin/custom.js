@@ -185,7 +185,7 @@
                 })()
             })
         }
-        one_page_doc();
+        one_page_doc()
 
     });
 })(jQuery);

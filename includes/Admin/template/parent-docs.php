@@ -1,7 +1,7 @@
 <?php
 $query = new WP_Query( [
     'post_type'      => 'docs',
-    'posts_per_page' => - 1,
+    'posts_per_page' => -1,
     'post_parent'    => 0,
     'orderby'        => 'menu_order',
     'order'          => 'DESC'

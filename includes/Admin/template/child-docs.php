@@ -36,7 +36,7 @@ if ( is_array( $depth_one_parents ) ) :
                 </ul>
             </div>
 
-            <ul class="easydocs-accordion  accordionjs">
+            <ul class="easydocs-accordion accordionjs">
 				<?php
 				$children = get_children( array(
                     'post_parent'   => $item,
@@ -52,11 +52,14 @@ if ( is_array( $depth_one_parents ) ) :
 
 						$doc_items = get_children( array(
 							'post_parent' => $child->ID,
-							'orderby'        => 'menu_order'
+							'orderby'        => 'menu_order',
+							'order'         => 'asc'
 						) );
 
 						$child_one = get_children( [
 							'post_parent'       => $child->ID,
+							'order'         => 'asc',
+							'orderby'        => 'menu_order',
 							'fields'            => 'ids',
 						] );
 
@@ -64,7 +67,9 @@ if ( is_array( $depth_one_parents ) ) :
 						foreach ( $doc_items as $doc_item ) {
 							$child_depth = get_children( array(
 							    'post_parent'   => $doc_item->ID,
-                                'fields'        => 'ids'
+                                'fields'        => 'ids',
+							    'orderby'       => 'menu_order',
+							    'order'         => 'asc'
                             ) );
 							$depth_two = implode(",", $child_depth) ;
 						}
@@ -74,7 +79,7 @@ if ( is_array( $depth_one_parents ) ) :
 							$post_status = 'protected';
 						}
 						?>
-                        <li <?php post_class( "easydocs-accordion-item sortable accordion ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
+                        <li <?php post_class( "easydocs-accordion-item sortable accordion d ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                             <div class="accordion-title ez-section-title <?php echo count($doc_items) > 0 ? 'has-child' : ''; ?>">
                                 <?php
                                 $edit_link = 'javascript:void(0)';
@@ -164,8 +169,9 @@ if ( is_array( $depth_one_parents ) ) :
 	                                <?php
 	                                foreach ( $doc_items as $doc_item ) :
 		                                $child_depth = get_children( array(
-		                                        'post_parent' => $doc_item->ID,
-		                                        'orderby'        => 'menu_order'
+                                            'post_parent' => $doc_item->ID,
+                                            'orderby'        => 'menu_order',
+                                            'order'          => 'ASC'
                                         ) );
 
 		                                $last_section_docs = [];
@@ -183,7 +189,7 @@ if ( is_array( $depth_one_parents ) ) :
 		                                $dep2 = $doc_item->ID;
 		                                ?>
                                         <ul class="accordionjs">
-                                            <li <?php post_class( "easydocs-accordion-item accordion mix child-one ". $post_status ); ?>>
+                                            <li <?php post_class( "easydocs-accordion-item accordion mix child-one ". $post_status ); ?> data-id="<?php echo esc_attr($doc_item->ID); ?>">
                                                 <div class="accordion-title <?php echo count($child_depth) > 0 ? 'has-child' : ''; ?>">
 	                                                <?php
 	                                                $edit_link = 'javascript:void(0)';
@@ -282,7 +288,7 @@ if ( is_array( $depth_one_parents ) ) :
 	                                                            }
 	                                                            ?>
                                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="child-last-label">
-                                                                   <?php echo get_the_title( $dep3 ); ?>
+                                                                   <?php echo $dep3->post_title; ?>
                                                                 </a>
                                                                 <div class="child-right-content d-flex">
 

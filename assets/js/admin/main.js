@@ -159,9 +159,6 @@ for (let i = 0; i < docContainer.length; i++) {
     var mixer1 = mixitup(docContainer[i], config);
 }
 
-
-
-
 var containerEl1 = document.querySelector('[data-ref="container-1"]');
 var config = {
     controls: {

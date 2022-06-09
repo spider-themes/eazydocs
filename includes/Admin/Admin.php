@@ -14,6 +14,7 @@ class Admin {
 		add_action( 'admin_menu', [ $this, 'eazyDocs_menu' ] );
         add_filter( 'admin_body_class', [ $this, 'body_class' ] );
 		add_filter( 'get_edit_post_link', [$this, 'one_page_docs_edit_content'], 10, 3 );
+		add_action( 'wp_ajax_eazydocs_sortable_docs', [ $this, 'sortable_docs' ] );
 	}
 
 	/**
@@ -197,6 +198,30 @@ class Admin {
 			$link           = $link . $content_null;
 		}
 		return $link;
+	}
+
+	/**
+	 * Sort docs.
+	 *
+	 * @return void
+	 */
+	public function sortable_docs() {
+
+		$doc_ids =  $_POST['page_id_array'];
+
+		if ( $doc_ids ) {
+			foreach ( $doc_ids as $order => $id ) {
+				wp_update_post( [
+					'ID'         => $id,
+					'menu_order' => $order
+				] );
+			}
+		}
+
+		exit;
+
+
+
 	}
 
 }
