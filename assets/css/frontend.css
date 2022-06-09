@@ -579,7 +579,7 @@ input[type=search]::-webkit-search-results-decoration {
   list-style: none;
 }
 .nav-sidebar .nav-item .dropdown_nav li {
-  margin: 10px 10px 10px 0;
+  margin: 12px 12px 12px 0;
   padding: 0;
   line-height: 1.3;
 }

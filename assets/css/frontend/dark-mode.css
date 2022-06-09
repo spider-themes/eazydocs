@@ -1,7 +1,7 @@
 /*============ Dark Mode css ========*/
-.body_dark {
+body.body_dark {
     color: #d3d4d4;
-    background: #131417;
+    background: #131417 !important;
 }
 .body_dark .ordered-list li::before,
 .body_dark .body_wrapper,
