@@ -60,6 +60,8 @@
 .categories_guide_item .doc-top img {
   height: auto;
   margin-right: 15px;
+  max-width: 15px;
+  max-height: 15px;
 }
 .categories_guide_item img.featured-image {
   margin-bottom: 34px;
@@ -143,11 +145,6 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   padding-right: 15px;
-}
-
-.categories_guide_item .doc-top img {
-  max-width: 15px;
-  max-height: 15px;
 }
 
 /*# sourceMappingURL=frontend-global.css.map */

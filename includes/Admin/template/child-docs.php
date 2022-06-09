@@ -40,9 +40,10 @@ if ( is_array( $depth_one_parents ) ) :
 				<?php
 				$children = get_children( array(
                     'post_parent'   => $item,
+                    'post_type'     => 'docs',
                     'orderby'       => 'menu_order',
                     'order'         => 'asc',
-                     'exclude'      => get_post_thumbnail_id( $item )
+                    'exclude'      => get_post_thumbnail_id( $item )
                 ));
 
 				if ( is_array( $children ) ) :
@@ -54,12 +55,14 @@ if ( is_array( $depth_one_parents ) ) :
 						$doc_items = get_children( array(
 							'post_parent'   => $child->ID,
 							'orderby'       => 'menu_order',
+							'post_type'     => 'docs',
 							'order'         => 'asc',
                             'exclude'       => get_post_thumbnail_id( $child )
 						) );
 
 						$child_one = get_children( [
 							'post_parent'       => $child->ID,
+							'post_type'         => 'docs',
 							'order'             => 'asc',
 							'orderby'           => 'menu_order',
 							'fields'            => 'ids'
@@ -69,6 +72,7 @@ if ( is_array( $depth_one_parents ) ) :
 						foreach ( $doc_items as $doc_item ) {
 							$child_depth = get_children( array(
 							    'post_parent'   => $doc_item->ID,
+							    'post_type'     => 'docs',
                                 'fields'        => 'ids',
 							    'orderby'       => 'menu_order',
 							    'order'         => 'asc'
@@ -94,7 +98,7 @@ if ( is_array( $depth_one_parents ) ) :
                                 <div class="left-content">
                                     <h4>
                                         <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>">
-                                            <?php echo get_the_title( $child ); ?>
+                                            <?php echo $child->post_title; ?>
                                         </a>
                                         <?php if ( count($doc_items) > 0 ) : ?>
                                             <span class="count badge">
@@ -171,10 +175,11 @@ if ( is_array( $depth_one_parents ) ) :
 	                                <?php
 	                                foreach ( $doc_items as $doc_item ) :
 		                                $child_depth = get_children( array(
-                                            'post_parent' => $doc_item->ID,
-                                            'orderby'        => 'menu_order',
-                                            'order'          => 'ASC',
-                                            'exclude'        => get_post_thumbnail_id( $doc_item )
+                                            'post_parent'   => $doc_item->ID,
+                                            'post_type'     => 'docs',
+                                            'orderby'       => 'menu_order',
+                                            'order'         => 'ASC',
+                                            'exclude'       => get_post_thumbnail_id( $doc_item )
                                         ) );
 
 		                                $last_section_docs = [];
