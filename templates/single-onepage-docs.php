@@ -84,8 +84,12 @@ $children           = wp_list_pages( array(
                                 <?php endif; ?>
                                 <div class="doc-content">
                                     <?php
-                                    $parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content($doc_item->ID);
-                                    echo !empty($parent_content) ? $parent_content : apply_filters('the_content', $doc_item->post_content);
+                                    if ( did_action( 'elementor/loaded' ) ) {
+                                        $parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content($doc_item->ID);
+                                        echo !empty($parent_content) ? $parent_content : apply_filters('the_content', $doc_item->post_content);
+                                    } else {
+                                        echo apply_filters('the_content', $doc_item->post_content);
+                                    }
                                     ?>
                                 </div>
 
@@ -102,7 +106,7 @@ $children           = wp_list_pages( array(
                                                         <?php echo $child_section->post_title; ?>
                                                     </a>
                                                 </li>
-                                                <?php
+                                            <?php
                                             endforeach;
                                             ?>
                                         </ul>
@@ -120,13 +124,17 @@ $children           = wp_list_pages( array(
                                         </div>
                                         <div class="doc-content">
                                             <?php
-                                            $child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($child_section->ID);
-                                            echo !empty($child_content) ? $child_content : apply_filters('the_content', $child_section->post_content);
+                                            if ( did_action( 'elementor/loaded' ) ) {
+                                                $child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($child_section->ID);
+                                                echo !empty($child_content) ? $child_content : apply_filters('the_content', $child_section->post_content);
+                                            } else {
+                                                echo apply_filters('the_content', $child_section->post_content);
+                                            }
                                             ?>
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>
-                                    <?php
+                                <?php
                                 endforeach;
                                 ?>
                             </article>
@@ -175,7 +183,7 @@ $children           = wp_list_pages( array(
                                         <p class="explanation hire expn-left p-3 small">
                                             <?php echo wp_strip_all_tags( $ezd_content ); ?>
                                         </p>
-                                        <?php
+                                    <?php
                                     endif;
                                     dynamic_sidebar('doc_sidebar');
                                     ?>

@@ -277,9 +277,12 @@ p.big-p {
     &.btn-lg {
         font-size: 12px;
         padding: 8px 22px;
+        font-weight: 500;
     }
     &.ezd-btn-pro:hover {
-        background: #d9a95f;
+        background: #f4cc8a;
+        color: #000;
+        border-color: #f4cc8a;
     }
     &.ezd-btn-pro {
         background: #f1bd6c;
