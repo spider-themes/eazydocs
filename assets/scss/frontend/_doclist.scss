@@ -76,7 +76,7 @@
   .nav-item {
     cursor: pointer;
     padding-right: 0;
-    margin-bottom: 20px;
+    margin: 0 0 20px;
     position: relative;
     .docs-progress-bar{
       position: absolute;
@@ -1142,139 +1142,14 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 /*============ onepage doc css ================*/
-.onepage-doc {
-  h2 {
-    font-size: 2.5rem;
-  }
-  h3, h4, h5, h6 {
-    font-weight: 500;
-  }
-  .shortcode_info {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 230px;
-  }
-  &.body_fixed {
-    .doc_left_sidebarlist {
-      padding-top: 30px;
+.onepage-doc-sec {
+  .doc-content {
+    h4, h2 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 25px;
     }
   }
-  .doc_left_sidebarlist {
-    width: 100%;
-    margin-right: 0;
-    border: 0;
-    padding-top: 0;
-    padding-right: 40px;
-    &:before {
-      display: none;
-    }
-  }
-  .nav-sidebar {
-    .nav-item {
-      padding-right: 0;
-      background: #f8fafb;
-      margin-bottom: 0;
-      margin-top: 3px;
-      position: relative;
-      .docs-progress-bar {
-        position: absolute;
-        background: #ebf0f1;
-        bottom: 0;
-        left: 0;
-        top: 0;
-        max-height: 48px;
-      }
-      .nav-link {
-        padding: 15px 20px;
-      }
-      .icon {
-        top: 0;
-        right: 20px;
-        line-height: 48px;
-        font-size: 18px;
-        position: absolute;
-        color: var(--ezd_brand_color);
-        transform: rotate(0deg);
-        i {
-          display: inline-block;
-          & + i {
-            display: none;
-          }
-        }
-      }
-      &.active {
-        .icon {
-          i {
-            display: none;
-            & + i {
-              display: inline-block;
-            }
-          }
-        }
-        .dropdown_nav {
-          display: block;
-        }
-      }
-      .dropdown_nav {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        background: #fff;
-        position: relative;
-        &:before {
-          content: "";
-          width: 2px;
-          bottom: 15px;
-          background: #edf1f3;
-          position: absolute;
-          top: 15px;
-          left: 20px;
-        }
-        .nav-item {
-          margin-top: 0;
-          background: transparent;
-          position: relative;
-          padding-left: 22px;
-          &:before {
-            content: "\35";
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-family: "ElegantIcons";
-            color: var(--ezd_brand_color);
-          }
-          .docs-progress-bar {
-            display: none;
-          }
-          .nav-link {
-            padding: 5px 0;
-            color: var(--p_color);
-          }
-          .active.nav-link {
-            color: var(--ezd_brand_color);
-          }
-          &.active {
-            .nav-link {
-              color: var(--ezd_brand_color);
-            }
-          }
-        }
-      }
-    }
-  }
-  .doc_rightsidebar {
-    padding-top: 0;
-  }
-  .doc-container {
-    padding-top: 130px;
-  }
-}
-
-.onepage-doc-sec .doc-content h4, .onepage-doc-sec .doc-content h2 {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 25px;
 }
 
 .onepage-doc-sec .border_bottom {
