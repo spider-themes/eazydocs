@@ -83,6 +83,7 @@ class Assets {
                 $brand_rgb = ezd_hex2rgba($opt['brand_color']);
                 $dynamic_css .= ".doc_switch input[type=checkbox] { border: 1px solid rgba($brand_rgb, 0.3); background: rgba($brand_rgb, 0.25); }";
                 $dynamic_css .= ".categories_guide_item .doc_border_btn { border: 1px solid rgba($brand_rgb, 0.2); background: rgba($brand_rgb, 0.05); }";
+                $dynamic_css .= "#eazydocs_feedback .action_btn{ background: rgba($brand_rgb, .9); }";
             }
 
             wp_add_inline_style( 'eazydocs-frontend-global', $dynamic_css );

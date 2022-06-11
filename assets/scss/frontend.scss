@@ -306,12 +306,28 @@ p .footnotes-link::after {
     padding-bottom: 30px;
 }
 
-.shortcode_info .elementor-widget-heading h2.elementor-heading-title,
-.shortcode_info h2 {
-  font-weight: 500;
-  margin-bottom: 20px;
-  padding-top: 80px;
-  margin-top: -80px;
+#post {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding-top: 80px;
+    margin-top: -80px;
+  }
+  h2 {
+    font-size: 1.8em;
+  }
+  h3 {
+    font-size: 1.5em;
+  }
+  h4 {
+    font-size: 1.3em;
+  }
+  h5 {
+    font-size: 1em;
+  }
+  h6 {
+    font-size: .8em;
+  }
 }
 
 .anchor-enabled h2 {

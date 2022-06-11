@@ -737,7 +737,7 @@ input[type=search]::-webkit-search-results-decoration {
 }
 .doc_documentation_area .shortcode_title h1 {
   margin-bottom: 0;
-  font-size: 32px;
+  font-size: 2.5em;
 }
 .doc_documentation_area .shortcode_title p span {
   font-weight: 500;
@@ -2166,12 +2166,26 @@ p .footnotes-link::after {
   padding-bottom: 30px;
 }
 
-.shortcode_info .elementor-widget-heading h2.elementor-heading-title,
-.shortcode_info h2 {
+#post h1, #post h2, #post h3, #post h4, #post h5, #post h6 {
   font-weight: 500;
   margin-bottom: 20px;
   padding-top: 80px;
   margin-top: -80px;
+}
+#post h2 {
+  font-size: 1.8em;
+}
+#post h3 {
+  font-size: 1.5em;
+}
+#post h4 {
+  font-size: 1.3em;
+}
+#post h5 {
+  font-size: 1em;
+}
+#post h6 {
+  font-size: 0.8em;
 }
 
 .anchor-enabled h2 {
