@@ -1,17 +1,14 @@
 <?php
 eazydocs_set_post_view();
-$cz_options             = '';
-$layout                 = 'both_sidebar';
-$cz_options             = '';
-$options                = get_option( 'eazydocs_settings' );
-$comment_visibility          = $options['enable-comment'] ?? '1';
-$reading_time_visibility     = $options['enable-reading-time'] ?? '1';
-$views_visibility            = $options['enable-views'] ?? '1';
-$docs_feedback          = '1';
+$options                    = get_option( 'eazydocs_settings' );
+$layout                     = 'both_sidebar';
+$cz_options                 = '';
+$comment_visibility         = $options['enable-comment'] ?? '1';
+$reading_time_visibility    = $options['enable-reading-time'] ?? '1';
+$views_visibility           = $options['enable-views'] ?? '1';
+$docs_feedback              = $options['docs-feedback'] ?? '1';
 if ( class_exists( 'EazyDocsPro' ) ) {
-	$cz_options         = get_option( 'eazydocs_customizer' ); // prefix of framework
-	$layout             = $cz_options['docs-single-layout'] ?? ''; // id of field
-	$docs_feedback      = $options['docs-feedback'] ?? '1';
+	$layout                     = $options['docs_single_layout'] ?? 'both_sidebar';
 }
 
 if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) : ?>

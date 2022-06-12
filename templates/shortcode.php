@@ -6,14 +6,17 @@ $order              = 'asc';
 $showpost           = $opt['docs-number'] ?? -1;
 $articles_number    = $opt['articles_number'] ?? -1;
 $layout             = 'grid';
+$order              = $opt['docs-order'] ?? 'asc'; // id of field
+
+$docs_col   = $opt['docs-column'] ?? 4; // id of field
+$btn_text   = $opt['docs-view-more'] ?? esc_html__( 'View Details', 'eazydocs' ); // id of field
+
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$orderby        = $opt['docs-order-by'] ?? 'menu_order'; // id of field
-	$order          = $opt['docs-order'] ?? 'asc'; // id of field
 	$layout         = $opt['docs-archive-layout'] ?? 'masonry'; // id of field
 }
 
 $depth_one_parents = [];
-$btn_text          = esc_html__( 'View Details', 'eazydocs' );
 $query             = new WP_Query( [
 	'post_type'      => 'docs',
 	'posts_per_page' => $showpost,
@@ -40,12 +43,9 @@ $query             = new WP_Query( [
 
                 $col_wrapper         = $i == 1;
                 if ( class_exists( 'EazyDocsPro' ) ) {
-                    $cz_options = get_option( 'eazydocs_customizer' ); // prefix of framework
-                    $docs_col   = $cz_options['docs-column']; // id of field
-                    $btn_text   = $cz_options['docs-view-more']; // id of field
                     do_action( 'before_docs_column_wrapper', $docs_col );
                 } else { ?>
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-<?php echo esc_attr($docs_col); ?> col-sm-6">
                 <?php } ?>
 
                 <div class="categories_guide_item wow fadeInUp">

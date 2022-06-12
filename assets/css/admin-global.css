@@ -310,5 +310,8 @@ p.big-p {
 .button-inline .button + .button {
   margin-left: 10px;
 }
-
+.csf-field-image_select img {
+  min-width: 70px;
+  max-width: 70px;
+}
 /*# sourceMappingURL=admin-global.css.map */

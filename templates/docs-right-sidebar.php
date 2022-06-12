@@ -3,6 +3,8 @@ $opt                        = get_option( 'eazydocs_settings' );
 $is_conditional_dropdown    = $opt['is_conditional_dropdown'] ?? '';
 $condition_options          = $opt['condition_options'] ?? '';
 $article_print              = $opt['pr-icon-switcher'] ?? '';
+$font_size_switcher         = $opt['font-size-switcher'] ?? '1';
+$widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
 ?>
 <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-top">
     <div class="open_icon" id="right">
@@ -52,6 +54,7 @@ $article_print              = $opt['pr-icon-switcher'] ?? '';
                 </script>
                 <?php
             endif;
+            if( ! empty( $font_size_switcher == 1 ) ) :
             ?>
             <div id="font-switcher" class="d-flex justify-content-between align-items-center">
                 <div id="rvfs-controllers" class="fontsize-controllers group">
@@ -68,6 +71,7 @@ $article_print              = $opt['pr-icon-switcher'] ?? '';
                     </div>
                 </div>
 				<?php
+                endif;
 				if ( $article_print == '1' ) : ?>
                     <a href="#" class="print"><i class="icon_printer"></i></a>
 				<?php endif; ?>
@@ -90,7 +94,7 @@ $article_print              = $opt['pr-icon-switcher'] ?? '';
 
             <?php
             // Widgets area
-            if ( is_active_sidebar('doc_sidebar') ) :
+            if ( is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 ) :
                 ?>
                 <div class="ezd-widgets">
                     <?php dynamic_sidebar('doc_sidebar') ?>

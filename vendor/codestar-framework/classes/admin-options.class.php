@@ -38,10 +38,10 @@ if ( ! class_exists( 'CSF_Options' ) ) {
       'sub_menu_title'          => '',
 
       // menu extras
-      'show_bar_menu'           => false,
+      'show_bar_menu'           => true,
       'show_sub_menu'           => true,
       'show_in_network'         => true,
-      'show_in_customizer'      => false,
+      'show_in_customizer'      => true,
 
       'show_search'             => true,
       'show_reset_all'          => true,

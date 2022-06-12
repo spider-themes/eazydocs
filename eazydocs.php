@@ -88,7 +88,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
             //require_once  __DIR__ . '/vendor/wp-notice/init.php';
 
 			if ( ! class_exists('EazyDocsPro')) {
-                require_once __DIR__ . '/includes/Admin/options/customize-docs.php';
 				require_once __DIR__ .'/includes/Admin/options/settings-options.php';
 			}
 		}

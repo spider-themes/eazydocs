@@ -17,7 +17,10 @@ class Assets {
         $opt        = get_option( 'eazydocs_settings' );
         $version    = get_option('EazyDocs_version');
 
-        $is_doc_ajax = $opt['is_doc_ajax'] ?? '';
+	    $is_doc_ajax =  '';
+        if(class_exists('EazyDocsPro')){
+	        $is_doc_ajax = $opt['is_doc_ajax'] ?? '';
+        }
         wp_enqueue_script( 'jquery' );
         wp_register_style( 'font-awesome-5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css' );
 

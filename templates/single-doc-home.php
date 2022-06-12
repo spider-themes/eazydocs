@@ -1,9 +1,8 @@
 <?php
 $options                = get_option( 'eazydocs_settings' );
-$sec_excerpt            = '8';
-if ( class_exists( 'EazyDocsPro' ) ) {
-	$sec_excerpt        = $options['doc_sec_excerpt_limit'] ?? '8';
-}
+
+$sec_excerpt        = $options['doc_sec_excerpt_limit'] ?? '8';
+
 $sections = get_children( array(
 	'post_parent'    => $post->ID,
 	'post_type'      => 'docs',

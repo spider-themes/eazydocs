@@ -1,18 +1,16 @@
 <?php
-$name = $email = '';
+$name           = $email    = '';
 if ( ! is_user_logged_in() ) {
 	$email_from = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
 } else {
 	$email_from = wp_get_current_user()->user_email;
 	$name       = wp_get_current_user()->display_name;
 }
-$options = get_option( 'eazydocs_settings' );
-$title   = __( 'How can we help?', 'eazydocs' );
-$desc    = __( 'A premium WordPress theme with integrated Knowledge Base, providing 24/7 community based support.', 'eazydocs' );
-if ( class_exists( 'EazyDocsPro' ) ) {
-	$title = ! empty ( $options['feedback-form-title'] ) ? $options['feedback-form-title'] : $title;
-	$desc        = ! empty ( $options['feedback-form-desc'] ) ? $options['feedback-form-desc'] : $desc;
-}
+$options        = get_option( 'eazydocs_settings' );
+$title_text     = __( 'How can we help?', 'eazydocs' );
+$description    = __( 'A premium WordPress theme with integrated Knowledge Base, providing 24/7 community based support.', 'eazydocs' );
+$title          = ! empty ( $options['feedback-form-title'] ) ? $options['feedback-form-title'] : $title_text;
+$desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedback-form-desc'] : $description;
 ?>
 
 <div class="modal fade img_modal" id="eazydocs_feedback" tabindex="-3" role="dialog" aria-hidden="false">

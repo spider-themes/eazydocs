@@ -187,11 +187,13 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 	 */
 	function eazydocs_breadcrumbs() {
 		global $post;
+		$home_text       = eazydocs_get_option( 'breadcrumb-home-text', 'eazydocs_settings' );
+		$front_page      = ! empty ( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs-pro' );
 
 		$html = '';
 		$args = apply_filters( 'eazydocs_breadcrumbs', [
 			'delimiter' => '',
-			'home'      => esc_html__( 'Home', 'eazydocs' ),
+			'home'      => $front_page,
             'before'    => '<li class="breadcrumb-item active">',
             'after'     => '</li>',
 		]);
@@ -202,12 +204,16 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
         $html .= eazydocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
         $html .= $args['delimiter'];
 
-        $docs_home = eazydocs_get_option( 'docs-slug', 'eazydocs_settings' );
+
+		$docs_page_title = eazydocs_get_option( 'docs-page-title', 'eazydocs_settings' );
+		$docs_page_title = ! empty ( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docsd', 'eazydocs' );
+
+		$docs_home = eazydocs_get_option( 'docs-slug', 'eazydocs_settings' );
 
         if ( $docs_home ) {
             ++$breadcrumb_position;
 
-            $html .= eazydocs_get_breadcrumb_item( esc_html__( 'Docs', 'eazydocs' ), get_permalink( $docs_home ), $breadcrumb_position );
+            $html .= eazydocs_get_breadcrumb_item( $docs_page_title, get_permalink( $docs_home ), $breadcrumb_position );
             $html .= $args['delimiter'];
         }
 
