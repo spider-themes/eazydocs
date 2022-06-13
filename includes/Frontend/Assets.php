@@ -17,17 +17,14 @@ class Assets {
         $opt        = get_option( 'eazydocs_settings' );
         $version    = get_option('EazyDocs_version');
 
-	    $is_doc_ajax =  '';
-        if(class_exists('EazyDocsPro')){
-	        $is_doc_ajax = $opt['is_doc_ajax'] ?? '';
-        }
+        $is_doc_ajax = $opt['is_doc_ajax'] ?? '';
         wp_enqueue_script( 'jquery' );
         wp_register_style( 'font-awesome-5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css' );
 
         // Register
         wp_register_style( 'bootstrap-select', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css' );
         wp_register_script( 'bootstrap-select', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js', array('bootstrap') );
-        wp_register_script( 'bootstrap', EAZYDOCS_VEND . '/bootstrap/bootstrap.bundle.min.js', array( 'jquery' ), '5.1.3', true );
+        wp_register_script( 'bootstrap-bundle', EAZYDOCS_VEND . '/bootstrap/bootstrap.bundle.min.js', array( 'jquery' ), '5.1.3', true );
         wp_register_script( 'anchor', EAZYDOCS_ASSETS . '/js/frontend/anchor.min.js' );
 
         if ( is_singular('docs') || is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
@@ -49,10 +46,8 @@ class Assets {
 
             wp_register_style( 'print', EAZYDOCS_ASSETS . '/css/frontend/print.css' );
             wp_enqueue_style( 'rvfs', EAZYDOCS_VEND . '/font-size/css/rvfs.css' );
-            wp_enqueue_style( 'mCustomScrollbar' );
 
             // Scripts
-            wp_enqueue_script( 'mCustomScrollbar' );
             wp_enqueue_script( 'rv-jquery-fontsize', EAZYDOCS_VEND . '/font-size/js/rv-jquery-fontsize-2.0.3.js' );
             wp_enqueue_script( 'printThis', EAZYDOCS_ASSETS . '/js/frontend/printThis.js' );
 
@@ -60,11 +55,11 @@ class Assets {
             wp_enqueue_script( 'bootstrap-toc', EAZYDOCS_ASSETS . '/js/frontend/bootstrap-toc.min.js', array('jquery','bootstrap') );
             wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array('jquery'), $version );
             wp_register_script( 'eazydocs-onepage', EAZYDOCS_ASSETS . '/js/frontend/onepage.js', array('jquery'), $version );
-            wp_enqueue_script( 'bootstrap' );
+            wp_enqueue_script( 'bootstrap-bundle' );
 
             $is_dark_switcher = $opt['is_dark_switcher'] ?? '';
             if ( $is_dark_switcher == '1' ) {
-                wp_enqueue_style( 'eazydocs-dark-mode', EAZYDOCS_FRONT_CSS.'/dark-mode.css' );
+                wp_enqueue_style( 'eazydocs-dark-mode', EAZYDOCS_ASSETS.'/css/frontend_dark-mode.css' );
             }
 
             wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css', array('bootstrap'), $version );
@@ -87,6 +82,7 @@ class Assets {
                 $dynamic_css .= ".doc_switch input[type=checkbox] { border: 1px solid rgba($brand_rgb, 0.3); background: rgba($brand_rgb, 0.25); }";
                 $dynamic_css .= ".categories_guide_item .doc_border_btn { border: 1px solid rgba($brand_rgb, 0.2); background: rgba($brand_rgb, 0.05); }";
                 $dynamic_css .= "#eazydocs_feedback .action_btn{ background: rgba($brand_rgb, .9); }";
+                $dynamic_css .= ".documentation_item .media-body .title:hover { text-decoration-color: rgba($brand_rgb, 0.25);}";
             }
 
             wp_add_inline_style( 'eazydocs-frontend-global', $dynamic_css );

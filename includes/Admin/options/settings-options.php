@@ -21,17 +21,17 @@ CSF::createOptions( $prefix, array(
 //
 CSF::createSection( $prefix, array(
 	'id'     => 'general_fields',
-	'title'  => esc_html__( 'General', 'eazydocs' ),
+	'title'  => esc_html__( 'Docs General', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
 		array(
 			'id'         => 'docs-slug',
 			'type'       => 'select',
-			'title'      => esc_html__( 'Docs Page', 'eazydocs-pro' ),
+			'title'      => esc_html__( 'Docs Page', 'eazydocs' ),
 			'options'    => 'pages',
 			'class'      => 'docs-page-wrap',
 			'multiple'   => false,
-			'desc'       => sprintf( wp_kses_post( __( 'Home page for docs page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs-pro' ) ) ),
+			'desc'       => sprintf( wp_kses_post( __( 'Home page for docs page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs' ) ) ),
 			'query_args' => array(
 				'posts_per_page' => - 1,
 			),
@@ -67,26 +67,28 @@ CSF::createSection( $prefix, array(
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
 
-		array(
-			'id'         => 'docs-column',
-			'type'       => 'image_select',
-			'class'      => 'docs-layout-img-wrap',
-			'title'      => esc_html__( 'Select Layout', 'eazydocs-pro' ),
-			'options'    => array(
-				'3' => EAZYDOCS_IMG . '/customizer/4.svg',
-				'4' => EAZYDOCS_IMG . '/customizer/3.svg',
-				'6' => EAZYDOCS_IMG . '/customizer/2.svg',
-			),
-			'attributes' => [
-				'width' => '100px'
-			],
-			'default'    => '4'
-		),
+        array(
+            'id'         => 'docs-column',
+            'type'       => 'image_select',
+            'class'      => 'docs-layout-img-wrap',
+            'title'      => esc_html__( 'Docs Columns', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'This option will set the default value of column attribute of ', 'eazydocs' ) . '<pre>[eazydocs]</pre> shortcode.',
+            'options'    => array(
+                '3' => EAZYDOCS_IMG . '/customizer/4.svg',
+                '4' => EAZYDOCS_IMG . '/customizer/3.svg',
+                '6' => EAZYDOCS_IMG . '/customizer/2.svg',
+            ),
+            'attributes' => [
+                'width' => '100px'
+            ],
+            'default'    => '4'
+        ),
+
 		array(
 			'id'      => 'docs-view-more',
 			'type'    => 'text',
-			'title'   => esc_html__( 'View More Button', 'eazydocs-pro' ),
-			'default' => esc_html__( 'View More', 'eazydocs-pro' )
+			'title'   => esc_html__( 'View More Button', 'eazydocs' ),
+			'default' => esc_html__( 'View More', 'eazydocs' )
 		),
 
 		array(
@@ -180,10 +182,10 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'      => 'docs_page_width',
 			'type'    => 'select',
-			'title'   => esc_html__( 'Page Layout', 'eazydocs-pro' ),
+			'title'   => esc_html__( 'Page Width', 'eazydocs' ),
 			'options' => [
-				'boxed'      => esc_html__( 'Boxed', 'eazydocs-pro' ),
-				'full-width' => esc_html__( 'Full Width', 'eazydocs-pro' ),
+				'boxed'      => esc_html__( 'Boxed', 'eazydocs' ),
+				'full-width' => esc_html__( 'Full Width', 'eazydocs' ),
 			],
 			'default' => 'boxed'
 		),
@@ -211,7 +213,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'      => 'enable-next-prev-links',
 			'type'    => 'switcher',
-			'title'   => esc_html__( 'Next & Previous Link', 'eazydocs-pro' ),
+			'title'   => esc_html__( 'Next & Previous Link', 'eazydocs' ),
 			'default' => false, // or false
 			'class'   => 'eazydocs-pro-notice'
 		),
@@ -263,7 +265,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'          => 'content-bg',
 			'type'        => 'color',
-			'title'       => esc_html__( 'Background Color', 'eazydocs-pro' ),
+			'title'       => esc_html__( 'Background Color', 'eazydocs' ),
 			'output'      => 'body.single-docs',
 			'output_mode' => 'background-color',
 		),
@@ -328,7 +330,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'          => 'keywords_label_color',
 			'type'        => 'color',
-			'title'       => esc_html__( 'Label Color', 'eazydocs-pro' ),
+			'title'       => esc_html__( 'Label Color', 'eazydocs' ),
 			'output_mode' => 'color',
 			'output'      => '.ezd_search_keywords .label',
 			'class'       => 'eazydocs-pro-notice'
@@ -361,7 +363,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'          => 'keywords_color',
 			'type'        => 'color',
-			'title'       => esc_html__( 'Keywords Color', 'eazydocs-pro' ),
+			'title'       => esc_html__( 'Keywords Color', 'eazydocs' ),
 			'output_mode' => 'color',
 			'output'      => '.ezd_search_banner .header_search_keyword ul li a',
 			'class'       => 'eazydocs-pro-notice'
@@ -403,7 +405,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'    => 'docs-page-title',
 			'type'  => 'text',
-			'title' => esc_html__( 'Docs Page Title', 'eazydocs-pro' ),
+			'title' => esc_html__( 'Docs Page Title', 'eazydocs' ),
 			'class' => 'eazydocs-pro-notice'
 		),
 
@@ -599,7 +601,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'          => 'docs-sidebar-bg',
 			'type'        => 'color',
-			'title'       => esc_html__( 'Background Color', 'eazydocs-pro' ),
+			'title'       => esc_html__( 'Background Color', 'eazydocs' ),
 			'output_mode' => 'background-color',
 			'output'      => '.doc_left_sidebarlist:before,.doc_left_sidebarlist:after',
 		)
@@ -831,7 +833,7 @@ $single_url  = admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $do
 
 CSF::createSection( $prefix, array(
 	'id'     => 'design_fields',
-	'title'  => esc_html__( 'Design', 'eazydocs' ),
+	'title'  => esc_html__( 'Customizer', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
 		array(
@@ -846,7 +848,7 @@ CSF::createSection( $prefix, array(
 //
 CSF::createSection( $prefix, array(
 	'id'     => 'shortcode_fields',
-	'title'  => esc_html__( 'Shortcodes', 'eazydocs' ),
+	'title'  => esc_html__( 'Docs Shortcodes', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
 		array(
@@ -869,18 +871,6 @@ CSF::createSection( $prefix, array(
 				'readonly' => 'readonly',
 			),
 		),
-
-		array(
-			'id'         => 'direction_shortcode',
-			'type'       => 'text',
-			'title'      => esc_html__( 'Direction Shortcode', 'eazydocs-pro' ),
-			'desc'       => __( 'Know the usage of this shortcode <a href="https://tinyurl.com/y2xxhsvx" target="_blank"> here </a>', 'eazydocs-pro' ),
-			'default'    => '[direction]',
-			'attributes' => array(
-				'readonly' => 'readonly',
-			),
-			'class'      => 'eazydocs-pro-notice'
-		),
 	]
 ) );
 
@@ -889,7 +879,7 @@ CSF::createSection( $prefix, array(
 //
 CSF::createSection( $prefix, array(
 	'id'     => 'role_manager_fields',
-	'title'  => esc_html__( 'Role Manager', 'eazydocs' ),
+	'title'  => esc_html__( 'Docs Role Manager', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
 
@@ -945,29 +935,30 @@ CSF::createSection( $prefix, array(
 //
 CSF::createSection( $prefix, array(
 	'id'     => 'eazydocs_instant_answer',
-	'title'  => esc_html__( 'Assistant', 'eazydocs-pro' ),
+	'title'  => esc_html__( 'Docs Assistant', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
 
 		array(
 			'type'  => 'heading',
-			'title' => esc_html__( 'Assistant', 'eazydocs-pro' ),
+			'title' => esc_html__( 'Assistant', 'eazydocs' ),
 		),
 
 		array(
 			'id'         => 'assistant_visibility',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable/Disable', 'eazydocs-pro' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'class'      => 'eazydocs-pro-notice',
 			'text_width' => 70,
 			'default'    => false
 		),
+
 		array(
 			'id'             => 'assistant_open_icon',
 			'type'           => 'media',
-			'title'          => esc_html__( 'Open Icon', 'eazydocs-pro' ),
+			'title'          => esc_html__( 'Open Icon', 'eazydocs' ),
 			'library'        => 'image',
 			'url'            => false,
 			'preview_width'  => '60',
@@ -981,7 +972,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'             => 'assistant_close_icon',
 			'type'           => 'media',
-			'title'          => esc_html__( 'Close Icon', 'eazydocs-pro' ),
+			'title'          => esc_html__( 'Close Icon', 'eazydocs' ),
 			'library'        => 'image',
 			'class'          => 'eazydocs-pro-notice',
 			'url'            => false,
@@ -1007,14 +998,14 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'    => 'assistant_kb_heading',
 							'type'  => 'heading',
-							'title' => esc_html__( 'Knowledge Base', 'eazydocs-pro' ),
+							'title' => esc_html__( 'Knowledge Base', 'eazydocs' ),
 						),
 						array(
 							'id'         => 'kb_visibility',
 							'type'       => 'switcher',
-							'title'      => esc_html__( 'Enable/Disable', 'eazydocs-pro' ),
-							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-							'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
+							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
 							'default'    => true
 						),
@@ -1022,8 +1013,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'kb_label',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Heading', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'Knowledge Base', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Heading', 'eazydocs' ),
+							'default'    => esc_html__( 'Knowledge Base', 'eazydocs' ),
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' ),
 							)
@@ -1032,9 +1023,9 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'assistant_search',
 							'type'       => 'switcher',
-							'title'      => esc_html__( 'Search', 'eazydocs-pro' ),
-							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-							'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Search', 'eazydocs' ),
+							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
 							'default'    => false,
 							'dependency' => array(
@@ -1045,8 +1036,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'kb_search_placeholder',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Search Placeholder', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'Search...', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Search Placeholder', 'eazydocs' ),
+							'default'    => esc_html__( 'Search...', 'eazydocs' ),
 							'dependency' => array(
 								array( 'assistant_search', '==', 'true' ),
 								array( 'kb_visibility', '==', 'true' )
@@ -1056,9 +1047,9 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'assistant_breadcrumb',
 							'type'       => 'switcher',
-							'title'      => esc_html__( 'Breadcrumb', 'eazydocs-pro' ),
-							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-							'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Breadcrumb', 'eazydocs' ),
+							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
 							'default'    => false,
 							'dependency' => array(
@@ -1069,8 +1060,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'docs_not_found',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Docs not Found', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'Docs not Found', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Docs not Found', 'eazydocs' ),
+							'default'    => esc_html__( 'Docs not Found', 'eazydocs' ),
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' )
 							)
@@ -1086,9 +1077,9 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'contact_visibility',
 							'type'       => 'switcher',
-							'title'      => esc_html__( 'Enable/Disable', 'eazydocs-pro' ),
-							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-							'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
+							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
 							'default'    => true
 						),
@@ -1096,8 +1087,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'contact_label',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Heading', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'Contact', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Heading', 'eazydocs' ),
+							'default'    => esc_html__( 'Contact', 'eazydocs' ),
 							'dependency' => array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
@@ -1106,7 +1097,7 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'assistant_contact_mail',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Receiver Email', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Receiver Email', 'eazydocs' ),
 							'default'    => get_option( 'admin_email' ),
 							'validate'   => 'csf_validate_email',
 							'dependency' => array(
@@ -1116,7 +1107,7 @@ CSF::createSection( $prefix, array(
 
 						array(
 							'type'       => 'subheading',
-							'title'      => esc_html__( 'Form Input', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Form Input', 'eazydocs' ),
 							'dependency' => array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
@@ -1124,8 +1115,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'contact_fullname',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Full name', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'Full name', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Full name', 'eazydocs' ),
+							'default'    => esc_html__( 'Full name', 'eazydocs' ),
 							'dependency' => array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
@@ -1133,8 +1124,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'contact_mail',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Email', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'name@example.com', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Email', 'eazydocs' ),
+							'default'    => esc_html__( 'name@example.com', 'eazydocs' ),
 							'dependency' => array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
@@ -1142,8 +1133,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'contact_subject',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Subject', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'Subject', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Subject', 'eazydocs' ),
+							'default'    => esc_html__( 'Subject', 'eazydocs' ),
 							'dependency' => array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
@@ -1151,8 +1142,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'contact_message',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Message', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'Write Your Message', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Message', 'eazydocs' ),
+							'default'    => esc_html__( 'Write Your Message', 'eazydocs' ),
 							'dependency' => array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
@@ -1160,8 +1151,8 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'contact_submit',
 							'type'       => 'text',
-							'title'      => esc_html__( 'Submit Button', 'eazydocs-pro' ),
-							'default'    => esc_html__( 'Send Message', 'eazydocs-pro' ),
+							'title'      => esc_html__( 'Submit Button', 'eazydocs' ),
+							'default'    => esc_html__( 'Send Message', 'eazydocs' ),
 							'dependency' => array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
@@ -1177,33 +1168,33 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'    => 'assistant_color_heading',
 							'type'  => 'heading',
-							'title' => esc_html__( 'Color', 'eazydocs-pro' ),
+							'title' => esc_html__( 'Color', 'eazydocs' ),
 						),
 						array(
 							'id'          => 'assistant_bg',
 							'type'        => 'color',
-							'title'       => esc_html__( 'Icon Color', 'eazydocs-pro' ),
+							'title'       => esc_html__( 'Icon Color', 'eazydocs' ),
 							'output'      => '.chat-toggle a',
 							'output_mode' => 'background-color',
 						),
 						array(
 							'id'          => 'assistant_header_bg',
 							'type'        => 'color',
-							'title'       => esc_html__( 'Header Background', 'eazydocs-pro' ),
+							'title'       => esc_html__( 'Header Background', 'eazydocs' ),
 							'output'      => '.chatbox-header',
 							'output_mode' => 'background-color',
 						),
 						array(
 							'id'          => 'assistant_body_bg',
 							'type'        => 'color',
-							'title'       => esc_html__( 'Background', 'eazydocs-pro' ),
+							'title'       => esc_html__( 'Background', 'eazydocs' ),
 							'output'      => '.chatbox-body',
 							'output_mode' => 'background-color',
 						),
 						array(
 							'id'          => 'assistant_submit_bg',
 							'type'        => 'color',
-							'title'       => esc_html__( 'Submit Button', 'eazydocs-pro' ),
+							'title'       => esc_html__( 'Submit Button', 'eazydocs' ),
 							'output'      => '.chatbox-form input[type="submit"]',
 							'output_mode' => 'background-color',
 						)
@@ -1216,7 +1207,7 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'    => 'assistant_position_heading',
 							'type'  => 'heading',
-							'title' => esc_html__( 'Position', 'eazydocs-pro' ),
+							'title' => esc_html__( 'Position', 'eazydocs' ),
 						),
 						array(
 							'id'          => 'assistant_spacing_vertical',

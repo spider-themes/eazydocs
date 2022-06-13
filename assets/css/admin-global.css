@@ -89,6 +89,10 @@ a.eazydocs-close-notice:active {
 }
 
 /** === Codestar options / Pro Alert === **/
+.csf-field-image_select figure {
+  width: 100px;
+}
+
 .csf-options {
   max-width: 1200px;
 }
@@ -310,8 +314,13 @@ p.big-p {
 .button-inline .button + .button {
   margin-left: 10px;
 }
-.csf-field-image_select img {
-  min-width: 70px;
-  max-width: 70px;
+
+/** === Customizer === **/
+.customize-pane-parent li#accordion-section-shortcode_fields,
+.customize-pane-parent li#accordion-section-role_manager_fields,
+.customize-pane-parent li#accordion-section-design_fields,
+.customize-pane-parent li#accordion-section-role_manager_fields {
+  display: none !important;
 }
+
 /*# sourceMappingURL=admin-global.css.map */

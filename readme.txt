@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs
 Requires at least: 5.0
 Tested up to: 6.0.0
 Requires PHP: 7.2
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.2.3 (14 June 2022) =
+Fixed: Doc left sidebar scrollbar in windows browsers
+Fixed: Some settings was not working (Docs archive columns, view more button text etc)
+Fixed: Bootstrap JS conflicting with bootstrap based theme
+Fixed: Dark mode was not showing on OnePage Doc (PRO feature, unlocked with Docy and Docly themes)
+Tweaked: Doc single page typography
+Tweaked: Made the same settings/options available on the customizer and plugin Settings page.
 
 = v1.2.2 (10 June 2022) =
 Tweaked: Brand Color (rgba colors) more accurately changing

@@ -2,6 +2,9 @@
 get_header();
 
 wp_enqueue_script('eazydocs-onepage');
+
+$opt                = get_option( 'eazydocs_settings' );
+
 global $post;
 $post_slug          = $post->post_name;
 $post_id            = get_page_by_path($post_slug, OBJECT, array( 'docs' ) );
@@ -96,7 +99,7 @@ $children           = wp_list_pages( array(
                                 <?php if ( $child_sections ) : ?>
                                     <div class="articles-list mt-5">
                                         <h4> <?php esc_html_e('Articles', 'docy'); ?></h4>
-                                        <ul class="article_list tag_list one-page-docs-tag-list">
+                                        <ul class="article_list one-page-docs-tag-list">
                                             <?php
                                             foreach ( $child_sections as $child_section ) :
                                                 ?>
@@ -174,6 +177,16 @@ $children           = wp_list_pages( array(
                                 </div>
                                 <a href="#" class="print"><i class="icon_printer"></i></a>
                             </div>
+
+                            <?php
+                            $is_dark_switcher = $opt['is_dark_switcher'] ?? '';
+                            if ( $is_dark_switcher == '1' ) : ?>
+                                <div class="doc_switch d-flex align-items-center">
+                                    <label for="ezd_dark_switch" class="tab-btn tab-btns light-mode"><i class="icon_lightbulb_alt"></i></label>
+                                    <input type="checkbox" name="ezd_dark_switch" id="ezd_dark_switch" class="tab_switcher">
+                                    <label for="ezd_dark_switch" class="tab-btn dark-mode"><i class="far fa-moon"></i></label>
+                                </div>
+                            <?php endif; ?>
 
                             <div class="onepage-sidebar doc_sidebar <?php echo esc_attr($ezd_content_none); ?>">
                                 <div class="hire-us">

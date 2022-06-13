@@ -252,7 +252,6 @@ p .footnotes-link::after {
 }
 
 .fadeGradient {
-  z-index: 1;
   position: relative;
   height: 50px;
   margin-top: -50px;
@@ -307,7 +306,7 @@ p .footnotes-link::after {
 }
 
 #post {
-  h1, h2, h3, h4, h5, h6 {
+  h2, h3, h4, h5, h6 {
     font-weight: 500;
     margin-bottom: 20px;
     padding-top: 80px;

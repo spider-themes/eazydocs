@@ -1,0 +1,154 @@
+/*============ Dark Mode css ========*/
+body.body_dark {
+  color: #d3d4d4;
+  background: #131417 !important;
+  .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
+    background: #131417 !important;
+  }
+  .ordered-list li::before, .body_wrapper,
+  .img_modal, #eazydocs_feedback {
+    background: #131417;
+  }
+  .explanation {
+    border-color: #131417;
+  }
+  .sticky_menu .navbar-brand img {
+    display: none;
+  }
+  .sticky_menu .navbar-brand img + img {
+    display: block;
+  }
+  .sticky_menu .menu_one, .sticky_menu .menu > .nav-item.submenu .dropdown-menu,
+  .sticky_menu .menu > .nav-item.submenu .dropdown-menu:before {
+    background: #252830;
+  }
+  .sticky_menu .menu > .nav-item.submenu .dropdown-menu,
+  .sticky_menu .menu > .nav-item.submenu .dropdown-menu:before {
+    border-color: #5a5f73;
+  }
+
+  .sticky_menu .menu_one .menu > .nav-item .nav-link,
+  .sticky_menu .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link h5 {
+    color: #fff;
+  }
+
+  .documentation_item .media-body .title {
+    color: var(--black_50)
+  }
+
+  .search_form .form-control {
+    background: #5a5f73;
+    border-color: #2c303a;
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before,
+  .search_form button {
+    color: #8f94a6;
+  }
+
+  .nav-sidebar .nav-item .docs-progress-bar,
+  .body_dark.onepage-doc .nav-sidebar .nav-item .docs-progress-bar, .fontsize-controllers .btn-group .btn:focus,
+  .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active,
+  .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:hover {
+    background: #444857;
+  }
+
+  .help_form, .nav-sidebar.one-page-doc-nav-wrap .nav-item, .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav:before,
+  .body_dark.onepage-doc .nav-sidebar .nav-item, .doc_rightsidebar .bootstrap-select > .dropdown-menu,
+  .doc_rightsidebar .dropdown-toggle, .fontsize-controllers .btn-group, .body_dark.onepage-doc .nav-sidebar .nav-item .dropdown_nav,
+  .doc_rightsidebar .doc_switch input[type=checkbox], .breadcrumb_area_three,
+  .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu {
+    background: #2c303a;
+  }
+
+  .doc_left_sidebarlist::after,
+  .doc_left_sidebarlist:not(.one-page-docs-sidebar-wrap)::before {
+    background: #1e1f26;
+  }
+
+  .doc_rightsidebar .doc_switch input[type=checkbox], .topic_item_tabs .topic_list_item,
+  .doc_left_sidebarlist::after,
+  .doc_rightsidebar .dropdown-toggle, .fontsize-controllers .btn-group .btn.rvfs-reset, .fontsize-controllers .btn-group,
+  .doc_left_sidebarlist:before, .doc_left_sidebarlist,
+  .nav-sidebar + .nav-sidebar, .doc_rightsidebar, .v_menu,
+  .toggle_body, .basic_table_info, .basic_table_info tbody tr th, .basic_table_info tbody tr td,
+  .typography_content .code-preview, .doc_left_sidebarlist:before {
+    border-color: #272830;
+  }
+
+  .doc_rightsidebar .pageSideSection::before,
+  .body_dark.onepage-doc .nav-sidebar .nav-item .dropdown_nav:before {
+    background: #272830;
+  }
+  .nav-sidebar .nav-item .nav-link {
+    color: #c7c9d3;
+  }
+  .nav-sidebar .nav-item .nav-link.active, .nav-sidebar .nav-item .nav-link:hover {
+    color: var(--ezd_brand_color);
+  }
+  .nav-sidebar .nav-item .dropdown_nav li a,
+  .doc_menu .nav-link,
+  .doc_rightsidebar .doc_right_link li a {
+    color: #bbb;
+  }
+
+  .doc_menu .nav-link.active, .doc_menu .nav-link:hover,
+  h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+  }
+  .documentation_item .icon {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .fontsize-controllers .btn-group .btn,
+  .doc_rightsidebar .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+    color: #c7c9d3;
+  }
+
+  .border_bottom {
+    background: #384c59;
+  }
+
+  .link, .version, .question_box .signup_form .input-group, .tab_shortcode .tab-content {
+    border: 1px solid #384c59;
+    background: #1f3341;
+  }
+
+  .tab_shortcode .nav-tabs .nav-item .nav-link {
+    background: #1f3341;
+    border-color: #384c59;
+  }
+
+  .question_box .signup_form .input-group .form-control {
+    color: var(--p_color);
+  }
+
+  .question_box .signup_form .input-group button:before {
+    background: #384c59;
+  }
+
+  .get_started p {
+    color: #d3d4d4;
+  }
+
+  .f_bg_color, .page_breadcrumb, .toggle_btn, .doc_accordion .card-header button {
+    background: #1f3341;
+  }
+
+  .shortcode_text ul li a,
+  .tab_shortcode .nav-tabs .nav-item .nav-link.active, .page_breadcrumb .breadcrumb .breadcrumb-item.active,
+  .toggle_btn.collapsed:before, .toggle_btn.collapsed, .doc_accordion .card-header button, .table {
+    color: #fff;
+  }
+
+  .toggle_body, .doc_accordion, .message_alert {
+    background: #061f2f;
+  }
+
+  .toggle_btn {
+    color: var(--ezd_brand_color);
+  }
+
+  .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link h5 {
+    color: var(--secondary_color);
+  }
+}

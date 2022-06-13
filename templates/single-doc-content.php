@@ -56,7 +56,7 @@ if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' 
 				if ( $children && $post->post_parent != 0 ) {
 					echo '<div class="details_cont ent recently_added" id="content_elements">';
 					echo '<h4 class="c_head">' . esc_html__( 'Articles', 'eazydocs' ) . '</h4>';
-					echo '<ul class="article_list tag_list">';
+					echo '<ul class="article_list">';
 					echo eazydocs_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
 					echo '</ul>';
 					echo '</div>';
@@ -64,7 +64,7 @@ if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' 
 				wp_link_pages( array(
 					'before' => '<div class="page-links">' . esc_html__( 'Docs:', 'eazydocs' ),
 					'after'  => '</div>',
-				) );
+				));
 				?>
             </div>
         </div>
