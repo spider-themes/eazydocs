@@ -20,8 +20,13 @@ $children       = wp_list_pages( array(
 	'post_type' => 'docs',
 	'walker'    => $walker,
 ));
-?>
 
+$options                    = get_option( 'eazydocs_settings' );
+$sidebar_search             = '1';
+if ( class_exists( 'EazyDocsPro' ) ) {
+	$sidebar_search         = $options['search_visibility'] ?? '1';
+}
+?>
 <div class="col-xl-3 col-lg-3 doc_mobile_menu left-column sticky-top">
     <aside class="doc_left_sidebarlist">
         <div class="open_icon" id="left">
@@ -31,12 +36,17 @@ $children       = wp_list_pages( array(
         <h2 class="doc-title">
 			<?php echo get_post_field( 'post_title', $parent, 'display' ); ?>
         </h2>
-        <div class="filter_form">
-            <div class="filterform">
-                <input id="doc_filter" type="search" name="filter" placeholder="<?php esc_attr_e( 'Filter', 'eazydocs' ); ?>" data-uw-styling-context="true">
+        <?php
+        if( $sidebar_search == 1 ) :
+            ?>
+            <div class="filter_form">
+                <div class="filterform">
+                    <input id="doc_filter" type="search" name="filter" placeholder="<?php esc_attr_e( 'Filter', 'eazydocs' ); ?>" data-uw-styling-context="true">
+                </div>
             </div>
-        </div>
-		<?php
+            <?php
+        endif;
+
 		if ( $children ) :
 			?>
             <div class="scroll">

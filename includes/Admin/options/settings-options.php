@@ -24,6 +24,7 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs General', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
+		
 		array(
 			'id'         => 'docs-slug',
 			'type'       => 'select',
@@ -129,6 +130,7 @@ CSF::createSection( $prefix, array(
 			'default' => 'grid',
 			'class'   => 'eazydocs-pro-notice'
 		),
+		
 		array(
 			'id'      => 'docs-order-by',
 			'type'    => 'select',
@@ -169,6 +171,7 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'General', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+		
 		array(
 			'id'      => 'docs_single_layout',
 			'type'    => 'image_select',
@@ -290,10 +293,12 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Search Banner', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+		
 		array(
 			'type'  => 'subheading',
 			'title' => esc_html__( 'Search Banner', 'eazydocs' ),
 		),
+		
 		array(
 			'id'         => 'is_search_banner',
 			'type'       => 'switcher',
@@ -303,6 +308,7 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 			'text_width' => 72
 		),
+		
 		array(
 			'id'     => 'doc_banner_bg',
 			'type'   => 'background',
@@ -310,10 +316,12 @@ CSF::createSection( $prefix, array(
 			'output' => '.ezd_search_banner.has_bg_dark.has_cs_bg',
 			'class'  => 'eazydocs-pro-notice'
 		),
+		
 		array(
 			'type'  => 'subheading',
 			'title' => esc_html__( 'Keywords', 'eazydocs' ),
 		),
+		
 		array(
 			'id'         => 'is_keywords',
 			'type'       => 'switcher',
@@ -325,6 +333,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array( 'is_search_banner', '==', 'true' ),
 			'class'      => 'eazydocs-pro-notice'
 		),
+		
 		array(
 			'id'         => 'keywords_label',
 			'type'       => 'text',
@@ -336,6 +345,7 @@ CSF::createSection( $prefix, array(
 			),
 			'class'      => 'eazydocs-pro-notice'
 		),
+		
 		array(
 			'id'          => 'keywords_label_color',
 			'type'        => 'color',
@@ -344,6 +354,7 @@ CSF::createSection( $prefix, array(
 			'output'      => '.ezd_search_keywords .label',
 			'class'       => 'eazydocs-pro-notice'
 		),
+		
 		array(
 			'id'         => 'keywords',
 			'type'       => 'repeater',
@@ -369,6 +380,7 @@ CSF::createSection( $prefix, array(
 			),
 			'class'      => 'eazydocs-pro-notice'
 		),
+		
 		array(
 			'id'          => 'keywords_color',
 			'type'        => 'color',
@@ -388,6 +400,7 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Breadcrumbs', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+		
 		array(
 			'id'         => 'docs-breadcrumb',
 			'type'       => 'switcher',
@@ -440,6 +453,7 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Feedback Area', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+		
 		array(
 			'id'         => 'docs-feedback',
 			'type'       => 'switcher',
@@ -517,6 +531,7 @@ CSF::createSection( $prefix, array(
 				array( 'message-feedback', '==', 'true' ),
 			)
 		),
+		
 		array(
 			'id'         => 'feedback-form-title',
 			'type'       => 'text',
@@ -527,6 +542,7 @@ CSF::createSection( $prefix, array(
 				array( 'message-feedback', '==', 'true' ),
 			)
 		),
+		
 		array(
 			'id'         => 'feedback-form-desc',
 			'type'       => 'textarea',
@@ -579,12 +595,35 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Left Sidebar', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+		
+		array(
+			'id'     => 'toggle_visibility',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Sidebar Toggle', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_width' => 72,
+			'default'    => false,
+			'class'  => 'eazydocs-pro-notice'
+		),
+
 		array(
 			'id'     => 'action_btn_typo',
 			'type'   => 'typography',
-			'title'  => esc_html__( 'Documentation Title Typography', 'eazydocs' ),
+			'title'  => esc_html__( 'Title Typography', 'eazydocs' ),
 			'output' => '.doc_left_sidebarlist .doc-title',
 			'class'  => 'eazydocs-pro-notice active-theme'
+		),
+
+		array(
+			'id'     => 'search_visibility',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Search', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_width' => 72,
+			'default'    => false,
+			'class'  => 'eazydocs-pro-notice'
 		),
 
 		array(
@@ -597,6 +636,7 @@ CSF::createSection( $prefix, array(
 			),
 			'class'    => 'eazydocs-pro-notice active-theme'
 		),
+		
 		array(
 			'title'    => esc_html__( 'Doc Section Icon Open', 'eazydocs' ),
 			'subtitle' => esc_html__( "This is the Doc's default icon. If you don't use icon for the article section individually, this icon will be shown on open states of the Doc sections.", 'eazydocs' ),
@@ -607,6 +647,7 @@ CSF::createSection( $prefix, array(
 			),
 			'class'    => 'eazydocs-pro-notice active-theme'
 		),
+		
 		array(
 			'id'          => 'docs-sidebar-bg',
 			'type'        => 'color',
@@ -625,6 +666,7 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Right Sidebar', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+		
 		array(
 			'id'         => 'font-size-switcher',
 			'type'       => 'switcher',
@@ -713,6 +755,7 @@ CSF::createSection( $prefix, array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Related Docs', 'eazydocs' )
 		),
+		
 		array(
 			'id'         => 'related-docs',
 			'type'       => 'switcher',
@@ -722,6 +765,7 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 			'text_width' => 72
 		),
+		
 		array(
 			'id'         => 'related-docs-title',
 			'type'       => 'text',
@@ -733,6 +777,7 @@ CSF::createSection( $prefix, array(
 				'true'
 			)
 		),
+		
 		array(
 			'id'         => 'related-visible-docs',
 			'type'       => 'number',
@@ -744,6 +789,7 @@ CSF::createSection( $prefix, array(
 				'true'
 			)
 		),
+		
 		array(
 			'id'         => 'related-docs-more-btn',
 			'type'       => 'text',
@@ -764,6 +810,7 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Viewed Articles', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+		
 		array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Recently Viewed Docs', 'eazydocs' )
@@ -845,10 +892,12 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Customizer', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
+		
 		array(
 			'type'    => 'content',
 			'content' => sprintf( '<a href="' . $archive_url . '" target="_blank" id="get_docs_archive">' . esc_html__( 'Docs Archive', 'eazydocs' ) . '</a> <a href="' . $single_url . '" target="_blank" id="get_docs_single">' . esc_html__( 'Single Doc', 'eazydocs' ) . '</a>' ),
 		),
+		
 	]
 ) );
 
@@ -860,16 +909,18 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs Shortcodes', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
+
 		array(
 			'id'         => 'eazydocs_docs_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Docs archive', 'eazydocs' ),
-			'desc'       => __( 'Know the usage of this shortcode <a href=""> here </a>', 'eazydocs' ),
+			'desc'       => __( '<table class="ezd-shortcodes-wrap"><tr><td>[eazydocs col="3" include="8386" more="Read more" ]</td></tr><tr><td>[eazydocs col="3" exclude="8386" more="Read more" ]</td></tr><tr><td>[eazydocs items="-1" ]</td></tr></table> Know the usage of this shortcode <a href="https://codex.wordpress.org/Shortcode_API"> here </a>', 'eazydocs' ),
 			'default'    => '[eazydocs]',
 			'attributes' => array(
 				'readonly' => 'readonly',
 			),
 		),
+
 		array(
 			'id'         => 'conditional_data_shortcode',
 			'type'       => 'text',
@@ -908,6 +959,7 @@ CSF::createSection( $prefix, array(
 			'default'  => 'administrator',
 			'class'    => 'eazydocs-pro-notice'
 		),
+		
 		array(
 			'id'       => 'settings-edit-access',
 			'type'     => 'select',
@@ -922,6 +974,7 @@ CSF::createSection( $prefix, array(
 			'multiple' => true,
 			'class'    => 'eazydocs-pro-notice'
 		),
+		
 		array(
 			'id'       => 'customizer-edit-access',
 			'type'     => 'select',
@@ -1001,14 +1054,17 @@ CSF::createSection( $prefix, array(
 				array( 'assistant_visibility', '==', 'true' )
 			),
 			'tabs'       => array(
+
 				array(
 					'title'  => 'Knowledge Base',
 					'fields' => array(
+
 						array(
 							'id'    => 'assistant_kb_heading',
 							'type'  => 'heading',
 							'title' => esc_html__( 'Knowledge Base', 'eazydocs' ),
 						),
+						
 						array(
 							'id'         => 'kb_visibility',
 							'type'       => 'switcher',
@@ -1121,6 +1177,7 @@ CSF::createSection( $prefix, array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
 						),
+						
 						array(
 							'id'         => 'contact_fullname',
 							'type'       => 'text',
@@ -1130,6 +1187,7 @@ CSF::createSection( $prefix, array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
 						),
+						
 						array(
 							'id'         => 'contact_mail',
 							'type'       => 'text',
@@ -1139,6 +1197,7 @@ CSF::createSection( $prefix, array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
 						),
+						
 						array(
 							'id'         => 'contact_subject',
 							'type'       => 'text',
@@ -1148,6 +1207,7 @@ CSF::createSection( $prefix, array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
 						),
+						
 						array(
 							'id'         => 'contact_message',
 							'type'       => 'text',
@@ -1157,6 +1217,7 @@ CSF::createSection( $prefix, array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
 						),
+						
 						array(
 							'id'         => 'contact_submit',
 							'type'       => 'text',
@@ -1179,6 +1240,7 @@ CSF::createSection( $prefix, array(
 							'type'  => 'heading',
 							'title' => esc_html__( 'Color', 'eazydocs' ),
 						),
+						
 						array(
 							'id'          => 'assistant_bg',
 							'type'        => 'color',
@@ -1186,6 +1248,7 @@ CSF::createSection( $prefix, array(
 							'output'      => '.chat-toggle a',
 							'output_mode' => 'background-color',
 						),
+						
 						array(
 							'id'          => 'assistant_header_bg',
 							'type'        => 'color',
@@ -1193,6 +1256,7 @@ CSF::createSection( $prefix, array(
 							'output'      => '.chatbox-header',
 							'output_mode' => 'background-color',
 						),
+						
 						array(
 							'id'          => 'assistant_body_bg',
 							'type'        => 'color',
@@ -1200,6 +1264,7 @@ CSF::createSection( $prefix, array(
 							'output'      => '.chatbox-body',
 							'output_mode' => 'background-color',
 						),
+						
 						array(
 							'id'          => 'assistant_submit_bg',
 							'type'        => 'color',
@@ -1213,11 +1278,13 @@ CSF::createSection( $prefix, array(
 				array(
 					'title'  => 'Position',
 					'fields' => array(
+
 						array(
 							'id'    => 'assistant_position_heading',
 							'type'  => 'heading',
 							'title' => esc_html__( 'Position', 'eazydocs' ),
 						),
+						
 						array(
 							'id'          => 'assistant_spacing_vertical',
 							'type'        => 'slider',
@@ -1229,6 +1296,7 @@ CSF::createSection( $prefix, array(
 							'output'      => '.chat-toggle,.chatbox-wrapper',
 							'output_mode' => 'margin-bottom'
 						),
+						
 						array(
 							'id'          => 'assistant_spacing_horizontal',
 							'type'        => 'slider',

@@ -302,6 +302,24 @@ p.big-p {
     }
 }
 
+.ezd-shortcodes-wrap{
+    border: 1px solid #e8e8e8;
+    background: #fafafa;
+}
+.ezd-shortcodes-wrap tr {
+    color: #575757de;
+    display: block;
+    font-size: 14px;
+    padding: 6px 6px;
+    border-bottom: 1px solid #5757571f;
+}
+.ezd-shortcodes-wrap tr:nth-child(odd){
+    background: #f6f6f6
+}
+.ezd-shortcodes-wrap tr:last-child {
+    border-bottom: none
+}
+
 /** === Customizer === **/
 .customize-pane-parent {
     li#accordion-section-shortcode_fields,

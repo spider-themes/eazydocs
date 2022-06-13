@@ -7,22 +7,25 @@ $comment_visibility         = $options['enable-comment'] ?? '1';
 $reading_time_visibility    = $options['enable-reading-time'] ?? '1';
 $views_visibility           = $options['enable-views'] ?? '1';
 $docs_feedback              = $options['docs-feedback'] ?? '1';
+$sidebar_toggle             = '1';
 if ( class_exists( 'EazyDocsPro' ) ) {
 	$layout                     = $options['docs_single_layout'] ?? 'both_sidebar';
+	$sidebar_toggle         = $options['toggle_visibility'] ?? '1';
 }
-
-if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) : ?>
-    <div class="left-sidebar-toggle">
-        <span class="left-arrow arrow_triangle-left" title="<?php esc_attr_e( 'Hide category', 'eazydocs' ); ?>" style="display: block;"></span>
-        <span class="right-arrow arrow_triangle-right" title="<?php esc_attr_e( 'Show category', 'eazydocs' ); ?>" style="display: none;"></span>
-    </div>
-<?php endif; ?>
-
-    <article class="shortcode_info" id="post" itemscope itemtype="http://schema.org/Article">
+if( $sidebar_toggle         == 1 ) :
+    if ( ! empty( $layout   == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) : ?>
+        <div class="left-sidebar-toggle">
+            <span class="left-arrow arrow_triangle-left" title="<?php esc_attr_e( 'Hide category', 'eazydocs' ); ?>" style="display: block;"></span>
+            <span class="right-arrow arrow_triangle-right" title="<?php esc_attr_e( 'Show category', 'eazydocs' ); ?>" style="display: none;"></span>
+        </div>
+        <?php
+    endif;
+endif;
+?>
+<article class="shortcode_info" id="post" itemscope itemtype="http://schema.org/Article">
         <div class="doc-post-content">
             <div class="shortcode_title">
 				<?php the_title( '<h1>', '</h1>' ); ?>
-
                 <?php
                 if( $reading_time_visibility == '1' ||  $views_visibility == '1' ) : ?>
                     <div class="meta dot-sep">
@@ -74,7 +77,6 @@ if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' 
         }
         ?>
     </article>
-
 <?php
 eazydocs_get_template_part( 'content-related' );
 

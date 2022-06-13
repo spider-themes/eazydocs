@@ -23,6 +23,7 @@ class Shortcode {
 	 */
 	public function shortcode( $atts, $content = '' ) {
 		Assets::enqueue_scripts();
+
 		ob_start();
 		self::eazydocs( $atts );
 		$content .= ob_get_clean();
