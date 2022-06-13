@@ -148,7 +148,8 @@ CSF::createSection( $prefix, array(
 			'class'   => 'eazydocs-pro-notice'
 		),
 	)
-) );
+));
+
 
 //
 // Single Doc Fields
@@ -158,6 +159,7 @@ CSF::createSection( $prefix, array(
 	'title' => esc_html__( 'Single Doc', 'eazydocs' ),
 	'icon'  => 'fas fa-plus-circle',
 ) );
+
 
 //
 // Single Doc > General
@@ -179,6 +181,7 @@ CSF::createSection( $prefix, array(
 			),
 			'default' => 'both_sidebar'
 		),
+
 		array(
 			'id'      => 'docs_page_width',
 			'type'    => 'select',
@@ -189,27 +192,51 @@ CSF::createSection( $prefix, array(
 			],
 			'default' => 'boxed'
 		),
+
 		array(
 			'id'      => 'enable-reading-time',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Estimated Reading Time', 'eazydocs' ),
 			'default' => true // or false
 		),
+
 		array(
 			'id'      => 'enable-views',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Views', 'eazydocs' ),
 			'default' => true // or false
 		),
+
+        array(
+            'title'    => esc_html__( 'Section Excerpt', 'eazydocs' ),
+            'subtitle' => esc_html__( 'Define here the Doc section excerpt limit in word count to show. Use -1 to show the full excerpt.', 'eazydocs' ),
+            'desc'     => esc_html__( 'Note: If the excerpt leaves empty, the excerpt will be automatically taken from the doc post content.', 'eazydocs' ),
+            'id'       => 'doc_sec_excerpt_limit',
+            'type'     => 'slider',
+            'default'  => 8,
+            "min"      => 1,
+            "step"     => 1,
+            "max"      => 100,
+        ),
+
+        array(
+            'id'          => 'content-bg',
+            'type'        => 'color',
+            'title'       => esc_html__( 'Background Color', 'eazydocs' ),
+            'output'      => 'body.single-docs',
+            'output_mode' => 'background-color',
+        ),
+
 		array(
 			'id'         => 'enable-comment',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Comment', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
-			'text_width' => 90,
+			'text_width' => 92,
 			'default'    => true // or false
 		),
+
 		array(
 			'id'      => 'enable-next-prev-links',
 			'type'    => 'switcher',
@@ -217,6 +244,7 @@ CSF::createSection( $prefix, array(
 			'default' => false, // or false
 			'class'   => 'eazydocs-pro-notice'
 		),
+
 		array(
 			'title'      => esc_html__( 'Ajax Loading', 'eazydocs' ),
 			'subtitle'   => esc_html__( 'Load doc pages via Ajax.', 'eazydocs' ),
@@ -228,17 +256,7 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme-docy',
 		),
-		array(
-			'title'    => esc_html__( 'Section Excerpt', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Define here the Doc section excerpt limit in word count to show. Use -1 to show the full excerpt.', 'eazydocs' ),
-			'desc'     => esc_html__( 'Note: If the excerpt leaves empty, the excerpt will be automatically taken from the doc post content.', 'eazydocs' ),
-			'id'       => 'doc_sec_excerpt_limit',
-			'type'     => 'slider',
-			'default'  => 8,
-			"min"      => 1,
-			"step"     => 1,
-			"max"      => 100,
-		),
+
 		array(
 			'id'      => 'eazydocs-enable-credit',
 			'type'    => 'switcher',
@@ -261,15 +279,6 @@ CSF::createSection( $prefix, array(
 			'default'       => sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>' ),
 			'class'         => 'eazydocs-pro-notice active-theme'
 		),
-
-		array(
-			'id'          => 'content-bg',
-			'type'        => 'color',
-			'title'       => esc_html__( 'Background Color', 'eazydocs' ),
-			'output'      => 'body.single-docs',
-			'output_mode' => 'background-color',
-		),
-
 	)
 ) );
 
