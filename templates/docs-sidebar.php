@@ -50,7 +50,7 @@ if ( class_exists( 'EazyDocsPro' ) ) {
 		if ( $children ) :
 			?>
             <div class="scroll">
-                <ul class="list-unstyled nav-sidebar">
+                <ul class="list-unstyled nav-sidebar left-sidebar-results">
 					<?php
 					echo wp_list_pages( array(
 						'title_li'  => '',
