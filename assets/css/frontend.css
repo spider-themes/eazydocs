@@ -532,6 +532,12 @@ input[type=search]::-webkit-search-results-decoration {
   color: #3c4257;
   position: relative;
 }
+.nav-sidebar .nav-item .nav-link mark {
+  margin: 0;
+  padding: 0;
+  background-color: var(--ezd_brand_color);
+  color: white;
+}
 .nav-sidebar .nav-item .nav-link img {
   margin-right: 15px;
   padding-right: 0;

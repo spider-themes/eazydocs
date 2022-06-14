@@ -103,6 +103,12 @@
       font-weight: 500;
       color: #3c4257;
       position: relative;
+      mark{
+        margin: 0;
+        padding: 0;
+        background-color: var(--ezd_brand_color);
+        color: white;
+      }
       img{
         margin-right: 15px;
         padding-right: 0;

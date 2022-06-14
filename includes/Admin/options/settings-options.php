@@ -626,6 +626,19 @@ CSF::createSection( $prefix, array(
 			'class'  => 'eazydocs-pro-notice'
 		),
 
+
+		array(
+			'id'     => 'search_mark_word',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Mark Words', 'eazydocs' ),
+			'desc'       => esc_html__( 'Highlight keyword with Search', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
+			'text_width' => 80,
+			'default'    => false,
+			'class'  => 'eazydocs-pro-notice'
+		),
+
 		array(
 			'title'    => esc_html__( 'Doc Section Icon', 'docly' ),
 			'subtitle' => esc_html__( "This is the Doc's default icon. If you don't use icon for the article section individually, this icon will be shown.", 'eazydocs' ),
