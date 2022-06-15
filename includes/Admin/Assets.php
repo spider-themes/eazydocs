@@ -61,8 +61,9 @@ class Assets {
         wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true );
 		wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js' );
 		wp_enqueue_script( 'eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js' );
+		wp_enqueue_script( 'ezd-notify-review', EAZYDOCS_ASSETS . '/js/admin/review.js' );
 
-        // Localize the script with new data
+		// Localize the script with new data
         $ajax_url = admin_url( 'admin-ajax.php' );
         $wpml_current_language = apply_filters( 'wpml_current_language', null );
         if ( ! empty( $wpml_current_language ) ) {
