@@ -2,9 +2,9 @@
 /**
  * Plugin Name: EazyDocs
  * Description: A powerful & beautiful documentation builder plugin.
- * Plugin URI: https://wordpress-theme.spider-themes.net/docy/docs/
+ * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
- * Author URI: http://spider-themes.net/
+ * Author URI: https://spider-themes.net/eazydocs
  * Version: 1.2.3
  * Requires at least: 5.0
  * Requires PHP: 7.2
@@ -36,7 +36,21 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 *
 		 * @var string The plugin version.
 		 */
-		const version = '1.1.8';
+		const version = '1.2.3';
+
+        /**
+         * The plugin path.
+         *
+         * @var string
+         */
+        public $plugin_path;
+
+        /**
+         * The theme directory path.
+         *
+         * @var string
+         */
+        public $theme_dir_path;
 
 		/**
 		 * Constructor.
@@ -168,6 +182,50 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				wp_insert_post( $docs_page );
 			}
 		}
+
+        /**
+         * Get the plugin url.
+         *
+         * @return string
+         */
+        public function plugin_url() {
+            if ( $this->plugin_url ) {
+                return $this->plugin_url;
+            }
+
+            return $this->plugin_url = untrailingslashit( plugins_url( '/', __FILE__ ) );
+        }
+
+        /**
+         * Get the plugin path.
+         *
+         * @return string
+         */
+        public function plugin_path() {
+            if ( $this->plugin_path ) {
+                return $this->plugin_path;
+            }
+
+            return $this->plugin_path = untrailingslashit( plugin_dir_path( __FILE__ ) );
+        }
+
+        /**
+         * Get the template path.
+         *
+         * @return string
+         */
+        public function template_path() {
+            return $this->plugin_path() . '/templates/';
+        }
+
+        /**
+         * Get the theme directory path.
+         *
+         * @return string
+         */
+        public function theme_dir_path() {
+            return $this->theme_dir_path;
+        }
 	}
 }
 

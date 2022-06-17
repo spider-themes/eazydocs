@@ -13,6 +13,7 @@ function eazydocs_get_admin_template_part( $template ) {
  * @param $template
  */
 function eazydocs_get_template_part( $template ) {
+
 	// Get the slug
 	$template_slug = rtrim( $template, '.php' );
 	$template      = $template_slug . '.php';
@@ -29,6 +30,35 @@ function eazydocs_get_template_part( $template ) {
 	if ( $file ) {
 		load_template( $file, false );
 	}
+}
+
+
+/**
+ * Get template part implementation for eazydocs.
+ * Looks at the theme directory first
+ * @param $template
+ * @param array $args
+ */
+function eazydocs_get_template( $template_name, $args = [] ) {
+
+    $ezd_obj = EazyDocs::init();
+
+    if ( $args && is_array( $args ) ) {
+        extract( $args );
+    }
+
+    $template = locate_template( [
+        $ezd_obj->theme_dir_path . $template_name,
+        $template_name,
+    ] );
+
+    if ( !$template ) {
+        $template = $ezd_obj->template_path() . $template_name;
+    }
+
+    if ( file_exists( $template ) ) {
+        include $template;
+    }
 }
 
 /**

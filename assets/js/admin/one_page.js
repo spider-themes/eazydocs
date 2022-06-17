@@ -2,7 +2,7 @@
     $(document).ready(function () {
 
         $("body.post-type-docs .wrap #posts-filter .search-box").append(' <a href="admin.php?page=eazydocs" class="button">Grid View</a>');
-        $("body.post-type-onepage-docs .wrap .page-title-action").after(' <a href="admin.php/One_Page.php?single_doc_title=" class="page-title-action add-onepage">Add One Page</a>');
+        $("body.post-type-onepage-docs .wrap .page-title-action").after(' <a href="admin.php/One_Page.php?single_doc_title=" class="page-title-action add-onepage">Add OnePage Doc</a>');
 
         // CREATE ONE PAGE DOC
         function create_one_page_doc_doc() {

@@ -13,8 +13,7 @@
   }
 }
 
-.eazydocs_shortcode .container,
-.container {
+.eazydocs_shortcode .container, .container {
   @media (min-width: 1200px) {
     max-width: 1200px;
   }
@@ -31,8 +30,7 @@
     img {
       height: auto;
       margin-right: 15px;
-      max-width: 15px;
-      max-height: 15px
+      max-width: 50px;
     }
   }
 

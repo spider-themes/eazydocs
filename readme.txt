@@ -12,7 +12,7 @@ EazyDocs assist you in easily creating beautifully designed documentation for yo
 
 == Description ==
 
-EazyDocs assist you in quickly and easily creating great looking documentation for your products. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+EazyDocs assists you in quickly and easily creating great-looking documentation for your products. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 
 See the [Frontend Demo Here](https://wordpress-theme.spider-themes.net/docy/docs/docly-documentation/)
 

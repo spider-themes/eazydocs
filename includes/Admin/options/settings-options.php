@@ -75,9 +75,9 @@ CSF::createSection( $prefix, array(
             'title'      => esc_html__( 'Docs Columns', 'eazydocs' ),
             'subtitle'   => esc_html__( 'This option will set the default value of column attribute of ', 'eazydocs' ) . '<pre>[eazydocs]</pre> shortcode.',
             'options'    => array(
-                '3' => EAZYDOCS_IMG . '/customizer/4.svg',
-                '4' => EAZYDOCS_IMG . '/customizer/3.svg',
-                '6' => EAZYDOCS_IMG . '/customizer/2.svg',
+                '4' => EAZYDOCS_IMG . '/customizer/4.svg',
+                '3' => EAZYDOCS_IMG . '/customizer/3.svg',
+                '2' => EAZYDOCS_IMG . '/customizer/2.svg',
             ),
             'attributes' => [
                 'width' => '100px'
@@ -604,7 +604,6 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
 			'default'    => false,
-			'class'  => 'eazydocs-pro-notice'
 		),
 
 		array(
@@ -618,29 +617,29 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'     => 'search_visibility',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Search', 'eazydocs' ),
+            'title'      => esc_html__( 'Filter', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Filter the left sidebar doc items by typing latter.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
 			'default'    => false,
-			'class'  => 'eazydocs-pro-notice'
 		),
 
 
 		array(
-			'id'     => 'search_mark_word',
+			'id'         => 'search_mark_word',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Mark Words', 'eazydocs' ),
-			'desc'       => esc_html__( 'Highlight keyword with Search', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Highlight the typed keyword in the docs.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
 			'text_width' => 80,
 			'default'    => false,
-			'class'  => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-pro-notice'
 		),
 
 		array(
-			'title'    => esc_html__( 'Doc Section Icon', 'docly' ),
+			'title'    => esc_html__( 'Doc Section Icon', 'eazydocs' ),
 			'subtitle' => esc_html__( "This is the Doc's default icon. If you don't use icon for the article section individually, this icon will be shown.", 'eazydocs' ),
 			'id'       => 'doc_sec_icon',
 			'type'     => 'media',
@@ -750,7 +749,7 @@ CSF::createSection( $prefix, array(
 			'type'       => 'switcher',
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
-			'text_width' => 90,
+			'text_width' => 92,
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme-docly'
 		),
