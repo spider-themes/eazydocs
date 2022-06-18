@@ -99,6 +99,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.2.4 (20 June 2022) =
+New: Rating notice added (dismissable)
+New: Some attributes (col, include, exclude, show_docs, show_articles, more) are  added to [eazydocs] shortcode
+Fixed: Doc section open, close icon changing option was not working (PRO feature, unlocked with Docy and Docly themes)
+
 = v1.2.3 (14 June 2022) =
 Fixed: Doc left sidebar scrollbar in windows browsers
 Fixed: Some settings was not working (Docs archive columns, view more button text etc)

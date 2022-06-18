@@ -46,9 +46,9 @@ class Shortcode {
             'col'     => $opt['docs-column'] ?? '3',
             'include' => 'any',
             'exclude' => '',
-            'docs_number'   => -1,
-            'articles_number' => 10,
-            'more'    => __( 'View Details', 'eazydocs' ),
+            'show_docs' => $opt['docs-number'] ?? -1,
+            'show_articles' => $opt['show_articles'] ?? 5,
+            'more' => __( 'View Details', 'eazydocs' ),
         ];
 
         $args     = wp_parse_args( $args, $defaults );
@@ -82,7 +82,7 @@ class Shortcode {
             'post_type'   => 'docs',
             'parent'      => 0,
             'sort_column' => 'menu_order',
-            'number' => (int) $args['docs_number'] ?? $opt['docs-number']
+            'number' => (int) $args['show_docs']
         ];
 
         if ( 'any' != $args['include'] ) {
@@ -101,7 +101,7 @@ class Shortcode {
                 $sections = get_children( [
                     'post_parent'    => $root->ID,
                     'post_type'      => 'docs',
-                    'posts_per_page' => (int) $args['articles_number'] ?? $opt['articles_number'],
+                    'numberposts' => (int) $args['show_articles'],
                     'post_status'    => 'publish',
                     'orderby'        => 'menu_order',
                     'order'          => $opt['docs-order'] ?? 'ASC',

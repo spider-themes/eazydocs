@@ -112,11 +112,11 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'      => 'articles_number',
-			'type'    => 'text',
-			'title'   => esc_html__( 'Number of Articles', 'eazydocs' ),
-			'desc'    => esc_html__( 'Number of Articles to show under each Docs.', 'eazydocs' ),
-			'default' => 4,
+			'id'        => 'show_articles',
+			'type'      => 'text',
+			'title'     => esc_html__( 'Number of Articles', 'eazydocs' ),
+			'subtitle'  => esc_html__( 'Number of Articles to show under each Docs.', 'eazydocs' ),
+			'default'   => 4,
 		),
 
 		array(
@@ -926,11 +926,15 @@ CSF::createSection( $prefix, array(
 			'id'         => 'eazydocs_docs_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Docs archive', 'eazydocs' ),
-			'desc'       => __( '<table class="ezd-shortcodes-wrap"><tr><td>[eazydocs col="3" include="8386" more="Read more" ]</td></tr><tr><td>[eazydocs col="3" exclude="8386" more="Read more" ]</td></tr><tr><td>[eazydocs items="-1" ]</td></tr></table> Know the usage of this shortcode <a href="https://codex.wordpress.org/Shortcode_API"> here </a>', 'eazydocs' ),
-			'default'    => '[eazydocs]',
-			'attributes' => array(
-				'readonly' => 'readonly',
-			),
+			'desc'       => sprintf(
+                __( 'Use this shortcode to display the Docs. Learn more about the shortcode and the attributes %s here %s.', 'eazydocs' ),
+                '<a href="https://tinyurl.com/24zm4oj3" target="_blank">', '</a>'
+            ),
+			'default'    => '[eazydocs col="3" include="" exclude="" show_docs="" show_articles="" more="View More"]',
+            'attributes' => array(
+                'readonly' => 'readonly',
+                'style' => 'width: 100%;'
+            ),
 		),
 
 		array(

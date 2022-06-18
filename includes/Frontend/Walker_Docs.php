@@ -84,6 +84,9 @@ class Walker_Docs extends Walker_Page {
      * @param int     $current_page Optional. Page ID. Default 0.
      */
     public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+
+        $opt = get_option( 'eazydocs_settings' );
+
         if ( isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ) {
             $t = "\t";
             $n = "\n";
@@ -105,7 +108,7 @@ class Walker_Docs extends Walker_Page {
             $css_class = array( 'nav-item', $has_post_thumb, 'page-item-' . $page->ID);
         }
 
-        if ( ! empty( $current_page ) ) {
+        if ( !empty( $current_page ) ) {
             $_current_page = get_post( $current_page );
             if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
                 $css_class[] = 'current_page_ancestor active';
@@ -142,7 +145,9 @@ class Walker_Docs extends Walker_Page {
 
         $thumb = '';
         if ( $depth == 0 ) {
-            $folder = '<img src="' . EAZYDOCS_IMG . '/icon/folder-closed.png" alt="' . esc_attr__('folder icon closed', 'eazydocs') . '"> <img src="' . EAZYDOCS_IMG . '/icon/folder-open.png" alt="' . esc_attr__('folder icon', 'eazydocs') . '">';
+            $folder_open = $opt['doc_sec_icon_open']['url'] ?? EAZYDOCS_IMG . '/icon/folder-open.png';
+            $folder_closed = $opt['doc_sec_icon']['url'] ?? EAZYDOCS_IMG . '/icon/folder-closed.png';
+            $folder = "<img src='$folder_closed' alt='".esc_attr__('folder icon closed', 'eazydocs')."'> <img src='$folder_open' alt='".esc_attr__('folder open icon', 'eazydocs')."'>";
             $thumb = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
         }
 
