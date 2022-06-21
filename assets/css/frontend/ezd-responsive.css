@@ -182,3 +182,21 @@
         max-width: 990px;
     }
 }
+/* Book layout single doc  */
+.doc-book-layout .nav-sidebar .nav-item .dropdown_nav {
+    padding: 5px 0 0 3px;
+}
+.doc-book-layout .nav-sidebar .nav-item .dropdown_nav li a{
+    position: relative;
+    padding-left: 20px;
+}
+.doc-book-layout .nav-sidebar .nav-item .dropdown_nav li a.active:before {
+    position: absolute;
+    content: '\4e';
+    display: block;
+    clear: both;
+    left: 0;
+    font-family: 'eleganticons';
+    font-size: 18px;
+    margin-top: 1px;
+}
