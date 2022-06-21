@@ -175,14 +175,14 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'      => 'docs_single_layout',
 			'type'    => 'image_select',
-			'class'   => 'single-layout-img-wrap eazydocs-pro-notice',
 			'title'   => esc_html__( 'Select Layout', 'eazydocs' ),
 			'options' => array(
 				'both_sidebar'  => EAZYDOCS_IMG . '/customizer/both_sidebar.jpg',
 				'left_sidebar'  => EAZYDOCS_IMG . '/customizer/sidebar_left.jpg',
 				'right_sidebar' => EAZYDOCS_IMG . '/customizer/sidebar_right.jpg',
 			),
-			'default' => 'both_sidebar'
+			'default' => 'both_sidebar',
+            'class'   => 'single-layout-img-wrap eazydocs-pro-notice active-theme',
 		),
 
 		array(
@@ -352,6 +352,10 @@ CSF::createSection( $prefix, array(
 			'title'       => esc_html__( 'Label Color', 'eazydocs' ),
 			'output_mode' => 'color',
 			'output'      => '.ezd_search_keywords .label',
+            'dependency' => array(
+                array( 'is_search_banner', '==', 'true' ),
+                array( 'is_keywords', '==', 'true' ),
+            ),
 			'class'       => 'eazydocs-pro-notice'
 		),
 		
@@ -387,6 +391,10 @@ CSF::createSection( $prefix, array(
 			'title'       => esc_html__( 'Keywords Color', 'eazydocs' ),
 			'output_mode' => 'color',
 			'output'      => '.ezd_search_banner .header_search_keyword ul li a',
+            'dependency' => array(
+                array( 'is_search_banner', '==', 'true' ),
+                array( 'is_keywords', '==', 'true' ),
+            ),
 			'class'       => 'eazydocs-pro-notice'
 		)
 	)
@@ -635,7 +643,7 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
 			'text_width' => 80,
 			'default'    => false,
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-pro-notice',
 		),
 
 		array(
@@ -926,14 +934,14 @@ CSF::createSection( $prefix, array(
 			'id'         => 'eazydocs_docs_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Docs archive', 'eazydocs' ),
-			'desc'       => sprintf(
+            'subtitle'       => sprintf(
                 __( 'Use this shortcode to display the Docs. Learn more about the shortcode and the attributes %s here %s.', 'eazydocs' ),
                 '<a href="https://tinyurl.com/24zm4oj3" target="_blank">', '</a>'
             ),
-			'default'    => '[eazydocs col="3" include="" exclude="" show_docs="" show_articles="" more="View More"]',
+            'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs' ).'<br><code>[eazydocs col="3" include="" exclude="" show_docs="" show_articles="" more="View More"]</code>',
+            'default'    => '[eazydocs]',
             'attributes' => array(
                 'readonly' => 'readonly',
-                'style' => 'width: 100%;'
             ),
 		),
 
@@ -941,7 +949,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'conditional_data_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
-			'desc'       => __( 'Know the usage of this shortcode <a href="https://tinyurl.com/yd46mfax" target="_blank"> here </a>', 'eazydocs' ),
+			'desc'       => __( 'Know the usage of this shortcode <a href="https://tinyurl.com/24d9rw72" target="_blank"> here </a>', 'eazydocs' ),
 			'default'    => '[conditional_data]',
 			'attributes' => array(
 				'readonly' => 'readonly',

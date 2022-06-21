@@ -1,3 +1,7 @@
+code {
+  line-height: 1.6;
+}
+
 /** === WordPress default notices === **/
 .notice {
   padding: 10px;
@@ -343,7 +347,5 @@ p.big-p {
 .customize-pane-parent li#accordion-section-role_manager_fields {
   display: none !important;
 }
-p.ezd_notify_review_subheading{
-  margin: 0 3px 15px
-}
+
 /*# sourceMappingURL=admin-global.css.map */

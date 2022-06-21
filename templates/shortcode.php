@@ -33,7 +33,7 @@ if ( class_exists( 'EazyDocsPro' ) ) {
 
                     <div class="categories_guide_item wow fadeInUp">
                         <div class="doc-top d-flex align-items-start">
-                            <?php get_the_post_thumbnail( $main_doc['doc']->ID, 'full', array( 'class' => 'featured-image' ) ); ?>
+                            <?php echo get_the_post_thumbnail( $main_doc['doc']->ID, 'full', array( 'class' => 'featured-image' ) ); ?>
                             <a class="doc_tag_title" href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>">
                                 <h4 class="title">
                                     <?php echo $main_doc['doc']->post_title; ?>

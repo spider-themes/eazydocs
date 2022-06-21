@@ -22,7 +22,7 @@ $children           = wp_list_pages( array(
 ?>
     <section class="doc_documentation_area onepage_doc_area page_wrapper" id="sticky_doc">
         <div class="overlay_bg"></div>
-        <div class="container-fluid p-lg-5">
+        <div class="container-fluid px-lg-5">
             <div class="row doc-container">
                 <div class="col-xl-3 col-lg-3 doc_mobile_menu doc-sidebar sticky-top left-column">
                     <aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap">

@@ -1,3 +1,7 @@
+code {
+    line-height: 1.6;
+}
+
 /** === WordPress default notices === **/
 .notice {
     padding: 10px;
@@ -33,7 +37,7 @@ a.eazydocs-close-notice:active {
 .eazydocs-close-notice:hover,
 .eazydocs-close-notice {
     color: #dc3232;
-    font-weight: 600
+    font-weight: 600;
 }
 
 .notice .notice-action {

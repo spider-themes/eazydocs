@@ -2,10 +2,8 @@
 $opt = get_option( 'eazydocs_settings' );
 $update_text      = $opt['breadcrumb-update-text'] ?? esc_html__( 'Updated on', 'eazydocs' );
 $doc_container    = 'container custom_container';
-if ( class_exists( 'EazyDocsPro' ) ) {
-	$doc_container    = $opt['docs_page_width'] ?? '';
-	$doc_container    = $doc_container == 'full-width' ? 'container-fluid pl-60 pr-60' : 'container custom_container';
-}
+$doc_container    = $opt['docs_page_width'] ?? '';
+$doc_container    = $doc_container == 'full-width' ? 'container-fluid px-lg-5' : 'container custom_container';
 ?>
 <section class="page_breadcrumb">
     <div class="<?php echo esc_attr($doc_container); ?>">

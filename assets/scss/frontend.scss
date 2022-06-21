@@ -51,10 +51,9 @@ p .footnotes-link::after {
 
 .nav-sidebar .nav-item .dropdown_nav {
   .nav-item {
-    margin: 10px 0;
     span.icon {
       display: flex;
-      right: 30px;
+      right: 17px;
     }
     .dropdown_nav {
       padding-top: 0;
@@ -351,5 +350,26 @@ p .footnotes-link::after {
   p {
     font-size: 14px;
     color: var(--black_400);
+  }
+}
+
+/** === Popular Themes Support === **/
+body.single-docs {
+  .container.grid-container,
+  .site-content, .col-full,
+  #main .fusion-row,
+  .site-content .ast-container {
+    display: block;
+    padding: 0;
+    max-width: 100%;
+  }
+  &.theme-Avada main#main {
+    padding: 0;
+  }
+  &.oceanwp-theme .page-header {
+    display: none;
+  }
+  #main .doc_left_sidebarlist h2.doc-title {
+    margin-bottom: 25px;
   }
 }

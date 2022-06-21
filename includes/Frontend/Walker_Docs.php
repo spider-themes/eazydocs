@@ -100,13 +100,10 @@ class Walker_Docs extends Walker_Page {
             $indent = '';
         }
 
-        $css_class = array();
-
         $has_post_thumb = !has_post_thumbnail($page->ID) ? 'no_icon' : '';
+        $has_child = isset( $args['pages_with_children'][ $page->ID ] ) ? 'has_child' : '';
 
-        if ( isset( $args['pages_with_children'][ $page->ID ] ) || $depth == 0 ) {
-            $css_class = array( 'nav-item', $has_post_thumb, 'page-item-' . $page->ID);
-        }
+        $css_class = array( 'nav-item', $has_post_thumb, $has_child, 'page-item-' . $page->ID);
 
         if ( !empty( $current_page ) ) {
             $_current_page = get_post( $current_page );

@@ -13,11 +13,61 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-use eazyDocs\Post_Types;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
+
+if ( function_exists( 'eaz_fs' ) ) {
+    eaz_fs()->set_basename( false, __FILE__ );
+} else {
+    // DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
+
+    if ( ! function_exists( 'eaz_fs' ) ) {
+        // Create a helper function for easy SDK access.
+        function eaz_fs() {
+            global $eaz_fs;
+
+            if ( ! isset( $eaz_fs ) ) {
+                // Include Freemius SDK.
+                require_once dirname(__FILE__) . '/freemius/start.php';
+
+                $eaz_fs = fs_dynamic_init( array(
+                    'id'                  => '10290',
+                    'slug'                => 'eazydocs',
+                    'premium_slug'        => 'eazydocs-pro',
+                    'type'                => 'plugin',
+                    'public_key'          => 'pk_8474e4208f0893a7b28c04faf5045',
+                    'is_premium'          => false,
+                    'is_premium_only'     => false,
+                    'has_addons'          => false,
+                    'has_paid_plans'      => true,
+                    'trial'               => array(
+                        'days'               => 7,
+                        'is_require_payment' => true,
+                    ),
+                    'menu'                => array(
+                        'slug'           => 'eazydocs',
+                        'first-path'     => 'admin.php?page=eazydocs',
+                        'contact'        => false,
+                        'support'        => false,
+                    ),
+                ) );
+            }
+
+            return $eaz_fs;
+        }
+
+        // Init Freemius.
+        eaz_fs()->add_filter( 'deactivate_on_activation', '__return_false' );
+
+        // Signal that SDK was initiated.
+        do_action( 'eaz_fs_loaded' );
+    }
+
+    // ... Your plugin's main file logic ...
+}
+
+use eazyDocs\Post_Types;
 
 // Make sure the same class is not loaded.
 if ( ! class_exists( 'EazyDocs' ) ) {
@@ -247,45 +297,4 @@ if ( ! function_exists( 'eazydocs' ) ) {
 	 * Kick of the plugin
 	 */
 	eazydocs();
-}
-
-if ( ! function_exists( 'eaz_fs' ) ) {
-    // Create a helper function for easy SDK access.
-    function eaz_fs() {
-        global $eaz_fs;
-
-        if ( ! isset( $eaz_fs ) ) {
-            // Include Freemius SDK.
-            require_once dirname(__FILE__) . '/freemius/start.php';
-
-            $eaz_fs = fs_dynamic_init( array(
-                'id'                  => '10290',
-                'slug'                => 'eazydocs',
-                'premium_slug'        => 'eazydocs-pro',
-                'type'                => 'plugin',
-                'public_key'          => 'pk_8474e4208f0893a7b28c04faf5045',
-                'is_premium'          => false,
-                'is_premium_only'     => false,
-                'has_addons'          => false,
-                'has_paid_plans'      => true,
-                'trial'               => array(
-                    'days'               => 7,
-                    'is_require_payment' => true,
-                ),
-                'menu'                => array(
-                    'slug'           => 'eazydocs',
-                    'first-path'     => 'admin.php?page=eazydocs',
-                    'contact'        => false,
-                    'support'        => false,
-                ),
-            ) );
-        }
-
-        return $eaz_fs;
-    }
-
-    // Init Freemius.
-    eaz_fs();
-    // Signal that SDK was initiated.
-    do_action( 'eaz_fs_loaded' );
 }

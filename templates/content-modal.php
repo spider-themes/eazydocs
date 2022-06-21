@@ -36,7 +36,7 @@ $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedbac
                         <input type="text" class="form-control" name="subject" id="subject" placeholder="<?php esc_attr_e( 'Subject', 'eazydocs' ); ?>" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <textarea name="message" id="massage" placeholder="<?php esc_attr_e( 'Massage', 'eazydocs' ); ?>" required></textarea>
+                        <textarea name="message" id="massage" placeholder="<?php esc_attr_e( 'Message', 'eazydocs' ); ?>" required></textarea>
                     </div>
                     <div class="form-group col-md-12">
                         <input type="hidden" name="doc_id" value="<?php the_ID(); ?>">

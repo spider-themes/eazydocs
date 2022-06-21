@@ -103,6 +103,7 @@
       font-weight: 500;
       color: #3c4257;
       position: relative;
+      align-items: start;
       mark{
         margin: 0;
         padding: 0;
@@ -138,7 +139,7 @@
     &:hover,
     &.active {
       > .nav-link {
-        color: var(--ezd_brand_color);
+        color: #000;
       }
       > .icon {
         color: var(--ezd_brand_color);
@@ -176,6 +177,9 @@
         margin: 12px 12px 12px 0;
         padding: 0;
         line-height: 1.5;
+        &.has_child {
+          padding-right: 40px;
+        }
         a {
           font-size: 14px;
           font-weight: 400;
@@ -189,6 +193,9 @@
               color: var(--ezd_brand_color);
             }
           }
+        }
+        .dropdown_nav li {
+          margin-right: 0;
         }
       }
     }
@@ -387,7 +394,7 @@
 .doc_documentation_area{
   &.onepage_doc_area{
     @media ( min-width: 992px ) {
-      padding-top: 100px;
+      padding-top: 120px;
     }
     .doc_left_sidebarlist{
       &:after{
@@ -1448,27 +1455,21 @@ body:not(.onepage-doc) .sticky_menu {
     border-radius: 50%;
     background-color: white;
     box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
     text-align: center;
     margin-right: 30px;
-    padding: 0 12px 0 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: content-box;
-    flex-basis: 12%;
     line-height: 1.4;
     @media (max-width: 1440px) {
-      flex-basis: 12%;
       margin-right: 20px;
     }
   }
   .media-body {
-    flex-basis: 90%;
-    @media (max-width: 1440px) {
-      flex-basis: 88%;
-    }
+    flex: 1;
     .title {
       font-weight: 500;
       margin: 0 0 8px;

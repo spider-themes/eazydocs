@@ -29,6 +29,9 @@
   max-width: 100% !important;
 }
 
+.custom_container.container {
+  width: 100%;
+}
 @media (min-width: 1300px) {
   .custom_container.container {
     max-width: 1240px;
@@ -40,6 +43,9 @@
   }
 }
 
+.eazydocs_shortcode .container, .container {
+  width: 100%;
+}
 @media (min-width: 1200px) {
   .eazydocs_shortcode .container, .container {
     max-width: 1200px;

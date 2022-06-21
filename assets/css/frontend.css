@@ -29,6 +29,10 @@ main, main#main, section {
   padding: 0;
 }
 
+.sticky-top {
+  position: sticky !important;
+}
+
 .single-docs h1, .single-docs h2, .single-docs h3, .single-docs h4, .single-docs h5, .single-docs h6 {
   margin-top: 0;
   font-weight: 700;
@@ -530,6 +534,7 @@ input[type=search]::-webkit-search-results-decoration {
   font-weight: 500;
   color: #3c4257;
   position: relative;
+  align-items: start;
 }
 .nav-sidebar .nav-item .nav-link mark {
   margin: 0;
@@ -563,7 +568,7 @@ input[type=search]::-webkit-search-results-decoration {
   top: 0;
 }
 .nav-sidebar .nav-item:hover > .nav-link, .nav-sidebar .nav-item.active > .nav-link {
-  color: var(--ezd_brand_color);
+  color: #000;
 }
 .nav-sidebar .nav-item:hover > .icon, .nav-sidebar .nav-item.active > .icon {
   color: var(--ezd_brand_color);
@@ -598,6 +603,9 @@ input[type=search]::-webkit-search-results-decoration {
   padding: 0;
   line-height: 1.5;
 }
+.nav-sidebar .nav-item .dropdown_nav li.has_child {
+  padding-right: 40px;
+}
 .nav-sidebar .nav-item .dropdown_nav li a {
   font-size: 14px;
   font-weight: 400;
@@ -610,6 +618,9 @@ input[type=search]::-webkit-search-results-decoration {
 }
 .nav-sidebar .nav-item .dropdown_nav li a:hover i, .nav-sidebar .nav-item .dropdown_nav li a.active i {
   color: var(--ezd_brand_color);
+}
+.nav-sidebar .nav-item .dropdown_nav li .dropdown_nav li {
+  margin-right: 0;
 }
 .nav-sidebar .nav-item span.icon {
   transform: rotate(0deg);
@@ -774,7 +785,7 @@ input[type=search]::-webkit-search-results-decoration {
 
 @media (min-width: 992px) {
   .doc_documentation_area.onepage_doc_area {
-    padding-top: 100px;
+    padding-top: 120px;
   }
 }
 .doc_documentation_area.onepage_doc_area .doc_left_sidebarlist:after {
@@ -1792,31 +1803,23 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   border-radius: 50%;
   background-color: white;
   box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 75px;
   text-align: center;
   margin-right: 30px;
-  padding: 0 12px 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: content-box;
-  flex-basis: 12%;
   line-height: 1.4;
 }
 @media (max-width: 1440px) {
   .documentation_item .icon {
-    flex-basis: 12%;
     margin-right: 20px;
   }
 }
 .documentation_item .media-body {
-  flex-basis: 90%;
-}
-@media (max-width: 1440px) {
-  .documentation_item .media-body {
-    flex-basis: 88%;
-  }
+  flex: 1;
 }
 .documentation_item .media-body .title {
   font-weight: 500;
@@ -1977,12 +1980,9 @@ p .footnotes-link::after {
   padding-left: 20px !important;
 }
 
-.nav-sidebar .nav-item .dropdown_nav .nav-item {
-  margin: 10px 0;
-}
 .nav-sidebar .nav-item .dropdown_nav .nav-item span.icon {
   display: flex;
-  right: 30px;
+  right: 17px;
 }
 .nav-sidebar .nav-item .dropdown_nav .nav-item .dropdown_nav {
   padding-top: 0;
@@ -2235,6 +2235,25 @@ p .footnotes-link::after {
 .eazydocx-credit-text p {
   font-size: 14px;
   color: var(--black_400);
+}
+
+/** === Popular Themes Support === **/
+body.single-docs .container.grid-container,
+body.single-docs .site-content, body.single-docs .col-full,
+body.single-docs #main .fusion-row,
+body.single-docs .site-content .ast-container {
+  display: block;
+  padding: 0;
+  max-width: 100%;
+}
+body.single-docs.theme-Avada main#main {
+  padding: 0;
+}
+body.single-docs.oceanwp-theme .page-header {
+  display: none;
+}
+body.single-docs #main .doc_left_sidebarlist h2.doc-title {
+  margin-bottom: 25px;
 }
 
 /*# sourceMappingURL=frontend.css.map */

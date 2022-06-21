@@ -1,42 +1,12 @@
 @media (max-width: 1680px) {
-    .doc_documentation_full_area .container-fluid,
-    .page_breadcrumb .container-fluid {
-        max-width: 1470px;
-    }
-
-    .doc_documentation_full_area .doc_mobile_menu {
-        flex: 0 0 25%;
-        max-width: 25%;
-    }
-
-    .doc_documentation_full_area .col-lg-8 {
-        flex: 0 0 56.333333%;
-        max-width: 56.333333%;
-    }
-
-    .doc_documentation_full_area .doc_right_mobile_menu {
-        flex: 0 0 18.666667%;
-        max-width: 18.666667%;
-    }
-
-    .doc_documentation_full_area .documentation_item {
-        padding-right: 0;
-    }
-
-    .onepage_doc_area .documentation_info {
-        padding-right: 0;
-    }
-
+    .onepage_doc_area.doc_documentation_area .doc_rightsidebar,
+    .onepage_doc_area .documentation_info,
     .onepage_doc_area .documentation_item {
         padding-right: 0;
     }
 
     .onepage_doc_area .doc_rightsidebar .bootstrap-select {
         width: 100% !important;
-    }
-
-    .onepage_doc_area.doc_documentation_area .doc_rightsidebar {
-        padding-right: 0;
     }
 }
 
