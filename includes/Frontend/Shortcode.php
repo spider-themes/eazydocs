@@ -21,12 +21,12 @@ class Shortcode {
 	 *
 	 * @return string
 	 */
-	public function shortcode( $atts, $content = '' ) {
+	public function shortcode( $atts, $content = null ) {
 		Assets::enqueue_scripts();
 
 		ob_start();
 		self::eazydocs( $atts );
-		$content .= ob_get_clean();
+		$content = ob_get_clean();
 
 		return $content;
 	}

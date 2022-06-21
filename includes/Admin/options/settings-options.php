@@ -171,7 +171,18 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'General', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
+
+		array(
+			'id'       => 'preset_layout',
+			'type'     => 'select',
+			'title'    => esc_html__( 'Preset Layout', 'eazydocs' ),
+			'options'  => [
+				'main'          => __( 'Main', 'eazydocs' ),
+				'book-layout'   => __( 'Book Layout', 'eazydocs' ),
+			],
+			'default'  => 'main',
+		),
+
 		array(
 			'id'      => 'docs_single_layout',
 			'type'    => 'image_select',

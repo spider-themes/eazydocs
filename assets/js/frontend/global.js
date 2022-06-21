@@ -19,7 +19,16 @@
             }
         }
 
-        $('.body_wrapper').addClass('eazydocs_assistant_body');
+        $('.body_wrapper').addClass('eazydocs_assistant_body')
+
+        // Active class [ Book Layout ]
+        $('body').scrollspy({
+            target: ".doc-book-layout .doc_mobile_menu"
+        })
+        $(window).scroll(function() {
+            $(".doc-book-layout .nav-sidebar li a").filter(".nav-link").index();
+        });
 
     })
 })(jQuery);
+
