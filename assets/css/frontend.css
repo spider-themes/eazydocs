@@ -2192,25 +2192,27 @@ p .footnotes-link::after {
   padding-bottom: 30px;
 }
 
-#post h2, #post h3, #post h4, #post h5, #post h6 {
+#post h3, #post h4, #post h5, #post h6 {
   font-weight: 500;
   margin-bottom: 20px;
   padding-top: 80px;
   margin-top: -80px;
 }
-#post h2 {
+
+.single-docs #post h2 {
+  font-weight: 500;
   font-size: 1.8em;
 }
-#post h3 {
+.single-docs #post h3 {
   font-size: 1.5em;
 }
-#post h4 {
+.single-docs #post h4 {
   font-size: 1.3em;
 }
-#post h5 {
+.single-docs #post h5 {
   font-size: 1em;
 }
-#post h6 {
+.single-docs #post h6 {
   font-size: 0.8em;
 }
 

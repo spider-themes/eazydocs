@@ -236,7 +236,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 
 
 		$docs_page_title = eazydocs_get_option( 'docs-page-title', 'eazydocs_settings' );
-		$docs_page_title = ! empty ( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docsd', 'eazydocs' );
+		$docs_page_title = ! empty ( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docs', 'eazydocs' );
 
 		$docs_home = eazydocs_get_option( 'docs-slug', 'eazydocs_settings' );
 

@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs
 Requires at least: 5.0
 Tested up to: 6.0.0
 Requires PHP: 7.2
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ EazyDocs assists you in quickly and easily creating great-looking documentation 
 
 See the [Frontend Demo Here](https://wordpress-theme.spider-themes.net/docy/docs/docly-documentation/)
 
-### 🌟 Top Features ###
+### Reasons to Choose EazyDocs ###
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 
 - **No Limitation:** There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
@@ -105,7 +105,7 @@ New: Some attributes (col, include, exclude, show_docs, show_articles, more) are
 New: Doc Layout option unlocked for Docy and Docly theme (located in EazyDocs > Settings > Single Doc > General)
 Fixed: Doc section open, close icon changing option was not working (PRO feature, unlocked with Docy and Docly themes)
 Fixed: Doc full-width layout
-Tweaked: Compatibility improved for Avada, Astra, OceanWP, Storefront, Hello Elementor, GeneratePress themes
+Tweaked: Theme Compatibility improved (tested with Avada, Divi, Astra, OceanWP, Storefront, Hello Elementor, GeneratePress, Twenty Twenty, Twenty Twenty One  themes)
 
 = v1.2.3 (14 June 2022) =
 Fixed: Doc left sidebar scrollbar in windows browsers

@@ -305,13 +305,17 @@ p .footnotes-link::after {
 }
 
 #post {
-  h2, h3, h4, h5, h6 {
+  h3, h4, h5, h6 {
     font-weight: 500;
     margin-bottom: 20px;
     padding-top: 80px;
     margin-top: -80px;
   }
+}
+
+.single-docs #post {
   h2 {
+    font-weight: 500;
     font-size: 1.8em;
   }
   h3 {
