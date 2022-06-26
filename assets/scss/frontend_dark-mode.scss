@@ -5,10 +5,20 @@ body.body_dark {
   .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
     background: #131417 !important;
   }
+  .doc_rightsidebar {
+    @media (max-width: 991px) {
+      background: #1e1f26;
+    }
+  }
   .ordered-list li::before, .body_wrapper,
   .img_modal, #eazydocs_feedback {
     background: #131417;
   }
+
+  .fadeGradient {
+    background: -webkit-linear-gradient(bottom, rgb(19 20 23) 15%, rgba(245, 245, 245, 0) 100%) !important;
+  }
+
   .explanation {
     border-color: #131417;
   }

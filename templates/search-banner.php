@@ -16,10 +16,10 @@ if( $search_banner  == '1' ) :
                         <div class="header_search_form_info">
                             <div class="form-group">
                                 <div class="input-wrapper">
+                                    <input type='search' id="ezd_searchInput" name="s" oninput="ezSearchResults()" placeholder='<?php esc_attr_e('Search here', 'eazydocs') ?>' autocomplete="off" value="<?php echo get_search_query() ?>"/>
                                     <label for="ezd_searchInput">
                                         <i class="icon_search"></i>
                                     </label>
-                                    <input type='search' id="ezd_searchInput" name="s" oninput="ezSearchResults()" placeholder='<?php esc_attr_e('Search here', 'eazydocs') ?>' autocomplete="off" value="<?php echo get_search_query() ?>"/>
                                     <div class="spinner-border spinner" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>

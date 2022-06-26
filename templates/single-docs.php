@@ -25,9 +25,7 @@ $credit_text = $options['eazydocs-credit-text'] ?? sprintf( __( "%s", 'eazydocs'
 $breadcrumb  = $options['docs-breadcrumb'] ?? '1';
 
 if ( class_exists( 'EazyDocsPro' ) ) {
-
 	$credit_enable = $options['eazydocs-enable-credit'] ?? '1';
-
 }
 
 switch ( $layout ) {
@@ -62,7 +60,7 @@ if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
             <div class="row">
 				<?php
 				while ( have_posts() ) : the_post();
-					if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) {
+					if ( $layout == 'left_sidebar' || $layout == 'both_sidebar' ) {
 						eazydocs_get_template_part( 'docs-sidebar' );
 					}
 					?>
@@ -70,7 +68,7 @@ if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
 						<?php eazydocs_get_template_part( 'single-doc-content' ); ?>
                     </div>
 					<?php
-					if ( ! empty( $layout == 'right_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) {
+					if ( $layout == 'right_sidebar' || $layout == 'both_sidebar' ) {
 						eazydocs_get_template_part( 'docs-right-sidebar' );
 					}
 				endwhile;

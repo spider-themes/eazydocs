@@ -398,7 +398,7 @@ CSF::createSection( $prefix, array(
 			'class'       => 'eazydocs-pro-notice'
 		)
 	)
-) );
+));
 
 /**
  * Single Doc > Breadcrumbs Fields
@@ -408,7 +408,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Breadcrumbs', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
 		array(
 			'id'         => 'docs-breadcrumb',
 			'type'       => 'switcher',
@@ -423,7 +422,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'breadcrumb-home-text',
 			'type'       => 'text',
-			'title'      => esc_html__( 'Frontpage Menu', 'eazydocs' ),
+			'title'      => esc_html__( 'Frontpage Name', 'eazydocs' ),
 			'default'    => esc_html__( 'Home', 'eazydocs' ),
 			'dependency' => array(
 				'docs-breadcrumb',
@@ -435,8 +434,13 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'    => 'docs-page-title',
 			'type'  => 'text',
-			'title' => esc_html__( 'Docs Page Title', 'eazydocs' ),
-			'class' => 'eazydocs-pro-notice'
+			'title' => esc_html__( 'Docs Archive Page Title', 'eazydocs' ),
+            'default' => 'Docs',
+            'dependency' => array(
+                'docs-breadcrumb',
+                '==',
+                'true'
+            ),
 		),
 
 		array(
@@ -461,7 +465,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Feedback Area', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
 		array(
 			'id'         => 'docs-feedback',
 			'type'       => 'switcher',
@@ -686,7 +689,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Right Sidebar', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
 		array(
 			'id'         => 'font-size-switcher',
 			'type'       => 'switcher',
@@ -745,7 +747,7 @@ CSF::createSection( $prefix, array(
 			'type'       => 'switcher',
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
-			'text_width' => 90,
+			'text_width' => 92,
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme-docly'
 		),
@@ -966,7 +968,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs Role Manager', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
-
 		array(
 			'id'       => 'docs-write-access',
 			'type'     => 'select',
@@ -1024,7 +1025,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs Assistant', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
-
 		array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Assistant', 'eazydocs' ),
@@ -1078,11 +1078,9 @@ CSF::createSection( $prefix, array(
 				array( 'assistant_visibility', '==', 'true' )
 			),
 			'tabs'       => array(
-
 				array(
 					'title'  => 'Knowledge Base',
 					'fields' => array(
-
 						array(
 							'id'    => 'assistant_kb_heading',
 							'type'  => 'heading',

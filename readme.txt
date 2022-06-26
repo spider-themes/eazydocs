@@ -99,6 +99,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.2.5 (27 June 2022) =
+Tweaked: The Doc Search Banner UI design improved
+Fixed: Breadcrumbs Docs archive page text was spelled wrong
+
 = v1.2.4 (22 June 2022) =
 New: Rating notice added (dismissable)
 New: Some attributes (col, include, exclude, show_docs, show_articles, more) are  added to [eazydocs] shortcode

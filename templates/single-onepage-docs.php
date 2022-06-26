@@ -24,7 +24,7 @@ $children           = wp_list_pages( array(
         <div class="overlay_bg"></div>
         <div class="container-fluid px-lg-5">
             <div class="row doc-container">
-                <div class="col-xl-3 col-lg-3 doc_mobile_menu doc-sidebar sticky-top left-column">
+                <div class="col-xl-3 col-lg-3 doc_mobile_menu doc-sidebar sticky-lg-top left-column">
                     <aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap">
                         <div class="open_icon" id="left">
                             <i class="arrow_carrot-right"></i>
@@ -147,7 +147,7 @@ $children           = wp_list_pages( array(
                         ?>
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-top">
+                <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-lg-top">
                     <div class="open_icon" id="right">
                         <i class="arrow_carrot-left"></i>
                         <i class="arrow_carrot-right"></i>
@@ -164,7 +164,7 @@ $children           = wp_list_pages( array(
                                     <option value="windows" data-content="<i class='fab fa-windows'></i> Windows"> <?php esc_html_e( 'Windows', 'eazydocs' ); ?> </option>
                                     <option value="ios" data-content="<i class='fab fa-apple'></i> IOS"> <?php esc_html_e( 'IOS', 'eazydocs' ); ?> </option>
                                 </select>
-                            <?php
+                                <?php
                             endif;
                             ?>
                             <div id="font-switcher" class="d-flex justify-content-between align-items-center">

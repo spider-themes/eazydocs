@@ -6,15 +6,14 @@ $article_print              = $opt['pr-icon-switcher'] ?? '';
 $font_size_switcher         = $opt['font-size-switcher'] ?? '1';
 $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
 ?>
-<div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-top">
-    <div class="open_icon" id="right">
-        <i class="arrow_carrot-left"></i>
-        <i class="arrow_carrot-right"></i>
-    </div>
+<div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-lg-top">
     <div class="doc_rightsidebar scroll">
+        <div class="open_icon" id="right">
+            <i class="arrow_carrot-left"></i>
+            <i class="arrow_carrot-right"></i>
+        </div>
         <div class="pageSideSection">
             <?php
-            //echo '<pre>'.print_r($condition_options, 1).'</pre>';
             if ( $is_conditional_dropdown == '1' && !empty( $condition_options ) ) :
                 wp_enqueue_style( 'font-awesome-5' );
                 wp_enqueue_style( 'bootstrap-select' );

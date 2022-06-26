@@ -2,10 +2,6 @@ main, main#main, section {
   padding: 0;
 }
 
-.sticky-top {
-  position: sticky !important;
-}
-
 .single-docs {
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
@@ -40,10 +36,11 @@ input[type="search"]::-webkit-search-results-decoration {
   margin-right: 8.33333333%;
 }
 
-.sticky-top {
-  align-self: flex-start !important;
-  z-index: 1;
-  @media ( max-width: 991px ) {
+.sticky-lg-top {
+  @media ( min-width: 992px ) {
     top: auto;
+    position: sticky !important;
+    align-self: flex-start !important;
+    z-index: 1;
   }
 }

@@ -132,14 +132,14 @@
                 e.preventDefault();
                 if (switchs) {
                     $(".doc_documentation_area").addClass("overlay");
-                    $(".doc_right_mobile_menu").animate({
+                    $(".doc_rightsidebar").animate({
                         "right": "0px"
                     }, 100);
                     switchs = false;
                 } else {
                     $(".doc_documentation_area").removeClass("overlay");
-                    $(".doc_right_mobile_menu").animate({
-                        "right": "-232px"
+                    $(".doc_rightsidebar").animate({
+                        "right": "-250px"
                     }, 100);
                     switchs = true;
                 }
@@ -149,14 +149,14 @@
                 e.preventDefault()
                 if (switchs) {
                     $(".doc_documentation_area").addClass("overlay");
-                    $(".doc_mobile_menu").animate({
+                    $(".doc_left_sidebarlist").animate({
                         "left": "0px"
                     }, 300);
                     switchs = false;
                 } else {
                     $(".doc_documentation_area").removeClass("overlay");
-                    $(".doc_mobile_menu").animate({
-                        "left": "-260px"
+                    $(".doc_left_sidebarlist").animate({
+                        "left": "-300px"
                     }, 300);
                     switchs = true
                 }

@@ -6,9 +6,17 @@ body.body_dark {
 body.body_dark .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
   background: #131417 !important;
 }
+@media (max-width: 991px) {
+  body.body_dark .doc_rightsidebar {
+    background: #1e1f26;
+  }
+}
 body.body_dark .ordered-list li::before, body.body_dark .body_wrapper,
 body.body_dark .img_modal, body.body_dark #eazydocs_feedback {
   background: #131417;
+}
+body.body_dark .fadeGradient {
+  background: -webkit-linear-gradient(bottom, #131417 15%, rgba(245, 245, 245, 0) 100%) !important;
 }
 body.body_dark .explanation {
   border-color: #131417;
