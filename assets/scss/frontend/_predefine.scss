@@ -38,7 +38,6 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .sticky-lg-top {
   @media ( min-width: 992px ) {
-    top: auto;
     position: sticky !important;
     align-self: flex-start !important;
     z-index: 1;

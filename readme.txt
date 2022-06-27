@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs
 Requires at least: 5.0
 Tested up to: 6.0.0
 Requires PHP: 7.2
-Stable tag: 1.2.4
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,7 +43,7 @@ See the [Frontend Demo Here](https://wordpress-theme.spider-themes.net/docy/docs
 
 - **Sticky Sidebars:** Make the sidebars to follow you as you scroll and show the important content.
 
-- **Multilingual Ready:** EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one!
+- **Multilingual/RTL Ready:** EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one!
 
 - **Responsive & Retina Ready:** EazyDocs is 100% responsive to make your Knowledge base look beautiful and effective on all major devices.
 
@@ -127,7 +127,6 @@ Tweaked: Dark mode colors (dark mode will work even if the theme background colo
 = v1.2.1 (10 June 2022) =
 Fixed: Doc content's media (media, video etc files) was adding as child doc
 Tweaked: Theme compatibility improved (the design is more stable on any theme)
-
 
 = v1.2.0 (09 June 2022) =
 Fixed: OnePage permalink error (PRO feature, unlocked with Docy and Docly theme)

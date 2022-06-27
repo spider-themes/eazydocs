@@ -7,7 +7,7 @@
          * Make the overflow of ancestor Elements to visible of Position Sticky Element
          * @type {HTMLElement}
          */
-        let parent_selector = document.querySelector('.sticky-top');
+        let parent_selector = document.querySelector('.sticky-lg-top');
         if ( parent_selector ) {
             let parent = parent_selector.parentElement;
             while (parent) {
