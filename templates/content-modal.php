@@ -13,7 +13,7 @@ $title          = ! empty ( $options['feedback-form-title'] ) ? $options['feedba
 $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedback-form-desc'] : $description;
 ?>
 
-<div class="modal fade img_modal" id="eazydocs_feedback" tabindex="-3" role="dialog" aria-hidden="false">
+<div class="modal fade" id="eazydocs_feedback" tabindex="-3" role="dialog" aria-hidden="false">
     <div class="modal-dialog help_form" role="document">
         <div class="modal-content">
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">

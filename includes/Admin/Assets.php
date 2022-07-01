@@ -77,7 +77,7 @@ class Assets {
                 'create_prompt_title'   => esc_html__( 'Enter Docs Title', 'eazydocs' ),
                 'delete_prompt_title'   => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
                 'no_revert_title'       => esc_html__( "This doc will be deleted with the child docs and you won't be able to revert!", "eazydocs" ),
-                'clone_prompt_title'    => esc_html__( "Are you sure to clone", "eazydocs" ),
+                'clone_prompt_title'    => esc_html__( "Are you sure to Duplicate this doc?", "eazydocs" ),
                 'nonce'                 => wp_create_nonce( 'eazydocs-admin-nonce' ),
                 'one_page_prompt_docs'  => eazydocs_pro_doc_list(),
                 'edit_one_page_url'     => admin_url('admin.php/One_Page_Edit.php?edit_docs=yes'),

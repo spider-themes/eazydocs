@@ -1,10 +1,10 @@
 === EazyDocs - #1 Powerful & Beautiful Documentation Builder ===
-Contributors: mdjwel, spiderdevs
+Contributors: mdjwel, spiderdevs, arafatjamil01, delweratjk
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
 Tested up to: 6.0.0
 Requires PHP: 7.2
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,7 +99,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.2.5 (27 June 2022) =
+= v1.2.8 (02 July 2022) =
+Tweaked: Doc single page view improved (right sidebar, left sidebar, Feedback modal form) on small devices (tablet, mobile)
+Tweaked: Settings re-organized to find easily
+Fixed: Docs Slug was not changing
+
+= v1.2.7 (27 June 2022) =
 Tweaked: The Doc Search Banner UI design improved
 Fixed: Breadcrumbs Docs archive page text was spelled wrong
 

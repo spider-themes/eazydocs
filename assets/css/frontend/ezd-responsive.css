@@ -16,7 +16,7 @@
         overflow: hidden !important;
     }
 
-    .doc_left_sidebarlist {
+    .left-column .doc_left_sidebarlist {
         max-width: 300px;
         width: 100%;
         left: -300px;
@@ -99,14 +99,6 @@
 
 @media (max-width: 767px) {
     /** === Right Sidebar === **/
-    .body_fixed .doc_mobile_menu  {
-        position: fixed;
-        top: 30px;
-    }
-    .body_fixed .doc_right_mobile_menu {
-        position: fixed;
-        top: 30px;
-    }
     .open_icon {
         top: 0;
     }
@@ -149,6 +141,19 @@
     .page_breadcrumb .date {
         float: left;
         margin-top: 5px;
+    }
+    .contact_form .form-group,
+    .help_form .modal-content .shortcode_title {
+        margin-bottom: 20px;
+    }
+    .help_form {
+        padding: 15px;
+    }
+    #eazydocs_feedback .close {
+        top: -10px;
+    }
+    .contact_form .form-group .form-control {
+        height: 55px;
     }
 }
 

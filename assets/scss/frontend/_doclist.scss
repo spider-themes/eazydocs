@@ -47,7 +47,7 @@
     height: 100%;
     background: rgba(245,247,249,1.00);
     position: absolute;
-    border-right: 1px solid #E6EDF0;
+    border-right: 1px solid var(--border_on_white);
     top: 0;
     z-index: -1;
   }
@@ -101,7 +101,7 @@
       font-size: 14px;
       line-height: 20px;
       font-weight: 500;
-      color: #3c4257;
+      color: var(--black_600);
       position: relative;
       align-items: start;
       mark{
@@ -139,7 +139,7 @@
     &:hover,
     &.active {
       > .nav-link {
-        color: #000;
+        color: var(--black_900);
       }
       > .icon {
         color: var(--ezd_brand_color);
@@ -174,7 +174,7 @@
       display: none;
       list-style: none;
       li {
-        margin: 12px 12px 12px 0;
+        margin: 10px 10px 10px 0;
         padding: 0;
         line-height: 1.5;
         &.has_child {
@@ -188,7 +188,7 @@
           text-decoration: none;
           &:hover,
           &.active {
-            color: #000;
+            color: var(--black_900);
             i {
               color: var(--ezd_brand_color);
             }
@@ -380,6 +380,7 @@
   h1 {
     margin-bottom: 10px;
     font-size: 2.5em;
+    color: var(--black_900)
   }
   p {
     span {
@@ -587,46 +588,6 @@
   }
 }
 
-/** === Help Contact Form === **/
-#eazydocs_feedback {
-  background: rgb(0 0 0 / 60%);
-  .action_btn {
-    border: 0;
-    padding: 15px 40px;
-    box-shadow: none;
-    font-weight: 500;
-    background: brand_color_rgba(0.9);
-    color: #fff;
-    &:hover {
-      background: var(--ezd_brand_color);
-      color: #fff;
-    }
-  }
-  .close {
-    font-size: 30px;
-    opacity: 1;
-    color: #fff;
-    position: absolute;
-    right: -40px;
-    top: -40px;
-    padding: 5px 8px 7px;
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--black_350);
-    border-radius: 3px;
-    transition: all .3s;
-    border: none;
-    &:hover {
-      background: #cd2653;
-      border: none;
-      box-shadow: none;
-      text-decoration: none;
-    }
-  }
-}
-
 .code_structure {
   padding-top: 50px;
   .c_head {
@@ -700,7 +661,7 @@
     justify-content: end;
     display: flex;
   }
-  p {
+  p.left, p.right {
     font-weight: 500;
     font-size: 14px !important;
     color: var(--p_color);
@@ -763,6 +724,50 @@
   border-radius: 2px;
 }
 
+/** === Help Contact Form === **/
+#eazydocs_feedback {
+  background: rgb(0 0 0 / 60%);
+  .action_btn {
+    border: 0;
+    padding: 15px 40px;
+    box-shadow: none;
+    font-weight: 500;
+    background: brand_color_rgba(0.9);
+    color: #fff;
+    &:hover {
+      background: var(--ezd_brand_color);
+      color: #fff;
+    }
+  }
+  .close {
+    font-size: 30px;
+    opacity: 1;
+    color: #fff;
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    padding: 5px 8px 7px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--black_350);
+    border-radius: 3px;
+    transition: all .3s;
+    border: none;
+    @media ( max-width: 991px ) {
+      right: -10px;
+      top: -25px;
+    }
+    &:hover {
+      background: #cd2653;
+      border: none;
+      box-shadow: none;
+      text-decoration: none;
+    }
+  }
+}
+
 .help_form {
   max-width: 730px;
   display: flex;
@@ -774,11 +779,20 @@
   top: 50%;
   transform: translateY(-50%) !important;
   border-radius: 10px;
+  @media ( max-width: 991px ) {
+    max-width: 600px;
+    padding: 40px 30px;
+  }
   .modal-content {
     border: 0;
     background: transparent;
+    h3 {
+      margin-top: 0;
+      padding-top: 0;
+    }
   }
 }
+
 .contact_form {
   .form-group {
     margin-bottom: 30px;
@@ -886,7 +900,7 @@
       top: 0;
       width: 1px;
       height: 100%;
-      background: #e6edf0;
+      background: var(--border_on_white);
       left: 0;
     }
   }
@@ -1226,7 +1240,7 @@ body:not(.onepage-doc) .sticky_menu {
 .fontsize-controllers{
   .btn-group{
     border: 1px solid #dfe2e4;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--bs-white);
     box-shadow: 0 1px 0 0 rgba(3, 13, 37, 0.2),inset 0 -8px 14px 0 rgba(3, 13, 37, 0.1);
     border-radius: 4px;
     .btn{
@@ -1453,7 +1467,7 @@ body:not(.onepage-doc) .sticky_menu {
   display: flex;
   .icon {
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--bs-white);
     box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
     width: 75px;
     height: 75px;

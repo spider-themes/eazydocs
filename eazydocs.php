@@ -5,10 +5,10 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 1.2.7
+ * Version: 1.2.8
  * Requires at least: 5.0
  * Requires PHP: 7.2
- * Text Domain: easydocs
+ * Text Domain: eazydocs
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */

@@ -149,13 +149,13 @@
                 e.preventDefault()
                 if (switchs) {
                     $(".doc_documentation_area").addClass("overlay");
-                    $(".doc_left_sidebarlist").animate({
+                    $(".left-column .doc_left_sidebarlist").animate({
                         "left": "0px"
                     }, 300);
                     switchs = false;
                 } else {
                     $(".doc_documentation_area").removeClass("overlay");
-                    $(".doc_left_sidebarlist").animate({
+                    $(".left-column .doc_left_sidebarlist").animate({
                         "left": "-300px"
                     }, 300);
                     switchs = true

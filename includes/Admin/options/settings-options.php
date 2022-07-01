@@ -296,13 +296,13 @@ CSF::createSection( $prefix, array(
 		
 		array(
 			'type'  => 'subheading',
-			'title' => esc_html__( 'Search Banner', 'eazydocs' ),
+			'title' => esc_html__( 'Search Banner Settings', 'eazydocs' ),
 		),
 		
 		array(
 			'id'         => 'is_search_banner',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
+			'title'      => esc_html__( 'Search Banner', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => true,
@@ -319,13 +319,13 @@ CSF::createSection( $prefix, array(
 		
 		array(
 			'type'  => 'subheading',
-			'title' => esc_html__( 'Keywords', 'eazydocs' ),
+			'title' => esc_html__( 'Search Keywords', 'eazydocs' ),
 		),
 		
 		array(
 			'id'         => 'is_keywords',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
+			'title'      => esc_html__( 'Keywords', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'default'    => false,
@@ -775,13 +775,13 @@ CSF::createSection( $prefix, array(
 
 		array(
 			'type'  => 'heading',
-			'title' => esc_html__( 'Related Docs', 'eazydocs' )
+			'title' => esc_html__( 'Related Docs Settings', 'eazydocs' )
 		),
 		
 		array(
 			'id'         => 'related-docs',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
+			'title'      => esc_html__( 'Related Docs', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs-pr' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => true,
@@ -835,14 +835,14 @@ CSF::createSection( $prefix, array(
 		
 		array(
 			'type'  => 'heading',
-			'title' => esc_html__( 'Recently Viewed Docs', 'eazydocs' )
+			'title' => esc_html__( 'Recently Viewed Docs Options', 'eazydocs' )
 		),
 
 		array(
 			'id'         => 'viewed-docs',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs-pr' ),
+			'title'      => esc_html__( 'Recently Viewed Docs', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => true,
 			'text_width' => 72
@@ -1027,17 +1027,17 @@ CSF::createSection( $prefix, array(
 	'fields' => [
 		array(
 			'type'  => 'heading',
-			'title' => esc_html__( 'Assistant', 'eazydocs' ),
+			'title' => esc_html__( 'Assistant Settings', 'eazydocs' ),
 		),
 
 		array(
 			'id'         => 'assistant_visibility',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'title'      => esc_html__( 'Docs Assistant', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'class'      => 'eazydocs-pro-notice',
-			'text_width' => 70,
+			'text_width' => 92,
 			'default'    => false
 		),
 
@@ -1084,13 +1084,13 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'    => 'assistant_kb_heading',
 							'type'  => 'heading',
-							'title' => esc_html__( 'Knowledge Base', 'eazydocs' ),
+							'title' => esc_html__( 'Knowledge Base Options', 'eazydocs' ),
 						),
 						
 						array(
 							'id'         => 'kb_visibility',
 							'type'       => 'switcher',
-							'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
+							'title'      => esc_html__( 'Knowledge-base Tab', 'eazydocs' ),
 							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
@@ -1164,7 +1164,7 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'         => 'contact_visibility',
 							'type'       => 'switcher',
-							'title'      => esc_html__( 'Enable/Disable', 'eazydocs' ),
+							'title'      => esc_html__( 'Contact Tab', 'eazydocs' ),
 							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,

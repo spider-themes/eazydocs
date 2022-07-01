@@ -31,10 +31,8 @@ class Docs {
 		 * @var string
 		 */
 		$slug = 'docs';
-		if ( class_exists( 'EazyDocsPro' ) ) {
-			$settings_options   = get_option( 'eazydocs_settings' );
-			$slug               = $settings_options['docs-type-slug'] ?? 'docs';
-		}
+        $settings_options   = get_option( 'eazydocs_settings' );
+        $slug               = $settings_options['docs-type-slug'] ?? 'docs';
 
 		$labels = [
 			'name'               => _x( 'Docs', 'Post Type General Name', 'eazydocs' ),
