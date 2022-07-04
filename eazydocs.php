@@ -148,6 +148,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
+			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
             //require_once  __DIR__ . '/vendor/wp-notice/init.php';
 

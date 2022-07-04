@@ -485,3 +485,41 @@ function ezd_hex2rgba($color, $opacity = false) {
     //Return rgb(a) color string
     return $output;
 }
+
+
+function chrEncode($data) {
+	$data = str_replace('â€™', '&#39;' ,$data);
+	$data = str_replace('Ã©', 'é' ,$data);
+	$data = str_replace('â€', '-' ,$data);
+	$data = str_replace('-œ', '&#34;' ,$data);
+	$data = str_replace('â€œ', '&#34;' ,$data);
+	$data = str_replace('Ãª', 'ê' ,$data);
+	$data = str_replace('Ã¶', 'ö' ,$data);
+	$data = str_replace('â€¦', '...' ,$data);
+	$data = str_replace('-¦', '...' ,$data);
+	$data = str_replace('â€“', '–' ,$data);
+	$data = str_replace('â€²s', '’' ,$data);
+	$data = str_replace('-²s', '’' ,$data);
+	$data = str_replace('â€˜', '&#39;' ,$data);
+	$data = str_replace('-˜', '&#39;' ,$data);
+	$data = str_replace('-“', '-' ,$data);
+	$data = str_replace('Ã¨', 'è' ,$data);
+	$data = str_replace('ï¼ˆ', '(' ,$data);
+	$data = str_replace('ï¼‰', ')' ,$data);
+	$data = str_replace('â€¢', '&bull;' ,$data);
+	$data = str_replace('-¢', '&bull;' ,$data);
+	$data = str_replace('Â§ï‚§', '&bull;' ,$data);
+	$data = str_replace('Â®', '&reg;' ,$data);
+	$data = str_replace('â„¢', '&trade;' ,$data);
+	$data = str_replace('Ã±', 'ñ' ,$data);
+	$data = str_replace('Å‘s', 'ő' ,$data);
+	$data = str_replace('\\\"', '&quot;' ,$data);
+	$data = str_replace("\r", '' ,$data);
+	$data = str_replace("\\r", '' ,$data);
+	$data = str_replace("\n", '' ,$data);
+	$data = str_replace("\\n", '' ,$data);
+	$data = str_replace("\\\'", '' ,$data);
+	$data = str_replace("\\", "" ,$data);
+
+	return $data;
+}

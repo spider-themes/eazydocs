@@ -216,12 +216,14 @@ body.post-type-onepage-docs .wrap .page-title-action:not(.add-onepage),
 #adminmenu #toplevel_page_eazydocs ul li a:empty {
     display: none !important;
 }
+
 .ezd-select-full {
     max-width: 100% !important;
     padding: 5px 10px !important;
     font-size: 15px !important;
     font-weight: 500;
 }
+
 select#ezd_docs_select{
     max-width:100%
 }

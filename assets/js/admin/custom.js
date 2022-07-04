@@ -171,18 +171,47 @@
             $(document).on('click', '.one-page-doc', function (e) {
                 e.preventDefault();
                 let href = $(this).attr('data-url');
-                (async () => {
-                    const {value: formValues} = await Swal.fire({
-                        title: 'Want to make One Page?',
-                        html:
-                            '<label for="ezd_docs_sidebar">Sidebar Content</label><textarea id="ezd_docs_sidebar" class="widefat"></textarea>',
-                        confirmButtonText: 'Submit',
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = href + '&content=' + document.getElementById('ezd_docs_sidebar').value
-                        }
-                    })
-                })()
+                Swal.fire({
+                    title: 'Want to make OnePage?',
+                    customClass: {
+                        container: 'onepage_create_wrapper',
+                    },
+                    html:
+                        '<div class="create_onepage_doc_area">' +
+                        '<label for="ezd_docs_sidebar">Select Layout</label>' +
+                        '<select class="widefat" id="ezd_docs_select" name="ezd_onepage_select">' +
+                        '<option value="default-layout">Default Layout</option>' +
+                        '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>' +
+                        '</select>' +
+                        '<div class="ezd_shortcode_wrap"></div>' +
+                        '<label for="ezd-shortcode">Shortcode</label><br>' +
+                        '<textarea name="ezd-shortcode-content" class="regular-text" id="ezd-shortcode-content" rows="5"></textarea>' +
+                        '</div>',
+                    confirmButtonText: 'Publish',
+                    showCancelButton: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        encoded = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content').value))
+                        //encoded = JSON.parse(decodeURIComponent(document.getElementById('ezd-shortcode-content').value));
+
+                        window.location.href = href + '&layout=' + document.getElementById('ezd_docs_select').value +
+                            '&shortcode_content=' + encoded;
+                    }
+                });
+
+                $('#ezd_docs_select').on('change', function() {
+                    let layout = this.value;
+
+                    if ( layout  === 'others-layout') {
+                        $('.onepage_create_wrapper').addClass('others-layout');
+                        $('.other_layout_fields').show();
+                    } else {
+                        $('.other_layout_fields').hide();
+                        $('.onepage_create_wrapper').removeClass('others-layout');
+                    }
+
+                });
+
             })
         }
         one_page_doc()

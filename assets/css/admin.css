@@ -1816,11 +1816,5 @@ a.child-delete {
     max-width: 1170px;
   }
 }
-.easydocs-navbar.sortable{
-  position: relative;
-}
-.nesting-task.sortable li{
-  margin-bottom: 0;
-}
 
 /*# sourceMappingURL=admin.css.map */

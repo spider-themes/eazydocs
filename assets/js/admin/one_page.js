@@ -55,7 +55,7 @@
                     const {value: formValues} = await Swal.fire({
                         title: 'Want to edit this doc?',
                         html:
-                            '<label for="ezd_edit_docs_sidebar">Sidebar Content</label>' +
+                            '<label for="ezd_edit_docs_sidebar">Shortcode Content</label>' +
                             '<textarea id="ezd_edit_docs_sidebar" class="widefat">'+ edit_doc_content +'</textarea>',
                         confirmButtonText: 'Update',
                         showCancelButton: true,
