@@ -77,10 +77,10 @@ class Create_Post {
 	 */
 	public function create_section_doc() {
 
-		if ( isset ( $_GET['section'] ) && ! empty ( $_GET['section'] ) ) {
+		if ( isset ( $_GET['is_section'] ) && ! empty ( $_GET['is_section'] ) ) {
 
 			$parentID      = ! empty ( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;
-			$section_title = ! empty ( $_GET['section'] ) ? sanitize_text_field( $_GET['section'] ) : '';
+			$section_title = ! empty ( $_GET['is_section'] ) ? sanitize_text_field( $_GET['is_section'] ) : '';
 			$parent_item   = get_children( array(
 				'post_parent' => $parentID,
 				'post_type'   => 'docs'
