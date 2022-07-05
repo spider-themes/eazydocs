@@ -199,8 +199,15 @@ class Admin {
 	public function one_page_docs_edit_content( $link, $post_ID ){
 		if( 'onepage-docs' == get_post_type( $post_ID ) ){
 			$is_content     = get_the_content($post_ID);
+
+			$ezd_doc_layout     = get_post_meta($post_ID, 'ezd_doc_layout', true);
+			$doc_layout   = ! empty( $ezd_doc_layout ) ? '&doc_layout='. $ezd_doc_layout : null;
+
+			$ezd_content_type     = get_post_meta($post_ID, 'ezd_doc_content_type', true);
+			$content_type   = ! empty( $ezd_content_type ) ? '&content_type='. $ezd_content_type : null;
+
 			$content_null   = ! empty( $is_content ) ? '&content='. $is_content : null;
-			$link           = $link . $content_null;
+			$link           = $link . $doc_layout . $content_type . $content_null;
 		}
 		return $link;
 	}

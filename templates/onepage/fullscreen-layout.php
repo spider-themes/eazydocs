@@ -50,7 +50,13 @@ $children           = wp_list_pages( array(
 						endif;
 
 						$ezd_shortcode = get_the_content( $post_id->ID );
-						echo html_entity_decode( $ezd_shortcode ) ?? '';
+						$content_type = get_post_meta( get_the_ID(), 'ezd_doc_content_type', true );
+						if( $content_type == 'string_data' ){
+							echo html_entity_decode( $ezd_shortcode ) ?? '';
+						} else {
+							echo do_shortcode( html_entity_decode($ezd_shortcode) );
+						}
+
 						?>
                     </aside>
                 </div>

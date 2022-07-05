@@ -191,13 +191,13 @@ $children           = wp_list_pages( array(
                             <div class="onepage-sidebar doc_sidebar <?php echo esc_attr($ezd_content_none); ?>">
                                 <div class="hire-us">
 									<?php
-									if( ! empty( $ezd_content ) ) :
-										?>
-                                        <div class="explanation hire expn-left p-3 small">
-											<?php echo html_entity_decode( $ezd_content ) ?? ''; ?>
-                                        </div>
-									<?php
-									endif;
+                                    $content_type = get_post_meta( get_the_ID(), 'ezd_doc_content_type', true );
+                                    if( $content_type == 'string_data' ){
+	                                    echo html_entity_decode( $ezd_content ) ?? '';
+                                    } else {
+                                        echo do_shortcode( html_entity_decode($ezd_content) );
+                                    }
+
 									dynamic_sidebar('doc_sidebar');
 									?>
                                 </div>

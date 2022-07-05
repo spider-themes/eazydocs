@@ -1,6 +1,6 @@
 <?php
 $options        = get_option( 'eazydocs_settings' );
-$preset_layout  = $options['onepage_layout'];
+$preset_layout  = $options['onepage_layout'] ?? '';
 $layout = get_post_meta(get_the_ID(), 'ezd_doc_layout', true );
 
 if( $layout == 'fullscreen-layout' ){

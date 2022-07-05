@@ -173,9 +173,6 @@
                 let href = $(this).attr('data-url');
                 Swal.fire({
                     title: 'Want to make OnePage?',
-                    customClass: {
-                        container: 'onepage_create_wrapper',
-                    },
                     html:
                         '<div class="create_onepage_doc_area">' +
                         '<label for="ezd_docs_sidebar">Select Layout</label>' +
@@ -183,9 +180,16 @@
                         '<option value="default-layout">Default Layout</option>' +
                         '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>' +
                         '</select>' +
+                        '<div class="ezd_docs_content_type_wrap">' +
+                        '<label for="ezd_docs_content_type">Content Type:</label>' +
+                        '<input type="radio" id="shortcode" name="ezd_docs_content_type" value="shortcode">' +
+                        '<label for="shortcode">Shortcode</label>' +
+                        '<input type="radio" checked id="string_data" name="ezd_docs_content_type" value="string_data">' +
+                        '<label for="string_data">Normal Content</label>' +
+                        '</div>' +
                         '<div class="ezd_shortcode_wrap"></div>' +
-                        '<label for="ezd-shortcode">Shortcode</label><br>' +
-                        '<textarea name="ezd-shortcode-content" class="regular-text" id="ezd-shortcode-content" rows="5"></textarea>' +
+                        '<label for="ezd-shortcode">Content (Optional) </label><br>' +
+                        '<textarea name="ezd-shortcode-content" id="ezd-shortcode-content" rows="5" class="widefat"></textarea>' +
                         '</div>',
                     confirmButtonText: 'Publish',
                     showCancelButton: true,
@@ -195,21 +199,9 @@
                         //encoded = JSON.parse(decodeURIComponent(document.getElementById('ezd-shortcode-content').value));
 
                         window.location.href = href + '&layout=' + document.getElementById('ezd_docs_select').value +
-                            '&shortcode_content=' + encoded;
+                            '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value +
+                            '&shortcode_content=' + encoded
                     }
-                });
-
-                $('#ezd_docs_select').on('change', function() {
-                    let layout = this.value;
-
-                    if ( layout  === 'others-layout') {
-                        $('.onepage_create_wrapper').addClass('others-layout');
-                        $('.other_layout_fields').show();
-                    } else {
-                        $('.other_layout_fields').hide();
-                        $('.onepage_create_wrapper').removeClass('others-layout');
-                    }
-
                 });
 
             })
