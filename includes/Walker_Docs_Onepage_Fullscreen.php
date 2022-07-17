@@ -28,10 +28,6 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 		'id'     => 'ID',
 	);
 
-
-
-
-
 	public static $parent_item = false;
 	public static $parent_item_class = '';
 
@@ -71,10 +67,8 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 		$indent  = str_repeat( $t, $depth );
 		$output .= "{$indent}</ul>{$n}";
 		$output .= $indent.'<span class="icon">
-                        
                         <i class="arrow_carrot-left icon_plus "></i>
                         <i class=" arrow_carrot-right icon_minus-06"></i>
-                        
                     </span>'."\n";
 	}
 
@@ -233,7 +227,7 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 
 function ezd_list_pages_onepage_others( $args = '' ) {
 	$defaults = array(
-		'depth'        => 0,
+		'depth'        => 2,
 		'show_date'    => '',
 		'date_format'  => get_option( 'date_format' ),
 		'child_of'     => 0,

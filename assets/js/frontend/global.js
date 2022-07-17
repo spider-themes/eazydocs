@@ -2,7 +2,6 @@
     "use strict";
 
     $(document).ready(function() {
-
         /**
          * Make the overflow of ancestor Elements to visible of Position Sticky Element
          * @type {HTMLElement}
@@ -27,7 +26,6 @@
         $(window).scroll(function() {
             $(".doc-book-layout .nav-sidebar li a").filter(".nav-link").index();
         });
-
 
         /**
          * Left Sidebar Toggle icon
@@ -74,7 +72,5 @@
                 }
             });
         }
-
-
     })
 })(jQuery);

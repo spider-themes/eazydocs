@@ -3,13 +3,14 @@
  * Get admin template part
  */
 function eazydocs_get_admin_template_part( $template ) {
-    $file = EAZYDOCS_PATH."/includes/admin/templates/$template.php";
-    load_template( $file, false );
+	$file = EAZYDOCS_PATH . "/includes/admin/templates/$template.php";
+	load_template( $file, false );
 }
 
 /**
  * Get template part implementation for eazydocs.
  * Looks at the theme directory first
+ *
  * @param $template
  */
 function eazydocs_get_template_part( $template ) {
@@ -36,29 +37,30 @@ function eazydocs_get_template_part( $template ) {
 /**
  * Get template part implementation for eazydocs.
  * Looks at the theme directory first
+ *
  * @param $template
  * @param array $args
  */
 function eazydocs_get_template( $template_name, $args = [] ) {
 
-    $ezd_obj = EazyDocs::init();
+	$ezd_obj = EazyDocs::init();
 
-    if ( $args && is_array( $args ) ) {
-        extract( $args );
-    }
+	if ( $args && is_array( $args ) ) {
+		extract( $args );
+	}
 
-    $template = locate_template( [
-        $ezd_obj->theme_dir_path . $template_name,
-        $template_name,
-    ] );
+	$template = locate_template( [
+		$ezd_obj->theme_dir_path . $template_name,
+		$template_name,
+	] );
 
-    if ( !$template ) {
-        $template = $ezd_obj->template_path() . $template_name;
-    }
+	if ( ! $template ) {
+		$template = $ezd_obj->template_path() . $template_name;
+	}
 
-    if ( file_exists( $template ) ) {
-        include $template;
-    }
+	if ( file_exists( $template ) ) {
+		include $template;
+	}
 }
 
 /**
@@ -191,22 +193,22 @@ function eazydocs_list_pages( $args = '' ) {
 }
 
 if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
-    /**
-     * Schema.org breadcrumb item wrapper for a link.
-     *
-     * @param string $label
-     * @param string $permalink
-     * @param int $position
-     *
-     * @return string
-     */
-    function eazydocs_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
-        return '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+	/**
+	 * Schema.org breadcrumb item wrapper for a link.
+	 *
+	 * @param string $label
+	 * @param string $permalink
+	 * @param int $position
+	 *
+	 * @return string
+	 */
+	function eazydocs_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
+		return '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
             <a itemprop="item" href="' . esc_attr( $permalink ) . '">
             <span itemprop="name">' . esc_html( $label ) . '</span></a>
             <meta itemprop="position" content="' . $position . '" />
         </li>';
-    }
+	}
 }
 
 if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
@@ -217,22 +219,22 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 	 */
 	function eazydocs_breadcrumbs() {
 		global $post;
-		$home_text       = eazydocs_get_option( 'breadcrumb-home-text', 'eazydocs_settings' );
-		$front_page      = ! empty ( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs-pro' );
+		$home_text  = eazydocs_get_option( 'breadcrumb-home-text', 'eazydocs_settings' );
+		$front_page = ! empty ( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs-pro' );
 
 		$html = '';
 		$args = apply_filters( 'eazydocs_breadcrumbs', [
 			'delimiter' => '',
 			'home'      => $front_page,
-            'before'    => '<li class="breadcrumb-item active">',
-            'after'     => '</li>',
-		]);
+			'before'    => '<li class="breadcrumb-item active">',
+			'after'     => '</li>',
+		] );
 
-        $breadcrumb_position = 1;
+		$breadcrumb_position = 1;
 
-        $html .= '<ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">';
-        $html .= eazydocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
-        $html .= $args['delimiter'];
+		$html .= '<ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">';
+		$html .= eazydocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
+		$html .= $args['delimiter'];
 
 
 		$docs_page_title = eazydocs_get_option( 'docs-page-title', 'eazydocs_settings' );
@@ -240,36 +242,36 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 
 		$docs_home = eazydocs_get_option( 'docs-slug', 'eazydocs_settings' );
 
-        if ( $docs_home ) {
-            ++$breadcrumb_position;
+		if ( $docs_home ) {
+			++ $breadcrumb_position;
 
-            $html .= eazydocs_get_breadcrumb_item( $docs_page_title, get_permalink( $docs_home ), $breadcrumb_position );
-            $html .= $args['delimiter'];
-        }
+			$html .= eazydocs_get_breadcrumb_item( $docs_page_title, get_permalink( $docs_home ), $breadcrumb_position );
+			$html .= $args['delimiter'];
+		}
 
-        if ( 'docs' == $post->post_type && $post->post_parent ) {
-            $parent_id   = $post->post_parent;
-            $breadcrumbs = [];
+		if ( 'docs' == $post->post_type && $post->post_parent ) {
+			$parent_id   = $post->post_parent;
+			$breadcrumbs = [];
 
-            while ( $parent_id ) {
-                ++$breadcrumb_position;
+			while ( $parent_id ) {
+				++ $breadcrumb_position;
 
-                $page          = get_post( $parent_id );
-                $breadcrumbs[] = eazydocs_get_breadcrumb_item( get_the_title( $page->ID ), get_permalink( $page->ID ), $breadcrumb_position );
-                $parent_id     = $page->post_parent;
-            }
+				$page          = get_post( $parent_id );
+				$breadcrumbs[] = eazydocs_get_breadcrumb_item( get_the_title( $page->ID ), get_permalink( $page->ID ), $breadcrumb_position );
+				$parent_id     = $page->post_parent;
+			}
 
-            $breadcrumbs = array_reverse( $breadcrumbs );
+			$breadcrumbs = array_reverse( $breadcrumbs );
 
-            for ( $i = 0; $i < count( $breadcrumbs ); ++$i ) {
-                $html .= $breadcrumbs[$i];
-                $html .= ' ' . $args['delimiter'] . ' ';
-            }
-        }
+			for ( $i = 0; $i < count( $breadcrumbs ); ++ $i ) {
+				$html .= $breadcrumbs[ $i ];
+				$html .= ' ' . $args['delimiter'] . ' ';
+			}
+		}
 
-        $html .= ' ' . $args['before'] . get_the_title() . $args['after'];
+		$html .= ' ' . $args['before'] . get_the_title() . $args['after'];
 
-        $html .= '</ol>';
+		$html .= '</ol>';
 
 		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
 	}
@@ -280,22 +282,23 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
  *
  * Used most frequently when editing a forum/topic/reply
  *
- * @since 1.0.1 eazyDocs
- *
  * @param string $field Name of the key
  * @param string $context How to sanitize - raw|edit|db|display|attribute|js
+ *
  * @return string Field value
+ * @since 1.0.1 eazyDocs
+ *
  */
 function eazydocs_get_global_post_field( $field = 'ID', $context = 'edit' ) {
 
-    // Get the post, and maybe get a field from it
-    $post   = get_post();
-    $retval = isset( $post->{$field} )
-        ? sanitize_post_field( $field, $post->{$field}, $post->ID, $context )
-        : '';
+	// Get the post, and maybe get a field from it
+	$post   = get_post();
+	$retval = isset( $post->{$field} )
+		? sanitize_post_field( $field, $post->{$field}, $post->ID, $context )
+		: '';
 
-    // Filter & return
-    return apply_filters( 'eazydocs_get_global_post_field', $retval, $post, $field, $context );
+	// Filter & return
+	return apply_filters( 'eazydocs_get_global_post_field', $retval, $post, $field, $context );
 }
 
 /**
@@ -308,41 +311,42 @@ function eazydocs_get_global_post_field( $field = 'ID', $context = 'edit' ) {
  * A preliminary strpos() is performed before looping through each shortcode, to
  * prevent unnecessarily processing.
  *
+ * @param string $text
+ *
+ * @return bool
  * @since 1.0.1
  *
- * @param string $text
- * @return bool
  */
 function eazydocs_has_shortcode( $text = '' ) {
 
-    // Default return value
-    $retval = false;
-    $found  = array();
+	// Default return value
+	$retval = false;
+	$found  = array();
 
-    // Fallback to global post_content
-    if ( empty( $text ) && is_singular() ) {
-        $text = eazydocs_get_global_post_field( 'post_content', 'raw' );
-    }
+	// Fallback to global post_content
+	if ( empty( $text ) && is_singular() ) {
+		$text = eazydocs_get_global_post_field( 'post_content', 'raw' );
+	}
 
-    // Skip if empty, or string doesn't contain the eazydocs shortcode prefix
-    if ( ! empty( $text ) && ( false !== strpos( $text, '[eazydocs' ) ) ) {
+	// Skip if empty, or string doesn't contain the eazydocs shortcode prefix
+	if ( ! empty( $text ) && ( false !== strpos( $text, '[eazydocs' ) ) ) {
 
-        // Get possible shortcodes
-        $codes = array('eazydocs', 'eazydocs_tab');
+		// Get possible shortcodes
+		$codes = array( 'eazydocs', 'eazydocs_tab' );
 
-        // Loop through codes
-        foreach ( $codes as $code ) {
+		// Loop through codes
+		foreach ( $codes as $code ) {
 
-            // Looking for shortcode in text
-            if ( has_shortcode( $text, $code ) ) {
-                $retval  = true;
-                $found[] = $code;
-            }
-        }
-    }
+			// Looking for shortcode in text
+			if ( has_shortcode( $text, $code ) ) {
+				$retval  = true;
+				$found[] = $code;
+			}
+		}
+	}
 
-    // Filter & return
-    return (bool) apply_filters( 'eazydocs_has_shortcode', $retval, $found, $text );
+	// Filter & return
+	return (bool) apply_filters( 'eazydocs_has_shortcode', $retval, $found, $text );
 }
 
 /**
@@ -351,8 +355,8 @@ function eazydocs_has_shortcode( $text = '' ) {
  *
  * @return false|int
  */
-function date_sort($a, $b) {
-	return strtotime($b) - strtotime($a);
+function date_sort( $a, $b ) {
+	return strtotime( $b ) - strtotime( $a );
 }
 
 /**
@@ -361,9 +365,10 @@ function date_sort($a, $b) {
  *
  * @return bool
  */
-function main_date_sort($a, $b) {
-	$date1 = DateTime::createFromFormat('d/m/Y', $a);
-	$date2 = DateTime::createFromFormat('d/m/Y', $b);
+function main_date_sort( $a, $b ) {
+	$date1 = DateTime::createFromFormat( 'd/m/Y', $a );
+	$date2 = DateTime::createFromFormat( 'd/m/Y', $b );
+
 	return $b > $a;
 }
 
@@ -371,24 +376,24 @@ function main_date_sort($a, $b) {
  * Visible EazyDocs Menu in classic mode
  * Tag submenu in Tag screen
  **/
-add_action('admin_footer', function(){ ?>
-	<script>
+add_action( 'admin_footer', function () { ?>
+    <script>
         // EazyDocs screen URL
         eazyDocsClassic = "edit.php?post_type=docs";
         // Tag screen URL
         eazyDocsTag = "edit-tags.php?taxonomy=doc_tag&post_type=docs";
 
         // EazyDocs menu active when it's EazyDocs screen
-        if(window.location.href.indexOf(eazyDocsTag) > -1) {
+        if (window.location.href.indexOf(eazyDocsTag) > -1) {
             jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li').has('a[href*="edit-tags.php"]').addClass('current');
         }
 
         // Tag Sub menu active when it's Tag screen
-        if(window.location.href.indexOf(eazyDocsClassic) > -1) {
+        if (window.location.href.indexOf(eazyDocsClassic) > -1) {
             jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li.wp-first-item').addClass('current');
         }
-	</script>
-<?php });
+    </script>
+<?php } );
 
 /**
  * Get all docs without parent
@@ -402,28 +407,32 @@ function eazydocs_pro_doc_list() {
 	);
 	$docs      = get_posts( $args );
 	$doc_items = '';
-	foreach ( $docs as $doc ) {
 
-		if( ! get_page_by_path( $doc->post_name, OBJECT, 'onepage-docs' ) ) {
-			$doc_items .= '<option name="' . $doc->post_title . '">' . $doc->post_title . '</option>';
+	    $doc_item_count = 0;
+		foreach ( $docs as $doc ) {
+			if ( ! get_page_by_path( $doc->post_name, OBJECT, 'onepage-docs' ) ) {
+				$doc_item_count++;
+				$doc_items .= '<option name="' . $doc->post_title . '">' . $doc->post_title . '</option>';
+			}
 		}
-	}
-
-	return $doc_items;
+		if( $doc_item_count === 0){
+		    $doc_items = '<option id="no-more-doc-available" value="no-more-doc-available">No doc available!</option>';
+	    }
+		return $doc_items;
 }
 
 /**
  * @param $doc_id
  */
-function eazydocs_one_page($doc_id){
-	$one_page_title = get_the_title($doc_id);
-	$docs           = get_post($doc_id);
+function eazydocs_one_page( $doc_id ) {
+	$one_page_title = get_the_title( $doc_id );
+	$docs           = get_post( $doc_id );
 	$post_name      = $docs->post_name;
 
-	$one_page_docs = get_posts([
-		'post_type'  => 'onepage-docs',
+	$one_page_docs = get_posts( [
+		'post_type' => 'onepage-docs',
 		'name'      => $post_name,
-	]);
+	] );
 
 	if ( count( $one_page_docs ) < 1 ) :
 		?>
@@ -432,9 +441,9 @@ function eazydocs_one_page($doc_id){
         </button>
 	<?php
 	else :
-		foreach( $one_page_docs as $single_docs ) :
+		foreach ( $one_page_docs as $single_docs ) :
 			?>
-            <a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink($single_docs); ?>" target="_blank">
+            <a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink( $single_docs ); ?>" target="_blank">
 				<?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
             </a>
 		<?php
@@ -446,80 +455,104 @@ function eazydocs_one_page($doc_id){
  * @param $color
  * @param false $opacity
  * Convert hexdec color string to rgb(a) string
+ *
  * @return string
  */
-function ezd_hex2rgba($color, $opacity = false) {
+function ezd_hex2rgba( $color, $opacity = false ) {
 
-    $default = 'rgb(0,0,0)';
+	$default = 'rgb(0,0,0)';
 
-    //Return default if no color provided
-    if(empty($color))
-        return $default;
+	//Return default if no color provided
+	if ( empty( $color ) ) {
+		return $default;
+	}
 
-    //Sanitize $color if "#" is provided
-    if ($color[0] == '#' ) {
-        $color = substr( $color, 1 );
-    }
+	//Sanitize $color if "#" is provided
+	if ( $color[0] == '#' ) {
+		$color = substr( $color, 1 );
+	}
 
-    //Check if color has 6 or 3 characters and get values
-    if (strlen($color) == 6) {
-        $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-    } elseif ( strlen( $color ) == 3 ) {
-        $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
-    } else {
-        return $default;
-    }
+	//Check if color has 6 or 3 characters and get values
+	if ( strlen( $color ) == 6 ) {
+		$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
+	} elseif ( strlen( $color ) == 3 ) {
+		$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
+	} else {
+		return $default;
+	}
 
-    //Convert hexadec to rgb
-    $rgb =  array_map('hexdec', $hex);
+	//Convert hexadec to rgb
+	$rgb = array_map( 'hexdec', $hex );
 
-    //Check if opacity is set(rgba or rgb)
-    if($opacity){
-        if(abs($opacity) > 1)
-            $opacity = 1.0;
-        $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
-    } else {
-        $output = implode(",",$rgb);
-    }
+	//Check if opacity is set(rgba or rgb)
+	if ( $opacity ) {
+		if ( abs( $opacity ) > 1 ) {
+			$opacity = 1.0;
+		}
+		$output = 'rgba(' . implode( ",", $rgb ) . ',' . $opacity . ')';
+	} else {
+		$output = implode( ",", $rgb );
+	}
 
-    //Return rgb(a) color string
-    return $output;
+	//Return rgb(a) color string
+	return $output;
 }
 
 
-function chrEncode($data) {
-	$data = str_replace('â€™', '&#39;' ,$data);
-	$data = str_replace('Ã©', 'é' ,$data);
-	$data = str_replace('â€', '-' ,$data);
-	$data = str_replace('-œ', '&#34;' ,$data);
-	$data = str_replace('â€œ', '&#34;' ,$data);
-	$data = str_replace('Ãª', 'ê' ,$data);
-	$data = str_replace('Ã¶', 'ö' ,$data);
-	$data = str_replace('â€¦', '...' ,$data);
-	$data = str_replace('-¦', '...' ,$data);
-	$data = str_replace('â€“', '–' ,$data);
-	$data = str_replace('â€²s', '’' ,$data);
-	$data = str_replace('-²s', '’' ,$data);
-	$data = str_replace('â€˜', '&#39;' ,$data);
-	$data = str_replace('-˜', '&#39;' ,$data);
-	$data = str_replace('-“', '-' ,$data);
-	$data = str_replace('Ã¨', 'è' ,$data);
-	$data = str_replace('ï¼ˆ', '(' ,$data);
-	$data = str_replace('ï¼‰', ')' ,$data);
-	$data = str_replace('â€¢', '&bull;' ,$data);
-	$data = str_replace('-¢', '&bull;' ,$data);
-	$data = str_replace('Â§ï‚§', '&bull;' ,$data);
-	$data = str_replace('Â®', '&reg;' ,$data);
-	$data = str_replace('â„¢', '&trade;' ,$data);
-	$data = str_replace('Ã±', 'ñ' ,$data);
-	$data = str_replace('Å‘s', 'ő' ,$data);
-	$data = str_replace('\\\"', '&quot;' ,$data);
-	$data = str_replace("\r", '' ,$data);
-	$data = str_replace("\\r", '' ,$data);
-	$data = str_replace("\n", '' ,$data);
-	$data = str_replace("\\n", '' ,$data);
-	$data = str_replace("\\\'", '' ,$data);
-	$data = str_replace("\\", "" ,$data);
+function chrEncode( $data ) {
+	$data = str_replace( 'â€™', '&#39;', $data );
+	$data = str_replace( 'Ã©', 'é', $data );
+	$data = str_replace( 'â€', '-', $data );
+	$data = str_replace( '-œ', '&#34;', $data );
+	$data = str_replace( 'â€œ', '&#34;', $data );
+	$data = str_replace( 'Ãª', 'ê', $data );
+	$data = str_replace( 'Ã¶', 'ö', $data );
+	$data = str_replace( 'â€¦', '...', $data );
+	$data = str_replace( '-¦', '...', $data );
+	$data = str_replace( 'â€“', '–', $data );
+	$data = str_replace( 'â€²s', '’', $data );
+	$data = str_replace( '-²s', '’', $data );
+	$data = str_replace( 'â€˜', '&#39;', $data );
+	$data = str_replace( '-˜', '&#39;', $data );
+	$data = str_replace( '-“', '-', $data );
+	$data = str_replace( 'Ã¨', 'è', $data );
+	$data = str_replace( 'ï¼ˆ', '(', $data );
+	$data = str_replace( 'ï¼‰', ')', $data );
+	$data = str_replace( 'â€¢', '&bull;', $data );
+	$data = str_replace( '-¢', '&bull;', $data );
+	$data = str_replace( 'Â§ï‚§', '&bull;', $data );
+	$data = str_replace( 'Â®', '&reg;', $data );
+	$data = str_replace( 'â„¢', '&trade;', $data );
+	$data = str_replace( 'Ã±', 'ñ', $data );
+	$data = str_replace( 'Å‘s', 'ő', $data );
+	$data = str_replace( '\\\"', '&quot;', $data );
+	$data = str_replace( "\r", '', $data );
+	$data = str_replace( "\\r", '', $data );
+	$data = str_replace( "\n", '', $data );
+	$data = str_replace( "\\n", '', $data );
+	$data = str_replace( "\\\'", '', $data );
+	$data = str_replace( "\\", "", $data );
 
 	return $data;
+}
+
+
+function sidebar_selectbox() {
+	global $wp_registered_sidebars;
+	$sidebars = '';
+	foreach ( $wp_registered_sidebars as $wp_registered_sidebar ) {
+		$sidebars .= '<option value="' . $wp_registered_sidebar['id'] . '">' . $wp_registered_sidebar['name'] . '</option>';
+	}
+
+	return $sidebars;
+}
+
+function edit_sidebar_selectbox() {
+	global $wp_registered_sidebars;
+	global $post;
+	$edit_sidebars = '';
+	foreach ( $wp_registered_sidebars as $wp_registered_sidebar ) {
+		$edit_sidebars .= '<option value="' . $wp_registered_sidebar['id'] . '">' . $wp_registered_sidebar['name'] . '</option>';
+	}
+	return $edit_sidebars;
 }

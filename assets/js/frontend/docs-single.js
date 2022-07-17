@@ -369,7 +369,6 @@
                         }
                     });
 
-
                     $('a[href="#hackers"]').click(function () {
                         $("#hackers").css("padding-top", "100px");
 

@@ -16,11 +16,11 @@ $children           = wp_list_pages( array(
 	'walker'        => new Walker_Onepage_Fullscren(),
 ) );
 ?>
-<section class="documentation_area_sticky doc_documentation_area onepage_doc_area page_wrapper fullscreen-layout" id="sticky_doc">
-    <div class="overlay_bg"></div>
+    <section class="documentation_area_sticky doc_documentation_area onepage_doc_area page_wrapper fullscreen-layout" id="sticky_doc">
+        <div class="overlay_bg"></div>
         <div class="container-fluid p-lg-5">
             <div class="row doc-container">
-                <div class="col-xl-3 col-lg-3 doc_mobile_menu doc-sidebar sticky-top left-column">
+                <div class="col-xl-3 col-lg-3 doc_mobile_menu doc-sidebar sticky-top sticky-lg-top left-column">
                     <aside class=" one-page-docs-sidebar-wrap">
                         <div class="open_icon" id="left">
                             <i class="arrow_carrot-right"></i>
@@ -53,8 +53,10 @@ $children           = wp_list_pages( array(
 						$content_type = get_post_meta( get_the_ID(), 'ezd_doc_content_type', true );
 						if( $content_type == 'string_data' ){
 							echo html_entity_decode( $ezd_shortcode ) ?? '';
-						} else {
+						} elseif( $content_type == 'shortcode' ){
 							echo do_shortcode( html_entity_decode($ezd_shortcode) );
+						} else {
+							dynamic_sidebar( html_entity_decode($ezd_shortcode) );
 						}
 
 						?>
@@ -89,8 +91,8 @@ $children           = wp_list_pages( array(
 								<?php if ( !empty($doc_item->post_title) ) : ?>
                                     <div class="shortcode_title doc-sec-title">
                                         <h2> <?php
-                                            echo $sec_serial.'. ';
-                                            echo esc_html($doc_item->post_title) ?> </h2>
+											echo $sec_serial.'. ';
+											echo esc_html($doc_item->post_title) ?> </h2>
                                     </div>
 								<?php endif; ?>
                                 <div class="doc-content">
@@ -104,15 +106,15 @@ $children           = wp_list_pages( array(
 									?>
                                 </div>
 								<?php
-                                $child_serial = 0;
+								$child_serial = 0;
 								foreach ( $child_sections as $child_section ) :
 									$child_serial++;
 									?>
                                     <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($child_section->post_title) ?>">
                                         <div class="shortcode_title depth-one ">
                                             <h2> <?php
-	                                            echo $sec_serial.'.'.$child_serial.'. ';
-                                                echo $child_section->post_title ?> </h2>
+												echo $sec_serial.'.'.$child_serial.'. ';
+												echo $child_section->post_title ?> </h2>
                                         </div>
                                         <div class="doc-content">
 											<?php
@@ -177,7 +179,17 @@ $children           = wp_list_pages( array(
 							<?php endif; ?>
 
                             <div class="onepage-sidebar doc_sidebar">
-								<?php dynamic_sidebar('doc_sidebar'); ?>
+								<?php
+								$content_type  = get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true );
+								$ezd_shortcode  = get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true );
+								if ( $content_type == 'string_data_right' ) {
+									echo html_entity_decode( $ezd_shortcode ) ?? '';
+								} elseif ( $content_type == 'shortcode_right' ) {
+									echo do_shortcode( html_entity_decode( $ezd_shortcode ) );
+								} else {
+									dynamic_sidebar( html_entity_decode( $ezd_shortcode ) );
+								}
+								?>
                             </div>
                         </div>
                     </div>
