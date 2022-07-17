@@ -123,9 +123,6 @@ body.body_dark .question_box .signup_form .input-group .form-control {
 body.body_dark .question_box .signup_form .input-group button:before {
   background: #384c59;
 }
-body.body_dark .get_started p {
-  color: #d3d4d4;
-}
 body.body_dark .f_bg_color, body.body_dark .page_breadcrumb, body.body_dark .toggle_btn, body.body_dark .doc_accordion .card-header button {
   background: #1f3341;
 }

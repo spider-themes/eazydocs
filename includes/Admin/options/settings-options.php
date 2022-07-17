@@ -45,7 +45,7 @@ CSF::createSection( $prefix, array(
 			'type'    => 'text',
 			'title'   => esc_html__( 'Docs Slug', 'eazydocs' ),
 			'default' => esc_html__( 'docs', 'eazydocs' ),
-			'desc'    => esc_html__( 'You can change the doc post type slug from here. The default slug is docs. After changing the slug, go to Settings > Permalinks and click on the Save Changes button.', 'eazydocs' )
+			'desc'    => esc_html__( 'After changing the slug, go to Settings > Permalinks and click on the Save Changes button.', 'eazydocs' )
 		),
 
 		array(
@@ -73,7 +73,7 @@ CSF::createSection( $prefix, array(
             'type'       => 'image_select',
             'class'      => 'docs-layout-img-wrap',
             'title'      => esc_html__( 'Docs Columns', 'eazydocs' ),
-            'subtitle'   => esc_html__( 'This option will set the default value of column attribute of ', 'eazydocs' ) . '<pre>[eazydocs]</pre> shortcode.',
+            'subtitle'   => esc_html__( 'This option will set the default value of column attribute of ', 'eazydocs' ) . '<code>[eazydocs]</code> shortcode.',
             'options'    => array(
                 '4' => EAZYDOCS_IMG . '/customizer/4.svg',
                 '3' => EAZYDOCS_IMG . '/customizer/3.svg',
@@ -158,7 +158,7 @@ CSF::createSection( $prefix, array(
 //
 CSF::createSection( $prefix, array(
 	'id'    => 'single_doc',
-	'title' => esc_html__( 'Single Doc', 'eazydocs' ),
+	'title' => esc_html__( 'Doc Single', 'eazydocs' ),
 	'icon'  => 'fas fa-plus-circle',
 ) );
 
@@ -608,7 +608,7 @@ CSF::createSection( $prefix, array(
 	'fields' => array(
 		
 		array(
-			'id'     => 'toggle_visibility',
+			'id'         => 'toggle_visibility',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Sidebar Toggle', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
@@ -618,15 +618,7 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'     => 'action_btn_typo',
-			'type'   => 'typography',
-			'title'  => esc_html__( 'Title Typography', 'eazydocs' ),
-			'output' => '.doc_left_sidebarlist .doc-title',
-			'class'  => 'eazydocs-pro-notice active-theme'
-		),
-
-		array(
-			'id'     => 'search_visibility',
+			'id'         => 'search_visibility',
 			'type'       => 'switcher',
             'title'      => esc_html__( 'Filter', 'eazydocs' ),
             'subtitle'   => esc_html__( 'Filter the left sidebar doc items by typing latter.', 'eazydocs' ),
@@ -635,7 +627,6 @@ CSF::createSection( $prefix, array(
 			'text_width' => 72,
 			'default'    => false,
 		),
-
 
 		array(
 			'id'         => 'search_mark_word',
@@ -670,7 +661,14 @@ CSF::createSection( $prefix, array(
 			),
 			'class'    => 'eazydocs-pro-notice active-theme'
 		),
-		
+
+        array(
+            'id'     => 'action_btn_typo',
+            'type'   => 'typography',
+            'title'  => esc_html__( 'Doc Title Typography', 'eazydocs' ),
+            'output' => '.doc_left_sidebarlist .doc-title',
+        ),
+
 		array(
 			'id'          => 'docs-sidebar-bg',
 			'type'        => 'color',

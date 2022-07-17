@@ -1,17 +1,13 @@
 <?php
 eazydocs_set_post_view();
 $options                    = get_option( 'eazydocs_settings' );
-$layout                     = 'both_sidebar';
-$cz_options                 = '';
 $comment_visibility         = $options['enable-comment'] ?? '1';
 $reading_time_visibility    = $options['enable-reading-time'] ?? '1';
 $views_visibility           = $options['enable-views'] ?? '1';
 $docs_feedback              = $options['docs-feedback'] ?? '1';
-$sidebar_toggle             = '1';
-if ( class_exists( 'EazyDocsPro' ) ) {
-	$layout                     = $options['docs_single_layout'] ?? 'both_sidebar';
-	$sidebar_toggle         = $options['toggle_visibility'] ?? '1';
-}
+$sidebar_toggle             = $options['toggle_visibility'] ?? '1';
+$layout                     = $options['docs_single_layout'] ?? 'both_sidebar';
+
 if( $sidebar_toggle         == 1 ) :
     if ( ! empty( $layout   == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) : ?>
         <div class="left-sidebar-toggle">
@@ -22,6 +18,7 @@ if( $sidebar_toggle         == 1 ) :
     endif;
 endif;
 ?>
+
 <article class="shortcode_info" id="post" itemscope itemtype="http://schema.org/Article">
         <div class="doc-post-content">
             <div class="shortcode_title">
@@ -77,6 +74,7 @@ endif;
         }
         ?>
     </article>
+
 <?php
 eazydocs_get_template_part( 'content-related' );
 

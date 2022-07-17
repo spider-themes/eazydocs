@@ -171,11 +171,19 @@ p .footnotes-link::after {
   li {
     margin: 15px 0 0 0;
     padding: 0;
-    .children {
+    ul.children {
       list-style: none;
+      padding-left: 25px;
+      li {
+        margin-top: 10px;
+        a::before {
+          content: "\35";
+          padding-right: 10px;
+        }
+      }
     }
     a {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--p_color);
       line-height: 22px;
       transition: color 0.2s linear;
@@ -210,12 +218,6 @@ p .footnotes-link::after {
 .body_fixed {
   .left-sidebar-toggle {
     position: fixed;
-  }
-}
-
-.navbar_fixed.fadeInDown {
-  ~ .body_fixed .left-sidebar-toggle {
-    top: 115px;
   }
 }
 

@@ -99,6 +99,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.2.9 (15 July 2022) =
+Tweaked: Child docs design improved in the Doc Section page
+Fixed: Filter form and Left Sidebar Toggle Switcher Show/Hide option was not working
+
 = v1.2.8 (02 July 2022) =
 Tweaked: Doc single page view improved (right sidebar, left sidebar, Feedback modal form) on small devices (tablet, mobile)
 Tweaked: Settings re-organized to find easily

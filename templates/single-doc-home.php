@@ -9,10 +9,11 @@ $sections = get_children( array(
 	'post_status'    => 'publish',
 	'orderby'        => 'menu_order',
 	'order'          => 'ASC',
-	'posts_per_page' => - 1,
+	'posts_per_page' => -1,
+    ''
 ) );
 
-if ( $sections ) :
+if ( $sections && $post->post_parent === 0 ) :
     ?>
     <div class="row doc-items mt-5">
 		<?php

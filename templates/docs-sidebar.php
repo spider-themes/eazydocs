@@ -21,12 +21,10 @@ $children       = wp_list_pages( array(
 	'walker'    => $walker,
 ));
 
-$options                    = get_option( 'eazydocs_settings' );
-$sidebar_search             = '1';
-if ( class_exists( 'EazyDocsPro' ) ) {
-	$sidebar_search         = $options['search_visibility'] ?? '1';
-}
+$options = get_option( 'eazydocs_settings' );
+$sidebar_search = $options['search_visibility'] ?? '1';
 ?>
+
 <div class="col-xl-3 col-lg-3 doc_mobile_menu left-column sticky-lg-top">
     <aside class="doc_left_sidebarlist">
         <div class="open_icon" id="left">
@@ -63,7 +61,7 @@ if ( class_exists( 'EazyDocsPro' ) ) {
 					?>
                 </ul>
             </div>
-		<?php
+		    <?php
 		endif;
 		?>
     </aside>
