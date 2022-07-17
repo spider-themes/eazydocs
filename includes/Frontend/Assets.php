@@ -46,6 +46,7 @@ class Assets {
 
             wp_register_style( 'print', EAZYDOCS_ASSETS . '/css/frontend/print.css' );
             wp_enqueue_style( 'rvfs', EAZYDOCS_VEND . '/font-size/css/rvfs.css' );
+	        wp_enqueue_style( 'ezd-theme', EAZYDOCS_ASSETS . '/css/frontend/ezd-theme.css' );
 
             // Scripts
             wp_enqueue_script( 'rv-jquery-fontsize', EAZYDOCS_VEND . '/font-size/js/rv-jquery-fontsize-2.0.3.js' );

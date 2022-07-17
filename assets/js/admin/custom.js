@@ -178,6 +178,7 @@
                         '<label for="ezd_docs_sidebar">Select Layout</label>' +
                         '<select class="widefat" id="ezd_docs_select" name="ezd_onepage_select">' +
                         '<option value="default-layout">Default Layout</option>' +
+                        '<option value="classic-onepage-layout">Classic OnePage Doc</option>' +
                         '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>' +
                         '</select>' +
                         '<div class="ezd_content_btn_wrap">' +

@@ -885,6 +885,35 @@ CSF::createSection( $prefix, array(
 	)
 ) );
 
+// OnePage Doc
+CSF::createSection( $prefix, array(
+	'id'     => 'ezd-onepage-docs',
+	'title'  => esc_html__( 'OnePage Doc', 'eazydocs' ),
+	'class'    => 'eazydocs-pro-notice',
+	'icon'   => 'fas fa-plus-circle',
+	'fields' => [
+		array(
+			'id'       => 'onepage_layout',
+			'type'     => 'select',
+			'title'    => esc_html__( 'Layout', 'eazydocs' ),
+			'options'  => [
+				'main'              => __( 'Classic OnePage Doc', 'eazydocs' ),
+				'fullscreen-layout' => __( 'Fullscreen OnePage Doc', 'eazydocs' ),
+			],
+			'default'  => 'main',
+		),
+		array(
+			'id'         => 'onepage_numbering',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Numbering', 'eazydocs-pro' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'text_width' => 70,
+			'default'    => false
+		)
+	]
+) );
+
 // Select docs page
 $options      = get_option( 'eazydocs_settings' );
 $doc_id       = $options['docs-slug'] ?? '';

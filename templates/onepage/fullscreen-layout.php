@@ -3,6 +3,11 @@ get_header();
 wp_enqueue_script('eazydocs-onepage');
 
 $opt                = get_option( 'eazydocs_settings' );
+$onepage_number     = $opt['onepage_numbering'] ?? '';
+$is_number = '';
+if( $onepage_number == 1 ){
+    $is_number = 'numbering_show';
+}
 global $post;
 $post_slug          = $post->post_name;
 $post_id            = get_page_by_path($post_slug, OBJECT, array( 'docs' ) );
@@ -32,7 +37,7 @@ $children           = wp_list_pages( array(
 						if ( $children ) :
 							?>
                             <nav class="scroll op-docs-sidebar">
-                                <ul class="list-unstyled nav-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
+                                <ul class="<?php echo esc_attr($is_number); ?> list-unstyled nav-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
 									<?php
 									echo wp_list_pages(array(
 										'title_li' => '',

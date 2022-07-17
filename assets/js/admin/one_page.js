@@ -22,6 +22,7 @@
                             '<label for="ezd_docs_sidebar">Select Layout</label>' +
                             '<select class="widefat" id="ezd_docs_layout_select" name="ezd_onepage_select">' +
                             '<option value="default-layout">Default Layout</option>' +
+                            '<option value="classic-onepage-layout">Classic OnePage Doc</option>' +
                             '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>' +
                             '</select>' +
                             '<div class="ezd_content_btn_wrap">' +
@@ -158,9 +159,6 @@
                         $('.ezd_shortcode_content_wrap_right').show();
                     }
                 });
-
-
-
             })
         }
 
@@ -194,14 +192,17 @@
                 let doc_layout_opt;
                 if (doc_layout == 'default-layout') {
                     doc_layout_opt = '<option value="default-layout" selected>Default Layout </option>';
+                    doc_layout_opt += '<option value="classic-onepage-layout">Classic OnePage Doc</option>';
                     doc_layout_opt += '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>';
-                } else {
-                    doc_layout_opt = '<option value="default-layout">Default Layout</option>';
+                } else if (doc_layout == 'classic-onepage-layout') {
+                    doc_layout_opt = '<option value="classic-onepage-layout" selected>Classic OnePage Doc</option>';
+                    doc_layout_opt += '<option value="default-layout">Default Layout</option>';
+                    doc_layout_opt += '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>';
+                }else{
+                    doc_layout_opt = '<option value="classic-onepage-layout">Classic OnePage Doc</option>';
+                    doc_layout_opt += '<option value="default-layout">Default Layout</option>';
                     doc_layout_opt += '<option value="fullscreen-layout" selected>Fullscreen OnePage Doc</option>';
                 }
-
-
-
 
                 // LEFT TAB CONTNET
                 //Content Type
@@ -223,7 +224,6 @@
                     content_type_opt += '<input type="radio" id="string_data" name="ezd_docs_content_type" value="string_data"><label for="string_data">Normal Content</label>'
                 }
 
-
                 let widget_enable = '';
               if( content_type == 'widget_data' ){
                   widget_enable = '<div class="ezd_widget_content_wrap_edit left"><label for="ezd-shortcode-edit">Select a sidebar (Optional) </label><select name="ezd_sidebar_select_datas" id="left_side_sidebar_edit" class="widefat">' + eazydocs_local_object.one_page_doc_sidebar_edit + '</select></div>'
@@ -233,59 +233,34 @@
                   widget_enable += '<div class="ezd_widget_content_wrap_edit left"><label for="ezd-shortcode">Select a sidebar (Optional) </label><select name="ezd_sidebar_select_data" id="left_side_sidebar_edit" class="widefat">' + eazydocs_local_object.one_page_doc_sidebar_edit + '</select></div>'
                 }
 
-
-
-
-
-
                 // RIGHT TAB CONTNET
                 //Content Type
                 let content_type_right_opt;
                 if (content_type_right == 'string_data_right') {
                     content_type_right_opt = '<input type="radio" id="shortcode_right" name="ezd_docs_content_type_right" value="shortcode_right"><label for="shortcode_right">Shortcode</label>'
-
                     content_type_right_opt +=  '<input type="radio" id="widget_data_right" name="ezd_docs_content_type_right" value="widget_data_right"><label for="widget_data_right">Widget Content</label>'
-
                     content_type_right_opt += '<input type="radio" checked id="string_data_right" name="ezd_docs_content_type_right" value="string_data_right" checked><label for="string_data_right">Normal Content</label>'
 
-
                 } else if(content_type_right == 'shortcode_right') {
-
                     content_type_right_opt = '<input type="radio" id="shortcode_right" name="ezd_docs_content_type_right" value="shortcode_right" checked><label for="shortcode_right">Shortcode</label>'
-
                     content_type_right_opt +=  '<input type="radio" id="widget_data_right" name="ezd_docs_content_type_right" value="widget_data_right"><label for="widget_data_right">Widget Content</label>'
-
                     content_type_right_opt += '<input type="radio" id="string_data_right" name="ezd_docs_content_type_right" value="string_data_right"><label for="string_data_right">Normal Content</label>'
 
                 }else{
                     content_type_right_opt = '<input type="radio" id="shortcode_right" name="ezd_docs_content_type_right" value="shortcode_right"><label for="shortcode_right">Shortcode</label>'
-
                     content_type_right_opt += '<input type="radio" id="widget_data_right" name="ezd_docs_content_type_right" value="widget_data_right" checked><label for="widget_data_right">Widget Content</label>'
-
                     content_type_right_opt += '<input type="radio" id="string_data_right" name="ezd_docs_content_type_right" value="string_data_right"><label for="string_data_right">Normal Content</label>'
                 }
 
-
-
                 let widget_enable_right = '';
               if( content_type_right == 'widget_data_right' ){
-
                   widget_enable_right = '<div class="ezd_widget_content_wrap_edit right"><label for="right_side_sidebar">Select a sidebar (Optional) </label><select name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">' + eazydocs_local_object.one_page_doc_sidebar_edit + '</select></div>'
                   widget_enable_right += '<div class="ezd_shortcode_content_wrap_edits right"><label for="ezd-shortcode">Content (Optional) </label><textarea name="ezd-shortcode-content-right" id="ezd-shortcode-content-right" rows="5" class="widefat">' + edit_content_right + '</textarea></div>'
 
                 }else{
-
                   widget_enable_right  = '<div class="ezd_shortcode_content_wrap_edits right"><label for="ezd-shortcode">Content (Optional) </label><textarea name="ezd-shortcode-content-right" id="ezd-shortcode-content-right" rows="5" class="widefat">' + edit_content_right + '</textarea></div>'
-
                   widget_enable_right += '<div class="ezd_widget_content_wrap_edit right"><label for="right_side_sidebar">Select a sidebar (Optional) </label><select name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">' + eazydocs_local_object.one_page_doc_sidebar_edit + '</select></div>'
-
-
-
                 }
-
-
-
-
 
                 // redirect url when editing
                 let href = eazydocs_local_object.edit_one_page_url;
@@ -311,26 +286,18 @@
                             '<div class="ezd_left_content">' +
                             '<div class="ezd_docs_content_type_wrap">' +
                             '<label for="ezd_docs_content_type">Content Type:</label>' +
-
                             content_type_opt +
-
                             '</div>' +
-
                             widget_enable
                              +
                             '</div>' +
 
-
                             '<div class="ezd_right_content">' +
                             '<div class="ezd_docs_content_type_wrap">' +
                             '<label for="ezd_docs_content_type">Content Type:</label>' +
-
                             content_type_right_opt +
-
                             '</div>' +
-
                             widget_enable_right
-
                             +
                             '</div>' +
                             '</div>',
@@ -347,14 +314,10 @@
                                 '&edit_content=' + encoded + '&get_left_sidebar=' + document.getElementById('left_side_sidebar_edit').value +
                                 '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + document.getElementById('ezd-shortcode-content-right').value +
                                 '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value
-
-
                         }
 
                     })
                 })()
-
-
 
                 // LEFT CONTENT [ ACTIVE ]
                 if($('#shortcode').is(':checked')){
@@ -444,10 +407,6 @@
                     });
                 }
 
-
-
-
-
                 $('.ezd_shortcode_content_wrap_edit').hide();
 
                 $('.ezd_content_btn_wrap .left_btn_link').addClass('ezd_left_active');
@@ -489,11 +448,6 @@
                         $('.ezd_shortcode_content_wrap_edit').show();
                     }
                 });
-
-
-
-
-
 
             })
         }
