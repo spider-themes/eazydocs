@@ -201,7 +201,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Frontend\Frontend();
 				new eazyDocs\Frontend\Assets();
 				new eazyDocs\Frontend\Shortcode();
-				new eazyDocs\Frontend\Mailer();
 			}
 		}
 

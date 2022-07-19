@@ -21,22 +21,42 @@
         anchors.add('.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4');
 
         /** === Contact Form Ajax === **/
-        $(document).on('submit', '#edocs-contact-form', function (e) {
+        $('form#edocs-contact-form').on('submit', function(e){
             e.preventDefault();
-            var thisForm = this;
+            let that    = $(this),
+            url         = that.attr('action'),
+            type        = that.attr('method');
+            let name    = $('#name').val();
+            let email   = $('#email').val();
+            let subject = $('#subject').val();
+            let doc_id  = $('#doc_id').val();
+            let message = $('#massage').val();
             $.ajax({
                 url: eazydocs_local_object.ajaxurl,
-                data: $(thisForm).serialize(),
-                action: 'eazydocs_feedback_email',
-                type: "POST",
-                success:function(data){
-                    $(thisForm).append('<p>'+data.message+'</p>');
+                type:"post",
+                dataType:'text',
+                data: {
+                    action:'eazydocs_feedback_email',
+                    name:name,
+                    email:email,
+                    subject:subject,
+                    doc_id:doc_id,
+                    message:message
                 },
-                error:function (){
-                    $(thisForm).append('<p> Ohh no! Something went wrong!! </p>');
+                beforeSend: function(){
+                    $(".eazydocs-form-result").html('<div class="spinner-border spinner-border-sm" role="status">\n' +
+                        '<span class="visually-hidden">Loading...</span>\n' +
+                        '</div>');
+                },
+                success: function(response){
+                    $(".eazydocs-form-result").html('Your message has been sent successfully.');
+                },
+                error: function(){
+                    $(".eazydocs-form-result").html('Oops! Something wrong, try again!');
                 }
-            })
-        })
+           });
+           $('form#edocs-contact-form')[0].reset();
+      });
 
         /** === Feedback Handler === **/
         $('.vote-link-wrap a.h_btn').on('click', function (e) {

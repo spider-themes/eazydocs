@@ -208,7 +208,6 @@
                         '</div>' +
                         '</div>' +
 
-
                         '<div class="ezd_right_content">' +
                         '<div class="ezd_docs_content_type_wrap">' +
                         '<label for="ezd_docs_content_type">Content Type:</label>' +
@@ -235,10 +234,15 @@
                     showCancelButton: true,
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        encoded = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content').value))
+                        encoded = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content').value));
+						
+                        encoded_right = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content-right').value));
 
                         window.location.href = href + '&layout=' + document.getElementById('ezd_docs_select').value + '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value + '&left_side_sidebar=' + document.getElementById('left_side_sidebar').value + '&shortcode_content=' + encoded
-                        + '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + document.getElementById('ezd-shortcode-content-right').value +
+						
+						
+                        + '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + encoded_right +
+						
                             '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value
                     }
                 });

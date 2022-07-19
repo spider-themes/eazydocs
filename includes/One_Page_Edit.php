@@ -22,22 +22,26 @@ class One_Page_Edit {
 
 			$content_type_right         = $_GET['shortcode_right'] ?? '';
 
+			$page_content_rights = '';
+			$page_content_right = '';
+			
 			if( $content_type_right == 'widget_data_right'){
 				$shortcode_content_right   = $_GET['right_side_sidebar'] ?? '';
-			}else{
-				$shortcode_content_right   = $_GET['shortcode_content_right'] ?? '';
+			}else{				
+				$page_content_rights  	 = $_GET['shortcode_content_right'] ?? '';
+				$page_content_right  	 = substr( chrEncode( $page_content_rights ), 1 );
+				$shortcode_content_right = substr_replace( $page_content_right, "", -1);
 			}
+			
+			$page_contents 		= '';
+			$page_content  		= '';
 
-
-			$page_contents = '';
-			$page_content  = '';
-
-			if ( $content_type == 'widget_data' ) {
-				$page_content = $_GET['get_left_sidebar'] ?? '';
+			if ( $content_type 	== 'widget_data' ) {
+				$page_content 	= $_GET['get_left_sidebar'] ?? '';
 			} else {
-				$page_contents = $_GET['edit_content'] ?? '';
-				$page_content  = substr( chrEncode( $page_contents ), 1 );
-				$page_content  = substr_replace( $page_content, "", - 1 );
+				$page_contents 	= $_GET['edit_content'] ?? '';
+				$page_content  	= substr( chrEncode( $page_contents ), 1 );
+				$page_content  	= substr_replace( $page_content, "", - 1 );
 			}
 
 			$edit_data = array(

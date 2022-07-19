@@ -19,10 +19,14 @@ class One_Page {
 			$left_side_sidebar    = $_GET['left_side_sidebar'] ?? '';
 			$content_type         = $_GET['shortcode_right'] ?? '';
 
+			$page_contents_right = $_GET['shortcode_content_right'] ?? '';
+			$page_contents_right = esc_textarea( $page_contents_right );
+
 			if( $content_type == 'widget_data_right'){
 				$shortcode_content_right   = $_GET['right_side_sidebar'] ?? '';
 			}else{
-				$shortcode_content_right   = $_GET['shortcode_content_right'] ?? '';
+				$page_content_right      = substr( chrEncode( $page_contents_right ), 6 );
+				$shortcode_content_right = substr_replace( $page_content_right, "", - 6 );
 			}
 
 			$page_title = $_GET['single_doc_title'] ?? '';

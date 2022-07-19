@@ -39,10 +39,13 @@ $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedbac
                         <textarea name="message" id="massage" placeholder="<?php esc_attr_e( 'Message', 'eazydocs' ); ?>" required></textarea>
                     </div>
                     <div class="form-group col-md-12">
-                        <input type="hidden" name="doc_id" value="<?php the_ID(); ?>">
+                        <input type="hidden" name="doc_id" id="doc_id" value="<?php the_ID(); ?>">
                         <button type="submit" name="eazydoc_feedback_submit" class="btn action_btn">
 							<?php esc_html_e( 'Send', 'eazydocs' ); ?>
                         </button>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="eazydocs-form-result"></div>
                     </div>
                 </div>
             </form>

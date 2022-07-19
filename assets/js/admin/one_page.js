@@ -307,12 +307,15 @@
                     }).then((result) => {
 
                         if (result.isConfirmed) {
-                            encoded = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content-left').value))
+                            encoded = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content-left').value));
+							
+                            encoded_right = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content-right').value));
 
                             window.location.href = href + '&doc_id=' + edit_doc_id + '&layout=' + document.getElementById('ezd_docs_select').value +
                                 '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value +
                                 '&edit_content=' + encoded + '&get_left_sidebar=' + document.getElementById('left_side_sidebar_edit').value +
-                                '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + document.getElementById('ezd-shortcode-content-right').value +
+                                '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + encoded_right +
+								
                                 '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value
                         }
 
