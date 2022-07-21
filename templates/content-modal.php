@@ -8,9 +8,8 @@ if ( ! is_user_logged_in() ) {
 }
 $options        = get_option( 'eazydocs_settings' );
 $title_text     = __( 'How can we help?', 'eazydocs' );
-$description    = __( 'A premium WordPress theme with integrated Knowledge Base, providing 24/7 community based support.', 'eazydocs' );
 $title          = ! empty ( $options['feedback-form-title'] ) ? $options['feedback-form-title'] : $title_text;
-$desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedback-form-desc'] : $description;
+$desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedback-form-desc'] : '';
 ?>
 
 <div class="modal fade" id="eazydocs_feedback" tabindex="-3" role="dialog" aria-hidden="false">

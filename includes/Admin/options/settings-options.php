@@ -558,7 +558,6 @@ CSF::createSection( $prefix, array(
 			'id'         => 'feedback-form-desc',
 			'type'       => 'textarea',
 			'title'      => esc_html__( 'Form Subtitle', 'eazydocs' ),
-			'default'    => esc_html__( 'A premium WordPress theme with integrated Knowledge Base, providing 24/7 community based support', 'eazydocs' ),
 			'dependency' => array(
 				array( 'docs-feedback', '==', 'true' ),
 				array( 'message-feedback', '==', 'true' ),

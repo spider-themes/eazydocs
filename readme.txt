@@ -99,8 +99,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.2.9 (15 July 2022) =
+= v1.2.9 (21 July 2022) =
+New: Full Screen OnePage Doc layout added (PRO feature, unlocked with Docy and Docly themes)
+New: Left and Right content insert boxes added for OnePage doc layouts. Now, you can insert content at the left, right side of the OnePage docs (PRO feature, unlocked with Docy and Docly themes)
 Tweaked: Child docs design improved in the Doc Section page
+Tweaked: Right sidebar was contents are now scrollable.
+Tweaked: Deleted duplicate article listing on the Doc Section page.
+Fixed: Feedback Email was not sending
 Fixed: Filter form and Left Sidebar Toggle Switcher Show/Hide option was not working
 
 = v1.2.8 (02 July 2022) =
