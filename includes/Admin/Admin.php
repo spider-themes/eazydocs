@@ -135,7 +135,15 @@ class Admin {
 		}else{
 			add_submenu_page( 'eazydocs', __( 'OnePage Doc', 'eazydocs' ), __( 'OnePage Doc', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [$this, 'ezd_onepage_presents'] );
 		}
-		add_submenu_page( 'eazydocs', __( 'Tags', 'eazydocs' ), __( 'Tags', 'eazydocs' ), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
+
+		if ( class_exists('EazyDocsPro')) {
+			do_action('ezd_pro_admin_menu');
+		}else{
+			add_submenu_page( 'eazydocs', __( 'Users Feedback', 'eazydocs' ), __( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [$this, 'ezd_onepage_presents'] );
+		}
+		
+		add_submenu_page( 'eazydocs', __( 'Tags', 'eazydocs' ), __( 'Tags', 'eazydocs' ), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
+		
 	}
 
 	/**
@@ -273,4 +281,6 @@ class Admin {
 		}
 		wp_send_json_error( array( 'message' => 'Update fail!' ) );
 	}
+	
+	
 }

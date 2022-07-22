@@ -117,7 +117,6 @@
             })
         }
 
-
         e(".header-notify-icon").click(function () {
             var t = e(this).parents(".easydocs-notification").children(".easydocs-dropdown").is(":hidden");
             e(".easydocs-notification .easydocs-dropdown").hide();

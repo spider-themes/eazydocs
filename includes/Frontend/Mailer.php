@@ -14,6 +14,9 @@
  
 		$author  = ! empty ( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
 		$subject = ! empty ( $_POST['subject'] ) ? sanitize_text_field( $_POST['subject'] ) : '';
+
+		$feedback_subject = ! empty ( $_POST['subject'] ) ? sanitize_text_field( $_POST['subject'] ) : '';
+
 		$email   = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
 		$message = ! empty ( $_POST['message'] ) ? sanitize_text_field( $_POST['message'] ) : '';
 		$doc_id  = ! empty ( $_POST['doc_id'] ) ? intval( $_POST['doc_id'] ) : 0;
@@ -62,6 +65,21 @@
 		$email_body      = apply_filters( 'eazydocs_email_feedback_body', $email_body, $doc_id, $document, $_POST );
 		$message_headers = apply_filters( 'eazydocs_email_feedback_headers', $message_headers, $doc_id, $document, $_POST );
 		wp_mail( $email_to, wp_specialchars_decode( $subject ), $email_body, $message_headers );
-		wp_die();
-	}
+
+		$args = [
+			'post_type' => 'ezd_feedback',
+			'post_title'=> $feedback_subject .' - '. $author,
+			'post_content'	=> $message,
+			'post_status'	=> 'publish'
+			
+		];
+		$feedback = wp_insert_post($args, $wp_error = '' );
+			if($feedback != 0 ){
+				update_post_meta($feedback, 'ezd_feedback_id', $doc_id);
+				update_post_meta($feedback, 'ezd_feedback_name', $author);
+				update_post_meta($feedback, 'ezd_feedback_email', $email);
+				update_post_meta($feedback, 'ezd_feedback_subject', $feedback_subject);
+			}
+			wp_die();
+		}
 	}

@@ -587,14 +587,14 @@ function ezd_onepage_docs() {
 <?php }
 
 add_action( 'save_post', function ( $post_id ) {
+	// Doc Options
 	$std_comment_id = $_POST['ezd_doc_layout'] ?? '';
 	$ezd_doc_content_type = $_POST['ezd_doc_content_type'] ?? '';
-
 	$ezd_doc_content_type_right = $_POST['ezd_doc_content_type_right'] ?? '';
 	$ezd_doc_content_box_right = $_POST['ezd_doc_content_box_right'] ?? '';
-
 	update_post_meta( $post_id, 'ezd_doc_layout', $std_comment_id );
 	update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
 	update_post_meta( $post_id, 'ezd_doc_content_type_right', $ezd_doc_content_type_right );
 	update_post_meta( $post_id, 'ezd_doc_content_box_right', $ezd_doc_content_box_right );
 } );
+

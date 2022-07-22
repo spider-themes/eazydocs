@@ -271,3 +271,150 @@ select#ezd_docs_layout {
     font-weight: 700;
     letter-spacing: 1px;
 }
+/* Feedback css */
+
+.ezd-feedback-wrap .ezd-feedback-item {
+    display: block;
+    margin-bottom: 15px;
+    background-color: #fff;
+    padding: 10px 35px 10px 15px;
+    border-radius: 5px;
+    position: relative;
+    transition: .3s all;
+    border: 1px solid #f2eded;
+}
+.ezd-feedback-wrap .ezd-feedback-item::before {
+    content: '';
+    display: block;
+    clear: both;
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background-color: #D83439;
+    border-bottom-left-radius: 10px;
+    top: 0;
+    border-top-left-radius: 10px;
+}
+.ezd-feedback-wrap .ezd-feedback-item:hover{
+    background: #f9f9f9;
+}
+.ezd-feedback-wrap .ezd-feedback-item h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 15px;
+}
+.ezd-feedback-wrap .ezd-feedback-item h2::first-letter{
+    text-transform: capitalize;
+}
+.ezd-feedback-wrap .ezd-feedback-item h2 a {
+    text-decoration: none;
+    color: #2782c9;
+}
+.ezd-feedback-wrap .ezd-feedback-item h2 a:hover{
+    color:black
+}
+.ezd-feedback-wrap .ezd-feedback-item .ezd-meta-mail, .ezd-feedback-wrap .ezd-feedback-item .ezd-meta-date-time {
+    font-size: 14px;
+    color: black;
+    font-weight: 400;
+    margin: 6px 0;
+    display: block;
+    opacity: .8;
+}
+.ezd-feedback-wrap .ezd-feedback-item .ezd-meta-mail{
+    opacity: 1;
+}
+.ezd-feedback-wrap .ezd-feedback-item span.dashicons{
+    font-size: 18px;
+}
+.ezd-feedback-wrap .ezd-feedback-item .ezd-meta-mail span.dashicons{
+color: #0062ae;
+}
+.ezd-feedback-wrap .ezd-feedback-item .ezd-meta-mail a {
+    text-decoration: none;
+    color: black;
+    opacity: .98;
+}
+.ezd-feedback-wrap .ezd-feedback-item p {
+    font-size: 15px;
+    font-weight: 400;
+    color: black;
+    opacity: .8;
+    margin: 10px 0;
+    font-style: normal;
+}
+.ezd-feedback-wrap .ezd-feedback-item p::first-letter {
+    text-transform: uppercase;
+}
+
+.ezd-head-options-wrap {
+    column-count: 2;
+    display: flex;
+    margin: 20px 0;
+}
+
+.ezd-head-options-wrap div {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+.ezd-head-options-wrap div.ezd-head-opt-search {
+    text-align: right;
+}
+.ezd-head-opt-btn a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: black;
+    min-width: 73px;
+    display: inline-block;
+    position: relative;
+}
+.ezd-head-opt-btn a.active{
+    color:#2782c9;
+}
+.ezd-head-opt-btn a::after {
+    content: '|';
+    display: block;
+    clear: both;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    bottom: 0;
+    width: 0px;
+    font-size: 13px;
+    color: gray;
+}
+.ezd-head-opt-btn a:last-child{
+    padding-left: 15px;
+}
+.ezd-head-opt-btn a:last-child::after{
+    display: none;
+}
+.ezd-head-opt-btn a span {
+    color: #595555;
+    font-size: 14px;
+}
+.ezd-feedback-btn {
+    width: 20px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+.ezd-feedback-btn a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    opacity: .5;
+    margin-bottom: 6px;
+}
+.ezd-feedback-btn a:hover {
+    opacity: 1;
+}
+.ezd-head-opt-btn a:focus,
+.ezd-feedback-btn a:focus {
+    outline: none;
+    box-shadow: none;
+}
