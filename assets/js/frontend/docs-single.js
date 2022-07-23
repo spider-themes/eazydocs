@@ -201,7 +201,7 @@
         if ( $('#doc_filter').length ) {
             $('#doc_filter').keyup(function () {
                 var value = $(this).val().toLowerCase();
-                $('.nav-sidebar .nav-item').each(function () {
+                $('.nav-sidebar .page_item').each(function () {
                     var lcval = $(this).text().toLowerCase();
                     if (lcval.indexOf(value) > -1) {
                         $(this).show(500);
@@ -212,7 +212,7 @@
             });
 
             document.getElementById("doc_filter").addEventListener("search", function (event) {
-                $(".nav-sidebar .nav-item").show(300);
+                $(".nav-sidebar .page_item").show(300);
             });
         }
 
@@ -247,8 +247,6 @@
             })
         }
         docLeftSidebarToggle();
-
-
 
         //*=============menu sticky js =============*//
         var $window = $(window);

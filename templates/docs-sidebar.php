@@ -23,6 +23,8 @@ $children       = wp_list_pages( array(
 
 $options = get_option( 'eazydocs_settings' );
 $sidebar_search = $options['search_visibility'] ?? '1';
+$content_layout = $options['docs_content_layout'] ?? '1';
+
 ?>
 
 <div class="col-xl-3 col-lg-3 doc_mobile_menu left-column sticky-lg-top">
@@ -44,11 +46,19 @@ $sidebar_search = $options['search_visibility'] ?? '1';
             </div>
             <?php
         endif;
- 
+
 		if ( $children ) :
+			$catgory_layout = '';
+			if( $content_layout == 'category_base' && class_exists('EazyDocsPro')) {
+				$doc_walker = '';
+				$catgory_layout = 'content-layout-category';
+			}else{
+				$doc_walker = $walker;
+			}
 			?>
+
             <div class="scroll">
-                <ul class="list-unstyled nav-sidebar left-sidebar-results">
+                <ul class="list-unstyled nav-sidebar left-sidebar-results <?php echo esc_attr($catgory_layout); ?>">
 					<?php
 					echo wp_list_pages( array(
 						'title_li'  => '',
@@ -56,12 +66,12 @@ $sidebar_search = $options['search_visibility'] ?? '1';
 						'child_of'  => $parent,
 						'echo'      => false,
 						'post_type' => 'docs',
-						'walker'    => $walker,
+						'walker'    => $doc_walker,
 					) );
 					?>
                 </ul>
             </div>
-		    <?php
+			<?php
 		endif;
 		?>
     </aside>

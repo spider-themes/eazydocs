@@ -186,6 +186,18 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'      => 'docs_content_layout',
+			'type'    => 'select',
+			'title'   => esc_html__( 'Content Layout', 'eazydocs-pro' ),
+			'options' => [
+				'category_base'     => esc_html__( 'Category Layout', 'eazydocs-pro' ),
+				'badge_base' 		=> esc_html__( 'Badge Layout', 'eazydocs-pro' ),
+			],
+			'default' => 'badge_base',
+            'class'   => 'eazydocs-pro-notice',
+		),
+
+		array(
 			'id'      => 'docs_page_width',
 			'type'    => 'select',
 			'title'   => esc_html__( 'Page Width', 'eazydocs' ),
