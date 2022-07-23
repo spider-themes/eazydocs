@@ -44,7 +44,7 @@ $sidebar_search = $options['search_visibility'] ?? '1';
             </div>
             <?php
         endif;
-
+ 
 		if ( $children ) :
 			?>
             <div class="scroll">

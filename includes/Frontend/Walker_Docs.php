@@ -148,8 +148,18 @@ class Walker_Docs extends Walker_Page {
             $thumb = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
         }
 
+        $ezd_badge = '';
+        if ( class_exists('EazyDocsPro')) {
+            $badge = get_the_terms($page->ID, 'doc_badge');
+            if( is_array( $badge ) ){
+                foreach( $badge as $badges ){
+                    $ezd_badge = '<span class="ezd-doc-badge">'.$badges->name.'</span>';
+                }
+            }
+        }
+
         $args['link_before'] = empty( $args['link_before'] ) ? $thumb : $args['link_before'];
-        $args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
+        $args['link_after']  = $ezd_badge;
 
         $atts                = array();
         $atts['href']        = get_permalink( $page->ID );
