@@ -1010,6 +1010,7 @@ CSF::createSection( $prefix, array(
 			'id'       => 'docs-write-access',
 			'type'     => 'select',
 			'title'    => esc_html__( 'Who Can View Docs?', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Allow users to view Docs.', 'eazydocs-pro' ),
 			'options'  => [
 				'administrator' => __( 'Administrator', 'eazydocs' ),
 				'editor'        => __( 'Editor', 'eazydocs' ),
@@ -1027,6 +1028,7 @@ CSF::createSection( $prefix, array(
 			'id'       => 'settings-edit-access',
 			'type'     => 'select',
 			'title'    => esc_html__( 'Who Can Edit Settings?', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Allow users to update options from settings.', 'eazydocs-pro' ),
 			'options'  => [
 				'administrator' => __( 'Administrator', 'eazydocs' ),
 				'editor'        => __( 'Editor', 'eazydocs' ),
@@ -1042,6 +1044,7 @@ CSF::createSection( $prefix, array(
 			'id'       => 'customizer-edit-access',
 			'type'     => 'select',
 			'title'    => esc_html__( 'Who Can Edit Customizer?', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Allow users to customize Docs from customizer settings.', 'eazydocs-pro' ),
 			'options'  => [
 				'administrator' => __( 'Administrator', 'eazydocs' ),
 				'editor'        => __( 'Editor', 'eazydocs' ),

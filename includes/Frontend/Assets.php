@@ -44,12 +44,11 @@ class Assets {
                 )
             );
 
-            wp_register_style( 'print', EAZYDOCS_ASSETS . '/css/frontend/print.css' );
+            wp_enqueue_style( 'print', EAZYDOCS_ASSETS . '/css/frontend/print.css' );
             wp_enqueue_style( 'rvfs', EAZYDOCS_VEND . '/font-size/css/rvfs.css' );
 	        wp_enqueue_style( 'ezd-onepage', EAZYDOCS_ASSETS . '/css/onepage.css' );
             
             // Scripts
-            wp_enqueue_script( 'klarna',  'https://x.klarnacdn.net/kp/lib/v1/api.js' );
             wp_enqueue_script( 'rv-jquery-fontsize', EAZYDOCS_VEND . '/font-size/js/rv-jquery-fontsize-2.0.3.js' );
             wp_enqueue_script( 'printThis', EAZYDOCS_ASSETS . '/js/frontend/printThis.js' );
 

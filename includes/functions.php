@@ -209,6 +209,10 @@ if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
             <meta itemprop="position" content="' . $position . '" />
         </li>';
 	}
+	function eazydocs_get_breadcrumb_root_title( $label ) {
+		return '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+             '. esc_html( $label ) . '</li>';
+	}
 }
 
 if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
@@ -275,6 +279,121 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 
 		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
 	}
+}
+
+/**
+ * Doc Search Breadcrumbs
+ */
+
+if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
+	/**
+	 * Docs Search breadcrumb.
+	 *
+	 * @return void
+	 */
+	function eazydocs_search_breadcrumbs() {
+		global $post;
+	
+		$html = '';
+		$args = apply_filters( 'eazydocs_breadcrumbs', [
+			'delimiter' => '', 
+			'before'    => '<li class="breadcrumb-item active">',
+			'after'     => '</li>',
+		] );
+
+		$breadcrumb_position = 1;
+
+		$html .= '<ol class="breadcrumb eazydocs-search-wrapper" itemscope itemtype="http://schema.org/BreadcrumbList">';
+		$html .= $args['delimiter'];
+
+		$docs_page_title = eazydocs_get_option( 'docs-page-title', 'eazydocs_settings' );
+		$docs_page_title = ! empty ( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docs', 'eazydocs' );
+		$docs_home = eazydocs_get_option( 'docs-slug', 'eazydocs_settings' );
+
+		if ( $docs_home ) {
+			++ $breadcrumb_position;
+			$html .= $args['delimiter'];
+		}
+
+		if ( 'docs' == $post->post_type && $post->post_parent ) {
+			$parent_id   = $post->post_parent;
+			$breadcrumbs = [];
+
+			while ( $parent_id ) {
+				++ $breadcrumb_position;
+				$page          = get_post( $parent_id );
+				$breadcrumbs[] = eazydocs_get_breadcrumb_item( get_the_title( $page->ID ), get_permalink( $page->ID ), $breadcrumb_position );
+				$parent_id     = $page->post_parent;
+			}
+
+			$breadcrumbs = array_reverse( $breadcrumbs );
+
+			for ( $i = 0; $i < 2; ++ $i ) {
+				$html .= $breadcrumbs[ $i ];
+			}
+		}
+
+		$html .= ' ' . $args['before'] . get_the_title() . $args['after'];
+		$html .= '</ol>';
+		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
+	}
+}
+
+if( ! function_exists('docs_root_title') ){
+	
+	/**
+	 * Docs Search breadcrumb.
+	 *
+	 * @return void
+	 */
+	function docs_root_title() {
+		global $post;
+		$home_text  = eazydocs_get_option( 'breadcrumb-home-text', 'eazydocs_settings' );
+		$front_page = ! empty ( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs-pro' );
+
+		$html = '';
+		$args = apply_filters( 'eazydocs_breadcrumbs', [
+			'delimiter' => '',
+			'before'    => '<li class="breadcrumb-item active">',
+			'after'     => '</li>',
+		] );
+
+		$breadcrumb_position = 1; 
+
+		$html .= '<ol class="breadcrumb eazydocs-breadcrumb-root-title '. $post->post_parent.'" itemscope itemtype="http://schema.org/BreadcrumbList">';
+		$html .= $args['delimiter'];
+
+
+		$docs_page_title = eazydocs_get_option( 'docs-page-title', 'eazydocs_settings' );
+		$docs_page_title = ! empty ( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docs', 'eazydocs' );
+
+		if ( 'docs' == $post->post_type && $post->post_parent ) {
+			$parent_id   = $post->post_parent;
+			$breadcrumbs = [];
+
+			while ( $parent_id ) {
+				++ $breadcrumb_position;
+
+				$page          = get_post( $parent_id );
+				$breadcrumbs[] = eazydocs_get_breadcrumb_root_title( get_the_title( $page->ID ) );
+				$parent_id     = $page->post_parent;
+			}
+
+			$breadcrumbs = array_reverse( $breadcrumbs );
+
+			for ( $i = 0; $i < 1; ++ $i ) {
+				$html .= $breadcrumbs[ $i ];
+				$html .= ' ' . $args['delimiter'] . ' ';
+			}
+		}
+
+		$html .= ' ' . $args['before'] . get_the_title() . $args['after'];
+
+		$html .= '</ol>';
+
+		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
+	}
+	 
 }
 
 /**
@@ -598,3 +717,4 @@ add_action( 'save_post', function ( $post_id ) {
 	update_post_meta( $post_id, 'ezd_doc_content_box_right', $ezd_doc_content_box_right );
 } );
 
+add_image_size('ezd_searrch_thumb16x16','16','16', true);

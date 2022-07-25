@@ -9,8 +9,8 @@ class Ajax {
         add_action( 'wp_ajax_eazydocs_handle_feedback', [ $this, 'handle_feedback' ] );
         add_action( 'wp_ajax_nopriv_eazydocs_handle_feedback', [ $this, 'handle_feedback' ] );
         // Search Results
-        add_action( 'wp_ajax_eazydocs_search_results', [ $this, 'search_data_fetch' ] );
-        add_action( 'wp_ajax_nopriv_eazydocs_search_results', [ $this, 'search_data_fetch' ] );
+        add_action( 'wp_ajax_eazydocs_search_results', [ $this, 'eazydocs_search_results' ] );
+        add_action( 'wp_ajax_nopriv_eazydocs_search_results', [ $this, 'eazydocs_search_results' ] );
         // Load Doc single page
         add_action( 'wp_ajax_docs_single_content', [ $this, 'docs_single_content' ] );
         add_action( 'wp_ajax_nopriv_docs_single_content', [ $this, 'docs_single_content' ] );
@@ -62,76 +62,58 @@ class Ajax {
      * Ajax Search Results
      * @return void
      */
-    function search_data_fetch() {
-        $the_query = new WP_Query([
-            'posts_per_page' => 5,
-            'post_type'      => 'docs',
-            'post_parent'    => 0,
-            'fields'         => 'ids',
-        ]);
-        $unique_parents          = array();
-        $unique_sections         = array();
+    function eazydocs_search_results() {
+        $posts = new WP_Query( [
+                'post_type'                 => 'docs',
+                'feedback_search_title'     => $_POST['keyword'] ?? ''
+            ]
+        );
+      
+        if ( $posts->have_posts() ): 
+         
+            while ( $posts->have_posts() ) : $posts->the_post();
+            //echo $parent_title = get_the_title( wp_get_post_parent_id( get_the_ID() ) );
 
-        if ( isset( $_GET['wpml_lang'] ) ) {
-            do_action( 'wpml_switch_language', $_GET['wpml_lang'] );
-        }
+            docs_root_title();
+            
+            //echo ;
+                ?>
+               <script>
+                (function($){
+                    $(document).ready(function(){
+                        $('.<?php echo wp_get_post_parent_id( get_the_ID() ); ?>:not(:first)').hide();
+                    })
+                })(jQuery)
+               </script>
+                <div class="search-result-item" onclick="document.location='<?php echo get_the_permalink(get_the_ID()); ?>'">
+                    <a href="<?php echo get_the_permalink(get_the_ID()); ?>">
+                    <?php 
+                    if( has_post_thumbnail()) :
+                    the_post_thumbnail('ezd_searrch_thumb16x16');
+                    else:
+                    ?>
+                    <svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img"><title id="title">Building Search UI</title><path d="M14.72,0H2.28A2.28,2.28,0,0,0,0,2.28V14.72A2.28,2.28,0,0,0,2.28,17H14.72A2.28,2.28,0,0,0,17,14.72V2.28A2.28,2.28,0,0,0,14.72,0ZM2.28,1H14.72A1.28,1.28,0,0,1,16,2.28V5.33H1V2.28A1.28,1.28,0,0,1,2.28,1ZM1,14.72V6.33H5.33V16H2.28A1.28,1.28,0,0,1,1,14.72ZM14.72,16H6.33V6.33H16v8.39A1.28,1.28,0,0,1,14.72,16Z"></path></svg>
+                    <?php endif; ?>
+                    <span class="doc-section">
+                        <?php the_title(); ?>
+                    </span>
+                    <?php eazydocs_search_breadcrumbs(); ?>
 
-        if ( $the_query->have_posts() ) :
-            $i = 1;
-            $search_result_limit = ! empty( $opt['doc_result_limit'] ) ? $opt['doc_result_limit'] : 3;
-            while ( $the_query->have_posts() ) : $the_query->the_post();
-                $parent_title = get_the_title( wp_get_post_parent_id( get_the_ID() ) );
-                $parent_id    = get_the_ID();
-                $child_query  = new WP_Query( array( 'post_type' => 'docs', 'post_parent' => $parent_id, 'posts_per_page' => $search_result_limit ) );
-                if ( $child_query->have_posts() ) :
-                    while ( $child_query->have_posts() ) : $child_query->the_post();
-                        $parent_of_parent_id  = get_the_ID();
-                        $doc_sec_title        = get_the_title( $parent_of_parent_id );
-                        $child_of_child_query = new WP_Query( array(
-                            'post_type'      => 'docs',
-                            's'              => $_POST['keyword'],
-                            'post_parent'    => $parent_of_parent_id,
-                            'posts_per_page' => -1,
-                        ));
-                        if ( $child_of_child_query->have_posts() ) :
-                            while ( $child_of_child_query->have_posts() ) : $child_of_child_query->the_post();
-                                ?>
-                                <div class="search-result-item <?php echo ! in_array( $parent_title, $unique_parents ) ? 'parent-doc' : ''; ?>">
-                                    <?php
-                                    if ( ! in_array( $parent_title, $unique_parents ) ) :
-                                        $unique_parents[] = $parent_title;
-                                        ?>
-                                        <div class="doc-item">
-                                            <a href="<?php echo get_the_permalink( $the_query->post->post_parent ); ?>">
-                                                <?php echo esc_html( $parent_title ); ?>
-                                            </a>
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="doc-list <?php echo ! in_array( $doc_sec_title, $unique_sections ) ? 'doc-sec-unique' : ''; ?>">
-                                    <span class="doc-section">
-                                        <?php
-                                        if ( ! in_array( $doc_sec_title, $unique_sections ) ) :
-                                            $unique_sections[] = $doc_sec_title;
-                                            ?>
-                                            <a href="<?php the_permalink(); ?>">
-                                                <?php echo esc_html( $doc_sec_title ); ?>
-                                            </a>
-                                        <?php endif; ?>
-                                    </span>
-                                        <span class="doc-article">
-                                        <a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a>
-                                    </span>
-                                    </div>
-                                </div>
-                                <?php
-                            endwhile;
-                        endif;
-                    endwhile;
-                    wp_reset_query();
-                endif;
+                    <svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block h-auto w-16"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>
+
+                    </a>
+                </div>
+            <?php
             endwhile;
+            wp_reset_postdata();
+            
+        else:
+            ?>                        
+            <div> 
+                <h5 class="error title"> No result found! </h5> 
+            </div>
+        <?php
         endif;
-        wp_reset_query();
         die();
     }
 

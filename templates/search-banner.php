@@ -12,7 +12,7 @@ if( $search_banner  == '1' ) :
         <div class="container">
             <div class="row doc_banner_content">
                 <div class="col-md-12">
-                    <form action="<?php echo esc_url(home_url('/')) ?>" role="search" method="get" class="ezd_search_form">
+                    <form action="<?php echo esc_url(home_url('/')) ?>" role="search" method="post" class="ezd_search_form">
                         <div class="header_search_form_info">
                             <div class="form-group">
                                 <div class="input-wrapper">
@@ -29,11 +29,10 @@ if( $search_banner  == '1' ) :
                                 </div>
                             </div>
                         </div>
-                        <div id="ezd-search-results" data-noresult="<?php esc_attr_e('No Results Found', 'eazydocs'); ?>"></div>
-                        <?php
-                        include('keywords.php');
-                        ?>
+                        <div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e('No Results Found', 'eazydocs'); ?>"></div>
+                      
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -72,7 +71,7 @@ if( $search_banner  == '1' ) :
                         if (e.key === "Escape") { // escape key maps to keycode `27`
                             jQuery('#ezd-search-results').removeClass('ajax-search').html("")
                         }
-                    })
+                    });
                     if ( data.length > 0 ) {
                         jQuery('#ezd-search-results').addClass('ajax-search').html(data);
                     } else {
@@ -83,4 +82,5 @@ if( $search_banner  == '1' ) :
             })
         }
     }
+ 
 </script>
