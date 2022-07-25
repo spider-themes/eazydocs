@@ -43,7 +43,7 @@ switch ( $layout ) {
 
 $current_theme = get_template();
 
-if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
+if ( $current_theme != 'docly' || $current_theme != 'docy' ) {
 	eazydocs_get_template_part( 'search-banner' );
 }
 ?>

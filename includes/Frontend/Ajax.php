@@ -65,7 +65,7 @@ class Ajax {
     function eazydocs_search_results() {
         $posts = new WP_Query( [
                 'post_type'                 => 'docs',
-                'feedback_search_title'     => $_POST['keyword'] ?? ''
+                's'     => $_POST['keyword'] ?? ''
             ]
         );
       
