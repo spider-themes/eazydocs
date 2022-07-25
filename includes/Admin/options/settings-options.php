@@ -92,6 +92,26 @@ CSF::createSection( $prefix, array(
 			'default' => esc_html__( 'View More', 'eazydocs' )
 		),
 
+        array(
+            'id'         => 'topics_count',
+            'type'       => 'switcher',
+            'title'      => esc_html__( 'Topics Count', 'eazydocs' ),
+            'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+            'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+            'text_width' => 72,
+            'default'    => true // or false
+        ),
+
+		array(
+			'id'      => 'topics_text',
+			'type'    => 'text',
+			'title'   => esc_html__( 'Topics Count Text', 'eazydocs' ),
+			'default' => esc_html__( 'Topics', 'eazydocs' ),
+            'dependency' => array(
+                array( 'topics_count', '==', 'true' )
+            )
+		),
+
 		array(
 			'id'      => 'docs-order',
 			'type'    => 'select',
@@ -105,7 +125,7 @@ CSF::createSection( $prefix, array(
 
 		array(
 			'id'       => 'docs-number',
-			'type'     => 'text',
+			'type'     => 'number',
 			'title'    => esc_html__( 'Number of Docs', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Number of Docs to show', 'eazydocs' ),
 			'default'  => 5,
@@ -113,7 +133,7 @@ CSF::createSection( $prefix, array(
 
 		array(
 			'id'        => 'show_articles',
-			'type'      => 'text',
+			'type'      => 'number',
 			'title'     => esc_html__( 'Number of Articles', 'eazydocs' ),
 			'subtitle'  => esc_html__( 'Number of Articles to show under each Docs.', 'eazydocs' ),
 			'default'   => 4,
@@ -183,18 +203,6 @@ CSF::createSection( $prefix, array(
 			),
 			'default' => 'both_sidebar',
             'class'   => 'single-layout-img-wrap eazydocs-pro-notice active-theme',
-		),
-
-		array(
-			'id'      => 'docs_content_layout',
-			'type'    => 'select',
-			'title'   => esc_html__( 'Content Layout', 'eazydocs-pro' ),
-			'options' => [
-				'category_base'     => esc_html__( 'Category Layout', 'eazydocs-pro' ),
-				'badge_base' 		=> esc_html__( 'Badge Layout', 'eazydocs-pro' ),
-			],
-			'default' => 'badge_base',
-            'class'   => 'eazydocs-pro-notice',
 		),
 
 		array(
@@ -305,7 +313,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Search Banner', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
 		array(
 			'type'  => 'subheading',
 			'title' => esc_html__( 'Search Banner Settings', 'eazydocs' ),
@@ -617,6 +624,17 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Left Sidebar', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+        array(
+            'id'      => 'docs_content_layout',
+            'type'    => 'radio',
+            'title'   => esc_html__( 'Layout', 'eazydocs' ),
+            'options' => [
+                'collapsed' 		=> esc_html__( 'Collapsed with Icons', 'eazydocs' ),
+                'category_base'     => esc_html__( 'Extended Docs', 'eazydocs' ),
+            ],
+            'default' => 'collapsed',
+            'class'   => 'eazydocs-pro-notice',
+        ),
 		
 		array(
 			'id'         => 'toggle_visibility',

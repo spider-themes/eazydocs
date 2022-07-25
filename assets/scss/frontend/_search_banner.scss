@@ -202,6 +202,9 @@ form.ezd_search_form {
   display: none;
   transition: all .4s;
   z-index: 99;
+  a {
+    text-decoration: none;
+  }
   &.ajax-search{
     display: block;
   }

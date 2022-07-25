@@ -18,6 +18,7 @@
   --black_750: #2f3337;
   --black_800: #242729;
   --black_900: #0c0d0e;
+  --border_on_white: #e6edf0;
   --bs_sm: 0 1px 2px rgba(0, 0, 0, 0.05),0 1px 4px rgba(0, 0, 0, 0.05),0 2px 8px rgba(0, 0, 0, 0.05);
   --bs_md: 0 1px 3px rgba(0, 0, 0, 0.06),0 2px 6px rgba(0, 0, 0, 0.06),0 3px 8px rgba(0, 0, 0, 0.09);
   --bs_lg: 0 1px 4px rgba(0, 0, 0, 0.09),0 3px 8px rgba(0, 0, 0, 0.09),0 4px 13px rgba(0, 0, 0, 0.13);
@@ -259,6 +260,9 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   transition: all 0.4s;
   z-index: 99;
 }
+#ezd-search-results a {
+  text-decoration: none;
+}
 #ezd-search-results.ajax-search {
   display: block;
 }
@@ -467,6 +471,9 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   height: 100vh;
   position: relative;
 }
+.doc_left_sidebarlist a {
+  text-decoration: none;
+}
 .doc_left_sidebarlist:before {
   content: "";
   width: 200%;
@@ -589,7 +596,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   list-style: none;
 }
 .nav-sidebar .nav-item .dropdown_nav li {
-  margin: 10px 10px 10px 0;
+  margin: 12px 10px 12px 0;
   padding: 0;
   line-height: 1.5;
 }
@@ -683,6 +690,10 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 }
 .nav-sidebar.one-page-doc-nav-wrap .active .icon {
   transform: none;
+}
+
+#content_elements {
+  margin-top: 30px;
 }
 
 .scroll::-webkit-scrollbar {
@@ -904,7 +915,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   text-align: center;
   line-height: 16px;
   font-size: 10px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.7);
   font-weight: 400;
   color: var(--secondary_color);
   margin-left: 6px;
@@ -1675,7 +1686,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 /*============== End doc_categories_guide_area css =============*/
 .eazydocs-footer {
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 30px;
   margin-top: 0;
   padding-bottom: 10px;
 }
@@ -1939,6 +1950,7 @@ p .footnotes-link::after {
   line-height: 22px;
   transition: color 0.2s linear;
   display: flex;
+  align-items: baseline;
 }
 .article_list li a:before {
   content: "h";

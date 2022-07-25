@@ -41,6 +41,9 @@
   z-index: 1;
   height: 100vh;
   position: relative;
+  a {
+    text-decoration: none;
+  }
   &:before {
     content: "";
     width: 200%;
@@ -168,7 +171,7 @@
       display: none;
       list-style: none;
       li {
-        margin: 10px 10px 10px 0;
+        margin: 12px 10px 12px 0;
         padding: 0;
         line-height: 1.5;
         &.has_child {
@@ -268,6 +271,10 @@
       }
     }
   }
+}
+
+#content_elements {
+  margin-top: 30px;
 }
 
 // Scrollbar
@@ -522,7 +529,7 @@
       text-align: center;
       line-height: 16px;
       font-size: 10px;
-      background: #fff;
+      background: rgb(255 255 255 / 0.7);
       font-weight: 400;
       color: var(--secondary_color);
       margin-left: 6px;
@@ -1333,7 +1340,7 @@ body:not(.onepage-doc) .sticky_menu {
 
 .eazydocs-footer {
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 30px;
   margin-top: 0;
   padding-bottom: 10px;
 }

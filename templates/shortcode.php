@@ -1,5 +1,7 @@
 <?php
 $opt = get_option( 'eazydocs_settings' );
+$topics_count = $opt['topics_count'] ?? '';
+$topics = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
 
 // Child docs per page
 $layout          = 'grid';
@@ -38,10 +40,12 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                                 <h4 class="title">
                                     <?php echo $main_doc['doc']->post_title; ?>
                                 </h4>
-                                <span>
-                                    <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
-                                    <?php esc_html_e( 'Topics', 'eazyedocs' ) ?>
-                                </span>
+                                <?php if ( $topics_count == '1' ) : ?>
+                                    <span>
+                                        <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
+                                        <?php echo esc_html($topics); ?>
+                                    </span>
+                                <?php endif; ?>
                             </a>
                         </div>
                         <?php if ( $main_doc['sections'] ) : ?>

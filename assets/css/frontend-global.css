@@ -17,6 +17,7 @@
   --black_750: #2f3337;
   --black_800: #242729;
   --black_900: #0c0d0e;
+  --border_on_white: #e6edf0;
   --bs_sm: 0 1px 2px rgba(0, 0, 0, 0.05),0 1px 4px rgba(0, 0, 0, 0.05),0 2px 8px rgba(0, 0, 0, 0.05);
   --bs_md: 0 1px 3px rgba(0, 0, 0, 0.06),0 2px 6px rgba(0, 0, 0, 0.06),0 3px 8px rgba(0, 0, 0, 0.09);
   --bs_lg: 0 1px 4px rgba(0, 0, 0, 0.09),0 3px 8px rgba(0, 0, 0, 0.09),0 4px 13px rgba(0, 0, 0, 0.13);
@@ -86,7 +87,7 @@
   margin: 0;
 }
 .categories_guide_item a.doc_tag_title span {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--black_500);
   display: block;
   margin-top: 5px;

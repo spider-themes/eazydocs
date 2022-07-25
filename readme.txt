@@ -1,4 +1,4 @@
-=== EazyDocs - #1 Powerful & Beautiful Documentation Builder ===
+=== EazyDocs - #1 Beautiful Knowledgebase & Documentation Builder WordPress Plugin ===
 Contributors: mdjwel, spiderdevs, arafatjamil01, delweratjk
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
@@ -98,6 +98,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.3.0 (26 July 2022) =
+New: Topics Count and Topic Count Text change options added in the EazyDocs > Settings > Docs Archive page.
+New: Ajax Live Search results style improved to include all doc contents in the results
+New: Extended left sidebar layout (unlocked in EazyDocs Pro)
+Tweaked: Theme compatibility improved
 
 = v1.2.9 (21 July 2022) =
 New: Full Screen OnePage Doc layout added (PRO feature, unlocked with Docy and Docly themes)

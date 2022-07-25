@@ -134,13 +134,19 @@
   margin-top: 0;
 }
 
-.fullscreen-layout .doc_rightsidebar {
-  height: 100vh;
+.fullscreen-layout {
+  #post .onepage-doc-sec {
+    padding-top: 30px;
+    margin: 0;
+  }
+  .doc_rightsidebar {
+    height: 100vh;
+  }
 }
 
 .shortcode_title.depth-one {
-  border-left: 5px solid #0D9DDA;
-  background: #fafafa;
+  border-left: 5px solid var(--ezd_brand_color);
+  background: rgb(214 212 212 / 20%);
   border-bottom: none;
   margin: 30px 0;
   padding-left: 15px;
@@ -149,17 +155,6 @@
     margin-bottom: 19px;
     line-height: 2.5;
   }
-}
-
-.doc_documentation_area.documentation_area_sticky #post h3 {
-  font-size: 18px;
-  font-weight: 600;
-  border-left: 3px solid #B11D8A;
-  padding-left: 15px;
-  margin-bottom: 15px;
-  margin-top: 0;
-  padding-bottom: 5px;
-  padding-top: 5px;
 }
 
 @media screen and ( min-width: 991px ) {
@@ -276,27 +271,30 @@ body.admin-bar {
     padding-top: 0;
     padding-bottom: 0;
   }
+  .doc-title {
+    color: var(--black__100);
+    font-size: 22px;
+    text-transform: none;
+    margin: 25px 0 15px;
+  }
+  .nav-sidebar.one-page-doc-nav-wrap .nav-item {
+    background: transparent;
+    margin: 0;
+    a {
+      color: #fff;
+      opacity: .7;
+      font-size: 16px;
+      &.active, &:hover {
+        color: #fff;
+        opacity: 1;
+      }
+    }
+  }
 }
 
-.documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item {
-  background: transparent;
-  margin: 0;
-}
-
-.documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item a {
-  color: #fff;
-  opacity: .7;
-  font-size: 16px
-}
-
-.documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item a.active,
-.documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item a:hover {
-  color: #fff;
-  opacity: 1;
-}
 
 .documentation_area_sticky .nav-sidebar .nav-item .docs-progress-bar {
-  background: transparent;
+  background: rgb(214 212 212 / 20%);
 }
 
 .documentation_area_sticky .nav-sidebar .nav-item.active > a {
@@ -315,8 +313,7 @@ body.admin-bar {
 }
 
 .documentation_area_sticky .documentation_info img {
-  border: 1px solid #0194D7;
-  box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 15%);
+  box-shadow: 0 0 10px 2px rgb(0 0 0 / 15%);
   margin: 10px 0;
   width: fit-content;
   max-width: 100%;
@@ -455,7 +452,7 @@ body.admin-bar {
 }
 
 .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item ul li {
-  margin: 6px 0;
+  margin: 10px 0;
 }
 .numbering_show .nav-item ul li {
   list-style: auto;

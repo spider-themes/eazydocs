@@ -49,7 +49,13 @@
                                 <i class="arrow_carrot-left"></i>
                             </div>
 
-                            <?php echo get_the_post_thumbnail($post_id->ID, 'full');
+                            <?php
+                            echo get_the_post_thumbnail($post_id->ID, 'full');
+                            ?>
+                            <h3 class="doc-title">
+                                <?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
+                            </h3>
+                            <?php
 
                             if ( $children ) :
                                 ?>

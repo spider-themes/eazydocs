@@ -188,6 +188,7 @@ p .footnotes-link::after {
       line-height: 22px;
       transition: color 0.2s linear;
       display: flex;
+      align-items: baseline;
       &:before{
         content: "\68";
         font-family: 'ElegantIcons';
