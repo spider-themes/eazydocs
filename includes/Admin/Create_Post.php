@@ -86,6 +86,11 @@ class Create_Post {
 				'post_type'   => 'docs'
 			) );
 
+			$sec_post_status ='publish';
+			if(class_exists('EazyDocsPro')){
+				$sec_post_status = get_post_status($parentID);
+			}
+
 			$add   = 2;
 			$order = count( $parent_item );
 			$order = $order + $add;
@@ -96,7 +101,7 @@ class Create_Post {
 				'post_parent'  => $parentID,
 				'post_content' => '',
 				'post_type'    => 'docs',
-				'post_status'  => 'publish',
+				'post_status'  => $sec_post_status,
 				'menu_order'   => $order
 			);
 			wp_insert_post( $post, $wp_error = '' );
@@ -123,17 +128,21 @@ class Create_Post {
 			$order = count( $child_item );
 			$order = $order + $add;
 
+			$child_post_status ='publish';
+			if(class_exists('EazyDocsPro')){
+				$child_post_status = get_post_status($child_id);
+			}
+
 			// Create post object
 			$post = array(
 				'post_title'   => $child_title,
 				'post_parent'  => $child_id,
 				'post_content' => '',
 				'post_type'    => 'docs',
-				'post_status'  => 'publish',
+				'post_status'  => $child_post_status,
 				'menu_order'   => $order
 			);
 			wp_insert_post( $post, $wp_error = '' );
-
             wp_safe_redirect( admin_url('admin.php?page=eazydocs') );
 		}
 	}

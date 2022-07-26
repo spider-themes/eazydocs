@@ -555,26 +555,31 @@ function eazydocs_one_page( $doc_id ) {
 	$one_page_title = get_the_title( $doc_id );
 	$docs           = get_post( $doc_id );
 	$post_name      = $docs->post_name;
+ 
 
+	$post_status = get_post_status($doc_id);
 	$one_page_docs = get_posts( [
 		'post_type' => 'onepage-docs',
+		'post_status' => 'publish',
 		'name'      => $post_name,
 	] );
 
-	if ( count( $one_page_docs ) < 1 ) :
-		?>
-        <button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo admin_url( 'admin.php/One_Page.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>">
-			<?php esc_html_e( 'Make OnePage Doc', 'eazydocs-pro' ); ?>
-        </button>
-	<?php
-	else :
-		foreach ( $one_page_docs as $single_docs ) :
+	if( $post_status != 'draft' ) :
+		if ( count( $one_page_docs ) < 1 ) :
 			?>
-            <a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink( $single_docs ); ?>" target="_blank">
-				<?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
-            </a>
+			<button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo admin_url( 'admin.php/One_Page.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>">
+				<?php esc_html_e( 'Make OnePage Doc', 'eazydocs-pro' ); ?>
+			</button>
 		<?php
-		endforeach;
+		else :
+			foreach ( $one_page_docs as $single_docs ) :
+				?>
+				<a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink( $single_docs ); ?>" target="_blank">
+					<?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
+				</a>
+			<?php
+			endforeach;
+		endif;
 	endif;
 }
 
