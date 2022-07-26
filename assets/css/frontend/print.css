@@ -88,3 +88,22 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child{
 #ezd-search-results .breadcrumb.eazydocs-search-wrapper{
     padding-left: 25px;
 }
+.search-focused .ezd_click_capture {
+    opacity: 1;
+    visibility: visible;
+}
+.ezd_click_capture{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    z-index: 99;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.4);
+    transition: all 0.3s linear;
+}
+.ezd_connect_theme{
+    display: none;
+}

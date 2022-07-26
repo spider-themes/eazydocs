@@ -360,7 +360,15 @@ if( ! function_exists('docs_root_title') ){
 
 		$breadcrumb_position = 1; 
 
-		$html .= '<ol class="breadcrumb eazydocs-breadcrumb-root-title '. $post->post_parent.'" itemscope itemtype="http://schema.org/BreadcrumbList">';
+		$is_parents = get_ancestors( $post->ID, 'docs' );
+		$is_parent = $is_parents[0];
+		if( $is_parent == 0 ){
+			$parent_id = $post->ID;
+		}else{
+			$parent_id = $is_parent;
+		}
+		
+		$html .= '<ol class="breadcrumb eazydocs-breadcrumb-root-title '. $parent_id .'" itemscope itemtype="http://schema.org/BreadcrumbList">';
 		$html .= $args['delimiter'];
 
 
