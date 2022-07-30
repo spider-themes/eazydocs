@@ -47,7 +47,6 @@ class Assets {
 		wp_enqueue_script( 'eazyDocs-accordion', EAZYDOCS_ASSETS . '/js/admin/accordion.min.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), '', true );
 
-
 		wp_enqueue_script( 'eazyDocs-custom', EAZYDOCS_ASSETS . '/js/admin/custom.js', array( 'jquery' ), $version, true );
 		wp_enqueue_script( 'eazyDocs-main', EAZYDOCS_ASSETS . '/js/admin/main.js', array( 'jquery' ), $version, true );
 	}
