@@ -8,6 +8,7 @@ if ( class_exists( 'EazyDocsPro' ) ) {
 $search_banner = $cz_options['is_search_banner'] ?? '';
 if( $search_banner  == '1' ) :
     ?>
+    <div class="focus_overlay"></div>
     <section class="ezd_search_banner has_bg_dark <?php echo esc_attr($cs_banner_wrap); ?>">
         <div class="container">
             <div class="row doc_banner_content">
@@ -30,7 +31,6 @@ if( $search_banner  == '1' ) :
                             </div>
                         </div>
                         <div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e('No Results Found', 'eazydocs'); ?>"></div>
-                      
                     </form>
                     
                 </div>

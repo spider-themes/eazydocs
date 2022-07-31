@@ -44,7 +44,6 @@ class Assets {
                 )
             );
 
-            wp_enqueue_style( 'print', EAZYDOCS_ASSETS . '/css/frontend/print.css' );
             wp_enqueue_style( 'rvfs', EAZYDOCS_VEND . '/font-size/css/rvfs.css' );
 	        wp_enqueue_style( 'ezd-onepage', EAZYDOCS_ASSETS . '/css/onepage.css' );
             

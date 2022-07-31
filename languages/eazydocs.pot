@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-07-26 00:50+0600\n"
+"POT-Creation-Date: 2022-07-27 15:47+0600\n"
 "PO-Revision-Date: 2022-04-05 15:26+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "OnePage Doc"
 msgstr ""
 
-#: includes/Admin/Admin.php:142
+#: includes/Admin/Admin.php:142 includes/Admin/Admin.php:210
 msgid "Users Feedback"
 msgstr ""
 
@@ -47,15 +47,15 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: includes/Admin/Admin.php:183
+#: includes/Admin/Admin.php:187 includes/Admin/Admin.php:209
 msgid "crown icon"
 msgstr ""
 
-#: includes/Admin/Admin.php:184
+#: includes/Admin/Admin.php:188
 msgid "Add Your OnePage Doc"
 msgstr ""
 
-#: includes/Admin/Admin.php:185
+#: includes/Admin/Admin.php:189
 msgid ""
 "Onepage documentation format will generate all the pages of a Doc as "
 "sections in a single page which is scrollable by sections. Visitors can find "
@@ -63,41 +63,45 @@ msgid ""
 "sections very fast."
 msgstr ""
 
-#: includes/Admin/Admin.php:189
+#: includes/Admin/Admin.php:193 includes/Admin/Admin.php:215
 msgid "Go Pro"
 msgstr ""
 
-#: includes/Admin/Admin.php:191
+#: includes/Admin/Admin.php:195
 msgid "View Frontend Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:192
+#: includes/Admin/Admin.php:196
 msgid "View Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:243
+#: includes/Admin/Admin.php:211
+msgid "You can get the Doc Feedbacks listed in this page to review."
+msgstr ""
+
+#: includes/Admin/Admin.php:266
 msgid "Give EazyDocs a review"
 msgstr ""
 
-#: includes/Admin/Admin.php:245
+#: includes/Admin/Admin.php:268
 msgid ""
 "Thank you for choosing EazyDocs. We hope you love it. Could you take a "
 "couple of seconds posting a nice review to share your happy experience?"
 msgstr ""
 
-#: includes/Admin/Admin.php:248
+#: includes/Admin/Admin.php:271
 msgid "We will be forever grateful. Thank you in advance."
 msgstr ""
 
-#: includes/Admin/Admin.php:251
+#: includes/Admin/Admin.php:274
 msgid "Rate now"
 msgstr ""
 
-#: includes/Admin/Admin.php:252
+#: includes/Admin/Admin.php:275
 msgid "Later"
 msgstr ""
 
-#: includes/Admin/Admin.php:253
+#: includes/Admin/Admin.php:276
 msgid "Already did"
 msgstr ""
 
@@ -1447,11 +1451,11 @@ msgstr ""
 msgid "IOS"
 msgstr ""
 
-#: templates/search-banner.php:19
+#: templates/search-banner.php:20
 msgid "Search here"
 msgstr ""
 
-#: templates/search-banner.php:32
+#: templates/search-banner.php:33
 msgid "No Results Found"
 msgstr ""
 

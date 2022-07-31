@@ -565,17 +565,17 @@
                 $(".tab-btns").addClass("active");
                 createCookie("body_dark", false, 999);
             }
-        });
+        })
         
         $("#ezd_searchInput").focus(function() {
-            $('body').addClass('search-focused');
+            $('body').addClass('ezd-search-focused');
             $('form.ezd_search_form').css('z-index','999');
-        });
+        })
         
         $("#ezd_searchInput").focusout(function() {
-            $('body').removeClass('search-focused');
+            $('body').removeClass('ezd-search-focused');
             $('form.ezd_search_form').css('z-index','unset');
-        });
+        })
 
     })
 })(jQuery);

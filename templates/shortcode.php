@@ -24,7 +24,7 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                     'post_type' => 'docs',
                     'orderby'   => 'menu_order',
                     'order'     => 'asc'
-                ] );
+                ]);
 
                 $col_wrapper = $i == 1;
                 if ( class_exists( 'EazyDocsPro' ) ) {
@@ -37,9 +37,11 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                         <div class="doc-top d-flex align-items-start">
                             <?php echo get_the_post_thumbnail( $main_doc['doc']->ID, 'full', array( 'class' => 'featured-image' ) ); ?>
                             <a class="doc_tag_title" href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>">
-                                <h4 class="title">
-                                    <?php echo $main_doc['doc']->post_title; ?>
-                                </h4>
+                                <?php if ( !empty($main_doc['doc']->post_title) ) : ?>
+                                    <h4 class="title">
+                                        <?php echo $main_doc['doc']->post_title; ?>
+                                    </h4>
+                                <?php endif; ?>
                                 <?php if ( $topics_count == '1' ) : ?>
                                     <span>
                                         <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>

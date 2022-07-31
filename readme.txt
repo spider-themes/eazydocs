@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs
 Requires at least: 5.0
 Tested up to: 6.0.0
 Requires PHP: 7.2
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,7 +71,7 @@ To report bugs or to contribute, head-over to the [GitHub repository](https://gi
 
 = Minimum Requirements =
 
-* PHP 7.3 or greater is recommended
+* PHP 7.4 or greater is recommended
 * MySQL 5.6 or greater is recommended
 
 You can install the EazyDocs from your WordPress Dashboard or manually upload it through cPanel/FTP.
@@ -99,11 +99,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.3.0 (26 July 2022) =
-New: Topics Count and Topic Count Text change options added in the EazyDocs > Settings > Docs Archive page.
+= v1.3.0 (01 August 2022) =
 New: Ajax Live Search results style improved to include all doc contents in the results
+New: Topics Count and Topic Count Text change options added in the EazyDocs > Settings > Docs Archive page.
 New: Extended left sidebar layout (unlocked in EazyDocs Pro)
 Tweaked: Theme compatibility improved
+Tweaked: Live Search Results show on focused mode
 
 = v1.2.9 (21 July 2022) =
 New: Full Screen OnePage Doc layout added (PRO feature, unlocked with Docy and Docly themes)

@@ -139,7 +139,7 @@ class Admin {
 		if ( class_exists('EazyDocsPro')) {
 			do_action('ezd_pro_admin_menu');
 		}else{
-			add_submenu_page( 'eazydocs', __( 'Users Feedback', 'eazydocs' ), __( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [$this, 'ezd_onepage_presents'] );
+			add_submenu_page( 'eazydocs', __( 'Users Feedback', 'eazydocs' ), __( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [$this, 'ezd_feedback_presents'] );
 		}
 		
 		add_submenu_page( 'eazydocs', __( 'Tags', 'eazydocs' ), __( 'Tags', 'eazydocs' ), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
@@ -175,6 +175,10 @@ class Admin {
         return $classes;
     }
 
+    /**
+     * OnePage Doc Pro Notice
+     * @return void
+     */
     public function ezd_onepage_presents(){
 	   ?>
         <div class="wrap">
@@ -190,6 +194,25 @@ class Admin {
                     </a>
                     <a class="button button-secondary ezd-btn btn-lg" target="_blank" href="https://wordpress-theme.spider-themes.net/docy/docy-documentation/" title="<?php esc_attr_e('View Frontend Demo', 'eazydocs'); ?>">
                         <?php esc_html_e( 'View Demo', 'elementor' ); ?>
+                    </a>
+                </div>
+            </div>
+        </div><!-- /.wrap -->
+        <?php
+    }
+
+    public function ezd_feedback_presents(){
+	   ?>
+        <div class="wrap">
+            <div class="ezd-blank_state">
+                <?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. ?>
+                <img src="<?php echo EAZYDOCS_IMG.'/icon/crown.svg'; ?>" alt="<?php esc_attr_e('crown icon', 'eazydocs'); ?>" width="250px"/>
+                <h2> <?php echo esc_html__( 'Users Feedback', 'eazydocs' ); ?> </h2>
+                <p class="big-p"> <?php esc_html_e( 'You can get the Doc Feedbacks listed in this page to review.', 'eazydocs'); ?> </p>
+                <?php // PHPCS - No need to escape a URL. The query arg is sanitized. ?>
+                <div class="button-inline">
+                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url('admin.php?page=eazydocs-pricing'); ?>">
+                        <?php esc_html_e( 'Go Pro', 'elementor' ); ?>
                     </a>
                 </div>
             </div>

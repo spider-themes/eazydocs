@@ -247,13 +247,13 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 }
 
 #ezd-search-results {
+  padding: 0;
+  border: none;
   position: absolute;
   width: 100%;
   background: #fff;
-  border: 1px solid #e6eeef;
   border-radius: 4px;
   box-shadow: 0 3px 4px 0 rgba(4, 73, 89, 0.06);
-  padding: 20px 25px;
   font-size: 14px;
   font-weight: 400;
   display: none;
@@ -283,69 +283,63 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   text-align: left;
   color: #dc3545;
 }
-#ezd-search-results .search-result-item.parent-doc {
-  margin-top: 15px;
+#ezd-search-results .doc-section {
+  border-right: none;
+  padding-left: 25px;
 }
-#ezd-search-results .search-result-item.parent-doc:first-child {
-  margin-top: 0;
+#ezd-search-results .search-result-item {
+  padding: 7px 15px;
+  position: relative;
+  border-bottom: 1px solid #f5f5fa;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+#ezd-search-results .search-result-item a {
+  display: flex;
+}
+#ezd-search-results .search-result-item:last-child {
+  border-bottom: none;
+}
+#ezd-search-results .search-result-item:hover svg.block.h-auto.w-16 {
+  display: block;
+}
+#ezd-search-results .search-result-item:hover {
+  background: var(--ezd_brand_color);
+}
+#ezd-search-results .search-result-item:hover .breadcrumb-item, #ezd-search-results .search-result-item:hover a {
+  color: #fff;
+}
+#ezd-search-results .search-result-item img, #ezd-search-results .search-result-item svg.block.h-full.w-auto {
+  position: absolute;
+  top: 12px;
+  margin: auto;
+}
+#ezd-search-results .search-result-item svg.block.h-auto.w-16 {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
 }
 
-.search-result-item .doc-list {
-  display: flex;
-  height: 100%;
-}
-.search-result-item .doc-list .doc-section {
-  flex: 33% 0 0;
-  padding: 10px 15px 10px 25px;
-}
-.search-result-item.parent-doc .doc-item {
-  margin-bottom: 5px;
-}
-.search-result-item .doc-list {
-  text-align: left;
-  padding: 0;
-  display: flex;
-  height: 100%;
-}
-.search-result-item .doc-item {
-  text-align: left;
-}
-.search-result-item .doc-item a {
-  color: var(--secondary_color);
-  display: block;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #e6eeef;
-  font-weight: 500;
-}
-.search-result-item span {
-  display: inline-block;
-}
-.search-result-item .doc-section {
-  border-right: 1px solid #dee7e8;
-  padding: 5px 15px 5px 25px;
-  text-align: right;
-}
-.search-result-item a {
-  color: #898d99;
-}
-.search-result-item .doc-article {
-  border-radius: 3px;
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
+.eazydocs-breadcrumb-root-title li.breadcrumb-item {
+  color: #777aaf !important;
+  background: #f5f5fa;
   width: 100%;
-  flex: 67% 0 0;
-  transition: all 0.3s;
+  padding: 5px 15px !important;
 }
-.search-result-item .doc-article a {
-  color: var(--p_color);
-  text-decoration: none;
+
+#ezd-search-results .breadcrumb .breadcrumb-item {
+  padding-left: 0;
 }
-.search-result-item .doc-article:hover {
-  background: rgba(143, 187, 237, 0.1);
+
+ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
+  display: none;
 }
-.search-result-item .doc-article:hover a {
-  color: #2f495e;
+
+#ezd-search-results .breadcrumb.eazydocs-search-wrapper {
+  padding-left: 25px;
 }
 
 #ezd_searchInput ~ .spinner {
@@ -404,6 +398,33 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   background: rgba(255, 255, 255, 0.27);
 }
 
+/** === Focust Search Form === **/
+body.ezd-search-focused .focus_overlay {
+  opacity: 1;
+  visibility: visible;
+}
+body.ezd-search-focused .banner_search_form {
+  position: relative;
+  z-index: 999 !important;
+}
+
+body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
+  display: none;
+}
+
+.focus_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  z-index: 99;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.3s linear;
+}
+
 .header_search_form_info {
   position: relative;
 }
@@ -447,7 +468,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   left: 0;
   height: 100%;
   width: 100%;
-  background: var(--secondary_color);
+  background: var(--black_700);
   opacity: 0;
   z-index: 1;
   visibility: hidden;
@@ -725,7 +746,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 
 .bottom_nav .nav-item .nav-link i {
   position: relative;
-  color: var(--secondary_color);
+  color: var(--black_700);
   padding-left: 4px;
   transition: all 0.2s linear;
 }
@@ -917,7 +938,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   font-size: 10px;
   background: rgba(255, 255, 255, 0.7);
   font-weight: 400;
-  color: var(--secondary_color);
+  color: var(--black_700);
   margin-left: 6px;
   position: relative;
   top: -1px;
@@ -1427,7 +1448,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .fontsize-controllers .btn-group {
-  border: 1px solid #dfe2e4;
+  border: 1px solid var(--black_50);
   background-color: var(--bs-white);
   box-shadow: 0 1px 0 0 rgba(3, 13, 37, 0.2), inset 0 -8px 14px 0 rgba(3, 13, 37, 0.1);
   border-radius: 4px;
@@ -1435,7 +1456,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .fontsize-controllers .btn-group .btn {
   font-size: 16px;
   font-weight: 400;
-  color: var(--secondary_color);
+  color: var(--black_700);
   line-height: 1.2;
   border: 0;
 }
@@ -1445,8 +1466,8 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   background: #eff0f1;
 }
 .fontsize-controllers .btn-group .btn.rvfs-reset {
-  border-left: 1px solid #dfe2e4;
-  border-right: 1px solid #dfe2e4;
+  border-left: 1px solid var(--black_50);
+  border-right: 1px solid var(--black_50);
 }
 
 .print {
@@ -1460,7 +1481,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   font-size: 16px;
   text-transform: uppercase;
   color: #fff;
-  background: var(--secondary_color);
+  background: var(--black_700);
   border-radius: 4px;
   line-height: 22px;
   padding: 13px 30px;
@@ -1476,7 +1497,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   margin-bottom: 25px;
 }
 .collaps_tabs .collaps_tab_inner .shortcode_title h4 a {
-  color: var(--secondary_color);
+  color: var(--black_700);
 }
 
 .doc-btm {
@@ -2046,7 +2067,7 @@ p .footnotes-link::after {
   padding-bottom: 30px;
 }
 
-#post h3, #post h4, #post h5, #post h6 {
+#post h3, #post h4 {
   font-weight: 500;
   margin-bottom: 20px;
   padding-top: 80px;

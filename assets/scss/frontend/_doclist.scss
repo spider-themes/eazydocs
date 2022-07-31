@@ -11,7 +11,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background: var(--secondary_color);
+    background: var(--black_700);
     opacity: 0;
     z-index: 1;
     visibility: hidden;
@@ -325,7 +325,7 @@
   .nav-item .nav-link {
     i {
       position: relative;
-      color: var(--secondary_color);
+      color: var(--black_700);
       padding-left: 4px;
       transition: all 0.2s linear;
     }
@@ -531,7 +531,7 @@
       font-size: 10px;
       background: rgb(255 255 255 / 0.7);
       font-weight: 400;
-      color: var(--secondary_color);
+      color: var(--black_700);
       margin-left: 6px;
       position: relative;
       top: -1px;
@@ -1070,14 +1070,14 @@ body:not(.onepage-doc) .sticky_menu {
 
 .fontsize-controllers{
   .btn-group{
-    border: 1px solid #dfe2e4;
+    border: 1px solid var(--black_50);
     background-color: var(--bs-white);
     box-shadow: 0 1px 0 0 rgba(3, 13, 37, 0.2),inset 0 -8px 14px 0 rgba(3, 13, 37, 0.1);
     border-radius: 4px;
     .btn{
       font-size: 16px;
       font-weight: 400;
-      color: var(--secondary_color);
+      color: var(--black_700);
       line-height: 1.2;
       border: 0;
       &:focus{
@@ -1086,8 +1086,8 @@ body:not(.onepage-doc) .sticky_menu {
         background: #eff0f1;
       }
       &.rvfs-reset{
-        border-left: 1px solid #dfe2e4;
-        border-right: 1px solid #dfe2e4;
+        border-left: 1px solid var(--black_50);
+        border-right: 1px solid var(--black_50);
       }
     }
   }
@@ -1103,7 +1103,7 @@ body:not(.onepage-doc) .sticky_menu {
   font-size: 16px;
   text-transform: uppercase;
   color: #fff;
-  background: var(--secondary_color);
+  background: var(--black_700);
   border-radius: 4px;
   line-height: 22px;
   padding: 13px 30px;
@@ -1119,7 +1119,7 @@ body:not(.onepage-doc) .sticky_menu {
       margin-bottom: 25px;
       h4 {
         a {
-          color: var(--secondary_color);
+          color: var(--black_700);
         }
       }
     }

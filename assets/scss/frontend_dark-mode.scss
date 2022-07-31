@@ -2,6 +2,7 @@
 body.body_dark {
   --bs-white : #2c303a !important;
   --p_color: #f1f1f1 !important;
+  --black_700: #e1e1e1 !important;
   --black_800: #f1f1f1 !important;
   --black_900: #f8f8f8 !important;
   --black_600 : #b9b9b9 !important;
@@ -64,7 +65,7 @@ body.body_dark {
   }
 
   .nav-sidebar .nav-item .docs-progress-bar,
-  onepage-doc .nav-sidebar .nav-item .docs-progress-bar, .fontsize-controllers .btn-group .btn:focus,
+  onepage-doc .nav-sidebar .nav-item .docs-progress-bar,
   .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active,
   .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:hover {
     background: #444857;
@@ -84,8 +85,7 @@ body.body_dark {
   }
 
   .doc_rightsidebar .doc_switch input[type=checkbox], .topic_item_tabs .topic_list_item,
-  .doc_left_sidebarlist::after,
-  .doc_rightsidebar .dropdown-toggle, .fontsize-controllers .btn-group .btn.rvfs-reset, .fontsize-controllers .btn-group,
+  .doc_left_sidebarlist::after, .doc_rightsidebar .dropdown-toggle,
   .doc_left_sidebarlist:before, .doc_left_sidebarlist,
   .nav-sidebar + .nav-sidebar, .doc_rightsidebar, .v_menu,
   .toggle_body, .basic_table_info, .basic_table_info tbody tr th, .basic_table_info tbody tr td,
@@ -114,7 +114,6 @@ body.body_dark {
     color: #fff;
   }
 
-  .fontsize-controllers .btn-group .btn,
   .doc_rightsidebar .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
     color: #c7c9d3;
   }

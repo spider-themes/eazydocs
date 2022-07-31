@@ -2,6 +2,7 @@
 body.body_dark {
   --bs-white: #2c303a !important;
   --p_color: #f1f1f1 !important;
+  --black_700: #e1e1e1 !important;
   --black_800: #f1f1f1 !important;
   --black_900: #f8f8f8 !important;
   --black_600: #b9b9b9 !important;
@@ -58,7 +59,7 @@ body.body_dark .search_form button {
   color: #8f94a6;
 }
 body.body_dark .nav-sidebar .nav-item .docs-progress-bar,
-body.body_dark onepage-doc .nav-sidebar .nav-item .docs-progress-bar, body.body_dark .fontsize-controllers .btn-group .btn:focus,
+body.body_dark onepage-doc .nav-sidebar .nav-item .docs-progress-bar,
 body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active,
 body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:hover {
   background: #444857;
@@ -75,8 +76,7 @@ body.body_dark .doc_left_sidebarlist:not(.one-page-docs-sidebar-wrap)::before {
   background: #1e1f26;
 }
 body.body_dark .doc_rightsidebar .doc_switch input[type=checkbox], body.body_dark .topic_item_tabs .topic_list_item,
-body.body_dark .doc_left_sidebarlist::after,
-body.body_dark .doc_rightsidebar .dropdown-toggle, body.body_dark .fontsize-controllers .btn-group .btn.rvfs-reset, body.body_dark .fontsize-controllers .btn-group,
+body.body_dark .doc_left_sidebarlist::after, body.body_dark .doc_rightsidebar .dropdown-toggle,
 body.body_dark .doc_left_sidebarlist:before, body.body_dark .doc_left_sidebarlist,
 body.body_dark .nav-sidebar + .nav-sidebar, body.body_dark .doc_rightsidebar, body.body_dark .v_menu,
 body.body_dark .toggle_body, body.body_dark .basic_table_info, body.body_dark .basic_table_info tbody tr th, body.body_dark .basic_table_info tbody tr td,
@@ -102,7 +102,6 @@ body.body_dark .doc_menu .nav-link.active, body.body_dark .doc_menu .nav-link:ho
 body.body_dark h1, body.body_dark h2, body.body_dark h3, body.body_dark h4, body.body_dark h5, body.body_dark h6 {
   color: #fff;
 }
-body.body_dark .fontsize-controllers .btn-group .btn,
 body.body_dark .doc_rightsidebar .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
   color: #c7c9d3;
 }
