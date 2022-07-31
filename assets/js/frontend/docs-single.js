@@ -567,6 +567,11 @@
             }
         })
         
+        if ($(".ezd_connect_theme:contains('Docly'), .ezd_connect_theme:contains('Docy')").length) {
+        }else{
+        $('body').prepend( "<div class='ezd_click_capture'></div>" );
+        }
+        
         $("#ezd_searchInput").focus(function() {
             $('body').addClass('ezd-search-focused');
             $('form.ezd_search_form').css('z-index','999');
@@ -579,3 +584,4 @@
 
     })
 })(jQuery);
+

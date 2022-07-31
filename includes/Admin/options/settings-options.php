@@ -914,6 +914,31 @@ CSF::createSection( $prefix, array(
 	)
 ) );
 
+
+// Privae Doc
+CSF::createSection( $prefix, array(
+	'id'     => 'doc_private',
+	'parent' => 'single_doc',
+	'title'  => esc_html__( 'Private Doc', 'eazydocs-pro' ),
+	'icon'   => '',
+	'fields' => array(
+		array(
+			'type'  => 'heading',
+			'title' => esc_html__( 'Private Doc Settings', 'eazydocs-pro' )
+		),
+
+		array(
+			'id'         => 'private_doc_login',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Select login page', 'eazydocs-pro' ),
+			'subtitle'   => esc_html__( 'Select a login page to view private doc', 'eazydocs-pro' ),
+			'options'	 =>'pages',
+			'class'      => 'eazydocs-pro-notice'
+		)
+	)
+) );
+
+
 // OnePage Doc
 CSF::createSection( $prefix, array(
 	'id'     => 'ezd-onepage-docs',

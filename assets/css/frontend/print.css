@@ -9,3 +9,7 @@ h1 {
 .eazydocs-hide-print {
     display: none !important;
 }
+
+.ezd_connect_theme{
+    display: none;
+}
