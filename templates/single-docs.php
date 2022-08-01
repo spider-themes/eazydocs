@@ -11,7 +11,7 @@ get_header();
 $theme_data = wp_get_theme();
 $theme_name = $theme_data->get( 'Name' ); 
 ?>
-<p class="ezd_connect_theme"><?php echo $theme_name; ?></p>
+<p class="d-none"><?php echo $theme_name; ?></p>
 <?php
 $options = get_option( 'eazydocs_settings' );
 
