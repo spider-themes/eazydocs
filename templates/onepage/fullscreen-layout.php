@@ -11,7 +11,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); docy_has_scrollspy() ?> >
+<body <?php body_class(); if(function_exists('docy_has_scrollspy')){docy_has_scrollspy();} ?> >
     <?php
     if ( function_exists('wp_body_open') ) {
         wp_body_open();
