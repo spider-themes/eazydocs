@@ -790,6 +790,111 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme-docly'
 		),
+
+		array(
+			'id'         => 'ezd_fronted_submission',
+			'type'       => 'tabbed',
+			'title'      => 'Frontend Add / Edit Button',
+			'class'      => 'eazydocs-pro-notice',
+			'tabs'       => array(
+			array(
+				'title'  => 'Add Doc',
+				'fields' => array(
+					
+					array(
+						'id'    => 'ezd_add_doc_heading',
+						'type'  => 'heading',
+						'title' => esc_html__( 'Add Doc', 'eazydocs-pro' ),
+					),
+					
+					array(
+						'id'         => 'frontend-add-switcher',
+						'type'       => 'switcher',
+						'title'      => esc_html__( 'Add Button', 'eazydocs-pro' ),
+						'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+						'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+						'text_width' => 72,
+						'default'    => true,
+					),
+			
+					array(
+						'id'         => 'docs-frontend-add-user-permission',
+						'type'       => 'select',
+						'title'      => esc_html__( 'Add Mode', 'eazydocs-pro' ),
+						'options'	 => [
+							'guest'	 =>  esc_html__( 'Guest user', 'eazydocs-pro' ),
+							'login'	 =>  esc_html__( 'Login Required', 'eazydocs-pro' ),
+						],
+						'default'	 => 'guest',
+						'dependency' => array( 'frontend-add-switcher', '==', 'true' )
+					),
+			
+					array(
+						'id'         => 'docs-frontend-add-user',
+						'type'       => 'select',
+						'placeholder' => 'Select User',
+						'title'      => esc_html__( 'Select User', 'eazydocs-pro' ),
+						'subtitle'   => esc_html__( 'Select a user which will be automatically login to edit docs from frontend.', 'eazydocs-pro' ),
+						'options'	 => 'users',
+						'dependency' => array( 
+							array( 'frontend-add-switcher', '==', 'true' ),
+							array( 'docs-frontend-add-user-permission', '==', 'guest' ),
+						)
+					)
+				)
+			),
+
+			array(
+				'title'  => 'Edit Doc',
+				'fields' => array(
+					
+					array(
+						'id'    => 'frontend-edit-doc',
+						'type'  => 'heading',
+						'title' => esc_html__( 'Edit Doc', 'eazydocs-pro' ),
+					),
+					
+					array(
+						'id'         => 'frontend-edit-switcher',
+						'type'       => 'switcher',
+						'title'      => esc_html__( 'Edit Button', 'eazydocs-pro' ),
+						'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+						'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+						'text_width' => 72,
+						'default'    => true,
+					),
+			
+					array(
+						'id'         => 'docs-frontend-edit-user-permission',
+						'type'       => 'select',
+						'title'      => esc_html__( 'Edit Mode', 'eazydocs-pro' ),
+						'options'	 => [
+							'guest'	 =>  esc_html__( 'Guest user', 'eazydocs-pro' ),
+							'login'	 =>  esc_html__( 'Login Required', 'eazydocs-pro' ),
+						],
+						'dependency' => array( 'frontend-edit-switcher', '==', 'true' )
+					),
+			
+					array(
+						'id'         => 'docs-frontend-edit-user',
+						'type'       => 'select',
+						'placeholder' => 'Select User',
+						'title'      => esc_html__( 'Select User', 'eazydocs-pro' ),
+						'subtitle'   => esc_html__( 'Select a user which will be automatically login to edit docs from frontend.', 'eazydocs-pro' ),
+						'options'	 => 'users',
+						'dependency' => array( 
+							array( 'frontend-edit-switcher', '==', 'true' ),
+							array( 'docs-frontend-edit-user-permission', '==', 'guest' ),
+						)
+					)
+					
+
+				)
+			)
+			
+		)
+	)
+	
 	)
 ) );
 

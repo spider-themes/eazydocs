@@ -55,7 +55,7 @@ class Admin {
 			$sz_roled = explode( ',', $sz_roles );
 
 			$user         = wp_get_current_user();
-			$current_user = $user->roles[0];
+			$current_user = $user->roles[0] ?? '';
 			$all_roled    = explode( ',', $all_roles );
 			if ( in_array( $current_user, $all_roled ) ) {
 				switch ( $current_user ) {

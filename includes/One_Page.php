@@ -50,9 +50,9 @@ class One_Page {
 			$post = get_page_by_title( $_GET['single_doc_title'], OBJECT, 'docs' );
 
 			if ( empty ( $_GET['self_doc'] ) ) {
-				echo $redirect = 'admin.php?page=eazydocs';
+				$redirect = 'admin.php?page=eazydocs';
 			} else {
-				echo $redirect = 'edit.php?post_type=onepage-docs';
+				$redirect = 'edit.php?post_type=onepage-docs';
 			}
 
 			if ( ! get_page_by_title( $page_title, OBJECT, 'onepage-docs' ) ) {

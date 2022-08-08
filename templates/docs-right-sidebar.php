@@ -12,8 +12,41 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
             <i class="arrow_carrot-left"></i>
             <i class="arrow_carrot-right"></i>
         </div>
+        
         <div class="pageSideSection">
-            <?php
+        <div class="mb-3">
+            <?php 
+            $frontend_submission 		= eazydocs_get_option('ezd_fronted_submission', 'eazydocs_settings');
+            $frontend_edit            = $frontend_submission['frontend-edit-switcher'] ?? '';
+            $edit_user                = $frontend_submission['docs-frontend-edit-user-permission'] ?? '';
+            if( $frontend_edit 	== 1 ){
+                if( $edit_user  == 'guest' ){
+                    do_action('eazydocs_fronted_editing', get_edit_post_link(get_the_ID()));
+                }else{
+                    if(is_user_logged_in()){
+                        do_action('eazydocs_fronted_editing', get_edit_post_link(get_the_ID()));
+                    }else{
+                        do_action('eazydocs_fronted_editing', esc_url( wp_login_url( get_permalink() ) ));
+                    }
+                }
+            }
+            
+            $frontend_add        = $frontend_submission['frontend-add-switcher'] ?? '';
+            $add_user            = $frontend_submission['docs-frontend-add-user-permission'] ?? '';
+            if( $frontend_add 	 == 1 ){
+                if( $add_user    == 'guest' ){
+                    do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
+                }else{
+                    if(is_user_logged_in()){
+                        do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
+                    }else{
+                        do_action('eazydocs_fronted_submission', esc_url( wp_login_url( get_permalink() ) ));
+                    }
+                }
+            }
+            ?>
+        </div>
+        <?php
             if ( $is_conditional_dropdown == '1' && !empty( $condition_options ) ) :
                 wp_enqueue_style( 'font-awesome-5' );
                 wp_enqueue_style( 'bootstrap-select' );
