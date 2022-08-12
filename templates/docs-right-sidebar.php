@@ -15,32 +15,38 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
         
         <div class="pageSideSection">
         <div class="mb-3">
-            <?php 
-            $frontend_submission 		= eazydocs_get_option('ezd_fronted_submission', 'eazydocs_settings');
-            $frontend_edit            = $frontend_submission['frontend-edit-switcher'] ?? '';
-            $edit_user                = $frontend_submission['docs-frontend-edit-user-permission'] ?? '';
-            if( $frontend_edit 	== 1 ){
-                if( $edit_user  == 'guest' ){
-                    do_action('eazydocs_fronted_editing', get_edit_post_link(get_the_ID()));
-                }else{
-                    if(is_user_logged_in()){
-                        do_action('eazydocs_fronted_editing', get_edit_post_link(get_the_ID()));
+            <?php   
+            $edit_url                   = get_the_ID();
+            $frontend_submission 	    = eazydocs_get_option('ezd_fronted_submission', 'eazydocs_settings');
+            $frontend_edit              = $frontend_submission['frontend-edit-switcher'] ?? '';
+            $doc_user_mode              = $frontend_submission['docs-frontend-user-mode'] ?? '';
+			$user_login_page_id         = $frontend_submission['docs-frontend-login-page'] ?? '';
+
+            if( !$user_login_page_id && $doc_user_mode == 'login'){
+                esc_html_e('Login page not found!.', 'eazydocs');
+            }else{
+                if( $frontend_edit 	        == 1 ){
+                    $doc_edit_url = get_edit_post_link(get_the_ID());
+                    if( $doc_user_mode      == 'guest' ){
+                        do_action('eazydocs_fronted_editing', $doc_edit_url);
                     }else{
-                        do_action('eazydocs_fronted_editing', esc_url( wp_login_url( get_permalink() ) ));
+                        if(is_user_logged_in()){
+                            do_action('eazydocs_fronted_editing', $doc_edit_url);
+                        }else{
+                            do_action('eazydocs_fronted_editing', '?edit_doc_url='.$edit_url);
+                        }
                     }
                 }
-            }
-            
-            $frontend_add        = $frontend_submission['frontend-add-switcher'] ?? '';
-            $add_user            = $frontend_submission['docs-frontend-add-user-permission'] ?? '';
-            if( $frontend_add 	 == 1 ){
-                if( $add_user    == 'guest' ){
-                    do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
-                }else{
-                    if(is_user_logged_in()){
+                $frontend_add               = $frontend_submission['frontend-add-switcher'] ?? '';
+                if( $frontend_add 	        == 1 ){
+                    if( $doc_user_mode      == 'guest' ){
                         do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
                     }else{
-                        do_action('eazydocs_fronted_submission', esc_url( wp_login_url( get_permalink() ) ));
+                        if(is_user_logged_in()){
+                            do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
+                        }else{
+                            do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'));
+                        }
                     }
                 }
             }
