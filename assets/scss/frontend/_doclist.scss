@@ -497,6 +497,15 @@
       padding-right: 8px;
     }
   }
+  p.left {
+    a {
+      color: var(--ezd_brand_color);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
   p.right {
     margin-bottom: 0;
     text-align: right;

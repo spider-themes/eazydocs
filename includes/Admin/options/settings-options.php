@@ -808,7 +808,7 @@ CSF::createSection( $prefix, array(
 						),
 						
 						array(
-							'id'         => 'frontend-add-switcher',
+							'id'         => 'frontend_add_switcher',
 							'type'       => 'switcher',
 							'title'      => esc_html__( 'Add Button', 'eazydocs-pro' ),
 							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
@@ -822,7 +822,7 @@ CSF::createSection( $prefix, array(
 							'type'       => 'text',
 							'title'      => esc_html__( 'Button', 'eazydocs-pro' ),
 							'default'	 => esc_html__( 'Add Doc', 'eazydocs-pro' ),
-							'dependency' => array( 'frontend-add-switcher', '==', 'true' )
+							'dependency' => array( 'frontend_add_switcher', '==', 'true' )
 						)
 					)
 				),
@@ -838,7 +838,7 @@ CSF::createSection( $prefix, array(
 						),
 						
 						array(
-							'id'         => 'frontend-edit-switcher',
+							'id'         => 'frontend_edit_switcher',
 							'type'       => 'switcher',
 							'title'      => esc_html__( 'Edit Button', 'eazydocs-pro' ),
 							'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
@@ -852,7 +852,7 @@ CSF::createSection( $prefix, array(
 							'type'       => 'text',
 							'title'      => esc_html__( 'Button', 'eazydocs-pro' ),
 							'default'	 => esc_html__( 'Edit Doc', 'eazydocs-pro' ),
-							'dependency' => array( 'frontend-edit-switcher', '==', 'true' )
+							'dependency' => array( 'frontend_edit_switcher', '==', 'true' )
 						)
 					)
 				),
@@ -868,7 +868,7 @@ CSF::createSection( $prefix, array(
 						),
 
 						array(
-							'id'         => 'docs-frontend-user-mode',
+							'id'         => 'docs_frontend_user_mode',
 							'type'       => 'select',
 							'title'      => esc_html__( 'User Mode', 'eazydocs-pro' ),
 							'desc'		 => esc_html__( 'This settings will work for private doc as well', 'eazydocs-pro' ),
@@ -886,7 +886,7 @@ CSF::createSection( $prefix, array(
 							'subtitle'   => esc_html__( 'Select a user which will be automatically login to edit docs from frontend.', 'eazydocs-pro' ),
 							'options'	 => 'users',
 							'dependency' => array( 
-								array( 'docs-frontend-user-mode', '==', 'guest' ),
+								array( 'docs_frontend_user_mode', '==', 'guest' ),
 							)
 							),
 						
@@ -898,7 +898,7 @@ CSF::createSection( $prefix, array(
 							'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs-pro' ),
 							'options'	 => 'pages',
 							'dependency' => array( 
-								array( 'docs-frontend-user-mode', '==', 'login' ),
+								array( 'docs_frontend_user_mode', '==', 'login' ),
 							)
 						)
 						

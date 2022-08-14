@@ -14,44 +14,45 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
         </div>
         
         <div class="pageSideSection">
-        <div class="mb-3">
-            <?php   
-            $edit_url                   = get_the_ID();
-            $frontend_submission 	    = eazydocs_get_option('ezd_fronted_submission', 'eazydocs_settings');
-            $frontend_edit              = $frontend_submission['frontend-edit-switcher'] ?? '';
-            $doc_user_mode              = $frontend_submission['docs-frontend-user-mode'] ?? '';
-			$user_login_page_id         = $frontend_submission['docs-frontend-login-page'] ?? '';
+            <div class="contribut-btns">
+                <?php
+                $edit_url                   = get_the_ID();
+                $frontend_edit              = eazydocs_get_option('frontend_edit_switcher', 'eazydocs_settings') ?? '';
+                $doc_edit_btn_text          = eazydocs_get_option('frontend-edit-btn-text', 'eazydocs_settings') ?? esc_html__('Edit', 'eazydocs-pro');
+                $doc_user_mode              = $frontend_submission['docs_frontend_user_mode'] ?? '';
+                $user_login_page_id         = $frontend_submission['docs-frontend-login-page'] ?? '';
 
-            if( !$user_login_page_id && $doc_user_mode == 'login'){
-                esc_html_e('Login page not found!.', 'eazydocs');
-            }else{
-                if( $frontend_edit 	        == 1 ){
-                    $doc_edit_url = get_edit_post_link(get_the_ID());
-                    if( $doc_user_mode      == 'guest' ){
-                        do_action('eazydocs_fronted_editing', $doc_edit_url);
-                    }else{
-                        if(is_user_logged_in()){
+                if ( !$user_login_page_id && $doc_user_mode == 'login' ) {
+                    esc_html_e( 'Login page not found!.', 'eazydocs' );
+                } else {
+                    if ( $frontend_edit == 1 ) {
+                        $doc_edit_url = get_edit_post_link(get_the_ID());
+                        if ( $doc_user_mode == 'guest' ) {
                             do_action('eazydocs_fronted_editing', $doc_edit_url);
-                        }else{
-                            do_action('eazydocs_fronted_editing', '?edit_doc_url='.$edit_url);
+                        } else {
+                            if(is_user_logged_in()){
+                                do_action('eazydocs_fronted_editing', $doc_edit_url);
+                            } else {
+                                do_action('eazydocs_fronted_editing', '?edit_doc_url='.$edit_url);
+                            }
                         }
                     }
-                }
-                $frontend_add               = $frontend_submission['frontend-add-switcher'] ?? '';
-                if( $frontend_add 	        == 1 ){
-                    if( $doc_user_mode      == 'guest' ){
-                        do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
-                    }else{
-                        if(is_user_logged_in()){
+
+                    $frontend_add = $frontend_submission['frontend_add_switcher'] ?? '';
+                    if ( $frontend_add == 1 ) {
+                        if ( $doc_user_mode == 'guest' ){
                             do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
-                        }else{
-                            do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'));
+                        } else {
+                            if ( is_user_logged_in() ) {
+                                do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
+                            } else {
+                                do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'));
+                            }
                         }
                     }
                 }
-            }
-            ?>
-        </div>
+                ?>
+            </div>
         <?php
             if ( $is_conditional_dropdown == '1' && !empty( $condition_options ) ) :
                 wp_enqueue_style( 'font-awesome-5' );
@@ -72,13 +73,13 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
                     <?php
                     foreach ( $condition_options as $option ) {
                         echo '
-                        if( jQuery("#condition_options").val() == "' . esc_js(sanitize_title( $option['title'] )) . '" ) {
+                        if ( jQuery("#condition_options").val() == "' . esc_js(sanitize_title( $option['title'] )) . '" ) {
                             jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").show();
                         } else {
                             jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").hide();
                         }
                         jQuery("#condition_options").change(function() {
-                            if( jQuery("#condition_options").val() == "' . esc_js(sanitize_title( $option['title'] )) . '" ) {
+                            if ( jQuery("#condition_options").val() == "' . esc_js(sanitize_title( $option['title'] )) . '" ) {
                                 jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").show();
                             } else {
                                 jQuery(".' . esc_js(sanitize_title( $option['title'] )) . '").hide();
@@ -92,7 +93,7 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
                 </script>
                 <?php
             endif;
-            if( ! empty( $font_size_switcher == 1 ) ) :
+            if ( ! empty( $font_size_switcher == 1 ) ) :
             ?>
             <div id="font-switcher" class="d-flex justify-content-between align-items-center">
                 <div id="rvfs-controllers" class="fontsize-controllers group">

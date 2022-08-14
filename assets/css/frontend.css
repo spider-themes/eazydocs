@@ -903,6 +903,13 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 .feedback_link p.left i, .feedback_link p.right i {
   padding-right: 8px;
 }
+.feedback_link p.left a {
+  color: var(--ezd_brand_color);
+  text-decoration: none;
+}
+.feedback_link p.left a:hover {
+  text-decoration: underline;
+}
 .feedback_link p.right {
   margin-bottom: 0;
   text-align: right;

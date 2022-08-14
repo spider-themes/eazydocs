@@ -97,11 +97,17 @@ a.eazydocs-close-notice:active {
 .csf-options {
     max-width: 1200px;
 }
-.csf-field .csf-title {
-    width: 30%;
+.csf-field {
+    .csf-title {
+        width: 30%;
+    }
+    .csf-fieldset {
+        width: calc(70% - 20px);
+    }
 }
-.csf-field .csf-fieldset {
-    width: calc(70% - 20px);
+
+.csf-field-heading .csf-title {
+    width: 100%;
 }
 
 .eazydocs-pro-notice.csf-field {
