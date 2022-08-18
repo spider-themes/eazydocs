@@ -79,6 +79,15 @@
 
 .nav-sidebar {
   margin: 0;
+  .nav-item.active > .icon {
+      transform: rotate(-180deg);
+      i.icon_minus-06{
+        display: inline-block;
+      }
+      i.icon_plus{
+        display: none;
+      }
+    } 
   .nav-item {
     cursor: pointer;
     padding-right: 0;
@@ -152,17 +161,6 @@
     }
     i.icon_plus{
       display: inline-block;
-    }
-    &.active {
-      .icon {
-        transform: rotate(-180deg);
-        i.icon_minus-06{
-          display: inline-block;
-        }
-        i.icon_plus{
-          display: none;
-        }
-      }
     }
     .dropdown_nav {
       margin: 0;
