@@ -916,27 +916,48 @@ CSF::createSection( $prefix, array(
 	)
 ) );
 
-
-// Privae Doc
 CSF::createSection( $prefix, array(
-	'id'     => 'doc_private',
+	'id'     => 'private_doc_settings',
 	'parent' => 'single_doc',
 	'title'  => esc_html__( 'Private Doc', 'eazydocs-pro' ),
 	'icon'   => '',
 	'fields' => array(
+		
 		array(
+			'id'    => 'private_doc_visibility',
 			'type'  => 'heading',
-			'title' => esc_html__( 'Private Doc Settings', 'eazydocs-pro' )
+			'title' => esc_html__( 'Private Doc', 'eazydocs-pro' )
 		),
-
 		array(
-			'id'         => 'private_doc_login',
+			'id'         => 'private_doc_mode',
 			'type'       => 'select',
-			'title'      => esc_html__( 'Select login page', 'eazydocs-pro' ),
-			'subtitle'   => esc_html__( 'Select a login page to view private doc', 'eazydocs-pro' ),
-			'options'	 =>'pages',
+			'title'      => esc_html__( 'Visibility Mode', 'eazydocs-pro' ),
+			'options'	 => [
+				'guest'	 =>  esc_html__( 'Guest user', 'eazydocs-pro' ),
+				'login'	 =>  esc_html__( 'Login Required', 'eazydocs-pro' ),
+				'none'	 =>  esc_html__( 'None', 'eazydocs-pro' ),
+			],
+			'default'    => 'none',
 			'class'      => 'eazydocs-pro-notice'
+		),
+		array(
+			'id'         => 'private_doc_login_page',
+			'type'       => 'select',
+			'placeholder' => 'Select page',
+			'title'      => esc_html__( 'Select Page', 'eazydocs-pro' ),
+			'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs-pro' ),
+			'options'	 => 'pages',
+			'class'      => 'eazydocs-pro-notice',
+			'dependency' => array(
+				array( 'private_doc_mode', '==', 'login' ),
+			),
+			'query_args' => array(
+				'posts_per_page' => -1,
+			),
+			'chosen'     => true,
+			'ajax'       => true,
 		)
+		
 	)
 ) );
 
