@@ -933,7 +933,6 @@ CSF::createSection( $prefix, array(
 			'type'       => 'select',
 			'title'      => esc_html__( 'Visibility Mode', 'eazydocs-pro' ),
 			'options'	 => [
-				'guest'	 =>  esc_html__( 'Guest user', 'eazydocs-pro' ),
 				'login'	 =>  esc_html__( 'Login Required', 'eazydocs-pro' ),
 				'none'	 =>  esc_html__( 'None', 'eazydocs-pro' ),
 			],
@@ -946,6 +945,7 @@ CSF::createSection( $prefix, array(
 			'placeholder' => 'Select page',
 			'title'      => esc_html__( 'Select Page', 'eazydocs-pro' ),
 			'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs-pro' ),
+			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs-pro' ),
 			'options'	 => 'pages',
 			'class'      => 'eazydocs-pro-notice',
 			'dependency' => array(
@@ -1181,6 +1181,7 @@ CSF::createSection( $prefix, array(
             'placeholder' => 'Select page',
             'title'      => esc_html__( 'Select Page', 'eazydocs-pro' ),
             'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs-pro' ),
+			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs-pro' ),
             'options'	 => 'pages',
 			'class'      => 'eazydocs-pro-notice',
 			'dependency' => array(
