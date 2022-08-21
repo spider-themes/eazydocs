@@ -1061,6 +1061,20 @@ CSF::createSection( $prefix, array(
 				'readonly' => 'readonly',
 			),
 		),
+		array(
+            'id'         => 'ezdocs_login_shortcode',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Docs Login', 'eazydocs-pro' ),
+            'subtitle'       => sprintf( __( 'Use this shortcode to display the Docs login form. Learn more about the shortcode and the attributes %s here %s.', 'eazydocs-pro' ),
+                '<a href="https://tinyurl.com/24zm4oj3" target="_blank">', '</a>'
+            ),
+            'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs-pro' ).'<br><code>[ezd_login_form ezd_login_title="You must log in to continue." ezd_login_subtitle="Login to '.get_bloginfo().'" ezd_login_btn="Log In" ezd_login_forgot_btn="Forgotten account?"]</code>',
+            'default'    => '[ezd_login_form]',
+            'attributes' => array(
+                'readonly' => 'readonly',
+			),
+			'class'      => 'eazydocs-pro-notice'
+        )
 	]
 ) );
 

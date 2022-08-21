@@ -1,6 +1,6 @@
 
 <?php
-wp_enqueue_style( 'font-awesome-5');
+wp_enqueue_style('font-awesome-5');
 global $wp;
 $redirect_to                = home_url( $wp->request );
 $redirect_to			    = $_GET['after_login'] ?? '';
@@ -29,26 +29,21 @@ if( isset( $_GET['ezd_login']) ){
             <div class="ezd-login-head-icon">
                 <i class="fa fa-info-circle"></i>
             </div>
-            <?php esc_html_e( 'You must log in to continue.', 'eazydocs' ); ?>
+            <?php echo esc_html($ezd_login_title); ?>
         </div>
         <div class="ezd-login-form-wrap"> 
-            <p>
-            <?php
-            echo esc_html( 'Login to ', 'eazydocs' ); 
-            echo bloginfo('name');
-            ?>
-            </p>
+            <?php echo wpautop($ezd_login_subtitle); ?>
             <form action="" method="GET">
                 <input type="text" placeholder="<?php esc_attr_e('Username', 'eazydocs'); ?>" name="ezd_username" id="username">
                 <input type="password" placeholder="<?php esc_attr_e('Password', 'eazydocs'); ?>" name="ezd_password" id="password">
                 <input type="hidden" name="ezd_private_doc" value="<?php echo esc_attr($redirect_to); ?>">
-                <input type="hidden" name="after_login" value="<?php echo $add_new_doc; ?>">
+                <input type="hidden" name="after_login" value="<?php echo esc_attr($add_new_doc); ?>">
                 <input type="hidden" name="add_new_doc" value="<?php echo esc_attr($add_new); ?>">
-                <input type="hidden" name="private_doc" value="<?php echo $private_doc; ?>" id="">
-                <input type="submit" name="ezd_login" value="<?php esc_attr_e('Log In', 'eazydocs'); ?>">
+                <input type="hidden" name="private_doc" value="<?php echo esc_attr($private_doc); ?>" id="">
+                <input type="submit" name="ezd_login" value="<?php echo esc_attr($ezd_login_btn); ?>">
             </form>
             <a href="<?php echo esc_url( wp_lostpassword_url( get_permalink() ) ); ?>">
-                <?php esc_attr_e('Forgotten account?', 'eazydocs'); ?>
+            <?php echo esc_html($ezd_login_forgot_btn); ?>
             </a>
             <?php 
             if ( is_wp_error( $login_info ) ) {
