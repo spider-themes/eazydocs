@@ -82,7 +82,7 @@ CSF::createSection( $prefix, array(
             'attributes' => [
                 'width' => '100px'
             ],
-            'default'    => '4'
+            'default'    => '3'
         ),
 
 		array(

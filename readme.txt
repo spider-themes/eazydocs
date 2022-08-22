@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs, arafatjamil01, delweratjk
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
-Tested up to: 6.0.0
+Tested up to: 6.0.1
 Requires PHP: 7.2
-Stable tag: 1.2.9
+Stable tag: 1.3.0x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.3.1 (23 August 2022) =
+New: Login template for Private docs and Contributors (can be used with EazyDocs Pro)
+Tweaked: Compatibility improved with the EazyDocs Pro 1.8.0
+Tweaked: Private docs shown in the [eazydocs] shortcode archive page.
+Tweaked: [eazydocs] shortcode UI design improved
 
 = v1.3.0 (01 August 2022) =
 New: Ajax Live Search results style improved to include all doc contents in the results

@@ -48,7 +48,7 @@ class Shortcode {
             'exclude' => '',
             'show_docs' => $opt['docs-number'] ?? -1,
             'show_articles' => $opt['show_articles'] ?? 5,
-            'more' => __( 'View Details', 'eazydocs' ),
+            'more' => esc_html__( 'View Details', 'eazydocs' ),
         ];
 
         $args     = wp_parse_args( $args, $defaults );
@@ -76,12 +76,12 @@ class Shortcode {
                     break;
             }
 
-
         // Parent Docs
         $parent_args = [
             'post_type'   => 'docs',
             'parent'      => 0,
             'sort_column' => 'menu_order',
+            'post_status' => array( 'publish', 'private' ),
             'number' => (int) $args['show_docs']
         ];
 

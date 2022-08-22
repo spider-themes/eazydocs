@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-07-27 15:47+0600\n"
+"POT-Creation-Date: 2022-08-23 03:41+0600\n"
 "PO-Revision-Date: 2022-04-05 15:26+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "OnePage Docs"
 msgstr ""
 
-#: includes/Admin/Admin.php:136 includes/Admin/options/settings-options.php:920
+#: includes/Admin/Admin.php:136 includes/Admin/options/settings-options.php:968
 #: includes/One_page_doc_type.php:36
 msgid "OnePage Doc"
 msgstr ""
@@ -105,20 +105,20 @@ msgstr ""
 msgid "Already did"
 msgstr ""
 
-#: includes/Admin/Assets.php:77
+#: includes/Admin/Assets.php:74
 msgid "Enter Docs Title"
 msgstr ""
 
-#: includes/Admin/Assets.php:78
+#: includes/Admin/Assets.php:75
 msgid "Are you sure to delete?"
 msgstr ""
 
-#: includes/Admin/Assets.php:79
+#: includes/Admin/Assets.php:76
 msgid ""
 "This doc will be deleted with the child docs and you won't be able to revert!"
 msgstr ""
 
-#: includes/Admin/Assets.php:80
+#: includes/Admin/Assets.php:77
 msgid "Are you sure to Duplicate this doc?"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgid "Frontend Brand Color"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:67
-#: includes/Admin/options/settings-options.php:976
+#: includes/Admin/options/settings-options.php:1024
 msgid "Docs Archive"
 msgstr ""
 
@@ -201,13 +201,15 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:723
 #: includes/Admin/options/settings-options.php:733
 #: includes/Admin/options/settings-options.php:744
-#: includes/Admin/options/settings-options.php:812
-#: includes/Admin/options/settings-options.php:872
-#: includes/Admin/options/settings-options.php:938
-#: includes/Admin/options/settings-options.php:1153
-#: includes/Admin/options/settings-options.php:1173
-#: includes/Admin/options/settings-options.php:1197
-#: includes/Admin/options/settings-options.php:1227
+#: includes/Admin/options/settings-options.php:814
+#: includes/Admin/options/settings-options.php:874
+#: includes/Admin/options/settings-options.php:986
+#: includes/Admin/options/settings-options.php:1115
+#: includes/Admin/options/settings-options.php:1148
+#: includes/Admin/options/settings-options.php:1344
+#: includes/Admin/options/settings-options.php:1364
+#: includes/Admin/options/settings-options.php:1388
+#: includes/Admin/options/settings-options.php:1418
 msgid "Show"
 msgstr ""
 
@@ -221,13 +223,15 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:724
 #: includes/Admin/options/settings-options.php:734
 #: includes/Admin/options/settings-options.php:745
-#: includes/Admin/options/settings-options.php:813
-#: includes/Admin/options/settings-options.php:873
-#: includes/Admin/options/settings-options.php:939
-#: includes/Admin/options/settings-options.php:1154
-#: includes/Admin/options/settings-options.php:1174
-#: includes/Admin/options/settings-options.php:1198
-#: includes/Admin/options/settings-options.php:1228
+#: includes/Admin/options/settings-options.php:815
+#: includes/Admin/options/settings-options.php:875
+#: includes/Admin/options/settings-options.php:987
+#: includes/Admin/options/settings-options.php:1116
+#: includes/Admin/options/settings-options.php:1149
+#: includes/Admin/options/settings-options.php:1345
+#: includes/Admin/options/settings-options.php:1365
+#: includes/Admin/options/settings-options.php:1389
+#: includes/Admin/options/settings-options.php:1419
 msgid "Hide"
 msgstr ""
 
@@ -297,8 +301,8 @@ msgstr ""
 
 #: includes/Admin/options/settings-options.php:162
 #: includes/Admin/options/settings-options.php:757
-#: includes/Admin/options/settings-options.php:821
-#: includes/Admin/options/settings-options.php:881
+#: includes/Admin/options/settings-options.php:823
+#: includes/Admin/options/settings-options.php:883
 msgid "Title"
 msgstr ""
 
@@ -386,6 +390,7 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:775
 #: includes/Admin/options/settings-options.php:787
 #: includes/Admin/options/settings-options.php:1096
+#: includes/Admin/options/settings-options.php:1287
 #: vendor/codestar-framework/fields/sorter/sorter.php:21
 msgid "Enabled"
 msgstr ""
@@ -396,6 +401,7 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:776
 #: includes/Admin/options/settings-options.php:788
 #: includes/Admin/options/settings-options.php:1097
+#: includes/Admin/options/settings-options.php:1288
 #: vendor/codestar-framework/fields/sorter/sorter.php:22
 msgid "Disabled"
 msgstr ""
@@ -420,8 +426,8 @@ msgstr ""
 msgid "Credit Text"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:302 templates/single-docs.php:17
-#: templates/single-docs.php:24
+#: includes/Admin/options/settings-options.php:302 templates/single-docs.php:22
+#: templates/single-docs.php:29
 #, php-format
 msgid "%s"
 msgstr ""
@@ -436,7 +442,7 @@ msgid "Search Banner Settings"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:334
-#: includes/Admin/options/settings-options.php:1344
+#: includes/Admin/options/settings-options.php:1535
 msgid "Background"
 msgstr ""
 
@@ -573,7 +579,7 @@ msgid "Left Sidebar"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:630
-#: includes/Admin/options/settings-options.php:927
+#: includes/Admin/options/settings-options.php:975
 msgid "Layout"
 msgstr ""
 
@@ -652,7 +658,7 @@ msgid "Print Article"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:740
-#: includes/Admin/options/settings-options.php:1009
+#: includes/Admin/options/settings-options.php:1057
 msgid "Conditional Dropdown"
 msgstr ""
 
@@ -685,285 +691,392 @@ msgid ""
 "Appearance > Widgets."
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:799
+#: includes/Admin/options/settings-options.php:801
 #: templates/content-related.php:9
 msgid "Related Articles"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:805
+#: includes/Admin/options/settings-options.php:807
 msgid "Related Docs Settings"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:811
+#: includes/Admin/options/settings-options.php:813
 msgid "Related Docs"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:822
+#: includes/Admin/options/settings-options.php:824
 msgid "Related articles"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:833
-#: includes/Admin/options/settings-options.php:893
+#: includes/Admin/options/settings-options.php:835
+#: includes/Admin/options/settings-options.php:895
 msgid "Docs Number"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:834
-#: includes/Admin/options/settings-options.php:894
+#: includes/Admin/options/settings-options.php:836
+#: includes/Admin/options/settings-options.php:896
 msgid "4"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:845
-#: includes/Admin/options/settings-options.php:905
+#: includes/Admin/options/settings-options.php:847
+#: includes/Admin/options/settings-options.php:907
+#: includes/Admin/options/settings-options.php:1127
+#: includes/Admin/options/settings-options.php:1160
 msgid "Button"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:846
-#: includes/Admin/options/settings-options.php:906
+#: includes/Admin/options/settings-options.php:848
+#: includes/Admin/options/settings-options.php:908
 #: templates/content-related.php:11 templates/content-related.php:15
 msgid "See More"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:859
+#: includes/Admin/options/settings-options.php:861
 msgid "Viewed Articles"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:865
+#: includes/Admin/options/settings-options.php:867
 msgid "Recently Viewed Docs Options"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:871
+#: includes/Admin/options/settings-options.php:873
 msgid "Recently Viewed Docs"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:882
+#: includes/Admin/options/settings-options.php:884
 msgid "Recently Viewed articles"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:929
-msgid "Classic OnePage Doc"
+#: includes/Admin/options/settings-options.php:922
+#: includes/Admin/options/settings-options.php:929 templates/shortcode.php:41
+msgid "Private Doc"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:930
-msgid "Fullscreen OnePage Doc"
+#: includes/Admin/options/settings-options.php:934
+msgid "Visibility Mode"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:936
+#: includes/Admin/options/settings-options.php:1184
+msgid "Login Required"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:937
+#: vendor/codestar-framework/fields/border/border.php:59
+#: vendor/codestar-framework/fields/typography/typography.php:199
+#: vendor/codestar-framework/fields/typography/typography.php:213
+msgid "None"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:946
+#: includes/Admin/options/settings-options.php:1196
+msgid "Select Page"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:947
+#: includes/Admin/options/settings-options.php:1197
+msgid "Select Doc login page"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:948
+#: includes/Admin/options/settings-options.php:1198
+msgid ""
+"If you want to change this page, use this shortcode [ezd_login_form] to "
+"display the login form on your desired page."
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:977
+msgid "Classic OnePage Doc"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:978
+msgid "Fullscreen OnePage Doc"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:985
 msgid "Numbering"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:970
+#: includes/Admin/options/settings-options.php:1018
 msgid "Customizer"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:976
+#: includes/Admin/options/settings-options.php:1024
 msgid "Single Doc"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:987
+#: includes/Admin/options/settings-options.php:1035
 msgid "Docs Shortcodes"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:994
+#: includes/Admin/options/settings-options.php:1042
 msgid "Docs archive"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:996
+#: includes/Admin/options/settings-options.php:1044
 #, php-format
 msgid ""
 "Use this shortcode to display the Docs. Learn more about the shortcode and "
 "the attributes %s here %s."
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:999
+#: includes/Admin/options/settings-options.php:1047
+#: includes/Admin/options/settings-options.php:1071
 msgid "See the shortcode with the available attributes"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1010
+#: includes/Admin/options/settings-options.php:1058
 msgid ""
 "Know the usage of this shortcode <a href=\"https://tinyurl.com/24d9rw72\" "
 "target=\"_blank\"> here </a>"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1024
-msgid "Docs Role Manager"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1030
-msgid "Who Can View Docs?"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1031
-msgid "Allow users to view Docs."
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1033
-#: includes/Admin/options/settings-options.php:1051
 #: includes/Admin/options/settings-options.php:1067
-msgid "Administrator"
+msgid "Docs Login"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1034
-#: includes/Admin/options/settings-options.php:1052
 #: includes/Admin/options/settings-options.php:1068
-msgid "Editor"
+#, php-format
+msgid ""
+"Use this shortcode to display the Docs login form. Learn more about the "
+"shortcode and the attributes %s here %s."
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1035
-#: includes/Admin/options/settings-options.php:1053
-#: includes/Admin/options/settings-options.php:1069
-msgid "Author"
+#: includes/Admin/options/settings-options.php:1087
+msgid "Docs Contribution"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1036
-msgid "Contributor"
+#: includes/Admin/options/settings-options.php:1093
+msgid "Contribution Feature"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1037
-msgid "Subscriber"
+#: includes/Admin/options/settings-options.php:1094
+msgid "Contribution buttons on the doc Right Sidebar."
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1048
-msgid "Who Can Edit Settings?"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1049
-msgid "Allow users to update options from settings."
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1064
-msgid "Who Can Edit Customizer?"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1065
-msgid "Allow users to customize Docs from customizer settings."
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1084
 #: includes/Admin/options/settings-options.php:1095
-msgid "Docs Assistant"
+msgid ""
+"By enabling this feature, you are allowing other people to contribute the "
+"docs. This will also let you manage the contributors from the Doc post "
+"editor."
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1089
-msgid "Assistant Settings"
+#: includes/Admin/options/settings-options.php:1105
+#: includes/Admin/options/settings-options.php:1128
+#: includes/Admin/template/header.php:14 includes/One_page_doc_type.php:41
+#: includes/Post_Types.php:45
+msgid "Add Doc"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1106
-msgid "Open Icon"
+#: includes/Admin/options/settings-options.php:1114
+msgid "Add Button"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1120
-msgid "Close Icon"
+#: includes/Admin/options/settings-options.php:1139
+#: includes/Admin/options/settings-options.php:1161 includes/Post_Types.php:47
+msgid "Edit Doc"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1146
-msgid "Knowledge Base Options"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1152
-msgid "Knowledge-base Tab"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1162
-#: includes/Admin/options/settings-options.php:1236
-msgid "Heading"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1163
-msgid "Knowledge Base"
+#: includes/Admin/options/settings-options.php:1147
+msgid "Edit Button"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:1172
+msgid "Login Page"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1180
+msgid "User Mode"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1181
+msgid "This settings will work for private doc as well"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1183
+msgid "Guest user"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1215
+msgid "Docs Role Manager"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1221
+msgid "Who Can View Docs?"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1222
+msgid "Allow users to view Docs."
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1224
+#: includes/Admin/options/settings-options.php:1242
+#: includes/Admin/options/settings-options.php:1258
+msgid "Administrator"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1225
+#: includes/Admin/options/settings-options.php:1243
+#: includes/Admin/options/settings-options.php:1259
+msgid "Editor"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1226
+#: includes/Admin/options/settings-options.php:1244
+#: includes/Admin/options/settings-options.php:1260
+msgid "Author"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1227
+msgid "Contributor"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1228
+msgid "Subscriber"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1239
+msgid "Who Can Edit Settings?"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1240
+msgid "Allow users to update options from settings."
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1255
+msgid "Who Can Edit Customizer?"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1256
+msgid "Allow users to customize Docs from customizer settings."
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1275
+#: includes/Admin/options/settings-options.php:1286
+msgid "Docs Assistant"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1280
+msgid "Assistant Settings"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1297
+msgid "Open Icon"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1311
+msgid "Close Icon"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1337
+msgid "Knowledge Base Options"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1343
+msgid "Knowledge-base Tab"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1353
+#: includes/Admin/options/settings-options.php:1427
+msgid "Heading"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1354
+msgid "Knowledge Base"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1363
 msgid "Search"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1185
+#: includes/Admin/options/settings-options.php:1376
 msgid "Search Placeholder"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1186
+#: includes/Admin/options/settings-options.php:1377
 #: vendor/codestar-framework/classes/admin-options.class.php:574
 #: vendor/codestar-framework/fields/icon/icon.php:57
 #: vendor/codestar-framework/fields/map/map.php:23
 msgid "Search..."
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1196
+#: includes/Admin/options/settings-options.php:1387
 msgid "Breadcrumb"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1209
-#: includes/Admin/options/settings-options.php:1210
+#: includes/Admin/options/settings-options.php:1400
+#: includes/Admin/options/settings-options.php:1401
 msgid "Docs not Found"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1226
+#: includes/Admin/options/settings-options.php:1417
 msgid "Contact Tab"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1237
+#: includes/Admin/options/settings-options.php:1428
 msgid "Contact"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1246
+#: includes/Admin/options/settings-options.php:1437
 msgid "Receiver Email"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1256
+#: includes/Admin/options/settings-options.php:1447
 msgid "Form Input"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1265
-#: includes/Admin/options/settings-options.php:1266
+#: includes/Admin/options/settings-options.php:1456
+#: includes/Admin/options/settings-options.php:1457
 msgid "Full name"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1275
+#: includes/Admin/options/settings-options.php:1466
 #: templates/content-modal.php:32
 msgid "Email"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1276
+#: includes/Admin/options/settings-options.php:1467
 msgid "name@example.com"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1285
-#: includes/Admin/options/settings-options.php:1286
+#: includes/Admin/options/settings-options.php:1476
+#: includes/Admin/options/settings-options.php:1477
 #: templates/content-modal.php:35
 msgid "Subject"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1295
+#: includes/Admin/options/settings-options.php:1486
 #: templates/content-modal.php:38
 msgid "Message"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1296
+#: includes/Admin/options/settings-options.php:1487
 msgid "Write Your Message"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1305
-#: includes/Admin/options/settings-options.php:1352
+#: includes/Admin/options/settings-options.php:1496
+#: includes/Admin/options/settings-options.php:1543
 msgid "Submit Button"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1306
+#: includes/Admin/options/settings-options.php:1497
 msgid "Send Message"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1322
+#: includes/Admin/options/settings-options.php:1513
 #: vendor/codestar-framework/fields/background/background.php:278
 msgid "Color"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1328
+#: includes/Admin/options/settings-options.php:1519
 msgid "Icon Color"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1336
+#: includes/Admin/options/settings-options.php:1527
 msgid "Header Background"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1366
+#: includes/Admin/options/settings-options.php:1557
 msgid "Position"
 msgstr ""
 
@@ -1037,11 +1150,6 @@ msgstr ""
 
 #: includes/Admin/template/header.php:8
 msgid "Documentations"
-msgstr ""
-
-#: includes/Admin/template/header.php:14 includes/One_page_doc_type.php:41
-#: includes/Post_Types.php:45
-msgid "Add Doc"
 msgstr ""
 
 #: includes/Admin/template/header.php:22
@@ -1194,16 +1302,12 @@ msgid "Not found in Trash"
 msgstr ""
 
 #: includes/Post_Types.php:39 includes/functions.php:245
-#: includes/functions.php:310 includes/functions.php:368
+#: includes/functions.php:310 includes/functions.php:376
 msgid "Docs"
 msgstr ""
 
 #: includes/Post_Types.php:40
 msgid "Doc"
-msgstr ""
-
-#: includes/Post_Types.php:47
-msgid "Edit Doc"
 msgstr ""
 
 #: includes/Post_Types.php:90
@@ -1344,11 +1448,11 @@ msgstr ""
 msgid " minutes"
 msgstr ""
 
-#: includes/functions.php:559
+#: includes/functions.php:571
 msgid "Make OnePage Doc"
 msgstr ""
 
-#: includes/functions.php:566
+#: includes/functions.php:578
 msgid "View OnePage Doc"
 msgstr ""
 
@@ -1406,35 +1510,54 @@ msgstr ""
 msgid "Recently Viewed Articles"
 msgstr ""
 
-#: templates/docs-right-sidebar.php:61 templates/onepage/default-layout.php:182
+#: templates/docs-right-sidebar.php:28
+msgid "Edit"
+msgstr ""
+
+#: templates/docs-right-sidebar.php:33
+msgid "Login page not found!."
+msgstr ""
+
+#: templates/docs-right-sidebar.php:110
+#: templates/onepage/default-layout.php:182
 #: templates/onepage/fullscreen-layout.php:191
 msgid "Decrease font size"
 msgstr ""
 
-#: templates/docs-right-sidebar.php:62
+#: templates/docs-right-sidebar.php:111
 msgid "A-"
 msgstr ""
 
-#: templates/docs-right-sidebar.php:64 templates/onepage/default-layout.php:183
+#: templates/docs-right-sidebar.php:113
+#: templates/onepage/default-layout.php:183
 #: templates/onepage/fullscreen-layout.php:192
 msgid "Default font size"
 msgstr ""
 
-#: templates/docs-right-sidebar.php:65
+#: templates/docs-right-sidebar.php:114
 msgid "A"
 msgstr ""
 
-#: templates/docs-right-sidebar.php:67 templates/onepage/default-layout.php:184
+#: templates/docs-right-sidebar.php:116
+#: templates/onepage/default-layout.php:184
 #: templates/onepage/fullscreen-layout.php:193
 msgid "Increase font size"
 msgstr ""
 
-#: templates/docs-right-sidebar.php:68
+#: templates/docs-right-sidebar.php:117
 msgid "A+"
 msgstr ""
 
-#: templates/docs-right-sidebar.php:90
+#: templates/docs-right-sidebar.php:139
 msgid "CONTENTS"
+msgstr ""
+
+#: templates/ezd-login.php:37
+msgid "Username"
+msgstr ""
+
+#: templates/ezd-login.php:38
+msgid "Password"
 msgstr ""
 
 #: templates/onepage/default-layout.php:110 templates/single-doc-content.php:58
@@ -1855,12 +1978,6 @@ msgstr ""
 
 #: vendor/codestar-framework/fields/border/border.php:58
 msgid "ridge"
-msgstr ""
-
-#: vendor/codestar-framework/fields/border/border.php:59
-#: vendor/codestar-framework/fields/typography/typography.php:199
-#: vendor/codestar-framework/fields/typography/typography.php:213
-msgid "None"
 msgstr ""
 
 #: vendor/codestar-framework/fields/dimensions/dimensions.php:22

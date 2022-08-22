@@ -27,12 +27,23 @@
   box-shadow: 0 50px 120px 0 rgba(4, 73, 89, 0.08);
   padding: 40px 35px 50px;
   margin-bottom: 30px;
+  position: relative;
   .doc-top {
     margin-bottom: 30px;
     img {
       height: auto;
       margin-right: 15px;
       max-width: 50px;
+    }
+  }
+
+  .private {
+    position: absolute;
+    right: -8px;
+    top: -15px;
+    color: var(--black_50);
+    i {
+      font-size: 40px;
     }
   }
 
@@ -54,9 +65,7 @@
       margin: 0;
     }
     span {
-      font-size: 14px;
       color: var(--black_500);
-      display: block;
       margin-top: 5px;
     }
   }
@@ -120,5 +129,11 @@
         }
       }
     }
+  }
+}
+
+.col-lg-4 {
+  .categories_guide_item img.featured-image {
+    max-width: 60px;
   }
 }

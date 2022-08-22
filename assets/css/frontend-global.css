@@ -59,6 +59,7 @@
   box-shadow: 0 50px 120px 0 rgba(4, 73, 89, 0.08);
   padding: 40px 35px 50px;
   margin-bottom: 30px;
+  position: relative;
 }
 .categories_guide_item .doc-top {
   margin-bottom: 30px;
@@ -67,6 +68,15 @@
   height: auto;
   margin-right: 15px;
   max-width: 50px;
+}
+.categories_guide_item .private {
+  position: absolute;
+  right: -8px;
+  top: -15px;
+  color: var(--black_50);
+}
+.categories_guide_item .private i {
+  font-size: 40px;
 }
 .categories_guide_item img.featured-image {
   max-width: 50px;
@@ -86,9 +96,7 @@
   margin: 0;
 }
 .categories_guide_item a.doc_tag_title span {
-  font-size: 14px;
   color: var(--black_500);
-  display: block;
   margin-top: 5px;
 }
 .categories_guide_item .doc_border_btn {
@@ -149,6 +157,10 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   padding-right: 15px;
+}
+
+.col-lg-4 .categories_guide_item img.featured-image {
+  max-width: 60px;
 }
 
 /*# sourceMappingURL=frontend-global.css.map */
