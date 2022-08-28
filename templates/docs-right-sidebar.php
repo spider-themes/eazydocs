@@ -18,6 +18,7 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
             $is_constribution              = eazydocs_get_option('is_doc_contribution', 'eazydocs_settings') ?? '';
             $is_add_doc                    = eazydocs_get_option('frontend_add_switcher', 'eazydocs_settings') ?? '';
             $is_edit_doc                   = eazydocs_get_option('frontend_edit_switcher', 'eazydocs_settings') ?? '';
+            if( class_exists('EazyDocsPro') ) :
             if( $is_constribution ) :
                 if( $is_add_doc || $is_edit_doc ) :
                 ?>
@@ -62,6 +63,7 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
                 </div>
                 <?php
                 endif;
+            endif;
             endif;
             if ( $is_conditional_dropdown == '1' && !empty( $condition_options ) ) :
                 wp_enqueue_style( 'font-awesome-5' );

@@ -14,6 +14,7 @@ class Ajax {
         // Load Doc single page
         add_action( 'wp_ajax_docs_single_content', [ $this, 'docs_single_content' ] );
         add_action( 'wp_ajax_nopriv_docs_single_content', [ $this, 'docs_single_content' ] );
+ 
     }
 
     /**
@@ -64,8 +65,8 @@ class Ajax {
      */
     function eazydocs_search_results() {
         $posts = new WP_Query( [
-                'post_type'                 => 'docs',
-                's'     => $_POST['keyword'] ?? ''
+                'post_type'         => 'docs',
+                's'                 => $_POST['keyword'] ?? ''
             ]
         );
       
@@ -117,4 +118,5 @@ class Ajax {
         wp_reset_postdata();
         wp_die(); // this is required to terminate immediately and return a proper response
     }
+    
 }

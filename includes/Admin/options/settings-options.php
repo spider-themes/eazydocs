@@ -1065,9 +1065,7 @@ CSF::createSection( $prefix, array(
             'id'         => 'ezdocs_login_shortcode',
             'type'       => 'text',
             'title'      => esc_html__( 'Docs Login', 'eazydocs-pro' ),
-            'subtitle'       => sprintf( __( 'Use this shortcode to display the Docs login form. Learn more about the shortcode and the attributes %s here %s.', 'eazydocs-pro' ),
-                '<a href="https://tinyurl.com/24zm4oj3" target="_blank">', '</a>'
-            ),
+            'subtitle'       => esc_html__( 'Use this shortcode to display the Docs login form.', 'eazydocs-pro' ),
             'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs-pro' ).'<br><code>[ezd_login_form ezd_login_title="You must log in to continue." ezd_login_subtitle="Login to '.get_bloginfo().'" ezd_login_btn="Log In" ezd_login_forgot_btn="Forgotten account?"]</code>',
             'default'    => '[ezd_login_form]',
             'attributes' => array(
@@ -1203,6 +1201,45 @@ CSF::createSection( $prefix, array(
 				array( 'docs_frontend_user_mode', '==', 'login' ),
 			)
         ),
+		array(
+            'id'    => 'docs_contributor_meta',
+            'type'  => 'heading',
+            'title' => esc_html__( 'Meta Content', 'eazydocs-pro' )	
+        ),
+		array(
+			'id'         => 'contributor_meta_visibility',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Enable / Disable', 'eazydocs-pro' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice',
+			'text_width' => 70,
+			'default'	 => false
+		),
+		array(
+            'id'    	=> 'contributor_meta_title',
+            'type'  	=> 'text', 
+            'title' 	=> esc_html__( 'Title', 'eazydocs-pro' ),
+            'default' 	=> esc_html__( 'Contributors', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice'
+        ),
+		array(
+            'id'    	=> 'contributor_meta_dropdown_title',
+            'type'  	=> 'text', 
+            'title' 	=> esc_html__( 'Dropdown Heading', 'eazydocs-pro' ),
+            'default' 	=> esc_html__( 'Manage Contributors', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice'
+        ),
+		array(
+			'id'         => 'contributor_meta_search',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Search', 'eazydocs-pro' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice',
+			'text_width' => 70,
+			'default'	 => false
+		)
     ]
 ));
 

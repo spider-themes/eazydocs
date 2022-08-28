@@ -43,7 +43,7 @@ if( isset( $_GET['ezd_login']) ){
                 <input type="submit" name="ezd_login" value="<?php echo esc_attr($ezd_login_btn); ?>">
             </form>
             <a href="<?php echo esc_url( wp_lostpassword_url( get_permalink() ) ); ?>">
-            <?php echo esc_html($ezd_login_forgot_btn); ?>
+                <?php echo esc_html($ezd_login_forgot_btn); ?>
             </a>
             <?php 
             if ( is_wp_error( $login_info ) ) {

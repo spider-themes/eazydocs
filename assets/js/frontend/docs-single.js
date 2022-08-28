@@ -583,6 +583,14 @@
             $('form.ezd_search_form').css('z-index','unset');
         })
 
+        // CONTRIBUTOR SEARCH
+        $("#ezd-contributor-search").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(".users_wrap_item").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            })
+        });
+
     })
 })(jQuery);
 
