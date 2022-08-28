@@ -18,53 +18,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( function_exists( 'eaz_fs' ) ) {
-    eaz_fs()->set_basename( false, __FILE__ );
+	eaz_fs()->set_basename( false, __FILE__ );
 } else {
-    // DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
+	// DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
 
-    if ( ! function_exists( 'eaz_fs' ) ) {
-        // Create a helper function for easy SDK access.
-        function eaz_fs() {
-            global $eaz_fs;
+	if ( ! function_exists( 'eaz_fs' ) ) {
+		// Create a helper function for easy SDK access.
+		function eaz_fs() {
+			global $eaz_fs;
 
-            if ( ! isset( $eaz_fs ) ) {
-                // Include Freemius SDK.
-                require_once dirname(__FILE__) . '/freemius/start.php';
+			if ( ! isset( $eaz_fs ) ) {
+				// Include Freemius SDK.
+				require_once dirname( __FILE__ ) . '/freemius/start.php';
 
-                $eaz_fs = fs_dynamic_init( array(
-                    'id'                  => '10290',
-                    'slug'                => 'eazydocs',
-                    'premium_slug'        => 'eazydocs-pro',
-                    'type'                => 'plugin',
-                    'public_key'          => 'pk_8474e4208f0893a7b28c04faf5045',
-                    'is_premium'          => false,
-                    'is_premium_only'     => false,
-                    'has_addons'          => false,
-                    'has_paid_plans'      => true,
-                    'trial'               => array(
-                        'days'               => 7,
-                        'is_require_payment' => true,
-                    ),
-                    'menu'                => array(
-                        'slug'           => 'eazydocs',
-                        'first-path'     => 'admin.php?page=eazydocs',
-                        'contact'        => false,
-                        'support'        => false,
-                    ),
-                ) );
-            }
+				$eaz_fs = fs_dynamic_init(
+					[
+						'id'              => '10290',
+						'slug'            => 'eazydocs',
+						'premium_slug'    => 'eazydocs-pro',
+						'type'            => 'plugin',
+						'public_key'      => 'pk_8474e4208f0893a7b28c04faf5045',
+						'is_premium'      => false,
+						'is_premium_only' => false,
+						'has_addons'      => false,
+						'has_paid_plans'  => true,
+						'trial'           => [
+							'days'               => 7,
+							'is_require_payment' => true,
+						],
+						'menu'            => [
+							'slug'       => 'eazydocs',
+							'first-path' => 'admin.php?page=eazydocs',
+							'contact'    => false,
+							'support'    => false,
+						],
+					]
+				);
+			}
 
-            return $eaz_fs;
-        }
+			return $eaz_fs;
+		}
 
-        // Init Freemius.
-        eaz_fs()->add_filter( 'deactivate_on_activation', '__return_false' );
+		// Init Freemius.
+		eaz_fs()->add_filter( 'deactivate_on_activation', '__return_false' );
 
-        // Signal that SDK was initiated.
-        do_action( 'eaz_fs_loaded' );
-    }
+		// Signal that SDK was initiated.
+		do_action( 'eaz_fs_loaded' );
+	}
 
-    // ... Your plugin's main file logic ...
+	// ... Your plugin's main file logic ...
 }
 
 use eazyDocs\Post_Types;
@@ -88,19 +90,19 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 */
 		const version = '1.3.0';
 
-        /**
-         * The plugin path.
-         *
-         * @var string
-         */
-        public $plugin_path;
+		/**
+		 * The plugin path.
+		 *
+		 * @var string
+		 */
+		public $plugin_path;
 
-        /**
-         * The theme directory path.
-         *
-         * @var string
-         */
-        public $theme_dir_path;
+		/**
+		 * The theme directory path.
+		 *
+		 * @var string
+		 */
+		public $theme_dir_path;
 
 		/**
 		 * Constructor.
@@ -150,10 +152,19 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
-            //require_once  __DIR__ . '/vendor/wp-notice/init.php';
+			//require_once  __DIR__ . '/vendor/wp-notice/init.php';
 
-			if ( ! class_exists('EazyDocsPro')) {
-				require_once __DIR__ .'/includes/Admin/options/settings-options.php';
+			if ( ! class_exists( 'EazyDocsPro' ) ) {
+				require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+			}
+
+			// Carbon fields.
+			if ( ! function_exists( 'carbon_fields_boot_plugin' ) ) {
+				require_once __DIR__ . '/library/carbon-fields/carbon-fields-plugin.php';
+			}
+
+			if ( function_exists( 'carbon_fields_boot_plugin' ) ) {
+				require_once __DIR__ . '/blocks/block-config.php';
 			}
 		}
 
@@ -220,62 +231,62 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			update_option( 'EazyDocs_version', EAZYDOCS_VERSION );
 
 			// Insert the documentation page into the database if not exists
-			if( ! get_page_by_title( 'Documentation', OBJECT, 'page' ) ){
+			if ( ! get_page_by_title( 'Documentation', OBJECT, 'page' ) ) {
 				// Create page object
-				$docs_page = array(
+				$docs_page = [
 					'post_title'   => wp_strip_all_tags( 'Documentation' ),
 					'post_content' => '[eazydocs]',
 					'post_status'  => 'publish',
 					'post_author'  => 1,
 					'post_type'    => 'page',
-				);
+				];
 				wp_insert_post( $docs_page );
 			}
 		}
 
-        /**
-         * Get the plugin url.
-         *
-         * @return string
-         */
-        public function plugin_url() {
-            if ( $this->plugin_url ) {
-                return $this->plugin_url;
-            }
+		/**
+		 * Get the plugin url.
+		 *
+		 * @return string
+		 */
+		public function plugin_url() {
+			if ( $this->plugin_url ) {
+				return $this->plugin_url;
+			}
 
-            return $this->plugin_url = untrailingslashit( plugins_url( '/', __FILE__ ) );
-        }
+			return $this->plugin_url = untrailingslashit( plugins_url( '/', __FILE__ ) );
+		}
 
-        /**
-         * Get the plugin path.
-         *
-         * @return string
-         */
-        public function plugin_path() {
-            if ( $this->plugin_path ) {
-                return $this->plugin_path;
-            }
+		/**
+		 * Get the plugin path.
+		 *
+		 * @return string
+		 */
+		public function plugin_path() {
+			if ( $this->plugin_path ) {
+				return $this->plugin_path;
+			}
 
-            return $this->plugin_path = untrailingslashit( plugin_dir_path( __FILE__ ) );
-        }
+			return $this->plugin_path = untrailingslashit( plugin_dir_path( __FILE__ ) );
+		}
 
-        /**
-         * Get the template path.
-         *
-         * @return string
-         */
-        public function template_path() {
-            return $this->plugin_path() . '/templates/';
-        }
+		/**
+		 * Get the template path.
+		 *
+		 * @return string
+		 */
+		public function template_path() {
+			return $this->plugin_path() . '/templates/';
+		}
 
-        /**
-         * Get the theme directory path.
-         *
-         * @return string
-         */
-        public function theme_dir_path() {
-            return $this->theme_dir_path;
-        }
+		/**
+		 * Get the theme directory path.
+		 *
+		 * @return string
+		 */
+		public function theme_dir_path() {
+			return $this->theme_dir_path;
+		}
 	}
 }
 
