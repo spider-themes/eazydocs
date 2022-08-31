@@ -1,0 +1,76 @@
+.search_form_wrap .form-group .input-wrapper {
+  position: relative;
+}
+.search_form_wrap input[type=search i] {
+  width: 100%;
+  padding: 13px 48px 13px 18px;
+  border: 1px solid #a9a9a9;
+  border-radius: 0;
+  transition: 0.4s;
+}
+.search_form_wrap input[type=search i]::-webkit-search-cancel-button {
+  margin-right: 55px;
+}
+.search_form_wrap input[type=search i]::placeholder {
+  color: #999;
+}
+.search_form_wrap .search_submit_btn {
+  position: absolute;
+  right: 10px;
+  border: none;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+.search_form_wrap .search_submit_btn > svg {
+  width: auto;
+  max-width: 25px;
+  height: auto;
+  max-height: 100%;
+  min-width: 18px;
+  object-fit: cover;
+}
+.search_form_wrap .search_submit_btn > i {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #999;
+}
+
+.header_search_keyword.eazydocs-block-keywords {
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-weight: 500;
+  justify-content: center;
+  margin-top: 10px;
+}
+.header_search_keyword.eazydocs-block-keywords span {
+  font-size: 14px;
+  color: #fff;
+  margin-right: 10px;
+}
+.header_search_keyword.eazydocs-block-keywords ul {
+  margin-bottom: 0;
+}
+.header_search_keyword.eazydocs-block-keywords ul li {
+  display: inline-block;
+  margin-right: 7px;
+}
+.header_search_keyword.eazydocs-block-keywords ul li a {
+  display: block;
+  font-size: 13px;
+  padding: 0 19px;
+  border-radius: 45px;
+  background: var(--ezd_brand_color);
+  color: #fff;
+}
+.header_search_keyword.eazydocs-block-keywords ul li a.has-bg:hover {
+  background: brand_color_rgba(0.8);
+}
+
+/*# sourceMappingURL=blocks.css.map */

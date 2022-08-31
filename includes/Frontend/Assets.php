@@ -27,6 +27,8 @@ class Assets {
         wp_register_script( 'bootstrap-bundle', EAZYDOCS_VEND . '/bootstrap/bootstrap.bundle.min.js', array( 'jquery' ), '5.1.3', true );
         wp_register_script( 'anchor', EAZYDOCS_ASSETS . '/js/frontend/anchor.js' );
 
+        wp_enqueue_style( 'eazydocs-blocks', EAZYDOCS_ASSETS . '/css/blocks.css');
+
         if ( is_singular('docs') || is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
             // Localize the script with new data
             $ajax_url              = admin_url( 'admin-ajax.php' );
