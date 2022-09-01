@@ -54,7 +54,7 @@
     margin-top: 10px;
     span {
       font-size: 14px;
-      color: #fff;
+      color: #767474;
       margin-right: 10px;
     }
     ul {
@@ -75,5 +75,20 @@
         }
       }
     }
+  }
+}
+
+.ezd_search_block_info {
+  #ezd_searchInput {
+    background: #fff;
+    color: #000;
+    border: 1px solid #e1e1e1;
+    &::placeholder {
+      color: rgb(0 0 0 / 58%);
+    }
+  }
+
+  .icon_search{
+    color: rgb(0 0 0 / 58%) !important;
   }
 }

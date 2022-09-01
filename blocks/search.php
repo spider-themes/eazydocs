@@ -56,7 +56,7 @@ Block::make( __( 'Eazydocs Search', 'eazydocs' ) )
 					<div class="row doc_banner_content">
 						<div class="col-md-12">
 							<form action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search" method="post" class="ezd_search_form">
-								<div class="header_search_form_info">
+								<div class="header_search_form_info ezd_search_block_info">
 									<div class="form-group">
 										<div class="input-wrapper">
 											<input type='search' id="ezd_searchInput" name="s" oninput="ezSearchResults()" placeholder='<?php echo esc_attr( $fields['placeholder'] ); ?>' autocomplete="off" value="<?php echo get_search_query(); ?>"/>
@@ -77,75 +77,98 @@ Block::make( __( 'Eazydocs Search', 'eazydocs' ) )
 						</div>
 					</div>
 				</div>
+
+				<?php if ( 'yes' == $fields['is_keywords'] && ! empty( $fields['keywords'] ) ) : ?>
+					<div class="header_search_keyword eazydocs-block-keywords justify-content-center">
+						<?php if ( ! empty( $fields['keywords_label'] ) ) : ?>
+							<span class="header-search-form__keywords-label search_keyword_label"> <?php echo esc_html( $fields['keywords_label'] ); ?> </span>
+						<?php endif; ?>
+						<?php if ( ! empty( $fields['keywords'] ) ) : ?>
+							<ul class="list-unstyled">
+								<?php foreach ( $fields['keywords'] as $keyword ) : ?>
+									<li class="wow fadeInUp" data-wow-delay="0.2s">
+										<a class="has-bg" href="#"><?php echo esc_html( $keyword['keyword'] ); ?></a>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
+				<script>
+
+				;(function ($) {
+					"use strict";
+
+					$(document).ready(function(){
+							$("#ezd_searchInput").focus(function() {
+							$('body').addClass('ezd-search-focused');
+							$('form.ezd_search_form').css('z-index','999');
+						})
+
+						$("#ezd_searchInput").focusout(function() {
+							$('body').removeClass('ezd-search-focused');
+							$('form.ezd_search_form').css('z-index','unset');
+						})
+
+						/**
+						 * Search Keywords
+						 */
+						$(".eazydocs-block-keywords ul li a").on("click", function (e) {
+							e.preventDefault()
+							var content = $(this).text()
+							$("#ezd_searchInput").val(content).focus()
+							ezSearchResults()
+						});
+					});
+				})(jQuery);
+					/**
+					 * Search Form Keywords
+					 */
+					jQuery(".ezd_search_keywords ul li a").on("click", function (e) {
+						e.preventDefault()
+						var content = jQuery(this).text()
+						jQuery("#ezd_searchInput").val(content).focus()
+						ezSearchResults()
+					})
+
+					function ezSearchResults() {
+						let keyword = jQuery('#ezd_searchInput').val();
+						let noresult = jQuery('#ezd-search-results').attr('data-noresult');
+
+						if ( keyword == "" ) {
+							jQuery('#ezd-search-results').removeClass('ajax-search').html("")
+						} else {
+							jQuery.ajax({
+								url: eazydocs_local_object.ajaxurl,
+								type: 'post',
+								data: {action: 'eazydocs_search_results', keyword: keyword},
+								beforeSend: function () {
+									jQuery(".spinner-border").show();
+								},
+								success: function (data) {
+									jQuery(".spinner-border").hide();
+									// hide search results by pressing Escape button
+									jQuery(document).keyup(function(e) {
+										if (e.key === "Escape") { // escape key maps to keycode `27`
+											jQuery('#ezd-search-results').removeClass('ajax-search').html("")
+										}
+									});
+									if ( data.length > 0 ) {
+										jQuery('#ezd-search-results').addClass('ajax-search').html(data);
+									} else {
+										var data_error = '<h5 class="error title">' + noresult + '</h5>';
+										jQuery('#ezd-search-results').html(data_error);
+										}
+									}
+								})
+							}
+						}
+				</script>
+
 			<?php
 		}
 	);
 ?>
-	<script>
-;(function ($) {
-    "use strict";
+<script>
 
-    $(document).ready(function() {
-	$("#ezd_searchInput").focus(function() {
-		$('body').addClass('ezd-search-focused');
-		$('form.ezd_search_form').css('z-index','999');
-	})
-
-	$("#ezd_searchInput").focusout(function() {
-		$('body').removeClass('ezd-search-focused');
-		$('form.ezd_search_form').css('z-index','unset');
-	})
-
-	/**
-	 * Search Keywords
-	 */
-	$(".header_search_keyword ul li a").on("click", function (e) {
-		e.preventDefault()
-		var content = $(this).text()
-		$("#searchInput").val(content).focus()
-		fetchResults()
-	});
-
-	/**
-	 * Search Form Keywords
-	 */
-	jQuery(".ezd_search_keywords ul li a").on("click", function (e) {
-		e.preventDefault()
-		var content = jQuery(this).text()
-		jQuery("#ezd_searchInput").val(content).focus()
-		ezSearchResults()
-	})
-
-	function ezSearchResults() {
-		let keyword = jQuery('#ezd_searchInput').val();
-		let noresult = jQuery('#ezd-search-results').attr('data-noresult');
-
-		if ( keyword == "" ) {
-			jQuery('#ezd-search-results').removeClass('ajax-search').html("")
-		} else {
-			jQuery.ajax({
-				url: eazydocs_local_object.ajaxurl,
-				type: 'post',
-				data: {action: 'eazydocs_search_results', keyword: keyword},
-				beforeSend: function () {
-					jQuery(".spinner-border").show();
-				},
-				success: function (data) {
-					jQuery(".spinner-border").hide();
-					// hide search results by pressing Escape button
-					jQuery(document).keyup(function(e) {
-						if (e.key === "Escape") { // escape key maps to keycode `27`
-							jQuery('#ezd-search-results').removeClass('ajax-search').html("")
-						}
-					});
-					if ( data.length > 0 ) {
-						jQuery('#ezd-search-results').addClass('ajax-search').html(data);
-					} else {
-						var data_error = '<h5 class="error title">' + noresult + '</h5>';
-						jQuery('#ezd-search-results').html(data_error);
-					}
-				}
-			})
-		}
-	}
 </script>

@@ -51,7 +51,7 @@
 }
 .header_search_keyword.eazydocs-block-keywords span {
   font-size: 14px;
-  color: #fff;
+  color: #767474;
   margin-right: 10px;
 }
 .header_search_keyword.eazydocs-block-keywords ul {
@@ -71,6 +71,18 @@
 }
 .header_search_keyword.eazydocs-block-keywords ul li a.has-bg:hover {
   background: brand_color_rgba(0.8);
+}
+
+.ezd_search_block_info #ezd_searchInput {
+  background: #fff;
+  color: #000;
+  border: 1px solid #e1e1e1;
+}
+.ezd_search_block_info #ezd_searchInput::placeholder {
+  color: rgba(0, 0, 0, 0.58);
+}
+.ezd_search_block_info .icon_search {
+  color: rgba(0, 0, 0, 0.58) !important;
 }
 
 /*# sourceMappingURL=blocks.css.map */
