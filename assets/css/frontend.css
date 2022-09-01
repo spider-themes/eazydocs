@@ -1518,7 +1518,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   font-size: 14px;
   font-weight: 500;
   color: #616366;
-  margin: 0 10px 0 0;
+  margin: 0 5px 5px 0;
 }
 .doc-btm ul.card_tagged li a {
   background: #d5d9de94;

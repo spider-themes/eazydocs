@@ -3,6 +3,11 @@
 
     $(document).ready(function() {
 
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
         // Match Fade gradient Shadow color
         let bgColor = window.getComputedStyle(document.body, null).getPropertyValue('background-color'),
             bgColorRGBA = bgColor.replace(')', ', 0)').replace('rgb', 'rgba')

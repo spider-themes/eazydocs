@@ -16,6 +16,9 @@
         transform: translateY(-50%) rotate(90deg);
       }
     }
+    > .accordion-title {
+      background: #F9F9F9;
+    }
   }
 
   .ui-state-highlight {
@@ -28,7 +31,6 @@
 .easydocs-accordion-item {
   width: 100%;
   margin: 0;
-
   + .easydocs-accordion-item {
     border-top: 1px solid #EDEAE9;
   }
@@ -94,39 +96,25 @@
 .accordion-title {
   position: relative;
   background: #fff;
-  padding: 13px 30px 13px 50px;
-  display: block;
+  padding: 10px 30px 10px 50px;
   cursor: pointer;
-  @media (max-width: 1440px) {
-    padding: 12px 20px 12px 34px;
-  }
-  &.ez-section-title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    h4{
+  &.ez-section-title {
+    padding: 13px 30px 13px 50px !important;
+    h4 {
         font-weight: var(--fw-500);
     }
-    @include pseudo(top 50% left 32px) {
-      @include triangle(right, 10px, 6px, var(--clr-text));
-      transform: translateY(-50%);
-      @include property;
-    }
-    @media (max-width: 1440px) {
-      &::before {
-        left: 20px;
-      }
-    }
   }
 
-  &.has-child {
+  // Toggle Icon
+  &.has-child, &.ez-section-title {
     @include pseudo(top 50% left 32px) {
       @include triangle(right, 10px, 6px, var(--clr-text));
       transform: translateY(-50%);
       @include property;
-    }
-    @media (max-width: 1440px) {
-      &::before {
-        left: 20px;
-      }
     }
   }
 
@@ -134,9 +122,10 @@
     margin-left: 5px;
     color: #fff;
     background: var(--black_200);
+    font-size: 10px;
   }
 
-  @include hover {
+  &:hover {
     background: #F9F9F9;
 
     h4 {
@@ -150,10 +139,6 @@
       }
     }
   }
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   h4 {
     font-size: var(--fs-14);
@@ -251,6 +236,38 @@
   }
 }
 
+/** === EazyDocs Premium Style === **/
+body.ezd-premium {
+  .accordion-title {
+    padding: 10px 30px 10px 60px;
+
+    &:hover {
+      .DragHandle-icon {
+        display: block;
+      }
+    }
+
+    &::before {
+      left: 40px;
+    }
+
+    &.ez-section-title {
+      padding: 13px 30px 13px 60px !important;
+    }
+
+    .DragHandle-icon {
+      position: absolute;
+      left: 0;
+      font-size: 12px;
+      width: 35px;
+      display: none;
+      &:hover {
+        cursor: move;
+      }
+    }
+  }
+}
+
 .easydocs-accordion-body {
   background: var(--clr-white);
   color: var(--clr-text);
@@ -267,9 +284,6 @@
     text-decoration: none;
     color: var(--clr-text);
     display: block;
-    @media (max-width: 1440px) {
-      padding: 10px 50px 10px 34px;
-    }
   }
 }
 

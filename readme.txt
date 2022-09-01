@@ -99,6 +99,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.3.2 (02 September 2022) =
+Tweaked: Tags spacing on frontend
+Tweaked: Docs builder UI design improved.
+
 = v1.3.1 (23 August 2022) =
 New: Login template for Private docs and Contributors (can be used with EazyDocs Pro)
 Tweaked: Compatibility improved with the EazyDocs Pro 1.8.0

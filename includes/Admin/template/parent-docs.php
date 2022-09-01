@@ -28,24 +28,29 @@ $count = $query->found_posts;
 
 	        switch ($post_status){
                 case 'publish':
-                $post_format = 'admin-site-alt3';
-                break;
+                    $post_format = 'admin-site-alt3';
+                    $doc_status = esc_html__( 'Public Doc', 'eazydocs' );
+                    break;
 
                 case 'private':
-                $post_format = 'privacy';
-                break;
+                    $post_format = 'privacy';
+                    $doc_status = esc_html__( 'Private Doc', 'eazydocs' );
+                    break;
 
                 case 'draft':
-                $post_format = 'edit-page';
-                break;
+                    $post_format = 'edit-page';
+                    $doc_status = esc_html__( 'Drafted Doc', 'eazydocs' );
+                    break;
             }
+
 	        if ( !empty($post->post_password) ) {
 		        $post_format = 'lock';
+                $doc_status = esc_html__( 'Password Protected Doc', 'eazydocs' );
 	        }
             ?>
             <li class="easydocs-navitem  <?php echo esc_attr( $is_active ); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
                 <div class="title">
-                    <span title="<?php echo esc_attr($post_status); ?>" class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
+                    <span title="<?php echo esc_attr($doc_status); ?>" class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
                     <?php the_title(); ?>
                 </div>
                 <div class="total-page">

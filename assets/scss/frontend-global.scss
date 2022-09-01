@@ -112,6 +112,7 @@
         transition: color 0.2s linear;
         display: flex;
         text-decoration: none;
+        align-items: center;
         &:hover {
           color: var(--ezd_brand_color)
         }

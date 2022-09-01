@@ -172,6 +172,10 @@ class Admin {
                 $classes .= '';
         }
 
+        if ( eaz_fs()->is__premium_only() ) {
+            $classes .= ' ezd-premium';
+        }
+
         return $classes;
     }
 

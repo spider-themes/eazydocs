@@ -584,6 +584,9 @@ label {
 .easydocs-accordion .acc_active .accordion-title::before {
   transform: translateY(-50%) rotate(90deg);
 }
+.easydocs-accordion .acc_active > .accordion-title {
+  background: #F9F9F9;
+}
 .easydocs-accordion .ui-state-highlight {
   height: 50px;
   background: #F9F9F9;
@@ -632,22 +635,19 @@ label {
 .accordion-title {
   position: relative;
   background: #fff;
-  padding: 13px 30px 13px 50px;
-  display: block;
+  padding: 10px 30px 10px 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-@media (max-width: 1440px) {
-  .accordion-title {
-    padding: 12px 20px 12px 34px;
-  }
+.accordion-title.ez-section-title {
+  padding: 13px 30px 13px 50px !important;
 }
 .accordion-title.ez-section-title h4 {
   font-weight: var(--fw-500);
 }
-.accordion-title.ez-section-title::before {
+.accordion-title.has-child::before, .accordion-title.ez-section-title::before {
   content: "";
   top: 50%;
   left: 32px;
@@ -661,36 +661,12 @@ label {
   transform: translateY(-50%);
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
-}
-@media (max-width: 1440px) {
-  .accordion-title.ez-section-title::before {
-    left: 20px;
-  }
-}
-.accordion-title.has-child::before {
-  content: "";
-  top: 50%;
-  left: 32px;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 0 5px 6px;
-  border-color: transparent transparent transparent var(--clr-text);
-  display: block;
-  transform: translateY(-50%);
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
-}
-@media (max-width: 1440px) {
-  .accordion-title.has-child::before {
-    left: 20px;
-  }
 }
 .accordion-title .count {
   margin-left: 5px;
   color: #fff;
   background: var(--black_200);
+  font-size: 10px;
 }
 .accordion-title:hover {
   background: #F9F9F9;
@@ -784,6 +760,30 @@ label {
   margin-left: var(--gutter-30);
 }
 
+/** === EazyDocs Premium Style === **/
+body.ezd-premium .accordion-title {
+  padding: 10px 30px 10px 60px;
+}
+body.ezd-premium .accordion-title:hover .DragHandle-icon {
+  display: block;
+}
+body.ezd-premium .accordion-title::before {
+  left: 40px;
+}
+body.ezd-premium .accordion-title.ez-section-title {
+  padding: 13px 30px 13px 60px !important;
+}
+body.ezd-premium .accordion-title .DragHandle-icon {
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+  width: 35px;
+  display: none;
+}
+body.ezd-premium .accordion-title .DragHandle-icon:hover {
+  cursor: move;
+}
+
 .easydocs-accordion-body {
   background: var(--clr-white);
   color: var(--clr-text);
@@ -800,11 +800,6 @@ label {
   text-decoration: none;
   color: var(--clr-text);
   display: block;
-}
-@media (max-width: 1440px) {
-  .nesting-accordion a {
-    padding: 10px 50px 10px 34px;
-  }
 }
 
 .child-docs-wrap {
@@ -1105,27 +1100,20 @@ a.child-delete {
   margin-left: auto;
   margin-right: auto;
 }
-.easydocs-search-form .search-icon {
-  top: 5px;
-  right: 5px;
-  position: absolute;
-  width: 2.5rem;
-  height: 2.5rem;
-  line-height: 2.5rem;
+.easydocs-search-form input {
+  color: #9199a1;
+  padding: 10px 15px 10px 40px;
+  border: 1px solid #EDEAE9;
   border-radius: 0.625rem;
-  background: rgba(76, 76, 241, 0.1);
-  text-align: center;
-  cursor: pointer;
+  box-sizing: border-box;
+  line-height: unset;
+}
+.easydocs-search-form .search-icon {
+  position: absolute;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
-  --search-icon: var(--clr-blue);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.easydocs-search-form .search-icon:hover {
-  background: #4c4cf1;
-  --search-icon: var(--clr-white);
+  left: 15px;
+  transform: translateY(50%);
 }
 
 .easydocs-accordion-item progress {
@@ -1742,6 +1730,7 @@ a.child-delete {
   gap: 12px;
 }
 .single-item-filter .easydocs-btn {
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1815,6 +1804,13 @@ a.child-delete {
   .container {
     max-width: 1170px;
   }
+}
+.ezd-no-feedback-found {
+  font-size: 15px;
+  margin-left: 0px;
+  text-transform: capitalize;
+  font-weight: 400;
+  display: initial;
 }
 
 /*# sourceMappingURL=admin.css.map */
