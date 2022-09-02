@@ -160,11 +160,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			// Carbon fields.
 			if ( ! function_exists( 'carbon_fields_boot_plugin' ) ) {
-				require_once __DIR__ . '/library/carbon-fields/carbon-fields-plugin.php';
+				//require_once __DIR__ . '/library/carbon-fields/carbon-fields-plugin.php';
 			}
 
 			if ( function_exists( 'carbon_fields_boot_plugin' ) ) {
-				require_once __DIR__ . '/blocks/block-config.php';
+				//require_once __DIR__ . '/blocks/block-config.php';
 			}
 		}
 
