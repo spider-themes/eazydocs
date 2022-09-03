@@ -406,30 +406,6 @@ color: #0062ae;
     outline: none;
     box-shadow: none;
 }
-
-/* Doc visibility */
-.docs_visibility_wrapper p {
-    margin-bottom: 30px;
-    font-size: 0.94em;
-  }
-  #contributed_users{
+#contributed_users{
     display: none;
-  }
-  .docs_visibility_field_wrap{
-    text-align: left;
-  }
-  .docs_visibility_field_wrap label{
-    margin-right: 10px;
-  }
-  .docs_visibility_field_wrap input#ezd_password_input {
-    width: 100%;
-    border: 1px solid gray;
-    margin-top: 10px;
-    padding: 0px 10px;
-    font-size: 15px;
-    color: black;
-  }
-  .docs_visibility_field_wrap input#ezd_password_input:focus {
-    outline: none;
-    box-shadow: none;
   }

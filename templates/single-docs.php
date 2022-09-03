@@ -7,6 +7,7 @@
  * @package eazydocs
  */
 get_header();
+
 $theme_data = wp_get_theme();
 $theme_name = $theme_data->get( 'Name' ); 
 ?>

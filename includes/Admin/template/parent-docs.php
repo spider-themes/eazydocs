@@ -106,6 +106,7 @@ $count = $query->found_posts;
                     </span>
 
                 </div>
+                
             </li>
             <?php
         endwhile;

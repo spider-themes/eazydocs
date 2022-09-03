@@ -1076,6 +1076,174 @@ CSF::createSection( $prefix, array(
 	]
 ) );
 
+
+//
+// Docs Contribution
+//
+CSF::createSection( $prefix, array(
+    'id'     => 'contributor_fields',
+    'title'  => esc_html__( 'Docs Contribution', 'eazydocs-pro' ),
+    'icon'   => 'fas fa-plus-circle',
+    'fields' => [
+        array(
+            'id'         => 'is_doc_contribution',
+            'type'       => 'switcher',
+            'title'      => esc_html__( 'Contribution Feature', 'eazydocs-pro' ),
+            'subtitle'   => esc_html__( 'Contribution buttons on the doc Right Sidebar.', 'eazydocs-pro' ),
+            'desc'       => esc_html__( 'By enabling this feature, you are allowing other people to contribute the docs. This will also let you manage the contributors from the Doc post editor.', 'eazydocs-pro' ),
+            'text_on'    => esc_html__( 'Enabled', 'eazydocs-pro' ),
+            'text_off'   => esc_html__( 'Disabled', 'eazydocs-pro' ),
+            'text_width' => 92,
+            'default'    => false,
+			'class'      => 'eazydocs-pro-notice'
+        ),
+        array(
+            'id'    => 'ezd_add_doc_heading',
+            'type'  => 'heading',
+            'title' => esc_html__( 'Add Doc', 'eazydocs-pro' ),
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+			)
+			
+        ),
+        array(
+            'id'         => 'frontend_add_switcher',
+            'type'       => 'switcher',
+            'title'      => esc_html__( 'Add Button', 'eazydocs-pro' ),
+            'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+            'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+            'text_width' => 72,
+            'default'    => false,
+			'class'      => 'eazydocs-pro-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' )
+			)
+        ),
+        array(
+            'id'         => 'frontend_add_btn_text',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Button', 'eazydocs-pro' ),
+            'default'	 => esc_html__( 'Add Doc', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'frontend_add_switcher', '==', 'true' ),
+			)
+        ),
+
+        array(
+            'id'    => 'frontend_edit_doc',
+            'type'  => 'heading',
+            'title' => esc_html__( 'Edit Doc', 'eazydocs-pro' ),
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' )
+			)
+        ),
+        array(
+            'id'         => 'frontend_edit_switcher',
+            'type'       => 'switcher',
+            'title'      => esc_html__( 'Edit Button', 'eazydocs-pro' ),
+            'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+            'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+            'text_width' => 72,
+            'default'    => false,
+			'class'      => 'eazydocs-pro-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+			)
+        ),
+        array(
+            'id'         => 'frontend_edit_btn_text',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Button', 'eazydocs-pro' ),
+            'default'	 => esc_html__( 'Edit Doc', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'frontend_edit_switcher', '==', 'true' ),
+			)
+        ),
+
+        array(
+            'id'    => 'frontend_ezd_login',
+            'type'  => 'heading',
+            'title' => esc_html__( 'Login Page', 'eazydocs-pro' ),
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' )
+			)
+        ),
+        array(
+            'id'         => 'docs_frontend_user_mode',
+            'type'       => 'select',
+            'title'      => esc_html__( 'User Mode', 'eazydocs-pro' ),
+            'desc'		 => esc_html__( 'This settings will work for private doc as well', 'eazydocs-pro' ),
+            'options'	 => [
+                'guest'	 =>  esc_html__( 'Guest user', 'eazydocs-pro' ),
+                'login'	 =>  esc_html__( 'Login Required', 'eazydocs-pro' ),
+			],
+			'default'    => 'login',
+			'class'      => 'eazydocs-pro-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' )
+			)
+        ),
+        array(
+            'id'         => 'docs_frontend_login_page',
+            'type'       => 'select',
+            'placeholder' => 'Select page',
+            'title'      => esc_html__( 'Select Page', 'eazydocs-pro' ),
+            'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs-pro' ),
+			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs-pro' ),
+            'options'	 => 'pages',
+			'class'      => 'eazydocs-pro-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_user_mode', '==', 'login' ),
+			)
+        ),
+		array(
+            'id'    => 'docs_contributor_meta',
+            'type'  => 'heading',
+            'title' => esc_html__( 'Meta Content', 'eazydocs-pro' )	
+        ),
+		array(
+			'id'         => 'contributor_meta_visibility',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Enable / Disable', 'eazydocs-pro' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice',
+			'text_width' => 70,
+			'default'	 => false
+		),
+		array(
+            'id'    	=> 'contributor_meta_title',
+            'type'  	=> 'text', 
+            'title' 	=> esc_html__( 'Title', 'eazydocs-pro' ),
+            'default' 	=> esc_html__( 'Contributors', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice'
+        ),
+		array(
+            'id'    	=> 'contributor_meta_dropdown_title',
+            'type'  	=> 'text', 
+            'title' 	=> esc_html__( 'Dropdown Heading', 'eazydocs-pro' ),
+            'default' 	=> esc_html__( 'Manage Contributors', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice'
+        ),
+		array(
+			'id'         => 'contributor_meta_search',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Search', 'eazydocs-pro' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'class'      => 'eazydocs-pro-notice',
+			'text_width' => 70,
+			'default'	 => false
+		)
+    ]
+));
+
+
 //
 // Shortcode Fields
 //
