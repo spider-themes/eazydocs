@@ -17,7 +17,7 @@ if ( $search_banner == '1' ) :
 						<div class="header_search_form_info">
 							<div class="form-group">
 								<div class="input-wrapper">
-									<input type='search' id="ezd_searchInput" name="s" oninput="ezSearchResults()" placeholder='<?php esc_attr_e( 'Search here', 'eazydocs' ); ?>' autocomplete="off" value="<?php echo get_search_query(); ?>"/>
+									<input type='search' id="ezd_searchInput" name="s" placeholder='<?php esc_attr_e( 'Search here', 'eazydocs' ); ?>' autocomplete="off" value="<?php echo get_search_query(); ?>"/>
 									<label for="ezd_searchInput">
 										<i class="icon_search"></i>
 									</label>
@@ -50,7 +50,7 @@ if ( $search_banner == '1' ) :
 		ezSearchResults()
 	})
 
-	function ezSearchResults() {
+	function ezSearchResults(){
 		let keyword = jQuery('#ezd_searchInput').val();
 		let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
@@ -82,5 +82,52 @@ if ( $search_banner == '1' ) :
 			})
 		}
 	}
+
+	function ezdFetchDelay(callback, ms) {
+		var timer = 0;
+		return function () {
+			var context = this,
+			args = arguments;
+			clearTimeout(timer);
+			timer = setTimeout(function () {
+			callback.apply(context, args);
+			}, ms || 0);
+		};
+	}
+
+		jQuery('#ezd_searchInput').keyup(
+			ezdFetchDelay(function (e) {
+		let keyword = jQuery('#ezd_searchInput').val();
+		let noresult = jQuery('#ezd-search-results').attr('data-noresult');
+
+		if ( keyword == "" ) {
+			jQuery('#ezd-search-results').removeClass('ajax-search').html("")
+		} else {
+			jQuery.ajax({
+				url: eazydocs_local_object.ajaxurl,
+				type: 'post',
+				data: {action: 'eazydocs_search_results', keyword: keyword},
+				beforeSend: function () {
+					jQuery(".spinner-border").show();
+				},
+				success: function (data) {
+					jQuery(".spinner-border").hide();
+					// hide search results by pressing Escape button
+					jQuery(document).keyup(function(e) {
+						if (e.key === "Escape") { // escape key maps to keycode `27`
+							jQuery('#ezd-search-results').removeClass('ajax-search').html("")
+						}
+					});
+					if ( data.length > 0 ) {
+						jQuery('#ezd-search-results').addClass('ajax-search').html(data);
+					} else {
+						var data_error = '<h5 class="error title">' + noresult + '</h5>';
+						jQuery('#ezd-search-results').html(data_error);
+					}
+				}
+			})
+		}
+	}, 500 )
+);
  
 </script>

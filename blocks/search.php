@@ -59,7 +59,7 @@ Block::make( __( 'Eazydocs Search', 'eazydocs' ) )
 								<div class="header_search_form_info ezd_search_block_info">
 									<div class="form-group">
 										<div class="input-wrapper">
-											<input type='search' id="ezd_searchInput" name="s" oninput="ezSearchResults()" placeholder='<?php echo esc_attr( $fields['placeholder'] ); ?>' autocomplete="off" value="<?php echo get_search_query(); ?>"/>
+											<input type='search' id="ezd_searchInput" name="s" placeholder='<?php echo esc_attr( $fields['placeholder'] ); ?>' autocomplete="off" value="<?php echo get_search_query(); ?>"/>
 											<label for="ezd_searchInput">
 												<i class="icon_search"></i>
 											</label>
@@ -121,17 +121,21 @@ Block::make( __( 'Eazydocs Search', 'eazydocs' ) )
 						});
 					});
 				})(jQuery);
-					/**
-					 * Search Form Keywords
-					 */
-					jQuery(".ezd_search_keywords ul li a").on("click", function (e) {
-						e.preventDefault()
-						var content = jQuery(this).text()
-						jQuery("#ezd_searchInput").val(content).focus()
-						ezSearchResults()
-					})
 
-					function ezSearchResults() {
+				function ezdFetchDelay(callback, ms) {
+				var timer = 0;
+				return function () {
+					var context = this,
+					args = arguments;
+					clearTimeout(timer);
+					timer = setTimeout(function () {
+					callback.apply(context, args);
+					}, ms || 0);
+				};
+				}
+
+				jQuery('#ezd_searchInput').keyup(
+					ezdFetchDelay(function (e) {
 						let keyword = jQuery('#ezd_searchInput').val();
 						let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
@@ -162,7 +166,51 @@ Block::make( __( 'Eazydocs Search', 'eazydocs' ) )
 									}
 								})
 							}
-						}
+						}, 500 )
+					)
+
+					/**
+					 * Search Form Keywords
+					 */
+					jQuery(".ezd_search_keywords ul li a").on("click", function (e) {
+						e.preventDefault()
+						var content = jQuery(this).text()
+						jQuery("#ezd_searchInput").val(content).focus()
+						ezSearchResults()
+					})
+
+					function ezSearchResults(){
+						let keyword = jQuery('#ezd_searchInput').val();
+						let noresult = jQuery('#ezd-search-results').attr('data-noresult');
+
+						if ( keyword == "" ) {
+							jQuery('#ezd-search-results').removeClass('ajax-search').html("")
+						} else {
+							jQuery.ajax({
+								url: eazydocs_local_object.ajaxurl,
+								type: 'post',
+								data: {action: 'eazydocs_search_results', keyword: keyword},
+								beforeSend: function () {
+									jQuery(".spinner-border").show();
+								},
+								success: function (data) {
+									jQuery(".spinner-border").hide();
+									// hide search results by pressing Escape button
+									jQuery(document).keyup(function(e) {
+										if (e.key === "Escape") { // escape key maps to keycode `27`
+											jQuery('#ezd-search-results').removeClass('ajax-search').html("")
+										}
+									});
+									if ( data.length > 0 ) {
+										jQuery('#ezd-search-results').addClass('ajax-search').html(data);
+									} else {
+										var data_error = '<h5 class="error title">' + noresult + '</h5>';
+										jQuery('#ezd-search-results').html(data_error);
+										}
+									}
+								})
+							}
+					}
 				</script>
 
 			<?php
