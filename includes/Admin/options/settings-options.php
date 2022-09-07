@@ -627,12 +627,12 @@ CSF::createSection( $prefix, array(
         array(
             'id'      => 'docs_content_layout',
             'type'    => 'radio',
-            'title'   => esc_html__( 'Layout', 'eazydocs' ),
+            'title'   => esc_html__( 'Docs Navigation Layout', 'eazydocs' ),
             'options' => [
-                'collapsed' 		=> esc_html__( 'Collapsed with Icons', 'eazydocs' ),
-                'category_base'     => esc_html__( 'Extended Docs', 'eazydocs' ),
+                'category_base' 		=> esc_html__( 'Collapsed with Icons', 'eazydocs' ),
+                'badge_base'     => esc_html__( 'Extended Docs', 'eazydocs' ),
             ],
-            'default' => 'collapsed',
+            'default' => 'badge_base',
             'class'   => 'eazydocs-pro-notice',
         ),
 		
@@ -1065,7 +1065,7 @@ CSF::createSection( $prefix, array(
             'id'         => 'ezdocs_login_shortcode',
             'type'       => 'text',
             'title'      => esc_html__( 'Docs Login', 'eazydocs-pro' ),
-            'subtitle'       => esc_html__( 'Use this shortcode to display the Docs login form.', 'eazydocs-pro' ),
+            'subtitle'       => esc_html__( 'Use this shortcode to display login form.', 'eazydocs-pro' ),
             'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs-pro' ).'<br><code>[ezd_login_form ezd_login_title="You must log in to continue." ezd_login_subtitle="Login to '.get_bloginfo().'" ezd_login_btn="Log In" ezd_login_forgot_btn="Forgotten account?"]</code>',
             'default'    => '[ezd_login_form]',
             'attributes' => array(

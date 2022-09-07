@@ -39,8 +39,8 @@
 
   .private {
     position: absolute;
-    right: -8px;
-    top: -15px;
+    right: -6px;
+    top: -17px;
     color: var(--black_50);
     i {
       font-size: 40px;
@@ -48,7 +48,7 @@
   }
 
   img.featured-image {
-    max-width: 50px;
+    max-width: 50px !important;
     height: auto;
   }
 
@@ -67,6 +67,20 @@
     span {
       color: var(--black_500);
       margin-top: 5px;
+      &.badge {
+        font-size: 11px;
+        background: rgba(76, 76, 241, 0.15);
+        color: var(--black_800);
+        padding: 3px 5px 0;
+        border-radius: 3px;
+        margin-right: 5px;
+        display: inline-block;
+        line-height: 1.45;
+        vertical-align: middle;
+        font-weight: 500;
+        height: 20px;
+        letter-spacing: 0.2px;
+      }
     }
   }
 
@@ -114,7 +128,7 @@
         text-decoration: none;
         align-items: center;
         &:hover {
-          color: var(--ezd_brand_color)
+          color: var(--ezd_brand_color) !important;
         }
         &::before {
           content: "h";
@@ -133,8 +147,17 @@
   }
 }
 
+.bg-dark {
+  .title {
+    color: #fff !important;
+  }
+  a, .badge {
+    color: #d1d1d1 !important;
+  }
+}
+
 .col-lg-4 {
   .categories_guide_item img.featured-image {
-    max-width: 60px;
+    max-width: 60px !important;
   }
 }

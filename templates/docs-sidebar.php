@@ -19,6 +19,7 @@ $children       = wp_list_pages( array(
 	'echo'      => false,
 	'post_type' => 'docs',
 	'walker'    => $walker,
+    'post_status' => array( 'publish', 'private' ),
 ));
 
 $options = get_option( 'eazydocs_settings' );
@@ -49,10 +50,10 @@ $content_layout = $options['docs_content_layout'] ?? '1';
 
 		if ( $children ) :
 			$catgory_layout = '';
-			if( $content_layout == 'category_base' && class_exists('EazyDocsPro')) {
+			if ( $content_layout == 'category_base' && class_exists('EazyDocsPro') ) {
 				$doc_walker = '';
 				$catgory_layout = 'content-layout-category';
-			}else{
+			} else {
 				$doc_walker = $walker;
 			}
 			?>
@@ -67,6 +68,7 @@ $content_layout = $options['docs_content_layout'] ?? '1';
 						'echo'      => false,
 						'post_type' => 'docs',
 						'walker'    => $doc_walker,
+                        'post_status' => array( 'publish', 'private' ),
 					) );
 					?>
                 </ul>

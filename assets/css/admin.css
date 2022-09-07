@@ -1353,6 +1353,7 @@ a.child-delete {
   --btn-bg: #e4e6eb;
   --btn-clr: var(--clr-dark);
   --btn-bc: transparent;
+  font-size: 12px;
 }
 .notification-body .filter-button-group .easydocs-btn.mixitup-control-active {
   background-color: #e7f3ff;
@@ -1491,7 +1492,6 @@ a.child-delete {
 }
 .ezd-admin-bulk-options .ezd-admin-bulk-actions a {
   color: var(--black_200);
-  display: block;
   width: 100%;
   text-align: center;
   padding: 5px 0;
@@ -1502,8 +1502,11 @@ a.child-delete {
 .ezd-admin-bulk-options .ezd-admin-bulk-actions a:last-child {
   border-bottom: none;
 }
+.ezd-admin-bulk-options .ezd-admin-bulk-actions a:hover span {
+  color: #fff;
+}
 .ezd-admin-bulk-options .ezd-admin-bulk-actions a .dashicons {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 21px;
 }
 .ezd-admin-bulk-options .dashicons-arrow-down-alt2 {

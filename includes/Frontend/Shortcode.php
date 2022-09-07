@@ -5,7 +5,6 @@ namespace eazyDocs\Frontend;
  * Shortcode.
  */
 class Shortcode {
-
 	/**
 	 * Initialize the class
 	 */
@@ -102,7 +101,7 @@ class Shortcode {
                     'post_parent'    => $root->ID,
                     'post_type'      => 'docs',
                     'numberposts' => (int) $args['show_articles'],
-                    'post_status'    => 'publish',
+                    'post_status'    => array( 'publish', 'private' ),
                     'orderby'        => 'menu_order',
                     'order'          => $opt['docs-order'] ?? 'ASC',
                 ] );

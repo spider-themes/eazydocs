@@ -141,10 +141,9 @@ div.search_result {
 }
 
 
-
 /** Notification CSS **/
 .notification-body .easydocs-filters .dashicons {
-    font-size: 17px;
+    font-size: 14px;
     color: gray;
     padding-top: 2px;
 }

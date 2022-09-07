@@ -38,6 +38,7 @@ main, main#main, section {
   color: var(--black_500);
   font-size: 14px;
   font-weight: 400;
+  display: flex;
 }
 
 input[type=search]::-webkit-search-decoration,
@@ -901,7 +902,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   }
 }
 .feedback_link p.left i, .feedback_link p.right i {
-  padding-right: 8px;
+  padding-right: 5px;
 }
 .feedback_link p.left a {
   color: var(--ezd_brand_color);
@@ -922,7 +923,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   padding: 1px 15px;
   background-color: #27ae60;
   transition: all 0.2s linear;
-  margin-left: 10px;
+  margin-left: 5px;
   border-radius: 15px;
   text-decoration: none;
 }
@@ -937,7 +938,6 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 }
 .feedback_link .h_btn span {
   height: 15px;
-  width: 15px;
   display: inline-block;
   border-radius: 50%;
   text-align: center;
@@ -949,6 +949,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   margin-left: 6px;
   position: relative;
   top: -1px;
+  padding: 0 5px;
 }
 .feedback_link .h_btn:hover {
   color: #fff;
@@ -1739,7 +1740,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   position: relative;
 }
 
-.dot-sep span:nth-child(2)::before {
+.dot-sep span.sep::before {
   content: "•";
   margin: 0 5px;
 }

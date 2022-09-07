@@ -157,15 +157,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			if ( ! class_exists( 'EazyDocsPro' ) ) {
 				require_once __DIR__ . '/includes/Admin/options/settings-options.php';
 			}
-
-			// Carbon fields.
-			if ( ! function_exists( 'carbon_fields_boot_plugin' ) ) {
-				//require_once __DIR__ . '/library/carbon-fields/carbon-fields-plugin.php';
-			}
-
-			if ( function_exists( 'carbon_fields_boot_plugin' ) ) {
-				//require_once __DIR__ . '/blocks/block-config.php';
-			}
 		}
 
 		/**

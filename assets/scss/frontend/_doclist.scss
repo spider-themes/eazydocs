@@ -492,7 +492,7 @@
       text-align: center;
     }
     i {
-      padding-right: 8px;
+      padding-right: 5px;
     }
   }
   p.left {
@@ -516,7 +516,7 @@
     padding: 1px 15px;
     background-color: #27ae60;
     transition: all 0.2s linear;
-    margin-left: 10px;
+    margin-left: 5px;
     border-radius: 15px;
     text-decoration: none;
     &:hover {
@@ -530,7 +530,6 @@
     }
     span {
       height: 15px;
-      width: 15px;
       display: inline-block;
       border-radius: 50%;
       text-align: center;
@@ -542,6 +541,7 @@
       margin-left: 6px;
       position: relative;
       top: -1px;
+      padding: 0 5px;
     }
     &:hover {
       color: #fff;
@@ -1370,7 +1370,7 @@ body:not(.onepage-doc) .sticky_menu {
   position: relative;
 }
 
-.dot-sep span:nth-child(2)::before {
+.dot-sep span.sep::before {
   content: "•";
   margin: 0 5px;
 }
