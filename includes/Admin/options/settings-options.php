@@ -1095,7 +1095,7 @@ CSF::createSection( $prefix, array(
             'text_off'   => esc_html__( 'Disabled', 'eazydocs-pro' ),
             'text_width' => 92,
             'default'    => false,
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-promax-notice'
         ),
         array(
             'id'    => 'ezd_add_doc_heading',
@@ -1114,7 +1114,7 @@ CSF::createSection( $prefix, array(
             'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
             'text_width' => 72,
             'default'    => false,
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' )
 			)
@@ -1124,7 +1124,7 @@ CSF::createSection( $prefix, array(
             'type'       => 'text',
             'title'      => esc_html__( 'Button', 'eazydocs-pro' ),
             'default'	 => esc_html__( 'Add Doc', 'eazydocs-pro' ),
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 				array( 'frontend_add_switcher', '==', 'true' ),
@@ -1147,7 +1147,7 @@ CSF::createSection( $prefix, array(
             'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
             'text_width' => 72,
             'default'    => false,
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 			)
@@ -1157,7 +1157,7 @@ CSF::createSection( $prefix, array(
             'type'       => 'text',
             'title'      => esc_html__( 'Button', 'eazydocs-pro' ),
             'default'	 => esc_html__( 'Edit Doc', 'eazydocs-pro' ),
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 				array( 'frontend_edit_switcher', '==', 'true' ),
@@ -1182,7 +1182,7 @@ CSF::createSection( $prefix, array(
                 'login'	 =>  esc_html__( 'Login Required', 'eazydocs-pro' ),
 			],
 			'default'    => 'login',
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' )
 			)
@@ -1195,7 +1195,7 @@ CSF::createSection( $prefix, array(
             'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs-pro' ),
 			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs-pro' ),
             'options'	 => 'pages',
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 				array( 'docs_frontend_user_mode', '==', 'login' ),
@@ -1212,7 +1212,7 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Enable / Disable', 'eazydocs-pro' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-promax-notice',
 			'text_width' => 70,
 			'default'	 => false
 		),
@@ -1221,14 +1221,14 @@ CSF::createSection( $prefix, array(
             'type'  	=> 'text', 
             'title' 	=> esc_html__( 'Title', 'eazydocs-pro' ),
             'default' 	=> esc_html__( 'Contributors', 'eazydocs-pro' ),
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-promax-notice'
         ),
 		array(
             'id'    	=> 'contributor_meta_dropdown_title',
             'type'  	=> 'text', 
             'title' 	=> esc_html__( 'Dropdown Heading', 'eazydocs-pro' ),
             'default' 	=> esc_html__( 'Manage Contributors', 'eazydocs-pro' ),
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-promax-notice'
         ),
 		array(
 			'id'         => 'contributor_meta_search',
@@ -1236,7 +1236,7 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Search', 'eazydocs-pro' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-promax-notice',
 			'text_width' => 70,
 			'default'	 => false
 		)

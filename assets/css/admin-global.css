@@ -112,11 +112,14 @@ a.eazydocs-close-notice:active {
   width: 100%;
 }
 
+body.ezd_promax .eazydocs-promax-notice.csf-field,
 .eazydocs-pro-notice.csf-field {
   position: relative;
   cursor: pointer;
 }
 
+body.ezd_promax .eazydocs-promax-notice .csf-title,
+body.ezd_promax .eazydocs-promax-notice .csf-fieldset,
 .eazydocs-pro-notice .csf-title,
 .eazydocs-pro-notice .csf-fieldset {
   opacity: 0.5;
@@ -151,6 +154,16 @@ body.valid .active-theme.csf-field::after {
   margin-bottom: 10px;
 }
 
+body.ezd_promax .eazydocs-promax-notice.csf-field::before {
+  content: "Pro-Max";
+  background-color: #f1bd6c;
+  color: #000;
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+body.ezd_promax .eazydocs-promax-notice.csf-field::after,
 .eazydocs-pro-notice.csf-field::after {
   position: absolute;
   content: "";

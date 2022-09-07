@@ -83,25 +83,25 @@ $count = $query->found_posts;
                     <span class="ezd-admin-bulk-options" id="bulk-options-<?php echo get_the_ID(); ?>">
                         <span class="dashicons dashicons-arrow-down-alt2"></span>
                         <span class="ezd-admin-bulk-actions">
-                        <?php
-                        if( current_user_can('editor') || current_user_can('administrator') ) :
-                            if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
-                                do_action('eazydocs_parent_doc_duplicate', get_the_ID());
-                                do_action('eazydocs_doc_visibility', get_the_ID());
-                            else :
-                                ?>
-                                <a href="javascript:void(0);" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>"> 
-                                    <span class="dashicons dashicons-admin-page"></span>
-                                    <span><?php esc_html_e( 'Duplicate', 'eazydocs' ); ?></span> 
-                                </a>
-                                <a href="javascript:void(0);" target="_blank" class="docs-visibility eazydocs-pro-notice" title="<?php esc_attr_e('Docs visibility', 'easydocs'); ?>"> 
-                                    <span class="dashicons dashicons-visibility"></span>
-                                    <span> <?php esc_html_e( 'Visibility', 'eazydocs' ); ?> </span>
-                                </a>
-                                <?php
+                            <?php
+                            if( current_user_can('editor') || current_user_can('administrator') ) :
+                                if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
+                                    do_action('eazydocs_parent_doc_duplicate', get_the_ID());
+                                    do_action('eazydocs_doc_visibility', get_the_ID());
+                                else :
+                                    ?>
+                                    <a href="javascript:void(0);" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>"> 
+                                        <span class="dashicons dashicons-admin-page"></span>
+                                        <span><?php esc_html_e( 'Duplicate', 'eazydocs' ); ?></span> 
+                                    </a>
+                                    <a href="javascript:void(0);" target="_blank" class="docs-visibility eazydocs-pro-notice" title="<?php esc_attr_e('Docs visibility', 'easydocs'); ?>"> 
+                                        <span class="dashicons dashicons-visibility"></span>
+                                        <span> <?php esc_html_e( 'Visibility', 'eazydocs' ); ?> </span>
+                                    </a>
+                                    <?php
+                                endif;
                             endif;
-                        endif;
-                        ?>
+                            ?>
                         </span>
                     </span>
 

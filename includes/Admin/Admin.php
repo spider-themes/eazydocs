@@ -20,6 +20,7 @@ class Admin {
 			add_action('admin_notices', array($this, 'ezd_notify_give_review'));
 		}
 		add_action('wp_ajax_ezd_notify_save_review', array($this, 'ezd_notify_save_review'));
+		add_filter('admin_body_class', [$this, 'ezd_admin_body_class']);
 	}
 	
 	/**
@@ -308,6 +309,15 @@ class Admin {
 		}
 		wp_send_json_error( array( 'message' => 'Update fail!' ) );
 	}
-	
+
+	public function ezd_admin_body_class($admin_body){
+		$ezd_admin_classe = explode(' ', $admin_body);    
+		if ( empty( eaz_fs()->is_plan__premium_only('promax') ) ) {
+			$ezd_admin_classe = array_merge($ezd_admin_classe, [
+				'ezd_promax' 
+			]);
+		}
+		return implode(' ', array_unique($ezd_admin_classe)); 
+	}
 	
 }

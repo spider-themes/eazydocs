@@ -2,9 +2,9 @@
     'use sticky'
     $(document).ready(function() {
 
-        // Eazydocs Pro notice
+        // Eazydocs Pro notices
         $('.eazydocs-pro-notice ul li:last-child label input').attr('disabled', true);
-        // NEW DOC
+        // eazydocs pro notice
         function eazydocs_pro_notice() {
             if ( $('body').hasClass('valid') ) {
                 $('.eazydocs-pro-notice:not(div[class*="active-theme"])').on('click', function (e) {
@@ -33,6 +33,20 @@
                     })
                 })
             }
+            
+            // eazydocs promax notice
+            $('body.ezd_promax .eazydocs-promax-notice').on('click', function (e) {
+                e.preventDefault();
+                let href = $(this).attr('href')
+                Swal.fire({
+                    title: 'Opps...',
+                    html: 'This is a PRO-MAX feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
+                    icon: "warning",
+                    buttons: [false, "Close"],
+                    dangerMode: true,
+                    //footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
+                })
+            })
         }
         eazydocs_pro_notice();
 
