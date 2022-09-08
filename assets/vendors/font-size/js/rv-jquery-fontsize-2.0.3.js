@@ -12,7 +12,7 @@
     "use strict";
 
     $(document).ready(function () {
-        var $speech = $('#post p');
+        var $speech = $('#post p, #post ul li:not(.process_tab_shortcode ul li), #post ol li, #post table:not(.basic_table_info,.table-dark), #post table tr td, #post .tab-content');
         var $defaultSize = $speech.css('fontSize');
         $('#rvfs-controllers button').click(function () {
             var num = parseFloat($speech.css('fontSize'));
