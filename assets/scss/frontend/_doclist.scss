@@ -41,6 +41,9 @@
   z-index: 1;
   height: 100vh;
   position: relative;
+  &.nav_category_layout{
+    overflow: auto;
+  }
   a {
     text-decoration: none;
   }

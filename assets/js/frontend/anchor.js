@@ -305,7 +305,7 @@
           '   opacity: 0;'                          +
           '   text-decoration: none;'               +
           '   -webkit-font-smoothing: antialiased;' +
-          '   -moz-osx-font-smoothing: grayscale;'  +
+          '   -moz-font-smoothing: grayscale;'  +
           ' }',
           hoverRule =
           ' *:hover > .anchorjs-link,'              +

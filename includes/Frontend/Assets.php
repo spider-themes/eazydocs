@@ -25,7 +25,7 @@ class Assets {
         wp_register_style( 'bootstrap-select', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css' );
         wp_register_script( 'bootstrap-select', 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js', array('bootstrap') );
         wp_register_script( 'bootstrap-bundle', EAZYDOCS_VEND . '/bootstrap/bootstrap.bundle.min.js', array( 'jquery' ), '5.1.3', true );
-        wp_register_script( 'anchor', EAZYDOCS_ASSETS . '/js/frontend/anchor.js', array( 'jquery' ), true, true );
+        wp_register_script( 'anchor', EAZYDOCS_ASSETS . '/js/frontend/anchor.js' );
 
         wp_enqueue_style( 'eazydocs-blocks', EAZYDOCS_ASSETS . '/css/blocks.css');
 

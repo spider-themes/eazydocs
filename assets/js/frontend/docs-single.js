@@ -595,7 +595,14 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             })
         });
-
-    })
+   
+        // Anchor JS scroll
+        var urlHash = window.location.href.split("#")[1];
+        if(urlHash){  
+            $('html,body').animate({
+                scrollTop: $('#' + urlHash).offset().top
+            }, 30);
+        }
+    });
+    
 })(jQuery);
-

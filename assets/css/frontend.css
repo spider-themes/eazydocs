@@ -493,6 +493,9 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   height: 100vh;
   position: relative;
 }
+.doc_left_sidebarlist.nav_category_layout {
+  overflow: auto;
+}
 .doc_left_sidebarlist a {
   text-decoration: none;
 }
