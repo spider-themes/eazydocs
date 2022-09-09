@@ -41,9 +41,6 @@
   z-index: 1;
   height: 100vh;
   position: relative;
-  &.nav_category_layout{
-    overflow: auto;
-  }
   a {
     text-decoration: none;
   }
@@ -1170,22 +1167,21 @@ body:not(.onepage-doc) .sticky_menu {
   margin-bottom: 30px;
   .tab-btn {
     font-size: 16px;
-    line-height: 22px;
     margin-bottom: 0;
-    padding-top: 2px;
     cursor: pointer;
     transition: color 0.2s linear;
-    &.active {
+    &.active svg {
       color: var(--ezd_brand_color);
     }
     &:hover {
       color: var(--ezd_brand_color);
     }
   }
-  .fa-moon {
-    top: -1px;
-    position: relative;
+
+  svg {
+    color: var(--black_700)
   }
+
   input[type=checkbox] {
     width: 50px;
     height: 22px;
@@ -1193,7 +1189,7 @@ body:not(.onepage-doc) .sticky_menu {
     background: brand_color_rgba(0.25);
     display: block;
     border-radius: 25px;
-    margin: 0 12px 0 15px;
+    margin: 0 10px 0 12px;
     position: relative;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -1223,7 +1219,6 @@ body:not(.onepage-doc) .sticky_menu {
     }
   }
 }
-
 
 .topic_item_tabs {
   margin-top: 50px;
@@ -1321,6 +1316,9 @@ body:not(.onepage-doc) .sticky_menu {
     line-height: 1.4;
     @media (max-width: 1440px) {
       margin-right: 20px;
+    }
+    img {
+      max-width: 40px;
     }
   }
   .media-body {

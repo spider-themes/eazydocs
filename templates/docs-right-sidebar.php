@@ -131,14 +131,11 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
             </div>
 
             <?php
-            $is_dark_switcher = $opt['is_dark_switcher'] ?? '';
-            if ( $is_dark_switcher == '1' ) : ?>
-                <div class="doc_switch d-flex align-items-center">
-                    <label for="ezd_dark_switch" class="tab-btn tab-btns light-mode"><i class="icon_lightbulb_alt"></i></label>
-                    <input type="checkbox" name="ezd_dark_switch" id="ezd_dark_switch" class="tab_switcher">
-                    <label for="ezd_dark_switch" class="tab-btn dark-mode"><i class="far fa-moon"></i></label>
-                </div>
-            <?php endif; ?>
+            /**
+             * Dark Mode switcher
+             */
+            eazydocs_get_template_part('tools/dark-mode-switcher');
+            ?>
 
             <div class="table-of-content">
                 <h6><i class="icon_ul"></i> <?php esc_html_e( 'CONTENTS', 'eazydocs' ); ?></h6>

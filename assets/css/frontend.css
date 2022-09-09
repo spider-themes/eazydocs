@@ -493,9 +493,6 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   height: 100vh;
   position: relative;
 }
-.doc_left_sidebarlist.nav_category_layout {
-  overflow: auto;
-}
 .doc_left_sidebarlist a {
   text-decoration: none;
 }
@@ -1546,21 +1543,18 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .doc_switch .tab-btn {
   font-size: 16px;
-  line-height: 22px;
   margin-bottom: 0;
-  padding-top: 2px;
   cursor: pointer;
   transition: color 0.2s linear;
 }
-.doc_switch .tab-btn.active {
+.doc_switch .tab-btn.active svg {
   color: var(--ezd_brand_color);
 }
 .doc_switch .tab-btn:hover {
   color: var(--ezd_brand_color);
 }
-.doc_switch .fa-moon {
-  top: -1px;
-  position: relative;
+.doc_switch svg {
+  color: var(--black_700);
 }
 .doc_switch input[type=checkbox] {
   width: 50px;
@@ -1569,7 +1563,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   background: rgba(76, 76, 241, 0.25);
   display: block;
   border-radius: 25px;
-  margin: 0 12px 0 15px;
+  margin: 0 10px 0 12px;
   position: relative;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1693,6 +1687,9 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   .documentation_item .icon {
     margin-right: 20px;
   }
+}
+.documentation_item .icon img {
+  max-width: 40px;
 }
 .documentation_item .media-body {
   flex: 1;

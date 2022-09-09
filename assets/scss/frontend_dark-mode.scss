@@ -17,11 +17,17 @@ body.body_dark {
   .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
     background: #131417 !important;
   }
+
+  .ezdoc_contributed_user_avatar .ezdoc_contributed_users .doc_users_dropdown {
+    box-shadow: none;
+  }
+
   .doc_rightsidebar {
     @media (max-width: 991px) {
       background: #1e1f26;
     }
   }
+
   .ordered-list li::before, .body_wrapper,
   .img_modal, #eazydocs_feedback {
     background: #131417;
@@ -65,7 +71,7 @@ body.body_dark {
   }
 
   .nav-sidebar .nav-item .docs-progress-bar,
-  onepage-doc .nav-sidebar .nav-item .docs-progress-bar,
+  .onepage-doc .nav-sidebar .nav-item .docs-progress-bar,
   .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active,
   .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:hover {
     background: #444857;

@@ -51,7 +51,6 @@ $children           = wp_list_pages( array(
                             </nav>
 						<?php
 						endif;
-
 	                    $ezd_shortcode = get_the_content( $post_id->ID );
 	                    $content_type = get_post_meta( get_the_ID(), 'ezd_doc_content_type', true );
 	                    if( $content_type == 'string_data' ){
@@ -188,19 +187,15 @@ $children           = wp_list_pages( array(
                             </div>
 
 							<?php
-							$is_dark_switcher = $opt['is_dark_switcher'] ?? '';
-							if ( $is_dark_switcher == '1' ) : ?>
-                                <div class="doc_switch d-flex align-items-center">
-                                    <label for="ezd_dark_switch" class="tab-btn tab-btns light-mode"><i class="icon_lightbulb_alt"></i></label>
-                                    <input type="checkbox" name="ezd_dark_switch" id="ezd_dark_switch" class="tab_switcher">
-                                    <label for="ezd_dark_switch" class="tab-btn dark-mode"><i class="far fa-moon"></i></label>
-                                </div>
-							<?php endif; ?>
+                            /**
+                             * Dark Mode switcher
+                             */
+                            eazydocs_get_template_part('tools/dark-mode-switcher');
+							?>
 
                             <div class="onepage-sidebar doc_sidebar <?php echo esc_attr($ezd_content_none); ?>">
                                 <div class="hire-us">
 									<?php
-
 									$content_type  = get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true );
 									$ezd_shortcode  = get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true );
 

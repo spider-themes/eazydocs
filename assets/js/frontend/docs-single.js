@@ -582,8 +582,8 @@
             $('body').addClass('ezd-search-focused');
             $('form.ezd_search_form').css('z-index','999');
         })
-        
-        $("#ezd_searchInput").focusout(function() {
+
+        $(".focus_overlay").click(function() {
             $('body').removeClass('ezd-search-focused');
             $('form.ezd_search_form').css('z-index','unset');
         })

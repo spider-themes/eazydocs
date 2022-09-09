@@ -60,8 +60,8 @@ endif;
                                     $ezd_doc_contributors       = explode(',', $ezd_doc_contributors);
                                     $ezd_doc_contributors       = array_unique($ezd_doc_contributors);
                                     ?>
-                                    <a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>" title="<?php echo $available_user->display_name ?? ''; ?>" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                                        <?php echo get_avatar( get_the_author_meta('ID'), '20' ); ?>
+                                    <a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>" title="<?php echo get_the_author_meta('display_name') ?? ''; ?>" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                        <?php echo get_avatar( get_the_author_meta('ID'), '24' ); ?>
                                     </a>
                                     <?php 
                                     foreach ( $ezd_doc_contributors as $ezd_doc_contributor ) {
@@ -69,7 +69,7 @@ endif;
                                         if ( ! empty($available_user->user_login) && empty($available_user->ID == $current_doc_author) ) {
                                             ?>
                                             <a href="<?php echo get_author_posts_url($ezd_doc_contributor); ?>" title="<?php echo $available_user->display_name ?? ''; ?>" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                                                <?php echo get_avatar($available_user, '20'); ?>
+                                                <?php echo get_avatar($available_user, '24'); ?>
                                             </a>
                                             <?php
                                         }
