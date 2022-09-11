@@ -810,6 +810,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   margin-bottom: 10px;
   font-size: 2.5em;
   color: var(--black_900);
+  line-height: 1.3;
 }
 .doc_documentation_area .shortcode_title p span {
   font-weight: 500;
@@ -1594,7 +1595,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .topic_item_tabs {
-  margin-top: 50px;
+  margin-top: 60px;
   overflow: hidden;
 }
 .topic_item_tabs .topic_list_item {
@@ -1933,8 +1934,8 @@ p .footnotes-link::after {
   padding: 0 5px 0 0;
   position: relative;
 }
-.filter_form input {
-  border: 1px solid var(--black_50);
+.filter_form input, .filter_form input[type=search] {
+  border: 1px solid var(--black_50) !important;
   width: 100%;
   height: 32px;
   padding: 0 15px 0 10px;
@@ -1946,10 +1947,13 @@ p .footnotes-link::after {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 3px;
   background: var(--bs-white);
-  color: var(--black_800);
+  color: var(--black_800) !important;
 }
-.filter_form input:focus {
+.filter_form input:focus, .filter_form input[type=search]:focus {
   outline: thin dotted;
+}
+.filter_form input::placeholder, .filter_form input[type=search]::placeholder {
+  color: var(--black_300);
 }
 .filter_form .filter_no_result {
   display: none;

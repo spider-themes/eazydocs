@@ -99,9 +99,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.3.3 (10 September 2022) =
+Tweaked: Compatibility with themes improved
+
 = v1.3.2 (10 September 2022) =
 New: Show password protected, private (internal) docs in the docs archive page with specialized design
-Fixed: Doc TOC was not showing
+Fixed: Doc TOC was not showing (except Docy & Docly)
+Fixed: If a visitor was open a document with an anchor URL to some title - they were not get an automatic scroll to the title.
+Fixed: Font size switcher was not working in Tabs, Ul, OL contents
 Tweaked: Ajax search results improved
 Tweaked: Dark mode switcher and colors
 Tweaked: Tags spacing on frontend

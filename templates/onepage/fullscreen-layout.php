@@ -173,30 +173,16 @@
                         <div class="doc_rightsidebar scroll one-page-docs-right-sidebar">
                             <div class="pageSideSection">
                                 <?php
-                                $is_os_dropdown = '1';
-                                if ( $is_os_dropdown == '1' ) :
-                                    wp_enqueue_style( 'bootstrap-select' );
-                                    wp_enqueue_script( 'bootstrap-select' );
-                                    ?>
-                                    <select id="mySelect">
-                                        <option value="windows" data-content="<i class='fab fa-windows'></i> Windows"> <?php esc_html_e( 'Windows', 'eazydocs' ); ?> </option>
-                                        <option value="ios" data-content="<i class='fab fa-apple'></i> IOS"> <?php esc_html_e( 'IOS', 'eazydocs' ); ?> </option>
-                                    </select>
-                                <?php
-                                endif;
-                                ?>
-                                <div id="font-switcher" class="d-flex justify-content-between align-items-center">
-                                    <div id="rvfs-controllers" class="fontsize-controllers group">
-                                        <div class="btn-group">
-                                            <button id="switcher-small" class="rvfs-decrease btn" title="<?php esc_attr_e('Decrease font size', 'docy'); ?>">A-</button>
-                                            <button id="switcher-default" class="rvfs-reset btn" title="<?php esc_attr_e('Default font size', 'docy'); ?>">A</button>
-                                            <button id="switcher-large" class="rvfs-increase btn" title="<?php esc_attr_e('Increase font size', 'docy'); ?>">A+</button>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="print"><i class="icon_printer"></i></a>
-                                </div>
+                                /**
+                                 * Conditional Dropdown
+                                 */
+                                eazydocs_get_template_part('tools/conditional-dropdown');
 
-                                <?php
+                                /**
+                                 * Font Size Switcher & Print Icon
+                                 */
+                                eazydocs_get_template_part('tools/font-switcher');
+
                                 /**
                                  * Dark Mode switcher
                                  */

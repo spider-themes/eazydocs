@@ -393,7 +393,8 @@
   h1 {
     margin-bottom: 10px;
     font-size: 2.5em;
-    color: var(--black_900)
+    color: var(--black_900);
+    line-height: 1.3;
   }
   p {
     span {
@@ -1221,7 +1222,7 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 .topic_item_tabs {
-  margin-top: 50px;
+  margin-top: 60px;
   overflow: hidden;
   .topic_list_item {
     background: transparent;

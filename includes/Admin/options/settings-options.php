@@ -643,7 +643,7 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
-			'default'    => false,
+			'default'    => true,
 		),
 
 		array(
@@ -654,7 +654,7 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
-			'default'    => false,
+			'default'    => true,
 		),
 
 		array(
