@@ -405,6 +405,9 @@ color: #0062ae;
     outline: none;
     box-shadow: none;
 }
-#contributed_users{
+#doc_extra_information{
     display: none;
-  }
+}
+{
+    display: none;
+}

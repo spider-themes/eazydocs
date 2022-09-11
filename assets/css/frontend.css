@@ -1808,6 +1808,67 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   }
 }
 
+.ezd-password-wrap {
+  border: 1px solid #e3ebf6;
+  max-width: 515px;
+}
+.ezd-password-wrap .ezd-password-head {
+  background-color: #0c213a;
+  flex: 1 1 auto;
+  padding: 1rem 1rem;
+}
+.ezd-password-wrap .ezd-password-head p.ezd-password-title {
+  font-size: 18px;
+  color: #fff;
+}
+.ezd-password-wrap .ezd-password-head p.ezd-password-subtitle {
+  color: #a4abc5;
+  line-height: 1.6;
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+.ezd-password-wrap .ezd-password-body form label {
+  margin-bottom: 0.5rem;
+  color: #656d9a;
+  font-weight: 400;
+  font-size: 13px;
+}
+.ezd-password-wrap .ezd-password-body form input {
+  border: 1px solid #e3ebf6;
+  box-shadow: none;
+  outline: none;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.ezd-password-wrap .ezd-password-body form input:focus {
+  color: #303e67;
+  background-color: #fff;
+  border-color: #8bb0fe;
+}
+.ezd-password-wrap .ezd-password-body form button {
+  font-size: 0.8125rem;
+}
+.ezd-password-wrap .ezd-password-body form button:focus {
+  box-shadow: none;
+}
+@media (max-width: 1199px) {
+  .ezd-password-wrap {
+    max-width: 100%;
+  }
+}
+@media (max-width: 991px) {
+  .ezd-password-wrap {
+    max-width: 515px;
+  }
+}
+@media (max-width: 580px) {
+  .ezd-password-wrap {
+    max-width: 100%;
+  }
+}
+
 .modal-content .shortcode_info .row {
   margin-top: 20px;
 }

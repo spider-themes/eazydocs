@@ -916,25 +916,26 @@ CSF::createSection( $prefix, array(
 	)
 ) );
 
+// Private Doc
 CSF::createSection( $prefix, array(
 	'id'     => 'private_doc_settings',
 	'parent' => 'single_doc',
-	'title'  => esc_html__( 'Private Doc', 'eazydocs-pro' ),
+	'title'  => esc_html__( 'Private Doc', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
 		
 		array(
 			'id'    => 'private_doc_visibility',
 			'type'  => 'heading',
-			'title' => esc_html__( 'Private Doc', 'eazydocs-pro' )
+			'title' => esc_html__( 'Private Doc', 'eazydocs' )
 		),
 		array(
 			'id'         => 'private_doc_mode',
 			'type'       => 'select',
-			'title'      => esc_html__( 'Visibility Mode', 'eazydocs-pro' ),
+			'title'      => esc_html__( 'Visibility Mode', 'eazydocs' ),
 			'options'	 => [
-				'login'	 =>  esc_html__( 'Login Required', 'eazydocs-pro' ),
-				'none'	 =>  esc_html__( 'None', 'eazydocs-pro' ),
+				'login'	 =>  esc_html__( 'Login Required', 'eazydocs' ),
+				'none'	 =>  esc_html__( 'None', 'eazydocs' ),
 			],
 			'default'    => 'none',
 			'class'      => 'eazydocs-pro-notice'
@@ -943,9 +944,9 @@ CSF::createSection( $prefix, array(
 			'id'         => 'private_doc_login_page',
 			'type'       => 'select',
 			'placeholder' => 'Select page',
-			'title'      => esc_html__( 'Select Page', 'eazydocs-pro' ),
-			'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs-pro' ),
-			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs-pro' ),
+			'title'      => esc_html__( 'Select Page', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs' ),
+			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs' ),
 			'options'	 => 'pages',
 			'class'      => 'eazydocs-pro-notice',
 			'dependency' => array(
@@ -957,6 +958,115 @@ CSF::createSection( $prefix, array(
 			'chosen'     => true,
 			'ajax'       => true,
 		)
+		
+	)
+) );
+
+// Protected Doc
+CSF::createSection( $prefix, array(
+	'id'     => 'protected_doc_settings',
+	'parent' => 'single_doc',
+	'title'  => esc_html__( 'Protected Doc', 'eazydocs' ),
+	'icon'   => '',
+	'fields' => array(
+		
+		array(
+			'id'    => 'protected_doc_heading',
+			'type'  => 'heading',
+			'title' => esc_html__( 'Protected Doc', 'eazydocs' )
+		),
+		array(
+			'id'         => 'protected_doc_form',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Password Form', 'eazydocs' ),
+			'options'	 => [
+				'eazydocs-form'	 	=>  esc_html__( 'EazyDocs Form', 'eazydocs' ),
+				'default'	 		=>  esc_html__( 'Default', 'eazydocs' ),
+			],
+			'default'    => 'eazydocs-form'
+		),
+		array(
+			'id'    => 'protected_doc_form_info',
+			'type'  => 'subheading',
+			'title' => esc_html__( 'Form', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			)
+		),
+		array(
+			'id'         => 'protected_form_head_color',
+			'type'       => 'color',
+			'title'      => esc_html__( 'Header Color', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			),
+			'output'      => '.ezd-password-wrap .ezd-password-head',
+			'output_mode' => 'background-color',
+		),
+		array(
+			'id'         => 'protected_form_title',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Title', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			)
+		),
+		array(
+			'id'         => 'protected_form_title_color',
+			'type'       => 'color',
+			'title'      => esc_html__( 'Title Color', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			),
+			'output'      => '.ezd-password-wrap .ezd-password-head p.ezd-password-title',
+			'output_mode' => 'color',
+		),
+		array(
+			'id'         => 'protected_form_subtitle',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Sub Title', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			)
+		),
+		array(
+			'id'         => 'protected_form_subtitle_color',
+			'type'       => 'color',
+			'title'      => esc_html__( 'Sub Title Color', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			),
+			'output'      => '.ezd-password-wrap .ezd-password-head p.ezd-password-subtitle',
+			'output_mode' => 'color',
+		),
+		array(
+			'id'         => 'protected_form_btn',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Button', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			)
+		),
+		array(
+			'id'         => 'protected_form_btn_bgcolor',
+			'type'       => 'color',
+			'title'      => esc_html__( 'Button Text Color', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			),
+			'output'      => '.ezd-password-wrap .ezd-password-body form button',
+			'output_mode' => 'color',
+		),
+		array(
+			'id'         => 'protected_form_btn_textcolor',
+			'type'       => 'color',
+			'title'      => esc_html__( 'Button Background Color', 'eazydocs' ),
+			'dependency' => array(
+				array( 'protected_doc_form', '==', 'eazydocs-form' ),
+			),
+			'output'      => '.ezd-password-wrap .ezd-password-body form button',
+			'output_mode' => 'background-color',
+		),
 		
 	)
 ) );
@@ -982,9 +1092,9 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'onepage_numbering',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Numbering', 'eazydocs-pro' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'title'      => esc_html__( 'Numbering', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 70,
 			'default'    => false
 		)
@@ -1064,9 +1174,9 @@ CSF::createSection( $prefix, array(
 		array(
             'id'         => 'ezdocs_login_shortcode',
             'type'       => 'text',
-            'title'      => esc_html__( 'Docs Login', 'eazydocs-pro' ),
-            'subtitle'       => esc_html__( 'Use this shortcode to display login form.', 'eazydocs-pro' ),
-            'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs-pro' ).'<br><code>[ezd_login_form ezd_login_title="You must log in to continue." ezd_login_subtitle="Login to '.get_bloginfo().'" ezd_login_btn="Log In" ezd_login_forgot_btn="Forgotten account?"]</code>',
+            'title'      => esc_html__( 'Docs Login', 'eazydocs' ),
+            'subtitle'       => esc_html__( 'Use this shortcode to display login form.', 'eazydocs' ),
+            'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs' ).'<br><code>[ezd_login_form login_title="You must log in to continue."  login_subtitle="Login to '.get_bloginfo().'" login_btn="Log In" login_forgot_btn="Forgotten account?"]</code>',
             'default'    => '[ezd_login_form]',
             'attributes' => array(
                 'readonly' => 'readonly',
@@ -1082,17 +1192,17 @@ CSF::createSection( $prefix, array(
 //
 CSF::createSection( $prefix, array(
     'id'     => 'contributor_fields',
-    'title'  => esc_html__( 'Docs Contribution', 'eazydocs-pro' ),
+    'title'  => esc_html__( 'Docs Contribution', 'eazydocs' ),
     'icon'   => 'fas fa-plus-circle',
     'fields' => [
         array(
             'id'         => 'is_doc_contribution',
             'type'       => 'switcher',
-            'title'      => esc_html__( 'Contribution Feature', 'eazydocs-pro' ),
-            'subtitle'   => esc_html__( 'Contribution buttons on the doc Right Sidebar.', 'eazydocs-pro' ),
-            'desc'       => esc_html__( 'By enabling this feature, you are allowing other people to contribute the docs. This will also let you manage the contributors from the Doc post editor.', 'eazydocs-pro' ),
-            'text_on'    => esc_html__( 'Enabled', 'eazydocs-pro' ),
-            'text_off'   => esc_html__( 'Disabled', 'eazydocs-pro' ),
+            'title'      => esc_html__( 'Contribution Feature', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Contribution buttons on the doc Right Sidebar.', 'eazydocs' ),
+            'desc'       => esc_html__( 'By enabling this feature, you are allowing other people to contribute the docs. This will also let you manage the contributors from the Doc post editor.', 'eazydocs' ),
+            'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+            'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
             'text_width' => 92,
             'default'    => false,
 			'class'      => 'eazydocs-promax-notice'
@@ -1100,7 +1210,7 @@ CSF::createSection( $prefix, array(
         array(
             'id'    => 'ezd_add_doc_heading',
             'type'  => 'heading',
-            'title' => esc_html__( 'Add Doc', 'eazydocs-pro' ),
+            'title' => esc_html__( 'Add Doc', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 			)
@@ -1109,9 +1219,9 @@ CSF::createSection( $prefix, array(
         array(
             'id'         => 'frontend_add_switcher',
             'type'       => 'switcher',
-            'title'      => esc_html__( 'Add Button', 'eazydocs-pro' ),
-            'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-            'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+            'title'      => esc_html__( 'Add Button', 'eazydocs' ),
+            'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+            'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
             'text_width' => 72,
             'default'    => false,
 			'class'      => 'eazydocs-promax-notice',
@@ -1122,8 +1232,8 @@ CSF::createSection( $prefix, array(
         array(
             'id'         => 'frontend_add_btn_text',
             'type'       => 'text',
-            'title'      => esc_html__( 'Button', 'eazydocs-pro' ),
-            'default'	 => esc_html__( 'Add Doc', 'eazydocs-pro' ),
+            'title'      => esc_html__( 'Button', 'eazydocs' ),
+            'default'	 => esc_html__( 'Add Doc', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
@@ -1134,7 +1244,7 @@ CSF::createSection( $prefix, array(
         array(
             'id'    => 'frontend_edit_doc',
             'type'  => 'heading',
-            'title' => esc_html__( 'Edit Doc', 'eazydocs-pro' ),
+            'title' => esc_html__( 'Edit Doc', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' )
 			)
@@ -1142,9 +1252,9 @@ CSF::createSection( $prefix, array(
         array(
             'id'         => 'frontend_edit_switcher',
             'type'       => 'switcher',
-            'title'      => esc_html__( 'Edit Button', 'eazydocs-pro' ),
-            'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-            'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+            'title'      => esc_html__( 'Edit Button', 'eazydocs' ),
+            'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+            'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
             'text_width' => 72,
             'default'    => false,
 			'class'      => 'eazydocs-promax-notice',
@@ -1155,8 +1265,8 @@ CSF::createSection( $prefix, array(
         array(
             'id'         => 'frontend_edit_btn_text',
             'type'       => 'text',
-            'title'      => esc_html__( 'Button', 'eazydocs-pro' ),
-            'default'	 => esc_html__( 'Edit Doc', 'eazydocs-pro' ),
+            'title'      => esc_html__( 'Button', 'eazydocs' ),
+            'default'	 => esc_html__( 'Edit Doc', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
@@ -1167,7 +1277,7 @@ CSF::createSection( $prefix, array(
         array(
             'id'    => 'frontend_ezd_login',
             'type'  => 'heading',
-            'title' => esc_html__( 'Login Page', 'eazydocs-pro' ),
+            'title' => esc_html__( 'Login Page', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' )
 			)
@@ -1175,11 +1285,11 @@ CSF::createSection( $prefix, array(
         array(
             'id'         => 'docs_frontend_user_mode',
             'type'       => 'select',
-            'title'      => esc_html__( 'User Mode', 'eazydocs-pro' ),
-            'desc'		 => esc_html__( 'This settings will work for private doc as well', 'eazydocs-pro' ),
+            'title'      => esc_html__( 'User Mode', 'eazydocs' ),
+            'desc'		 => esc_html__( 'This settings will work for private doc as well', 'eazydocs' ),
             'options'	 => [
-                'guest'	 =>  esc_html__( 'Guest user', 'eazydocs-pro' ),
-                'login'	 =>  esc_html__( 'Login Required', 'eazydocs-pro' ),
+                'guest'	 =>  esc_html__( 'Guest user', 'eazydocs' ),
+                'login'	 =>  esc_html__( 'Login Required', 'eazydocs' ),
 			],
 			'default'    => 'login',
 			'class'      => 'eazydocs-promax-notice',
@@ -1191,9 +1301,9 @@ CSF::createSection( $prefix, array(
             'id'         => 'docs_frontend_login_page',
             'type'       => 'select',
             'placeholder' => 'Select page',
-            'title'      => esc_html__( 'Select Page', 'eazydocs-pro' ),
-            'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs-pro' ),
-			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs-pro' ),
+            'title'      => esc_html__( 'Select Page', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs' ),
+			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs' ),
             'options'	 => 'pages',
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
@@ -1204,14 +1314,14 @@ CSF::createSection( $prefix, array(
 		array(
             'id'    => 'docs_contributor_meta',
             'type'  => 'heading',
-            'title' => esc_html__( 'Meta Content', 'eazydocs-pro' )	
+            'title' => esc_html__( 'Meta Content', 'eazydocs' )	
         ),
 		array(
 			'id'         => 'contributor_meta_visibility',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable / Disable', 'eazydocs-pro' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'title'      => esc_html__( 'Enable / Disable', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'text_width' => 70,
 			'default'	 => false
@@ -1219,23 +1329,23 @@ CSF::createSection( $prefix, array(
 		array(
             'id'    	=> 'contributor_meta_title',
             'type'  	=> 'text', 
-            'title' 	=> esc_html__( 'Title', 'eazydocs-pro' ),
-            'default' 	=> esc_html__( 'Contributors', 'eazydocs-pro' ),
+            'title' 	=> esc_html__( 'Title', 'eazydocs' ),
+            'default' 	=> esc_html__( 'Contributors', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice'
         ),
 		array(
             'id'    	=> 'contributor_meta_dropdown_title',
             'type'  	=> 'text', 
-            'title' 	=> esc_html__( 'Dropdown Heading', 'eazydocs-pro' ),
-            'default' 	=> esc_html__( 'Manage Contributors', 'eazydocs-pro' ),
+            'title' 	=> esc_html__( 'Dropdown Heading', 'eazydocs' ),
+            'default' 	=> esc_html__( 'Manage Contributors', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice'
         ),
 		array(
 			'id'         => 'contributor_meta_search',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Search', 'eazydocs-pro' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs-pro' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs-pro' ),
+			'title'      => esc_html__( 'Search', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'text_width' => 70,
 			'default'	 => false
@@ -1256,7 +1366,7 @@ CSF::createSection( $prefix, array(
 			'id'       => 'docs-write-access',
 			'type'     => 'select',
 			'title'    => esc_html__( 'Who Can View Docs?', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Allow users to view Docs.', 'eazydocs-pro' ),
+			'subtitle'    => esc_html__( 'Allow users to view Docs.', 'eazydocs' ),
 			'options'  => [
 				'administrator' => __( 'Administrator', 'eazydocs' ),
 				'editor'        => __( 'Editor', 'eazydocs' ),
@@ -1274,7 +1384,7 @@ CSF::createSection( $prefix, array(
 			'id'       => 'settings-edit-access',
 			'type'     => 'select',
 			'title'    => esc_html__( 'Who Can Edit Settings?', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Allow users to update options from settings.', 'eazydocs-pro' ),
+			'subtitle'    => esc_html__( 'Allow users to update options from settings.', 'eazydocs' ),
 			'options'  => [
 				'administrator' => __( 'Administrator', 'eazydocs' ),
 				'editor'        => __( 'Editor', 'eazydocs' ),
@@ -1290,7 +1400,7 @@ CSF::createSection( $prefix, array(
 			'id'       => 'customizer-edit-access',
 			'type'     => 'select',
 			'title'    => esc_html__( 'Who Can Edit Customizer?', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Allow users to customize Docs from customizer settings.', 'eazydocs-pro' ),
+			'subtitle'    => esc_html__( 'Allow users to customize Docs from customizer settings.', 'eazydocs' ),
 			'options'  => [
 				'administrator' => __( 'Administrator', 'eazydocs' ),
 				'editor'        => __( 'Editor', 'eazydocs' ),

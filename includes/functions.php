@@ -720,10 +720,10 @@ function ezd_onepage_docs() {
 
 add_action( 'save_post', function ( $post_id ) {
 	// Doc Options
-	$std_comment_id = $_POST['ezd_doc_layout'] ?? '';
-	$ezd_doc_content_type = $_POST['ezd_doc_content_type'] ?? '';
+	$std_comment_id 			= $_POST['ezd_doc_layout'] ?? '';
+	$ezd_doc_content_type 		= $_POST['ezd_doc_content_type'] ?? '';
 	$ezd_doc_content_type_right = $_POST['ezd_doc_content_type_right'] ?? '';
-	$ezd_doc_content_box_right = $_POST['ezd_doc_content_box_right'] ?? '';
+	$ezd_doc_content_box_right 	= $_POST['ezd_doc_content_box_right'] ?? '';
 	update_post_meta( $post_id, 'ezd_doc_layout', $std_comment_id );
 	update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
 	update_post_meta( $post_id, 'ezd_doc_content_type_right', $ezd_doc_content_type_right );
@@ -731,3 +731,102 @@ add_action( 'save_post', function ( $post_id ) {
 } );
 
 add_image_size('ezd_searrch_thumb16x16','16','16', true);
+add_image_size('ezd_searrch_thumb50x50','50','50', true);
+
+// Doc password form
+function ezd_password_form( $output, $post = 0 ) {	
+	$protected_form 			= get_option( 'eazydocs_settings' );
+	$protected_form_switcher 	= $protected_form['protected_doc_form'] ?? '' ;
+	$protected_form_title 		= ! empty ( $protected_form['protected_form_title'] ) ? $protected_form['protected_form_title'] : __( 'Enter Password & Read this Doc', 'eazydocs' );
+	$protected_form_subtitle 	= ! empty ( $protected_form['protected_form_subtitle'] ) ? $protected_form['protected_form_subtitle'] : __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
+	if( ! empty( $protected_form_switcher == 'eazydocs-form')) :
+		?>
+		<div class="card ezd-password-wrap">
+			<div class="card-body p-0 ezd-password-head">
+				<div class="text-center p-3">
+					<?php 
+					if(has_post_thumbnail()) :
+						?>
+						<a href="<?php the_permalink(); ?>" class="logo logo-admin">
+							<?php the_post_thumbnail('ezd_searrch_thumb50x50', [ 'class' => 'mb-3' ]); ?>
+						</a>
+						<?php 
+					endif;
+					?>
+					<p class="mb-1 ezd-password-title">
+						<?php echo esc_html($protected_form_title); ?>
+					</p>   
+					<p class="mb-0 ezd-password-subtitle">
+						<?php echo esc_html($protected_form_subtitle); ?>
+					</p>  
+				</div>
+			</div>
+			<div class="card-body ezd-password-body">
+				<form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" method="post" class="form-horizontal auth-form">
+					<div class="form-group mb-2">
+						<label class="form-label" for="ezd_password">
+							<?php esc_html_e( 'Password', 'eazydocs' ); ?>
+						</label>
+						<div class="input-group mb-3">        
+							<input name="post_password" required id="ezd_password" class="form-control" type="password" placeholder="Enter password" />
+						</div>                                    
+					</div><!--end form-group--> 
+
+					<div class="form-group mb-0 row">
+						<div class="col-12">
+							<button class="btn btn-primary w-100 waves-effect waves-light" type="submit">
+								<?php esc_html_e( 'Unlock', 'eazydocs' ); ?>
+								<i class="fas fa-sign-in-alt ms-1"></i>
+							</button>
+						</div><!--end col--> 
+					</div> <!--end form-group-->                           
+				</form><!--end form-->
+			</div>
+		</div>
+		<?php
+		else:
+		return $output;
+	endif;
+}
+add_filter( 'the_password_form', 'ezd_password_form', 10, 2 );
+
+
+// Admin assets
+function ezydocs_admin_assets(){
+	$admin_page 	= $_GET['page'] ?? '';
+	$post_type 		= $_GET['post_type'] ?? '';
+
+	if( $admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings' || $admin_page == 'eazydocs-settings' || $admin_page == 'ezd-user-feedback' ||  $admin_page == 'ezd-user-feedback-archived' || $post_type == 'onepage-docs' || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php') ) {
+
+		wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
+		wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', '1.1.3' );
+		wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), true, true );
+		wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js' );
+		wp_enqueue_script( 'eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js' );
+		wp_enqueue_script( 'ezd-notify-review', EAZYDOCS_ASSETS . '/js/admin/review.js' );
+		wp_enqueue_style( 'eazydocs-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css' );
+
+		// Localize the script with new data
+		$ajax_url              = admin_url( 'admin-ajax.php' );
+		$wpml_current_language = apply_filters( 'wpml_current_language', null );
+		if ( ! empty( $wpml_current_language ) ) {
+			$ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
+		}
+		wp_localize_script( 'jquery', 'eazydocs_local_object',
+			array(
+				'ajaxurl'                   => $ajax_url,
+				'EAZYDOCS_FRONT_CSS'        => EAZYDOCS_FRONT_CSS,
+				'EAZYDOCS_ASSETS'           => EAZYDOCS_ASSETS,
+				'create_prompt_title'       => esc_html__( 'Enter Docs Title', 'eazydocs' ),
+				'delete_prompt_title'       => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
+				'no_revert_title'           => esc_html__( "This doc will be deleted with the child docs and you won't be able to revert!", "eazydocs" ),
+				'clone_prompt_title'        => esc_html__( "Are you sure to Duplicate this doc?", "eazydocs" ),
+				'nonce'                     => wp_create_nonce( 'eazydocs-admin-nonce' ),
+				'one_page_prompt_docs'      => eazydocs_pro_doc_list(),
+				'one_page_prompt_sidebar'   => sidebar_selectbox(),
+				'one_page_doc_sidebar_edit' => edit_sidebar_selectbox(),
+				'edit_one_page_url'         => admin_url( 'admin.php/One_Page_Edit.php?edit_docs=yes' )
+			)
+		);
+	}
+}

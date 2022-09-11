@@ -71,11 +71,11 @@ class Assets {
             }
         }
 
-        wp_register_style( 'bootstrap', EAZYDOCS_VEND . '/bootstrap/bootstrap.min.css' );
         wp_register_style( 'eazydocs-frontend-global', EAZYDOCS_ASSETS . '/css/frontend-global.css' );
 
         // Global Scripts
         if ( in_array( 'eazydocs_shortcode', get_body_class() ) || is_singular('docs') || is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
+            wp_register_style( 'bootstrap', EAZYDOCS_VEND . '/bootstrap/bootstrap.min.css' );
             wp_enqueue_style('bootstrap');
             wp_enqueue_style( 'elegant-icon', EAZYDOCS_VEND . '/elegant-icon/style.css' );
             wp_enqueue_style( 'eazydocs-frontend-global' );

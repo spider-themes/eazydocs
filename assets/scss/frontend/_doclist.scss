@@ -1458,3 +1458,63 @@ body:not(.onepage-doc) .sticky_menu {
     }
   }
 }
+
+// Eazydocs password form
+.ezd-password-wrap {
+  border: 1px solid #e3ebf6;
+  max-width: 515px;
+    .ezd-password-head {
+      background-color: #0c213a;
+      flex: 1 1 auto;
+      padding: 1rem 1rem;
+      p.ezd-password-title{
+        font-size: 18px;
+        color: #fff;
+      }
+      p.ezd-password-subtitle{
+        color: #a4abc5;
+        line-height: 1.6;
+        font-size: .8125rem;
+        font-weight: 400;
+      }
+    }
+    .ezd-password-body{
+      form{
+        label{
+          margin-bottom: 0.5rem;
+          color: #656d9a;
+          font-weight: 400;
+          font-size: 13px;
+        }
+        input{
+          border: 1px solid #e3ebf6;
+          box-shadow: none;
+          outline: none;
+          padding: 0.375rem 0.75rem;
+          font-size: .8125rem;
+          font-weight: 400;
+          line-height: 1.5;
+          &:focus{
+            color: #303e67;
+            background-color: #fff;
+            border-color: #8bb0fe;
+          }
+        }
+        button{
+          font-size: .8125rem;
+          &:focus{
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    @media (max-width: 1199px) {
+      max-width: 100%;
+    }
+    @media (max-width: 991px) {
+      max-width: 515px;
+    }
+    @media (max-width: 580px) {
+      max-width: 100%;
+    }
+}

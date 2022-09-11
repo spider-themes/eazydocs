@@ -1,4 +1,5 @@
 <?php
+
 $child_docs_depth  = [];
 $depth_two_parents = [];
 $depth_three_parents = [];
@@ -384,3 +385,4 @@ if ( is_array( $depth_one_parents ) ) :
 	    <?php
 	endforeach;
 endif;
+?>

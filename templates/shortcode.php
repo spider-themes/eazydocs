@@ -1,20 +1,16 @@
 <?php
-$opt = get_option( 'eazydocs_settings' );
-$topics_count = $opt['topics_count'] ?? '1';
-$topics = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
+$opt            = get_option( 'eazydocs_settings' );
+$topics_count   = $opt['topics_count'] ?? '1';
+$topics         = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
 
 // Child docs per page
-$layout = 'grid';
+$layout         = 'grid';
 
 // Check pro plugin class exists
 if ( class_exists( 'EazyDocsPro' ) ) {
-	$layout  = $opt['docs-archive-layout'] ?? $layout; // id of field
+	$layout     = $opt['docs-archive-layout'] ?? $layout; // id of field
 }
-
-?>
-
-<?php if ( $docs ) : ?>
-
+if ( $docs ) : ?>
 <div class="eazydocs_shortcode">
     <div class="container">
         <div class="row" <?php do_action( 'eazydocs_masonry_wrap', $layout ); ?>>
@@ -103,6 +99,5 @@ if ( class_exists( 'EazyDocsPro' ) ) {
         </div>
     </div>
 </div>
-
 <?php
 endif;
