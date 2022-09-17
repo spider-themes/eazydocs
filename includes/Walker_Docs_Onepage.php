@@ -66,10 +66,6 @@ class EazyDocs_Walker_Onepage extends Walker_Page {
         }
         $indent  = str_repeat( $t, $depth );
         $output .= "{$indent}</ul>{$n}";
-	    $output .= $indent.'<span class="icon">
-                        <i class="icon_plus"></i>
-                        <i class="icon_minus-06"></i>
-                    </span>'."\n";
     }
 
     /**
@@ -174,6 +170,15 @@ class EazyDocs_Walker_Onepage extends Walker_Page {
             }*/
         }
 
+        if ( $args['has_children'] && $depth == 0 ) {
+            $child_expand = '<span class="icon">
+                        <i class="icon_plus"></i>
+                        <i class="icon_minus-06"></i>
+                    </span>' . "\n";
+        } else {
+            $child_expand = '';
+        }
+
         $output .= $indent . sprintf(
                 '<li%s><a%s>%s%s%s</a>',
                 // '<li%s><a%s>%s%s%s</a>',
@@ -182,8 +187,7 @@ class EazyDocs_Walker_Onepage extends Walker_Page {
                 $args['link_before'],
                 /** This filter is documented in wp-includes/post-template.php */
                 apply_filters( 'the_title', $page->post_title, $page->ID ),
-
-                $args['link_after']
+                $child_expand
             );
 
         if ( ! empty( $args['show_date'] ) ) {
@@ -227,6 +231,10 @@ class EazyDocs_Walker_Onepage extends Walker_Page {
 // Start Theme Content Function
 
 function ezd_list_pages_onepage( $args = '' ) {
+    $plus = '<span class="icon">
+                        <i class="icon_plus"></i>
+                        <i class="icon_minus-06"></i>
+                    </span>'."\n";
     $defaults = array(
         'depth'        => 0,
         'show_date'    => '',
@@ -238,7 +246,7 @@ function ezd_list_pages_onepage( $args = '' ) {
         'authors'      => '',
         'sort_column'  => 'menu_order, post_title',
         'link_before'  => '',
-        'link_after'   => '',
+        'link_after'   => $plus,
         'item_spacing' => 'preserve',
         'walker'       => '',
     );

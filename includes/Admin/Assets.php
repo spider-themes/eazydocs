@@ -49,9 +49,41 @@ class Assets {
 	}
 
 	/**
-	 * Enqueue global scripts and styles by EazyDocs on WordPress dashboard
+	 * Enqueue global scripts
+     * and styles by EazyDocs pages on WordPress dashboard
 	 */
 	public function eazydocs_global_scripts() {
-		ezydocs_admin_assets();
+        wp_enqueue_script('ezd-notify-review', EAZYDOCS_ASSETS . '/js/admin/review.js');
+        if ( ezydocs_admin_pages() == true ) {
+            wp_enqueue_style('sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css');
+            wp_enqueue_style('eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', '1.1.3');
+            wp_enqueue_script('sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true);
+            wp_enqueue_script('eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js');
+            wp_enqueue_script('eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js');
+            wp_enqueue_style('eazydocs-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css');
+
+            // Localize the script with new data
+            $ajax_url = admin_url('admin-ajax.php');
+            $wpml_current_language = apply_filters('wpml_current_language', null);
+            if (!empty($wpml_current_language)) {
+                $ajax_url = add_query_arg('wpml_lang', $wpml_current_language, $ajax_url);
+            }
+            wp_localize_script('jquery', 'eazydocs_local_object',
+                array(
+                    'ajaxurl' => $ajax_url,
+                    'EAZYDOCS_FRONT_CSS' => EAZYDOCS_FRONT_CSS,
+                    'EAZYDOCS_ASSETS' => EAZYDOCS_ASSETS,
+                    'create_prompt_title' => esc_html__('Enter Doc Title', 'eazydocs'),
+                    'delete_prompt_title' => esc_html__('Are you sure to delete?', 'eazydocs'),
+                    'no_revert_title' => esc_html__("This doc will be deleted with the child docs and you won't be able to revert!", "eazydocs"),
+                    'clone_prompt_title' => esc_html__("Are you sure to Duplicate this doc?", "eazydocs"),
+                    'nonce' => wp_create_nonce('eazydocs-admin-nonce'),
+                    'one_page_prompt_docs' => eazydocs_pro_doc_list(),
+                    'one_page_prompt_sidebar' => sidebar_selectbox(),
+                    'one_page_doc_sidebar_edit' => edit_sidebar_selectbox(),
+                    'edit_one_page_url' => admin_url('admin.php/One_Page_Edit.php?edit_docs=yes')
+                )
+            );
+        }
 	}
 }

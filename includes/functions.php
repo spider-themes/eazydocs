@@ -284,7 +284,6 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 /**
  * Doc Search Breadcrumbs
  */
-
 if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
 	/**
 	 * Docs Search breadcrumb.
@@ -716,7 +715,8 @@ function ezd_onepage_docs() {
     <p><b>Content Box</b><br/>
         <textarea disabled name="ezd_doc_content_box_right" id="" cols="30" rows="3" class="widefat"><?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true ); ?></textarea>
     </p>
-<?php }
+    <?php
+}
 
 add_action( 'save_post', function ( $post_id ) {
 	// Doc Options
@@ -784,49 +784,20 @@ function ezd_password_form( $output, $post = 0 ) {
 			</div>
 		</div>
 		<?php
-		else:
+    else:
 		return $output;
 	endif;
 }
+
 add_filter( 'the_password_form', 'ezd_password_form', 10, 2 );
 
 
 // Admin assets
-function ezydocs_admin_assets(){
+function ezydocs_admin_pages() {
 	$admin_page 	= $_GET['page'] ?? '';
 	$post_type 		= $_GET['post_type'] ?? '';
 
-	if( $admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings' || $admin_page == 'eazydocs-settings' || $admin_page == 'ezd-user-feedback' ||  $admin_page == 'ezd-user-feedback-archived' || $post_type == 'onepage-docs' || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php') ) {
-
-		wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
-		wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', '1.1.3' );
-		wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), true, true );
-		wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js' );
-		wp_enqueue_script( 'eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js' );
-		wp_enqueue_script( 'ezd-notify-review', EAZYDOCS_ASSETS . '/js/admin/review.js' );
-		wp_enqueue_style( 'eazydocs-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css' );
-
-		// Localize the script with new data
-		$ajax_url              = admin_url( 'admin-ajax.php' );
-		$wpml_current_language = apply_filters( 'wpml_current_language', null );
-		if ( ! empty( $wpml_current_language ) ) {
-			$ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
-		}
-		wp_localize_script( 'jquery', 'eazydocs_local_object',
-			array(
-				'ajaxurl'                   => $ajax_url,
-				'EAZYDOCS_FRONT_CSS'        => EAZYDOCS_FRONT_CSS,
-				'EAZYDOCS_ASSETS'           => EAZYDOCS_ASSETS,
-				'create_prompt_title'       => esc_html__( 'Enter Docs Title', 'eazydocs' ),
-				'delete_prompt_title'       => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
-				'no_revert_title'           => esc_html__( "This doc will be deleted with the child docs and you won't be able to revert!", "eazydocs" ),
-				'clone_prompt_title'        => esc_html__( "Are you sure to Duplicate this doc?", "eazydocs" ),
-				'nonce'                     => wp_create_nonce( 'eazydocs-admin-nonce' ),
-				'one_page_prompt_docs'      => eazydocs_pro_doc_list(),
-				'one_page_prompt_sidebar'   => sidebar_selectbox(),
-				'one_page_doc_sidebar_edit' => edit_sidebar_selectbox(),
-				'edit_one_page_url'         => admin_url( 'admin.php/One_Page_Edit.php?edit_docs=yes' )
-			)
-		);
+	if ( $admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings' || $admin_page == 'ezd-user-feedback' ||  $admin_page == 'ezd-user-feedback-archived' || $post_type == 'onepage-docs' || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php') ) {
+		return true;
 	}
 }

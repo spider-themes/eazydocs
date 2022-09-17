@@ -107,6 +107,9 @@ a.eazydocs-close-notice:active {
 .csf-field .csf-fieldset {
   width: calc(70% - 20px);
 }
+.csf-field.csf-field-heading .csf-title {
+  width: 100%;
+}
 
 .csf-field-heading .csf-title {
   width: 100%;

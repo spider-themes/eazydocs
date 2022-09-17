@@ -8,32 +8,25 @@ Stable tag: 1.3.1x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-EazyDocs assist you in easily creating beautifully designed documentation for your products.
+EazyDocs assists you in creating great looking documentation for your products in a easy and quick way.
 
 == Description ==
 
-EazyDocs assists you in quickly and easily creating great-looking documentation for your products. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+EazyDocs assists you in creating great looking documentation for your products in a easy and quick way. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 
-See the [Frontend Demo Here](https://wordpress-theme.spider-themes.net/docy/docs/docly-documentation/)
+See the EazyDocs [Frontend Demo Here](https://wordpress-plugins.spider-themes.net/eazydocs/)
+See the EazyDocs Pro [Frontend Demo Here](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 
 ### Reasons to Choose EazyDocs ###
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 
 - **No Limitation:** There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
 
-- **Structured Live Search Results:** The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
-
 - **Live Customizer:** Set it and see the changes instantly. The Docs archive page, Doc single page layouts can be customized via the WordPress live customizer panel.
-
-- **Recently Viewed Articles:** No need to memorize or remember the last viewed articles by the user. They can see and visit their recently visited articles at the bottom of doc single page
 
 - **Related Articles:** Sometimes readers might be interested to read the Related articles. You can display the Related Articles at the bottom of the Single Doc page to let the readers read articles they interested in.
 
-- **Read time, Views Count:** Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
-
 - **Look Beautiful by Default:** EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
-
-- **Get Feedback from Real Visitors**: Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
 
 - **Designed for Reader:** We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
 
@@ -52,6 +45,28 @@ See the [Frontend Demo Here](https://wordpress-theme.spider-themes.net/docy/docs
 - **Reading Assistant Tools:** There are available some important tools for better reading experience. Font Size switcher, Print option, TOC are developed for a consistent reading experience.
 
 - **Simple Navigation:** The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
+
+## 🔍 STRUCTURED LIVE SEARCH RESULTS ##
+The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
+
+## 👁️ Read time, Views Count ##
+Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
+
+## 🤠 GET FEEDBACK FROM REAL VISITORS ##
+Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
+
+## 🕒 RECENTLY VIEWED ARTICLES ##
+No need to memorize or remember the last viewed articles by the user. They can see and visit their recently visited articles at the bottom of doc single page
+
+## ⚙️ ADVANCED CUSTOMIZATION OPTIONS ##
+Customize documentation pages from settings or even add shortcode, Customizer, and more to get the full authority to make it stand out for your visitors.
+
+## 👨‍💻 DOCUMENTATION AND SUPPORT ##
+
+- For documentation and tutorials go to our [Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+- If you have any more questions, visit our support on the Plugin’s [Forum](https://wordpress.org/support/plugin/eazydocs/)
+- For more information about features, FAQs and documentation, check out our website at [EazyDocs](https://spider-themes.net/eazydocs/)
+
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
@@ -99,7 +114,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.3.3 (10 September 2022) =
+= v1.3.3 (20 September 2022) =
 Tweaked: Compatibility with themes improved
 
 = v1.3.2 (10 September 2022) =

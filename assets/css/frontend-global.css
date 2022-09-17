@@ -185,4 +185,43 @@
   max-width: 60px !important;
 }
 
+/** === Breadcrumb === **/
+.breadcrumb {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb .breadcrumb-item {
+  color: var(--black_300);
+  font-size: 13px;
+  line-height: 21px;
+  padding-left: 3px;
+  margin: 0;
+}
+.breadcrumb .breadcrumb-item:first-child {
+  padding-left: 0;
+}
+.breadcrumb .breadcrumb-item a {
+  color: var(--black_500);
+  text-decoration: none;
+}
+.breadcrumb .breadcrumb-item a:hover {
+  color: var(--ezd_brand_color);
+}
+.breadcrumb .breadcrumb-item + .breadcrumb-item:before {
+  content: "5";
+  font-family: eleganticons;
+  color: #b7b9be;
+  padding-right: 3px;
+}
+.breadcrumb .active {
+  color: var(--secondary_color);
+}
+
+.single-onepage-docs #post img, single-docs #post img {
+  max-width: 100% !important;
+  margin: 10px 0;
+}
+
 /*# sourceMappingURL=frontend-global.css.map */

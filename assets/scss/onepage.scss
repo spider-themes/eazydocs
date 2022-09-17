@@ -262,9 +262,10 @@ body.admin-bar {
 .documentation_area_sticky {
   .one-page-docs-sidebar-wrap img {
     display: block;
-    max-width: 200px;
-    margin: 20px auto;
-    height: auto;
+    max-width: 200px !important;
+    margin: 20px auto !important;
+    height: auto !important;
+    width: auto !important;
   }
   .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
     background: transparent;

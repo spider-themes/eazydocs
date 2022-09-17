@@ -1275,14 +1275,6 @@ CSF::createSection( $prefix, array(
         ),
 
         array(
-            'id'    => 'frontend_ezd_login',
-            'type'  => 'heading',
-            'title' => esc_html__( 'Login Page', 'eazydocs' ),
-			'dependency' => array(
-				array( 'is_doc_contribution', '==', 'true' )
-			)
-        ),
-        array(
             'id'         => 'docs_frontend_user_mode',
             'type'       => 'select',
             'title'      => esc_html__( 'User Mode', 'eazydocs' ),
@@ -1557,7 +1549,6 @@ CSF::createSection( $prefix, array(
 				array(
 					'title'  => 'Contact',
 					'fields' => array(
-
 						array(
 							'id'         => 'contact_visibility',
 							'type'       => 'switcher',
@@ -1653,7 +1644,6 @@ CSF::createSection( $prefix, array(
 				array(
 					'title'  => 'Color',
 					'fields' => array(
-
 						array(
 							'id'    => 'assistant_color_heading',
 							'type'  => 'heading',
@@ -1664,7 +1654,6 @@ CSF::createSection( $prefix, array(
 							'id'          => 'assistant_bg',
 							'type'        => 'color',
 							'title'       => esc_html__( 'Icon Color', 'eazydocs' ),
-							'output'      => '.chat-toggle a',
 							'output_mode' => 'background-color',
 						),
 						
@@ -1672,7 +1661,6 @@ CSF::createSection( $prefix, array(
 							'id'          => 'assistant_header_bg',
 							'type'        => 'color',
 							'title'       => esc_html__( 'Header Background', 'eazydocs' ),
-							'output'      => '.chatbox-header',
 							'output_mode' => 'background-color',
 						),
 						
