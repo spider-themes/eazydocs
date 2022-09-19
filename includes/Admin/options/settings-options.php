@@ -1273,34 +1273,18 @@ CSF::createSection( $prefix, array(
 				array( 'frontend_edit_switcher', '==', 'true' ),
 			)
         ),
-
-        array(
-            'id'         => 'docs_frontend_user_mode',
-            'type'       => 'select',
-            'title'      => esc_html__( 'User Mode', 'eazydocs' ),
-            'desc'		 => esc_html__( 'This settings will work for private doc as well', 'eazydocs' ),
-            'options'	 => [
-                'guest'	 =>  esc_html__( 'Guest user', 'eazydocs' ),
-                'login'	 =>  esc_html__( 'Login Required', 'eazydocs' ),
-			],
-			'default'    => 'login',
-			'class'      => 'eazydocs-promax-notice',
-			'dependency' => array(
-				array( 'is_doc_contribution', '==', 'true' )
-			)
-        ),
+		
         array(
             'id'         => 'docs_frontend_login_page',
             'type'       => 'select',
             'placeholder' => 'Select page',
-            'title'      => esc_html__( 'Select Page', 'eazydocs' ),
+            'title'      => esc_html__( 'Login Page', 'eazydocs' ),
             'subtitle'   => esc_html__( 'Select Doc login page', 'eazydocs' ),
 			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs' ),
             'options'	 => 'pages',
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
-				array( 'is_doc_contribution', '==', 'true' ),
-				array( 'docs_frontend_user_mode', '==', 'login' ),
+				array( 'is_doc_contribution', '==', 'true' )
 			)
         ),
 		array(
