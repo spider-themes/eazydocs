@@ -1,7 +1,9 @@
 <?php
-$opt            = get_option( 'eazydocs_settings' );
-$topics_count   = $opt['topics_count'] ?? '1';
-$topics         = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
+$opt                    = get_option( 'eazydocs_settings' );
+$topics_count           = $opt['topics_count'] ?? '1';
+$topics                 = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
+$private_doc_mode       = $opt['private_doc_mode'] ?? '';
+$private_doc_login_page = $opt['private_doc_login_page'] ?? '';
 
 // Child docs per page
 $layout         = 'grid';
@@ -62,7 +64,28 @@ if ( $docs ) :
                             ?>
                             <div class="doc-top d-flex align-items-start">
                                 <?php echo get_the_post_thumbnail( $main_doc['doc']->ID, 'full', array( 'class' => 'featured-image' ) ); ?>
-                                <a class="doc_tag_title" href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>">
+
+                                <?php
+                                if( $private_doc_mode == 'login' ){
+                                    if( get_post_status($main_doc['doc']->ID) == 'private'){
+
+                                        $login_page_id  = get_post_field( 'post_name', $private_doc_login_page );
+                                        $current_doc_id = get_post_field( 'post_name', $main_doc['doc']->ID );
+                                        $get_post_type  = get_post_type($main_doc['doc']->ID);
+                                        if ( is_user_logged_in() ) {
+                                            $main_doc_url   = site_url($get_post_type.'/'.$current_doc_id);
+                                        } else {
+                                            $main_doc_url   = site_url($login_page_id.'?after_login=').site_url($get_post_type.'/'.$current_doc_id.'&add_new_doc=yes');
+                                        }
+    
+                                    }else{
+                                        $main_doc_url = get_permalink( $main_doc['doc']->ID );
+                                    }
+                                }else{
+                                    $main_doc_url = get_permalink( $main_doc['doc']->ID );
+                                }
+                                ?>  
+                                <a class="doc_tag_title" href="<?php echo $main_doc_url; ?>">
                                     <?php if ( !empty($main_doc['doc']->post_title) ) : ?>
                                         <h4 class="title">
                                             <?php echo $main_doc['doc']->post_title; ?>
@@ -79,10 +102,30 @@ if ( $docs ) :
                             <?php if ( $main_doc['sections'] ) : ?>
                                 <ul class="list-unstyled article_list">
                                     <?php
-                                    foreach ( $main_doc['sections'] as $item ) :
-                                        ?>
+                                    foreach ( $main_doc['sections'] as $item ) :                                        
+                                        if ( $private_doc_mode == 'login' ) {
+                                            if ( get_post_status($main_doc['doc']->ID) == 'private') {
+                                                
+                                                $login_page_id          = get_post_field( 'post_name', $private_doc_login_page );
+                                                $current_doc_id         = get_post_field( 'post_name', $item->ID );
+                                                $get_post_type          = get_post_type($item->ID);
+                                                $current_doc_parent_id  = get_post_field( 'post_name', wp_get_post_parent_id($item->ID) );
+                                                 if ( is_user_logged_in() ) {
+                                                    $child_doc_url      = site_url($get_post_type.'/'.$current_doc_parent_id.'/'.$current_doc_id);
+                                                } else {
+                                                    $child_doc_url      = site_url($login_page_id.'?after_login=').site_url($get_post_type.'/'.$current_doc_parent_id.'/'.$current_doc_id.'&add_new_doc=yes');
+                                                }
+
+                                            } else {
+                                                $child_doc_url = get_permalink( $item->ID );
+                                            }
+                                        } else {
+                                            $child_doc_url = get_permalink( $item->ID );
+                                        }
+                                        ?>  
+
                                         <li>
-                                            <a href="<?php echo get_permalink( $item->ID ); ?>">
+                                            <a href="<?php echo $child_doc_url; ?>">
                                                 <?php echo esc_html( $item->post_title ); ?>
                                             </a>
                                         </li>
@@ -90,8 +133,9 @@ if ( $docs ) :
                                     endforeach;
                                     ?>
                                 </ul>
-                            <?php endif; ?>
-                            <a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
+                            <?php endif; 
+                            ?>
+                            <a href="<?php echo $main_doc_url; ?>" class="doc_border_btn">
                                 <?php echo $more; ?>
                                 <i class="arrow_right"></i>
                             </a>

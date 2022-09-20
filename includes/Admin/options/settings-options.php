@@ -613,6 +613,17 @@ CSF::createSection( $prefix, array(
 				array( 'helpful_feedback', '==', 'true' ),
 			)
 		),
+		array(
+			'id'         => 'feedback_count',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Feedback Count', 'eazydocs-pro' ),
+			'default'    => true,
+			'dependency' => array(
+				'docs-feedback',
+				'==',
+				'true',
+			)
+		)
 	)
 ) );
 
@@ -734,6 +745,22 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
 			'default'    => true,
+		),
+
+		array(
+			'id'         => 'ezd-toc-switcher',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'TOC Enable / Disable', 'eazydocs' ),
+			'default'    => true,
+			'class'      => 'eazydocs-pro-notice'
+		),
+
+		array(
+			'id'         => 'ezd-toc-heading',
+			'type'       => 'text',
+			'title'      => esc_html__( 'TOC Heading', 'eazydocs' ),
+			'default'    => esc_html__( 'CONTENTS', 'eazydocs' ),
+			'dependency' => array( 'ezd-toc-switcher', '==', '1' ),
 		),
 
 		array(

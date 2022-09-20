@@ -1,6 +1,8 @@
 <?php
 $opt                        = get_option( 'eazydocs_settings' );
 $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
+$toc_toc_switcher           = $opt['ezd-toc-switcher'] ?? '';
+$toc_heading                = ! empty ( $opt['ezd-toc-heading'] ) ? $opt['ezd-toc-heading'] :  __( 'CONTENTS','eazydocs' );
 ?>
 <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-lg-top">
     <div class="doc_rightsidebar scroll">
@@ -65,14 +67,15 @@ $widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
              * Dark Mode switcher
              */
             eazydocs_get_template_part('tools/dark-mode-switcher');
-            ?>
+            if( ! empty ( $toc_toc_switcher )) :
+                ?>
+                <div class="table-of-content">
+                    <h6><i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?></h6>
+                    <nav class="list-unstyled doc_menu toc_right" data-toggle="toc" id="eazydocs-toc"></nav>
+                </div>
+                <?php
+            endif;
 
-            <div class="table-of-content">
-                <h6><i class="icon_ul"></i> <?php esc_html_e( 'CONTENTS', 'eazydocs' ); ?></h6>
-                <nav class="list-unstyled doc_menu toc_right" data-toggle="toc" id="eazydocs-toc"></nav>
-            </div>
-
-            <?php
             // Widgets area
             if ( is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 ) :
                 ?>

@@ -788,8 +788,7 @@ function ezd_password_form( $output, $post = 0 ) {
 		return $output;
 	endif;
 }
-
-add_filter( 'the_password_form', 'ezd_password_form', 10, 2 );
+add_filter( 'the_password_form', 'ezd_password_form', 20 );
 
 
 // Admin assets

@@ -4,6 +4,7 @@ $options             = get_option( 'eazydocs_settings' );
 $email_feedback      = $options['message-feedback'] ?? '1';
 $helpful_feedback    = $options['helpful_feedback'] ?? '1';
 $right_alignment     = $email_feedback == '1' ? 'right' : 'left';
+$feedback_count      = $options['feedback_count'] ?? '1';
 $positive            = (int) get_post_meta( $post->ID, 'positive', true );
 $negative            = (int) get_post_meta( $post->ID, 'negative', true );
 $positive_title      = $positive ? sprintf( _n( '%d person found this useful', '%d persons found this useful', $positive, 'eazydocs' ), number_format_i18n( $positive ) ) : esc_html__( 'No votes yet', 'eazydocs' );
@@ -58,13 +59,13 @@ $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
                         <span class="vote-link-wrap">
                             <a href="#" class="h_btn positive" data-id="<?php the_ID(); ?>" data-type="positive" title="<?php echo esc_attr( $positive_title ); ?>">
                                 <?php esc_html_e( 'Yes', 'eazydocs' ); ?>
-                                <?php if ( $positive ) { ?>
+                                <?php if ( $positive && $feedback_count ) { ?>
                                     <span class="count"> <?php echo number_format_i18n( $positive ); ?> </span>
                                 <?php } ?>
                             </a>
                             <a href="#" class="h_btn negative red" data-id="<?php the_ID(); ?>" data-type="negative" title="<?php echo esc_attr( $negative_title ); ?>">
                                 <?php esc_html_e( 'No', 'eazydocs' ); ?>
-                                <?php if ( $negative ) { ?>
+                                <?php if ( $negative && $feedback_count ) { ?>
                                     <span class="count"><?php echo number_format_i18n( $negative ); ?></span>
                                 <?php } ?>
                             </a>
