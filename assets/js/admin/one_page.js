@@ -81,11 +81,26 @@
                     }).then((result) => {
 
                         if (result.isConfirmed) {
-                            encoded = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content').value))
+                            
+                            let left_content        = document.getElementById('ezd-shortcode-content').value;
+                            let right_content       = document.getElementById('ezd-shortcode-content-right').value;
+                            
+                            let get_left_content    = left_content.replace(/<!--(.*?)-->/gm, "");
+                            let style_attr_update1   = get_left_content.replaceAll('style=', 'style@');
+                            let style_attr_update2 = style_attr_update1.replaceAll('#', ';hash;');
+                            let style_attr_update = style_attr_update2.replaceAll('style&equals;', 'style@');
+
+                            let get_right_content   = right_content.replace(/<!--(.*?)-->/gm, "");
+                            let right_style_attr_update1 = get_right_content.replaceAll('style=', 'style@');
+                            let right_style_attr_update2 = right_style_attr_update1.replaceAll('#', ';hash;');
+                            let right_style_attr_update = right_style_attr_update2.replaceAll('style&equals;', 'style@');
+                            
+                            encoded = encodeURIComponent(JSON.stringify(style_attr_update));						 
+                            encoded_right = encodeURIComponent(JSON.stringify(right_style_attr_update)); 
 
                             window.location.href = href + document.getElementById('ezd_docs_select').value + '&layout=' + document.getElementById('ezd_docs_layout_select').value + '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value + '&left_side_sidebar=' + document.getElementById('left_side_sidebar').value + '&shortcode_content=' + encoded
-                                + '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + document.getElementById('ezd-shortcode-content-right').value +
-                                '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value + '&self_doc=ezd-one-page'
+                            + '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + encoded_right +
+                            '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value + '&self_doc=ezd-one-page'
 
                         }
 
@@ -168,7 +183,6 @@
         function edit_one_page_doc_doc() {
             $(document).on('click', 'body.post-type-onepage-docs .type-onepage-docs .row-actions span.edit, body.post-type-onepage-docs .type-onepage-docs .page-title > strong', function (e) {
                 e.preventDefault();
-
                 let edit_url = $('a', this).filter("[href]").attr('href');
 
                 // function created to get parameter from edit url
@@ -179,10 +193,10 @@
                     }
                     return decodeURI(results[1]) || 0;
                 }
-
+                
                 // parameter of edit url - post & content
                 let edit_doc_id = $.urlParam('post');
-                let edit_doc_content = $.urlParam('content');
+                let edit_doc_content = $.urlParam("content");
                 let doc_layout = $.urlParam('doc_layout');
                 let content_type = $.urlParam('content_type');
                 let content_type_right = $.urlParam('content_type_right');
@@ -307,10 +321,23 @@
                     }).then((result) => {
 
                         if (result.isConfirmed) {
-                            encoded = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content-left').value));
-							
-                            encoded_right = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content-right').value));
 
+                            let left_content        = document.getElementById('ezd-shortcode-content-left').value;
+                            let right_content       = document.getElementById('ezd-shortcode-content-right').value;
+                            
+                            let get_left_content    = left_content.replace(/<!--(.*?)-->/gm, "");
+                            let style_attr_update1   = get_left_content.replaceAll('style=', 'style@');
+                            let style_attr_update2 = style_attr_update1.replaceAll('#', ';hash;');
+                            let style_attr_update = style_attr_update2.replaceAll('style&equals;', 'style@');
+                        
+                            let get_right_content   = right_content.replace(/<!--(.*?)-->/gm, "");
+                            let right_style_attr_update1 = get_right_content.replaceAll('style=', 'style@');
+                            let right_style_attr_update2 = right_style_attr_update1.replaceAll('#', ';hash;');
+                            let right_style_attr_update = right_style_attr_update2.replaceAll('style&equals;', 'style@');
+                            
+                            encoded = encodeURIComponent(JSON.stringify(style_attr_update));						 
+                            encoded_right = encodeURIComponent(JSON.stringify(right_style_attr_update));
+                            
                             window.location.href = href + '&doc_id=' + edit_doc_id + '&layout=' + document.getElementById('ezd_docs_select').value +
                                 '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value +
                                 '&edit_content=' + encoded + '&get_left_sidebar=' + document.getElementById('left_side_sidebar_edit').value +

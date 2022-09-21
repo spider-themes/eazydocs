@@ -14,8 +14,8 @@ class Assets {
      * Scripts enqueue
      */
     public static function enqueue_scripts() {
-        $opt        = get_option( 'eazydocs_settings' );
-        $version    = get_option('EazyDocs_version');
+        $opt         = get_option( 'eazydocs_settings' );
+        $version     = get_option('EazyDocs_version');
 
         $is_doc_ajax = $opt['is_doc_ajax'] ?? '';
         wp_enqueue_script( 'jquery' );
@@ -30,11 +30,13 @@ class Assets {
         wp_enqueue_style( 'eazydocs-blocks', EAZYDOCS_ASSETS . '/css/blocks.css');
 
         if ( is_singular('docs') || is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
+            
             // Localize the script with new data
             $ajax_url              = admin_url( 'admin-ajax.php' );
             $wpml_current_language = apply_filters( 'wpml_current_language', null );
+
             if ( !empty( $wpml_current_language ) ) {
-                $ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
+                $ajax_url          = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
             }
 
             wp_localize_script( 'jquery', 'eazydocs_local_object',

@@ -165,6 +165,7 @@
             $('.easydocs-navitem:first-child').addClass('is-active');
             $('.easydocs-tab:first-child').css('display','block');
         }
+        
 
         // CREATE ONE PAGE DOC
         function one_page_doc() {
@@ -234,13 +235,25 @@
                     showCancelButton: true,
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        encoded = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content').value));
-						
-                        encoded_right = encodeURIComponent(JSON.stringify(document.getElementById('ezd-shortcode-content-right').value));
 
+                        let left_content        = document.getElementById('ezd-shortcode-content').value;
+                        let right_content       = document.getElementById('ezd-shortcode-content-right').value;
+                         
+                        let get_left_content    = left_content.replace(/<!--(.*?)-->/gm, "");
+                        let style_attr_update1   = get_left_content.replaceAll('style=', 'style@');
+                        let style_attr_update2 = style_attr_update1.replaceAll('#', ';hash;');
+                        let style_attr_update = style_attr_update2.replaceAll('style&equals;', 'style@');
+                        
+                        let get_right_content       = right_content.replace(/<!--(.*?)-->/gm, "");
+                        let right_style_attr_update1 = get_right_content.replaceAll('style=', 'style@');
+                        let right_style_attr_update2 = right_style_attr_update1.replaceAll('#', ';hash;');
+                        let right_style_attr_update = right_style_attr_update2.replaceAll('style&equals;', 'style@');
+                        
+                        encoded = encodeURIComponent(JSON.stringify(style_attr_update));						 
+                        encoded_right = encodeURIComponent(JSON.stringify(right_style_attr_update)); 
+                         
                         window.location.href = href + '&layout=' + document.getElementById('ezd_docs_select').value + '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value + '&left_side_sidebar=' + document.getElementById('left_side_sidebar').value + '&shortcode_content=' + encoded
-						
-						
+					
                         + '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + encoded_right +
 						
                             '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value

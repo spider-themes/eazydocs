@@ -372,15 +372,12 @@ if ( is_array( $depth_one_parents ) ) :
             <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?parentID=<?php echo $item; ?>&is_section=">
 				<?php esc_html_e( 'Add Section', 'eazydocs' ); ?>
             </button>
-
             <?php
-                $current_theme = get_template();
+                $current_theme      = get_template();
                 if ( $current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
                     eazydocs_one_page( $item );
-
                 }
             ?>
-
         </div>
 	    <?php
 	endforeach;

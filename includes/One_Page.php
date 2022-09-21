@@ -27,6 +27,9 @@ class One_Page {
 			}else{
 				$page_content_right      = substr( chrEncode( $page_contents_right ), 6 );
 				$shortcode_content_right = substr_replace( $page_content_right, "", - 6 );
+				$shortcode_content_right = str_replace('style@',"style=", $shortcode_content_right);
+				$shortcode_content_right = str_replace(';hash;',"#", $shortcode_content_right);
+				$shortcode_content_right = str_replace('style&equals;',"style", $shortcode_content_right);
 			}
 
 			$page_title = $_GET['single_doc_title'] ?? '';
@@ -39,7 +42,10 @@ class One_Page {
 				$shortcode_content = $left_side_sidebar;
 			} else {
 				$page_content      = substr( chrEncode( $page_contents ), 6 );
-				$shortcode_content = substr_replace( $page_content, "", - 6 ); //Str1, Str2, str3
+				$shortcode_content = substr_replace( $page_content, "", - 6 );
+				$shortcode_content = str_replace('style@',"style=", $shortcode_content);
+				$shortcode_content   = str_replace(';hash;',"#", $shortcode_content);
+				$shortcode_content   = str_replace('style&equals;',"style", $shortcode_content);
 			}
 
 			/**
