@@ -29,6 +29,7 @@
             $(".doc-book-layout .nav-sidebar li a").filter(".nav-link").index();
         });
 
+
     })
 })(jQuery);
 

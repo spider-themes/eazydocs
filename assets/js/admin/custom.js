@@ -173,19 +173,75 @@
                 let href = $(this).attr('data-url');
                 (async () => {
                     const {value: formValues} = await Swal.fire({
-                        title: 'Want to make One Page?',
+                        title: 'Want to make OnePage?',
+                        customClass: {
+                            container: 'onepage_create_wrapper',
+                        },
                         html:
-                            '<label for="ezd_docs_sidebar">Sidebar Content</label><textarea id="ezd_docs_sidebar" class="widefat"></textarea>',
-                        confirmButtonText: 'Submit',
+                            '<div class="create_onepage_doc_area">' +
+                            '<label for="ezd_docs_sidebar">Select Layout</label>' +
+                            '<select class="widefat" id="ezd_docs_select" name="ezd_onepage_select">' +
+                            '<option value="default-layout">Default Layout</option>' +
+                            '<option value="others-layout">Fullscreen OnePage Doc</option>' +
+                            '</select>' +
+                            '<div class="other_layout_fields">' +
+                            '<div class="ezd_docs_btn_one_wrap">' +
+                            '<label for="ezd_docs_btn_one">Primary Button</label>' +
+                            '<input type="text" id="ezd_docs_btn_one" name="ezd_docs_btn_one" class="widefat" placeholder="Insert Button Text">' +
+                            '<input type="text" id="ezd_docs_btn_one_url" name="ezd_docs_btn_one_url" class="widefat" placeholder="Insert Button URL">' +
+                            '</div>' +
+                            '<div class="ezd_docs_btn_two_wrap">' +
+                            '<label for="ezd_docs_btn_two">Secondary Button</label>' +
+                            '<input type="text" id="ezd_docs_btn_two" name="ezd_docs_btn_two" class="widefat" placeholder="Insert Button Text">' +
+                            '<input type="text" id="ezd_docs_btn_two_url" name="ezd_docs_btn_two_url" class="widefat" placeholder="Insert Button URL">' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>',
+                        confirmButtonText: 'Publish',
+                        showCancelButton: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = href + '&content=' + document.getElementById('ezd_docs_sidebar').value
-                        }
+
+                            let layout = document.getElementById('ezd_docs_select').value;
+
+                            if( layout === 'others-layout' ){
+                                window.location.href = href + '&layout=' + document.getElementById('ezd_docs_select').value  +
+                                    '&primary_btn_text=' + document.getElementById('ezd_docs_btn_one').value + '&primary_btn_url=' +
+                                    document.getElementById('ezd_docs_btn_one_url').value + '&secondary_btn_text=' +
+                                    document.getElementById('ezd_docs_btn_two').value + '&secondary_btn_url=' +
+                                    document.getElementById('ezd_docs_btn_two_url').value
+                            }else{
+                                window.location.href = href + '&layout=' + document.getElementById('ezd_docs_select').value
+                            }
+
+                         }
                     })
-                })()
+                })();
+
+                $('#ezd_docs_select').on('change', function() {
+                   let layout = this.value;
+
+                    if ( layout  === 'others-layout') {
+                        $('.onepage_create_wrapper').addClass('others-layout');
+                        $('.other_layout_fields').show();
+                    } else {
+                        $('.other_layout_fields').hide();
+                        $('.onepage_create_wrapper').removeClass('others-layout');
+                    }
+
+                });
+
             })
         }
-        one_page_doc()
+        one_page_doc();
+
+
+
+
+
+
+
+
 
     });
 })(jQuery);

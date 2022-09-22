@@ -230,7 +230,7 @@ select#ezd_docs_select {
   max-width: 100%;
 }
 
-label[for=ezd_docs_select] {
+.create_onepage_doc_area label {
   display: block;
   text-align: left;
   margin: 15px 0 10px;
@@ -342,6 +342,27 @@ p.big-p {
 .customize-pane-parent li#accordion-section-design_fields,
 .customize-pane-parent li#accordion-section-role_manager_fields {
   display: none !important;
+}
+.other_layout_fields{
+  display: none;
+  column-count: 2;
+}
+.onepage_create_wrapper.others-layout .swal2-popup{
+  width:700px
+}
+.onepage_create_wrapper.others-layout .other_layout_fields {
+  display: flex;
+  gap: 20px;
+}
+.onepage_create_wrapper.others-layout .other_layout_fields input {
+  font-size: 16px;
+  margin-bottom: 11px;
+  border: 1px solid gray;
+}
+.onepage_create_wrapper.others-layout .other_layout_fields input::placeholder {
+  font-size: 15px;
+  color: #686868;
+  font-weight: 300;
 }
 
 /*# sourceMappingURL=admin-global.css.map */

@@ -28,7 +28,7 @@
 
         create_one_page_doc_doc();
 
-        // EDIT ONE PAGE DOC
+        /* EDIT ONE PAGE DOC
         function edit_one_page_doc_doc() {
             $(document).on('click', 'body.post-type-onepage-docs .type-onepage-docs .row-actions span.edit, body.post-type-onepage-docs .type-onepage-docs .page-title > strong', function (e) {
                 e.preventDefault();
@@ -67,7 +67,7 @@
                 })()
             })
         }
-        edit_one_page_doc_doc();
+        edit_one_page_doc_doc();*/
 
     })
 })(jQuery);

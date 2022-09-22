@@ -55,7 +55,19 @@ CSF::createSection( $prefix, array(
 			'default'     => '#4c4cf1',
 			'output'      => ':root',
 			'output_mode' => '--ezd_brand_color',
+		),
+
+		array(
+			'id'       => 'onepage_layout',
+			'type'     => 'select',
+			'title'    => esc_html__( 'Onepage Layout', 'eazydocs' ),
+			'options'  => [
+				'main'          => __( 'Default', 'eazydocs' ),
+				'other-layout'   => __( 'Others Layout', 'eazydocs' ),
+			],
+			'default'  => 'main',
 		)
+
 	)
 ) );
 
@@ -177,7 +189,7 @@ CSF::createSection( $prefix, array(
 			'type'     => 'select',
 			'title'    => esc_html__( 'Preset Layout', 'eazydocs' ),
 			'options'  => [
-				'main'          => __( 'Main', 'eazydocs' ),
+				'main'          => __( 'Default', 'eazydocs' ),
 				'book-layout'   => __( 'Book Layout', 'eazydocs' ),
 			],
 			'default'  => 'main',

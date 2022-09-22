@@ -12,6 +12,13 @@ class One_Page {
 
 	function doc_one_page() {
 
+		$btn_1_text = $_GET['primary_btn_text'] ?? '';
+		$btn_1_url  = $_GET['primary_btn_url'] ?? '';
+
+		$btn_2_text = $_GET['secondary_btn_text'] ?? '';
+		$btn_2_url  = $_GET['secondary_btn_url'] ?? '';
+		$layout     = $_GET['layout'] ?? '';
+
 		/**
 		 *  Current permalink structure
 		 */
@@ -28,19 +35,28 @@ class One_Page {
 			}
 
 			$page_title   = sanitize_text_field( $_GET['single_doc_title'] ) ?? '';
-			$page_content = sanitize_text_field( $_GET['content'] ) ?? '';
 
 			if ( ! get_page_by_title( $page_title, OBJECT, 'onepage-docs' ) ) {
+
+				$std_step_id         = $_POST['std_comment_id'] ?? '';
+
 				// Create page object
 				$one_page_doc = array(
 					'post_title'   => wp_strip_all_tags( $page_title ),
-					'post_content' =>  $page_content,
 					'post_status'  => 'publish',
 					'post_author'  => 1,
 					'post_type'    => 'onepage-docs',
-					'post_name'    => $post->post_name
+					'post_name'    => $post->post_name,
+
 				);
-				wp_insert_post( $one_page_doc );
+
+				$post_id = wp_insert_post( $one_page_doc, $wp_error = '' );
+				if ( $post_id != 0 ) {
+					if( $layout == 'others-layout' ){
+						update_post_meta( $post_id, 'std_comment_id', 'test' );
+					}
+				}
+
 
 				global $wp_rewrite;
 				$wp_rewrite->set_permalink_structure($current_permalink);
