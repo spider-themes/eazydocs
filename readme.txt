@@ -14,8 +14,13 @@ EazyDocs assists you in creating great looking documentation for your products i
 
 EazyDocs assists you in creating great looking documentation for your products in a easy and quick way. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 
-See the EazyDocs [Frontend Demo Here](https://wordpress-plugins.spider-themes.net/eazydocs/)
-See the EazyDocs Pro [Frontend Demo Here](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
+## 🔗 USEFUL LINKS ##
+
+- For documentation and tutorials go to our [Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+- If you have any more questions, visit our support on the Plugin’s [Forum](https://wordpress.org/support/plugin/eazydocs/)
+- [EazyDocs Landing Page](https://spider-themes.net/eazydocs/) (all features presented there)
+- See the EazyDocs [Frontend Demo Here](https://wordpress-plugins.spider-themes.net/eazydocs/)
+- See the EazyDocs Pro [Frontend Demo Here](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 
 ### Reasons to Choose EazyDocs ###
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
@@ -60,12 +65,6 @@ No need to memorize or remember the last viewed articles by the user. They can s
 
 ## ⚙️ ADVANCED CUSTOMIZATION OPTIONS ##
 Customize documentation pages from settings or even add shortcode, Customizer, and more to get the full authority to make it stand out for your visitors.
-
-## 👨‍💻 DOCUMENTATION AND SUPPORT ##
-
-- For documentation and tutorials go to our [Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
-- If you have any more questions, visit our support on the Plugin’s [Forum](https://wordpress.org/support/plugin/eazydocs/)
-- For more information about features, FAQs and documentation, check out our website at [EazyDocs](https://spider-themes.net/eazydocs/)
 
 
 ### Author ###
@@ -115,6 +114,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Changelog ==
 
 = v1.3.3 (20 September 2022) =
+New: Docs shortcode block added
 Tweaked: Compatibility with themes improved
 
 = v1.3.2 (10 September 2022) =

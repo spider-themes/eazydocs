@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 1.3.2
+ * Version: 1.3.3
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -152,6 +152,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+			require_once __DIR__ . '/blocks.php';
 			//require_once  __DIR__ . '/vendor/wp-notice/init.php';
 
 			if ( ! class_exists( 'EazyDocsPro' ) ) {

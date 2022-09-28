@@ -12,7 +12,7 @@ $count = $query->found_posts;
 <div class="tab-menu <?php echo $count > 12 ? '' : 'short'; ?>">
     <ul class="easydocs-navbar sortable">
         <?php
-        $i              = '';
+        $i = '';
         while ( $query->have_posts() ) : $query->the_post();
             $i ++;
             $depth_one_parents[]    = get_the_ID();
@@ -26,7 +26,7 @@ $count = $query->found_posts;
 	        $post_status =  get_post_status(get_the_ID());
 	        global $post;
 
-	        switch ($post_status){
+	        switch ( $post_status ) {
                 case 'publish':
                     $post_format = 'admin-site-alt3';
                     $doc_status = esc_html__( 'Public Doc', 'eazydocs' );

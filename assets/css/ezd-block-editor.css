@@ -1,0 +1,12 @@
+.components-select-control select[multiple] {
+  height: auto !important;
+  padding-right: 8px;
+}
+.components-select-control select[multiple] option {
+  white-space: normal;
+}
+.components-select-control select[multiple] option:nth-of-type(2n) {
+  background-color: #efefef;
+}
+
+/*# sourceMappingURL=ezd-block-editor.css.map */

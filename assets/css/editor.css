@@ -1,0 +1,12 @@
+select[multiple] {
+  height: auto;
+  padding-right: 8px;
+}
+select[multiple] option {
+  white-space: normal;
+}
+select[multiple] option:nth-of-type(2n) {
+  background-color: #efefef;
+}
+
+/*# sourceMappingURL=editor.css.map */

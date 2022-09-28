@@ -1,0 +1,14 @@
+.components-select-control {
+  select[multiple] {
+    height: auto !important;
+    padding-right: 8px;
+
+    option {
+      white-space: normal;
+
+      &:nth-of-type(2n) {
+        background-color: #efefef;
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "apiVersion": 2,
+  "name": "eazydocs/shortcode",
+  "version": "0.1.0",
+  "title": "EazyDocs Shortcode",
+  "category": "eazydocs",
+  "icon": "smiley",
+  "description": "Example block written with ESNext standard and JSX support build step required.",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "col": {
+      "type": "number",
+      "default": 3
+    },
+    "include": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "exclude": {
+      "type": "string"
+    },
+    "show_docs": {
+      "type": "number"
+    },
+    "show_articles": {
+      "type": "number"
+    },
+    "more": {
+      "type": "string"
+    }
+  },
+  "textdomain": "eazydocs",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
