@@ -95,8 +95,8 @@ if ( $search_banner == '1' ) :
 		};
 	}
 
-		jQuery('#ezd_searchInput').keyup(
-			ezdFetchDelay(function (e) {
+    jQuery('#ezd_searchInput').keyup(
+        ezdFetchDelay(function (e) {
 		let keyword = jQuery('#ezd_searchInput').val();
 		let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 

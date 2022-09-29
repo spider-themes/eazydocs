@@ -114,7 +114,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Changelog ==
 
 = v1.3.3 (20 September 2022) =
-New: Docs shortcode block added
+New: EazyDocs shortcode block added
 Tweaked: Compatibility with themes improved
 
 = v1.3.2 (10 September 2022) =

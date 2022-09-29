@@ -4,6 +4,7 @@
   width: 100% !important;
   max-width: 100% !important;
 }
+
 .custom_container.container {
   width: 100%;
   @media (min-width: 1300px) {
@@ -41,7 +42,7 @@
     position: absolute;
     right: -6px;
     top: -17px;
-    color: var(--black_50);
+    color: var(--black_100);
     i {
       font-size: 40px;
     }

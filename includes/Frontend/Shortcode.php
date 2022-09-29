@@ -38,7 +38,6 @@ class Shortcode {
 	 * @return void
 	 */
 	public static function eazydocs( $args = [] ) {
-
         $opt  = get_option( 'eazydocs_settings' );
 
         $defaults = [

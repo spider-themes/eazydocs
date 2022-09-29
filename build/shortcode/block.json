@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "title": "EazyDocs Shortcode",
   "category": "eazydocs",
-  "icon": "smiley",
-  "description": "Example block written with ESNext standard and JSX support build step required.",
+  "icon": "media-document",
+  "description": "Display the Docs on the website frontend.",
   "supports": {
     "html": false,
     "anchor": true
@@ -17,9 +17,7 @@
     },
     "include": {
       "type": "array",
-      "items": {
-        "type": "object"
-      }
+      "default": []
     },
     "exclude": {
       "type": "string"
@@ -31,11 +29,10 @@
       "type": "number"
     },
     "more": {
-      "type": "string"
+      "type": "string",
+      "default": "View Details"
     }
   },
   "textdomain": "eazydocs",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "editorScript": "file:./index.js"
 }

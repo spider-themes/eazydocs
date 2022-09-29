@@ -66,6 +66,10 @@ final class EAZYDOCS_BLOCKS_CLASS {
     public function blocks_init() {
         // register single block
         $this->register_block( 'shortcode' );
+        /*
+        $this->register_block( 'shortcode', array(
+            'render_callback' => [ $this, 'shortcode_block_render' ]
+        ) );*/
     }
 
     /**
@@ -89,6 +93,11 @@ final class EAZYDOCS_BLOCKS_CLASS {
      */
     public function editor_scripts() {
         wp_enqueue_style( 'ezd-editor', EAZYDOCS_ASSETS.'/css/ezd-block-editor.css', );
+        //wp_enqueue_script( 'ezd-editor', EAZYDOCS_ASSETS.'/js/ezd-block-editor.js', );
+    }
+
+    public function shortcode_block_render( $attributes ) {
+        require_once __DIR__ . '/src/shortcode/block-shortcode-render.php';
     }
 }
 
