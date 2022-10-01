@@ -53,7 +53,7 @@ class Delete_Post {
 			$doc_ids                  = explode( ',', $delete_ids );
 			$doc_ids_int              = array_map( 'intval', $doc_ids );
 			foreach ( $doc_ids_int as $deletes ) {
-				wp_delete_post( $deletes, true );
+				wp_trash_post( $deletes, true );
 			}
 			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
 
@@ -63,7 +63,7 @@ class Delete_Post {
 			$doc_ids_int              = array_map( 'intval', $doc_ids );
 
 			foreach ( $doc_ids_int as $item ) {
-				wp_delete_post( $item, true );
+				wp_trash_post( $item, true );
 			}
 			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
 		}
