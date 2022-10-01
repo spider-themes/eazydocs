@@ -1,25 +1,25 @@
 <?php
 global $post;
-$ancestors      = array();
-$root           = $parent = false;
+$ancestors      	= array();
+$root           	= $parent = false;
 if ( $post->post_parent ) {
-	$ancestors  = get_post_ancestors( $post->ID );
-	$root       = count( $ancestors ) - 1;
-	$parent     = $ancestors[ $root ];
+	$ancestors  	= get_post_ancestors( $post->ID );
+	$root       	= count( $ancestors ) - 1;
+	$parent     	= $ancestors[ $root ];
 } else {
-	$parent     = $post->ID;
+	$parent     	= $post->ID;
 }
 
 // var_dump( $parent, $ancestors, $root );
-$walker         = new eazyDocs\Frontend\Walker_Docs();
-$children       = wp_list_pages( array(
-	'title_li'  => '',
-	'order'     => 'menu_order',
-	'child_of'  => $parent,
-	'echo'      => false,
-	'post_type' => 'docs',
-	'walker'    => $walker,
-    'post_status' => array( 'publish', 'private' ),
+$walker         	= new eazyDocs\Frontend\Walker_Docs();
+$children 			= wp_list_pages( array(
+	'title_li'  	=> '',
+	'order'     	=> 'menu_order',
+	'child_of'  	=> $parent,
+	'echo'      	=> false,
+	'post_type' 	=> 'docs',
+	'walker'    	=> $walker,
+    'post_status' 	=> array( 'publish', 'private' ),
 ));
 
 $options = get_option( 'eazydocs_settings' );
@@ -29,10 +29,18 @@ $nav_sidebar_active = '';
 if( class_exists( 'EazyDocsPro') && $content_layout == 'category_base' ){
 	$nav_sidebar_active = 'nav_category_layout';
 }
+$credit_enable   	= '1';
+$credit_text_wrap 	= '';
+if ( class_exists( 'EazyDocsPro' ) ) {
+	$credit_enable 	= $options['eazydocs-enable-credit'] ?? '1';
+}
+if( $credit_enable == '1' ){
+	$credit_text_wrap = 'credit-text-container';
+}
 ?>
 
 <div class="col-xl-3 col-lg-3 doc_mobile_menu left-column sticky-lg-top">
-    <aside class="doc_left_sidebarlist <?php echo esc_attr( $nav_sidebar_active ); ?>">
+    <aside class="doc_left_sidebarlist <?php echo esc_attr( $credit_text_wrap .' '. $nav_sidebar_active ); ?>">
         <div class="open_icon" id="left">
             <i class="arrow_carrot-right"></i>
             <i class="arrow_carrot-left"></i>
