@@ -192,6 +192,7 @@ p .footnotes-link::after {
       transition: color 0.2s linear;
       display: flex;
       align-items: baseline;
+      text-decoration: none;
       &:before{
         content: "\68";
         font-family: 'ElegantIcons';

@@ -14,7 +14,6 @@ function eazydocs_get_admin_template_part( $template ) {
  * @param $template
  */
 function eazydocs_get_template_part( $template ) {
-
 	// Get the slug
 	$template_slug = rtrim( $template, '.php' );
 	$template      = $template_slug . '.php';
@@ -42,7 +41,6 @@ function eazydocs_get_template_part( $template ) {
  * @param array $args
  */
 function eazydocs_get_template( $template_name, $args = [] ) {
-
 	$ezd_obj = EazyDocs::init();
 
 	if ( $args && is_array( $args ) ) {

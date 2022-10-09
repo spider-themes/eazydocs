@@ -335,8 +335,18 @@ CSF::createSection( $prefix, array(
 			'output' => '.ezd_search_banner.has_bg_dark.has_cs_bg',
 			'class'  => 'eazydocs-pro-notice'
 		),
-		
-		array(
+
+        array(
+            'id'       => 'search_banner_padding',
+            'type'     => 'spacing',
+            'title'    => esc_html__( 'Padding', 'eazydocs'),
+            'output'   => '.ezd_search_banner',
+            'default'  => array(
+                'unit'   => 'px',
+            ),
+        ),
+
+        array(
 			'type'  => 'subheading',
 			'title' => esc_html__( 'Search Keywords', 'eazydocs' ),
 		),

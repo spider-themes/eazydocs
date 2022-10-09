@@ -23,10 +23,10 @@ final class EAZYDOCS_BLOCKS_CLASS {
         add_action( 'init', [ $this, 'blocks_init' ] );
 
 
-        add_action( 'enqueue_block_editor_assets', [ $this, 'editor_scripts' ] );
+        add_action( 'enqueue_block_assets', [ $this, 'editor_scripts' ] );
 
         // blocks category
-        if( version_compare( $GLOBALS['wp_version'], '5.7', '<' ) ) {
+        if ( version_compare( $GLOBALS['wp_version'], '5.7', '<' ) ) {
             add_filter( 'block_categories', [ $this, 'register_block_category' ], 10, 2 );
         } else {
             add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 2 );
@@ -64,12 +64,15 @@ final class EAZYDOCS_BLOCKS_CLASS {
      * Blocks Initialization
      */
     public function blocks_init() {
-        // register single block
+        // register single blocks
         $this->register_block( 'shortcode' );
-        /*
-        $this->register_block( 'shortcode', array(
-            'render_callback' => [ $this, 'shortcode_block_render' ]
-        ) );*/
+        $this->register_block( 'search-banner', array(
+            'render_callback' => [ $this, 'search_banner_block_render' ]
+        ));
+    }
+
+    function search_banner_block_render( $attributes ) {
+        return require_once __DIR__ . '/src/search-banner/search-banner.php';
     }
 
     /**
@@ -92,13 +95,14 @@ final class EAZYDOCS_BLOCKS_CLASS {
      * @return void
      */
     public function editor_scripts() {
-        wp_enqueue_style( 'ezd-editor', EAZYDOCS_ASSETS.'/css/ezd-block-editor.css', );
-        //wp_enqueue_script( 'ezd-editor', EAZYDOCS_ASSETS.'/js/ezd-block-editor.js', );
+
     }
 
     public function shortcode_block_render( $attributes ) {
         require_once __DIR__ . '/src/shortcode/block-shortcode-render.php';
     }
+
+
 }
 
 /**

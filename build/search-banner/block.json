@@ -1,0 +1,20 @@
+{
+  "apiVersion": 2,
+  "name": "eazydocs/search-banner",
+  "version": "0.1.0",
+  "title": "Docs Search Banner",
+  "category": "eazydocs",
+  "icon": "search",
+  "keywords": [
+    "eazydocs",
+    "search"
+  ],
+  "description": "EazyDocs search banner. Insert this block on a full-width page template to view it properly.",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "textdomain": "eazydocs",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css"
+}

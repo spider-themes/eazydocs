@@ -1,11 +1,12 @@
 <?php
 $cz_options     = get_option( 'eazydocs_settings' );
 $cs_banner_wrap = 'no_cs_bg';
-if ( class_exists( 'EazyDocsPro' ) ) {
+if ( class_exists('EazyDocsPro') ) {
 	$custom_banner  = $cz_options['doc_banner_bg'] ?? '';
 	$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
 }
-$search_banner = $cz_options['is_search_banner'] ?? '';
+$search_banner = $cz_options['is_search_banner'] ?? '1';
+
 if ( $search_banner == '1' ) :
 	?>
 	<div class="focus_overlay"></div>
@@ -13,7 +14,7 @@ if ( $search_banner == '1' ) :
 		<div class="container">
 			<div class="row doc_banner_content">
 				<div class="col-md-12">
-					<form action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search" method="post" class="ezd_search_form">
+					<form action="<?php echo esc_url( home_url('/') ); ?>" role="search" method="post" class="ezd_search_form">
 						<div class="header_search_form_info">
 							<div class="form-group">
 								<div class="input-wrapper">
@@ -32,7 +33,6 @@ if ( $search_banner == '1' ) :
 						</div>
 						<div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
 					</form>
-					
 				</div>
 			</div>
 		</div>
@@ -40,6 +40,16 @@ if ( $search_banner == '1' ) :
 <?php endif; ?>
 
 <script>
+    jQuery("#ezd_searchInput").focus(function() {
+        jQuery('body').addClass('ezd-search-focused');
+        jQuery('form.ezd_search_form').css('z-index','999');
+    })
+
+    jQuery(".focus_overlay").click(function() {
+        jQuery('body').removeClass('ezd-search-focused');
+        jQuery('form.ezd_search_form').css('z-index','unset');
+    })
+
 	/**
 	 * Search Form Keywords
 	 */
