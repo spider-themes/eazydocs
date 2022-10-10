@@ -101,7 +101,7 @@
 }
 .categories_guide_item a.doc_tag_title span.badge {
   font-size: 11px;
-  background: rgba(76, 76, 241, 0.15);
+  background: rgba(76, 76, 241, 0.1);
   color: var(--black_800);
   padding: 3px 5px 0;
   border-radius: 3px;

@@ -54,6 +54,9 @@ EazyDocs assists you in creating great looking documentation for your products i
 ## 🔍 STRUCTURED LIVE SEARCH RESULTS ##
 The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
 
+## 🧱 Building pages with Gutenberg Blocks ##
+You don't have to remember shortcode attributes, values. We made it dynamic. We're providing some pre-built blocks to make the Docs page building easier and quick.
+
 ## 👁️ Read time, Views Count ##
 Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
 
@@ -106,18 +109,19 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Screenshots ==
 
-1. Admin UI
-2. Documentation on Admin UI builder
+1. Docs builder UI in the WordPress Admin dashboard
+2. Creating the Docs page with EazyDocs Shortcode and Search Banner block
 3. Docs shortcode UI on frontend
 4. Single doc page
 
 == Changelog ==
 
-= v1.3.3 (20 September 2022) =
+= v1.3.3 (10 October 2022) =
 New: EazyDocs shortcode block
 New: Search Banner block
-New: Padding option added in the EazyDocs > Settings > Doc Single > Search Banner
+New: Background and Padding options added in the EazyDocs > Settings > Doc Single > Search Banner
 Tweaked: Compatibility with themes improved
+Removed: Some unnecessary files (some font files)
 
 = v1.3.2 (10 September 2022) =
 New: Show password protected, private (internal) docs in the docs archive page with specialized design

@@ -333,7 +333,6 @@ CSF::createSection( $prefix, array(
 			'type'   => 'background',
 			'title'  => esc_html__( 'Background', 'eazydocs' ),
 			'output' => '.ezd_search_banner.has_bg_dark.has_cs_bg',
-			'class'  => 'eazydocs-pro-notice'
 		),
 
         array(
@@ -346,6 +345,7 @@ CSF::createSection( $prefix, array(
             ),
         ),
 
+        //Search Keywords
         array(
 			'type'  => 'subheading',
 			'title' => esc_html__( 'Search Keywords', 'eazydocs' ),
