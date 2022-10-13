@@ -408,3 +408,221 @@ color: #0062ae;
 #doc_extra_information{
     display: none;
 }
+
+
+/**
+*  Nestable css
+*/
+
+.dd {
+    position: relative;
+    display: block;
+    padding: 0;
+    list-style: none;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  
+  .dd-list {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .dd-list .dd-list {
+    padding-left: 0;
+  }
+
+  .dd-list .dd-list .accordion-title.ez-section-title {
+    padding-right: 0 !important;
+    padding-left: 20px !important;
+}
+  .dd-collapsed .dd-list {
+    display: none;
+  }
+  
+.dd-list .dd-list .accordion-title.ez-section-title .DragHandle-icon{
+    left: -20px
+}
+.dd-list .dd-list .dd-list .accordion-title.ez-section-title .DragHandle-icon{
+    left: -40px
+}
+
+.dd-item,
+  .dd-empty,
+  .dd-placeholder {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 47px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+ 
+  .dd-item > button {
+    position: relative;
+    cursor: pointer;
+    float: left;
+    width: 15px;
+    height: 20px;
+    margin: 0px;
+    padding: 0;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 0;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+  }
+  .dd-list .dd-list .accordion-title button{
+    /* display: none; */
+  }
+  .dd-list .dd-list .accordion-title.has-child-doc button{
+    display: block;
+  } 
+  .dd-list .dd-list  .dd-list .accordion-title .left-content .actions li:nth-child(2){
+    display: none;
+  }
+  .dd-list .dd-list  .dd-list .accordion-title .left-content .actions {
+    position: absolute;
+    right: 110px;
+  }
+  
+  .dd-item > button:before {
+    content: "";
+    top: 50%; 
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 6px;
+    border-color: transparent transparent transparent black;
+    display: block;
+    transform: translateY(-50%);
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+
+  }
+  
+  .dd-item > button[data-action="collapse"]:before {
+    transform: translateY(-50%) rotate(90deg);
+    margin-left: 2px;
+  }
+  
+  .dd-placeholder,
+  .dd-empty {
+    margin: 5px 0;
+    padding: 0;
+    min-height: 30px;
+    background: #f2fbff;
+    border: 1px dashed #b6bcbf;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  
+  .dd-empty {
+    border: 1px dashed #bbb;
+    min-height: 100px;
+    background-color: #e5e5e5;
+    background-image: -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+      -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-image: -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+      -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-image: linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+      linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+  }
+  
+  .dd-dragel {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  /**
+  * Nestable Extras
+  */
+  .nestable-lists {
+    display: block;
+    clear: both;
+    padding: 30px 0;
+    width: 100%;
+    border: 0;
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  #nestable-menu {
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  #nestable-output {
+    width: 100%;
+    height: 7em;
+    font-size: 0.75em;
+    line-height: 1.333333em;
+    font-family: Consolas, monospace;
+    padding: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  
+  .dd + .dd {
+    margin-left: 2%;
+  }
+  
+  .dd-hover > .dd-handle {
+    background: #2ea8e5 !important;
+  }
+  
+  /*
+  * Nestable++
+  */
+  .button-delete {
+    position: absolute;
+    top: 4px;
+    right: -26px;
+  }
+  
+  .button-edit {
+    position: absolute;
+    top: 4px;
+    right: -52px;
+  }
+  
+  #menu-editor {
+    margin-top: 40px;
+  }
+  
+  #saveButton {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  
+  .output-container {
+    margin-top: 20px;
+  }
+  
+  #json-output {
+    margin-top: 20px;
+  }
+
+  .easydocs-accordion-content-wrap {
+    margin: 0 -30px 0 -45px;
+    border-bottom: 1px solid #edeae9;
+    padding-right: 30px;
+    padding-bottom: 15px;
+    padding-left: 45px;
+}
+.dd-list .dd-list  .accordion-title.ez-section-title  .easydocs-accordion-content-wrap {
+    margin: 0 -30px 0 -70px;
+    padding-left: 65px;
+}
