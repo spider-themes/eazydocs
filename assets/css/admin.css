@@ -804,6 +804,7 @@ body.ezd-premium .accordion-title .DragHandle-icon:hover {
 
 .child-docs-wrap {
   border-bottom: 1px solid #EDEAE9;
+  margin: 0;
 }
 .child-docs-wrap:hover {
   background-color: #F9F9F9;
