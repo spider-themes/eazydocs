@@ -79,7 +79,7 @@ endif;
                                         ?>                               
                                         <div class="ezdoc_contributed_users">
                                             <i class="arrow_carrot-down"></i>
-                                            <div class="doc_users_dropdown">
+                                            <div class="doc_users_dropdown shadow-lg">
                                                 <h5 class="title"> <?php echo esc_html( $meta_dropdown_title ); ?> </h5>
                                                 <?php
                                                 if ( $contributor_meta_search == 1 ) :

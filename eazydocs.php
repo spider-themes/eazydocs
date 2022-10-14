@@ -29,7 +29,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 
 			if ( ! isset( $eaz_fs ) ) {
 				// Include Freemius SDK.
-				require_once dirname( __FILE__ ) . '/freemius/start.php';
+				require_once dirname( __FILE__ ) . '/includes/fs/start.php';
 
 				$eaz_fs = fs_dynamic_init(
 					[

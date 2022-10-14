@@ -83,7 +83,6 @@
                 },
                 success: function (response) {
                     $(".eazydocs-feedback-wrap").html(response.data)
-                    console.log(response.data)
                 },
                 error: function () {
                     console.log("Oops! Something wrong, try again!")

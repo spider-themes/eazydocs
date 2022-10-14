@@ -29,8 +29,6 @@ EazyDocs assists you in creating great looking documentation for your products i
 
 - **Live Customizer:** Set it and see the changes instantly. The Docs archive page, Doc single page layouts can be customized via the WordPress live customizer panel.
 
-- **Related Articles:** Sometimes readers might be interested to read the Related articles. You can display the Related Articles at the bottom of the Single Doc page to let the readers read articles they interested in.
-
 - **Look Beautiful by Default:** EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
 
 - **Designed for Reader:** We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
@@ -47,27 +45,34 @@ EazyDocs assists you in creating great looking documentation for your products i
 
 - **On Demand Asset Loading:** Loading only necessary css, javascript assets on the EazyDocs pages and will not load our assets on other pages of your website.
 
-- **Reading Assistant Tools:** There are available some important tools for better reading experience. Font Size switcher, Print option, TOC are developed for a consistent reading experience.
-
 - **Simple Navigation:** The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
 
-## 🔍 STRUCTURED LIVE SEARCH RESULTS ##
+## 🔍 Ajax Live Search Results ##
 The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
 
 ## 🧱 Building pages with Gutenberg Blocks ##
-You don't have to remember shortcode attributes, values. We made it dynamic. We're providing some pre-built blocks to make the Docs page building easier and quick.
+You don't have to remember shortcode attributes, values. We made it dynamic. EazyDocs has some pre-built blocks to make the Docs page building easier and quick.
 
 ## 👁️ Read time, Views Count ##
-Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to let them know how popular an article.
+Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to show how popular an article.
 
-## 🤠 GET FEEDBACK FROM REAL VISITORS ##
+## 📖 Reading Assistant Tools ##
+On the Doc sidebar you can show some important tools for better reading experience. Font Size switcher, Print option, TOC are developed for a consistent reading experience.
+
+## 📋 Table of Contents (TOC) ##
+EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation. With an effective automated process, it will organize your documentation headings with its in-built functions and this stunning TOC get sticky on the sidebar, so your visitors can always navigate to the doc sections easily.
+
+## 🤠 Get Feedback From Real Visitors ##
 Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
 
-## 🕒 RECENTLY VIEWED ARTICLES ##
+## 🕒 Recently Viewed Articles ##
 No need to memorize or remember the last viewed articles by the user. They can see and visit their recently visited articles at the bottom of doc single page
 
-## ⚙️ ADVANCED CUSTOMIZATION OPTIONS ##
-Customize documentation pages from settings or even add shortcode, Customizer, and more to get the full authority to make it stand out for your visitors.
+## 📑 Related Articles ##
+Sometimes readers might be interested to read the Related articles. EazyDocs has a feature to display the Related Articles at the bottom of the Single Doc page to let the readers read articles they interested in.
+
+## ⚙️ Advanced Customization Options ##
+Customize documentation pages from settings or even add shortcode, Customizer, and more to get the full authority to make it stand out for your visitors. By searching you can find your desired option in a second.
 
 
 ### Author ###
@@ -115,6 +120,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.3.4 (15 October 2022) =
+Fixed: The right sidebar TOC was not showing in the previous version (1.3.3)
+Tweaked: Password protected form design
+
 
 = v1.3.3 (10 October 2022) =
 New: EazyDocs shortcode block

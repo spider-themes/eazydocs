@@ -136,7 +136,7 @@
         color: var(--p_color);
         float: right;
         position: absolute;
-        right: 30px;
+        right: 20px;
         display: flex;
         transition: all 0.3s linear;
         top: 0;
@@ -1462,22 +1462,23 @@ body:not(.onepage-doc) .sticky_menu {
   }
 }
 
-// Eazydocs password form
+// Eazydocs password protected form
 .ezd-password-wrap {
   border: 1px solid #e3ebf6;
-  max-width: 515px;
+  border-radius: 5px;
     .ezd-password-head {
       background-color: #0c213a;
       flex: 1 1 auto;
-      padding: 1rem 1rem;
+      border-radius: 5px;
       p.ezd-password-title{
         font-size: 18px;
         color: #fff;
+        font-weight: 500;
       }
       p.ezd-password-subtitle{
         color: #a4abc5;
         line-height: 1.6;
-        font-size: .8125rem;
+        font-size: 14px;
         font-weight: 400;
       }
     }
@@ -1486,7 +1487,7 @@ body:not(.onepage-doc) .sticky_menu {
         label{
           margin-bottom: 0.5rem;
           color: #656d9a;
-          font-weight: 400;
+          font-weight: 500;
           font-size: 13px;
         }
         input{
@@ -1504,7 +1505,8 @@ body:not(.onepage-doc) .sticky_menu {
           }
         }
         button{
-          font-size: .8125rem;
+          font-size: 14px;
+          border: none;
           &:focus{
             box-shadow: none;
           }

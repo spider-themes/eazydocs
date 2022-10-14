@@ -1,8 +1,8 @@
 <?php
-$opt                        = get_option( 'eazydocs_settings' );
-$widget_sidebar             = $opt['is_widget_sidebar'] ?? '';
-$toc_toc_switcher           = $opt['ezd-toc-switcher'] ?? '';
-$toc_heading                = ! empty ( $opt['ezd-toc-heading'] ) ? $opt['ezd-toc-heading'] :  __( 'CONTENTS','eazydocs' );
+$opt                    = get_option( 'eazydocs_settings' );
+$widget_sidebar         = $opt['is_widget_sidebar'] ?? '';
+$toc_switcher           = $opt['toc_switcher'] ?? '';
+$toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS','eazydocs' );
 ?>
 <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-lg-top">
     <div class="doc_rightsidebar scroll">
@@ -19,32 +19,32 @@ $toc_heading                = ! empty ( $opt['ezd-toc-heading'] ) ? $opt['ezd-to
             $user_login_page_id            = eazydocs_get_option('docs_frontend_login_page', 'eazydocs_settings') ?? '';
 
             if ( eaz_fs()->is_plan__premium_only('promax') ) :
-                if( $is_constribution ) :
-                    if( $is_add_doc || $is_edit_doc ) :
+                if ( $is_constribution ) :
+                    if ( $is_add_doc || $is_edit_doc ) :
                         if ( ! empty( $user_login_page_id ) ) : 
                         ?>
                         <div class="contribut-btns">
                             <?php
-                                $edit_url                   = get_the_ID();
-                                $doc_edit_btn_text          = eazydocs_get_option('frontend_edit_btn_text', 'eazydocs_settings') ?? esc_html__('Edit', 'eazydocs-pro');
+                            $edit_url                   = get_the_ID();
+                            $doc_edit_btn_text          = eazydocs_get_option('frontend_edit_btn_text', 'eazydocs_settings') ?? esc_html__('Edit', 'eazydocs-pro');
 
-                                if ( $is_edit_doc == 1 ) {
-                                    $doc_edit_url = get_edit_post_link(get_the_ID());
-                                
-                                    if ( is_user_logged_in() ) {
-                                        do_action('eazydocs_fronted_editing', $doc_edit_url);
-                                    } else {
-                                        do_action('eazydocs_fronted_editing', '?edit_doc_url='.$edit_url);
-                                    }
+                            if ( $is_edit_doc == 1 ) {
+                                $doc_edit_url = get_edit_post_link(get_the_ID());
+
+                                if ( is_user_logged_in() ) {
+                                    do_action('eazydocs_fronted_editing', $doc_edit_url);
+                                } else {
+                                    do_action('eazydocs_fronted_editing', '?edit_doc_url='.$edit_url);
                                 }
-                                
-                                if ( $is_add_doc == 1 ) {
-                                    if ( is_user_logged_in() ) {
-                                        do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
-                                    } else {
-                                        do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'));
-                                    } 
-                                } 
+                            }
+
+                            if ( $is_add_doc == 1 ) {
+                                if ( is_user_logged_in() ) {
+                                    do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
+                                } else {
+                                    do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'));
+                                }
+                            }
                             ?>
                         </div>
                         <?php
@@ -67,7 +67,7 @@ $toc_heading                = ! empty ( $opt['ezd-toc-heading'] ) ? $opt['ezd-to
              * Dark Mode switcher
              */
             eazydocs_get_template_part('tools/dark-mode-switcher');
-            if( ! empty ( $toc_toc_switcher )) :
+            if( ! empty ( $toc_switcher ) ) :
                 ?>
                 <div class="table-of-content">
                     <h6><i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?></h6>

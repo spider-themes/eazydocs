@@ -53,7 +53,6 @@ p .footnotes-link::after {
   .nav-item {
     span.icon {
       display: flex;
-      right: 17px;
     }
     .dropdown_nav {
       padding-top: 0;
@@ -69,7 +68,7 @@ p .footnotes-link::after {
 // Doc Filter form
 .filter_form {
   margin-bottom: 30px;
-  margin-right: 27px;
+  margin-right: 25px;
   padding: 0 5px 0 0;
   position: relative;
   input, input[type=search] {

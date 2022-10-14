@@ -557,7 +557,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   color: var(--p_color);
   float: right;
   position: absolute;
-  right: 30px;
+  right: 20px;
   display: flex;
   transition: all 0.3s linear;
   top: 0;
@@ -1780,27 +1780,28 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 
 .ezd-password-wrap {
   border: 1px solid #e3ebf6;
-  max-width: 515px;
+  border-radius: 5px;
 }
 .ezd-password-wrap .ezd-password-head {
   background-color: #0c213a;
   flex: 1 1 auto;
-  padding: 1rem 1rem;
+  border-radius: 5px;
 }
 .ezd-password-wrap .ezd-password-head p.ezd-password-title {
   font-size: 18px;
   color: #fff;
+  font-weight: 500;
 }
 .ezd-password-wrap .ezd-password-head p.ezd-password-subtitle {
   color: #a4abc5;
   line-height: 1.6;
-  font-size: 0.8125rem;
+  font-size: 14px;
   font-weight: 400;
 }
 .ezd-password-wrap .ezd-password-body form label {
   margin-bottom: 0.5rem;
   color: #656d9a;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 13px;
 }
 .ezd-password-wrap .ezd-password-body form input {
@@ -1818,7 +1819,8 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   border-color: #8bb0fe;
 }
 .ezd-password-wrap .ezd-password-body form button {
-  font-size: 0.8125rem;
+  font-size: 14px;
+  border: none;
 }
 .ezd-password-wrap .ezd-password-body form button:focus {
   box-shadow: none;
@@ -1886,7 +1888,6 @@ p .footnotes-link::after {
 
 .nav-sidebar .nav-item .dropdown_nav .nav-item span.icon {
   display: flex;
-  right: 17px;
 }
 .nav-sidebar .nav-item .dropdown_nav .nav-item .dropdown_nav {
   padding-top: 0;
@@ -1899,7 +1900,7 @@ p .footnotes-link::after {
 
 .filter_form {
   margin-bottom: 30px;
-  margin-right: 27px;
+  margin-right: 25px;
   padding: 0 5px 0 0;
   position: relative;
 }

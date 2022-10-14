@@ -101,8 +101,6 @@ final class EAZYDOCS_BLOCKS_CLASS {
     public function shortcode_block_render( $attributes ) {
         require_once __DIR__ . '/src/shortcode/block-shortcode-render.php';
     }
-
-
 }
 
 /**

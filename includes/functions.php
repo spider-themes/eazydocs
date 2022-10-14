@@ -741,7 +741,7 @@ function ezd_password_form( $output, $post = 0 ) {
 		?>
 		<div class="card ezd-password-wrap">
 			<div class="card-body p-0 ezd-password-head">
-				<div class="text-center p-3">
+				<div class="text-center p-4">
 					<?php 
 					if(has_post_thumbnail()) :
 						?>
@@ -759,7 +759,7 @@ function ezd_password_form( $output, $post = 0 ) {
 					</p>  
 				</div>
 			</div>
-			<div class="card-body ezd-password-body">
+			<div class="card-body ezd-password-body p-4">
 				<form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" method="post" class="form-horizontal auth-form">
 					<div class="form-group mb-2">
 						<label class="form-label" for="ezd_password">

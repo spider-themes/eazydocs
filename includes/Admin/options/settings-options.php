@@ -216,6 +216,16 @@ CSF::createSection( $prefix, array(
 			'default' => 'boxed'
 		),
 
+        // Meta Information
+        array(
+            'type'       => 'subheading',
+            'content'    => esc_html__( 'Meta Information', 'eazydocs' ),
+            'dependency' => array(
+                array( 'docs-feedback', '==', 'true' ),
+                array( 'message-feedback', '==', 'true' ),
+            )
+        ),
+
 		array(
 			'id'      => 'enable-reading-time',
 			'type'    => 'switcher',
@@ -285,7 +295,6 @@ CSF::createSection( $prefix, array(
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Credit', 'eazydocs' ),
 			'default' => true,
-			'class'   => 'eazydocs-pro-notice active-theme'
 		),
 
 		array(
@@ -299,7 +308,7 @@ CSF::createSection( $prefix, array(
 			'dependency'    => array(
 				array( 'eazydocs-enable-credit', '==', 'true' )
 			),
-			'default'       => sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>' ),
+			'default'       => 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>',
 			'class'         => 'eazydocs-pro-notice active-theme'
 		),
 	)
@@ -758,19 +767,19 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'ezd-toc-switcher',
+			'id'         => 'toc_switcher',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'TOC Enable / Disable', 'eazydocs' ),
+			'title'      => esc_html__( 'Table on Contents (TOC)', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation.', 'eazydocs' ),
 			'default'    => true,
-			'class'      => 'eazydocs-pro-notice'
 		),
 
 		array(
-			'id'         => 'ezd-toc-heading',
+			'id'         => 'toc_heading',
 			'type'       => 'text',
 			'title'      => esc_html__( 'TOC Heading', 'eazydocs' ),
 			'default'    => esc_html__( 'CONTENTS', 'eazydocs' ),
-			'dependency' => array( 'ezd-toc-switcher', '==', '1' ),
+            'dependency' => array( 'toc_switcher', '==', '1' ),
 		),
 
 		array(
@@ -778,9 +787,9 @@ CSF::createSection( $prefix, array(
 			'desc'       => __( 'You can display conditional contents using the [conditional_data] shortcode in documentation based on the dropdown value. See the shortcode usage tutorial <a href="https://tinyurl.com/yd46mfax" target="_blank">here</a>.', 'eazydocs' ),
 			'id'         => 'is_conditional_dropdown',
 			'type'       => 'switcher',
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
-			'text_width' => 72,
+			'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
+			'text_width' => 90,
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme'
 		),
