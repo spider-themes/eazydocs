@@ -58,43 +58,14 @@ class Delete_Post {
 			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
 
 		} elseif ( ! empty ( $_GET['ID'] ) ) {
-			echo $id                  = sanitize_text_field( $_GET['ID'] );			
-			$doc_parent_id              = $id . ',';
+			$id                       = sanitize_text_field( $_GET['ID'] );
+			$doc_ids                  = explode( ',', $id );
+			$doc_ids_int              = array_map( 'intval', $doc_ids );
 
-			/**
-			 * Section Docs
-			 **/
-			$doc_parent                 = get_children( [
-				'post_parent'       => $id
-			] );
-			$doc_sec_ids                = '';
-			$doc_child_sec_ids          = '';
-			$doc_child_ids              = '';
-			foreach ( $doc_parent as $doc_section ) {
-				$doc_sec_ids            .= $doc_section->ID . ',';
-				$doc_sec_child           = get_children( [
-					'post_parent' => $doc_section->ID
-				] );
-				foreach ( $doc_sec_child as $doc_child_sec ) {
-					$doc_child_sec_ids    .= $doc_child_sec->ID . ',';
-
-					$doc_child = get_children( [
-						'post_parent'  => $doc_child_sec->ID
-					] );
-					foreach ( $doc_child as $doc_childs ) {
-						$doc_child_ids     .= $doc_childs->ID . ',';
-					}
-				}
-			}
-
-			$doc_delete_ids = $doc_parent_id . $doc_sec_ids . $doc_child_sec_ids . $doc_child_ids;
-			$doc_doc_ids                  = explode( ',', $doc_delete_ids );
-			$doc_doc_ids_int              = array_map( 'intval', $doc_doc_ids );
-			foreach ( $doc_doc_ids_int as $doc_deletes ) {
-				wp_trash_post( $doc_deletes, true );
+			foreach ( $doc_ids_int as $item ) {
+				wp_trash_post( $item, true );
 			}
 			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
-			
 		}
 	}
 }

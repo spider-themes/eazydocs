@@ -598,6 +598,9 @@ label {
   width: 100%;
   margin: 0;
 }
+.easydocs-accordion-item + .easydocs-accordion-item {
+  border-top: 1px solid #EDEAE9;
+}
 .easydocs-accordion-item.is-accordion-open:last-child .accordion-title {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -665,17 +668,14 @@ label {
   background: var(--black_200);
   font-size: 10px;
 }
-.accordion-title .easydocs-accordion-content-wrap:hover > .left-content > ul.actions {
-  display: flex;
-}
 .accordion-title:hover {
   background: #F9F9F9;
 }
-.accordion-title:hover .dd-list .dd-item {
-  background: transparent;
-}
 .accordion-title:hover h4 {
   color: var(--clr-dark);
+}
+.accordion-title:hover ul.actions {
+  display: flex;
 }
 .accordion-title:hover ul.actions li {
   margin: 0;
@@ -748,13 +748,11 @@ label {
   color: #f1bd6c;
 }
 .accordion-title .left-content {
-  display: inline-flex;
+  display: flex;
 }
 .accordion-title .right-content {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: end;
-  float: right;
 }
 .accordion-title .right-content .progress-text {
   font-size: var(--fs-12);
@@ -770,18 +768,17 @@ body.ezd-premium .accordion-title:hover .DragHandle-icon {
   display: block;
 }
 body.ezd-premium .accordion-title::before {
-  left: 0;
-  display: none;
+  left: 40px;
 }
 body.ezd-premium .accordion-title.ez-section-title {
-  padding: 12px 30px 0 30px !important;
+  padding: 13px 30px 13px 60px !important;
 }
 body.ezd-premium .accordion-title .DragHandle-icon {
   position: absolute;
-  left: 10px;
+  left: 0;
+  font-size: 12px;
+  width: 35px;
   display: none;
-  top: 16px;
-  height: 12px;
 }
 body.ezd-premium .accordion-title .DragHandle-icon:hover {
   cursor: move;

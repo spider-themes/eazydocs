@@ -324,4 +324,5 @@ class Admin {
 		}
 		return implode(' ', array_unique($ezd_admin_classe)); 
 	}
+	
 }

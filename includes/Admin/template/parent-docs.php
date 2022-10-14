@@ -88,7 +88,6 @@ $count = $query->found_posts;
                                 if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
                                     do_action('eazydocs_parent_doc_duplicate', get_the_ID());
                                     do_action('eazydocs_doc_visibility', get_the_ID());
-                                    do_action('eazydocs_doc_export', get_the_ID());
                                 else :
                                     ?>
                                     <a href="javascript:void(0);" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>"> 
