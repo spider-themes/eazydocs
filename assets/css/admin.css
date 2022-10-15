@@ -1753,6 +1753,7 @@ a.child-delete {
 }
 .link a {
   text-decoration: none;
+  line-height: 0;
 }
 .link a .dashicons {
   color: var(--black_200);
@@ -1761,6 +1762,13 @@ a.child-delete {
 }
 .link a .dashicons:hover {
   color: #fff;
+}
+.link a .parent-doc-drag {
+  vertical-align: auto;
+  cursor: move;
+}
+.link a .parent-doc-drag:hover path {
+  stroke: #fff;
 }
 .link a.eazydocs-pro-notice .dashicons {
   color: #f1bd6c;

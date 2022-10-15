@@ -97,12 +97,22 @@
     @include property;
     a {
         text-decoration: none;
+        line-height: 0;
         .dashicons {
             color: var(--black_200);
             font-size: 18px;
             padding-top: 2px;
             &:hover {
                 color: #fff;
+            }
+        }
+        .parent-doc-drag{
+            vertical-align: auto;
+            cursor:move;
+            &:hover{
+                path{
+                    stroke: #fff;
+                }
             }
         }
         &.eazydocs-pro-notice .dashicons{

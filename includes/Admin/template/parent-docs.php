@@ -60,6 +60,10 @@ $count = $query->found_posts;
                 </div>
                 <div class="link">
                     <?php
+                    if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ){
+                        do_action('eazydocs_parent_doc_drag');
+                    }
+
                     if( current_user_can('editor') || current_user_can('administrator') ) :
                         ?>
                         <a href="<?php echo get_edit_post_link( get_the_ID() ); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
@@ -88,7 +92,6 @@ $count = $query->found_posts;
                                 if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
                                     do_action('eazydocs_parent_doc_duplicate', get_the_ID());
                                     do_action('eazydocs_doc_visibility', get_the_ID());
-                                    do_action('eazydocs_doc_export', get_the_ID());
                                 else :
                                     ?>
                                     <a href="javascript:void(0);" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>"> 
