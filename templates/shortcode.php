@@ -33,7 +33,7 @@ if ( $docs ) :
                     global $post;
 
                     $private_bg = $main_doc['doc']->post_status == 'private' ? 'bg-warning' : '';
-                    $private_bg_op = $main_doc['doc']->post_status == 'private' ? 'style="--bs-bg-opacity: .2;"' : '';
+                    $private_bg_op = $main_doc['doc']->post_status == 'private' ? 'style="--bs-bg-opacity: .4;"' : '';
                     $protected_bg = !empty($main_doc['doc']->post_password) ? 'bg-dark' : '';
 
                     $col_wrapper = $i == 1;

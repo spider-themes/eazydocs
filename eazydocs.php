@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 1.3.3
+ * Version: 1.3.4
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs

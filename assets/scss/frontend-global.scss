@@ -42,7 +42,6 @@
     position: absolute;
     right: -6px;
     top: -17px;
-    color: var(--black_100);
     i {
       font-size: 40px;
     }
@@ -103,9 +102,9 @@
       display: inline-block;
       transition: all 0.2s linear, color 0s linear;
     }
-    &:hover {
+    &:hover, &:focus {
       box-shadow: 0 10px 20px 0 brand_color_rgba(0.2);
-      background: var(--ezd_brand_color);
+      background-color: var(--ezd_brand_color) !important;
       border-color: var(--ezd_brand_color);
       color: #fff;
       i {

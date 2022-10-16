@@ -123,8 +123,9 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 = v1.3.4 (15 October 2022) =
 Fixed: The right sidebar TOC was not showing in the previous version (1.3.3)
+Tweaked: Credit text is now editable from EazyDocs > Settings > Doc Single > General
 Tweaked: Password protected form design
-
+Tweaked: Folder structure re-organized
 
 = v1.3.3 (10 October 2022) =
 New: EazyDocs shortcode block

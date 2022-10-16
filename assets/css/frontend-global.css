@@ -73,7 +73,6 @@
   position: absolute;
   right: -6px;
   top: -17px;
-  color: var(--black_100);
 }
 .categories_guide_item .private i {
   font-size: 40px;
@@ -132,13 +131,13 @@
   display: inline-block;
   transition: all 0.2s linear, color 0s linear;
 }
-.categories_guide_item .doc_border_btn:hover {
+.categories_guide_item .doc_border_btn:hover, .categories_guide_item .doc_border_btn:focus {
   box-shadow: 0 10px 20px 0 rgba(76, 76, 241, 0.2);
-  background: var(--ezd_brand_color);
+  background-color: var(--ezd_brand_color) !important;
   border-color: var(--ezd_brand_color);
   color: #fff;
 }
-.categories_guide_item .doc_border_btn:hover i {
+.categories_guide_item .doc_border_btn:hover i, .categories_guide_item .doc_border_btn:focus i {
   transform: translateX(8px);
 }
 .categories_guide_item .article_list {

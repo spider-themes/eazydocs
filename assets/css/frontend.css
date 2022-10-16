@@ -585,7 +585,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   list-style: none;
 }
 .nav-sidebar .nav-item .dropdown_nav li {
-  margin: 12px 10px 12px 0;
+  margin: 10px 10px 12px 0;
   padding: 0;
   line-height: 1.5;
 }

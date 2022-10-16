@@ -309,7 +309,6 @@ CSF::createSection( $prefix, array(
 				array( 'eazydocs-enable-credit', '==', 'true' )
 			),
 			'default'       => 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>',
-			'class'         => 'eazydocs-pro-notice active-theme'
 		),
 	)
 ) );

@@ -59,9 +59,7 @@ a.eazydocs-close-notice:active {
   display: block !important;
 }
 
-#get_docs_archive,
-#get_docs_single,
-#get_docs_slug {
+#get_docs_archive, #get_docs_single, #get_docs_slug {
   text-decoration: none;
   width: 220px;
   background: #050505;
@@ -76,19 +74,13 @@ a.eazydocs-close-notice:active {
   letter-spacing: 0.5px;
   text-shadow: 2px 2px black;
   float: left;
-  margin: 0px 20px 0px 0px;
+  margin: 0 20px 0 0;
 }
-
-#get_docs_archive:hover,
-#get_docs_single:hover,
-#get_docs_slug:hover {
+#get_docs_archive:hover, #get_docs_single:hover, #get_docs_slug:hover {
   background: #0d0e2b;
   color: white;
 }
-
-#get_docs_archive:focus,
-#get_docs_single:focus,
-#get_docs_slug:focus {
+#get_docs_archive:focus, #get_docs_single:focus, #get_docs_slug:focus {
   outline: none;
 }
 
@@ -210,8 +202,8 @@ body.ezd_promax .eazydocs-promax-notice.csf-field::after,
 
 .swal2-footer.notification-pro-footer-wrap {
   border-top: none;
-  margin: 8px 0px 0px;
-  padding: 0px;
+  margin: 8px 0 0;
+  padding: 0;
 }
 
 .swal2-html-container {
