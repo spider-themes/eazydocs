@@ -227,7 +227,7 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 
 function ezd_list_pages_onepage_others( $args = '' ) {
 	$defaults = array(
-		'depth'        => 2,
+		'depth'        => 3,
 		'show_date'    => '',
 		'date_format'  => get_option( 'date_format' ),
 		'child_of'     => 0,

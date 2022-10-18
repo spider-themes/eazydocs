@@ -35,7 +35,7 @@ $children           = wp_list_pages( array(
 						if ( $children ) :
 							?>
                             <nav class="scroll op-docs-sidebar">
-                                <ul class="list-unstyled nav-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
+                                <ul class="list-unstyled nav-sidebar default-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
 									<?php
 									echo wp_list_pages(array(
 										'title_li' => '',
@@ -44,7 +44,7 @@ $children           = wp_list_pages( array(
 										'echo' => false,
 										'post_type' => 'docs',
 										'walker' => new EazyDocs_Walker_Onepage(),
-										'depth' => 2
+										'depth' => 3
 									));
 									?>
                                 </ul>
@@ -146,7 +146,46 @@ $children           = wp_list_pages( array(
                                         <div class="border_bottom"></div>
                                     </div>
 								<?php
+
+								
+								$last_depth = get_children( array(
+									'post_parent'    => $child_section->ID,
+									'post_type'      => 'docs',
+									'post_status'    => 'publish',
+									'orderby'        => 'menu_order',
+									'order'          => 'ASC',
+									'posts_per_page' => -1,
+								));
+
+								foreach( $last_depth as $last_depth_doc ) :
+									?>
+									<div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($last_depth_doc->post_title) ?>">
+                                        <div class="shortcode_title">
+                                            <h2> <?php echo $last_depth_doc->post_title ?> </h2>
+                                        </div>
+                                        <div class="doc-content">
+											<?php
+											if ( did_action( 'elementor/loaded' ) ) {
+												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($last_depth_doc->ID);
+												echo !empty($child_content) ? $child_content : apply_filters('the_content', $last_depth_doc->post_content);
+											} else {
+												echo apply_filters('the_content', $last_depth_doc->post_content);
+											}
+											?>
+                                        </div>
+                                        <div class="border_bottom"></div>
+                                    </div>
+									<?php
 								endforeach;
+
+								endforeach;
+
+
+								
+							
+								
+
+
 								?>
                             </article>
 							<?php

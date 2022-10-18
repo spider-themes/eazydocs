@@ -36,6 +36,7 @@
         'echo'          => false,
         'post_type'     => 'docs',
         'walker'        => new Walker_Onepage_Fullscren(),
+        'depth' => 3
     ) );
     ?>
     <section class="documentation_area_sticky doc_documentation_area onepage_doc_area page_wrapper fullscreen-layout" id="sticky_doc">
@@ -60,7 +61,7 @@
                             if ( $children ) :
                                 ?>
                                 <nav class="scroll op-docs-sidebar">
-                                    <ul class="<?php echo esc_attr($is_number); ?> list-unstyled nav-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
+                                    <ul class="<?php echo esc_attr($is_number); ?> list-unstyled nav-sidebar fullscreen-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
                                         <?php
                                         echo wp_list_pages(array(
                                             'title_li' => '',
@@ -69,7 +70,7 @@
                                             'echo' => false,
                                             'post_type' => 'docs',
                                             'walker' => new Walker_Onepage_Fullscren(),
-                                            'depth' => 2
+                                            'depth' => 3
                                         ));
                                         ?>
                                     </ul>
@@ -156,7 +157,43 @@
                                             </div>
                                         </div>
                                     <?php
+
+                                    $last_depth = get_children( array(
+                                        'post_parent'    => $child_section->ID,
+                                        'post_type'      => 'docs',
+                                        'post_status'    => 'publish',
+                                        'orderby'        => 'menu_order',
+                                        'order'          => 'ASC',
+                                        'posts_per_page' => -1,
+                                    ));
+                                    $last_depth_serial = 0;
+                                    foreach( $last_depth as $last_depth_doc ) :
+                                        $last_depth_serial++;
+                                        ?>
+                                        <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($last_depth_doc->post_title) ?>">
+                                            <div class="shortcode_title depth-one ">
+                                                <h2> <?php
+                                                    echo $sec_serial.'.'.$child_serial.'.'.$last_depth_serial.'. ';
+                                                    echo $last_depth_doc->post_title ?> </h2>
+                                            </div>
+                                            <div class="doc-content">
+                                                <?php
+                                                if ( did_action( 'elementor/loaded' ) ) {
+                                                    $child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($last_depth_doc->ID);
+                                                    echo !empty($child_content) ? $child_content : apply_filters('the_content', $last_depth_doc->post_content);
+                                                } else {
+                                                    echo apply_filters('the_content', $last_depth_doc->post_content);
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
                                     endforeach;
+
+
+                                    endforeach;
+
+
                                     ?>
                                 </article>
                                 <?php

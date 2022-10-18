@@ -8,6 +8,7 @@ $docs_feedback              = $options['docs-feedback'] ?? '1';
 $sidebar_toggle             = $options['toggle_visibility'] ?? '1';
 $layout                     = $options['docs_single_layout'] ?? 'both_sidebar';
 
+$contributor_visibility         = $options['is_doc_contribution'] ?? '';
 $contributor_meta_title         = ! empty( $options['contributor_meta_title'] ) ? $options['contributor_meta_title'] : __( 'Contributors', 'eazydocs' );
 $meta_dropdown_title            = ! empty( $options['contributor_meta_dropdown_title'] ) ? $options['contributor_meta_dropdown_title'] : __( 'Manage Contributors', 'eazydocs' );
 $contributor_meta_search        = ! empty( $options['contributor_meta_search'] ) ? $options['contributor_meta_search'] : '';
@@ -47,7 +48,7 @@ endif;
                             <?php
                         endif;   
                         if ( eaz_fs()->is_plan__premium_only('promax') ) :
-                            if( ! empty( $contributor_meta_visibility ) ) :
+                            if( ! empty( $contributor_visibility ) ) :
                                 ?>
                                 <span class="views sep contributed_users">
                                     <span class="ezdoc_contributed_user_avatar"> 

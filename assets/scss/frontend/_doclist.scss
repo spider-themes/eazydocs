@@ -79,7 +79,7 @@
 
 .nav-sidebar {
   margin: 0;
-  .nav-item.active .icon {
+  .nav-item.active > .icon {
     transform: rotate(-180deg);
     i.icon_minus-06 {
       display: inline-block;
@@ -218,6 +218,9 @@
         padding-top: 15px;
         padding-bottom: 15px;
         background: #fff;
+        &.doc-last-depth{
+          padding-bottom: 0;
+        }
         &:before{
           content: "";
           width: 2px;
@@ -1013,7 +1016,7 @@ body:not(.onepage-doc) .sticky_menu {
     .icon {
       right: 20px;
       position: absolute;
-      top: 50%;
+      top: 25px;
       font-size: 18px;
       transform: translateY(-50%);
       i.arrow_carrot-down {
@@ -1521,4 +1524,36 @@ body:not(.onepage-doc) .sticky_menu {
     @media (max-width: 580px) {
       max-width: 100%;
     }
+}
+
+.nav-sidebar{
+  &.default-layout-onepage-sidebar{
+    .nav-item {
+      .dropdown_nav {
+        .nav-item{
+          .dropdown_nav{
+            &.doc-last-depth{
+              display: block !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .nav-item {
+    &.viewed {
+    .dropdown_nav {
+        .dropdown_nav{
+          &.doc-last-depth{
+            display: block !important;
+          }
+        }
+      }
+    }
+    .doc-last-depth-icon{
+      .icon{
+        right: 35px ;
+      }
+    }
+  }
 }
