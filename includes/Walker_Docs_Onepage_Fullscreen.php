@@ -133,7 +133,14 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 		$args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
 
 		$atts                = array();
-		$atts['href']        = "#".sanitize_title(get_the_title($page->ID));
+
+		$get_title = sanitize_title(get_the_title($page->ID));
+
+        if (preg_match('#[0-9]#',$get_title)){
+            $get_title = 'ezd-'.sanitize_title(get_the_title($page->ID)); 
+        }	
+
+		$atts['href']        = "#".$get_title;
 		if ( $page->ID == $current_page ) {
 			$atts['class'] = 'active';
 		}
