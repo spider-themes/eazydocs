@@ -85,7 +85,7 @@ class Walker_Docs extends Walker_Page {
      */
     public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
 
-        $opt = get_option( 'eazydocs_settings' );
+        $opt        = get_option( 'eazydocs_settings' );
 
         if ( isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ) {
             $t = "\t";
@@ -140,20 +140,22 @@ class Walker_Docs extends Walker_Page {
             $page->post_title = sprintf( esc_html__( '#%d (no title)', 'eazydocs' ), $page->ID );
         }
 
-        $thumb = '';
+        $thumb      = '';
         if ( $depth == 0 ) {
             $folder_open = $opt['doc_sec_icon_open']['url'] ?? EAZYDOCS_IMG . '/icon/folder-open.png';
             $folder_closed = $opt['doc_sec_icon']['url'] ?? EAZYDOCS_IMG . '/icon/folder-closed.png';
             $folder = "<img src='$folder_closed' alt='".esc_attr__('folder icon closed', 'eazydocs')."'> <img src='$folder_open' alt='".esc_attr__('folder open icon', 'eazydocs')."'>";
-            $thumb = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
+            $thumb  = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
         }
-
-        $ezd_badge = '';
-        if ( class_exists('EazyDocsPro')) {
-            $badge = get_the_terms($page->ID, 'doc_badge');
+        $ezd_badge  = '';
+        if ( class_exists('EazyDocsPro')) {            
+            $badge  = get_the_terms($page->ID, 'doc_badge');            
             if( is_array( $badge ) ){
                 foreach( $badge as $badges ){
-                    $ezd_badge = '<span class="ezd-doc-badge">'.$badges->name.'</span>';
+                    $ezd_badge      = get_term_meta( $badges->term_id, 'ezd_badge_settings', true );
+                    $badge_color    = $ezd_badge["ezd-badge-color"] ?? '';
+                    $badge_bg       = $ezd_badge["ezd-badge-bg"] ?? '';
+                    $ezd_badge      = '<span class="ezd-doc-badge" style="color:'.$badge_color.';background:'.$badge_bg.'">'.$badges->name.'</span>';
                 }
             }
         }

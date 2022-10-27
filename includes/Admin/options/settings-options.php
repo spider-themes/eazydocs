@@ -654,15 +654,15 @@ CSF::createSection( $prefix, array(
 	'icon'   => '',
 	'fields' => array(
         array(
-            'id'      => 'docs_content_layout',
-            'type'    => 'radio',
-            'title'   => esc_html__( 'Docs Navigation Layout', 'eazydocs' ),
-            'options' => [
-                'category_base' 		=> esc_html__( 'Collapsed with Icons', 'eazydocs' ),
+            'id'      	=> 'docs_content_layout',
+            'type'    	=> 'radio',
+            'title'   	=> esc_html__( 'Docs Navigation Layout', 'eazydocs' ),
+            'options' 	=> [
+                'category_base'  => esc_html__( 'Collapsed with Icons', 'eazydocs' ),
                 'badge_base'     => esc_html__( 'Extended Docs', 'eazydocs' ),
             ],
-            'default' => 'badge_base',
-            'class'   => 'eazydocs-pro-notice',
+            'default' 	=> 'badge_base',
+            'class'   	=> 'eazydocs-pro-notice',
         ),
 		
 		array(
