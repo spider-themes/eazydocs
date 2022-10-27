@@ -36,7 +36,7 @@ class Walker_Docs extends Walker_Page {
 
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat("\t", $depth);
-        $output .= '<span class="icon"><i class="arrow_carrot-down"></i></span>'."\n$indent<ul class='dropdown_nav'>\n";
+        $output .= '<span class="icon"><i class="arrow_carrot-down"></i></span> </div>'."\n$indent<ul class='dropdown_nav'>\n";
 
         if ( $args['has_children'] && $depth == 0 ) {
             $classes = isset($parent_item->ID) ? array( 'page_item', 'extra-class', 'page-item-' . self::$parent_item->ID ) : '';
@@ -167,8 +167,10 @@ class Walker_Docs extends Walker_Page {
         if ( $page->ID == $current_page ) {
             $atts['class'] = 'active';
         }
+        $doc_link = '';
         if ( isset( $args['pages_with_children'][ $page->ID ] ) || $depth == 0 ) {
             $atts['class'] = 'nav-link';
+            $doc_link = '<div class="doc-link">';
         }
         $atts['aria-current'] = ( $page->ID == $current_page ) ? 'page' : '';
 
@@ -203,14 +205,14 @@ class Walker_Docs extends Walker_Page {
         }
 
         $output .= $indent . sprintf(
-                '<li%s><a%s>%s%s%s</a>',
+                '<li%s> %s <a%s>%s%s%s</a>',
                 // '<li%s><a%s>%s%s%s</a>',
                 $css_classes,
+                $doc_link,
                 $attributes,
                 $args['link_before'],
                 /** This filter is documented in wp-includes/post-template.php */
                 apply_filters( 'the_title', $page->post_title, $page->ID ),
-
                 $args['link_after']
             );
 

@@ -55,7 +55,7 @@ p .footnotes-link::after {
       display: flex;
     }
     .dropdown_nav {
-      padding-top: 0;
+      padding-top: 10px;
       display: none !important;
       transition: .3s all;
     }
@@ -179,7 +179,7 @@ p .footnotes-link::after {
       li {
         margin-top: 10px;
         a::before {
-          content: "\35";
+          content: "=";
           padding-right: 10px;
         }
       }

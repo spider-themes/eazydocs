@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs
 Requires at least: 5.0
 Tested up to: 6.0.2
 Requires PHP: 7.4
-Stable tag: 1.3.1x
+Stable tag: 1.3.4x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.3.5 (28 October 2022) =
+Tweaked: Excerpt content support in the doc section archive
+Tweaked: Left sidebar design (doc item hover, active states spacing) improved
+Tweaked: Doc single page view improved on mobile devices
+Tweaked: Last level doc item support added in the onepage doc layouts (unlocked in EazyDocs Pro, Docy and Docly themes)
 
 = v1.3.4 (15 October 2022) =
 Fixed: The right sidebar TOC was not showing in the previous version (1.3.3)

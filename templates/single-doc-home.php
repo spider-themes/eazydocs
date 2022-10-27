@@ -20,7 +20,7 @@ if ( $sections && $post->post_parent === 0 ) :
 		foreach ( $sections as $section ) : ?>
             <div class="col-lg-6 col-sm-6">
                 <div class="media documentation_item">
-                    <div class="icon">
+                    <div class="icon bs-sm">
 						<?php
 						if ( has_post_thumbnail( $section->ID ) ) {
 							echo get_the_post_thumbnail( $section->ID, 'full' );
@@ -32,9 +32,9 @@ if ( $sections && $post->post_parent === 0 ) :
                     </div>
                     <div class="media-body">
                         <a href="<?php echo get_permalink( $section->ID ); ?>" class="doc-sec title">
-                            <?php echo wp_kses_post( $section->post_title ); ?>
+                            <?php echo $section->post_title; ?>
                         </a>
-                        <p> <?php echo wp_trim_words( $section->post_content, $sec_excerpt, '' ); ?> </p>
+                        <p> <?php echo wp_trim_words( get_the_excerpt($section->ID), $sec_excerpt, '' ); ?> </p>
                     </div>
                 </div>
             </div>

@@ -3,8 +3,33 @@
 
     $(document).ready(function() {
 
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        // Check if scrollbar visible
+        function isScrollbarVisible() {
+            return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
+        }
+
+        /**
+         * If is scrollbar visible for a selector
+         * @param selector
+         */
+        function isScrollVisible( selector ) {
+            let is_scrollbar =  $(selector).get(0).scrollHeight > $(selector).height();
+            if ( is_scrollbar ) {
+                $(selector).removeClass('no_scrollbar').addClass('has_scrollbar')
+            } else {
+                $(selector).removeClass('has_scrollbar').addClass('no_scrollbar')
+            }
+        }
+
+        // Check if sidebar scroll is visible
+        isScrollVisible('.doc_left_sidebarlist .scroll')
+        $('.nav-sidebar .nav-item span.icon').on('click', function () {
+            isScrollVisible('.doc_left_sidebarlist .scroll')
+        })
+
+        // Bootstrap Tooltip
+        let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
 
@@ -104,33 +129,33 @@
                     $(this).parent().siblings().find('ul').hide(300)
                 })
             } else {
-                $('.nav-sidebar > li .icon').on('click', function (e) {
-                    $(this).parent().find('ul').first().toggle(300)
-                    $(this).parent().siblings().find('ul').hide(300)
+                $('.nav-sidebar > li .doc-link .icon').on('click', function (e) {
+                    $(this).parent().parent().find('ul').first().toggle(300)
+                    $(this).parent().parent().siblings().find('ul').hide(300)
                 })
             }
         }
         active_dropdown()
 
-        $('.nav-sidebar > li > .icon').each(function () {
+        $('.nav-sidebar > li > .doc-link .icon').each(function () {
             let $this = $(this)
             $this.on('click', function (e) {
-                let has = $this.parent().hasClass('active')
+                let has = $this.parent().parent().hasClass('active')
                 $('.nav-sidebar li').removeClass('active')
                 if (has) {
-                    $this.parent().removeClass('active')
+                    $this.parent().parent().removeClass('active')
                 } else {
-                    $this.parent().addClass('active')
+                    $this.parent().parent().addClass('active')
                 }
             })
-        });
+        })
         
-        $('.nav-sidebar > li > .dropdown_nav > li > .icon').each(function () {
+        $('.nav-sidebar > li > .dropdown_nav > li > .doc-link .icon').each(function () {
             let $this = $(this)
             $this.on('click', function (e) {
-                $this.parent().toggleClass('active')               
+                $this.parent().parent().toggleClass('active')
             })
-        });
+        })
         
         /**
          * Print doc

@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 1.3.4
+ * Version: 1.3.5
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -43,7 +43,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 						'has_addons'      => false,
 						'has_paid_plans'  => true,
 						'trial'           => [
-							'days'               => 7,
+							'days'               => 30,
 							'is_require_payment' => true,
 						],
 						'menu'            => [
@@ -88,7 +88,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 *
 		 * @var string The plugin version.
 		 */
-		const version = '1.3.2';
+		const version = '1.3.5';
 
 		/**
 		 * The plugin path.

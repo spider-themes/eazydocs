@@ -95,7 +95,7 @@
     gap: 0.325rem;
     display: none;
     @include property;
-    a {
+    a.link {
         text-decoration: none;
         line-height: 0;
         .dashicons {

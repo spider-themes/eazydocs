@@ -2,19 +2,6 @@ main, main#main, section {
   padding: 0;
 }
 
-.single-docs {
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
-    font-weight: 700;
-  }
-  .meta {
-    color: var(--black_500);
-    font-size: 14px;
-    font-weight: 400;
-    display: flex;
-  }
-}
-
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,

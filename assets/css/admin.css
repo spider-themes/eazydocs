@@ -775,7 +775,7 @@ body.ezd-premium .accordion-title.ez-section-title {
 }
 body.ezd-premium .accordion-title .DragHandle-icon {
   position: absolute;
-  left: 0;
+  left: 2px;
   font-size: 12px;
   width: 35px;
   display: none;
@@ -1499,6 +1499,7 @@ a.child-delete {
   border-bottom: 1px solid #e5e5e52e;
   display: flex;
   font-size: 12px;
+  align-items: center;
 }
 .ezd-admin-bulk-options .ezd-admin-bulk-actions a:last-child {
   border-bottom: none;
@@ -1751,26 +1752,26 @@ a.child-delete {
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
-.link a {
+.link a.link {
   text-decoration: none;
   line-height: 0;
 }
-.link a .dashicons {
+.link a.link .dashicons {
   color: var(--black_200);
   font-size: 18px;
   padding-top: 2px;
 }
-.link a .dashicons:hover {
+.link a.link .dashicons:hover {
   color: #fff;
 }
-.link a .parent-doc-drag {
+.link a.link .parent-doc-drag {
   vertical-align: auto;
   cursor: move;
 }
-.link a .parent-doc-drag:hover path {
+.link a.link .parent-doc-drag:hover path {
   stroke: #fff;
 }
-.link a.eazydocs-pro-notice .dashicons {
+.link a.link.eazydocs-pro-notice .dashicons {
   color: #f1bd6c;
 }
 .link:hover svg {
