@@ -122,6 +122,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Changelog ==
 
 = v1.3.5 (28 October 2022) =
+New: Copy link button added to the single doc page
 Tweaked: Excerpt content support in the doc section archive
 Tweaked: Left sidebar design (doc item hover, active states spacing) improved
 Tweaked: Doc single page view improved on mobile devices

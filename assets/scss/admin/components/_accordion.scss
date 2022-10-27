@@ -216,7 +216,6 @@
           color:#f1bd6c
         }
       }
-
     }
   }
 
@@ -227,7 +226,6 @@
   .right-content {
     display: flex;
     align-items: center;
-
     .progress-text {
       font-size: var(--fs-12);
       color: var(--clr-text-light);
@@ -238,15 +236,21 @@
 
 /** === EazyDocs Premium Style === **/
 body.ezd-premium {
+  .easydocs-accordion-item.child-one {
+    .accordion-title.has-child::before {
+      left: 60px;
+    }
+    .nesting-accordion a.child-last-label {
+      margin-left: 80px;
+    }
+  }
   .accordion-title {
     padding: 10px 30px 10px 60px;
-
     &:hover {
       .DragHandle-icon {
         display: block;
       }
     }
-
     &::before {
       left: 40px;
     }
@@ -254,7 +258,6 @@ body.ezd-premium {
     &.ez-section-title {
       padding: 13px 30px 13px 60px !important;
     }
-
     .DragHandle-icon {
       position: absolute;
       left: 2px;

@@ -1600,3 +1600,25 @@ body:not(.onepage-doc) .sticky_menu {
     }
   }
 }
+
+/** === Share Button === **/
+.share-this-doc {
+  width: fit-content;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: var(--black_400);
+  transition: all .3s;
+  &:hover {
+    cursor: pointer;
+    color: var(--ezd_brand_color);
+  }
+  &.copied{
+    &:hover {
+      cursor: auto;
+      color: var(--black_400);
+    }
+  }
+  i {
+    margin-right: 2px;
+  }
+}

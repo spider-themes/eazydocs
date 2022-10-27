@@ -1885,6 +1885,26 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   right: 35px;
 }
 
+/** === Share Button === **/
+.share-this-doc {
+  width: fit-content;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: var(--black_400);
+  transition: all 0.3s;
+}
+.share-this-doc:hover {
+  cursor: pointer;
+  color: var(--ezd_brand_color);
+}
+.share-this-doc.copied:hover {
+  cursor: auto;
+  color: var(--black_400);
+}
+.share-this-doc i {
+  margin-right: 2px;
+}
+
 .modal-content .shortcode_info .row {
   margin-top: 20px;
 }
@@ -2044,9 +2064,6 @@ p .footnotes-link::after {
 .article_list li ul.children {
   list-style: none;
   padding-left: 25px;
-}
-.article_list li ul.children li {
-  margin-top: 10px;
 }
 .article_list li ul.children li a::before {
   content: "=";

@@ -761,6 +761,12 @@ label {
 }
 
 /** === EazyDocs Premium Style === **/
+body.ezd-premium .easydocs-accordion-item.child-one .accordion-title.has-child::before {
+  left: 60px;
+}
+body.ezd-premium .easydocs-accordion-item.child-one .nesting-accordion a.child-last-label {
+  margin-left: 80px;
+}
 body.ezd-premium .accordion-title {
   padding: 10px 30px 10px 60px;
 }

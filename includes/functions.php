@@ -222,7 +222,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 	function eazydocs_breadcrumbs() {
 		global $post;
 		$home_text  = eazydocs_get_option( 'breadcrumb-home-text', 'eazydocs_settings' );
-		$front_page = ! empty ( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs-pro' );
+		$front_page = ! empty ( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs' );
 
 		$html = '';
 		$args = apply_filters( 'eazydocs_breadcrumbs', [
@@ -346,7 +346,7 @@ if( ! function_exists('docs_root_title') ){
 	function docs_root_title() {
 		global $post;
 		$home_text  = eazydocs_get_option( 'breadcrumb-home-text', 'eazydocs_settings' );
-		$front_page = ! empty ( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs-pro' );
+		$front_page = ! empty ( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs' );
 
 		$html = '';
 		$args = apply_filters( 'eazydocs_breadcrumbs', [
@@ -565,7 +565,7 @@ function eazydocs_one_page( $doc_id ) {
 		if ( count( $one_page_docs ) < 1 ) :
 			?>
 			<button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo admin_url( 'admin.php/One_Page.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>">
-				<?php esc_html_e( 'Make OnePage Doc', 'eazydocs-pro' ); ?>
+				<?php esc_html_e( 'Make OnePage Doc', 'eazydocs' ); ?>
 			</button>
 		<?php
 		else :

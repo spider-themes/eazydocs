@@ -634,7 +634,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'feedback_count',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Feedback Count', 'eazydocs-pro' ),
+			'title'      => esc_html__( 'Feedback Count', 'eazydocs' ),
 			'default'    => true,
 			'dependency' => array(
 				'docs-feedback',
@@ -745,6 +745,32 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Right Sidebar', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
+		array(
+			'id'         => 'is_copy_link',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Copy Link Button', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_width' => 72,
+			'default'    => true,
+		),
+
+        array(
+            'id'         => 'copy_link_text',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Copy Link Text', 'eazydocs' ),
+            'default'    => esc_html__( 'Copy link', 'eazydocs' ),
+            'dependency' => array( 'is_copy_link', '==', '1' ),
+        ),
+
+        array(
+            'id'         => 'copy_link_text_success',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Success Message', 'eazydocs' ),
+            'default'    => esc_html__( 'URL copied to clipboard', 'eazydocs' ),
+            'dependency' => array( 'is_copy_link', '==', '1' ),
+        ),
+
 		array(
 			'id'         => 'font-size-switcher',
 			'type'       => 'switcher',

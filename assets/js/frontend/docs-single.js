@@ -3,6 +3,20 @@
 
     $(document).ready(function() {
 
+        // Copy the current page link to clipboard
+        if ( $('.share-this-doc').length ) {
+            $('.share-this-doc').on('click', function (e) {
+                e.preventDefault();
+                let success_message = $(this).data('success-message');
+                let $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val($(location).attr('href')).select();
+                document.execCommand("copy");
+                $temp.remove();
+                $(this).text(success_message).addClass('copied');
+            })
+        }
+
         // Check if scrollbar visible
         function isScrollbarVisible() {
             return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
