@@ -37,6 +37,7 @@ $toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS', 'eazydocs' );
              * Dark Mode switcher
              */
             eazydocs_get_template_part('tools/dark-mode-switcher');
+
             if( ! empty ( $toc_switcher ) ) :
                 ?>
                 <div class="table-of-content">
@@ -45,16 +46,29 @@ $toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS', 'eazydocs' );
                 </div>
                 <?php
             endif;
-
-            // Widgets area
-            if ( is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 ) :
-                ?>
-                <div class="ezd-widgets">
-                    <?php dynamic_sidebar('doc_sidebar') ?>
-                </div>
-                <?php
-            endif;
             ?>
+            <div class="ezd-widgets">
+                <?php
+                // Widgets area
+                $parent_doc_id       = get_root_parent_id( get_queried_object_id() );
+                $content_type        = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar_type', true );
+                $ezd_shortcode       = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar', true );
+
+                if( ! empty ( $ezd_shortcode ) ){                     
+                    if (  $content_type  == 'string_data_right' ) {
+                        echo html_entity_decode( $ezd_shortcode ) ?? '';
+                    } elseif ( $content_type == 'shortcode_right' ) {
+                        echo do_shortcode( html_entity_decode( $ezd_shortcode ) );                
+                    } else {
+                        dynamic_sidebar( html_entity_decode( $ezd_shortcode ) );                   
+                    }
+                } else {
+                    if ( is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 ) {
+                        dynamic_sidebar('doc_sidebar');
+                    }
+                }
+                ?>
+            </div>
         </div>
     </div>
 </div>

@@ -92,6 +92,7 @@ $count = $query->found_posts;
                                 if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
                                     do_action('eazydocs_parent_doc_duplicate', get_the_ID());
                                     do_action('eazydocs_doc_visibility', get_the_ID());
+                                    do_action('eazydocs_doc_sidebar', get_the_ID());
                                 else :
                                     ?>
                                     <a href="javascript:void(0);" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>"> 
@@ -101,6 +102,10 @@ $count = $query->found_posts;
                                     <a href="javascript:void(0);" target="_blank" class="docs-visibility eazydocs-pro-notice" title="<?php esc_attr_e('Docs visibility', 'easydocs'); ?>"> 
                                         <span class="dashicons dashicons-visibility"></span>
                                         <span> <?php esc_html_e( 'Visibility', 'eazydocs' ); ?> </span>
+                                    </a>
+                                    <a href="javascript:void(0);" target="_blank" class="docs-sidebar eazydocs-pro-notice" title="<?php esc_attr_e('Docs sidebar', 'easydocs'); ?>"> 
+                                        <span class="dashicons dashicons-welcome-widgets-menus"></span>
+                                        <span> <?php esc_html_e( 'Sidebar', 'eazydocs' ); ?> </span>
                                     </a>
                                     <?php
                                 endif;

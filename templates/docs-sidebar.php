@@ -83,6 +83,20 @@ if( $credit_enable == '1' ){
 					) );
 					?>
                 </ul>
+				
+				<?php 
+				$parent_doc_id_left      = get_root_parent_id( get_queried_object_id() );
+				$content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar_type', true );
+				$ezd_shortcode_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
+
+				if ( $content_type_left  == 'string_data' ) {
+					echo html_entity_decode( $ezd_shortcode_left ) ?? '';
+				} elseif ( $content_type_left == 'shortcode' ) {
+					echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
+				} else {
+					dynamic_sidebar( html_entity_decode( $ezd_shortcode_left ) );
+				}
+				?>
             </div>
 			<?php
 		endif;
