@@ -85,6 +85,11 @@ if ( is_array( $depth_one_parents ) ) :
 						if ( ! empty( $child->post_password ) ) {
 							$post_status = 'protected';
 						}
+                        
+                        $get_section_child_one = array(
+                            'post_parent' => $child->ID, // Current post's ID
+                        );
+                        $get_section_children_one = get_children( $get_section_child_one );
 						?>
                         <li <?php post_class( "easydocs-accordion-item accordion ez-section-acc-item mix ". esc_attr($post_status) ); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                             <div class="accordion-title ez-section-title <?php echo count($doc_items) > 0 ? 'has-child' : ''; ?>">
@@ -121,7 +126,7 @@ if ( is_array( $depth_one_parents ) ) :
                                                     <?php do_action('eazydocs_section_doc_duplicate', $child->ID, $item); ?>
                                                 </li>
                                                 <?php
-                                            else :
+                                            else : 
                                             ?>
                                                 <li class="duplicate">
                                                     <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
@@ -137,7 +142,19 @@ if ( is_array( $depth_one_parents ) ) :
                                                     <span class="dashicons dashicons-plus-alt2"></span>
                                                 </a>
                                             </li>
-                                        <?php endif; ?>
+                                        <?php endif;
+                                        
+                                        if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
+                                            if ( ! empty($get_section_children_one) ) :
+                                                ?>
+                                                <li class="visibility">
+                                                    <?php do_action('eazydocs_doc_visibility_depth_one', $child->ID ); ?>
+                                                </li>
+                                                <?php
+                                            endif;
+                                        endif;
+                                        ?>
+                                        
                                         <li>
                                             <a href="<?php echo get_permalink( $child ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
                                                 <span class="dashicons dashicons-external"></span>
@@ -201,6 +218,11 @@ if ( is_array( $depth_one_parents ) ) :
                                         }
 		                                $parent;
 		                                $dep2 = $doc_item->ID;
+                                        
+                                        $get_section_child = array(
+                                            'post_parent' => $dep2, // Current post's ID
+                                        );
+                                        $get_section_children_two = get_children( $get_section_child );
 		                                ?>
                                         <ul class="accordionjs">
                                             <li <?php post_class( "easydocs-accordion-item accordion mix child-one ". $post_status ); ?> data-id="<?php echo esc_attr($doc_item->ID); ?>">
@@ -231,7 +253,7 @@ if ( is_array( $depth_one_parents ) ) :
                                                                     <li class="duplicate">
                                                                         <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
                                                                     </li>
-                                                                        <?php
+                                                                    <?php
                                                                     else :
                                                                     ?>
                                                                     <li class="duplicate">
@@ -239,17 +261,26 @@ if ( is_array( $depth_one_parents ) ) :
                                                                             <span class="dashicons dashicons-admin-page"></span>
                                                                         </a>
                                                                     </li>
-                                                                        <?php
+                                                                    <?php
                                                                     endif;
                                                                 endif;
-                                                            ?>
-
+                                                            ?>                                                            
                                                             <li>
                                                                 <a href="<?php echo admin_url( 'admin.php' ); ?>/Create_Post.php?childID=<?php echo $doc_item->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
                                                                     <span class="dashicons dashicons-plus-alt2"></span>
                                                                 </a>
                                                             </li>
-
+                                                            <?php 
+                                                            if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
+                                                                if ( ! empty($get_section_children_two) ) :
+                                                                    ?>
+                                                                    <li class="visibility">
+                                                                        <?php do_action('eazydocs_doc_visibility_depth_two', $dep2 ); ?>
+                                                                    </li>
+                                                                    <?php
+                                                                endif;
+                                                            endif;
+                                                            ?>
                                                             <li>
                                                                 <a href="<?php echo get_permalink( $doc_item ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
                                                                     <span class="dashicons dashicons-external"></span>
@@ -373,10 +404,10 @@ if ( is_array( $depth_one_parents ) ) :
 				<?php esc_html_e( 'Add Section', 'eazydocs' ); ?>
             </button>
             <?php
-                $current_theme      = get_template();
-                if ( $current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
-                    eazydocs_one_page( $item );
-                }
+            $current_theme      = get_template();
+            if ( $current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
+                eazydocs_one_page( $item );
+            }
             ?>
         </div>
 	    <?php

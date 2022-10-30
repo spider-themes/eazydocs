@@ -70,18 +70,18 @@ class Assets {
             }
             wp_localize_script('jquery', 'eazydocs_local_object',
                 array(
-                    'ajaxurl' => $ajax_url,
-                    'EAZYDOCS_FRONT_CSS' => EAZYDOCS_FRONT_CSS,
-                    'EAZYDOCS_ASSETS' => EAZYDOCS_ASSETS,
-                    'create_prompt_title' => esc_html__('Enter Doc Title', 'eazydocs'),
-                    'delete_prompt_title' => esc_html__('Are you sure to delete?', 'eazydocs'),
-                    'no_revert_title' => esc_html__("This doc will be deleted with the child docs and you won't be able to revert!", "eazydocs"),
-                    'clone_prompt_title' => esc_html__("Are you sure to Duplicate this doc?", "eazydocs"),
-                    'nonce' => wp_create_nonce('eazydocs-admin-nonce'),
-                    'one_page_prompt_docs' => eazydocs_pro_doc_list(),
-                    'one_page_prompt_sidebar' => sidebar_selectbox(),
+                    'ajaxurl' 					=> $ajax_url,
+                    'EAZYDOCS_FRONT_CSS' 		=> EAZYDOCS_FRONT_CSS,
+                    'EAZYDOCS_ASSETS' 			=> EAZYDOCS_ASSETS,
+                    'create_prompt_title' 		=> esc_html__('Enter Doc Title', 'eazydocs'),
+                    'delete_prompt_title' 		=> esc_html__('Are you sure to delete?', 'eazydocs'),
+                    'no_revert_title' 			=> esc_html__("This doc will be deleted with the child docs and you won't be able to revert!", "eazydocs"),
+                    'clone_prompt_title' 		=> esc_html__("Are you sure to Duplicate this doc?", "eazydocs"),
+                    'nonce' 					=> wp_create_nonce('eazydocs-admin-nonce'),
+                    'one_page_prompt_docs' 		=> eazydocs_pro_doc_list(),
+                    'one_page_prompt_sidebar' 	=> sidebar_selectbox(),
                     'one_page_doc_sidebar_edit' => edit_sidebar_selectbox(),
-                    'edit_one_page_url' => admin_url('admin.php/One_Page_Edit.php?edit_docs=yes')
+                    'edit_one_page_url' 		=> admin_url('admin.php/One_Page_Edit.php?edit_docs=yes')
                 )
             );
         }
