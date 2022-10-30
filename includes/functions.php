@@ -672,7 +672,17 @@ function sidebar_selectbox() {
 	foreach ( $wp_registered_sidebars as $wp_registered_sidebar ) {
 		$sidebars .= '<option value="' . $wp_registered_sidebar['id'] . '">' . $wp_registered_sidebar['name'] . '</option>';
 	}
+	return $sidebars;
+}
 
+function get_reusable_blocks(){
+	$wp_registered_blocks = get_posts([
+		'post_type' 	  => 'wp_block'
+	]);
+	$sidebars = '';
+	foreach ( $wp_registered_blocks as $wp_registered_block ) {
+		$sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
+	}
 	return $sidebars;
 }
 

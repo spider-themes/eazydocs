@@ -60,7 +60,14 @@ $toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS', 'eazydocs' );
                     } elseif ( $content_type == 'shortcode_right' ) {
                         echo do_shortcode( html_entity_decode( $ezd_shortcode ) );                
                     } else {
-                        dynamic_sidebar( html_entity_decode( $ezd_shortcode ) );                   
+                        $wp_blocks = new WP_Query([
+                            'post_type' 	=> 'wp_block',
+                            'p'				=> $ezd_shortcode
+                        ]);
+                        while( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
+                        the_content();
+                        endwhile;
+                        wp_reset_postdata();                  
                     }
                 } else {
                     if ( is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 ) {

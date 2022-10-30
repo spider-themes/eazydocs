@@ -96,7 +96,14 @@ if( $credit_enable == '1' ){
 		} elseif ( $content_type_left == 'shortcode' ) {
 			echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
 		} else {
-			dynamic_sidebar( html_entity_decode( $ezd_shortcode_left ) );
+			$wp_blocks = new WP_Query([
+				'post_type' 	=> 'wp_block',
+				'p'				=> $ezd_shortcode_left
+			]);
+			while( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
+			the_content();
+			endwhile;
+			wp_reset_postdata();
 		}
 		?>
 		</div>
