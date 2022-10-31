@@ -679,11 +679,38 @@ function get_reusable_blocks(){
 	$wp_registered_blocks = get_posts([
 		'post_type' 	  => 'wp_block'
 	]);
-	$sidebars = '';
-	foreach ( $wp_registered_blocks as $wp_registered_block ) {
-		$sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
+	if ( ! empty ( $wp_registered_blocks )) {
+		$sidebars = '';
+		
+		foreach ( $wp_registered_blocks as $wp_registered_block ) {
+			$sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
+		}
+		
+		$return_output = '<label for="ezd-shortcode"> Select a sidebar (Optional) </label><br><select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat">'.$sidebars.'</select>';
+		return $return_output;
 	}
-	return $sidebars;
+}
+
+function get_reusable_blocks_right(){
+	$wp_registered_blocks = get_posts([
+		'post_type' 	  => 'wp_block'
+	]);
+	if ( ! empty ( $wp_registered_blocks )) {
+		$sidebars = '';
+		
+		foreach ( $wp_registered_blocks as $wp_registered_block ) {
+			$sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
+		}
+		
+		$return_output = '<label for="ezd-shortcode"> Select a sidebar (Optional) </label><br><select  name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">'.$sidebars.'</select>';
+		return $return_output;
+	}
+}
+
+function no_reusable_blocks(){
+	$admin_url = admin_url('post-new.php?post_type=wp_block');
+	$no_reusable_block = '<span class="ezd-no-reusable-block-wrap">No reusable blocks found! <a href="'.$admin_url.'">Create reusable block</a> <br> See how to create reusable block <a href="https://wordpress.org/support/article/reusable-blocks/" target="_blank">Reusable Block</a></span>';
+	return $no_reusable_block;
 }
 
 function edit_sidebar_selectbox() {
