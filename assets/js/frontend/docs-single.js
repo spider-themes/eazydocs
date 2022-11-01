@@ -13,10 +13,40 @@
                 $temp.val($(location).attr('href')).select();
                 document.execCommand("copy");
                 $temp.remove();
-                $(this).text(success_message).addClass('copied');
-            })
-        }
+                
+                setTimeout(function () {
+                    $('.ezd-link-copied-wrap').text(success_message).addClass('copied');
+                }, 500);
 
+                setTimeout(function () {
+                    $('.ezd-link-copied-wrap').removeClass('copied');
+                }, 3500);
+
+            });           
+        } 
+        $('.ezd-link-copied-wrap').click(function(){
+            $(this).removeClass('copied');
+        });
+        
+        $.fn.ezd_social_popup = function (e, intWidth, intHeight, strResize, blnResize) {
+            
+            // Prevent default anchor event
+            e.preventDefault();
+            
+            // Set values for window
+            intWidth = intWidth || '500';
+            intHeight = intHeight || '400';
+            strResize = (blnResize ? 'yes' : 'no');
+        
+            // Set title and open popup with focus on it
+            var strTitle = ((typeof this.attr('title') !== 'undefined') ? this.attr('title') : 'Social Share'),
+                strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,            
+                objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
+        }
+        $('.social-links a:not(:first)').on("click", function(e) {
+            $(this).ezd_social_popup(e);
+        });
+        
         // Check if scrollbar visible
         function isScrollbarVisible() {
             return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);

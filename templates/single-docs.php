@@ -53,6 +53,7 @@ if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
 }
     ?>
     <section class="doc_documentation_area <?php echo esc_attr( $content_wrapper ); ?>" id="sticky_doc">
+	<div class="ezd-link-copied-wrap"></div>
         <div class="overlay_bg"></div>
 		<?php
 		if ( $breadcrumb == '1' ) {

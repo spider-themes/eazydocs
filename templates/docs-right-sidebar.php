@@ -50,7 +50,7 @@ $toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS', 'eazydocs' );
             <div class="ezd-widgets">
                 <?php
                 // Widgets area
-                $parent_doc_id       = get_root_parent_id( get_queried_object_id() );
+                $parent_doc_id       = function_exists('get_root_parent_id') ? get_root_parent_id( get_queried_object_id() ) : '';
                 $content_type        = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar_type', true );
                 $ezd_shortcode       = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar', true );
 
