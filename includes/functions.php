@@ -686,7 +686,7 @@ function get_reusable_blocks(){
 			$sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
 		}
 		
-		$return_output = '<label for="ezd-shortcode"> Select a sidebar (Optional) </label><br><select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat">'.$sidebars.'</select>';
+		$return_output = '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat">'.$sidebars.'</select>';
 		return $return_output;
 	}
 }
@@ -702,15 +702,16 @@ function get_reusable_blocks_right(){
 			$sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
 		}
 		
-		$return_output = '<label for="ezd-shortcode"> Select a sidebar (Optional) </label><br><select  name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">'.$sidebars.'</select>';
+		$return_output = '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select  name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">'.$sidebars.'</select>';
 		return $return_output;
 	}
 }
 
 function no_reusable_blocks(){
 	$admin_url = admin_url('post-new.php?post_type=wp_block');
-	$no_reusable_block = '<span class="ezd-no-reusable-block-wrap">No reusable blocks found! <a href="'.$admin_url.'">Create reusable block</a> <br> See how to create reusable block <a href="https://wordpress.org/support/article/reusable-blocks/" target="_blank">Reusable Block</a></span>';
-	return $no_reusable_block;
+    $message = sprintf( __( '<br><p> No reusable blocks found. Please create one <a href="%s" target="_blank">here</a> </p>', 'eazydocs' ), $admin_url );
+    $message .= '<p>See how to create a reusable block <a href="https://wordpress.org/support/article/reusable-blocks/" target="_blank">Reusable Block</a></p>';
+	return $message;
 }
 
 function edit_sidebar_selectbox() {
@@ -826,7 +827,11 @@ function ezd_password_form( $output, $post = 0 ) {
 add_filter( 'the_password_form', 'ezd_password_form', 20 );
 
 
-// Admin assets
+/**
+ * EazyDocs Admin pages
+ * If any of the admin pages match the current page, return true.
+ * @return bool|void
+ */
 function ezydocs_admin_pages() {
 	$admin_page 	= $_GET['page'] ?? '';
 	$post_type 		= $_GET['post_type'] ?? '';
@@ -834,39 +839,4 @@ function ezydocs_admin_pages() {
 	if ( $admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings' || $admin_page == 'ezd-user-feedback' ||  $admin_page == 'ezd-user-feedback-archived' || $post_type == 'onepage-docs' || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php') ) {
 		return true;
 	}
-}
-
-
-
-
-function getIndianCurrency($number) {
-    $decimal = round($number - ($no = floor($number)), 2) * 100;
-    $hundred = null;
-    $digits_length = strlen($no);
-    $i = 0;
-    $str = array();
-    $words = array(0 => '', 1 => 'one', 2 => 'two',
-        3 => 'three', 4 => 'four', 5 => 'five', 6 => 'six',
-        7 => 'seven', 8 => 'eight', 9 => 'nine',
-        10 => 'ten', 11 => 'eleven', 12 => 'twelve',
-        13 => 'thirteen', 14 => 'fourteen', 15 => 'fifteen',
-        16 => 'sixteen', 17 => 'seventeen', 18 => 'eighteen',
-        19 => 'nineteen', 20 => 'twenty', 30 => 'thirty',
-        40 => 'forty', 50 => 'fifty', 60 => 'sixty',
-        70 => 'seventy', 80 => 'eighty', 90 => 'ninety');
-    $digits = array('', 'hundred','thousand','lakh', 'crore');
-    while( $i < $digits_length ) {
-        $divider = ($i == 2) ? 10 : 100;
-        $number = floor($no % $divider);
-        $no = floor($no / $divider);
-        $i += $divider == 10 ? 1 : 2;
-        if ($number) {
-            $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
-            $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
-            $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
-        } else $str[] = null;
-    }
-    $Rupees = implode('', array_reverse($str));
-    $paise = ($decimal > 0) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
-    return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
 }

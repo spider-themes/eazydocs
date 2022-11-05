@@ -183,8 +183,8 @@
                         '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>' +
                         '</select>' +
                         '<div class="ezd_content_btn_wrap">' +
-                        '<div class="left_btn_link ezd_left_active">Left Content</div>' +
-                        '<div class="right_btn_link">Right Content</div>' +
+                        '<div class="left_btn_link ezd_left_active">Left Sidebar</div>' +
+                        '<div class="right_btn_link">Right Sidebar</div>' +
                         '</div>' +
 
                         '<div class="ezd_left_content">' +
@@ -202,7 +202,7 @@
                         '<textarea name="ezd-shortcode-content" id="ezd-shortcode-content" rows="5" class="widefat"></textarea>' +
                         '</div>' +
                         '<div class="ezd_widget_content_wrap">' +
-                        '<label for="ezd-shortcode">Select a sidebar (Optional) </label><br>' +
+                        '<label for="ezd-shortcode">Select a Reusable Block (Optional) </label><br>' +
                         '<select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat">' +
                         eazydocs_local_object.one_page_prompt_sidebar +
                         '</select>' +
@@ -224,7 +224,7 @@
                         '<textarea name="ezd-shortcode-content-right" id="ezd-shortcode-content-right" rows="5" class="widefat"></textarea>' +
                         '</div>' +
                         '<div class="ezd_widget_content_wrap_right">' +
-                        '<label for="ezd-shortcode">Select a sidebar (Optional) </label><br>' +
+                        '<label for="ezd-shortcode">Select a Reusable Block (Optional) </label><br>' +
                         '<select name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">' +
                         eazydocs_local_object.one_page_prompt_sidebar +
                         '</select>' +

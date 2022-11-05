@@ -1030,12 +1030,12 @@ a.child-delete {
 }
 
 .easydocs-dropdown {
-  top: 170%;
-  right: -30px;
-  position: absolute;
   -webkit-box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.06);
   -moz-box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.06);
   box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.06);
+  right: -30px;
+  position: absolute;
+  top: calc(100% + 20px);
   width: 260px;
   background-color: var(--clr-white);
   border-radius: 0.5rem;
@@ -1505,7 +1505,7 @@ a.child-delete {
   border-bottom: 1px solid #e5e5e52e;
   display: flex;
   font-size: 12px;
-  align-items: center;
+  align-items: baseline;
 }
 .ezd-admin-bulk-options .ezd-admin-bulk-actions a:last-child {
   border-bottom: none;
@@ -1516,6 +1516,7 @@ a.child-delete {
 .ezd-admin-bulk-options .ezd-admin-bulk-actions a .dashicons {
   font-size: 12px;
   line-height: 21px;
+  padding-right: 2px;
 }
 .ezd-admin-bulk-options .dashicons-arrow-down-alt2 {
   margin-top: 5px;
@@ -1716,6 +1717,12 @@ a.child-delete {
 .easydocs-navitem.is-active .link {
   display: flex;
 }
+.easydocs-navitem.is-active .link .drag-icon {
+  margin-bottom: -5px;
+}
+.easydocs-navitem.is-active .link .drag-icon:hover {
+  cursor: move;
+}
 .easydocs-navitem .title {
   display: flex;
   align-items: center;
@@ -1752,9 +1759,10 @@ a.child-delete {
 }
 
 .link {
-  align-items: center;
+  align-items: start;
   gap: 0.325rem;
   display: none;
+  position: relative;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
@@ -1891,12 +1899,6 @@ a.child-delete {
 .single-grid-container .is-active {
   background: rgba(37, 39, 51, 0.05);
   --grid-icon: var(--clr-blue);
-}
-
-.ezd-no-reusable-block-wrap {
-  font-size: 15px;
-  margin: 15px 0 0;
-  display: block;
 }
 
 @media screen and (min-width: 1200px) {

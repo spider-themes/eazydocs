@@ -143,7 +143,7 @@
       font-size: 14px;
       line-height: 20px;
       font-weight: 500;
-      color: var(--black_600);
+      color: var(--black_500);
       align-items: start;
       flex: 1;
       mark{
@@ -220,7 +220,7 @@
         a {
           font-size: 14px;
           font-weight: 400;
-          color: var(--black_600);
+          color: var(--black_500);
           padding: 0;
           text-decoration: none;
           &.active {
@@ -531,7 +531,7 @@
     color: #fff;
     display: inline-block;
     padding: 1px 15px;
-    background-color: #27ae60;
+    background-color: var(--green_color);
     transition: all 0.2s linear;
     margin-left: 5px;
     border-radius: 15px;
@@ -554,7 +554,7 @@
       font-size: 10px;
       background: rgb(255 255 255 / 0.7);
       font-weight: 400;
-      color: var(--black_700);
+      color: #101010;
       margin-left: 6px;
       position: relative;
       top: -1px;
@@ -1191,7 +1191,7 @@ body:not(.onepage-doc) .sticky_menu {
       color: #616366;
       margin: 0 5px 5px 0;
       a {
-        background: #d5d9de94;
+        background: rgba(175, 184, 193, 0.2);
         color: #616366;
         line-height: 25px;
         padding: 0 14px;
@@ -1602,23 +1602,166 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 /** === Share Button === **/
-.share-this-doc {
-  width: fit-content;
-  font-size: 16px;
-  margin-bottom: 20px;
-  color: var(--black_400);
-  transition: all .3s;
-  &:hover {
-    cursor: pointer;
-    color: var(--ezd_brand_color);
-  }
-  &.copied{
-    &:hover {
-      cursor: auto;
-      color: var(--black_400);
+.ezd-share-btn {
+  color: var(--black_500);
+  margin: 00px 0 20px;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+div#eazydocs_share {
+  background: #00000066;
+  > .modal-dialog{
+    max-width: 500px;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: block;
+    height: fit-content;
+    > .modal-content{
+      padding: 25px;
+      background-color: var(--bs-white);
+      > .close{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 34px;
+        line-height: 0;
+        cursor: pointer;
+        color: var(--black_600);
+        &:hover{
+          color: #cd2653;
+        }
+      }
+      > .eazydocs-share-wrap{
+        > h2{
+          font-size: 1.75rem;
+          font-weight: 700;
+          margin-top: -10px;
+          line-height: 1.5;
+        }
+        > .social-links {
+          a{
+            width: 56px;
+            height: 56px;
+            background-color: rgba(208, 215, 222, 0.55);
+            display: inline-block;
+            border-radius: 30px;
+            text-align: center;
+            padding-top: 15px;
+            font-size: 20px;
+            line-height: 0;
+            color: var(--black_600);
+            margin-right: 10px;
+            &:hover{
+              background-color: rgba(208, 215, 222, 0.4);
+            }
+            i{
+              font-size: 24px;
+              line-height: 24px;
+            }
+            &:nth-child(2){
+              > i{
+                color:rgb(66, 103, 178);
+              }
+            }
+            &:nth-child(3){
+              > i{
+                color:rgb(0, 114, 177);
+              }
+            }
+            &:nth-child(4){
+              > i{
+                color:rgb(29, 161, 242);
+              }
+            }
+          }
+        }
+        > p {
+          font-size: 14px;
+          margin: 20px 0 2px;
+          color: var(--black_600);
+        }
+        > .copy-url-wrap {
+          position: relative;
+          input{
+            width: 100%;
+            background-color: #f5f5f9;
+            opacity: 1;
+            height: calc(1.5em + 0.75rem + 2px);
+            padding: 0.5rem 45px 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #1b1b1b;
+            border-radius: 0.25rem;
+            &:focus{
+              outline: 2px solid #0044c0;
+              outline-offset: -1px;
+            }
+          }
+          > .share-this-doc {
+            width: 20px;
+            position: absolute;
+            right: 15px;
+            top: 3px;
+            font-size: 20px;
+            &:hover{
+              cursor: pointer;
+            }
+            > img{
+              vertical-align: text-top;
+              max-height: 23px
+            }
+          }
+        }
+      }
     }
   }
-  i {
-    margin-right: 2px;
+}
+.ezd-link-copied-wrap{
+  display: none;
+  &.copied{
+    display: block;
+    cursor: pointer;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    background: var(--green_color);
+    width: 300px;
+    padding: 12px 30px 12px 47px;
+    color: white;
+    border-radius: 5px;
+    z-index: 9999;
+    &::before{
+      content: "\e052";
+      font-family: 'ElegantIcons';
+      position: absolute;
+      left: 15px;
+      color: white;
+      font-size: 23px;
+      line-height: 28px;
+    }
+    &::after{
+      content: "M";
+      font-family: "ElegantIcons";
+      position: absolute;
+      right: 15px;
+      color: white;
+      font-size: 30px;
+      line-height: 25px;
+      font-weight: normal;
+    }
+  }
+  &.copied-hide{
+    display: none;
+  }
+}
+body.admin-bar{
+  .ezd-link-copied-wrap{
+    top: 42px
   }
 }

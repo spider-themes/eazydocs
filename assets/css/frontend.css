@@ -3,6 +3,7 @@
 :root {
   --ezd_brand_color: #4c4cf1;
   --secondary_color: #1d2746;
+  --green_color: #27ae60;
   --p_color: #425466;
   --body_bg: #fff;
   --black_50: #ebebeb;
@@ -89,6 +90,8 @@ input[type=search]::-webkit-search-results-decoration {
   background-repeat: no-repeat;
   background-size: contain;
   margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 .ezd_search_banner.has_bg_dark {
   background-size: cover;
@@ -373,13 +376,14 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
   visibility: hidden;
   z-index: 99;
   opacity: 0;
   background: rgba(0, 0, 0, 0.4);
   transition: all 0.3s linear;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 .header_search_form_info {
@@ -550,7 +554,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
-  color: var(--black_600);
+  color: var(--black_500);
   align-items: start;
   flex: 1;
 }
@@ -625,7 +629,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 .nav-sidebar .nav-item .dropdown_nav li a {
   font-size: 14px;
   font-weight: 400;
-  color: var(--black_600);
+  color: var(--black_500);
   padding: 0;
   text-decoration: none;
 }
@@ -908,7 +912,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   color: #fff;
   display: inline-block;
   padding: 1px 15px;
-  background-color: #27ae60;
+  background-color: var(--green_color);
   transition: all 0.2s linear;
   margin-left: 5px;
   border-radius: 15px;
@@ -932,7 +936,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   font-size: 10px;
   background: rgba(255, 255, 255, 0.7);
   font-weight: 400;
-  color: var(--black_700);
+  color: #101010;
   margin-left: 6px;
   position: relative;
   top: -1px;
@@ -1525,7 +1529,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   margin: 0 5px 5px 0;
 }
 .doc-btm ul.card_tagged li a {
-  background: #d5d9de94;
+  background: rgba(175, 184, 193, 0.2);
   color: #616366;
   line-height: 25px;
   padding: 0 14px;
@@ -1886,23 +1890,159 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 /** === Share Button === **/
-.share-this-doc {
-  width: fit-content;
-  font-size: 16px;
-  margin-bottom: 20px;
-  color: var(--black_400);
-  transition: all 0.3s;
+.ezd-share-btn {
+  color: var(--black_500);
+  margin: 0px 0 20px;
+  align-items: center;
+  display: flex;
+  gap: 8px;
 }
-.share-this-doc:hover {
+
+div#eazydocs_share {
+  background: #00000066;
+}
+div#eazydocs_share > .modal-dialog {
+  max-width: 500px;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: block;
+  height: fit-content;
+}
+div#eazydocs_share > .modal-dialog > .modal-content {
+  padding: 25px;
+  background-color: var(--bs-white);
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 34px;
+  line-height: 0;
   cursor: pointer;
-  color: var(--ezd_brand_color);
+  color: var(--black_600);
 }
-.share-this-doc.copied:hover {
-  cursor: auto;
-  color: var(--black_400);
+div#eazydocs_share > .modal-dialog > .modal-content > .close:hover {
+  color: #cd2653;
 }
-.share-this-doc i {
-  margin-right: 2px;
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: -10px;
+  line-height: 1.5;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a {
+  width: 56px;
+  height: 56px;
+  background-color: rgba(208, 215, 222, 0.55);
+  display: inline-block;
+  border-radius: 30px;
+  text-align: center;
+  padding-top: 15px;
+  font-size: 20px;
+  line-height: 0;
+  color: var(--black_600);
+  margin-right: 10px;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:hover {
+  background-color: rgba(208, 215, 222, 0.4);
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a i {
+  font-size: 24px;
+  line-height: 24px;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(2) > i {
+  color: #4267b2;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(3) > i {
+  color: #0072b1;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(4) > i {
+  color: #1da1f2;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > p {
+  font-size: 14px;
+  margin: 20px 0 2px;
+  color: var(--black_600);
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap {
+  position: relative;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap input {
+  width: 100%;
+  background-color: #f5f5f9;
+  opacity: 1;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.5rem 45px 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #1b1b1b;
+  border-radius: 0.25rem;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap input:focus {
+  outline: 2px solid #0044c0;
+  outline-offset: -1px;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc {
+  width: 20px;
+  position: absolute;
+  right: 15px;
+  top: 3px;
+  font-size: 20px;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc:hover {
+  cursor: pointer;
+}
+div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc > img {
+  vertical-align: text-top;
+  max-height: 23px;
+}
+
+.ezd-link-copied-wrap {
+  display: none;
+}
+.ezd-link-copied-wrap.copied {
+  display: block;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  background: var(--green_color);
+  width: 300px;
+  padding: 12px 30px 12px 47px;
+  color: white;
+  border-radius: 5px;
+  z-index: 9999;
+}
+.ezd-link-copied-wrap.copied::before {
+  content: "\e052";
+  font-family: "ElegantIcons";
+  position: absolute;
+  left: 15px;
+  color: white;
+  font-size: 23px;
+  line-height: 28px;
+}
+.ezd-link-copied-wrap.copied::after {
+  content: "M";
+  font-family: "ElegantIcons";
+  position: absolute;
+  right: 15px;
+  color: white;
+  font-size: 30px;
+  line-height: 25px;
+  font-weight: normal;
+}
+.ezd-link-copied-wrap.copied-hide {
+  display: none;
+}
+
+body.admin-bar .ezd-link-copied-wrap {
+  top: 42px;
 }
 
 .modal-content .shortcode_info .row {

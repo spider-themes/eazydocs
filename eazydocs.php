@@ -141,7 +141,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 */
 		public function core_includes() {
 			require_once __DIR__ . '/includes/functions.php';
-			require_once __DIR__ . '/includes/notices.php';
+            // Notices
+			require_once __DIR__ . '/includes/notices/deactivate-other-doc-plugins.php';
+            require_once __DIR__ . '/includes/notices/asking-for-review.php';
+
 			require_once __DIR__ . '/includes/sidebars.php';
 			require_once __DIR__ . '/includes/Frontend/Ajax.php';
 			require_once __DIR__ . '/includes/Frontend/Mailer.php';
@@ -151,13 +154,12 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
-			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+            // Blocks
 			require_once __DIR__ . '/blocks.php';
-			//require_once  __DIR__ . '/vendor/wp-notice/init.php';
 
-			if ( ! class_exists( 'EazyDocsPro' ) ) {
-				require_once __DIR__ . '/includes/Admin/options/settings-options.php';
-			}
+            // Options
+            require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+            require_once __DIR__ . '/includes/Admin/options/settings-options.php';
 		}
 
 		/**

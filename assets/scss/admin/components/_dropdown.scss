@@ -1,7 +1,9 @@
 // Dropdown Menu
 .easydocs-dropdown {
-    @include absolute(top 170% right -30px);
     @include shadow(0, 10px, 35px, #000, 0.06);
+    right: -30px;
+    position: absolute;
+    top: calc(100% + 20px);
     width: 260px;
     background-color: var(--clr-white);
     border-radius: 0.5rem;

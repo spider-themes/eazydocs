@@ -3,7 +3,7 @@
     $(document).ready(function() {
 
         // Eazydocs Pro notices
-        $('.eazydocs-pro-notice ul li:last-child label input').attr('disabled', true);
+        $('body:not(.ezd-premium) .eazydocs-pro-notice ul li:last-child label input').attr('disabled', true);
         // eazydocs pro notice
         function eazydocs_pro_notice() {
             if ( $('body').hasClass('valid') ) {

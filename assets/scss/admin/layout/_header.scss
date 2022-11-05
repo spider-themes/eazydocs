@@ -386,7 +386,7 @@
       border-bottom: 1px solid #e5e5e52e;
       display: flex;
       font-size: 12px;
-      align-items: center;
+      align-items: baseline;
       &:last-child {
         border-bottom: none;
       }
@@ -397,6 +397,7 @@
       .dashicons {
         font-size: 12px;
         line-height: 21px;
+        padding-right: 2px;
       }
     }
   }

@@ -745,46 +745,31 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Right Sidebar', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
-		array(
-			'type'       => 'heading',
-			'title'      => esc_html__( 'Social Links', 'eazydocs' ),			
-		),
+        array(
+            'type'       => 'heading',
+            'title'      => esc_html__( 'Sharing Doc', 'eazydocs' ),
+        ),
 
-		array(
-			'id'         => 'is_social_links',
-			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable / Disable', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
-			'class'      => 'eazydocs-pro-notice',
-			'text_width' => 72,
-			'default'    => false
-		),
+        array(
+            'id'         => 'is_social_links',
+            'type'       => 'switcher',
+            'title'      => esc_html__( 'Share Button', 'eazydocs' ),
+            'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+            'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+            'text_width' => 72,
+            'default'    => true
+        ),
 
-		array(
-			'id'         => 'is_post_share_title',
-			'type'       => 'switcher',
-			'title'      => esc_html__( 'Post Title', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
-            'dependency' => array( 'is_social_links', '==', '1' ),
-			'class'      => 'eazydocs-pro-notice',
-			'text_width' => 72,
-			'default'    => false,
-		),
-
-		array(
-			'id'         => 'is_social_btns',
-			'type'       => 'switcher',
-			'title'      => esc_html__( 'Social Links', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
-            'dependency' => array( 'is_social_links', '==', '1' ),
-			'class'      => 'eazydocs-pro-notice',
-			'text_width' => 72,
-			'default'    => false,
-		),
+        array(
+            'id'         => 'share_btn_label',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Share Button Label', 'eazydocs' ),
+            'default'    => esc_html__( 'Share this Doc', 'eazydocs-pro' ),
+            'dependency' => array(
+                array( 'is_copy_link', '==', '1' ),
+                array( 'is_social_links', '==', '1' ),
+            )
+        ),
 
 		array(
 			'id'         => 'is_copy_link',
@@ -793,17 +778,15 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
             'dependency' => array( 'is_social_links', '==', '1' ),
-			'class'      => 'eazydocs-pro-notice',
 			'text_width' => 72,
-			'default'    => false,
+			'default'    => true,
 		),
 
         array(
             'id'         => 'copy_link_label',
             'type'       => 'text',
             'title'      => esc_html__( 'Copy Link Label', 'eazydocs' ),
-            'default'    => esc_html__( 'Or copy link', 'eazydocs' ),    
-			'class'      => 'eazydocs-pro-notice',     
+            'default'    => esc_html__( 'Or copy link', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_copy_link', '==', '1' ),
 				array( 'is_social_links', '==', '1' ),
@@ -815,7 +798,6 @@ CSF::createSection( $prefix, array(
             'type'       => 'text',
             'title'      => esc_html__( 'Success Message', 'eazydocs' ),
             'default'    => esc_html__( 'URL copied to clipboard', 'eazydocs' ),
-			'class'      => 'eazydocs-pro-notice',
 			'dependency' => array(
 				array( 'is_copy_link', '==', '1' ),
 				array( 'is_social_links', '==', '1' ),
@@ -824,7 +806,7 @@ CSF::createSection( $prefix, array(
 		
 		array(
 			'type'       => 'heading',
-			'title'      => esc_html__( 'Others', 'eazydocs' ),			
+			'title'      => esc_html__( 'Tools', 'eazydocs' ),
 		),
 
 		array(
@@ -847,64 +829,38 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 		),
 
-		array(
-			'id'         => 'toc_switcher',
-			'type'       => 'switcher',
-			'title'      => esc_html__( 'Table on Contents (TOC)', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation.', 'eazydocs' ),
-			'default'    => true,
-		),
+        // Features
+        array(
+            'type'       => 'heading',
+            'title'      => esc_html__( 'Features', 'eazydocs' ),
+        ),
 
-		array(
-			'id'         => 'toc_heading',
-			'type'       => 'text',
-			'title'      => esc_html__( 'TOC Heading', 'eazydocs' ),
-			'default'    => esc_html__( 'CONTENTS', 'eazydocs' ),
+        array(
+            'title'      => esc_html__( 'Dark Mode Switcher', 'eazydocs' ),
+            'id'         => 'is_dark_switcher',
+            'type'       => 'switcher',
+            'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+            'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+            'text_width' => 92,
+            'default'    => false,
+            'class'      => 'eazydocs-pro-notice active-theme-docly'
+        ),
+
+        array(
+            'id'         => 'toc_switcher',
+            'type'       => 'switcher',
+            'title'      => esc_html__( 'Table on Contents (TOC)', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation.', 'eazydocs' ),
+            'default'    => true,
+        ),
+
+        array(
+            'id'         => 'toc_heading',
+            'type'       => 'text',
+            'title'      => esc_html__( 'TOC Heading', 'eazydocs' ),
+            'default'    => esc_html__( 'CONTENTS', 'eazydocs' ),
             'dependency' => array( 'toc_switcher', '==', '1' ),
-		),
-
-		array(
-			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
-			'desc'       => __( 'You can display conditional contents using the [conditional_data] shortcode in documentation based on the dropdown value. See the shortcode usage tutorial <a href="https://tinyurl.com/yd46mfax" target="_blank">here</a>.', 'eazydocs' ),
-			'id'         => 'is_conditional_dropdown',
-			'type'       => 'switcher',
-			'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
-			'text_width' => 90,
-			'default'    => false,
-			'class'      => 'eazydocs-pro-notice active-theme'
-		),
-
-		array(
-			'title'      => esc_html__( 'Dropdown Options', 'eazydocs' ),
-			'id'         => 'condition_options',
-			'type'       => 'repeater',
-			'fields'     => array(
-				array(
-					'title' => esc_html__( 'Title', 'eazydocs' ),
-					'id'    => 'title',
-					'type'  => 'text',
-				),
-				array(
-					'title' => esc_html__( 'Icon', 'eazydocs' ),
-					'id'    => 'icon',
-					'type'  => 'icon',
-				),
-			),
-			'dependency' => array( 'is_conditional_dropdown', '==', '1' ),
-			'class'      => 'eazydocs-pro-notice active-theme'
-		),
-
-		array(
-			'title'      => esc_html__( 'Dark Mode Switcher', 'eazydocs' ),
-			'id'         => 'is_dark_switcher',
-			'type'       => 'switcher',
-			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
-			'text_width' => 92,
-			'default'    => false,
-			'class'      => 'eazydocs-pro-notice active-theme-docly'
-		),
+        ),
 
 		array(
 			'title'      => esc_html__( 'Widgets Area', 'eazydocs' ),
@@ -917,8 +873,44 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme-docly'
 		),
-		
-	 
+
+        // Conditional Dropdown
+        array(
+            'title' => esc_html__('Conditional Dropdown', 'eazydocs'),
+            'type' => 'heading'
+        ),
+
+        array(
+            'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
+            'desc'       => __( 'You can display conditional contents using the [conditional_data] shortcode in documentation based on the dropdown value. See the shortcode usage tutorial <a href="https://tinyurl.com/yd46mfax" target="_blank">here</a>.', 'eazydocs' ),
+            'id'         => 'is_conditional_dropdown',
+            'type'       => 'switcher',
+            'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+            'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+            'text_width' => 92,
+            'default'    => false,
+            'class'      => 'eazydocs-pro-notice active-theme'
+        ),
+
+        array(
+            'title'      => esc_html__( 'Dropdown Options', 'eazydocs' ),
+            'id'         => 'condition_options',
+            'type'       => 'repeater',
+            'fields'     => array(
+                array(
+                    'title' => esc_html__( 'Title', 'eazydocs' ),
+                    'id'    => 'title',
+                    'type'  => 'text',
+                ),
+                array(
+                    'title' => esc_html__( 'Icon', 'eazydocs' ),
+                    'id'    => 'icon',
+                    'type'  => 'icon',
+                ),
+            ),
+            'dependency' => array( 'is_conditional_dropdown', '==', '1' ),
+            'class'      => 'eazydocs-pro-notice active-theme'
+        ),
 	)
 ) );
 
@@ -928,7 +920,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Related Articles', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-
 		array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Related Docs Settings', 'eazydocs' )

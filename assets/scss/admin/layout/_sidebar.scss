@@ -51,6 +51,12 @@
         }
         .link {
             display: flex;
+            .drag-icon {
+                margin-bottom: -5px;
+                &:hover {
+                    cursor: move;
+                }
+            }
         }
     }
 
@@ -91,9 +97,10 @@
 }
 
 .link {
-    align-items: center;
+    align-items: start;
     gap: 0.325rem;
     display: none;
+    position: relative;
     @include property;
     a.link {
         text-decoration: none;
@@ -233,9 +240,3 @@
         --grid-icon: var(--clr-blue);
     }
 }
-
-    .ezd-no-reusable-block-wrap{
-      font-size: 15px;
-      margin: 15px 0 0;
-      display: block;
-    }

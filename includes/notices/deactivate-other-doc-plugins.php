@@ -18,7 +18,7 @@ add_action( 'admin_notices', function () {
                 </a>
             </p>
         </div>
-    <?php
+        <?php
     endif;
 });
 

@@ -3,52 +3,42 @@ $is_social_links        = eazydocs_get_option('is_social_links', 'eazydocs_setti
 $is_copy_link           = eazydocs_get_option('is_copy_link', 'eazydocs_settings') ?? '';
 $copy_link_text         = eazydocs_get_option('copy_link_text', 'eazydocs_settings') ?? 'Copy Link';
 $copy_link_text_success = eazydocs_get_option('copy_link_text_success', 'eazydocs_settings') ?? 'Copied!';
-$is_post_share_title        = eazydocs_get_option('is_post_share_title', 'eazydocs_settings') ?? '';
-$is_social_btns        = eazydocs_get_option('is_social_btns', 'eazydocs_settings') ?? '';
+$is_post_share_title    = eazydocs_get_option('is_post_share_title', 'eazydocs_settings') ?? '';
+$is_social_btns         = eazydocs_get_option('is_social_btns', 'eazydocs_settings') ?? '';
 $copy_link_label        = eazydocs_get_option('copy_link_label', 'eazydocs_settings') ?? __( 'Or copy link', 'eazydocs' );
+$share_btn_label        = eazydocs_get_option('share_btn_label', 'eazydocs_settings') ?? __( 'Share', 'eazydocs' );
 
 if ( $is_social_links ) :
-    if ( $is_copy_link || $is_social_btns) : 
+    if ( $is_copy_link || $is_social_btns ) :
     ?>
     <a href="#" class="ezd-share-btn" data-bs-toggle="modal" data-bs-target="#eazydocs_share">
-        <img src="<?php echo EAZYDOCS_IMG . '/share.svg'; ?>" alt="<?php esc_attr_e( 'Share Icon', 'eazydocs' ); ?>"> 
-        <?php esc_html_e( 'Share', 'eazydocs' ); ?>
+        <i class="social_share_square"></i>
+        <?php echo esc_html($share_btn_label) ?>
     </a>
 
     <div class="modal fade" id="eazydocs_share" tabindex="-3" role="dialog" aria-hidden="false">
-        <div class="modal-dialog  " role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-
                 <a class="close" data-bs-dismiss="modal">
                     <i class=" icon_close"></i>
                 </a>
-                
                 <div class="eazydocs-share-wrap">
-                    <?php 
-                    if( $is_post_share_title ) :
-                        ?>
-                        <h2> <?php the_title(); ?> </h2>
-                        <?php 
-                    endif;
-
-                    if( $is_social_btns ) :
-                        ?>
-                        <div class="social-links">
-                            <a href="mailto:?subject=<?php the_title(); ?>&amp;body=Check out this doc <?php the_permalink(); ?>">
-                                <i class="icon_mail"></i>
-                            </a>
-                            <a href="https://www.facebook.com/share.php?u=<?php the_permalink(); ?>">
-                                <i class="social_facebook_circle"></i>
-                            </a> 
-                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>">
-                                <i class="social_linkedin_square"></i>
-                            </a> 
-                            <a href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php the_title(); ?> &amp;hashtags=<?php echo site_url(); ?>">
-                                <i class="social_twitter"></i>
-                            </a> 
-                        </div>
-                        <?php 
-                    endif;
+                    <h2> <?php the_title(); ?> </h2>
+                    <div class="social-links">
+                        <a href="mailto:?subject=<?php the_title(); ?>&amp;body= <?php esc_html_e('Check out this doc', 'eazydocs'); the_permalink(); ?>">
+                            <i class="icon_mail"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share.php?u=<?php the_permalink(); ?>">
+                            <i class="social_facebook_circle"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>">
+                            <i class="social_linkedin_square"></i>
+                        </a>
+                        <a href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php the_title(); ?> &amp;hashtags=<?php echo site_url(); ?>">
+                            <i class="social_twitter"></i>
+                        </a>
+                    </div>
+                    <?php
 
                     if ( $is_copy_link ) : 
                         ?>

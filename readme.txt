@@ -2,7 +2,7 @@
 Contributors: mdjwel, spiderdevs, arafatjamil01, delweratjk
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
-Tested up to: 6.0.2
+Tested up to: 6.1
 Requires PHP: 7.4
 Stable tag: 1.3.4x
 License: GPLv2 or later
@@ -16,11 +16,12 @@ EazyDocs assists you in creating great looking documentation for your products i
 
 ## 🔗 USEFUL LINKS ##
 
-- For documentation and tutorials go to our [Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
-- If you have any more questions, visit our support on the Plugin’s [Forum](https://wordpress.org/support/plugin/eazydocs/)
-- [EazyDocs Landing Page](https://spider-themes.net/eazydocs/) (all features presented there)
-- See the EazyDocs [Frontend Demo Here](https://wordpress-plugins.spider-themes.net/eazydocs/)
-- See the EazyDocs Pro [Frontend Demo Here](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
+- [Get EazyDocs Pro](https://spider-themes.net/eazydocs/) (all features presented there)
+- [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
+- [Plugin's Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+- If you have any more questions, [visit the plugin’s Forum](https://wordpress.org/support/plugin/eazydocs/)
+- [EazyDocs Frontend Demo](https://wordpress-plugins.spider-themes.net/eazydocs/)
+- [EazyDocs Pro Frontend Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 
 ### Reasons to Choose EazyDocs ###
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
@@ -50,8 +51,17 @@ EazyDocs assists you in creating great looking documentation for your products i
 ## 🔍 Ajax Live Search Results ##
 The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
 
+## 🔗 Share Docs via all possible ways ##
+Visitors can share the Docs on social sites as well as they can directly mail or copy the link to share it from the doc single page.
+
 ## 🧱 Building pages with Gutenberg Blocks ##
 You don't have to remember shortcode attributes, values. We made it dynamic. EazyDocs has some pre-built blocks to make the Docs page building easier and quick.
+
+## ⬅️ Collapsible Sidebar ##
+Visitor can collapse the left sidebar while reading to view the doc content large.
+
+## 🗂️ 4 Level Depth Supported ##
+The doc hierarchy depth is supported 4th level depth. Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth)
 
 ## 👁️ Read time, Views Count ##
 Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to show how popular an article.
@@ -72,7 +82,7 @@ No need to memorize or remember the last viewed articles by the user. They can s
 Sometimes readers might be interested to read the Related articles. EazyDocs has a feature to display the Related Articles at the bottom of the Single Doc page to let the readers read articles they interested in.
 
 ## ⚙️ Advanced Customization Options ##
-Customize documentation pages from settings or even add shortcode, Customizer, and more to get the full authority to make it stand out for your visitors. By searching you can find your desired option in a second.
+Customize documentation pages from settings or even add shortcode, Customizer, and more to get the full authority to make it stand out for your visitors. By searching in the Settings page, you can find your desired option in realtime.
 
 
 ### Author ###
@@ -121,12 +131,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.3.5 (28 October 2022) =
-New: Copy link button added to the single doc page
+= v1.3.5 (06 November 2022) =
+New: Share button added to the single doc page (Social share, Email share, Copy link)
 Tweaked: Excerpt content support in the doc section archive
 Tweaked: Left sidebar design (doc item hover, active states spacing) improved
 Tweaked: Doc single page view improved on mobile devices
-Tweaked: Last level doc item support added in the onepage doc layouts (unlocked in EazyDocs Pro, Docy and Docly themes)
+Tweaked: Last level doc item support added in the OnePage doc layouts (unlocked in EazyDocs Pro, Docy and Docly themes)
+Tweaked: Compatibility with any themes improved
 
 = v1.3.4 (15 October 2022) =
 Fixed: The right sidebar TOC was not showing in the previous version (1.3.3)

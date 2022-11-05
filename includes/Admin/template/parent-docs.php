@@ -76,19 +76,22 @@ $count = $query->found_posts;
                     <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
                         <span class="dashicons dashicons-external"></span>
                     </a>
+
                     <?php
-                    if( current_user_can('editor') || current_user_can('administrator') ) :
+                    if ( current_user_can('editor') || current_user_can('administrator') ) :
+                        ?>
+                        <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                            <span class="dashicons dashicons-trash"></span>
+                        </a>
+                        <?php
+                    endif;
                     ?>
-                    <a href="<?php echo admin_url( 'admin.php' ); ?>/Delete_Post.php?DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
-                        <span class="dashicons dashicons-trash"></span>
-                    </a>
-                    <?php endif; ?>
 
                     <span class="ezd-admin-bulk-options" id="bulk-options-<?php echo get_the_ID(); ?>">
                         <span class="dashicons dashicons-arrow-down-alt2"></span>
                         <span class="ezd-admin-bulk-actions">
                             <?php
-                            if( current_user_can('editor') || current_user_can('administrator') ) :
+                            if ( current_user_can('editor') || current_user_can('administrator') ) :
                                 if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
                                     do_action('eazydocs_parent_doc_duplicate', get_the_ID());
                                     do_action('eazydocs_doc_visibility', get_the_ID());
@@ -116,7 +119,7 @@ $count = $query->found_posts;
                                         <span class="dashicons dashicons-visibility"></span>
                                         <span> <?php esc_html_e( 'Visibility', 'eazydocs' ); ?> </span>
                                     </a>
-                                    <a href="javascript:void(0);" target="_blank" class="docs-sidebar eazydocs-pro-notice" title="<?php esc_attr_e('Docs sidebar', 'easydocs'); ?>"> 
+                                    <a href="javascript:void(0);" target="_blank" class="docs-sidebar eazydocs-pro-notice" title="<?php esc_attr_e('Doc sidebar', 'easydocs'); ?>">
                                         <span class="dashicons dashicons-welcome-widgets-menus"></span>
                                         <span> <?php esc_html_e( 'Sidebar', 'eazydocs' ); ?> </span>
                                     </a>
@@ -128,7 +131,6 @@ $count = $query->found_posts;
                     </span>
 
                 </div>
-                
             </li>
             <?php
         endwhile;
