@@ -345,9 +345,6 @@ class Admin
 	public function eaz_nestable_callback()
 	{
 
-		// if (!current_user_can('manage_options')) {
-		// 	return;
-		// }
 		$nestedArray = json_decode(stripslashes($_POST['data']));
 
 		$msg = [];
