@@ -89,7 +89,7 @@ if (is_array($depth_one_parents)) :
                             );
                             $get_section_children_one = get_children($get_section_child_one);
                             $eaz_children = eazydocs_get_children($child->ID);
-                            $eaz_children_class = $eaz_children ? 'dd3-have-children' : ' dd3-have-no-children ';
+                            $eaz_children_class = $eaz_children ? 'dd3-have-children' : '';
                     ?>
                             <li <?php post_class("dd-item dd3-item dd-item-parent easydocs-accordion-item accordion ez-section-acc-item mix " . esc_attr($post_status . ' ' . $eaz_children_class)); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                                 <div class="accordion-title ez-section-title <?php echo count($doc_items) > 0 ? 'has-child' : ''; ?>">
@@ -232,7 +232,7 @@ if (is_array($depth_one_parents)) :
                                             $child_of = eazydocs_get_children($sub_child->ID);
                                             $eaz_children_sub_class = $child_of ? 'dd3-have-sub-children' : '';
                                         ?>
-                                            <li <?php post_class("dd-item dd3-item dd-item-child easydocs-accordion-item" . $sub_post_status . ' ' . $eaz_children_sub_class); ?> data-id="<?php echo esc_attr($sub_child->ID); ?>">
+                                            <li <?php post_class("dd-item dd3-item dd-item-child easydocs-accordion-item accordion mix child-one " . $sub_post_status . ' ' . $eaz_children_sub_class); ?> data-id="<?php echo esc_attr($sub_child->ID); ?>">
 
                                                 <div class="accordion-title <?php echo count($child_depth) > 0 ? 'has-child' : ''; ?>">
 
@@ -394,13 +394,13 @@ if (is_array($depth_one_parents)) :
                                                                             <?php
                                                                             if (current_user_can('editor') || current_user_can('administrator')) :
                                                                                 if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) : ?>
-                                                                                    <li>
+                                                                                    <li class="duplicate">
                                                                                         <?php do_action('eazydocs_single_duplicate', $of_sub_child->ID); ?>
                                                                                     </li>
                                                                                 <?php
                                                                                 else :
                                                                                 ?>
-                                                                                    <li>
+                                                                                    <li class="duplicate">
                                                                                         <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
                                                                                             <span class="dashicons dashicons-admin-page"></span>
                                                                                         </a>
@@ -411,13 +411,29 @@ if (is_array($depth_one_parents)) :
                                                                             ?>
 
                                                                             <li>
+                                                                                <a href="<?php echo admin_url('admin.php'); ?>/Create_Post.php?childID=<?php echo $of_sub_child->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                                                                                    <span class="dashicons dashicons-plus-alt2"></span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <?php
+                                                                            if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) :
+                                                                                if (!empty($get_section_children_two)) :
+                                                                            ?>
+                                                                                    <li class="visibility">
+                                                                                        <?php do_action('eazydocs_doc_visibility_depth_two', $dep2); ?>
+                                                                                    </li>
+                                                                            <?php
+                                                                                endif;
+                                                                            endif;
+                                                                            ?>
+                                                                            <li>
                                                                                 <a href="<?php echo get_permalink($of_sub_child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
                                                                                     <span class="dashicons dashicons-external"></span>
                                                                                 </a>
                                                                             </li>
                                                                             <?php if (current_user_can('editor') || current_user_can('administrator')) : ?>
                                                                                 <li class="delete">
-                                                                                    <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo esc_attr($of_sub_child->ID . ',' . $last_section_ids); ?>" class="child-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                                                                                    <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo esc_attr($of_sub_child->ID . ',' . $last_section_ids); ?>" class="section-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
                                                                                         <span class="dashicons dashicons-trash"></span>
                                                                                     </a>
                                                                                 </li>
