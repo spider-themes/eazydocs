@@ -606,7 +606,7 @@ button.nestable--button[data-action="collapse"]:before {
     transform: rotate(0deg);
 }
 
-.rotate-arrow button.nestable--button[data-action="collapse"]:before {
+.dd3-have-children .rotate-arrow button.nestable--button[data-action="collapse"]:before {
     transform: rotate(90deg);
 }
 

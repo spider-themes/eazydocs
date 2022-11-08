@@ -46,7 +46,6 @@
         $('.dd3-have-children > .accordion-title').click(function (e) {
           let target = $(this).parent().attr('data-id');
           let is_active_child = $(this).parent().hasClass('show-child');
-          console.log(is_active_child);
           if (is_active_child) {
             eaz_create_cookie("eazydocs_current_child", "child-" + target, 999);
           } else {
@@ -142,12 +141,18 @@
         }
       });
     };
-
-    $('.dd').nestable({
-      group: 1,
-      maxDepth: 3
-    }).on('change', eaz_nestable_docs);
+    var eaz_nestable_callback = function () {
+      var dd = $('.dd');
+      if (dd.length > 0) {
+        $('.dd').nestable({
+          group: 1,
+          maxDepth: 3
+        }).on('change', eaz_nestable_docs);
+      }
+    }
+    eaz_nestable_callback();
   });
+
 }(jQuery));
 
 
