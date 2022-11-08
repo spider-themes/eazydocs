@@ -65,6 +65,7 @@ class Assets
 			wp_enqueue_script('sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true);
 			wp_enqueue_script('eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js');
 			wp_enqueue_script('eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js');
+			wp_enqueue_style('eazydocs-nestable', EAZYDOCS_ASSETS . '/css/admin/jquery.nestable.min.css');
 			wp_enqueue_style('eazydocs-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css');
 
 			wp_enqueue_script('eazydocs-nestable', EAZYDOCS_ASSETS . '/js/admin/jquery.nestable.js', array('jquery'), true, true);

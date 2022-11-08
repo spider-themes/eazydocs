@@ -91,7 +91,7 @@ if (is_array($depth_one_parents)) :
                             $eaz_children = eazydocs_get_children($child->ID);
                             $eaz_children_class = $eaz_children ? 'dd3-have-children' : ' dd3-have-no-children ';
                     ?>
-                            <li <?php post_class("dd-item dd3-item dd-item-parent easydocs-accordion-item accordion ez-section-acc-item mix " . esc_attr($post_status . ' ' . $eaz_children_class)); ?> data-id="<?php echo esc_attr($child->ID); ?>">
+                            <li <?php post_class("dd-item dd3-item dd-item-parent easydocs-accordion-item accordion ez-section-acc-item mix " . esc_attr($post_status . ' ' . $eaz_children_class . ' child-' . $child->ID)); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                                 <div class="accordion-title ez-section-title <?php echo count($doc_items) > 0 ? 'has-child' : ''; ?>">
 
                                     <?php
@@ -232,7 +232,7 @@ if (is_array($depth_one_parents)) :
                                             $child_of = eazydocs_get_children($sub_child->ID);
                                             $eaz_children_sub_class = $child_of ? 'dd3-have-sub-children' : '';
                                         ?>
-                                            <li <?php post_class("dd-item dd3-item dd-item-child easydocs-accordion-item" . $sub_post_status . ' ' . $eaz_children_sub_class); ?> data-id="<?php echo esc_attr($sub_child->ID); ?>">
+                                            <li <?php post_class("dd-item dd3-item dd-item-child easydocs-accordion-item" . $sub_post_status . ' ' . $eaz_children_sub_class . ' child-of-' . $sub_child->ID); ?> data-id="<?php echo esc_attr($sub_child->ID); ?>">
 
                                                 <div class="accordion-title <?php echo count($child_depth) > 0 ? 'has-child' : ''; ?>">
 

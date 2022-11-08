@@ -475,9 +475,7 @@ select#ezd_docs_layout {
 }
 
 /*Nestable CSS*/
-.dd-nochildren .dd-placeholder {
-    display: none;
-}
+
 
 .dd-list .dd-list,
 .dd-list .dd-list .dd-list {
@@ -498,15 +496,19 @@ select#ezd_docs_layout {
     margin-bottom: 0;
 }
 
-.dd-collapsed .dd-list {
+/* .dd-collapsed .dd-list {
+    display: none;
+} */
+.dd-list .dd-list,
+.dd-list .dd-list .dd-list {
     display: none;
 }
 
-.dd-item,
-.dd-empty,
-.dd-placeholder {
-    position: relative;
-}
+/* 
+.dd-collapsed .dd-list {
+    display: block;
+} */
+
 
 .dd-item>button {
     display: none !important;
@@ -537,22 +539,6 @@ button.nestable--button {
     transition: 0.3s;
 }
 
-.dd-placeholder,
-.dd-empty {
-    margin: 5px 0;
-    padding: 0;
-    min-height: 30px;
-    background: #f2fbff;
-    border: 1px dashed #b6bcbf;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
-
-.dd-empty {
-    border: 1px dashed #bbb;
-    min-height: 40px;
-}
 
 .dd3-handle {
     position: relative;
@@ -611,13 +597,17 @@ button.nestable--button[data-action="collapse"]:before {
     display: block;
     left: 5px;
     top: 5px;
-    transform: rotate(90deg);
+    transform: rotate(0deg);
     -webkit-transition: 0.3s;
     transition: 0.3s;
 }
 
 .dd3-have-no-children button.nestable--button[data-action="collapse"]:before {
     transform: rotate(0deg);
+}
+
+.rotate-arrow button.nestable--button[data-action="collapse"]:before {
+    transform: rotate(90deg);
 }
 
 .accordion-title.has-child::before,
