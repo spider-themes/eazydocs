@@ -1,18 +1,19 @@
-=== EazyDocs - #1 Beautiful Knowledgebase & Documentation Builder WordPress Plugin ===
+=== EazyDocs - #1 Beautiful Knowledge base, wiki, Documentation Builder Plugin (easydocs, knowledgebase) ===
 Contributors: mdjwel, spiderdevs, arafatjamil01, delweratjk
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
 Tested up to: 6.1
 Requires PHP: 7.4
-Stable tag: 1.3.4x
+Stable tag: 1.3.5x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-EazyDocs assists you in creating great looking documentation for your products in a easy and quick way.
+EazyDocs assists you in creating great-looking documentation for your products in an easy and quick way.
 
 == Description ==
 
-EazyDocs assists you in creating great looking documentation for your products in a easy and quick way. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+EazyDocs assists you in creating great-looking documentation for your products in an easy and quick way. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags and organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+
 
 ## 🔗 USEFUL LINKS ##
 
@@ -23,7 +24,9 @@ EazyDocs assists you in creating great looking documentation for your products i
 - [EazyDocs Frontend Demo](https://wordpress-plugins.spider-themes.net/eazydocs/)
 - [EazyDocs Pro Frontend Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 
+
 ### Reasons to Choose EazyDocs ###
+
 - **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 
 - **No Limitation:** There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
@@ -88,6 +91,7 @@ Customize documentation pages from settings or even add shortcode, Customizer, a
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
 
+
 == Frequently Asked Questions ==
 
 = Does EazyDocs work with any theme? =
@@ -98,6 +102,10 @@ Absolutely not! EazyDocs is as easy to use, as you can think of.
 
 = Where can I report bugs or contribute to the project? =
 To report bugs or to contribute, head-over to the [GitHub repository](https://github.com/spider-themes/eazydocs/issues)
+
+= Can I use EazyDocs on multiple websites? =
+Yes, you can use EazyDocs on multiple websites. You can use it on as many websites as you want.
+
 
 == Installation ==
 
@@ -130,6 +138,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Single doc page
 
 == Changelog ==
+
+= v1.3.6 (10 November 2022) =
+Fixed: Pro notice issue even if the license is activated
+Tweaked: Version number added to the assets to avoid cache issue
+Updated: Freemius SDK updated to the latest version (2.4.5)
+Updated: Language (.pot) file
 
 = v1.3.5 (06 November 2022) =
 New: Share button added to the single doc page (Social share, Email share, Copy link)

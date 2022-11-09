@@ -113,22 +113,22 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'      => 'docs-order',
-			'type'    => 'select',
-			'title'   => esc_html__( 'Docs Order', 'eazydocs' ),
-			'options' => array(
-				'desc' => esc_html__( 'Descending', 'eazydocs' ),
-				'asc'  => esc_html__( 'Ascending', 'eazydocs' ),
+			'id'        => 'docs-order',
+			'type'      => 'select',
+			'title'     => esc_html__( 'Child Docs Order', 'eazydocs' ),
+			'options'   => array(
+				'DESC'      => esc_html__( 'Descending', 'eazydocs' ),
+				'ASC'       => esc_html__( 'Ascending', 'eazydocs' ),
 			),
-			'default' => 'desc',
+			'default' => 'ASC',
 		),
 
 		array(
 			'id'       => 'docs-number',
 			'type'     => 'number',
 			'title'    => esc_html__( 'Number of Docs', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Number of Docs to show', 'eazydocs' ),
-			'default'  => 5,
+			'subtitle' => esc_html__( 'Number of Main Docs to show', 'eazydocs' ),
+			'default'  => 6,
 		),
 
 		array(

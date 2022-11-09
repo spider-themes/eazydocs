@@ -166,7 +166,7 @@ class Admin {
                 $classes .= '';
         }
 
-        if ( eaz_fs()->is__premium_only() ) {
+        if ( eaz_fs()->is_paying_or_trial() ) {
             $classes .= ' ezd-premium';
         }
 

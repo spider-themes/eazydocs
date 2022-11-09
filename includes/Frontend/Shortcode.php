@@ -102,6 +102,7 @@ class Shortcode {
                     'numberposts' => (int) $args['show_articles'],
                     'post_status'    => array( 'publish', 'private' ),
                     'orderby'        => 'menu_order',
+                    'sort_column' => 'menu_order',
                     'order'          => $opt['docs-order'] ?? 'ASC',
                 ] );
 

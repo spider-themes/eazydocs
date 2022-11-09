@@ -513,6 +513,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 }
 .nav-sidebar > .nav-item > .doc-link {
   padding: 10px;
+  border-radius: 3px;
 }
 .nav-sidebar > .nav-item > .doc-link:hover {
   background: rgba(208, 215, 222, 0.32);
@@ -557,6 +558,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   color: var(--black_500);
   align-items: start;
   flex: 1;
+  text-decoration: none;
 }
 .nav-sidebar .nav-item .nav-link mark {
   margin: 0;
@@ -1890,6 +1892,10 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 /** === Share Button === **/
+.pageSideSection .ezd-share-btn {
+  text-decoration: none;
+}
+
 .ezd-share-btn {
   color: var(--black_500);
   margin: 0px 0 20px;

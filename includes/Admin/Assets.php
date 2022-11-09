@@ -28,12 +28,11 @@ class Assets {
 	* Register scripts and styles
 	**/
 	public function eazydocs_dashboard_scripts() {
-		$version = get_option( 'EazyDocs_version' );
 
 		wp_enqueue_style( 'normalize', EAZYDOCS_ASSETS . '/css/admin/normalize.css' );
 		wp_enqueue_style( 'nice-select', EAZYDOCS_ASSETS . '/css/admin/nice-select.css' );
 		wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
-		wp_enqueue_style( 'eazyDocs-main', EAZYDOCS_ASSETS . '/css/admin.css', array(), $version );
+		wp_enqueue_style( 'eazyDocs-main', EAZYDOCS_ASSETS . '/css/admin.css', array(), EAZYDOCS_VERSION );
 
 		wp_enqueue_script( 'modernizr', EAZYDOCS_ASSETS . '/js/admin/modernizr-3.11.2.min.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'jquery-ui', EAZYDOCS_ASSETS . '/js/admin/jquery-ui.js', array( 'jquery' ), '', true );
@@ -44,8 +43,8 @@ class Assets {
 		wp_enqueue_script( 'eazyDocs-accordion', EAZYDOCS_ASSETS . '/js/admin/accordion.min.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), '', true );
 
-		wp_enqueue_script( 'eazyDocs-custom', EAZYDOCS_ASSETS . '/js/admin/custom.js', array( 'jquery' ), $version, true );
-		wp_enqueue_script( 'eazyDocs-main', EAZYDOCS_ASSETS . '/js/admin/main.js', array( 'jquery' ), $version, true );
+		wp_enqueue_script( 'eazyDocs-custom', EAZYDOCS_ASSETS . '/js/admin/custom.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
+		wp_enqueue_script( 'eazyDocs-main', EAZYDOCS_ASSETS . '/js/admin/main.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
 	}
 
 	/**
@@ -55,12 +54,12 @@ class Assets {
 	public function eazydocs_global_scripts() {
         wp_enqueue_script('ezd-notify-review', EAZYDOCS_ASSETS . '/js/admin/review.js');
         if ( ezydocs_admin_pages() == true ) {
-            wp_enqueue_style('sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css');
-            wp_enqueue_style('eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', '1.1.3');
-            wp_enqueue_script('sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true);
-            wp_enqueue_script('eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js');
-            wp_enqueue_script('eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js');
-            wp_enqueue_style('eazydocs-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css');
+            wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css');
+            wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', EAZYDOCS_VERSION );
+            wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true);
+            wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js', array('jquery'), EAZYDOCS_VERSION );
+            wp_enqueue_script( 'eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js', array('jquery'), EAZYDOCS_VERSION );
+            wp_enqueue_style( 'eazydocs-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css' );
 
             // Localize the script with new data
             $ajax_url = admin_url('admin-ajax.php');

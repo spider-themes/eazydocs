@@ -4,10 +4,11 @@
 
         // Eazydocs Pro notices
         $('body:not(.ezd-premium) .eazydocs-pro-notice ul li:last-child label input').attr('disabled', true);
+
         // eazydocs pro notice
         function eazydocs_pro_notice() {
             if ( $('body').hasClass('valid') ) {
-                $('.eazydocs-pro-notice:not(div[class*="active-theme"])').on('click', function (e) {
+                $('body:not(.ezd-premium) .eazydocs-pro-notice:not(div[class*="active-theme"])').on('click', function (e) {
                     e.preventDefault();
                     let href = $(this).attr('href')
                     Swal.fire({

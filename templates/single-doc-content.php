@@ -188,7 +188,7 @@ endif;
                 endif;
                 ?>
             </div>
-            <div class="doc-scrollable">
+            <div class="doc-scrollable editor-content">
 				<?php
 				the_content();
 				eazydocs_get_template_part( 'single-doc-home' );
