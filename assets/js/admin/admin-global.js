@@ -21,7 +21,7 @@
                     })
                 })
             } else {
-                $('.eazydocs-pro-notice').on('click', function (e) {
+                $('body:not(.ezd-premium) .eazydocs-pro-notice').on('click', function (e) {
                     e.preventDefault();
                     let href = $(this).attr('href')
                     Swal.fire({
@@ -80,6 +80,5 @@
 
         // Remove condition if it has pro notice class
         $('.eazydocs-pro-notice').attr('data-condition', '');
-
     })
 })(jQuery);

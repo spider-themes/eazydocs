@@ -4,7 +4,7 @@ $is_add_doc                    = eazydocs_get_option('frontend_add_switcher', 'e
 $is_edit_doc                   = eazydocs_get_option('frontend_edit_switcher', 'eazydocs_settings') ?? '';
 $user_login_page_id            = eazydocs_get_option('docs_frontend_login_page', 'eazydocs_settings') ?? '';
 
-if ( eaz_fs()->is_plan__premium_only('promax') ) :
+if ( eaz_fs()->is_plan('promax') ) :
     if ( $is_constribution ) :
         if ( $is_add_doc || $is_edit_doc ) :
             if ( ! empty( $user_login_page_id ) ) :

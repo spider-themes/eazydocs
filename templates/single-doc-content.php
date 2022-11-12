@@ -47,7 +47,7 @@ endif;
                             </span>
                             <?php
                         endif;   
-                        if ( eaz_fs()->is_plan__premium_only('promax') ) :
+                        if ( eaz_fs()->is_plan('promax') ) :
                             if( ! empty( $contributor_visibility ) ) :
                                 ?>
                                 <span class="views sep contributed_users">

@@ -109,7 +109,7 @@ a.eazydocs-close-notice:active {
     width: 100%;
 }
 
-body.ezd_promax .eazydocs-promax-notice.csf-field,
+body.ezd_no_promax .eazydocs-promax-notice.csf-field,
 .eazydocs-pro-notice.csf-field {
     position: relative;
     cursor: pointer;
@@ -156,8 +156,6 @@ body {
                 z-index: 2;
             }
         }
-        .eazydocs-promax-notice .csf-title,
-        .eazydocs-promax-notice .csf-fieldset,
         .eazydocs-pro-notice .csf-title,
         .eazydocs-pro-notice .csf-fieldset {
             opacity: 0.5;
@@ -166,13 +164,21 @@ body {
     }
 }
 
-body.ezd_promax .eazydocs-promax-notice.csf-field::before{
-    content: "Pro-Max";
-    background-color: #f1bd6c;
-    color: #000;
-    padding: 3px 10px;
-    border-radius: 3px;
-    margin-bottom: 10px;
+body.ezd_no_promax {
+    .eazydocs-promax-notice {
+        &.csf-field::before{
+            content: "Pro-Max";
+            background-color: #f1bd6c;
+            color: #000;
+            padding: 3px 10px;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+        .csf-title, .csf-fieldset {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
 }
 
 .upgrade-link {

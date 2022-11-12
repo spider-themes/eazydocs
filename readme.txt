@@ -139,6 +139,9 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.3.7 (12 November 2022) =
+Tweaked: Compatibility with any themes improved
+
 = v1.3.6 (10 November 2022) =
 Fixed: Pro notice issue even if the license is activated
 Tweaked: Version number added to the assets to avoid cache issue
