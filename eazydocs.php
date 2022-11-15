@@ -207,6 +207,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Frontend\Assets();
 				new eazyDocs\Frontend\Shortcode();
 			}
+			new eazyDocs\Admin\Elementor\Widgets();
 		}
 
 		public function init_hooked() {

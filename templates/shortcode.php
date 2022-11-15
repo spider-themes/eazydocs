@@ -90,8 +90,8 @@ if ( $docs ) :
                                         <h4 class="title">
                                             <?php echo $main_doc['doc']->post_title; ?>
                                         </h4>
-                                    <?php endif; ?>
-                                    <?php if ( $topics_count == '1' ) : ?>
+                                    <?php endif;
+                                    if ( $topics_count == '1' ) : ?>
                                         <span class="badge">
                                             <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
                                             <?php echo esc_html($topics); ?>

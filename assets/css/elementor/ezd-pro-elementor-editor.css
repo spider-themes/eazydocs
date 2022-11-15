@@ -1,0 +1,23 @@
+
+.elementor-control-ezd_search_keywords_sec,
+.elementor-control-ezd_search_style_keywords,
+.elementor-control-doc-widget-single-search .elementor-choices label, 
+.elementor-control-doc-widget-skin .elementor-choices label{
+    pointer-events: all !important;
+}
+.free-doc-tab::before {
+    opacity: .5 !important;
+}
+.elementor-control-doc-widget-single-search .elementor-choices .elementor-choices-label:hover i::before,
+.elementor-control-doc-widget-skin .elementor-choices .elementor-choices-label:hover i::before,
+.elementor-control-doc-widget-skin .elementor-choices input:checked+.elementor-choices-label i::before {
+    opacity: 1 !important;
+}
+.elementor-control-ezd_search_keywords_sec::after,
+.elementor-control-ezd_search_style_keywords::after,
+.elementor-control-ezd_search_keywords_repeater::after,
+.elementor-control-ezd_search_keywords_label::after,
+.elementor-control-is_ezd_search_keywords::after,
+.ezd-free-docs::after {
+    display: none;
+}

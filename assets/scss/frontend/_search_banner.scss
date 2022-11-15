@@ -340,6 +340,15 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 
 .header_search_form_info {
   position: relative;
+  &.search_form_wrap {
+    .search_submit_btn{
+      right: 0 !important;
+      padding: 5px 20px 5px 5px;
+      > i{
+        font-size: 16px;
+      }
+    }
+  }
 }
 
 .ezd_search_keywords {
@@ -362,5 +371,178 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
       display: inline-block;
       margin-right: 7px;
     }
+  }
+}
+
+
+#docy-search-result {
+  padding: 0;
+  border: none;
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 30px 40px 0 rgba(4, 73, 89, 0.1);
+  font-size: 14px;
+  font-weight: 400;
+  display: none;
+  transition: all 0.4s;
+  z-index: 99;
+  margin-top: 10px;
+}
+#docy-search-result .searchbar-tabs {
+  padding: 0 10px 15px;
+}
+#docy-search-result a {
+  text-decoration: none;
+}
+#docy-search-result.ajax-search {
+  display: block;
+}
+#docy-search-result::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  position: absolute;
+  top: -6px;
+  transform: rotate(45deg);
+  left: 40px;
+  border-left: 1px solid #e6eeef;
+  border-top: 1px solid #e6eeef;
+}
+#docy-search-result .breadcrumb {
+  padding-left: 25px;
+  &.eazydocs-search-wrapper {
+    padding-left: 0;
+  }
+}
+#docy-search-result .breadcrumb .breadcrumb-item:last-child {
+  display: none;
+}
+#docy-search-result h5 {
+  margin-bottom: 10px;
+  text-align: left;
+  color: #dc3545;
+  padding: 10px;
+}
+#docy-search-result .error.title {
+  margin-bottom: 0;
+  text-align: left;
+  color: #dc3545;
+  margin-top: 0;
+  padding: 20px 15px;
+  font-size: 18px;
+}
+#docy-search-result .doc-section {
+  border-right: none;
+  padding-left: 25px;
+}
+#docy-search-result #forum-search-results .breadcrumb .breadcrumb-item:nth-child(2)::before {
+  display: none;
+}
+#docy-search-result #forum-search-results .breadcrumb .breadcrumb-item:last-child {
+  display: block;
+}
+#docy-search-result .search-result-item {
+  padding: 7px 15px;
+  position: relative;
+  border-bottom: 1px solid rgba(216, 216, 224, 0.6);
+  transition: 0.3s all;
+  cursor: pointer;
+}
+#docy-search-result .search-result-item a {
+  display: flex;
+}
+#docy-search-result .search-result-item a.title {
+  color: var(--black_800);
+}
+#docy-search-result .search-result-item:last-child {
+  border-bottom: none;
+}
+#docy-search-result .search-result-item:hover svg.block.h-auto.w-16 {
+  display: block;
+}
+#docy-search-result .search-result-item:hover {
+  background: var(--ezd_brand_color);
+}
+#docy-search-result .search-result-item:hover .breadcrumb-item {
+  color: var(--black_100);
+}
+#docy-search-result .search-result-item:hover a {
+  color: #fff;
+}
+#docy-search-result .search-result-item img, #docy-search-result .search-result-item svg.block.h-full.w-auto {
+  position: absolute;
+  top: 12px;
+  margin: auto;
+}
+#docy-search-result .search-result-item svg.block.h-auto.w-16 {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+}
+.header_search_keyword {
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-weight: 500;
+  justify-content: center;
+  margin-top: 10px;
+  span {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  ul {
+    margin: 0;
+    li {
+      display: inline-block;
+      margin: 0 3px 0;
+      a {
+        display: block;
+        font-size: 13px;
+        padding: 0 19px;
+        border-radius: 45px;
+        background: var(--ezd_brand_color);
+        color: #fff;
+      }
+    }
+  }
+}
+.header_search_form_info {
+  input[type="search"]{
+    padding-right: 0 !important;
+  }
+}
+.spinner{
+  &.search_form_spinner{
+    position: absolute;
+    right: 20px !important;
+    top: 50%;
+    transform: translateY(-55%);
+    display: none;
+    background: #fff;
+    z-index: 999;
+    > img{
+     max-width: 22px;
+    }
+  }
+}
+body.search-focused{
+  .ezd_click_capture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    z-index: 99;
+    opacity: 0;
+    background: rgba(0,0,0,.4);
+    transition: all .3s linear;
   }
 }

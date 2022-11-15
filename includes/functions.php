@@ -826,7 +826,6 @@ function ezd_password_form( $output, $post = 0 ) {
 }
 add_filter( 'the_password_form', 'ezd_password_form', 20 );
 
-
 /**
  * EazyDocs Admin pages
  * If any of the admin pages match the current page, return true.
@@ -839,4 +838,210 @@ function ezydocs_admin_pages() {
 	if ( $admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings' || $admin_page == 'ezd-user-feedback' ||  $admin_page == 'ezd-user-feedback-archived' || $post_type == 'onepage-docs' || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php') ) {
 		return true;
 	}
+}
+
+function ezydocs_frontend_assets(){
+	if ( is_singular('docs') || is_singular('onepage-docs') || is_page_template('page-onepage.php') || class_exists('Docs') ) {
+		return true;
+	}
+}
+
+function ezd_get_posts( $post_type = 'docs' ) {
+    $docs  = get_pages(
+        array(
+            'post_type' 		=> $post_type,
+			'numberposts' 		=> -1,
+			'post_status'		=> ['publish', 'private'],
+            'parent' 			=> 0,
+        ));
+    $docs_array 				= [];
+    if ( $docs ) {
+        foreach ($docs as $doc) {
+            $docs_array[$doc->ID] = $doc->post_title;
+        }
+    }
+
+    return $docs_array;
+}
+function ezd_widget_excerpt($settings_key, $limit = 10) {
+    echo wp_trim_words( wpautop( get_the_excerpt( $settings_key ) ), $limit, '');
+}
+function ezd_arrow_left_right() {
+    $arrow_icon = is_rtl() ? 'arrow_left' : 'arrow_right';
+    echo esc_attr($arrow_icon);
+}
+function ezd_el_title_tags() {
+    return [
+        'h1'  => __( 'H1', 'docy-core' ),
+        'h2' => __( 'H2', 'docy-core' ),
+        'h3' => __( 'H3', 'docy-core' ),
+        'h4' => __( 'H4', 'docy-core' ),
+        'h5' => __( 'H5', 'docy-core' ),
+        'h6' => __( 'H6', 'docy-core' ),
+        'div' => __( 'Div', 'docy-core' ),
+        'span' => __( 'Span', 'docy-core' ),
+        'p' => __( 'Paragraph', 'docy-core' ),
+    ];
+}
+/**
+ * Get Default Image Elementor
+ * @param $settins_key
+ * @param string $class
+ * @param string $alt
+ */
+function ezd_el_image( $settings_key = '', $alt = '', $class = '', $atts = [] ) {
+    if ( !empty($settings_key['id']) ) {
+        echo wp_get_attachment_image( $settings_key['id'], 'full', '', array('class' => $class) );
+    }
+    elseif ( !empty($settings_key['url']) && empty($settings_key['id']) ) {
+        $class = !empty($class) ? "class='$class'" : '';
+        $attss = '';
+        //echo print_r($atts);
+        if ( !empty($atts) ) {
+            foreach ( $atts as $k => $att ) {
+                $attss .= "$k=". "'$att'";
+            }
+        }
+        echo "<img src='{$settings_key['url']}' $class alt='$alt' $attss>";
+    }
+}
+
+
+function ezd_docs_layout_option(){
+	if ( class_exists( 'EazyDocsPro' ) ){
+		$options = [
+			'1' => [
+				'title' => __( 'Docs without tab', 'eazydocs' ),
+				'icon'	=> 'free-doc-tab'
+			],
+			'2' => [
+				'title' => __( 'Tabbed with doc lists', 'eazydocs' ), 
+				'icon'  => 'docs-1',
+			],
+			'3' => [
+				'title' => __( 'Flat tabbed docs', 'eazydocs' ),
+				'icon'  => 'docs-2',
+			],
+			'4' => [
+				'title' => __( 'Boxed Style', 'eazydocs' ),
+				'icon'  => 'docs-3',
+			],
+			'5' => [
+				'title' => __( 'Book Chapters / Tutorials', 'eazydocs' ),
+				'icon'  => 'docs-4',
+			],
+			'6' => [
+				'title' => __( 'List Style', 'eazydocs' ),
+				'icon'  => 'docs-5',
+			]			
+		];		
+	} else {
+		$options = [
+			'1' => [
+				'title' => __( 'Docs without tab', 'eazydocs' ),
+				'icon'  => 'free-doc-tab',
+			],
+			'2' => [
+				'title' => __( 'Tabbed with doc lists', 'eazydocs' ),
+				'icon'  => 'docs-1 ezd-free-docs',
+			],
+			'3' => [
+				'title' => __( 'Flat tabbed docs', 'eazydocs' ),
+				'icon'  => 'docs-2 ezd-free-docs',
+			],
+			'4' => [
+				'title' => __( 'Boxed Style', 'eazydocs' ),
+				'icon'  => 'docs-3 ezd-free-docs',
+			],
+			'5' => [
+				'title' => __( 'Book Chapters / Tutorials', 'eazydocs' ),
+				'icon'  => 'docs-4 ezd-free-docs',
+			],
+			'6' => [
+				'title' => __( 'List Style', 'eazydocs' ),
+				'icon'  => 'docs-5 ezd-free-docs',
+			]			
+		];
+	}
+	return $options;
+}
+
+/**
+ * Docs Search results
+ */
+add_action( 'wp_ajax_ezd_search_data_fetch', 'ezd_search_data_fetch' );
+add_action( 'wp_ajax_nopriv_ezd_search_data_fetch', 'ezd_search_data_fetch' );
+function ezd_search_data_fetch() {
+	$opt                = get_option( 'docy_opt' );
+	$is_ajax_search_tab = $opt['is_ajax_search_tab'] ?? '';
+	global $post;
+
+	if ( class_exists( 'EazyDocs' ) || class_exists( 'bbPress' ) ) :
+		if ( $is_ajax_search_tab == '1' ) :
+			?>
+            <div class="searchbar-tabs">
+				<?php if ( class_exists( 'EazyDocs' ) ) : ?>
+                    <button type="button" id="search-docs" class="tab-item active" value="docs" onclick="searchDocTab()">
+						<?php esc_html_e( 'Docs', 'docy' ) ?>
+                    </button>
+				<?php endif; ?>
+				<?php if ( class_exists( 'bbPress' ) ) : ?>
+                    <button type="button" id="search-forum" class="tab-item" value="forum" onclick="searchForumTab()">
+						<?php esc_html_e( 'Forum', 'docy' ) ?>
+                    </button>
+				<?php endif; ?>
+                <button type="button" id="search-blog" class="tab-item" value="blog" onclick="searchBlogTab()">
+					<?php esc_html_e( 'Blog', 'docy' ) ?>
+                </button>
+            </div>
+		    <?php
+		endif;
+	endif;
+
+	echo '<div class="search-results-tab" id="doc-search-results">';
+
+	if ( isset( $_GET['wpml_lang'] ) ) {
+		do_action( 'wpml_switch_language', $_GET['wpml_lang'] );
+	}
+
+    $posts = new WP_Query( [
+            'post_type'                 => 'docs',
+            's'     => $_POST['keyword'] ?? ''
+        ]
+    );
+
+    if ( $posts->have_posts() ):
+
+        while ( $posts->have_posts() ) : $posts->the_post();
+            ?>
+            <div class="search-result-item" onclick="document.location='<?php echo get_the_permalink(get_the_ID()); ?>'">
+                <a href="<?php echo get_the_permalink(get_the_ID()); ?>" class="title">
+                    <?php
+                    if ( has_post_thumbnail() ) :
+                        the_post_thumbnail('ezd_searrch_thumb16x16');
+                    else:
+                        ?>
+                        <svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img"><title id="title">Building Search UI</title><path d="M14.72,0H2.28A2.28,2.28,0,0,0,0,2.28V14.72A2.28,2.28,0,0,0,2.28,17H14.72A2.28,2.28,0,0,0,17,14.72V2.28A2.28,2.28,0,0,0,14.72,0ZM2.28,1H14.72A1.28,1.28,0,0,1,16,2.28V5.33H1V2.28A1.28,1.28,0,0,1,2.28,1ZM1,14.72V6.33H5.33V16H2.28A1.28,1.28,0,0,1,1,14.72ZM14.72,16H6.33V6.33H16v8.39A1.28,1.28,0,0,1,14.72,16Z"></path></svg>
+                    <?php endif; ?>
+                    <span class="doc-section">
+                        <?php the_title(); ?>
+                    </span>
+                    <svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block h-auto w-16"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>
+                </a>
+                <?php eazydocs_search_breadcrumbs(); ?>
+            </div>
+            <?php
+        endwhile;
+        wp_reset_postdata();
+
+    else:
+        ?>
+        <div>
+            <h5 class="error title"> <?php esc_html_e( 'No result found!', 'docy' ); ?> </h5>
+        </div>
+        <?php
+    endif;
+
+	echo '</div>';
+	die();
 }
