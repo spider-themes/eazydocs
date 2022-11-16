@@ -475,56 +475,76 @@ select#ezd_docs_layout {
 }
 
 /*Nestable CSS*/
-
-
-.dd-list .dd-list,
-.dd-list .dd-list .dd-list {
-    padding-left: 30px;
-}
-
-.dd>.dd-list {
-    margin-bottom: 0;
+.dd {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    list-style: none;
+    font-size: 13px;
+    line-height: 20px;
 }
 
 .dd-list {
-    margin-left: 0px;
-    margin-top: 0;
-    list-style-type: none;
-}
-
-.dd-list li {
-    margin-bottom: 0;
-}
-
-/* .dd-collapsed .dd-list {
-    display: none;
-} */
-.dd-list .dd-list,
-.dd-list .dd-list .dd-list {
-    display: none;
-}
-
-/* 
-.dd-collapsed .dd-list {
     display: block;
-} */
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 
+.dd-list .dd-list {
+    padding-left: 30px;
+}
+
+.dd-collapsed .dd-list {
+    display: none;
+}
+
+.dd-item,
+.dd-empty,
+.dd-placeholder {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.dd-handle {
+    display: block;
+    width: 30px;
+    height: 100%;
+    margin: 0px 0;
+    padding: 5px 10px;
+    line-height: 36px;
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s ease-out;
+}
+
+.dd3-handle {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    cursor: move;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    z-index: 9;
+}
 
 .dd-item>button {
-    display: none !important;
-}
-
-.dd-item>button.dd-expand {
-    display: none !important;
-}
-
-button.nestable--button {
+    display: block;
     position: relative;
     cursor: pointer;
     float: left;
     width: 25px;
     height: 20px;
-    margin: 5px 0;
+    margin: 0px 0;
     padding: 0;
     text-indent: 100%;
     white-space: nowrap;
@@ -535,36 +555,92 @@ button.nestable--button {
     line-height: 1;
     text-align: center;
     font-weight: bold;
+}
+
+.dd-item>button:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 6px;
+    border-color: transparent transparent transparent #575767;
+    display: block;
+    transform: rotate(0deg);
+    left: 50%;
     -webkit-transition: 0.3s;
     transition: 0.3s;
 }
 
+.dd-item>button[data-action="collapse"]:before {
+    transform: rotate(90deg);
+}
 
-.dd3-handle {
-    position: relative;
-    cursor: move;
-    margin: 5px;
+.dd-placeholder,
+.dd-empty {
+    margin: 5px 0;
     padding: 0;
-    overflow: hidden;
-    border: 0;
-    background: transparent;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    z-index: 9;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s ease-out;
+    min-height: 30px;
+    background: #f2fbff;
+    border: 1px dashed #b6bcbf;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
-.accordion-title:hover .dd3-handle {
-    opacity: 1;
-    visibility: visible;
+.dd-empty {
+    border: 1px dashed #bbb;
+    min-height: 40px;
+}
+
+.dd-dragel {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.dd-dragel>.dd-item .dd-handle {
+    margin-top: 0;
+}
+
+.dd-dragel .dd-handle {
+    -webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1);
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1);
+}
+
+.dd3-content {
+    display: block;
+    padding: 13px 30px 13px 40px;
+}
+
+.dd-dragel>.dd3-item>.dd3-content {
+    margin: 0;
 }
 
 
-.dd-item .accordionjs {
-    width: 100%;
+.sub-items .dd3-content {
+    background: #fff !important;
+}
+
+
+@media only screen and (min-width: 700px) {
+    .dd {
+        float: left;
+        width: 100%;
+    }
+
+    .dd+.dd {
+        margin-left: 2%;
+    }
+}
+
+
+.dd-dragel>.dd3-item>.dd3-content {
+    margin: 0;
+}
+
+.dd3-item>button {
+    margin-left: 30px;
 }
 
 
@@ -572,42 +648,24 @@ button.nestable--button {
     height: 1px;
 }
 
-.nestable--expand:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 5px 0 5px 6px;
-    border-color: transparent transparent transparent #575767;
-    display: block;
-    left: 5px;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
+@media only screen and (min-width: 700px) {
+    .dd {
+        width: 100%;
+    }
 }
 
-button.nestable--button[data-action="collapse"]:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 5px 0 5px 6px;
-    border-color: transparent transparent transparent #575767;
-    display: block;
-    left: 5px;
-    top: 5px;
-    transform: rotate(0deg);
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
+.dd-item>button:before {
+    top: 16px;
 }
 
-.dd3-have-no-children button.nestable--button[data-action="collapse"]:before {
-    transform: rotate(0deg);
+.dd-item>button {
+    height: 100%;
+    padding: 14px 0;
 }
 
-.dd3-have-children .rotate-arrow button.nestable--button[data-action="collapse"]:before {
-    transform: rotate(90deg);
+
+.dd-nochildren .dd-placeholder {
+    display: none;
 }
 
 .accordion-title.has-child::before,
@@ -616,62 +674,18 @@ button.nestable--button[data-action="collapse"]:before {
     display: none !important;
 }
 
-
-.easydocs-accordion-item .accordion-title {
-    padding: 10px 30px 10px 8px !important;
+.accordion-title.ez-section-title,
+.accordion-title {
+    padding: 0 !important;
 }
 
-.dd3-have-children .dd-item-child .accordion-title {
-    padding-left: 0px !important;
-}
 
-.dd3-have-sub-children .child-of-child .accordion-title {
-    margin-left: -3px !important;
-}
 
-.dd-item-child>.accordion-title {
-    position: relative;
-}
-
-.easydocs-accordion-item+.easydocs-accordion-item {
-    border-top: 0px solid transparent !important;
-}
-
-.dd-item:not(:last-child):after {
-    content: '';
-    border-bottom: 1px solid #EDEAE9;
-    position: absolute;
-    width: 100%;
-    left: 0%;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-}
-
-.dd-item.dd-item-child:not(:last-child):after {
-    left: -10%;
-}
-
-.dd3-have-children>.accordion-title {
+.dd3-content:hover,
+.dd3-content:hover>.accordion-title {
     background: #F9F9F9;
 }
 
-.dd3-have-children.dd-collapsed>.accordion-title {
-    background: transparent;
-}
-
-.nestable--expand {
-    display: none;
-}
-
-.dd-collapsed .nestable--collaose {
-    display: none;
-}
-
-.dd-collapsed .nestable--expand {
+.dd-list.showing {
     display: block;
-}
-
-.easydocs-accordion-item.child-one .accordion-title.has-child a.section-last-label {
-    margin-left: 0px !important;
 }

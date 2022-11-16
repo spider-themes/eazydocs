@@ -1,13 +1,10 @@
-/* .dd {
+.dd {
   position: relative;
   display: block;
-  margin: 0;
-  padding: 0;
-  max-width: 600px;
-  list-style: none;
-  font-size: 13px;
+  /* margin: 0;
+  padding: 0; */
   line-height: 20px
-} */
+}
 
 /* .dd-list {
   display: block;
@@ -33,6 +30,7 @@
   line-height: 20px
 }
 
+/* 
 .dd-handle {
   display: block;
   height: 30px;
@@ -50,7 +48,7 @@
 .dd-handle:hover {
   color: #2ea8e5;
   background: #fff
-}
+} */
 
 .dd-item>button {
   position: relative;
@@ -71,6 +69,7 @@
   font-weight: 700
 }
 
+/* 
 .dd-item>button:before {
   display: block;
   position: absolute;
@@ -89,12 +88,12 @@
 
 .dd-expand {
   display: none
-}
+} */
 
-.dd-collapsed .dd-collapse,
+/* .dd-collapsed .dd-collapse,
 .dd-collapsed .dd-list {
   display: none
-}
+} */
 
 .dd-collapsed .dd-expand {
   display: block

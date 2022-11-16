@@ -864,6 +864,18 @@ function getIndianCurrency($number)
 	$paise = ($decimal > 0) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
 	return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
 }
+// Get top level parent doc id
+function get_root_parent_id($page_id)
+{
+	global $wpdb;
+	$parent = $wpdb->get_var("SELECT post_parent FROM $wpdb->posts WHERE post_type='docs' AND post_status='publish' AND ID = '$page_id'");
+	if ($parent == 0) {
+		return $page_id;
+	} else {
+		return get_root_parent_id($parent);
+	}
+}
+
 function eazydocs_root_parent_id($page_id)
 {
 	global $wpdb;

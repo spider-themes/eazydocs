@@ -2,25 +2,20 @@
   "use strict";
 
   $(document).ready(function () {
-    var eaz_show_parent_child = function (clickable_class) {
-      $(clickable_class).click(function (e) {
+
+
+    var eaz_show_parent_child = function () {
+      $('.dd-item.dd3-has-children').on('click', function (e) {
         var $this = $(this);
-        if ($this.next().hasClass('show')) {
-          $this.next().removeClass('show');
-          $this.removeClass('rotate-arrow');
-          $this.parent().removeClass('show-child');
-          $this.next().slideUp(350);
-        } else {
-          $this.toggleClass('rotate-arrow');
-          $this.parent().toggleClass('show-child');
-          $this.parent().parent().find('li .dd-list').removeClass('show');
-          $this.parent().parent().find('li .dd-list').slideUp(350);
-          $this.next().toggleClass('show');
-          $this.next().slideToggle(350);
-        }
+        $('.dd-item').removeClass('show-child');
+        $this.toggleClass('show-child');
+      });
+      $('.dd3-has-children .expand--child a').click(function (e) {
+        e.stopPropagation();
       });
     }
-    eaz_show_parent_child('.dd3-have-children .accordion-title');
+
+    eaz_show_parent_child();
     var eaz_create_cookie = function (name, value, days) {
       var expires = "";
       if (days) {
@@ -43,11 +38,11 @@
     var eaz_child_cookie_set = function (e) {
       let have_children = $('.dd3-have-children');
       if (have_children.length > 0) {
-        $('.dd3-have-children > .accordion-title').click(function (e) {
-          let target = $(this).parent().attr('data-id');
-          let is_active_child = $(this).parent().hasClass('show-child');
+        $('.dd3-have-children').click(function (e) {
+          let item_id = $(this).attr('data-id');
+          let is_active_child = $(this).hasClass('show-child');
           if (is_active_child) {
-            eaz_create_cookie("eazydocs_current_child", "child-" + target, 999);
+            eaz_create_cookie("eazydocs_current_child", "child-" + item_id, 999);
           } else {
             eaz_create_cookie("eazydocs_current_child", "", 999);
           }
@@ -62,11 +57,11 @@
       if (have_sub_children.length > 0) {
         let doc_last_current_child = eaz_read_cookie('eazydocs_current_child');
         if (doc_last_current_child) {
-          $('.' + doc_last_current_child + ' .accordion-title').click(function (e) {
-            let target = $(this).parent().attr('data-id');
-            let is_active_child = $(this).parent().hasClass('show-child');
+          $('.' + doc_last_current_child + ' .dd3-have-sub-children').click(function (e) {
+            let item_id = $(this).attr('data-id');
+            let is_active_child = $(this).hasClass('show-child');
             if (is_active_child) {
-              eaz_create_cookie("eazydocs_current_child_of", "child-of-" + target, 999);
+              eaz_create_cookie("eazydocs_current_child_of", "child-of-" + item_id, 999);
             } else {
               eaz_create_cookie("eazydocs_current_child_of", " ", 999);
             }
@@ -77,49 +72,6 @@
       }
     }
     eaz_child_of_child_cookie_set();
-    var eaz_get_cookies = function () {
-      let doc_last_current_child = eaz_read_cookie('eazydocs_current_child')
-      if (doc_last_current_child) {
-        $('.' + doc_last_current_child + '>' + '.accordion-title').each(function (e) {
-          var $this = $(this);
-          if ($this.next().hasClass('show')) {
-            $this.next().removeClass('show');
-            $this.removeClass('rotate-arrow');
-            $this.next().slideUp(350);
-          } else {
-            $this.toggleClass('rotate-arrow');
-            $this.parent().parent().find('li .dd-list').removeClass('show');
-            $this.parent().parent().find('li .dd-list').slideUp(350);
-            $this.next().toggleClass('show');
-            $this.next().slideToggle(350);
-          }
-        });
-      }
-    }
-    eaz_get_cookies();
-    var eaz_get_child_of_cookies = function () {
-      let doc_last_current_child = eaz_read_cookie('eazydocs_current_child');
-      if (doc_last_current_child) {
-        let doc_last_current_child_of = eaz_read_cookie('eazydocs_current_child_of')
-        if (doc_last_current_child_of) {
-          $('.' + doc_last_current_child_of + ' ' + '.accordion-title').each(function (e) {
-            var $this = $(this);
-            if ($this.next().hasClass('show')) {
-              $this.next().removeClass('show');
-              $this.removeClass('rotate-arrow');
-              $this.next().slideUp(350);
-            } else {
-              $this.toggleClass('rotate-arrow');
-              $this.parent().parent().find('li .dd-list').removeClass('show');
-              $this.parent().parent().find('li .dd-list').slideUp(350);
-              $this.next().toggleClass('show');
-              $this.next().slideToggle(350);
-            }
-          });
-        }
-      }
-    }
-    eaz_get_child_of_cookies();
     var eaz_nestable_docs = function (e) {
       var list = e.length ? e : $(e.target), output = list.data('output');
       var dataString = {
@@ -142,15 +94,52 @@
       });
     };
     var eaz_nestable_callback = function () {
-      var dd = $('.dd');
-      if (dd.length > 0) {
-        $('.dd').nestable({
-          group: 1,
-          maxDepth: 3
-        }).on('change', eaz_nestable_docs);
+      var section_tab = $('.easydocs-navitem');
+      if (section_tab.length > 0) {
+        $(".easydocs-navitem").each(function (e) {
+          var $this = $(this),
+            $secId = $this.data('id');
+          $('#nestable-' + $secId).nestable({
+            maxDepth: 3,
+            expandBtnHTML: '<button class="nestable--button nestable--expand" data-action="expand" type="button">Expand</button>',
+            collapseBtnHTML: '<button class="nestable--button nestable--collapse" data-action="collapse" type="button">Collapse</button>',
+            collapsedClass: 'dd-collapsed eazdocs-collapsed',
+          }).on('change', eaz_nestable_docs).nestable('collapseAll');
+        });
       }
     }
     eaz_nestable_callback();
+    var eaz_get_cookies = function () {
+      let doc_last_current_child = eaz_read_cookie('eazydocs_current_child')
+      if (doc_last_current_child) {
+        $('.' + doc_last_current_child).each(function (e) {
+          var $this = $(this);
+          $('.' + doc_last_current_child).addClass('showing-expand');
+          $('.' + doc_last_current_child + '>.nestable--collapse').attr("style", "display: block");
+          $('.' + doc_last_current_child + '>.nestable--expand').attr("style", "display: none");
+          $('.' + doc_last_current_child + '>.dd-list').addClass('showing');
+          $('.' + doc_last_current_child + '>.dd-list').attr("style", "display: block");
+        });
+      }
+    }
+    eaz_get_cookies();
+    var eaz_get_child_of_cookies = function () {
+      let doc_last_current_child = eaz_read_cookie('eazydocs_current_child');
+      if (doc_last_current_child) {
+        let doc_last_current_child_of = eaz_read_cookie('eazydocs_current_child_of')
+        if (doc_last_current_child_of) {
+          $('.' + doc_last_current_child_of).each(function (e) {
+            var $this = $(this);
+            $('.' + doc_last_current_child_of).addClass('showing-expand');
+            $('.' + doc_last_current_child_of + '>.nestable--collapse').attr("style", "display: block");
+            $('.' + doc_last_current_child_of + '>.nestable--expand').attr("style", "display: none");
+            $('.' + doc_last_current_child_of + '>.dd-list').addClass('showing');
+            $('.' + doc_last_current_child_of + '>.dd-list').attr("style", "display: block");
+          });
+        }
+      }
+    }
+    eaz_get_child_of_cookies();
   });
 
 }(jQuery));
