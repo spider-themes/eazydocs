@@ -53,9 +53,11 @@
     .nav-sidebar .nav-item {
         padding-right: 0;
     }
+
     .filter_form {
         margin-right: 0;
     }
+
     .nav-sidebar .nav-item .nav-link + .icon {
         right: 0;
     }
@@ -77,20 +79,20 @@
         right: auto;
     }
 
-    .left-sidebar-toggle {
-        display: none;
-    }
     .shortcode_info {
         padding-left: 0;
         padding-right: 0;
     }
+
     article#post {
         padding-bottom: 0;
     }
+
     .doc-middle-content {
         padding-right: 20px;
         padding-top: 100px;
     }
+
     .onepage_doc_area .container-fluid.pr-60 {
         padding-right: 15px;
         padding-left: 15px;
@@ -108,7 +110,7 @@
     }
 
     .body_fixed .doc_left_sidebarlist {
-        width:unset !important;
+        width: unset !important;
     }
 
     .doc_rightsidebar {
@@ -130,28 +132,36 @@
         justify-content: center;
         margin-top: 10px;
     }
+
     #reading-progress-fill {
         height: 3px;
     }
+
     .doc_right_mobile_menu .doc_rightsidebar {
         padding-bottom: 10px;
         padding-top: 30px;
         padding-left: 20px;
+        overflow-y: visible;
     }
+
     .page_breadcrumb .date {
         float: left;
         margin-top: 5px;
     }
+
     .contact_form .form-group,
     .help_form .modal-content .shortcode_title {
         margin-bottom: 20px;
     }
+
     .help_form {
         padding: 15px;
     }
+
     #eazydocs_feedback .close {
         top: -10px;
     }
+
     .contact_form .form-group .form-control {
         height: 55px;
     }

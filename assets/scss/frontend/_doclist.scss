@@ -647,11 +647,10 @@
 .contact_form {
   .form-group {
     margin-bottom: 30px;
-    &:last-child {
+    &:last-child, &.submit-area {
       margin-bottom: 0;
     }
-    .form-control,
-    textarea {
+    .form-control, textarea {
       border: 1px solid rgb(244, 248, 248);
       height: 58px;
       border-radius: 4px;
@@ -697,6 +696,10 @@
   color: var(--ezd_brand_color);
   display: none;
   top: 0;
+  &:hover {
+    background: var(--ezd_brand_color);
+    color: #fff;
+  }
   &#right {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -1195,7 +1198,7 @@ body:not(.onepage-doc) .sticky_menu {
       margin: 0 5px 5px 0;
       a {
         background: rgba(175, 184, 193, 0.2);
-        color: #616366;
+        color: var(--black_700);
         line-height: 25px;
         padding: 0 14px;
         display: inline-block;
@@ -1605,19 +1608,15 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 /** === Share Button === **/
-.pageSideSection {
-  .ezd-share-btn {
-    text-decoration: none;
-  }
-}
-
 .ezd-share-btn {
   color: var(--black_500);
   margin: 00px 0 20px;
-  align-items: center;
+  align-items: baseline;
   display: flex;
   gap: 8px;
+  text-decoration: none !important;
 }
+
 div#eazydocs_share {
   background: #00000066;
   > .modal-dialog{
@@ -1665,6 +1664,7 @@ div#eazydocs_share {
             line-height: 0;
             color: var(--black_600);
             margin-right: 10px;
+            text-decoration: none;
             &:hover{
               background-color: rgba(208, 215, 222, 0.4);
             }
@@ -1772,5 +1772,13 @@ div#eazydocs_share {
 body.admin-bar{
   .ezd-link-copied-wrap{
     top: 42px
+  }
+}
+
+/** === Sidebar === **/
+.ezd-widgets {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
   }
 }

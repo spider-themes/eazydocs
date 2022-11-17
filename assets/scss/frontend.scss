@@ -102,26 +102,6 @@ p .footnotes-link::after {
   }
 }
 
-.single-docs .side_menu {
-  .close_nav {
-    i {
-      & + i {
-        display: none;
-      }
-    }
-  }
-  &.menu-opened {
-    .close_nav {
-      i {
-        display: none;
-        & + i {
-          display: block;
-        }
-      }
-    }
-  }
-}
-
 .left-sidebar-toggle {
   position: absolute;
   top: 65px;
@@ -163,6 +143,15 @@ p .footnotes-link::after {
       background: var(--ezd_brand_color);
       border-color: var(--ezd_brand_color);
       padding: 3px 8px 3px 16px;
+    }
+  }
+}
+
+.opened .open_icon {
+  i {
+    display: none;
+    + i {
+      display: block;
     }
   }
 }

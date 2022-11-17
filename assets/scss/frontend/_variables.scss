@@ -57,3 +57,25 @@ $rob: "Roboto", sans-serif;
     @content;
   }
 }
+
+// Shadow variations
+.bs-sm {
+  box-shadow: var(--bs_sm) !important;
+}
+
+.bs-md {
+  box-shadow: var(--bs_md) !important;
+}
+
+.bs-lg {
+  box-shadow: var(--bs_lg) !important;
+}
+
+/** Hover Classes **/
+.h\:bs-md:hover {
+  box-shadow: var(--bs_md) !important;
+}
+
+.h\:bs-lg:hover {
+  box-shadow: var(--bs_md) !important;
+}

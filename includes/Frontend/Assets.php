@@ -34,7 +34,6 @@ class Assets {
         if ( ezydocs_frontend_assets() == true ) {
 
             wp_enqueue_style( 'rvfs', EAZYDOCS_VEND . '/font-size/css/rvfs.css' );
-	        wp_enqueue_style( 'ezd-onepage', EAZYDOCS_ASSETS . '/css/onepage.css' );
             
             // Scripts
             wp_enqueue_script( 'rv-jquery-fontsize', EAZYDOCS_VEND . '/font-size/js/rv-jquery-fontsize-2.0.3.js' );
@@ -56,6 +55,10 @@ class Assets {
             if( is_rtl() ){
                 wp_enqueue_style( 'eazydocs-rtl', EAZYDOCS_ASSETS . '/css/rtl.css', array('eazydocs-frontend') );
             }
+        }
+        // Enqueue on onepage doc
+        if ( is_singular('doc') || is_page_template('page-onepage.php') ) {
+            wp_enqueue_style( 'ezd-onepage', EAZYDOCS_ASSETS . '/css/onepage.css' );
         }
 
         // Localize the script with new data

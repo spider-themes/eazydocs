@@ -27,6 +27,27 @@
 
 /*font Variables*/
 /**=== Functions ===**/
+.bs-sm {
+  box-shadow: var(--bs_sm) !important;
+}
+
+.bs-md {
+  box-shadow: var(--bs_md) !important;
+}
+
+.bs-lg {
+  box-shadow: var(--bs_lg) !important;
+}
+
+/** Hover Classes **/
+.h\:bs-md:hover {
+  box-shadow: var(--bs_md) !important;
+}
+
+.h\:bs-lg:hover {
+  box-shadow: var(--bs_md) !important;
+}
+
 main, main#main, section {
   padding: 0;
 }
@@ -1229,11 +1250,10 @@ body.search-focused .ezd_click_capture {
 .contact_form .form-group {
   margin-bottom: 30px;
 }
-.contact_form .form-group:last-child {
+.contact_form .form-group:last-child, .contact_form .form-group.submit-area {
   margin-bottom: 0;
 }
-.contact_form .form-group .form-control,
-.contact_form .form-group textarea {
+.contact_form .form-group .form-control, .contact_form .form-group textarea {
   border: 1px solid #f4f8f8;
   height: 58px;
   border-radius: 4px;
@@ -1243,24 +1263,19 @@ body.search-focused .ezd_click_capture {
   font-weight: 400;
   padding-left: 30px;
 }
-.contact_form .form-group .form-control.placeholder,
-.contact_form .form-group textarea.placeholder {
+.contact_form .form-group .form-control.placeholder, .contact_form .form-group textarea.placeholder {
   color: #878b99;
 }
-.contact_form .form-group .form-control:-moz-placeholder,
-.contact_form .form-group textarea:-moz-placeholder {
+.contact_form .form-group .form-control:-moz-placeholder, .contact_form .form-group textarea:-moz-placeholder {
   color: #878b99;
 }
-.contact_form .form-group .form-control::-moz-placeholder,
-.contact_form .form-group textarea::-moz-placeholder {
+.contact_form .form-group .form-control::-moz-placeholder, .contact_form .form-group textarea::-moz-placeholder {
   color: #878b99;
 }
-.contact_form .form-group .form-control::-webkit-input-placeholder,
-.contact_form .form-group textarea::-webkit-input-placeholder {
+.contact_form .form-group .form-control::-webkit-input-placeholder, .contact_form .form-group textarea::-webkit-input-placeholder {
   color: #878b99;
 }
-.contact_form .form-group .form-control:focus,
-.contact_form .form-group textarea:focus {
+.contact_form .form-group .form-control:focus, .contact_form .form-group textarea:focus {
   box-shadow: 0 20px 30px 0 rgba(4, 73, 89, 0.1);
 }
 .contact_form .form-group textarea {
@@ -1291,6 +1306,10 @@ body.search-focused .ezd_click_capture {
   color: var(--ezd_brand_color);
   display: none;
   top: 0;
+}
+.open_icon:hover {
+  background: var(--ezd_brand_color);
+  color: #fff;
 }
 .open_icon#right {
   border-top-left-radius: 3px;
@@ -1731,7 +1750,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .doc-btm ul.card_tagged li a {
   background: rgba(175, 184, 193, 0.2);
-  color: #616366;
+  color: var(--black_700);
   line-height: 25px;
   padding: 0 14px;
   display: inline-block;
@@ -2091,16 +2110,13 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 /** === Share Button === **/
-.pageSideSection .ezd-share-btn {
-  text-decoration: none;
-}
-
 .ezd-share-btn {
   color: var(--black_500);
   margin: 0px 0 20px;
-  align-items: center;
+  align-items: baseline;
   display: flex;
   gap: 8px;
+  text-decoration: none !important;
 }
 
 div#eazydocs_share {
@@ -2151,6 +2167,7 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .so
   line-height: 0;
   color: var(--black_600);
   margin-right: 10px;
+  text-decoration: none;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:hover {
   background-color: rgba(208, 215, 222, 0.4);
@@ -2248,6 +2265,12 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .co
 
 body.admin-bar .ezd-link-copied-wrap {
   top: 42px;
+}
+
+/** === Sidebar === **/
+.ezd-widgets h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
 /*============== Start doc_tag_area css =============*/
@@ -3331,16 +3354,6 @@ p .footnotes-link::after {
   margin-top: 5px;
 }
 
-.single-docs .side_menu .close_nav i + i {
-  display: none;
-}
-.single-docs .side_menu.menu-opened .close_nav i {
-  display: none;
-}
-.single-docs .side_menu.menu-opened .close_nav i + i {
-  display: block;
-}
-
 .left-sidebar-toggle {
   position: absolute;
   top: 65px;
@@ -3384,6 +3397,13 @@ p .footnotes-link::after {
   background: var(--ezd_brand_color);
   border-color: var(--ezd_brand_color);
   padding: 3px 8px 3px 16px;
+}
+
+.opened .open_icon i {
+  display: none;
+}
+.opened .open_icon i + i {
+  display: block;
 }
 
 .article_list {

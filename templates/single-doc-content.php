@@ -25,8 +25,8 @@ if( $sidebar_toggle         == 1 ) :
 endif;
 ?>
 
-<article class="shortcode_info" id="post" itemscope itemtype="http://schema.org/Article">
-        <div class="doc-post-content">
+<article class="shortcode_info" itemscope itemtype="http://schema.org/Article">
+        <div class="doc-post-content" id="post">
             <div class="shortcode_title">
 				<?php the_title( '<h1>', '</h1>' ); ?>
                 <?php

@@ -1,4 +1,4 @@
-=== EazyDocs - #1 Beautiful Knowledge base, wiki, Documentation Builder Plugin (easydocs, knowledgebase) ===
+=== EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin (easydocs, knowledgebase) ===
 Contributors: mdjwel, spiderdevs, arafatjamil01, delweratjk
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
@@ -8,12 +8,11 @@ Stable tag: 1.3.5x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-EazyDocs assists you in creating great-looking documentation for your products in an easy and quick way.
+EazyDocs is a powerful knowledge base, documentation builder plugin for WordPress. It is a complete solution for creating a knowledge base, documentation, helpdesk, support center, FAQ, wiki, and more.
 
 == Description ==
-
-EazyDocs assists you in creating great-looking documentation for your products in an easy and quick way. Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags and organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
-
+EazyDocs is a powerful knowledge base, documentation builder plugin for WordPress. It is a complete solution for creating a knowledge base, documentation, helpdesk, support center, FAQ, wiki, and more.
+Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags and organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
 
 ## 🔗 USEFUL LINKS ##
 
@@ -27,70 +26,91 @@ EazyDocs assists you in creating great-looking documentation for your products i
 
 ### Reasons to Choose EazyDocs ###
 
-- **Beautiful Custom Admin UI:** You get all the power of WordPress to create/add new docs, tags, organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+- **No Limitation:**
+There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
 
-- **No Limitation:** There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
+- **Look Beautiful by Default:**
+EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
 
-- **Live Customizer:** Set it and see the changes instantly. The Docs archive page, Doc single page layouts can be customized via the WordPress live customizer panel.
+- **Designed for Reader:**
+EazyDocs is designed to make it easy for your readers to find what they are looking for. We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
 
-- **Look Beautiful by Default:** EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
+- **SEO Optimized:**
+EazyDocs is SEO ready right from the first line of code. It will help you to rank your docs on search engines.
 
-- **Designed for Reader:** We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
+- **Integrated Schema:**
+EazyDocs is integrated with Schema.org, which is a set of schemas that help search engines to understand your content better. It will help you to rank your docs on search engines.
 
-- **SEO Optimized:** EazyDocs is SEO ready right from the first line of code.
+- **Sticky Sidebars:**
+EazyDocs has sticky sidebars that will help your readers to navigate through your docs easily. Make the sidebars to follow you as the visitor scroll and show the important content.
 
-- **Integrated Schema:** EazyDocs is coded out of the box valid schema markup and Google structured data.
+- **Multilingual/RTL Ready:**
+EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one! You can translate it into your language and use it in your website.
 
-- **Sticky Sidebars:** Make the sidebars to follow you as you scroll and show the important content.
+- **Responsive & Retina Ready:**
+EazyDocs is 100% responsive to make your Knowledge base look beautiful and effective on all major devices.
 
-- **Multilingual/RTL Ready:** EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one!
+- **On Demand Asset Loading:**
+Loading only necessary CSS, JavaScript, image, font files assets on the EazyDocs pages and will not load our assets on other pages of your website.
 
-- **Responsive & Retina Ready:** EazyDocs is 100% responsive to make your Knowledge base look beautiful and effective on all major devices.
+- **Simple Navigation:**
+The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
 
-- **On Demand Asset Loading:** Loading only necessary css, javascript assets on the EazyDocs pages and will not load our assets on other pages of your website.
+## 📒 Hierarchical & Filterable Doc Builder Admin UI ##
+We designed the EazyDocs Doc Builder admin UI to be as simple as possible yet powerful. You can create a new doc, filter docs by post status, view positive/negative feedback ratio, and organize your docs with drag-and-drop ordering.
 
-- **Simple Navigation:** The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
+## ⚡ Live Customizer ##
+EazyDocs comes with a live customizer that allows you to customize your Knowledge base without leaving the WordPress admin. You can change the colors, fonts, and other settings to reflect your brand.
+
+## ⚙️ Advanced Settings Page ##
+The advanced settings page allows you to customize your Knowledge base without touching a single line of code. You can change the colors, fonts, and other settings to reflect your brand. By searching in the Settings page, you can find your desired option in realtime.
 
 ## 🔍 Ajax Live Search Results ##
-The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
+EazyDocs comes with a live search feature that allows your readers to search for docs without leaving the page. The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
 
-## 🔗 Share Docs via all possible ways ##
-Visitors can share the Docs on social sites as well as they can directly mail or copy the link to share it from the doc single page.
+## 📤 Share Docs via all possible ways ##
+EazyDocs comes with a share button that allows your readers to share your docs via all possible ways. Visitors can share the Docs on social sites as well as they can directly mail or copy the link to share it from the doc single page.
 
 ## 🧱 Building pages with Gutenberg Blocks ##
 You don't have to remember shortcode attributes, values. We made it dynamic. EazyDocs has some pre-built blocks to make the Docs page building easier and quick.
 
 ## ⬅️ Collapsible Sidebar ##
-Visitor can collapse the left sidebar while reading to view the doc content large.
+EazyDocs comes with a collapsible sidebar that allows your readers to hide the sidebar and focus on the content. The sidebar can be collapsed by clicking on the sidebar toggle button.
 
 ## 🗂️ 4 Level Depth Supported ##
-The doc hierarchy depth is supported 4th level depth. Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth)
+EazyDocs supports 4 level depth of docs. You can create a doc with 4 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth)
 
 ## 👁️ Read time, Views Count ##
-Let the readers know the total read time and the total views count of an article (ex: 2 Minutes to read) to show how popular an article.
+EazyDocs comes with a read time and views count feature that allows your readers to know how much time they will take to read the doc and how many times the doc has been viewed.
 
 ## 📖 Reading Assistant Tools ##
-On the Doc sidebar you can show some important tools for better reading experience. Font Size switcher, Print option, TOC are developed for a consistent reading experience.
+EazyDocs comes with a reading assistant tools that allows your readers to increase or decrease the font size, print Doc, TOC are developed for a consistent reading experience.
 
 ## 📋 Table of Contents (TOC) ##
-EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation. With an effective automated process, it will organize your documentation headings with its in-built functions and this stunning TOC get sticky on the sidebar, so your visitors can always navigate to the doc sections easily.
+EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation. That allows your readers to navigate through the doc easily. The TOC is developed for a consistent reading experience.
 
 ## 🤠 Get Feedback From Real Visitors ##
+EazyDocs comes with a feedback feature that allows your readers to give feedback on the docs. The feedback will be shown on the doc single page. You can also see the feedback on the admin side.
 Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
 
 ## 🕒 Recently Viewed Articles ##
 No need to memorize or remember the last viewed articles by the user. They can see and visit their recently visited articles at the bottom of doc single page
 
 ## 📑 Related Articles ##
-Sometimes readers might be interested to read the Related articles. EazyDocs has a feature to display the Related Articles at the bottom of the Single Doc page to let the readers read articles they interested in.
+Sometimes readers might be interested to read the Related articles. EazyDocs will automatically create a Related Articles section at the bottom of the doc single page.
 
-## ⚙️ Advanced Customization Options ##
-Customize documentation pages from settings or even add shortcode, Customizer, and more to get the full authority to make it stand out for your visitors. By searching in the Settings page, you can find your desired option in realtime.
+EazyDocs Pro’s features include:
+- ** Single Doc Sidebars Content: **
+You can add any content to the sidebars of a single doc. Even you can add Gutenberg blocks, shortcode to the sidebars.
 
+- ** Bulk Doc Visibility: **
+You can change the visibility of multiple docs at once. You can change the visibility of multiple docs to public, private, or password protected.
+
+- ** Bulk Duplicate Docs: **
+You can duplicate a group of docs at once.
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
-
 
 == Frequently Asked Questions ==
 
@@ -139,8 +159,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v1.3.8 (12 November 2022) =
+Fixed: Left and Right sidebar was not showing on mobile devices
+
 = v1.3.7 (12 November 2022) =
 Tweaked: Compatibility with any themes improved
+Fixed: Pro Max Options was not unlocking with the Pro Max license
 
 = v1.3.6 (10 November 2022) =
 Fixed: Pro notice issue even if the license is activated

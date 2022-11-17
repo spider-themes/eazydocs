@@ -51,38 +51,39 @@ $current_theme = get_template();
 if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
 	eazydocs_get_template_part( 'search-banner' );
 }
-    ?>
-    <section class="doc_documentation_area <?php echo esc_attr( $content_wrapper ); ?>" id="sticky_doc">
-	<div class="ezd-link-copied-wrap"></div>
-        <div class="overlay_bg"></div>
-		<?php
-		if ( $breadcrumb == '1' ) {
-			if ( $current_theme != 'docy' && $current_theme != 'docly' ) {
-				eazydocs_get_template_part( 'breadcrumbs' );
-			}
-		}
-		?>
-        <div class="<?php echo esc_attr( $doc_container ); ?>">
-            <div class="row">
-				<?php
-				while ( have_posts() ) : the_post();
-					if ( $layout == 'left_sidebar' || $layout == 'both_sidebar' ) {
-						eazydocs_get_template_part( 'docs-sidebar' );
-					}
-					?>
-                    <div class="<?php echo esc_attr( $md_content_col ); ?> doc-middle-content">
-						<?php eazydocs_get_template_part( 'single-doc-content' ); ?>
-                    </div>
-					<?php
-					if ( $layout == 'right_sidebar' || $layout == 'both_sidebar' ) {
-						eazydocs_get_template_part( 'docs-right-sidebar' );
-					}
-				endwhile;
-				?>
-            </div>
+?>
 
+<section class="doc_documentation_area <?php echo esc_attr( $content_wrapper ); ?>" id="sticky_doc">
+
+    <div class="ezd-link-copied-wrap"></div>
+    <div class="overlay_bg"></div>
+    <?php
+    if ( $breadcrumb == '1' ) {
+        if ( $current_theme != 'docy' && $current_theme != 'docly' ) {
+            eazydocs_get_template_part( 'breadcrumbs' );
+        }
+    }
+    ?>
+    <div class="position-relative <?php echo esc_attr( $doc_container ); ?>">
+        <div class="row">
+            <?php
+            while ( have_posts() ) : the_post();
+                if ( $layout == 'left_sidebar' || $layout == 'both_sidebar' ) {
+                    eazydocs_get_template_part( 'docs-sidebar' );
+                }
+                ?>
+                <div class="<?php echo esc_attr( $md_content_col ); ?> doc-middle-content">
+                    <?php eazydocs_get_template_part( 'single-doc-content' ); ?>
+                </div>
+                <?php
+                if ( $layout == 'right_sidebar' || $layout == 'both_sidebar' ) {
+                    eazydocs_get_template_part( 'docs-right-sidebar' );
+                }
+            endwhile;
+            ?>
         </div>
-    </section>
+    </div>
+</section>
 
 <?php if ( $credit_enable == '1' ) : ?>
     <div class="section eazydocs-footer">
