@@ -36,7 +36,7 @@ if (is_array($depth_one_parents)) :
                     </li>
                 </ul>
             </div>
-            <div class="easydocs-accordion sortabled dd accordionjs" id="nestable-<?php echo esc_attr($item); ?>">
+            <div class="easydocs-accordion sortabled dd accordionjs nestables-child" id="nestable-<?php echo esc_attr($item); ?>">
                 <ol class="dd-list">
                     <?php
 

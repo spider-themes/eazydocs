@@ -25,6 +25,7 @@ class Admin
 		add_action('wp_ajax_ezd_notify_save_review', array($this, 'ezd_notify_save_review'));
 		add_filter('admin_body_class', [$this, 'ezd_admin_body_class']);
 		add_action('wp_ajax_eaz_nestable_docs', [$this, 'eaz_nestable_callback']);
+		add_action('wp_ajax_eaz_parent_nestable_docs', [$this, 'eaz_parent_nestable_callback']);
 	}
 
 	/**
@@ -347,7 +348,6 @@ class Admin
 
 		$nestedArray = json_decode(stripslashes($_POST['data']));
 
-		$msg = [];
 		$i = 0;
 		$c = 0;
 		$c_of = 0;
@@ -385,5 +385,22 @@ class Admin
 		}
 
 		wp_send_json_success(true);
+	}
+	public function eaz_parent_nestable_callback()
+	{
+
+		$nestedArray = json_decode(stripslashes($_POST['data']));
+		$msg = [];
+		$i = 0;
+		foreach ($nestedArray as $value) {
+			$i++;
+			$msg = $value->id;
+			wp_update_post([
+				'ID'         => $value->id,
+				'menu_order' => $i,
+			], true);
+		}
+
+		wp_send_json_success($msg);
 	}
 }

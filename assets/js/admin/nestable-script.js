@@ -109,6 +109,37 @@
       }
     }
     eaz_nestable_callback();
+    var eaz_parent_nestable_docs = function (e) {
+      var list = e.length ? e : $(e.target), output = list.data('output');
+      var dataString = {
+        action: 'eaz_parent_nestable_docs',
+        data: window.JSON.stringify(list.nestable('serialize')),
+      };
+      console.log(dataString);
+      $.ajax({
+        url: eazydocs_local_object.ajaxurl,
+        type: "POST",
+        data: dataString,
+        async: true,
+        cache: false,
+        dataType: 'json',
+        success: function (res) {
+          console.log(res);
+        },
+        error: function (err) {
+          console.log(err);
+        }
+      });
+    };
+    var eaz_parent_nestable_callback = function () {
+      var parent_section_tab = $('.parent-nestable');
+      if (parent_section_tab.length > 0) {
+        $('.parent-nestable').nestable({
+          maxDepth: 1
+        }).on('change', eaz_parent_nestable_docs);
+      }
+    }
+    eaz_parent_nestable_callback();
     var eaz_get_cookies = function () {
       let doc_last_current_child = eaz_read_cookie('eazydocs_current_child')
       if (doc_last_current_child) {

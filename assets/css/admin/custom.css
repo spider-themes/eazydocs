@@ -475,7 +475,8 @@ select#ezd_docs_layout {
 }
 
 /*Nestable CSS*/
-.dd {
+.dd,
+.dd-parent {
     position: relative;
     display: block;
     max-width: 100%;
@@ -492,15 +493,15 @@ select#ezd_docs_layout {
     list-style: none;
 }
 
-.dd-list .dd-list {
+.nestables-child .dd-list .dd-list {
     padding-left: 30px;
 }
 
-.dd-collapsed .dd-list {
+.nestables-child .dd-collapsed .dd-list {
     display: none;
 }
 
-.dd-item,
+.nestables-child .dd-item,
 .dd-empty,
 .dd-placeholder {
     display: block;
@@ -512,7 +513,7 @@ select#ezd_docs_layout {
     line-height: 20px;
 }
 
-.dd-handle {
+.nestables-child .dd-handle {
     display: block;
     width: 30px;
     height: 100%;
@@ -524,7 +525,7 @@ select#ezd_docs_layout {
     transition: 0.3s ease-out;
 }
 
-.dd3-handle {
+.nestables-child .dd3-handle {
     position: absolute;
     left: 0;
     top: 0px;
@@ -537,7 +538,7 @@ select#ezd_docs_layout {
     z-index: 9;
 }
 
-.dd-item>button {
+.nestables-child .dd-item>button {
     display: block;
     position: relative;
     cursor: pointer;
@@ -557,7 +558,7 @@ select#ezd_docs_layout {
     font-weight: bold;
 }
 
-.dd-item>button:before {
+.nestables-child .dd-item>button:before {
     content: "";
     position: absolute;
     width: 0;
@@ -572,7 +573,7 @@ select#ezd_docs_layout {
     transition: 0.3s;
 }
 
-.dd-item>button[data-action="collapse"]:before {
+.nestables-child .dd-item>button[data-action="collapse"]:before {
     transform: rotate(90deg);
 }
 
@@ -618,13 +619,12 @@ select#ezd_docs_layout {
 }
 
 
-.sub-items .dd3-content {
-    background: #fff !important;
-}
-
-
 @media only screen and (min-width: 700px) {
     .dd {
+        float: left;
+    }
+
+    .dd.nestables-child {
         float: left;
         width: 100%;
     }
@@ -639,7 +639,7 @@ select#ezd_docs_layout {
     margin: 0;
 }
 
-.dd3-item>button {
+.nestables-child .dd3-item>button {
     margin-left: 30px;
 }
 
@@ -648,17 +648,12 @@ select#ezd_docs_layout {
     height: 1px;
 }
 
-@media only screen and (min-width: 700px) {
-    .dd {
-        width: 100%;
-    }
-}
 
-.dd-item>button:before {
+.nestables-child .dd-item>button:before {
     top: 16px;
 }
 
-.dd-item>button {
+.nestables-child .dd-item>button {
     height: 100%;
     padding: 14px 0;
 }
@@ -679,13 +674,7 @@ select#ezd_docs_layout {
     padding: 0 !important;
 }
 
-
-
 .dd3-content:hover,
 .dd3-content:hover>.accordion-title {
     background: #F9F9F9;
-}
-
-.dd-list.showing {
-    display: block;
 }

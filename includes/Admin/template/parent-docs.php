@@ -9,8 +9,8 @@ $query = new WP_Query([
 $count = $query->found_posts;
 ?>
 
-<div class="tab-menu <?php echo $count > 12 ? '' : 'short'; ?>">
-    <ul class="easydocs-navbar sortabled">
+<div class="dd parent-nestable tab-menu <?php echo $count > 12 ? '' : 'short'; ?>">
+    <ol class="easydocs-navbar sortabled dd-list">
         <?php
         $i = '';
         while ($query->have_posts()) : $query->the_post();
@@ -48,10 +48,12 @@ $count = $query->found_posts;
                 $doc_status = esc_html__('Password Protected Doc', 'eazydocs');
             }
         ?>
-            <li class="easydocs-navitem  <?php echo esc_attr($is_active); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
+            <li class="easydocs-navitem dd-item dd3-item <?php echo esc_attr($is_active); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
+
                 <div class="title">
                     <span title="<?php echo esc_attr($doc_status); ?>" class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
                     <?php the_title(); ?>
+
                 </div>
                 <div class="total-page">
                     <span>
@@ -59,6 +61,11 @@ $count = $query->found_posts;
                     </span>
                 </div>
                 <div class="link">
+                    <div class="dd-handle dd3-handle" style="z-index: 1;">
+                        <svg class="dd-handle-icon" width="12px" height="12px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="<?php esc_attr_e('Hold the mouse and drag to move this doc.', 'eazydocs'); ?>">
+                            <path fill="none" stroke="#000" stroke-width="2" d="M15,5 L17,5 L17,3 L15,3 L15,5 Z M7,5 L9,5 L9,3 L7,3 L7,5 Z M15,13 L17,13 L17,11 L15,11 L15,13 Z M7,13 L9,13 L9,11 L7,11 L7,13 Z M15,21 L17,21 L17,19 L15,19 L15,21 Z M7,21 L9,21 L9,19 L7,19 L7,21 Z" />
+                        </svg>
+                    </div>
                     <?php
                     if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) {
                         do_action('eazydocs_parent_doc_drag');
@@ -134,5 +141,5 @@ $count = $query->found_posts;
         endwhile;
         wp_reset_postdata();
         ?>
-    </ul>
+    </ol>
 </div>
