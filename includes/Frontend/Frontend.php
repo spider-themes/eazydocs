@@ -114,12 +114,11 @@ class Frontend {
                             $("#more-recent").fadeOut("slow")
                         }
                     });
-
                 });
             })(jQuery);
 		</script>
-
-	<?php }
+	    <?php
+    }
 
 	/**
 	 * @param $title
@@ -195,5 +194,6 @@ class Frontend {
                 })
             })(jQuery);
 		</script>
-	<?php }
+	    <?php
+    }
 }

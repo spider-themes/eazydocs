@@ -159,7 +159,7 @@ p .footnotes-link::after {
 .article_list {
   padding: 0 0 0 20px;
   margin: 0;
-  list-style: none;
+  list-style: none !important;
   li {
     margin: 15px 0 0 0;
     padding: 0;

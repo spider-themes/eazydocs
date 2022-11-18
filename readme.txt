@@ -44,6 +44,9 @@ EazyDocs is integrated with Schema.org, which is a set of schemas that help sear
 - **Sticky Sidebars:**
 EazyDocs has sticky sidebars that will help your readers to navigate through your docs easily. Make the sidebars to follow you as the visitor scroll and show the important content.
 
+- **Simple Navigation:**
+The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily. The filter form helps to find the right doc quickly.
+
 - **Multilingual/RTL Ready:**
 EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one! You can translate it into your language and use it in your website.
 
