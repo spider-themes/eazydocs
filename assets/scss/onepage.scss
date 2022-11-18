@@ -293,13 +293,12 @@ body.admin-bar {
   }
 }
 
-
 .documentation_area_sticky .nav-sidebar .nav-item .docs-progress-bar {
   background: rgb(214 212 212 / 20%);
 }
 
 .documentation_area_sticky .nav-sidebar .nav-item.active > a {
-  background: #2A3D4B;
+  background: transparent;
   opacity: 1;
 }
 
@@ -444,11 +443,12 @@ body.admin-bar {
 }
 
 .fullscreen-layout.onepage_doc_area .nav-sidebar.one-page-doc-nav-wrap .nav-item a {
-  display: contents;
+margin-left:0;
+padding-left: 10px
 }
 
 .fullscreen-layout.onepage_doc_area .nav-sidebar.one-page-doc-nav-wrap .nav-item {
-  padding: 0 0 3px 10px;
+  padding: 0 0 3px 0;
   line-height: 47px;
 }
 
@@ -475,6 +475,11 @@ body.admin-bar {
   width: 110% !important;
   margin-bottom: -3px;
 }
+ul{
+  &.doc-last-depth-fullscreen{
+    left: 15px !important;
+  }
+}
 
 .fullscreen-layout.onepage_doc_area .nav-sidebar.one-page-doc-nav-wrap .nav-item ul li.nav-item {
   line-height: 27px;
@@ -485,3 +490,21 @@ body.admin-bar {
   background: transparent;
   opacity: 1
 }
+
+.fullscreen-layout-onepage-sidebar{
+  &.one-page-doc-nav-wrap{
+     > .nav-item {
+      > a{
+        width:80%;
+      }
+      > ul {
+        overflow: hidden;
+        > li {
+          &.nav-item.active {
+            color: red;
+            }
+          }
+        }
+      }
+    }
+  }

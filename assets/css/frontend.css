@@ -683,6 +683,20 @@ body.search-focused .ezd_click_capture {
   padding-top: 70px;
 }
 
+.op-docs-sidebar .fullscreen-layout-onepage-sidebar > .active > .icon > .icon_plus {
+  display: none;
+}
+.op-docs-sidebar .fullscreen-layout-onepage-sidebar > .active > .icon > .icon_minus-06 {
+  display: block;
+}
+.op-docs-sidebar .fullscreen-layout-onepage-sidebar > .active > ul > li > a:hover {
+  color: red;
+}
+
+.ezd-body-docs > .modal-backdrop {
+  position: unset;
+}
+
 .doc_left_sidebarlist {
   padding-top: 60px;
   padding-bottom: 30px;
@@ -884,6 +898,8 @@ body.search-focused .ezd_click_capture {
 .nav-sidebar.one-page-doc-nav-wrap .nav-item a {
   padding: 13px 20px;
   align-items: center;
+  z-index: 2;
+  position: relative;
 }
 .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
   padding-left: 32px !important;
@@ -2145,15 +2161,17 @@ div#eazydocs_share > .modal-dialog > .modal-content > .close {
   line-height: 0;
   cursor: pointer;
   color: var(--black_600);
+  text-decoration: none;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .close:hover {
   color: #cd2653;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > h2 {
-  font-size: 1.75rem;
+  font-size: 28px;
   font-weight: 700;
   margin-top: -10px;
-  line-height: 1.5;
+  line-height: 34px;
+  margin-bottom: 20px;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a {
   width: 56px;
@@ -2197,13 +2215,14 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .co
   width: 100%;
   background-color: #f5f5f9;
   opacity: 1;
-  height: calc(1.5em + 0.75rem + 2px);
-  padding: 0.5rem 45px 0.5rem 1rem;
-  font-size: 1rem;
+  height: 37px;
+  padding: 16px 48px 16px 10px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
   color: #1b1b1b;
-  border-radius: 0.25rem;
+  border: 1px solid #b9b9b9;
+  border-radius: 4px;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap input:focus {
   outline: 2px solid #0044c0;
@@ -2212,9 +2231,14 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .co
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc {
   width: 20px;
   position: absolute;
-  right: 15px;
-  top: 3px;
+  right: 11px;
+  top: 0px;
   font-size: 20px;
+  bottom: 0;
+  margin: auto;
+  display: block;
+  line-height: 0;
+  height: 23px;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc:hover {
   cursor: pointer;
@@ -2222,10 +2246,12 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .co
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc > img {
   vertical-align: text-top;
   max-height: 23px;
+  max-width: 25px;
 }
 
 .ezd-link-copied-wrap {
   display: none;
+  font-size: 16px;
 }
 .ezd-link-copied-wrap.copied {
   display: block;
@@ -2233,7 +2259,7 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .co
   position: fixed;
   right: 10px;
   top: 10px;
-  background: var(--green_color);
+  background: var(--ezd_brand_color);
   width: 300px;
   padding: 12px 30px 12px 47px;
   color: white;
