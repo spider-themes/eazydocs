@@ -50,9 +50,10 @@ $toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS', 'eazydocs' );
             <div class="ezd-widgets">
                 <?php
                 // Widgets area
-                $parent_doc_id       = function_exists('get_root_parent_id') ? get_root_parent_id( get_queried_object_id() ) : '';
-                $content_type        = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar_type', true );
-                $ezd_shortcode       = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar', true );
+                $parent_doc_id      = function_exists('get_root_parent_id') ? get_root_parent_id( get_queried_object_id() ) : '';
+                $content_type       = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar_type', true );
+                $ezd_shortcode      = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar', true );
+                $is_valid_post_id   = is_null( get_post( $ezd_shortcode ) ) ? 'No' : 'Yes';
 
                 if( ! empty ( $ezd_shortcode ) ){                     
                     if (  $content_type  == 'string_data_right' ) {
@@ -60,7 +61,7 @@ $toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS', 'eazydocs' );
                     } elseif ( $content_type == 'shortcode_right' ) {
                         echo do_shortcode( html_entity_decode( $ezd_shortcode ) );                
                     } else {
-                        if( ! empty ( $ezd_shortcode )) {
+                        if( $is_valid_post_id == 'Yes' ) {
                             $wp_blocks = new WP_Query([
                                 'post_type' 	=> 'wp_block',
                                 'p'				=> $ezd_shortcode

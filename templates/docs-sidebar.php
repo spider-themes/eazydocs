@@ -91,6 +91,7 @@ if( $credit_enable == '1' ){
             $parent_doc_id_left      = function_exists('get_root_parent_id') ? get_root_parent_id( get_queried_object_id() ) : '';
             $content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar_type', true );
             $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
+			$is_valid_post_id   	 = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
 
             if ( $content_type_left  == 'string_data' ) {
                 echo html_entity_decode( $ezd_shortcode_left ) ?? '';
@@ -98,7 +99,7 @@ if( $credit_enable == '1' ){
                 echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
             } else {
             $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
-				if( ! empty ( $ezd_shortcode_left )) {
+			if( $is_valid_post_id == 'Yes' ) {
 					$wp_blocks = new WP_Query([
 						'post_type' 	=> 'wp_block',
 						'p'				=> $ezd_shortcode_left
