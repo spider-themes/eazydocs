@@ -102,11 +102,11 @@ $count = $query->found_posts;
                                     $left_content   = get_post_meta( get_the_ID(), 'ezd_doc_left_sidebar', true);
                                     $left_content   = '&left_content='.$left_content;
 
-                                    $right_type = get_post_meta( get_the_ID(), 'ezd_doc_right_sidebar_type', true);
-                                    $right_type = '&right_type='.$right_type;
+                                    $right_type     = get_post_meta( get_the_ID(), 'ezd_doc_right_sidebar_type', true);
+                                    $right_type     = '&right_type='.$right_type;
 
-                                    $right_content   = get_post_meta( get_the_ID(), 'ezd_doc_right_sidebar', true);
-                                    $right_content   = '&right_content='.$right_content;
+                                    $right_content  = get_post_meta( get_the_ID(), 'ezd_doc_right_sidebar', true);
+                                    $right_content  = '&right_content='.$right_content;
 
                                     do_action('eazydocs_doc_sidebar', get_the_ID(), $left_type, $left_content, $right_type, $right_content);
                                 else :

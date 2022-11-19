@@ -239,28 +239,28 @@ class Admin {
 			$is_content 		= str_replace('style&equals;','style@', $is_content);
 			$content_null       = ! empty( $is_content ) ? '&content='. $is_content : null;
 			
-			$ezd_content_type_right   = get_post_meta($post_ID, 'ezd_doc_content_type_right', true);
-			$content_type_right       = ! empty( $ezd_content_type_right ) ? '&content_type_right='. $ezd_content_type_right : null;
+			$ezd_content_type_right   	= get_post_meta($post_ID, 'ezd_doc_content_type_right', true);
+			$content_type_right       	= ! empty( $ezd_content_type_right ) ? '&content_type_right='. $ezd_content_type_right : null;
 
-			$ezd_content_right 	= '';
+			$ezd_content_right 			= '';
 			if ( $ezd_content_type_right == 'widget_data_right' ) {
-				$ezd_content_right = get_post_meta($post_ID, 'ezd_doc_content_box_right', true);
+				$ezd_content_right 		= get_post_meta($post_ID, 'ezd_doc_content_box_right', true);
 			} else {
-				$ezd_content_right = get_post_meta($post_ID, 'ezd_doc_content_box_right', true);
+				$ezd_content_right 		= get_post_meta($post_ID, 'ezd_doc_content_box_right', true);
 			}
 			
-			$ezd_content_right 		   = str_replace('#',';hash;', $ezd_content_right);
-			$ezd_content_right 		= str_replace('style&equals;','style@', $ezd_content_right);
-			$ezd_contents_right    = ! empty( $ezd_content_right ) ? '&content_right='. $ezd_content_right : null;
-			$link                  = $link . $doc_layout . $content_type . $content_null . $content_type_right . $ezd_contents_right;
+			$ezd_content_right 		   	= str_replace('#',';hash;', $ezd_content_right);
+			$ezd_content_right 			= str_replace('style&equals;','style@', $ezd_content_right);
+			$ezd_contents_right    		= ! empty( $ezd_content_right ) ? '&content_right='. $ezd_content_right : null;
+			$link                  		= $link . $doc_layout . $content_type . $content_null . $content_type_right . $ezd_contents_right;
 		}
 		return $link;
 	}
 
 	public function ezd_admin_body_class($admin_body){
-		$ezd_admin_classe = explode(' ', $admin_body);    
+		$ezd_admin_classe 		= explode(' ', $admin_body);    
 		if ( empty( eaz_fs()->is_plan('promax') ) ) {
-			$ezd_admin_classe = array_merge($ezd_admin_classe, [
+			$ezd_admin_classe 	= array_merge($ezd_admin_classe, [
 				'ezd_no_promax'
 			]);
 		}

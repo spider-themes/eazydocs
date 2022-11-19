@@ -677,7 +677,7 @@ function sidebar_selectbox() {
 
 function get_reusable_blocks(){
 	$wp_registered_blocks = get_posts([
-		'post_type' 	  => 'wp_block'
+		'post_type' 	  	=> 'wp_block'
 	]);
 	if ( ! empty ( $wp_registered_blocks )) {
 		$sidebars = '';

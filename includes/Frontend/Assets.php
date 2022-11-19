@@ -55,7 +55,7 @@ class Assets {
             }
         }
         // Enqueue on onepage doc
-        if ( is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
+        if ( is_singular('docs') ||  is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
             wp_enqueue_style( 'ezd-onepage', EAZYDOCS_ASSETS . '/css/onepage.css' );
         }
 
