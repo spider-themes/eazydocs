@@ -286,9 +286,7 @@ class Admin
 	 **/
 	public function eaz_nestable_callback()
 	{
-
 		$nestedArray = json_decode(stripslashes($_POST['data']));
-
 		$i = 0;
 		$c = 0;
 		$c_of = 0;
@@ -297,7 +295,7 @@ class Admin
 			wp_update_post([
 				'ID'         => $value->id,
 				'menu_order' => $i,
-				'post_parent' => eazydocs_root_parent_id($value->id)
+				'post_parent' => eaz_get_nestable_parent_id($value->id)
 			], true);
 
 			if (array_key_exists('children', $value)) {
@@ -325,11 +323,10 @@ class Admin
 			}
 		}
 
-		wp_send_json_success(true);
+		wp_send_json_success($nestedArray);
 	}
 	public function eaz_parent_nestable_callback()
 	{
-
 		$nestedArray = json_decode(stripslashes($_POST['data']));
 		$msg = [];
 		$i = 0;

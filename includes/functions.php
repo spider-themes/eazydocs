@@ -1091,6 +1091,16 @@ function ezd_search_data_fetch()
 	echo '</div>';
 	die();
 }
+function eaz_get_nestable_parent_id($page_id)
+{
+	global $wpdb;
+	$parent = $wpdb->get_var("SELECT post_parent FROM $wpdb->posts WHERE post_type='docs' AND post_status='publish' AND ID = '$page_id'");
+	if ($parent == 0) {
+		return $page_id;
+	} else {
+		return eaz_get_nestable_parent_id($parent);
+	}
+}
 function eaz_get_nestable_children($post_id)
 {
 	$child_depth = get_children(array(
