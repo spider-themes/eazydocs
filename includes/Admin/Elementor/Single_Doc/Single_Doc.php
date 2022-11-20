@@ -23,11 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Single_Doc extends Widget_Base {
 
 	public function get_name() {
-		return 'docy_single_doc';
+		return 'ezd_single_doc';
 	}
 
 	public function get_title() {
-		return __( 'Single Doc', 'eazydocs' );
+		return __( 'EazyDocs Single Doc', 'eazydocs' );
 	}
 
 	public function get_icon() {
@@ -37,7 +37,12 @@ class Single_Doc extends Widget_Base {
 	public function get_categories() {
 		return [ 'eazydocs' ];
 	}
-	 public function get_style_depends (){
+
+    public function get_keywords() {
+        return ['eazydocs', 'doc', 'documentation', 'knowledge base', 'knowledgebase', 'kb'];
+    }
+
+    public function get_style_depends (){
         return [ 'ezd-el-widgets', 'elegant-icon' ];
     }
 

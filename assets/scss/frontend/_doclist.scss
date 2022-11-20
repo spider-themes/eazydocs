@@ -230,13 +230,13 @@
     }
     .dropdown_nav {
       margin: 0;
-      padding: 5px 0 0 32px;
+      padding: 0 0 0 34px;
       width: 100% !important;
       display: none;
       list-style: none;
       li {
         line-height: 1.5;
-        padding: 8px 10px;
+        padding: 6px 10px;
         margin: 0 0 3px;
         border-radius: 2px;
         &:hover {
@@ -573,7 +573,7 @@
     transition: all 0.2s linear;
     margin-left: 5px;
     border-radius: 15px;
-    text-decoration: none;
+    text-decoration: none !important;
     &:hover {
       background: #1f9852;
     }
@@ -1644,7 +1644,7 @@ body:not(.onepage-doc) .sticky_menu {
 
 /** === Share Button === **/
 .ezd-share-btn {
-  color: var(--black_500);
+  color: var(--black_600);
   margin: 00px 0 20px;
   align-items: baseline;
   display: flex;

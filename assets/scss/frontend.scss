@@ -180,7 +180,7 @@ p .footnotes-link::after {
       transition: color 0.2s linear;
       display: flex;
       align-items: baseline;
-      text-decoration: none;
+      text-decoration: none !important;
       &:before{
         content: "\68";
         font-family: 'ElegantIcons';

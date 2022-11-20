@@ -840,14 +840,14 @@ body.search-focused .ezd_click_capture {
 }
 .nav-sidebar .nav-item .dropdown_nav {
   margin: 0;
-  padding: 5px 0 0 32px;
+  padding: 0 0 0 34px;
   width: 100% !important;
   display: none;
   list-style: none;
 }
 .nav-sidebar .nav-item .dropdown_nav li {
   line-height: 1.5;
-  padding: 8px 10px;
+  padding: 6px 10px;
   margin: 0 0 3px;
   border-radius: 2px;
 }
@@ -1157,7 +1157,7 @@ body.search-focused .ezd_click_capture {
   transition: all 0.2s linear;
   margin-left: 5px;
   border-radius: 15px;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .feedback_link .h_btn:hover {
   background: #1f9852;
@@ -2130,7 +2130,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 
 /** === Share Button === **/
 .ezd-share-btn {
-  color: var(--black_500);
+  color: var(--black_600);
   margin: 0px 0 20px;
   align-items: baseline;
   display: flex;
@@ -3267,6 +3267,7 @@ body.admin-bar .ezd-link-copied-wrap {
   display: inline-block;
   padding: 6px 34px;
   transition: all 0.3s linear, color 0.2s;
+  text-decoration: none !important;
 }
 .categories_guide_item .doc_border_btn:hover {
   box-shadow: 0 10px 20px 0 rgba(76, 76, 241, 0.2);
@@ -3458,7 +3459,7 @@ p .footnotes-link::after {
   transition: color 0.2s linear;
   display: flex;
   align-items: baseline;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .article_list li a:before {
   content: "h";

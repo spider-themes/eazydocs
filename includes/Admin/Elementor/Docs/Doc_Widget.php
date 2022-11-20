@@ -12,13 +12,12 @@ use WP_Query;
 use WP_Post;
 
 class Doc_Widget extends Widget_Base {
-
 	public function get_name() {
-		return 'docy_docs';
+		return 'ezd_docs';
 	}
 
 	public function get_title() {
-		return esc_html__( 'Docs', 'eazydocs' );
+		return esc_html__( 'EazyDocs Multi Docs', 'eazydocs' );
 	}
 
 	public function get_icon() {
@@ -30,7 +29,7 @@ class Doc_Widget extends Widget_Base {
 	}
 
     public function get_script() {
-        return [ 'docs', 'documentation', 'knowledge base', 'knowledgebase', 'kb', 'eazydocs' ];
+        return [ 'eazydocs', 'docs', 'documentations', 'knowledge base', 'knowledgebase', 'kb', 'eazydocs' ];
     }
 
     public function get_style_depends (){

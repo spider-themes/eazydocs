@@ -97,10 +97,10 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                         </a>
                     </div>
                     <?php 
-                    if( $sections ) :
+                    if ( $sections ) :
                         ?>
                         <ul class="list-unstyled article_list">
-                            <?php 
+                            <?php
                             foreach ( $sections as $section ) :
                                 ?>
                                 <li>
@@ -112,16 +112,16 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                             endforeach;
                             ?>
                         </ul>
-                            <a href="<?php the_permalink(); ?>" class="doc_border_btn">
-                                <?php echo esc_html( $read_more ); ?>
-                                <i class="arrow_right"></i>
-                            </a>
-                        <?php 
+                        <a href="<?php the_permalink(); ?>" class="doc_border_btn">
+                            <?php echo esc_html( $read_more ); ?>
+                            <i class="arrow_right"></i>
+                        </a>
+                        <?php
                     endif;
                     ?>
                 </div>
             </div>
-            <?php 
+            <?php
             endwhile;
         endif;
         ?>

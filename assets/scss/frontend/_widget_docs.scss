@@ -976,6 +976,9 @@
     text-decoration: none;
     color: #0c0d0e;
     margin-bottom: 0;
+    &:hover {
+
+    }
     .title {
       font-size: 20px;
       text-decoration: none;
@@ -1007,6 +1010,7 @@
     display: inline-block;
     padding: 6px 34px;
     transition: all 0.3s linear, color 0.2s;
+    text-decoration: none !important;
     &:hover{
       box-shadow: 0 10px 20px 0 rgb(76 76 241 / 20%);
       background-color: var(--ezd_brand_color) !important;

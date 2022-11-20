@@ -12,11 +12,11 @@ use WP_Post;
 
 class Search_Widget extends Widget_Base {
     public function get_name() {
-		return 'docy_search_form';
+		return 'ezd_search_form';
 	}
 
 	public function get_title() {
-		return esc_html__( 'Search', 'eazydocs' );
+		return esc_html__( 'EazyDocs Search Form', 'eazydocs' );
 	}
 
 	public function get_icon() {

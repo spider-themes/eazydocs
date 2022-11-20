@@ -29,6 +29,9 @@ Site operators can create & manage detailed, hierarchical documentation in the W
 - **No Limitation:**
 There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
 
+- **Ordering and Nesting Docs by Drag-n-Drop:**
+Nesting and re-ordering have never before been so easy. You can easily drag-n-drop your docs to order them. Also, you can nest docs by Drag-n-Drop to create, re-organize a hierarchical structure.
+
 - **Look Beautiful by Default:**
 EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
 
@@ -76,6 +79,9 @@ EazyDocs comes with a share button that allows your readers to share your docs v
 
 ## 🧱 Building pages with Gutenberg Blocks ##
 You don't have to remember shortcode attributes, values. We made it dynamic. EazyDocs has some pre-built blocks to make the Docs page building easier and quick.
+
+## 🧩 Build doc pages with Elementor ##
+EazyDocs has some pre-built widgets to make the Docs page building by drag-n-drop. You can use the widgets in the Elementor page builder to build your Docs page.
 
 ## ⬅️ Collapsible Sidebar ##
 EazyDocs comes with a collapsible sidebar that allows your readers to hide the sidebar and focus on the content. The sidebar can be collapsed by clicking on the sidebar toggle button.
@@ -162,7 +168,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v1.3.8 (12 November 2022) =
+= v2.0.0 (22 November 2022) =
+New: Opt-In v.2.0
+New: Drag-n-drop ordering and nesting
+New: Docs, Single Doc and Doc Search Form Elementor widgets added
+Tweaked: Dark mode colors improved
 Fixed: Left and Right sidebar was not showing on mobile devices
 
 = v1.3.7 (12 November 2022) =
