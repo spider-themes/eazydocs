@@ -78,7 +78,7 @@
         $("#" + target).fadeIn('slow').siblings(".easydocs-tab").hide();
 
         let is_active_tab = $('.tab-menu .easydocs-navitem').hasClass('is-active');
-        if ( is_active_tab === true ) {
+        if (is_active_tab === true) {
             let active_tab_id = $('.easydocs-navitem.is-active').attr('data-rel')
             createCookie("eazydocs_doc_current_tab", active_tab_id, 999);
         }
@@ -89,21 +89,21 @@
     // Remain the last active doc tab
     function keep_last_active_doc_tab() {
         let doc_last_current_tab = readCookie('eazydocs_doc_current_tab')
-        if ( doc_last_current_tab ) {
+        if (doc_last_current_tab) {
             // Tab item
             $('.tab-menu .easydocs-navitem').removeClass('is-active')
             $(".tab-menu .easydocs-navitem[data-rel=" + doc_last_current_tab + "]").addClass('is-active')
             // Tab content
             $('.easydocs-tab-content .easydocs-tab').removeClass('tab-active')
-            $("#"+doc_last_current_tab).addClass('tab-active');
+            $("#" + doc_last_current_tab).addClass('tab-active');
         }
     }
     keep_last_active_doc_tab();
 
-    $(".accordionjs").accordionjs({
-        activeIndex: false,
-        closeAble: true,
-    });
+    // $(".accordionjs").accordionjs({
+    //     activeIndex: false,
+    //     closeAble: true,
+    // });
 
     $('.tab-menu .easydocs-navitem .parent-delete').on('click', function () {
         return false;
