@@ -87,14 +87,6 @@ body.body_dark .doc_rightsidebar .bootstrap-select .dropdown-toggle .filter-opti
 body.body_dark .border_bottom {
   background: #384c59;
 }
-body.body_dark .link, body.body_dark .version, body.body_dark .question_box .signup_form .input-group, body.body_dark .tab_shortcode .tab-content {
-  border: 1px solid #384c59;
-  background: #1f3341;
-}
-body.body_dark .tab_shortcode .nav-tabs .nav-item .nav-link {
-  background: #1f3341;
-  border-color: #384c59;
-}
 body.body_dark .question_box .signup_form .input-group .form-control {
   color: var(--p_color);
 }

@@ -1,8 +1,8 @@
 <?php
-$is_constribution              = eazydocs_get_option('is_doc_contribution', 'eazydocs_settings') ?? '';
-$is_add_doc                    = eazydocs_get_option('frontend_add_switcher', 'eazydocs_settings') ?? '';
-$is_edit_doc                   = eazydocs_get_option('frontend_edit_switcher', 'eazydocs_settings') ?? '';
-$user_login_page_id            = eazydocs_get_option('docs_frontend_login_page', 'eazydocs_settings') ?? '';
+$is_constribution              = ezd_get_opt('is_doc_contribution') ?? '';
+$is_add_doc                    = ezd_get_opt('frontend_add_switcher') ?? '';
+$is_edit_doc                   = ezd_get_opt('frontend_edit_switcher') ?? '';
+$user_login_page_id            = ezd_get_opt('docs_frontend_login_page') ?? '';
 
 if ( eaz_fs()->is_plan('promax') ) :
     if ( $is_constribution ) :
@@ -12,7 +12,7 @@ if ( eaz_fs()->is_plan('promax') ) :
                 <div class="contribut-btns">
                     <?php
                     $edit_url          = get_the_ID();
-                    $doc_edit_btn_text = eazydocs_get_option('frontend_edit_btn_text', 'eazydocs_settings') ?? esc_html__('Edit', 'eazydocs');
+                    $doc_edit_btn_text = ezd_get_opt('frontend_edit_btn_text') ?? esc_html__('Edit', 'eazydocs');
 
                     if ( $is_edit_doc == 1 ) {
                         $doc_edit_url = get_edit_post_link(get_the_ID());

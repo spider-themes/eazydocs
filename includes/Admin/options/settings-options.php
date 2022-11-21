@@ -241,18 +241,6 @@ CSF::createSection( $prefix, array(
 		),
 
         array(
-            'title'    => esc_html__( 'Section Excerpt', 'eazydocs' ),
-            'subtitle' => esc_html__( 'Define here the Doc section excerpt limit in word count to show. Use -1 to show the full excerpt.', 'eazydocs' ),
-            'desc'     => esc_html__( 'Note: If the excerpt leaves empty, the excerpt will be automatically taken from the doc post content.', 'eazydocs' ),
-            'id'       => 'doc_sec_excerpt_limit',
-            'type'     => 'slider',
-            'default'  => 8,
-            "min"      => 1,
-            "step"     => 1,
-            "max"      => 100,
-        ),
-
-        array(
             'id'          => 'content-bg',
             'type'        => 'color',
             'title'       => esc_html__( 'Background Color', 'eazydocs' ),
@@ -310,6 +298,40 @@ CSF::createSection( $prefix, array(
 			),
 			'default'       => 'Powered By <a href="https://wordpress.org/plugins/eazydocs/">EazyDocs</a>',
 		),
+
+        array(
+            'type'       => 'heading',
+            'title'      => esc_html__( 'Excerpt', 'eazydocs' ),
+        ),
+
+        array(
+            'id'        => 'is_excerpt',
+            'type'      => 'switcher',
+            'title'     => esc_html__( 'Show Excerpt', 'eazydocs' ),
+            'subtitle'  => esc_html__( 'Show excerpt on doc single page.', 'eazydocs' ),
+            'default'   => true,
+        ),
+
+        array(
+            'id'        => 'excerpt_label',
+            'type'      => 'text',
+            'title'     => esc_html__( 'Excerpt Label', 'eazydocs' ),
+            'subtitle'  => esc_html__( 'Excerpt label on doc single page.', 'eazydocs' ),
+            'default'   => esc_html__( 'Summary: ', 'eazydocs' ),
+            'dependency' => array( 'is_excerpt', '==', 'true' ),
+        ),
+
+        array(
+            'title'    => esc_html__( 'Section Excerpt', 'eazydocs' ),
+            'subtitle' => esc_html__( 'Define here the Doc section excerpt limit in word count to show. Use -1 to show the full excerpt.', 'eazydocs' ),
+            'desc'     => esc_html__( 'Note: If the excerpt leaves empty, the excerpt will be automatically taken from the doc post content.', 'eazydocs' ),
+            'id'       => 'doc_sec_excerpt_limit',
+            'type'     => 'slider',
+            'default'  => 12,
+            "min"      => 1,
+            "step"     => 1,
+            "max"      => 100,
+        ),
 	)
 ) );
 

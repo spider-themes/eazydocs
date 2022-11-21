@@ -1,12 +1,12 @@
 <?php
-$is_social_links        = eazydocs_get_option('is_social_links', 'eazydocs_settings') ?? '';
-$is_copy_link           = eazydocs_get_option('is_copy_link', 'eazydocs_settings') ?? '';
-$copy_link_text         = eazydocs_get_option('copy_link_text', 'eazydocs_settings') ?? 'Copy Link';
-$copy_link_text_success = eazydocs_get_option('copy_link_text_success', 'eazydocs_settings') ?? 'Copied!';
-$is_post_share_title    = eazydocs_get_option('is_post_share_title', 'eazydocs_settings') ?? '';
-$is_social_btns         = eazydocs_get_option('is_social_btns', 'eazydocs_settings') ?? '';
-$copy_link_label        = eazydocs_get_option('copy_link_label', 'eazydocs_settings') ?? __( 'Or copy link', 'eazydocs' );
-$share_btn_label        = eazydocs_get_option('share_btn_label', 'eazydocs_settings') ?? __( 'Share', 'eazydocs' );
+$is_social_links        = ezd_get_opt('is_social_links') ?? '';
+$is_copy_link           = ezd_get_opt('is_copy_link') ?? '';
+$copy_link_text         = ezd_get_opt('copy_link_text') ?? 'Copy Link';
+$copy_link_text_success = ezd_get_opt('copy_link_text_success') ?? 'Copied!';
+$is_post_share_title    = ezd_get_opt('is_post_share_title') ?? '';
+$is_social_btns         = ezd_get_opt('is_social_btns') ?? '';
+$copy_link_label        = ezd_get_opt('copy_link_label') ?? __( 'Or copy link', 'eazydocs' );
+$share_btn_label        = ezd_get_opt('share_btn_label') ?? __( 'Share', 'eazydocs' );
 
 if ( $is_social_links ) :
     if ( $is_copy_link || $is_social_btns ) :

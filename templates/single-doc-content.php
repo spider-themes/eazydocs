@@ -36,7 +36,7 @@ endif;
                         if( $reading_time_visibility == '1') : ?>
                             <span class="read-time">
                                 <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
-                                eazydocs_reading_time();
+                                ezd_reading_time();
                                 ?>
                             </span>
                             <?php
@@ -190,14 +190,23 @@ endif;
             </div>
             <div class="doc-scrollable editor-content">
 				<?php
+                if ( ezd_get_opt('is_excerpt') == '1' ) {
+                    ?>
+                    <p class="doc-excerpt alert alert-info">
+                        <strong><?php echo ezd_get_opt('excerpt_label', 'Summary');; ?></strong>
+                        <?php echo get_the_excerpt(); ?>
+                    </p>
+                    <?php
+                }
+
 				the_content();
 				eazydocs_get_template_part( 'single-doc-home' );
-				$children = eazydocs_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
+				$children = ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
 				if ( $children && $post->post_parent != 0 ) {
 					echo '<div class="details_cont ent recently_added" id="content_elements">';
 					echo '<h4 class="c_head">' . esc_html__( 'Articles', 'eazydocs' ) . '</h4>';
 					echo '<ul class="article_list">';
-					echo eazydocs_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
+					echo ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
 					echo '</ul>';
 					echo '</div>';
 				}

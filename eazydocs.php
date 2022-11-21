@@ -202,7 +202,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Admin\Assets();
 				new eazyDocs\One_Page();
 				new eazyDocs\One_Page_Edit();
-			} else {
+			} elseif ( !is_admin() ) {
 				new eazyDocs\Frontend\Frontend();
 				new eazyDocs\Frontend\Assets();
 				new eazyDocs\Frontend\Shortcode();

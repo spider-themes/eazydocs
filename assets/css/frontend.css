@@ -775,9 +775,6 @@ body.search-focused .ezd_click_capture {
   justify-content: space-between;
   align-items: center;
 }
-.nav-sidebar .nav-item.has_child .doc-link .icon {
-  margin-right: -8px;
-}
 .nav-sidebar .nav-item .docs-progress-bar {
   position: absolute;
   background: #ebf0f1;
@@ -1947,6 +1944,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   transition: color 0.2s linear;
   display: block;
   color: var(--black_900);
+  text-decoration: none;
 }
 .documentation_item .media-body .title:hover {
   text-decoration: underline;
@@ -2058,11 +2056,17 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .ezd-password-wrap {
   border: 1px solid #0c213a;
   border-radius: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 40px;
 }
 .ezd-password-wrap .ezd-password-head {
   background-color: #0c213a;
   flex: 1 1 auto;
   border-radius: 5px 5px 0 0;
+}
+.ezd-password-wrap .ezd-password-head .logo img {
+  display: block;
+  margin: 0 auto;
 }
 .ezd-password-wrap .ezd-password-head p.ezd-password-title {
   font-size: 18px;
@@ -2085,10 +2089,11 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   border: 1px solid #e3ebf6;
   box-shadow: none;
   outline: none;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.8125rem;
+  padding: 10px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
+  border-radius: 3px;
 }
 .ezd-password-wrap .ezd-password-body form input:focus {
   color: #303e67;
@@ -2136,6 +2141,10 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   display: flex;
   gap: 8px;
   text-decoration: none !important;
+  cursor: pointer;
+}
+.ezd-share-btn:hover {
+  color: var(--ezd_brand_color);
 }
 
 div#eazydocs_share {
@@ -2472,48 +2481,6 @@ body.admin-bar .ezd-link-copied-wrap {
 }
 .documentation_text .learn_btn {
   padding-top: 20px;
-}
-
-.documentation_item {
-  padding-right: 40px;
-  margin-bottom: 58px;
-  display: flex;
-}
-.documentation_item .icon {
-  border-radius: 10px;
-  background-color: var(--bs-white);
-  box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  margin-right: 30px;
-  padding: 0 12px 0 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: content-box;
-  flex-basis: 10%;
-}
-@media (max-width: 1440px) {
-  .documentation_item .icon {
-    flex-basis: 12%;
-    margin-right: 25px;
-  }
-}
-.documentation_item .media-body {
-  flex: 1;
-}
-.documentation_item .media-body .title {
-  font-weight: 500;
-  margin: 0 0 8px;
-  transition: color 0.2s linear;
-  display: block;
-}
-.documentation_item .media-body .title:hover {
-  color: var(--ezd_brand_color);
-}
-.documentation_item .media-body p {
-  margin-bottom: 0;
 }
 
 /**== Docs 4 / Book chapter CSS ==**/

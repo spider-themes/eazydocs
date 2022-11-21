@@ -172,8 +172,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 New: Opt-In v.2.0
 New: Drag-n-drop ordering and nesting
 New: Docs, Single Doc and Doc Search Form Elementor widgets added
-Tweaked: Dark mode colors improved
+New: Show excerpt on the Doc single page
 Fixed: Left and Right sidebar was not showing on mobile devices
+Tweaked: Dark mode colors improved
+Tweaked: Assets loading improved (dependency added)
 
 = v1.3.7 (12 November 2022) =
 Tweaked: Compatibility with any themes improved
