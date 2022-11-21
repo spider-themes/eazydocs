@@ -92,14 +92,11 @@ if( $credit_enable == '1' ){
             $content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar_type', true );
             $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
 			$is_valid_post_id   	 = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
-
-            if ( $content_type_left  == 'string_data' ) {
-                echo html_entity_decode( $ezd_shortcode_left ) ?? '';
-            } elseif ( $content_type_left == 'shortcode' ) {
-                echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
+			
+            if ( $content_type_left  == 'string_data'  && ! empty ( $ezd_shortcode_left ) ) {
+				echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
             } else {
-            $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
-			if( $is_valid_post_id == 'Yes' ) {
+				if( $content_type_left == 'widget_data' && ! empty( $is_valid_post_id ) ) { 
 					$wp_blocks = new WP_Query([
 						'post_type' 	=> 'wp_block',
 						'p'				=> $ezd_shortcode_left

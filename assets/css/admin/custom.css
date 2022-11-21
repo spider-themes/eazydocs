@@ -250,11 +250,23 @@ select#ezd_docs_layout {
 .ezd_widget_content_wrap select {
     max-width: unset
 }
-
+.ezd_widget_content_wrap_right p,
+.ezd_widget_content_wrap p{
+    text-align: left;
+}
+.ezd_widget_content_wrap_right p:first-child,
+.ezd_widget_content_wrap p:first-child{
+    margin-top: 10px;
+}
 .ezd_left_content_active {
     display: block;
 }
-
+.ezd-doc-sidebar-intro {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 10px;
+    text-align: left;
+}
 .ezd_content_btn_wrap {
     column-count: 2;
     gap: 2px;

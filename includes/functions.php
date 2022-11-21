@@ -732,7 +732,7 @@ function get_reusable_blocks_right()
 function no_reusable_blocks()
 {
 	$admin_url = admin_url('post-new.php?post_type=wp_block');
-	$message = sprintf(__('<br><p> No reusable blocks found. Please create one <a href="%s" target="_blank">here</a> </p>', 'eazydocs'), $admin_url);
+	$message = sprintf(__('<p> No reusable blocks found. Please create one <a href="%s" target="_blank">here</a> </p>', 'eazydocs'), $admin_url);
 	$message .= '<p>See how to create a reusable block <a href="https://wordpress.org/support/article/reusable-blocks/" target="_blank">Reusable Block</a></p>';
 	return $message;
 }

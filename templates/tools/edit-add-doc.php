@@ -26,9 +26,9 @@ if ( eaz_fs()->is_plan('promax') ) :
 
                     if ( $is_add_doc == 1 ) {
                         if ( is_user_logged_in() ) {
-                            do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'));
+                            do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'), get_the_ID());
                         } else {
-                            do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'));
+                            do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'), get_the_ID());
                         }
                     }
                     ?>
