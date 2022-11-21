@@ -29,7 +29,7 @@ $content_wrapper = $doc_width == 'full-width' ? 'doc_documentation_full_area' : 
 $credit_text = $options['eazydocs-credit-text'] ?? sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
 $breadcrumb  = $options['docs-breadcrumb'] ?? '1';
 
-if ( class_exists( 'EazyDocsPro' ) ) {
+if ( ezd_is_premium() ) {
 	$credit_enable = $options['eazydocs-enable-credit'] ?? '1';
 }
 

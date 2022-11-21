@@ -9,7 +9,7 @@ $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
 $layout                 = 'grid';
 
 // Check pro plugin class exists
-if ( class_exists( 'EazyDocsPro' ) ) {
+if ( ezd_is_premium() ) {
 	$layout             = $opt['docs-archive-layout'] ?? $layout; // id of field
 }
 ?>
@@ -69,10 +69,9 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                         <?php
                     }
                     
-                    if( class_exists( 'EazyDocsPro' ) ){                        
+                    if ( ezd_is_premium() ) {
                         if ( $private_doc_mode == 'login' ) {
-                            if ( get_post_status(get_the_ID()) == 'private'){
-
+                            if ( get_post_status(get_the_ID()) == 'private' ){
                                 $login_page_id  = get_post_field( 'post_name', $private_doc_login_page );
                                 $current_doc_id = get_post_field( 'post_name', get_the_ID() );
                                 $get_post_type  = get_post_type(get_the_ID());
@@ -81,7 +80,6 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                                 } else {
                                     $main_doc_url   = site_url($login_page_id.'?after_login=').site_url($get_post_type.'/'.$current_doc_id.'&add_new_doc=yes');
                                 }
-
                             } else {
                                 $main_doc_url = get_permalink( get_the_ID() );
                             }
@@ -93,10 +91,10 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                     <div class="doc-top d-flex align-items-start">                    
                         <a class="doc_tag_title" href="<?php echo esc_url($main_doc_url); ?>">
                             <h4 class="title"> <?php the_title(); ?> </h4>
-                            <span class="badge"> <?php echo count($get_child_docs); ?> Topics </span>
+                            <span class="badge"> <?php echo count($get_child_docs); esc_html_e('Topics', 'eazydocs'); ?> </span>
                         </a>
                     </div>
-                    <?php 
+                    <?php
                     if ( $sections ) :
                         ?>
                         <ul class="list-unstyled article_list">
@@ -108,7 +106,7 @@ if ( class_exists( 'EazyDocsPro' ) ) {
                                         <?php echo $section->post_title; ?>
                                     </a>
                                 </li>
-                                <?php 
+                                <?php
                             endforeach;
                             ?>
                         </ul>

@@ -9,7 +9,7 @@ $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
 $layout         = 'grid';
 
 // Check pro plugin class exists
-if ( class_exists( 'EazyDocsPro' ) ) {
+if ( ezd_is_premium() ) {
 	$layout     = $opt['docs-archive-layout'] ?? $layout; // id of field
 }
 
@@ -37,7 +37,7 @@ if ( $docs ) :
                     $protected_bg = !empty($main_doc['doc']->post_password) ? 'bg-dark' : '';
 
                     $col_wrapper = $i == 1;
-                    if ( class_exists( 'EazyDocsPro' ) ) {
+                    if ( ezd_is_premium() ) {
                         do_action( 'before_docs_column_wrapper', $col );
                     } else { ?>
                         <div class="col-lg-<?php echo esc_attr( $col ); ?>">

@@ -45,7 +45,7 @@ class Widgets{
     public function ezd_elementor_editor_styles(){   
         wp_enqueue_style( 'ezd-docs-editor', EAZYDOCS_ASSETS . '/css/elementor/ezd-elementor-editor.css' ); 
 
-        if ( class_exists( 'EazyDocsPro' ) ) { 
+        if ( ezd_is_premium() ) {
             wp_enqueue_style( 'ezd-docs-pro-editor', EAZYDOCS_ASSETS . '/css/elementor/ezd-pro-elementor-editor.css' );
         }
 

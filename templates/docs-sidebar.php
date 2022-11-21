@@ -31,7 +31,7 @@ if( class_exists( 'EazyDocsPro') && $content_layout == 'category_base' ){
 }
 $credit_enable   	= '1';
 $credit_text_wrap 	= '';
-if ( class_exists( 'EazyDocsPro' ) ) {
+if ( ezd_is_premium() ) {
 	$credit_enable 	= $options['eazydocs-enable-credit'] ?? '1';
 }
 if( $credit_enable == '1' ){

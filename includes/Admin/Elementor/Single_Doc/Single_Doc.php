@@ -608,7 +608,7 @@ class Single_Doc extends Widget_Base {
 			) );
 
 
-			if ( class_exists( 'EazyDocsPro' ) ) {
+			if ( ezd_is_premium() ) {
 				include( "single-doc-{$settings['doc-widget-single-search']}.php" );
 			} else {
 				include( "single-doc-1.php" );

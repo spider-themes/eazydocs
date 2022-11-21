@@ -318,7 +318,7 @@ class Doc_Widget extends Widget_Base {
 			}
 		}
 
-        if ( class_exists( 'EazyDocsPro' ) ) {
+        if ( ezd_is_premium() ) {
 		    include( "docs-{$settings['doc-widget-skin']}.php" );
         } else {
             include( "docs-1.php" );

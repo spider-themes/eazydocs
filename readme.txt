@@ -89,6 +89,9 @@ EazyDocs comes with a collapsible sidebar that allows your readers to hide the s
 ## 🗂️ 4 Level Depth Supported ##
 EazyDocs supports 4 level depth of docs. You can create a doc with 4 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth)
 
+## 📝 Doc Excerpt/Summary Content ##
+EazyDocs allows you to add an excerpt/summary content to your docs. You can add the excerpt/summary content to your docs to show it on the docs list and single page.
+
 ## 👁️ Read time, Views Count ##
 EazyDocs comes with a read time and views count feature that allows your readers to know how much time they will take to read the doc and how many times the doc has been viewed.
 
@@ -173,6 +176,7 @@ New: Opt-In v.2.0
 New: Drag-n-drop ordering and nesting
 New: Docs, Single Doc and Doc Search Form Elementor widgets added
 New: Show excerpt on the Doc single page
+Fixed: eazydocs_local_object was not appropriately enqueued in the admin dashboard pages. That's why the Notice dismiss, and later buttons were not working
 Fixed: Left and Right sidebar was not showing on mobile devices
 Tweaked: Dark mode colors improved
 Tweaked: Assets loading improved (dependency added)
