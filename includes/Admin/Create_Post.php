@@ -87,7 +87,7 @@ class Create_Post {
 			) );
 
 			$sec_post_status ='publish';
-			if(class_exists('EazyDocsPro')){
+			if( ezd_is_premium() ){
 				$sec_post_status = get_post_status($parentID);
 			}
 
@@ -129,7 +129,7 @@ class Create_Post {
 			$order = $order + $add;
 
 			$child_post_status ='publish';
-			if(class_exists('EazyDocsPro')){
+			if( ezd_is_premium() ){
 				$child_post_status = get_post_status($child_id);
 			}
 

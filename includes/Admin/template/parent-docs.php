@@ -67,7 +67,7 @@ $count = $query->found_posts;
                         </svg>
                     </div>
                     <?php
-                    if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) {
+                    if ( ezd_is_premium() ) {
                         do_action('eazydocs_parent_doc_drag');
                     }
 
@@ -96,7 +96,7 @@ $count = $query->found_posts;
                         <span class="ezd-admin-bulk-actions">
                             <?php
                             if (current_user_can('editor') || current_user_can('administrator')) :
-                                if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) :
+                                if ( ezd_is_premium() ) :
                                     do_action('eazydocs_parent_doc_duplicate', get_the_ID());
                                     do_action('eazydocs_doc_visibility', get_the_ID());
 

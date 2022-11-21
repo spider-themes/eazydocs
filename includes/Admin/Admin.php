@@ -86,7 +86,7 @@ class Admin
 
 		add_menu_page(__('EazyDocs', 'eazyDocs'), __('EazyDocs', 'eazyDocs'), $capabilites, 'eazydocs', [$this, 'eazydocs_page'], 'dashicons-media-document', 10);
 
-		if (class_exists('EazyDocsPro')) {
+		if ( ezd_is_premium() ) {
 			if (in_array($current_user, $cz_roled)) {
 				switch ($current_user) {
 					case 'administrator':
@@ -130,13 +130,13 @@ class Admin
 			add_submenu_page('eazydocs', __('Customize', 'eazydocs'), __('Customize', 'eazydocs'), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page');
 		}
 		$current_theme = get_template();
-		if ($current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
+		if ($current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
 			add_submenu_page('eazydocs', __('OnePage Docs', 'eazydocs'), __('OnePage Docs', 'eazydocs'), 'manage_options', '/edit.php?post_type=onepage-docs');
 		} else {
 			add_submenu_page('eazydocs', __('OnePage Doc', 'eazydocs'), __('OnePage Doc', 'eazydocs'), 'manage_options', 'ezd-onepage-presents', [$this, 'ezd_onepage_presents']);
 		}
 
-		if (class_exists('EazyDocsPro')) {
+		if ( ezd_is_premium() ) {
 			do_action('ezd_pro_admin_menu');
 		} else {
 			add_submenu_page('eazydocs', __('Users Feedback', 'eazydocs'), __('Users Feedback', 'eazydocs'), $capabilites, 'ezd-user-feedback', [$this, 'ezd_feedback_presents']);

@@ -123,7 +123,7 @@ if (is_array($depth_one_parents)) :
                                                 <?php
                                                 if (current_user_can('editor') || current_user_can('administrator')) :
 
-                                                    if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) : ?>
+                                                    if ( ezd_is_premium() ) : ?>
                                                         <li class="duplicate">
                                                             <?php do_action('eazydocs_section_doc_duplicate', $child->ID, $item); ?>
                                                         </li>
@@ -146,7 +146,7 @@ if (is_array($depth_one_parents)) :
                                                     </li>
                                                     <?php endif;
 
-                                                if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) :
+                                                if ( ezd_is_premium() ) :
                                                     if (!empty($get_section_children_one)) :
                                                     ?>
                                                         <li class="visibility">
@@ -259,7 +259,7 @@ if (is_array($depth_one_parents)) :
                                                             <ul class="actions">
                                                                 <?php
                                                                 if (current_user_can('editor') || current_user_can('administrator')) :
-                                                                    if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) : ?>
+                                                                    if ( ezd_is_premium() ) : ?>
                                                                         <li class="duplicate">
                                                                             <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
                                                                         </li>
@@ -281,7 +281,7 @@ if (is_array($depth_one_parents)) :
                                                                     </a>
                                                                 </li>
                                                                 <?php
-                                                                if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) :
+                                                                if ( ezd_is_premium() ) :
                                                                     if (!empty($get_section_children_two)) :
                                                                 ?>
                                                                         <li class="visibility">
@@ -385,7 +385,7 @@ if (is_array($depth_one_parents)) :
                                                                             <ul class="actions">
                                                                                 <?php
                                                                                 if (current_user_can('editor') || current_user_can('administrator')) :
-                                                                                    if (class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code()) : ?>
+                                                                                    if ( ezd_is_premium() ) : ?>
                                                                                         <li>
                                                                                             <?php do_action('eazydocs_single_duplicate', $of_sub_child->ID); ?>
                                                                                         </li>
@@ -457,7 +457,7 @@ if (is_array($depth_one_parents)) :
             </button>
             <?php
             $current_theme      = get_template();
-            if ($current_theme == 'docy' || $current_theme == 'docly' || class_exists('EazyDocsPro')) {
+            if ($current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
                 eazydocs_one_page($item);
             }
             ?>

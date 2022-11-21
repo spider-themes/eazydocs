@@ -48,7 +48,7 @@
                         </li>
 
 	                    <?php
-	                    if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) :
+	                    if ( ezd_is_premium() ) :
 		                    do_action('eazydocs_notification');
 	                    else :
 		                    ?>

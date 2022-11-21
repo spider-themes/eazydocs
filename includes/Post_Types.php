@@ -131,7 +131,7 @@ class Docs {
 		
 	 
 	public function register_badge() { 
-		if ( class_exists('EazyDocsPro')) {
+		if ( ezd_is_premium() ) {
 			$badge_labels = [
 				'name'                       => _x( 'Badge', 'Taxonomy General Name', 'eazydocs' ),
 				'singular_name'              => _x( 'Badge', 'Taxonomy Singular Name', 'eazydocs' ),

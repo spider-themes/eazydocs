@@ -64,7 +64,7 @@ if( $credit_enable == '1' ){
 		<?php
 			if ( $children ) :
 				$catgory_layout = '';
-				if ( $content_layout == 'category_base' && class_exists('EazyDocsPro') ) {
+				if ( $content_layout == 'category_base' && ezd_is_premium() ) {
 					$doc_walker = '';
 					$catgory_layout = 'content-layout-category';
 				} else {

@@ -148,7 +148,7 @@ class Walker_Docs extends Walker_Page {
             $thumb  = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
         }
         $ezd_badge  = '';
-        if ( class_exists('EazyDocsPro')) {            
+        if ( ezd_is_premium() ) {
             $badge  = get_the_terms($page->ID, 'doc_badge');            
             if( is_array( $badge ) ){
                 foreach( $badge as $badges ){

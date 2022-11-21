@@ -86,7 +86,17 @@ function ezd_get_opt( $option, $default = '' )
 }
 
 /**
- * estimated reading time
+ * Check if the pro plugin and plan is active
+ * @return bool|void
+ */
+function ezd_is_premium() {
+    if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) {
+        return true;
+    }
+}
+
+/**
+ * Estimated reading time
  **/
 function ezd_reading_time()
 {
@@ -959,7 +969,7 @@ function ezd_el_image($settings_key = '', $alt = '', $class = '', $atts = [])
 
 function ezd_docs_layout_option()
 {
-    if (class_exists('EazyDocsPro')) {
+    if ( ezd_is_premium() ) {
         $options = [
             '1' => [
                 'title' => __('Docs without tab', 'eazydocs'),
