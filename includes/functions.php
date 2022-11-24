@@ -741,6 +741,13 @@ function get_reusable_blocks_right()
     }
 }
 
+function manage_reusable_blocks() {
+	$admin_url = admin_url('post-new.php?post_type=wp_block');
+	$message = sprintf(__('<p class="ezd-text-support"> How to <a href="%s" target="_blank">create</a>', 'eazydocs'), $admin_url);
+	$message .= ' reusable block follow the awesome <a href="https://wordpress.org/support/article/reusable-blocks/" target="_blank">tutorial</a> here</p>';
+	return $message;
+}
+
 function no_reusable_blocks()
 {
     $admin_url = admin_url('post-new.php?post_type=wp_block');
@@ -781,6 +788,9 @@ function ezd_onepage_docs()
         <input type="text" disabled name="ezd_doc_content_type"
                value="<?php echo get_post_meta(get_the_ID(), 'ezd_doc_content_type', true); ?>" class="widefat"/>
     </p>
+	<p><b>Content Box</b><br />
+		<textarea name="ezd_doc_left_sidebar" disabled cols="30" rows="3" class="widefat"> <?php echo get_post_meta(get_the_ID(), "ezd_doc_left_sidebar", true); ?> </textarea>
+	</p>
 
     <p class="ezd_left_content_heading"> Right Side Content</p>
 

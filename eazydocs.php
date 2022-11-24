@@ -201,7 +201,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Admin\Delete_Post();
 				new eazyDocs\Admin\Assets();
 				new eazyDocs\One_Page();
-				new eazyDocs\One_Page_Edit();
+				new eazyDocs\Edit_OnePage();
 			} elseif ( !is_admin() ) {
 				new eazyDocs\Frontend\Frontend();
 				new eazyDocs\Frontend\Assets();

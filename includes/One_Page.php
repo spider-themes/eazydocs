@@ -13,7 +13,7 @@ class One_Page {
 	function doc_one_page() {
 
 		if ( ! empty ( $_GET['single_doc_title'] ) ) {
-
+			
 			$layout               = $_GET['layout'] ?? '';
 			$ezd_doc_content_type = $_GET['content_type'] ?? '';
 			$left_side_sidebar    = $_GET['left_side_sidebar'] ?? '';
@@ -65,7 +65,6 @@ class One_Page {
 				// Create page object
 				$one_page_doc = array(
 					'post_title'   => wp_strip_all_tags( $page_title ),
-					'post_content' => $shortcode_content,
 					'post_status'  => 'publish',
 					'post_author'  => 1,
 					'post_type'    => 'onepage-docs',
@@ -75,6 +74,7 @@ class One_Page {
 				if ( $post_id != 0 ) {
 					update_post_meta( $post_id, 'ezd_doc_layout', $layout );
 					update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
+					update_post_meta( $post_id, 'ezd_doc_left_sidebar', $shortcode_content );
 
 					update_post_meta( $post_id, 'ezd_doc_content_type_right', $content_type );
 					update_post_meta( $post_id, 'ezd_doc_content_box_right', $shortcode_content_right );

@@ -1,8 +1,8 @@
 <?php
 get_header();
-
 wp_enqueue_script('eazydocs-onepage');
 $opt                = get_option( 'eazydocs_settings' );
+$widget_sidebar     = $opt['is_widget_sidebar'] ?? '';
 global $post;
 $post_slug          = $post->post_name;
 $post_id            = get_page_by_path($post_slug, OBJECT, array( 'docs' ) );
@@ -51,15 +51,28 @@ $children           = wp_list_pages( array(
                             </nav>
 						<?php
 						endif;
-	                    $ezd_shortcode = get_the_content( $post_id->ID );
-	                    $content_type = get_post_meta( get_the_ID(), 'ezd_doc_content_type', true );
-	                    if( $content_type == 'string_data' ){
-		                    echo html_entity_decode( $ezd_shortcode ) ?? '';
-	                    } elseif( $content_type == 'shortcode' ){
-		                    echo do_shortcode( html_entity_decode($ezd_shortcode) );
-	                    } else {
-		                    dynamic_sidebar( html_entity_decode($ezd_shortcode) );
-	                    }
+						
+						$parent_doc_id_left      = get_the_ID();
+						$content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_content_type', true );
+						$ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
+						$is_valid_post_id   	 = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
+						
+						if ( $content_type_left  == 'string_data'  && ! empty ( $ezd_shortcode_left ) ) {
+							echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
+						} else {
+							if( $content_type_left == 'widget_data' && ! empty( $is_valid_post_id ) ) { 
+								$wp_blocks = new WP_Query([
+									'post_type' 	=> 'wp_block',
+									'p'				=> $ezd_shortcode_left
+								]);
+								if ( $wp_blocks->have_posts() ) {
+									while( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
+									the_content();
+									endwhile;
+								wp_reset_postdata();
+								}
+							}
+						}
 	                    ?>
                     </aside>
 
@@ -189,15 +202,7 @@ $children           = wp_list_pages( array(
                                     </div>
 									<?php
 								endforeach;
-
 								endforeach;
-
-
-								
-							
-								
-
-
 								?>
                             </article>
 							<?php
@@ -233,15 +238,32 @@ $children           = wp_list_pages( array(
                             <div class="onepage-sidebar doc_sidebar <?php echo esc_attr($ezd_content_none); ?>">
                                 <div class="hire-us">
 									<?php
-									$content_type  = get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true );
-									$ezd_shortcode  = get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true );
-
-									if (  $content_type  == 'string_data_right' ) {
-										echo html_entity_decode( $ezd_shortcode ) ?? '';
-									} elseif ( $content_type == 'shortcode_right' ) {
+									// Widgets area
+									$parent_doc_id      = get_the_ID();
+									$content_type       = get_post_meta( $parent_doc_id, 'ezd_doc_content_type_right', true );
+									$ezd_shortcode      = get_post_meta( $parent_doc_id, 'ezd_doc_content_box_right', true );
+									$is_valid_post_id   = is_null( get_post( $ezd_shortcode ) ) ? 'No' : 'Yes';
+									
+									if ( $content_type  == 'string_data_right' && ! empty ( $ezd_shortcode )  ) {
 										echo do_shortcode( html_entity_decode( $ezd_shortcode ) );
+									} elseif ( $content_type == 'shortcode_right' ) {                       
+										if ( is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 ) {
+											dynamic_sidebar('doc_sidebar');
+										}
 									} else {
-										dynamic_sidebar( html_entity_decode( $ezd_shortcode ) );
+										if ( $content_type == 'widget_data_right' && ! empty( $is_valid_post_id ) ) {                      
+											$wp_blocks = new WP_Query( [
+												'post_type'     => 'wp_block',
+												'p'             => $ezd_shortcode
+											] );
+					
+											if ( $wp_blocks->have_posts() ) {
+												while( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
+												the_content();
+												endwhile;
+												wp_reset_postdata();    
+											}
+										}            
 									}
 									?>
                                 </div>

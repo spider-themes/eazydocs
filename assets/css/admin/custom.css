@@ -142,18 +142,22 @@ div.search_result {
     right: 0px;
     top: -5px;
 }
-
+.ezd-text-support {
+    font-size: 12px;
+    text-align: left;
+    display: block;
+    margin: 5px 0 0;
+    color: #350303;
+    font-weight: 400;
+}
 .notification-head {
     padding: 15px 25px 5px !important;
-    ;
     box-shadow: none !important;
-    ;
 }
 
 .notification-head .header-text {
     font-size: 16px !important;
 }
-
 
 /** Notification CSS **/
 .notification-body .easydocs-filters .dashicons {
@@ -483,7 +487,7 @@ select#ezd_docs_layout {
 }
 
 #doc_extra_information {
-    display: none;
+     
 }
 
 /*Nestable CSS*/

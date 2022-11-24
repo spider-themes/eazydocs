@@ -176,60 +176,62 @@
                     title: 'Want to make OnePage?',
                     html:
                         '<div class="create_onepage_doc_area">' +
-                        '<label for="ezd_docs_sidebar">Select Layout</label>' +
-                        '<select class="widefat" id="ezd_docs_select" name="ezd_onepage_select">' +
-                        '<option value="default-layout">Default Layout</option>' +
-                        '<option value="classic-onepage-layout">Classic OnePage Doc</option>' +
-                        '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>' +
-                        '</select>' +
-                        '<div class="ezd_content_btn_wrap">' +
-                        '<div class="left_btn_link ezd_left_active">Left Sidebar</div>' +
-                        '<div class="right_btn_link">Right Sidebar</div>' +
-                        '</div>' +
+                            '<label for="ezd_docs_sidebar">Select Layout</label>' +
+                            '<select class="widefat" id="ezd_docs_select" name="ezd_onepage_select">' +
+                                '<option value="default-layout">Default Layout</option>' +
+                                '<option value="classic-onepage-layout">Classic OnePage Doc</option>' +
+                                '<option value="fullscreen-layout">Fullscreen OnePage Doc</option>' +
+                            '</select>' +
+                            '<div class="ezd_content_btn_wrap">' +
+                                '<div class="left_btn_link ezd_left_active">Left Sidebar</div>' +
+                                '<div class="right_btn_link">Right Sidebar</div>' +
+                            '</div>' +
+                            
+                            '<div class="ezd_left_content">' +
+                                '<div class="ezd_docs_content_type_wrap">' +                                    
+                                    '<label for="ezd_docs_content_type">Content Type:</label>' +
 
-                        '<div class="ezd_left_content">' +
-                        '<div class="ezd_docs_content_type_wrap">' +
-                        '<label for="ezd_docs_content_type">Content Type:</label>' +
-                        '<input type="radio" id="shortcode" name="ezd_docs_content_type" value="shortcode">' +
-                        '<label for="shortcode">Shortcode</label>' +
-                        '<input type="radio" id="widget_data" name="ezd_docs_content_type" value="widget_data">' +
-                        '<label for="widget_data">Widget Content</label>' +
-                        '<input type="radio" checked id="string_data" name="ezd_docs_content_type" value="string_data">' +
-                        '<label for="string_data">Normal Content</label>' +
-                        '</div>' +
-                        '<div class="ezd_shortcode_content_wrap">' +
-                        '<label for="ezd-shortcode">Content (Optional) </label><br>' +
-                        '<textarea name="ezd-shortcode-content" id="ezd-shortcode-content" rows="5" class="widefat"></textarea>' +
-                        '</div>' +
-                        '<div class="ezd_widget_content_wrap">' +
-                        '<label for="ezd-shortcode">Select a Reusable Block (Optional) </label><br>' +
-                        '<select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat">' +
-                        eazydocs_local_object.one_page_prompt_sidebar +
-                        '</select>' +
-                        '</div>' +
-                        '</div>' +
+                                    '<input type="radio" id="widget_data" name="ezd_docs_content_type" value="widget_data">' +                                    
+                                    '<label for="widget_data">Reusable Blocks</label>' +
 
-                        '<div class="ezd_right_content">' +
-                        '<div class="ezd_docs_content_type_wrap">' +
-                        '<label for="ezd_docs_content_type">Content Type:</label>' +
-                        '<input type="radio" id="shortcode_right" name="ezd_docs_content_type_right" value="shortcode_right">' +
-                        '<label for="shortcode_right">Shortcode</label>' +
-                        '<input type="radio" id="widget_data_right" name="ezd_docs_content_type_right" value="widget_data_right">' +
-                        '<label for="widget_data_right">Widget Content</label>' +
-                        '<input type="radio" checked id="string_data_right" name="ezd_docs_content_type_right" value="string_data_right">' +
-                        '<label for="string_data_right">Normal Content</label>' +
-                        '</div>' +
-                        '<div class="ezd_shortcode_content_wrap_right">' +
-                        '<label for="ezd-shortcode">Content (Optional) </label><br>' +
-                        '<textarea name="ezd-shortcode-content-right" id="ezd-shortcode-content-right" rows="5" class="widefat"></textarea>' +
-                        '</div>' +
-                        '<div class="ezd_widget_content_wrap_right">' +
-                        '<label for="ezd-shortcode">Select a Reusable Block (Optional) </label><br>' +
-                        '<select name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">' +
-                        eazydocs_local_object.one_page_prompt_sidebar +
-                        '</select>' +
-                        '</div>' +
-                        '</div>' +
+                                    '<input type="radio" checked id="string_data" name="ezd_docs_content_type" value="string_data">' +
+                                    '<label for="string_data">Normal Content</label>' +
+                                '</div>' +
+
+                                '<div class="ezd_shortcode_content_wrap">' +
+                                    '<label for="ezd-shortcode">Content (Optional) </label><br>' +
+                                    '<textarea name="ezd-shortcode-content" id="ezd-shortcode-content" rows="5" class="widefat"></textarea>' +
+                                    '<span class="ezd-text-support">*The field will support text and html formats.</span>'+
+                                '</div>' +
+                                '<div class="ezd_widget_content_wrap">' +
+                                    eazydocs_local_object.get_reusable_block +
+                                    eazydocs_local_object.manage_reusable_blocks +
+                                '</div>' +
+                            '</div>' +
+
+                            '<div class="ezd_right_content">' +
+                                '<div class="ezd_docs_content_type_wrap">' +
+                                    '<label for="ezd_docs_content_type">Content Type:</label>' +
+                                    '<input type="radio" id="widget_data_right" name="ezd_docs_content_type_right" value="widget_data_right">' +
+                            
+                                    '<label for="widget_data_right">Reusable Blocks</label>' +
+                                    '<input type="radio" checked id="string_data_right" name="ezd_docs_content_type_right" value="string_data_right">' +
+                                    '<label for="string_data_right">Normal Content</label>' +
+
+                                    '<input type="radio" id="shortcode_right" name="ezd_docs_content_type_right" value="shortcode_right">' +
+                                    '<label for="shortcode_right">Doc Sidebar</label>' +
+                                    '<div class="ezd-doc-sidebar-intro">To show the doc sidebar data, you have to go to <b>appearance</b> then <b>widgets</b> and just add your content inside <b>Doc Right Sidebar</b> location. If you cant find the location in the Widgets area, go to <b>EazyDocs</b> -> <b>Settings</b>. Then go to <b>Doc Single</b> -> <b>Right Sidebar</b> and then enable the option called <b>"Widgets Area"</b>'+                        
+                                '</div>' +
+                            '</div>' +
+                            '<div class="ezd_shortcode_content_wrap_right">' +
+                                '<label for="ezd-shortcode">Content (Optional) </label><br>' +
+                                '<textarea name="ezd-shortcode-content-right" id="ezd-shortcode-content-right" rows="5" class="widefat"></textarea>' +
+                                '<span class="ezd-text-support">*The field will support text and html formats.</span>'+
+                            '</div>' +
+                            '<div class="ezd_widget_content_wrap_right">' +
+                                eazydocs_local_object.get_reusable_blocks_right +
+                                eazydocs_local_object.manage_reusable_blocks +
+                            '</div>' +
                         '</div>',
                     confirmButtonText: 'Publish',
                     showCancelButton: true,
@@ -298,18 +300,26 @@
                 });
 
                 // RIGHT TAB
-                $('.ezd_widget_content_wrap_right').hide();
+                $('.ezd_widget_content_wrap_right,.ezd-doc-sidebar-intro').hide();
 
-                $("input[type=radio]#string_data_right, input[type=radio]#shortcode_right").click(function () {
+                $("input[type=radio]#string_data_right").click(function () {
                     if($(this).prop("checked")) {
                         $('.ezd_widget_content_wrap_right').hide();
                         $('.ezd_shortcode_content_wrap_right').show();
+                        $('.ezd-doc-sidebar-intro').hide();
+                    }
+                });
+                $("input[type=radio]#shortcode_right").click(function () {
+                    if($(this).prop("checked")) {
+                        $('.ezd_widget_content_wrap_right').hide();
+                        $('.ezd_shortcode_content_wrap_right').hide();
+                        $('.ezd-doc-sidebar-intro').show();
                     }
                 });
                 $("input[type=radio]#widget_data_right").click(function () {
                     if($(this).prop("checked")) {
                         $('.ezd_widget_content_wrap_right').show();
-                        $('.ezd_shortcode_content_wrap_right').hide();
+                        $('.ezd_shortcode_content_wrap_right,.ezd-doc-sidebar-intro').hide();
                     }
                 });
 
