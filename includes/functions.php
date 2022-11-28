@@ -96,6 +96,16 @@ function ezd_is_premium() {
 }
 
 /**
+ * Check if the pro plugin and plan is active
+ * @return bool|void
+ */
+function ezd_is_promax() {
+    if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() && eaz_fs()->is_plan('promax') ) {
+        return true;
+    }
+}
+
+/**
  * Estimated reading time
  **/
 function ezd_reading_time()
@@ -712,15 +722,15 @@ function get_reusable_blocks()
     $wp_registered_blocks = get_posts([
         'post_type' => 'wp_block'
     ]);
-    if (!empty($wp_registered_blocks)) {
+    if ( ! empty ( $wp_registered_blocks ) ) {
         $sidebars = '';
-
         foreach ($wp_registered_blocks as $wp_registered_block) {
             $sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
         }
-
         $return_output = '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat">' . $sidebars . '</select>';
         return $return_output;
+    } else {
+        return $return_output = '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat"><option>No block found!</option></select>';
     }
 }
 
@@ -738,23 +748,22 @@ function get_reusable_blocks_right()
 
         $return_output = '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select  name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">' . $sidebars . '</select>';
         return $return_output;
+    } else {
+        return $return_output = '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat"><option>No block found!</option></select>';
     }
+
+
+ 
+
+
 }
 
 function manage_reusable_blocks() {
-	$admin_url = admin_url('post-new.php?post_type=wp_block');
-	$message = sprintf(__('<p class="ezd-text-support"> How to <a href="%s" target="_blank">create</a>', 'eazydocs'), $admin_url);
-	$message .= ' reusable block follow the awesome <a href="https://wordpress.org/support/article/reusable-blocks/" target="_blank">tutorial</a> here</p>';
+	$admin_url = admin_url('edit.php?post_type=wp_block');
+	$message = sprintf(__('<p class="ezd-text-support"> <a href="%s" target="_blank">Manage Reusable blocks</a></p>', 'eazydocs'), $admin_url);
 	return $message;
 }
 
-function no_reusable_blocks()
-{
-    $admin_url = admin_url('post-new.php?post_type=wp_block');
-    $message = sprintf(__('<p> No reusable blocks found. Please create one <a href="%s" target="_blank">here</a> </p>', 'eazydocs'), $admin_url);
-    $message .= '<p>See how to create a reusable block <a href="https://wordpress.org/support/article/reusable-blocks/" target="_blank">Reusable Block</a></p>';
-    return $message;
-}
 
 function edit_sidebar_selectbox()
 {

@@ -91,8 +91,8 @@ class Assets
                 'one_page_prompt_sidebar' 	=> sidebar_selectbox(),
                 'one_page_doc_sidebar_edit' => edit_sidebar_selectbox(),
                 'edit_one_page_url' 		=> admin_url('admin.php/Edit_OnePage.php?edit_docs=yes&'),
-                'get_reusable_block'		=> get_reusable_blocks() ?? no_reusable_blocks(),
-                'get_reusable_blocks_right'	=> get_reusable_blocks_right() ?? no_reusable_blocks(),
+                'get_reusable_block'		=> get_reusable_blocks(),
+                'get_reusable_blocks_right'	=> get_reusable_blocks_right(),
 				'manage_reusable_blocks'	=> manage_reusable_blocks()
             )
         );

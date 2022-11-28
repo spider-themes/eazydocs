@@ -3,6 +3,7 @@ $opt                    = get_option( 'eazydocs_settings' );
 $widget_sidebar         = $opt['is_widget_sidebar'] ?? '';
 $toc_switcher           = $opt['toc_switcher'] ?? '';
 $toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS', 'eazydocs' );
+$is_pro_themes          = wp_get_theme();
 ?>
 <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-lg-top">
     <div class="doc_rightsidebar scroll">
@@ -55,26 +56,32 @@ $toc_heading            = $opt['toc_heading'] ??  __( 'CONTENTS', 'eazydocs' );
                 $ezd_shortcode      = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar', true );
                 $is_valid_post_id   = is_null( get_post( $ezd_shortcode ) ) ? 'No' : 'Yes';
                 
-                if ( $content_type  == 'string_data_right' && ! empty ( $ezd_shortcode )  ) {
-                    echo do_shortcode( html_entity_decode( $ezd_shortcode ) );
-                } elseif ( $content_type == 'shortcode_right' ) {                       
-                    if ( is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 ) {
-                        dynamic_sidebar('doc_sidebar');
+                if( ezd_is_premium() == true ){
+                    if ( $content_type  == 'string_data_right' && ! empty ( $ezd_shortcode )  ) {
+                        echo do_shortcode( html_entity_decode( $ezd_shortcode ) );
+                    } elseif ( $content_type == 'shortcode_right' ) {                       
+                        if ( is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 ) {
+                            dynamic_sidebar('doc_sidebar');
+                        }
+                    } else {
+                        if( $content_type == 'widget_data_right' && ! empty( $is_valid_post_id ) ) {                      
+                            $wp_blocks = new WP_Query( [
+                                'post_type'     => 'wp_block',
+                                'p'             => $ezd_shortcode
+                            ] );
+
+                            if ( $wp_blocks->have_posts() ) {
+                                while( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
+                                the_content();
+                                endwhile;
+                                wp_reset_postdata();    
+                            }
+                        }            
                     }
                 } else {
-                    if( $content_type == 'widget_data_right' && ! empty( $is_valid_post_id ) ) {                      
-                        $wp_blocks = new WP_Query( [
-                            'post_type'     => 'wp_block',
-                            'p'             => $ezd_shortcode
-                        ] );
-
-                        if ( $wp_blocks->have_posts() ) {
-                            while( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
-                            the_content();
-                            endwhile;
-                            wp_reset_postdata();    
-                        }
-                    }            
+                    if (  is_active_sidebar('doc_sidebar') && $widget_sidebar == 1 && $is_pro_themes == 'Docy' || $is_pro_themes == 'Docly' ){
+                        dynamic_sidebar('doc_sidebar');
+                    }
                 }
                 ?>
             </div>

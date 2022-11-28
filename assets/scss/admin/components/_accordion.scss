@@ -32,7 +32,7 @@
   width: 100%;
   margin: 0;
   + .easydocs-accordion-item {
-    border-top: 1px solid #EDEAE9;
+    /*border-top: 1px solid #EDEAE9;*/
   }
 
   &.is-accordion-open {
@@ -71,7 +71,7 @@
     }
 
     a {
-      padding: 0
+      padding: 0 0 0 25px;
     }
 
     .accordion-title.has-child a {
@@ -246,6 +246,7 @@ body.ezd-premium {
   }
   .accordion-title {
     padding: 10px 30px 10px 60px;
+    padding-left: 8px !important;
     &:hover {
       .DragHandle-icon {
         display: block;

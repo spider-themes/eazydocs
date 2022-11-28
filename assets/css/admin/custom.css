@@ -143,18 +143,24 @@ div.search_result {
     top: -5px;
 }
 .ezd-text-support {
-    font-size: 12px;
-    text-align: left;
-    display: block;
-    margin: 5px 0 0;
+    font-size: 16px;
+    margin: 10px 0 0;
     color: #350303;
+    font-weight: 400;
+    display: table;
+    line-height: 21px;
+}
+.ezd-text-support a {
+    text-decoration: underline;
     font-weight: 400;
 }
 .notification-head {
     padding: 15px 25px 5px !important;
     box-shadow: none !important;
 }
-
+.create_onepage_doc_area{
+    overflow: hidden;
+}
 .notification-head .header-text {
     font-size: 16px !important;
 }
@@ -487,7 +493,7 @@ select#ezd_docs_layout {
 }
 
 #doc_extra_information {
-     
+     display: none;
 }
 
 /*Nestable CSS*/
@@ -498,7 +504,6 @@ select#ezd_docs_layout {
     max-width: 100%;
     list-style: none;
     font-size: 13px;
-    line-height: 20px;
 }
 
 .dd-list {
@@ -510,11 +515,18 @@ select#ezd_docs_layout {
 }
 
 .nestables-child .dd-list .dd-list {
-    padding-left: 30px;
+    padding-left:0;
+}
+.nestables-child .dd-list .dd-list .dd-item>button{
+    margin-left: 40px;
 }
 
 .nestables-child .dd-collapsed .dd-list {
     display: none;
+}
+
+.accordion-title.expand--child.has-child {
+    padding-left: 0px !important;
 }
 
 .nestables-child .dd-item,
@@ -522,11 +534,8 @@ select#ezd_docs_layout {
 .dd-placeholder {
     display: block;
     position: relative;
-    margin: 0;
-    padding: 0;
     min-height: 20px;
     font-size: 13px;
-    line-height: 20px;
 }
 
 .nestables-child .dd-handle {
@@ -551,8 +560,12 @@ select#ezd_docs_layout {
     background: transparent;
     border: 0;
     z-index: 9;
+    display: none;
 }
 
+.easydocs-accordion-item:hover > .dd3-handle {
+    display: block;
+}
 .nestables-child .dd-item>button {
     display: block;
     position: relative;
@@ -632,7 +645,9 @@ select#ezd_docs_layout {
 .dd-dragel>.dd3-item>.dd3-content {
     margin: 0;
 }
-
+.dd3-content.ezd-gray-line{
+    border-bottom:1px solid #edeae9;
+}
 
 @media only screen and (min-width: 700px) {
     .dd {
@@ -671,6 +686,7 @@ select#ezd_docs_layout {
 .nestables-child .dd-item>button {
     height: 100%;
     padding: 14px 0;
+    margin: 0 7px 0 25px;
 }
 
 
@@ -688,6 +704,7 @@ body.ezd-premium .accordion-title.ez-section-title,
 .accordion-title.ez-section-title,
 .accordion-title {
     padding: 0 !important;
+    line-height: 20px;
 }
 
 .dd3-content:hover,
