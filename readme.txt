@@ -180,6 +180,7 @@ Fixed: eazydocs_local_object was not appropriately enqueued in the admin dashboa
 Fixed: Left and Right sidebar was not showing on mobile devices
 Tweaked: Dark mode colors improved
 Tweaked: Assets loading improved (dependency added)
+Tweaked: Code standard/format improved
 
 = v1.3.7 (12 November 2022) =
 Tweaked: Compatibility with any themes improved

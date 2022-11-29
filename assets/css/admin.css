@@ -135,8 +135,6 @@
   --clr-text-light: #9199A1;
   --clr-white: #fff;
   --clr-blue: #4C4CF1;
-  --clr-orange: #ff5a46;
-  --clr-yellow: #FFE132;
   --black_50: #ebebeb;
   --black_100: #d6d9dc;
   --black_150: #c8ccd0;
@@ -291,132 +289,6 @@ button {
 
 .red {
   color: #e74c3c;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--ff-roboto);
-  color: #14183E;
-  line-height: 1.4;
-}
-
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a,
-h6 a {
-  color: inherit;
-}
-
-h1 {
-  font-size: 2rem;
-}
-@media screen and (min-width: 20rem) {
-  h1 {
-    font-size: calc(2rem + 1.75 * ((100vw - 20rem) / 55));
-  }
-}
-@media screen and (min-width: 75rem) {
-  h1 {
-    font-size: 3.75rem;
-  }
-}
-
-h2 {
-  font-size: 2rem;
-}
-@media screen and (min-width: 20rem) {
-  h2 {
-    font-size: calc(2rem + 1 * ((100vw - 20rem) / 55));
-  }
-}
-@media screen and (min-width: 75rem) {
-  h2 {
-    font-size: 3rem;
-  }
-}
-
-h3 {
-  font-size: 1.375rem;
-}
-@media screen and (min-width: 20rem) {
-  h3 {
-    font-size: calc(1.375rem + 0.125 * ((100vw - 20rem) / 55));
-  }
-}
-@media screen and (min-width: 75rem) {
-  h3 {
-    font-size: 1.5rem;
-  }
-}
-
-h4 {
-  font-size: 1rem;
-}
-@media screen and (min-width: 20rem) {
-  h4 {
-    font-size: calc(1rem + 0.125 * ((100vw - 20rem) / 55));
-  }
-}
-@media screen and (min-width: 75rem) {
-  h4 {
-    font-size: 1.125rem;
-  }
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style: none;
-}
-
-hr {
-  background: #c2cfff;
-  width: 50px;
-  height: 3px;
-  margin: 35px 0;
-  padding: 0;
-  border: none;
-}
-@media screen and (min-width: 768px) {
-  hr {
-    margin-top: 25px;
-    margin-bottom: 25px;
-  }
-}
-
-p {
-  margin: 0;
-}
-
-label {
-  color: var(--clr-black);
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-/*Home 3 Default Font Family*/
-.home-3 {
-  font-size: var(--fs-15);
-  font-weight: var(--fw-400);
-  color: var(--clr-black);
-  font-family: var(--font-quicksand);
-}
-
-/*Home 3 Default Font Family*/
-.home-4 {
-  font-size: var(--fs-15);
-  font-weight: var(--fw-400);
-  font-family: var(--font-arimo);
 }
 
 .alignment-center {
@@ -1907,9 +1779,20 @@ a.child-delete {
     max-width: 1170px;
   }
 }
+#fs_connect .fs-content h2 {
+  margin-bottom: 15px;
+}
+#fs_connect .fs-content p {
+  font-size: 16px;
+}
+
+#fs_connect .fs-header .fs-plugin-icon, #fs_connect .fs-header .fs-plugin-icon img {
+  height: auto;
+}
+
 .ezd-no-feedback-found {
   font-size: 15px;
-  margin-left: 0px;
+  margin-left: 0;
   text-transform: capitalize;
   font-weight: 400;
   display: initial;

@@ -70,7 +70,7 @@ class Frontend {
 			?>
 			<div class="col-lg-6 <?php echo esc_attr($visibility); ?>">
 				<div class="topic_list_item">
-					<?php if( ! empty( $title ) ) : ?>
+					<?php if( !empty( $title ) ) : ?>
 						<h4> <?php echo esc_html( $title ); ?> </h4>
 					<?php endif; ?>
 					<ul class="navbar-nav recent-doc-list">
@@ -144,9 +144,10 @@ class Frontend {
 			'ignore_sticky_posts' => 1,
 			'orderby'             => 'rand',
 			'post__not_in'        => array( $post->ID )
-		) );
+		));
 
-		if ( $doc_posts->have_posts() ) : ?>
+		if ( $doc_posts->have_posts() ) :
+            ?>
 			<div class="col-lg-6 <?php echo esc_attr($visibility); ?>">
 				<div class="topic_list_item related-docs">
 					<?php if( ! empty( $title ) ) : ?>

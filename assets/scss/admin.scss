@@ -10,9 +10,22 @@
   }
 }
 
+#fs_connect .fs-content {
+  h2 {
+    margin-bottom: 15px;
+  }
+  p {
+    font-size: 16px;
+  }
+}
+
+#fs_connect .fs-header .fs-plugin-icon, #fs_connect .fs-header .fs-plugin-icon img {
+  height: auto;
+}
+
 .ezd-no-feedback-found{
   font-size: 15px;
-  margin-left: 0px;
+  margin-left: 0;
   text-transform: capitalize;
   font-weight: 400;
   display: initial;

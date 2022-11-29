@@ -190,7 +190,7 @@ endif;
             </div>
             <div class="doc-scrollable editor-content">
 				<?php
-                if ( ezd_get_opt('is_excerpt') == '1' ) {
+                if ( ezd_get_opt('is_excerpt') == '1' && has_excerpt() ) {
                     ?>
                     <p class="doc-excerpt alert alert-info">
                         <strong><?php echo ezd_get_opt('excerpt_label', 'Summary');; ?></strong>
