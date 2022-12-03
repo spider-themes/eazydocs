@@ -16,7 +16,7 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + result.value;
+                        document.location.href = href + encodeURIComponent(JSON.stringify(result.value))
                     }
                 })
             })
@@ -37,7 +37,7 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + result.value;
+                        document.location.href = href + encodeURIComponent(JSON.stringify(result.value))
                     }
                 })
             })
@@ -58,7 +58,7 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + result.value;
+                        document.location.href = href + encodeURIComponent(JSON.stringify(result.value))
                     }
                 })
             })
@@ -79,7 +79,7 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + result.value;
+                        document.location.href = href + encodeURIComponent(JSON.stringify(result.value))
                     }
                 })
             })
@@ -129,6 +129,11 @@
             })
         }
         delete_doc_sec();
+
+        $('.child-delete').on('click', function (e) {
+            e.preventDefault();
+            alert('test')
+        });
 
         // DELETE CHILD DOC
         function delete_child_doc() {

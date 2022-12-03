@@ -156,6 +156,9 @@
     margin: 0 0 5px;
     position: relative;
     cursor: pointer;
+    > a{
+      display: flex;
+    }
     &.has_child .doc-link {
       display: flex;
       justify-content: space-between;

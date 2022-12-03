@@ -770,6 +770,9 @@ body.search-focused .ezd_click_capture {
   position: relative;
   cursor: pointer;
 }
+.nav-sidebar .nav-item > a {
+  display: flex;
+}
 .nav-sidebar .nav-item.has_child .doc-link {
   display: flex;
   justify-content: space-between;
