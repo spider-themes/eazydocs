@@ -16,7 +16,7 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + encodeURIComponent(JSON.stringify(result.value))
+                        document.location.href = href + result.value;
                     }
                 })
             })
@@ -37,7 +37,7 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + encodeURIComponent(JSON.stringify(result.value))
+                        document.location.href = href + result.value;
                     }
                 })
             })
@@ -58,7 +58,7 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + encodeURIComponent(JSON.stringify(result.value))
+                        document.location.href = href + result.value;
                     }
                 })
             })
@@ -79,7 +79,7 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + encodeURIComponent(JSON.stringify(result.value))
+                        document.location.href = href + result.value;
                     }
                 })
             })
@@ -130,11 +130,6 @@
         }
         delete_doc_sec();
 
-        $('.child-delete').on('click', function (e) {
-            e.preventDefault();
-            alert('test')
-        });
-
         // DELETE CHILD DOC
         function delete_child_doc() {
             $(document).on('click', '.child-delete', function (e) {
@@ -161,7 +156,8 @@
         $("#easydocs-search").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $(".easydocs-accordion-item").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                $('.easydocs-accordion').find('.dd-list').css("display", "block");
             })
         });
 
@@ -339,4 +335,5 @@
         });
         
     });
+
 })(jQuery);

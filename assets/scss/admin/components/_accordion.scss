@@ -69,10 +69,8 @@
         }
       }
     }
-    h4{
-      a {
-        padding: 0 0 0 25px;
-      }
+    a {
+      padding: 0 0 0 22px;
     }
 
     .accordion-title.has-child a {
@@ -97,14 +95,12 @@
 .accordion-title {
   position: relative;
   background: #fff;
-  padding: 10px 30px 10px 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  line-height: 20px;
   &.ez-section-title {
-    padding: 13px 30px 13px 50px !important;
     h4 {
         font-weight: var(--fw-500);
     }
@@ -150,6 +146,7 @@
 
     a {
       text-decoration: none;
+      color: var(--clr-text);
     }
   }
 
@@ -236,43 +233,6 @@
 }
 
 /** === EazyDocs Premium Style === **/
-body.ezd-premium {
-  .easydocs-accordion-item.child-one {
-    .accordion-title.has-child::before {
-      left: 60px;
-    }
-    .nesting-accordion a.child-last-label {
-      margin-left: 80px;
-    }
-  }
-  .accordion-title {
-    padding: 10px 30px 10px 60px;
-    padding-left: 8px !important;
-    &:hover {
-      .DragHandle-icon {
-        display: block;
-      }
-    }
-    &::before {
-      left: 40px;
-    }
-
-    &.ez-section-title {
-      padding: 13px 30px 13px 60px !important;
-    }
-    .DragHandle-icon {
-      position: absolute;
-      left: 2px;
-      font-size: 12px;
-      width: 35px;
-      display: none;
-      &:hover {
-        cursor: move;
-      }
-    }
-  }
-}
-
 .easydocs-accordion-body {
   background: var(--clr-white);
   color: var(--clr-text);

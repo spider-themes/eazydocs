@@ -132,7 +132,7 @@
   > .nav-item {
     > .doc-link {
       padding: 10px;
-      border-radius: 3px;
+      border-radius: 5px;
       &:hover {
         background: rgba(208, 215, 222, 0.32);
         a {
@@ -237,8 +237,8 @@
       li {
         line-height: 1.5;
         padding: 6px 10px;
-        margin: 0 0 3px;
-        border-radius: 2px;
+        margin: 0 0 5px;
+        border-radius: 5px;
         &:hover {
           background: rgb(208 215 222 / 32%);
           a {
@@ -1837,4 +1837,82 @@ body.admin-bar{
     font-size: 2rem;
     margin-bottom: 15px;
   }
+}
+
+/** === Next/Prev Button === **/
+.eazydocs-next-prev-wrap {
+  column-count: 2;
+  display: flex;
+  gap: 20px;
+}
+
+.eazydocs-next-prev-wrap.has_tags_next_prev {
+  margin-top: 30px;
+}
+
+.eazydocs-next-prev-wrap a {
+  display: block;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 12%);
+  border: 1px solid rgb(0 0 0 / 12%);
+  padding: 12px 15px;
+  border-radius: 5px;
+}
+
+.eazydocs-next-prev-wrap .next-prev-pager {
+  color: var(--black_800);
+  font-size: 17px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.eazydocs-next-prev-wrap .next-prev-pager span {
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--black_500);
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.eazydocs-next-prev-wrap .next-prev-pager.first {
+  text-align: right;
+  padding-left: 40px;
+  position: relative;
+  padding-top: 11px;
+  width: 50%;
+}
+
+.eazydocs-next-prev-wrap .next-prev-pager.second {
+  padding-right: 40px;
+  position: relative;
+  width: 50%;
+}
+
+.eazydocs-next-prev-wrap .next-prev-pager.first::before,
+.eazydocs-next-prev-wrap .next-prev-pager.second::before {
+  content: "\23";
+  display: block;
+  clear: both;
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  height: 0;
+  line-height: 0px;
+  margin: auto;
+  font-family: 'ElegantIcons';
+  font-size: 26px;
+  color: rgba(136, 153, 168, 1.00);
+}
+
+.eazydocs-next-prev-wrap .next-prev-pager.second::before {
+  content: "\24";
+  left: unset;
+  right: 12px;
+}
+
+.eazydocs-next-prev-wrap .next-prev-pager:hover::before,
+.eazydocs-next-prev-wrap .next-prev-pager:hover {
+  border-color: var(--ezd_brand_color);
+  color: var(--ezd_brand_color);
 }

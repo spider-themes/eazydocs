@@ -4,11 +4,11 @@
 
 .accordion-title .light-green {
     display: inline-flex;
-    margin: 0px;
+    margin: 0;
     height: auto !important;
     width: auto !important;
     padding: 3px;
-    line-height: 0px !important;
+    line-height: 0 !important;
 }
 
 .accordion-title .light-green.block-color-draft {
@@ -28,7 +28,7 @@
     max-width: 12px;
     height: auto;
     max-height: 12px;
-    margin: 0px;
+    margin: 0;
 }
 
 .easydocs-accordion-body.child-docs a {
@@ -82,7 +82,7 @@ div.search_result {
 
 .eazydocs-no-content a,
 .eazydocs-no-content span {
-    padding: 60px 0px;
+    padding: 60px 0;
     color: #777;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     font-size: 13px;
@@ -102,11 +102,11 @@ div.search_result {
     width: auto;
     max-width: 50px;
     height: auto;
-    margin: 0px auto 10px;
+    margin: 0 auto 10px;
 }
 
 .clone-docs {
-    line-height: 0px;
+    line-height: 0;
     vertical-align: sub;
 }
 
@@ -139,7 +139,7 @@ div.search_result {
 
 .settings-pro-icon {
     position: absolute;
-    right: 0px;
+    right: 0;
     top: -5px;
 }
 .ezd-text-support {
@@ -201,7 +201,7 @@ a.notification-item-permalink {
 label[for='ezd-shortcode-edit'],
 label[for='right_side_sidebar'],
 .create_onepage_doc_area label[for='ezd-shortcode'] {
-    margin: 20px 0 6px 0px;
+    margin: 20px 0 6px 0;
     display: inline-block;
     width: 99%;
     text-align: left;
@@ -449,7 +449,7 @@ select#ezd_docs_layout {
     top: 0;
     height: 100%;
     bottom: 0;
-    width: 0px;
+    width: 0;
     font-size: 13px;
     color: gray;
 }
@@ -517,8 +517,9 @@ select#ezd_docs_layout {
 .nestables-child .dd-list .dd-list {
     padding-left:0;
 }
+
 .nestables-child .dd-list .dd-list .dd-item>button{
-    margin-left: 40px;
+    margin-left: 46px;
 }
 
 .nestables-child .dd-collapsed .dd-list {
@@ -526,7 +527,7 @@ select#ezd_docs_layout {
 }
 
 .accordion-title.expand--child.has-child {
-    padding-left: 0px !important;
+    padding-left: 0 !important;
 }
 
 .nestables-child .dd-item,
@@ -542,8 +543,8 @@ select#ezd_docs_layout {
     display: block;
     width: 30px;
     height: 100%;
-    margin: 0px 0;
-    padding: 5px 10px;
+    margin: 0;
+    padding: 5px 14px;
     line-height: 36px;
     opacity: 1;
     visibility: visible;
@@ -553,7 +554,7 @@ select#ezd_docs_layout {
 .nestables-child .dd3-handle {
     position: absolute;
     left: 0;
-    top: 0px;
+    top: 0;
     cursor: move;
     white-space: nowrap;
     overflow: hidden;
@@ -573,7 +574,7 @@ select#ezd_docs_layout {
     float: left;
     width: 25px;
     height: 20px;
-    margin: 0px 0;
+    margin: 0 0;
     padding: 0;
     text-indent: 100%;
     white-space: nowrap;
@@ -586,7 +587,7 @@ select#ezd_docs_layout {
     font-weight: bold;
 }
 
-.nestables-child .dd-item>button:before {
+.nestables-child .dd-item>button::before {
     content: "";
     position: absolute;
     width: 0;
@@ -599,6 +600,27 @@ select#ezd_docs_layout {
     left: 50%;
     -webkit-transition: 0.3s;
     transition: 0.3s;
+    top: 17px;
+}
+
+.nestables-child .dd3-have-no-children .dd3-content {
+    position: relative;
+}
+
+.nestables-child .dd3-have-no-children .dd3-content::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 6px;
+    border-color: transparent transparent transparent #575767;
+    display: block;
+    transform: rotate(0deg);
+    left: 38px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    top: 17px;
 }
 
 .nestables-child .dd-item>button[data-action="collapse"]:before {
@@ -609,12 +631,16 @@ select#ezd_docs_layout {
 .dd-empty {
     margin: 5px 0;
     padding: 0;
-    min-height: 30px;
     background: #f2fbff;
     border: 1px dashed #b6bcbf;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+    height: 20px !important;
+}
+
+.dd-item-child .dd-handle.dd3-handle {
+    left: 20px;
 }
 
 .dd-empty {
@@ -639,31 +665,13 @@ select#ezd_docs_layout {
 
 .dd3-content {
     display: block;
-    padding: 13px 30px 13px 40px;
+    padding: 13px 30px 13px 55px;
+    border-bottom:1px solid #edeae9;
 }
 
 .dd-dragel>.dd3-item>.dd3-content {
     margin: 0;
 }
-.dd3-content.ezd-gray-line{
-    border-bottom:1px solid #edeae9;
-}
-
-@media only screen and (min-width: 700px) {
-    .dd {
-        float: left;
-    }
-
-    .dd.nestables-child {
-        float: left;
-        width: 100%;
-    }
-
-    .dd+.dd {
-        margin-left: 2%;
-    }
-}
-
 
 .dd-dragel>.dd3-item>.dd3-content {
     margin: 0;
@@ -673,14 +681,8 @@ select#ezd_docs_layout {
     margin-left: 18px;
 }
 
-
 .dd3-empty {
     height: 1px;
-}
-
-
-.nestables-child .dd-item>button:before {
-    top: 16px;
 }
 
 .nestables-child .dd-item>button {
@@ -698,13 +700,6 @@ select#ezd_docs_layout {
 .accordion-title.ez-section-title::before,
 .dd-collapsed .accordion-title::after {
     display: none !important;
-}
-
-body.ezd-premium .accordion-title.ez-section-title,
-.accordion-title.ez-section-title,
-.accordion-title {
-    padding: 0 !important;
-    line-height: 20px;
 }
 
 .dd3-content:hover,

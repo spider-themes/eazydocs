@@ -133,8 +133,6 @@
             var n = e(t.target);
             if (!n.parents().hasClass("easydocs-notification")) e(".easydocs-notification .header-notify-icon").removeClass("active");
         });
-        
-        $('body.ezd-premium .accordion-title.expand--child').parent().addClass('ezd-gray-line');
 
     });
 

@@ -8,12 +8,12 @@
 .tab-menu {
     background: var(--clr-black-100);
     flex: 0 0 auto;
-    width: 28%;
+    flex-basis: 30%;
     &.short {
         height: 100vh
     }
     @media (max-width: 1680px) {
-        width: 30%;
+        flex-basis: 33%;
     }
 }
 
@@ -133,17 +133,13 @@
 }
 
 .easydocs-tab-content {
-    flex: 0 0 auto;
-    width: 72%;
+    flex: 0 0 67%;
     background: #E5E5E5;
-    padding: var(--gutter-40);
-    @media (max-width: 1680px) {
-        width: 70%;
-    }
-    @media (max-width: 1440px) {
-        width: 70%;
-        padding: 20px;
-    }
+    padding: 30px;
+}
+
+button.nestable--button.nestable--expand {
+    display: none;
 }
 
 .easydocs-filter-container {
@@ -162,6 +158,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    margin: 0;
     .easydocs-btn {
         font-size: 12px;
         display: flex;

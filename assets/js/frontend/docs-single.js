@@ -285,6 +285,8 @@
                     var lcval = $(this).text().toLowerCase();
                     if (lcval.indexOf(value) > -1) {
                         $(this).show(500);
+                        $('.left-sidebar-results').find('li').addClass('active');
+                        $('.left-sidebar-results').find('li > ul').show(500);
                     } else {
                         $(this).hide(500);
                     }
@@ -293,6 +295,8 @@
 
             document.getElementById("doc_filter").addEventListener("search", function (event) {
                 $(".nav-sidebar .page_item").show(300);
+                $('.left-sidebar-results').find('li').removeClass('active');
+                $('.left-sidebar-results').find('li > ul').hide(500);
             });
         }
 

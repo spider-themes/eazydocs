@@ -691,6 +691,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'toggle_visibility',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Sidebar Toggle', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Collapse and Expand the left Sidebar with a Toggle button.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,

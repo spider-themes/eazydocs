@@ -491,8 +491,8 @@ button {
 .easydocs-accordion-item.child-one.acc_active .accordion-title::before {
   transform: translateY(-50%) rotate(90deg);
 }
-.easydocs-accordion-item.child-one h4 a {
-  padding: 0 0 0 25px;
+.easydocs-accordion-item.child-one a {
+  padding: 0 0 0 22px;
 }
 .easydocs-accordion-item.child-one .accordion-title.has-child a.section-last-label {
   margin-left: 19px;
@@ -507,14 +507,11 @@ button {
 .accordion-title {
   position: relative;
   background: #fff;
-  padding: 10px 30px 10px 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.accordion-title.ez-section-title {
-  padding: 13px 30px 13px 50px !important;
+  line-height: 20px;
 }
 .accordion-title.ez-section-title h4 {
   font-weight: var(--fw-500);
@@ -561,6 +558,7 @@ button {
 }
 .accordion-title h4 a {
   text-decoration: none;
+  color: var(--clr-text);
 }
 .accordion-title .accordion-category-icon {
   width: 1.25rem;
@@ -633,36 +631,6 @@ button {
 }
 
 /** === EazyDocs Premium Style === **/
-body.ezd-premium .easydocs-accordion-item.child-one .accordion-title.has-child::before {
-  left: 60px;
-}
-body.ezd-premium .easydocs-accordion-item.child-one .nesting-accordion a.child-last-label {
-  margin-left: 80px;
-}
-body.ezd-premium .accordion-title {
-  padding: 10px 30px 10px 60px;
-  padding-left: 8px !important;
-}
-body.ezd-premium .accordion-title:hover .DragHandle-icon {
-  display: block;
-}
-body.ezd-premium .accordion-title::before {
-  left: 40px;
-}
-body.ezd-premium .accordion-title.ez-section-title {
-  padding: 13px 30px 13px 60px !important;
-}
-body.ezd-premium .accordion-title .DragHandle-icon {
-  position: absolute;
-  left: 2px;
-  font-size: 12px;
-  width: 35px;
-  display: none;
-}
-body.ezd-premium .accordion-title .DragHandle-icon:hover {
-  cursor: move;
-}
-
 .easydocs-accordion-body {
   background: var(--clr-white);
   color: var(--clr-text);
@@ -1532,14 +1500,14 @@ a.child-delete {
 .tab-menu {
   background: var(--clr-black-100);
   flex: 0 0 auto;
-  width: 28%;
+  flex-basis: 30%;
 }
 .tab-menu.short {
   height: 100vh;
 }
 @media (max-width: 1680px) {
   .tab-menu {
-    width: 30%;
+    flex-basis: 33%;
   }
 }
 
@@ -1667,21 +1635,13 @@ a.child-delete {
 }
 
 .easydocs-tab-content {
-  flex: 0 0 auto;
-  width: 72%;
+  flex: 0 0 67%;
   background: #E5E5E5;
-  padding: var(--gutter-40);
+  padding: 30px;
 }
-@media (max-width: 1680px) {
-  .easydocs-tab-content {
-    width: 70%;
-  }
-}
-@media (max-width: 1440px) {
-  .easydocs-tab-content {
-    width: 70%;
-    padding: 20px;
-  }
+
+button.nestable--button.nestable--expand {
+  display: none;
 }
 
 .easydocs-filter-container {
@@ -1702,6 +1662,7 @@ a.child-delete {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin: 0;
 }
 .single-item-filter .easydocs-btn {
   font-size: 12px;
