@@ -1229,7 +1229,7 @@ body:not(.onepage-doc) .sticky_menu {
     li {
       font-size: 14px;
       font-weight: 500;
-      color: #616366;
+      color: var(--black_500);
       margin: 0 5px 5px 0;
       a {
         background: rgba(175, 184, 193, 0.2);

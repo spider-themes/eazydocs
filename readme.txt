@@ -172,12 +172,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Changelog ==
 
 = v2.0.0 (05 December 2022) =
+Note/Blog: This is a major release. Please read the release notes carefully before updating https://tinyurl.com/2zx3askn
 New: Opt-In v.2.0
-New: Drag-n-drop ordering and nesting
+New: Drag-n-drop ordering and nesting of docs in the Docs builder UI in the WordPress Admin dashboard
 New: Docs, Single Doc and Doc Search Form Elementor widgets added
 New: Show excerpt on the Doc single page
 Fixed: eazydocs_local_object was not appropriately enqueued in the admin dashboard pages. That's why the Notice dismiss, and later buttons were not working
 Fixed: Left and Right sidebar was not showing on mobile devices
+Fixed: The Share popup was not showing properly with other themes (except the Docy and Docly themes)
 Tweaked: The Docs filtering by matched words/characters is now more user-friendly by keeping the matched doc accordion open
 Tweaked: Dark mode colors improved
 Tweaked: Assets loading improved (dependency added)
