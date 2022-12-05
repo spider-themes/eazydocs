@@ -20,13 +20,15 @@ class Create_Post {
      * Create parent Doc post
      */
     public function create_parent_doc() {
-	        if ( isset ( $_GET['parent_title'] ) && ! empty ( $_GET['parent_title'] ) ) {
 
+	    if ( isset ( $_GET['parent_title'] ) && ! empty ( $_GET['parent_title'] ) ) {
 
-			$title 				= ! empty ( $_GET['parent_title'] ) ? htmlspecialchars( $_GET['parent_title'] ) : '';
-			$title_text      	= substr( chrEncode( $title ), 6 );
-			$title_text 		= substr_replace( $title_text, "", -6 );
+			$title = !empty($_GET['parent_title']) ? htmlspecialchars($_GET['parent_title']) : 0;
 
+			$str 				= ['ezd_ampersand','ezd_hash', 'ezd_plus'];
+			$rplc 				= ['&','#', '+'];
+			$title_text 		= str_replace($str, $rplc, $title);
+			
             $args = [
                 'post_type'   => 'docs',
                 'post_parent' => 0
@@ -38,7 +40,7 @@ class Create_Post {
             $order = $total + $add;
 
             // Create post object
-            $post = wp_insert_post( array(
+            $post = array(
                 'post_title'   => $title_text,
                 'post_parent'  => 0,
                 'post_content' => '',
@@ -46,7 +48,7 @@ class Create_Post {
                 'post_status'  => 'publish',
                 'post_author'  => get_current_user_id(),
                 'menu_order'   => $order,
-            ) );
+            );
             wp_insert_post( $post, $wp_error = '' );            
             wp_safe_redirect( admin_url('admin.php?page=eazydocs') );
         }
@@ -58,9 +60,11 @@ class Create_Post {
 	public function create_new_doc() {
 		if ( isset ( $_GET['new_doc'] ) && ! empty ( $_GET['new_doc'] ) ) {
 
-			$doc_title      		= ! empty ( $_GET['new_doc'] ) ? htmlspecialchars( $_GET['new_doc'] ) : 0;
-			$doc_title_text      	= substr( chrEncode( $doc_title ), 6 );
-			$doc_title_text 		= substr_replace( $doc_title_text, "", -6 );
+			$doc_title      	= ! empty ( $_GET['new_doc'] ) ? htmlspecialchars( $_GET['new_doc'] ) : 0;
+
+			$str 				= ['ezd_ampersand','ezd_hash', 'ezd_plus'];
+			$rplc 				= ['&','#', '+'];
+			$doc_title_text 	= str_replace($str, $rplc, $doc_title);
 
 			// Create post object
 			$post = array(
@@ -84,11 +88,11 @@ class Create_Post {
 		if ( isset ( $_GET['is_section'] ) && ! empty ( $_GET['is_section'] ) ) {
 
 			$parentID      			= ! empty ( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;
-			$section_title 			= ! empty ( $_GET['is_section'] ) ? htmlspecialchars( $_GET['is_section'] ) : '';			
-			$section_title_text     = substr( chrEncode( $section_title ), 6 );
-			$section_title_text 	= substr_replace( $section_title_text, "", -6 );
+			$section_title 			= ! empty ( $_GET['is_section'] ) ? htmlspecialchars( $_GET['is_section'] ) : '';
 
-
+			$str 				= ['ezd_ampersand','ezd_hash', 'ezd_plus'];
+			$rplc 				= ['&','#', '+'];
+			$section_title_text 	= str_replace($str, $rplc, $section_title);
 
 			$parent_item   = get_children( array(
 				'post_parent' => $parentID,
@@ -127,8 +131,10 @@ class Create_Post {
 
 			$child_id    		= ! empty ( $_GET['childID'] ) ? absint( $_GET['childID'] ) : 0;
 			$child_title 		= ! empty ( $_GET['child'] ) ? htmlspecialchars( $_GET['child'] ) : '';					
-			$child_title_text   = substr( chrEncode( $child_title ), 6 );
-			$child_title_text 	= substr_replace( $child_title_text, "", -6 );
+			
+			$str 				= ['ezd_ampersand','ezd_hash', 'ezd_plus'];
+			$rplc 				= ['&','#', '+'];
+			$child_title_text 	= str_replace($str, $rplc, $child_title);
 
 			$child_item = get_children( array(
 				'post_parent' => $child_id,

@@ -16,7 +16,13 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + result.value;
+
+                        let results = result.value.replaceAll('&', 'ezd_ampersand');
+                        results     = results.replaceAll('#', 'ezd_hash'); 
+                        results     = results.replaceAll('+', 'ezd_plus');
+
+                       document.location.href = href + results;
+                       
                     }
                 })
             })
@@ -37,7 +43,12 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + result.value;
+
+                        let results = result.value.replaceAll('&', 'ezd_ampersand');
+                        results     = results.replaceAll('#', 'ezd_hash'); 
+                        results     = results.replaceAll('+', 'ezd_plus');
+                
+                        document.location.href = href + results;
                     }
                 })
             })
@@ -58,7 +69,13 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + result.value;
+                        
+                        let results = result.value.replaceAll('&', 'ezd_ampersand');
+                        results     = results.replaceAll('#', 'ezd_hash'); 
+                        results     = results.replaceAll('+', 'ezd_plus');
+
+                       document.location.href = href + results;
+                       
                     }
                 })
             })
@@ -79,7 +96,13 @@
                     },
                 }).then((result) => {
                     if (result.value) {
-                        document.location.href = href + result.value;
+                        
+                        let results = result.value.replaceAll('&', 'ezd_ampersand');
+                        results     = results.replaceAll('#', 'ezd_hash'); 
+                        results     = results.replaceAll('+', 'ezd_plus');
+
+                       document.location.href = href + results;
+                       
                     }
                 })
             })
@@ -132,7 +155,7 @@
 
         // DELETE CHILD DOC
         function delete_child_doc() {
-            $(document).on('click', '.child-delete', function (e) {
+            $('.child-delete').on('click', function (e) {
                 e.preventDefault();
                 const href = $(this).attr('href')
                 Swal.fire({
