@@ -192,6 +192,11 @@
 
             })
         });
+        document.getElementById("easydocs-search").addEventListener("search", function (event) {
+            $('.easydocs-accordion').find('ol li ol.dd-list').css("display", "none");
+            $('.nestable--collapse').hide();
+            $('.nestable--expand').show();
+        });
 
         // If nav item is active with cookie / else
         if (!$('.easydocs-navitem').hasClass("is-active")) {
