@@ -50,7 +50,7 @@ EazyDocs has sticky sidebars that will help your readers to navigate through you
 - **Simple Navigation:**
 The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily. The filter form helps to find the right doc quickly.
 
-- **Multilingual/RTL Ready:**
+- **Multilingual and RTL Ready:**
 EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one! You can translate it into your language and use it in your website.
 
 - **Responsive & Retina Ready:**
@@ -108,8 +108,9 @@ Get feedback easily, so you can efficiently develop and refine your knowledge ba
 ## 🕒 Recently Viewed Articles ##
 No need to memorize or remember the last viewed articles by the user. They can see and visit their recently visited articles at the bottom of doc single page
 
-## 📑 Related Articles ##
+## 📚 Related Articles ##
 Sometimes readers might be interested to read the Related articles. EazyDocs will automatically create a Related Articles section at the bottom of the doc single page.
+
 
 EazyDocs Pro’s features include:
 - ** Single Doc Sidebars Content: **
@@ -165,11 +166,16 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Screenshots ==
 
 1. Docs builder UI in the WordPress Admin dashboard
-2. Creating the Docs page with EazyDocs Shortcode and Search Banner block
-3. Docs shortcode UI on frontend
-4. Single doc page
+2. Ordering and Nesting Docs by Drag-n-Drop
+3. Creating the Docs page with EazyDocs Shortcode and Search Banner block
+4. Docs shortcode UI on frontend
 
 == Changelog ==
+
+= v2.0.1 (08 December 2022) =
+Fixed: Creating new doc wasn't working
+Tweaked: Docs filter by words/characters restore to default data after clearing the search
+Tweaked: Docs builder UI design improved
 
 = v2.0.0 (05 December 2022) =
 Note/Blog: This is a major release. Please read the release notes carefully before updating https://tinyurl.com/2zx3askn

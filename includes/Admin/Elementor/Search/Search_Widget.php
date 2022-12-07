@@ -16,7 +16,7 @@ class Search_Widget extends Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'EazyDocs Search Form', 'eazydocs' );
+		return esc_html__( 'EazyDocs Search', 'eazydocs' );
 	}
 
 	public function get_icon() {

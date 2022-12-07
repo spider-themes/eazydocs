@@ -26,4 +26,5 @@ if ( $docs_visibility == '1' ) :
 		do_action( 'eazydocs_viewed_articles', $reviewed_title, $viewed_docs, $viewed_visible, $viewed_see_more );
 		?>
     </div>
-<?php endif;
+    <?php
+endif;

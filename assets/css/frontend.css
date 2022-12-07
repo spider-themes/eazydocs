@@ -764,7 +764,6 @@ body.search-focused .ezd_click_capture {
   display: none;
 }
 .nav-sidebar .nav-item {
-  cursor: pointer;
   padding-right: 0;
   margin: 0 0 5px;
   position: relative;
@@ -871,6 +870,9 @@ body.search-focused .ezd_click_capture {
   color: var(--black_500);
   padding: 0;
   text-decoration: none;
+}
+.nav-sidebar .nav-item .dropdown_nav li a mark {
+  background-color: #e5e800;
 }
 .nav-sidebar .nav-item .dropdown_nav li a.active {
   color: var(--black_900);
@@ -1506,7 +1508,7 @@ body.search-focused .ezd_click_capture {
 .toc_right .nav-link {
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.5;
   padding: 0;
   position: relative;
   margin-bottom: 10px;

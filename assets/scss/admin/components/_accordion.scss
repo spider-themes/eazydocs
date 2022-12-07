@@ -119,8 +119,6 @@
 
   .count {
     margin-left: 5px;
-    color: #fff;
-    background: var(--black_200);
     font-size: 10px;
   }
 
@@ -149,6 +147,9 @@
     a {
       text-decoration: none;
       color: var(--clr-text);
+      &.section-last-label {
+        margin-left: 2px;
+      }
     }
   }
 

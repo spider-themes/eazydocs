@@ -533,8 +533,6 @@ button {
 }
 .accordion-title .count {
   margin-left: 5px;
-  color: #fff;
-  background: var(--black_200);
   font-size: 10px;
 }
 .accordion-title:hover {
@@ -559,6 +557,9 @@ button {
 .accordion-title h4 a {
   text-decoration: none;
   color: var(--clr-text);
+}
+.accordion-title h4 a.section-last-label {
+  margin-left: 2px;
 }
 .accordion-title .accordion-category-icon {
   width: 1.25rem;
@@ -979,16 +980,17 @@ a.child-delete {
 }
 
 .badge {
-  display: inline-block;
-  padding: 0.35em 0.65em 0.3em;
-  font-size: 0.75em;
-  font-weight: 400;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: 0.25rem;
+  background: rgba(175, 184, 193, 0.2);
+  height: 22px;
+  color: #838793;
+  font-size: 12px;
+  display: flex;
+  line-height: 1.1;
+  padding: 5px 7px 5px 8px;
+  transition: all 0.3s;
+  min-width: 20px;
+  border-radius: 2em;
+  font-weight: 500;
 }
 
 /*----------------------------------------*/
