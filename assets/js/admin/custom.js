@@ -180,7 +180,16 @@
             var value = $(this).val().toLowerCase();
             $(".easydocs-accordion-item").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-                $('.easydocs-accordion').find('.dd-list').css("display", "block");
+                if (value.length > 0) {
+                    $('.easydocs-accordion').find('.dd-list').css("display", "block");
+                    $('.nestable--collapse').show();
+                    $('.nestable--expand').hide();
+                } else {
+                    $('.easydocs-accordion').find('ol li ol.dd-list').css("display", "none");
+                    $('.nestable--collapse').hide();
+                    $('.nestable--expand').show();
+                }
+
             })
         });
 
