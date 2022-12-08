@@ -5,8 +5,9 @@
   align-items: center;
   justify-content: center;
   border: 0;
-  margin-bottom: 75px;
+  margin-bottom: 75px !important;
   margin-left: 0;
+  border: none !important;
   .nav-item {
     margin-bottom: 0;
 
@@ -177,9 +178,11 @@
   }
   p {
     margin-bottom: 0;
+    font-size: 16px;
   }
   .learn_btn {
     padding-top: 20px;
+    font-size: 16px;
   }
 }
 
@@ -273,6 +276,10 @@
   padding-bottom: 20px;
   h3{
     margin-top: 0;
+    font-size: 18px;
+  }
+  p{
+    font-size: 16px;
   }
 }
 
@@ -927,6 +934,35 @@
   padding: 40px 35px 50px;
   margin-bottom: 30px;
   position: relative;
+  &.bg-dark { 
+    .title {
+      color: #fff !important;
+    }
+    a,
+    .badge{
+      color: #fff !important;
+    }
+  }
+  .private {
+    position: absolute;
+    right: -6px;
+    top: -17px;
+    z-index: 2;
+    i.icon_lock {
+      font-size: 40px;
+    }
+  }
+  &.single-doc-layout-one{
+    .doc-top{
+      > img{
+        width: auto;
+        max-width: 70px;
+        height: auto;
+        max-height: 70px;
+        margin: 0 10px 0 0;
+      }
+    }
+  }
   .doc-top {
     margin-bottom: 30px;
   }
@@ -990,5 +1026,28 @@
     margin-bottom: 42px;
     margin-left: 0;
     padding-left: 0;
+  }
+}
+a.action_btn {
+  &.all_doc_btn{
+    padding: 10px 40px;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 4px;
+    background: var(--ezd_brand_color);
+    display: inline-block;
+    padding: 14px 28px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
+    text-decoration: none !important;
+    > i {
+      vertical-align: middle;
+      font-size: 18px;
+      padding-left: 5px;
+    }
+    &:hover{
+      box-shadow: 0 20px 30px 0 rgb(76 76 241 / 24%);
+    }
   }
 }

@@ -1508,7 +1508,7 @@ body.search-focused .ezd_click_capture {
 .toc_right .nav-link {
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.4;
   padding: 0;
   position: relative;
   margin-bottom: 10px;
@@ -1950,6 +1950,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   display: block;
   color: var(--black_900);
   text-decoration: none;
+  font-size: 18px;
 }
 .documentation_item .media-body .title:hover {
   text-decoration: underline;
@@ -1960,6 +1961,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .documentation_item .media-body p {
   margin-bottom: 0;
+  font-size: 16px;
 }
 
 /*============== End doc_categories_guide_area css =============*/
@@ -2400,8 +2402,9 @@ body.admin-bar .ezd-link-copied-wrap {
   align-items: center;
   justify-content: center;
   border: 0;
-  margin-bottom: 75px;
+  margin-bottom: 75px !important;
   margin-left: 0;
+  border: none !important;
 }
 .doc_tag .nav-item {
   margin-bottom: 0;
@@ -2561,9 +2564,11 @@ body.admin-bar .ezd-link-copied-wrap {
 }
 .documentation_text p {
   margin-bottom: 0;
+  font-size: 16px;
 }
 .documentation_text .learn_btn {
   padding-top: 20px;
+  font-size: 16px;
 }
 
 /**== Docs 4 / Book chapter CSS ==**/
@@ -2657,6 +2662,10 @@ body.admin-bar .ezd-link-copied-wrap {
 }
 .docs4-heading h3 {
   margin-top: 0;
+  font-size: 18px;
+}
+.docs4-heading p {
+  font-size: 16px;
 }
 
 .navbar-shown .dock4-nav-sticky {
@@ -3279,6 +3288,29 @@ body.admin-bar .ezd-link-copied-wrap {
   margin-bottom: 30px;
   position: relative;
 }
+.categories_guide_item.bg-dark .title {
+  color: #fff !important;
+}
+.categories_guide_item.bg-dark a,
+.categories_guide_item.bg-dark .badge {
+  color: #fff !important;
+}
+.categories_guide_item .private {
+  position: absolute;
+  right: -6px;
+  top: -17px;
+  z-index: 2;
+}
+.categories_guide_item .private i.icon_lock {
+  font-size: 40px;
+}
+.categories_guide_item.single-doc-layout-one .doc-top > img {
+  width: auto;
+  max-width: 70px;
+  height: auto;
+  max-height: 70px;
+  margin: 0 10px 0 0;
+}
 .categories_guide_item .doc-top {
   margin-bottom: 30px;
 }
@@ -3339,6 +3371,28 @@ body.admin-bar .ezd-link-copied-wrap {
   margin-bottom: 42px;
   margin-left: 0;
   padding-left: 0;
+}
+
+a.action_btn.all_doc_btn {
+  padding: 10px 40px;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  border-radius: 4px;
+  background: var(--ezd_brand_color);
+  display: inline-block;
+  padding: 14px 28px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
+  text-decoration: none !important;
+}
+a.action_btn.all_doc_btn > i {
+  vertical-align: middle;
+  font-size: 18px;
+  padding-left: 5px;
+}
+a.action_btn.all_doc_btn:hover {
+  box-shadow: 0 20px 30px 0 rgba(76, 76, 241, 0.24);
 }
 
 .modal-content .shortcode_info .row {

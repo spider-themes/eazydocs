@@ -422,6 +422,9 @@
     margin-bottom: 0;
     li{
         margin-left: 0;
+        display: inline-flex;
+        gap: 10px;
+        padding-right: 10px;
         &:nth-child(2){
             &::before{
                 content: "\f054";
@@ -430,7 +433,7 @@
                 font-size: 8px;
                 color: #b7b9be;
                 font-weight: normal;
-                padding-top: 6px;
+                padding-top: 3px;
             }
         }
         a{
@@ -455,12 +458,15 @@
     margin-top: 0;
     padding: 20px 15px;
     font-size: 18px;
+    font-weight: bold;
   }
   #docy-search-result .doc-section {
     border-right: none;
     padding-left: 25px;
     font-size: 16px;
     font-weight: 700;
+    line-height: initial;
+    margin-bottom: 5px;
     &::first-letter{
         text-transform: uppercase;
     }

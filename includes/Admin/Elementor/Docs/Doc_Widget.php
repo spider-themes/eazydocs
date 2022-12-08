@@ -33,15 +33,15 @@ class Doc_Widget extends Widget_Base {
     }
 
     public function get_style_depends (){
-        return [ 'ezd-docs-widget', 'bootstrap', 'elegant-icon' ];
+        return [ 'ezd-el-widgets', 'ezd-docs-widget', 'bootstrap', 'elegant-icon' ];
     }
     
 	public function get_keywords() {
 		return [ 'docs' ];
 	}
 
-    public function get_script_dipeends() {
-        return [ 'ezd-script-handle' ];
+    public function get_script_depends() {
+        return [ 'ezd-script-handle', 'bootstrap' ];
     }
  
 	protected function register_controls() {

@@ -16,10 +16,10 @@
             ]);
             ?>
             <div class="col-lg-4 col-sm-6">
-                <div class="categories_guide_item box-item wow fadeInUp">
+                <div class="categories_guide_item box-item wow fadeInUp single-doc-layout-one">
                     <div class="doc-top d-flex align-items-start">
-                        <?php the_post_thumbnail( 'full', array('class', 'featured-image') ) ?>
-                        <a class="doc_tag_title" href="<?php the_permalink(); ?>">
+                        <?php echo wp_get_attachment_image( get_post_thumbnail_id( $section->ID ) ); ?>
+                        <a class="doc_tag_title" href="<?php echo get_the_permalink($section->ID); ?>">
                             <h4 class="title"> <?php echo get_the_title($section->ID); ?> </h4>
                             <span>
                                 <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>

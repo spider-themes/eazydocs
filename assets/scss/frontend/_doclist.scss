@@ -926,7 +926,7 @@
   .nav-link {
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.4;
     padding: 0;
     position: relative;
     margin-bottom: 10px;
@@ -1421,6 +1421,7 @@ body:not(.onepage-doc) .sticky_menu {
       display: block;
       color: var(--black_900);
       text-decoration: none;
+      font-size: 18px;
       &:hover {
         text-decoration: underline;
         text-decoration-color: rgba(76,122,241,.25);
@@ -1432,6 +1433,7 @@ body:not(.onepage-doc) .sticky_menu {
 
     p {
       margin-bottom: 0;
+      font-size: 16px;
     }
   }
 }
