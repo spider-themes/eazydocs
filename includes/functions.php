@@ -904,7 +904,7 @@ function ezydocs_admin_pages()
     $admin_page = $_GET['page'] ?? '';
     $post_type = $_GET['post_type'] ?? '';
 
-    if ($admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings' || $admin_page == 'ezd-user-feedback' || $admin_page == 'ezd-user-feedback-archived' || $post_type == 'onepage-docs' || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php')) {
+    if ($admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings' || $admin_page == 'ezd-user-feedback' || $admin_page == 'ezd-analytics' || $admin_page == 'ezd-user-feedback-archived' || $admin_page == 'ezd-onepage-presents' || $post_type == 'onepage-docs' || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php')) {
         return true;
     }
 }

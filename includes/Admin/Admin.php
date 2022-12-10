@@ -143,6 +143,13 @@ class Admin
 		}
 
 		add_submenu_page('eazydocs', __('Tags', 'eazydocs'), __('Tags', 'eazydocs'), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs');
+
+		// Analytics Page
+		if ( ezd_is_premium() ) {
+			do_action('ezd_pro_admin_menu');
+		} else {
+			add_submenu_page('eazydocs', __('Analytics', 'eazydocs'), __('Analytics', 'eazydocs'), $capabilites, 'ezd-analytics', [$this, 'ezd_analytics_presents']);
+		}
 	}
 
 	/**
@@ -192,7 +199,7 @@ class Admin
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
 				<img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e('crown icon', 'eazydocs'); ?>" width="250px" />
-				<h2> <?php echo esc_html__('Add Your OnePage Doc', 'eazydocs'); ?> </h2>
+				<h3> <?php echo esc_html__('Add Your OnePage Doc', 'eazydocs'); ?> </h3>
 				<p class="big-p"> <?php esc_html_e('Onepage documentation format will generate all the pages of a Doc as sections in a single page which is scrollable by sections. Visitors can find the all guides on a single page and they can navigate through the different sections very fast.', 'eazydocs'); ?> </p>
 				<?php // PHPCS - No need to escape a URL. The query arg is sanitized. 
 				?>
@@ -217,7 +224,7 @@ class Admin
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
 				<img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e('crown icon', 'eazydocs'); ?>" width="250px" />
-				<h2> <?php echo esc_html__('Users Feedback', 'eazydocs'); ?> </h2>
+				<h3> <?php echo esc_html__('Users Feedback', 'eazydocs'); ?> </h3>
 				<p class="big-p"> <?php esc_html_e('You can get the Doc Feedbacks listed in this page to review.', 'eazydocs'); ?> </p>
 				<?php // PHPCS - No need to escape a URL. The query arg is sanitized. 
 				?>
@@ -229,6 +236,28 @@ class Admin
 			</div>
 		</div><!-- /.wrap -->
 <?php
+	}
+
+	public function ezd_analytics_presents()
+	{
+		?>
+		<div class="wrap">
+			<div class="ezd-blank_state">
+				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
+				?>
+				<img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e('crown icon', 'eazydocs'); ?>" width="250px" />
+				<h3> <?php echo esc_html__('EazyDocs Analytics', 'eazydocs'); ?> </h3>
+				<p class="big-p"> <?php esc_html_e('You can get the Doc Analytics Page Pro Version.', 'eazydocs'); ?> </p>
+				<?php // PHPCS - No need to escape a URL. The query arg is sanitized. 
+				?>
+				<div class="button-inline">
+					<a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url('admin.php?page=eazydocs-pricing'); ?>">
+						<?php esc_html_e('Go Pro', 'elementor'); ?>
+					</a>
+				</div>
+			</div>
+		</div><!-- /.wrap -->
+		<?php
 	}
 
 	/**
