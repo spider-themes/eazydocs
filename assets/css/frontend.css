@@ -1801,6 +1801,9 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .doc_switch .tab-btn:hover {
   color: var(--ezd_brand_color);
 }
+.doc_switch .tab-btn.dark-mode.active svg path {
+  fill: #fff;
+}
 .doc_switch svg {
   color: var(--black_700);
 }

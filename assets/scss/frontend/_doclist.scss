@@ -1266,6 +1266,15 @@ body:not(.onepage-doc) .sticky_menu {
     &:hover {
       color: var(--ezd_brand_color);
     }
+    &.dark-mode{
+      &.active{
+        svg{
+          path{
+            fill: #fff;
+          }
+        }
+      }
+    }
   }
 
   svg {
