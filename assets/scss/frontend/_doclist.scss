@@ -1929,3 +1929,8 @@ body.admin-bar{
   border-color: var(--ezd_brand_color);
   color: var(--ezd_brand_color);
 }
+.sbnr-aesthetic {
+> img {
+  max-width: 100%;
+  }
+}

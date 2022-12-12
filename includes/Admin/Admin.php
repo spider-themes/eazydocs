@@ -86,7 +86,7 @@ class Admin
 
 
 		if ( function_exists('ezd_is_premium') && ezd_is_premium() == true ) {
-			$ezd_menu_title = __('EazyDocs Pro', 'eazyDocs');
+			$ezd_menu_title = __('Docs Builder', 'eazyDocs');
 		} else {
 			$ezd_menu_title = __('EazyDocs', 'eazyDocs');
 		}
@@ -131,8 +131,6 @@ class Admin
 			} else {
 				$sz_capabilites = 'manage_options';
 			}
-
-			add_submenu_page('eazydocs', __('Settings', 'eazydocs'), __('Settings', 'eazydocs'), $sz_capabilites, 'eazydocs-settings');
 		} else {
 			add_submenu_page('eazydocs', __('Customize', 'eazydocs'), __('Customize', 'eazydocs'), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page');
 		}
@@ -147,16 +145,9 @@ class Admin
 			do_action('ezd_pro_admin_menu');
 		} else {
 			add_submenu_page('eazydocs', __('Users Feedback', 'eazydocs'), __('Users Feedback', 'eazydocs'), $capabilites, 'ezd-user-feedback', [$this, 'ezd_feedback_presents']);
-		}
-
-		add_submenu_page('eazydocs', __('Tags', 'eazydocs'), __('Tags', 'eazydocs'), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs');
-
-		// Analytics Page
-		if ( ezd_is_premium() ) {
-			do_action('ezd_pro_admin_menu');
-		} else {
 			add_submenu_page('eazydocs', __('Analytics', 'eazydocs'), __('Analytics', 'eazydocs'), $capabilites, 'ezd-analytics', [$this, 'ezd_analytics_presents']);
 		}
+		add_submenu_page('eazydocs', __('Tags', 'eazydocs'), __('Tags', 'eazydocs'), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs');
 	}
 
 	/**

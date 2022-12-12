@@ -2398,6 +2398,10 @@ body.admin-bar .ezd-link-copied-wrap {
   color: var(--ezd_brand_color);
 }
 
+.sbnr-aesthetic > img {
+  max-width: 100%;
+}
+
 /*============== Start doc_tag_area css =============*/
 .doc_tag {
   display: flex;
