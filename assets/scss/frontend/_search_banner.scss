@@ -86,6 +86,13 @@ form.ezd_search_form {
         line-height: 50px;
         box-shadow: 0 1px 1px rgba(11, 80, 115, 0.3), 0 1px 5px rgba(60, 64, 67, 0.1);
         padding-right: 30px;
+        &::-webkit-search-cancel-button {
+          -webkit-appearance: searchfield-cancel-button;
+          padding-right: 28px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
         &:focus, &:hover {
           box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 2px 6px 2px rgba(60, 64, 67, .15);
         }

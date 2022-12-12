@@ -51,12 +51,12 @@ if ( ezd_is_premium() ) {
             ?>
             <div class="col-lg-4">
                 <div class="categories_guide_item <?php echo $private_bg.$protected_bg; ?> wow fadeInUp" <?php echo $private_bg_op; ?>>
-                <?php
+                    <?php
                     if ( get_post_status() == 'private' ) {
                         $pd_txt = esc_html__( 'Private Doc', 'eazydocs' );
                         echo "<div class='private' title='$pd_txt'><i class='icon_lock'></i></div>";
                     }
-                    if ( !empty($post->post_password ) ) {
+                    if ( !empty($post->post_password) ) {
                         ?>
                         <div class="private" title="Password Protected Doc">
                             <svg width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#4e5668">
@@ -76,9 +76,9 @@ if ( ezd_is_premium() ) {
                                 $current_doc_id = get_post_field( 'post_name', get_the_ID() );
                                 $get_post_type  = get_post_type(get_the_ID());
                                 if ( is_user_logged_in() ) {
-                                    $main_doc_url   = site_url($get_post_type.'/'.$current_doc_id);
+                                    $main_doc_url = site_url($get_post_type.'/'.$current_doc_id);
                                 } else {
-                                    $main_doc_url   = site_url($login_page_id.'?after_login=').site_url($get_post_type.'/'.$current_doc_id.'&add_new_doc=yes');
+                                    $main_doc_url = site_url($login_page_id.'?after_login=').site_url($get_post_type.'/'.$current_doc_id.'&add_new_doc=yes');
                                 }
                             } else {
                                 $main_doc_url = get_permalink( get_the_ID() );
@@ -87,11 +87,11 @@ if ( ezd_is_premium() ) {
                     } else {
                         $main_doc_url = get_permalink( get_the_ID() );
                     }
-                    ?>  
-                    <div class="doc-top d-flex align-items-start">                    
+                    ?>
+                    <div class="doc-top d-flex align-items-start">
                         <a class="doc_tag_title" href="<?php echo esc_url($main_doc_url); ?>">
                             <h4 class="title"> <?php the_title(); ?> </h4>
-                            <span class="badge"> <?php echo count($get_child_docs); esc_html_e('Topics', 'eazydocs'); ?> </span>
+                            <span class="badge"> <?php echo count($get_child_docs); esc_html_e(' Topics', 'eazydocs'); ?> </span>
                         </a>
                     </div>
                     <?php

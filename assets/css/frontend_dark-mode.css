@@ -1,7 +1,7 @@
 /*============ Dark Mode css ========*/
 body.body_dark {
   --bs-white: #2c303a !important;
-  --p_color: #f1f1f1 !important;
+  --p_color: #cecece !important;
   --black_700: #e1e1e1 !important;
   --black_800: #f1f1f1 !important;
   --black_900: #f8f8f8 !important;

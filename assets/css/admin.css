@@ -492,7 +492,7 @@ button {
   transform: translateY(-50%) rotate(90deg);
 }
 .easydocs-accordion-item.child-one h4 > a {
-  padding: 0 0 0 22px;
+  padding: 0 0 0 25px;
 }
 .easydocs-accordion-item.child-one .accordion-title.has-child a.section-last-label {
   margin-left: 19px;
@@ -1559,6 +1559,9 @@ a.child-delete {
 }
 .easydocs-navitem.is-active .link {
   display: flex;
+}
+.easydocs-navitem.is-active .link .dd-handle {
+  cursor: pointer;
 }
 .easydocs-navitem.is-active .link .drag-icon {
   margin-bottom: -5px;

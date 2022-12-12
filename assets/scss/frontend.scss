@@ -47,7 +47,7 @@ p .footnotes-link::after {
 }
 
 .nav-sidebar .nav-item .dropdown_nav ul {
-  padding-left: 20px !important;
+  padding-left: 10px !important;
 }
 
 .nav-sidebar .nav-item .dropdown_nav {
@@ -56,7 +56,6 @@ p .footnotes-link::after {
       display: flex;
     }
     .dropdown_nav {
-      padding-top: 10px;
       display: none !important;
       transition: .3s all;
     }

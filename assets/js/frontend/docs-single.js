@@ -2,6 +2,13 @@
     "use strict";
 
     $(document).ready(function() {
+        // Match Fade gradient Shadow color
+        let bgColor = window.getComputedStyle(document.body, null).getPropertyValue('background-color'),
+            bgColorRGBA = bgColor.replace(')', ', 0)').replace('rgb', 'rgba')
+
+        if ( bgColor ) {
+            $('.fadeGradient').css( 'background', '-webkit-linear-gradient(bottom, '+bgColor+' 15%, '+bgColorRGBA+' 100%)' )
+        }
 
         // Copy the current page link to clipboard
         if ( $('.share-this-doc').length ) {
@@ -46,43 +53,12 @@
         $('.social-links a:not(:first)').on("click", function(e) {
             $(this).ezd_social_popup(e);
         });
-        
-        // Check if scrollbar visible
-        function isScrollbarVisible() {
-            return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
-        }
-
-        /**
-         * If is scrollbar visible for a selector
-         * @param selector
-         */
-        function isScrollVisible( selector ) {
-            let is_scrollbar =  $(selector).get(0).scrollHeight > $(selector).height();
-            if ( is_scrollbar ) {
-                $(selector).removeClass('no_scrollbar').addClass('has_scrollbar')
-            } else {
-                $(selector).removeClass('has_scrollbar').addClass('no_scrollbar')
-            }
-        }
-
-        // Check if sidebar scroll is visible
-        isScrollVisible('.doc_left_sidebarlist .scroll')
-        $('.nav-sidebar .nav-item span.icon').on('click', function () {
-            isScrollVisible('.doc_left_sidebarlist .scroll')
-        })
 
         // Bootstrap Tooltip
         let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
-
-        // Match Fade gradient Shadow color
-        let bgColor = window.getComputedStyle(document.body, null).getPropertyValue('background-color'),
-            bgColorRGBA = bgColor.replace(')', ', 0)').replace('rgb', 'rgba')
-        if ( bgColor ) {
-            $('.fadeGradient').css( 'background', '-webkit-linear-gradient(bottom, '+bgColor+' 15%, '+bgColorRGBA+' 100%)' )
-        }
 
         // Add scroll spy attributes to body
         $('body').attr({'data-bs-spy': 'scroll', 'data-bs-target': "#eazydocs-toc"})
@@ -260,13 +236,13 @@
                     }, 300);
                     switchs = true
                 }
-            });
+            })
         }
 
         // Mobile menu on the Doc single page
         $('.single-docs .mobile_menu_btn').on('click', function () {
             $('body').removeClass('menu-is-closed').addClass('menu-is-opened');
-        });
+        })
 
         $('.single-docs .close_nav').on("click", function (e) {
             if ($('.side_menu').hasClass('menu-opened')) {
@@ -275,7 +251,7 @@
             } else {
                 $('.side_menu').addClass('menu-opened')
             }
-        });
+        })
 
         // Filter doc chapters
         if ( $('#doc_filter').length ) {
@@ -374,64 +350,6 @@
             lastScrollTop = scrollTop;
         }
 
-        function navbarFixed() {
-            if ($('#sticky').length) {
-                $(window).scroll(function () {
-                    var scroll = $(window).scrollTop();
-                    if (scroll) {
-                        $("#sticky").addClass("navbar_fixed");
-                        $(".sticky-nav-doc .body_fixed").addClass("body_navbar_fixed");
-                    } else {
-                        $("#sticky").removeClass("navbar_fixed");
-                        $(".sticky-nav-doc .body_fixed").removeClass("body_navbar_fixed");
-                    }
-                });
-            }
-        }
-        navbarFixed();
-
-        function navbarFixedTwo() {
-            if ($('#stickyTwo').length) {
-                $(window).scroll(function () {
-                    var scroll = $(window).scrollTop();
-                    if (scroll) {
-                        $("#stickyTwo").addClass("navbar_fixed");
-                    } else {
-                        $("#stickyTwo").removeClass("navbar_fixed");
-                    }
-                });
-            }
-        }
-        navbarFixedTwo()
-
-        function mobileNavbarFixed() {
-            if ($('#mobile-sticky').length) {
-                $(window).scroll(function () {
-                    var scroll = $(window).scrollTop();
-                    if (scroll) {
-                        $("#mobile-sticky").addClass("navbar_fixed");
-                    } else {
-                        $("#mobile-sticky").removeClass("navbar_fixed");
-                    }
-                })
-            }
-        }
-        mobileNavbarFixed();
-
-        function mobileNavbarFixedTwo() {
-            if ($('#mobile-stickyTwo').length) {
-                $(window).scroll(function () {
-                    var scroll = $(window).scrollTop();
-                    if (scroll) {
-                        $("#mobile-stickyTwo").addClass("navbar_fixed");
-                    } else {
-                        $("#mobile-stickyTwo").removeClass("navbar_fixed");
-                    }
-                })
-            }
-        }
-        mobileNavbarFixedTwo()
-
         //*=============menu sticky js =============*//
 
         //  page scroll
@@ -511,7 +429,7 @@
          * Load Doc single page via ajax
          */
         if ( eazydocs_local_object.is_doc_ajax == '1' ) {
-            $(document).on('click', '.nav-sidebar .nav-item .dropdown_nav li a', function (e) {
+            $(document).on('click', '.single-docs .nav-sidebar .nav-item .dropdown_nav li a', function (e) {
                 e.preventDefault()
                 let self = $(this)
                 let title = self.text()
@@ -537,8 +455,16 @@
                         $("#reading-progress-fill").css({'display': 'none'});
                         $(".doc-middle-content").html(response);
                         changeurl(title)
+                        $(".nav-sidebar .nav-item").removeClass('current_page_item')
+
                         $('.nav-sidebar .nav-item .dropdown_nav li a').removeClass('active')
-                        self.addClass('active')
+                        if ( !self.parent().parent().hasClass('has_child') ) {
+                            self.addClass('active')
+                            self.parent().addClass('current_page_item')
+                        } else if ( self.parent().parent().hasClass('has_child') ) {
+                            self.parent().parent().addClass('current_page_item')
+                        }
+
                         // Toc
                         $('#eazydocs-toc').empty();
                         Toc.init({
@@ -553,7 +479,7 @@
                 })
             })
 
-            $(document).on('click', '.nav-sidebar .nav-item .nav-link', function (e) {
+            $(document).on('click', '.single-docs .nav-sidebar .nav-item .nav-link', function (e) {
                 e.preventDefault();
                 let self = $(this)
                 let title = self.text()
@@ -580,6 +506,10 @@
                         $("#reading-progress-fill").css({'display': 'none'});
                         $(".doc-middle-content").html(response);
                         changeurl(title)
+                        $(".nav-sidebar .nav-item").removeClass('current_page_item')
+                        self.addClass('active')
+                        self.parent().parent().addClass('current_page_item')
+
                         docLeftSidebarToggle()
                         // Toc
                         $('#eazydocs-toc').empty();

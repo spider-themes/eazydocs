@@ -32,6 +32,11 @@ if ( $search_banner == '1' ) :
 							</div>
 						</div>
 						<div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
+                        <?php
+                        if ( ezd_is_premium() ) {
+                            eazydocs_get_template_part('keywords');
+                        }
+                        ?>
 					</form>
 				</div>
 			</div>

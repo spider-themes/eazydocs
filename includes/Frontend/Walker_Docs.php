@@ -150,12 +150,13 @@ class Walker_Docs extends Walker_Page {
         $ezd_badge  = '';
         if ( ezd_is_premium() ) {
             $badge  = get_the_terms($page->ID, 'doc_badge');            
-            if( is_array( $badge ) ){
-                foreach( $badge as $badges ){
+            if ( is_array($badge) ) {
+                foreach ( $badge as $badges ) {
                     $ezd_badge      = get_term_meta( $badges->term_id, 'ezd_badge_settings', true );
-                    $badge_color    = $ezd_badge["ezd-badge-color"] ?? '';
-                    $badge_bg       = $ezd_badge["ezd-badge-bg"] ?? '';
-                    $ezd_badge      = '<span class="ezd-doc-badge" style="color:'.$badge_color.';background:'.$badge_bg.'">'.$badges->name.'</span>';
+                    $badge_color    = $ezd_badge["ezd-badge-color"] ? "color: {$ezd_badge["ezd-badge-color"]}.';" : '';
+                    $badge_bg       = $ezd_badge["ezd-badge-bg"] ? "background: {$ezd_badge["ezd-badge-bg"]};" : '';
+                    $badge_style    = !empty($badge_color) || !empty($badge_bg) ? "style='$badge_color $badge_bg'" : '';
+                    $ezd_badge      = '<span class="ezd-doc-badge" '.$badge_style.'>'.$badges->name.'</span>';
                 }
             }
         }
@@ -163,7 +164,7 @@ class Walker_Docs extends Walker_Page {
         $args['link_before'] = empty( $args['link_before'] ) ? $thumb : $args['link_before'];
         $args['link_after']  = $ezd_badge;
 
-        $atts                = array();
+        $atts                = [];
         $atts['href']        = get_permalink( $page->ID );
         $atts['data-postid'] = $page->ID;
         if ( $page->ID == $current_page ) {

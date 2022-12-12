@@ -51,6 +51,9 @@
         }
         .link {
             display: flex;
+            .dd-handle {
+                cursor: pointer;
+            }
             .drag-icon {
                 margin-bottom: -5px;
                 &:hover {

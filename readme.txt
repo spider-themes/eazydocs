@@ -62,7 +62,7 @@ Loading only necessary CSS, JavaScript, image, font files assets on the EazyDocs
 - **Simple Navigation:**
 The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
 
-## 📒 Hierarchical & Filterable Doc Builder Admin UI ##
+## 📒 Hierarchical & Filterable Doc Builder UI ##
 We designed the EazyDocs Doc Builder admin UI to be as simple as possible yet powerful. You can create a new doc, filter docs by post status, view positive/negative feedback ratio, and organize your docs with drag-and-drop ordering.
 
 ## ⚡ Live Customizer ##
@@ -113,14 +113,17 @@ Sometimes readers might be interested to read the Related articles. EazyDocs wil
 
 
 EazyDocs Pro’s features include:
-- ** Single Doc Sidebars Content: **
-You can add any content to the sidebars of a single doc. Even you can add Gutenberg blocks, shortcode to the sidebars.
-
-- ** Bulk Doc Visibility: **
+- **Bulk Doc Visibility:**
 You can change the visibility of multiple docs at once. You can change the visibility of multiple docs to public, private, or password protected.
 
-- ** Bulk Duplicate Docs: **
-You can duplicate a group of docs at once.
+- **Bulk Duplicate Docs:**
+You can duplicate a group of docs at once. You can duplicate multiple docs at once and save your time.
+
+- ** User Feedback Notifications:**
+You can see how people are reacting, and responding to your docs in one place. You are just one click away from checking users' feedback on articles, and their comments. You can also switch between tabs to check either feedback votes or readers' comments.
+
+- **Single Doc Sidebar Area:**
+You can add any content to the sidebars of a single doc. Even you can add Gutenberg blocks, shortcode to the sidebars.
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
@@ -171,6 +174,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Docs shortcode UI on frontend
 
 == Changelog ==
+
+= v2.0.2 (13 December 2022) =
+Fixed: Doc navigation's active state wasn't working with Ajax load
+Tweaked: Doc navigation active state design
 
 = v2.0.1 (08 December 2022) =
 Fixed: Creating new doc wasn't working

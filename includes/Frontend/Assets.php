@@ -14,7 +14,7 @@ class Assets {
      * Scripts enqueue
      */
     public static function enqueue_scripts() {
-        $opt         = get_option( 'eazydocs_settings' );
+        $opt = get_option( 'eazydocs_settings' );
 
         wp_enqueue_script( 'jquery' );
         wp_register_style( 'font-awesome-5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css' );
@@ -56,7 +56,7 @@ class Assets {
         }
 
         // Enqueue on onepage doc
-        if ( is_singular('docs') ||  is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
+        if ( is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
             wp_enqueue_style( 'ezd-onepage', EAZYDOCS_ASSETS . '/css/onepage.css' );
         }
 
