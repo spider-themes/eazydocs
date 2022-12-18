@@ -14,6 +14,9 @@ $tags                = get_the_terms( get_the_ID(), 'doc_tag' );
 $link_text           = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : esc_html__( 'How can we help?', 'eazydocs' );
 $doc_feedback_label  = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : esc_html__( 'Was this page helpful?', 'eazydocs' );
 $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
+
+
+
 ?>
 <div class="doc-btm">
 	<?php
@@ -29,7 +32,7 @@ $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
 	}
 	// Next & Previous Link
     if( $enable_next_prev == '1' ) {
-	    do_action( 'eazydocs_prev_next_docs', $has_next_prev );
+	    do_action( 'eazydocs_prev_next_docs', get_the_ID() );
     }
 	?>
     <footer class="help_text" id="help">
