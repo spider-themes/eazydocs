@@ -680,8 +680,8 @@ CSF::createSection( $prefix, array(
             'type'    	=> 'radio',
             'title'   	=> esc_html__( 'Docs Navigation Layout', 'eazydocs' ),
             'options' 	=> [
-                'category_base'  => esc_html__( 'Collapsed with Icons', 'eazydocs' ),
-                'badge_base'     => esc_html__( 'Extended Docs', 'eazydocs' ),
+                'badge_base'     => esc_html__( 'Collapsed with Icons', 'eazydocs' ),
+                'category_base'  => esc_html__( 'Extended Docs', 'eazydocs' ),
             ],
             'default' 	=> 'badge_base',
             'class'   	=> 'eazydocs-pro-notice',
@@ -1348,6 +1348,7 @@ CSF::createSection( $prefix, array(
             'default'    => false,
 			'class'      => 'eazydocs-promax-notice'
         ),
+
         array(
             'id'    => 'ezd_add_doc_heading',
             'type'  => 'heading',
@@ -1355,8 +1356,8 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 			)
-			
         ),
+
         array(
             'id'         => 'frontend_add_switcher',
             'type'       => 'switcher',
@@ -1370,6 +1371,7 @@ CSF::createSection( $prefix, array(
 				array( 'is_doc_contribution', '==', 'true' )
 			)
         ),
+
         array(
             'id'         => 'frontend_add_btn_text',
             'type'       => 'text',
@@ -1390,6 +1392,7 @@ CSF::createSection( $prefix, array(
 				array( 'is_doc_contribution', '==', 'true' )
 			)
         ),
+
         array(
             'id'         => 'frontend_edit_switcher',
             'type'       => 'switcher',
@@ -1403,6 +1406,7 @@ CSF::createSection( $prefix, array(
 				array( 'is_doc_contribution', '==', 'true' ),
 			)
         ),
+
         array(
             'id'         => 'frontend_edit_btn_text',
             'type'       => 'text',
@@ -1424,15 +1428,25 @@ CSF::createSection( $prefix, array(
 			'desc'		 => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs' ),
             'options'	 => 'pages',
 			'class'      => 'eazydocs-promax-notice',
+            'chosen'     => true,
+            'ajax'       => true,
+            'query_args' => array(
+                'posts_per_page' => - 1,
+            ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' )
 			)
         ),
+
 		array(
             'id'    => 'docs_contributor_meta',
             'type'  => 'heading',
-            'title' => esc_html__( 'Meta Content', 'eazydocs' )	
+            'title' => esc_html__( 'Meta Content', 'eazydocs' ),
+            'dependency' => array(
+                array( 'is_doc_contribution', '==', 'true' ),
+            )
         ),
+
 		array(
 			'id'         => 'contributor_meta_visibility',
 			'type'       => 'switcher',
@@ -1441,31 +1455,47 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'text_width' => 70,
-			'default'	 => false
+			'default'	 => true,
+            'dependency' => array(
+                array( 'is_doc_contribution', '==', 'true' ),
+            )
 		),
+
 		array(
             'id'    	=> 'contributor_meta_title',
             'type'  	=> 'text', 
             'title' 	=> esc_html__( 'Title', 'eazydocs' ),
             'default' 	=> esc_html__( 'Contributors', 'eazydocs' ),
-			'class'      => 'eazydocs-promax-notice'
+			'class'      => 'eazydocs-promax-notice',
+            'dependency' => array(
+                array( 'is_doc_contribution', '==', 'true' ),
+            )
         ),
+
 		array(
             'id'    	=> 'contributor_meta_dropdown_title',
             'type'  	=> 'text', 
             'title' 	=> esc_html__( 'Dropdown Heading', 'eazydocs' ),
             'default' 	=> esc_html__( 'Manage Contributors', 'eazydocs' ),
-			'class'      => 'eazydocs-promax-notice'
+			'class'      => 'eazydocs-promax-notice',
+            'dependency' => array(
+                array( 'is_doc_contribution', '==', 'true' ),
+            )
         ),
+
 		array(
 			'id'         => 'contributor_meta_search',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Search', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Search through the existing users', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'text_width' => 70,
-			'default'	 => false
+			'default'	 => true,
+            'dependency' => array(
+                array( 'is_doc_contribution', '==', 'true' ),
+            )
 		)
     ]
 ));
@@ -1564,9 +1594,9 @@ CSF::createSection( $prefix, array(
 			'preview_width'  => '60',
 			'preview_height' => '60',
 			'class'          => 'eazydocs-pro-notice',
-			'dependency'     => array(
-				array( 'assistant_visibility', '==', 'true' )
-			)
+            'dependency' => array(
+                array( 'assistant_visibility', '==', 'true' )
+            )
 		),
 
 		array(

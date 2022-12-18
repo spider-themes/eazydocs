@@ -74,22 +74,21 @@ p .footnotes-link::after {
   input, input[type=search] {
     border: 1px solid var(--black_50) !important;
     width: 100%;
-    height: 32px;
-    padding: 0 15px 0 10px;
+    padding: 2px 15px;
     outline: none;
     margin: 0;
-    background: #fff;
     font-size: 12px;
     line-height: 30px;
-    box-shadow: inset 0 1px 2px rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
     border-radius: 3px;
-    background: var(--bs-white);
+    background: var(--black_50);
     color: var(--black_800) !important;
     &:focus {
       outline: thin dotted;
+      background-color: var(--bs-white);
     }
     &::placeholder {
-      color: var(--black_300)
+      color: var(--black_400)
     }
   }
   .filter_no_result {

@@ -30,10 +30,8 @@ class Assets {
         wp_register_style( 'ezd-el-widgets', EAZYDOCS_ASSETS . '/css/ezd-el-widgets.css');
 
         if ( ezydocs_frontend_assets() == true ) {
-            wp_enqueue_style( 'rvfs', EAZYDOCS_VEND . '/font-size/css/rvfs.css' );
             
             // Scripts
-            wp_enqueue_script( 'rv-jquery-fontsize', EAZYDOCS_VEND . '/font-size/js/rv-jquery-fontsize-2.0.3.js' );
             wp_enqueue_script( 'printThis', EAZYDOCS_ASSETS . '/js/frontend/printThis.js' );
 
             wp_enqueue_script( 'anchor' );

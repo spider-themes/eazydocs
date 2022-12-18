@@ -539,6 +539,10 @@ select#ezd_docs_layout {
     font-size: 13px;
 }
 
+.easydocs-navbar .dd-placeholder {
+    background: gray;
+}
+
 .nestables-child .dd-handle {
     display: block;
     width: 30px;

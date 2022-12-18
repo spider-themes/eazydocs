@@ -215,7 +215,7 @@
                 } else {
                     $(".doc_documentation_area").removeClass("overlay");
                     $(".doc_rightsidebar").removeClass('opened').animate({
-                        "right": "-250px"
+                        "right": "-290px"
                     }, 100);
                     switchs = true;
                 }
@@ -601,10 +601,30 @@
    
         // Anchor JS scroll
         var urlHash = window.location.href.split("#")[1];
-        if(urlHash){  
+        if(urlHash){
             $('html,body').animate({
                 scrollTop: $('#' + urlHash).offset().top
             }, 30);
+        }
+
+        // Font size switcher
+        if ( $('#rvfs-controllers button').length ) {
+            var $speech = $('#post p, #post ul li:not(.process_tab_shortcode ul li), #post ol li, #post table:not(.basic_table_info,.table-dark), #post table tr td, #post .tab-content');
+            var $defaultSize = $speech.css('fontSize');
+            $('#rvfs-controllers button').click(function () {
+                var num = parseFloat($speech.css('fontSize'));
+                switch (this.id) {
+                    case 'switcher-large':
+                        num *= 1.1;
+                        break;
+                    case 'switcher-small':
+                        num /= 1.1;
+                        break;
+                    default:
+                        num = parseFloat($defaultSize);
+                }
+                $speech.animate({fontSize: num + 'px'});
+            })
         }
 
     });

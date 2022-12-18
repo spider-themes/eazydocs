@@ -153,8 +153,8 @@ class Walker_Docs extends Walker_Page {
             if ( is_array($badge) ) {
                 foreach ( $badge as $badges ) {
                     $ezd_badge      = get_term_meta( $badges->term_id, 'ezd_badge_settings', true );
-                    $badge_color    = $ezd_badge["ezd-badge-color"] ? "color: {$ezd_badge["ezd-badge-color"]}.';" : '';
-                    $badge_bg       = $ezd_badge["ezd-badge-bg"] ? "background: {$ezd_badge["ezd-badge-bg"]};" : '';
+                    $badge_color    = !empty($ezd_badge["ezd-badge-color"]) ? "color: {$ezd_badge["ezd-badge-color"]}.';" : '';
+                    $badge_bg       = !empty($ezd_badge["ezd-badge-bg"]) ? "background: {$ezd_badge["ezd-badge-bg"]};" : '';
                     $badge_style    = !empty($badge_color) || !empty($badge_bg) ? "style='$badge_color $badge_bg'" : '';
                     $ezd_badge      = '<span class="ezd-doc-badge" '.$badge_style.'>'.$badges->name.'</span>';
                 }

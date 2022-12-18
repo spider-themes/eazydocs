@@ -175,9 +175,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.0.2 (13 December 2022) =
+= v2.0.2 (14 December 2022) =
 Fixed: Doc navigation's active state wasn't working with Ajax load
+Tweaked: Compatibility with the EazyDocs Pro version improved
 Tweaked: Doc navigation active state design
+Tweaked: Font size switcher JS merged with the main JS file to improve the frontend loading performance
+Tweaked: Doc frontend view on Tablet and Mobile devices improved
 
 = v2.0.1 (08 December 2022) =
 Fixed: Creating new doc wasn't working

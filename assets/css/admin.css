@@ -1561,7 +1561,7 @@ a.child-delete {
   display: flex;
 }
 .easydocs-navitem.is-active .link .dd-handle {
-  cursor: pointer;
+  cursor: move;
 }
 .easydocs-navitem.is-active .link .drag-icon {
   margin-bottom: -5px;

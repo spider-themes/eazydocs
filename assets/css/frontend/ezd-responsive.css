@@ -11,6 +11,21 @@
 }
 
 @media (max-width: 991px) {
+    .doc_right_mobile_menu .doc_rightsidebar {
+        padding-bottom: 10px;
+        padding-top: 30px;
+        padding-left: 20px;
+        overflow-y: visible;
+    }
+    .doc_rightsidebar .pageSideSection::before {
+        display: none;
+    }
+    .doc_rightsidebar .pageSideSection {
+        padding-left: 0;
+    }
+    .doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
+        padding-right: 0;
+    }
     .doc_documentation_area {
         position: relative;
         overflow: hidden !important;
@@ -26,10 +41,10 @@
     }
 
     .doc_rightsidebar {
-        max-width: 250px;
+        max-width: 290px;
         width: 100%;
         position: absolute;
-        right: -250px;
+        right: -290px;
         height: auto;
         transition: all 0.5s;
         z-index: 2;
@@ -135,13 +150,6 @@
 
     #reading-progress-fill {
         height: 3px;
-    }
-
-    .doc_right_mobile_menu .doc_rightsidebar {
-        padding-bottom: 10px;
-        padding-top: 30px;
-        padding-left: 20px;
-        overflow-y: visible;
     }
 
     .page_breadcrumb .date {

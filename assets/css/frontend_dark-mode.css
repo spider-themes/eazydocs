@@ -59,7 +59,7 @@ body.body_dark .doc_left_sidebarlist::after,
 body.body_dark .doc_left_sidebarlist:not(.one-page-docs-sidebar-wrap)::before {
   background: #1e1f26;
 }
-body.body_dark .doc_rightsidebar .doc_switch input[type=checkbox], body.body_dark .topic_item_tabs .topic_list_item,
+body.body_dark .doc_rightsidebar .doc_switch input[type=checkbox],
 body.body_dark .doc_left_sidebarlist::after, body.body_dark .doc_rightsidebar .dropdown-toggle,
 body.body_dark .doc_left_sidebarlist:before, body.body_dark .doc_left_sidebarlist,
 body.body_dark .nav-sidebar + .nav-sidebar, body.body_dark .doc_rightsidebar, body.body_dark .v_menu,

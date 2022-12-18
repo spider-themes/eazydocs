@@ -25,7 +25,7 @@ if ( $is_social_links ) :
                 <div class="eazydocs-share-wrap">
                     <h2> <?php the_title(); ?> </h2>
                     <div class="social-links">
-                        <a href="mailto:?subject=<?php the_title(); ?>&amp;body= <?php esc_html_e('Check out this doc', 'eazydocs'); the_permalink(); ?>">
+                        <a href="mailto:?subject=<?php the_title(); ?>&amp;body= <?php esc_html_e('Check out this doc', 'eazydocs'); the_permalink(); ?>" target="_blank">
                             <i class="icon_mail"></i>
                         </a>
                         <a href="https://www.facebook.com/share.php?u=<?php the_permalink(); ?>">
