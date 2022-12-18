@@ -44,6 +44,16 @@
                                         <img src="<?php echo EAZYDOCS_IMG ?>/admin/admin-settings.svg" alt="<?php esc_html_e( 'Settings Icon', 'eazydocs' ); ?>">
                                     </a>
                                 </div>
+
+                                <?php
+                                $trash_docs = wp_count_posts('docs');
+                                ?>
+                                <div class="header-notify-icon ezd-trashicon">
+                                    <a href="edit.php?post_status=trash&post_type=docs">                                         
+                                        <span class="dashicons dashicons-trash"></span>
+                                    </a>
+                                    <span class="easydocs-trash-count"> <?php echo esc_html( $trash_docs->trash ); ?> </span>
+                                </div>
                             </div>
                         </li>
 

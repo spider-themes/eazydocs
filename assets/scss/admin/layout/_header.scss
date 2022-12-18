@@ -98,6 +98,39 @@
       display: inline-block;
     }
   }
+  
+  .header-notify-icon {
+    &.ezd-trashicon{
+      position: relative;
+      a{
+        color: #747474;
+        padding-top: 10px;
+        display: block;
+        }
+        .easydocs-trash-count{
+          position:absolute;
+          top:0;
+          right:0;
+          background: #FA3E3E;
+          color: var(--clr-white);
+          top: -0.4375rem;
+          right: -0.2rem;
+          position: absolute;
+          padding: 0 4px;
+          min-width: 18px;
+          max-width: 18px;
+          border-radius: 50%;
+          text-align: center;
+          font-size: 10px;
+          font-weight: 700;
+          line-height: 18px;
+          height: 16px;
+          display: inline-table;
+          font-family: "Roboto"
+        }
+    }
+    cursor:auto;
+  }
 }
 
 :is(.knobs, .layer) {
