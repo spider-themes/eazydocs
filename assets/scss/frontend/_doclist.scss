@@ -53,30 +53,6 @@
   }
 }
 
-.op-docs-sidebar {
-  .fullscreen-layout-onepage-sidebar{
-  > .active {
-      > .icon {
-        > .icon_plus{
-          display: none;
-        }
-        > .icon_minus-06{
-          display: block;
-        }
-      }
-      > ul {
-        > li {
-          > a{
-            &:hover{
-            color:red
-            }
-          }
-        }
-      }
-    }
-}
-}
-
 .ezd-body-docs{
   > .modal-backdrop {
     position: unset;
@@ -224,9 +200,6 @@
       > .nav-link {
         color: var(--black_900);
       }
-      > .icon {
-        color: var(--ezd_brand_color);
-      }
       svg {
         path {
           fill: #5cbbe5;
@@ -316,8 +289,8 @@
       .dropdown_nav {
         padding-left: 32px !important;
         position: relative;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         background: #fff;
         &.doc-last-depth{
           padding-bottom: 0;
@@ -424,6 +397,7 @@
     margin-bottom: 12px;
     .anchorjs-link {
       font-size: 22px !important;
+      text-decoration: none;
     }
   }
   .slideshow {
@@ -444,6 +418,10 @@
       color: var(--ezd_brand_color);
     }
   }
+}
+
+.anchorjs-link {
+  text-decoration: none !important;
 }
 
 .sticky-nav-doc #documentation {
@@ -1112,22 +1090,6 @@ body:not(.onepage-doc) .sticky_menu {
   }
 }
 
-/*============ onepage doc css ================*/
-.onepage-doc-sec {
-  .doc-content {
-    h4, h2 {
-      font-size: 20px;
-      font-weight: 500;
-      margin-bottom: 25px;
-    }
-  }
-}
-
-#post .onepage-doc-sec {
-  padding-top: 100px;
-  margin-top: -100px;
-}
-
 .fontsize-controllers{
   .btn-group{
     border: 1px solid var(--black_50);
@@ -1158,17 +1120,6 @@ body:not(.onepage-doc) .sticky_menu {
   font-size: 18px;
   text-decoration: none;
   z-index: 1;
-}
-
-.nav_title {
-  font-size: 16px;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--black_700);
-  border-radius: 4px;
-  line-height: 22px;
-  padding: 13px 30px;
-  margin-bottom: 0;
 }
 
 /* Collaps Tabs Area css
@@ -1621,17 +1572,6 @@ body:not(.onepage-doc) .sticky_menu {
       }
     }
   }
-  .nav-item {
-    &.viewed {
-    .dropdown_nav {
-        .dropdown_nav{
-          &.doc-last-depth{
-            display: block !important;
-          }
-        }
-      }
-    }
-  }
 }
 
 /** === Share Button === **/
@@ -1832,7 +1772,7 @@ body.admin-bar{
     display: block;
     box-shadow: 0 1px 2px rgb(0 0 0 / 12%);
     border: 1px solid var(--black_50);
-    padding: 12px 15px;
+    padding: 15px 20px;
     border-radius: 5px;
     text-decoration: none !important;
   }
@@ -1869,7 +1809,7 @@ body.admin-bar{
       display: block;
       clear: both;
       position: absolute;
-      left: 12px;
+      left: 20px;
       top: 0;
       bottom: 0;
       height: 0;
@@ -1898,7 +1838,7 @@ body.admin-bar{
       color: rgba(136, 153, 168, 1.00);
       content: "\24";
       left: unset;
-      right: 12px;
+      right: 20px;
     }
   }
 }

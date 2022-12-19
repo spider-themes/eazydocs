@@ -18,7 +18,7 @@ $children           = wp_list_pages( array(
 	'walker'        => new EazyDocs_Walker_Onepage(),
 ) );
 ?>
-    <section class="doc_documentation_area onepage_doc_area page_wrapper" id="sticky_doc">
+    <section class="doc_documentation_area onepage_doc_area classic-onepage" id="sticky_doc">
         <div class="overlay_bg"></div>
         <div class="container-fluid p-lg-5">
             <div class="row doc-container">
@@ -123,7 +123,7 @@ $children           = wp_list_pages( array(
 
 								<?php if ( $child_sections ) : ?>
                                     <div class="articles-list mt-5">
-                                        <h4> <?php esc_html_e('Articles', 'docy'); ?></h4>
+                                        <h4 class="c_head"> <?php esc_html_e('Articles', 'docy'); ?></h4>
                                         <ul class="article_list one-page-docs-tag-list">
 											<?php
 											foreach ( $child_sections as $child_section ) :
@@ -141,18 +141,16 @@ $children           = wp_list_pages( array(
                                     </div>
 								<?php endif; ?>
 
-                                <div class="border_bottom"></div>
-
 								<?php
 								foreach ( $child_sections as $child_section ) :
 									$get_child_title 		= sanitize_title($child_section->post_title);
-									if (preg_match('#[0-9]#',$get_child_title)){
+									if ( preg_match('#[0-9]#',$get_child_title) ) {
 										$get_child_title 	= 'ezd-'.sanitize_title($child_section->post_title); 
 									}
 									?>
                                     <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_child_title) ?>">
-                                        <div class="shortcode_title">
-                                            <h2> <?php echo $child_section->post_title ?> </h2>
+                                        <div class="shortcode_title depth-two">
+                                            <h3> <?php echo $child_section->post_title ?> </h3>
                                         </div>
                                         <div class="doc-content">
 											<?php
@@ -164,7 +162,6 @@ $children           = wp_list_pages( array(
 											}
 											?>
                                         </div>
-                                        <div class="border_bottom"></div>
                                     </div>
 								<?php
 
@@ -180,13 +177,13 @@ $children           = wp_list_pages( array(
 
 								foreach( $last_depth as $last_depth_doc ) :
 									$get_last_child_title 		= sanitize_title($last_depth_doc->post_title);
-									if (preg_match('#[0-9]#',$get_last_child_title)){
+									if ( preg_match('#[0-9]#',$get_last_child_title) ) {
 										$get_last_child_title 	= 'ezd-'.sanitize_title($last_depth_doc->post_title); 
 									}
 									?>
 									<div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_last_child_title) ?>">
-                                        <div class="shortcode_title">
-                                            <h2> <?php echo $last_depth_doc->post_title ?> </h2>
+                                        <div class="shortcode_title depth-three">
+                                            <h4> <?php echo $last_depth_doc->post_title ?> </h4>
                                         </div>
                                         <div class="doc-content">
 											<?php
@@ -198,7 +195,6 @@ $children           = wp_list_pages( array(
 											}
 											?>
                                         </div>
-                                        <div class="border_bottom"></div>
                                     </div>
 									<?php
 								endforeach;

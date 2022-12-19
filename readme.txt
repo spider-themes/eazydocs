@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs
 Requires at least: 5.0
 Tested up to: 6.1
 Requires PHP: 7.4
-Stable tag: 1.3.5x
+Stable tag: 2.0.1x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -175,12 +175,16 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.0.2 (14 December 2022) =
+= v2.0.5 (21 December 2022) =
 Fixed: Doc navigation's active state wasn't working with Ajax load
+New: Trash icon (with trashed docs count) added on the top of the Doc builder UI
+Tweaked: Docs builder UI design improved
 Tweaked: Compatibility with the EazyDocs Pro version improved
 Tweaked: Doc navigation active state design
 Tweaked: Font size switcher JS merged with the main JS file to improve the frontend loading performance
 Tweaked: Doc frontend view on Tablet and Mobile devices improved
+Tweaked: jQuery UI loading from WordPress core in the admin area to improve the admin area loading performance
+Tweaked: OnePage doc design improved (Unlocked in the Docy, Docly theme and EazyDocs Pro version)
 
 = v2.0.1 (08 December 2022) =
 Fixed: Creating new doc wasn't working

@@ -118,7 +118,7 @@
   }
 
   .count {
-    margin-left: 5px;
+    margin-left: 10px;
     font-size: 10px;
   }
 
@@ -147,9 +147,6 @@
     a {
       text-decoration: none;
       color: var(--clr-text);
-      &.section-last-label {
-        margin-left: 2px;
-      }
     }
   }
 
@@ -233,6 +230,10 @@
       margin-left: var(--gutter-30);
     }
   }
+}
+
+.accordion-title:not(.has-child) h4 a.section-last-label {
+  margin-left: 2px;
 }
 
 /** === EazyDocs Premium Style === **/

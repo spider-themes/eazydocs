@@ -1,13 +1,31 @@
-.badge {
+.ezd-badge {
   background: rgba(175, 184, 193, 0.2);
   height: 22px;
-  color: #838793;
+  color: #5f626e;
   font-size: 12px;
   display: flex;
-  line-height: 1.1;
-  padding: 5px 7px 5px 8px;
+  padding: 1px 7px;
   transition: all 0.3s;
   min-width: 20px;
   border-radius: 2em;
   font-weight: 500;
+}
+
+.easydocs-badge {
+  @include absolute(top rem(-7px) right rem(-8px));
+  background: #FA3E3E;
+  color: var(--clr-white);
+  top: -0.4375rem;
+  right: -0.2rem;
+  position: absolute;
+  padding: 0 4px;
+  min-width: 18px;
+  max-width: 18px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 18px;
+  height: 16px;
+  display: inline-table;
 }

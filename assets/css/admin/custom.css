@@ -695,7 +695,7 @@ select#ezd_docs_layout {
 .nestables-child .dd-item>button {
     height: 100%;
     padding: 14px 0;
-    margin: 0 7px 0 25px;
+    margin: 1px 7px 0 25px;
 }
 
 

@@ -114,7 +114,7 @@ if (is_array($depth_one_parents)) :
                                                     <?php echo $child->post_title; ?>
                                                 </a>
                                                 <?php if (count($doc_items) > 0) : ?>
-                                                    <span class="count badge">
+                                                    <span class="count ezd-badge">
                                                         <?php echo count($doc_items) ?>
                                                     </span>
                                                 <?php endif; ?>
@@ -251,7 +251,7 @@ if (is_array($depth_one_parents)) :
                                                                     <?php echo get_the_title($sub_child); ?>
                                                                 </a>
                                                                 <?php if (count($child_depth) > 0) : ?>
-                                                                    <span class="count badge">
+                                                                    <span class="count ezd-badge">
                                                                         <?php echo count($child_depth) ?>
                                                                     </span>
                                                                 <?php endif; ?>

@@ -40,7 +40,7 @@
         'depth' => 3
     ) );
     ?>
-    <section class="documentation_area_sticky doc_documentation_area onepage_doc_area page_wrapper fullscreen-layout" id="sticky_doc">
+    <section class="documentation_area_sticky doc_documentation_area onepage_doc_area fullscreen-layout" id="sticky_doc">
             <div class="overlay_bg"></div>
             <div class="container-fluid p-lg-5">
                 <div class="row doc-container">
@@ -128,17 +128,15 @@
                                     'posts_per_page' => -1,
                                 ));
                                 $sec_serial++;
-                                $get_title 		= sanitize_title($doc_item->post_title);
-                                if (preg_match('#[0-9]#',$get_title)){
+                                $get_title = sanitize_title($doc_item->post_title);
+                                if ( preg_match('#[0-9]#',$get_title) ) {
                                     $get_title 	= 'ezd-'.sanitize_title($doc_item->post_title); 
                                 }
                                 ?>
                                 <article class="documentation_body doc-section onepage-doc-sec" id="<?php echo sanitize_title($get_title) ?>" itemscope itemtype="http://schema.org/Article">
                                     <?php if ( !empty($doc_item->post_title) ) : ?>
                                         <div class="shortcode_title doc-sec-title">
-                                            <h2> <?php
-                                                echo $sec_serial.'. ';
-                                                echo esc_html($doc_item->post_title) ?> </h2>
+                                            <h2> <?php echo $sec_serial.'. ' . $doc_item->post_title; ?> </h2>
                                         </div>
                                     <?php endif; ?>
                                     <div class="doc-content">
@@ -161,13 +159,13 @@
                                         }
                                         ?>
                                         <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_child_title) ?>">
-                                            <div class="shortcode_title depth-one ">
-                                                <h2> 
+                                            <div class="shortcode_title depth-two">
+                                                <h3>
                                                     <?php
-                                                    echo $sec_serial.'.'.$child_serial.'. ';
+                                                    echo $sec_serial.'.'.$child_serial.' ';
                                                     echo $child_section->post_title;
                                                     ?> 
-                                                </h2>
+                                                </h3>
                                             </div>
                                             <div class="doc-content">
                                                 <?php
@@ -194,15 +192,18 @@
                                     foreach( $last_depth as $last_depth_doc ) :
                                         $last_depth_serial++;
                                         $get_last_child_title 		= sanitize_title($last_depth_doc->post_title);
-                                        if (preg_match('#[0-9]#',$get_last_child_title)){
+                                        if ( preg_match('#[0-9]#',$get_last_child_title) ) {
                                             $get_last_child_title 	= 'ezd-'.sanitize_title($last_depth_doc->post_title); 
                                         }
                                         ?>
                                         <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_last_child_title) ?>">
-                                            <div class="shortcode_title depth-one ">
-                                                <h2> <?php
-                                                    echo $sec_serial.'.'.$child_serial.'.'.$last_depth_serial.'. ';
-                                                    echo $last_depth_doc->post_title ?> </h2>
+                                            <div class="shortcode_title depth-three">
+                                                <h4>
+                                                    <?php
+                                                    echo $sec_serial.'.'.$child_serial.'.'.$last_depth_serial.' ';
+                                                    echo $last_depth_doc->post_title;
+                                                    ?>
+                                                </h4>
                                             </div>
                                             <div class="doc-content">
                                                 <?php

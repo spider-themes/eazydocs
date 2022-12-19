@@ -1,10 +1,4 @@
 @media (max-width: 1680px) {
-    .onepage_doc_area.doc_documentation_area .doc_rightsidebar,
-    .onepage_doc_area .documentation_info,
-    .onepage_doc_area .documentation_item {
-        padding-right: 0;
-    }
-
     .onepage_doc_area .doc_rightsidebar .bootstrap-select {
         width: 100% !important;
     }

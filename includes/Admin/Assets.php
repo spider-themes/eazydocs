@@ -39,7 +39,7 @@ class Assets
 		wp_enqueue_style('eazyDocs-main', EAZYDOCS_ASSETS . '/css/admin.css', array(), EAZYDOCS_VERSION);
 
 		wp_enqueue_script('modernizr', EAZYDOCS_ASSETS . '/js/admin/modernizr-3.11.2.min.js', array('jquery'), '', true);
-		wp_enqueue_script('jquery-ui', EAZYDOCS_ASSETS . '/js/admin/jquery-ui.js', array('jquery'), '', true);
+		//wp_enqueue_script('jquery-ui', EAZYDOCS_ASSETS . '/js/admin/jquery-ui.js', array('jquery'), '', true);
 		wp_enqueue_script('mixitup', EAZYDOCS_ASSETS . '/js/admin/mixitup.min.js', array('jquery'), '', true);
 		wp_enqueue_script('mixitup-multifilter', EAZYDOCS_ASSETS . '/js/admin/mixitup-multifilter.js', array('jquery'), '', true);
 		wp_enqueue_script('jquery-nice-select', EAZYDOCS_ASSETS . '/js/admin/jquery.nice-select.min.js', array('jquery'), '', true);
