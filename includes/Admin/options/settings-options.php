@@ -1278,6 +1278,55 @@ CSF::createSection( $prefix, array(
 	]
 ) );
 
+
+//
+// Footnotes
+//
+CSF::createSection( $prefix, array(
+    'id'     => 'ezd_footnotes',
+    'title'  => esc_html__( 'Footnotes', 'eazydocs' ),
+    'icon'   => 'fas fa-plus-circle',
+    'fields' => [
+        
+        array(
+            'id'         => 'is_footnotes_heading',
+            'type'       => 'switcher',
+            'title'      => esc_html__( 'Footnotes Heading', 'eazydocs' ),
+            'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+            'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+            'text_width' => 72,
+            'default'    => true,
+			'class'      => 'eazydocs-pro-notice'
+        ),
+
+        array(
+            'id'    	=> 'footnotes_heading_text',
+            'type'  	=> 'text',
+            'title' 	=> esc_html__( 'Footnotes Heading Text', 'eazydocs' ),
+			'dependency' => array(
+				array( 'is_footnotes_heading', '==', 'true' ),
+			),
+            'default' 	=> esc_html__( 'EazyDocs Footnotes', 'eazydocs' ),
+        ),
+        array(
+            'id'    	=> 'footnotes_column',
+            'type'  	=> 'select',
+            'title' 	=> esc_html__( 'Footnotes Column', 'eazydocs' ),
+			'options' 	=> [
+				'1' 	=> __( '1 Column', 'eazydocs' ),
+				'2' 	=> __( '2 Column', 'eazydocs' ),
+				'3'     => __( '3 Column', 'eazydocs' ),
+				'4'     => __( '4 Column', 'eazydocs' ),
+				'5'   	=> __( '5 Column', 'eazydocs' ),
+				'6'    	=> __( '6 Column', 'eazydocs' ),
+			],
+			'chosen'    => true,
+			'multiple'  => false,
+			'default'   => '1'
+		)
+    ]
+));
+
 //
 // Shortcode Fields
 //
@@ -1291,7 +1340,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'eazydocs_docs_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Docs archive', 'eazydocs' ),
-            'subtitle'       => sprintf(
+            'subtitle'   => sprintf(
                 __( 'Use this shortcode to display the Docs. Learn more about the shortcode and the attributes %s here %s.', 'eazydocs' ),
                 '<a href="https://tinyurl.com/24zm4oj3" target="_blank">', '</a>'
             ),
@@ -1316,12 +1365,24 @@ CSF::createSection( $prefix, array(
             'id'         => 'ezdocs_login_shortcode',
             'type'       => 'text',
             'title'      => esc_html__( 'Docs Login', 'eazydocs' ),
-            'subtitle'       => esc_html__( 'Use this shortcode to display login form.', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Use this shortcode to display login form.', 'eazydocs' ),
             'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs' ).'<br><code>[ezd_login_form login_title="You must log in to continue."  login_subtitle="Login to '.get_bloginfo().'" login_btn="Log In" login_forgot_btn="Forgotten account?"]</code>',
             'default'    => '[ezd_login_form]',
             'attributes' => array(
                 'readonly' => 'readonly',
 			),
+			'class'      => 'eazydocs-pro-notice'
+        ),
+		array(
+            'id'         => 'ezdocs_footnote_shortcode',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Footnote Shortcode', 'eazydocs-pro' ),
+            'subtitle'   => esc_html__( 'Use this shortcode to display footnotes.', 'eazydocs-pro' ),
+            'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs-pro' ).'<br><code>[reference number="1"]</code>',
+            'default'    => '[reference]',
+            'attributes' => array(
+                'readonly' => 'readonly',
+            ),
 			'class'      => 'eazydocs-pro-notice'
         )
 	]
@@ -1499,7 +1560,6 @@ CSF::createSection( $prefix, array(
 		)
     ]
 ));
-
 
 //
 // Shortcode Fields
