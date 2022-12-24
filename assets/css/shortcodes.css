@@ -1,0 +1,215 @@
+/*
+EazyDocs Footnotes
+*/
+.ezd-footnote-footer div {
+  display: block;
+  break-inside: avoid;
+  width: 100%;
+}
+.ezd-footnote-footer div:target {
+  outline: none;
+  color: var(--ezd_brand_color);
+  margin: 0;
+}
+.ezd-footnote-footer span {
+  display: none;
+}
+.ezd-footnote-footer img {
+  margin: 5px 0;
+}
+
+.ezd-footnotes-link-item {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  position: relative;
+  text-decoration: none !important;
+}
+.ezd-footnotes-link-item > i {
+  font-style: normal;
+  color: var(--ezd_brand_color);
+  font-size: 18px;
+  line-height: 0;
+  cursor: pointer;
+  position: relative;
+  top: -5px;
+}
+.ezd-footnotes-link-item span {
+  z-index: -1;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  margin-right: 18px;
+  top: 28px;
+  padding: 5px 15px;
+  box-shadow: 0px 2px 3px #b4b4b4;
+  border: 1px solid #eaeaea;
+  background-color: #fff;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  display: inline-block;
+  height: max-content;
+  max-width: 280px;
+  width: max-content;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.ezd-footnotes-link-item span img {
+  margin: 0;
+}
+.ezd-footnotes-link-item span::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 2px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid #aa181800;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-top: 7px solid transparent;
+  transform: rotate(224deg);
+  box-shadow: 1px 1px 0px #e2e2e2;
+  background: white;
+}
+.ezd-footnotes-link-item:hover span {
+  z-index: 9;
+  opacity: 1;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.ezd-footnote-title {
+  display: none;
+  font-size: 20px;
+  margin: 25px 0 5px;
+  font-weight: 500;
+  width: 100%;
+}
+
+/* Sign in form [ private doc ] */
+.ezd-login-head {
+  border: 1px solid var(--ezd_brand_color);
+  border-radius: 3px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0 0 8px;
+  background: #fff;
+  color: black;
+  line-height: normal;
+}
+.ezd-login-head .ezd-login-head-icon {
+  background: var(--ezd_brand_color);
+  display: inline-block;
+  color: white;
+  width: 35px;
+  text-align: center;
+  height: 35px;
+  vertical-align: middle;
+  padding-top: 5px;
+  margin-right: 5px;
+}
+.ezd-login-head .ezd-login-head-icon .fa {
+  font-size: initial;
+  margin: 5px;
+}
+
+.ezd-login-form-wrap {
+  text-align: center;
+  background: #fff;
+}
+.ezd-login-form-wrap > form {
+  display: grid;
+}
+.ezd-login-form-wrap > form input[type=text],
+.ezd-login-form-wrap > form input[type=password] {
+  display: block;
+  border: 1px solid #c3c3c3;
+  font-size: 14px;
+  padding: 8px 8px;
+  width: 100%;
+  line-height: 16px;
+  margin: 0 auto 10px;
+  border-radius: 0;
+}
+.ezd-login-form-wrap > form input[type=text]:focus,
+.ezd-login-form-wrap > form input[type=password]:focus {
+  border-color: #c3c3c3;
+}
+.ezd-login-form-wrap > form input[type=text]:focus::placeholder,
+.ezd-login-form-wrap > form input[type=password]:focus::placeholder {
+  opacity: 0.5;
+}
+.ezd-login-form-wrap > form input[type=submit] {
+  background-color: var(--ezd_brand_color);
+  border: 1px solid var(--ezd_brand_color);
+  font-size: 14px;
+  margin-bottom: 8px;
+  margin-top: 5px;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 8px 8px;
+  width: 100%;
+  box-shadow: none;
+  cursor: pointer;
+}
+.ezd-login-form-wrap p {
+  font-size: 18px;
+  line-height: 22px;
+  padding: 18px 0 0;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: black;
+}
+.ezd-login-form-wrap a {
+  color: #385898;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+}
+.ezd-login-form-wrap a:hover {
+  text-decoration: underline;
+}
+
+.ezd-login-error {
+  font-size: 14px;
+  margin: 8px 0 0;
+}
+
+.ezd-login-error strong {
+  color: #bc0000;
+}
+
+@media screen and (max-width: 768px) {
+  .ezd_doc_login_form {
+    width: 80%;
+  }
+
+  .ezd-login-form-wrap input {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 580px) {
+  .ezd-login-form-wrap {
+    padding: 10%;
+  }
+
+  .ezd_doc_login_form {
+    width: 95%;
+  }
+
+  .ezd-login-form-wrap input {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=ezd-pro-footnotes.css.map */
+
+/*# sourceMappingURL=shortcodes.css.map */

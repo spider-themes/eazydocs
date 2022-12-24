@@ -29,6 +29,11 @@ class Assets {
         wp_enqueue_style( 'eazydocs-blocks', EAZYDOCS_ASSETS . '/css/blocks.css');
         wp_register_style( 'ezd-el-widgets', EAZYDOCS_ASSETS . '/css/ezd-el-widgets.css');
 
+        if ( ezydocspro_shortcodes_assets() == true ) {
+			wp_enqueue_style( 'eazydocs-shortcodes', EAZYDOCS_ASSETS . '/css/shortcodes.css' );
+			wp_enqueue_script( 'eazydocs-shortcodes', EAZYDOCS_ASSETS . '/js/shortcodes.js' );
+		}
+
         if ( ezydocs_frontend_assets() == true ) {
             
             // Scripts

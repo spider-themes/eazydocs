@@ -916,6 +916,16 @@ function ezydocs_frontend_assets()
     }
 }
 
+// Shortcode assets
+function ezydocspro_shortcodes_assets(){
+	global $post;
+	$post_content_check = $post->post_content ?? '';
+
+	if ( has_shortcode( $post_content_check, 'ezd_login_form' ) || has_shortcode( $post_content_check, 'reference' ) ) {
+		return true;
+	}
+}
+
 function ezd_get_posts($post_type = 'docs')
 {
     $docs = get_pages(
@@ -1133,4 +1143,29 @@ function eaz_get_nestable_children($post_id)
         'order' => 'ASC',
     ));
     return $child_depth;
+}
+
+/**
+ * @param string $content
+ * @return string all shortcodes from content
+ */
+function all_shortcodes($content) {
+    $return = array();
+    preg_match_all( '/' . get_shortcode_regex() . '/', $content, $shortcodes, PREG_SET_ORDER );
+    if (!empty($shortcodes)) {
+        foreach ($shortcodes as $shortcode) {
+            $return[] 	= $shortcode;
+            $return 	= array_merge($return, all_shortcodes($shortcode[5]));
+        }
+    }
+    return $return;
+}
+
+function eazydocs_unlock_with_themes() {
+    
+    $current_theme      = get_template();
+    if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium()) {
+        return true;
+    }
+
 }

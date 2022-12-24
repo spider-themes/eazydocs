@@ -154,6 +154,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
+
+			if ( eazydocs_unlock_with_themes() == true ) {
+				require_once __DIR__ . '/shortcodes/reference.php';
+			}
+			
             // Blocks
 			require_once __DIR__ . '/blocks.php';
 
