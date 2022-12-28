@@ -19,14 +19,13 @@ add_shortcode( 'reference', function( $atts, $content ) {
     </a>
 
     <?php
-    $html = ob_get_clean();
-    return $html;
+    return ob_get_clean();
 }); 
 	
 add_filter('the_content', function( $ezd_content ) {
     $ezd_options        = get_option( 'eazydocs_settings' );
     $is_notes_title     = $ezd_options['is_footnotes_heading'] ?? '1';
-    $notes_title_text   = $ezd_options['footnotes_heading_text'] ?? __('EazyDocs Footnotes', 'eazydocs');
+    $notes_title_text   = $ezd_options['footnotes_heading_text'] ?? __('Footnotes', 'eazydocs');
     $footnotes_column   = $ezd_options['footnotes_column'] ?? '1';
 
     $all_shortcodes     = all_shortcodes( $ezd_content );

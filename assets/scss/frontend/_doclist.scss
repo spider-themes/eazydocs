@@ -103,6 +103,7 @@
   }
 }
 
+/** === Left Sidebar / Docs Tree === **/
 .nav-sidebar {
   margin: 0;
   > .nav-item {
@@ -221,7 +222,7 @@
       li:not(.has_child) {
         line-height: 1.5;
         padding: 6px 10px;
-        margin: 0 0 5px;
+        margin: 0 0 3px;
         border-radius: 5px;
         &.current_page_item {
           color: var(--ezd_brand_color);
@@ -348,6 +349,8 @@
     }
   }
 }
+
+
 
 .single-docs .nav-sidebar .nav-item .dropdown_nav li:not(.has_child):hover {
   background: rgba(208, 215, 222, 0.32);
@@ -1768,6 +1771,7 @@ body.admin-bar{
   column-count: 2;
   display: flex;
   gap: 20px;
+  margin-top: 20px;
   a {
     display: block;
     box-shadow: 0 1px 2px rgb(0 0 0 / 12%);

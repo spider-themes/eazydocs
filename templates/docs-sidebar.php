@@ -26,15 +26,18 @@ $options = get_option( 'eazydocs_settings' );
 $sidebar_search 	= $options['search_visibility'] ?? '1';
 $content_layout 	= $options['docs_content_layout'] ?? '1';
 $nav_sidebar_active = '';
-if( class_exists( 'EazyDocsPro') && $content_layout == 'category_base' ){
+
+if ( class_exists('EazyDocsPro') && $content_layout == 'category_base' ){
 	$nav_sidebar_active = 'nav_category_layout';
 }
+
 $credit_enable   	= '1';
 $credit_text_wrap 	= '';
 if ( ezd_is_premium() ) {
 	$credit_enable 	= $options['eazydocs-enable-credit'] ?? '1';
 }
-if( $credit_enable == '1' ){
+
+if ( $credit_enable == '1' ) {
 	$credit_text_wrap = 'credit-text-container';
 }
 ?>
@@ -49,7 +52,7 @@ if( $credit_enable == '1' ){
 			<?php echo get_post_field( 'post_title', $parent, 'display' ); ?>
         </h2>
         <?php
-        if( $sidebar_search == 1 ) :
+        if ( $sidebar_search == 1 ) :
             ?>
             <div class="filter_form">
                 <div class="filterform">
@@ -61,56 +64,54 @@ if( $credit_enable == '1' ){
 		?>
 
 		<div class="scroll">
-		<?php
-			if ( $children ) :
-				$catgory_layout = '';
-				if ( $content_layout == 'category_base' && ezd_is_premium() ) {
-					$doc_walker = '';
-					$catgory_layout = 'content-layout-category';
-				} else {
-					$doc_walker = $walker;
-				}
-			?>
-			<ul class="list-unstyled nav-sidebar left-sidebar-results <?php echo esc_attr($catgory_layout); ?>">
-				<?php
-				echo wp_list_pages( array(
-					'title_li'  => '',
-					'order'     => 'menu_order',
-					'child_of'  => $parent,
-					'echo'      => false,
-					'post_type' => 'docs',
-					'walker'    => $doc_walker,
-					'post_status' => array( 'publish', 'private' ),
-				) );
-				?>
-			</ul>
-			<?php
-		endif;
+            <?php
+            if ( $children ) :
+                if ( $content_layout == 'category_base' && ezd_is_premium() ) {
+                    $doc_walker = '';
+                } else {
+                    $doc_walker = $walker;
+                }
+            ?>
+            <ul class="list-unstyled nav-sidebar left-sidebar-results">
+                <?php
+                echo wp_list_pages( array(
+                    'title_li'  => '',
+                    'order'     => 'menu_order',
+                    'child_of'  => $parent,
+                    'echo'      => false,
+                    'post_type' => 'docs',
+                    'walker'    => $doc_walker,
+                    'post_status' => array( 'publish', 'private' ),
+                ) );
+                ?>
+            </ul>
+            <?php
+            endif;
 
-        echo '<div class="additional-content">';
-            $parent_doc_id_left      = function_exists('get_root_parent_id') ? get_root_parent_id( get_queried_object_id() ) : '';
-            $content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar_type', true );
-            $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
-			$is_valid_post_id   	 = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
-			
-            if ( $content_type_left  == 'string_data'  && ! empty ( $ezd_shortcode_left ) ) {
-				echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
-            } else {
-				if( $content_type_left == 'widget_data' && ! empty( $is_valid_post_id ) ) { 
-					$wp_blocks = new WP_Query([
-						'post_type' 	=> 'wp_block',
-						'p'				=> $ezd_shortcode_left
-					]);
-					if ( $wp_blocks->have_posts() ) {
-						while( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
-						the_content();
-						endwhile;
-					wp_reset_postdata();
-					}
-				}
-			}
-        echo '</div>';
-		?>
+            echo '<div class="additional-content">';
+                $parent_doc_id_left      = function_exists('get_root_parent_id') ? get_root_parent_id( get_queried_object_id() ) : '';
+                $content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar_type', true );
+                $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
+                $is_valid_post_id   	 = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
+
+                if ( $content_type_left  == 'string_data'  && ! empty ( $ezd_shortcode_left ) ) {
+                    echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
+                } else {
+                    if( $content_type_left == 'widget_data' && ! empty( $is_valid_post_id ) ) {
+                        $wp_blocks = new WP_Query([
+                            'post_type' 	=> 'wp_block',
+                            'p'				=> $ezd_shortcode_left
+                        ]);
+                        if ( $wp_blocks->have_posts() ) {
+                            while( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
+                            the_content();
+                            endwhile;
+                        wp_reset_postdata();
+                        }
+                    }
+                }
+            echo '</div>';
+            ?>
 		</div>
     </aside>
 </div>

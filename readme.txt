@@ -125,6 +125,7 @@ You can see how people are reacting, and responding to your docs in one place. Y
 - **Single Doc Sidebar Area:**
 You can add any content to the sidebars of a single doc. Even you can add Gutenberg blocks, shortcode to the sidebars.
 
+
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
 
@@ -175,8 +176,9 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.0.5 (21 December 2022) =
+= v2.0.5 (29 December 2022) =
 Fixed: Doc navigation's active state wasn't working with Ajax load
+New: [reference] shortcode added to show/create Footnotes (unlocked with Docy, Docly and EazyDocs premium). Read doc here https://tinyurl.com/2ewlorze
 New: Trash icon (with trashed docs count) added on the top of the Doc builder UI
 Tweaked: Docs builder UI design improved
 Tweaked: Compatibility with the EazyDocs Pro version improved

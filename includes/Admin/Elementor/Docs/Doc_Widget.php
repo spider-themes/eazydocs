@@ -237,7 +237,6 @@ class Doc_Widget extends Widget_Base {
 				'description'  => __( 'Show the first word of the doc in Tab Title.', 'eazydocs' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
-				'default'      => 'yes',
                 'condition'   => [
 					'doc-widget-skin' => [ '2', '3', '4', '5' ]
 				]

@@ -701,7 +701,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'search_visibility',
 			'type'       => 'switcher',
-            'title'      => esc_html__( 'Filter', 'eazydocs' ),
+            'title'      => esc_html__( 'Filter Form', 'eazydocs' ),
             'subtitle'   => esc_html__( 'Filter the left sidebar doc items by typing latter.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
@@ -1306,7 +1306,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'is_footnotes_heading', '==', 'true' ),
 			),
-            'default' 	=> esc_html__( 'EazyDocs Footnotes', 'eazydocs' ),
+            'default' 	=> esc_html__( 'Footnotes', 'eazydocs' ),
         ),
         array(
             'id'    	=> 'footnotes_column',
@@ -1655,7 +1655,7 @@ CSF::createSection( $prefix, array(
 			'preview_height' => '60',
 			'class'          => 'eazydocs-pro-notice',
             'dependency' => array(
-                array( 'assistant_visibility', '==', 'true' )
+                array( 'assistant_visibility', '==', '1' )
             )
 		),
 
@@ -1685,12 +1685,6 @@ CSF::createSection( $prefix, array(
 				array(
 					'title'  => 'Knowledge Base',
 					'fields' => array(
-						array(
-							'id'    => 'assistant_kb_heading',
-							'type'  => 'heading',
-							'title' => esc_html__( 'Knowledge Base Options', 'eazydocs' ),
-						),
-						
 						array(
 							'id'         => 'kb_visibility',
 							'type'       => 'switcher',
@@ -1852,19 +1846,12 @@ CSF::createSection( $prefix, array(
 								array( 'contact_visibility', '==', 'true' ),
 							)
 						),
-
 					)
 				),
 
 				array(
 					'title'  => 'Color',
 					'fields' => array(
-						array(
-							'id'    => 'assistant_color_heading',
-							'type'  => 'heading',
-							'title' => esc_html__( 'Color', 'eazydocs' ),
-						),
-						
 						array(
 							'id'          => 'assistant_bg',
 							'type'        => 'color',
@@ -1900,7 +1887,6 @@ CSF::createSection( $prefix, array(
 				array(
 					'title'  => 'Position',
 					'fields' => array(
-
 						array(
 							'id'    => 'assistant_position_heading',
 							'type'  => 'heading',
@@ -1932,9 +1918,7 @@ CSF::createSection( $prefix, array(
 						)
 					)
 				),
-
 			)
 		)
-
 	]
-) );
+));
