@@ -35,11 +35,15 @@ add_filter('the_content', function( $ezd_content ) {
     }
 
     $ezd_footnote_title = '';
-
     if ( !empty( $notes_title_text ) && $is_notes_title == '1' && has_shortcode( $ezd_content, 'reference' )  ) {
         $ezd_footnote_title = sprintf('<div class="ezd-footnote-title">%s</div>', $notes_title_text);
     }
-
-    return $ezd_content . $ezd_footnote_title . "<div ezd-data-column='".$footnotes_column."' class='ezd-footnote-footer'>" . $all_shortcoded . "</div>";
+    
+    $footnotes_contents  = '';
+    if( has_shortcode( $ezd_content, 'reference' )){
+        $footnotes_contents = $ezd_footnote_title . "<div ezd-data-column='".$footnotes_column."' class='ezd-footnote-footer'>" . $all_shortcoded . "</div>";
+    }
+    
+    return $ezd_content .  $footnotes_contents;
 
 });

@@ -155,8 +155,11 @@ div.search_result {
     font-weight: 400;
 }
 .notification-head {
-    padding: 15px 25px 5px !important;
+    padding: 15px 25px !important;
     box-shadow: none !important;
+}
+.ez-pb-0.notification-head {
+    padding: 15px 25px 0 !important;
 }
 .create_onepage_doc_area{
     overflow: hidden;

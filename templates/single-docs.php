@@ -52,7 +52,6 @@ if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
 	eazydocs_get_template_part( 'search-banner' );
 }
 ?>
-
 <section class="doc_documentation_area <?php echo esc_attr( $content_wrapper ); ?>" id="sticky_doc">
 
     <div class="ezd-link-copied-wrap"></div>

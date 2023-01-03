@@ -626,7 +626,9 @@
                 $speech.animate({fontSize: num + 'px'});
             })
         }
-
     });
     
 })(jQuery);
+
+
+ 
