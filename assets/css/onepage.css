@@ -377,7 +377,7 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
 }
 
 .numbering_show .nav-item ul li {
-  list-style: auto;
+  list-style: none;
   margin-left: 20px !important;
 }
 

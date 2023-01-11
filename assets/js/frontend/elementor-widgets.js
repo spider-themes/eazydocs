@@ -57,7 +57,7 @@
         $('.header_search_form_info input[type=search]').focus(function () {
           let ezd_current_theme = $('body').hasClass('ezd-theme-docy');
           
-          if ( ezd_current_theme === true ){
+          if ( ezd_current_theme === true ) {
             $('body').addClass('search-focused');
             $('.header_search_form_info').css({ "z-index": "9999" });
           } else {
@@ -66,11 +66,12 @@
             $('.ezd_click_capture').css({"visibility": "visible", "opacity": "1", "z-index": "9999" });
             $('.header_search_form_info, #docy-search-result').css({ "z-index": "9999" });
           }
-
         });
     
         $('.header_search_form_info input[type=search]').focusout(function () {
           $('body').removeClass('search-focused');
+          $('.ezd_click_capture').css({"visibility": "hidden", "opacity": "0", "z-index": "" });
+          $('.header_search_form_info, #docy-search-result').css({ "z-index": "" });
           $('.ezd_click_capture').remove();
         });
         

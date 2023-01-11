@@ -10,7 +10,6 @@
   border: none !important;
   .nav-item {
     margin-bottom: 0;
-
     .nav-link {
       font-size: 14px;
       font-weight: 400;
@@ -980,7 +979,7 @@
     }
     span.badge {
       background: rgba(76,76,241, .1);
-      color:#242729;
+      color: var(--black_800);
       font-size: 11px;
       padding: 3px 5px 0;
       border-radius: 3px;

@@ -101,7 +101,7 @@ class Search_Widget extends Widget_Base {
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search_form_wrap .search_submit_btn' => 'right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .search_form_wrap .search_submit_btn' => 'right: {{SIZE}}{{UNIT}} !important;',
                 ],
             ]
         );

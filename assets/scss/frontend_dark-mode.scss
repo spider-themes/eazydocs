@@ -110,26 +110,4 @@ body.body_dark {
   .question_box .signup_form .input-group button:before {
     background: #384c59;
   }
-
-  .f_bg_color, .page_breadcrumb, .toggle_btn, .doc_accordion .card-header button {
-    background: #1f3341;
-  }
-
-  .shortcode_text ul li a,
-  .tab_shortcode .nav-tabs .nav-item .nav-link.active, .page_breadcrumb .breadcrumb .breadcrumb-item.active,
-  .toggle_btn.collapsed:before, .toggle_btn.collapsed, .doc_accordion .card-header button, .table {
-    color: #fff;
-  }
-
-  .toggle_body, .doc_accordion, .message_alert {
-    background: #061f2f;
-  }
-
-  .toggle_btn {
-    color: var(--ezd_brand_color);
-  }
-
-  .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link h5 {
-    color: var(--secondary_color);
-  }
 }

@@ -144,7 +144,7 @@ class Walker_Docs extends Walker_Page {
         if ( $depth == 0 ) {
             $folder_open = $opt['doc_sec_icon_open']['url'] ?? EAZYDOCS_IMG . '/icon/folder-open.png';
             $folder_closed = $opt['doc_sec_icon']['url'] ?? EAZYDOCS_IMG . '/icon/folder-closed.png';
-            $folder = "<img src='$folder_closed' alt='".esc_attr__('folder icon closed', 'eazydocs')."'> <img src='$folder_open' alt='".esc_attr__('folder open icon', 'eazydocs')."'>";
+            $folder = "<img class='closed' src='$folder_closed' alt='".esc_attr__('Folder icon closed', 'eazydocs')."'> <img class='open' src='$folder_open' alt='".esc_attr__('Folder open icon', 'eazydocs')."'>";
             $thumb  = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
         }
         $ezd_badge  = '';

@@ -93,22 +93,5 @@ body.body_dark .question_box .signup_form .input-group .form-control {
 body.body_dark .question_box .signup_form .input-group button:before {
   background: #384c59;
 }
-body.body_dark .f_bg_color, body.body_dark .page_breadcrumb, body.body_dark .toggle_btn, body.body_dark .doc_accordion .card-header button {
-  background: #1f3341;
-}
-body.body_dark .shortcode_text ul li a,
-body.body_dark .tab_shortcode .nav-tabs .nav-item .nav-link.active, body.body_dark .page_breadcrumb .breadcrumb .breadcrumb-item.active,
-body.body_dark .toggle_btn.collapsed:before, body.body_dark .toggle_btn.collapsed, body.body_dark .doc_accordion .card-header button, body.body_dark .table {
-  color: #fff;
-}
-body.body_dark .toggle_body, body.body_dark .doc_accordion, body.body_dark .message_alert {
-  background: #061f2f;
-}
-body.body_dark .toggle_btn {
-  color: var(--ezd_brand_color);
-}
-body.body_dark .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link h5 {
-  color: var(--secondary_color);
-}
 
 /*# sourceMappingURL=frontend_dark-mode.css.map */

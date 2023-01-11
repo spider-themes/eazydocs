@@ -18,7 +18,7 @@ $this->add_responsive_control(
         'size_units' => [ 'px', '%', 'em' ],
         'separator'  => 'before',
         'selectors'  => [
-            '{{WRAPPER}} .search_field_wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            '{{WRAPPER}} .search_field_wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
         ],
     ]
 );

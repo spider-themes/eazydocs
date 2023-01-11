@@ -164,6 +164,7 @@ p .footnotes-link::after {
     ul.children {
       list-style: none;
       padding-left: 25px;
+      margin: 0;
       li {
         a::before {
           content: "=";
@@ -241,10 +242,11 @@ p .footnotes-link::after {
 }
 
 .nav-sidebar .nav-item.no_icon.active .nav-link img,
-.nav-sidebar .nav-item.no_icon .nav-link img+img {
+.nav-sidebar .nav-item.no_icon .nav-link img.open {
   display: none;
 }
-.nav-sidebar .nav-item.no_icon.active .nav-link img+img {
+
+.nav-sidebar .nav-item.no_icon.active .nav-link img.open {
   display: block;
 }
 

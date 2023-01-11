@@ -1,10 +1,10 @@
 === EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin (easydocs, knowledgebase) ===
-Contributors: mdjwel, spiderdevs, arafatjamil01, delweratjk
+Contributors: mdjwel, spiderdevs
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
 Tested up to: 6.1
 Requires PHP: 7.4
-Stable tag: 2.0.1x
+Stable tag: 2.0.5x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,7 @@ Site operators can create & manage detailed, hierarchical documentation in the W
 ## 🔗 USEFUL LINKS ##
 
 - [Get EazyDocs Pro](https://spider-themes.net/eazydocs/) (all features presented there)
+- [Try Free EazyDocs Pro] (https://wordpress-plugins.spider-themes.net/eazydocs-pro/demo/)
 - [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 - [Plugin's Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
 - If you have any more questions, [visit the plugin’s Forum](https://wordpress.org/support/plugin/eazydocs/)
@@ -112,19 +113,31 @@ No need to memorize or remember the last viewed articles by the user. They can s
 Sometimes readers might be interested to read the Related articles. EazyDocs will automatically create a Related Articles section at the bottom of the doc single page.
 
 
-EazyDocs Pro’s features include:
-- **Bulk Doc Visibility:**
-You can change the visibility of multiple docs at once. You can change the visibility of multiple docs to public, private, or password protected.
+EazyDocs Pro plan features include:
+- Voting & Comments Notifications
+- Doc Helper Assistant with Contact Form
+- Conditional Content Dropdown
+- Ajax Doc Loading
+- Doc Dark Mode
+- OnePage Documentation
+- User Role Management
+- Docs Archive Masonry Layout
+- Private Doc with Login Page
+- Extended Doc Layout
+- Doc Badge
+- Suggested Search Keywords
+- Bulk Duplicate Documentation
+- Bulk Doc Visibility (Private/internal, Password Protected, Public)
+- Editable Single Doc Sidebar Area
+- RTL Ready
+- Duplicate Bulk/Individual Documentation
 
-- **Bulk Duplicate Docs:**
-You can duplicate a group of docs at once. You can duplicate multiple docs at once and save your time.
+EazyDocs Pro-Max plan features include:
+- All Pro plan features
+- Contributor, Add/Edit doc from Frontend
+- Footnotes
 
-- ** User Feedback Notifications:**
-You can see how people are reacting, and responding to your docs in one place. You are just one click away from checking users' feedback on articles, and their comments. You can also switch between tabs to check either feedback votes or readers' comments.
-
-- **Single Doc Sidebar Area:**
-You can add any content to the sidebars of a single doc. Even you can add Gutenberg blocks, shortcode to the sidebars.
-
+[Know more about EazyDocs Premium plans and Features](https://spider-themes.net/eazydocs/)
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
@@ -175,6 +188,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 4. Docs shortcode UI on frontend
 
 == Changelog ==
+
+= v2.0.6 (11 January 2022) =
+Tweaked: Folder open/close icon CSS improved to make compatible with image lazy loading plugins.
+Tweaked: Dark mode colors improved.
+Updated: Removed some unnecessary code
 
 = v2.0.5 (29 December 2022) =
 Fixed: Doc navigation's active state wasn't working with Ajax load

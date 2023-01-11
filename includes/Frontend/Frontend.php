@@ -48,7 +48,7 @@ class Frontend {
 	 */
     public function body_class( $classes ) {
 
-        $classes[]= 'bodddy ezd-body-docs';
+        $classes[]= 'ezd-body-docs';
 
         if ( eazydocs_has_shortcode() ) {
             $classes[] = 'eazydocs_shortcode';
