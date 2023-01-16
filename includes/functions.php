@@ -1164,7 +1164,7 @@ function all_shortcodes($content) {
 function eazydocs_unlock_with_themes() {
     
     $current_theme      = get_template();
-    if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium()) {
+    if ( $current_theme == 'Docy' || $current_theme == 'Docly' || ezd_is_premium()) {
         return true;
     }
 

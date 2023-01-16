@@ -220,11 +220,17 @@ if (is_array($depth_one_parents)) :
                                                 $parent = $sec2;
                                             }
 
-                                            $dep2 = $sub_child->ID;
+                                            // get parent id of the current post
+                                            $depth_docs = $sub_child->ID;                                           
+
+                                            $dep2               = $sub_child->ID ?? '';
+                                            $section_child      = get_post_parent($dep2, 'docs', 'post_type');
+                                            $child_parent_sec   = $section_child->ID ?? '';
 
                                             $get_section_child = array(
                                                 'post_parent' => $dep2, // Current post's ID
                                             );
+                                            
                                             $get_section_children_two = get_children($get_section_child);
                                             $child_of = eaz_get_nestable_children($sub_child->ID);
                                             $eaz_children_sub_class = $child_of ? ' dd3-have-sub-children dd3-has-children ' : ' dd3-have-no-sub-children ';
@@ -261,7 +267,7 @@ if (is_array($depth_one_parents)) :
                                                                 if (current_user_can('editor') || current_user_can('administrator')) :
                                                                     if ( ezd_is_premium() ) : ?>
                                                                         <li class="duplicate">
-                                                                            <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $parent); ?>
+                                                                            <?php do_action('eazydocs_child_section_doc_duplicate', $dep2, $child_parent_sec); ?>
                                                                         </li>
                                                                     <?php
                                                                     else :
