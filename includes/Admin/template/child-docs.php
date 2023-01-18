@@ -166,7 +166,7 @@ if (is_array($depth_one_parents)) :
                                                 if (current_user_can('editor') || current_user_can('administrator')) :
                                                 ?>
                                                     <li class="delete">
-                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo $depth_docs; ?>" class="section-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo $depth_docs; ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                             <span class="dashicons dashicons-trash"></span>
                                                         </a>
                                                     </li>
@@ -304,7 +304,7 @@ if (is_array($depth_one_parents)) :
                                                                 </li>
                                                                 <?php if (current_user_can('editor') || current_user_can('administrator')) : ?>
                                                                     <li class="delete">
-                                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo esc_attr($sub_child->ID . ',' . $last_section_ids); ?>" class="section-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo esc_attr($sub_child->ID . ',' . $last_section_ids); ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                                             <span class="dashicons dashicons-trash"></span>
                                                                         </a>
                                                                     </li>
@@ -415,7 +415,7 @@ if (is_array($depth_one_parents)) :
                                                                                 </li>
                                                                                 <?php if (current_user_can('editor') || current_user_can('administrator')) : ?>
                                                                                     <li class="delete">
-                                                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo esc_attr($of_sub_child->ID . ',' . $last_section_ids); ?>" class="child-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                                                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo esc_attr($of_sub_child->ID . ',' . $last_section_ids); ?>" class="child-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                                                             <span class="dashicons dashicons-trash"></span>
                                                                                         </a>
                                                                                     </li>

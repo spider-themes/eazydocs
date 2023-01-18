@@ -52,8 +52,7 @@
           $('#searchInput').keyup();
           $('#docy-search-result').css({ "z-index": "9999" });
         });
-        
-        $('.header_search_form_info').css({ "z-index": "9999" });
+
         $('.header_search_form_info input[type=search]').focus(function () {
           let ezd_current_theme = $('body').hasClass('ezd-theme-docy');
           

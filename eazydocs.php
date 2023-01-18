@@ -43,7 +43,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 						'has_addons'      => false,
 						'has_paid_plans'  => true,
 						'trial'           => [
-							'days'               => 30,
+							'days'               => 14,
 							'is_require_payment' => true,
 						],
 						'menu'            => [

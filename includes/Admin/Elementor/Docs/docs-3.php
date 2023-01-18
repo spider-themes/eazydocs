@@ -123,7 +123,7 @@
                                 ?>
                                 <div class="col-sm-6">
                                     <div class="media documentation_item">
-                                        <div class="icon">
+                                        <div class="icon bs-sm">
                                             <?php
                                             if ( has_post_thumbnail($section->ID) ) {
                                                 echo get_the_post_thumbnail($section->ID, 'full');

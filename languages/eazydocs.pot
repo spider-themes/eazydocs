@@ -1768,7 +1768,7 @@ msgstr ""
 #: includes/Admin/template/child-docs.php:301
 #: includes/Admin/template/child-docs.php:412
 #: includes/Admin/template/parent-docs.php:80
-msgid "Delete this doc permanently"
+msgid "Move to Trash"
 msgstr ""
 
 #: includes/Admin/template/child-docs.php:183

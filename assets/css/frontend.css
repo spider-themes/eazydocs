@@ -2296,6 +2296,7 @@ body.admin-bar .ezd-link-copied-wrap {
   font-size: 17px;
   text-decoration: none;
   font-weight: 500;
+  background: var(--bs-white);
 }
 .eazydocs-next-prev-wrap .next-prev-pager span {
   display: block;
@@ -3287,7 +3288,7 @@ body.admin-bar .ezd-link-copied-wrap {
   margin: 0;
 }
 .categories_guide_item a.doc_tag_title span.badge {
-  background: rgba(76, 76, 241, 0.1);
+  background: rgba(175, 184, 193, 0.2);
   color: var(--black_800);
   font-size: 11px;
   padding: 3px 5px 0;

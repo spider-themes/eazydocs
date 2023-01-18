@@ -77,7 +77,7 @@ $count = $query->found_posts;
                         <span class="dashicons dashicons-external"></span>
                     </a>
                     <?php if ( current_user_can('editor') || current_user_can('administrator') ) : ?>
-                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Delete this doc permanently', 'eazydocs'); ?>">
+                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                             <span class="dashicons dashicons-trash"></span>
                         </a>
                     <?php endif; ?>

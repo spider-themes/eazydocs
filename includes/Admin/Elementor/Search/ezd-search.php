@@ -3,7 +3,6 @@
         <div class="form-group">
             <div class="input-wrapper">
                 <input type='search' class="search_field_wrap" id="searchInput" autocomplete="off" name="s"  placeholder="<?php echo esc_attr($settings['placeholder']) ?>">
-
                 <!-- Ajax Search Loading Spinner -->
                 <span class="spinner search_form_spinner">
                     <img src="<?php echo EAZYDOCS_IMG ?>/icon/loading.svg" alt="<?php esc_attr_e('loading', 'docy') ?>">

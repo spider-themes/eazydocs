@@ -16,14 +16,13 @@ Site operators can create & manage detailed, hierarchical documentation in the W
 
 ## 🔗 USEFUL LINKS ##
 
-- [Get EazyDocs Pro](https://spider-themes.net/eazydocs/) (all features presented there)
-- [Try Free EazyDocs Pro] (https://wordpress-plugins.spider-themes.net/eazydocs-pro/demo/)
+- [Get EazyDocs Premium](https://spider-themes.net/eazydocs/)
+- [Try Free EazyDocs Premium](https://wordpress-plugins.spider-themes.net/eazydocs-pro/demo/)
 - [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 - [Plugin's Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
-- If you have any more questions, [visit the plugin’s Forum](https://wordpress.org/support/plugin/eazydocs/)
-- [EazyDocs Frontend Demo](https://wordpress-plugins.spider-themes.net/eazydocs/)
-- [EazyDocs Pro Frontend Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
-
+- [Plugin’s Forum](https://wordpress.org/support/plugin/eazydocs/)
+- [Free Version Demo](https://wordpress-plugins.spider-themes.net/eazydocs/)
+- [Premium Version Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 
 ### Reasons to Choose EazyDocs ###
 
@@ -137,7 +136,7 @@ EazyDocs Pro-Max plan features include:
 - Contributor, Add/Edit doc from Frontend
 - Footnotes
 
-[Know more about EazyDocs Premium plans and Features](https://spider-themes.net/eazydocs/)
+[Click here](https://spider-themes.net/eazydocs/) to know more about EazyDocs Premium plans and Features
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
@@ -185,9 +184,16 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 1. Docs builder UI in the WordPress Admin dashboard
 2. Ordering and Nesting Docs by Drag-n-Drop
 3. Creating the Docs page with EazyDocs Shortcode and Search Banner block
-4. Docs shortcode UI on frontend
+4. Live customizer to change the colors, fonts, and other settings
+5. Live search results
+6. User Feedback and Voting
+7. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.1.0 (30 January 2022) =
+Tweaked: Alert prompt message font size adjusted and some message text updated according to the context of task in the admin side.
+Tweaked: Elementor widget's frontend design improved
 
 = v2.0.6 (11 January 2022) =
 Tweaked: Folder open/close icon CSS improved to make compatible with image lazy loading plugins.
