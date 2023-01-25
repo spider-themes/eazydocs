@@ -8,15 +8,13 @@ add_shortcode( 'reference', function( $atts, $content ) {
         return false;
     }
     ?>
-    
-    <a ezd-note-serial="<?php echo $atts['number'] ?>" class="ezd-footnotes-link-item" data-bs-original-title='<?php echo esc_attr($content); ?>'>
+
+    <span ezd-note-serial="<?php echo $atts['number'] ?>" class="ezd-footnotes-link-item" data-bs-original-title='<?php echo $content; ?>'>
         <i onclick="location.href='#note-name-<?php echo esc_attr($atts['number']); ?>'">
-            <?php echo $atts['number'] ?>
+            [<?php echo $atts['number'] ?? ''; ?>]
         </i>
-        <span>
-            <?php echo $content ; ?>
-        </span>
-    </a>
+        <span> <?php echo $content ; ?> </span>
+    </span>
 
     <?php
     return ob_get_clean();

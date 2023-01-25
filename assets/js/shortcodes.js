@@ -10,7 +10,7 @@
         $('.ezd-footnotes-link-item').each(function() {
             let ezd_note_content = $(this).attr('data-bs-original-title');
             let ezd_note_serial = $(this).attr('ezd-note-serial');
-            $(".ezd-footnote-footer").append("<div class='note-class-"  + ezd_note_serial + "' id='note-name-"  + ezd_note_serial + "'>"  + ezd_note_serial + '. ' + ezd_note_content+ "</div>");
+            $(".ezd-footnote-footer").append("<div class='note-class-"  + ezd_note_serial + "' id='note-name-"  + ezd_note_serial + "'>"  +'<span class="ezd-footnotes-serial">'+ ezd_note_serial + '.</span> ' + ezd_note_content+ "</div>");
             $('.note-class-' + ezd_note_serial).not(':first').remove();
         });
 
