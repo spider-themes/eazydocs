@@ -67,9 +67,38 @@ class Frontend {
 	public function recently_viewed_docs( $title, $visibility, $visible_item, $see_more ){
 		$ft_cookie_posts = isset( $_COOKIE['eazydocs_recent_posts'] ) ? json_decode( htmlspecialchars( $_COOKIE['eazydocs_recent_posts'], true ) ) : null;
 		$ft_cookie_posts = isset( $ft_cookie_posts ) ? array_diff( $ft_cookie_posts, array( get_the_ID() ) ) : '';
-		if ( is_array( $ft_cookie_posts ) && count( $ft_cookie_posts ) > 0 && isset( $ft_cookie_posts ) ) :
+		if ( is_array( $ft_cookie_posts ) && count( $ft_cookie_posts ) > 0 && isset( $ft_cookie_posts ) ) :			
+		$eazydocs_option = get_option('eazydocs_settings');
+
+
+		global $post;
+		$cats            = get_the_terms( get_the_ID(), 'doc_tag' );
+		$cat_ids         = ! empty( $cats ) ? wp_list_pluck( $cats, 'term_id' ) : '';
+		$eazydocs_option = get_option('eazydocs_settings');
+		
+		$doc_posts       = new \WP_Query( array(
+			'post_type'           => 'docs',
+			'tax_query'           => array(
+				array(
+					'taxonomy' => 'doc_tag',
+					'field'    => 'id',
+					'terms'    => $cat_ids,
+					'operator' => 'IN' //Or 'AND' or 'NOT IN'
+				)
+			),
+			'posts_per_page'      => -1,
+			'ignore_sticky_posts' => 1,
+			'orderby'             => 'rand',
+			'post__not_in'        => array( $post->ID )
+		));
+		
+		$related_docs      		  = $doc_posts->post_count ?? 0;
+		$viewed_column 		  = $related_docs > 0 ? $eazydocs_option['viewed-doc-column'] : '12';
+ 
+
+
 			?>
-			<div class="col-lg-6 <?php echo esc_attr($visibility); ?>">
+			<div class="col-lg-<?php echo esc_attr($viewed_column .' '. $visibility); ?>">
 				<div class="topic_list_item">
 					<?php if( !empty( $title ) ) : ?>
 						<h4> <?php echo esc_html( $title ); ?> </h4>
@@ -131,6 +160,8 @@ class Frontend {
 		global $post;
 		$cats            = get_the_terms( get_the_ID(), 'doc_tag' );
 		$cat_ids         = ! empty( $cats ) ? wp_list_pluck( $cats, 'term_id' ) : '';
+		$eazydocs_option = get_option('eazydocs_settings');
+		$related_column  = $eazydocs_option['related-doc-column'] ?? '6';
 		$doc_posts       = new \WP_Query( array(
 			'post_type'           => 'docs',
 			'tax_query'           => array(
@@ -141,15 +172,16 @@ class Frontend {
 					'operator' => 'IN' //Or 'AND' or 'NOT IN'
 				)
 			),
-			'posts_per_page'      => - 1,
+			'posts_per_page'      => -1,
 			'ignore_sticky_posts' => 1,
 			'orderby'             => 'rand',
 			'post__not_in'        => array( $post->ID )
 		));
 
 		if ( $doc_posts->have_posts() ) :
+			
             ?>
-			<div class="col-lg-6 <?php echo esc_attr($visibility); ?>">
+			<div class="col-lg-<?php echo esc_attr($related_column) .' '. esc_attr($visibility); ?>">
 				<div class="topic_list_item related-docs">
 					<?php if( ! empty( $title ) ) : ?>
 						<h4> <?php echo esc_html( $title ); ?> </h4>

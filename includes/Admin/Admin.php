@@ -30,6 +30,9 @@ class Admin
 		$capabilites    = 'manage_options';
 		$cz_capabilites = 'manage_options';
 		$sz_capabilites = 'manage_options';
+		
+		$ezd_options 	= get_option('eazydocs_settings');
+		$is_customizer 	= $ezd_options['customizer_visibility'] ?? 'disabled';
 
 		if (function_exists('eazydocspro_get_option')) {
 
@@ -114,8 +117,11 @@ class Admin
 				$cz_capabilites = 'manage_options';
 			}
 
-			add_submenu_page('eazydocs', __('Customize', 'eazydocs'), __('Customize', 'eazydocs'), $cz_capabilites, '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page');
+			if( $is_customizer == 'enable' ) {
+				add_submenu_page('eazydocs', __('Customize', 'eazydocs'), __('Customize', 'eazydocs'), $cz_capabilites, '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page');
+			}
 
+			
 			if (in_array($current_user, $sz_roled)) {
 				switch ($current_user) {
 					case 'administrator':

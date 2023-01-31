@@ -10,10 +10,19 @@ $prefix = 'eazydocs_settings';
 //
 // Create options
 //
+
+$ezd_options 	= get_option('eazydocs_settings');
+$is_customizer 	= $ezd_options['customizer_visibility'] ?? 'disabled';
+if( $is_customizer == 'enable' ) {
+	$customizer_visibility = true;
+} else {
+	$customizer_visibility = false;
+}
+
 CSF::createOptions( $prefix, array(
 	'menu_title'         => esc_html__( 'Settings', 'eazydocs' ),
 	'menu_slug'          => 'eazydocs-settings',
-	'show_in_customizer' => true
+	'show_in_customizer' => $customizer_visibility
 ) );
 
 //
@@ -981,6 +990,22 @@ CSF::createSection( $prefix, array(
 				'true'
 			)
 		),
+
+		array(
+			'id'         => 'related-doc-column',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Column Width', 'eazydocs' ),
+			'options'	 => [
+				'6'	 	 =>  esc_html__( 'Half', 'eazydocs' ),
+				'12'	 =>  esc_html__( 'Fullwidth', 'eazydocs' ),
+			],
+			'dependency' => array(
+				'related-docs',
+				'==',
+				'true'
+			),
+			'default'    => '6'
+		),
 		
 		array(
 			'id'         => 'related-docs-more-btn',
@@ -1040,6 +1065,23 @@ CSF::createSection( $prefix, array(
 				'==',
 				'true'
 			)
+		),
+
+		
+		array(
+			'id'         => 'viewed-doc-column',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Column Width', 'eazydocs' ),
+			'options'	 => [
+				'6'	 	 =>  esc_html__( 'Half', 'eazydocs' ),
+				'12'	 =>  esc_html__( 'Fullwidth', 'eazydocs' ),
+			],
+			'dependency' => array(
+				'viewed-docs',
+				'==',
+				'true'
+			),
+			'default'    => '6'
 		),
 
 		array(
@@ -1269,12 +1311,26 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Customizer', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
-		
+
+		array(
+            'id'    	=> 'customizer_visibility',
+            'type'  	=> 'select',
+            'title' 	=> esc_html__( 'Enable / Disable', 'eazydocs' ),
+			'options' 	=> [
+				'enable' 	=> __( 'Enable', 'eazydocs' ),
+				'disable' 	=> __( 'Disable', 'eazydocs' )
+			],
+			'multiple'  => false,
+			'default'   => 'enable'
+		),
+
 		array(
 			'type'    => 'content',
 			'content' => sprintf( '<a href="' . $archive_url . '" target="_blank" id="get_docs_archive">' . esc_html__( 'Docs Archive', 'eazydocs' ) . '</a> <a href="' . $single_url . '" target="_blank" id="get_docs_single">' . esc_html__( 'Single Doc', 'eazydocs' ) . '</a>' ),
-		),
-		
+			'dependency' => array(
+				array( 'customizer_visibility', '==', 'enable' ),
+			),
+		)
 	]
 ) );
 
