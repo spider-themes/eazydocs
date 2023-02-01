@@ -17,10 +17,13 @@ class Assets
 		$current_url         = !empty($_GET["page"]) ? admin_url("admin.php?page=" . sanitize_text_field($_GET["page"])) : '';
 		$target_url          = admin_url('/admin.php?page=eazydocs');
 		$target_one_page_url = admin_url('/admin.php?page=eazydocs-onepage');
+		$target_analytics_page_url = admin_url('/admin.php?page=ezd-analytics');
 
 		if ($current_url == $target_url) {
 			add_action('admin_enqueue_scripts', [$this, 'eazydocs_dashboard_scripts']);
 		} elseif ($current_url == $target_one_page_url) {
+			add_action('admin_enqueue_scripts', [$this, 'eazydocs_dashboard_scripts']);
+		} elseif ($current_url == $target_analytics_page_url ) {
 			add_action('admin_enqueue_scripts', [$this, 'eazydocs_dashboard_scripts']);
 		}
 

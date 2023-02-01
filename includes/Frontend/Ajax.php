@@ -69,10 +69,37 @@ class Ajax {
                 's'                 => $_POST['keyword'] ?? ''
             ]
         );
+
+        // store search keyword data in wp_eazydocs_search_keywords table wordpress
+        $keyword = $_POST['keyword'] ?? '';
+        $keyword = sanitize_text_field($keyword);
+        $keyword = trim($keyword);
+        $keyword = strtolower($keyword);     
+
       
         if ( $posts->have_posts() ):
+            // save $keyword in wp_eazydocs_search_keywords table
+            global $wpdb;
+            $wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+            $wpdb->insert(
+                $wp_eazydocs_search_keyword,
+                array(
+                    'keyword' => $keyword,
+                )
+            );
 
-            while ( $posts->have_posts() ) : $posts->the_post();
+            // save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
+            $wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+            $wpdb->insert(
+                $wp_eazydocs_search_log,
+                array(
+                    'keyword_id' => $wpdb->insert_id,
+                    'count' => 1,
+                    'created_at' => current_time('mysql'),
+                )
+            );
+
+            while ( $posts->have_posts() ) : $posts->the_post();                
                 ?>
                 <div class="search-result-item" onclick="document.location='<?php echo get_the_permalink(get_the_ID()); ?>'">
                     <a href="<?php echo get_the_permalink(get_the_ID()); ?>" class="title">
@@ -94,6 +121,29 @@ class Ajax {
             endwhile;
             wp_reset_postdata();
         else:
+            // save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
+            global $wpdb;
+            $wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+            $wpdb->insert(
+                $wp_eazydocs_search_keyword,
+                array(
+                    'keyword' => $keyword,
+                )
+            );
+
+            // save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
+            $wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+            $wpdb->insert(
+                $wp_eazydocs_search_log,
+                array(
+                    'keyword_id' => $wpdb->insert_id,
+                    'count' => 0,
+                    'not_found_count' => 1,
+                    'created_at' => current_time('mysql'),
+                )
+            );
+            
+
             ?>                        
             <div> 
                 <h5 class="error title"> No result found! </h5> 

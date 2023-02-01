@@ -152,6 +152,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/One_page_doc_type.php';
 			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
+			require_once __DIR__ . '/includes/Frontend/search-counts.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
@@ -241,6 +242,51 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 					'post_type'    => 'page',
 				];
 				wp_insert_post( $docs_page );
+			}
+			// Insert easydocs search key table and search key logs table into the database if not exists
+			global $wpdb;
+
+			$charset_collate = $wpdb->get_charset_collate();
+			$search_keyword      = $wpdb->prefix . 'eazydocs_search_keyword';
+			$search_logs     = $wpdb->prefix . 'eazydocs_search_log';
+			$view_logs 		= $wpdb->prefix . 'eazydocs_view_log';
+
+			$sql             = "CREATE TABLE $search_keyword (
+				id bigint(9) NOT NULL AUTO_INCREMENT,
+				keyword varchar(255) NOT NULL,
+				UNIQUE KEY id (id)
+			) $charset_collate;";
+
+			$sql2            = "CREATE TABLE $search_logs (
+				id bigint(9) NOT NULL AUTO_INCREMENT,
+				keyword_id bigint(255) NOT NULL references $search_keyword(id), 
+				count mediumint(255) NOT NULL,
+				not_found_count mediumint(9) NOT NULL,
+				created_at datetime NOT NULL,
+				UNIQUE KEY id (id)
+			) $charset_collate;";
+
+			$sql3            = "CREATE TABLE $view_logs (
+				id bigint(9) NOT NULL AUTO_INCREMENT,
+				post_id bigint(255) NOT NULL,
+				count mediumint(255) NOT NULL,
+				created_at datetime NOT NULL,
+				UNIQUE KEY id (id)
+			) $charset_collate;";
+
+			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+			dbDelta( $sql );
+			dbDelta( $sql2 );
+			dbDelta( $sql3 );
+
+			// Check table exists or not if not then create it
+			$eazydocs_search_keyword = $wpdb->get_var( "SHOW TABLES LIKE '$search_keyword'" );
+			$eazydocs_search_log     = $wpdb->get_var( "SHOW TABLES LIKE '$search_logs'" );
+			$eazydocs_view_log     = $wpdb->get_var( "SHOW TABLES LIKE '$view_logs'" );
+
+			if ( $eazydocs_search_keyword !== $search_keyword || $eazydocs_search_log !== $search_logs || $eazydocs_view_log !== $view_logs ) {
+				// Send notification to user
+				eazydocs_database_not_found();
 			}
 		}
 

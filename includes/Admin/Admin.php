@@ -153,7 +153,8 @@ class Admin
 			do_action('ezd_pro_admin_menu');
 		} else {
 			add_submenu_page('eazydocs', __('Users Feedback', 'eazydocs'), __('Users Feedback', 'eazydocs'), $capabilites, 'ezd-user-feedback', [$this, 'ezd_feedback_presents']);
-			//add_submenu_page('eazydocs', __('Analytics', 'eazydocs'), __('Analytics', 'eazydocs'), $capabilites, 'ezd-analytics', [$this, 'ezd_analytics_presents']);
+			add_submenu_page('eazydocs', __('Analytics', 'eazydocs'), __('Analytics', 'eazydocs'), $capabilites, 'ezd-analytics', [$this, 'ezd_analytics_presents']);
+
 		}
 		add_submenu_page('eazydocs', __('Tags', 'eazydocs'), __('Tags', 'eazydocs'), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs');
 	}
