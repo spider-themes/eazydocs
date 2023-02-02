@@ -1182,10 +1182,10 @@ function eazydocs_database_not_found()
 
     if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name || $wpdb->get_var("SHOW TABLES LIKE '$table_name2'") != $table_name2 ||  $wpdb->get_var("SHOW TABLES LIKE '$table_name3'") != $table_name3) {
         ?>
-        <div class="notice notice-error is-dismissible">
+        <div class="notice notice-error is-dismissible eazydocs_table_error">
             <p><?php _e('EazyDocs database need update. Please click update button to update your database.', 'eazydocs'); ?></p>
             <form method="get">
-                <input type="hidden" name="eazydocs_search_table_create" value="1">
+                <input type="hidden" name="eazydocs_table_create" value="1">
                 <input type="submit" class="button button-primary" value="Update Database">
             </form>
         </div>
@@ -1193,53 +1193,61 @@ function eazydocs_database_not_found()
     }
 
     // add button for create table
-    if (isset($_GET['eazydocs_search_table_create'])) {
-        eazydocs_search_table_create();
+    if (isset($_GET['eazydocs_table_create'])) {
+        eazydocs_table_create(); ?>
+        <div class="notice notice-success is-dismissible">
+            <p><?php _e('EazyDocs database updated successfully.', 'eazydocs'); ?></p>
+        </div>
+        <!-- after eazydocs_table_create done then remove eazydocs_database_not_found notice in php -->
+        <script>
+            jQuery(document).ready(function ($) {
+                $('.eazydocs_table_error').remove();
+            });
+        </script>
+        <?php
     }
 }
 
 /**
  * Create eazydocs_search_keyword table and eazydocs_search_log table
  */
-function eazydocs_search_table_create() {
+function eazydocs_table_create() {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'eazydocs_search_keyword';
-    $table_name2 = $wpdb->prefix . 'eazydocs_search_log';
-    $table_name3 = $wpdb->prefix . 'eazydocs_view_log';
     $charset_collate = $wpdb->get_charset_collate();
+    $search_keyword  = $wpdb->prefix . 'eazydocs_search_keyword';
+    $search_logs     = $wpdb->prefix . 'eazydocs_search_log';
+    $view_logs 		 = $wpdb->prefix . 'eazydocs_view_log';
 
-    $sql = "CREATE TABLE $table_name ( 
-        id mediumint(9) NOT NULL AUTO_INCREMENT,
+    $sql             = "CREATE TABLE $search_keyword (
+        id bigint(9) NOT NULL AUTO_INCREMENT,
         keyword varchar(255) NOT NULL,
-        count int(11) NOT NULL,
-        PRIMARY KEY  (id)
-    ) $charset_collate;";
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
-
-    $sql2 = "CREATE TABLE $table_name2 ( 
-        id mediumint(9) NOT NULL AUTO_INCREMENT,
-        keyword varchar(255) NOT NULL,
-        count int(11) NOT NULL,
-        PRIMARY KEY  (id)
-    ) $charset_collate;";
-    dbDelta($sql2);
-
-    $sql3 = "CREATE TABLE $table_name3 ( 
-        id mediumint(9) NOT NULL AUTO_INCREMENT,
-        post_id int(11) NOT NULL,
-        count int(11) NOT NULL,
-        PRIMARY KEY  (id)
+        UNIQUE KEY id (id)
     ) $charset_collate;";
 
-    // if table create done then show notice and redirect to eazydocs settings page
-    if (dbDelta($sql3)) {
-        ?>
-        <div class="notice notice-success is-dismissible">
-            <p><?php _e('EazyDocs database updated successfully.', 'eazydocs'); ?></p>
-        </div>
-        <?php
-        wp_redirect(admin_url('admin.php?page=eazydocs-settings'));
-        exit;
+    $sql2            = "CREATE TABLE $search_logs (
+        id bigint(9) NOT NULL AUTO_INCREMENT,
+        keyword_id bigint(255) NOT NULL references $search_keyword(id), 
+        count mediumint(255) NOT NULL,
+        not_found_count mediumint(9) NOT NULL,
+        created_at datetime NOT NULL,
+        UNIQUE KEY id (id)
+    ) $charset_collate;";
+
+    $sql3            = "CREATE TABLE $view_logs (
+        id bigint(9) NOT NULL AUTO_INCREMENT,
+        post_id bigint(255) NOT NULL,
+        count mediumint(255) NOT NULL,
+        created_at datetime NOT NULL,
+        UNIQUE KEY id (id)
+    ) $charset_collate;";
+
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql );
+    dbDelta( $sql2 );
+    dbDelta( $sql3 );
+
+    // if table created then eazydocs_database_not_found notice will be removed and return true
+    if( $sql && $sql2 && $sql3 ) {
+        remove_action('admin_notices', 'eazydocs_database_not_found');
     }
 }
