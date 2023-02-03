@@ -24,16 +24,16 @@
         n.offset().top;
         $(window).scroll(function() {
             $(".doc-nav").height();
-            var t = $(this).scrollTop(),
+            let t = $(this).scrollTop(),
                 n = $(this).innerHeight(),
                 e = $(".doc-nav li a").filter(".active").index();
             $(".doc-section").each(function(i) {
-                var c = $(this).offset().top,
+                let c = $(this).offset().top,
                     s = $(this).height(),
                     a = c + s,
                     r = 0;
                 t >= c && t <= a ? (r = (t - c) / s * 100) >= 100 && (r = 100) : t > a && (r = 100), a < t + n - 70 && (r = 100);
-                var d = $(".doc-nav .docs-progress-bar:eq(" + i + ")");
+                let d = $(".doc-nav .docs-progress-bar:eq(" + i + ")");
                 e > i && d.parent().addClass("viewed"), d.css("width", r + "%")
             })
         });

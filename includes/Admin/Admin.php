@@ -143,20 +143,21 @@ class Admin
 			add_submenu_page('eazydocs', __('Customize', 'eazydocs'), __('Customize', 'eazydocs'), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page');
 		}
 		$current_theme = get_template();
+
+        add_submenu_page('eazydocs', __('Tags', 'eazydocs'), __('Tags', 'eazydocs'), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs');
+
 		if ($current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
 			add_submenu_page('eazydocs', __('OnePage Docs', 'eazydocs'), __('OnePage Docs', 'eazydocs'), 'manage_options', '/edit.php?post_type=onepage-docs');
 		} else {
 			add_submenu_page('eazydocs', __('OnePage Doc', 'eazydocs'), __('OnePage Doc', 'eazydocs'), 'manage_options', 'ezd-onepage-presents', [$this, 'ezd_onepage_presents']);
 		}
 
-		if ( ezd_is_premium() ) {
+		if ( ezd_is_promax() ) {
 			do_action('ezd_pro_admin_menu');
 		} else {
 			add_submenu_page('eazydocs', __('Users Feedback', 'eazydocs'), __('Users Feedback', 'eazydocs'), $capabilites, 'ezd-user-feedback', [$this, 'ezd_feedback_presents']);
 			add_submenu_page('eazydocs', __('Analytics', 'eazydocs'), __('Analytics', 'eazydocs'), $capabilites, 'ezd-analytics', [$this, 'ezd_analytics_presents']);
-
 		}
-		add_submenu_page('eazydocs', __('Tags', 'eazydocs'), __('Tags', 'eazydocs'), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs');
 	}
 
 	/**
@@ -230,19 +231,17 @@ class Admin
 			<div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-				<img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e('crown icon', 'eazydocs'); ?>" width="250px" />
-				<h3> <?php echo esc_html__('Users Feedback', 'eazydocs'); ?> </h3>
-				<p class="big-p"> <?php esc_html_e('You can get the Doc Feedbacks listed in this page to review.', 'eazydocs'); ?> </p>
-				<?php // PHPCS - No need to escape a URL. The query arg is sanitized. 
-				?>
+				<img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px" />
+				<h3 class="title"> <?php echo esc_html__( 'Users Feedback', 'eazydocs' ); ?> </h3>
+				<p class="big-p"> <?php esc_html_e( 'You can get the Doc Feedbacks listed in this page to review.', 'eazydocs' ); ?> </p>
 				<div class="button-inline">
 					<a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url('admin.php?page=eazydocs-pricing'); ?>">
-						<?php esc_html_e('Go Pro', 'elementor'); ?>
+						<?php esc_html_e( 'Get Pro Plan', 'eazydocs' ); ?>
 					</a>
 				</div>
 			</div>
 		</div><!-- /.wrap -->
-<?php
+        <?php
 	}
 
 	public function ezd_analytics_presents()
@@ -252,14 +251,12 @@ class Admin
 			<div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-				<img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e('crown icon', 'eazydocs'); ?>" width="250px" />
-				<h3> <?php echo esc_html__('EazyDocs Analytics', 'eazydocs'); ?> </h3>
-				<p class="big-p"> <?php esc_html_e('You can get the Doc Analytics Page Pro Version.', 'eazydocs'); ?> </p>
-				<?php // PHPCS - No need to escape a URL. The query arg is sanitized. 
-				?>
+				<img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px" />
+				<h3 class="title"> <?php echo esc_html__( 'EazyDocs Analytics', 'eazydocs' ); ?> </h3>
+				<p class="big-p"> <?php esc_html_e( 'You can get the Doc Analytics Page Pro Version.', 'eazydocs' ); ?> </p>
 				<div class="button-inline">
 					<a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url('admin.php?page=eazydocs-pricing'); ?>">
-						<?php esc_html_e('Go Pro', 'elementor'); ?>
+						<?php esc_html_e( 'Get Pro-max Plan', 'eazydocs' ); ?>
 					</a>
 				</div>
 			</div>

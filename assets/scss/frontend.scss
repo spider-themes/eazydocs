@@ -316,8 +316,9 @@ p .footnotes-link::after {
 
 .single-docs #post {
   h2 {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.8em;
+    display: flex;
   }
   h3 {
     font-size: 1.5em;

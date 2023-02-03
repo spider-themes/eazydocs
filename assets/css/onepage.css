@@ -238,7 +238,6 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
 
 .documentation_area_sticky .nav-sidebar .nav-item .docs-progress-bar {
   background: rgba(214, 212, 212, 0.2);
-  border-radius: 10px;
 }
 
 .documentation_area_sticky .nav-sidebar .nav-item.active > a {
@@ -249,6 +248,7 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
 .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav .nav-item a.active {
   background: transparent;
   color: #fff;
+  font-weight: 500;
 }
 
 .documentation_area_sticky .documentation_info {
@@ -376,24 +376,9 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   margin: 10px 0;
 }
 
-.numbering_show .nav-item ul li {
-  list-style: none;
-  margin-left: 20px !important;
-}
-
-.numbering_show .nav-item {
-  list-style: auto;
-  list-style-position: inside;
-}
-
 /** === Fullscreen OnePage Doc Layout === **/
 .fullscreen-layout.onepage_doc_area .middle-content {
   padding: 0;
-}
-
-.fullscreen-layout.onepage_doc_area .nav-sidebar.one-page-doc-nav-wrap .nav-item a {
-  margin-left: 0;
-  padding-left: 10px;
 }
 
 .fullscreen-layout.onepage_doc_area .nav-sidebar.one-page-doc-nav-wrap .nav-item.active {

@@ -1272,15 +1272,6 @@ CSF::createSection( $prefix, array(
 			],
 			'default'  => 'main',
 		),
-		array(
-			'id'         => 'onepage_numbering',
-			'type'       => 'switcher',
-			'title'      => esc_html__( 'Numbering', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
-			'text_width' => 70,
-			'default'    => false
-		)
 	]
 ) );
 

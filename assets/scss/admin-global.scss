@@ -1,3 +1,5 @@
+@import "frontend/variables";
+
 code {
     line-height: 1.6;
 }
@@ -302,11 +304,17 @@ body.post-type-onepage-docs .type-onepage-docs .row-actions span.inline{
     text-align: center;
     color: #6d7882;
     font-family: Roboto,sans-serif;
-    h2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title {
         font-size: 32px;
         font-weight: 700;
-        margin: 30px 0 10px;
+        margin: 10px 0;
         line-height: 1.2;
+    }
+    p {
+        margin: 0;
     }
 }
 
@@ -362,6 +370,61 @@ p.big-p {
         }
     }
 }
+
+/** == Analytics Page Styles === **/
+.ezd-analytics {
+    .tab-menu {
+        flex-basis: 25%;
+    }
+    .dd3-content {
+        padding: 15px 30px;
+    }
+    .votes {
+        display: flex;
+        width: 80px;
+        justify-content: space-between;
+    }
+}
+
+/** Date Picker **/
+.daterangepicker .ranges {
+    float: none !important;
+    display: block;
+    padding: 20px;
+    button.applyBtn {
+        padding: 5px 15px;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 3px;
+        border: 1px solid var(--ezd_brand_color);
+        background: brand_color_rgba(.8);
+        color: #fff;
+        margin-right: 10px;
+        margin-top: 10px;
+        &:hover {
+            background: var(--ezd_brand_color);
+        }
+        &.active {
+            background: #f1bd6c;
+            color: #000;
+            border-color: #f1bd6c;
+        }
+    }
+    button.cancelBtn {
+        padding: 5px 15px;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 3px;
+        border: 1px solid #e8e8e8;
+        background: #fafafa;
+        color: #575757de;
+        margin-top: 10px;
+        &:hover {
+            background: #f6f6f6;
+        }
+    }
+}
+
 
 /** === Customizer === **/
 .customize-pane-parent {
