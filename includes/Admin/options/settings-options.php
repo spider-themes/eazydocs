@@ -11,17 +11,54 @@ $prefix = 'eazydocs_settings';
 // Create options
 //
 
-$ezd_options 	= get_option('eazydocs_settings');
-$is_customizer 	= $ezd_options['customizer_visibility'] ?? 'disabled';
+$ezd_options 		= get_option( 'eazydocs_settings' );
+$is_customizer 		= $ezd_options['customizer_visibility'] ?? 'disabled';
 if( $is_customizer == 'enable' ) {
 	$customizer_visibility = true;
 } else {
 	$customizer_visibility = false;
 }
 
+$edit_access 		= [];
+if ( function_exists( 'eazydocspro_get_option' ) ) {
+	$edit_access 	= eazydocspro_get_option( 'settings-edit-access', 'eazydocs_settings' );
+}
+
+$all_roles 			= '';
+if ( is_array ( $edit_access ) ) {
+	$all_roles 		= ! empty ( $edit_access ) ? implode( ',', $edit_access ) : '';
+}
+
+if ( ! function_exists( 'wp_get_current_user' ) ) {
+    include(ABSPATH . "wp-includes/pluggable.php"); 
+}
+
+$user 				= wp_get_current_user();
+$current_user 		= $user->roles[0] ?? '';
+$all_roled    		= explode(',', $all_roles);
+
+if ( in_array( $current_user, $all_roled ) ) {
+	switch ( $current_user ) {
+		case 'administrator':
+			$capabilites = 'manage_options';
+			break;
+
+		case 'editor':
+			$capabilites = 'publish_pages';
+			break;
+
+		case 'author':
+			$capabilites = 'publish_posts';
+			break;
+	}
+} else {
+	$capabilites = 'manage_options';
+}
+
 CSF::createOptions( $prefix, array(
 	'menu_title'         => esc_html__( 'Settings', 'eazydocs' ),
 	'menu_slug'          => 'eazydocs-settings',
+	'menu_capability'    => $capabilites,
 	'show_in_customizer' => $customizer_visibility
 ) );
 
