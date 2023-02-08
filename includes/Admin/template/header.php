@@ -9,7 +9,7 @@
                         </a>
                     </div>
 
-                    <button type="button" data-url="<?php echo admin_url('admin.php'); ?>/Create_Post.php?parent_title=" id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round">
+                    <button type="button" data-url="<?php echo admin_url('admin.php'); ?>?Create_doc=yes&parent_title=" id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round">
                         <span class="dashicons dashicons-plus-alt2"></span>
 						<?php esc_html_e( 'Add Doc', 'eazydocs' ); ?>
                     </button>
@@ -22,7 +22,7 @@
                     <div class="search-icon">
                         <span class="dashicons dashicons-search"></span>
                     </div>
-                    <input type="search" name="keyword" class="form-control" id="easydocs-search" placeholder="<?php esc_attr_e('Search for', 'eazydocs') ?>" onkeyup="fetch()" />
+                    <input type="search" name="keyword" class="form-control" id="easydocs-search" placeholder="<?php esc_attr_e('Search for', 'eazydocs'); ?>" onkeyup="fetch()" />
                 </form>
             </div>
             <div class="col-lg-3">

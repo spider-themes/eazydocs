@@ -12,8 +12,7 @@ class One_Page {
 
 	function doc_one_page() {
 
-		if ( ! empty ( $_GET['single_doc_title'] ) ) {
-			
+		if ( isset( $_GET['make_onepage'] ) && ! empty ( $_GET['single_doc_title'] ) && ! empty ( $_GET['make_onepage'] == 'yes' )) {
 			$layout               = $_GET['layout'] ?? '';
 			$ezd_doc_content_type = $_GET['content_type'] ?? '';
 			$left_side_sidebar    = $_GET['left_side_sidebar'] ?? '';

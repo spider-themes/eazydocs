@@ -79,7 +79,6 @@ if (is_array($depth_one_parents)) :
                                 ));
                                 $depth_two = implode(",", $child_depth);
                             }
-                            $depth_docs = implode(",", $child_one) . ',' . $depth_two . $child->ID;
                             if (!empty($child->post_password)) {
                                 $post_status = 'protected';
                             }
@@ -140,7 +139,7 @@ if (is_array($depth_one_parents)) :
                                                     ?>
 
                                                     <li>
-                                                        <a href="<?php echo admin_url('admin.php'); ?>/Create_Post.php?childID=<?php echo $child->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                                                        <a href="<?php echo admin_url('admin.php'); ?>?Create_Child=yes&childID=<?php echo $child->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
                                                             <span class="dashicons dashicons-plus-alt2"></span>
                                                         </a>
                                                     </li>
@@ -166,7 +165,7 @@ if (is_array($depth_one_parents)) :
                                                 if (current_user_can('editor') || current_user_can('administrator')) :
                                                 ?>
                                                     <li class="delete">
-                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo $depth_docs; ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
+                                                        <a href="<?php echo admin_url('admin.php'); ?>?Section_Delete=yes&ID=<?php echo $child->ID; ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                             <span class="dashicons dashicons-trash"></span>
                                                         </a>
                                                     </li>
@@ -214,15 +213,12 @@ if (is_array($depth_one_parents)) :
                                                     $last_section_docs[] = $dep3_docs->ID;
                                                 }
                                             }
-                                            $last_section_ids = implode(",", $last_section_docs);
+                                            
                                             $parent = '';
                                             foreach ($depth_two_parents as $sec2) {
                                                 $parent = $sec2;
                                             }
-
-                                            // get parent id of the current post
-                                            $depth_docs = $sub_child->ID;                                           
-
+                                            
                                             $dep2               = $sub_child->ID ?? '';
                                             $section_child      = get_post_parent($dep2, 'docs', 'post_type');
                                             $child_parent_sec   = $section_child->ID ?? '';
@@ -282,7 +278,7 @@ if (is_array($depth_one_parents)) :
                                                                 endif;
                                                                 ?>
                                                                 <li>
-                                                                    <a href="<?php echo admin_url('admin.php'); ?>/Create_Post.php?childID=<?php echo $sub_child->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                                                                    <a href="<?php echo admin_url('admin.php'); ?>?Create_Child=yes&childID=<?php echo $sub_child->ID; ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
                                                                         <span class="dashicons dashicons-plus-alt2"></span>
                                                                     </a>
                                                                 </li>
@@ -304,7 +300,7 @@ if (is_array($depth_one_parents)) :
                                                                 </li>
                                                                 <?php if (current_user_can('editor') || current_user_can('administrator')) : ?>
                                                                     <li class="delete">
-                                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo esc_attr($sub_child->ID . ',' . $last_section_ids); ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
+                                                                        <a href="<?php echo admin_url('admin.php'); ?>?Section_Delete=yes&ID=<?php echo esc_attr( $sub_child->ID ); ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                                             <span class="dashicons dashicons-trash"></span>
                                                                         </a>
                                                                     </li>
@@ -351,7 +347,7 @@ if (is_array($depth_one_parents)) :
                                                                     $last_section_docs[] = $dep3_docs->ID;
                                                                 }
                                                             }
-                                                            $last_section_ids = implode(",", $last_section_docs);
+                                                            
                                                             $parent = '';
                                                             foreach ($depth_two_parents as $sec2) {
                                                                 $parent = $sec2;
@@ -415,7 +411,7 @@ if (is_array($depth_one_parents)) :
                                                                                 </li>
                                                                                 <?php if (current_user_can('editor') || current_user_can('administrator')) : ?>
                                                                                     <li class="delete">
-                                                                                        <a href="<?php echo admin_url('admin.php'); ?>/Delete_Post.php?ID=<?php echo esc_attr($of_sub_child->ID . ',' . $last_section_ids); ?>" class="child-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
+                                                                                        <a href="<?php echo admin_url('admin.php'); ?>?Last_Child_Delete=yes&ID=<?php echo esc_attr($of_sub_child->ID); ?>" class="child-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                                                             <span class="dashicons dashicons-trash"></span>
                                                                                         </a>
                                                                                     </li>
@@ -458,7 +454,7 @@ if (is_array($depth_one_parents)) :
                     ?>
                 </ol>
             </div>
-            <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url('admin.php'); ?>/Create_Post.php?parentID=<?php echo $item; ?>&is_section=">
+            <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url('admin.php'); ?>?Create_Section=yes&parentID=<?php echo $item; ?>&is_section=">
                 <?php esc_html_e('Add Section', 'eazydocs'); ?>
             </button>
             <?php
@@ -468,7 +464,7 @@ if (is_array($depth_one_parents)) :
             }
             ?>
         </div>
-<?php
+    <?php
     endforeach;
 endif;
 ?>

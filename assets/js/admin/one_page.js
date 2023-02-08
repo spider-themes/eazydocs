@@ -2,7 +2,7 @@
     $(document).ready(function () {
 
         $("body.post-type-docs .wrap #posts-filter .search-box").append(' <a href="admin.php?page=eazydocs" class="button">Modern View</a>');
-        $("body.post-type-onepage-docs .wrap .page-title-action").after(' <a href="admin.php/One_Page.php?single_doc_title=" class="page-title-action add-onepage">Add OnePage Doc</a>');
+        $("body.post-type-onepage-docs .wrap .page-title-action").after(' <a href="admin.php?single_doc_title=" class="page-title-action add-onepage">Add OnePage Doc</a>');
 
         // Function for Sidebar Popup HTML contents
         function sidebar_popup_html() {
@@ -108,7 +108,7 @@
 
                             window.location.href = href + document.getElementById('ezd_docs_select').value + '&layout=' + document.getElementById('ezd_docs_layout_select').value + '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value + '&left_side_sidebar=' + document.getElementById('left_side_sidebar').value + '&shortcode_content=' + encoded
                             + '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + encoded_right +
-                            '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value + '&self_doc=ezd-one-page'
+                            '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value + '&self_doc=ezd-one-page&make_onepage=yes'
 
                         }
 
@@ -320,7 +320,7 @@
                             encoded_right                   = encodeURIComponent(JSON.stringify(right_style_attr_update));
                             
                             window.location.href = href + 'doc_id=' + edit_doc_id + '&layout=' + document.getElementById('ezd_docs_select').value +
-                                '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value + '&left_side_sidebar=' + document.querySelector('select[name=ezd_sidebar_select_data]').value + '&edit_content=' + encoded + '&get_right_sidebar=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + encoded_right + '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value;
+                                '&content_type=' + document.querySelector('input[name=ezd_docs_content_type]:checked').value + '&left_side_sidebar=' + document.querySelector('select[name=ezd_sidebar_select_data]').value + '&edit_content=' + encoded + '&get_right_sidebar=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_right=' + document.querySelector('input[name=ezd_docs_content_type_right]:checked').value + '&shortcode_content_right=' + encoded_right + '&right_side_sidebar=' + document.getElementById('right_side_sidebar').value+'&edit_onepage=yes';
                         }
 
                     });

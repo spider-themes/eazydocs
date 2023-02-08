@@ -601,8 +601,7 @@ function eazydocs_one_page($doc_id)
     if ($post_status != 'draft') :
         if (count($one_page_docs) < 1) :
             ?>
-            <button class="button button-info one-page-doc" id="one-page-doc" name="submit"
-                    data-url="<?php echo admin_url('admin.php/One_Page.php'); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>">
+            <button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo admin_url('admin.php'); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>&make_onepage=yes">
                 <?php esc_html_e('Make OnePage Doc', 'eazydocs'); ?>
             </button>
         <?php

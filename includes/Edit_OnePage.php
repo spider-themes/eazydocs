@@ -12,8 +12,7 @@ class Edit_OnePage {
 
 	function edit_doc_one_page() {
 
-		if ( ! empty ( $_GET['edit_docs'] ) ) { 
-
+		if ( ! empty ( $_GET['edit_docs'] ) && ! empty ( $_GET['edit_onepage'] == 'yes' ))  {
 			$page_id 				= $_GET['doc_id'] ?? '';
 			$layout 				= $_GET['layout'] ?? '';
 			$content_type 			= $_GET['content_type'] ?? '';

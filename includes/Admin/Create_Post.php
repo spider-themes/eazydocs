@@ -22,8 +22,8 @@ class Create_Post {
      */
     public function create_parent_doc() {
 
-	    if ( isset ( $_GET['parent_title'] ) && ! empty ( $_GET['parent_title'] ) ) {
-
+	    if ( ! empty ( $_GET['parent_title'] ) && ! empty ( $_GET['Create_doc'] == 'yes' ) ) {
+			
 			$title = !empty($_GET['parent_title']) ? htmlspecialchars($_GET['parent_title']) : 0;
 
 			$str 				= ['ezd_ampersand','ezd_hash', 'ezd_plus'];
@@ -59,8 +59,8 @@ class Create_Post {
 	 * Create new Doc post
 	 */
 	public function create_new_doc() {
-		if ( isset ( $_GET['new_doc'] ) && ! empty ( $_GET['new_doc'] ) ) {
-
+		if ( ! empty ( $_GET['new_doc'] )  && ! empty ( $_GET['Create_doc'] == 'yes') ) {
+			
 			$doc_title      	= ! empty ( $_GET['new_doc'] ) ? htmlspecialchars( $_GET['new_doc'] ) : 0;
 			$str 				= ['ezd_ampersand','ezd_hash', 'ezd_plus'];
 			$rplc 				= ['&','#', '+'];
@@ -85,7 +85,7 @@ class Create_Post {
 	 */
 	public function create_section_doc() {
 
-		if ( isset ( $_GET['is_section'] ) && ! empty ( $_GET['is_section'] ) ) {
+		if ( ! empty ( $_GET['is_section'] ) && ! empty ( $_GET['Create_Section'] == 'yes' )) {
 
 			$parentID      			= ! empty ( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;
 			$section_title 			= ! empty ( $_GET['is_section'] ) ? htmlspecialchars( $_GET['is_section'] ) : '';
@@ -137,8 +137,8 @@ class Create_Post {
 	 */
 	public function create_child_doc() {
 
-		if ( isset ( $_GET['child'] ) && ! empty ( $_GET['child'] ) ) {
-
+		if ( ! empty ( $_GET['child'] ) && ! empty ( $_GET['Create_Child'] == 'yes' ) ) {
+			
 			$child_id    		= ! empty ( $_GET['childID'] ) ? absint( $_GET['childID'] ) : 0;
 			$child_title 		= ! empty ( $_GET['child'] ) ? htmlspecialchars( $_GET['child'] ) : '';	
 			$child_slug 		= str_replace(' ', '-', $child_title);					
