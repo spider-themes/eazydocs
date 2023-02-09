@@ -28,17 +28,18 @@ $all_roles 			= '';
 if ( is_array ( $edit_access ) ) {
 	$all_roles 		= ! empty ( $edit_access ) ? implode( ',', $edit_access ) : '';
 }
+$all_roled    		= explode(',', $all_roles);
 
 if ( ! function_exists( 'wp_get_current_user' ) ) {
     include(ABSPATH . "wp-includes/pluggable.php"); 
 }
 
-$user 				= wp_get_current_user();
-$current_user 		= $user->roles[0] ?? '';
-$all_roled    		= explode(',', $all_roles);
+$user 		= wp_get_current_user();
+$userdata 	= get_user_by('id', $user->ID);
+$current_user_role = $userdata->roles[0] ?? ''; 
 
-if ( in_array( $current_user, $all_roled ) ) {
-	switch ( $current_user ) {
+if ( in_array( $current_user_role, $all_roled ) ) {
+	switch ( $current_user_role ) {
 		case 'administrator':
 			$capabilites = 'manage_options';
 			break;

@@ -1,5 +1,4 @@
 <?php
-
 namespace eazyDocs\Admin;
 
 /**
@@ -11,8 +10,7 @@ class Admin
 	/**
 	 * Admin constructor.
 	 */
-	function __construct()
-	{
+	function __construct() {
 		add_action('admin_menu', [$this, 'eazyDocs_menu']);
 		add_filter('admin_body_class', [$this, 'body_class']);
 		add_filter('get_edit_post_link', [$this, 'one_page_docs_edit_content'], 10, 3);
@@ -34,34 +32,41 @@ class Admin
 		$ezd_options 	= get_option('eazydocs_settings');
 		$is_customizer 	= $ezd_options['customizer_visibility'] ?? 'disabled';
 
+		$user 			= wp_get_current_user();
+		$userdata 		= get_user_by('id', $user->ID);
+		$current_user_role = $userdata->roles[0] ?? '';
+
 		if (function_exists('eazydocspro_get_option')) {
+			
+			$access    	= eazydocspro_get_option('docs-write-access', 'eazydocs_settings');
+			$cz_access 	= eazydocspro_get_option('customizer-edit-access', 'eazydocs_settings');
+			$sz_access 	= eazydocspro_get_option('settings-edit-access', 'eazydocs_settings');
 
-			$access    = eazydocspro_get_option('docs-write-access', 'eazydocs_settings');
-			$cz_access = eazydocspro_get_option('customizer-edit-access', 'eazydocs_settings');
-			$sz_access = eazydocspro_get_option('settings-edit-access', 'eazydocs_settings');
-
-			$all_roles = '';
-			$cz_roles = '';
-			$sz_roles = '';
+			$all_roles 	= '';
+			$cz_roles 	= '';
+			$sz_roles 	= '';
 
 			if (is_array($access)) {
-				$all_roles = !empty($access) ? implode(',', $access) : '';
+				$all_roles 	= !empty($access) ? implode(',', $access) : '';
 			}
-			if (is_array($cz_roles)) {
-				$cz_roles  = !empty($cz_access) ? implode(',', $cz_access) : '';
-			}
-			if (is_array($sz_roles)) {
-				$sz_roles  = !empty($sz_access) ? implode(',', $sz_access) : '';
-			}
+			$all_roled    	= explode(',', $all_roles);
 
-			$cz_roled = explode(',', $cz_roles);
-			$sz_roled = explode(',', $sz_roles);
+			if ( is_array( $cz_access ) ) {
+				$cz_roles  	= !empty($cz_access) ? implode(',', $cz_access) : '';
+			}
+			$cz_roled 		= explode(',', $cz_roles);
 
-			$user         = wp_get_current_user();
-			$current_user = $user->roles[0] ?? '';
-			$all_roled    = explode(',', $all_roles);
-			if (in_array($current_user, $all_roled)) {
-				switch ($current_user) {
+			if (is_array($sz_access)) {
+				$sz_roles  	= !empty($sz_access) ? implode(',', $sz_access) : '';
+			}
+			$sz_roled 		= explode(',', $sz_roles);
+			
+			if (!function_exists('wp_get_current_user')) {
+				include(ABSPATH . "wp-includes/pluggable.php");
+			}
+			
+			if ( in_array ( $current_user_role, $all_roled ) ) {
+				switch ($current_user_role) {
 					case 'administrator':
 						$capabilites = 'manage_options';
 						break;
@@ -83,7 +88,7 @@ class Admin
 						break;
 				}
 			} else {
-				$capabilites = 'manage_options';
+				$capabilites 		 = 'manage_options';
 			}
 		}
 
@@ -97,10 +102,9 @@ class Admin
 		add_menu_page(__($ezd_menu_title, 'eazyDocs'), __($ezd_menu_title, 'eazyDocs'), $capabilites, 'eazydocs', [$this, 'eazydocs_page'], 'dashicons-media-document', 10);
 		add_submenu_page('eazydocs', __('Docs Builder', 'eazydocs'), __('Docs Builder', 'eazydocs'), $capabilites, 'eazydocs');
 
-
 		if ( ezd_is_premium() ) {
-			if (in_array($current_user, $cz_roled)) {
-				switch ($current_user) {
+			if (in_array($current_user_role, $cz_roled)) {
+				switch ($current_user_role) {
 					case 'administrator':
 						$cz_capabilites = 'manage_options';
 						break;
@@ -116,36 +120,14 @@ class Admin
 			} else {
 				$cz_capabilites = 'manage_options';
 			}
-
 			if( $is_customizer == 'enable' ) {
 				add_submenu_page('eazydocs', __('Customize', 'eazydocs'), __('Customize', 'eazydocs'), $cz_capabilites, '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page');
-			}
-
-			
-			if (in_array($current_user, $sz_roled)) {
-				switch ($current_user) {
-					case 'administrator':
-						$sz_capabilites = 'manage_options';
-						break;
-
-					case 'editor':
-						$sz_capabilites = 'publish_pages';
-						break;
-
-					case 'author':
-						$sz_capabilites = 'publish_posts';
-						break;
-				}
-			} else {
-				$sz_capabilites = 'manage_options';
-			}
-		} else {
-			add_submenu_page('eazydocs', __('Customize', 'eazydocs'), __('Customize', 'eazydocs'), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page');
+			} 
 		}
+		
+        add_submenu_page('eazydocs', __('Tags', 'eazydocs'), __('Tags', 'eazydocs'), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs');
+
 		$current_theme = get_template();
-
-        add_submenu_page('eazydocs', __('Tags', 'eazydocs'), __('Tags', 'eazydocs'), $capabilites, '/edit-tags.php?taxonomy=doc_tag&post_type=docs');
-
 		if ($current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
 			add_submenu_page('eazydocs', __('OnePage Docs', 'eazydocs'), __('OnePage Docs', 'eazydocs'), 'manage_options', '/edit.php?post_type=onepage-docs');
 		} else {
@@ -163,8 +145,7 @@ class Admin
 	/**
 	 * Docs page
 	 */
-	public function eazydocs_page()
-	{
+	public function eazydocs_page() {
 		include __DIR__ . '/admin-template.php';
 	}
 
@@ -191,7 +172,6 @@ class Admin
 		if (eaz_fs()->is_paying_or_trial()) {
 			$classes .= ' ezd-premium';
 		}
-
 		return $classes;
 	}
 
@@ -199,9 +179,8 @@ class Admin
 	 * OnePage Doc Pro Notice
 	 * @return void
 	 */
-	public function ezd_onepage_presents()
-	{
-?>
+	public function ezd_onepage_presents() { 
+		?>
 		<div class="wrap">
 			<div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
@@ -221,12 +200,11 @@ class Admin
 				</div>
 			</div>
 		</div><!-- /.wrap -->
-	<?php
+		<?php
 	}
 
-	public function ezd_feedback_presents()
-	{
-	?>
+	public function ezd_feedback_presents() {
+		?>
 		<div class="wrap">
 			<div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
@@ -244,8 +222,7 @@ class Admin
         <?php
 	}
 
-	public function ezd_analytics_presents()
-	{
+	public function ezd_analytics_presents() {
 		?>
 		<div class="wrap">
 			<div class="ezd-blank_state">
@@ -271,9 +248,8 @@ class Admin
 	 *
 	 * @return mixed|string
 	 */
-	public function one_page_docs_edit_content($link, $post_ID)
-	{
-		if ('onepage-docs'      == get_post_type($post_ID)) {
+	public function one_page_docs_edit_content($link, $post_ID) {
+		if ( 'onepage-docs' == get_post_type($post_ID) ) {
 			$is_content   				= get_post_meta($post_ID, 'ezd_doc_left_sidebar', true);
 			
 			$ezd_doc_layout     		= get_post_meta($post_ID, 'ezd_doc_layout', true);
@@ -304,8 +280,7 @@ class Admin
 		return $link;
 	}
 
-	public function ezd_admin_body_class($admin_body)
-	{
+	public function ezd_admin_body_class($admin_body) {
 		$ezd_admin_classe 		= explode(' ', $admin_body);
 		if ( empty(eaz_fs()->is_plan('promax')) ) {
 			$ezd_admin_classe 	= array_merge($ezd_admin_classe, [
@@ -317,36 +292,35 @@ class Admin
 	/**
 	 ** Nestable Callback function
 	 **/
-	public function eaz_nestable_callback()
-	{
-		$nestedArray = json_decode(stripslashes($_POST['data']));
-		$i = 0;
-		$c = 0;
-		$c_of = 0;
+	public function eaz_nestable_callback() {
+		$nestedArray 	= json_decode(stripslashes($_POST['data']));
+		$i 				= 0;
+		$c 				= 0;
+		$c_of 			= 0;
 		foreach ($nestedArray as $value) {
 			$i++;
 			wp_update_post([
-				'ID'         => $value->id,
-				'menu_order' => $i,
-				'post_parent' => eaz_get_nestable_parent_id($value->id)
+				'ID'         	=> $value->id,
+				'menu_order' 	=> $i,
+				'post_parent' 	=> eaz_get_nestable_parent_id($value->id)
 			], true);
 
 			if (array_key_exists('children', $value)) {
 				foreach ($value->children as $child) {
 					$c++;
 					wp_update_post([
-						'ID'         => $child->id,
-						'menu_order' => $c,
-						'post_parent' => $value->id
+						'ID'         	=> $child->id,
+						'menu_order' 	=> $c,
+						'post_parent' 	=> $value->id
 					], true);
 					if (array_key_exists('children', $child)) {
 						foreach ($child->children as $of_child) {
 							$c_of++;
 							wp_update_post(
 								[
-									'ID'         => $of_child->id,
-									'menu_order' => $c_of,
-									'post_parent' => $child->id
+									'ID'         	=> $of_child->id,
+									'menu_order' 	=> $c_of,
+									'post_parent' 	=> $child->id
 								],
 								true
 							);
@@ -358,8 +332,7 @@ class Admin
 
 		wp_send_json_success($nestedArray);
 	}
-	public function eaz_parent_nestable_callback()
-	{
+	public function eaz_parent_nestable_callback() {
 		$nestedArray = json_decode(stripslashes($_POST['data']));
 		$msg = [];
 		$i = 0;
