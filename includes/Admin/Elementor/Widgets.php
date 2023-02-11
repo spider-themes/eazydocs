@@ -4,7 +4,7 @@ namespace EazyDocs\Admin\Elementor;
 class Widgets{
     public function __construct() {
         // Register Widgets
-        add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+        add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 
         // Register Category
         add_action( 'elementor/elements/categories_registered', [ $this, 'ezd_register_category' ] );

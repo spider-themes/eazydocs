@@ -24,7 +24,7 @@ class One_Page {
 			if( $content_type == 'widget_data_right'){
 				$shortcode_content_right   = $_GET['right_side_sidebar'] ?? '';
 			}else{
-				$page_content_right      = substr( chrEncode( $page_contents_right ), 6 );
+				$page_content_right      = substr( ezd_chrEncode( $page_contents_right ), 6 );
 				$shortcode_content_right = substr_replace( $page_content_right, "", - 6 );
 				$shortcode_content_right = str_replace('style@',"style=", $shortcode_content_right);
 				$shortcode_content_right = str_replace(';hash;',"#", $shortcode_content_right);
@@ -40,7 +40,7 @@ class One_Page {
 			if ( $ezd_doc_content_type == 'widget_data' ) {
 				$shortcode_content = $left_side_sidebar;
 			} else {
-				$page_content      = substr( chrEncode( $page_contents ), 6 );
+				$page_content      = substr( ezd_chrEncode( $page_contents ), 6 );
 				$shortcode_content = substr_replace( $page_content, "", - 6 );
 				$shortcode_content = str_replace('style@',"style=", $shortcode_content);
 				$shortcode_content   = str_replace(';hash;',"#", $shortcode_content);

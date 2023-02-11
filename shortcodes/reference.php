@@ -26,7 +26,7 @@ add_filter('the_content', function( $ezd_content ) {
     $notes_title_text   = $ezd_options['footnotes_heading_text'] ?? __('Footnotes', 'eazydocs');
     $footnotes_column   = $ezd_options['footnotes_column'] ?? '1';
 
-    $all_shortcodes     = all_shortcodes( $ezd_content );
+    $all_shortcodes     = ezd_all_shortcodes( $ezd_content );
     $all_shortcoded     = '';
     foreach( $all_shortcodes as $all_shortcode ){
         $all_shortcoded .= '<span>' . do_shortcode( $all_shortcode[0] ) . '</span>';

@@ -112,7 +112,7 @@
                             }
                             ?>
                             <a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="learn_btn">
-                                <?php echo esc_html($settings['read_more']); ?> <i class="<?php ezd_arrow_left_right() ?>"></i>
+                                <?php echo esc_html($settings['read_more']); ?> <i class="<?php ezd_arrow() ?>"></i>
                             </a>
                         </div>
                     </div>

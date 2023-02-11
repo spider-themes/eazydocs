@@ -43,7 +43,7 @@
                     if ( !empty($settings['read_more']) ) : ?>
                         <a href="<?php echo get_permalink($section->ID); ?>" class="doc_border_btn">
                             <?php echo esc_html($settings['read_more']) ?>
-                            <i class="<?php ezd_arrow_left_right() ?>"></i>
+                            <i class="<?php ezd_arrow() ?>"></i>
                         </a>
                     <?php endif; ?>
                 </div>
@@ -57,7 +57,7 @@
 	if ( $settings['section_btn'] == 'yes' && !empty( $settings['section_btn_txt'] ) ) : ?>
         <div class="text-center">
             <a href="<?php echo esc_url($settings['section_btn_url']); ?>" class="action_btn all_doc_btn wow fadeinUp">
-                <?php echo esc_html($settings['section_btn_txt']) ?><i class="<?php ezd_arrow_left_right() ?>"></i>
+                <?php echo esc_html($settings['section_btn_txt']) ?><i class="<?php ezd_arrow() ?>"></i>
             </a>
         </div>
 	<?php endif; ?>

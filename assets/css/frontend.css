@@ -3646,6 +3646,7 @@ p .footnotes-link::after {
   font-weight: 600;
   font-size: 1.8em;
   display: flex;
+  align-items: center;
 }
 .single-docs #post h3 {
   font-size: 1.5em;

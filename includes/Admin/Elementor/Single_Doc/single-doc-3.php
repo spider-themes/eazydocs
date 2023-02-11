@@ -58,7 +58,7 @@ $title_tag = !empty($settings['title_tag']) ? $settings['title_tag'] : 'h2';
                 if ( !empty($settings['read_more']) ) : ?>
                     <a href="<?php echo get_permalink($section->ID); ?>" class="text_btn dark_btn">
                         <?php echo esc_html($settings['read_more']) ?>
-                        <i class="<?php ezd_arrow_left_right() ?>"></i>
+                        <i class="<?php ezd_arrow() ?>"></i>
                     </a>
                 <?php endif; ?>
             </div>

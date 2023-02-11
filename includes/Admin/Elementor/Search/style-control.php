@@ -180,26 +180,70 @@ $this->add_group_control(
 	]
 );
 
-$this->add_control(
-	'color_keywords', [
-		'label'     => esc_html__( 'Keyword Color', 'eazydocs' ),
-		'type'      => Controls_Manager::COLOR,
-		'separator' => 'before',
-		'selectors' => [
-			'{{WRAPPER}} .header_search_keyword ul li a' => 'color: {{VALUE}};',
-		],
-	]
+$this->start_controls_tabs(
+    'tabs_keywords_style'
+);
+
+$this->start_controls_tab(
+    'keywords_style',
+    [
+        'label' => esc_html__( 'Normal', 'eazydocs' ),
+    ]
 );
 
 $this->add_control(
-	'color_keywords_bg', [
-		'label'     => esc_html__( 'Background Color', 'eazydocs' ),
-		'type'      => Controls_Manager::COLOR,
-		'selectors' => [
-			'{{WRAPPER}} .header_search_keyword ul li a' => 'background: {{VALUE}};',
-		],
-	]
+    'color_keywords', [
+        'label'     => esc_html__( 'Keyword Color', 'eazydocs' ),
+        'type'      => Controls_Manager::COLOR,
+        'separator' => 'before',
+        'selectors' => [
+            '{{WRAPPER}} .header_search_keyword ul li a' => 'color: {{VALUE}};',
+        ],
+    ]
 );
+
+$this->add_control(
+    'color_keywords_bg', [
+        'label'     => esc_html__( 'Background Color', 'eazydocs' ),
+        'type'      => Controls_Manager::COLOR,
+        'separator' => 'after',
+        'selectors' => [
+            '{{WRAPPER}} .header_search_keyword ul li a' => 'background: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->end_controls_tab();
+
+$this->start_controls_tab(
+    'keywords_style_hover',
+    [
+        'label' => esc_html__( 'Hover', 'eazydocs' ),
+    ]
+);
+
+$this->add_control(
+    'color_keywords_hover', [
+        'label'     => esc_html__( 'Keyword Color', 'eazydocs' ),
+        'type'      => Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .header_search_keyword ul li a:hover' => 'color: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->add_control(
+    'color_keywords_bg_hover', [
+        'label'     => esc_html__( 'Background Color', 'eazydocs' ),
+        'type'      => Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .header_search_keyword ul li a:hover' => 'background: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->end_controls_tabs();
+
 
 $this->add_group_control(
 	Group_Control_Typography::get_type(), [

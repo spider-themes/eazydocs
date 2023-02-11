@@ -548,6 +548,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   border-radius: 45px;
   background: var(--ezd_brand_color);
   color: #fff;
+  text-decoration: none !important;
 }
 
 .header_search_form_info input[type=search] {

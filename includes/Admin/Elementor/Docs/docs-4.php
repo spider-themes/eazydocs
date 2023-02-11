@@ -129,7 +129,7 @@
                                     <?php
                                     if ( !empty($settings['read_more']) ) : ?>
                                         <a class="text_btn dark_btn" href="#">
-                                            <?php echo esc_html($settings['read_more']) ?> <i class="<?php ezd_arrow_left_right() ?>"></i>
+                                            <?php echo esc_html($settings['read_more']) ?> <i class="<?php ezd_arrow() ?>"></i>
                                         </a>
                                         <?php
                                     endif;

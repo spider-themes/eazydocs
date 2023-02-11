@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 2.0.6
+ * Version: 2.1.0
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -144,6 +144,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
             // Notices
 			require_once __DIR__ . '/includes/notices/deactivate-other-doc-plugins.php';
             require_once __DIR__ . '/includes/notices/asking-for-review.php';
+			if ( eaz_fs()->is_plan('promax') ) {
+				require_once __DIR__ . '/includes/notices/update-database.php';
+			}
 
 			require_once __DIR__ . '/includes/sidebars.php';
 			require_once __DIR__ . '/includes/Frontend/Ajax.php';

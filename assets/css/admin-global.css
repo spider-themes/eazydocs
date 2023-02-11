@@ -414,19 +414,6 @@ p.big-p {
   border-bottom: none;
 }
 
-/** == Analytics Page Styles === **/
-.ezd-analytics .tab-menu {
-  flex-basis: 25%;
-}
-.ezd-analytics .dd3-content {
-  padding: 15px 30px;
-}
-.ezd-analytics .votes {
-  display: flex;
-  width: 80px;
-  justify-content: space-between;
-}
-
 /** Date Picker **/
 .daterangepicker .ranges {
   float: none !important;

@@ -137,7 +137,7 @@
 									if ( ! empty( $settings['read_more'] ) ) : ?>
                                         <a href="<?php echo get_permalink( $section->ID ); ?>" class="learn_btn">
 											<?php echo esc_html( $settings['read_more'] ) ?><i
-                                                    class="<?php ezd_arrow_left_right() ?>"></i>
+                                                    class="<?php ezd_arrow() ?>"></i>
                                         </a>
 									<?php endif; ?>
                                 </div>

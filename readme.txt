@@ -191,9 +191,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.1.0 (30 January 2022) =
+= v2.1.0 (11 February 2022) =
+New: Keywords background and text color hover color change options added in the Doc Search Elementor widget
+Fixed: 404 Error was showing often on creating a new doc in Nginx server (CRUD operational issues solved for NGINX server)
+Tweaked: block_categories was deprecated in WordPress 5.8.0. Replaced with block_categories_all
 Tweaked: Alert prompt message font size adjusted and some message text updated according to the context of task in the admin side.
 Tweaked: Elementor widget's frontend design improved
+Tweaked: Code structure improved to make it more readable, maintainable
+Tweaked: Some unnecessary code and files removed
 
 = v2.0.6 (11 January 2022) =
 Tweaked: Folder open/close icon CSS improved to make compatible with image lazy loading plugins.

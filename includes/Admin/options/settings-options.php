@@ -36,7 +36,9 @@ if ( ! function_exists( 'wp_get_current_user' ) ) {
 
 $user 		= wp_get_current_user();
 $userdata 	= get_user_by('id', $user->ID);
-$current_user_role = $userdata->roles[0] ?? ''; 
+$current_user_role = $userdata->roles[0] ?? '';
+
+$capabilites = 'manage_options';
 
 if ( in_array( $current_user_role, $all_roled ) ) {
 	switch ( $current_user_role ) {

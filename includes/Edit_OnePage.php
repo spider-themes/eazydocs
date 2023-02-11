@@ -27,7 +27,7 @@ class Edit_OnePage {
 				$shortcode_content_right = 'doc_sidebar';
 			} else {			
 				$page_content_rights  	 = $_GET['shortcode_content_right'] ?? '';
-				$page_content_right  	 = substr( chrEncode( $page_content_rights ), 1 );
+				$page_content_right  	 = substr( ezd_chrEncode( $page_content_rights ), 1 );
 				$shortcode_content_right = substr_replace( $page_content_right, "", -1);
 				$shortcode_content_right = str_replace('style@',"style=", $shortcode_content_right);
 				$shortcode_content_right = str_replace(';hash;',"#", $shortcode_content_right);
@@ -40,7 +40,7 @@ class Edit_OnePage {
 				$page_content 	= $_GET['left_side_sidebar'] ?? '';;
 			} else {
 				$page_contents 	= $_GET['edit_content'] ?? '';
-				$page_content  	= substr( chrEncode( $page_contents ), 1 );
+				$page_content  	= substr( ezd_chrEncode( $page_contents ), 1 );
 				$page_content  	= substr_replace( $page_content, "", - 1 );
 				$page_content   = str_replace('style@',"style=", $page_content);
 				$page_content   = str_replace(';hash;',"#", $page_content);

@@ -17,7 +17,7 @@ function eazydocs_get_post_view() {
             //  get meta value from wp_meta post of post_views_count
             $oldCount = (int) get_post_meta( $post_id, 'post_views_count', true );
             $count = $wpdb->get_var("SELECT SUM(count) FROM $table_name WHERE post_id = '$post_id'");
-            if ($count == null || $oldCount == null) {
+            if ( $count == null || $oldCount == null ) {
                 $count = 0;
                 $oldCount = 0;
             }
@@ -60,7 +60,6 @@ add_filter( 'manage_doc_posts_columns', function () {
 add_action( 'manage_doc_posts_custom_column', function ( $column ) {
     if ( $column === 'post_views') {
         echo eazydocs_get_post_view();
-        
     }
 });
 

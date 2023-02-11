@@ -46,7 +46,7 @@ endif;
                                 <?php echo eazydocs_get_post_view(); ?>
                             </span>
                             <?php
-                        endif;   
+                        endif;
                         if ( ezd_is_promax() ) : 
                             if( ! empty( $contributor_visibility ) ) :
                                 ?>

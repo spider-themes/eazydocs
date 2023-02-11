@@ -59,10 +59,11 @@ class Assets
 	 */
 	public function eazydocs_global_scripts()
 	{
-		wp_enqueue_script('ezd-notify-review', EAZYDOCS_ASSETS . '/js/admin/review.js');
+		wp_enqueue_script( 'ezd-notify-review', EAZYDOCS_ASSETS . '/js/admin/review.js' );
+        wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', EAZYDOCS_VERSION );
+
 		if ( ezydocs_admin_pages() == true ) {
 			wp_enqueue_style('sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css');
-			wp_enqueue_style('eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', EAZYDOCS_VERSION);
 			wp_enqueue_script('sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array('jquery'), true, true);
 			wp_enqueue_script('eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js', array('jquery'), EAZYDOCS_VERSION);
 			wp_enqueue_script('eazydocs-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js', array('jquery'), EAZYDOCS_VERSION);
