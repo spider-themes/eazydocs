@@ -75,6 +75,39 @@ class Doc_Widget extends Widget_Base {
 		);
 
 		$this->add_control(
+			'doc-widget-tab-alignment', [
+				'label'   => esc_html__( 'Tab Alignment', 'eazydocs' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'eazydocs' ),
+						'icon'  => 'eicon-h-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'center', 'eazydocs' ),
+						'icon'  => 'eicon-h-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'eazydocs' ),
+						'icon'  => 'eicon-h-align-right',
+					]
+				],
+				'toggle'  => false,
+				'default' => 'center',
+				'description' => esc_html__( 'Choose whether you want to position the tab buttons left, right or center from here.', 'eazydocs' ),
+				'selectors' => [
+					'{{WRAPPER}} .doc_tag_area .doc_tag' => 'justify-content: {{VALUE}};',
+					'{{WRAPPER}} .h_doc_documentation_area .documentation_tab' => 'justify-content: {{VALUE}};',
+					'{{WRAPPER}} .question_menu.docs3 .nav' => 'justify-content: {{VALUE}};',
+					'{{WRAPPER}} .doc4-nav-bar .book-chapter-nav' => 'justify-content: {{VALUE}};',
+				],
+				'condition' => [
+					'doc-widget-skin' => [ '2', '3', '4', '5' ]
+				]
+			]
+		);
+
+		$this->add_control(
 			'docs_slug_format', [
 				'label'     => esc_html__( 'ID Format', 'eazydocs' ),
 				'type'      => Controls_Manager::SELECT,
