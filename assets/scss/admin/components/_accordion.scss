@@ -291,3 +291,39 @@ a.child-view-link {
 a.child-delete {
   padding-right: 28px !important;
 }
+
+// rtl
+body.rtl{
+  .accordion-title h4 {
+    gap: 10px;
+  }
+  .ezd-badge {
+    padding: 1px 9px;
+  }
+  .nestables-child .dd3-handle {
+    right: 0;
+  }
+  .nestables-child .dd-item>button {
+    float: right;
+}
+  .nestables-child .dd-item>button {
+    margin: 1px 32px 0 0px;
+}
+.dd3-content {
+  padding: 13px 30px 13px 25px;
+}
+.accordion-title .right-content .progress-text{
+  margin-left: 0;
+}
+.nestables-child .dd-list .dd-list .dd-item>button{
+  margin-left: 0;
+}
+
+.accordion-title .left-content {
+  gap: 10px;
+  margin-right: 10px;
+}
+a.child-delete {
+  padding-right: 0px !important;
+}
+}

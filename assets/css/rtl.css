@@ -809,8 +809,7 @@ div.code-toolbar > .toolbar {
     }
 
     .eazydocs-comments-wrap {
-        padding-bottom: 0;
-        margin-left: 40px;
+        padding-bottom: 0; 
     }
 
     .shortcode_info {

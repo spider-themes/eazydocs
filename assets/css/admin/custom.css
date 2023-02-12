@@ -716,3 +716,63 @@ select#ezd_docs_layout {
 .dd3-content:hover>.accordion-title {
     background: #F9F9F9;
 }
+body.rtl,
+body.rtl .ezd_docs_content_type_wrap,
+body.rtl .ezd_docs_content_type_wrap>label[for="ezd_docs_content_type"],
+body.rtl label[for='ezd-shortcode-edit'],body.rtl label[for='right_side_sidebar'], body.rtl .create_onepage_doc_area label[for='ezd-shortcode'],
+body.rtl .ezd_content_btn_wrap .left_btn_link, body.rtl .ezd_content_btn_wrap .right_btn_link,
+body.rtl h2#swal2-title,
+body.rtl .docs_visibility_field_wrap,
+body.rtl label[for=ezd_docs_sidebar],
+body.rtl .docs_visibility_wrapper p,
+body.rtl #swal2-html-container,
+body.rtl .ezd-doc-sidebar-intro
+{
+    text-align: right;
+}
+body.rtl .swal2-actions {
+    width: 100%;
+    text-align: right;
+    display: block !important;
+    padding-right: 18px;
+}
+body.rtl .docs_visibility_field_wrap label,
+body.rtl .ezd_docs_content_type_wrap>label {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 3px;
+    vertical-align: text-bottom;
+}
+body.rtl label[for='ezd_docs_sidebar'],
+body.rtl label[for="ezd_docs_content_type"] {
+    width: 100%;
+    display: table-cell;
+    padding-bottom: 10px;
+}
+body.rtl .swal2-icon{
+    margin-right: 22px;
+}
+body.rtl .notification-dropdown.easydocs-dropdown {
+    width: max-content;
+    left: 0;
+    right: unset;
+}
+body.rtl .notification-dropdown.easydocs-dropdown::before{
+    left: 10px;
+    right: unset;
+}
+body.rtl .easydocs-settings .header-notify-icon img{
+    margin-right: 10px;
+}
+body.rtl .ezd-admin-bulk-options .ezd-admin-bulk-actions a {
+    align-items: center;
+}
+body.rtl .ezd-link-copied-wrap.copied {
+    padding: 12px 45px 12px 47px;
+}
+body.rtl .easydocs-notification{
+    margin-right: 1rem;
+}
+body.rtl .easydocs-settings {
+    gap: 1rem;
+}

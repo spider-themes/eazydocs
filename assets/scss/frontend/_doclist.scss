@@ -1860,3 +1860,18 @@ body.admin-bar{
     }
   }
 }
+
+// RTL
+body.rtl{
+  .contact_form .form-group textarea {
+    padding-top: 10px;
+    padding-right: 14px;
+  }
+  .doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
+    margin-left: 27px;
+  }
+  
+  .ezd-link-copied-wrap.copied{
+    padding: 12px 45px 12px 47px;
+  }
+}

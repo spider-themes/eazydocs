@@ -683,6 +683,38 @@ a.child-delete {
   padding-right: 28px !important;
 }
 
+body.rtl .accordion-title h4 {
+  gap: 10px;
+}
+body.rtl .ezd-badge {
+  padding: 1px 9px;
+}
+body.rtl .nestables-child .dd3-handle {
+  right: 0;
+}
+body.rtl .nestables-child .dd-item > button {
+  float: right;
+}
+body.rtl .nestables-child .dd-item > button {
+  margin: 1px 32px 0 0px;
+}
+body.rtl .dd3-content {
+  padding: 13px 30px 13px 25px;
+}
+body.rtl .accordion-title .right-content .progress-text {
+  margin-left: 0;
+}
+body.rtl .nestables-child .dd-list .dd-list .dd-item > button {
+  margin-left: 0;
+}
+body.rtl .accordion-title .left-content {
+  gap: 10px;
+  margin-right: 10px;
+}
+body.rtl a.child-delete {
+  padding-right: 0px !important;
+}
+
 .easydocs-btn {
   --btn-fs: var(--fs-16);
   --btn-ff: var(--ff-roboto);

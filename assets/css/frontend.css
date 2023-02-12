@@ -2372,6 +2372,17 @@ body.admin-bar .ezd-link-copied-wrap {
   right: 20px;
 }
 
+body.rtl .contact_form .form-group textarea {
+  padding-top: 10px;
+  padding-right: 14px;
+}
+body.rtl .doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
+  margin-left: 27px;
+}
+body.rtl .ezd-link-copied-wrap.copied {
+  padding: 12px 45px 12px 47px;
+}
+
 /*============== Start doc_tag_area css =============*/
 .doc_tag {
   display: flex;
