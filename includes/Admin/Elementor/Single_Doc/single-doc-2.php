@@ -29,7 +29,7 @@
                         'posts_per_page' => !empty($settings['ppp_doc_items']) ? $settings['ppp_doc_items'] : -1,
                     ));
                     ?>
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-6">
                         <div class="recommended_item box-item wow fadeInUp" data-wow-delay="<?php echo esc_attr($delay) ?>s">
                             <?php
                             if ( has_post_thumbnail($section->ID) ) {

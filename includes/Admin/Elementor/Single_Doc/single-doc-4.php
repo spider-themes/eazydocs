@@ -2,7 +2,7 @@
 	<?php
 	foreach ( $sections as $section ) :
 		?>
-        <div class="col-lg-3 col-sm-6">
+        <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-sm-6">
             <a href="<?php echo get_permalink( $section->ID ) ?>">
                 <div class="h_item">
 					<?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
@@ -40,7 +40,7 @@ $sections2 = get_children( array(
 		<?php
 		foreach ( $sections2 as $section ) :
 			?>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-sm-6">
                 <a href="<?php echo get_permalink( $section->ID ) ?>">
                     <div class="h_item">
 						<?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>

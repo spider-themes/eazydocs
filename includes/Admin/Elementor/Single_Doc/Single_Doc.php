@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Single_Doc extends Widget_Base {
 
 	public function get_name() {
-		return 'ezd_single_doc';
+		return 'docy_single_doc';
 	}
 
 	public function get_title() {
@@ -144,6 +144,26 @@ class Single_Doc extends Widget_Base {
 				'label'   => esc_html__( 'Doc', 'eazydocs' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => ezd_get_posts()
+			]
+		);
+
+		
+		$this->add_control(
+			'ppp_column', [
+				'label'       => esc_html__( 'Column', 'eazydocs' ),
+				'description' => esc_html__( 'Number of column to show', 'eazydocs' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'	  => [
+					'12' 	  => esc_html__( '1 Column', 'eazydocs' ),
+					'6' 	  => esc_html__( '2 Column', 'eazydocs' ),
+					'4' 	  => esc_html__( '3 Column', 'eazydocs' ),
+					'3' 	  => esc_html__( '4 Column', 'eazydocs' ),
+					'2' 	  => esc_html__( '6 Column', 'eazydocs' ),
+				],
+				'default'     => 3,
+				'condition'   => [
+					'doc-widget-single-search!' => [ '5' ]
+				]
 			]
 		);
 
@@ -591,8 +611,9 @@ class Single_Doc extends Widget_Base {
 	}
 
 	protected function render() {
-		$settings  = $this->get_settings();
-		$title_tag = ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
+		$settings  	= $this->get_settings();
+		$title_tag 	= ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
+		$ppp_column = ! empty( $settings['ppp_column'] ) ? $settings['ppp_column'] : '3';
 
 		/**
 		 * Get the parent docs with query

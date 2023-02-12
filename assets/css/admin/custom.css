@@ -726,10 +726,17 @@ body.rtl .docs_visibility_field_wrap,
 body.rtl label[for=ezd_docs_sidebar],
 body.rtl .docs_visibility_wrapper p,
 body.rtl #swal2-html-container,
-body.rtl .ezd-doc-sidebar-intro
+body.rtl .ezd-doc-sidebar-intro,
+body.rtl .easydocs-card-body .easydocs-card-title,
+body.rtl .easydocs-card-body .easydocs-card-value,
+body.rtl .eazydocc-chartsummery .easydocs-card-body .eazy-docs-table
 {
     text-align: right;
 }
+body.rtl .easydocs-summary .easydocs-summery-body .easydocs-summery-value{
+    float: right;
+}
+
 body.rtl .swal2-actions {
     width: 100%;
     text-align: right;

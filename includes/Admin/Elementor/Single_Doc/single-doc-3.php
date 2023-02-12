@@ -21,7 +21,7 @@ $title_tag = !empty($settings['title_tag']) ? $settings['title_tag'] : 'h2';
             'posts_per_page' => -1,
         ));
         ?>
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-sm-6">
             <div class="topic_list_item box-item wow fadeIn" data-wow-delay="0.2s">
                 <?php
                 if ( !empty($section->post_title) ) :

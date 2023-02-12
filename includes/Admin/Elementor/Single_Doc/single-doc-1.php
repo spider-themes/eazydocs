@@ -15,7 +15,7 @@
                 'post_type' => 'docs',
             ]);
             ?>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-sm-6">
                 <div class="categories_guide_item box-item wow fadeInUp single-doc-layout-one">
                     <div class="doc-top d-flex align-items-start">
                         <?php echo wp_get_attachment_image( get_post_thumbnail_id( $section->ID ) ); ?>
