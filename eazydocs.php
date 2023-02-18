@@ -158,6 +158,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/search-counts.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
+			require_once __DIR__ . '/includes/template-library/template-library.php';
 
 			if ( eazydocs_unlock_with_themes() == true ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
