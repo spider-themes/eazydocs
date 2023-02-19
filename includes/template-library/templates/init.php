@@ -66,7 +66,7 @@ class Templates {
     }
 
     public static function get_tabs() {
-        return apply_filters('landpagy_editor/templates_tabs', [
+        return apply_filters('eazydocs_editor/templates_tabs', [
             'section' => [ 'title' => 'Blocks'],
             'page' => [ 'title' => 'Ready Pages'],
         ]);

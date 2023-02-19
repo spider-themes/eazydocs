@@ -8,18 +8,17 @@ if ( ! defined( 'ABSPATH' ) ) {exit;}
 
 class Api extends Source_Base {
 	
-	const LIBRARY_OPTION_KEY = 'landpagy_library_info';
+	const LIBRARY_OPTION_KEY = 'eazydocs_library_info';
 
-	const LIBRARY_TIMESTAMP_CACHE_KEY = 'landpagy_remote_update_timestamp';
-
-	const API_INFO_URL = 'https://www.spiderthemes-demos.com/elementor-template-library/landpagy/';
+	const LIBRARY_TIMESTAMP_CACHE_KEY = 'eazydocs_remote_update_timestamp';
+	const API_INFO_URL = 'https://wordpress-theme.spider-themes.net/elementor-template-library/eazydocs/';
 
 	public function get_id() {
-		return 'landpagy-library';
+		return 'eazydocs-library';
 	}
 
 	public function get_title() {
-		return esc_html__( 'Landpagy Library', 'eazydocs' );
+		return esc_html__( 'Eazydocs Library', 'eazydocs' );
 	}
 
 	public function register_data() {}
