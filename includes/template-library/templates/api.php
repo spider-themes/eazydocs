@@ -14,7 +14,7 @@ class Api extends Source_Base {
 	const API_INFO_URL = 'https://wordpress-theme.spider-themes.net/elementor-template-library/eazydocs/';
 
 	public function get_id() {
-		return 'eazydocs-library';
+		return 'template_library';
 	}
 
 	public function get_title() {

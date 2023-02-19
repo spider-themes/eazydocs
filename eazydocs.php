@@ -212,6 +212,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Admin\Assets();
 				new eazyDocs\One_Page();
 				new eazyDocs\Edit_OnePage();
+				new eazyDocs\Template_library\Template_Library();
 			} elseif ( !is_admin() ) {
 				new eazyDocs\Frontend\Frontend();
 				new eazyDocs\Frontend\Assets();
