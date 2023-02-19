@@ -65,8 +65,6 @@ if ( function_exists( 'eaz_fs' ) ) {
 		// Signal that SDK was initiated.
 		do_action( 'eaz_fs_loaded' );
 	}
-
-	// ... Your plugin's main file logic ...
 }
 
 use eazyDocs\Post_Types;

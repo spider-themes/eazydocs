@@ -856,7 +856,7 @@ function ezd_password_form( $output, $post = 0 ) {
                         <a href="<?php the_permalink(); ?>" class="logo logo-admin">
 							<?php the_post_thumbnail( 'ezd_searrch_thumb50x50', [ 'class' => 'mb-3' ] ); ?>
                         </a>
-					<?php
+					    <?php
 					endif;
 					?>
                     <p class="mb-1 ezd-password-title">
