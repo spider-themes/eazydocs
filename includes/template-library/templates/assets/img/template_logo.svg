@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="39.781" height="39.781" viewBox="0 0 39.781 39.781">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #460ec6;
+      }
+
+      .cls-2 {
+        fill: #2d1c92;
+        opacity: 0.4;
+      }
+
+      .cls-3, .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        opacity: 0.05;
+      }
+
+      .cls-4 {
+        fill: #3617a4;
+        opacity: 0.54;
+      }
+
+      .cls-5 {
+        fill-rule: evenodd;
+      }
+
+      .cls-6 {
+        fill: #ff4d6f;
+        opacity: 0.2;
+      }
+    </style>
+  </defs>
+  <circle id="bg" class="cls-1" cx="19.844" cy="19.859" r="19.937"/>
+  <ellipse id="Ellipse_1_copy" data-name="Ellipse 1 copy" class="cls-2" cx="26.422" cy="25.563" rx="5.422" ry="5.438"/>
+  <ellipse id="Ellipse_1_copy_4" data-name="Ellipse 1 copy 4" class="cls-3" cx="18.609" cy="4.422" rx="2.391" ry="2.391"/>
+  <circle id="Ellipse_1_copy_5" data-name="Ellipse 1 copy 5" class="cls-3" cx="33.625" cy="17.531" r="1"/>
+  <circle id="Ellipse_1_copy_6" data-name="Ellipse 1 copy 6" class="cls-3" cx="12.125" cy="31.031" r="1"/>
+  <circle id="Ellipse_1_copy_7" data-name="Ellipse 1 copy 7" class="cls-3" cx="21.609" cy="35.391" r="0.641"/>
+  <circle id="Ellipse_1_copy_2" data-name="Ellipse 1 copy 2" class="cls-4" cx="10.297" cy="13.766" r="2.922"/>
+  <path id="R" class="cls-5" d="M13.3,26.158h6.332l-1.955-1.507V20.078h0.341c1.973,1.955,5.256,6.888,8.359,6.906l-5.13-7.032c2.619-.7,3.3-2.063,3.3-3.5,0-1.686-1.381-3.193-3.713-3.193-1.9,0-4.269.018-4.269,0.018H13.3l1.866,1.453v9.991Zm4.879-11.964a5.623,5.623,0,0,1,2.619.341,2.329,2.329,0,0,1,1.076,2.188c0,2.565-2.17,2.565-4.2,2.565V14.194h0.5Z"/>
+  <circle class="cls-6" cx="28.438" cy="8.938" r="2"/>
+  <circle id="Ellipse_1_copy_3" data-name="Ellipse 1 copy 3" class="cls-6" cx="6.438" cy="24.563" r="1.125"/>
+</svg>

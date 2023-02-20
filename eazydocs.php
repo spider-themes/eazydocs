@@ -7,7 +7,7 @@
  * Author URI: https://spider-themes.net/eazydocs
  * Version: 2.1.0
  * Requires at least: 5.0
- * Requires PHP: 7.4
+ * Requires PHP: 7.0
  * Text Domain: eazydocs
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -156,6 +156,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/search-counts.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
+			require_once __DIR__ . '/includes/template-library/template-library.php';
 
 			if ( eazydocs_unlock_with_themes() == true ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
@@ -209,6 +210,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Admin\Assets();
 				new eazyDocs\One_Page();
 				new eazyDocs\Edit_OnePage();
+				new eazyDocs\Template_library\Template_Library();
 			} elseif ( !is_admin() ) {
 				new eazyDocs\Frontend\Frontend();
 				new eazyDocs\Frontend\Assets();
