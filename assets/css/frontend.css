@@ -2668,6 +2668,7 @@ body.rtl .ezd-link-copied-wrap.copied {
 
 .admin-bar .dock4-nav-sticky {
   top: 32px;
+  z-index: 9999;
 }
 
 .doc4-section-title h4 {
@@ -3381,6 +3382,11 @@ a.action_btn.all_doc_btn > i {
 }
 a.action_btn.all_doc_btn:hover {
   box-shadow: 0 20px 30px 0 rgba(76, 76, 241, 0.24);
+}
+
+.elementor-add-section-area-button.dlrave_templates_add_button {
+  vertical-align: bottom;
+  margin-left: 5px;
 }
 
 .modal-content .shortcode_info .row {

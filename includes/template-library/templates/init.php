@@ -41,7 +41,7 @@ class Templates {
                     'templatesNoResultsMessage' => esc_html__( 'Please make sure your search is spelled correctly or try a different words.', 'eazydocs' ),
                 ],
                 'tab_style' => json_encode(self::get_tabs()),
-                'default_tab' => 'section'
+                'default_tab' => 'page'
             ];
             wp_localize_script(
                 'rave-load-template-editor',
@@ -67,8 +67,8 @@ class Templates {
 
     public static function get_tabs() {
         return apply_filters('eazydocs_editor/templates_tabs', [
-            'section' => [ 'title' => 'Blocks'],
-            'page' => [ 'title' => 'Ready Pages'],
+            //'section' => [ 'title' => 'EazyDocs Blocks'],
+            'page' => [ 'title' => 'EazyDocs Pages'],
         ]);
     }
     public static function instance(){
