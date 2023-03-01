@@ -209,9 +209,10 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
 .single-onepage-docs .documentation_area_sticky .one-page-docs-sidebar-wrap img {
   display: block;
   max-width: 200px !important;
-  margin: 20px auto !important;
   height: auto !important;
   width: auto !important;
+  max-height: 120px;
+  margin: 10px 0;
 }
 .single-onepage-docs .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
   background: transparent;
@@ -387,7 +388,7 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
 
 .fullscreen-layout.onepage_doc_area .nav-sidebar.one-page-doc-nav-wrap .nav-item.active ul {
   background: #182530;
-  padding: 0 0 0 15px !important;
+  padding: 0 0 0 20px !important;
 }
 
 ul.doc-last-depth-fullscreen {

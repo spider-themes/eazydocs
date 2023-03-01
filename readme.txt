@@ -191,7 +191,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.1.0 (11 February 2022) =
+= v2.1.1 (01 March 2023) =
+New: demo.xml file added in the include/sample-data folder
+Tweaked: EazyDocs Docs Builder UI RTL view improved
+Tweaked: Added Column changing option in Single Doc widget
+Tweaked: OnePage Doc design improved (unlocked in the Premium and Docy theme)
+
+= v2.1.0 (11 February 2023) =
 New: Keywords background and text color hover color change options added in the Doc Search Elementor widget
 Fixed: 404 Error was showing often on creating a new doc in Nginx server (CRUD operational issues solved for NGINX server)
 Tweaked: Language file updated
@@ -201,7 +207,7 @@ Tweaked: Elementor widget's frontend design improved
 Tweaked: Code structure improved to make it more readable, maintainable
 Tweaked: Some unnecessary code and files removed
 
-= v2.0.6 (11 January 2022) =
+= v2.0.6 (11 January 2023) =
 Tweaked: Folder open/close icon CSS improved to make compatible with image lazy loading plugins.
 Tweaked: Dark mode colors improved.
 Updated: Removed some unnecessary code

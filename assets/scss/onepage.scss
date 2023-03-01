@@ -224,9 +224,10 @@ body.admin-bar {
   .one-page-docs-sidebar-wrap img {
     display: block;
     max-width: 200px !important;
-    margin: 20px auto !important;
     height: auto !important;
     width: auto !important;
+    max-height: 120px;
+    margin: 10px 0;
   }
   .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
     background: transparent;
@@ -407,7 +408,7 @@ body.admin-bar {
 
 .fullscreen-layout.onepage_doc_area .nav-sidebar.one-page-doc-nav-wrap .nav-item.active ul {
   background: #182530;
-  padding: 0 0 0 15px !important;
+  padding: 0 0 0 20px !important;
 }
 
 ul {

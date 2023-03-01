@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-02-11 15:55+0600\n"
+"POT-Creation-Date: 2023-03-01 15:00+0600\n"
 "PO-Revision-Date: 2022-04-05 15:26+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -160,12 +160,12 @@ msgid "EazyDocs Multi Docs"
 msgstr ""
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:54
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:54
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:52
 msgid "Preset Skin"
 msgstr ""
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:60
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:60
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:58
 msgid "Skins"
 msgstr ""
 
@@ -174,107 +174,133 @@ msgid "Filter Options"
 msgstr ""
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:79
+msgid "Tab Alignment"
+msgstr ""
+
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:83
+#: includes/Admin/Elementor/Search/Search_Widget.php:148
+#: vendor/codestar-framework/fields/typography/typography.php:171
+msgid "Left"
+msgstr ""
+
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:87
+msgid "center"
+msgstr ""
+
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:91
+#: includes/Admin/Elementor/Search/Search_Widget.php:156
+#: vendor/codestar-framework/fields/typography/typography.php:173
+msgid "Right"
+msgstr ""
+
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:97
+msgid ""
+"Choose whether you want to position the tab buttons left, right or center "
+"from here."
+msgstr ""
+
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:112
 msgid "ID Format"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:85
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:118
 msgid "If the slug ID does not work then you should pick the number ID."
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:95
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:128
 msgid "Exclude Docs"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:104
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:137
 msgid "Show Section Count"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:105
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:138
 msgid ""
 "The number of sections to show under every documentation tab. Leave empty or "
 "give value -1 to show all sections."
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:118
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:151
 msgid "Active Doc"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:119
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:152
 msgid "Select the active Doc tab by default."
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:131
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:164
 msgid "Show Doc Item"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:132
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:165
 msgid ""
 "The number of doc items to under every doc sections. Leave empty or give "
 "value -1 to show all sections."
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:145
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:178
 msgid "Main Doc Excerpt"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:146
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:179
 msgid ""
 "Excerpt word limit of main documentation. If the excerpt got empty, this "
 "will get from the post content."
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:158
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:191
 msgid "Doc Section Excerpt"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:159
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:176
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:192
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:194
 msgid ""
 "Excerpt word limit of the documentation sections. If the excerpt got empty, "
 "this will get from the post content."
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:171
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:199
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:204
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:217
 msgid "Order"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:187
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:220
 msgid "Custom Order"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:188
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:221
 msgid "Order the Doc tabs as you want."
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:204
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:138
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:144
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:237
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:136
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:142
 #: includes/Post_Types.php:40
 msgid "Doc"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:214
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:247
 msgid "Tabs Items"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:229
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:262
 msgid "Labels"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:236
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:269
 msgid "Tab Title First Word"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:237
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:270
 msgid "Show the first word of the doc in Tab Title."
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:248
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:281
 msgid "Read More Text"
 msgstr ""
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:261
+#: includes/Admin/Elementor/Docs/Doc_Widget.php:294
 msgid "Book Chapters / Tutorials Prefix"
 msgstr ""
 
@@ -353,25 +379,15 @@ msgstr ""
 msgid "Alignment"
 msgstr ""
 
-#: includes/Admin/Elementor/Search/Search_Widget.php:148
-#: vendor/codestar-framework/fields/typography/typography.php:171
-msgid "Left"
-msgstr ""
-
 #: includes/Admin/Elementor/Search/Search_Widget.php:152
 #: vendor/codestar-framework/fields/typography/typography.php:172
 msgid "Center"
 msgstr ""
 
-#: includes/Admin/Elementor/Search/Search_Widget.php:156
-#: vendor/codestar-framework/fields/typography/typography.php:173
-msgid "Right"
-msgstr ""
-
 #: includes/Admin/Elementor/Search/Search_Widget.php:168
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:96
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:348
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:439
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:94
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:366
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:457
 #: includes/Admin/options/settings-options.php:211
 #: includes/Admin/options/settings-options.php:973
 #: includes/Admin/options/settings-options.php:1013
@@ -405,13 +421,13 @@ msgstr ""
 #: includes/Admin/Elementor/Search/style-control.php:16
 #: includes/Admin/Elementor/Search/style-control.php:108
 #: includes/Admin/Elementor/Search/style-control.php:259
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:331
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:349
 #: includes/Admin/options/settings-options.php:420
 msgid "Padding"
 msgstr ""
 
 #: includes/Admin/Elementor/Search/style-control.php:30
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:323
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:341
 msgid "Border"
 msgstr ""
 
@@ -443,8 +459,8 @@ msgid "Typography"
 msgstr ""
 
 #: includes/Admin/Elementor/Search/style-control.php:88
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:358
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:397
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:376
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:415
 msgid "Text Color"
 msgstr ""
 
@@ -486,143 +502,176 @@ msgstr ""
 msgid "Hover"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:30
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:28
 msgid "EazyDocs Single Doc"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:64
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:62
 msgid "Light"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:68
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:66
 msgid "Creative"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:72
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:301
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:70
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:319
 msgid "Box"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:76
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:74
 msgid "Topic Boxes"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:80
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:78
 msgid "Docs Boxes"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:106
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:104
 msgid "Title Text"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:115
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:113
 msgid "Title Tag"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:126
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:124
 msgid "Subtitle Text"
 msgstr ""
 
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:151
+msgid "Column"
+msgstr ""
+
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:152
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:162
+msgid "Number of column to show"
+msgstr ""
+
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:155
+#: includes/Admin/options/settings-options.php:1403
+msgid "1 Column"
+msgstr ""
+
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:156
+#: includes/Admin/options/settings-options.php:1404
+msgid "2 Column"
+msgstr ""
+
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:157
+#: includes/Admin/options/settings-options.php:1405
+msgid "3 Column"
+msgstr ""
+
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:158
+#: includes/Admin/options/settings-options.php:1406
+msgid "4 Column"
+msgstr ""
+
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:159
+#: includes/Admin/options/settings-options.php:1408
+msgid "6 Column"
+msgstr ""
+
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:170
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:180
 msgid "Sections"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:153
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:163
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:171
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:181
 msgid "Number of section to show"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:175
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:193
 #: includes/Admin/options/settings-options.php:353
 msgid "Excerpt"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:188
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:206
 #: templates/onepage/default-layout.php:126
 #: templates/single-doc-content.php:207
 msgid "Articles"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:189
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:207
 msgid "Number of articles to show under every sections"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:215
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:233
 msgid "Buttons"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:224
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:242
 msgid "Read More Button"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:233
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:251
 msgid "Section Button"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:245
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:263
 msgid "Button Text"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:258
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:276
 msgid "Button URL"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:270
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:288
 msgid "Show More Button"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:282
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:300
 msgid "Show Less Text"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:313
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:331
 #: includes/Admin/options/settings-options.php:413
 #: includes/Admin/options/settings-options.php:1959
 msgid "Background"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:387
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:405
 msgid "Subtitle"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:429
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:471
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:447
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:489
 msgid "Content"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:445
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:478
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:463
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:496
 #: vendor/codestar-framework/fields/background/background.php:278
 msgid "Color"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:510
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:520
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:528
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:538
 msgid "Background Objects"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:529
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:547
 msgid "Shape"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:530
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:548
 msgid "The background shape should be transparent png or svg image."
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:543
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:561
 msgid "Round Objects 01"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:553
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:571
 msgid "Round 01 Color"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:567
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:585
 msgid "Round Objects 02"
 msgstr ""
 
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:577
+#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:595
 msgid "Round 02 Color"
 msgstr ""
 
@@ -1450,28 +1499,8 @@ msgstr ""
 msgid "Footnotes Column"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:1403
-msgid "1 Column"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1404
-msgid "2 Column"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1405
-msgid "3 Column"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1406
-msgid "4 Column"
-msgstr ""
-
 #: includes/Admin/options/settings-options.php:1407
 msgid "5 Column"
-msgstr ""
-
-#: includes/Admin/options/settings-options.php:1408
-msgid "6 Column"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:1422

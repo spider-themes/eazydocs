@@ -1,5 +1,4 @@
 <?php
-
 namespace EazyDocs\Admin\Elementor\Single_Doc;
 
 use Elementor\Widget_Base;
@@ -21,7 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package DocyCore\Widgets
  */
 class Single_Doc extends Widget_Base {
-
 	public function get_name() {
 		return 'docy_single_doc';
 	}

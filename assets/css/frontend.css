@@ -3295,7 +3295,7 @@ body.rtl .ezd-link-copied-wrap.copied {
 }
 .categories_guide_item.single-doc-layout-one .doc-top > img {
   width: auto;
-  max-width: 70px;
+  max-width: 60px;
   height: auto;
   max-height: 70px;
   margin: 0 10px 0 0;
@@ -3481,7 +3481,7 @@ p .footnotes-link::after {
 
 .left-sidebar-toggle {
   position: absolute;
-  top: 65px;
+  top: 125px;
   color: #656565;
   line-height: 22px;
   cursor: pointer;
