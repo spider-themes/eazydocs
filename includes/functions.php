@@ -1155,3 +1155,64 @@ function eazydocs_unlock_with_themes() {
 		return true;
 	}
 }
+
+/**
+ * Get contributors
+ */
+function load_more_contributors() {
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$doc_id = $_POST['doc_id'];
+    $users_per_page = 10;
+    $offset = ($page - 2) * $users_per_page;
+
+	$current_doc_author = get_the_author_meta( 'ID', $doc_id );
+	$ezd_exclude_users = get_post_meta( $doc_id, 'ezd_doc_contributors', true );
+	$ezd_exclude_users = rtrim( $ezd_exclude_users, ',' );
+	$ezd_exclude_users = explode( ',', $ezd_exclude_users );
+	$ezd_exclude_users[] = $current_doc_author;
+	$all_users = get_users( array(
+		'exclude' => $ezd_exclude_users
+	) );
+	
+
+    $total_users = count($all_users);
+    $total_pages = ceil($total_users / $users_per_page);
+    $all_users = array_slice($all_users, $offset, $users_per_page);
+
+
+    ob_start();
+    foreach( $all_users as $add_contributor ){                                                                                                     
+        $available_user = get_user_by('id', $add_contributor);
+        ?>
+        <ul class="users_wrap_item <?php echo esc_attr('to-add-user-'.$add_contributor->ID); ?>" id="<?php echo esc_attr('to-add-user-'.$add_contributor->ID); ?>">
+            <li>
+                <a href='<?php echo get_author_posts_url($add_contributor->ID); ?>'>
+                    <?php echo get_avatar($add_contributor, '35'); ?>
+                </a>
+            </li>
+            <li>
+                <a href='<?php echo get_author_posts_url($add_contributor->ID); ?>'>
+                    <?php echo get_the_author_meta( 'display_name', $add_contributor->ID ); ?>
+                </a>
+                <span> 
+                    <?php echo get_the_author_meta( 'user_email', $add_contributor->ID ); ?>
+                </span>
+            </li>
+            <li>
+                <a class="circle-btn ezd_contribute_add" data-contributor-add="<?php echo esc_attr($add_contributor->ID); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
+                    &plus; 
+                </a>
+            </li>
+        </ul>
+    <?php }
+    $response = ob_get_clean();
+
+    wp_send_json_success( array(
+        'html' => $response,
+        'total_pages' => $total_pages,
+        'page' => $page,
+    ) );
+}
+
+add_action( 'wp_ajax_load_more_contributors', 'load_more_contributors' );
+add_action( 'wp_ajax_nopriv_load_more_contributors', 'load_more_contributors' );

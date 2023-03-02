@@ -138,7 +138,7 @@ endif;
                                                         }
                                                     ?>
                                                 </div>
-                                                <div class="doc_dropdown_users_list" id="to_add_contributors"> 
+                                                <div class="doc_dropdown_users_list" id="to_add_contributors" data-page="1"> 
                                                     <?php                                            
                                                     $current_doc_author     = get_the_author_meta( 'ID' );
                                                     $ezd_exclude_users      = get_post_meta(get_the_ID(), 'ezd_doc_contributors', true);
@@ -146,6 +146,14 @@ endif;
                                                     $ezd_exclude_users     = $current_doc_author.','.$ezd_exclude_users;
                                                     $all_users              = get_users(['exclude'  => $ezd_exclude_users]);
 
+                                                    // set pagination on scroll
+                                                    $page = 1;
+                                                    $total_users = count($all_users);
+                                                    $users_per_page = 10;
+                                                    $total_pages = ceil($total_users / $users_per_page);
+                                                    $offset = ($page - 1) * $users_per_page;
+                                                    $all_users = array_slice($all_users, $offset, $users_per_page);
+                                                    
                                                     foreach( $all_users as $add_contributor ){                                                                                                     
                                                         $available_user = get_user_by('id', $add_contributor);
                                                         ?>
@@ -171,6 +179,9 @@ endif;
                                                         </ul>
                                                     <?php }
                                                     ?>
+                                                </div>
+                                                <div class="loading-info" style="display: none;">
+                                                    <span><?php echo esc_html__('Loading...', 'eazydocs'); ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -236,3 +247,59 @@ if ( $comment_visibility == '1' )  :
 	<?php
 	endif;
 endif;
+
+?>
+
+<script type="text/javascript">
+    var page = 1;
+    var loading = false;
+    var totalPages = <?php echo $total_pages; ?>;
+    
+    function load_users() {
+        if(page <= totalPages && loading == false) {
+            loading = true;
+            jQuery('.loading-info').show();
+            jQuery.ajax({
+                url: "<?php echo admin_url('admin-ajax.php'); ?>",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: 'load_more_contributors',
+                    page: page,
+                    doc_id: "<?php echo get_the_ID(); ?>"
+                },
+                success: function(response) {
+                    if(response.success) {
+                        jQuery('#to_add_contributors').append(response.data.html);
+                        page++;
+                        loading = false;
+                        jQuery('.loading-info').hide();
+                    } else {
+                        console.log(response.data);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus + ': ' + errorThrown);
+                }
+            });
+        }
+    }
+    
+    jQuery(document).ready(function($) {
+        $('.doc_users_dropdown').scroll(function() {
+            var divOffset = $('#to_add_contributors').offset().top;
+            var divHeight = $('#to_add_contributors').outerHeight();
+            var windowHeight = $(window).height();
+            var scrollVal = $(this).scrollTop();
+            console.log('divOffset', divOffset);
+            console.log('divHeight', divHeight);
+            console.log('windowHeight', windowHeight);
+            console.log('scrollVal', scrollVal);
+
+            if (scrollVal + windowHeight >= divOffset + divHeight) {
+                console.log('reached end of div');
+                load_users();
+            }
+        });
+    });
+</script>
