@@ -411,7 +411,7 @@ CSF::createSection( $prefix, array(
 			'id'     => 'doc_banner_bg',
 			'type'   => 'background',
 			'title'  => esc_html__( 'Background', 'eazydocs' ),
-			'output' => '.ezd_search_banner.has_bg_dark.has_cs_bg',
+			'output' => '.ezd_search_banner.has_bg_dark',
 		),
 
         array(
