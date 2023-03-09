@@ -122,8 +122,11 @@
 
 .elementor-control-ezd_search_style_keywords,
 .elementor-control-ezd_search_keywords_sec,
-.elementor-control-doc-widget-single-search .elementor-choices label:not(:first-child),
+.elementor-control-doc-widget-single-search .elementor-choices label[original-title='pro-label'],
 .elementor-control-doc-widget-skin .elementor-choices label:not(:first-child) {
+    pointer-events: none;
+}
+.elementor-control-doc-widget-single-search .elementor-choices label i.ezd-free-docs{
     pointer-events: none;
 }
 

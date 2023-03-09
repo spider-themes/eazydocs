@@ -46,6 +46,14 @@ class Single_Doc extends Widget_Base {
 
 	protected function register_controls() {
 
+		$theme = wp_get_theme();
+		$support_pro = 'ezd-free-docs';
+		$skins_label = 'pro-label';
+
+		if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' ) {
+			$support_pro = '';
+			$skins_label = '';
+		}
 		// ---Start Document Setting
 		$this->start_controls_section(
 			'doc_design_sec', [
@@ -63,20 +71,20 @@ class Single_Doc extends Widget_Base {
 						'icon'  => 'single-doc1',
 					],
 					'2' => [
-						'title' => __( 'Creative', 'coro-core' ),
-						'icon'  => 'single-doc2 ezd-free-docs',
+						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Creative', 'coro-core' ),
+						'icon'  => 'single-doc2 '.$support_pro.'',
 					],
 					'3' => [
-						'title' => __( 'Box', 'coro-core' ),
-						'icon'  => 'single-doc3 ezd-free-docs',
+						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Box', 'coro-core' ),
+						'icon'  => 'single-doc3  '.$support_pro.'',
 					],
 					'4' => [
-						'title' => __( 'Topic Boxes', 'coro-core' ),
-						'icon'  => 'single-doc4 ezd-free-docs',
+						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Topic Boxes', 'coro-core' ),
+						'icon'  => 'single-doc4  '.$support_pro.'',
 					],
 					'5' => [
-						'title' => __( 'Docs Boxes', 'coro-core' ),
-						'icon'  => 'single-doc5 ezd-free-docs',
+						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Docs Boxes', 'coro-core' ),
+						'icon'  => 'single-doc5  '.$support_pro.'',
 					],
 				],
 				'toggle'  => false,
@@ -625,9 +633,10 @@ class Single_Doc extends Widget_Base {
 				'order'          => $settings['order'],
 				'posts_per_page' => ! empty( $settings['ppp_sections'] ) ? $settings['ppp_sections'] : 8,
 			) );
-
-
-			if ( ezd_is_premium() ) {
+			
+			// get theme name
+			$theme = wp_get_theme();
+			if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' ) {
 				include( "single-doc-{$settings['doc-widget-single-search']}.php" );
 			} else {
 				include( "single-doc-1.php" );

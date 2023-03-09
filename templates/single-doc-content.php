@@ -201,6 +201,7 @@ endif;
             </div>
             <div class="doc-scrollable editor-content">
 				<?php
+                the_post_thumbnail('full', array('class' => 'mb-3'));
                 if ( ezd_get_opt('is_excerpt') == '1' && has_excerpt() ) {
                     ?>
                     <p class="doc-excerpt alert alert-info">
