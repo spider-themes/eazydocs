@@ -191,6 +191,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.1.2 (11 March 2023) =
+Tweaked: Options Visibility option changed to Switcher from Dropdwon in the Settings page
+Fixed: wp_mail() was conflicting with SMTP plugins.
+Fixed: Pro settings was not unlocking on the customizer even after activating the license key.
+
 = v2.1.1 (01 March 2023) =
 New: demo.xml file added in the include/sample-data folder
 Tweaked: EazyDocs Docs Builder UI RTL view improved

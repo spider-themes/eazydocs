@@ -1,4 +1,6 @@
 jQuery(document).ready(function () {
+
+    // Show review popup
     jQuery("#ezd_notify_review a").on("click", function () {
         const thisElement = this;
         const fieldValue = jQuery(thisElement).attr("data");

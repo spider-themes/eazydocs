@@ -1216,3 +1216,20 @@ function load_more_contributors() {
 
 add_action( 'wp_ajax_load_more_contributors', 'load_more_contributors' );
 add_action( 'wp_ajax_nopriv_load_more_contributors', 'load_more_contributors' );
+
+/**
+ * Add script in customize_controls_print_footer_scripts hook
+ */
+function ezd_customizer_script() {
+    ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            // Add .is_ezd_premium class to body
+            if ( eazydocs_local_object.is_ezd_premium == "yes" ) {
+                jQuery("body").addClass("ezd-premium");
+            }
+        });
+    </script>
+    <?php
+}
+add_action( 'customize_controls_print_footer_scripts', 'ezd_customizer_script' );

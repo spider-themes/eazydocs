@@ -29,7 +29,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
         if ( version_compare( $GLOBALS['wp_version'], '5.7', '<' ) ) {
             add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 2 );
         } else {
-            add_filter( 'block_categories_all_all', [ $this, 'register_block_category' ], 10, 2 );
+            add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 2 );
         }
     }
 

@@ -408,12 +408,13 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   padding-left: 0;
   margin-left: 25px;
   margin-bottom: 0;
+  align-items: baseline;
 }
 #docy-search-result .breadcrumb li {
   margin-left: 0;
   display: inline-flex;
-  gap: 10px;
-  padding-right: 10px;
+  gap: 5px;
+  padding-right: 5px;
 }
 #docy-search-result .breadcrumb li:nth-child(2)::before {
   content: "\f054";
@@ -422,7 +423,6 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   font-size: 8px;
   color: #b7b9be;
   font-weight: normal;
-  padding-top: 3px;
 }
 #docy-search-result .breadcrumb li a {
   color: #848d95;
@@ -553,6 +553,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 
 .header_search_form_info input[type=search] {
   padding-right: 0 !important;
+  margin: 0;
 }
 
 .spinner.search_form_spinner {

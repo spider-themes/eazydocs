@@ -420,11 +420,12 @@
     padding-left: 0;
     margin-left: 25px;
     margin-bottom: 0;
+    align-items: baseline;
     li{
         margin-left: 0;
         display: inline-flex;
-        gap: 10px;
-        padding-right: 10px;
+        gap: 5px;
+        padding-right: 5px;
         &:nth-child(2){
             &::before{
                 content: "\f054";
@@ -433,7 +434,6 @@
                 font-size: 8px;
                 color: #b7b9be;
                 font-weight: normal;
-                padding-top: 3px;
             }
         }
         a{
@@ -550,6 +550,7 @@
   .header_search_form_info {
     input[type="search"]{
       padding-right: 0 !important;
+      margin: 0;
     }
   }
   .spinner{

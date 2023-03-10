@@ -1,4 +1,5 @@
-<?php if ( ! defined( 'ABSPATH' ) ) {
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
 	die;
 } // Cannot access directly.
 
@@ -12,12 +13,6 @@ $prefix = 'eazydocs_settings';
 //
 
 $ezd_options 		= get_option( 'eazydocs_settings' );
-$is_customizer 		= $ezd_options['customizer_visibility'] ?? 'disabled';
-if( $is_customizer == 'enable' ) {
-	$customizer_visibility = true;
-} else {
-	$customizer_visibility = false;
-}
 
 $edit_access 		= [];
 if ( function_exists( 'eazydocspro_get_option' ) ) {
@@ -62,7 +57,7 @@ CSF::createOptions( $prefix, array(
 	'menu_title'         => esc_html__( 'Settings', 'eazydocs' ),
 	'menu_slug'          => 'eazydocs-settings',
 	'menu_capability'    => $capabilites,
-	'show_in_customizer' => $customizer_visibility
+	'show_in_customizer' => ezd_get_opt('customizer_visibility')
 ) );
 
 //
@@ -1342,24 +1337,20 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Customizer', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
-
 		array(
             'id'    	=> 'customizer_visibility',
-            'type'  	=> 'select',
-            'title' 	=> esc_html__( 'Enable / Disable', 'eazydocs' ),
-			'options' 	=> [
-				'enable' 	=> __( 'Enable', 'eazydocs' ),
-				'disable' 	=> __( 'Disable', 'eazydocs' )
-			],
-			'multiple'  => false,
-			'default'   => 'enable'
+            'type'  	=> 'switcher',
+			'title' 	=> esc_html__( 'Options Visibility on Customizer', 'eazydocs' ),
+			'text_on' 	=> esc_html__( 'Enabled', 'eazydocs' ),
+			'text_off' 	=> esc_html__( 'Disabled', 'eazydocs' ),
+			'text_width'=> 100,
 		),
 
 		array(
 			'type'    => 'content',
 			'content' => sprintf( '<a href="' . $archive_url . '" target="_blank" id="get_docs_archive">' . esc_html__( 'Docs Archive', 'eazydocs' ) . '</a> <a href="' . $single_url . '" target="_blank" id="get_docs_single">' . esc_html__( 'Single Doc', 'eazydocs' ) . '</a>' ),
 			'dependency' => array(
-				array( 'customizer_visibility', '==', 'enable' ),
+				array( 'customizer_visibility', '==', true ),
 			),
 		)
 	]

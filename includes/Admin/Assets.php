@@ -97,7 +97,8 @@ class Assets
                 'edit_one_page_url' 		=> admin_url('admin.php?edit_docs=yes&'),
                 'get_reusable_block'		=> get_reusable_blocks(),
                 'get_reusable_blocks_right'	=> get_reusable_blocks_right(),
-				'manage_reusable_blocks'	=> manage_reusable_blocks()
+				'manage_reusable_blocks'	=> manage_reusable_blocks(),
+	            'is_ezd_premium'            => eaz_fs()->is_paying_or_trial() ? 'yes' : '',
             )
         );
 	}

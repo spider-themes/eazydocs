@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 2.1.1
+ * Version: 2.1.2
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -86,7 +86,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 *
 		 * @var string The plugin version.
 		 */
-		const version = '2.1.0';
+		const version = '2.1.2';
 
 		/**
 		 * The plugin path.
@@ -111,6 +111,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 */
 		public function __construct() {
 			$this->define_constants();
+			// Include core files in action hook.
 			$this->core_includes();
 
 			register_activation_hook( __FILE__, [ $this, 'activate' ] );
@@ -157,16 +158,12 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
-			if ( eazydocs_unlock_with_themes() == true ) {
+			if ( eazydocs_unlock_with_themes() ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
 			}
-			
+
             // Blocks
 			require_once __DIR__ . '/blocks.php';
-
-            // Options
-            require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
-            require_once __DIR__ . '/includes/Admin/options/settings-options.php';
 		}
 
 		/**
@@ -219,6 +216,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 		public function init_hooked() {
 			new eazyDocs\Frontend\Ajax();
+			// Options
+			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
 		}
 
 		/**
@@ -324,15 +324,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 */
 		public function template_path() {
 			return $this->plugin_path() . '/templates/';
-		}
-
-		/**
-		 * Get the theme directory path.
-		 *
-		 * @return string
-		 */
-		public function theme_dir_path() {
-			return $this->theme_dir_path;
 		}
 	}
 }
