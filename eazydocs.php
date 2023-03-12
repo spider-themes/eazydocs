@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 2.1.2
+ * Version: 2.1.4
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -158,6 +158,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
+			// Options
+			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+
 			if ( eazydocs_unlock_with_themes() ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
 			}
@@ -216,9 +220,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 		public function init_hooked() {
 			new eazyDocs\Frontend\Ajax();
-			// Options
-			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
-			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
 		}
 
 		/**

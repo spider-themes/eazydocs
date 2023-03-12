@@ -191,6 +191,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.1.4 (12 March 2023) =
+Fixed: Settings page was missing on some web server
+
+= v2.1.3 (12 March 2023) =
+Fixed: Search banner background was missing and not changing custom background color and image from the Settings page
+
 = v2.1.2 (11 March 2023) =
 Tweaked: Options Visibility option changed to Switcher from Dropdwon in the Settings page
 Fixed: wp_mail() was conflicting with SMTP plugins.
