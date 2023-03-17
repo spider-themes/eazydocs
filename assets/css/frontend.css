@@ -3438,11 +3438,24 @@ p .footnotes-link::after {
   display: flex;
 }
 .nav-sidebar .nav-item .dropdown_nav .nav-item .dropdown_nav {
-  display: none !important;
+  display: none;
   transition: 0.3s all;
 }
-.nav-sidebar .nav-item .dropdown_nav .nav-item.active .dropdown_nav {
-  display: block !important;
+.nav-sidebar .nav-item .dropdown_nav .nav-item.active > .dropdown_nav {
+  display: block;
+}
+
+.nav-sidebar .nav-item img {
+  display: none;
+}
+.nav-sidebar .nav-item img.closed {
+  display: block;
+}
+.nav-sidebar .nav-item.active img.open {
+  display: block;
+}
+.nav-sidebar .nav-item.active img.closed {
+  display: none;
 }
 
 .filter_form {

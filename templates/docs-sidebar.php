@@ -22,7 +22,7 @@ $children 			= wp_list_pages( array(
     'post_status' 	=> array( 'publish', 'private' ),
 ));
 
-$options = get_option( 'eazydocs_settings' );
+$options            = get_option( 'eazydocs_settings' );
 $sidebar_search 	= $options['search_visibility'] ?? '1';
 $content_layout 	= $options['docs_content_layout'] ?? '1';
 $nav_sidebar_active = '';

@@ -25,16 +25,16 @@ class Admin {
 	 * Register Menu
 	 */
 	public function eazyDocs_menu() {
-		$capabilites    = 'manage_options';
-		$cz_capabilites = 'manage_options';
-		$sz_capabilites = 'manage_options';
+		$capabilites    	= 'manage_options';
+		$cz_capabilites 	= 'manage_options';
+		$sz_capabilites 	= 'manage_options';
 
-		$ezd_options   = get_option( 'eazydocs_settings' );
-		$is_customizer = $ezd_options['customizer_visibility'] ?? 'disabled';
+		$ezd_options   		= get_option( 'eazydocs_settings' );
+		$is_customizer 		= $ezd_options['customizer_visibility'] ?? 'disabled';
 
-		$user              = wp_get_current_user();
-		$userdata          = get_user_by( 'id', $user->ID );
-		$current_user_role = $userdata->roles[0] ?? '';
+		$user              	= wp_get_current_user();
+		$userdata          	= get_user_by( 'id', $user->ID );
+		$current_user_role 	= $userdata->roles[0] ?? '';
 
 		if ( function_exists( 'eazydocspro_get_option' ) ) {
 
@@ -99,9 +99,15 @@ class Admin {
 			$ezd_menu_title = __( 'EazyDocs', 'eazyDocs' );
 		}
 
-		add_menu_page( __( $ezd_menu_title, 'eazyDocs' ), __( $ezd_menu_title, 'eazyDocs' ), $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ],
-			'dashicons-media-document', 10 );
-		add_submenu_page( 'eazydocs', __( 'Docs Builder', 'eazydocs' ), __( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
+		$admin_layout  		= $ezd_options['docs_builder_layout'] ?? 'eazydocs_layout';
+		if ( $admin_layout == 'eazydocs_layout' ){
+			add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
+			add_submenu_page( 'eazydocs', __( 'Docs Builder', 'eazydocs' ), __( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
+		} else {
+			add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites,  'edit.php?post_type=docs', '', 'dashicons-media-document', 10 );
+			add_submenu_page( 'eazydocs', __( 'Docs Builder', 'eazydocs' ), __( 'Docs Builder', 'eazydocs' ), $capabilites, 'edit.php?post_type=docs' );
+			add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites,  'eazydocs', '', 'dashicons-media-document', 10 );			
+		}
 
 		if ( ezd_is_premium() ) {
 			if ( in_array( $current_user_role, $cz_roled ) ) {
@@ -152,7 +158,7 @@ class Admin {
 	 * Docs page
 	 */
 	public function eazydocs_page() {
-		include __DIR__ . '/admin-template.php';
+		include __DIR__ . '/admin-template.php';		
 	}
 
 	/**
@@ -259,7 +265,7 @@ class Admin {
 	 */
 	public function one_page_docs_edit_content( $link, $post_ID ) {
 		if ( 'onepage-docs' == get_post_type( $post_ID ) ) {
-			$is_content = get_post_meta( $post_ID, 'ezd_doc_left_sidebar', true );
+			$is_content 	= get_post_meta( $post_ID, 'ezd_doc_left_sidebar', true );
 
 			$ezd_doc_layout = get_post_meta( $post_ID, 'ezd_doc_layout', true );
 			$doc_layout     = ! empty( $ezd_doc_layout ) ? '&doc_layout=' . $ezd_doc_layout : null;
@@ -267,9 +273,9 @@ class Admin {
 			$ezd_content_type = get_post_meta( $post_ID, 'ezd_doc_content_type', true );
 			$content_type     = ! empty( $ezd_content_type ) ? '&content_type=' . $ezd_content_type : null;
 
-			$is_content   = str_replace( '#', ';hash;', $is_content );
-			$is_content   = str_replace( 'style&equals;', 'style@', $is_content );
-			$content_null = ! empty( $is_content ) ? '&content=' . $is_content : null;
+			$is_content   	= str_replace( '#', ';hash;', $is_content );
+			$is_content   	= str_replace( 'style&equals;', 'style@', $is_content );
+			$content_null 	= ! empty( $is_content ) ? '&content=' . $is_content : null;
 
 			$ezd_content_type_right = get_post_meta( $post_ID, 'ezd_doc_content_type_right', true );
 			$content_type_right     = ! empty( $ezd_content_type_right ) ? '&content_type_right=' . $ezd_content_type_right : null;

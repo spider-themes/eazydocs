@@ -56,11 +56,30 @@ p .footnotes-link::after {
       display: flex;
     }
     .dropdown_nav {
-      display: none !important;
+      display: none;
       transition: .3s all;
     }
-    &.active .dropdown_nav {
-      display: block !important;
+    &.active > .dropdown_nav {
+      display: block;
+    }
+  }
+}
+
+.nav-sidebar .nav-item {
+  img{
+    display:none;
+    &.closed{
+      display:block;
+    }
+  }
+  &.active{
+    img{
+      &.open{
+        display:block
+      }
+      &.closed{
+        display:none;
+      }
     }
   }
 }

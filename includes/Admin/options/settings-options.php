@@ -70,6 +70,30 @@ CSF::createSection( $prefix, array(
 	'fields' => array(
 		
 		array(
+			'id'         => 'docs_builder_layout',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Docs Builder Layout', 'eazydocs' ),
+			'options'    => [
+				'eazydocs_layout'   => esc_html__( 'EazyDocs Layout', 'eazydocs' ),
+				'classic_layout' 	=> esc_html__( 'Classic Layout', 'eazydocs' )
+			],
+			'desc'       => sprintf( wp_kses_post( __( 'Please refresh the screen after updating this the Admin layout.', 'eazydocs' ) ) ),
+			'default'    => 'eazydocs_layout'		
+		),
+
+		array(
+			'id'         => 'docs_frontend_hierarchy',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Frontend Hierarchy', 'eazydocs' ),
+			'options'    => [
+				'by_post' 		=> esc_html__( 'Parent-child relation by post', 'eazydocs' ),
+				'by_category'   => esc_html__( 'Parent-child relation by category', 'eazydocs' ),
+			],
+			'default'    => 'by_post',
+			'dependency' => array( 'docs_builder_layout', '==', 'classic_layout' )
+		),
+		
+		array(
 			'id'         => 'docs-slug',
 			'type'       => 'select',
 			'title'      => esc_html__( 'Docs Page', 'eazydocs' ),
@@ -729,6 +753,7 @@ CSF::createSection( $prefix, array(
             ],
             'default' 	=> 'badge_base',
             'class'   	=> 'eazydocs-pro-notice',
+            'desc'   	=> esc_html__( 'This will basically work with Doc Modern Layout.', 'eazydocs' ),
         ),
 		
 		array(

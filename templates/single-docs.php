@@ -8,26 +8,28 @@
  */
 get_header();
 
-$theme_data = wp_get_theme();
-$theme_name = $theme_data->get( 'Name' ); 
+$theme_data     = wp_get_theme();
+$theme_name     = $theme_data->get( 'Name' ); 
 ?>
 <p class="d-none"><?php echo $theme_name; ?></p>
 <?php
-$options = get_option( 'eazydocs_settings' );
+$options            = get_option( 'eazydocs_settings' );
+$cz_options         = '';
+$doc_container      = 'container custom_container';
+$content_wrapper    = '';
+$credit_enable      = '1';
+$credit_text        = sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
 
-$cz_options      = '';
-$doc_container   = 'container custom_container';
-$content_wrapper = '';
-$credit_enable   = '1';
-$credit_text     = sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
+$layout             = $options['docs_single_layout'] ?? 'both_sidebar';
+$doc_width          = $options['docs_page_width'] ?? '';
+$doc_container      = $doc_width == 'full-width' ? 'container-fluid px-lg-5' : 'container custom_container';
+$content_wrapper    = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
 
-$layout          = $options['docs_single_layout'] ?? 'both_sidebar';
-$doc_width       = $options['docs_page_width'] ?? '';
-$doc_container   = $doc_width == 'full-width' ? 'container-fluid px-lg-5' : 'container custom_container';
-$content_wrapper = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
+$credit_text        = $options['eazydocs-credit-text'] ?? sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
+$breadcrumb         = $options['docs-breadcrumb'] ?? '1';
 
-$credit_text = $options['eazydocs-credit-text'] ?? sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
-$breadcrumb  = $options['docs-breadcrumb'] ?? '1';
+$admin_layout  	    = $options['docs_builder_layout'] ?? 'eazydocs_layout'; 
+$frontend_layout    = $options['docs_frontend_hierarchy'] ?? ''; 
 
 if ( ezd_is_premium() ) {
 	$credit_enable = $options['eazydocs-enable-credit'] ?? '1';
@@ -68,7 +70,11 @@ if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
             <?php
             while ( have_posts() ) : the_post();
                 if ( $layout == 'left_sidebar' || $layout == 'both_sidebar' ) {
-                    eazydocs_get_template_part( 'docs-sidebar' );
+                    if ( $admin_layout == 'eazydocs_layout' ||  $frontend_layout == 'by_post' ) {
+                        eazydocs_get_template_part( 'docs-sidebar' );
+                    } else {
+                        eazydocs_get_template_part( 'docs-category-sidebar' );
+                    }
                 }
                 ?>
                 <div class="<?php echo esc_attr( $md_content_col ); ?> doc-middle-content">
@@ -84,17 +90,19 @@ if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
     </div>
 </section>
 
-<?php if ( $credit_enable == '1' ) : ?>
-    <div class="section eazydocs-footer">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="eazydocx-credit-text">
-					<?php echo wp_kses_post( wpautop( $credit_text ) ); ?>
+<?php 
+if ( $credit_enable == '1' ) : 
+    ?>
+        <div class="section eazydocs-footer">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="eazydocx-credit-text">
+                        <?php echo wp_kses_post( wpautop( $credit_text ) ); ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-<?php endif; ?>
+    <?php 
+endif;
 
-<?php
 get_footer();

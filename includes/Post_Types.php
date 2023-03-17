@@ -18,6 +18,7 @@ class Docs {
 		add_action( 'init', [ $this, 'register_post_type' ] );
 		add_action( 'init', [ $this, 'register_taxonomy' ] );
        	add_action( 'init', [ $this, 'register_badge' ] );
+		add_action( 'init', [ $this, 'register_category' ] );
 	}
 
 	/**
@@ -175,5 +176,55 @@ class Docs {
 			register_taxonomy( 'doc_badge', [ 'docs' ], $badge_args );
 		}
 	}
+
+	// doc_category
+
+	public function register_category() {
+		$category_labels = [
+			'name'                       => _x( 'Category', 'Taxonomy General Name', 'eazydocs' ),
+			'singular_name'              => _x( 'Category', 'Taxonomy Singular Name', 'eazydocs' ),
+			'menu_name'                  => __( 'Category', 'eazydocs' ),
+			'all_items'                  => __( 'All Categories', 'eazydocs' ),
+			'parent_item'                => __( 'Parent Category', 'eazydocs' ),
+			'parent_item_colon'          => __( 'Parent Category:', 'eazydocs' ),
+			'new_item_name'              => __( 'New Category', 'eazydocs' ),
+			'add_new_item'               => __( 'Add New Item', 'eazydocs' ),
+			'edit_item'                  => __( 'Edit Category', 'eazydocs' ),
+			'update_item'                => __( 'Update Category', 'eazydocs' ),
+			'view_item'                  => __( 'View Category', 'eazydocs' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'eazydocs' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'eazydocs' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'eazydocs' ),
+			'popular_items'              => __( 'Popular Categories', 'eazydocs' ),
+			'search_items'               => __( 'Search Categories', 'eazydocs' ),
+			'not_found'                  => __( 'Not Found', 'eazydocs' ),
+			'no_terms'                   => __( 'No items', 'eazydocs' ),
+			'items_list'                 => __( 'Categories list', 'eazydocs' ),
+			'items_list_navigation'      => __( 'Categories list navigation', 'eazydocs' ),
+		];
+
+		$rewrite_category = [
+			'slug'         => 'doc-category',
+			'with_front'   => true,
+			'hierarchical' => true,
+		];
+
+		$category_args = [
+			'labels'            => $category_labels,
+			'hierarchical'		=> true,
+			'public'            => true,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'show_tagcloud'     => true,
+			'show_in_rest'      => true,
+			'rewrite'           => $rewrite_category,
+		];
+
+		register_taxonomy( 'doc_category', 'docs', $category_args );
+	}		
+
+
+
 }
 new Docs();

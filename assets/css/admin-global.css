@@ -461,4 +461,8 @@ p.big-p {
   display: none !important;
 }
 
+#toplevel_page_edit-post_type-docs {
+  display: none;
+}
+
 /*# sourceMappingURL=admin-global.css.map */

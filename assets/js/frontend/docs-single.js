@@ -789,5 +789,29 @@
 			.addEventListener('search', function (event) {
 				$('#ezd-search-results').empty().removeClass('ajax-search');
 			});
+
+			// if has class actived
+		$('.nav-sidebar .nav-item.depth2').each(function () {
+			if ($(this).hasClass('actived')) {
+				$(this).addClass('current_page_item active');				
+				$(this).parent('ul').css('display','block').parent('li').addClass('current_page_ancestor active');
+			}
+		});
+		$('.nav-sidebar .nav-item.depth3').each(function () {
+			if ($(this).hasClass('actived')) {
+				$(this).addClass('current_page_item active');				
+				$(this).parent('ul').css('display','block').parent('li').addClass('current_page_parent active').parent('ul').css('display','block').parent('li').addClass('current_page_ancestor active');
+			}
+		});
+		$('.nav-sidebar .nav-item.depth4').each(function () {
+			if ($(this).hasClass('actived')) {
+				$(this).addClass('current_page_item active');				
+				$(this).parent('ul').css('display','block').parent('li').addClass('current_page_parent active').parent('ul').css('display','block').parent('li').addClass('current_page_ancestor active').parent('ul').css('display','block').parent('li').addClass('current_page_ancestor active');
+			}
+		});
+		$('.nav-sidebar .nav-item.active ul li ul li span').click(function(){
+			$(this).parent().parent().toggleClass('active')
+		})
+
 	});
 })(jQuery);
