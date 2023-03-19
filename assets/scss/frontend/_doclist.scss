@@ -120,7 +120,8 @@
   }
 
   .nav-item {
-    padding-right: 0;
+    padding: 0;
+    background: transparent !important;
     margin: 0 0 5px;
     position: relative;
     cursor: pointer;
@@ -226,7 +227,7 @@
         border-radius: 5px;
         &.current_page_item {
           color: var(--ezd_brand_color);
-          background: var(--bs-white);
+          background: var(--bs-white) !important;
           border: 1px solid var(--black_50);
         }
         &.current_page_item.has_child .doc-link a {

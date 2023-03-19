@@ -951,7 +951,27 @@ function ezydocspro_shortcodes_assets() {
  * @return array
  */
 function ezd_get_posts( $post_type = 'docs' ) {
-	$docs       = get_pages(
+	$docs_array = [];
+	$docs_builder_layout 		= ezd_get_opt('docs_builder_layout');
+			$docs_frontend_hierarchy 	= ezd_get_opt('docs_frontend_hierarchy');
+	 
+	if ( $docs_builder_layout == 'classic_layout' && $docs_frontend_hierarchy == 'by_category' ){
+		// number of terms to show unlimited
+		
+		$terms = get_terms( array(
+			'taxonomy'      => 'doc_category',
+			'hide_empty'    => true,
+			'number'        => 0,
+			'orderby'       => 'menu_order',
+			'order'         => 'ASC'
+		) );
+		foreach( $terms as $term ) {
+			$docs_array[ $term->term_id ] = $term->name;
+		}
+
+} else {
+	
+	$docs = get_pages(
 		array(
 			'post_type'   => $post_type,
 			'numberposts' => - 1,
@@ -959,12 +979,14 @@ function ezd_get_posts( $post_type = 'docs' ) {
 			'parent'      => 0,
 		)
 	);
-	$docs_array = [];
 	if ( $docs ) {
 		foreach ( $docs as $doc ) {
 			$docs_array[ $doc->ID ] = $doc->post_title;
 		}
 	}
+}
+	
+	
 
 	return $docs_array;
 }

@@ -783,14 +783,7 @@
 			});
 		}
 
-		// Search results should close on clearing the input field
-		document
-			.getElementById('ezd_searchInput')
-			.addEventListener('search', function (event) {
-				$('#ezd-search-results').empty().removeClass('ajax-search');
-			});
-
-			// if has class actived
+		// Category hierarchy for single doc
 		$('.nav-sidebar .nav-item.depth2').each(function () {
 			if ($(this).hasClass('actived')) {
 				$(this).addClass('current_page_item active');				
@@ -811,7 +804,13 @@
 		});
 		$('.nav-sidebar .nav-item.active ul li ul li span').click(function(){
 			$(this).parent().parent().toggleClass('active')
-		})
+		});
 
+		// Search results should close on clearing the input field
+		document
+			.getElementById('ezd_searchInput')
+			.addEventListener('search', function (event) {
+				$('#ezd-search-results').empty().removeClass('ajax-search');
+			});
 	});
 })(jQuery);

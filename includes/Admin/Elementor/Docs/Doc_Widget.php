@@ -308,7 +308,7 @@ class Doc_Widget extends Widget_Base {
 		$read_more      = $settings['read_more'] ?? '';
 		$doc_order      = $settings['order'] ?? '';
 		$doc_exclude    = $settings['exclude'] ?? '';
-        
+        $theme 			= wp_get_theme();
 		/**
 		 * Get the parent docs with query
 		 */
@@ -350,8 +350,15 @@ class Doc_Widget extends Widget_Base {
 			}
 		}
 
-        if ( ezd_is_premium() ) {
-		    include( "docs-{$settings['doc-widget-skin']}.php" );
+        if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' ) {
+			$docs_builder_layout 		= ezd_get_opt('docs_builder_layout');
+			$docs_frontend_hierarchy 	= ezd_get_opt('docs_frontend_hierarchy');
+			if ( $docs_builder_layout == 'classic_layout' && $docs_frontend_hierarchy == 'by_category' ) {
+		    	//include( "classic_layout/docs-{$settings['doc-widget-skin']}.php" );
+		    	include( "classic_layout/docs-1.php" );
+			} else {
+				include( "docs-{$settings['doc-widget-skin']}.php" );
+			}
         } else {
             include( "docs-1.php" );
         }
