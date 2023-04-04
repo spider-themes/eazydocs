@@ -1362,6 +1362,7 @@ body:not(.onepage-doc) .sticky_menu {
       color: var(--black_900);
       text-decoration: none;
       font-size: 18px;
+      line-height: 1.5;
       &:hover {
         text-decoration: underline;
         text-decoration-color: rgba(76,122,241,.25);
@@ -1798,7 +1799,7 @@ body.admin-bar{
     font-size: 17px;
     text-decoration: none;
     font-weight: 500;
-    background: var(--bs-white);
+    background: var(--black_25);
     span {
       display: block;
       font-size: 12px;
@@ -1820,8 +1821,8 @@ body.admin-bar{
     text-align: right;
     padding-left: 40px;
     position: relative;
-    padding-top: 11px;
     width: 50%;
+    line-height: 1.6;
     &::before {
       content: "\23";
       display: block;

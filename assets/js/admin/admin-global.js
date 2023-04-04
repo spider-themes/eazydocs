@@ -41,7 +41,7 @@
                 let href = $(this).attr('href')
                 Swal.fire({
                     title: 'Opps...',
-                    html: 'This is a PRO-MAX feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
+                    html: 'This is a Promax feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
                     icon: "warning",
                     buttons: [false, "Close"],
                     dangerMode: true,

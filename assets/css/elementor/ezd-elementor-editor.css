@@ -2,165 +2,185 @@
 /** === Slider Styles === **/
 .elementor-control-doc-widget-single-search .elementor-control-field,
 .elementor-control-doc-widget-skin .elementor-control-field {
-    display: block;
+	display: block;
 }
 
 .elementor-control-doc-widget-single-search label.elementor-control-title,
 .elementor-control-doc-widget-skin label.elementor-control-title {
-    padding-bottom: 10px;
-    display: block;
+	padding-bottom: 10px;
+	display: block;
 }
+
 .elementor-control-doc-widget-single-search .elementor-control-input-wrapper,
-.elementor-control-doc-widget-skin .elementor-control-input-wrapper{
-    display: block;
+.elementor-control-doc-widget-skin .elementor-control-input-wrapper {
+	display: block;
 }
 
 .elementor-control-doc-widget-single-search .elementor-choices,
 .elementor-control-doc-widget-skin .elementor-choices {
-    display: block;
-    height: auto;
-    width: 266px;
+	display: block;
+	height: auto;
+	width: 266px;
 }
-.elementor-control-doc-widget-single-search .elementor-choices input:checked+.elementor-choices-label,
-.elementor-control-doc-widget-skin .elementor-choices input:checked+.elementor-choices-label {
-    border-width: 2px;
-    padding-right: 2px;
+
+.elementor-control-doc-widget-single-search .elementor-choices input:checked + .elementor-choices-label,
+.elementor-control-doc-widget-skin .elementor-choices input:checked + .elementor-choices-label {
+	border-width: 2px;
+	padding-right: 2px;
 }
+
 .elementor-control-doc-widget-single-search .elementor-choices .elementor-choices-label,
 .elementor-control-doc-widget-skin .elementor-choices .elementor-choices-label {
-    display: block;
-    width: 266px;
-    height: 110px;
-    margin-bottom: 10px;
+	display: block;
+	width: 266px;
+	height: 110px;
+	margin-bottom: 10px;
 }
 
 .elementor-control-doc-widget-single-search .elementor-choices .elementor-choices-label i,
 .elementor-control-doc-widget-skin .elementor-choices .elementor-choices-label i {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: block;
 }
+
 .elementor-control-doc-widget-single-search .elementor-choices .elementor-choices-label:hover i::before,
 .elementor-control-doc-widget-skin .elementor-choices .elementor-choices-label:hover i::before,
-.elementor-control-doc-widget-skin .elementor-choices input:checked+.elementor-choices-label i::before,
-.elementor-control-doc-widget-single-search .elementor-choices input:checked+.elementor-choices-label i::before {
-    opacity: 1;
+.elementor-control-doc-widget-skin .elementor-choices input:checked + .elementor-choices-label i::before,
+.elementor-control-doc-widget-single-search .elementor-choices input:checked + .elementor-choices-label i::before {
+	opacity: 1;
 }
+
 .elementor-control-doc-widget-single-search .elementor-choices .elementor-choices-label i::before,
 .elementor-control-doc-widget-skin .elementor-choices .elementor-choices-label i::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: .5;
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
 }
 
 .free-doc-tab::before {
-    background: url("../../images/no-tab-docs.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-    opacity: 1 !important;
-}
-.docs-1::before, .single-doc1::before  {
-    background: url("../../images/docs-1.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-}
-.docs-2::before, .single-doc2::before {
-    background: url("../../images/docs-2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-}
-.docs-3::before, .single-doc3::before {
-    background: url("../../images/docs-3.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
+	background: url("../../images/no-tab-docs.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
+	opacity: 1 !important;
 }
 
-.docs-4::before, .single-doc4::before {
-    background: url("../../images/docs-4.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
+.docs-1::before,
+.single-doc1::before {
+	background: url("../../images/docs-1.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
 }
 
-.docs-5::before, .single-doc5::before {
-    background: url("../../images/docs-5.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-}
-
-.single-doc1::before  {
-    background: url("../../images/widgets/single-doc1.jpg");
-}
+.docs-2::before,
 .single-doc2::before {
-    background: url("../../images/widgets/single-doc2.jpg");
+	background: url("../../images/docs-2.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
 }
+
+.docs-3::before,
 .single-doc3::before {
-    background: url("../../images/widgets/single-doc3.jpg");
+	background: url("../../images/docs-3.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
 }
+
+.docs-4::before,
 .single-doc4::before {
-    background: url("../../images/widgets/single-doc4.jpg");
+	background: url("../../images/docs-4.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
 }
+
+.docs-5::before,
 .single-doc5::before {
-    background: url("../../images/widgets/single-doc5.jpeg");
-    background-position: top;
-    background-size: cover;
+	background: url("../../images/docs-5.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
 }
+
+.single-doc1::before {
+	background: url("../../images/widgets/single-doc1.jpg");
+}
+
+.single-doc2::before {
+	background: url("../../images/widgets/single-doc2.jpg");
+}
+
+.single-doc3::before {
+	background: url("../../images/widgets/single-doc3.jpg");
+}
+
+.single-doc4::before {
+	background: url("../../images/widgets/single-doc4.jpg");
+}
+
+.single-doc5::before {
+	background: url("../../images/widgets/single-doc5.jpeg");
+	background-position: top;
+	background-size: cover;
+}
+
 .elementor-control-doc-widget-single-search .elementor-choices label:first-child,
 .elementor-control-doc-widget-skin .elementor-choices label:first-child {
-    pointer-events: default;
+	pointer-events: default;
 }
 
 .elementor-control-ezd_search_style_keywords,
 .elementor-control-ezd_search_keywords_sec,
-.elementor-control-doc-widget-single-search .elementor-choices label[original-title='pro-label'],
+.elementor-control-doc-widget-single-search .elementor-choices label[original-title="pro-label"],
 .elementor-control-doc-widget-skin .elementor-choices label:not(:first-child) {
-    pointer-events: none;
+	pointer-events: none;
 }
-.elementor-control-doc-widget-single-search .elementor-choices label i.ezd-free-docs{
-    pointer-events: none;
+
+.elementor-control-doc-widget-single-search .elementor-choices label i.ezd-free-docs {
+	pointer-events: none;
 }
 
 .elementor-control-ezd_search_style_keywords,
 .elementor-control-ezd_search_keywords_sec,
-.ezd-free-docs{    
-    position: relative;
+.ezd-free-docs {
+	position: relative;
 }
 
 .elementor-control-ezd_search_style_keywords::after,
 .elementor-control-ezd_search_keywords_sec::after,
 .ezd-free-docs::after {
-    content: "PRO";
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    background: #39b54a61;
-    pointer-events: none;
-    color: white;
-    z-index: 999999;
-    font-weight: bold;
-    cursor: pointer;
-    font-style: normal;
+	content: "PRO";
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	background: #39b54a61;
+	pointer-events: none;
+	color: white;
+	z-index: 999999;
+	font-weight: 700;
+	cursor: pointer;
+	font-style: normal;
 }
 
 .elementor-control-ezd_search_style_keywords::after,
-.elementor-control-ezd_search_keywords_sec::after{
-    text-align: right;
-    padding-right: 20px;
-    padding-top: 13px;
+.elementor-control-ezd_search_keywords_sec::after {
+	text-align: right;
+	padding-right: 20px;
+	padding-top: 13px;
 }
+
 .ezd-free-docs::after {
-    padding-top: 45px;
+	padding-top: 45px;
 }

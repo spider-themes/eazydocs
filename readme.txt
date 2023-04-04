@@ -59,9 +59,6 @@ EazyDocs is 100% responsive to make your Knowledge base look beautiful and effec
 - **On Demand Asset Loading:**
 Loading only necessary CSS, JavaScript, image, font files assets on the EazyDocs pages and will not load our assets on other pages of your website.
 
-- **Simple Navigation:**
-The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily.
-
 ## 📒 Hierarchical & Filterable Doc Builder UI ##
 We designed the EazyDocs Doc Builder admin UI to be as simple as possible yet powerful. You can create a new doc, filter docs by post status, view positive/negative feedback ratio, and organize your docs with drag-and-drop ordering.
 
@@ -98,7 +95,7 @@ EazyDocs comes with a read time and views count feature that allows your readers
 ## 📖 Reading Assistant Tools ##
 EazyDocs comes with a reading assistant tools that allows your readers to increase or decrease the font size, print Doc, TOC are developed for a consistent reading experience.
 
-## 📋 Table of Contents (TOC) ##
+## 📋 Built in Table of Contents (TOC) ##
 EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation. That allows your readers to navigate through the doc easily. The TOC is developed for a consistent reading experience.
 
 ## 🤠 Get Feedback From Real Visitors ##
@@ -111,6 +108,17 @@ No need to memorize or remember the last viewed articles by the user. They can s
 ## 📚 Related Articles ##
 Sometimes readers might be interested to read the Related articles. EazyDocs will automatically create a Related Articles section at the bottom of the doc single page.
 
+## 💬 Article Comments ##
+Facilitate interactive engagement with your content by enabling comments and replies on your knowledge base articles, allowing readers to ask questions and seek clarifications.
+
+## 📝 Article Voting ##
+EazyDocs allows visitors to vote on articles, helping you understand which articles are popular and need improvement. You can also see the positive and negative votes ratio on the admin side.
+
+## 🏷️ Article Tags ##
+Organize and manage your articles efficiently by tagging them, making it easier for your readers to search and discover the content they need.
+
+## 🕑 Revision History ##
+Keep a record of article drafts and edits, and restore earlier versions if required.
 
 EazyDocs Pro plan features include:
 - Voting & Comments Notifications
@@ -127,16 +135,19 @@ EazyDocs Pro plan features include:
 - Suggested Search Keywords
 - Bulk Duplicate Documentation
 - Bulk Doc Visibility (Private/internal, Password Protected, Public)
+- User Restriction, Internal / External Site Support
 - Editable Single Doc Sidebar Area
 - RTL Ready
 - Duplicate Bulk/Individual Documentation
 
 EazyDocs Pro-Max plan features include:
 - All Pro plan features
+- Analytics
 - Contributor, Add/Edit doc from Frontend
 - Footnotes
+- Elementor pre-made templates
 
-[Click here](https://spider-themes.net/eazydocs/) to know more about EazyDocs Premium plans and Features
+[Click here](https://spider-themes.net/eazydocs/features) to know more about EazyDocs Premium plans and Features
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
@@ -190,6 +201,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 7. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.1.5 (04 April 2023) =
+New: Featured image show/hide option added in the EazyDocs > Settings > Doc Single > General tab
+Fixed: Some JS errors on the Doc single page and admin side
+Tweaked: Deleted some unnecessary and merged some JS files
 
 = v2.1.4 (12 March 2023) =
 Fixed: Settings page was missing on some web server

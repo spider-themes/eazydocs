@@ -16,9 +16,9 @@ class Admin {
 		add_filter( 'admin_body_class', [ $this, 'body_class' ] );
 		add_filter( 'get_edit_post_link', [ $this, 'one_page_docs_edit_content' ], 10, 3 );
 
-		add_filter( 'admin_body_class', [ $this, 'ezd_admin_body_class' ] );
-		add_action( 'wp_ajax_eaz_nestable_docs', [ $this, 'eaz_nestable_callback' ] );
-		add_action( 'wp_ajax_eaz_parent_nestable_docs', [ $this, 'eaz_parent_nestable_callback' ] );
+		add_filter( 'admin_body_class', [ $this, 'admin_body_class' ] );
+		add_action( 'wp_ajax_eaz_nestable_docs', [ $this, 'nestable_callback' ] );
+		add_action( 'wp_ajax_eaz_parent_nestable_docs', [ $this, 'parent_nestable_callback' ] );
 	}
 
 	/**
@@ -242,7 +242,7 @@ class Admin {
                 <p class="big-p"> <?php esc_html_e( 'Analytics page is available in the EazyDocs Premium Promax Plan', 'eazydocs' ); ?> </p>
                 <div class="button-inline">
                     <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url( 'admin.php?page=eazydocs-pricing' ); ?>">
-						<?php esc_html_e( 'Get Pro-max Plan', 'eazydocs' ); ?>
+						<?php esc_html_e( 'Get Promax Plan', 'eazydocs' ); ?>
                     </a>
                 </div>
             </div>
@@ -290,7 +290,7 @@ class Admin {
 		return $link;
 	}
 
-	public function ezd_admin_body_class( $admin_body ) {
+	public function admin_body_class( $admin_body ) {
 		$ezd_admin_classe = explode( ' ', $admin_body );
 		if ( empty( eaz_fs()->is_plan( 'promax' ) ) ) {
 			$ezd_admin_classe = array_merge( $ezd_admin_classe, [
@@ -304,7 +304,7 @@ class Admin {
 	/**
 	 ** Nestable Callback function
 	 **/
-	public function eaz_nestable_callback() {
+	public function nestable_callback() {
 		$nestedArray = json_decode( stripslashes( $_POST['data'] ) );
 		$i           = 0;
 		$c           = 0;
@@ -345,7 +345,7 @@ class Admin {
 		wp_send_json_success( $nestedArray );
 	}
 
-	public function eaz_parent_nestable_callback() {
+	public function parent_nestable_callback() {
 		$nestedArray = json_decode( stripslashes( $_POST['data'] ) );
 		$msg         = [];
 		$i           = 0;

@@ -68,7 +68,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs General', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
-		
 		array(
 			'id'         => 'docs-slug',
 			'type'       => 'select',
@@ -76,7 +75,7 @@ CSF::createSection( $prefix, array(
 			'options'    => 'pages',
 			'class'      => 'docs-page-wrap',
 			'multiple'   => false,
-			'desc'       => sprintf( wp_kses_post( __( 'Home page for docs page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs' ) ) ),
+			'desc'       => sprintf( wp_kses_post( __( 'The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs' ) ) ),
 			'query_args' => array(
 				'posts_per_page' => - 1,
 			),
@@ -282,6 +281,17 @@ CSF::createSection( $prefix, array(
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Views', 'eazydocs' ),
 			'default' => true // or false
+		),
+
+		array(
+			'id'        => 'is_featured_image',
+			'type'      => 'switcher',
+			'title'     => esc_html__( 'Featured Image', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show the Featured Image on the top of the doc content area.', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_width' => 92,
+			'default'   => false,
 		),
 
         array(
@@ -1056,13 +1066,13 @@ CSF::createSection( $prefix, array(
 	)
 ) );
 
+
 CSF::createSection( $prefix, array(
 	'id'     => 'doc_viewed_articles',
 	'parent' => 'single_doc',
 	'title'  => esc_html__( 'Viewed Articles', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
 		array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Recently Viewed Docs Options', 'eazydocs' )
@@ -1101,7 +1111,6 @@ CSF::createSection( $prefix, array(
 				'true'
 			)
 		),
-
 		
 		array(
 			'id'         => 'viewed-doc-column',
@@ -1130,7 +1139,6 @@ CSF::createSection( $prefix, array(
 				'true'
 			)
 		),
-
 	)
 ) );
 
@@ -1141,7 +1149,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Private Doc', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
 		array(
 			'id'    => 'private_doc_visibility',
 			'type'  => 'heading',

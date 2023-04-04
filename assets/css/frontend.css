@@ -1918,6 +1918,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   color: var(--black_900);
   text-decoration: none;
   font-size: 18px;
+  line-height: 1.5;
 }
 .documentation_item .media-body .title:hover {
   text-decoration: underline;
@@ -2310,7 +2311,7 @@ body.admin-bar .ezd-link-copied-wrap {
   font-size: 17px;
   text-decoration: none;
   font-weight: 500;
-  background: var(--bs-white);
+  background: var(--black_25);
 }
 .eazydocs-next-prev-wrap .next-prev-pager span {
   display: block;
@@ -2332,8 +2333,8 @@ body.admin-bar .ezd-link-copied-wrap {
   text-align: right;
   padding-left: 40px;
   position: relative;
-  padding-top: 11px;
   width: 50%;
+  line-height: 1.6;
 }
 .eazydocs-next-prev-wrap .next-prev-pager.first::before {
   content: "#";
@@ -2490,7 +2491,6 @@ body.rtl .ezd-link-copied-wrap.copied {
   margin-left: 0;
 }
 .documentation_tab .nav-item .nav-link {
-  border-radius: 0;
   border: 0;
   color: var(--p_color);
   font-size: 14px;
@@ -2499,8 +2499,8 @@ body.rtl .ezd-link-copied-wrap.copied {
   position: relative;
   transition: color 0.2s linear;
   background: transparent;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  border-radius: 5px 5px 0 0;
+  text-decoration: none;
 }
 .documentation_tab .nav-item .nav-link:before {
   content: "";

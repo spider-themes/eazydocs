@@ -647,7 +647,7 @@ body.search-focused .ezd_click_capture {
 .recommended_item {
   border-radius: 20px;
   box-shadow: 0 30px 50px 0 rgba(2, 2, 48, 0.06);
-  padding: 40px 25px 30px 35px;
+  padding: 40px 25px 35px 35px;
   margin-bottom: 30px;
   background: #fff;
 }
@@ -695,7 +695,7 @@ body.search-focused .ezd_click_capture {
   color: var(--ezd_brand_color);
 }
 .recommended_item ul li + li {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .question_text {

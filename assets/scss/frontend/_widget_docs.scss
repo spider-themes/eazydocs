@@ -109,7 +109,6 @@
     margin-bottom: 0;
     margin-left: 0;
     .nav-link {
-      border-radius: 0;
       border: 0;
       color: var(--p_color);
       font-size: 14px;
@@ -118,9 +117,8 @@
       position: relative;
       transition: color 0.2s linear;
       background: transparent;
-      border-top-right-radius: 5px;
-      border-top-left-radius: 5px;
-
+      border-radius: 5px 5px 0 0;
+      text-decoration: none;
       &:before {
         content: "";
         width: 0;
