@@ -33,7 +33,7 @@
 
                                 <?php if( current_user_can('edit_posts') ) : ?>
                                     <div class="header-notify-icons">
-                                        <a href="<?php echo admin_url('edit.php?post_type=docs'); ?>" title="<?php esc_html_e( 'Go to Classic UI', 'eazydocs' );?>">
+                                        <a href="<?php echo admin_url('edit.php?post_type=docs'); ?>" title="<?php esc_attr_e( 'Go to Classic UI', 'eazydocs' );?>">
                                             <?php esc_html_e( 'Classic UI', 'eazydocs' );?>
                                         </a>
                                     </div>
@@ -41,7 +41,7 @@
 
                                 <div class="header-notify-icon" title="<?php esc_attr_e( 'Central settings page', 'eazydocs' ) ?>">
                                     <a href="admin.php?page=eazydocs-settings">
-                                        <img src="<?php echo EAZYDOCS_IMG ?>/admin/admin-settings.svg" alt="<?php esc_html_e( 'Settings Icon', 'eazydocs' ); ?>">
+                                        <img src="<?php echo EAZYDOCS_IMG ?>/admin/admin-settings.svg" alt="<?php esc_attr_e( 'Settings Icon', 'eazydocs' ); ?>">
                                     </a>
                                 </div>
 

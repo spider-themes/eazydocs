@@ -93,13 +93,13 @@ class Admin {
 		}
 
 
-		if ( function_exists( 'ezd_is_premium' ) && ezd_is_premium() == true ) {
-			$ezd_menu_title = __( 'EazyDocs Pro', 'eazyDocs' );
+		if ( class_exists('EazyDocsPro') ) {
+			$ezd_menu_title = __( 'EazyDocs Pro', 'eazydocs' );
 		} else {
-			$ezd_menu_title = __( 'EazyDocs', 'eazyDocs' );
+			$ezd_menu_title = __( 'EazyDocs', 'eazydocs' );
 		}
 
-		add_menu_page( __( $ezd_menu_title, 'eazyDocs' ), __( $ezd_menu_title, 'eazyDocs' ), $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ],
+		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ],
 			'dashicons-media-document', 10 );
 		add_submenu_page( 'eazydocs', __( 'Docs Builder', 'eazydocs' ), __( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
 

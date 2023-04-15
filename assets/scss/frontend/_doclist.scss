@@ -543,7 +543,7 @@
 
 .feedback_link {
   align-items: center;
-  padding-top: 20px;
+  padding-top: 30px;
   .eazydocs-feedback-wrap {
     justify-content: end;
     display: flex;
@@ -573,12 +573,17 @@
     margin-bottom: 0;
     text-align: right;
   }
+
+  .vote-link-wrap {
+    margin-left: 10px;
+  }
+
   .h_btn {
     font-size: 14px;
     font-weight: 500;
     color: #fff;
     display: inline-block;
-    padding: 1px 15px;
+    padding: 3px 15px;
     background-color: var(--green_color);
     transition: all 0.2s linear;
     margin-left: 5px;
@@ -671,7 +676,7 @@
   margin-top: 0;
   margin-bottom: 0;
   padding: 60px;
-  background: #f1f1f1;
+  background: var(--black_50);
   top: 50%;
   transform: translateY(-50%) !important;
   border-radius: 10px;
@@ -1786,6 +1791,9 @@ body.admin-bar{
   display: flex;
   gap: 20px;
   margin-top: 20px;
+  @media (max-width: 580px) {
+    flex-direction: column;
+  }
   a {
     display: block;
     box-shadow: 0 1px 2px rgb(0 0 0 / 12%);
@@ -1800,6 +1808,7 @@ body.admin-bar{
     text-decoration: none;
     font-weight: 500;
     background: var(--black_25);
+    flex: 1;
     span {
       display: block;
       font-size: 12px;
@@ -1821,7 +1830,6 @@ body.admin-bar{
     text-align: right;
     padding-left: 40px;
     position: relative;
-    width: 50%;
     line-height: 1.6;
     &::before {
       content: "\23";
@@ -1842,7 +1850,6 @@ body.admin-bar{
   .next-prev-pager.second {
     padding-right: 40px;
     position: relative;
-    width: 50%;
     &::before {
       display: block;
       clear: both;

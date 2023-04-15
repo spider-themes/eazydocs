@@ -10,6 +10,7 @@ body.body_dark {
   --black_400: #a2a2a2 !important;
   --black_150: rgba(255,255,255,0.3) !important;
   --black_50: #494949 !important;
+  --black_25: #383838 !important;
   --body_bg: #131417 !important;
   --border_on_white: #2c303a !important;
   color: #f6f6f6 !important;

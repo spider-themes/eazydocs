@@ -8,6 +8,21 @@ function eazydocs_get_admin_template_part( $template ) {
 	load_template( $file, false );
 }
 
+function ezd_get_page_by_title( $title, $post_type = 'page' ) {
+	return get_posts(
+		array(
+			'post_type'              => $post_type,
+			'title'                  => $title,
+			'post_status'            => 'all',
+			'numberposts'            => 1,
+			'update_post_term_cache' => false,
+			'update_post_meta_cache' => false,
+			'orderby'                => 'post_date ID',
+			'order'                  => 'ASC',
+		),
+	);
+}
+
 /**
  * Get template part implementation for eazydocs.
  * Looks at the theme directory first
@@ -87,7 +102,7 @@ function ezd_get_opt( $option, $default = '' ) {
  * @return bool|void
  */
 function ezd_is_premium() {
-	if ( class_exists( 'EazyDocsPro' ) && eaz_fs()->can_use_premium_code() ) {
+	if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) {
 		return true;
 	}
 }

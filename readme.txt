@@ -2,7 +2,7 @@
 Contributors: mdjwel, spiderdevs
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
-Tested up to: 6.1
+Tested up to: 6.2
 Requires PHP: 7.4
 Stable tag: 2.0.5x
 License: GPLv2 or later
@@ -201,6 +201,15 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 7. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.1.7 (16 April 2023) =
+Fixed: PHP error
+
+= v2.1.6 (16 April 2023) =
+Fixed: EEE text was appending before the Ajax search result items.
+Tweaked: Removed the deprecated function get_page_by_title to compatible with the WordPress version 6.2.0! Used WP_Query instead.
+Tweaked: Dark Mode colors improved
+Tweaked: Responsive design improved
 
 = v2.1.5 (04 April 2023) =
 New: Featured image show/hide option added in the EazyDocs > Settings > Doc Single > General tab

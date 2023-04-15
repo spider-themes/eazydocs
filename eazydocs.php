@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 2.1.5
+ * Version: 2.1.6
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -161,6 +161,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// Options
 			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
 			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+			if ( ezd_is_premium() ) {
+				require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
+			}
 
 			if ( eazydocs_unlock_with_themes() ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
@@ -234,7 +237,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			update_option( 'EazyDocs_version', EAZYDOCS_VERSION );
 
 			// Insert the documentation page into the database if not exists
-			if ( ! get_page_by_title( 'Documentation', OBJECT, 'page' ) ) {
+			if ( ! ezd_get_page_by_title('Documentation') ) {
 				// Create page object
 				$docs_page = [
 					'post_title'   => wp_strip_all_tags( 'Documentation' ),

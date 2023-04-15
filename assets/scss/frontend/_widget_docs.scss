@@ -529,38 +529,6 @@
   }
 }
 
-.doc_features_item {
-  width: calc(100% / 3);
-  float: left;
-  padding: 35px 30px;
-  border-bottom: 1px solid var(--border_on_highlight);
-  border-left: 1px solid var(--border_on_highlight);
-  img {
-    margin-right: 15px;
-  }
-  h4 {
-    font-size: 16px;
-    line-height: 26px;
-    font-family: $rob;
-    font-weight: 700;
-    margin-bottom: 2px;
-    &:hover {
-      color: var(--ezd_brand_color);
-    }
-  }
-  p {
-    margin-bottom: 0;
-    font-size: 14px;
-  }
-  &:nth-child(1),
-  &:nth-child(4),
-  &:nth-child(7),
-  &:nth-child(10) {
-    border-left: 0;
-  }
-}
-/*============== doc_features_area css  ===========*/
-
 
 /*============= doc_community_area css  ================*/
 .doc_community_area {

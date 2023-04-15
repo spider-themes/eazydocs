@@ -287,9 +287,18 @@ p .footnotes-link::after {
   display: block;
 }
 
-.doc-scrollable img{
-  max-width:100%;
-  height: auto;
+.doc-scrollable {
+  img{
+    max-width:100%;
+    height: auto;
+  }
+  ul, ol {
+    padding-left: 20px;
+    margin: 10px 0;
+  }
+  ul {
+      list-style: disc;
+  }
 }
 
 .border_bottom {

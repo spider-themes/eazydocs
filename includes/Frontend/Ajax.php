@@ -115,7 +115,7 @@ class Ajax {
                             </svg>
 						<?php endif; ?>
                         <span class="doc-section">
-                            EEE <?php the_title(); ?>
+                            <?php the_title(); ?>
                         </span>
                         <svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round"
                              stroke-linejoin="round" class="block h-auto w-16">

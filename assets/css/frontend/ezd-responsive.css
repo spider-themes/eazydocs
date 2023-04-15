@@ -1,176 +1,183 @@
 @media (max-width: 1680px) {
-    .onepage_doc_area .doc_rightsidebar .bootstrap-select {
-        width: 100% !important;
-    }
+
+	.onepage_doc_area .doc_rightsidebar .bootstrap-select {
+		width: 100% !important;
+	}
 }
 
 @media (max-width: 991px) {
-    .doc_right_mobile_menu .doc_rightsidebar {
-        padding-bottom: 10px;
-        padding-top: 30px;
-        padding-left: 20px;
-        overflow-y: visible;
-    }
-    .doc_rightsidebar .pageSideSection::before {
-        display: none;
-    }
-    .doc_rightsidebar .pageSideSection {
-        padding-left: 0;
-    }
-    .doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
-        padding-right: 0;
-    }
-    .doc_documentation_area {
-        position: relative;
-        overflow: hidden !important;
-    }
+	.doc_right_mobile_menu .doc_rightsidebar {
+		padding-bottom: 10px;
+		padding-top: 30px;
+		padding-left: 20px;
+		overflow-y: visible;
+	}
 
-    .left-column .doc_left_sidebarlist {
-        max-width: 300px;
-        width: 100%;
-        left: -300px;
-        position: absolute;
-        z-index: 2;
-        padding: 30px 15px;
-    }
+	.doc_rightsidebar .pageSideSection::before {
+		display: none;
+	}
 
-    .doc_rightsidebar {
-        max-width: 290px;
-        width: 100%;
-        position: absolute;
-        right: -290px;
-        height: auto;
-        transition: all 0.5s;
-        z-index: 2;
-        top: 0;
-        background: #fff;
-        padding: 30px 15px 30px 0;
-    }
+	.doc_rightsidebar .pageSideSection {
+		padding-left: 0;
+	}
 
-    .onepage_doc_area .documentation_body {
-        padding-top: 70px;
-    }
+	.doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
+		padding-right: 0;
+	}
 
-    .onepage_doc_area .doc_left_sidebarlist {
-        padding: 0;
-    }
+	.doc_documentation_area {
+		position: relative;
+		overflow: hidden !important;
+	}
 
-    .onepage_doc_area .middle-content {
-        padding: 120px 15px;
-    }
+	.left-column .doc_left_sidebarlist {
+		max-width: 300px;
+		width: 100%;
+		left: -300px;
+		position: absolute;
+		z-index: 2;
+		padding: 30px 15px;
+	}
 
-    .nav-sidebar .nav-item {
-        padding-right: 0;
-    }
+	.doc_rightsidebar {
+		max-width: 290px;
+		width: 100%;
+		position: absolute;
+		right: -290px;
+		height: auto;
+		transition: all 0.5s;
+		z-index: 2;
+		top: 0;
+		background: #fff;
+		padding: 30px 15px 30px 0;
+	}
 
-    .filter_form {
-        margin-right: 0;
-    }
+	.onepage_doc_area .documentation_body {
+		padding-top: 70px;
+	}
 
-    .nav-sidebar .nav-item .nav-link + .icon {
-        right: 0;
-    }
+	.onepage_doc_area .doc_left_sidebarlist {
+		padding: 0;
+	}
 
-    .breadcrumb .breadcrumb-item:last-child,
-    .left-sidebar-toggle {
-        display: none;
-    }
+	.onepage_doc_area .middle-content {
+		padding: 120px 15px;
+	}
 
-    .doc_left_sidebarlist .open_icon {
-        display: block;
-        right: -40px;
-        left: auto;
-    }
+	.nav-sidebar .nav-item {
+		padding-right: 0;
+	}
 
-    .doc_rightsidebar .open_icon {
-        display: block;
-        left: -40px;
-        right: auto;
-    }
+	.filter_form {
+		margin-right: 0;
+	}
 
-    .shortcode_info {
-        padding-left: 0;
-        padding-right: 0;
-    }
+	.nav-sidebar .nav-item .nav-link + .icon {
+		right: 0;
+	}
 
-    article#post {
-        padding-bottom: 0;
-    }
+	.breadcrumb .breadcrumb-item:last-child,
+	.left-sidebar-toggle {
+		display: none;
+	}
 
-    .doc-middle-content {
-        padding-right: 20px;
-        padding-top: 100px;
-    }
+	.doc_left_sidebarlist .open_icon {
+		display: block;
+		right: -40px;
+		left: auto;
+	}
 
-    .onepage_doc_area .container-fluid.pr-60 {
-        padding-right: 15px;
-        padding-left: 15px;
-    }
+	.doc_rightsidebar .open_icon {
+		display: block;
+		left: -40px;
+		right: auto;
+	}
+
+	.shortcode_info {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	article#post {
+		padding-bottom: 0;
+	}
+
+	.doc-middle-content {
+		padding-right: 20px;
+		padding-top: 100px;
+	}
+
+	.onepage_doc_area .container-fluid.pr-60 {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
 }
 
 @media (max-width: 767px) {
-    /** === Right Sidebar === **/
-    .open_icon {
-        top: 0;
-    }
 
-    .body_fixed .open_icon {
-        top: 70px;
-    }
+	/** === Right Sidebar === **/
+	.open_icon {
+		top: 0;
+	}
 
-    .body_fixed .doc_left_sidebarlist {
-        width: unset !important;
-    }
+	.body_fixed .open_icon {
+		top: 70px;
+	}
 
-    .doc_rightsidebar {
-        background: #fafcfd;
-        height: auto;
-    }
+	.body_fixed .doc_left_sidebarlist {
+		width: unset !important;
+	}
 
-    .doc_rightsidebar .pageSideSection::before {
-        display: none;
-    }
+	.doc_rightsidebar {
+		background: #fafcfd;
+		height: auto;
+	}
 
-    .doc_rightsidebar .pageSideSection {
-        margin-left: 0;
-        padding-left: 0;
-        padding-right: 10px;
-    }
+	.doc_rightsidebar .pageSideSection::before {
+		display: none;
+	}
 
-    .feedback_link .eazydocs-feedback-wrap {
-        justify-content: center;
-        margin-top: 10px;
-    }
+	.doc_rightsidebar .pageSideSection {
+		margin-left: 0;
+		padding-left: 0;
+		padding-right: 10px;
+	}
 
-    #reading-progress-fill {
-        height: 3px;
-    }
+	.feedback_link .eazydocs-feedback-wrap {
+		justify-content: center;
+		margin-top: 20px;
+	}
 
-    .page_breadcrumb .date {
-        float: left;
-        margin-top: 5px;
-    }
+	#reading-progress-fill {
+		height: 3px;
+	}
 
-    .contact_form .form-group,
-    .help_form .modal-content .shortcode_title {
-        margin-bottom: 20px;
-    }
+	.page_breadcrumb .date {
+		float: left;
+		margin-top: 5px;
+	}
 
-    .help_form {
-        padding: 15px;
-    }
+	.contact_form .form-group,
+	.help_form .modal-content .shortcode_title {
+		margin-bottom: 20px;
+	}
 
-    #eazydocs_feedback .close {
-        top: -10px;
-    }
+	.help_form {
+		padding: 25px;
+	}
 
-    .contact_form .form-group .form-control {
-        height: 55px;
-    }
+	#eazydocs_feedback .close {
+		top: -10px;
+	}
+
+	.contact_form .form-group .form-control {
+		height: 55px;
+	}
 }
 
 @media (max-width: 1024px) {
-    .container.custom_container {
-        max-width: 990px;
-    }
+
+	.container.custom_container {
+		max-width: 990px;
+	}
 }

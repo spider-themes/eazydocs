@@ -52,7 +52,8 @@ class One_Page {
 			 */
 			$current_permalink = get_option( 'permalink_structure' );
 
-			$post = get_page_by_title( $_GET['single_doc_title'], OBJECT, 'docs' );
+			$post = ezd_get_page_by_title( $_GET['single_doc_title'], 'docs' );
+			$post = ezd_get_page_by_title( $_GET['single_doc_title'], 'docs' );
 
 			if ( empty ( $_GET['self_doc'] ) ) {
 				$redirect = 'admin.php?page=eazydocs';
@@ -60,7 +61,7 @@ class One_Page {
 				$redirect = 'edit.php?post_type=onepage-docs';
 			}
 
-			if ( ! get_page_by_title( $page_title, OBJECT, 'onepage-docs' ) ) {
+			if ( ! ezd_get_page_by_title( $page_title, 'onepage-docs' ) ) {
 				// Create page object
 				$one_page_doc = array(
 					'post_title'   => wp_strip_all_tags( $page_title ),
