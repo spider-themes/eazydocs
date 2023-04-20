@@ -8,6 +8,13 @@ function eazydocs_get_admin_template_part( $template ) {
 	load_template( $file, false );
 }
 
+/**
+ * Get Page by title
+ * @param $title
+ * @param $post_type
+ *
+ * @return int[]|WP_Post[]
+ */
 function ezd_get_page_by_title( $title, $post_type = 'page' ) {
 	return get_posts(
 		array(

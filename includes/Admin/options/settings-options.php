@@ -1142,10 +1142,20 @@ CSF::createSection( $prefix, array(
 	)
 ) );
 
+
+//
+// Restricted Docs Fields
+//
+CSF::createSection( $prefix, array(
+	'id'    => 'restricted_docs',
+	'title' => esc_html__( 'Restricted Docs', 'eazydocs' ),
+	'icon'  => 'fas fa-plus-circle',
+) );
+
 // Private Doc
 CSF::createSection( $prefix, array(
 	'id'     => 'private_doc_settings',
-	'parent' => 'single_doc',
+	'parent' => 'restricted_docs',
 	'title'  => esc_html__( 'Private Doc', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
@@ -1183,18 +1193,17 @@ CSF::createSection( $prefix, array(
 			'chosen'     => true,
 			'ajax'       => true,
 		)
-		
+
 	)
 ) );
 
 // Protected Doc
 CSF::createSection( $prefix, array(
 	'id'     => 'protected_doc_settings',
-	'parent' => 'single_doc',
+	'parent' => 'restricted_docs',
 	'title'  => esc_html__( 'Protected Doc', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-		
 		array(
 			'id'    => 'protected_doc_heading',
 			'type'  => 'heading',
@@ -1292,7 +1301,7 @@ CSF::createSection( $prefix, array(
 			'output'      => '.ezd-password-wrap .ezd-password-body form button',
 			'output_mode' => 'background-color',
 		),
-		
+
 	)
 ) );
 

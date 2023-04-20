@@ -1,5 +1,4 @@
 <?php
-
 namespace eazyDocs\Admin;
 
 /**
@@ -54,6 +53,7 @@ class Admin {
 			if ( is_array( $cz_access ) ) {
 				$cz_roles = ! empty( $cz_access ) ? implode( ',', $cz_access ) : '';
 			}
+
 			$cz_roled = explode( ',', $cz_roles );
 
 			if ( is_array( $sz_access ) ) {
