@@ -159,8 +159,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
 			// Options
-			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
-			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+			if ( is_admin() ) {
+				require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+				require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+			}
 			if ( ezd_is_premium() ) {
 				require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
 			}
