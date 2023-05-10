@@ -240,7 +240,7 @@ class Single_Doc extends Widget_Base {
 			'view_all_btn_opt', [
 				'label' => __( 'Buttons', 'eazydocs' ),
 				'condition'   => [
-					'doc-widget-single-search' => [ '1', '3' ]
+					'doc-widget-single-search' => [ '1', '2', '3' ]
 				]
 			]
 		);

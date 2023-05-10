@@ -41,12 +41,14 @@ endif;
                         </span>
                         <?php
                     endif;
+                    
                     if( $views_visibility == '1') : ?>
                         <span class="views sep">
                             <?php echo eazydocs_get_post_view(); ?>
                         </span>
                         <?php
                     endif;
+                    
                     if ( ezd_is_promax() ) :
                         if( ! empty( $contributor_visibility ) ) :
                             ?>

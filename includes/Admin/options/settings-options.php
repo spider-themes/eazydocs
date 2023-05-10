@@ -23,6 +23,8 @@ $all_roles 			= '';
 if ( is_array ( $edit_access ) ) {
 	$all_roles 		= ! empty ( $edit_access ) ? implode( ',', $edit_access ) : '';
 }
+
+if ( ! empty ( $all_roles ) ) {
 $all_roled    		= explode(',', $all_roles);
 
 if ( ! function_exists( 'wp_get_current_user' ) ) {
@@ -49,6 +51,7 @@ if ( in_array( $current_user_role, $all_roled ) ) {
 			$capabilites = 'publish_posts';
 			break;
 	}
+}
 } else {
 	$capabilites = 'manage_options';
 }
@@ -1474,6 +1477,18 @@ CSF::createSection( $prefix, array(
             'subtitle'   => esc_html__( 'Use this shortcode to display footnotes.', 'eazydocs-pro' ),
             'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs-pro' ).'<br><code>[reference number="1"]</code>',
             'default'    => '[reference]',
+            'attributes' => array(
+                'readonly' => 'readonly',
+            ),
+			'class'      => 'eazydocs-pro-notice'
+        ),
+		array(
+            'id'         => 'ezdocs_embed_post_shortcode',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Embed Post Shortcode', 'eazydocs-pro' ),
+            'subtitle'   => esc_html__( 'Use this shortcode to display a doc inside another doc.', 'eazydocs-pro' ),
+            'desc'       => __( 'See the shortcode with the available attributes. <br><code>[embed_post id="POST_ID" limit="no" thumbnail="yes"]</code> <br> Know the usage of this shortcode <a href="https://tinyurl.com/bde27yn4" target="_blank">here</a> ', 'eazydocs-pro' ),
+            'default'    => '[embed_post]',
             'attributes' => array(
                 'readonly' => 'readonly',
             ),

@@ -24,17 +24,24 @@ class Admin {
 	 * Register Menu
 	 */
 	public function eazyDocs_menu() {
-		$capabilites    = 'manage_options';
-		$cz_capabilites = 'manage_options';
-		$sz_capabilites = 'manage_options';
+		$capabilites    	= 'manage_options';
+		$cz_capabilites 	= 'manage_options';
+		$sz_capabilites 	= 'manage_options';
 
-		$ezd_options   = get_option( 'eazydocs_settings' );
-		$is_customizer = $ezd_options['customizer_visibility'] ?? 'disabled';
+		$ezd_options   		= get_option( 'eazydocs_settings' );
+		$is_customizer 		= $ezd_options['customizer_visibility'] ?? 'disabled';
+ 
+		$user_id 			= get_current_user_id(); // get the current user's ID
+		$user 				= get_userdata( $user_id );
+		$current_user_role 	= '';
+		$default_roles 		= ['administrator', 'editor', 'author', 'contributor', 'subscriber'];	 
 
-		$user              = wp_get_current_user();
-		$userdata          = get_user_by( 'id', $user->ID );
-		$current_user_role = $userdata->roles[0] ?? '';
+		$current_rols 		= $user->caps;
+		$current_rols 		= array_keys($current_rols);
 
+		$matched_roles 		= array_intersect($default_roles, $current_rols);		
+		$current_user_role 	= reset($matched_roles);
+	 
 		if ( function_exists( 'eazydocspro_get_option' ) ) {
 
 			$access    = eazydocspro_get_option( 'docs-write-access', 'eazydocs_settings' );
