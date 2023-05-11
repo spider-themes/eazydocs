@@ -634,7 +634,7 @@ body.search-focused .ezd_click_capture {
 .doc_title h2 {
   font-size: 34px;
   font-weight: 700;
-  color: #232361;
+  color: var(--black_800);
   margin-bottom: 15px;
   margin-top: 0;
 }
@@ -657,7 +657,7 @@ body.search-focused .ezd_click_capture {
 }
 .recommended_item h3 {
   font-size: 18px;
-  color: #232361;
+  color: var(--black_700);
   font-weight: 700;
   line-height: 26px;
   margin-bottom: 18px;

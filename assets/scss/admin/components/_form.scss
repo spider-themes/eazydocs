@@ -22,6 +22,7 @@
 .easydocs-search-form {
     position: relative;
     max-width: rem(600px);
+    flex: 1;
     @include margin(mx, auto);
 
     input {

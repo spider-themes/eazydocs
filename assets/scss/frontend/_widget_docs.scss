@@ -585,9 +585,9 @@
   }
   h4 {
     font-size: 20px;
-    color: #232361;
+    color: var(--black_800);
     font-weight: 700;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     margin-top: 0;
     transition: color 0.2s linear;
     &:hover {

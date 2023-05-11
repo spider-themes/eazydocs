@@ -202,6 +202,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.1.8 (12 May 2023) =
+Fixed: JS error on the docs-single.js file 787 line number
+Tweaked: Compatibility with Docy theme improved (dark mode, search banner, and other minor issues)
+Tweaked: Some Dark mode colors are changed to improve the text readability
+
 = v2.1.7 (16 April 2023) =
 Fixed: PHP error
 

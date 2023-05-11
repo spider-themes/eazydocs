@@ -1,12 +1,10 @@
 <?php
 $cz_options     = get_option( 'eazydocs_settings' );
 
-$custom_banner  = $cz_options['doc_banner_bg'] ?? '';
-$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
 
-$search_banner = $cz_options['is_search_banner'] ?? '1';
-
-if ( $search_banner == '1' ) :
+if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
+	$custom_banner  = $cz_options['doc_banner_bg'] ?? '';
+	$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
 	?>
     <div class="focus_overlay"></div>
     <section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap ); ?>">

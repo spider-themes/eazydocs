@@ -19,7 +19,7 @@
  *
  */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
-.col, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3 {
+.col {
   position: relative;
   width: 100%;
   padding-right: 15px;
@@ -979,6 +979,7 @@ body.rtl a.child-delete {
 .easydocs-search-form {
   position: relative;
   max-width: 37.5rem;
+  flex: 1;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1050,8 +1051,8 @@ body.rtl a.child-delete {
 /*  02. Header Area
 /*----------------------------------------*/
 .easydocs-header-area {
-  padding-top: var(--gutter-20);
-  padding-bottom: var(--gutter-20);
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
 .easydocs-header-area .easydocs-row {
   margin-left: 0;
@@ -1505,38 +1506,10 @@ body.rtl a.child-delete {
   margin-right: 0;
   margin-left: 0;
 }
-.no-gutters > .col, .no-gutters > .col-lg-6, .no-gutters > .col-lg-5, .no-gutters > .col-lg-4, .no-gutters > .col-lg-3,
+.no-gutters > .col,
 .no-gutters > [class*=col-] {
   padding-right: 0;
   padding-left: 0;
-}
-
-@media (min-width: 992px) {
-  .col-lg-3 {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-lg-4 {
-    flex: 0 0 33.3333333333%;
-    max-width: 33.3333333333%;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-lg-5 {
-    flex: 0 0 41.6666666667%;
-    max-width: 41.6666666667%;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-lg-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
 }
 
 /*----------------------------------------*/
@@ -1688,8 +1661,7 @@ body.rtl a.child-delete {
 
 .easydocs-tab-content {
   flex: 0 0 67%;
-  background: #E5E5E5;
-  padding: 30px;
+  padding: 0 30px 30px 30px;
 }
 
 button.nestable--button.nestable--expand {

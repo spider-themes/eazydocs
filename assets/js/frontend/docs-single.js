@@ -784,10 +784,12 @@
 		}
 
 		// Search results should close on clearing the input field
-		document
-			.getElementById('ezd_searchInput')
-			.addEventListener('search', function (event) {
-				$('#ezd-search-results').empty().removeClass('ajax-search');
-			});
-	});
+		if ( document.getElementById('ezd_searchInput') ) {
+			document
+				.getElementById('ezd_searchInput')
+				.addEventListener('search', function (event) {
+					$('#ezd-search-results').empty().removeClass('ajax-search');
+				})
+		}
+	})
 })(jQuery);

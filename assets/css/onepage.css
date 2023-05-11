@@ -212,7 +212,7 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   height: auto !important;
   width: auto !important;
   max-height: 120px;
-  margin: 10px 0;
+  margin: 10px;
 }
 .single-onepage-docs .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
   background: transparent;

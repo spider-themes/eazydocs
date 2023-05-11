@@ -27,7 +27,6 @@ $doc_container   = $doc_width == 'full-width' ? 'container-fluid px-lg-5' : 'con
 $content_wrapper = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
 
 $credit_text = $options['eazydocs-credit-text'] ?? sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
-$breadcrumb  = $options['docs-breadcrumb'] ?? '1';
 
 if ( ezd_is_premium() ) {
 	$credit_enable = $options['eazydocs-enable-credit'] ?? '1';
@@ -48,7 +47,7 @@ switch ( $layout ) {
 
 $current_theme = get_template();
 
-if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
+if ( $current_theme != 'docly' ) {
 	eazydocs_get_template_part( 'search-banner' );
 }
 ?>
@@ -57,7 +56,7 @@ if ( $current_theme != 'docly' && $current_theme != 'docy' ) {
     <div class="ezd-link-copied-wrap"></div>
     <div class="overlay_bg"></div>
     <?php
-    if ( $breadcrumb == '1' ) {
+    if ( ezd_get_opt('docs-breadcrumb', '1') == '1' ) {
         if ( $current_theme != 'docy' && $current_theme != 'docly' ) {
             eazydocs_get_template_part( 'breadcrumbs' );
         }
