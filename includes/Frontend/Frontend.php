@@ -76,7 +76,7 @@ class Frontend {
 		$cat_ids         = ! empty( $cats ) ? wp_list_pluck( $cats, 'term_id' ) : '';
 		$eazydocs_option = get_option('eazydocs_settings');
 		
-		$doc_posts       = new \WP_Query( array(
+		$doc_posts = new \WP_Query( array(
 			'post_type'           => 'docs',
 			'tax_query'           => array(
 				array(
@@ -94,9 +94,6 @@ class Frontend {
 		
 		$related_docs      		  = $doc_posts->post_count ?? 0;
 		$viewed_column 		  = $related_docs > 0 ? $eazydocs_option['viewed-doc-column'] : '12';
- 
-
-
 			?>
 			<div class="col-lg-<?php echo esc_attr($viewed_column .' '. $visibility); ?>">
 				<div class="topic_list_item">

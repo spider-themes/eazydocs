@@ -1883,3 +1883,11 @@ body.rtl{
     padding: 12px 45px 12px 47px;
   }
 }
+
+.single-docs #page hr, 
+.single-docs #header{
+   display:none
+}
+.single-docs .wp-block-group.alignwide.is-content-justification-space-between.is-layout-flex.wp-container-3 {
+  max-width: 1460px;
+}

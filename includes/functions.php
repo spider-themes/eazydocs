@@ -1255,3 +1255,12 @@ function ezd_customizer_script() {
     <?php
 }
 add_action( 'customize_controls_print_footer_scripts', 'ezd_customizer_script' );
+
+// check if block theme activated
+function ezd_header_with_block_theme() {
+	if ( function_exists( 'block_header_area' ) ) {
+		echo '<header class="wp-block-template-part site-header" style="padding-top:var(--wp--style--root--padding-top)">';
+		block_header_area();
+		echo '</header>';
+	}
+}

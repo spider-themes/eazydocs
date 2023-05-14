@@ -253,18 +253,18 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// Insert easydocs search key table and search key logs table into the database if not exists
 			global $wpdb;
 
-			$charset_collate = $wpdb->get_charset_collate();
+			$charset_collate 	= $wpdb->get_charset_collate();
 			$search_keyword      = $wpdb->prefix . 'eazydocs_search_keyword';
-			$search_logs     = $wpdb->prefix . 'eazydocs_search_log';
-			$view_logs 		= $wpdb->prefix . 'eazydocs_view_log';
+			$search_logs     	= $wpdb->prefix . 'eazydocs_search_log';
+			$view_logs 			= $wpdb->prefix . 'eazydocs_view_log';
 
-			$sql             = "CREATE TABLE $search_keyword (
+			$sql = "CREATE TABLE $search_keyword (
 				id bigint(9) NOT NULL AUTO_INCREMENT,
 				keyword varchar(255) NOT NULL,
 				UNIQUE KEY id (id)
 			) $charset_collate;";
 
-			$sql2            = "CREATE TABLE $search_logs (
+			$sql2 = "CREATE TABLE $search_logs (
 				id bigint(9) NOT NULL AUTO_INCREMENT,
 				keyword_id bigint(255) NOT NULL references $search_keyword(id), 
 				count mediumint(255) NOT NULL,
@@ -273,7 +273,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				UNIQUE KEY id (id)
 			) $charset_collate;";
 
-			$sql3            = "CREATE TABLE $view_logs (
+			$sql3 = "CREATE TABLE $view_logs (
 				id bigint(9) NOT NULL AUTO_INCREMENT,
 				post_id bigint(255) NOT NULL,
 				count mediumint(255) NOT NULL,

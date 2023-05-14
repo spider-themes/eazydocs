@@ -1,3 +1,4 @@
+ 
 <?php
 /**
  * The template for displaying a single doc
@@ -6,6 +7,10 @@
  *
  * @package eazydocs
  */
+// If block theme is active, load the header
+ezd_header_with_block_theme();
+
+// If block theme is not active, load the header
 get_header();
 
 $theme_data = wp_get_theme();
