@@ -844,7 +844,7 @@ CSF::createSection( $prefix, array(
             'id'         => 'share_btn_label',
             'type'       => 'text',
             'title'      => esc_html__( 'Share Button Label', 'eazydocs' ),
-            'default'    => esc_html__( 'Share this Doc', 'eazydocs-pro' ),
+            'default'    => esc_html__( 'Share this Doc', 'eazydocs' ),
             'dependency' => array(
                 array( 'is_copy_link', '==', '1' ),
                 array( 'is_social_links', '==', '1' ),
@@ -1009,7 +1009,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'related-docs',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Related Docs', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs-pr' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => true,
 			'text_width' => 72
@@ -1473,9 +1473,9 @@ CSF::createSection( $prefix, array(
 		array(
             'id'         => 'ezdocs_footnote_shortcode',
             'type'       => 'text',
-            'title'      => esc_html__( 'Footnote Shortcode', 'eazydocs-pro' ),
-            'subtitle'   => esc_html__( 'Use this shortcode to display footnotes.', 'eazydocs-pro' ),
-            'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs-pro' ).'<br><code>[reference number="1"]</code>',
+            'title'      => esc_html__( 'Footnote Shortcode', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Use this shortcode to display footnotes.', 'eazydocs' ),
+            'desc'       => esc_html__('See the shortcode with the available attributes', 'eazydocs' ).'<br><code>[reference number="1"]</code>',
             'default'    => '[reference]',
             'attributes' => array(
                 'readonly' => 'readonly',
@@ -1485,9 +1485,9 @@ CSF::createSection( $prefix, array(
 		array(
             'id'         => 'ezdocs_embed_post_shortcode',
             'type'       => 'text',
-            'title'      => esc_html__( 'Embed Post Shortcode', 'eazydocs-pro' ),
-            'subtitle'   => esc_html__( 'Use this shortcode to display a doc inside another doc.', 'eazydocs-pro' ),
-            'desc'       => __( 'See the shortcode with the available attributes. <br><code>[embed_post id="POST_ID" limit="no" thumbnail="yes"]</code> <br> Know the usage of this shortcode <a href="https://tinyurl.com/bde27yn4" target="_blank">here</a> ', 'eazydocs-pro' ),
+            'title'      => esc_html__( 'Embed Post Shortcode', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Use this shortcode to display a doc inside another doc.', 'eazydocs' ),
+            'desc'       => __( 'See the shortcode with the available attributes. <br><code>[embed_post id="POST_ID" limit="no" thumbnail="yes"]</code> <br> Know the usage of this shortcode <a href="https://tinyurl.com/bde27yn4" target="_blank">here</a> ', 'eazydocs' ),
             'default'    => '[embed_post]',
             'attributes' => array(
                 'readonly' => 'readonly',

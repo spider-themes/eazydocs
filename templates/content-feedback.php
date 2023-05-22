@@ -9,10 +9,10 @@ $positive            = (int) get_post_meta( $post->ID, 'positive', true );
 $negative            = (int) get_post_meta( $post->ID, 'negative', true );
 $positive_title      = $positive ? sprintf( _n( '%d person found this useful', '%d persons found this useful', $positive, 'eazydocs' ), number_format_i18n( $positive ) ) : esc_html__( 'No votes yet', 'eazydocs' );
 $negative_title      = $negative ? sprintf( _n( '%d person found this not useful', '%d persons found this not useful', $negative, 'eazydocs' ), number_format_i18n( $negative ) ) : esc_html__( 'No votes yet', 'eazydocs' );
-$still_stuck         = ! empty ( $options['still-stuck'] ) ? $options['still-stuck'] : esc_html__( 'Still stuck?', 'eazydocs' );;
+$still_stuck         = ! empty ( $options['still-stuck'] ) ? $options['still-stuck'] : __( 'Still stuck?', 'eazydocs' );;
 $tags                = get_the_terms( get_the_ID(), 'doc_tag' );
-$link_text           = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : esc_html__( 'How can we help?', 'eazydocs' );
-$doc_feedback_label  = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : esc_html__( 'Was this page helpful?', 'eazydocs' );
+$link_text           = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : __( 'How can we help?', 'eazydocs' );
+$doc_feedback_label  = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : __( 'Was this page helpful?', 'eazydocs' );
 $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
 
 

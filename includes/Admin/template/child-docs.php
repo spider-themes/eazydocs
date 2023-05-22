@@ -130,7 +130,7 @@ if (is_array($depth_one_parents)) :
                                                     else :
                                                     ?>
                                                         <li class="duplicate">
-                                                            <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
+                                                            <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>">
                                                                 <span class="dashicons dashicons-admin-page"></span>
                                                             </a>
                                                         </li>
@@ -157,7 +157,7 @@ if (is_array($depth_one_parents)) :
                                                 ?>
 
                                                 <li>
-                                                    <a href="<?php echo get_permalink($child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
+                                                    <a href="<?php echo get_permalink($child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                         <span class="dashicons dashicons-external"></span>
                                                     </a>
                                                 </li>
@@ -269,7 +269,7 @@ if (is_array($depth_one_parents)) :
                                                                     else :
                                                                     ?>
                                                                         <li class="duplicate">
-                                                                            <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
+                                                                            <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>">
                                                                                 <span class="dashicons dashicons-admin-page"></span>
                                                                             </a>
                                                                         </li>
@@ -294,7 +294,7 @@ if (is_array($depth_one_parents)) :
                                                                 endif;
                                                                 ?>
                                                                 <li>
-                                                                    <a href="<?php echo get_permalink($sub_child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
+                                                                    <a href="<?php echo get_permalink($sub_child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                                         <span class="dashicons dashicons-external"></span>
                                                                     </a>
                                                                 </li>
@@ -395,7 +395,7 @@ if (is_array($depth_one_parents)) :
                                                                                     else :
                                                                                     ?>
                                                                                         <li>
-                                                                                            <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'easydocs'); ?>">
+                                                                                            <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>">
                                                                                                 <span class="dashicons dashicons-admin-page"></span>
                                                                                             </a>
                                                                                         </li>
@@ -405,7 +405,7 @@ if (is_array($depth_one_parents)) :
                                                                                 ?>
 
                                                                                 <li>
-                                                                                    <a href="<?php echo get_permalink($of_sub_child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'easydocs') ?>">
+                                                                                    <a href="<?php echo get_permalink($of_sub_child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                                                         <span class="dashicons dashicons-external"></span>
                                                                                     </a>
                                                                                 </li>

@@ -31,10 +31,7 @@ export default function Edit({ attributes, setAttributes }) {
 		<Fragment>
 			<InspectorControls>
 				<PanelBody>
-					<small>
-						The search banner settings/ background image, colors, keywords are getting from the plugin's
-						<a href={settingsPage} target="_blank"> Settings page </a>.
-					</small>
+					<small>The search banner settings/ background image, colors, keywords are getting from the plugins<a href={settingsPage} target="_blank"> Settings page </a></small>
 				</PanelBody>
 			</InspectorControls>
 

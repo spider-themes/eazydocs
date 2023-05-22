@@ -291,7 +291,7 @@ class Frontend {
 					<span>
 						<?php
 						echo esc_html(get_the_title($doc_parent_id));
-						esc_html_e( ' - Previous', 'eazydocs-pro' );
+						esc_html_e( ' - Previous', 'eazydocs' );
 						?>
 					</span>
 					<?php echo esc_html(get_the_title($prev_doc_id)); ?>
@@ -304,7 +304,7 @@ class Frontend {
 				<a class="next-prev-pager second" href="<?php echo get_permalink($next_doc_id); ?>">
 					<span>
 						<?php
-						esc_html_e( 'Next - ', 'eazydocs-pro' );
+						esc_html_e( 'Next - ', 'eazydocs-' );
 						echo esc_html(get_the_title($doc_parent_id));
 						?>
 					</span>
