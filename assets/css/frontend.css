@@ -1,7 +1,6 @@
 @charset "UTF-8";
 /* Colors */
 :root {
-  --ezd_brand_color: #4c4cf1;
   --secondary_color: #1d2746;
   --green_color: #27ae60;
   --p_color: #425466;
@@ -778,7 +777,7 @@ body.search-focused .ezd_click_capture {
   display: none;
 }
 .nav-sidebar .nav-item mark {
-  background-color: #e5e800;
+  background-color: var(--ezd_brand_color);
 }
 .nav-sidebar .nav-item > a {
   display: flex;
@@ -1925,7 +1924,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .documentation_item .media-body .title:hover {
   text-decoration: underline;
-  text-decoration-color: rgba(76, 122, 241, 0.25);
+  text-decoration-color: var(--ezd_brand_color);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
   color: var(--ezd_brand_color);

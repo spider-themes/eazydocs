@@ -147,7 +147,7 @@
     }
 
     mark {
-      background-color: #e5e800;
+      background-color: var(--ezd_brand_color);
     }
     > a {
       display: flex;
@@ -1370,7 +1370,7 @@ body:not(.onepage-doc) .sticky_menu {
       line-height: 1.5;
       &:hover {
         text-decoration: underline;
-        text-decoration-color: rgba(76,122,241,.25);
+        text-decoration-color: var(--ezd_brand_color);
         text-decoration-thickness: 2px;
         text-underline-offset: 3px;
         color: var(--ezd_brand_color)
