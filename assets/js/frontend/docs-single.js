@@ -791,5 +791,6 @@
 					$('#ezd-search-results').empty().removeClass('ajax-search');
 				})
 		}
+		
 	})
 })(jQuery);

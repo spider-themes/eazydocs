@@ -1,3 +1,19 @@
+body{
+  &.disable-docly-header {
+    section.breadcrumb_area, section.page_breadcrumb {
+      display: none;
+      &.ezd-breadcrumb{
+        display: block;
+      }
+    }
+  }
+  &.single-docs.ezd-theme-docly{
+    .page_breadcrumb:not(.ezd-breadcrumb) {
+      display: none;
+    }
+  }
+}
+
 .single-docs {
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;

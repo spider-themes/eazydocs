@@ -77,8 +77,5 @@
 
             })
         });
-
-        // Remove condition if it has pro notice class
-        $('.eazydocs-pro-notice').attr('data-condition', '');
-    })
+    });
 })(jQuery);

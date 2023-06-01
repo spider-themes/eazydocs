@@ -640,6 +640,16 @@ body.search-focused .ezd_click_capture {
   transition: all 0.3s linear;
 }
 
+body.disable-docly-header section.breadcrumb_area, body.disable-docly-header section.page_breadcrumb {
+  display: none;
+}
+body.disable-docly-header section.breadcrumb_area.ezd-breadcrumb, body.disable-docly-header section.page_breadcrumb.ezd-breadcrumb {
+  display: block;
+}
+body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
+  display: none;
+}
+
 .single-docs h1, .single-docs h2, .single-docs h3, .single-docs h4, .single-docs h5, .single-docs h6 {
   margin-top: 0;
   font-weight: 700;

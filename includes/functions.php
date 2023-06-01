@@ -1264,3 +1264,30 @@ function ezd_header_with_block_theme() {
 		echo '</header>';
 	}
 }
+	
+// Get all templates from Elementor
+function ezd_get_elementor_templates() {
+	$elementor_templates = get_posts( array(
+		'post_type' 		=> 'elementor_library',
+		'posts_per_page' 	=> -1,
+		'status' 			=> 'publish'
+	) );
+	
+	$elementor_templates_array = array();
+	if ( ! empty( $elementor_templates ) ) {
+		foreach ( $elementor_templates as $elementor_template ) {
+			$elementor_templates_array[$elementor_template->ID] = $elementor_template->post_title;
+		}
+	}
+	return $elementor_templates_array;
+}
+
+// Disable docly header when single doc layout is elementor template
+function ezd_single_banner($classes) {
+	$current_theme = get_template();
+	if ( is_single() && get_post_type() == 'docs' && ! empty( ezd_get_opt('single_doc_layout') == 'el-template' ) &&  ! empty( ezd_get_opt('single_layout_id') ) && $current_theme == 'docly' ) {
+		$classes[] = 'disable-docly-header';
+    }
+    return $classes;
+}
+add_filter('body_class', 'ezd_single_banner');

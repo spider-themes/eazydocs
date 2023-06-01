@@ -404,7 +404,28 @@ CSF::createSection( $prefix, array(
 			'type'  => 'subheading',
 			'title' => esc_html__( 'Search Banner Settings', 'eazydocs' ),
 		),
+
+		array(
+			'id'         => 'single_doc_layout',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Choose layout', 'eazydocs' ),
+			'options'	 => [
+				'default'	 	=>  esc_html__( 'Default', 'eazydocs' ),
+				'el-template'	=>  esc_html__( 'Elementor Template', 'eazydocs' ),
+			],
+			'default'    => 'default',
+			'subtitle'       => __( 'Select how the header of the doc detail page will be displayed', 'eazydocs' ),
+		),
 		
+		array(
+			'id'         => 'single_layout_id',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Select Template', 'eazydocs' ),
+			'options'	 =>  ezd_get_elementor_templates(),
+			'dependency' => array( 'single_doc_layout', '==', 'el-template' ),
+			'subtitle'       => __( 'How to create elementor template <a target="__blank" href="https://shorturl.at/rwyQ6">See guide</a>', 'eazydocs' ),
+		),
+
 		array(
 			'id'         => 'is_search_banner',
 			'type'       => 'switcher',
@@ -412,6 +433,7 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => true,
+			'dependency' => array( 'single_doc_layout', '==', 'default' ),
 			'text_width' => 72
 		),
 		
@@ -420,6 +442,7 @@ CSF::createSection( $prefix, array(
 			'type'   => 'background',
 			'title'  => esc_html__( 'Background', 'eazydocs' ),
 			'output' => '.ezd_search_banner.has_bg_dark',
+			'dependency' => array( 'single_doc_layout', '==', 'default' ),
 		),
 
         array(
@@ -427,6 +450,7 @@ CSF::createSection( $prefix, array(
             'type'     => 'spacing',
             'title'    => esc_html__( 'Padding', 'eazydocs'),
             'output'   => '.ezd_search_banner',
+			'dependency' => array( 'single_doc_layout', '==', 'default' ),
             'default'  => array(
                 'unit'   => 'px',
             ),
@@ -436,6 +460,7 @@ CSF::createSection( $prefix, array(
         array(
 			'type'  => 'subheading',
 			'title' => esc_html__( 'Search Keywords', 'eazydocs' ),
+			'dependency' => array( 'single_doc_layout', '==', 'default' ),
 		),
 		
 		array(
@@ -446,7 +471,10 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'default'    => false,
 			'text_width' => 90,
-			'dependency' => array( 'is_search_banner', '==', 'true' ),
+			'dependency' => array(
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'single_doc_layout', '==', 'default' ),
+			),
 			'class'      => 'eazydocs-pro-notice'
 		),
 		
@@ -458,6 +486,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'is_keywords', '==', 'true' ),
+				array( 'single_doc_layout', '==', 'default' ),
 			),
 			'class'      => 'eazydocs-pro-notice'
 		),
@@ -471,6 +500,7 @@ CSF::createSection( $prefix, array(
             'dependency' => array(
                 array( 'is_search_banner', '==', 'true' ),
                 array( 'is_keywords', '==', 'true' ),
+				array( 'single_doc_layout', '==', 'default' ),
             ),
 			'class'       => 'eazydocs-pro-notice'
 		),
@@ -482,6 +512,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'is_keywords', '==', 'true' ),
+				array( 'single_doc_layout', '==', 'default' ),
 			),
 			'fields'     => array(
 				array(
@@ -510,6 +541,7 @@ CSF::createSection( $prefix, array(
             'dependency' => array(
                 array( 'is_search_banner', '==', 'true' ),
                 array( 'is_keywords', '==', 'true' ),
+				array( 'single_doc_layout', '==', 'default' ),
             ),
 			'class'       => 'eazydocs-pro-notice'
 		)

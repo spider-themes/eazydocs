@@ -18,8 +18,8 @@ $theme_name = $theme_data->get( 'Name' );
 ?>
 <p class="d-none"><?php echo $theme_name; ?></p>
 <?php
-$options = get_option( 'eazydocs_settings' );
-
+$options         = get_option( 'eazydocs_settings' );
+$single_layout   = $options['single_doc_layout'] ?? 'default';
 $cz_options      = '';
 $doc_container   = 'container custom_container';
 $content_wrapper = '';
@@ -31,7 +31,7 @@ $doc_width       = $options['docs_page_width'] ?? '';
 $doc_container   = $doc_width == 'full-width' ? 'container-fluid px-lg-5' : 'container custom_container';
 $content_wrapper = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
 
-$credit_text = $options['eazydocs-credit-text'] ?? sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
+$credit_text     = $options['eazydocs-credit-text'] ?? sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
 
 if ( ezd_is_premium() ) {
 	$credit_enable = $options['eazydocs-enable-credit'] ?? '1';
@@ -52,8 +52,12 @@ switch ( $layout ) {
 
 $current_theme = get_template();
 
-if ( $current_theme != 'docly' ) {
-	eazydocs_get_template_part( 'search-banner' );
+if ( $single_layout == 'default' ) {
+    if ( $current_theme != 'docly' ) {
+        eazydocs_get_template_part( 'search-banner' );
+    }
+} else {
+    eazydocs_get_template_part( 'custom-banner' );
 }
 ?>
 <section class="doc_documentation_area <?php echo esc_attr( $content_wrapper ); ?>" id="sticky_doc">
@@ -62,9 +66,7 @@ if ( $current_theme != 'docly' ) {
     <div class="overlay_bg"></div>
     <?php
     if ( ezd_get_opt('docs-breadcrumb', '1') == '1' ) {
-        if ( $current_theme != 'docy' && $current_theme != 'docly' ) {
-            eazydocs_get_template_part( 'breadcrumbs' );
-        }
+        eazydocs_get_template_part( 'breadcrumbs' );
     }
     ?>
     <div class="position-relative <?php echo esc_attr( $doc_container ); ?>">
@@ -88,17 +90,18 @@ if ( $current_theme != 'docly' ) {
     </div>
 </section>
 
-<?php if ( $credit_enable == '1' ) : ?>
+<?php 
+if ( $credit_enable == '1' ) : ?>
     <div class="section eazydocs-footer">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="eazydocx-credit-text">
-					<?php echo wp_kses_post( wpautop( $credit_text ) ); ?>
+                    <?php echo wp_kses_post( wpautop( $credit_text ) ); ?>
                 </div>
             </div>
         </div>
     </div>
-<?php endif; ?>
+    <?php 
+endif;
 
-<?php
 get_footer();

@@ -1,7 +1,6 @@
 <?php
 $cz_options     = get_option( 'eazydocs_settings' );
 
-
 if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
 	$custom_banner  = $cz_options['doc_banner_bg'] ?? '';
 	$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
