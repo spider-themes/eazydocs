@@ -57,7 +57,9 @@ if ( $single_layout == 'default' ) {
         eazydocs_get_template_part( 'search-banner' );
     }
 } else {
-    eazydocs_get_template_part( 'custom-banner' );
+    if ( $current_theme != 'docy' ) {
+        eazydocs_get_template_part( 'custom-banner' );
+    }
 }
 ?>
 <section class="doc_documentation_area <?php echo esc_attr( $content_wrapper ); ?>" id="sticky_doc">
@@ -65,7 +67,7 @@ if ( $single_layout == 'default' ) {
     <div class="ezd-link-copied-wrap"></div>
     <div class="overlay_bg"></div>
     <?php
-    if ( ezd_get_opt('docs-breadcrumb', '1') == '1' ) {
+    if ( ezd_get_opt('docs-breadcrumb', '1') == '1' && $current_theme != 'docy' ) {
         eazydocs_get_template_part( 'breadcrumbs' );
     }
     ?>
@@ -104,4 +106,6 @@ if ( $credit_enable == '1' ) : ?>
     <?php 
 endif;
 
+
+ezd_footer_with_block_theme();
 get_footer();

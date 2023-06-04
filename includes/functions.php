@@ -1258,10 +1258,20 @@ add_action( 'customize_controls_print_footer_scripts', 'ezd_customizer_script' )
 
 // check if block theme activated
 function ezd_header_with_block_theme() {
-	if ( function_exists( 'block_header_area' ) ) {
+	$get_theme = wp_get_theme();
+	if ( $get_theme == 'Twenty Twenty-Three' ) {
 		echo '<header class="wp-block-template-part site-header" style="padding-top:var(--wp--style--root--padding-top)">';
 		block_header_area();
 		echo '</header>';
+	}
+}
+
+function ezd_footer_with_block_theme(){
+	$get_theme = wp_get_theme();
+	if ( $get_theme == 'Twenty Twenty-Three' ) {
+		echo '<footer class="wp-block-template-part">';
+		block_footer_area();
+		echo '</footer>';
 	}
 }
 	

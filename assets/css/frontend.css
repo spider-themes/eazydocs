@@ -2400,13 +2400,17 @@ body.rtl .ezd-link-copied-wrap.copied {
   padding: 12px 45px 12px 47px;
 }
 
-.single-docs #page hr,
-.single-docs #header {
+.single-docs.ezd-theme-twenty.twenty-three #page hr, .single-docs.ezd-theme-twenty.twenty-three #header,
+.single-docs.ezd-theme-twenty.twenty-three #footer {
   display: none;
 }
 
 .single-docs .wp-block-group.alignwide.is-content-justification-space-between.is-layout-flex.wp-container-3 {
   max-width: 1460px;
+}
+
+body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwide {
+  justify-content: space-between;
 }
 
 /*============== Start doc_tag_area css =============*/
