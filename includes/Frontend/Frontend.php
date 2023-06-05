@@ -232,89 +232,72 @@ class Frontend {
     * @param $get_id
     * Single docs Previous & Next Link
     **/
-	public function eazydocs_prev_next_docs( $get_id ) {
+	public function eazydocs_prev_next_docs( $current_post_id ) {				
+		$current_parent_id      = wp_get_post_parent_id($current_post_id);
+		$args = array(
+			'post_type'         => 'docs',
+			'post_parent'       => $current_parent_id,
+			'order'             => 'ASC',
+			'orderby'           => 'menu_order',
+			'posts_per_page'    => -1
+		);
+		$custom_query           = new \WP_Query($args);
+		$next_post              = null;
+		$found_current_post     = false;
 
-		$get_doc_ancestor 		= get_post_ancestors($get_id);
-		$get_doc_ancestor 		= end($get_doc_ancestor);
+		while ($custom_query->have_posts()) {
+			$custom_query->the_post();
+			
+			if ( get_the_ID() === $current_post_id ) {
+				$found_current_post = true;
+				continue;
+			}
 
-		// get children
-		$doc_childs = get_children( array(
-			'post_parent' 		=> $get_doc_ancestor,
-			'post_type'   		=> 'docs',
-			'numberposts' 		=> -1, 
-			'order'       		=> 'ASC',
-			'orderby'     		=> 'menu_order'
-		) );
-		
-		$main_child_ids 		= array_keys($doc_childs);
-		$main_doc_index 		= array_search(get_the_ID(), $main_child_ids);
-		$doc_parent_id 			= wp_get_post_parent_id($get_id);		
-	 	$doc_ancestor 			= get_post_ancestors($get_id);
-
-		// get top level parent page
-	 	$doc_ancestor_id 		= $doc_ancestor ? end($doc_ancestor) : $get_id; 
-		$child_and_parent 		= false;
-
-		$get_childs = get_children( array(
-			'post_parent' 		=> $doc_parent_id,
-			'post_type'   		=> 'docs',
-			'numberposts' 		=> -1, 
-			'order'   			=> 'ASC',
-			'post_status' 		=> 'publish'
-		) );
-
-		$child_ids 				= array_keys($get_childs);
-		$doc_index 				= array_search(get_the_ID(), $child_ids);
-		$child_and_main 		= false;
-
-		if ( $doc_parent_id == $doc_ancestor_id ){
-			$child_and_main 	= true;
-			$prev_doc_id 		= $main_child_ids[$main_doc_index - 1] ?? '';
-			$next_doc_id 		= $main_child_ids[$main_doc_index + 1] ?? '';
-		} elseif ( get_the_ID() == $doc_ancestor_id ){
-			$prev_doc_id 		=  '';
-			$next_doc_id 		=  '';
-			$child_and_parent 	= false;
-		} else {
-			$prev_doc_id 		= $child_ids[$doc_index - 1] ?? '';
-			$next_doc_id 		= $child_ids[$doc_index + 1] ?? '';
-			$child_and_parent 	= true;
+			if ( ! $found_current_post ) {
+				$previous_post 	= get_post();
+			} else {
+				$next_post 		= get_post();
+				break;
+			}
 		}
 
-		if(  $child_and_parent == true || $child_and_main == true) :
+		// Restore original post data
+		wp_reset_postdata();
+
+		$previous_post_id 	= ! empty ( $previous_post ) ? $previous_post->ID : 0;
+		$next_post_id 		= ! empty ( $next_post ) ? $next_post->ID : 0;
 			?>
 			<div class="eazydocs-next-prev-wrap">
-			<?php
-			if ( $prev_doc_id ) :			
-				?>
-				<a class="next-prev-pager first" href="<?php echo get_permalink($prev_doc_id); ?>">
-					<span>
-						<?php
-						echo esc_html(get_the_title($doc_parent_id));
-						esc_html_e( ' - Previous', 'eazydocs' );
-						?>
-					</span>
-					<?php echo esc_html(get_the_title($prev_doc_id)); ?>
-				</a>
 				<?php
-			endif;
+				if ( $previous_post_id != 0 ) :			
+					?>
+					<a class="next-prev-pager first" href="<?php echo get_permalink( $previous_post_id ); ?>">
+						<span>
+							<?php
+							echo esc_html(get_the_title( $current_parent_id ) );
+							esc_html_e( ' - Previous', 'eazydocs' );
+							?>
+						</span>
+						<?php echo esc_html(get_the_title( $previous_post_id ) ); ?>
+					</a>
+					<?php
+				endif;
 
-			if ( $next_doc_id ) :
+				if ( $next_post_id != 0 ) :
+					?>
+					<a class="next-prev-pager second" href="<?php echo get_permalink( $next_post_id ); ?>">
+						<span>
+							<?php
+							esc_html_e( 'Next - ', 'eazydocs-' );
+							echo esc_html( get_the_title( $current_parent_id ) );
+							?>
+						</span>
+						<?php echo esc_html( get_the_title( $next_post_id ) ); ?>
+					</a>
+					<?php 
+				endif;
 				?>
-				<a class="next-prev-pager second" href="<?php echo get_permalink($next_doc_id); ?>">
-					<span>
-						<?php
-						esc_html_e( 'Next - ', 'eazydocs-' );
-						echo esc_html(get_the_title($doc_parent_id));
-						?>
-					</span>
-					<?php echo esc_html(get_the_title($next_doc_id)); ?>
-				</a>
-				<?php 
-			endif;
-			?>
 			</div>
-    	<?php
-		endif;
+			<?php					
+		}
 	}
-}

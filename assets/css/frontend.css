@@ -3659,7 +3659,7 @@ p .footnotes-link::after {
   padding-bottom: 30px;
 }
 
-#post h3, #post h4 {
+#post h2, #post h3, #post h4 {
   font-weight: 500;
   margin-bottom: 20px;
   padding-top: 80px;

@@ -14,9 +14,6 @@ $tags                = get_the_terms( get_the_ID(), 'doc_tag' );
 $link_text           = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : __( 'How can we help?', 'eazydocs' );
 $doc_feedback_label  = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : __( 'Was this page helpful?', 'eazydocs' );
 $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
-
-
-
 ?>
 <div class="doc-btm">
 	<?php
