@@ -90,7 +90,7 @@ if ( ezd_is_premium() ) {
                     ?>
                     <div class="doc-top d-flex align-items-start">
                         <a class="doc_tag_title" href="<?php echo esc_url($main_doc_url); ?>">
-                            <h4 class="title"> <?php the_title(); ?> </h4>
+                            <h4 class="title ezd_item_title"> <?php the_title(); ?> </h4>
                             <span class="badge"> <?php echo count($get_child_docs); esc_html_e(' Topics', 'eazydocs'); ?> </span>
                         </a>
                     </div>
@@ -102,7 +102,7 @@ if ( ezd_is_premium() ) {
                             foreach ( $sections as $section ) :
                                 ?>
                                 <li>
-                                    <a href="<?php echo get_permalink($section); ?>"> 
+                                    <a href="<?php echo get_permalink($section); ?>" class="ezd_item_list_title">
                                         <?php echo $section->post_title; ?>
                                     </a>
                                 </li>
@@ -110,7 +110,7 @@ if ( ezd_is_premium() ) {
                             endforeach;
                             ?>
                         </ul>
-                        <a href="<?php the_permalink(); ?>" class="doc_border_btn">
+                        <a href="<?php the_permalink(); ?>" class="doc_border_btn ezd_btn">
                             <?php echo esc_html( $read_more ); ?>
                             <i class="arrow_right"></i>
                         </a>

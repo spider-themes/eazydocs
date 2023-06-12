@@ -203,6 +203,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Changelog ==
 
 = v2.1.8 (12 May 2023) =
+Tweaked: Added Tabs Arrow Icon when the tabs are more than the container width in the EazyDocs Multi Docs Widget
+
+
+= v2.1.8 (12 May 2023) =
 Fixed: JS error on the docs-single.js file 787 line number
 Tweaked: Compatibility with Docy theme improved (dark mode, search banner, and other minor issues)
 Tweaked: Some Dark mode colors are changed to improve the text readability

@@ -12,9 +12,9 @@
                 </div>
                 <div class="doc_entry_content">
                     <a href="<?php echo get_the_permalink( $doc_id ); ?>">
-                        <h4><?php echo wp_kses_post( $doc['doc']->post_title ); ?></h4>
+                        <h4 class="ezd_item_title"><?php echo wp_kses_post( $doc['doc']->post_title ); ?></h4>
                     </a>
-                    <p><?php ezd_widget_excerpt( $doc_id, 15 ); ?></p>
+                    <p class="ezd_item_content"><?php ezd_widget_excerpt( $doc_id, 15 ); ?></p>
                     <div class="doc_entry_info">
                         <ul class="list-unstyled author_avatar">
                             <?php

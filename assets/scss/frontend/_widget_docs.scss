@@ -1021,3 +1021,37 @@ a.action_btn {
   vertical-align: bottom;
   margin-left: 5px;
 }
+
+
+
+.tabs_sliders {
+  position: relative;
+  ul{
+    &.nav-tabs {
+      align-items: flex-start;
+      flex-wrap: nowrap !important;
+      overflow: hidden;
+      li {
+        min-width: fit-content;
+      }
+    }
+  }
+  span{
+    &.scroller-btn {
+      position: absolute;
+      left: -24px;
+      top: 50%;
+      color: var(--brand_color);
+      font-size: 20px;
+      cursor: pointer;
+        transform: translateY(-50%);
+    }
+    &.right {
+      right: -24px;
+      left: auto;
+    }
+    &.inactive {
+      display: none;
+    }
+  }
+}
