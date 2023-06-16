@@ -11,8 +11,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 EazyDocs is a powerful knowledge base, documentation builder plugin for WordPress. It is a complete solution for creating a knowledge base, documentation, helpdesk, support center, FAQ, wiki, and more.
 
 == Description ==
-EazyDocs is a powerful knowledge base, documentation builder plugin for WordPress. It is a complete solution for creating a knowledge base, documentation, helpdesk, support center, FAQ, wiki, and more.
-Site operators can create & manage detailed, hierarchical documentation in the WordPress admin. You get all the power of WordPress to create/add new docs, tags and organize with ordering your documentation. EazyDocs makes browsing and creating advanced documentation easy and user-friendly.
+
+EazyDocs is a comprehensive and feature-rich knowledge base and documentation builder plugin for WordPress. With EazyDocs, you have the freedom to create unlimited knowledge bases for your products, without any limitations. The plugin offers a user-friendly interface, allowing you to easily order and nest your documents by simply dragging and dropping them. EazyDocs comes with a modern and professional design by default, and it also offers customization options to match your brand identity.
+
+Designed with the reader in mind, EazyDocs prioritizes a seamless user experience. It is optimized for search engines, integrated with Schema.org, and provides sticky sidebars for easy navigation. The plugin supports multilingual and RTL languages, ensuring accessibility for a global audience. EazyDocs is responsive and retina-ready, ensuring your knowledge base looks great on all devices. It also includes advanced features like live search, feedback collection, article voting, revision history, and more.
+
+Simplify the process of creating and managing documentation with EazyDocs, making it an essential tool for businesses, developers, and content creators.
 
 ## 🔗 USEFUL LINKS ##
 
@@ -202,9 +206,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.1.8 (12 May 2023) =
-Tweaked: Added Tabs Arrow Icon when the tabs are more than the container width in the EazyDocs Multi Docs Widget
-
+= v2.2.0 (16 October 2023) =
+New: Elementor Search Banner layout added in the 'EazyDocs > Settings > Doc Single > Search Banner' page. Now you can create/customize the doc search banner with Elementor
+Fixed: Next & Prev docs issue solved
+Fixed: Brand color wasn't changing
+Tweaked: Added Tabs Arrow Icon when the tabs are more than the container width in the EazyDocs Multi Docs Elementor Widget (unlocked in Premium plan, Docy and Docly themes)
+Tweaked: Search banner compatibility with Docy & Docly themes improved
+Tweaked: Doc single page design improved (active doc item color)
+Tweaked: Compatibility with block/FSE themes improved
 
 = v2.1.8 (12 May 2023) =
 Fixed: JS error on the docs-single.js file 787 line number

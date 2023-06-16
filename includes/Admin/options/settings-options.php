@@ -408,7 +408,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'single_doc_layout',
 			'type'       => 'select',
-			'title'      => esc_html__( 'Choose layout', 'eazydocs' ),
+			'title'      => esc_html__( 'Search Banner layout', 'eazydocs' ),
 			'options'	 => [
 				'default'	 	=>  esc_html__( 'Default', 'eazydocs' ),
 				'el-template'	=>  esc_html__( 'Elementor Template', 'eazydocs' ),
@@ -420,10 +420,10 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'single_layout_id',
 			'type'       => 'select',
-			'title'      => esc_html__( 'Select Template', 'eazydocs' ),
+			'title'      => esc_html__( 'Select Elementor Template', 'eazydocs' ),
 			'options'	 =>  ezd_get_elementor_templates(),
 			'dependency' => array( 'single_doc_layout', '==', 'el-template' ),
-			'subtitle'       => __( 'How to create elementor template <a target="__blank" href="https://shorturl.at/rwyQ6">See guide</a>', 'eazydocs' ),
+			'subtitle'       => __( 'How to create Elementor template <a target="__blank" href="https://shorturl.at/rwyQ6">See guide</a>', 'eazydocs' ),
 		),
 
 		array(

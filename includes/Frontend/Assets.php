@@ -100,7 +100,7 @@ class Assets {
                 $dynamic_css .= ".doc_switch input[type=checkbox] { border: 1px solid rgba($brand_rgb, 0.3); background: rgba($brand_rgb, 0.25); }";
                 $dynamic_css .= ".categories_guide_item .doc_border_btn { border: 1px solid rgba($brand_rgb, 0.2); background: rgba($brand_rgb, 0.05); }";
                 $dynamic_css .= "#eazydocs_feedback .action_btn{ background: rgba($brand_rgb, .9); }";
-                $dynamic_css .= ".categories_guide_item a.doc_tag_title span.badge { background: rgba($brand_rgb, .1);}";
+                $dynamic_css .= ".nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item, .categories_guide_item a.doc_tag_title span.badge { background: rgba($brand_rgb, .1);}";
                 $dynamic_css .= ".documentation_item .media-body .title:hover { text-decoration-color: rgba($brand_rgb, 0.25);}";
             }
 

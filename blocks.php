@@ -16,9 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class EAZYDOCS_BLOCKS_CLASS {
     public function __construct() {
 
-        // define constants
-        $this->define_constants();
-
         // block initialization
         add_action( 'init', [ $this, 'blocks_init' ] );
 
@@ -42,15 +39,6 @@ final class EAZYDOCS_BLOCKS_CLASS {
             $instance = new self();
         }
         return $instance;
-    }
-
-    /**
-     * Define the plugin constants
-     */
-    private function define_constants() {
-        define( 'BOILERPLATE_VERSION', '1.0.0' );
-        define( 'BOILERPLATE_URL', plugin_dir_url( __FILE__ ) );
-        define( 'BOILERPLATE_LIB_URL', BOILERPLATE_URL . 'lib/' );
     }
 
     /**

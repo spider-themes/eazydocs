@@ -241,9 +241,7 @@ body{
         margin: 0 0 3px;
         border-radius: 5px;
         &.current_page_item {
-          color: var(--ezd_brand_color);
-          background: var(--bs-white);
-          border: 1px solid var(--black_50);
+          background: brand_color_rgba(0.1);
         }
         &.current_page_item.has_child .doc-link a {
           color: var(--black_800);
@@ -255,7 +253,7 @@ body{
           padding: 0;
           text-decoration: none;
           &.active {
-            color: var(--black_900);
+            color: var(--ezd_brand_color);
             i {
               color: var(--ezd_brand_color);
             }
