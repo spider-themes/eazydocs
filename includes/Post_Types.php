@@ -140,19 +140,21 @@ class Docs {
 				'parent_item'                => __( 'Parent Badge', 'eazydocs' ),
 				'parent_item_colon'          => __( 'Parent Badge:', 'eazydocs' ),
 				'new_item_name'              => __( 'New Badge', 'eazydocs' ),
-				'add_new_item'               => __( 'Add New Item', 'eazydocs' ),
+				'add_new_item'               => __( 'Add New Badge', 'eazydocs' ),
 				'edit_item'                  => __( 'Edit Badge', 'eazydocs' ),
 				'update_item'                => __( 'Update Badge', 'eazydocs' ),
 				'view_item'                  => __( 'View Badge', 'eazydocs' ),
-				'separate_items_with_commas' => __( 'Separate items with commas', 'eazydocs' ),
-				'add_or_remove_items'        => __( 'Add or remove items', 'eazydocs' ),
+				'separate_items_with_commas' => __( 'Separate Badges with commas', 'eazydocs' ),
+				'add_or_remove_items'        => __( 'Add or remove Badges', 'eazydocs' ),
 				'choose_from_most_used'      => __( 'Choose from the most used', 'eazydocs' ),
 				'popular_items'              => __( 'Popular Badges', 'eazydocs' ),
 				'search_items'               => __( 'Search Badges', 'eazydocs' ),
 				'not_found'                  => __( 'Not Found', 'eazydocs' ),
-				'no_terms'                   => __( 'No items', 'eazydocs' ),
+				'no_terms'                   => __( 'No Badges', 'eazydocs' ),
 				'items_list'                 => __( 'Badges list', 'eazydocs' ),
 				'items_list_navigation'      => __( 'Badges list navigation', 'eazydocs' ),
+				'back_to_items'              => __( 'Back to Badges', 'eazydocs' ),
+				'item_updated'               => __( 'Badge updated', 'eazydocs' ),
 			];
 
 			$rewrite_badge = [
@@ -170,7 +172,7 @@ class Docs {
 				'show_in_nav_menus' => true,
 				'show_tagcloud'     => true,
 				'show_in_rest'      => true,
-				'rewrite'           => $rewrite_badge,
+				'rewrite'           => $rewrite_badge
 			];
 			register_taxonomy( 'doc_badge', [ 'docs' ], $badge_args );
 		}

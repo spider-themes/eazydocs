@@ -561,7 +561,7 @@ select#ezd_docs_layout {
 .nestables-child .dd3-handle {
     position: absolute;
     left: 0;
-    top: 1px;
+    top: 12px;
     cursor: move;
     white-space: nowrap;
     overflow: hidden;
@@ -696,7 +696,6 @@ select#ezd_docs_layout {
 }
 
 .nestables-child .dd-item>button {
-    height: 100%;
     padding: 14px 0;
     margin: 1px 7px 0 25px;
 }

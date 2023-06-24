@@ -537,7 +537,7 @@ function main_date_sort( $a, $b ) {
 	$date1 = DateTime::createFromFormat( 'd/m/Y', $a );
 	$date2 = DateTime::createFromFormat( 'd/m/Y', $b );
 
-	return $b > $a;
+	return $b > $a ? 1 : - 1;
 }
 
 /**
@@ -863,10 +863,8 @@ add_image_size( 'ezd_searrch_thumb50x50', '50', '50', true );
 function ezd_password_form( $output, $post = 0 ) {
 	$protected_form          = get_option( 'eazydocs_settings' );
 	$protected_form_switcher = $protected_form['protected_doc_form'] ?? '';
-	$protected_form_title    = ! empty( $protected_form['protected_form_title'] ) ? $protected_form['protected_form_title']
-		: __( 'Enter Password & Read this Doc', 'eazydocs' );
-	$protected_form_subtitle = ! empty( $protected_form['protected_form_subtitle'] ) ? $protected_form['protected_form_subtitle']
-		: __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
+	$protected_form_title    = ! empty( $protected_form['protected_form_title'] ) ? $protected_form['protected_form_title'] : __( 'Enter Password & Read this Doc', 'eazydocs' );
+	$protected_form_subtitle = ! empty( $protected_form['protected_form_subtitle'] ) ? $protected_form['protected_form_subtitle'] : __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
 	if ( ! empty( $protected_form_switcher == 'eazydocs-form' ) ) :
 		?>
         <div class="card ezd-password-wrap">
@@ -890,15 +888,13 @@ function ezd_password_form( $output, $post = 0 ) {
                 </div>
             </div>
             <div class="card-body ezd-password-body p-4">
-                <form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>"
-                      method="post" class="form-horizontal auth-form">
+                <form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" method="post" class="form-horizontal auth-form">
                     <div class="form-group mb-2">
                         <label class="form-label" for="ezd_password">
 							<?php esc_html_e( 'Password', 'eazydocs' ); ?>
                         </label>
                         <div class="input-group mb-3">
-                            <input name="post_password" required id="ezd_password" class="form-control" type="password"
-                                   placeholder="Enter password"/>
+                            <input name="post_password" required id="ezd_password" class="form-control" type="password" placeholder="Enter password"/>
                         </div>
                     </div>
                     <!--end form-group-->

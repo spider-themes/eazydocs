@@ -145,7 +145,7 @@ class Admin {
 				[ $this, 'ezd_onepage_presents' ] );
 		}
 
-		if ( ezd_is_promax() ) {
+		if ( ezd_is_premium() ) {
 			do_action( 'ezd_pro_admin_menu' );
 		} else {
 			add_submenu_page( 'eazydocs', __( 'Users Feedback', 'eazydocs' ), __( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback',

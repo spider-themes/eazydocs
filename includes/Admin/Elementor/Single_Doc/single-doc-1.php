@@ -42,7 +42,7 @@
                     <?php
                     if ( !empty($settings['read_more']) ) : ?>
                         <a href="<?php echo get_permalink($section->ID); ?>" class="doc_border_btn">
-                            <?php echo esc_html($settings['read_more']) ?>
+                            <?php echo wp_kses_post($settings['read_more']) ?>
                             <i class="<?php ezd_arrow() ?>"></i>
                         </a>
                     <?php endif; ?>

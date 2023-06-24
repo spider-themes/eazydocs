@@ -62,11 +62,15 @@ $sections2 = get_children( array(
 		?>
     </div>
 </div>
-<?php if ( ! empty( $settings['show_more_btn'] ) ) : ?>
-    <div class="more text-center">
-        <a class="icon_btn2 blue collapse-btn" href="#">
-            <span> <ion-icon name="caret-down-circle-outline"></ion-icon><?php echo $settings['show_more_btn'] ?></span>
-            <span> <ion-icon name="caret-up-circle-outline"></ion-icon><?php echo $settings['show_less_btn'] ?></span>
-        </a>
-    </div>
-<?php endif; ?>
+
+<?php 
+if ( ! empty( $settings['show_more_btn'] ) ) : 
+	?>
+	<div class="more text-center">
+		<a class="icon_btn2 blue collapse-btn" href="#">
+			<span> <ion-icon name="caret-down-circle-outline"></ion-icon> <?php echo wp_kses_post( $settings['show_more_btn'] ); ?> </span>
+			<span> <ion-icon name="caret-up-circle-outline"></ion-icon> <?php echo wp_kses_post( $settings['show_less_btn'] ); ?> </span>
+		</a>
+	</div>
+	<?php 
+endif;
