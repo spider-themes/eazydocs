@@ -544,7 +544,8 @@ function main_date_sort( $a, $b ) {
  * Visible EazyDocs Menu in classic mode
  * Tag submenu in Tag screen
  **/
-add_action( 'admin_footer', function () { ?>
+add_action( 'admin_footer', function () {
+	?>
     <script>
         // EazyDocs screen URL
         eazyDocsClassic = "edit.php?post_type=docs";
@@ -553,13 +554,15 @@ add_action( 'admin_footer', function () { ?>
 
         // EazyDocs menu active when it's EazyDocs screen
         if (window.location.href.indexOf(eazyDocsTag) > -1) {
-            jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li').has('a[href*="edit-tags.php"]').addClass('current');
+            jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li').has('a[href*="taxonomy=doc_tag"]').addClass('current');
         }
 
         // Tag Sub menu active when it's Tag screen
         if (window.location.href.indexOf(eazyDocsClassic) > -1) {
             jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li.wp-first-item').addClass('current');
         }
+
+		
     </script>
 <?php } );
 
