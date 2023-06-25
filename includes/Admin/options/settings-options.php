@@ -423,7 +423,7 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Select Elementor Template', 'eazydocs' ),
 			'options'	 =>  ezd_get_elementor_templates(),
 			'dependency' => array( 'single_doc_layout', '==', 'el-template' ),
-			'subtitle'       => __( 'How to create Elementor template <a target="__blank" href="https://shorturl.at/rwyQ6">See guide</a>', 'eazydocs' ),
+			'subtitle'       => __( 'How to create Elementor template <a target="__blank" href="https://shorturl.at/filGI">See guide</a>', 'eazydocs' ),
 		),
 
 		array(
