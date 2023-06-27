@@ -113,7 +113,7 @@ a.eazydocs-close-notice:active {
   width: 220px;
   background: #050505;
   display: block;
-  color: #ffffffb3;
+  color: rgba(255, 255, 255, 0.7019607843);
   text-transform: uppercase;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -400,11 +400,11 @@ p.big-p {
   background: #fafafa;
 }
 .ezd-shortcodes-wrap tr {
-  color: #575757de;
+  color: rgba(87, 87, 87, 0.8705882353);
   display: block;
   font-size: 14px;
   padding: 6px 6px;
-  border-bottom: 1px solid #5757571f;
+  border-bottom: 1px solid rgba(87, 87, 87, 0.1215686275);
 }
 .ezd-shortcodes-wrap tr:nth-child(odd) {
   background: #f6f6f6;
@@ -445,7 +445,7 @@ p.big-p {
   border-radius: 3px;
   border: 1px solid #e8e8e8;
   background: #fafafa;
-  color: #575757de;
+  color: rgba(87, 87, 87, 0.8705882353);
   margin-top: 10px;
 }
 .daterangepicker .ranges button.cancelBtn:hover {

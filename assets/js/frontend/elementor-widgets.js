@@ -81,4 +81,106 @@
         });
 
     });
+
+
+
+    // glossary doc js
+    if ($(".spe-list-wrapper").length) {
+        $(".spe-list-wrapper").each(function () {
+          var $elem = $(this);
+    
+          var $active_filter = $elem
+            .find(".spe-list-filter .filter.active")
+            .data("filter");
+          if ($active_filter == "" || typeof $active_filter == "undefined") {
+            $active_filter = "all";
+          }
+    
+          var mixer = mixitup($elem, {
+            load: {
+              filter: $active_filter,
+            },
+            controls: {
+              scope: "local",
+            },
+            callbacks: {
+              onMixEnd: function (state) {
+                $("#" + state.container.id)
+                  .find(".spe-list-block.spe-removed")
+                  .hide();
+              },
+            },
+          });
+    
+          if ($(".spe-list-search-form").length) {
+            var $searchInput = $(".spe-list-search-form input");
+    
+            $searchInput.on("input", function (e) {
+              var $keyword = $(this).val().toLowerCase();
+    
+              $elem.find(".spe-list-block").each(function () {
+                var $elem_list_block = $(this);
+                var $block_visible_items = 0;
+    
+                $elem_list_block.find(".spe-list-item").each(function () {
+                  if ($(this).text().toLowerCase().includes($keyword)) {
+                    $(this).show();
+                    $block_visible_items++;
+                  } else {
+                    $(this).hide();
+                  }
+                });
+    
+                var $filter_base = $elem_list_block.data("filter-base");
+                var $filter_source = $elem.find(
+                  '.spe-list-filter a[data-filter=".spe-filter-' +
+                    $filter_base +
+                    '"]'
+                );
+                var $active_block = $elem
+                  .find(".spe-list-filter a.mixitup-control-active")
+                  .data("filter");
+    
+                if ($block_visible_items > 0) {
+                  $elem_list_block.removeClass("spe-removed");
+    
+                  if ($active_block != "all") {
+                    if ($elem_list_block.is($elem.find($active_block))) {
+                      $elem.find($active_block).show();
+                    }
+                  } else {
+                    $elem_list_block.show();
+                  }
+    
+                  $filter_source.removeClass("filter-disable").addClass("filter");
+                } else {
+                  $elem_list_block.addClass("spe-removed");
+    
+                  if ($active_block != "all") {
+                    if ($elem_list_block.is($elem.find($active_block))) {
+                      $elem.find($active_block).hide();
+                    }
+                  } else {
+                    $elem_list_block.hide();
+                  }
+    
+                  $filter_source.removeClass("filter").addClass("filter-disable");
+                }
+              });
+    
+              if ($keyword == "") {
+                mixer.filter("all"); // Reset the filter to show all items
+              }
+            });
+    
+            $searchInput.val("");
+          }
+        });
+    }
+
+    $('.spe-list-items').each(function() {
+        if (!$(this).find('li').text()) {
+          $(this).parents('.spe-list-block').hide();
+        }
+    });
 })(jQuery);

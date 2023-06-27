@@ -22,9 +22,8 @@
     column-count: 1;
     display: block;
   }
-
   .eazydocs-next-prev-wrap .next-prev-pager.first,
-.eazydocs-next-prev-wrap .next-prev-pager.second {
+  .eazydocs-next-prev-wrap .next-prev-pager.second {
     width: 100%;
     margin-bottom: 20px;
   }
@@ -130,7 +129,6 @@
     overflow-y: scroll;
     height: 100%;
   }
-
   .fullscreen-layout.doc_documentation_area {
     padding-top: 0 !important;
     z-index: 111;
@@ -148,19 +146,15 @@
   .admin-bar .documentation_area_sticky .doc_mobile_menu .open_icon {
     top: 32px;
   }
-
   .documentation_area_sticky .middle-content {
     padding-top: 0;
   }
-
   .documentation_area_sticky .middle-content {
     padding-top: 32px;
   }
-
   .admin-bar .doc_documentation_area.documentation_area_sticky .doc-section:first-child .shortcode_title.doc-sec-title {
     margin-top: 42px;
   }
-
   .doc_mobile_menu.left-column, .doc_documentation_full_area .doc_mobile_menu {
     max-width: 260px;
     width: 100%;
@@ -169,7 +163,6 @@
     z-index: 2;
     padding: 0;
   }
-
   .doc_mobile_menu .open_icon {
     display: block;
     right: -40px;
@@ -183,15 +176,13 @@
 }
 @media screen and (max-width: 767px) {
   .admin-bar .documentation_area_sticky .open_icon,
-.admin-bar .documentation_area_sticky .doc_mobile_menu .open_icon {
+  .admin-bar .documentation_area_sticky .doc_mobile_menu .open_icon {
     top: 32px;
   }
-
   .fullscreen-layout .nav-sidebar {
     height: 100vh;
     overflow-y: scroll;
   }
-
   .documentation_area_sticky .one-page-docs-sidebar-wrap {
     padding: 1px;
   }
@@ -327,7 +318,6 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
     position: unset;
     right: unset;
   }
-
   .fullscreen-layout .doc_right_mobile_menu {
     position: fixed;
     right: 10px;
@@ -338,7 +328,6 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   .fullscreen-layout.onepage_doc_area .middle-content {
     padding: 0 15px;
   }
-
   .fullscreen-layout.doc_documentation_area {
     position: fixed;
     overflow: auto !important;
@@ -349,17 +338,15 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
 }
 @media screen and (max-width: 767px) {
   .admin-bar .fullscreen-layout .doc_right_mobile_menu,
-.admin-bar .fullscreen-layout .doc_mobile_menu {
+  .admin-bar .fullscreen-layout .doc_mobile_menu {
     top: 32px;
   }
-
   .fullscreen-layout .doc_right_mobile_menu,
-.fullscreen-layout .doc_mobile_menu {
+  .fullscreen-layout .doc_mobile_menu {
     top: 0;
     position: fixed !important;
     z-index: 1;
   }
-
   .fullscreen-layout.onepage_doc_area .middle-content {
     padding: 0 15px;
   }

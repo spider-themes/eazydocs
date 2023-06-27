@@ -235,10 +235,9 @@ button {
   html:focus-within {
     scroll-behavior: auto;
   }
-
   *,
-*::before,
-*::after {
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -1382,7 +1381,7 @@ body.rtl a.child-delete {
   right: -8px;
   display: none;
   z-index: 5;
-  background-color: #2a2b46;
+  background-color: rgb(42, 43, 70);
   padding-top: 15px;
   min-width: 35px;
   padding-left: 7px;
@@ -1393,7 +1392,7 @@ body.rtl a.child-delete {
   width: 100%;
   text-align: center;
   padding: 5px 0;
-  border-bottom: 1px solid #e5e5e52e;
+  border-bottom: 1px solid rgba(229, 229, 229, 0.1803921569);
   display: flex;
   font-size: 12px;
   align-items: baseline;
