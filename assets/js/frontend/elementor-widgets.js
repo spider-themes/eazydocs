@@ -178,9 +178,11 @@
         });
     }
 
-    $('.spe-list-items').each(function() {
+    /*$('.spe-list-items').each(function() {
         if (!$(this).find('li').text()) {
           $(this).parents('.spe-list-block').hide();
         }
-    });
+    });*/
+
+
 })(jQuery);

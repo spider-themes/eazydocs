@@ -22,11 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Glossary_Doc extends Widget_Base {
 
 	public function get_name() {
-		return 'docy_glossary_doc';
+		return 'ezd_glossary_doc';
 	}
 
 	public function get_title() {
-		return __( 'Glossary Doc', 'eazydocs' );
+		return __( 'EazyDocs Glossary Doc', 'eazydocs' );
 	}
 
 	public function get_icon() {
@@ -34,14 +34,19 @@ class Glossary_Doc extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'docy-elements' ];
+		return [ 'eazydocs' ];
 	}
 
     public function get_script_depends() {
         return [ 'mixitup', 'eazydocs-el-widgets'];
     }
 
+	public function get_keywords() {
+		return [ 'eazydocs', 'docs', 'documentation', 'glossary', 'glossary doc', 'glossary documentation' ];
+	}
+
 	protected function register_controls() {
+
 		// --- Doc ------------------------------------
 		$this->start_controls_section(
 			'doc_opt', [
@@ -53,7 +58,7 @@ class Glossary_Doc extends Widget_Base {
 			'doc', [
 				'label'   => esc_html__( 'Doc', 'eazydocs' ),
 				'type'    => Controls_Manager::SELECT,
-				'options' => docy_get_posts()
+				'options' => ezd_get_posts()
 			]
 		);
 
@@ -62,7 +67,6 @@ class Glossary_Doc extends Widget_Base {
 				'label'       => esc_html__( 'Excerpt', 'eazydocs' ),
 				'description' => esc_html__( 'Excerpt word limit of the documentation sections. If the excerpt got empty, this will get from the post content.', 'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
-				'label_block' => true,
 				'default'     => 8,
 				'condition'   => [
 					'style' => '4'
@@ -75,7 +79,6 @@ class Glossary_Doc extends Widget_Base {
 				'label'       => esc_html__( 'Articles', 'eazydocs' ),
 				'description' => esc_html__( 'Number of articles to show under every sections', 'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
-				'label_block' => true,
 				'default'     => 4,
 
 			]
@@ -493,14 +496,10 @@ class Glossary_Doc extends Widget_Base {
             'posts_per_page' => -1,
         ) );
 
-        // include( "inc/Glossary-Doc/glossary-doc-1.php" );
-		// / get theme name
-		$theme = wp_get_theme();
-		if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' ) {
-			// include( "glossary-doc-{$settings['doc-widget-single-search']}.php" );
-			include( "glossary-doc-1.php" );
+		if ( ezd_is_premium() ) {
+			include "glossary-doc-1.php";
 		} else {
-			include( "glossary-doc-1.php" );
+			include "glossary-doc-1.php";
 		}
 	}
 }
