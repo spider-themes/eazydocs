@@ -26,7 +26,7 @@ class Glossary_Doc extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'Glossary Doc', 'docy-core' );
+		return __( 'Glossary Doc', 'eazydocs' );
 	}
 
 	public function get_icon() {
@@ -42,101 +42,16 @@ class Glossary_Doc extends Widget_Base {
     }
 
 	protected function register_controls() {
-
-		// ---Start Document Setting
-		// $this->start_controls_section(
-		// 	'doc_design_sec', [
-		// 		'label' => __( 'Preset Skin', 'docy-core' ),
-		// 	]
-		// );
-
-		// $this->add_control(
-		// 	'style', [
-		// 		'label'   => esc_html__( 'Skins', 'docy-core' ),
-		// 		'type'    => Controls_Manager::CHOOSE,
-		// 		'options' => [
-		// 			'1' => [
-		// 				'title' => __( 'Light', 'coro-core' ),
-		// 				'icon'  => 'single-doc1',
-		// 			],
-		// 			'2' => [
-		// 				'title' => __( 'Creative', 'coro-core' ),
-		// 				'icon'  => 'single-doc2',
-		// 			],
-		// 			'3' => [
-		// 				'title' => __( 'Box', 'coro-core' ),
-		// 				'icon'  => 'single-doc3',
-		// 			],
-		// 			'4' => [
-		// 				'title' => __( 'Topic Boxes', 'coro-core' ),
-		// 				'icon'  => 'single-doc4',
-		// 			],
-		// 			'5' => [
-		// 				'title' => __( 'Docs Boxes', 'coro-core' ),
-		// 				'icon'  => 'single-doc5',
-		// 			],
-		// 		],
-		// 		'toggle'  => false,
-		// 		'default' => '1',
-		// 	]
-		// );
-
-		// $this->end_controls_section();
-
-
-		/** ============ Title Section ============ **/
-		$this->start_controls_section(
-			'content_sec',
-			[
-				'label'     => esc_html__( 'Title', 'docy-core' ),
-				'condition' => [
-					'style' => [ '2' ]
-				]
-			]
-		);
-
-		$this->add_control(
-			'title',
-			[
-				'label'       => esc_html__( 'Title Text', 'docy-core' ),
-				'type'        => Controls_Manager::TEXTAREA,
-				'label_block' => true,
-				'default'     => 'Recommended Topics',
-			]
-		);
-
-		$this->add_control(
-			'title_tag', [
-				'label'     => __( 'Title Tag', 'docy-core' ),
-				'type'      => \Elementor\Controls_Manager::SELECT,
-				'default'   => 'h2',
-				'options'   => docy_el_title_tags(),
-				'separator' => 'after'
-			]
-		);
-
-		$this->add_control(
-			'subtitle',
-			[
-				'label'       => esc_html__( 'Subtitle Text', 'docy-core' ),
-				'type'        => Controls_Manager::TEXTAREA,
-				'label_block' => true,
-			]
-		);
-
-		$this->end_controls_section();
-
-
 		// --- Doc ------------------------------------
 		$this->start_controls_section(
 			'doc_opt', [
-				'label' => __( 'Doc', 'docy-core' ),
+				'label' => __( 'Doc', 'eazydocs' ),
 			]
 		);
 
 		$this->add_control(
 			'doc', [
-				'label'   => esc_html__( 'Doc', 'docy-core' ),
+				'label'   => esc_html__( 'Doc', 'eazydocs' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => docy_get_posts()
 			]
@@ -144,8 +59,8 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'doc_sec_excerpt', [
-				'label'       => esc_html__( 'Excerpt', 'docy-core' ),
-				'description' => esc_html__( 'Excerpt word limit of the documentation sections. If the excerpt got empty, this will get from the post content.', 'docy-core' ),
+				'label'       => esc_html__( 'Excerpt', 'eazydocs' ),
+				'description' => esc_html__( 'Excerpt word limit of the documentation sections. If the excerpt got empty, this will get from the post content.', 'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
 				'label_block' => true,
 				'default'     => 8,
@@ -157,8 +72,8 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'ppp_doc_items', [
-				'label'       => esc_html__( 'Articles', 'docy-core' ),
-				'description' => esc_html__( 'Number of articles to show under every sections', 'docy-core' ),
+				'label'       => esc_html__( 'Articles', 'eazydocs' ),
+				'description' => esc_html__( 'Number of articles to show under every sections', 'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
 				'label_block' => true,
 				'default'     => 4,
@@ -168,7 +83,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'order', [
-				'label'   => esc_html__( 'Order', 'docy-core' ),
+				'label'   => esc_html__( 'Order', 'eazydocs' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => [
 					'ASC'  => 'ASC',
@@ -184,7 +99,7 @@ class Glossary_Doc extends Widget_Base {
 		// Buttons
 		$this->start_controls_section(
 			'view_all_btn_opt', [
-				'label' => __( 'Buttons', 'docy-core' ),
+				'label' => __( 'Buttons', 'eazydocs' ),
 				'condition'   => [
 					'style' => [ '1', '3' ]
 				]
@@ -193,7 +108,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'read_more', [
-				'label'       => esc_html__( 'Read More Button', 'docy-core' ),
+				'label'       => esc_html__( 'Read More Button', 'eazydocs' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default'     => 'Read More',
@@ -202,7 +117,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'section_btn', [
-				'label'        => esc_html__( 'Section Button', 'docy-core' ),
+				'label'        => esc_html__( 'Section Button', 'eazydocs' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => 'yes',
@@ -214,7 +129,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'section_btn_txt', [
-				'label'       => esc_html__( 'Button Text', 'docy-core' ),
+				'label'       => esc_html__( 'Button Text', 'eazydocs' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default'     => 'View More',
@@ -227,7 +142,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'section_btn_url', [
-				'label'       => esc_html__( 'Button URL', 'docy-core' ),
+				'label'       => esc_html__( 'Button URL', 'eazydocs' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'condition'   => [
@@ -239,7 +154,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'show_more_btn', [
-				'label'       => esc_html__( 'Show More Button', 'docy-core' ),
+				'label'       => esc_html__( 'Show More Button', 'eazydocs' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default'     => 'View All',
@@ -251,7 +166,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'show_less_btn', [
-				'label'       => esc_html__( 'Show Less Text', 'docy-core' ),
+				'label'       => esc_html__( 'Show Less Text', 'eazydocs' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default'     => 'Show Less',
@@ -270,7 +185,7 @@ class Glossary_Doc extends Widget_Base {
 		 */
 		$this->start_controls_section(
 			'style_box', [
-				'label'     => __( 'Box', 'docy-core' ),
+				'label'     => __( 'Box', 'eazydocs' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition'   => [
 					'style' => [ '1', '2', '3', '4'  ]
@@ -282,7 +197,7 @@ class Glossary_Doc extends Widget_Base {
 			\Elementor\Group_Control_Background::get_type(),
 			[
 				'name' => 'box-background',
-				'label' => esc_html__( 'Background', 'docy-core' ),
+				'label' => esc_html__( 'Background', 'eazydocs' ),
 				'types' => [ 'classic', 'gradient' ],
 				'selector' => '{{WRAPPER}} .box-item',
 			]
@@ -292,7 +207,7 @@ class Glossary_Doc extends Widget_Base {
 			\Elementor\Group_Control_Border::get_type(),
 			[
 				'name' => 'box-border',
-				'label' => esc_html__( 'Border', 'docy-core' ),
+				'label' => esc_html__( 'Border', 'eazydocs' ),
 				'selector' => '{{WRAPPER}} .box-item',
 			]
 		);
@@ -300,7 +215,7 @@ class Glossary_Doc extends Widget_Base {
 		$this->add_control(
 			'box-padding',
 			[
-				'label' => esc_html__( 'Padding', 'docy-core' ),
+				'label' => esc_html__( 'Padding', 'eazydocs' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em' ],
 				'selectors' => [
@@ -317,7 +232,7 @@ class Glossary_Doc extends Widget_Base {
 		 */
 		$this->start_controls_section(
 			'style_title', [
-				'label'     => __( 'Title', 'docy-core' ),
+				'label'     => __( 'Title', 'eazydocs' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'style' => [ '2' ]
@@ -327,7 +242,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'color_title', [
-				'label'     => __( 'Text Color', 'docy-core' ),
+				'label'     => __( 'Text Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .title' => 'color: {{VALUE}};',
@@ -356,7 +271,7 @@ class Glossary_Doc extends Widget_Base {
 		//------------------------------ Style Subtitle ------------------------------
 		$this->start_controls_section(
 			'style_subtitle_sec', [
-				'label'     => __( 'Subtitle', 'docy-core' ),
+				'label'     => __( 'Subtitle', 'eazydocs' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'style' => [ '2' ]
@@ -366,7 +281,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'color_subtitle', [
-				'label'     => __( 'Text Color', 'docy-core' ),
+				'label'     => __( 'Text Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .subtitle' => 'color: {{VALUE}};',
@@ -398,7 +313,7 @@ class Glossary_Doc extends Widget_Base {
 		 */
 		$this->start_controls_section(
 			'style_content', [
-				'label' => __( 'Content', 'docy-core' ),
+				'label' => __( 'Content', 'eazydocs' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition'   => [
 					'style' => [ '1', '2', '3', '4'  ]
@@ -408,13 +323,13 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'heading_title', [
-				'label' => __( 'Title', 'docy-core' ),
+				'label' => __( 'Title', 'eazydocs' ),
 				'type'  => Controls_Manager::HEADING
 			]
 		);
 		$this->add_control(
 			'doc_color_title', [
-				'label'     => __( 'Color', 'docy-core' ),
+				'label'     => __( 'Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ct-heading-text' => 'color: {{VALUE}};',
@@ -440,14 +355,14 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'heading_content', [
-				'label'     => __( 'Content', 'docy-core' ),
+				'label'     => __( 'Content', 'eazydocs' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
 		);
 		$this->add_control(
 			'doc_color_content', [
-				'label'     => __( 'Color', 'docy-core' ),
+				'label'     => __( 'Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ct-content-text, {{WRAPPER}} .ct-content-text p' => 'color: {{VALUE}};',
@@ -479,7 +394,7 @@ class Glossary_Doc extends Widget_Base {
 		 */
 		$this->start_controls_section(
 			'style_bg_objects', [
-				'label'     => esc_html__( 'Background Objects', 'docy-core' ),
+				'label'     => esc_html__( 'Background Objects', 'eazydocs' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'style' => [ '2' ]
@@ -489,7 +404,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'is_bg_objects', [
-				'label'        => esc_html__( 'Background Objects', 'docy-core' ),
+				'label'        => esc_html__( 'Background Objects', 'eazydocs' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => 'yes',
@@ -498,8 +413,8 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'bg_shape', [
-				'label'       => esc_html__( 'Shape', 'docy-core' ),
-				'description' => esc_html__( 'The background shape should be transparent png or svg image.', 'docy-core' ),
+				'label'       => esc_html__( 'Shape', 'eazydocs' ),
+				'description' => esc_html__( 'The background shape should be transparent png or svg image.', 'eazydocs' ),
 				'type'        => Controls_Manager::MEDIA,
 				'default'     => [
 					'url' => plugins_url( 'images/docbg-shap.png', __FILE__ )
@@ -512,7 +427,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'is_round1', [
-				'label'        => esc_html__( 'Round Objects 01', 'docy-core' ),
+				'label'        => esc_html__( 'Round Objects 01', 'eazydocs' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => 'yes',
@@ -522,7 +437,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'round1_color', [
-				'label'     => __( 'Round 01 Color', 'docy-core' ),
+				'label'     => __( 'Round 01 Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .doc_round.one' => 'background: {{VALUE}}',
@@ -536,7 +451,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'is_round2', [
-				'label'        => esc_html__( 'Round Objects 02', 'docy-core' ),
+				'label'        => esc_html__( 'Round Objects 02', 'eazydocs' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => 'yes',
@@ -546,7 +461,7 @@ class Glossary_Doc extends Widget_Base {
 
 		$this->add_control(
 			'round2_color', [
-				'label'     => __( 'Round 02 Color', 'docy-core' ),
+				'label'     => __( 'Round 02 Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .doc_round.two' => 'background: {{VALUE}}',

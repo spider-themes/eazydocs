@@ -24,43 +24,48 @@
         if (is_array($alphabet)) {
             foreach ($alphabet as $alphabetCharacter) {
                 ?>
-                <div class="spe-list-block spe-filter-<?php echo esc_html__($alphabetCharacter); ?> mix" data-filter-base="<?php echo esc_html__($alphabetCharacter); ?>">
-                    <?php if (!empty($alphabetCharacter)) : ?>
-                        <h3 class="spe-list-block-heading"><?php echo esc_html__($alphabetCharacter); ?></h3>
-                    <?php endif; ?>
-                    <ul class="spe-list-items list-unstyled tag_list">
-                        <?php
-                        if (!empty($sections)) {
-                            foreach ($sections as $section) {
-                                $doc_items = get_children(array(
-                                    'post_parent'    => $section->ID,
-                                    'post_type'      => 'docs',
-                                    'post_status'    => 'publish',
-                                    'orderby'        => 'menu_order',
-                                    'order'          => 'ASC',
-                                    'posts_per_page' => !empty($settings['ppp_doc_items']) ? $settings['ppp_doc_items'] : -1,
-                                ));
+                <?php   
+                    if(!empty($sections)){?>
+                        <div class="spe-list-block spe-filter-<?php echo esc_html__($alphabetCharacter); ?> mix" data-filter-base="<?php echo esc_html__($alphabetCharacter); ?>">
+                            <?php if (!empty($alphabetCharacter)) : ?>
+                                <h3 class="spe-list-block-heading"><?php echo esc_html__($alphabetCharacter); ?></h3>
+                            <?php endif; ?>
+                            <ul class="spe-list-items list-unstyled tag_list">
+                                <?php
+                                if (!empty($sections)) {
+                                    foreach ($sections as $section) {
+                                        $doc_items = get_children(array(
+                                            'post_parent'    => $section->ID,
+                                            'post_type'      => 'docs',
+                                            'post_status'    => 'publish',
+                                            'orderby'        => 'menu_order',
+                                            'order'          => 'ASC',
+                                            'posts_per_page' => !empty($settings['ppp_doc_items']) ? $settings['ppp_doc_items'] : -1,
+                                        ));
 
-                                if (!empty($doc_items)) {
-                                    foreach ($doc_items as $doc_item) {
-                                        $title = $doc_item->post_title;
-                                        $firstLetter = substr($title, 0, 1);
-                                        if (strtolower($firstLetter) === $alphabetCharacter) {
-                                            ?>
-                                            <li class="spe-list-item">
-                                                <a class="spe-list-item-title ct-content-text" href="<?php echo get_permalink($doc_item->ID) ?>">
-                                                    <?php echo wp_kses_post($doc_item->post_title) ?>
-                                                </a>
-                                            </li>
-                                            <?php
+                                        if (!empty($doc_items)) {
+                                            foreach ($doc_items as $doc_item) {
+                                                $title = $doc_item->post_title;
+                                                $firstLetter = substr($title, 0, 1);
+                                                if (strtolower($firstLetter) === $alphabetCharacter) {
+                                                    ?>
+                                                    <li class="spe-list-item">
+                                                        <a class="spe-list-item-title ct-content-text" href="<?php echo get_permalink($doc_item->ID) ?>">
+                                                            <?php echo wp_kses_post($doc_item->post_title) ?>
+                                                        </a>
+                                                    </li>
+                                                    <?php
+                                                }
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        }
-                        ?>
-                    </ul>
-                </div>
+                                ?>
+                            </ul>
+                        </div>
+                        <?php
+                    }
+                ?>
                 <?php
             }
         }
