@@ -30,7 +30,7 @@ class Glossary_Doc extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-document-file';
+		return 'eicon-document-file eicon-lock';
 	}
 
 	public function get_categories() {
@@ -496,6 +496,8 @@ class Glossary_Doc extends Widget_Base {
             'posts_per_page' => -1,
         ) );
 
+
+		// Include the template parts
 		if ( ezd_is_premium() ) {
 			include "glossary-doc-1.php";
 		} else {

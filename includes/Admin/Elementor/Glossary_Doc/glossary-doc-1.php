@@ -1,16 +1,40 @@
 <div class="spe-list-wrapper">
     <div class="spe-list-filter">
         <a class="filter active mixitup-control-active" data-filter="all">All</a>
-		<?php
-		$alphabet = range( 'a', 'z' );
-		foreach ( $alphabet as $alphabetCharacter ) {
-			?>
-            <a class="filter" data-filter=".spe-filter-<?php echo esc_html__( $alphabetCharacter ); ?>">
-				<?php echo esc_html__( $alphabetCharacter ); ?>
+	    <?php
+	    $alphabet = range('a', 'z');
+	    foreach ($alphabet as $alphabetCharacter) {
+		    $has_content = false;
+		    foreach ($sections as $section) {
+			    $doc_items = get_children(array(
+				    'post_parent'    => $section->ID,
+				    'post_type'      => 'docs',
+				    'post_status'    => 'publish',
+				    'orderby'        => 'menu_order',
+				    'order'          => 'ASC',
+				    'posts_per_page' => !empty($settings['ppp_doc_items']) ? $settings['ppp_doc_items'] : -1,
+			    ));
+
+			    if (!empty($doc_items)) {
+				    foreach ($doc_items as $doc_item) {
+					    $title = $doc_item->post_title;
+					    $firstLetter = substr($title, 0, 1);
+					    if (strtolower($firstLetter) === $alphabetCharacter) {
+						    $has_content = true;
+						    break;
+					    }
+				    }
+			    }
+		    }
+
+		    $filter_class = $has_content ? 'filter' : 'filter filter_disable';
+		    ?>
+            <a class="<?php echo esc_attr($filter_class); ?>" data-filter=".spe-filter-<?php echo esc_html__($alphabetCharacter); ?>">
+			    <?php echo esc_html__($alphabetCharacter); ?>
             </a>
-			<?php
-		}
-		?>
+		    <?php
+	    }
+	    ?>
     </div>
 
     <div class="spe-list-search-form spe-list-search-form-position-below">
@@ -23,34 +47,30 @@
 
 	    if (is_array($alphabet)) {
 		    foreach ($alphabet as $alphabetCharacter) {
-			    $hasItems = false; // Variable to track if there are items for the current alphabet character
+			    $has_content = false;
+			    foreach ($sections as $section) {
+				    $doc_items = get_children(array(
+					    'post_parent'    => $section->ID,
+					    'post_type'      => 'docs',
+					    'post_status'    => 'publish',
+					    'orderby'        => 'menu_order',
+					    'order'          => 'ASC',
+					    'posts_per_page' => !empty($settings['ppp_doc_items']) ? $settings['ppp_doc_items'] : -1,
+				    ));
 
-			    // Check if there are any sections with corresponding items
-			    if (!empty($sections)) {
-				    foreach ($sections as $section) {
-					    $doc_items = get_children(array(
-						    'post_parent'    => $section->ID,
-						    'post_type'      => 'docs',
-						    'post_status'    => 'publish',
-						    'orderby'        => 'menu_order',
-						    'order'          => 'ASC',
-						    'posts_per_page' => !empty($settings['ppp_doc_items']) ? $settings['ppp_doc_items'] : -1,
-					    ));
-
-					    if (!empty($doc_items)) {
-						    foreach ($doc_items as $doc_item) {
-							    $title = $doc_item->post_title;
-							    $firstLetter = substr($title, 0, 1);
-							    if (strtolower($firstLetter) === $alphabetCharacter) {
-								    $hasItems = true; // Set to true if there is at least one item for the current alphabet character
-								    break;
-							    }
+				    if (!empty($doc_items)) {
+					    foreach ($doc_items as $doc_item) {
+						    $title = $doc_item->post_title;
+						    $firstLetter = substr($title, 0, 1);
+						    if (strtolower($firstLetter) === $alphabetCharacter) {
+							    $has_content = true;
+							    break;
 						    }
 					    }
 				    }
 			    }
 
-			    if ($hasItems) {
+			    if ($has_content) {
 				    ?>
                     <div class="spe-list-block spe-filter-<?php echo esc_html__($alphabetCharacter); ?> mix"
                          data-filter-base="<?php echo esc_html__($alphabetCharacter); ?>">
