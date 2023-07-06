@@ -907,6 +907,10 @@ body.search-focused .ezd_click_capture {
 .spe-list-filter a.mixitup-control-active {
   text-decoration: underline;
 }
+.spe-list-filter a.filter_disable {
+  cursor: default;
+  opacity: 0.4;
+}
 .spe-list-filter a:hover {
   color: #666;
   text-decoration: none;
@@ -950,6 +954,10 @@ body.search-focused .ezd_click_capture {
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 15px;
   padding: 0 0 0 15px !important;
+}
+.spe-list-block .spe-list-items .spe-list-item .spe-list-item-title {
+  font-weight: 400;
+  align-items: center;
 }
 
 /*# sourceMappingURL=ezd-el-widgets.css.map */

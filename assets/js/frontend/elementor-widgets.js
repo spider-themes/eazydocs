@@ -152,7 +152,7 @@
                     $elem_list_block.show();
                   }
     
-                  $filter_source.removeClass("filter-disable").addClass("filter");
+                  $filter_source.removeClass("filter_disable").addClass("filter");
                 } else {
                   $elem_list_block.addClass("spe-removed");
     
@@ -164,7 +164,7 @@
                     $elem_list_block.hide();
                   }
     
-                  $filter_source.removeClass("filter").addClass("filter-disable");
+                  $filter_source.removeClass("filter").addClass("filter_disable");
                 }
               });
     
@@ -177,12 +177,6 @@
           }
         });
     }
-
-    /*$('.spe-list-items').each(function() {
-        if (!$(this).find('li').text()) {
-          $(this).parents('.spe-list-block').hide();
-        }
-    });*/
 
 
 })(jQuery);

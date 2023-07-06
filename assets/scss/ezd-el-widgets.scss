@@ -916,6 +916,10 @@
   &.mixitup-control-active{
     text-decoration: underline;
   }
+  &.filter_disable{
+    cursor: default;
+    opacity: 0.4;
+  }
   &:hover{
     color: #666;
     text-decoration: none;
@@ -959,6 +963,12 @@
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 15px;
     padding: 0 0 0 15px !important;
+    .spe-list-item{
+      .spe-list-item-title{
+        font-weight: 400;
+        align-items: center;
+      }
+    }
   }
   
 }
