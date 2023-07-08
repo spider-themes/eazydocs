@@ -2328,6 +2328,7 @@ body.admin-bar .ezd-link-copied-wrap {
   font-weight: 500;
   background: var(--black_25);
   flex: 1;
+  line-height: 1.4;
 }
 .eazydocs-next-prev-wrap .next-prev-pager span {
   display: block;
@@ -2335,7 +2336,7 @@ body.admin-bar .ezd-link-copied-wrap {
   line-height: 18px;
   color: var(--black_500);
   font-weight: 400;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .eazydocs-next-prev-wrap .next-prev-pager:hover {
   border-color: var(--ezd_brand_color);
@@ -2347,7 +2348,7 @@ body.admin-bar .ezd-link-copied-wrap {
 }
 .eazydocs-next-prev-wrap .next-prev-pager.first {
   text-align: right;
-  padding-left: 40px;
+  padding-left: 50px;
   position: relative;
   line-height: 1.6;
 }
@@ -2367,7 +2368,7 @@ body.admin-bar .ezd-link-copied-wrap {
   color: rgb(136, 153, 168);
 }
 .eazydocs-next-prev-wrap .next-prev-pager.second {
-  padding-right: 40px;
+  padding-right: 50px;
   position: relative;
 }
 .eazydocs-next-prev-wrap .next-prev-pager.second::before {

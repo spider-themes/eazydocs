@@ -1823,13 +1823,14 @@ body.admin-bar{
     font-weight: 500;
     background: var(--black_25);
     flex: 1;
+    line-height: 1.4;
     span {
       display: block;
       font-size: 12px;
       line-height: 18px;
       color: var(--black_500);
       font-weight: 400;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     &:hover {
       &::before {
@@ -1842,7 +1843,7 @@ body.admin-bar{
   }
   .next-prev-pager.first {
     text-align: right;
-    padding-left: 40px;
+    padding-left: 50px;
     position: relative;
     line-height: 1.6;
     &::before {
@@ -1862,7 +1863,7 @@ body.admin-bar{
     }
   }
   .next-prev-pager.second {
-    padding-right: 40px;
+    padding-right: 50px;
     position: relative;
     &::before {
       display: block;
