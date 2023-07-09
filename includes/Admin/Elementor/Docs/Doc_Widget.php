@@ -170,8 +170,8 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'active_doc', [
-				'label'       => __( 'Active Doc', 'docly-core' ),
-				'description' => __( 'Select the active Doc tab by default.', 'docly-core' ),
+				'label'       => __( 'Active Doc', 'eazydocs' ),
+				'description' => __( 'Select the active Doc tab by default.', 'eazydocs' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => ezd_get_posts(),
 				'condition'   => [
@@ -234,8 +234,8 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'is_custom_order', [
-				'label'        => __( 'Custom Order', 'docly-core' ),
-				'description'  => __( 'Order the Doc tabs as you want.', 'docly-core' ),
+				'label'        => __( 'Custom Order', 'eazydocs' ),
+				'description'  => __( 'Order the Doc tabs as you want.', 'eazydocs' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => '',
@@ -250,7 +250,7 @@ class Doc_Widget extends Widget_Base {
 
 		$doc->add_control(
 			'doc', [
-				'label'       => __( 'Doc', 'docly-core' ),
+				'label'       => __( 'Doc', 'eazydocs' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => ezd_get_posts(),
 			]
@@ -258,7 +258,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'docs', [
-				'label'         => __( 'Tabs Items', 'docly-core' ),
+				'label'         => __( 'Tabs Items', 'eazydocs' ),
 				'type'          => Controls_Manager::REPEATER,
 				'fields'        => $doc->get_controls(),
 				'title_field'   => '{{{ doc }}}',

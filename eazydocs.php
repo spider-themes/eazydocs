@@ -143,6 +143,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
             // Notices
 			require_once __DIR__ . '/includes/notices/deactivate-other-doc-plugins.php';
             require_once __DIR__ . '/includes/notices/asking-for-review.php';
+
 			if ( eaz_fs()->is_plan('promax') ) {
 				require_once __DIR__ . '/includes/notices/update-database.php';
 			}
@@ -159,10 +160,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
 			// Options
-			if ( is_admin() ) {
-				require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
-				require_once __DIR__ . '/includes/Admin/options/settings-options.php';
-			}
+			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+			
 			if ( ezd_is_premium() ) {
 				require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
 			}

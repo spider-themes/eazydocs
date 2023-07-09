@@ -123,7 +123,7 @@ $children           = wp_list_pages( array(
 
 								<?php if ( $child_sections ) : ?>
                                     <div class="articles-list mt-5">
-                                        <h4 class="c_head"> <?php esc_html_e('Articles', 'docy'); ?></h4>
+                                        <h4 class="c_head"> <?php esc_html_e('Articles', 'eazydocs'); ?></h4>
                                         <ul class="article_list one-page-docs-tag-list">
 											<?php
 											foreach ( $child_sections as $child_section ) :

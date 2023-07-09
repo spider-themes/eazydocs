@@ -57,9 +57,12 @@ if ( in_array( $current_user_role, $all_roled ) ) {
 }
 
 CSF::createOptions( $prefix, array(
+	'framework_title'    => 'EazyDocs',
 	'menu_title'         => esc_html__( 'Settings', 'eazydocs' ),
 	'menu_slug'          => 'eazydocs-settings',
+	'menu_type'          => 'submenu',
 	'menu_capability'    => $capabilites,
+	'menu_parent'        => 'eazydocs',
 	'show_in_customizer' => ezd_get_opt('customizer_visibility')
 ) );
 

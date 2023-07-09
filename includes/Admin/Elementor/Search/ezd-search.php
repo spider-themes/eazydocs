@@ -5,7 +5,7 @@
                 <input type='search' class="search_field_wrap" id="ezd_searchInput" autocomplete="off" name="s"  placeholder="<?php echo esc_attr($settings['placeholder']) ?>">
                 <!-- Ajax Search Loading Spinner -->
                 <span class="spinner search_form_spinner">
-                    <img src="<?php echo EAZYDOCS_IMG ?>/icon/loading.svg" alt="<?php esc_attr_e('loading', 'docy') ?>">
+                    <img src="<?php echo EAZYDOCS_IMG ?>/icon/loading.svg" alt="<?php esc_attr_e('loading', 'eazydocs') ?>">
                 </span>
                 <button type="submit" class="search_submit_btn">
                     <?php \Elementor\Icons_Manager::render_icon( $settings['submit_btn_icon'], [ 'aria-hidden' => 'true' ] ); ?>

@@ -207,11 +207,11 @@ class Admin {
 				?>
                 <div class="button-inline">
                     <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url( 'admin.php?page=eazydocs-pricing' ); ?>">
-						<?php esc_html_e( 'Go Pro', 'elementor' ); ?>
+						<?php esc_html_e( 'Go Pro', 'eazydocs' ); ?>
                     </a>
                     <a class="button button-secondary ezd-btn btn-lg" target="_blank" href="https://wordpress-theme.spider-themes.net/docy/docy-documentation/"
                        title="<?php esc_attr_e( 'View Frontend Demo', 'eazydocs' ); ?>">
-						<?php esc_html_e( 'View Demo', 'elementor' ); ?>
+						<?php esc_html_e( 'View Demo', 'eazydocs' ); ?>
                     </a>
                 </div>
             </div>

@@ -11,11 +11,10 @@
  * Plugin URI: http://codestarframework.com/
  * Author: Codestar
  * Author URI: http://codestarthemes.com/
- * Version: 2.2.7
+ * Version: 2.3.0
  * Description: A Simple and Lightweight WordPress Option Framework for Themes and Plugins
  * Text Domain: csf
  * Domain Path: /languages
  *
  */
 require_once plugin_dir_path( __FILE__ ) .'classes/setup.class.php';
-

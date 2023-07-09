@@ -23,25 +23,25 @@ if ( ! class_exists( 'CSF_Options' ) ) {
     public $args         = array(
 
       // framework title
-      'framework_title'         => 'EazyDocs',
+      'framework_title'         => 'Codestar Framework <small>by Codestar</small>',
       'framework_class'         => '',
 
       // menu settings
       'menu_title'              => '',
       'menu_slug'               => '',
-      'menu_type'               => 'submenu',
+      'menu_type'               => 'menu',
       'menu_capability'         => 'manage_options',
       'menu_icon'               => null,
       'menu_position'           => null,
-      'menu_hidden'             => true,
-      'menu_parent'             => 'eazydocs',
+      'menu_hidden'             => false,
+      'menu_parent'             => '',
       'sub_menu_title'          => '',
 
       // menu extras
       'show_bar_menu'           => true,
       'show_sub_menu'           => true,
       'show_in_network'         => true,
-      'show_in_customizer'      => true,
+      'show_in_customizer'      => false,
 
       'show_search'             => true,
       'show_reset_all'          => true,
@@ -59,7 +59,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
       'admin_bar_menu_priority' => 50,
 
       // footer
-      'footer_text'             => false,
+      'footer_text'             => 'Thank you for creating with Codestar Framework',
       'footer_after'            => '',
       'footer_credit'           => '',
 
@@ -79,7 +79,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
       'output_css'              => true,
 
       // theme
-      'nav'                     => 'default',
+      'nav'                     => 'normal',
       'theme'                   => 'dark',
       'class'                   => '',
 
@@ -120,67 +120,6 @@ if ( ! class_exists( 'CSF_Options' ) ) {
     // instance
     public static function instance( $key, $params = array() ) {
       return new self( $key, $params );
-    }
-
-    public function pre_tabs( $sections ) {
-
-      $result  = array();
-      $parents = array();
-      $count   = 100;
-
-      foreach ( $sections as $key => $section ) {
-        if ( ! empty( $section['parent'] ) ) {
-          $section['priority'] = ( isset( $section['priority'] ) ) ? $section['priority'] : $count;
-          $parents[$section['parent']][] = $section;
-          unset( $sections[$key] );
-        }
-        $count++;
-      }
-
-      foreach ( $sections as $key => $section ) {
-        $section['priority'] = ( isset( $section['priority'] ) ) ? $section['priority'] : $count;
-        if ( ! empty( $section['id'] ) && ! empty( $parents[$section['id']] ) ) {
-          $section['subs'] = wp_list_sort( $parents[$section['id']], array( 'priority' => 'ASC' ), 'ASC', true );
-        }
-        $result[] = $section;
-        $count++;
-      }
-
-      return wp_list_sort( $result, array( 'priority' => 'ASC' ), 'ASC', true );
-    }
-
-    public function pre_fields( $sections ) {
-
-      $result  = array();
-
-      foreach ( $sections as $key => $section ) {
-        if ( ! empty( $section['fields'] ) ) {
-          foreach ( $section['fields'] as $field ) {
-            $result[] = $field;
-          }
-        }
-      }
-
-      return $result;
-    }
-
-    public function pre_sections( $sections ) {
-
-      $result = array();
-
-      foreach ( $this->pre_tabs as $tab ) {
-        if ( ! empty( $tab['subs'] ) ) {
-          foreach ( $tab['subs'] as $sub ) {
-            $sub['ptitle'] = $tab['title'];
-            $result[] = $sub;
-          }
-        }
-        if ( empty( $tab['subs'] ) ) {
-          $result[] = $tab;
-        }
-      }
-
-      return $result;
     }
 
     // add admin bar menu
