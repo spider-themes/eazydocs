@@ -20,11 +20,9 @@ class Widgets{
         require_once( __DIR__ . '/Docs/Doc_Widget.php' ); 
         require_once( __DIR__ . '/Search/Search_Widget.php' ); 
         require_once( __DIR__ . '/Single_Doc/Single_Doc.php' ); 
-        require_once( __DIR__ . '/Glossary_Doc/Glossary_Doc.php' ); 
         $widgets_manager->register( new Docs\Doc_Widget() );
         $widgets_manager->register( new Search\Search_Widget() );
         $widgets_manager->register( new Single_Doc\Single_Doc() );
-        $widgets_manager->register( new Glossary_Doc\Glossary_Doc() );
     }
     
     // Register category

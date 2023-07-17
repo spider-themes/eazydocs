@@ -739,7 +739,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_responsive_control(
 			'btn_padding', [
-				'label' => esc_html__( 'Padding', 'textdomain' ),
+				'label' => esc_html__( 'Padding', 'eazydocs' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [

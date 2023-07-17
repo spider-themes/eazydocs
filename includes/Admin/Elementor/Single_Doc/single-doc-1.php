@@ -23,7 +23,7 @@
                             <h4 class="title"> <?php echo get_the_title($section->ID); ?> </h4>
                             <span>
                                 <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
-                                <?php esc_html_e( 'Topics', 'eazyedocs' ) ?>
+                                <?php esc_html_e( 'Topics', 'eazydocs' ) ?>
                             </span>
                         </a>
                     </div>

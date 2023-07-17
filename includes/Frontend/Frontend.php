@@ -288,7 +288,7 @@ class Frontend {
 					<a class="next-prev-pager second" href="<?php echo get_permalink( $next_post_id ); ?>">
 						<span>
 							<?php
-							esc_html_e( 'Next - ', 'eazydocs-' );
+							esc_html_e( 'Next - ', 'eazydocs' );
 							echo esc_html( get_the_title( $current_parent_id ) );
 							?>
 						</span>

@@ -67,23 +67,23 @@ class Single_Doc extends Widget_Base {
 				'type'    => Controls_Manager::CHOOSE,
 				'options' => [
 					'1' => [
-						'title' => __( 'Light', 'coro-core' ),
+						'title' => __( 'Light', 'eazydocs' ),
 						'icon'  => 'single-doc1',
 					],
 					'2' => [
-						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Creative', 'coro-core' ),
+						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Creative', 'eazydocs' ),
 						'icon'  => 'single-doc2 '.$support_pro.'',
 					],
 					'3' => [
-						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Box', 'coro-core' ),
+						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Box', 'eazydocs' ),
 						'icon'  => 'single-doc3  '.$support_pro.'',
 					],
 					'4' => [
-						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Topic Boxes', 'coro-core' ),
+						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Topic Boxes', 'eazydocs' ),
 						'icon'  => 'single-doc4  '.$support_pro.'',
 					],
 					'5' => [
-						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Docs Boxes', 'coro-core' ),
+						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Docs Boxes', 'eazydocs' ),
 						'icon'  => 'single-doc5  '.$support_pro.'',
 					],
 				],
