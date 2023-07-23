@@ -1,4 +1,4 @@
-=== EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin (easydocs, knowledgebase) ===
+=== EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin (easy docs, knowledgebase) ===
 Contributors: mdjwel, spiderdevs
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
@@ -34,19 +34,19 @@ Simplify the process of creating and managing documentation with EazyDocs, makin
 There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
 
 - **Ordering and Nesting Docs by Drag-n-Drop:**
-Nesting and re-ordering have never before been so easy. You can easily drag-n-drop your docs to order them. Also, you can nest docs by Drag-n-Drop to create, re-organize a hierarchical structure.
+Nesting and re-ordering have never before been so easy. You can easily drag-n-drop your docs to order them. Also, you can nest docs by Drag-n-Drop to create, and re-organize a hierarchical structure.
 
 - **Look Beautiful by Default:**
-EazyDocs offers a modern design that will style your docs and make it look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
+EazyDocs offers a modern design that will style your docs and make them look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
 
 - **Designed for Reader:**
 EazyDocs is designed to make it easy for your readers to find what they are looking for. We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
 
 - **SEO Optimized:**
-EazyDocs is SEO ready right from the first line of code. It will help you to rank your docs on search engines.
+EazyDocs is SEO-ready right from the first line of code. It will help you to rank your docs on search engines.
 
 - **Integrated Schema:**
-EazyDocs is integrated with Schema.org, which is a set of schemas that help search engines to understand your content better. It will help you to rank your docs on search engines.
+EazyDocs is integrated with Schema.org, which is a set of schemas that help search engines understand your content better. It will help you to rank your docs on search engines.
 
 - **Sticky Sidebars:**
 EazyDocs has sticky sidebars that will help your readers to navigate through your docs easily. Make the sidebars to follow you as the visitor scroll and show the important content.
@@ -55,13 +55,13 @@ EazyDocs has sticky sidebars that will help your readers to navigate through you
 The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily. The filter form helps to find the right doc quickly.
 
 - **Multilingual and RTL Ready:**
-EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one! You can translate it into your language and use it in your website.
+EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one! You can translate it into your language and use it on your website.
 
 - **Responsive & Retina Ready:**
 EazyDocs is 100% responsive to make your Knowledge base look beautiful and effective on all major devices.
 
 - **On Demand Asset Loading:**
-Loading only necessary CSS, JavaScript, image, font files assets on the EazyDocs pages and will not load our assets on other pages of your website.
+Loading only necessary CSS, JavaScript, image, and font files assets on the EazyDocs pages and will not load our assets on other pages of your website.
 
 ## 📒 Hierarchical & Filterable Doc Builder UI ##
 We designed the EazyDocs Doc Builder admin UI to be as simple as possible yet powerful. You can create a new doc, filter docs by post status, view positive/negative feedback ratio, and organize your docs with drag-and-drop ordering.
@@ -70,16 +70,16 @@ We designed the EazyDocs Doc Builder admin UI to be as simple as possible yet po
 EazyDocs comes with a live customizer that allows you to customize your Knowledge base without leaving the WordPress admin. You can change the colors, fonts, and other settings to reflect your brand.
 
 ## ⚙️ Advanced Settings Page ##
-The advanced settings page allows you to customize your Knowledge base without touching a single line of code. You can change the colors, fonts, and other settings to reflect your brand. By searching in the Settings page, you can find your desired option in realtime.
+The advanced settings page allows you to customize your Knowledge base without touching a single line of code. You can change the colors, fonts, and other settings to reflect your brand. By searching on the Settings page, you can find your desired option in real-time.
 
 ## 🔍 Ajax Live Search Results ##
 EazyDocs comes with a live search feature that allows your readers to search for docs without leaving the page. The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
 
 ## 📤 Share Docs via all possible ways ##
-EazyDocs comes with a share button that allows your readers to share your docs via all possible ways. Visitors can share the Docs on social sites as well as they can directly mail or copy the link to share it from the doc single page.
+EazyDocs comes with a share button that allows your readers to share your docs in all possible ways. Visitors can share the Docs on social sites as well as they can directly mail or copy the link to share it from the doc single page.
 
 ## 🧱 Building pages with Gutenberg Blocks ##
-You don't have to remember shortcode attributes, values. We made it dynamic. EazyDocs has some pre-built blocks to make the Docs page building easier and quick.
+You don't have to remember shortcode attributes or values. We made it dynamic. EazyDocs has some pre-built blocks to make the Docs page building easier and quick.
 
 ## 🧩 Build doc pages with Elementor ##
 EazyDocs has some pre-built widgets to make the Docs page building by drag-n-drop. You can use the widgets in the Elementor page builder to build your Docs page.
@@ -88,18 +88,18 @@ EazyDocs has some pre-built widgets to make the Docs page building by drag-n-dro
 EazyDocs comes with a collapsible sidebar that allows your readers to hide the sidebar and focus on the content. The sidebar can be collapsed by clicking on the sidebar toggle button.
 
 ## 🗂️ 4 Level Depth Supported ##
-EazyDocs supports 4 level depth of docs. You can create a doc with 4 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth)
+EazyDocs supports a 4-level depth of docs. You can create a doc with 4 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth)
 
 ## 📝 Doc Excerpt/Summary Content ##
-EazyDocs allows you to add an excerpt/summary content to your docs. You can add the excerpt/summary content to your docs to show it on the docs list and single page.
+EazyDocs allows you to add excerpt/summary content to your docs. You can add the excerpt/summary content to your docs to show it on the docs list and single page.
 
 ## 👁️ Read time, Views Count ##
 EazyDocs comes with a read time and views count feature that allows your readers to know how much time they will take to read the doc and how many times the doc has been viewed.
 
 ## 📖 Reading Assistant Tools ##
-EazyDocs comes with a reading assistant tools that allows your readers to increase or decrease the font size, print Doc, TOC are developed for a consistent reading experience.
+EazyDocs comes with a reading assistant tool that allows your readers to increase or decrease the font size, print Doc, and TOC is developed for a consistent reading experience.
 
-## 📋 Built in Table of Contents (TOC) ##
+## 📋 Built-in Table of Contents (TOC) ##
 EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation. That allows your readers to navigate through the doc easily. The TOC is developed for a consistent reading experience.
 
 ## 🤠 Get Feedback From Real Visitors ##
@@ -113,7 +113,7 @@ No need to memorize or remember the last viewed articles by the user. They can s
 Sometimes readers might be interested to read the Related articles. EazyDocs will automatically create a Related Articles section at the bottom of the doc single page.
 
 ## 💬 Article Comments ##
-Facilitate interactive engagement with your content by enabling comments and replies on your knowledge base articles, allowing readers to ask questions and seek clarifications.
+Facilitate interactive engagement with your content by enabling comments and replies on your knowledge-base articles, allowing readers to ask questions and seek clarifications.
 
 ## 📝 Article Voting ##
 EazyDocs allows visitors to vote on articles, helping you understand which articles are popular and need improvement. You can also see the positive and negative votes ratio on the admin side.
@@ -124,7 +124,7 @@ Organize and manage your articles efficiently by tagging them, making it easier 
 ## 🕑 Revision History ##
 Keep a record of article drafts and edits, and restore earlier versions if required.
 
-EazyDocs Pro plan features include:
+## EazyDocs Pro plan features include:
 - Voting & Comments Notifications
 - Doc Helper Assistant with Contact Form
 - Conditional Content Dropdown
@@ -144,14 +144,14 @@ EazyDocs Pro plan features include:
 - RTL Ready
 - Duplicate Bulk/Individual Documentation
 
-EazyDocs Pro-Max plan features include:
+## EazyDocs Pro-Max plan features include:
 - All Pro plan features
 - Analytics
 - Contributor, Add/Edit doc from Frontend
 - Footnotes
 - Elementor pre-made templates
 
-[Click here](https://spider-themes.net/eazydocs/features) to know more about EazyDocs Premium plans and Features
+[Click here](https://spider-themes.net/eazydocs/features) to know more about EazyDocs Premium Plans and Features
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
@@ -165,7 +165,7 @@ Yes, the EazyDocs works with any standard WordPress theme.
 Absolutely not! EazyDocs is as easy to use, as you can think of.
 
 = Where can I report bugs or contribute to the project? =
-To report bugs or to contribute, head-over to the [GitHub repository](https://github.com/spider-themes/eazydocs/issues)
+To report bugs or to contribute, head over to the [GitHub repository](https://github.com/spider-themes/eazydocs/issues)
 
 = Can I use EazyDocs on multiple websites? =
 Yes, you can use EazyDocs on multiple websites. You can use it on as many websites as you want.
@@ -206,7 +206,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.2.0 (16 October 2023) =
+= v2.2.1 (23 July 2023) =
+Updated: Freemius SDK updated 2.5.10
+Updated: Options framework updated to improve integration with the latest WordPress version
+Updated: Language .pot files
+Tweaked: Some design improved
+
+= v2.2.0 (16 June 2023) =
 New: Elementor Search Banner layout added in the 'EazyDocs > Settings > Doc Single > Search Banner' page. Now you can create/customize the doc search banner with Elementor
 Fixed: Next & Prev docs issue solved
 Fixed: Brand color wasn't changing
@@ -225,7 +231,7 @@ Fixed: PHP error
 
 = v2.1.6 (16 April 2023) =
 Fixed: EEE text was appending before the Ajax search result items.
-Tweaked: Removed the deprecated function get_page_by_title to compatible with the WordPress version 6.2.0! Used WP_Query instead.
+Tweaked: Removed the deprecated function get_page_by_title to be compatible with the WordPress version 6.2.0! Used WP_Query instead.
 Tweaked: Dark Mode colors improved
 Tweaked: Responsive design improved
 
@@ -238,7 +244,7 @@ Tweaked: Deleted some unnecessary and merged some JS files
 Fixed: Settings page was missing on some web server
 
 = v2.1.3 (12 March 2023) =
-Fixed: Search banner background was missing and not changing custom background color and image from the Settings page
+Fixed: The search banner background was missing and not changing custom background color and image from the Settings page
 
 = v2.1.2 (11 March 2023) =
 Tweaked: Options Visibility option changed to Switcher from Dropdwon in the Settings page

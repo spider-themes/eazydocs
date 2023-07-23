@@ -108,7 +108,7 @@ p .footnotes-link::after {
   cursor: pointer;
   height: 24px;
   text-align: left;
-  z-index: 12;
+  z-index: 1;
   font-size: 0.95rem;
   margin-left: -58px;
   .left-arrow {
@@ -163,7 +163,7 @@ p .footnotes-link::after {
     padding: 0;
     ul.children {
       list-style: none;
-      padding-left: 25px;
+      padding-left: 28px;
       margin: 0;
       li {
         a::before {
