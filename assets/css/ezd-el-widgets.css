@@ -189,7 +189,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 #ezd-search-results .search-result-item {
   padding: 7px 15px;
   position: relative;
-  border-bottom: 1px solid rgb(245, 245, 250);
+  border-bottom: 1px solid #f5f5fa;
   transition: 0.3s all;
   cursor: pointer;
 }
@@ -223,8 +223,8 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 }
 
 .eazydocs-breadcrumb-root-title li.breadcrumb-item {
-  color: rgb(119, 122, 175) !important;
-  background: rgb(245, 245, 250);
+  color: #777aaf !important;
+  background: #f5f5fa;
   width: 100%;
   padding: 5px 15px !important;
 }
@@ -878,86 +878,6 @@ body.search-focused .ezd_click_capture {
 }
 .docs-single-5-wrap .section5-article .docs-single5-nav-wrap li {
   margin: 0;
-}
-
-/*================ glossary text docs ==============  */
-.spe-list-template-three-column {
-  display: grid;
-}
-
-.spe-list-filter {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.spe-list-filter a {
-  display: inline-block;
-  padding: 3px;
-  margin: 0 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  opacity: 1;
-  color: #E27761;
-  font-size: 18px;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-.spe-list-filter a.mixitup-control-active {
-  text-decoration: underline;
-}
-.spe-list-filter a.filter_disable {
-  cursor: default;
-  opacity: 0.4;
-}
-.spe-list-filter a:hover {
-  color: #666;
-  text-decoration: none;
-}
-
-.spe-list-search-form {
-  margin-bottom: 15px;
-}
-.spe-list-search-form input[type=text] {
-  padding: 10px 15px;
-  width: 100%;
-  height: 45px;
-  line-height: 44px;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: #fff;
-  border: 1px solid #e7e7e7;
-  box-shadow: none;
-  padding-left: 25px;
-  -webkit-transition: border-color ease-in-out 0.15s;
-  -o-transition: border-color ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s;
-}
-.spe-list-search-form input[type=text]:focus {
-  border-color: #000;
-}
-
-.spe-list-block .spe-list-block-heading {
-  width: 100%;
-  padding: 5px 15px;
-  margin: 0 0 15px 0;
-  background: #f4f4f4;
-  color: #777;
-  float: none;
-  text-transform: uppercase;
-  font-weight: bold;
-  border-radius: 5px;
-}
-.spe-list-block .spe-list-items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 15px;
-  padding: 0 0 0 15px !important;
-}
-.spe-list-block .spe-list-items .spe-list-item .spe-list-item-title {
-  font-weight: 400;
-  align-items: center;
 }
 
 /*# sourceMappingURL=ezd-el-widgets.css.map */
