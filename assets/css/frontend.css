@@ -654,16 +654,16 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   margin-top: 0;
   font-weight: 700;
 }
-.single-docs .meta {
+.single-docs .ezd-meta {
   color: var(--black_500);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
 }
 @media (max-width: 767px) {
-  .single-docs .meta {
+  .single-docs .ezd-meta {
     gap: 10px;
   }
 }
@@ -1068,7 +1068,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .single-docs .shortcode_title h1 {
   margin-bottom: 10px;
-  font-size: 2.5em;
+  font-size: 2.6em;
   color: var(--black_900);
   line-height: 1.3;
 }

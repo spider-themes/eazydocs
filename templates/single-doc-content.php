@@ -31,7 +31,7 @@ endif;
             <?php the_title( '<h1>', '</h1>' ); ?>
             <?php
             if( $reading_time_visibility == '1' ||  $views_visibility == '1' ) : ?>
-                <div class="meta dot-sep">
+                <div class="ezd-meta dot-sep">
                     <?php
                     if( $reading_time_visibility == '1') : ?>
                         <span class="read-time">

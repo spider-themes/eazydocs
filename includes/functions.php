@@ -1,4 +1,52 @@
 <?php
+/**
+ * Get the value of a settings field.
+ *
+ * @param string $option  settings field name
+ * @param string $section the section name this field belongs to
+ * @param string $default default text if it's not found
+ *
+ * @return mixed
+ */
+function ezd_get_opt( $option, $default = '' ) {
+	$options = get_option( 'eazydocs_settings' );
+
+	if ( isset( $options[ $option ] ) ) {
+		return $options[ $option ];
+	}
+
+	return $default;
+}
+
+/**
+ * Check if the pro plugin and plan is active
+ *
+ * @return bool|void
+ */
+function ezd_is_premium() {
+	if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) {
+		return true;
+	}
+}
+
+/**
+ * Check if the pro plugin and plan is active
+ *
+ * @return bool|void
+ */
+function ezd_is_promax() {
+	if ( class_exists( 'EazyDocsPro' ) && eaz_fs()->can_use_premium_code() && eaz_fs()->is_plan( 'promax' ) ) {
+		return true;
+	}
+}
+
+/**
+ * Get the container class
+ * @return string
+ */
+function ezd_container() {
+	return ezd_get_opt('docs_page_width') == 'full-width' ? 'container-fluid px-lg-5' : 'container custom_container';
+}
 
 /**
  * Get admin template part
@@ -81,47 +129,6 @@ function eazydocs_get_template( $template_name, $args = [] ) {
 
 	if ( file_exists( $template ) ) {
 		include $template;
-	}
-}
-
-/**
- * Get the value of a settings field.
- *
- * @param string $option  settings field name
- * @param string $section the section name this field belongs to
- * @param string $default default text if it's not found
- *
- * @return mixed
- */
-function ezd_get_opt( $option, $default = '' ) {
-	$options = get_option( 'eazydocs_settings' );
-
-	if ( isset( $options[ $option ] ) ) {
-		return $options[ $option ];
-	}
-
-	return $default;
-}
-
-/**
- * Check if the pro plugin and plan is active
- *
- * @return bool|void
- */
-function ezd_is_premium() {
-	if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) {
-		return true;
-	}
-}
-
-/**
- * Check if the pro plugin and plan is active
- *
- * @return bool|void
- */
-function ezd_is_promax() {
-	if ( class_exists( 'EazyDocsPro' ) && eaz_fs()->can_use_premium_code() && eaz_fs()->is_plan( 'promax' ) ) {
-		return true;
 	}
 }
 

@@ -79,28 +79,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 	 */
 	class EazyDocs {
 
-		/**
-		 * EazyDocs Version
-		 *
-		 * Holds the version of the plugin.
-		 *
-		 * @var string The plugin version.
-		 */
+		// Default constants
 		const version = '2.2.1';
-
-		/**
-		 * The plugin path.
-		 *
-		 * @var string
-		 */
 		public $plugin_path;
-
-		/**
-		 * The theme directory path.
-		 *
-		 * @var string
-		 */
 		public $theme_dir_path;
+		public static $dir = '';
 
 		/**
 		 * Constructor.
@@ -129,6 +112,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 */
 		public function i18n() {
 			load_plugin_textdomain( 'eazydocs', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+			load_textdomain( 'eazydocs', self::$dir .'/languages/'. get_locale() .'.mo' );
 		}
 
 		/**
@@ -160,7 +144,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
 			// Options
-			require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+			require_once __DIR__ . '/vendor/csf/classes/setup.class.php';
 			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
 			
 			if ( ezd_is_premium() ) {

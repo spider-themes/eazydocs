@@ -6,7 +6,7 @@ $doc_container    = $opt['docs_page_width'] ?? '';
 $doc_container    = $doc_container == 'full-width' ? 'container-fluid px-lg-5' : 'container custom_container';
 ?>
 <section class="page_breadcrumb ezd-breadcrumb">
-    <div class="<?php echo esc_attr($doc_container); ?>">
+    <div class="<?php echo ezd_container(); ?>">
         <div class="row">
             <div class="col-lg-9 col-md-8">
                 <nav aria-label="breadcrumb">

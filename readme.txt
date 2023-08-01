@@ -206,7 +206,8 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.2.1 (23 July 2023) =
+= v2.2.1 (30 July 2023) =
+New: Glossary Doc Elementor widget added (unlocked in Pro and Pro-Max plan)
 Updated: Freemius SDK updated 2.5.10
 Updated: Options framework updated to improve integration with the latest WordPress version
 Updated: Language .pot files
