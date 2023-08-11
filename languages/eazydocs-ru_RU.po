@@ -1,15 +1,16 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: EazyDocs\n"
-"POT-Creation-Date: 2023-08-02 22:29+0600\n"
-"PO-Revision-Date: 2023-07-31 23:20+0600\n"
+"POT-Creation-Date: 2023-08-03 00:04+0600\n"
+"PO-Revision-Date: 2023-08-03 00:06+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -27,79 +28,79 @@ msgstr ""
 #: blocks.php:74 includes/Admin/Admin.php:106
 #: includes/Admin/Elementor/Widgets.php:32 includes/Post_Types.php:41
 msgid "EazyDocs"
-msgstr ""
+msgstr "EazyDocs"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:4
 msgid "Black"
-msgstr ""
+msgstr "Черный"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:8
 msgid "White"
-msgstr ""
+msgstr "Белый"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:12
 msgid "Red"
-msgstr ""
+msgstr "Красный"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:16
 msgid "Green"
-msgstr ""
+msgstr "Зеленый"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:20
 msgid "Blue"
-msgstr ""
+msgstr "Синий"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:24
 msgid "Yellow"
-msgstr ""
+msgstr "Желтый"
 
 #: includes/Admin/Admin.php:104
 msgid "EazyDocs Pro"
-msgstr ""
+msgstr "EazyDocs Pro"
 
 #: includes/Admin/Admin.php:111
 msgid "Docs Builder"
-msgstr ""
+msgstr "Конструктор документов"
 
 #: includes/Admin/Admin.php:132
 msgid "Customize"
-msgstr ""
+msgstr "Настроить"
 
 #: includes/Admin/Admin.php:137 includes/Post_Types.php:91
 msgid "Tags"
-msgstr ""
+msgstr "Теги"
 
 #: includes/Admin/Admin.php:141
 msgid "OnePage Docs"
-msgstr ""
+msgstr "Одностраничная документация"
 
 #: includes/Admin/Admin.php:144
 #: includes/Admin/options/settings-options.php:1356
 msgid "OnePage Doc"
-msgstr ""
+msgstr "Одностраничный документ"
 
 #: includes/Admin/Admin.php:151 includes/Admin/Admin.php:229
 msgid "Users Feedback"
-msgstr ""
+msgstr "Отзывы пользователей"
 
 #: includes/Admin/Admin.php:153
 msgid "Analytics"
-msgstr ""
+msgstr "Аналитика"
 
 #: includes/Admin/Admin.php:202 includes/Admin/Admin.php:228
 #: includes/Admin/Admin.php:247
 msgid "crown icon"
-msgstr ""
+msgstr "Значок короны"
 
 #: includes/Admin/Admin.php:203
 msgid "Add Your OnePage Doc"
-msgstr ""
+msgstr "Добавьте свой одностраничный документ"
 
 #: includes/Admin/Admin.php:204
 msgid ""
@@ -108,152 +109,170 @@ msgid ""
 "the all guides on a single page and they can navigate through the different "
 "sections very fast."
 msgstr ""
+"Одностраничный формат документации сгенерирует все страницы документа в виде "
+"разделов на одной странице, которая прокручивается по разделам. Посетители "
+"могут найти все руководства на одной странице, и они могут очень быстро "
+"перемещаться по различным разделам."
 
 #: includes/Admin/Admin.php:210
 msgid "Go Pro"
-msgstr ""
+msgstr "Перейти в Pro"
 
 #: includes/Admin/Admin.php:213
 msgid "View Frontend Demo"
-msgstr ""
+msgstr "Посмотреть демо-версию фронтенда"
 
 #: includes/Admin/Admin.php:214
 msgid "View Demo"
-msgstr ""
+msgstr "Посмотреть демо"
 
 #: includes/Admin/Admin.php:230
 msgid "You can get the Doc Feedbacks listed in this page to review."
 msgstr ""
+"Вы можете ознакомиться с отзывами о документах, перечисленными на этой "
+"странице."
 
 #: includes/Admin/Admin.php:233
 msgid "Get Pro Plan"
-msgstr ""
+msgstr "Получить профессиональный план"
 
 #: includes/Admin/Admin.php:248
 msgid "EazyDocs Analytics"
-msgstr ""
+msgstr "Аналитика EazyDocs"
 
 #: includes/Admin/Admin.php:249
 msgid "Analytics page is available in the EazyDocs Premium Promax Plan"
-msgstr ""
+msgstr "Страница аналитики доступна в плане EazyDocs Premium Promax"
 
 #: includes/Admin/Admin.php:252
 msgid "Get Promax Plan"
-msgstr ""
+msgstr "Получить план Promax"
 
 #: includes/Admin/Assets.php:87
 msgid "Enter Doc Title"
-msgstr ""
+msgstr "Введите заголовок документа"
 
 #: includes/Admin/Assets.php:88
 msgid "Are you sure to delete?"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить?"
 
 #: includes/Admin/Assets.php:89
 msgid ""
 "This doc will be trashed with the child docs and you will be able to restore "
 "it later from the trash!"
 msgstr ""
+"Этот документ будет удален вместе с дочерними документами, и вы сможете "
+"восстановить его позже из корзины!"
 
 #: includes/Admin/Assets.php:90
 msgid "Are you sure to Duplicate this doc?"
-msgstr ""
+msgstr "Вы уверены, что продублируете этот документ?"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:30
 msgid "EazyDocs Multi Docs"
-msgstr ""
+msgstr "EazyDocs Multi Docs"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:78
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:60
 msgid "Preset Skin"
-msgstr ""
+msgstr "Предустановленный скин"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:84
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:66
 msgid "Skins"
-msgstr ""
+msgstr "Скины"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:97
 msgid "Filter Options"
-msgstr ""
+msgstr "Опции Фильтра"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:103
 msgid "Tab Alignment"
-msgstr ""
+msgstr "Выравнивание вкладки"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:107
 #: includes/Admin/Elementor/Search/Search_Widget.php:148
 msgid "Left"
-msgstr ""
+msgstr "Слева"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:111
 msgid "center"
-msgstr ""
+msgstr "по центру"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:115
 #: includes/Admin/Elementor/Search/Search_Widget.php:156
 msgid "Right"
-msgstr ""
+msgstr "Справа"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:121
 msgid ""
 "Choose whether you want to position the tab buttons left, right or center "
 "from here."
 msgstr ""
+"Выберите, хотите ли вы расположить кнопки вкладок слева, справа или по "
+"центру отсюда."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:136
 msgid "ID Format"
-msgstr ""
+msgstr "Формат удостоверения личности"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:142
 msgid "If the slug ID does not work then you should pick the number ID."
 msgstr ""
+"Если идентификатор слага не работает, вам следует выбрать идентификатор "
+"номера."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:152
 msgid "Exclude Docs"
-msgstr ""
+msgstr "Исключение документов"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:161
 msgid "Show Section Count"
-msgstr ""
+msgstr "Показать количество разделов"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:162
 msgid ""
 "The number of sections to show under every documentation tab. Leave empty or "
 "give value -1 to show all sections."
 msgstr ""
+"Количество разделов, отображаемых на каждой вкладке документации. Оставьте "
+"пустым или присвойте значение -1, чтобы отобразить все разделы."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:173
 msgid "Active Doc"
-msgstr ""
+msgstr "Активный документ"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:174
 msgid "Select the active Doc tab by default."
-msgstr ""
+msgstr "По умолчанию выберите активную вкладку Документ."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:185
 msgid "Show Doc Item"
-msgstr ""
+msgstr "Показать элемент документа"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:186
 msgid ""
 "The number of doc items to under every doc sections. Leave empty or give "
 "value -1 to show all sections."
 msgstr ""
+"Количество элементов документа в каждом разделе документа. Оставьте пустым "
+"или присвойте значение -1, чтобы отобразить все разделы."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:198
 msgid "Main Doc Excerpt"
-msgstr ""
+msgstr "Отрывок из основного документа"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:199
 msgid ""
 "Excerpt word limit of main documentation. If the excerpt got empty, this "
 "will get from the post content."
 msgstr ""
+"Лимит слов выдержки из основной документации. Если отрывок стал пустым, это "
+"получится из содержимого поста."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:210
 msgid "Doc Section Excerpt"
-msgstr ""
+msgstr "Выдержка из раздела Doc"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:211
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:202
@@ -261,53 +280,55 @@ msgid ""
 "Excerpt word limit of the documentation sections. If the excerpt got empty, "
 "this will get from the post content."
 msgstr ""
+"Ограничение на количество слов в разделах документации. Если отрывок стал "
+"пустым, это получится из содержимого поста."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:222
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:225
 msgid "Order"
-msgstr ""
+msgstr "Заказ"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:237
 msgid "Custom Order"
-msgstr ""
+msgstr "Пользовательская сортировка"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:238
 msgid "Order the Doc tabs as you want."
-msgstr ""
+msgstr "Упорядочивайте вкладки «Документ» по своему усмотрению."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:253
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:144
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:150
 msgid "Doc"
-msgstr ""
+msgstr "Документ"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:261
 msgid "Tabs Items"
-msgstr ""
+msgstr "Вкладки Предметы"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:276
 msgid "Labels"
-msgstr ""
+msgstr "Метки"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:282
 msgid "Tab Title First Word"
-msgstr ""
+msgstr "Заголовок вкладки Первое слово"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:283
 msgid "Show the first word of the doc in Tab Title."
-msgstr ""
+msgstr "Показать первое слово документа в заголовке вкладки."
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:294
 msgid "Read More Text"
-msgstr ""
+msgstr "Текст Читать далее"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:306
 msgid "Book Chapters / Tutorials Prefix"
-msgstr ""
+msgstr "Префикс глав книг / учебных пособий"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:332
 msgid "Tab Title"
-msgstr ""
+msgstr "Заголовок вкладки"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:349
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:742
@@ -317,13 +338,13 @@ msgstr ""
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:357
 #: includes/Admin/options/settings-options.php:455
 msgid "Padding"
-msgstr ""
+msgstr "Отступ"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:372
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:666
 #: includes/Admin/Elementor/Search/style-control.php:190
 msgid "Normal"
-msgstr ""
+msgstr "Нормальный"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:378
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:423
@@ -337,42 +358,42 @@ msgstr ""
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:384
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:423
 msgid "Text Color"
-msgstr ""
+msgstr "Цвет текста"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:388
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:433
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:713
 msgid "Border Color"
-msgstr ""
+msgstr "Цвет границы"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:417
 msgid "Active"
-msgstr ""
+msgstr "Активный"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:466
 msgid "Contents"
-msgstr ""
+msgstr "Содержание"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:477
 msgid "Item Parent Title"
-msgstr ""
+msgstr "Родительский заголовок элемента"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:513
 msgid "Item Title"
-msgstr ""
+msgstr "Заголовок Элемента"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:538
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:587
 msgid "Text Hover Color"
-msgstr ""
+msgstr "Цвет текста при наведении"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:550
 msgid "Item Title List"
-msgstr ""
+msgstr "Список названий элементов"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:603
 msgid "Item Contents"
-msgstr ""
+msgstr "Содержание предмета"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:642
 #: includes/Admin/Elementor/Search/Search_Widget.php:65
@@ -383,60 +404,60 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1595
 #: includes/Admin/options/settings-options.php:1630
 msgid "Button"
-msgstr ""
+msgstr "Кнопка"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:697
 #: includes/Admin/Elementor/Search/style-control.php:221
 msgid "Hover"
-msgstr ""
+msgstr "Наведение"
 
 #: includes/Admin/Elementor/Docs/docs-1.php:4
 #: includes/Admin/Elementor/Single_Doc/single-doc-1.php:26
 #: includes/Admin/options/settings-options.php:159 templates/shortcode.php:4
 msgid "Topics"
-msgstr ""
+msgstr "Темы"
 
 #: includes/Admin/Elementor/Docs/docs-1.php:56
 #: includes/Admin/options/settings-options.php:1202
 #: includes/Admin/options/settings-options.php:1208
 #: includes/Admin/template/parent-docs.php:37 templates/shortcode.php:49
 msgid "Private Doc"
-msgstr ""
+msgstr "Приватный документ"
 
 #: includes/Admin/Elementor/Docs/docs-1.php:94
 msgid " Topics"
-msgstr ""
+msgstr " Темы"
 
 #: includes/Admin/Elementor/Docs/docs-6.php:58
 msgid "Article in this Docs."
-msgstr ""
+msgstr "Статья в этой документации."
 
 #: includes/Admin/Elementor/Docs/docs-6.php:59
 msgid "Written by "
-msgstr ""
+msgstr "Автор:"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:19
 msgid "EazyDocs Search"
-msgstr ""
+msgstr "Поиск EazyDocs"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:48
 #: includes/Admin/Elementor/Search/style-control.php:9
 #: includes/Admin/options/settings-options.php:1269
 msgid "Form"
-msgstr ""
+msgstr "Форма"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:55
 msgid "Placeholder"
-msgstr ""
+msgstr "Заполнитель"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:74
 msgid "Submit Button Icon"
-msgstr ""
+msgstr "Иконка кнопки «Отправить»"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:86
 #: includes/Admin/options/settings-options.php:2050
 msgid "Position"
-msgstr ""
+msgstr "Позиция"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:114
 #: includes/Admin/Elementor/Search/Search_Widget.php:120
@@ -444,20 +465,20 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:473
 #: includes/Admin/options/settings-options.php:515
 msgid "Keywords"
-msgstr ""
+msgstr "Ключевые слова"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:131
 #: includes/Admin/options/settings-options.php:488
 msgid "Keywords Label"
-msgstr ""
+msgstr "Метка ключевых слов"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:144
 msgid "Alignment"
-msgstr ""
+msgstr "Выравнивание"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:152
 msgid "Center"
-msgstr ""
+msgstr "Центр"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:168
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:102
@@ -470,33 +491,33 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1287
 #: includes/Admin/options/settings-options.php:1685
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:177
 msgid "Repeater List"
-msgstr ""
+msgstr "Список повторителей"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:182
 msgid "Keyword #1"
-msgstr ""
+msgstr "Ключевое слово #1"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:185
 msgid "Keyword #2"
-msgstr ""
+msgstr "Ключевое слово #2"
 
 #: includes/Admin/Elementor/Search/ajax-sarch-results.php:1
 #: src/search-banner/search-banner.php:33 templates/search-banner.php:30
 msgid "No Results Found"
-msgstr ""
+msgstr "Результатов не найдено"
 
 #: includes/Admin/Elementor/Search/ezd-search.php:8
 msgid "loading"
-msgstr ""
+msgstr "загрузка"
 
 #: includes/Admin/Elementor/Search/style-control.php:30
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:349
 msgid "Border"
-msgstr ""
+msgstr "Рамка"
 
 #: includes/Admin/Elementor/Search/style-control.php:37
 #: includes/Admin/Elementor/Search/style-control.php:131
@@ -505,292 +526,297 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:307
 #: includes/Admin/options/settings-options.php:851
 msgid "Background Color"
-msgstr ""
+msgstr "Цвет фона"
 
 #: includes/Admin/Elementor/Search/style-control.php:47
 msgid "Focus Background Color"
-msgstr ""
+msgstr "Фокусировка фонового цвета"
 
 #: includes/Admin/Elementor/Search/style-control.php:57
 #: includes/Admin/Elementor/Search/style-control.php:271
 msgid "Border Radius"
-msgstr ""
+msgstr "Радиус границы"
 
 #: includes/Admin/Elementor/Search/style-control.php:68
 msgid "Placeholder Color"
-msgstr ""
+msgstr "Цвет заполнителя"
 
 #: includes/Admin/Elementor/Search/style-control.php:80
 #: includes/Admin/Elementor/Search/style-control.php:251
 msgid "Typography"
-msgstr ""
+msgstr "Типографика"
 
 #: includes/Admin/Elementor/Search/style-control.php:120
 msgid "Icon/Label Color"
-msgstr ""
+msgstr "Цвет значка/метки"
 
 #: includes/Admin/Elementor/Search/style-control.php:151
+#, fuzzy
 msgid "Margin"
-msgstr ""
+msgstr "Отступ"
 
 #: includes/Admin/Elementor/Search/style-control.php:152
 msgid "Margin around the keywords block"
-msgstr ""
+msgstr "Поля вокруг блока ключевых слов"
 
 #: includes/Admin/Elementor/Search/style-control.php:165
 #: includes/Admin/options/settings-options.php:501
 msgid "Label Color"
-msgstr ""
+msgstr "Цвет ярлыка"
 
 #: includes/Admin/Elementor/Search/style-control.php:177
 msgid "Label Typography"
-msgstr ""
+msgstr "Типографика Метки"
 
 #: includes/Admin/Elementor/Search/style-control.php:196
 #: includes/Admin/Elementor/Search/style-control.php:227
 msgid "Keyword Color"
-msgstr ""
+msgstr "Цвет ключевого слова"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:28
 msgid "EazyDocs Single Doc"
-msgstr ""
+msgstr "EazyDocs Single Doc"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:70
 msgid "Light"
-msgstr ""
+msgstr "Светлый"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:74
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:78
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:82
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:86
 msgid "pro-label"
-msgstr ""
+msgstr "Про-лейбл"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:112
 msgid "Title Text"
-msgstr ""
+msgstr "Текст заголовка"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:121
 msgid "Title Tag"
-msgstr ""
+msgstr "Заголовок тега"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:132
 msgid "Subtitle Text"
-msgstr ""
+msgstr "Текст подзаголовка"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:159
 msgid "Column"
-msgstr ""
+msgstr "Колонка"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:160
 msgid "Number of column to show"
-msgstr ""
+msgstr "Количество отображаемых столбцов"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:163
 #: includes/Admin/options/settings-options.php:1456
 msgid "1 Column"
-msgstr ""
+msgstr "1 колонка"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:164
 #: includes/Admin/options/settings-options.php:1457
 msgid "2 Column"
-msgstr ""
+msgstr "2 колонки"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:165
 #: includes/Admin/options/settings-options.php:1458
 msgid "3 Column"
-msgstr ""
+msgstr "3 колонки"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:166
 #: includes/Admin/options/settings-options.php:1459
 msgid "4 Column"
-msgstr ""
+msgstr "4 Колонки"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:167
 #: includes/Admin/options/settings-options.php:1461
 msgid "6 Column"
-msgstr ""
+msgstr "6 колонок"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:178
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:188
 msgid "Sections"
-msgstr ""
+msgstr "Секции"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:179
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:189
 msgid "Number of section to show"
-msgstr ""
+msgstr "Количество отображаемых разделов"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:201
 #: includes/Admin/options/settings-options.php:365
 msgid "Excerpt"
-msgstr ""
+msgstr "Отрывок"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:214
 #: templates/onepage/default-layout.php:126
 #: templates/single-doc-content.php:223
 msgid "Articles"
-msgstr ""
+msgstr "Статьи"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:215
 msgid "Number of articles to show under every sections"
-msgstr ""
+msgstr "Количество статей, отображаемых в каждом разделе"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:241
 msgid "Buttons"
-msgstr ""
+msgstr "Кнопки"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:250
 msgid "Read More Button"
-msgstr ""
+msgstr "Кнопка Читать далее"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:259
 msgid "Section Button"
-msgstr ""
+msgstr "Кнопка раздела"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:271
 msgid "Button Text"
-msgstr ""
+msgstr "Текст кнопки"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:284
 msgid "Button URL"
-msgstr ""
+msgstr "URL кнопки"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:296
 msgid "Show More Button"
-msgstr ""
+msgstr "Показать кнопку Узнать больше"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:308
 msgid "Show Less Text"
-msgstr ""
+msgstr "Показать меньше текста"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:327
 msgid "Box"
-msgstr ""
+msgstr "Коробка"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:339
 #: includes/Admin/options/settings-options.php:447
 #: includes/Admin/options/settings-options.php:2029
 #: includes/Admin/options/taxonomy-options.php:30
 msgid "Background"
-msgstr ""
+msgstr "Фон"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:413
 msgid "Subtitle"
-msgstr ""
+msgstr "Подзаголовок"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:455
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:497
 msgid "Content"
-msgstr ""
+msgstr "Содержание"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:471
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:504
 #: includes/Admin/options/taxonomy-options.php:24
 msgid "Color"
-msgstr ""
+msgstr "Цвет"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:536
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:546
 msgid "Background Objects"
-msgstr ""
+msgstr "Фоновые объекты"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:555
 msgid "Shape"
-msgstr ""
+msgstr "Форма"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:556
 msgid "The background shape should be transparent png or svg image."
-msgstr ""
+msgstr "Форма фона должна быть прозрачным изображением png или svg."
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:569
 msgid "Round Objects 01"
-msgstr ""
+msgstr "Круглые объекты 01"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:579
 msgid "Round 01 Color"
-msgstr ""
+msgstr "Раунд 01 Цвет"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:593
 msgid "Round Objects 02"
-msgstr ""
+msgstr "Круглые объекты 02"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:603
 msgid "Round 02 Color"
-msgstr ""
+msgstr "Раунд 02 Цвет"
 
 #: includes/Admin/admin-template.php:27
 msgid "Folder Open"
-msgstr ""
+msgstr "Папка открыта"
 
 #: includes/Admin/admin-template.php:28
 msgid "No docs has been found. Perhaps"
-msgstr ""
+msgstr "Документы не найдены. Может быть"
 
 #: includes/Admin/admin-template.php:31
 msgid "Create a Doc"
-msgstr ""
+msgstr "Создание документа"
 
 #: includes/Admin/options/settings-options.php:61
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: includes/Admin/options/settings-options.php:74
 msgid "Docs General"
-msgstr ""
+msgstr "Общие сведения о документах"
 
 #: includes/Admin/options/settings-options.php:80
 msgid "Docs Page"
-msgstr ""
+msgstr "Страница «Документы»"
 
 #: includes/Admin/options/settings-options.php:84
 msgid ""
 "The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode or "
 "design your own"
 msgstr ""
+"Страница \"Архив документов\". Желательно использовать <code>[eazydocs]</"
+"code> шорткод или создать свой собственный"
 
 #: includes/Admin/options/settings-options.php:96
 msgid "Docs Slug"
-msgstr ""
+msgstr "Docs Slug"
 
 #: includes/Admin/options/settings-options.php:97
 msgid "docs"
-msgstr ""
+msgstr "Документы"
 
 #: includes/Admin/options/settings-options.php:98
 msgid ""
 "After changing the slug, go to Settings > Permalinks and click on the Save "
 "Changes button."
 msgstr ""
+"После изменения слага перейдите в «Настройки» > «Постоянные ссылки» и "
+"нажмите кнопку «Сохранить изменения»."
 
 #: includes/Admin/options/settings-options.php:104
 msgid "Frontend Brand Color"
-msgstr ""
+msgstr "Фирменный цвет фронтенда"
 
 #: includes/Admin/options/settings-options.php:117
 #: includes/Admin/options/settings-options.php:1411
 msgid "Docs Archive"
-msgstr ""
+msgstr "Архив документов"
 
 #: includes/Admin/options/settings-options.php:125
 msgid "Docs Columns"
-msgstr ""
+msgstr "Столбцы документов"
 
 #: includes/Admin/options/settings-options.php:126
 msgid "This option will set the default value of column attribute of "
-msgstr ""
+msgstr "Эта опция установит значение по умолчанию атрибута столбца "
 
 #: includes/Admin/options/settings-options.php:141
 msgid "View More Button"
-msgstr ""
+msgstr "Кнопка \"Просмотреть больше\""
 
 #: includes/Admin/options/settings-options.php:142
 msgid "View More"
-msgstr ""
+msgstr "Просмотреть больше"
 
 #: includes/Admin/options/settings-options.php:148
 msgid "Topics Count"
-msgstr ""
+msgstr "Количество уроков"
 
 #: includes/Admin/options/settings-options.php:149
 #: includes/Admin/options/settings-options.php:298
@@ -816,7 +842,7 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1893
 #: includes/Admin/options/settings-options.php:1922
 msgid "Show"
-msgstr ""
+msgstr "Показать"
 
 #: includes/Admin/options/settings-options.php:150
 #: includes/Admin/options/settings-options.php:299
@@ -842,136 +868,137 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1894
 #: includes/Admin/options/settings-options.php:1923
 msgid "Hide"
-msgstr ""
+msgstr "Скрыть"
 
 #: includes/Admin/options/settings-options.php:158
 msgid "Topics Count Text"
-msgstr ""
+msgstr "Темы Подсчет текста"
 
 #: includes/Admin/options/settings-options.php:168
 msgid "Child Docs Order"
-msgstr ""
+msgstr "Заказ документов для детей"
 
 #: includes/Admin/options/settings-options.php:170
 msgid "Descending"
-msgstr ""
+msgstr "По убыванию"
 
 #: includes/Admin/options/settings-options.php:171
 msgid "Ascending"
-msgstr ""
+msgstr "По возрастанию"
 
 #: includes/Admin/options/settings-options.php:179
 msgid "Number of Docs"
-msgstr ""
+msgstr "Количество документов"
 
 #: includes/Admin/options/settings-options.php:180
 msgid "Number of Main Docs to show"
-msgstr ""
+msgstr "Количество основных документов для показа"
 
 #: includes/Admin/options/settings-options.php:187
 msgid "Number of Articles"
-msgstr ""
+msgstr "Кол-во статей"
 
 #: includes/Admin/options/settings-options.php:188
 msgid "Number of Articles to show under each Docs."
-msgstr ""
+msgstr "Количество статей, отображаемых под каждой документацией."
 
 #: includes/Admin/options/settings-options.php:195
 msgid "Docs Layout"
-msgstr ""
+msgstr "Макет документов"
 
 #: includes/Admin/options/settings-options.php:197
 msgid "Grid"
-msgstr ""
+msgstr "Сетка"
 
 #: includes/Admin/options/settings-options.php:198
 msgid "Masonry"
-msgstr ""
+msgstr "Кирпичная кладка"
 
 #: includes/Admin/options/settings-options.php:207
 msgid "Docs Order By"
-msgstr ""
+msgstr "Заказ документов"
 
 #: includes/Admin/options/settings-options.php:209
 msgid "No Order"
-msgstr ""
+msgstr "Не сортировать"
 
 #: includes/Admin/options/settings-options.php:210
 msgid "Post ID"
-msgstr ""
+msgstr "ID записи"
 
 #: includes/Admin/options/settings-options.php:211
 msgid "Post Author"
-msgstr ""
+msgstr "Автор записи"
 
 #: includes/Admin/options/settings-options.php:213
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: includes/Admin/options/settings-options.php:214
 msgid "Last Modified Date"
-msgstr ""
+msgstr "Дата последнего изменения"
 
 #: includes/Admin/options/settings-options.php:215
 msgid "Random"
-msgstr ""
+msgstr "Случайно"
 
 #: includes/Admin/options/settings-options.php:216
 msgid "Comment Count"
-msgstr ""
+msgstr "Количество комментариев"
 
 #: includes/Admin/options/settings-options.php:217
 msgid "Menu Order"
-msgstr ""
+msgstr "Порядок меню"
 
 #: includes/Admin/options/settings-options.php:231
 msgid "Doc Single"
-msgstr ""
+msgstr "Док Сингл"
 
 #: includes/Admin/options/settings-options.php:241
 msgid "General"
-msgstr ""
+msgstr "Общие"
 
 #: includes/Admin/options/settings-options.php:248
 msgid "Select Layout"
-msgstr ""
+msgstr "Выберите Макет"
 
 #: includes/Admin/options/settings-options.php:261
 msgid "Page Width"
-msgstr ""
+msgstr "Ширина страницы"
 
 #: includes/Admin/options/settings-options.php:263
 msgid "Boxed"
-msgstr ""
+msgstr "Фиксированный"
 
 #: includes/Admin/options/settings-options.php:264
 msgid "Full Width"
-msgstr ""
+msgstr "Полная ширина"
 
 #: includes/Admin/options/settings-options.php:272
 msgid "Meta Information"
-msgstr ""
+msgstr "Мета информация"
 
 #: includes/Admin/options/settings-options.php:282
 msgid "Estimated Reading Time"
-msgstr ""
+msgstr "Приблизительное время чтения"
 
 #: includes/Admin/options/settings-options.php:289
 #: includes/Frontend/post-views.php:56
 msgid "Views"
-msgstr ""
+msgstr "Просмотры"
 
 #: includes/Admin/options/settings-options.php:296
 msgid "Featured Image"
-msgstr ""
+msgstr "Популярные изображения"
 
 #: includes/Admin/options/settings-options.php:297
 msgid "Show the Featured Image on the top of the doc content area."
 msgstr ""
+"Покажите избранное изображение в верхней части области содержимого документа."
 
 #: includes/Admin/options/settings-options.php:315
 msgid "Comment"
-msgstr ""
+msgstr "Комментарии"
 
 #: includes/Admin/options/settings-options.php:316
 #: includes/Admin/options/settings-options.php:335
@@ -983,7 +1010,7 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1562
 #: includes/Admin/options/settings-options.php:1798
 msgid "Enabled"
-msgstr ""
+msgstr "Включено"
 
 #: includes/Admin/options/settings-options.php:317
 #: includes/Admin/options/settings-options.php:336
@@ -995,280 +1022,293 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1563
 #: includes/Admin/options/settings-options.php:1799
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 #: includes/Admin/options/settings-options.php:325
 msgid "Next & Previous Link"
-msgstr ""
+msgstr "Следующая и предыдущая ссылка"
 
 #: includes/Admin/options/settings-options.php:331
 msgid "Ajax Loading"
-msgstr ""
+msgstr "Загрузка Ajax"
 
 #: includes/Admin/options/settings-options.php:332
 msgid "Load doc pages via Ajax."
-msgstr ""
+msgstr "Загружайте страницы документов через Ajax."
 
 #: includes/Admin/options/settings-options.php:345
 msgid "Credit"
-msgstr ""
+msgstr "Кредит"
 
 #: includes/Admin/options/settings-options.php:352
 msgid "Credit Text"
-msgstr ""
+msgstr "Текст доверия (Credit)"
 
 #: includes/Admin/options/settings-options.php:371
 msgid "Show Excerpt"
-msgstr ""
+msgstr "Показать выдержку"
 
 #: includes/Admin/options/settings-options.php:372
 msgid "Show excerpt on doc single page."
-msgstr ""
+msgstr "Показать отрывок на одной странице документа."
 
 #: includes/Admin/options/settings-options.php:379
 msgid "Excerpt Label"
-msgstr ""
+msgstr "Этикетка выдержки"
 
 #: includes/Admin/options/settings-options.php:380
 msgid "Excerpt label on doc single page."
-msgstr ""
+msgstr "Этикетка выдержки на одной странице документа."
 
 #: includes/Admin/options/settings-options.php:381
 msgid "Summary: "
-msgstr ""
+msgstr "Итого:"
 
 #: includes/Admin/options/settings-options.php:386
 msgid "Section Excerpt"
-msgstr ""
+msgstr "Выдержка из раздела"
 
 #: includes/Admin/options/settings-options.php:387
 msgid ""
 "Define here the Doc section excerpt limit in word count to show. Use -1 to "
 "show the full excerpt."
 msgstr ""
+"Определите здесь ограничение на количество отображаемых слов в разделе "
+"«Документ». Используйте -1, чтобы показать полный отрывок."
 
 #: includes/Admin/options/settings-options.php:388
 msgid ""
 "Note: If the excerpt leaves empty, the excerpt will be automatically taken "
 "from the doc post content."
 msgstr ""
+"Примечание: Если отрывок останется пустым, он будет автоматически взят из "
+"содержимого поста документа."
 
 #: includes/Admin/options/settings-options.php:404
 #: includes/Admin/options/settings-options.php:436
 msgid "Search Banner"
-msgstr ""
+msgstr "Искать Баннер"
 
 #: includes/Admin/options/settings-options.php:409
 msgid "Search Banner Settings"
-msgstr ""
+msgstr "Поиск по настройкам баннера"
 
 #: includes/Admin/options/settings-options.php:415
 msgid "Search Banner layout"
-msgstr ""
+msgstr "Макет поискового баннера"
 
 #: includes/Admin/options/settings-options.php:417
 #: includes/Admin/options/settings-options.php:1262
 msgid "Default"
-msgstr ""
+msgstr "По умолчанию"
 
 #: includes/Admin/options/settings-options.php:418
 msgid "Elementor Template"
-msgstr ""
+msgstr "Шаблон Elementor"
 
 #: includes/Admin/options/settings-options.php:421
 msgid "Select how the header of the doc detail page will be displayed"
 msgstr ""
+"Выберите, как будет отображаться заголовок страницы сведений о документе"
 
 #: includes/Admin/options/settings-options.php:427
 msgid "Select Elementor Template"
-msgstr ""
+msgstr "Выберите шаблон Elementor"
 
 #: includes/Admin/options/settings-options.php:430
 msgid ""
 "How to create Elementor template <a target=\"__blank\" href=\"https://"
 "shorturl.at/filGI\">See guide</a>"
 msgstr ""
+"Как создать шаблон Elementor <a target=\"__blank\" href=\"https://shorturl."
+"at/filGI\">Смотрите руководство</a>"
 
 #: includes/Admin/options/settings-options.php:466
 msgid "Search Keywords"
-msgstr ""
+msgstr "Поиск по ключевым словам"
 
 #: includes/Admin/options/settings-options.php:489
 msgid "Popular Searches"
-msgstr ""
+msgstr "Популярные запросы"
 
 #: includes/Admin/options/settings-options.php:525
 msgid "Keyword"
-msgstr ""
+msgstr "Ключевое слово"
 
 #: includes/Admin/options/settings-options.php:542
 msgid "Keywords Color"
-msgstr ""
+msgstr "Ключевые слова: Цвет"
 
 #: includes/Admin/options/settings-options.php:560
 msgid "Breadcrumbs"
-msgstr ""
+msgstr "Хлебные крошки"
 
 #: includes/Admin/options/settings-options.php:566
 msgid "Show/Hide Breadcrumb"
-msgstr ""
+msgstr "Показать/скрыть хлебные крошки"
 
 #: includes/Admin/options/settings-options.php:567
 msgid "Toggle this switch to Show/Hide the Breadcrumb bar."
 msgstr ""
+"Переключите этот переключатель в положение «Показать/скрыть панель хлебных "
+"крошек»."
 
 #: includes/Admin/options/settings-options.php:577
 msgid "Frontpage Name"
-msgstr ""
+msgstr "Имя главной страницы"
 
 #: includes/Admin/options/settings-options.php:578 includes/functions.php:277
 #: includes/functions.php:401
 msgid "Home"
-msgstr ""
+msgstr "Главная"
 
 #: includes/Admin/options/settings-options.php:589
 msgid "Docs Archive Page Title"
-msgstr ""
+msgstr "Заголовок страницы архива документов"
 
 #: includes/Admin/options/settings-options.php:601
 msgid "Updated Text"
-msgstr ""
+msgstr "Обновленный текст"
 
 #: includes/Admin/options/settings-options.php:602 templates/breadcrumbs.php:3
 msgid "Updated on"
-msgstr ""
+msgstr "Обновлено"
 
 #: includes/Admin/options/settings-options.php:617
 #: includes/Admin/options/settings-options.php:623
 #: includes/Admin/options/settings-options.php:632
 msgid "Feedback Area"
-msgstr ""
+msgstr "Зона обратной связи"
 
 #: includes/Admin/options/settings-options.php:638
 msgid "Customize the feedback modal form here."
-msgstr ""
+msgstr "Настройте модальную форму обратной связи здесь."
 
 #: includes/Admin/options/settings-options.php:644
 msgid "Message Feedback"
-msgstr ""
+msgstr "Обратная связь"
 
 #: includes/Admin/options/settings-options.php:659
 msgid "Still Stuck"
-msgstr ""
+msgstr "Все еще застрял"
 
 #: includes/Admin/options/settings-options.php:660
 #: templates/content-feedback.php:12
 msgid "Still stuck?"
-msgstr ""
+msgstr "Все еще застряли?"
 
 #: includes/Admin/options/settings-options.php:670
 msgid "Help form link text"
-msgstr ""
+msgstr "Текст ссылки на форму справки"
 
 #: includes/Admin/options/settings-options.php:671
 #: includes/Admin/options/settings-options.php:702
 #: templates/content-feedback.php:14 templates/content-modal.php:10
 msgid "How can we help?"
-msgstr ""
+msgstr "Как мы можем помочь?"
 
 #: includes/Admin/options/settings-options.php:681
 msgid "Email Address"
-msgstr ""
+msgstr "Адрес электронной почты"
 
 #: includes/Admin/options/settings-options.php:691
 msgid "Feedback Modal"
-msgstr ""
+msgstr "Обратная связь Modal"
 
 #: includes/Admin/options/settings-options.php:701
 msgid "Form Title"
-msgstr ""
+msgstr "Название формы"
 
 #: includes/Admin/options/settings-options.php:712
 msgid "Form Subtitle"
-msgstr ""
+msgstr "Форма подзаголовок"
 
 #: includes/Admin/options/settings-options.php:721
 msgid "Voting Feedback"
-msgstr ""
+msgstr "Отзывы о голосовании"
 
 #: includes/Admin/options/settings-options.php:730
 msgid "Helpful feedback"
-msgstr ""
+msgstr "Полезный отзыв"
 
 #: includes/Admin/options/settings-options.php:742
 msgid "Feedback Label"
-msgstr ""
+msgstr "Метка обратной связи"
 
 #: includes/Admin/options/settings-options.php:743
 #: templates/content-feedback.php:15
 msgid "Was this page helpful?"
-msgstr ""
+msgstr "Была ли эта страница полезной?"
 
 #: includes/Admin/options/settings-options.php:752
 msgid "Feedback Count"
-msgstr ""
+msgstr "Количество обратной связи"
 
 #: includes/Admin/options/settings-options.php:768
 msgid "Left Sidebar"
-msgstr ""
+msgstr "Левая боковая панель"
 
 #: includes/Admin/options/settings-options.php:774
 msgid "Docs Navigation Layout"
-msgstr ""
+msgstr "Макет навигации Docs"
 
 #: includes/Admin/options/settings-options.php:776
 msgid "Collapsed with Icons"
-msgstr ""
+msgstr "Свернут с иконками"
 
 #: includes/Admin/options/settings-options.php:777
 msgid "Extended Docs"
-msgstr ""
+msgstr "Расширенная документация"
 
 #: includes/Admin/options/settings-options.php:786
 msgid "Sidebar Toggle"
-msgstr ""
+msgstr "Переключатель Боковой панели"
 
 #: includes/Admin/options/settings-options.php:787
 msgid "Collapse and Expand the left Sidebar with a Toggle button."
 msgstr ""
+"Сверните и разверните левую боковую панель с помощью кнопки переключения."
 
 #: includes/Admin/options/settings-options.php:797
 msgid "Filter Form"
-msgstr ""
+msgstr "Фильтр"
 
 #: includes/Admin/options/settings-options.php:798
 msgid "Filter the left sidebar doc items by typing latter."
 msgstr ""
+"Отфильтруйте элементы документа на левой боковой панели, введя последний."
 
 #: includes/Admin/options/settings-options.php:808
 msgid "Mark Words"
-msgstr ""
+msgstr "Отметить слова"
 
 #: includes/Admin/options/settings-options.php:809
 msgid "Highlight the typed keyword in the docs."
-msgstr ""
+msgstr "Выделите набранное ключевое слово в документации."
 
 #: includes/Admin/options/settings-options.php:810
 msgid "Enable"
-msgstr ""
+msgstr "Включить"
 
 #: includes/Admin/options/settings-options.php:811
 msgid "Disable"
-msgstr ""
+msgstr "Отключить"
 
 #: includes/Admin/options/settings-options.php:818
 msgid "Doc Section Icon"
-msgstr ""
+msgstr "Значок раздела «Документ»"
 
 #: includes/Admin/options/settings-options.php:819
 msgid ""
 "This is the Doc's default icon. If you don't use icon for the article "
 "section individually, this icon will be shown."
 msgstr ""
+"Это значок документа по умолчанию. Если вы не используете иконку для раздела "
+"статьи отдельно, эта иконка будет показана."
 
 #: includes/Admin/options/settings-options.php:830
 msgid "Doc Section Icon Open"
-msgstr ""
+msgstr "Открыть значок раздела Doc"
 
 #: includes/Admin/options/settings-options.php:831
 msgid ""
@@ -1276,106 +1316,112 @@ msgid ""
 "section individually, this icon will be shown on open states of the Doc "
 "sections."
 msgstr ""
+"Это значок документа по умолчанию. Если вы не используете иконку для раздела "
+"статьи отдельно, она будет отображаться в открытых состояниях разделов Doc."
 
 #: includes/Admin/options/settings-options.php:844
 msgid "Doc Title Typography"
-msgstr ""
+msgstr "Типографика заголовка документа"
 
 #: includes/Admin/options/settings-options.php:863
 msgid "Right Sidebar"
-msgstr ""
+msgstr "Правая боковая панель"
 
 #: includes/Admin/options/settings-options.php:868
 msgid "Sharing Doc"
-msgstr ""
+msgstr "Общий доступ к документу"
 
 #: includes/Admin/options/settings-options.php:874
 msgid "Share Button"
-msgstr ""
+msgstr "Кнопка Поделиться"
 
 #: includes/Admin/options/settings-options.php:884
 msgid "Share Button Label"
-msgstr ""
+msgstr "Ярлык Кнопки \"Поделиться\""
 
 #: includes/Admin/options/settings-options.php:885
 msgid "Share this Doc"
-msgstr ""
+msgstr "Поделиться документом"
 
 #: includes/Admin/options/settings-options.php:895
 msgid "Copy Link Button"
-msgstr ""
+msgstr "Кнопка «Копировать ссылку»"
 
 #: includes/Admin/options/settings-options.php:906
 msgid "Copy Link Label"
-msgstr ""
+msgstr "Копировать метку ссылки"
 
 #: includes/Admin/options/settings-options.php:907
 #: templates/tools/share-btns.php:8
 msgid "Or copy link"
-msgstr ""
+msgstr "Или скопировать ссылку"
 
 #: includes/Admin/options/settings-options.php:917
 msgid "Success Message"
-msgstr ""
+msgstr "Сообщение об успехе"
 
 #: includes/Admin/options/settings-options.php:918
 msgid "URL copied to clipboard"
-msgstr ""
+msgstr "Ссылка скопирована в буфер обмена"
 
 #: includes/Admin/options/settings-options.php:927
 msgid "Tools"
-msgstr ""
+msgstr "Инструменты"
 
 #: includes/Admin/options/settings-options.php:933
 msgid "Font Size Switcher"
-msgstr ""
+msgstr "Переключатель размера шрифта"
 
 #: includes/Admin/options/settings-options.php:943
 msgid "Print Article"
-msgstr ""
+msgstr "Распечатать новость"
 
 #: includes/Admin/options/settings-options.php:953
 msgid "Features"
-msgstr ""
+msgstr "Функции"
 
 #: includes/Admin/options/settings-options.php:957
 msgid "Dark Mode Switcher"
-msgstr ""
+msgstr "Переключатель темного режима"
 
 #: includes/Admin/options/settings-options.php:970
 msgid "Table on Contents (TOC)"
-msgstr ""
+msgstr "Содержание (TOC)"
 
 #: includes/Admin/options/settings-options.php:971
 msgid ""
 "EazyDocs will automatically create a structured Table Of Contents(TOC) while "
 "you are writing your documentation."
 msgstr ""
+"EazyDocs автоматически создаст структурированное оглавление (TOC), пока вы "
+"пишете документацию."
 
 #: includes/Admin/options/settings-options.php:979
 msgid "TOC Heading"
-msgstr ""
+msgstr "Заголовок оглавления"
 
 #: includes/Admin/options/settings-options.php:980
 #: templates/docs-right-sidebar.php:5
 msgid "CONTENTS"
-msgstr ""
+msgstr "СОДЕРЖАНИЕ"
 
 #: includes/Admin/options/settings-options.php:985
 msgid "Widgets Area"
-msgstr ""
+msgstr "Область виджетов"
 
 #: includes/Admin/options/settings-options.php:986
 msgid ""
 "Enable to register a Sidebar Widgets area named 'Doc Right Sidebar' in "
 "Appearance > Widgets."
 msgstr ""
+"Включите, чтобы зарегистрировать область виджетов боковой панели с именем "
+"«Правая боковая панель документа» в виджетах «Внешний вид» >."
 
 #: includes/Admin/options/settings-options.php:998
 #: includes/Admin/options/settings-options.php:1003
 #: includes/Admin/options/settings-options.php:1498
 msgid "Conditional Dropdown"
-msgstr ""
+msgstr "Условный выпадающий список"
 
 #: includes/Admin/options/settings-options.php:1004
 msgid ""
@@ -1383,103 +1429,107 @@ msgid ""
 "in documentation based on the dropdown value. See the shortcode usage "
 "tutorial <a href=\"https://tinyurl.com/yd46mfax\" target=\"_blank\">here</a>."
 msgstr ""
+"Вы можете отобразить условное содержимое с помощью шорткода "
+"[conditional_data] в документации на основе раскрывающегося списка. "
+"Руководство по использованию шорткода см. <a href=\"https://tinyurl.com/"
+"yd46mfax\" target=\"_blank\">здесь</a>."
 
 #: includes/Admin/options/settings-options.php:1016
 msgid "Dropdown Options"
-msgstr ""
+msgstr "Настройки выпадания"
 
 #: includes/Admin/options/settings-options.php:1026
 msgid "Icon"
-msgstr ""
+msgstr "Иконка"
 
 #: includes/Admin/options/settings-options.php:1040
 #: templates/content-related.php:9
 msgid "Related Articles"
-msgstr ""
+msgstr "Похожие статьи"
 
 #: includes/Admin/options/settings-options.php:1045
 msgid "Related Docs Settings"
-msgstr ""
+msgstr "Настройки связанных документов"
 
 #: includes/Admin/options/settings-options.php:1051
 msgid "Related Docs"
-msgstr ""
+msgstr "Связанные документы"
 
 #: includes/Admin/options/settings-options.php:1062
 msgid "Related articles"
-msgstr ""
+msgstr "Похожие статьи"
 
 #: includes/Admin/options/settings-options.php:1073
 #: includes/Admin/options/settings-options.php:1149
 msgid "Docs Number"
-msgstr ""
+msgstr "Номер документов"
 
 #: includes/Admin/options/settings-options.php:1074
 #: includes/Admin/options/settings-options.php:1150
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: includes/Admin/options/settings-options.php:1085
 #: includes/Admin/options/settings-options.php:1161
 msgid "Column Width"
-msgstr ""
+msgstr "Ширина колонки"
 
 #: includes/Admin/options/settings-options.php:1087
 #: includes/Admin/options/settings-options.php:1163
 msgid "Half"
-msgstr ""
+msgstr "Половина"
 
 #: includes/Admin/options/settings-options.php:1088
 #: includes/Admin/options/settings-options.php:1164
 msgid "Fullwidth"
-msgstr ""
+msgstr "Полная ширина"
 
 #: includes/Admin/options/settings-options.php:1102
 #: includes/Admin/options/settings-options.php:1178
 #: templates/content-related.php:11 templates/content-related.php:15
 msgid "See More"
-msgstr ""
+msgstr "Узнать больше"
 
 #: includes/Admin/options/settings-options.php:1116
 msgid "Viewed Articles"
-msgstr ""
+msgstr "Просмотренные статьи"
 
 #: includes/Admin/options/settings-options.php:1121
 msgid "Recently Viewed Docs Options"
-msgstr ""
+msgstr "Параметры недавно просмотренных документов"
 
 #: includes/Admin/options/settings-options.php:1127
 msgid "Recently Viewed Docs"
-msgstr ""
+msgstr "Недавно просмотренные документы"
 
 #: includes/Admin/options/settings-options.php:1138
 msgid "Recently Viewed articles"
-msgstr ""
+msgstr "Недавно просмотренные статьи"
 
 #: includes/Admin/options/settings-options.php:1194
 msgid "Restricted Docs"
-msgstr ""
+msgstr "Документы с ограниченным доступом"
 
 #: includes/Admin/options/settings-options.php:1213
 msgid "Visibility Mode"
-msgstr ""
+msgstr "Режим видимости"
 
 #: includes/Admin/options/settings-options.php:1215
 msgid "Login Required"
-msgstr ""
+msgstr "Требуется логин"
 
 #: includes/Admin/options/settings-options.php:1216
 msgid "None"
-msgstr ""
+msgstr "Нет"
 
 #: includes/Admin/options/settings-options.php:1225
 msgid "Select Page"
-msgstr ""
+msgstr "Выбрать страницу"
 
 #: includes/Admin/options/settings-options.php:1226
 #: includes/Admin/options/settings-options.php:1644
 msgid "Select Doc login page"
-msgstr ""
+msgstr "Выберите страницу входа в Doc"
 
 #: includes/Admin/options/settings-options.php:1227
 #: includes/Admin/options/settings-options.php:1645
@@ -1487,96 +1537,98 @@ msgid ""
 "If you want to change this page, use this shortcode [ezd_login_form] to "
 "display the login form on your desired page."
 msgstr ""
+"Если вы хотите изменить эту страницу, используйте этот шорткод "
+"[ezd_login_form], чтобы отобразить форму входа на нужную страницу."
 
 #: includes/Admin/options/settings-options.php:1248
 #: includes/Admin/options/settings-options.php:1254
 msgid "Protected Doc"
-msgstr ""
+msgstr "Защищенный документ"
 
 #: includes/Admin/options/settings-options.php:1259
 msgid "Password Form"
-msgstr ""
+msgstr "Форма пароля"
 
 #: includes/Admin/options/settings-options.php:1261
 msgid "EazyDocs Form"
-msgstr ""
+msgstr "Форма EazyDocs"
 
 #: includes/Admin/options/settings-options.php:1277
 msgid "Header Color"
-msgstr ""
+msgstr "Цвет заголовка"
 
 #: includes/Admin/options/settings-options.php:1295
 msgid "Title Color"
-msgstr ""
+msgstr "Цвет заголовка"
 
 #: includes/Admin/options/settings-options.php:1305
 msgid "Sub Title"
-msgstr ""
+msgstr "Подзаголовок"
 
 #: includes/Admin/options/settings-options.php:1313
 msgid "Sub Title Color"
-msgstr ""
+msgstr "Цвет подзаголовка"
 
 #: includes/Admin/options/settings-options.php:1331
 msgid "Button Text Color"
-msgstr ""
+msgstr "Цвет текста кнопки"
 
 #: includes/Admin/options/settings-options.php:1341
 msgid "Button Background Color"
-msgstr ""
+msgstr "Цвет фона кнопки"
 
 #: includes/Admin/options/settings-options.php:1363
 msgid "Layout"
-msgstr ""
+msgstr "Макет"
 
 #: includes/Admin/options/settings-options.php:1365
 msgid "Classic OnePage Doc"
-msgstr ""
+msgstr "Классический одностраничный документ"
 
 #: includes/Admin/options/settings-options.php:1366
 msgid "Fullscreen OnePage Doc"
-msgstr ""
+msgstr "Полноэкранный одностраничный документ"
 
 #: includes/Admin/options/settings-options.php:1397
 msgid "Customizer"
-msgstr ""
+msgstr "Настройщик"
 
 #: includes/Admin/options/settings-options.php:1403
 msgid "Options Visibility on Customizer"
-msgstr ""
+msgstr "Видимость опций в настройщике"
 
 #: includes/Admin/options/settings-options.php:1412
 msgid "Single Doc"
-msgstr ""
+msgstr "Страница статьи"
 
 #: includes/Admin/options/settings-options.php:1427
 #: includes/Admin/options/settings-options.php:1449 shortcodes/reference.php:26
 msgid "Footnotes"
-msgstr ""
+msgstr "Примечания к рецепту"
 
 #: includes/Admin/options/settings-options.php:1434
 msgid "Footnotes Heading"
-msgstr ""
+msgstr "Заголовок сносок"
 
 #: includes/Admin/options/settings-options.php:1445
 msgid "Footnotes Heading Text"
-msgstr ""
+msgstr "Текст заголовка сносок"
 
 #: includes/Admin/options/settings-options.php:1454
 msgid "Footnotes Column"
-msgstr ""
+msgstr "Колонка «Сноски»"
 
 #: includes/Admin/options/settings-options.php:1460
 msgid "5 Column"
-msgstr ""
+msgstr "5 Колонок"
 
 #: includes/Admin/options/settings-options.php:1475
 msgid "Docs Shortcodes"
-msgstr ""
+msgstr "Документы Шорткоды"
 
 #: includes/Admin/options/settings-options.php:1482
 msgid "Docs archive"
-msgstr ""
+msgstr "Архив документов"
 
 #: includes/Admin/options/settings-options.php:1484
 #, php-format
@@ -1584,42 +1636,46 @@ msgid ""
 "Use this shortcode to display the Docs. Learn more about the shortcode and "
 "the attributes %s here %s."
 msgstr ""
+"Используйте этот шорткод для отображения документов. Подробнее о шорткоде и "
+"атрибутах %s здесь %s."
 
 #: includes/Admin/options/settings-options.php:1487
 msgid "See the shortcode with the available attributes"
-msgstr ""
+msgstr "Посмотреть шорткод с доступными атрибутами"
 
 #: includes/Admin/options/settings-options.php:1499
 #, php-format
 msgid "Know the usage of this shortcode %s here %s"
-msgstr ""
+msgstr "Узнать об использовании этого шорткода %s здесь %s"
 
 #: includes/Admin/options/settings-options.php:1508
 msgid "Docs Login"
-msgstr ""
+msgstr "Вход в Документы"
 
 #: includes/Admin/options/settings-options.php:1509
 msgid "Use this shortcode to display login form."
-msgstr ""
+msgstr "Используйте этот шорткод для отображения формы входа."
 
 #: includes/Admin/options/settings-options.php:1510
 #: includes/Admin/options/settings-options.php:1524
 msgid "See the shortcode example with the available attributes"
-msgstr ""
+msgstr "Смотрите пример шорткода с доступными атрибутами"
 
 #: includes/Admin/options/settings-options.php:1522
 msgid "Footnote Shortcode"
-msgstr ""
+msgstr "Шорткод сноски"
 
 #: includes/Admin/options/settings-options.php:1523
 #, php-format
 msgid ""
 "Use this shortcode to display footnotes. %s Learn how to create Footnotes %s"
 msgstr ""
+"Используйте этот шорткод для отображения сносок. %s Узнайте, как создавать "
+"сноски %s"
 
 #: includes/Admin/options/settings-options.php:1534
 msgid "Embed Post Shortcode"
-msgstr ""
+msgstr "Вставить шорткод сообщения"
 
 #: includes/Admin/options/settings-options.php:1535
 #, php-format
@@ -1627,22 +1683,24 @@ msgid ""
 "Use this shortcode to display a doc inside another doc. Know the usage of "
 "this shortcode %s here %s"
 msgstr ""
+"Используйте этот шорткод, чтобы отобразить документ внутри другого "
+"документа. Узнать об использовании этого шорткода %s здесь %s"
 
 #: includes/Admin/options/settings-options.php:1536
 msgid "See the shortcode with the available attributes."
-msgstr ""
+msgstr "Смотрите шорткод с доступными атрибутами."
 
 #: includes/Admin/options/settings-options.php:1552
 msgid "Docs Contribution"
-msgstr ""
+msgstr "Вклад Docs"
 
 #: includes/Admin/options/settings-options.php:1558
 msgid "Contribution Feature"
-msgstr ""
+msgstr "Функция вклада"
 
 #: includes/Admin/options/settings-options.php:1559
 msgid "Contribution buttons on the doc Right Sidebar."
-msgstr ""
+msgstr "Кнопки вклада на правой боковой панели документа."
 
 #: includes/Admin/options/settings-options.php:1560
 msgid ""
@@ -1650,276 +1708,279 @@ msgid ""
 "docs. This will also let you manage the contributors from the Doc post "
 "editor."
 msgstr ""
+"Включив эту функцию, вы позволите другим людям добавлять документы. Это "
+"также позволит вам управлять авторами из редактора сообщений Doc."
 
 #: includes/Admin/options/settings-options.php:1572
 #: includes/Admin/options/settings-options.php:1596
 #: includes/Admin/template/header.php:12 includes/One_page_doc_type.php:41
 #: includes/Post_Types.php:45
 msgid "Add Doc"
-msgstr ""
+msgstr "Добавить Документ"
 
 #: includes/Admin/options/settings-options.php:1581
 msgid "Add Button"
-msgstr ""
+msgstr "Добавить кнопку"
 
 #: includes/Admin/options/settings-options.php:1607
 #: includes/Admin/options/settings-options.php:1631 includes/Post_Types.php:47
 msgid "Edit Doc"
-msgstr ""
+msgstr "Редактировать документ"
 
 #: includes/Admin/options/settings-options.php:1616
 msgid "Edit Button"
-msgstr ""
+msgstr "Редактировать кнопку"
 
 #: includes/Admin/options/settings-options.php:1643
 msgid "Login Page"
-msgstr ""
+msgstr "Страница авторизации"
 
 #: includes/Admin/options/settings-options.php:1662
 msgid "Meta Content"
-msgstr ""
+msgstr "Тип(свойства) товара"
 
 #: includes/Admin/options/settings-options.php:1671
 msgid "Enable / Disable"
-msgstr ""
+msgstr "Включить/ Выключить"
 
 #: includes/Admin/options/settings-options.php:1686
 #: templates/single-doc-content.php:12
 msgid "Contributors"
-msgstr ""
+msgstr "Авторы"
 
 #: includes/Admin/options/settings-options.php:1696
 msgid "Dropdown Heading"
-msgstr ""
+msgstr "Выпадающий заголовок"
 
 #: includes/Admin/options/settings-options.php:1697
 #: templates/single-doc-content.php:13
 msgid "Manage Contributors"
-msgstr ""
+msgstr "Управление участниками"
 
 #: includes/Admin/options/settings-options.php:1707
 #: includes/Admin/options/settings-options.php:1868
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: includes/Admin/options/settings-options.php:1708
 msgid "Search through the existing users"
-msgstr ""
+msgstr "Поиск по существующим пользователям"
 
 #: includes/Admin/options/settings-options.php:1726
 msgid "Docs Role Manager"
-msgstr ""
+msgstr "Диспетчер ролей Docs"
 
 #: includes/Admin/options/settings-options.php:1732
 msgid "Who Can View Docs?"
-msgstr ""
+msgstr "Кто может просматривать документы?"
 
 #: includes/Admin/options/settings-options.php:1733
 msgid "Allow users to view Docs."
-msgstr ""
+msgstr "Разрешить пользователям просматривать Документы."
 
 #: includes/Admin/options/settings-options.php:1735
 #: includes/Admin/options/settings-options.php:1753
 #: includes/Admin/options/settings-options.php:1769
 msgid "Administrator"
-msgstr ""
+msgstr "Администратор"
 
 #: includes/Admin/options/settings-options.php:1736
 #: includes/Admin/options/settings-options.php:1754
 #: includes/Admin/options/settings-options.php:1770
 msgid "Editor"
-msgstr ""
+msgstr "Редактор"
 
 #: includes/Admin/options/settings-options.php:1737
 #: includes/Admin/options/settings-options.php:1755
 #: includes/Admin/options/settings-options.php:1771
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: includes/Admin/options/settings-options.php:1738
 msgid "Contributor"
-msgstr ""
+msgstr "Участник"
 
 #: includes/Admin/options/settings-options.php:1739
 msgid "Subscriber"
-msgstr ""
+msgstr "Подписчик"
 
 #: includes/Admin/options/settings-options.php:1750
 msgid "Who Can Edit Settings?"
-msgstr ""
+msgstr "Кто может редактировать настройки?"
 
 #: includes/Admin/options/settings-options.php:1751
 msgid "Allow users to update options from settings."
-msgstr ""
+msgstr "Разрешить пользователям обновлять параметры в настройках."
 
 #: includes/Admin/options/settings-options.php:1766
 msgid "Who Can Edit Customizer?"
-msgstr ""
+msgstr "Кто может редактировать настройщик?"
 
 #: includes/Admin/options/settings-options.php:1767
 msgid "Allow users to customize Docs from customizer settings."
 msgstr ""
+"Разрешить пользователям настраивать Документы в настройках настройщика."
 
 #: includes/Admin/options/settings-options.php:1786
 #: includes/Admin/options/settings-options.php:1797
 msgid "Docs Assistant"
-msgstr ""
+msgstr "Помощник по работе с документами"
 
 #: includes/Admin/options/settings-options.php:1791
 msgid "Assistant Settings"
-msgstr ""
+msgstr "Настройки помощника"
 
 #: includes/Admin/options/settings-options.php:1808
 msgid "Open Icon"
-msgstr ""
+msgstr "Значок при открытии"
 
 #: includes/Admin/options/settings-options.php:1822
 msgid "Close Icon"
-msgstr ""
+msgstr "Иконка Закрыть"
 
 #: includes/Admin/options/settings-options.php:1848
 msgid "Knowledge-base Tab"
-msgstr ""
+msgstr "Вкладка \"База знаний\""
 
 #: includes/Admin/options/settings-options.php:1858
 #: includes/Admin/options/settings-options.php:1931
 msgid "Heading"
-msgstr ""
+msgstr "Заголовок"
 
 #: includes/Admin/options/settings-options.php:1859
 msgid "Knowledge Base"
-msgstr ""
+msgstr "База знаний"
 
 #: includes/Admin/options/settings-options.php:1881
 msgid "Search Placeholder"
-msgstr ""
+msgstr "Текст заглушки поиска"
 
 #: includes/Admin/options/settings-options.php:1882
 msgid "Search..."
-msgstr ""
+msgstr "Поиск..."
 
 #: includes/Admin/options/settings-options.php:1892
 msgid "Breadcrumb"
-msgstr ""
+msgstr "Хлебные крошки"
 
 #: includes/Admin/options/settings-options.php:1905
 #: includes/Admin/options/settings-options.php:1906
 msgid "Docs not Found"
-msgstr ""
+msgstr "Документы не найдены"
 
 #: includes/Admin/options/settings-options.php:1921
 msgid "Contact Tab"
-msgstr ""
+msgstr "Вкладка \"Контакты\""
 
 #: includes/Admin/options/settings-options.php:1932
 msgid "Contact"
-msgstr ""
+msgstr "Контакты"
 
 #: includes/Admin/options/settings-options.php:1941
 msgid "Receiver Email"
-msgstr ""
+msgstr "Получатель почты"
 
 #: includes/Admin/options/settings-options.php:1951
 msgid "Form Input"
-msgstr ""
+msgstr "Ввод формы"
 
 #: includes/Admin/options/settings-options.php:1960
 #: includes/Admin/options/settings-options.php:1961
 msgid "Full name"
-msgstr ""
+msgstr "Полное имя"
 
 #: includes/Admin/options/settings-options.php:1970
 #: templates/content-modal.php:32
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: includes/Admin/options/settings-options.php:1971
 msgid "name@example.com"
-msgstr ""
+msgstr "name@example.com"
 
 #: includes/Admin/options/settings-options.php:1980
 #: includes/Admin/options/settings-options.php:1981
 #: templates/content-modal.php:35
 msgid "Subject"
-msgstr ""
+msgstr "Тема"
 
 #: includes/Admin/options/settings-options.php:1990
 #: templates/content-modal.php:38
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 #: includes/Admin/options/settings-options.php:1991
 msgid "Write Your Message"
-msgstr ""
+msgstr "Напишите свое сообщение"
 
 #: includes/Admin/options/settings-options.php:2000
 #: includes/Admin/options/settings-options.php:2037
 msgid "Submit Button"
-msgstr ""
+msgstr "Кнопка отправить"
 
 #: includes/Admin/options/settings-options.php:2001
 msgid "Send Message"
-msgstr ""
+msgstr "Отправить сообщение"
 
 #: includes/Admin/options/settings-options.php:2015
 msgid "Icon Color"
-msgstr ""
+msgstr "Цвет иконки"
 
 #: includes/Admin/options/settings-options.php:2022
 msgid "Header Background"
-msgstr ""
+msgstr "Фон заголовка"
 
 #: includes/Admin/template/child-docs.php:19
 msgid "All articles"
-msgstr ""
+msgstr "Все статьи"
 
 #: includes/Admin/template/child-docs.php:23
 msgid "Public"
-msgstr ""
+msgstr "Публичный"
 
 #: includes/Admin/template/child-docs.php:27
 msgid "Private"
-msgstr ""
+msgstr "Частный"
 
 #: includes/Admin/template/child-docs.php:31
 msgid "Protected"
-msgstr ""
+msgstr "Защищено"
 
 #: includes/Admin/template/child-docs.php:35
 msgid "Draft"
-msgstr ""
+msgstr "Черновик"
 
 #: includes/Admin/template/child-docs.php:95
 #: includes/Admin/template/child-docs.php:236
 #: includes/Admin/template/child-docs.php:365
 msgid "Hold the mouse and drag to move this doc."
-msgstr ""
+msgstr "Удерживайте мышь и перетащите, чтобы переместить этот документ."
 
 #: includes/Admin/template/child-docs.php:133
 #: includes/Admin/template/child-docs.php:272
 #: includes/Admin/template/child-docs.php:398
 #: includes/Admin/template/parent-docs.php:109
 msgid "Duplicate this doc with the child docs."
-msgstr ""
+msgstr "Продублируйте этот документ вместе с дочерними документами."
 
 #: includes/Admin/template/child-docs.php:142
 #: includes/Admin/template/child-docs.php:281
 msgid "Add new doc under this doc"
-msgstr ""
+msgstr "Добавить новый документ под этим документом"
 
 #: includes/Admin/template/child-docs.php:160
 #: includes/Admin/template/child-docs.php:297
 #: includes/Admin/template/child-docs.php:408
 #: includes/Admin/template/parent-docs.php:76
 msgid "View this doc item in new tab"
-msgstr ""
+msgstr "Просмотр этого элемента документа в новой вкладке"
 
 #: includes/Admin/template/child-docs.php:168
 #: includes/Admin/template/child-docs.php:303
 #: includes/Admin/template/child-docs.php:414
 #: includes/Admin/template/parent-docs.php:80
 msgid "Move to Trash"
-msgstr ""
+msgstr "Переместить в корзину"
 
 #: includes/Admin/template/child-docs.php:182
 #: includes/Admin/template/child-docs.php:316
@@ -1927,14 +1988,15 @@ msgstr ""
 #, php-format
 msgid "%d Positive vote, "
 msgid_plural "%d Positive votes and "
-msgstr[0] ""
+msgstr[0] "%d Голос «за», "
 msgstr[1] ""
+msgstr[2] ""
 
 #: includes/Admin/template/child-docs.php:182
 #: includes/Admin/template/child-docs.php:316
 #: includes/Admin/template/child-docs.php:427
 msgid "No Positive votes, "
-msgstr ""
+msgstr "Нет положительных голосов, "
 
 #: includes/Admin/template/child-docs.php:183
 #: includes/Admin/template/child-docs.php:317
@@ -1942,450 +2004,453 @@ msgstr ""
 #, php-format
 msgid "%d Negative vote found."
 msgid_plural "%d Negative votes found."
-msgstr[0] ""
+msgstr[0] "%d Найдено отрицательное голосование."
 msgstr[1] ""
+msgstr[2] ""
 
 #: includes/Admin/template/child-docs.php:183
 #: includes/Admin/template/child-docs.php:317
 #: includes/Admin/template/child-docs.php:428
 msgid "No Negative votes."
-msgstr ""
+msgstr "Нет отрицательных голосов."
 
 #: includes/Admin/template/child-docs.php:190
 #: includes/Admin/template/child-docs.php:324
 #: includes/Admin/template/child-docs.php:435
 msgid "No rates"
-msgstr ""
+msgstr "Нет тарифов"
 
 #: includes/Admin/template/child-docs.php:458
 msgid "Add Section"
-msgstr ""
+msgstr "Добавить секцию"
 
 #: includes/Admin/template/header.php:7
 msgid "Documentations"
-msgstr ""
+msgstr "Документация"
 
 #: includes/Admin/template/header.php:20
 msgid "Search for"
-msgstr ""
+msgstr "Искать"
 
 #: includes/Admin/template/header.php:29
 msgid "Go to Classic UI"
-msgstr ""
+msgstr "Перейти к классическому пользовательскому интерфейсу"
 
 #: includes/Admin/template/header.php:30
 msgid "Classic UI"
-msgstr ""
+msgstr "Классический пользовательский интерфейс"
 
 #: includes/Admin/template/header.php:35
 msgid "Central settings page"
-msgstr ""
+msgstr "Страница централизованных настроек"
 
 #: includes/Admin/template/header.php:37
 msgid "Settings Icon"
-msgstr ""
+msgstr "Значок настроек"
 
 #: includes/Admin/template/header.php:44
 msgid "View, manage, restore the trashed docs"
-msgstr ""
+msgstr "Просмотр, управление и восстановление удаленных документов"
 
 #: includes/Admin/template/header.php:58
 msgid "Notifications"
-msgstr ""
+msgstr "Уведомления"
 
 #: includes/Admin/template/header.php:60
 msgid "Notify Icon"
-msgstr ""
+msgstr "Значок «Уведомить»"
 
 #: includes/Admin/template/header.php:61
 msgid "Pro Icon"
-msgstr ""
+msgstr "Профессиональный значок"
 
 #: includes/Admin/template/parent-docs.php:32
 msgid "Public Doc"
-msgstr ""
+msgstr "Публичный документ"
 
 #: includes/Admin/template/parent-docs.php:42
 msgid "Drafted Doc"
-msgstr ""
+msgstr "Черновик документа"
 
 #: includes/Admin/template/parent-docs.php:48
 msgid "Password Protected Doc"
-msgstr ""
+msgstr "Документ, защищенный паролем"
 
 #: includes/Admin/template/parent-docs.php:69
 msgid "Edit this doc"
-msgstr ""
+msgstr "Редактировать этот документ"
 
 #: includes/Admin/template/parent-docs.php:111
 msgid "Duplicate"
-msgstr ""
+msgstr "Дублировать"
 
 #: includes/Admin/template/parent-docs.php:113
 msgid "Docs visibility"
-msgstr ""
+msgstr "Видимость документов"
 
 #: includes/Admin/template/parent-docs.php:115
 msgid "Visibility"
-msgstr ""
+msgstr "Видимость"
 
 #: includes/Admin/template/parent-docs.php:117
 msgid "Docs sidebar"
-msgstr ""
+msgstr "Боковая панель Документов"
 
 #: includes/Admin/template/parent-docs.php:119
 msgid "Sidebar"
-msgstr ""
+msgstr "Боковая панель"
 
 #: includes/Frontend/Ajax.php:36
 msgid "Sorry, you've already recorded your feedback!"
-msgstr ""
+msgstr "К сожалению, вы уже оставили свой отзыв!"
 
 #: includes/Frontend/Ajax.php:60
 msgid "Thanks for your feedback!"
-msgstr ""
+msgstr "Спасибо за ваши отзывы!"
 
 #: includes/Frontend/Ajax.php:156
 msgid "No result found!"
-msgstr ""
+msgstr "Результатов не найдено!"
 
 #: includes/Frontend/Frontend.php:278
 msgid " - Previous"
-msgstr ""
+msgstr " -Предыдущий"
 
 #: includes/Frontend/Frontend.php:291
 msgid "Next - "
-msgstr ""
+msgstr "Вперед - "
 
 #: includes/Frontend/Mailer.php:28
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Пожалуйста, введите действительный адрес электронной почты."
 
 #: includes/Frontend/Mailer.php:35
 msgid "Please provide a subject line."
-msgstr ""
+msgstr "Пожалуйста, укажите тему письма."
 
 #: includes/Frontend/Mailer.php:39
 msgid "Please provide the message details."
-msgstr ""
+msgstr "Пожалуйста, предоставьте детали сообщения."
 
 #: includes/Frontend/Mailer.php:47
 #, php-format
 msgid "[%1$s] New Doc Feedback: \"%2$s\""
-msgstr ""
+msgstr "[%1$s] Новый отзыв о документе: \"%2$s\""
 
 #: includes/Frontend/Mailer.php:49
 #, php-format
 msgid "New feedback on your doc \"%s\""
-msgstr ""
+msgstr "Новый отзыв о вашем документе \"%s\""
 
 #: includes/Frontend/Mailer.php:50
 #, php-format
 msgid "Author: %1$s"
-msgstr ""
+msgstr "Автор: %1$s"
 
 #: includes/Frontend/Mailer.php:51
 #, php-format
 msgid "Email: %s"
-msgstr ""
+msgstr "Email: %s"
 
 #: includes/Frontend/Mailer.php:52
 #, php-format
 msgid "Feedback: %s"
-msgstr ""
+msgstr "Обратная связь: %s"
 
 #: includes/Frontend/Mailer.php:53
 #, php-format
 msgid "Doc Permalink: %s"
-msgstr ""
+msgstr "Постоянная ссылка на документ: %s"
 
 #: includes/Frontend/Mailer.php:54
 #, php-format
 msgid "Edit Doc: %s"
-msgstr ""
+msgstr "Редактировать документ: %s"
 
 #: includes/Frontend/Shortcode.php:49
 msgid "View Details"
-msgstr ""
+msgstr "Подробнее"
 
 #. translators: %d: ID of a post
 #: includes/Frontend/Walker_Docs.php:140 includes/Walker_Docs_Onepage.php:122
 #: includes/Walker_Docs_Onepage_Fullscreen.php:129
 #, php-format
 msgid "#%d (no title)"
-msgstr ""
+msgstr "#%d (без заголовка)"
 
 #: includes/Frontend/Walker_Docs.php:147 includes/Walker_Docs_Onepage.php:127
 msgid "Folder icon closed"
-msgstr ""
+msgstr "Значок папки закрыт"
 
 #: includes/Frontend/Walker_Docs.php:147
 msgid "Folder open icon"
-msgstr ""
+msgstr "Значок открытия папки"
 
 #: includes/Frontend/post-views.php:26
 msgid "views"
-msgstr ""
+msgstr "просмотров"
 
 #: includes/Frontend/post-views.php:72
 msgid ""
 "eazydocs_view_log table not found, please deactivate and activate the plugin "
 "again"
 msgstr ""
+"eazydocs_view_log таблица не найдена, пожалуйста, деактивируйте и "
+"активируйте плагин снова"
 
 #: includes/Frontend/search-counts.php:9
 msgid "search count"
-msgstr ""
+msgstr "Количество поисковых запросов"
 
 #: includes/Frontend/search-counts.php:28
 msgid "Search Count"
-msgstr ""
+msgstr "Количество поиска"
 
 #: includes/One_page_doc_type.php:35
 msgctxt "Post Type General Name"
 msgid "OnePage Docs"
-msgstr ""
+msgstr "Одностраничная документация"
 
 #: includes/One_page_doc_type.php:36
 msgctxt "Post Type Singular Name"
 msgid "OnePage Doc"
-msgstr ""
+msgstr "Одностраничный документ"
 
 #: includes/One_page_doc_type.php:37
 msgid "EazyDocs OnePage"
-msgstr ""
+msgstr "EazyDocs OnePage"
 
 #: includes/One_page_doc_type.php:38 includes/Post_Types.php:42
 msgid "Parent Doc"
-msgstr ""
+msgstr "Родительский документ"
 
 #: includes/One_page_doc_type.php:39 includes/Post_Types.php:43
 msgid "All Docs"
-msgstr ""
+msgstr "Все документы"
 
 #: includes/One_page_doc_type.php:40 includes/Post_Types.php:44
 msgid "View Doc"
-msgstr ""
+msgstr "Предпросмотр документа"
 
 #: includes/One_page_doc_type.php:42 includes/Post_Types.php:46
 msgid "Add New"
-msgstr ""
+msgstr "Добавить новый"
 
 #: includes/One_page_doc_type.php:44 includes/Post_Types.php:48
 msgid "Update Doc"
-msgstr ""
+msgstr "Обновить документ"
 
 #: includes/One_page_doc_type.php:45 includes/Post_Types.php:49
 msgid "Search Doc"
-msgstr ""
+msgstr "Поиск документа"
 
 #: includes/One_page_doc_type.php:46 includes/Post_Types.php:50
 msgid "Not Doc found"
-msgstr ""
+msgstr "Не найден Doc"
 
 #: includes/One_page_doc_type.php:47 includes/Post_Types.php:51
 msgid "Not found in Trash"
-msgstr ""
+msgstr "Не найдено в корзине"
 
 #: includes/Post_Types.php:39
 msgctxt "Post Type General Name"
 msgid "Docs"
-msgstr ""
+msgstr "Документы"
 
 #: includes/Post_Types.php:40
 msgctxt "Post Type Singular Name"
 msgid "Doc"
-msgstr ""
+msgstr "Документ"
 
 #: includes/Post_Types.php:89
 msgctxt "Taxonomy General Name"
 msgid "Tags"
-msgstr ""
+msgstr "Теги"
 
 #: includes/Post_Types.php:90
 msgctxt "Taxonomy Singular Name"
 msgid "Tag"
-msgstr ""
+msgstr "Тег"
 
 #: includes/Post_Types.php:92
 msgid "All Tags"
-msgstr ""
+msgstr "Все теги"
 
 #: includes/Post_Types.php:93
 msgid "Parent Tag"
-msgstr ""
+msgstr "Родительский тег"
 
 #: includes/Post_Types.php:94
 msgid "Parent Tag:"
-msgstr ""
+msgstr "Родительский тег:"
 
 #: includes/Post_Types.php:95
 msgid "New Tag"
-msgstr ""
+msgstr "Новая метка"
 
 #: includes/Post_Types.php:96
 msgid "Add New Item"
-msgstr ""
+msgstr "Добавить новый элемент"
 
 #: includes/Post_Types.php:97
 msgid "Edit Tag"
-msgstr ""
+msgstr "Редактировать тег"
 
 #: includes/Post_Types.php:98
 msgid "Update Tag"
-msgstr ""
+msgstr "Обновить тег"
 
 #: includes/Post_Types.php:99
 msgid "View Tag"
-msgstr ""
+msgstr "Просмотр тегов"
 
 #: includes/Post_Types.php:100
 msgid "Separate items with commas"
-msgstr ""
+msgstr "Отдельные элементы с запятыми"
 
 #: includes/Post_Types.php:101
 msgid "Add or remove items"
-msgstr ""
+msgstr "Добаить или удалить элементы"
 
 #: includes/Post_Types.php:102 includes/Post_Types.php:149
 msgid "Choose from the most used"
-msgstr ""
+msgstr "Выберите один из наиболее используемых"
 
 #: includes/Post_Types.php:103
 msgid "Popular Tags"
-msgstr ""
+msgstr "Популярные теги"
 
 #: includes/Post_Types.php:104
 msgid "Search Tags"
-msgstr ""
+msgstr "Поиск тегов"
 
 #: includes/Post_Types.php:105 includes/Post_Types.php:152
 msgid "Not Found"
-msgstr ""
+msgstr "Не найдено"
 
 #: includes/Post_Types.php:106
 msgid "No items"
-msgstr ""
+msgstr "Нет элементов"
 
 #: includes/Post_Types.php:107
 msgid "Tags list"
-msgstr ""
+msgstr "Список тегов"
 
 #: includes/Post_Types.php:108
 msgid "Tags list navigation"
-msgstr ""
+msgstr "Навигация по списку тегов"
 
 #: includes/Post_Types.php:136
 msgctxt "Taxonomy General Name"
 msgid "Badge"
-msgstr ""
+msgstr "Значок"
 
 #: includes/Post_Types.php:137
 msgctxt "Taxonomy Singular Name"
 msgid "Badge"
-msgstr ""
+msgstr "Значок"
 
 #: includes/Post_Types.php:138
 msgid "Badge"
-msgstr ""
+msgstr "Значок"
 
 #: includes/Post_Types.php:139
 msgid "All Badges"
-msgstr ""
+msgstr "Все значки"
 
 #: includes/Post_Types.php:140
 msgid "Parent Badge"
-msgstr ""
+msgstr "Родительский значок"
 
 #: includes/Post_Types.php:141
 msgid "Parent Badge:"
-msgstr ""
+msgstr "Родительский значок:"
 
 #: includes/Post_Types.php:142
 msgid "New Badge"
-msgstr ""
+msgstr "Новый"
 
 #: includes/Post_Types.php:143
 msgid "Add New Badge"
-msgstr ""
+msgstr "Добавить новый значок"
 
 #: includes/Post_Types.php:144
 msgid "Edit Badge"
-msgstr ""
+msgstr "Редактировать значок"
 
 #: includes/Post_Types.php:145
 msgid "Update Badge"
-msgstr ""
+msgstr "Обновить значок"
 
 #: includes/Post_Types.php:146
 msgid "View Badge"
-msgstr ""
+msgstr "Просмотреть знак отличия"
 
 #: includes/Post_Types.php:147
 msgid "Separate Badges with commas"
-msgstr ""
+msgstr "Отдельные значки с запятыми"
 
 #: includes/Post_Types.php:148
 msgid "Add or remove Badges"
-msgstr ""
+msgstr "Добавление и удаление значков"
 
 #: includes/Post_Types.php:150
 msgid "Popular Badges"
-msgstr ""
+msgstr "Популярные значки"
 
 #: includes/Post_Types.php:151
 msgid "Search Badges"
-msgstr ""
+msgstr "Поиск Значков"
 
 #: includes/Post_Types.php:153
 msgid "No Badges"
-msgstr ""
+msgstr "Нет бейджей"
 
 #: includes/Post_Types.php:154
 msgid "Badges list"
-msgstr ""
+msgstr "Список значков"
 
 #: includes/Post_Types.php:155
 msgid "Badges list navigation"
-msgstr ""
+msgstr "Навигация по списку индикаторов событий"
 
 #: includes/Post_Types.php:156
 msgid "Back to Badges"
-msgstr ""
+msgstr "Вернуться к значкам"
 
 #: includes/Post_Types.php:157
 msgid "Badge updated"
-msgstr ""
+msgstr "Эмблема обновлена"
 
 #: includes/Walker_Docs_Onepage.php:127
 msgid "Folder icon"
-msgstr ""
+msgstr "Значок папки"
 
 #: includes/Walker_Docs_Onepage.php:251
 #: includes/Walker_Docs_Onepage_Fullscreen.php:242 includes/functions.php:163
 msgid "Pages"
-msgstr ""
+msgstr "Страницы"
 
 #: includes/functions.php:143
 msgid " minute"
-msgstr ""
+msgstr " минута"
 
 #: includes/functions.php:145
 msgid " minutes"
-msgstr ""
+msgstr " минут"
 
 #: includes/functions.php:295 includes/functions.php:359
 #: includes/functions.php:425
 msgid "Docs"
-msgstr ""
+msgstr "Документы"
 
 #: includes/functions.php:625
 msgid "Make OnePage Doc"
-msgstr ""
+msgstr "Сделать одностраничный документ"
 
 #: includes/functions.php:633
 msgid "View OnePage Doc"
-msgstr ""
+msgstr "Просмотр одностраничного документа"
 
 #: includes/functions.php:798
 #, php-format
@@ -2393,115 +2458,122 @@ msgid ""
 "<p class=\"ezd-text-support\"> <a href=\"%s\" target=\"_blank\">Manage "
 "Reusable blocks</a></p>"
 msgstr ""
+"<p class=\"ezd-text-support\"><a href=\"%s\" target=\"_blank\">Управление "
+"многоразовыми блоками</a></p>"
 
 #: includes/functions.php:876
 msgid "Enter Password & Read this Doc"
-msgstr ""
+msgstr "Введите пароль и прочтите этот документ"
 
 #: includes/functions.php:877
 msgid ""
 "This content is password protected. To view it please enter your password "
 "below:"
 msgstr ""
+"Этот контент защищен паролем. Для просмотра введите, пожалуйста, пароль:"
 
 #: includes/functions.php:904 templates/ezd-login.php:38
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: includes/functions.php:915
 msgid "Unlock"
-msgstr ""
+msgstr "Разблокировать"
 
 #: includes/functions.php:1021
 msgid "H1"
-msgstr ""
+msgstr "H1"
 
 #: includes/functions.php:1022
 msgid "H2"
-msgstr ""
+msgstr "H2"
 
 #: includes/functions.php:1023
 msgid "H3"
-msgstr ""
+msgstr "H3"
 
 #: includes/functions.php:1024
 msgid "H4"
-msgstr ""
+msgstr "H4"
 
 #: includes/functions.php:1025
 msgid "H5"
-msgstr ""
+msgstr "H5"
 
 #: includes/functions.php:1026
 msgid "H6"
-msgstr ""
+msgstr "H6"
 
 #: includes/functions.php:1027
 msgid "Div"
-msgstr ""
+msgstr "Выделить блок"
 
 #: includes/functions.php:1028
 msgid "Span"
-msgstr ""
+msgstr "Интервал"
 
 #: includes/functions.php:1029
 msgid "Paragraph"
-msgstr ""
+msgstr "Параграф"
 
 #: includes/functions.php:1066 includes/functions.php:1093
 msgid "Docs without tab"
-msgstr ""
+msgstr "Документы без вкладки"
 
 #: includes/functions.php:1070 includes/functions.php:1097
 msgid "Tabbed with doc lists"
-msgstr ""
+msgstr "Вкладка со списками документов"
 
 #: includes/functions.php:1074 includes/functions.php:1101
 msgid "Flat tabbed docs"
-msgstr ""
+msgstr "Документы с плоскими вкладками"
 
 #: includes/functions.php:1078 includes/functions.php:1105
 msgid "Boxed Style"
-msgstr ""
+msgstr "Стиль бокса"
 
 #: includes/functions.php:1082 includes/functions.php:1109
 msgid "Book Chapters / Tutorials"
-msgstr ""
+msgstr "Главы книг / Учебные пособия"
 
 #: includes/functions.php:1086 includes/functions.php:1113
 msgid "List Style"
-msgstr ""
+msgstr "Стиль списка"
 
 #: includes/notices/asking-for-review.php:14
 msgid "Give EazyDocs a review"
-msgstr ""
+msgstr "Оставить отзыв о EazyDocs"
 
 #: includes/notices/asking-for-review.php:16
 msgid ""
 "Thank you for choosing EazyDocs. We hope you love it. Could you take a "
 "couple of seconds posting a nice review to share your happy experience?"
 msgstr ""
+"Спасибо, что выбрали EazyDocs. Мы надеемся, что вам понравится. Не могли бы "
+"вы потратить пару секунд на публикацию хорошего отзыва, чтобы поделиться "
+"своим счастливым опытом?"
 
 #: includes/notices/asking-for-review.php:19
 msgid "We will be forever grateful. Thank you in advance."
-msgstr ""
+msgstr "Мы будем вечно благодарны. Заранее спасибо."
 
 #: includes/notices/asking-for-review.php:22
 msgid "Rate now"
-msgstr ""
+msgstr "Оценить сейчас"
 
 #: includes/notices/asking-for-review.php:23
 msgid "Later"
-msgstr ""
+msgstr "Позже"
 
 #: includes/notices/asking-for-review.php:24
 msgid "Already did"
-msgstr ""
+msgstr "Уже сделал"
 
 #: includes/notices/deactivate-other-doc-plugins.php:13
 #: includes/notices/deactivate-other-doc-plugins.php:40
 msgid "We have detected another Knowledge Base Plugin installed in this site."
 msgstr ""
+"Мы обнаружили еще один плагин базы знаний, установленный на этом сайте."
 
 #: includes/notices/deactivate-other-doc-plugins.php:15
 #: includes/notices/deactivate-other-doc-plugins.php:42
@@ -2509,209 +2581,215 @@ msgid ""
 "For EazyDocs to work efficiently, you need to migrate the data and "
 "deactivate that plugin to avoid conflict."
 msgstr ""
+"Чтобы EazyDocs работал эффективно, вам необходимо перенести данные и "
+"деактивировать этот плагин, чтобы избежать конфликта."
 
 #: includes/notices/deactivate-other-doc-plugins.php:21
 msgid "Deactivate weDocs"
-msgstr ""
+msgstr "Деактивация weDocs"
 
 #: includes/notices/deactivate-other-doc-plugins.php:48
 msgid "Deactivate BetterDocs"
-msgstr ""
+msgstr "Деактивировать BetterDocs"
 
 #: includes/notices/update-database.php:18
 msgid ""
 "EazyDocs database need an update. Please click Update button to update your "
 "database."
 msgstr ""
+"База данных EazyDocs нуждается в обновлении. Пожалуйста, нажмите кнопку "
+"«Обновить», чтобы обновить базу данных."
 
 #: includes/notices/update-database.php:21
 msgid "Update Database"
-msgstr ""
+msgstr "Обновить базу данных"
 
 #: includes/notices/update-database.php:82
 msgid "EazyDocs database updated successfully."
-msgstr ""
+msgstr "База данных EazyDocs успешно обновлена."
 
 #: includes/sidebars.php:9
 msgid "Doc Right Sidebar"
-msgstr ""
+msgstr "Правая боковая панель документа"
 
 #: includes/sidebars.php:10
 msgid "Add widgets here for the Right Sidebar of the Doc pages"
-msgstr ""
+msgstr "Добавьте сюда виджеты для правой боковой панели страниц документа"
 
 #: src/search-banner/search-banner.php:20 templates/search-banner.php:17
 msgid "Search here"
-msgstr ""
+msgstr "Искать здесь"
 
 #: src/shortcode/edit.js:61
 msgid "Filters"
-msgstr ""
+msgstr "Фильтры"
 
 #: src/shortcode/edit.js:66
 msgid "Columns"
-msgstr ""
+msgstr "Колонки"
 
 #: src/shortcode/edit.js:74
 msgid "Docs Show Count"
-msgstr ""
+msgstr "Количество показов в документах"
 
 #: src/shortcode/edit.js:82
 msgid "How many docs to display."
-msgstr ""
+msgstr "Сколько документов отображать."
 
 #: src/shortcode/edit.js:86
 msgid "Docs Article Count"
-msgstr ""
+msgstr "Количество статей в документах"
 
 #: src/shortcode/edit.js:94
 msgid "Articles/child-docs show under every Docs."
-msgstr ""
+msgstr "Статьи/дочерние документы отображаются под каждой документацией."
 
 #: src/shortcode/edit.js:100
 msgid "Docs to Show"
-msgstr ""
+msgstr "Документы для показа"
 
 #: src/shortcode/edit.js:109
 msgid "Docs Not to Show"
-msgstr ""
+msgstr "Документы, которые нельзя показывать"
 
 #: src/shortcode/edit.js:116
 msgid "Button/link to get the full docs"
-msgstr ""
+msgstr "Кнопка/ссылка для получения полной документации"
 
 #: src/shortcode/edit.js:117
 msgid "More Button Label"
-msgstr ""
+msgstr "Значок кнопки подробнее"
 
 #: templates/content-feedback.php:10
 #, php-format
 msgid "%d person found this useful"
 msgid_plural "%d persons found this useful"
-msgstr[0] ""
+msgstr[0] "%d нашёл это полезным"
 msgstr[1] ""
+msgstr[2] ""
 
 #: templates/content-feedback.php:10 templates/content-feedback.php:11
 msgid "No votes yet"
-msgstr ""
+msgstr "Голосов пока нет"
 
 #: templates/content-feedback.php:11
 #, php-format
 msgid "%d person found this not useful"
 msgid_plural "%d persons found this not useful"
-msgstr[0] ""
+msgstr[0] "%d посчитал это бесполезным"
 msgstr[1] ""
+msgstr[2] ""
 
 #: templates/content-feedback.php:23
 msgid "Tagged:"
-msgstr ""
+msgstr "Метки:"
 
 #: templates/content-feedback.php:61
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: templates/content-feedback.php:67
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: templates/content-modal.php:28
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 #: templates/content-modal.php:43
 msgid "Send"
-msgstr ""
+msgstr "Отправить"
 
 #: templates/content-related.php:13
 msgid "Recently Viewed Articles"
-msgstr ""
+msgstr "Недавно просмотренные статьи"
 
 #: templates/docs-sidebar.php:59
 msgid "Filter"
-msgstr ""
+msgstr "Фильтр"
 
 #: templates/ezd-login.php:37
 msgid "Username"
-msgstr ""
+msgstr "Имя пользователя"
 
 #: templates/single-doc-content.php:20
 msgid "Hide category"
-msgstr ""
+msgstr "Скрыть категорию"
 
 #: templates/single-doc-content.php:21
 msgid "Show category"
-msgstr ""
+msgstr "Показать категории"
 
 #: templates/single-doc-content.php:38
 msgid "Estimated reading: "
-msgstr ""
+msgstr "Приблизительное чтение: "
 
 #: templates/single-doc-content.php:91
 msgid "Search By Email"
-msgstr ""
+msgstr "Поиск по электронной почте"
 
 #: templates/single-doc-content.php:186
 msgid "Loading..."
-msgstr ""
+msgstr "Загрузка..."
 
 #: templates/single-doc-content.php:230
 msgid "Docs:"
-msgstr ""
+msgstr "Документы:"
 
 #: templates/single-docs.php:33
 #, php-format
 msgid "Powered By %s EazyDocs %s"
-msgstr ""
+msgstr "Работает на %s EazyDocs %s"
 
 #: templates/tools/edit-add-doc.php:15
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 #: templates/tools/font-switcher.php:12
 msgid "Decrease font size"
-msgstr ""
+msgstr "Уменьшить размер шрифта"
 
 #: templates/tools/font-switcher.php:13
 msgid "A-"
-msgstr ""
+msgstr "A (II)-"
 
 #: templates/tools/font-switcher.php:15
 msgid "Default font size"
-msgstr ""
+msgstr "Размер шрифта по умолчанию"
 
 #: templates/tools/font-switcher.php:16
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: templates/tools/font-switcher.php:18
 msgid "Increase font size"
-msgstr ""
+msgstr "Увеличить размер шрифта"
 
 #: templates/tools/font-switcher.php:19
 msgid "A+"
-msgstr ""
+msgstr "A+"
 
 #: templates/tools/share-btns.php:15
 msgid "Share"
-msgstr ""
+msgstr "Поделиться"
 
 #: templates/tools/share-btns.php:27
 msgid "Check out this doc"
-msgstr ""
+msgstr "Ознакомьтесь с этим документом"
 
 #: templates/tools/share-btns.php:49
 msgid "Clipboard Icon"
-msgstr ""
+msgstr "Значок буфера обмена"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
 msgid "https://spider-themes.net/eazydocs"
-msgstr ""
+msgstr "https://spider-themes.net/eazydocs"
 
 #. Description of the plugin/theme
 msgid "A powerful & beautiful documentation builder plugin."
-msgstr ""
+msgstr "Мощный и красивый плагин для создания документации."
 
 #. Author of the plugin/theme
 msgid "spider-themes"
-msgstr ""
+msgstr "Темы-пауки"

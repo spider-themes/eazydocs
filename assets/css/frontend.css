@@ -1732,6 +1732,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 
 .doc-btm {
   margin-top: 70px;
+  clear: both;
 }
 .doc-btm ul.card_tagged {
   padding-left: 0;

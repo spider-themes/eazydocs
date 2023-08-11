@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 2.2.1
+ * Version: 2.2.2
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -103,6 +103,17 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 		}
 
+		// get the instance of the EazyDocs class
+		public static function get_instance() {
+			static $instance = null;
+
+			if ( null === $instance ) {
+				$instance = new EazyDocs();
+			}
+
+			return $instance;
+		}
+
 		/**
 		 * Load Textdomain
 		 *
@@ -112,7 +123,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 */
 		public function i18n() {
 			load_plugin_textdomain( 'eazydocs', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
-			load_textdomain( 'eazydocs', self::$dir .'/languages/'. get_locale() .'.mo' );
 		}
 
 		/**

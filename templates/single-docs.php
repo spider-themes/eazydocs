@@ -24,14 +24,13 @@ $cz_options      = '';
 $doc_container   = 'container custom_container';
 $content_wrapper = '';
 $credit_enable   = '1';
-$credit_text     = sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
 
 $layout          = $options['docs_single_layout'] ?? 'both_sidebar';
 $doc_width       = $options['docs_page_width'] ?? '';
 $doc_container   = $doc_width == 'full-width' ? 'container-fluid px-lg-5' : 'container custom_container';
 $content_wrapper = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
 
-$credit_text     = $options['eazydocs-credit-text'] ?? sprintf( __( "%s", 'eazydocs' ), 'Powered By <a href="https://wordpress.org/plugins/eazydocs/" target="_blank">EazyDocs</a>' );
+$credit_text     = $options['eazydocs-credit-text'] ?? sprintf( __( "Powered By %s EazyDocs %s", 'eazydocs' ), '<a href="https://wordpress.org/plugins/eazydocs/" target="_blank">', '</a>' );
 
 if ( ezd_is_premium() ) {
 	$credit_enable = $options['eazydocs-enable-credit'] ?? '1';

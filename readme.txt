@@ -206,8 +206,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.2.2 (03 July 2023) =
+New: French, Portuguese, Chinese, Spanish, German, Russian language translation files are added. Now, the plugin's strings will be translated automatically if your site language is set to any of these languages.
+Tweaked: Made the settings page translatable
+Tweaked: clear both CSS applied to the Doc bottom area on the Doc single page to avoid the overlapping issue
+Tweaked: Removed some unnecessary files from the plugin (options framework's unnecessary files)
+
 = v2.2.1 (30 July 2023) =
-New: Glossary Doc Elementor widget added (unlocked in Pro and Pro-Max plan)
 Updated: Freemius SDK updated 2.5.10
 Updated: Options framework updated to improve integration with the latest WordPress version
 Updated: Language .pot files

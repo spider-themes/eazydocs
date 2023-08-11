@@ -1,15 +1,15 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: EazyDocs\n"
-"POT-Creation-Date: 2023-08-02 22:29+0600\n"
-"PO-Revision-Date: 2023-07-31 23:20+0600\n"
+"POT-Creation-Date: 2023-08-02 22:25+0600\n"
+"PO-Revision-Date: 2023-08-02 22:27+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -27,79 +27,79 @@ msgstr ""
 #: blocks.php:74 includes/Admin/Admin.php:106
 #: includes/Admin/Elementor/Widgets.php:32 includes/Post_Types.php:41
 msgid "EazyDocs"
-msgstr ""
+msgstr "EazyDocs"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:4
 msgid "Black"
-msgstr ""
+msgstr "黑色"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:8
 msgid "White"
-msgstr ""
+msgstr "白色"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:12
 msgid "Red"
-msgstr ""
+msgstr "红色"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:16
 msgid "Green"
-msgstr ""
+msgstr "绿色"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:20
 msgid "Blue"
-msgstr ""
+msgstr "蓝色"
 
 #: build/search-banner/index.js:1 build/shortcode/index.js:1
 #: src/colors-palette.js:24
 msgid "Yellow"
-msgstr ""
+msgstr "黄色"
 
 #: includes/Admin/Admin.php:104
 msgid "EazyDocs Pro"
-msgstr ""
+msgstr "EazyDocs Pro"
 
 #: includes/Admin/Admin.php:111
 msgid "Docs Builder"
-msgstr ""
+msgstr "文档生成器"
 
 #: includes/Admin/Admin.php:132
 msgid "Customize"
-msgstr ""
+msgstr "自定义"
 
 #: includes/Admin/Admin.php:137 includes/Post_Types.php:91
 msgid "Tags"
-msgstr ""
+msgstr "标签"
 
 #: includes/Admin/Admin.php:141
 msgid "OnePage Docs"
-msgstr ""
+msgstr "单页文档"
 
 #: includes/Admin/Admin.php:144
 #: includes/Admin/options/settings-options.php:1356
 msgid "OnePage Doc"
-msgstr ""
+msgstr "单页文档"
 
 #: includes/Admin/Admin.php:151 includes/Admin/Admin.php:229
 msgid "Users Feedback"
-msgstr ""
+msgstr "用户反馈"
 
 #: includes/Admin/Admin.php:153
 msgid "Analytics"
-msgstr ""
+msgstr "分析"
 
 #: includes/Admin/Admin.php:202 includes/Admin/Admin.php:228
 #: includes/Admin/Admin.php:247
 msgid "crown icon"
-msgstr ""
+msgstr "Crown图标"
 
 #: includes/Admin/Admin.php:203
 msgid "Add Your OnePage Doc"
-msgstr ""
+msgstr "添加您的单页文档"
 
 #: includes/Admin/Admin.php:204
 msgid ""
@@ -108,206 +108,208 @@ msgid ""
 "the all guides on a single page and they can navigate through the different "
 "sections very fast."
 msgstr ""
+"单页文档格式会将文档的所有页面生成为单个页面中的部分，该页面可按部分滚动。访"
+"问者可以在一个页面上找到所有指南，他们可以非常快速地浏览不同的部分。"
 
 #: includes/Admin/Admin.php:210
 msgid "Go Pro"
-msgstr ""
+msgstr "获取专业版"
 
 #: includes/Admin/Admin.php:213
 msgid "View Frontend Demo"
-msgstr ""
+msgstr "查看前端演示"
 
 #: includes/Admin/Admin.php:214
 msgid "View Demo"
-msgstr ""
+msgstr "查看演示"
 
 #: includes/Admin/Admin.php:230
 msgid "You can get the Doc Feedbacks listed in this page to review."
-msgstr ""
+msgstr "您可以查看此页面中列出的文档反馈。"
 
 #: includes/Admin/Admin.php:233
 msgid "Get Pro Plan"
-msgstr ""
+msgstr "获取专业计划"
 
 #: includes/Admin/Admin.php:248
 msgid "EazyDocs Analytics"
-msgstr ""
+msgstr "EazyDocs Analytics"
 
 #: includes/Admin/Admin.php:249
 msgid "Analytics page is available in the EazyDocs Premium Promax Plan"
-msgstr ""
+msgstr "分析页面在EazyDocs高级Promax计划中可用"
 
 #: includes/Admin/Admin.php:252
 msgid "Get Promax Plan"
-msgstr ""
+msgstr "获取Promax计划"
 
 #: includes/Admin/Assets.php:87
 msgid "Enter Doc Title"
-msgstr ""
+msgstr "输入文档标题"
 
 #: includes/Admin/Assets.php:88
 msgid "Are you sure to delete?"
-msgstr ""
+msgstr "你确定要删除吗？"
 
 #: includes/Admin/Assets.php:89
 msgid ""
 "This doc will be trashed with the child docs and you will be able to restore "
 "it later from the trash!"
-msgstr ""
+msgstr "此文档将与儿童文档一起丢弃，您以后可以从垃圾箱中恢复它！"
 
 #: includes/Admin/Assets.php:90
 msgid "Are you sure to Duplicate this doc?"
-msgstr ""
+msgstr "您确定要复制此文档吗？"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:30
 msgid "EazyDocs Multi Docs"
-msgstr ""
+msgstr "EazyDocs Multi Docs"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:78
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:60
 msgid "Preset Skin"
-msgstr ""
+msgstr "预设皮肤"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:84
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:66
 msgid "Skins"
-msgstr ""
+msgstr "皮肤"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:97
 msgid "Filter Options"
-msgstr ""
+msgstr "筛选选项"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:103
 msgid "Tab Alignment"
-msgstr ""
+msgstr "标签对齐"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:107
 #: includes/Admin/Elementor/Search/Search_Widget.php:148
 msgid "Left"
-msgstr ""
+msgstr "左侧"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:111
 msgid "center"
-msgstr ""
+msgstr "居中"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:115
 #: includes/Admin/Elementor/Search/Search_Widget.php:156
 msgid "Right"
-msgstr ""
+msgstr "右侧"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:121
 msgid ""
 "Choose whether you want to position the tab buttons left, right or center "
 "from here."
-msgstr ""
+msgstr "选择是否要从此处向左、向右或居中放置选项卡按钮。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:136
 msgid "ID Format"
-msgstr ""
+msgstr "身份证格式"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:142
 msgid "If the slug ID does not work then you should pick the number ID."
-msgstr ""
+msgstr "如果辅助信息域 ID 不起作用，则应选择数字 ID。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:152
 msgid "Exclude Docs"
-msgstr ""
+msgstr "排除文档"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:161
 msgid "Show Section Count"
-msgstr ""
+msgstr "显示章节计数"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:162
 msgid ""
 "The number of sections to show under every documentation tab. Leave empty or "
 "give value -1 to show all sections."
-msgstr ""
+msgstr "每个文档选项卡下要显示的章节数量。保留为空或提供值-1以显示所有章节。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:173
 msgid "Active Doc"
-msgstr ""
+msgstr "活动文档"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:174
 msgid "Select the active Doc tab by default."
-msgstr ""
+msgstr "默认情况下，选择活动的“文档”选项卡。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:185
 msgid "Show Doc Item"
-msgstr ""
+msgstr "显示文档项目"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:186
 msgid ""
 "The number of doc items to under every doc sections. Leave empty or give "
 "value -1 to show all sections."
-msgstr ""
+msgstr "每个文档章节下要包含的文档项数。保留为空或提供值-1以显示所有章节。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:198
 msgid "Main Doc Excerpt"
-msgstr ""
+msgstr "主文档摘要"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:199
 msgid ""
 "Excerpt word limit of main documentation. If the excerpt got empty, this "
 "will get from the post content."
-msgstr ""
+msgstr "主文档摘要字数限制。如果摘要内容为空，则将从文章内容中获取。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:210
 msgid "Doc Section Excerpt"
-msgstr ""
+msgstr "文档章节摘要"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:211
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:202
 msgid ""
 "Excerpt word limit of the documentation sections. If the excerpt got empty, "
 "this will get from the post content."
-msgstr ""
+msgstr "文档章节的摘要字数限制。如果摘要内容为空，则将从文章内容中获取。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:222
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:225
 msgid "Order"
-msgstr ""
+msgstr "顺序"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:237
 msgid "Custom Order"
-msgstr ""
+msgstr "自定义排序"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:238
 msgid "Order the Doc tabs as you want."
-msgstr ""
+msgstr "根据需要排序“文档”标签。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:253
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:144
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:150
 msgid "Doc"
-msgstr ""
+msgstr "文档"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:261
 msgid "Tabs Items"
-msgstr ""
+msgstr "选项卡项目"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:276
 msgid "Labels"
-msgstr ""
+msgstr "标签"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:282
 msgid "Tab Title First Word"
-msgstr ""
+msgstr "选项卡标题第一个单词"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:283
 msgid "Show the first word of the doc in Tab Title."
-msgstr ""
+msgstr "在选项卡标题中显示文档的第一个单词。"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:294
 msgid "Read More Text"
-msgstr ""
+msgstr "阅读更多文字"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:306
 msgid "Book Chapters / Tutorials Prefix"
-msgstr ""
+msgstr "书籍章节/教程前缀"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:332
 msgid "Tab Title"
-msgstr ""
+msgstr "标签标题"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:349
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:742
@@ -317,13 +319,13 @@ msgstr ""
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:357
 #: includes/Admin/options/settings-options.php:455
 msgid "Padding"
-msgstr ""
+msgstr "内边距"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:372
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:666
 #: includes/Admin/Elementor/Search/style-control.php:190
 msgid "Normal"
-msgstr ""
+msgstr "正常"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:378
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:423
@@ -337,42 +339,42 @@ msgstr ""
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:384
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:423
 msgid "Text Color"
-msgstr ""
+msgstr "文本颜色"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:388
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:433
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:713
 msgid "Border Color"
-msgstr ""
+msgstr "边框颜色"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:417
 msgid "Active"
-msgstr ""
+msgstr "启用"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:466
 msgid "Contents"
-msgstr ""
+msgstr "内容"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:477
 msgid "Item Parent Title"
-msgstr ""
+msgstr "项目父标题"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:513
 msgid "Item Title"
-msgstr ""
+msgstr "项目标题"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:538
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:587
 msgid "Text Hover Color"
-msgstr ""
+msgstr "文本悬停颜色"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:550
 msgid "Item Title List"
-msgstr ""
+msgstr "项目标题列表"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:603
 msgid "Item Contents"
-msgstr ""
+msgstr "项目内容"
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:642
 #: includes/Admin/Elementor/Search/Search_Widget.php:65
@@ -383,60 +385,60 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1595
 #: includes/Admin/options/settings-options.php:1630
 msgid "Button"
-msgstr ""
+msgstr "按钮 "
 
 #: includes/Admin/Elementor/Docs/Doc_Widget.php:697
 #: includes/Admin/Elementor/Search/style-control.php:221
 msgid "Hover"
-msgstr ""
+msgstr "悬停"
 
 #: includes/Admin/Elementor/Docs/docs-1.php:4
 #: includes/Admin/Elementor/Single_Doc/single-doc-1.php:26
 #: includes/Admin/options/settings-options.php:159 templates/shortcode.php:4
 msgid "Topics"
-msgstr ""
+msgstr "主题"
 
 #: includes/Admin/Elementor/Docs/docs-1.php:56
 #: includes/Admin/options/settings-options.php:1202
 #: includes/Admin/options/settings-options.php:1208
 #: includes/Admin/template/parent-docs.php:37 templates/shortcode.php:49
 msgid "Private Doc"
-msgstr ""
+msgstr "私人文档"
 
 #: includes/Admin/Elementor/Docs/docs-1.php:94
 msgid " Topics"
-msgstr ""
+msgstr "主题"
 
 #: includes/Admin/Elementor/Docs/docs-6.php:58
 msgid "Article in this Docs."
-msgstr ""
+msgstr "本文档中的文章。"
 
 #: includes/Admin/Elementor/Docs/docs-6.php:59
 msgid "Written by "
-msgstr ""
+msgstr "作者 "
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:19
 msgid "EazyDocs Search"
-msgstr ""
+msgstr "EazyDocs 搜索"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:48
 #: includes/Admin/Elementor/Search/style-control.php:9
 #: includes/Admin/options/settings-options.php:1269
 msgid "Form"
-msgstr ""
+msgstr "表格"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:55
 msgid "Placeholder"
-msgstr ""
+msgstr "占位符"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:74
 msgid "Submit Button Icon"
-msgstr ""
+msgstr "提交按钮图标"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:86
 #: includes/Admin/options/settings-options.php:2050
 msgid "Position"
-msgstr ""
+msgstr "位置"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:114
 #: includes/Admin/Elementor/Search/Search_Widget.php:120
@@ -444,20 +446,20 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:473
 #: includes/Admin/options/settings-options.php:515
 msgid "Keywords"
-msgstr ""
+msgstr "关键词"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:131
 #: includes/Admin/options/settings-options.php:488
 msgid "Keywords Label"
-msgstr ""
+msgstr "关键字标签"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:144
 msgid "Alignment"
-msgstr ""
+msgstr "对齐"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:152
 msgid "Center"
-msgstr ""
+msgstr "居中"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:168
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:102
@@ -470,33 +472,33 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1287
 #: includes/Admin/options/settings-options.php:1685
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:177
 msgid "Repeater List"
-msgstr ""
+msgstr "重复列表"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:182
 msgid "Keyword #1"
-msgstr ""
+msgstr "关键字#1"
 
 #: includes/Admin/Elementor/Search/Search_Widget.php:185
 msgid "Keyword #2"
-msgstr ""
+msgstr "关键字#2"
 
 #: includes/Admin/Elementor/Search/ajax-sarch-results.php:1
 #: src/search-banner/search-banner.php:33 templates/search-banner.php:30
 msgid "No Results Found"
-msgstr ""
+msgstr "未找到结果"
 
 #: includes/Admin/Elementor/Search/ezd-search.php:8
 msgid "loading"
-msgstr ""
+msgstr "加载中"
 
 #: includes/Admin/Elementor/Search/style-control.php:30
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:349
 msgid "Border"
-msgstr ""
+msgstr "边框"
 
 #: includes/Admin/Elementor/Search/style-control.php:37
 #: includes/Admin/Elementor/Search/style-control.php:131
@@ -505,292 +507,293 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:307
 #: includes/Admin/options/settings-options.php:851
 msgid "Background Color"
-msgstr ""
+msgstr "背景颜色"
 
 #: includes/Admin/Elementor/Search/style-control.php:47
 msgid "Focus Background Color"
-msgstr ""
+msgstr "焦点背景颜色"
 
 #: includes/Admin/Elementor/Search/style-control.php:57
 #: includes/Admin/Elementor/Search/style-control.php:271
 msgid "Border Radius"
-msgstr ""
+msgstr "边框半径"
 
 #: includes/Admin/Elementor/Search/style-control.php:68
 msgid "Placeholder Color"
-msgstr ""
+msgstr "占位符颜色"
 
 #: includes/Admin/Elementor/Search/style-control.php:80
 #: includes/Admin/Elementor/Search/style-control.php:251
 msgid "Typography"
-msgstr ""
+msgstr "排版"
 
 #: includes/Admin/Elementor/Search/style-control.php:120
 msgid "Icon/Label Color"
-msgstr ""
+msgstr "图标/标签颜色"
 
 #: includes/Admin/Elementor/Search/style-control.php:151
+#, fuzzy
 msgid "Margin"
-msgstr ""
+msgstr "边距"
 
 #: includes/Admin/Elementor/Search/style-control.php:152
 msgid "Margin around the keywords block"
-msgstr ""
+msgstr "关键字区块周围的外边距"
 
 #: includes/Admin/Elementor/Search/style-control.php:165
 #: includes/Admin/options/settings-options.php:501
 msgid "Label Color"
-msgstr ""
+msgstr "标签颜色"
 
 #: includes/Admin/Elementor/Search/style-control.php:177
 msgid "Label Typography"
-msgstr ""
+msgstr "标签排版"
 
 #: includes/Admin/Elementor/Search/style-control.php:196
 #: includes/Admin/Elementor/Search/style-control.php:227
 msgid "Keyword Color"
-msgstr ""
+msgstr "关键字颜色"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:28
 msgid "EazyDocs Single Doc"
-msgstr ""
+msgstr "EazyDocs Single Doc"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:70
 msgid "Light"
-msgstr ""
+msgstr "浅色"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:74
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:78
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:82
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:86
 msgid "pro-label"
-msgstr ""
+msgstr "亲标签"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:112
 msgid "Title Text"
-msgstr ""
+msgstr "标题文本"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:121
 msgid "Title Tag"
-msgstr ""
+msgstr "标题标签"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:132
 msgid "Subtitle Text"
-msgstr ""
+msgstr "字幕文本"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:159
 msgid "Column"
-msgstr ""
+msgstr "列"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:160
 msgid "Number of column to show"
-msgstr ""
+msgstr "要显示的列数"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:163
 #: includes/Admin/options/settings-options.php:1456
 msgid "1 Column"
-msgstr ""
+msgstr "1列"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:164
 #: includes/Admin/options/settings-options.php:1457
 msgid "2 Column"
-msgstr ""
+msgstr "2列"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:165
 #: includes/Admin/options/settings-options.php:1458
 msgid "3 Column"
-msgstr ""
+msgstr "3列"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:166
 #: includes/Admin/options/settings-options.php:1459
 msgid "4 Column"
-msgstr ""
+msgstr "4列"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:167
 #: includes/Admin/options/settings-options.php:1461
 msgid "6 Column"
-msgstr ""
+msgstr "6列"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:178
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:188
 msgid "Sections"
-msgstr ""
+msgstr "部分"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:179
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:189
 msgid "Number of section to show"
-msgstr ""
+msgstr "显示章节数量"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:201
 #: includes/Admin/options/settings-options.php:365
 msgid "Excerpt"
-msgstr ""
+msgstr "摘要"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:214
 #: templates/onepage/default-layout.php:126
 #: templates/single-doc-content.php:223
 msgid "Articles"
-msgstr ""
+msgstr "文章"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:215
 msgid "Number of articles to show under every sections"
-msgstr ""
+msgstr "每个章节下显示的文章数"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:241
 msgid "Buttons"
-msgstr ""
+msgstr "按钮"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:250
 msgid "Read More Button"
-msgstr ""
+msgstr "阅读更多按钮"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:259
 msgid "Section Button"
-msgstr ""
+msgstr "章节按钮"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:271
 msgid "Button Text"
-msgstr ""
+msgstr "按钮文字"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:284
 msgid "Button URL"
-msgstr ""
+msgstr "按钮URL"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:296
 msgid "Show More Button"
-msgstr ""
+msgstr "显示更多按钮"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:308
 msgid "Show Less Text"
-msgstr ""
+msgstr "显示较少的文本"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:327
 msgid "Box"
-msgstr ""
+msgstr "盒子"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:339
 #: includes/Admin/options/settings-options.php:447
 #: includes/Admin/options/settings-options.php:2029
 #: includes/Admin/options/taxonomy-options.php:30
 msgid "Background"
-msgstr ""
+msgstr "背景"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:413
 msgid "Subtitle"
-msgstr ""
+msgstr "副标题"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:455
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:497
 msgid "Content"
-msgstr ""
+msgstr "内容"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:471
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:504
 #: includes/Admin/options/taxonomy-options.php:24
 msgid "Color"
-msgstr ""
+msgstr "颜色"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:536
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:546
 msgid "Background Objects"
-msgstr ""
+msgstr "背景对象"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:555
 msgid "Shape"
-msgstr ""
+msgstr "形状"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:556
 msgid "The background shape should be transparent png or svg image."
-msgstr ""
+msgstr "背景形状应为透明的 png 或 svg 图像。"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:569
 msgid "Round Objects 01"
-msgstr ""
+msgstr "圆形物体 01"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:579
 msgid "Round 01 Color"
-msgstr ""
+msgstr "圆形 01 颜色"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:593
 msgid "Round Objects 02"
-msgstr ""
+msgstr "圆形物体 02"
 
 #: includes/Admin/Elementor/Single_Doc/Single_Doc.php:603
 msgid "Round 02 Color"
-msgstr ""
+msgstr "圆形 02 颜色"
 
 #: includes/Admin/admin-template.php:27
 msgid "Folder Open"
-msgstr ""
+msgstr "打开文件夹"
 
 #: includes/Admin/admin-template.php:28
 msgid "No docs has been found. Perhaps"
-msgstr ""
+msgstr "未找到文档。也许"
 
 #: includes/Admin/admin-template.php:31
 msgid "Create a Doc"
-msgstr ""
+msgstr "创建文档"
 
 #: includes/Admin/options/settings-options.php:61
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: includes/Admin/options/settings-options.php:74
 msgid "Docs General"
-msgstr ""
+msgstr "文档常规"
 
 #: includes/Admin/options/settings-options.php:80
 msgid "Docs Page"
-msgstr ""
+msgstr "文档页面"
 
 #: includes/Admin/options/settings-options.php:84
 msgid ""
 "The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode or "
 "design your own"
-msgstr ""
+msgstr "文档存档页面。最好使用 <code>[eazydocs]</code> 简码或设计自己的"
 
 #: includes/Admin/options/settings-options.php:96
 msgid "Docs Slug"
-msgstr ""
+msgstr "文档别名"
 
 #: includes/Admin/options/settings-options.php:97
 msgid "docs"
-msgstr ""
+msgstr "文档"
 
 #: includes/Admin/options/settings-options.php:98
 msgid ""
 "After changing the slug, go to Settings > Permalinks and click on the Save "
 "Changes button."
-msgstr ""
+msgstr "更改 slug 后，转到永久链接>设置，然后单击保存更改按钮。"
 
 #: includes/Admin/options/settings-options.php:104
 msgid "Frontend Brand Color"
-msgstr ""
+msgstr "前端品牌颜色"
 
 #: includes/Admin/options/settings-options.php:117
 #: includes/Admin/options/settings-options.php:1411
 msgid "Docs Archive"
-msgstr ""
+msgstr "文档存档"
 
 #: includes/Admin/options/settings-options.php:125
 msgid "Docs Columns"
-msgstr ""
+msgstr "文档列"
 
 #: includes/Admin/options/settings-options.php:126
 msgid "This option will set the default value of column attribute of "
-msgstr ""
+msgstr "此选项将设置列属性的默认值 "
 
 #: includes/Admin/options/settings-options.php:141
 msgid "View More Button"
-msgstr ""
+msgstr "查看更多按钮"
 
 #: includes/Admin/options/settings-options.php:142
 msgid "View More"
-msgstr ""
+msgstr "查看更多"
 
 #: includes/Admin/options/settings-options.php:148
 msgid "Topics Count"
-msgstr ""
+msgstr "主题计数"
 
 #: includes/Admin/options/settings-options.php:149
 #: includes/Admin/options/settings-options.php:298
@@ -816,7 +819,7 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1893
 #: includes/Admin/options/settings-options.php:1922
 msgid "Show"
-msgstr ""
+msgstr "显示"
 
 #: includes/Admin/options/settings-options.php:150
 #: includes/Admin/options/settings-options.php:299
@@ -842,136 +845,136 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1894
 #: includes/Admin/options/settings-options.php:1923
 msgid "Hide"
-msgstr ""
+msgstr "隐藏"
 
 #: includes/Admin/options/settings-options.php:158
 msgid "Topics Count Text"
-msgstr ""
+msgstr "主题计数文本"
 
 #: includes/Admin/options/settings-options.php:168
 msgid "Child Docs Order"
-msgstr ""
+msgstr "儿童文件订单"
 
 #: includes/Admin/options/settings-options.php:170
 msgid "Descending"
-msgstr ""
+msgstr "降序"
 
 #: includes/Admin/options/settings-options.php:171
 msgid "Ascending"
-msgstr ""
+msgstr "升序"
 
 #: includes/Admin/options/settings-options.php:179
 msgid "Number of Docs"
-msgstr ""
+msgstr "文档数量"
 
 #: includes/Admin/options/settings-options.php:180
 msgid "Number of Main Docs to show"
-msgstr ""
+msgstr "要显示的主要文档数"
 
 #: includes/Admin/options/settings-options.php:187
 msgid "Number of Articles"
-msgstr ""
+msgstr "文章数量"
 
 #: includes/Admin/options/settings-options.php:188
 msgid "Number of Articles to show under each Docs."
-msgstr ""
+msgstr "要在每个文档下显示的文章数。"
 
 #: includes/Admin/options/settings-options.php:195
 msgid "Docs Layout"
-msgstr ""
+msgstr "文档布局"
 
 #: includes/Admin/options/settings-options.php:197
 msgid "Grid"
-msgstr ""
+msgstr "网格"
 
 #: includes/Admin/options/settings-options.php:198
 msgid "Masonry"
-msgstr ""
+msgstr "瀑布流"
 
 #: includes/Admin/options/settings-options.php:207
 msgid "Docs Order By"
-msgstr ""
+msgstr "文档排序"
 
 #: includes/Admin/options/settings-options.php:209
 msgid "No Order"
-msgstr ""
+msgstr "无序"
 
 #: includes/Admin/options/settings-options.php:210
 msgid "Post ID"
-msgstr ""
+msgstr "文章ID"
 
 #: includes/Admin/options/settings-options.php:211
 msgid "Post Author"
-msgstr ""
+msgstr "文章作者"
 
 #: includes/Admin/options/settings-options.php:213
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #: includes/Admin/options/settings-options.php:214
 msgid "Last Modified Date"
-msgstr ""
+msgstr "最后修改日期"
 
 #: includes/Admin/options/settings-options.php:215
 msgid "Random"
-msgstr ""
+msgstr "随机"
 
 #: includes/Admin/options/settings-options.php:216
 msgid "Comment Count"
-msgstr ""
+msgstr "评论数"
 
 #: includes/Admin/options/settings-options.php:217
 msgid "Menu Order"
-msgstr ""
+msgstr "菜单顺序"
 
 #: includes/Admin/options/settings-options.php:231
 msgid "Doc Single"
-msgstr ""
+msgstr "文档单曲"
 
 #: includes/Admin/options/settings-options.php:241
 msgid "General"
-msgstr ""
+msgstr "常规"
 
 #: includes/Admin/options/settings-options.php:248
 msgid "Select Layout"
-msgstr ""
+msgstr "选择布局"
 
 #: includes/Admin/options/settings-options.php:261
 msgid "Page Width"
-msgstr ""
+msgstr "页面宽度"
 
 #: includes/Admin/options/settings-options.php:263
 msgid "Boxed"
-msgstr ""
+msgstr "盒装"
 
 #: includes/Admin/options/settings-options.php:264
 msgid "Full Width"
-msgstr ""
+msgstr "全宽"
 
 #: includes/Admin/options/settings-options.php:272
 msgid "Meta Information"
-msgstr ""
+msgstr "元信息"
 
 #: includes/Admin/options/settings-options.php:282
 msgid "Estimated Reading Time"
-msgstr ""
+msgstr "估计阅读时间"
 
 #: includes/Admin/options/settings-options.php:289
 #: includes/Frontend/post-views.php:56
 msgid "Views"
-msgstr ""
+msgstr "查看"
 
 #: includes/Admin/options/settings-options.php:296
 msgid "Featured Image"
-msgstr ""
+msgstr "特色图片"
 
 #: includes/Admin/options/settings-options.php:297
 msgid "Show the Featured Image on the top of the doc content area."
-msgstr ""
+msgstr "在文档内容区域的顶部显示特色图像。"
 
 #: includes/Admin/options/settings-options.php:315
 msgid "Comment"
-msgstr ""
+msgstr "评论"
 
 #: includes/Admin/options/settings-options.php:316
 #: includes/Admin/options/settings-options.php:335
@@ -983,7 +986,7 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1562
 #: includes/Admin/options/settings-options.php:1798
 msgid "Enabled"
-msgstr ""
+msgstr "启用"
 
 #: includes/Admin/options/settings-options.php:317
 #: includes/Admin/options/settings-options.php:336
@@ -995,280 +998,282 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1563
 #: includes/Admin/options/settings-options.php:1799
 msgid "Disabled"
-msgstr ""
+msgstr "禁用"
 
 #: includes/Admin/options/settings-options.php:325
 msgid "Next & Previous Link"
-msgstr ""
+msgstr "下一个和上一个链接"
 
 #: includes/Admin/options/settings-options.php:331
 msgid "Ajax Loading"
-msgstr ""
+msgstr "Ajax 加载"
 
 #: includes/Admin/options/settings-options.php:332
 msgid "Load doc pages via Ajax."
-msgstr ""
+msgstr "通过Ajax加载文档页面。"
 
 #: includes/Admin/options/settings-options.php:345
 msgid "Credit"
-msgstr ""
+msgstr "信用"
 
 #: includes/Admin/options/settings-options.php:352
 msgid "Credit Text"
-msgstr ""
+msgstr "信用文字"
 
 #: includes/Admin/options/settings-options.php:371
 msgid "Show Excerpt"
-msgstr ""
+msgstr "显示摘录"
 
 #: includes/Admin/options/settings-options.php:372
 msgid "Show excerpt on doc single page."
-msgstr ""
+msgstr "在文档单页上显示摘录。"
 
 #: includes/Admin/options/settings-options.php:379
 msgid "Excerpt Label"
-msgstr ""
+msgstr "摘录标签"
 
 #: includes/Admin/options/settings-options.php:380
 msgid "Excerpt label on doc single page."
-msgstr ""
+msgstr "文档单页上的摘录标签。"
 
 #: includes/Admin/options/settings-options.php:381
 msgid "Summary: "
-msgstr ""
+msgstr "概况： "
 
 #: includes/Admin/options/settings-options.php:386
 msgid "Section Excerpt"
-msgstr ""
+msgstr "章节摘要"
 
 #: includes/Admin/options/settings-options.php:387
 msgid ""
 "Define here the Doc section excerpt limit in word count to show. Use -1 to "
 "show the full excerpt."
-msgstr ""
+msgstr "在这里定义文档章节摘要限制的字数统计显示。使用 -1 显示完整的摘要。"
 
 #: includes/Admin/options/settings-options.php:388
 msgid ""
 "Note: If the excerpt leaves empty, the excerpt will be automatically taken "
 "from the doc post content."
-msgstr ""
+msgstr "注意：如果摘要留空，则摘要将自动从文档文章内容中获取。"
 
 #: includes/Admin/options/settings-options.php:404
 #: includes/Admin/options/settings-options.php:436
 msgid "Search Banner"
-msgstr ""
+msgstr "搜索横幅"
 
 #: includes/Admin/options/settings-options.php:409
 msgid "Search Banner Settings"
-msgstr ""
+msgstr "搜索横幅设置"
 
 #: includes/Admin/options/settings-options.php:415
 msgid "Search Banner layout"
-msgstr ""
+msgstr "搜索横幅布局"
 
 #: includes/Admin/options/settings-options.php:417
 #: includes/Admin/options/settings-options.php:1262
 msgid "Default"
-msgstr ""
+msgstr "默认"
 
 #: includes/Admin/options/settings-options.php:418
 msgid "Elementor Template"
-msgstr ""
+msgstr "Elementor 模板"
 
 #: includes/Admin/options/settings-options.php:421
 msgid "Select how the header of the doc detail page will be displayed"
-msgstr ""
+msgstr "选择文档详细信息页面页眉的显示方式"
 
 #: includes/Admin/options/settings-options.php:427
 msgid "Select Elementor Template"
-msgstr ""
+msgstr "选择元素或模板"
 
 #: includes/Admin/options/settings-options.php:430
 msgid ""
 "How to create Elementor template <a target=\"__blank\" href=\"https://"
 "shorturl.at/filGI\">See guide</a>"
 msgstr ""
+"如何创建元素模板 <a target=\"__blank\" href=\"https://shorturl.at/filGI\">请"
+"参阅指南</a>"
 
 #: includes/Admin/options/settings-options.php:466
 msgid "Search Keywords"
-msgstr ""
+msgstr "搜索关键字"
 
 #: includes/Admin/options/settings-options.php:489
 msgid "Popular Searches"
-msgstr ""
+msgstr "热门搜索"
 
 #: includes/Admin/options/settings-options.php:525
 msgid "Keyword"
-msgstr ""
+msgstr "关键词"
 
 #: includes/Admin/options/settings-options.php:542
 msgid "Keywords Color"
-msgstr ""
+msgstr "关键字颜色 "
 
 #: includes/Admin/options/settings-options.php:560
 msgid "Breadcrumbs"
-msgstr ""
+msgstr "面包屑"
 
 #: includes/Admin/options/settings-options.php:566
 msgid "Show/Hide Breadcrumb"
-msgstr ""
+msgstr "显示或隐藏面包屑导航"
 
 #: includes/Admin/options/settings-options.php:567
 msgid "Toggle this switch to Show/Hide the Breadcrumb bar."
-msgstr ""
+msgstr "将此开关切换为显示/隐藏面包屑导航栏。"
 
 #: includes/Admin/options/settings-options.php:577
 msgid "Frontpage Name"
-msgstr ""
+msgstr "首页名称"
 
 #: includes/Admin/options/settings-options.php:578 includes/functions.php:277
 #: includes/functions.php:401
 msgid "Home"
-msgstr ""
+msgstr "首页"
 
 #: includes/Admin/options/settings-options.php:589
 msgid "Docs Archive Page Title"
-msgstr ""
+msgstr "文档归档页面标题"
 
 #: includes/Admin/options/settings-options.php:601
 msgid "Updated Text"
-msgstr ""
+msgstr "已更新文本"
 
 #: includes/Admin/options/settings-options.php:602 templates/breadcrumbs.php:3
 msgid "Updated on"
-msgstr ""
+msgstr "更新"
 
 #: includes/Admin/options/settings-options.php:617
 #: includes/Admin/options/settings-options.php:623
 #: includes/Admin/options/settings-options.php:632
 msgid "Feedback Area"
-msgstr ""
+msgstr "反馈区域"
 
 #: includes/Admin/options/settings-options.php:638
 msgid "Customize the feedback modal form here."
-msgstr ""
+msgstr "在此处自定义反馈模态表单。"
 
 #: includes/Admin/options/settings-options.php:644
 msgid "Message Feedback"
-msgstr ""
+msgstr "信息反馈"
 
 #: includes/Admin/options/settings-options.php:659
 msgid "Still Stuck"
-msgstr ""
+msgstr "仍然有问题"
 
 #: includes/Admin/options/settings-options.php:660
 #: templates/content-feedback.php:12
 msgid "Still stuck?"
-msgstr ""
+msgstr "仍然有问题？"
 
 #: includes/Admin/options/settings-options.php:670
 msgid "Help form link text"
-msgstr ""
+msgstr "帮助表单链接文本"
 
 #: includes/Admin/options/settings-options.php:671
 #: includes/Admin/options/settings-options.php:702
 #: templates/content-feedback.php:14 templates/content-modal.php:10
 msgid "How can we help?"
-msgstr ""
+msgstr "我们能帮您什么吗？"
 
 #: includes/Admin/options/settings-options.php:681
 msgid "Email Address"
-msgstr ""
+msgstr "邮箱地址"
 
 #: includes/Admin/options/settings-options.php:691
 msgid "Feedback Modal"
-msgstr ""
+msgstr "反馈模式"
 
 #: includes/Admin/options/settings-options.php:701
 msgid "Form Title"
-msgstr ""
+msgstr "表单标题"
 
 #: includes/Admin/options/settings-options.php:712
 msgid "Form Subtitle"
-msgstr ""
+msgstr "表单子标题"
 
 #: includes/Admin/options/settings-options.php:721
 msgid "Voting Feedback"
-msgstr ""
+msgstr "投票反馈"
 
 #: includes/Admin/options/settings-options.php:730
 msgid "Helpful feedback"
-msgstr ""
+msgstr "有用的反馈"
 
 #: includes/Admin/options/settings-options.php:742
 msgid "Feedback Label"
-msgstr ""
+msgstr "反馈标签"
 
 #: includes/Admin/options/settings-options.php:743
 #: templates/content-feedback.php:15
 msgid "Was this page helpful?"
-msgstr ""
+msgstr "此文章有帮助吗？"
 
 #: includes/Admin/options/settings-options.php:752
 msgid "Feedback Count"
-msgstr ""
+msgstr "反馈计数"
 
 #: includes/Admin/options/settings-options.php:768
 msgid "Left Sidebar"
-msgstr ""
+msgstr "左侧边栏"
 
 #: includes/Admin/options/settings-options.php:774
 msgid "Docs Navigation Layout"
-msgstr ""
+msgstr "文档导航布局"
 
 #: includes/Admin/options/settings-options.php:776
 msgid "Collapsed with Icons"
-msgstr ""
+msgstr "折叠带图标"
 
 #: includes/Admin/options/settings-options.php:777
 msgid "Extended Docs"
-msgstr ""
+msgstr "扩展文档"
 
 #: includes/Admin/options/settings-options.php:786
 msgid "Sidebar Toggle"
-msgstr ""
+msgstr "侧边栏切换"
 
 #: includes/Admin/options/settings-options.php:787
 msgid "Collapse and Expand the left Sidebar with a Toggle button."
-msgstr ""
+msgstr "折叠并展开带有切换按钮的左侧边栏。"
 
 #: includes/Admin/options/settings-options.php:797
 msgid "Filter Form"
-msgstr ""
+msgstr "筛选表单"
 
 #: includes/Admin/options/settings-options.php:798
 msgid "Filter the left sidebar doc items by typing latter."
-msgstr ""
+msgstr "通过键入后者来过滤左侧边栏文档项目。"
 
 #: includes/Admin/options/settings-options.php:808
 msgid "Mark Words"
-msgstr ""
+msgstr "标记单词"
 
 #: includes/Admin/options/settings-options.php:809
 msgid "Highlight the typed keyword in the docs."
-msgstr ""
+msgstr "突出显示文档中键入的关键字。"
 
 #: includes/Admin/options/settings-options.php:810
 msgid "Enable"
-msgstr ""
+msgstr "启用"
 
 #: includes/Admin/options/settings-options.php:811
 msgid "Disable"
-msgstr ""
+msgstr "禁用"
 
 #: includes/Admin/options/settings-options.php:818
 msgid "Doc Section Icon"
-msgstr ""
+msgstr "文档章节图标"
 
 #: includes/Admin/options/settings-options.php:819
 msgid ""
 "This is the Doc's default icon. If you don't use icon for the article "
 "section individually, this icon will be shown."
-msgstr ""
+msgstr "这是文档的默认图标。如果您不单独使用文章部分的图标，将显示此图标。"
 
 #: includes/Admin/options/settings-options.php:830
 msgid "Doc Section Icon Open"
-msgstr ""
+msgstr "文档章节图标打开"
 
 #: includes/Admin/options/settings-options.php:831
 msgid ""
@@ -1276,106 +1281,108 @@ msgid ""
 "section individually, this icon will be shown on open states of the Doc "
 "sections."
 msgstr ""
+"这是文档的默认图标。如果您不单独使用文章部分的图标，此图标将显示在 Doc 部分的"
+"开放状态上。"
 
 #: includes/Admin/options/settings-options.php:844
 msgid "Doc Title Typography"
-msgstr ""
+msgstr "文档标题排版"
 
 #: includes/Admin/options/settings-options.php:863
 msgid "Right Sidebar"
-msgstr ""
+msgstr "右侧边栏"
 
 #: includes/Admin/options/settings-options.php:868
 msgid "Sharing Doc"
-msgstr ""
+msgstr "共享文档"
 
 #: includes/Admin/options/settings-options.php:874
 msgid "Share Button"
-msgstr ""
+msgstr "分享按钮"
 
 #: includes/Admin/options/settings-options.php:884
 msgid "Share Button Label"
-msgstr ""
+msgstr "分享按钮标签"
 
 #: includes/Admin/options/settings-options.php:885
 msgid "Share this Doc"
-msgstr ""
+msgstr "分享此文档"
 
 #: includes/Admin/options/settings-options.php:895
 msgid "Copy Link Button"
-msgstr ""
+msgstr "“复制链接”按钮"
 
 #: includes/Admin/options/settings-options.php:906
 msgid "Copy Link Label"
-msgstr ""
+msgstr "复制链接标签"
 
 #: includes/Admin/options/settings-options.php:907
 #: templates/tools/share-btns.php:8
 msgid "Or copy link"
-msgstr ""
+msgstr "或复制链接"
 
 #: includes/Admin/options/settings-options.php:917
 msgid "Success Message"
-msgstr ""
+msgstr "成功消息"
 
 #: includes/Admin/options/settings-options.php:918
 msgid "URL copied to clipboard"
-msgstr ""
+msgstr "复制到剪贴板的网址"
 
 #: includes/Admin/options/settings-options.php:927
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 #: includes/Admin/options/settings-options.php:933
 msgid "Font Size Switcher"
-msgstr ""
+msgstr "字体大小切换器"
 
 #: includes/Admin/options/settings-options.php:943
 msgid "Print Article"
-msgstr ""
+msgstr "打印文章"
 
 #: includes/Admin/options/settings-options.php:953
 msgid "Features"
-msgstr ""
+msgstr "特征"
 
 #: includes/Admin/options/settings-options.php:957
 msgid "Dark Mode Switcher"
-msgstr ""
+msgstr "暗色模式切换器"
 
 #: includes/Admin/options/settings-options.php:970
 msgid "Table on Contents (TOC)"
-msgstr ""
+msgstr "目录"
 
 #: includes/Admin/options/settings-options.php:971
 msgid ""
 "EazyDocs will automatically create a structured Table Of Contents(TOC) while "
 "you are writing your documentation."
-msgstr ""
+msgstr "EazyDocs将在您编写文档时自动创建一个结构化的目录（TOC）。"
 
 #: includes/Admin/options/settings-options.php:979
 msgid "TOC Heading"
-msgstr ""
+msgstr "目录标题"
 
 #: includes/Admin/options/settings-options.php:980
 #: templates/docs-right-sidebar.php:5
 msgid "CONTENTS"
-msgstr ""
+msgstr "内容"
 
 #: includes/Admin/options/settings-options.php:985
 msgid "Widgets Area"
-msgstr ""
+msgstr "小工具区域"
 
 #: includes/Admin/options/settings-options.php:986
 msgid ""
 "Enable to register a Sidebar Widgets area named 'Doc Right Sidebar' in "
 "Appearance > Widgets."
-msgstr ""
+msgstr "启用以在外观>小工具中注册名为“文档右侧边栏”的侧边栏窗口小工具区域。"
 
 #: includes/Admin/options/settings-options.php:998
 #: includes/Admin/options/settings-options.php:1003
 #: includes/Admin/options/settings-options.php:1498
 msgid "Conditional Dropdown"
-msgstr ""
+msgstr "条件下拉"
 
 #: includes/Admin/options/settings-options.php:1004
 msgid ""
@@ -1383,103 +1390,106 @@ msgid ""
 "in documentation based on the dropdown value. See the shortcode usage "
 "tutorial <a href=\"https://tinyurl.com/yd46mfax\" target=\"_blank\">here</a>."
 msgstr ""
+"您可以使用文档中基于下拉值的 [conditional_data] 短代码显示条件内容。请参阅 "
+"<a href=\"https://tinyurl.com/yd46mfax\" target=\"_blank\">此处</a>的短码用法"
+"教程。"
 
 #: includes/Admin/options/settings-options.php:1016
 msgid "Dropdown Options"
-msgstr ""
+msgstr "下拉选项"
 
 #: includes/Admin/options/settings-options.php:1026
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #: includes/Admin/options/settings-options.php:1040
 #: templates/content-related.php:9
 msgid "Related Articles"
-msgstr ""
+msgstr "相关文章"
 
 #: includes/Admin/options/settings-options.php:1045
 msgid "Related Docs Settings"
-msgstr ""
+msgstr "相关文档设置"
 
 #: includes/Admin/options/settings-options.php:1051
 msgid "Related Docs"
-msgstr ""
+msgstr "相关文档"
 
 #: includes/Admin/options/settings-options.php:1062
 msgid "Related articles"
-msgstr ""
+msgstr "相关文章"
 
 #: includes/Admin/options/settings-options.php:1073
 #: includes/Admin/options/settings-options.php:1149
 msgid "Docs Number"
-msgstr ""
+msgstr "文档数量"
 
 #: includes/Admin/options/settings-options.php:1074
 #: includes/Admin/options/settings-options.php:1150
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: includes/Admin/options/settings-options.php:1085
 #: includes/Admin/options/settings-options.php:1161
 msgid "Column Width"
-msgstr ""
+msgstr "列宽"
 
 #: includes/Admin/options/settings-options.php:1087
 #: includes/Admin/options/settings-options.php:1163
 msgid "Half"
-msgstr ""
+msgstr "一半"
 
 #: includes/Admin/options/settings-options.php:1088
 #: includes/Admin/options/settings-options.php:1164
 msgid "Fullwidth"
-msgstr ""
+msgstr "全宽"
 
 #: includes/Admin/options/settings-options.php:1102
 #: includes/Admin/options/settings-options.php:1178
 #: templates/content-related.php:11 templates/content-related.php:15
 msgid "See More"
-msgstr ""
+msgstr "查看更多"
 
 #: includes/Admin/options/settings-options.php:1116
 msgid "Viewed Articles"
-msgstr ""
+msgstr "查看文章"
 
 #: includes/Admin/options/settings-options.php:1121
 msgid "Recently Viewed Docs Options"
-msgstr ""
+msgstr "最近查看文档选项"
 
 #: includes/Admin/options/settings-options.php:1127
 msgid "Recently Viewed Docs"
-msgstr ""
+msgstr "最近查看的文档"
 
 #: includes/Admin/options/settings-options.php:1138
 msgid "Recently Viewed articles"
-msgstr ""
+msgstr "最近查看文章"
 
 #: includes/Admin/options/settings-options.php:1194
 msgid "Restricted Docs"
-msgstr ""
+msgstr "受限文档"
 
 #: includes/Admin/options/settings-options.php:1213
 msgid "Visibility Mode"
-msgstr ""
+msgstr "可见性模式"
 
 #: includes/Admin/options/settings-options.php:1215
 msgid "Login Required"
-msgstr ""
+msgstr "需要登录"
 
 #: includes/Admin/options/settings-options.php:1216
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: includes/Admin/options/settings-options.php:1225
 msgid "Select Page"
-msgstr ""
+msgstr "选择页面"
 
 #: includes/Admin/options/settings-options.php:1226
 #: includes/Admin/options/settings-options.php:1644
 msgid "Select Doc login page"
-msgstr ""
+msgstr "选择文档登录页面"
 
 #: includes/Admin/options/settings-options.php:1227
 #: includes/Admin/options/settings-options.php:1645
@@ -1487,162 +1497,163 @@ msgid ""
 "If you want to change this page, use this shortcode [ezd_login_form] to "
 "display the login form on your desired page."
 msgstr ""
+"如果要更改此页面，请使用此短代码 [ezd_login_form] 在所需页面上显示登录表单。"
 
 #: includes/Admin/options/settings-options.php:1248
 #: includes/Admin/options/settings-options.php:1254
 msgid "Protected Doc"
-msgstr ""
+msgstr "受保护的文档"
 
 #: includes/Admin/options/settings-options.php:1259
 msgid "Password Form"
-msgstr ""
+msgstr "忘记密码表单"
 
 #: includes/Admin/options/settings-options.php:1261
 msgid "EazyDocs Form"
-msgstr ""
+msgstr "EazyDocs Form"
 
 #: includes/Admin/options/settings-options.php:1277
 msgid "Header Color"
-msgstr ""
+msgstr "标题颜色"
 
 #: includes/Admin/options/settings-options.php:1295
 msgid "Title Color"
-msgstr ""
+msgstr "标题颜色"
 
 #: includes/Admin/options/settings-options.php:1305
 msgid "Sub Title"
-msgstr ""
+msgstr "子标题"
 
 #: includes/Admin/options/settings-options.php:1313
 msgid "Sub Title Color"
-msgstr ""
+msgstr "子标题颜色"
 
 #: includes/Admin/options/settings-options.php:1331
 msgid "Button Text Color"
-msgstr ""
+msgstr "按钮文本颜色"
 
 #: includes/Admin/options/settings-options.php:1341
 msgid "Button Background Color"
-msgstr ""
+msgstr "按钮背景颜色"
 
 #: includes/Admin/options/settings-options.php:1363
 msgid "Layout"
-msgstr ""
+msgstr "布局"
 
 #: includes/Admin/options/settings-options.php:1365
 msgid "Classic OnePage Doc"
-msgstr ""
+msgstr "经典单页文档"
 
 #: includes/Admin/options/settings-options.php:1366
 msgid "Fullscreen OnePage Doc"
-msgstr ""
+msgstr "全屏单页文档"
 
 #: includes/Admin/options/settings-options.php:1397
 msgid "Customizer"
-msgstr ""
+msgstr "自定义"
 
 #: includes/Admin/options/settings-options.php:1403
 msgid "Options Visibility on Customizer"
-msgstr ""
+msgstr "定制器上的选项可见性"
 
 #: includes/Admin/options/settings-options.php:1412
 msgid "Single Doc"
-msgstr ""
+msgstr "单个文档"
 
 #: includes/Admin/options/settings-options.php:1427
 #: includes/Admin/options/settings-options.php:1449 shortcodes/reference.php:26
 msgid "Footnotes"
-msgstr ""
+msgstr "脚注"
 
 #: includes/Admin/options/settings-options.php:1434
 msgid "Footnotes Heading"
-msgstr ""
+msgstr "脚注标题"
 
 #: includes/Admin/options/settings-options.php:1445
 msgid "Footnotes Heading Text"
-msgstr ""
+msgstr "脚注标题文本"
 
 #: includes/Admin/options/settings-options.php:1454
 msgid "Footnotes Column"
-msgstr ""
+msgstr "脚注列"
 
 #: includes/Admin/options/settings-options.php:1460
 msgid "5 Column"
-msgstr ""
+msgstr "5列"
 
 #: includes/Admin/options/settings-options.php:1475
 msgid "Docs Shortcodes"
-msgstr ""
+msgstr "文档短码"
 
 #: includes/Admin/options/settings-options.php:1482
 msgid "Docs archive"
-msgstr ""
+msgstr "文档存档"
 
 #: includes/Admin/options/settings-options.php:1484
 #, php-format
 msgid ""
 "Use this shortcode to display the Docs. Learn more about the shortcode and "
 "the attributes %s here %s."
-msgstr ""
+msgstr "使用此短码可显示文档。在此处了解有关短码和属性%s%s的更多信息。"
 
 #: includes/Admin/options/settings-options.php:1487
 msgid "See the shortcode with the available attributes"
-msgstr ""
+msgstr "查看具有可用属性的短码"
 
 #: includes/Admin/options/settings-options.php:1499
 #, php-format
 msgid "Know the usage of this shortcode %s here %s"
-msgstr ""
+msgstr "了解此短代码的用法 %s 这里 %s"
 
 #: includes/Admin/options/settings-options.php:1508
 msgid "Docs Login"
-msgstr ""
+msgstr "文档登录"
 
 #: includes/Admin/options/settings-options.php:1509
 msgid "Use this shortcode to display login form."
-msgstr ""
+msgstr "使用此短码显示登录表单。"
 
 #: includes/Admin/options/settings-options.php:1510
 #: includes/Admin/options/settings-options.php:1524
 msgid "See the shortcode example with the available attributes"
-msgstr ""
+msgstr "请参阅具有可用属性的简码示例"
 
 #: includes/Admin/options/settings-options.php:1522
 msgid "Footnote Shortcode"
-msgstr ""
+msgstr "脚注简码"
 
 #: includes/Admin/options/settings-options.php:1523
 #, php-format
 msgid ""
 "Use this shortcode to display footnotes. %s Learn how to create Footnotes %s"
-msgstr ""
+msgstr "使用此短代码显示脚注。%s 了解如何创建脚注%s"
 
 #: includes/Admin/options/settings-options.php:1534
 msgid "Embed Post Shortcode"
-msgstr ""
+msgstr "嵌入帖子简码"
 
 #: includes/Admin/options/settings-options.php:1535
 #, php-format
 msgid ""
 "Use this shortcode to display a doc inside another doc. Know the usage of "
 "this shortcode %s here %s"
-msgstr ""
+msgstr "使用此简码在另一个文档中显示一个文档。了解此短代码的用法 %s 这里 %s"
 
 #: includes/Admin/options/settings-options.php:1536
 msgid "See the shortcode with the available attributes."
-msgstr ""
+msgstr "请参阅具有可用属性的简码。"
 
 #: includes/Admin/options/settings-options.php:1552
 msgid "Docs Contribution"
-msgstr ""
+msgstr "文档贡献"
 
 #: includes/Admin/options/settings-options.php:1558
 msgid "Contribution Feature"
-msgstr ""
+msgstr "贡献功能"
 
 #: includes/Admin/options/settings-options.php:1559
 msgid "Contribution buttons on the doc Right Sidebar."
-msgstr ""
+msgstr "文档右侧边栏上的贡献按钮。"
 
 #: includes/Admin/options/settings-options.php:1560
 msgid ""
@@ -1650,276 +1661,278 @@ msgid ""
 "docs. This will also let you manage the contributors from the Doc post "
 "editor."
 msgstr ""
+"通过启用此功能，您可以允许其他人贡献文档。这也将允许您从文档帖子编辑器管理贡"
+"献者。"
 
 #: includes/Admin/options/settings-options.php:1572
 #: includes/Admin/options/settings-options.php:1596
 #: includes/Admin/template/header.php:12 includes/One_page_doc_type.php:41
 #: includes/Post_Types.php:45
 msgid "Add Doc"
-msgstr ""
+msgstr "添加文档"
 
 #: includes/Admin/options/settings-options.php:1581
 msgid "Add Button"
-msgstr ""
+msgstr "添加按钮"
 
 #: includes/Admin/options/settings-options.php:1607
 #: includes/Admin/options/settings-options.php:1631 includes/Post_Types.php:47
 msgid "Edit Doc"
-msgstr ""
+msgstr "编辑文档"
 
 #: includes/Admin/options/settings-options.php:1616
 msgid "Edit Button"
-msgstr ""
+msgstr "编辑按钮"
 
 #: includes/Admin/options/settings-options.php:1643
 msgid "Login Page"
-msgstr ""
+msgstr "登录页面"
 
 #: includes/Admin/options/settings-options.php:1662
 msgid "Meta Content"
-msgstr ""
+msgstr "元内容"
 
 #: includes/Admin/options/settings-options.php:1671
 msgid "Enable / Disable"
-msgstr ""
+msgstr "启用/停用"
 
 #: includes/Admin/options/settings-options.php:1686
 #: templates/single-doc-content.php:12
 msgid "Contributors"
-msgstr ""
+msgstr "贡献者"
 
 #: includes/Admin/options/settings-options.php:1696
 msgid "Dropdown Heading"
-msgstr ""
+msgstr "下拉标题"
 
 #: includes/Admin/options/settings-options.php:1697
 #: templates/single-doc-content.php:13
 msgid "Manage Contributors"
-msgstr ""
+msgstr "管理贡献者"
 
 #: includes/Admin/options/settings-options.php:1707
 #: includes/Admin/options/settings-options.php:1868
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: includes/Admin/options/settings-options.php:1708
 msgid "Search through the existing users"
-msgstr ""
+msgstr "搜索现有用户"
 
 #: includes/Admin/options/settings-options.php:1726
 msgid "Docs Role Manager"
-msgstr ""
+msgstr "文档角色管理器"
 
 #: includes/Admin/options/settings-options.php:1732
 msgid "Who Can View Docs?"
-msgstr ""
+msgstr "谁可以查看文档？"
 
 #: includes/Admin/options/settings-options.php:1733
 msgid "Allow users to view Docs."
-msgstr ""
+msgstr "允许用户查看文档。"
 
 #: includes/Admin/options/settings-options.php:1735
 #: includes/Admin/options/settings-options.php:1753
 #: includes/Admin/options/settings-options.php:1769
 msgid "Administrator"
-msgstr ""
+msgstr "管理员"
 
 #: includes/Admin/options/settings-options.php:1736
 #: includes/Admin/options/settings-options.php:1754
 #: includes/Admin/options/settings-options.php:1770
 msgid "Editor"
-msgstr ""
+msgstr "编辑"
 
 #: includes/Admin/options/settings-options.php:1737
 #: includes/Admin/options/settings-options.php:1755
 #: includes/Admin/options/settings-options.php:1771
 msgid "Author"
-msgstr ""
+msgstr "作者"
 
 #: includes/Admin/options/settings-options.php:1738
 msgid "Contributor"
-msgstr ""
+msgstr "贡献者"
 
 #: includes/Admin/options/settings-options.php:1739
 msgid "Subscriber"
-msgstr ""
+msgstr "订阅者"
 
 #: includes/Admin/options/settings-options.php:1750
 msgid "Who Can Edit Settings?"
-msgstr ""
+msgstr "谁可以编辑设置？"
 
 #: includes/Admin/options/settings-options.php:1751
 msgid "Allow users to update options from settings."
-msgstr ""
+msgstr "允许用户更新设置中的选项。"
 
 #: includes/Admin/options/settings-options.php:1766
 msgid "Who Can Edit Customizer?"
-msgstr ""
+msgstr "谁可以编辑自定义？"
 
 #: includes/Admin/options/settings-options.php:1767
 msgid "Allow users to customize Docs from customizer settings."
-msgstr ""
+msgstr "允许用户从自定义设置自定义文档。"
 
 #: includes/Admin/options/settings-options.php:1786
 #: includes/Admin/options/settings-options.php:1797
 msgid "Docs Assistant"
-msgstr ""
+msgstr "文档助手"
 
 #: includes/Admin/options/settings-options.php:1791
 msgid "Assistant Settings"
-msgstr ""
+msgstr "助理设置"
 
 #: includes/Admin/options/settings-options.php:1808
 msgid "Open Icon"
-msgstr ""
+msgstr "打开图标"
 
 #: includes/Admin/options/settings-options.php:1822
 msgid "Close Icon"
-msgstr ""
+msgstr "关闭图标"
 
 #: includes/Admin/options/settings-options.php:1848
 msgid "Knowledge-base Tab"
-msgstr ""
+msgstr "“知识库”选项卡"
 
 #: includes/Admin/options/settings-options.php:1858
 #: includes/Admin/options/settings-options.php:1931
 msgid "Heading"
-msgstr ""
+msgstr "标题"
 
 #: includes/Admin/options/settings-options.php:1859
 msgid "Knowledge Base"
-msgstr ""
+msgstr "知识库"
 
 #: includes/Admin/options/settings-options.php:1881
 msgid "Search Placeholder"
-msgstr ""
+msgstr "搜索占位符"
 
 #: includes/Admin/options/settings-options.php:1882
 msgid "Search..."
-msgstr ""
+msgstr "搜索..."
 
 #: includes/Admin/options/settings-options.php:1892
 msgid "Breadcrumb"
-msgstr ""
+msgstr "面包屑"
 
 #: includes/Admin/options/settings-options.php:1905
 #: includes/Admin/options/settings-options.php:1906
 msgid "Docs not Found"
-msgstr ""
+msgstr "未找到文档"
 
 #: includes/Admin/options/settings-options.php:1921
 msgid "Contact Tab"
-msgstr ""
+msgstr "联系选项卡"
 
 #: includes/Admin/options/settings-options.php:1932
 msgid "Contact"
-msgstr ""
+msgstr "联系"
 
 #: includes/Admin/options/settings-options.php:1941
 msgid "Receiver Email"
-msgstr ""
+msgstr "接收电子邮件地址"
 
 #: includes/Admin/options/settings-options.php:1951
 msgid "Form Input"
-msgstr ""
+msgstr "表单输入"
 
 #: includes/Admin/options/settings-options.php:1960
 #: includes/Admin/options/settings-options.php:1961
 msgid "Full name"
-msgstr ""
+msgstr "全名"
 
 #: includes/Admin/options/settings-options.php:1970
 #: templates/content-modal.php:32
 msgid "Email"
-msgstr ""
+msgstr "邮件"
 
 #: includes/Admin/options/settings-options.php:1971
 msgid "name@example.com"
-msgstr ""
+msgstr "name@example.com"
 
 #: includes/Admin/options/settings-options.php:1980
 #: includes/Admin/options/settings-options.php:1981
 #: templates/content-modal.php:35
 msgid "Subject"
-msgstr ""
+msgstr "主题"
 
 #: includes/Admin/options/settings-options.php:1990
 #: templates/content-modal.php:38
 msgid "Message"
-msgstr ""
+msgstr "信息"
 
 #: includes/Admin/options/settings-options.php:1991
 msgid "Write Your Message"
-msgstr ""
+msgstr "写下您的信息"
 
 #: includes/Admin/options/settings-options.php:2000
 #: includes/Admin/options/settings-options.php:2037
 msgid "Submit Button"
-msgstr ""
+msgstr "提交按钮"
 
 #: includes/Admin/options/settings-options.php:2001
 msgid "Send Message"
-msgstr ""
+msgstr "发送信息"
 
 #: includes/Admin/options/settings-options.php:2015
 msgid "Icon Color"
-msgstr ""
+msgstr "图标颜色"
 
 #: includes/Admin/options/settings-options.php:2022
 msgid "Header Background"
-msgstr ""
+msgstr "标题背景"
 
 #: includes/Admin/template/child-docs.php:19
 msgid "All articles"
-msgstr ""
+msgstr "所有文章"
 
 #: includes/Admin/template/child-docs.php:23
 msgid "Public"
-msgstr ""
+msgstr "公开"
 
 #: includes/Admin/template/child-docs.php:27
 msgid "Private"
-msgstr ""
+msgstr "私有"
 
 #: includes/Admin/template/child-docs.php:31
 msgid "Protected"
-msgstr ""
+msgstr "受保护"
 
 #: includes/Admin/template/child-docs.php:35
 msgid "Draft"
-msgstr ""
+msgstr "草稿"
 
 #: includes/Admin/template/child-docs.php:95
 #: includes/Admin/template/child-docs.php:236
 #: includes/Admin/template/child-docs.php:365
 msgid "Hold the mouse and drag to move this doc."
-msgstr ""
+msgstr "按住鼠标并拖动以移动此文档。"
 
 #: includes/Admin/template/child-docs.php:133
 #: includes/Admin/template/child-docs.php:272
 #: includes/Admin/template/child-docs.php:398
 #: includes/Admin/template/parent-docs.php:109
 msgid "Duplicate this doc with the child docs."
-msgstr ""
+msgstr "将此文档与子文档复制。"
 
 #: includes/Admin/template/child-docs.php:142
 #: includes/Admin/template/child-docs.php:281
 msgid "Add new doc under this doc"
-msgstr ""
+msgstr "在此文档下添加新文档"
 
 #: includes/Admin/template/child-docs.php:160
 #: includes/Admin/template/child-docs.php:297
 #: includes/Admin/template/child-docs.php:408
 #: includes/Admin/template/parent-docs.php:76
 msgid "View this doc item in new tab"
-msgstr ""
+msgstr "在新选项卡中查看此文档项目"
 
 #: includes/Admin/template/child-docs.php:168
 #: includes/Admin/template/child-docs.php:303
 #: includes/Admin/template/child-docs.php:414
 #: includes/Admin/template/parent-docs.php:80
 msgid "Move to Trash"
-msgstr ""
+msgstr "移到回收站"
 
 #: includes/Admin/template/child-docs.php:182
 #: includes/Admin/template/child-docs.php:316
@@ -1927,14 +1940,13 @@ msgstr ""
 #, php-format
 msgid "%d Positive vote, "
 msgid_plural "%d Positive votes and "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 赞成票， "
 
 #: includes/Admin/template/child-docs.php:182
 #: includes/Admin/template/child-docs.php:316
 #: includes/Admin/template/child-docs.php:427
 msgid "No Positive votes, "
-msgstr ""
+msgstr "没有赞成票， "
 
 #: includes/Admin/template/child-docs.php:183
 #: includes/Admin/template/child-docs.php:317
@@ -1942,450 +1954,449 @@ msgstr ""
 #, php-format
 msgid "%d Negative vote found."
 msgid_plural "%d Negative votes found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 发现反对票。"
 
 #: includes/Admin/template/child-docs.php:183
 #: includes/Admin/template/child-docs.php:317
 #: includes/Admin/template/child-docs.php:428
 msgid "No Negative votes."
-msgstr ""
+msgstr "没有反对票。"
 
 #: includes/Admin/template/child-docs.php:190
 #: includes/Admin/template/child-docs.php:324
 #: includes/Admin/template/child-docs.php:435
 msgid "No rates"
-msgstr ""
+msgstr "无评级"
 
 #: includes/Admin/template/child-docs.php:458
 msgid "Add Section"
-msgstr ""
+msgstr "添加部分"
 
 #: includes/Admin/template/header.php:7
 msgid "Documentations"
-msgstr ""
+msgstr "文档"
 
 #: includes/Admin/template/header.php:20
 msgid "Search for"
-msgstr ""
+msgstr "搜索"
 
 #: includes/Admin/template/header.php:29
 msgid "Go to Classic UI"
-msgstr ""
+msgstr "转到经典 UI"
 
 #: includes/Admin/template/header.php:30
 msgid "Classic UI"
-msgstr ""
+msgstr "经典 UI"
 
 #: includes/Admin/template/header.php:35
 msgid "Central settings page"
-msgstr ""
+msgstr "中央设置页面"
 
 #: includes/Admin/template/header.php:37
 msgid "Settings Icon"
-msgstr ""
+msgstr "设置图标"
 
 #: includes/Admin/template/header.php:44
 msgid "View, manage, restore the trashed docs"
-msgstr ""
+msgstr "查看、管理、还原已丢弃的文档"
 
 #: includes/Admin/template/header.php:58
 msgid "Notifications"
-msgstr ""
+msgstr "通知"
 
 #: includes/Admin/template/header.php:60
 msgid "Notify Icon"
-msgstr ""
+msgstr "通知图标"
 
 #: includes/Admin/template/header.php:61
 msgid "Pro Icon"
-msgstr ""
+msgstr "专业图标"
 
 #: includes/Admin/template/parent-docs.php:32
 msgid "Public Doc"
-msgstr ""
+msgstr "公共文档"
 
 #: includes/Admin/template/parent-docs.php:42
 msgid "Drafted Doc"
-msgstr ""
+msgstr "草稿文档"
 
 #: includes/Admin/template/parent-docs.php:48
 msgid "Password Protected Doc"
-msgstr ""
+msgstr "密码保护的文档"
 
 #: includes/Admin/template/parent-docs.php:69
 msgid "Edit this doc"
-msgstr ""
+msgstr "编辑此文档"
 
 #: includes/Admin/template/parent-docs.php:111
 msgid "Duplicate"
-msgstr ""
+msgstr "复制"
 
 #: includes/Admin/template/parent-docs.php:113
 msgid "Docs visibility"
-msgstr ""
+msgstr "文档可见性"
 
 #: includes/Admin/template/parent-docs.php:115
 msgid "Visibility"
-msgstr ""
+msgstr "可见性"
 
 #: includes/Admin/template/parent-docs.php:117
 msgid "Docs sidebar"
-msgstr ""
+msgstr "文档边栏"
 
 #: includes/Admin/template/parent-docs.php:119
 msgid "Sidebar"
-msgstr ""
+msgstr "侧边栏"
 
 #: includes/Frontend/Ajax.php:36
 msgid "Sorry, you've already recorded your feedback!"
-msgstr ""
+msgstr "抱歉，您已经做过反馈！"
 
 #: includes/Frontend/Ajax.php:60
 msgid "Thanks for your feedback!"
-msgstr ""
+msgstr "感谢您的反馈！"
 
 #: includes/Frontend/Ajax.php:156
 msgid "No result found!"
-msgstr ""
+msgstr "没有发现结果！"
 
 #: includes/Frontend/Frontend.php:278
 msgid " - Previous"
-msgstr ""
+msgstr "-以前"
 
 #: includes/Frontend/Frontend.php:291
 msgid "Next - "
-msgstr ""
+msgstr "下一页"
 
 #: includes/Frontend/Mailer.php:28
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "请输入有效的电子邮件地址。"
 
 #: includes/Frontend/Mailer.php:35
 msgid "Please provide a subject line."
-msgstr ""
+msgstr "请输入邮件主题。"
 
 #: includes/Frontend/Mailer.php:39
 msgid "Please provide the message details."
-msgstr ""
+msgstr "请提供邮件详细信息。"
 
 #: includes/Frontend/Mailer.php:47
 #, php-format
 msgid "[%1$s] New Doc Feedback: \"%2$s\""
-msgstr ""
+msgstr "[%1$s] 有新的文档反馈： \"%2$s\""
 
 #: includes/Frontend/Mailer.php:49
 #, php-format
 msgid "New feedback on your doc \"%s\""
-msgstr ""
+msgstr "你的文档 \"%s\" 有新的反馈"
 
 #: includes/Frontend/Mailer.php:50
 #, php-format
 msgid "Author: %1$s"
-msgstr ""
+msgstr "作者：%1$s"
 
 #: includes/Frontend/Mailer.php:51
 #, php-format
 msgid "Email: %s"
-msgstr ""
+msgstr "邮箱：%s"
 
 #: includes/Frontend/Mailer.php:52
 #, php-format
 msgid "Feedback: %s"
-msgstr ""
+msgstr "反馈： %s"
 
 #: includes/Frontend/Mailer.php:53
 #, php-format
 msgid "Doc Permalink: %s"
-msgstr ""
+msgstr "文档链接：  %s"
 
 #: includes/Frontend/Mailer.php:54
 #, php-format
 msgid "Edit Doc: %s"
-msgstr ""
+msgstr "编辑文档：%s"
 
 #: includes/Frontend/Shortcode.php:49
 msgid "View Details"
-msgstr ""
+msgstr "查看详情"
 
 #. translators: %d: ID of a post
 #: includes/Frontend/Walker_Docs.php:140 includes/Walker_Docs_Onepage.php:122
 #: includes/Walker_Docs_Onepage_Fullscreen.php:129
 #, php-format
 msgid "#%d (no title)"
-msgstr ""
+msgstr "#%d (无标题)"
 
 #: includes/Frontend/Walker_Docs.php:147 includes/Walker_Docs_Onepage.php:127
 msgid "Folder icon closed"
-msgstr ""
+msgstr "文件夹图标已关闭"
 
 #: includes/Frontend/Walker_Docs.php:147
 msgid "Folder open icon"
-msgstr ""
+msgstr "文件夹打开图标"
 
 #: includes/Frontend/post-views.php:26
 msgid "views"
-msgstr ""
+msgstr "浏览"
 
 #: includes/Frontend/post-views.php:72
 msgid ""
 "eazydocs_view_log table not found, please deactivate and activate the plugin "
 "again"
-msgstr ""
+msgstr "eazydocs_view_log找不到表，请停用并重新激活插件"
 
 #: includes/Frontend/search-counts.php:9
 msgid "search count"
-msgstr ""
+msgstr "搜索计数"
 
 #: includes/Frontend/search-counts.php:28
 msgid "Search Count"
-msgstr ""
+msgstr "搜索计数"
 
 #: includes/One_page_doc_type.php:35
 msgctxt "Post Type General Name"
 msgid "OnePage Docs"
-msgstr ""
+msgstr "单页文档"
 
 #: includes/One_page_doc_type.php:36
 msgctxt "Post Type Singular Name"
 msgid "OnePage Doc"
-msgstr ""
+msgstr "单页文档"
 
 #: includes/One_page_doc_type.php:37
 msgid "EazyDocs OnePage"
-msgstr ""
+msgstr "EazyDocs单页文档"
 
 #: includes/One_page_doc_type.php:38 includes/Post_Types.php:42
 msgid "Parent Doc"
-msgstr ""
+msgstr "父文档"
 
 #: includes/One_page_doc_type.php:39 includes/Post_Types.php:43
 msgid "All Docs"
-msgstr ""
+msgstr "所有文档"
 
 #: includes/One_page_doc_type.php:40 includes/Post_Types.php:44
 msgid "View Doc"
-msgstr ""
+msgstr "查看文档"
 
 #: includes/One_page_doc_type.php:42 includes/Post_Types.php:46
 msgid "Add New"
-msgstr ""
+msgstr "新增"
 
 #: includes/One_page_doc_type.php:44 includes/Post_Types.php:48
 msgid "Update Doc"
-msgstr ""
+msgstr "更新文档"
 
 #: includes/One_page_doc_type.php:45 includes/Post_Types.php:49
 msgid "Search Doc"
-msgstr ""
+msgstr "搜索文档"
 
 #: includes/One_page_doc_type.php:46 includes/Post_Types.php:50
 msgid "Not Doc found"
-msgstr ""
+msgstr "未找到文档"
 
 #: includes/One_page_doc_type.php:47 includes/Post_Types.php:51
 msgid "Not found in Trash"
-msgstr ""
+msgstr "在回收站中找不到"
 
 #: includes/Post_Types.php:39
 msgctxt "Post Type General Name"
 msgid "Docs"
-msgstr ""
+msgstr "文档"
 
 #: includes/Post_Types.php:40
 msgctxt "Post Type Singular Name"
 msgid "Doc"
-msgstr ""
+msgstr "文档"
 
 #: includes/Post_Types.php:89
 msgctxt "Taxonomy General Name"
 msgid "Tags"
-msgstr ""
+msgstr "标签"
 
 #: includes/Post_Types.php:90
 msgctxt "Taxonomy Singular Name"
 msgid "Tag"
-msgstr ""
+msgstr "标签"
 
 #: includes/Post_Types.php:92
 msgid "All Tags"
-msgstr ""
+msgstr "所有标签"
 
 #: includes/Post_Types.php:93
 msgid "Parent Tag"
-msgstr ""
+msgstr "父标签"
 
 #: includes/Post_Types.php:94
 msgid "Parent Tag:"
-msgstr ""
+msgstr "父标签："
 
 #: includes/Post_Types.php:95
 msgid "New Tag"
-msgstr ""
+msgstr "新标签"
 
 #: includes/Post_Types.php:96
 msgid "Add New Item"
-msgstr ""
+msgstr "添加新项目"
 
 #: includes/Post_Types.php:97
 msgid "Edit Tag"
-msgstr ""
+msgstr "编辑标签"
 
 #: includes/Post_Types.php:98
 msgid "Update Tag"
-msgstr ""
+msgstr "更新标签"
 
 #: includes/Post_Types.php:99
 msgid "View Tag"
-msgstr ""
+msgstr "查看标签"
 
 #: includes/Post_Types.php:100
 msgid "Separate items with commas"
-msgstr ""
+msgstr "用逗号分隔项目"
 
 #: includes/Post_Types.php:101
 msgid "Add or remove items"
-msgstr ""
+msgstr "添加或删除项目"
 
 #: includes/Post_Types.php:102 includes/Post_Types.php:149
 msgid "Choose from the most used"
-msgstr ""
+msgstr "从最常用的选择"
 
 #: includes/Post_Types.php:103
 msgid "Popular Tags"
-msgstr ""
+msgstr "热门标签"
 
 #: includes/Post_Types.php:104
 msgid "Search Tags"
-msgstr ""
+msgstr "搜索标签"
 
 #: includes/Post_Types.php:105 includes/Post_Types.php:152
 msgid "Not Found"
-msgstr ""
+msgstr "未找到"
 
 #: includes/Post_Types.php:106
 msgid "No items"
-msgstr ""
+msgstr "没有项目"
 
 #: includes/Post_Types.php:107
 msgid "Tags list"
-msgstr ""
+msgstr "标签列表"
 
 #: includes/Post_Types.php:108
 msgid "Tags list navigation"
-msgstr ""
+msgstr "标签列表导航"
 
 #: includes/Post_Types.php:136
 msgctxt "Taxonomy General Name"
 msgid "Badge"
-msgstr ""
+msgstr "徽章"
 
 #: includes/Post_Types.php:137
 msgctxt "Taxonomy Singular Name"
 msgid "Badge"
-msgstr ""
+msgstr "徽章"
 
 #: includes/Post_Types.php:138
 msgid "Badge"
-msgstr ""
+msgstr "徽章"
 
 #: includes/Post_Types.php:139
 msgid "All Badges"
-msgstr ""
+msgstr "所有徽章"
 
 #: includes/Post_Types.php:140
 msgid "Parent Badge"
-msgstr ""
+msgstr "父级徽章"
 
 #: includes/Post_Types.php:141
 msgid "Parent Badge:"
-msgstr ""
+msgstr "父级徽章："
 
 #: includes/Post_Types.php:142
 msgid "New Badge"
-msgstr ""
+msgstr "新徽章"
 
 #: includes/Post_Types.php:143
 msgid "Add New Badge"
-msgstr ""
+msgstr "添加新徽章"
 
 #: includes/Post_Types.php:144
 msgid "Edit Badge"
-msgstr ""
+msgstr "编辑徽章"
 
 #: includes/Post_Types.php:145
 msgid "Update Badge"
-msgstr ""
+msgstr "更新徽章"
 
 #: includes/Post_Types.php:146
 msgid "View Badge"
-msgstr ""
+msgstr "查看徽章"
 
 #: includes/Post_Types.php:147
 msgid "Separate Badges with commas"
-msgstr ""
+msgstr "用逗号分隔徽章"
 
 #: includes/Post_Types.php:148
 msgid "Add or remove Badges"
-msgstr ""
+msgstr "添加或删除徽章"
 
 #: includes/Post_Types.php:150
 msgid "Popular Badges"
-msgstr ""
+msgstr "热门徽章"
 
 #: includes/Post_Types.php:151
 msgid "Search Badges"
-msgstr ""
+msgstr "搜索徽章"
 
 #: includes/Post_Types.php:153
 msgid "No Badges"
-msgstr ""
+msgstr "无徽章"
 
 #: includes/Post_Types.php:154
 msgid "Badges list"
-msgstr ""
+msgstr "徽章列表"
 
 #: includes/Post_Types.php:155
 msgid "Badges list navigation"
-msgstr ""
+msgstr "徽章列表导航"
 
 #: includes/Post_Types.php:156
 msgid "Back to Badges"
-msgstr ""
+msgstr "返回徽章"
 
 #: includes/Post_Types.php:157
 msgid "Badge updated"
-msgstr ""
+msgstr "徽章已更新"
 
 #: includes/Walker_Docs_Onepage.php:127
 msgid "Folder icon"
-msgstr ""
+msgstr "“文件夹”图标"
 
 #: includes/Walker_Docs_Onepage.php:251
 #: includes/Walker_Docs_Onepage_Fullscreen.php:242 includes/functions.php:163
 msgid "Pages"
-msgstr ""
+msgstr "页面"
 
 #: includes/functions.php:143
 msgid " minute"
-msgstr ""
+msgstr " 分"
 
 #: includes/functions.php:145
 msgid " minutes"
-msgstr ""
+msgstr " 分钟"
 
 #: includes/functions.php:295 includes/functions.php:359
 #: includes/functions.php:425
 msgid "Docs"
-msgstr ""
+msgstr "文档"
 
 #: includes/functions.php:625
 msgid "Make OnePage Doc"
-msgstr ""
+msgstr "制作一页文档"
 
 #: includes/functions.php:633
 msgid "View OnePage Doc"
-msgstr ""
+msgstr "查看单页文档"
 
 #: includes/functions.php:798
 #, php-format
@@ -2393,270 +2404,272 @@ msgid ""
 "<p class=\"ezd-text-support\"> <a href=\"%s\" target=\"_blank\">Manage "
 "Reusable blocks</a></p>"
 msgstr ""
+"<p class=\"ezd-text-support\"><a href=\"%s\" target=\"_blank\">管理可重用块</"
+"a></p>"
 
 #: includes/functions.php:876
 msgid "Enter Password & Read this Doc"
-msgstr ""
+msgstr "输入密码并阅读此文档"
 
 #: includes/functions.php:877
 msgid ""
 "This content is password protected. To view it please enter your password "
 "below:"
-msgstr ""
+msgstr "此内容受密码保护。 要查看它，请在下面输入您的密码："
 
 #: includes/functions.php:904 templates/ezd-login.php:38
 msgid "Password"
-msgstr ""
+msgstr "密码"
 
 #: includes/functions.php:915
 msgid "Unlock"
-msgstr ""
+msgstr "解锁"
 
 #: includes/functions.php:1021
 msgid "H1"
-msgstr ""
+msgstr "H1"
 
 #: includes/functions.php:1022
 msgid "H2"
-msgstr ""
+msgstr "H2"
 
 #: includes/functions.php:1023
 msgid "H3"
-msgstr ""
+msgstr "H3"
 
 #: includes/functions.php:1024
 msgid "H4"
-msgstr ""
+msgstr "H4"
 
 #: includes/functions.php:1025
 msgid "H5"
-msgstr ""
+msgstr "H5"
 
 #: includes/functions.php:1026
 msgid "H6"
-msgstr ""
+msgstr "H6"
 
 #: includes/functions.php:1027
 msgid "Div"
-msgstr ""
+msgstr "Div"
 
 #: includes/functions.php:1028
 msgid "Span"
-msgstr ""
+msgstr "跨度"
 
 #: includes/functions.php:1029
 msgid "Paragraph"
-msgstr ""
+msgstr "段落"
 
 #: includes/functions.php:1066 includes/functions.php:1093
 msgid "Docs without tab"
-msgstr ""
+msgstr "不带选项卡的文档"
 
 #: includes/functions.php:1070 includes/functions.php:1097
 msgid "Tabbed with doc lists"
-msgstr ""
+msgstr "选项卡带文档列表"
 
 #: includes/functions.php:1074 includes/functions.php:1101
 msgid "Flat tabbed docs"
-msgstr ""
+msgstr "平面选项卡文档"
 
 #: includes/functions.php:1078 includes/functions.php:1105
 msgid "Boxed Style"
-msgstr ""
+msgstr "盒子风格"
 
 #: includes/functions.php:1082 includes/functions.php:1109
 msgid "Book Chapters / Tutorials"
-msgstr ""
+msgstr "书籍章节/教程"
 
 #: includes/functions.php:1086 includes/functions.php:1113
 msgid "List Style"
-msgstr ""
+msgstr "列表样式"
 
 #: includes/notices/asking-for-review.php:14
 msgid "Give EazyDocs a review"
-msgstr ""
+msgstr "给EazyDocs一个评论"
 
 #: includes/notices/asking-for-review.php:16
 msgid ""
 "Thank you for choosing EazyDocs. We hope you love it. Could you take a "
 "couple of seconds posting a nice review to share your happy experience?"
 msgstr ""
+"感谢您选择EazyDocs。我们希望你喜欢它。你能花几秒钟发布一个很好的评论来分享你"
+"的快乐经历吗？"
 
 #: includes/notices/asking-for-review.php:19
 msgid "We will be forever grateful. Thank you in advance."
-msgstr ""
+msgstr "我们将永远感激不尽。提前谢谢你。"
 
 #: includes/notices/asking-for-review.php:22
 msgid "Rate now"
-msgstr ""
+msgstr "点赞+1"
 
 #: includes/notices/asking-for-review.php:23
 msgid "Later"
-msgstr ""
+msgstr "稍后"
 
 #: includes/notices/asking-for-review.php:24
 msgid "Already did"
-msgstr ""
+msgstr "已经做过"
 
 #: includes/notices/deactivate-other-doc-plugins.php:13
 #: includes/notices/deactivate-other-doc-plugins.php:40
 msgid "We have detected another Knowledge Base Plugin installed in this site."
-msgstr ""
+msgstr "我们检测到此站点中安装了另一个知识库插件。"
 
 #: includes/notices/deactivate-other-doc-plugins.php:15
 #: includes/notices/deactivate-other-doc-plugins.php:42
 msgid ""
 "For EazyDocs to work efficiently, you need to migrate the data and "
 "deactivate that plugin to avoid conflict."
-msgstr ""
+msgstr "为了使 EazyDocs 高效工作，您需要迁移数据并停用该插件以避免冲突。"
 
 #: includes/notices/deactivate-other-doc-plugins.php:21
 msgid "Deactivate weDocs"
-msgstr ""
+msgstr "停用 weDocs"
 
 #: includes/notices/deactivate-other-doc-plugins.php:48
 msgid "Deactivate BetterDocs"
-msgstr ""
+msgstr "停用 BetterDocs"
 
 #: includes/notices/update-database.php:18
 msgid ""
 "EazyDocs database need an update. Please click Update button to update your "
 "database."
-msgstr ""
+msgstr "EazyDocs数据库需要更新。请点击 更新 按钮更新您的数据库。"
 
 #: includes/notices/update-database.php:21
 msgid "Update Database"
-msgstr ""
+msgstr "更新数据库"
 
 #: includes/notices/update-database.php:82
 msgid "EazyDocs database updated successfully."
-msgstr ""
+msgstr "EazyDocs数据库已成功更新。"
 
 #: includes/sidebars.php:9
 msgid "Doc Right Sidebar"
-msgstr ""
+msgstr "医生右侧栏"
 
 #: includes/sidebars.php:10
 msgid "Add widgets here for the Right Sidebar of the Doc pages"
-msgstr ""
+msgstr "在此处为文档页面的右侧边栏添加小工具"
 
 #: src/search-banner/search-banner.php:20 templates/search-banner.php:17
 msgid "Search here"
-msgstr ""
+msgstr "在这里搜索"
 
 #: src/shortcode/edit.js:61
 msgid "Filters"
-msgstr ""
+msgstr "筛选"
 
 #: src/shortcode/edit.js:66
 msgid "Columns"
-msgstr ""
+msgstr "列"
 
 #: src/shortcode/edit.js:74
 msgid "Docs Show Count"
-msgstr ""
+msgstr "文档显示计数"
 
 #: src/shortcode/edit.js:82
 msgid "How many docs to display."
-msgstr ""
+msgstr "要显示的文档数。"
 
 #: src/shortcode/edit.js:86
 msgid "Docs Article Count"
-msgstr ""
+msgstr "文档文章计数"
 
 #: src/shortcode/edit.js:94
 msgid "Articles/child-docs show under every Docs."
-msgstr ""
+msgstr "文章/子文档显示在每个文档下方。"
 
 #: src/shortcode/edit.js:100
 msgid "Docs to Show"
-msgstr ""
+msgstr "要显示的文档"
 
 #: src/shortcode/edit.js:109
 msgid "Docs Not to Show"
-msgstr ""
+msgstr "不显示的文档"
 
 #: src/shortcode/edit.js:116
 msgid "Button/link to get the full docs"
-msgstr ""
+msgstr "按钮/链接以获取完整文档"
 
 #: src/shortcode/edit.js:117
 msgid "More Button Label"
-msgstr ""
+msgstr "更多按钮标签"
 
 #: templates/content-feedback.php:10
 #, php-format
 msgid "%d person found this useful"
 msgid_plural "%d persons found this useful"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 个人觉得该文章有用"
 
 #: templates/content-feedback.php:10 templates/content-feedback.php:11
 msgid "No votes yet"
-msgstr ""
+msgstr "目前还没有人表态"
 
 #: templates/content-feedback.php:11
 #, php-format
 msgid "%d person found this not useful"
 msgid_plural "%d persons found this not useful"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 个人觉得该文章没用"
 
 #: templates/content-feedback.php:23
 msgid "Tagged:"
-msgstr ""
+msgstr "标签："
 
 #: templates/content-feedback.php:61
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: templates/content-feedback.php:67
 msgid "No"
-msgstr ""
+msgstr "不"
 
 #: templates/content-modal.php:28
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: templates/content-modal.php:43
 msgid "Send"
-msgstr ""
+msgstr "发送"
 
 #: templates/content-related.php:13
 msgid "Recently Viewed Articles"
-msgstr ""
+msgstr "最近查看的文章"
 
 #: templates/docs-sidebar.php:59
 msgid "Filter"
-msgstr ""
+msgstr "筛选"
 
 #: templates/ezd-login.php:37
 msgid "Username"
-msgstr ""
+msgstr "用户名"
 
 #: templates/single-doc-content.php:20
 msgid "Hide category"
-msgstr ""
+msgstr "隐藏类别"
 
 #: templates/single-doc-content.php:21
 msgid "Show category"
-msgstr ""
+msgstr "显示分类"
 
 #: templates/single-doc-content.php:38
 msgid "Estimated reading: "
-msgstr ""
+msgstr "预计阅读时间"
 
 #: templates/single-doc-content.php:91
 msgid "Search By Email"
-msgstr ""
+msgstr "通过电子邮件搜索"
 
 #: templates/single-doc-content.php:186
 msgid "Loading..."
-msgstr ""
+msgstr "载入中..."
 
 #: templates/single-doc-content.php:230
 msgid "Docs:"
-msgstr ""
+msgstr "文档:"
 
 #: templates/single-docs.php:33
 #, php-format
@@ -2665,53 +2678,57 @@ msgstr ""
 
 #: templates/tools/edit-add-doc.php:15
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 #: templates/tools/font-switcher.php:12
 msgid "Decrease font size"
-msgstr ""
+msgstr "缩小字体"
 
 #: templates/tools/font-switcher.php:13
 msgid "A-"
-msgstr ""
+msgstr "A-"
 
 #: templates/tools/font-switcher.php:15
 msgid "Default font size"
-msgstr ""
+msgstr "默认字体大小"
 
 #: templates/tools/font-switcher.php:16
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: templates/tools/font-switcher.php:18
 msgid "Increase font size"
-msgstr ""
+msgstr "增加字体大小"
 
 #: templates/tools/font-switcher.php:19
 msgid "A+"
-msgstr ""
+msgstr "A+"
 
 #: templates/tools/share-btns.php:15
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 #: templates/tools/share-btns.php:27
 msgid "Check out this doc"
-msgstr ""
+msgstr "查看此文档"
 
 #: templates/tools/share-btns.php:49
 msgid "Clipboard Icon"
-msgstr ""
+msgstr "剪贴板图标"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
 msgid "https://spider-themes.net/eazydocs"
-msgstr ""
+msgstr "https://spider-themes.net/eazydocs"
 
 #. Description of the plugin/theme
 msgid "A powerful & beautiful documentation builder plugin."
-msgstr ""
+msgstr "一个强大而漂亮的文档构建器插件。"
 
 #. Author of the plugin/theme
 msgid "spider-themes"
-msgstr ""
+msgstr "蜘蛛主题"
+
+#, php-format
+#~ msgid "%s"
+#~ msgstr "%s"
