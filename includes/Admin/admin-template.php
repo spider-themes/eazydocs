@@ -1,7 +1,7 @@
 <?php
 $depth_one_parents = [];
 $depth_two_parents = [];
-$posts             = get_posts( [ 'post_type' => 'docs' ] );
+$posts             = get_posts( [ 'post_type' => 'docs',  'post_status' => ['all'] ] );
 $docs_num          = count( $posts );
 ?>
 <div class="wrap">
