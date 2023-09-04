@@ -54,6 +54,7 @@ endif;
                             ?>
                             <span class="views sep contributed_users">
                                 <span class="ezdoc_contributed_user_avatar">
+                                    <span class="contributed_user_list"> 
                                 <?php
                                 echo esc_html( $contributor_meta_title );
                                 do_action('ezd_doc_contributor', get_the_ID());
@@ -77,6 +78,7 @@ endif;
                                         <?php
                                     }
                                 }
+                                echo '</span>';
 
                                 if ( current_user_can('administrator') ) :
                                     ?>
@@ -130,7 +132,7 @@ endif;
                                                                 <span> <?php echo $available_user->user_email ?? ''; ?> </span>
                                                             </li>
                                                             <li>
-                                                                <a class="circle-btn ezd_contribute_delete" data-contributor-delete="<?php echo esc_attr($ezd_doc_contributor); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
+                                                                <a data_name="<?php echo $available_user->display_name ?? ''; ?>" class="test circle-btn ezd_contribute_delete" data-contributor-delete="<?php echo esc_attr($ezd_doc_contributor); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
                                                                 &times;
                                                                 </a>
                                                             </li>
@@ -161,7 +163,7 @@ endif;
                                                     ?>
                                                     <ul class="users_wrap_item <?php echo esc_attr('to-add-user-'.$add_contributor->ID); ?>" id="<?php echo esc_attr('to-add-user-'.$add_contributor->ID); ?>">
                                                         <li>
-                                                            <a href='<?php echo get_author_posts_url($add_contributor->ID); ?>'>
+                                                            <a data_name="<?php echo get_the_author_meta( 'display_name', $add_contributor->ID ); ?>" href='<?php echo get_author_posts_url($add_contributor->ID); ?>'>
                                                                 <?php echo get_avatar($add_contributor, '35'); ?>
                                                             </a>
                                                         </li>
@@ -174,7 +176,7 @@ endif;
                                                             </span>
                                                         </li>
                                                         <li>
-                                                            <a class="circle-btn ezd_contribute_add" data-contributor-add="<?php echo esc_attr($add_contributor->ID); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
+                                                            <a data_name="<?php echo get_the_author_meta( 'display_name', $add_contributor->ID ); ?>" class="circle-btn ezd_contribute_add" data-contributor-add="<?php echo esc_attr($add_contributor->ID); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
                                                                 &plus;
                                                             </a>
                                                         </li>
