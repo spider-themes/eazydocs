@@ -1687,6 +1687,7 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'contributor_meta_visibility', '==', true )
 			)
 		),
 
@@ -1698,6 +1699,7 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'contributor_meta_visibility', '==', true )
 			)
 		),
 
@@ -1713,6 +1715,63 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'contributor_meta_visibility', '==', true )
+			)
+		),
+		
+		array(
+			'id'         => 'contributor_load_more',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Load More By Ajax', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Enable / Disable the Load more users with scrolling', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'text_width' => 70,
+			'default'    => false,
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'contributor_meta_visibility', '==', true )
+			)
+		),
+		
+		array(
+			'id'         => 'contributor_load_more_text',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Load More Text', 'eazydocs' ),
+			'default'    => esc_html__( 'Loading', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'contributor_meta_visibility', '==', true ),
+				array( 'contributor_load_more', '==', true )
+			)
+		),
+		
+		array(
+			'id'         => 'contributor_load_per_scroll',
+			'type'       => 'number',
+			'title'      => esc_html__( 'Load Per Scroll', 'eazydocs' ),
+			'default'    => esc_html__( '3', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'contributor_meta_visibility', '==', true ),
+				array( 'contributor_load_more', '==', true )
+			)
+		),
+		
+		array(
+			'id'         => 'contributor_to_add',
+			'type'       => 'number',
+			'title'      => esc_html__( 'Show User Number', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Number of users that can be added', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'default'    => 3,
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'contributor_meta_visibility', '==', true ),				
+				array( 'contributor_load_more', '!=', true )
 			)
 		)
 	]
