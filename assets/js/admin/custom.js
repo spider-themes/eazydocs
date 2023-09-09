@@ -627,8 +627,10 @@ var config = {
     }
 };
 
-for (let i = 0; i < docContainer.length; i++) {
-    var mixer1 = mixitup(docContainer[i], config);
+if ( docContainer.length ) {
+    for ( let i = 0; i < docContainer.length; i++ ) {
+        var mixer1 = mixitup(docContainer[i], config);
+    }
 }
 
 /**

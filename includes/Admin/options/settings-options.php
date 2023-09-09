@@ -1427,7 +1427,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Footnotes', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
-
 		array(
 			'id'         => 'is_footnotes_heading',
 			'type'       => 'switcher',
@@ -1448,6 +1447,7 @@ CSF::createSection( $prefix, array(
 			),
 			'default'    => esc_html__( 'Footnotes', 'eazydocs' ),
 		),
+
 		array(
 			'id'       => 'footnotes_column',
 			'type'     => 'select',
@@ -1463,7 +1463,20 @@ CSF::createSection( $prefix, array(
 			'chosen'   => true,
 			'multiple' => false,
 			'default'  => '1'
-		)
+		),
+
+		array(
+			'id'         => 'ezdocs_footnote_shortcode1',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Footnote Shortcode', 'eazydocs' ),
+			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display footnotes. %s Learn how to create Footnotes %s', 'eazydocs' ), '<a href="https://tinyurl.com/2ewlorze" target="_blank">', '</a>' ),
+			'desc'       => esc_html__( 'See the shortcode example with the available attributes', 'eazydocs' ) . '<br><code>[reference number="1"]Tooltip Content[/reference]</code>',
+			'default'    => '[reference]',
+			'attributes' => array(
+				'readonly' => 'readonly',
+			),
+			'class'      => 'eazydocs-pro-notice'
+		),
 	]
 ) );
 
@@ -1496,7 +1509,8 @@ CSF::createSection( $prefix, array(
 			'id'         => 'conditional_data_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
-			'subtitle'   => sprintf( esc_html__( 'Know the usage of this shortcode %s here %s', 'eazydocs' ), '<a href="https://tinyurl.com/24d9rw72" target="_blank">', '</a>' ),
+			'subtitle'   => sprintf( esc_html__( 'Know the usage of this shortcode %s here %s', 'eazydocs' ),
+				'<a href="https://tinyurl.com/24d9rw72" target="_blank">', '</a>' ),
 			'default'    => '[conditional_data]',
 			'attributes' => array(
 				'readonly' => 'readonly',
@@ -1520,8 +1534,10 @@ CSF::createSection( $prefix, array(
 			'id'         => 'ezdocs_footnote_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Footnote Shortcode', 'eazydocs' ),
-			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display footnotes. %s Learn how to create Footnotes %s', 'eazydocs' ), '<a href="https://tinyurl.com/2ewlorze" target="_blank">', '</a>' ),
-			'desc'       => esc_html__( 'See the shortcode example with the available attributes', 'eazydocs' ) . '<br><code>[reference number="1"]Tooltip Content[/reference]</code>',
+			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display footnotes. %s Learn how to create Footnotes %s', 'eazydocs' ),
+				'<a href="https://tinyurl.com/2ewlorze" target="_blank">', '</a>' ),
+			'desc'       => esc_html__( 'See the shortcode example with the available attributes', 'eazydocs' )
+			                . '<br><code>[reference number="1"]Tooltip Content[/reference]</code>',
 			'default'    => '[reference]',
 			'attributes' => array(
 				'readonly' => 'readonly',
@@ -1532,8 +1548,10 @@ CSF::createSection( $prefix, array(
 			'id'         => 'ezdocs_embed_post_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Embed Post Shortcode', 'eazydocs' ),
-			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display a doc inside another doc. Know the usage of this shortcode %s here %s', 'eazydocs' ), '<a href="https://tinyurl.com/bde27yn4" target="_blank">', '</a>' ),
-			'desc'       => esc_html__( 'See the shortcode with the available attributes.',  'eazydocs' ) . '<br><code>[embed_post id="POST_ID" limit="no" thumbnail="yes"]</code> <br>',
+			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display a doc inside another doc. Know the usage of this shortcode %s here %s',
+				'eazydocs' ), '<a href="https://tinyurl.com/bde27yn4" target="_blank">', '</a>' ),
+			'desc'       => esc_html__( 'See the shortcode with the available attributes.', 'eazydocs' )
+			                . '<br><code>[embed_post id="POST_ID" limit="no" thumbnail="yes"]</code> <br>',
 			'default'    => '[embed_post]',
 			'attributes' => array(
 				'readonly' => 'readonly',

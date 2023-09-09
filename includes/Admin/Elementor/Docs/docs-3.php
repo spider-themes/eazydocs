@@ -124,12 +124,11 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="row">
+                        <div class="d-items">
                             <?php
                             foreach ($main_doc['sections'] as $section) :
                                 ?>
-                                <div class="col-sm-6">
-                                    <div class="media documentation_item">
+                                <div class="media documentation_item">
                                         <div class="icon bs-sm">
                                             <?php
                                             if ( has_post_thumbnail($section->ID) ) {
@@ -154,9 +153,8 @@
                                                 ?>
                                             </p>
                                         </div>
-                                    </div>
-                                </div>
-                            <?php
+                            </div>
+                                <?php
                             endforeach;
                             ?>
                         </div>
