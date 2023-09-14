@@ -57,7 +57,7 @@ if ( ! empty ( $all_roles ) ) {
 }
 
 CSF::createOptions( $prefix, array(
-	'framework_title'    => 'EazyDocs',
+	'framework_title'    => esc_html__( 'EazyDocs', 'eazydocs' ) . ' <small> v' . EAZYDOCS_VERSION . '</small>',
 	'menu_title'         => esc_html__( 'Settings', 'eazydocs' ),
 	'menu_slug'          => 'eazydocs-settings',
 	'menu_type'          => 'submenu',
@@ -105,13 +105,13 @@ CSF::createSection( $prefix, array(
 			'default'     => '#4c4cf1',
 			'output'      => ':root',
 			'output_mode' => '--ezd_brand_color',
-		)
+		),
+
 	)
 ) );
 
-//
+
 // Docs Archive Fields
-//
 CSF::createSection( $prefix, array(
 	'id'     => 'docs_archive',
 	'title'  => esc_html__( 'Docs Archive', 'eazydocs' ),
@@ -336,7 +336,7 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'text_width' => 90,
 			'default'    => false,
-			'class'      => 'eazydocs-pro-notice active-theme-docy',
+			'class'      => 'eazydocs-pro-notice active-theme-eazydocs',
 		),
 
 		array(
@@ -533,7 +533,8 @@ CSF::createSection( $prefix, array(
 					'title' => 'Keyword #2',
 				),
 			),
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-pro-notice',
+            'button'     => esc_html__( 'Add New', 'eazydocs' ),
 		),
 
 		array(
@@ -587,7 +588,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'docs-page-title',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Docs Archive Page Title', 'eazydocs' ),
-			'default'    => 'Docs',
+			'default'    => esc_html__( 'Docs', 'eazydocs' ),
 			'dependency' => array(
 				'docs-breadcrumb',
 				'==',
@@ -964,6 +965,16 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-pro-notice active-theme-docly'
 		),
 
+        array(
+            'id'            => 'ezd_brand_color_dark',
+            'type'          => 'color',
+            'title'         => esc_html__( 'Frontend Brand Color (Dark)', 'eazydocs' ),
+            'subtitle'      => esc_html__( 'Accent Color for dark mode', 'eazydocs' ),
+            'output'        => ':root',
+            'output_mode'   => '--ezd_brand_color_dark',
+            'dependency'    => array( 'is_dark_switcher', '==', '1' ),
+        ),
+
 		array(
 			'id'       => 'toc_switcher',
 			'type'     => 'switcher',
@@ -1029,7 +1040,8 @@ CSF::createSection( $prefix, array(
 				),
 			),
 			'dependency' => array( 'is_conditional_dropdown', '==', '1' ),
-			'class'      => 'eazydocs-pro-notice active-theme'
+			'class'      => 'eazydocs-pro-notice active-theme',
+            'button'     => esc_html__( 'Add New', 'eazydocs' ),
 		),
 	)
 ) );
@@ -1736,7 +1748,7 @@ CSF::createSection( $prefix, array(
 				array( 'contributor_meta_visibility', '==', true )
 			)
 		),
-		
+
 		array(
 			'id'         => 'contributor_load_more',
 			'type'       => 'switcher',
@@ -1752,7 +1764,7 @@ CSF::createSection( $prefix, array(
 				array( 'contributor_meta_visibility', '==', true )
 			)
 		),
-		
+
 		array(
 			'id'         => 'contributor_load_more_text',
 			'type'       => 'text',
@@ -1765,7 +1777,7 @@ CSF::createSection( $prefix, array(
 				array( 'contributor_load_more', '==', true )
 			)
 		),
-		
+
 		array(
 			'id'         => 'contributor_load_per_scroll',
 			'type'       => 'number',
@@ -1778,7 +1790,7 @@ CSF::createSection( $prefix, array(
 				array( 'contributor_load_more', '==', true )
 			)
 		),
-		
+
 		array(
 			'id'         => 'contributor_to_add',
 			'type'       => 'number',
@@ -1788,7 +1800,7 @@ CSF::createSection( $prefix, array(
 			'default'    => 3,
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
-				array( 'contributor_meta_visibility', '==', true ),				
+				array( 'contributor_meta_visibility', '==', true ),
 				array( 'contributor_load_more', '!=', true )
 			)
 		)
@@ -1911,13 +1923,13 @@ CSF::createSection( $prefix, array(
 			'id'         => 'assistant_tab_settings',
 			'type'       => 'tabbed',
 			'class'      => 'eazydocs-pro-notice',
-			'title'      => 'Tab Settings',
+			'title'      => esc_html__( 'Tab Settings', 'eazydocs' ),
 			'dependency' => array(
 				array( 'assistant_visibility', '==', 'true' )
 			),
 			'tabs'       => array(
 				array(
-					'title'  => 'Knowledge Base',
+					'title'  => esc_html__( 'Knowledge Base', 'eazydocs' ),
 					'fields' => array(
 						array(
 							'id'         => 'kb_visibility',
@@ -1990,7 +2002,7 @@ CSF::createSection( $prefix, array(
 				),
 
 				array(
-					'title'  => 'Contact',
+					'title'  => esc_html__( 'Contact', 'eazydocs' ),
 					'fields' => array(
 						array(
 							'id'         => 'contact_visibility',
@@ -2084,7 +2096,7 @@ CSF::createSection( $prefix, array(
 				),
 
 				array(
-					'title'  => 'Color',
+					'title'  => esc_html__( 'Color', 'eazydocs' ),
 					'fields' => array(
 						array(
 							'id'          => 'assistant_bg',
@@ -2119,7 +2131,7 @@ CSF::createSection( $prefix, array(
 				),
 
 				array(
-					'title'  => 'Position',
+					'title'  => esc_html__( 'Position', 'eazydocs' ),
 					'fields' => array(
 						array(
 							'id'    => 'assistant_position_heading',
@@ -2130,7 +2142,7 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'          => 'assistant_spacing_vertical',
 							'type'        => 'slider',
-							'title'       => 'Vertical Position',
+							'title'       => esc_html__( 'Vertical Position', 'eazydocs' ),
 							'min'         => 0,
 							'max'         => 54,
 							'step'        => 1,
@@ -2142,7 +2154,7 @@ CSF::createSection( $prefix, array(
 						array(
 							'id'          => 'assistant_spacing_horizontal',
 							'type'        => 'slider',
-							'title'       => 'Horizontal Position',
+							'title'       => esc_html__( 'Horizontal Position', 'eazydocs' ),
 							'min'         => 0,
 							'max'         => 94,
 							'step'        => 1,
