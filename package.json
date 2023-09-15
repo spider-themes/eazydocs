@@ -24,5 +24,8 @@
 		"@wordpress/scripts": "^24.0.0",
 		"@wordpress/stylelint-config": "^21.0.0",
 		"eslint-config-prettier": "^8.3.0"
+	},
+	"dependencies": {
+		"@wordpress/api-fetch": "^6.36.0"
 	}
 }

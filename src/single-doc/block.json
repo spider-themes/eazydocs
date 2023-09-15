@@ -1,0 +1,34 @@
+{
+	"apiVersion": 2,
+	"name": "eazydocs/single-doc",
+	"version": "0.1.0",
+	"title": "EazyDocs Single Doc",
+	"category": "eazydocs",
+	"icon": "media-document",
+	"keywords": ["eazydocs", "single doc"],
+	"description": "EazyDocs single doc. Insert this block on a full-width page template to view it properly.",
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"numberOfPosts": {
+			"type": "number",
+			"default": 3
+		},
+		"include": {
+			"type": "array",
+			"default": []
+		},
+		"postid": {
+			"type": "array",
+			"default": []
+		},
+		"exclude": {
+			"type": "string"
+		}
+	},
+	"textdomain": "eazydocs",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}
