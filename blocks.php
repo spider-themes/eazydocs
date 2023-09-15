@@ -57,17 +57,10 @@ final class EAZYDOCS_BLOCKS_CLASS {
         $this->register_block( 'search-banner', array(
             'render_callback' => [ $this, 'search_banner_block_render' ]
         ));
-        $this->register_block( 'single-doc', array(
-            'render_callback' => [ $this, 'single_doc_block_render' ]
-        ));
     }
 
     function search_banner_block_render( $attributes ) {
         return require_once __DIR__ . '/src/search-banner/search-banner.php';
-    }
-
-    function single_doc_block_render( $attributes ) {
-        return require_once __DIR__ . '/src/single-doc/single-doc.php';
     }
 
     /**
