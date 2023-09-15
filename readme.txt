@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 7.4
-Stable tag: 2.0.5x
+Stable tag: 2.2.x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -206,7 +206,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.2.2 (03 July 2023) =
+= v2.2.3 (10 September 2023) =
+Fixed: Mixitup JS console error on the admin side
+Tweaked: Responsive view of Feedback form improved
+Tweaked: Dark mode colors improved to make it more readable
+Tweaked: Doc single design improved (content width, left sidebar navigation active color, right sidebar width on full width mode)
+
+= v2.2.2 (03 August 2023) =
 New: French, Portuguese, Chinese, Spanish, German, Russian language translation files are added. Now, the plugin's strings will be translated automatically if your site language is set to any of these languages.
 Tweaked: Made the settings page translatable
 Tweaked: clear both CSS applied to the Doc bottom area on the Doc single page to avoid the overlapping issue

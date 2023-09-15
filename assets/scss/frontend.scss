@@ -110,7 +110,7 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 1;
   font-size: 0.95rem;
-  margin-left: -58px;
+  margin-left: -78px;
   .left-arrow {
     display: block;
     border: #e8e8e8 solid 1px;
@@ -143,6 +143,10 @@ p .footnotes-link::after {
       padding: 3px 8px 3px 16px;
     }
   }
+}
+
+.single-docs .doc_documentation_full_area .doc_rightsidebar {
+  width: 100%;
 }
 
 .opened .open_icon {

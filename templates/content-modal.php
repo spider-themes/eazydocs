@@ -19,7 +19,7 @@ $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedbac
                 <i class=" icon_close"></i>
             </button>
             <div class="shortcode_title">
-                <h3 class="mb-2"> <?php echo esc_html( $title ); ?> </h3>
+                <h3 class="title mb-2"> <?php echo esc_html( $title ); ?> </h3>
 	            <?php echo wpautop( $desc ); ?>
             </div>
             <form method="post" id="edocs-contact-form" class="contact_form">

@@ -68,8 +68,9 @@ class Ajax {
 	 */
 	function eazydocs_search_results() {
 		$posts = new WP_Query( [
-            'post_type' => 'docs',
-            's'         => $_POST['keyword'] ?? ''
+            'post_type' 	=> 'docs',
+            's'         	=> $_POST['keyword'] ?? '',
+			'post_status' 	=> [ 'publish', 'private' ]
         ]);
 
 		// store search keyword data in wp_eazydocs_search_keywords table wordpress

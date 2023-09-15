@@ -54,6 +54,7 @@ endif;
                             ?>
                             <span class="views sep contributed_users">
                                 <span class="ezdoc_contributed_user_avatar">
+                                    <span class="contributed_user_list"> 
                                 <?php
                                 echo esc_html( $contributor_meta_title );
                                 do_action('ezd_doc_contributor', get_the_ID());
@@ -77,6 +78,7 @@ endif;
                                         <?php
                                     }
                                 }
+                                echo '</span>';
 
                                 if ( current_user_can('administrator') ) :
                                     ?>
@@ -130,7 +132,7 @@ endif;
                                                                 <span> <?php echo $available_user->user_email ?? ''; ?> </span>
                                                             </li>
                                                             <li>
-                                                                <a class="circle-btn ezd_contribute_delete" data-contributor-delete="<?php echo esc_attr($ezd_doc_contributor); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
+                                                                <a data_name="<?php echo $available_user->display_name ?? ''; ?>" class="test circle-btn ezd_contribute_delete" data-contributor-delete="<?php echo esc_attr($ezd_doc_contributor); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
                                                                 &times;
                                                                 </a>
                                                             </li>
@@ -144,24 +146,33 @@ endif;
                                                 <?php
                                                 $current_doc_author     = get_the_author_meta( 'ID' );
                                                 $ezd_exclude_users      = get_post_meta(get_the_ID(), 'ezd_doc_contributors', true);
-                                                $ezd_exclude_users     = rtrim($ezd_exclude_users, ',');
-                                                $ezd_exclude_users     = $current_doc_author.','.$ezd_exclude_users;
+                                                $ezd_exclude_users      = rtrim($ezd_exclude_users, ',');
+                                                $ezd_exclude_users      = $current_doc_author.','.$ezd_exclude_users;
                                                 $all_users              = get_users(['exclude'  => $ezd_exclude_users]);
 
                                                 // set pagination on scroll
-                                                $page = 1;
-                                                $total_users = count($all_users);
-                                                $users_per_page = 10;
-                                                $total_pages = ceil($total_users / $users_per_page);
-                                                $offset = ($page - 1) * $users_per_page;
-                                                $all_users = array_slice($all_users, $offset, $users_per_page);
 
+                                                if ( ezd_get_opt('contributor_load_more') == '1' ) {
+                                                    $users_to_add = ezd_get_opt('contributor_load_per_scroll', 3);
+                                                } else {
+                                                    $users_to_add = ezd_get_opt('contributor_to_add', 3);
+                                                }
+
+                                                $page                   = 1;
+                                                $total_users            = count($all_users);
+                                                $users_per_page         = $users_to_add;
+                                                $total_pages            = ceil($total_users / $users_per_page);
+                                                $offset = ($page - 1) * $users_per_page;
+                                                $all_users              = array_slice($all_users, $offset, $users_per_page);
+ 
+                                                $to_add_users   = [];
                                                 foreach( $all_users as $add_contributor ){
                                                     $available_user = get_user_by('id', $add_contributor);
+                                                    $to_add_users[] = $add_contributor->ID;
                                                     ?>
                                                     <ul class="users_wrap_item <?php echo esc_attr('to-add-user-'.$add_contributor->ID); ?>" id="<?php echo esc_attr('to-add-user-'.$add_contributor->ID); ?>">
                                                         <li>
-                                                            <a href='<?php echo get_author_posts_url($add_contributor->ID); ?>'>
+                                                            <a data_name="<?php echo get_the_author_meta( 'display_name', $add_contributor->ID ); ?>" href='<?php echo get_author_posts_url($add_contributor->ID); ?>'>
                                                                 <?php echo get_avatar($add_contributor, '35'); ?>
                                                             </a>
                                                         </li>
@@ -174,7 +185,7 @@ endif;
                                                             </span>
                                                         </li>
                                                         <li>
-                                                            <a class="circle-btn ezd_contribute_add" data-contributor-add="<?php echo esc_attr($add_contributor->ID); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
+                                                            <a data_name="<?php echo get_the_author_meta( 'display_name', $add_contributor->ID ); ?>" class="circle-btn ezd_contribute_add" data-contributor-add="<?php echo esc_attr($add_contributor->ID); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
                                                                 &plus;
                                                             </a>
                                                         </li>
@@ -255,57 +266,141 @@ endif;
 ?>
 
 <?php
-if ( ezd_is_promax() ) :
+if ( ezd_is_promax() && ezd_get_opt('contributor_load_more') == 1 && ! empty ( $all_users ) ) :
 	if ( ! empty( $contributor_visibility ) ) :
-		?>
-        <script type="text/javascript">
-            var page = 1;
-            var loading = false;
-            var totalPages = <?php echo $total_pages; ?>;
 
-            function load_users() {
-                if (page <= totalPages && loading == false) {
-                    loading = true;
-                    jQuery('.loading-info').show();
-                    jQuery.ajax({
-                        url: "<?php echo admin_url( 'admin-ajax.php' ); ?>",
-                        type: 'POST',
-                        dataType: 'json',
+    $cleaned_string = preg_replace('/,+/', ',', $ezd_exclude_users);
+    $cleaned_string = trim($cleaned_string, ','); // Remove leading and trailing commas
+
+    $exploded_array = explode(',', $cleaned_string);
+    $unique_array   = array_unique($exploded_array);
+    $updated_string = implode(',', $unique_array);
+    
+    $updated_array  = explode(',', $updated_string);
+    $merged_array   = array_merge($to_add_users, $updated_array);
+    $merged_users   = implode(',', $merged_array);    
+    ?>
+
+    <script type="text/javascript">
+        
+        ;(function($){
+        $(document).ready(function(){
+
+            // Contributor [ Delete ] 
+            function ezd_contribute_delete(){
+                $('.ezd_contribute_delete').click(function(e){ 
+                    e.preventDefault();
+
+                    let contributor_id      = $(this).attr('data-contributor-delete');
+                    let data_doc_id         = $(this).attr('data-doc-id');
+                    let user_name           = $(this).attr('data_name');
+
+                    $.ajax({
+                        url: eazydocs_ajax_search.ajax_url,
+                        method: 'POST',
                         data: {
-                            action: 'load_more_contributors',
-                            page: page,
-                            doc_id: "<?php echo get_the_ID(); ?>"
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                                jQuery('#to_add_contributors').append(response.data.html);
-                                page++;
-                                loading = false;
-                                jQuery('.loading-info').hide();
-                            } else {
-                                console.log(response.data);
-                            }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log(textStatus + ': ' + errorThrown);
-                        }
+                        action: 'ezd_doc_contributor',
+                        contributor_delete: contributor_id,
+                        data_doc_id: data_doc_id
+                    },
+                    beforeSend: function () {
+                        $('.ezd_contribute_delete[data-contributor-delete='+contributor_id+']').html( '<span class="spinner-border ezd-contributor-loader"><span class="visually-hidden">Loading...</span></span>' )
+                    },
+                    success: function (response) {
+                        $('#to_add_contributors').append(response)
+                        $('#user-'+contributor_id).remove();
+                        $('.to-add-user-'+contributor_id).not(':last').remove();
+
+                        $('.ezdoc_contributed_user_avatar a[data-bs-original-title="'+user_name+'"]').remove();
+                        ezd_contributor_add();
+                    },
+                    error: function () {
+                        console.log('Oops! Something wrong, try again!')
+                    }
                     });
-                }
+                });
             }
+            
+            // Contributor [ Add ] 
+            function ezd_contributor_add(){
+            $('.ezd_contribute_add').click(function(e){   
+        
+                e.preventDefault();        
+                let contributor_add   = $(this).attr('data-contributor-add');
+                let data_doc_id       = $(this).attr('data-doc-id');
+                
+                let user_img          = $(this).parent().parent().find('img').attr('src');
+                let user_name         = $(this).attr('data_name');
+                let user_url          = $(this).parent().parent().find('a').attr('href');
+                
+                $.ajax({
+                    url: eazydocs_ajax_search.ajax_url,
+                    method: 'POST',
+                    data: {
+                        action: 'ezd_doc_contributor',
+                        contributor_add: contributor_add,
+                        data_doc_id: data_doc_id
+                    },
+                    beforeSend: function () {
+                        $('.ezd_contribute_add[data-contributor-add='+contributor_add+']').html( '<span class="spinner-border ezd-contributor-loader"><span class="visually-hidden">Loading...</span></span>' )
+                    },
+                    success: function (response) {
+                        $('#added_contributors').append(response);
+                        $('#to-add-user-'+contributor_add).remove();
 
-            jQuery(document).ready(function ($) {
-                $('.doc_users_dropdown').scroll(function () {
-                    var divOffset = $('#to_add_contributors').offset().top;
-                    var divHeight = $('#to_add_contributors').outerHeight();
-                    var windowHeight = $(window).height();
-                    var scrollVal = $(this).scrollTop();
+                        $('.user-'+contributor_add).not(':last').remove();
 
-                    if (scrollVal + windowHeight >= divOffset + divHeight) {
-                        console.log('reached end of div');
-                        load_users();
+                        $('.contributed_user_list').append('<a title="'+user_name+'" href="'+user_url+'" data-bs-toggle="tooltip" data-bs-placement="bottom"><img width="24px" src="'+user_img+'"></a>');
+                        $('.contributed_user_list a[data-bs-original-title="'+user_name+'"]').remove();
+                        
+                        $('[data-bs-toggle="tooltip"]').tooltip();
+
+                        ezd_contribute_delete();
+                        
+                    },
+                    error: function () {
+                        console.log('Oops! Something wrong, try again!')
                     }
                 });
             });
+            }
+            
+            var canBeLoaded = true, // this param allows to initiate the AJAX call only if necessary
+            bottomOffset    = 2000; // the distance (in px) from the page bottom when you want to load more posts
+        
+            $(".doc_users_dropdown").on('mousewheel DOMMouseScroll', function () {
+            
+            var data = {
+                'action': 'load_more_contributors',
+                'page' : eazydocs_ajax_search.current_page,
+                'exclude' : [<?php echo $merged_users; ?>],
+                'loaditems' : <?php echo ezd_get_opt('contributor_load_per_scroll', 3); ?>
+            };
+            console.log(eazydocs_ajax_search.current_page);
+
+            if( $(".doc_users_dropdown").scrollTop() > ( $(".doc_users_dropdown").height() - bottomOffset ) && canBeLoaded == true ){
+                $.ajax({
+                url : eazydocs_ajax_search.ajax_url,
+                data:data,
+                type:'POST',
+                beforeSend: function( xhr ){
+                    canBeLoaded = false; 
+                    $(".loading-info").show();
+                },
+                success:function(data){
+                    if( data ) {
+                    $(".doc_users_dropdown").find('#to_add_contributors').append( data ); // where to insert posts
+                    canBeLoaded = true; // the ajax is completed, now we can run it again
+                    eazydocs_ajax_search.current_page++;
+                    ezd_contributor_add();
+                    }
+                    $(".loading-info").hide();                    
+                }
+                });
+            }
+            });
+        });
+        })(jQuery);
         </script>
 	<?php
 	endif;

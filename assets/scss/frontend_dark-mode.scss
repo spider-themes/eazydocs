@@ -1,5 +1,6 @@
 /*============ Dark Mode css ========*/
 body.body_dark {
+  --ezd_brand_color: var(--ezd_brand_color_dark, #4c4cf1) !important;
   --bs-white : #2c303a !important;
   --p_color: #cecece !important;
   --black_700: #e1e1e1 !important;

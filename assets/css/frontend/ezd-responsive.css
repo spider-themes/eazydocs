@@ -159,15 +159,17 @@
 
 	.contact_form .form-group,
 	.help_form .modal-content .shortcode_title {
-		margin-bottom: 20px;
+		margin-bottom: 10px;
 	}
 
 	.help_form {
-		padding: 25px;
+		padding: 40px 15px 20px;
+		margin: 0;
 	}
 
 	#eazydocs_feedback .close {
-		top: -10px;
+		top: -28px;
+		right: 0px;
 	}
 
 	.contact_form .form-group .form-control {
