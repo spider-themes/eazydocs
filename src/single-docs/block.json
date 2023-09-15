@@ -1,0 +1,23 @@
+{
+	"apiVersion": 2,
+	"name": "eazydocs/single-docs",
+	"version": "0.1.0",
+	"title": "EazyDocs Single Docs",
+	"category": "eazydocs",
+	"icon": "media-document",
+	"keywords": ["eazydocs", "single docs"],
+	"description": "EazyDocs single docs. Insert this block on a full-width page template to view it properly.",
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"numberOfPosts": {
+			"type": "number",
+			"default": 3
+		}
+	},
+	"textdomain": "eazydocs",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}

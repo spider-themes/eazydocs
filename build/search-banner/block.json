@@ -2,7 +2,7 @@
   "apiVersion": 2,
   "name": "eazydocs/search-banner",
   "version": "0.1.0",
-  "title": "Docs Search Banner",
+  "title": "EazyDocs Search Banner",
   "category": "eazydocs",
   "icon": "search",
   "keywords": [
