@@ -1,5 +1,5 @@
 <?php
-namespace EazyDocs\Admin\Elementor;
+namespace EazyDocs\Elementor;
 
 class Widgets{
     public function __construct() {

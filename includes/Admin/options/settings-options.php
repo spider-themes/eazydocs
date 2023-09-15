@@ -1563,18 +1563,18 @@ CSF::createSection( $prefix, array(
 
 
 //
-// Docs Contribution
+// Docs Collaboration
 //
 CSF::createSection( $prefix, array(
 	'id'     => 'contributor_fields',
-	'title'  => esc_html__( 'Docs Contribution', 'eazydocs' ),
+	'title'  => esc_html__( 'Docs Collaboration', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => [
 		array(
 			'id'         => 'is_doc_contribution',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Contribution Feature', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Contribution buttons on the doc Right Sidebar.', 'eazydocs' ),
+			'title'      => esc_html__( 'Collaboration Feature', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Collaboration buttons on the doc Right Sidebar.', 'eazydocs' ),
 			'desc'       => esc_html__( 'By enabling this feature, you are allowing other people to contribute the docs. This will also let you manage the contributors from the Doc post editor.',
 				'eazydocs' ),
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
@@ -1911,7 +1911,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'assistant_tab_settings',
 			'type'       => 'tabbed',
 			'class'      => 'eazydocs-pro-notice',
-			'title'      => 'Tab Settings',
+			'title'      => esc_html__( 'Tab Settings', 'eazydocs' ),
 			'dependency' => array(
 				array( 'assistant_visibility', '==', 'true' )
 			),

@@ -15,7 +15,7 @@ $is_pro_themes  = wp_get_theme();
         <div class="pageSideSection">
 			<?php
 			/**
-			 * Contribution Buttons
+			 * Collaboration Buttons
 			 */
 			eazydocs_get_template_part( 'tools/edit-add-doc' );
 

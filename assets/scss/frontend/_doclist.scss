@@ -748,7 +748,7 @@ body {
   }
 
   .close {
-    font-size: 30px;
+    font-size: 26px;
     opacity: 1;
     color: #fff;
     position: absolute;
@@ -809,20 +809,22 @@ body {
 
 .contact_form {
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    padding: 0 8px;
 
-    &:last-child, &.submit-area {
+    &.submit-area {
       margin-bottom: 0;
+      margin-top: 10px;
     }
 
     .form-control, textarea {
       border: 1px solid var(--black_50);
-      height: 58px;
+      height: 52px;
       border-radius: 5px;
       background-color: var(--bs-white);
       color: var(--black_800);
       font-weight: 400;
-      padding-left: 30px;
+      padding-left: 25px;
       box-shadow: none;
       @include placeholder {
         color: #878b99;
@@ -831,12 +833,19 @@ body {
       &:focus {
         border-color: var(--black_100);
       }
+
+      &:disabled {
+        color: var(--black_500);
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
     }
 
     textarea {
       width: 100%;
       height: 160px;
-      padding-top: 20px;
+      padding-top: 15px;
       display: block;
     }
   }
@@ -1305,6 +1314,7 @@ body:not(.onepage-doc) .sticky_menu {
         outline: none;
         box-shadow: none;
         background: #eff0f1;
+        color: #242729;
       }
 
       &.rvfs-reset {

@@ -415,6 +415,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   display: inline-flex;
   gap: 5px;
   padding-right: 5px;
+  position: relative;
 }
 #docy-search-result .breadcrumb li:nth-child(2)::before {
   content: "\f054";
@@ -423,6 +424,9 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   font-size: 8px;
   color: #b7b9be;
   font-weight: normal;
+  position: absolute;
+  bottom: 4px;
+  left: 0;
 }
 #docy-search-result .breadcrumb li a {
   color: #848d95;

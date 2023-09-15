@@ -238,7 +238,7 @@
   padding-right: 3px;
 }
 .breadcrumb .active {
-  color: var(--secondary_color);
+  color: var(--black_800);
 }
 
 .single-onepage-docs #post img, single-docs #post img {
