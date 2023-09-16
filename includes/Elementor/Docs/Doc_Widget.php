@@ -2,7 +2,7 @@
 /**
  * Use namespace to avoid conflict
  */
-namespace EazyDocs\Admin\Elementor\Docs;
+namespace EazyDocs\Elementor\Docs;
 
 
 // Exit if accessed directly

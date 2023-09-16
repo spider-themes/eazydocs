@@ -1,5 +1,5 @@
 <?php
-namespace EazyDocs\Admin\Elementor\Single_Doc;
+namespace EazyDocs\Elementor\Single_Doc;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;

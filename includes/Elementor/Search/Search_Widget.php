@@ -1,5 +1,6 @@
 <?php
-namespace EazyDocs\Admin\Elementor\Search;
+namespace EazyDocs\Elementor\Search;
+
 use Elementor\Repeater;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
