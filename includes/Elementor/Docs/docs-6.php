@@ -79,6 +79,7 @@
                             $author_count           = count($contributed_authors);
                             $show_avatar_count      =  3;
 
+                            $ii                     = 0;
                             $doc_author             = get_the_author_meta('display_name', get_post_field('post_author', $doc_id));
 
                             echo '<li> ' . get_avatar(get_post_field('post_author', $doc_id), 36) . '</li>';
@@ -111,11 +112,12 @@
                         <div class="text">
                             <?php echo count( $doc_counter ) ?> <?php esc_html_e('Article in this Docs.'); ?> <br>
                             <?php 
-                            esc_html_e('Written by ', 'eazydocs'); echo $doc_author;
+                            esc_html_e('Written by ', 'eazydocs');
+                            echo esc_html( $doc_author );
                             foreach ($author_names as $author_name) {
                                 echo ', ' . $author_name;
                             }
-                            echo $others;
+                            echo esc_html( $others );
                             ?>
                         </div>
                     </div>
