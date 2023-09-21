@@ -37,7 +37,7 @@
                                 $author_id[]        = get_post_field('post_author', get_the_ID());                        
                                 ++$i;
                             endwhile;
- 
+
                             $child_authors = [];
                             if ( !empty($child_ids) ) {
                                 foreach( $child_ids as $child_id ) {
@@ -45,6 +45,14 @@
                                 }
                             }
 
+
+                            $child_authors      = implode(',', $child_authors);
+                            $child_authors      = preg_replace('/(,)+/', ',', trim($child_authors, ','));
+                            // Convert the string to an array
+                            $child_authors      = explode(',', $child_authors);
+                            // Remove duplicate values
+                            $child_authors      = array_unique($child_authors);
+                            
                             $author_id         = array_filter($author_id);
                             $author_id         = array_unique($author_id);                             
 
