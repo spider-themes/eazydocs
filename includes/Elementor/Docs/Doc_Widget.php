@@ -62,7 +62,6 @@ class Doc_Widget extends Widget_Base {
 		$this->elementor_style_control();
 	}
 
-
 	/**
 	 * Name: elementor_content_control()
 	 * Desc: Register the Content Tab output on the Elementor editor.
@@ -71,7 +70,6 @@ class Doc_Widget extends Widget_Base {
 	 * Author: spider-themes
 	 */
 	public function elementor_content_control() {
-
 		// ---Start Document Setting
 		$this->start_controls_section(
 			'doc_design_sec', [
@@ -188,7 +186,7 @@ class Doc_Widget extends Widget_Base {
 				'default'     => -1,
 				'condition'   => [
 					'is_custom_order' => '',
-					'doc-widget-skin' => [ '1', '2', '3', '4', '5' , '6' ]
+					'doc-widget-skin' => [ '1', '2', '3', '4', '5' ]
 				],
 			]
 		);

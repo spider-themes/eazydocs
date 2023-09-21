@@ -90,7 +90,7 @@ endif;
                                             if ( $contributor_meta_search == 1 ) :
                                                 ?>
                                                 <form action="#" method="POST">
-                                                    <input type="text" name="ezd_contributor_search" id="ezd-contributor-search" placeholder="<?php esc_attr_e( 'Search By Email', 'eazydocs' ); ?>">
+                                                    <input type="text" name="ezd_contributor_search" id="ezd-contributor-search" placeholder="<?php esc_attr_e( 'Search By Email or Name', 'eazydocs' ); ?>">
                                                 </form>
                                                 <?php
                                             endif;
@@ -98,22 +98,22 @@ endif;
 
                                             <div class="doc_dropdown_users_list" id="added_contributors">
                                                 <?php
-                                                    $available_user = get_user_by('id', $current_doc_author);
-                                                    ?>
-                                                    <ul class="users_wrap_item <?php echo esc_attr('user-'.$current_doc_author); ?>" id="<?php echo esc_attr('user-'.$current_doc_author); ?>">
-                                                        <li>
-                                                            <a href='<?php echo get_author_posts_url($current_doc_author); ?>'>
-                                                            <?php echo get_avatar($available_user, '35'); ?>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href='<?php echo get_author_posts_url($current_doc_author); ?>'>
-                                                                <?php echo $available_user->display_name ?? ''; ?>
-                                                            </a>
-                                                            <span> <?php echo $available_user->user_email ?? ''; ?> </span>
-                                                        </li>
-                                                        <li></li>
-                                                    </ul>
+                                                $available_user = get_user_by('id', $current_doc_author);
+                                                ?>
+                                                <ul class="users_wrap_item <?php echo esc_attr('user-'.$current_doc_author); ?>" id="<?php echo esc_attr('user-'.$current_doc_author); ?>">
+                                                    <li>
+                                                        <a href='<?php echo get_author_posts_url($current_doc_author); ?>'>
+                                                        <?php echo get_avatar($available_user, '35'); ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href='<?php echo get_author_posts_url($current_doc_author); ?>'>
+                                                            <?php echo $available_user->display_name ?? ''; ?>
+                                                        </a>
+                                                        <span> <?php echo $available_user->user_email ?? ''; ?> </span>
+                                                    </li>
+                                                    <li></li>
+                                                </ul>
                                                 <?php
                                                 foreach ( $ezd_doc_contributors as $ezd_doc_contributor ) {
                                                     $available_user = get_user_by('id', $ezd_doc_contributor);
@@ -138,8 +138,8 @@ endif;
                                                             </li>
                                                         </ul>
                                                         <?php
-                                                        }
                                                     }
+                                                }
                                                 ?>
                                             </div>
                                             <div class="doc_dropdown_users_list" id="to_add_contributors" data-page="1">
@@ -167,7 +167,7 @@ endif;
  
                                                 $to_add_users   = [];
                                                 foreach( $all_users as $add_contributor ){
-                                                    $available_user = get_user_by('id', $add_contributor);
+                                                    $available_user = get_user_by( 'id', $add_contributor );
                                                     $to_add_users[] = $add_contributor->ID;
                                                     ?>
                                                     <ul class="users_wrap_item <?php echo esc_attr('to-add-user-'.$add_contributor->ID); ?>" id="<?php echo esc_attr('to-add-user-'.$add_contributor->ID); ?>">
@@ -194,7 +194,7 @@ endif;
                                                 ?>
                                             </div>
                                             <div class="loading-info" style="display: none;">
-                                                <span><?php echo esc_html__('Loading...', 'eazydocs'); ?></span>
+                                                <span> <?php echo esc_html__( 'Loading...', 'eazydocs' ); ?> </span>
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +203,7 @@ endif;
                                 ?>
                             </span>
                         </span>
-                            <?php
+                        <?php
                         endif;
                     endif;
                     ?>
@@ -246,13 +246,13 @@ endif;
     </div>
     <?php
     if( $docs_feedback == '1' ) {
-        eazydocs_get_template_part( 'content-feedback' );
+        eazydocs_get_template_part('content-feedback');
     }
     ?>
 </article>
 
 <?php
-eazydocs_get_template_part( 'content-related' );
+eazydocs_get_template_part('content-related');
 
 if ( $comment_visibility == '1' )  :
 	if ( comments_open() || get_comments_number() )  :

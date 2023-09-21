@@ -12,26 +12,28 @@
                 </div>
                 <div class="doc_entry_content">
                     <a href="<?php echo get_the_permalink( $doc_id ); ?>">
-                        <h4 class="ezd_item_title"><?php echo wp_kses_post( $doc['doc']->post_title ); ?></h4>
+                        <h4 class="ezd_item_title"> <?php echo wp_kses_post( $doc['doc']->post_title ); ?> </h4>
                     </a>
-                    <p class="ezd_item_content"><?php ezd_widget_excerpt( $doc_id, 15 ); ?></p>
+                    <p class="ezd_item_content"> <?php ezd_widget_excerpt( $doc_id, 15 ); ?> </p>
                     <div class="doc_entry_info">
                         <ul class="list-unstyled author_avatar">
                             <?php
-                            $docs = new WP_Query(array(
+                            $docs = new WP_Query ( array (
                                 'post_type'     => 'docs',
                                 'post_per_page' => -1,
                                 'post_parent'   => $doc_id,
                             ));
+
                             $doc_counter = get_pages( [
                                 'child_of'      => $doc_id,
                                 'post_type'     => 'docs'
                             ]);
-                            $author_names       = [];
 
+                            $author_names       = [];
                             $i                  = 1;
                             $child_ids          = [];
                             $author_id          = [];
+
                             while ( $docs->have_posts() ) : $docs->the_post();
                                 $child_ids[]        = get_the_ID();  
                                 $author_id[]        = get_post_field('post_author', get_the_ID());                        
@@ -39,6 +41,7 @@
                             endwhile;
 
                             $child_authors = [];
+
                             if ( !empty($child_ids) ) {
                                 foreach( $child_ids as $child_id ) {
                                     $child_authors[] = get_post_meta($child_id, 'ezd_doc_contributors', true);
@@ -54,22 +57,20 @@
                             $child_authors      = array_unique($child_authors);
                             
                             $author_id         = array_filter($author_id);
-                            $author_id         = array_unique($author_id);                             
-
+                            $author_id         = array_unique($author_id);
                             $parent_authors    = get_post_meta($doc_id, 'ezd_doc_contributors', true);
                             $parent_authors    = explode(',', $parent_authors);   
                             $sibling_authors   = array_merge($author_id, $parent_authors);
                             $parent_authors    = array_filter($sibling_authors);
                             $parent_authors    = array_unique($parent_authors);
-                            
                             $splitted_child_authors = [];
 
-                            foreach ($child_authors as $value) {
+                            foreach ( $child_authors as $value ) {
                                 // Split the value by commas
-                                $values = explode(',', $value);
+                                $values = explode( ',', $value );
                             
                                 // Remove any empty elements
-                                $values = array_filter($values, function ($val) {
+                                $values = array_filter( $values, function ($val) {
                                     return !empty($val);
                                 });
                             
