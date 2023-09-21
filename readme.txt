@@ -134,6 +134,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - User Role Management
 - Docs Archive Masonry Layout
 - Private Doc with Login Page
+- Glossary Docs
 - Extended Doc Layout
 - Doc Badge
 - Suggested Search Keywords
@@ -144,7 +145,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - RTL Ready
 - Duplicate Bulk/Individual Documentation
 
-## EazyDocs Pro-Max plan features include:
+## EazyDocs Promax plan features include:
 - All Pro plan features
 - Analytics
 - Contributor, Add/Edit doc from Frontend
@@ -205,6 +206,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 7. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.2.4 (21 September 2023) =
+New: Brand Color on Dark Mode option added in the EazyDocs > Settings > General
+Updated: Freemius SDK to the latest version 2.5.12
+Updated: Language (.pot) file
+Tweaked: File system structure improved in the plugin folder
+Tweaked: Design improved
+Tweaked: Code format improved
 
 = v2.2.3 (10 September 2023) =
 Fixed: Mixitup JS console error on the admin side

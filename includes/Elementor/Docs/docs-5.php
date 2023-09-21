@@ -46,12 +46,11 @@
         if ( ! empty( $docs ) ) :
             foreach ( $docs as $i => $main_doc ) :
                 // Active Doc
-
-	            if( $slug_type == 1 ) {
-		            $doc_id       = $main_doc['doc']->post_name;
-	            }else{
-		            $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
-	            }
+                if ( $slug_type == 1 ) {
+                    $doc_id       = $main_doc['doc']->post_name;
+                } else {
+                    $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
+                }
                 ?>
                 <div id="doc-4<?php echo $doc_id ?>" class="doc_section_wrap ">
                     <div class="row">
@@ -80,8 +79,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="topic_list_item">
                                         <?php if ( ! empty( $section->post_title ) ) : ?>
-                                            <a class="doc4-section-title"
-                                               href="<?php echo get_permalink( $section->ID ); ?>">
+                                            <a class="doc4-section-title" href="<?php echo get_permalink( $section->ID ); ?>">
                                                 <h4>
                                                     <?php echo wp_kses_post( $section->post_title ); ?>
                                                 </h4>
@@ -109,23 +107,23 @@
                                                         <?php echo wp_kses_post( $doc_item->post_title ) ?>
                                                     </a>
                                                 </li>
-                                            <?php
+                                                <?php
                                             endforeach;
                                             ?>
                                         </ul>
                                     </div>
                                 </div>
-                            <?php
+                                <?php
                             endforeach;
                         endif;
                         ?>
                     </div>
                 </div>
-            <?php
+                <?php
             endforeach;
         endif;
         ?>
-</div>
+    </div>
 </div>
 
 <script>

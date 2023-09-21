@@ -383,12 +383,10 @@
         width:100px;
       }
       img {
-        max-height: 100%;
-        width: auto;
         margin: auto;
         align-items: center;
-        max-width: 80px;
-        max-height: 80px;
+        max-width: 80px !important;
+        max-height: 80px !important;
       }
     }
   }
@@ -928,7 +926,7 @@
         max-width: 60px;
         height: auto;
         max-height: 70px;
-        margin: 0 10px 0 0;
+        margin: 0 15px 0 0;
       }
     }
   }

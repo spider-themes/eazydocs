@@ -43,6 +43,10 @@ body {
     min-height: 1000px;
   }
 
+  a:focus {
+    background: transparent !important;
+  }
+
   .overlay_bg {
     position: absolute;
     top: 0;
@@ -702,18 +706,16 @@ body {
     }
 
     span {
-      height: 15px;
+      height: 17px;
       display: inline-block;
       border-radius: 50%;
       text-align: center;
-      line-height: 16px;
+      line-height: 17px;
       font-size: 10px;
-      background: rgb(255 255 255 / 0.7);
+      background: rgba(255, 255, 255, 0.7);
       font-weight: 400;
       color: #101010;
-      margin-left: 6px;
-      position: relative;
-      top: -1px;
+      margin-left: 5px;
       padding: 0 5px;
     }
 
@@ -1062,11 +1064,9 @@ body {
                 padding-right: 8px;
               }
 
-              &.active,
-              &:hover {
+              &.active {
                 background: #f6f6f6;
                 color: var(--ezd_brand_color);
-
                 &:before {
                   height: 100%;
                 }
