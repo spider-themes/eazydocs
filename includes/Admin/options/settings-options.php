@@ -107,15 +107,6 @@ CSF::createSection( $prefix, array(
 			'output_mode' => '--ezd_brand_color',
 		),
 
-		array(
-			'id'            => 'ezd_brand_color_dark',
-			'type'          => 'color',
-			'title'         => esc_html__( 'Brand Color on Dark Mode', 'eazydocs' ),
-			'subtitle'      => esc_html__( 'Accent Color for dark mode on Frontend. You can choose a different color the Dark mode from here.', 'eazydocs' ),
-			'output'        => ':root',
-			'output_mode'   => '--ezd_brand_color_dark',
-			'dependency'    => array( 'is_dark_switcher', '==', '1' ),
-		),
 	)
 ) );
 
@@ -974,6 +965,16 @@ CSF::createSection( $prefix, array(
 			'default'       => false,
 			'class'         => 'eazydocs-pro-notice active-theme-docly'
 		),
+
+        array(
+            'id'            => 'ezd_brand_color_dark',
+            'type'          => 'color',
+            'title'         => esc_html__( 'Brand Color on Dark Mode', 'eazydocs' ),
+            'subtitle'      => esc_html__( 'Accent Color for dark mode on Frontend. You can choose a different color the Dark mode from here.', 'eazydocs' ),
+            'output'        => ':root',
+            'output_mode'   => '--ezd_brand_color_dark',
+            'dependency'    => array( 'is_dark_switcher', '==', '1' ),
+        ),
 
 		array(
 			'id'        => 'toc_switcher',
