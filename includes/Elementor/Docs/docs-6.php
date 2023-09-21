@@ -44,8 +44,7 @@
                                     $child_authors[] = get_post_meta($child_id, 'ezd_doc_contributors', true);
                                 }
                             }
-
-
+                            
                             $child_authors      = implode(',', $child_authors);
                             $child_authors      = preg_replace('/(,)+/', ',', trim($child_authors, ','));
                             // Convert the string to an array
@@ -61,31 +60,14 @@
                             $sibling_authors   = array_merge($author_id, $parent_authors);
                             $parent_authors    = array_filter($sibling_authors);
                             $parent_authors    = array_unique($parent_authors);
-                            
-                            $splitted_child_authors = [];
-
-                            foreach ($child_authors as $value) {
-                                // Split the value by commas
-                                $values = explode(',', $value);
-                            
-                                // Remove any empty elements
-                                $values = array_filter($values, function ($val) {
-                                    return !empty($val);
-                                });
-                            
-                                // Add the values to the new array
-                                $splitted_child_authors = array_values($values);
-                            }
-                            
-                            $child_authors         = array_filter($splitted_child_authors); 
-                            $child_authors         = array_unique($child_authors);
-                            
+                                                        
                             $contributed_authors    = array_merge($child_authors, $parent_authors);
                             $contributed_authors    = array_unique($contributed_authors);
                             $contributed_authors    = array_filter($contributed_authors);
                             
                             $author_count           = count($contributed_authors);
-                            $show_avatar_count      =  3;
+                            $author_count           = $author_count - 1;
+                            $show_avatar_count      = ! empty ( $settings['show_contributors'] ) ? $settings['show_contributors'] - 1 : 2;
 
                             $ii                     = 0;
                             $doc_author             = get_the_author_meta('display_name', get_post_field('post_author', $doc_id));

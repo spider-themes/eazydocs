@@ -246,6 +246,20 @@ class Doc_Widget extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'show_contributors', [
+				'label'       => esc_html__( 'Show Contributors', 'eazydocs' ),
+				'description' => esc_html__( 'The number of contributors to show.', 'eazydocs' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 4,
+				'min'         => 1,
+				'max'         => 20,
+				'condition'   => [
+					'doc-widget-skin' => [ '6' ]
+				],
+			]
+		);
+
 		$doc = new Repeater();
 
 		$doc->add_control(
