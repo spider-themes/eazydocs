@@ -28,9 +28,10 @@
 
                     $atts .= " aria-controls='doc-{$post_title_slug}'";
                     ?>
-                    <li class="nav-item">
-                        <a <?php echo $atts; ?> id="<?php echo $post_title_slug; ?>-tab" class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>" data-bs-toggle="tab">
-                            <?php
+            <li class="nav-item">
+                <a <?php echo $atts; ?> id="<?php echo $post_title_slug; ?>-tab"
+                    class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>" data-bs-toggle="tab">
+                    <?php
                             echo get_the_post_thumbnail($doc_id, 'docy_16x16');
                             if ( $settings['is_tab_title_first_word'] == 'yes' ) {
                                 echo wp_kses_post($doc_name[0]);
@@ -38,9 +39,9 @@
                                 echo wp_kses_post($doc_item->post_title);
                             }
                             ?>
-                        </a>
-                    </li>
-                    <?php
+                </a>
+            </li>
+            <?php
                     ++$i;
                 }
             } else {
@@ -60,9 +61,10 @@
                         }
                         $aria_controls = " aria-controls='doc-{$doc->post_name}'";
                         ?>
-                        <li class="nav-item">
-                            <a <?php echo $href.$aria_controls; ?> id="doc3<?php echo $doc->post_name; ?>-tab" class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>" data-bs-toggle="tab">
-                                <?php
+            <li class="nav-item">
+                <a <?php echo $href.$aria_controls; ?> id="doc3<?php echo $doc->post_name; ?>-tab"
+                    class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>" data-bs-toggle="tab">
+                    <?php
                                 echo get_the_post_thumbnail($doc->ID, 'docy_16x16');
                                 if ( $settings['is_tab_title_first_word'] == 'yes' ) {
                                     echo wp_kses_post($doc_name[0]);
@@ -70,9 +72,9 @@
                                     echo wp_kses_post($doc->post_title);
                                 }
                                 ?>
-                            </a>
-                        </li>
-                    <?php
+                </a>
+            </li>
+            <?php
                     endforeach;
                 endif;
             }
@@ -99,19 +101,20 @@
 		            $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
 	            }
                 ?>
-                <div class="tab-pane doc_tab_pane fade <?php echo $active; ?>" id="doc3-<?php echo $doc_id ?>" role="tabpanel" aria-labelledby="<?php echo $doc_id ?>-tab">
-                    <div class="row">
-                        <?php
+            <div class="tab-pane doc_tab_pane fade <?php echo $active; ?>" id="doc3-<?php echo $doc_id ?>"
+                role="tabpanel" aria-labelledby="<?php echo $doc_id ?>-tab">
+                <div class="ezd-grid ezd-grid-cols-12">
+                    <?php
                         if ( !empty($main_doc['sections']) ) :
                         foreach ( $main_doc['sections'] as $section ) :
                             ?>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="topic_list_item">
-                                    <?php if ( !empty($section->post_title) ) : ?>
-                                        <h4 class="ezd_item_title"><?php echo wp_kses_post($section->post_title); ?></h4>
-                                    <?php endif; ?>
-                                    <ul class="navbar-nav">
-                                        <?php
+                    <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
+                        <div class="topic_list_item">
+                            <?php if ( !empty($section->post_title) ) : ?>
+                            <h4 class="ezd_item_title"><?php echo wp_kses_post($section->post_title); ?></h4>
+                            <?php endif; ?>
+                            <ul class="navbar-nav">
+                                <?php
                                         $doc_items = get_children( array(
                                             'post_parent'    => $section->ID,
                                             'post_type'      => 'docs',
@@ -122,33 +125,33 @@
                                         ));
                                         foreach ( $doc_items as $doc_item ) :
                                             ?>
-                                            <li>
-                                                <a href="<?php echo get_permalink($doc_item->ID) ?>" class="ezd_item_list_title">
-                                                    <?php echo wp_kses_post($doc_item->post_title) ?>
-                                                </a>
-                                            </li>
-                                            <?php
+                                <li>
+                                    <a href="<?php echo get_permalink($doc_item->ID) ?>" class="ezd_item_list_title">
+                                        <?php echo wp_kses_post($doc_item->post_title) ?>
+                                    </a>
+                                </li>
+                                <?php
                                         endforeach;
                                         ?>
-                                    </ul>
-                                    <?php
+                            </ul>
+                            <?php
                                     if ( !empty($settings['read_more']) ) : ?>
-                                        <a href="<?php echo get_permalink( $section->ID ); ?>" class="text_btn dark_btn ezd_btn">
-                                            <?php echo esc_html($settings['read_more']) ?>
-                                            <i class="<?php ezd_arrow() ?>"></i>
-                                        </a>
-                                        <?php
+                            <a href="<?php echo get_permalink( $section->ID ); ?>" class="text_btn dark_btn ezd_btn">
+                                <?php echo esc_html($settings['read_more']) ?>
+                                <i class="<?php ezd_arrow() ?>"></i>
+                            </a>
+                            <?php
                                     endif;
                                     ?>
-                                </div>
-                            </div>
-                            <?php
+                        </div>
+                    </div>
+                    <?php
                         endforeach;
                         endif;
                         ?>
-                    </div>
                 </div>
-                <?php
+            </div>
+            <?php
             endforeach;
             endif;
             ?>

@@ -1030,14 +1030,13 @@ a.action_btn {
 .tabs_sliders {
   position: relative;
   ul{
-    &.nav-tabs {
       align-items: flex-start;
       flex-wrap: nowrap !important;
+      display: flex;
       overflow: hidden;
       li {
         min-width: fit-content;
       }
-    }
   }
   span{
     &.scroller-btn {

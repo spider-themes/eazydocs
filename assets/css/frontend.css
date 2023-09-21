@@ -279,7 +279,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 #ezd-search-results .search-result-item {
   padding: 7px 15px;
   position: relative;
-  border-bottom: 1px solid #f5f5fa;
+  border-bottom: 1px solid rgb(245, 245, 250);
   transition: 0.3s all;
   cursor: pointer;
 }
@@ -313,8 +313,8 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 }
 
 .eazydocs-breadcrumb-root-title li.breadcrumb-item {
-  color: #777aaf !important;
-  background: #f5f5fa;
+  color: rgb(119, 122, 175) !important;
+  background: rgb(245, 245, 250);
   width: 100%;
   padding: 5px 15px !important;
 }
@@ -720,7 +720,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   width: 200%;
   right: 0;
   height: 100%;
-  background: #f5f7f9;
+  background: rgb(245, 247, 249);
   position: absolute;
   border-right: 1px solid var(--border_on_white);
   top: 0;
@@ -2159,7 +2159,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 div#eazydocs_share {
-  background: #00000066;
+  background: rgba(0, 0, 0, 0.4);
 }
 div#eazydocs_share > .modal-dialog {
   max-width: 500px;
@@ -2217,13 +2217,13 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .so
   line-height: 24px;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(2) > i {
-  color: #4267b2;
+  color: rgb(66, 103, 178);
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(3) > i {
-  color: #0072b1;
+  color: rgb(0, 114, 177);
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(4) > i {
-  color: #1da1f2;
+  color: rgb(29, 161, 242);
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > p {
   font-size: 14px;
@@ -2385,7 +2385,7 @@ body.admin-bar .ezd-link-copied-wrap {
   margin: auto;
   font-family: "ElegantIcons";
   font-size: 26px;
-  color: #8899a8;
+  color: rgb(136, 153, 168);
 }
 .eazydocs-next-prev-wrap .next-prev-pager.second {
   padding-right: 50px;
@@ -2402,7 +2402,7 @@ body.admin-bar .ezd-link-copied-wrap {
   margin: auto;
   font-family: "ElegantIcons";
   font-size: 26px;
-  color: #8899a8;
+  color: rgb(136, 153, 168);
   content: "$";
   left: unset;
   right: 20px;
@@ -2590,7 +2590,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #0fccd0;
+  background-color: rgb(15, 204, 208);
   box-shadow: 0 20px 30px 0 rgba(24, 211, 214, 0.2);
   display: block;
   text-align: center;
@@ -2775,7 +2775,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   background: var(--black_50);
 }
 .section5-article ul li:hover {
-  background: #f1f1f17a;
+  background: rgba(241, 241, 241, 0.4784313725);
 }
 .section5-article ul li a {
   color: var(--p_color);
@@ -3091,7 +3091,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 
 .doc_features_item_one {
   border-radius: 6px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 8px 0 rgba(4, 73, 89, 0.05);
   padding: 30px;
   transition: all 0.3s linear;
@@ -3414,12 +3414,13 @@ a.action_btn.all_doc_btn:hover {
 .tabs_sliders {
   position: relative;
 }
-.tabs_sliders ul.nav-tabs {
+.tabs_sliders ul {
   align-items: flex-start;
   flex-wrap: nowrap !important;
+  display: flex;
   overflow: hidden;
 }
-.tabs_sliders ul.nav-tabs li {
+.tabs_sliders ul li {
   min-width: fit-content;
 }
 .tabs_sliders span.scroller-btn {
@@ -3437,6 +3438,130 @@ a.action_btn.all_doc_btn:hover {
 }
 .tabs_sliders span.inactive {
   display: none;
+}
+
+.ezd-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 25px;
+}
+.ezd-grid.one {
+  grid-template-columns: repeat(1, 1fr);
+}
+.ezd-grid.two {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 600px) {
+  .ezd-grid.two {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.ezd-grid.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 991px) {
+  .ezd-grid.four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .ezd-grid.four {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.ezd-grid.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 991px) {
+  .ezd-grid.three {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .ezd-grid.three {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.ezd-grid.six {
+  grid-template-columns: repeat(6, 1fr);
+}
+@media (max-width: 991px) {
+  .ezd-grid.six {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .ezd-grid.six {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.ezd-grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.ezd-grid-column-full {
+  grid-column: 1/-1;
+}
+
+@media (min-width: 576px) {
+  .ezd-sm-col-4 {
+    grid-column: span 4/span 4;
+  }
+  .ezd-sm-col-3 {
+    grid-column: span 3/span 3;
+  }
+  .ezd-sm-col-6 {
+    grid-column: span 6/span 6;
+  }
+  .ezd-sm-col-8 {
+    grid-column: span 8/span 8;
+  }
+  .ezd-sm-col-2 {
+    grid-column: span 2/span 2;
+  }
+}
+@media (min-width: 768px) {
+  .ezd-md-col-4 {
+    grid-column: span 4/span 4;
+  }
+  .ezd-md-col-3 {
+    grid-column: span 3/span 3;
+  }
+  .ezd-md-col-6 {
+    grid-column: span 6/span 6;
+  }
+  .ezd-md-col-8 {
+    grid-column: span 8/span 8;
+  }
+  .ezd-md-col-2 {
+    grid-column: span 2/span 2;
+  }
+}
+@media (min-width: 992px) {
+  .ezd-lg-col-4 {
+    grid-column: span 4/span 4;
+  }
+  .ezd-lg-col-3 {
+    grid-column: span 3/span 3;
+  }
+  .ezd-lg-col-6 {
+    grid-column: span 6/span 6;
+  }
+  .ezd-lg-col-8 {
+    grid-column: span 8/span 8;
+  }
+  .ezd-lg-col-2 {
+    grid-column: span 2/span 2;
+  }
+}
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.tab-content {
+  display: block;
 }
 
 .modal-content .shortcode_info .row {
@@ -3679,12 +3804,12 @@ p .footnotes-link::after {
   height: 50px;
   margin-top: -50px;
   overflow-x: hidden;
-  background: -moz-linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
-  background: -webkit-linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
-  background: -o-linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
-  background: -ms-linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#03ffffff", endColorstr="#ffffff", GradientType=0 );
-  background: linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
   display: block;
 }
 

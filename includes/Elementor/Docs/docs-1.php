@@ -15,8 +15,7 @@ if ( ezd_is_premium() ) {
 ?>
 
 <div class="eazydocs_shortcode">
-    <div class="container">
-        <div class="row">
+    <div class="ezd-grid">
         <?php 
         $exclude_id             = $doc_exclude ?? '';        
        
@@ -49,24 +48,25 @@ if ( ezd_is_premium() ) {
                 $protected_bg        = !empty($post->post_password) ? 'bg-dark' : '';
 
             ?>
-            <div class="col-lg-4">
-                <div class="categories_guide_item <?php echo $private_bg.$protected_bg; ?> wow fadeInUp" <?php echo $private_bg_op; ?>>
-                    <?php
+        <div class="categories_guide_item <?php echo $private_bg.$protected_bg; ?> wow fadeInUp"
+            <?php echo $private_bg_op; ?>>
+            <?php
                     if ( get_post_status() == 'private' ) {
                         $pd_txt = esc_html__( 'Private Doc', 'eazydocs' );
                         echo "<div class='private' title='$pd_txt'><i class='icon_lock'></i></div>";
                     }
                     if ( !empty($post->post_password) ) {
                         ?>
-                        <div class="private" title="Password Protected Doc">
-                            <svg width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#4e5668">
-                                <g>
-                                    <path fill="none" d="M0 0h24v24H0z"/>
-                                    <path d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zm-2 0V7a4 4 0 1 0-8 0v1h8zm-5 6v2h2v-2h-2zm-4 0v2h2v-2H7zm8 0v2h2v-2h-2z"/>
-                                </g>
-                            </svg>
-                        </div>
-                        <?php
+            <div class="private" title="Password Protected Doc">
+                <svg width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#4e5668">
+                    <g>
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path
+                            d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zm-2 0V7a4 4 0 1 0-8 0v1h8zm-5 6v2h2v-2h-2zm-4 0v2h2v-2H7zm8 0v2h2v-2h-2z" />
+                    </g>
+                </svg>
+            </div>
+            <?php
                     }
                     
                     if ( ezd_is_premium() ) {
@@ -88,42 +88,42 @@ if ( ezd_is_premium() ) {
                         $main_doc_url = get_permalink( get_the_ID() );
                     }
                     ?>
-                    <div class="doc-top d-flex align-items-start">
-                        <a class="doc_tag_title" href="<?php echo esc_url($main_doc_url); ?>">
-                            <h4 class="title ezd_item_title"> <?php the_title(); ?> </h4>
-                            <span class="badge"> <?php echo count($get_child_docs); esc_html_e(' Topics', 'eazydocs'); ?> </span>
-                        </a>
-                    </div>
-                    <?php
-                    if ( $sections ) :
-                        ?>
-                        <ul class="list-unstyled article_list">
-                            <?php
-                            foreach ( $sections as $section ) :
-                                ?>
-                                <li>
-                                    <a href="<?php echo get_permalink($section); ?>" class="ezd_item_list_title">
-                                        <?php echo $section->post_title; ?>
-                                    </a>
-                                </li>
-                                <?php
-                            endforeach;
-                            ?>
-                        </ul>
-                        <a href="<?php the_permalink(); ?>" class="doc_border_btn ezd_btn">
-                            <?php echo esc_html( $read_more ); ?>
-                            <i class="arrow_right"></i>
-                        </a>
-                        <?php
-                    endif;
-                    ?>
-                </div>
+            <div class="doc-top d-flex align-items-start">
+                <a class="doc_tag_title" href="<?php echo esc_url($main_doc_url); ?>">
+                    <h4 class="title ezd_item_title"> <?php the_title(); ?> </h4>
+                    <span class="badge"> <?php echo count($get_child_docs); esc_html_e(' Topics', 'eazydocs'); ?>
+                    </span>
+                </a>
             </div>
             <?php
+                    if ( $sections ) :
+                        ?>
+            <ul class="list-unstyled article_list">
+                <?php
+                            foreach ( $sections as $section ) :
+                                ?>
+                <li>
+                    <a href="<?php echo get_permalink($section); ?>" class="ezd_item_list_title">
+                        <?php echo $section->post_title; ?>
+                    </a>
+                </li>
+                <?php
+                            endforeach;
+                            ?>
+            </ul>
+            <a href="<?php the_permalink(); ?>" class="doc_border_btn ezd_btn">
+                <?php echo esc_html( $read_more ); ?>
+                <i class="arrow_right"></i>
+            </a>
+            <?php
+                    endif;
+                    ?>
+        </div>
+        <?php
             endwhile;
         endif;
         ?>
-        
+
     </div>
-    </div>
+
 </div>
