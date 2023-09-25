@@ -20,30 +20,34 @@ $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedbac
             </button>
             <div class="shortcode_title">
                 <h3 class="title mb-2"> <?php echo esc_html( $title ); ?> </h3>
-	            <?php echo wpautop( $desc ); ?>
+                <?php echo wpautop( $desc ); ?>
             </div>
             <form method="post" id="edocs-contact-form" class="contact_form">
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" value="<?php echo esc_attr( $name ); ?>" name="name" id="name" placeholder="<?php esc_attr_e( 'Name', 'eazydocs' ); ?>" required>
+                <div class="ezd-grid ezd-grid-cols-12">
+                    <div class="form-group ezd-md-col-6 ezd-grid-column-full">
+                        <input type="text" class="form-control" value="<?php echo esc_attr( $name ); ?>" name="name"
+                            id="name" placeholder="<?php esc_attr_e( 'Name', 'eazydocs' ); ?>" required>
                     </div>
-                    <div class="form-group col-md-6">
-                        <input type="email" class="form-control" value="<?php echo esc_attr( $email_from ); ?>" name="email" id="email"
-                               placeholder="<?php esc_attr_e( 'Email', 'eazydocs' ); ?>" <?php disabled( is_user_logged_in() ); ?> required>
+                    <div class="form-group ezd-md-col-6 ezd-grid-column-full">
+                        <input type="email" class="form-control" value="<?php echo esc_attr( $email_from ); ?>"
+                            name="email" id="email" placeholder="<?php esc_attr_e( 'Email', 'eazydocs' ); ?>"
+                            <?php disabled( is_user_logged_in() ); ?> required>
                     </div>
-                    <div class="form-group col-md-12">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="<?php esc_attr_e( 'Subject', 'eazydocs' ); ?>" required>
+                    <div class="form-group ezd-grid-column-full">
+                        <input type="text" class="form-control" name="subject" id="subject"
+                            placeholder="<?php esc_attr_e( 'Subject', 'eazydocs' ); ?>" required>
                     </div>
-                    <div class="form-group col-md-12">
-                        <textarea name="message" id="massage" placeholder="<?php esc_attr_e( 'Message', 'eazydocs' ); ?>" required></textarea>
+                    <div class="form-group ezd-grid-column-full">
+                        <textarea name="message" id="massage"
+                            placeholder="<?php esc_attr_e( 'Message', 'eazydocs' ); ?>" required></textarea>
                     </div>
-                    <div class="form-group col-md-12 submit-area">
+                    <div class="form-group ezd-grid-column-full submit-area">
                         <input type="hidden" name="doc_id" id="doc_id" value="<?php the_ID(); ?>">
                         <button type="submit" name="eazydoc_feedback_submit" class="btn action_btn">
-							<?php esc_html_e( 'Send', 'eazydocs' ); ?>
+                            <?php esc_html_e( 'Send', 'eazydocs' ); ?>
                         </button>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group ezd-grid-column-full">
                         <div class="eazydocs-form-result"></div>
                     </div>
                 </div>

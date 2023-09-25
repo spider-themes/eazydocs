@@ -1,7 +1,7 @@
 <section class="doc_tag_area">
     <div class="tabs_sliders">
         <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>
-        <ul class="nav nav-tabs doc_tag" id="myTab" role="tablist">
+        <ul class="nav nav-tabs doc_tag tab-menu">
             <?php
 		    $slug_type = $settings['docs_slug_format'] ?? '';
 		    $widget_id = $this->get_id();
@@ -27,8 +27,8 @@
 				    $atts            .= " aria-controls='doc-{$post_title_slug}'";
 				    ?>
             <li class="nav-item">
-                <a <?php echo $atts; ?> id="<?php echo $post_title_slug; ?>-tab"
-                    class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>" data-bs-toggle="tab">
+                <a <?php echo $atts; ?> data-rel="doc-<?php echo $post_title_slug; ?>"
+                    class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
                     <i class="icon_document_alt"></i>
                     <?php
 						    if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -62,8 +62,8 @@
 					    $atts            .= " aria-controls='doc-{$post_title_slug}'";
 					    ?>
             <li class="nav-item">
-                <a <?php echo $atts; ?> id="<?php echo $post_title_slug; ?>-tab"
-                    class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>" data-bs-toggle="tab">
+                <a <?php echo $atts; ?> data-rel="doc-<?php echo $post_title_slug; ?>"
+                    class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
                     <?php
 							    if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 								    echo wp_kses_post( $doc_name[0] );
@@ -96,7 +96,7 @@
 				$doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
 			}
 			?>
-        <div class="tab-pane doc_tab_pane fade <?php echo $active; ?>" id="doc-<?php echo $doc_id ?>" role="tabpanel"
+        <div class="doc_tab_pane tab-box <?php echo $active; ?>" id="doc-<?php echo $doc_id ?>"
             aria-labelledby="<?php echo $doc_id ?>-tab">
             <div class="ezd-grid ezd-grid-cols-12">
                 <?php

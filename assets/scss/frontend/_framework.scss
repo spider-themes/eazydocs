@@ -57,11 +57,23 @@
     .ezd-sm-col-3{
         grid-column: span 3 / span 3;
     }
+    .ezd-sm-col-5{
+        grid-column: span 5 / span 5;
+    }
     .ezd-sm-col-6{
         grid-column: span 6 / span 6;
     }
+    .ezd-sm-col-7{
+        grid-column: span 7 / span 7;
+    }
     .ezd-sm-col-8{
         grid-column: span 8 / span 8;
+    }
+    .ezd-sm-col-9{
+        grid-column: span 9 / span 9;
+    }
+    .ezd-sm-col-10{
+        grid-column: span 10 / span 10;
     }
     .ezd-sm-col-2{
         grid-column: span 2 / span 2;
@@ -74,11 +86,23 @@
     .ezd-md-col-3{
         grid-column: span 3 / span 3;
     }
+    .ezd-md-col-5{
+        grid-column: span 5 / span 5;
+    }
     .ezd-md-col-6{
         grid-column: span 6 / span 6;
     }
+    .ezd-md-col-7{
+        grid-column: span 7 / span 7;
+    }
     .ezd-md-col-8{
         grid-column: span 8 / span 8;
+    }
+    .ezd-md-col-9{
+        grid-column: span 9 / span 9;
+    }
+    .ezd-md-col-10{
+        grid-column: span 10 / span 10;
     }
     .ezd-md-col-2{
         grid-column: span 2 / span 2;
@@ -91,13 +115,54 @@
     .ezd-lg-col-3{
         grid-column: span 3 / span 3;
     }
+    .ezd-lg-col-5{
+        grid-column: span 5 / span 5;
+    }
     .ezd-lg-col-6{
         grid-column: span 6 / span 6;
     }
     .ezd-lg-col-8{
         grid-column: span 8 / span 8;
     }
+    .ezd-lg-col-7{
+        grid-column: span 7 / span 7;
+    }
+    .ezd-lg-col-9{
+        grid-column: span 9 / span 9;
+    }
+    .ezd-lg-col-10{
+        grid-column: span 10 / span 10;
+    }
     .ezd-lg-col-2{
+        grid-column: span 2 / span 2;
+    }
+}
+@media (min-width: 1200px){
+    .ezd-xl-col-4{
+        grid-column: span 4 / span 4;
+    }
+    .ezd-xl-col-3{
+        grid-column: span 3 / span 3;
+    }
+    .ezd-xl-col-5{
+        grid-column: span 5 / span 5;
+    }
+    .ezd-xl-col-6{
+        grid-column: span 6 / span 6;
+    }
+    .ezd-xl-col-8{
+        grid-column: span 8 / span 8;
+    }
+    .ezd-xl-col-7{
+        grid-column: span 7 / span 7;
+    }
+    .ezd-xl-col-9{
+        grid-column: span 9 / span 9;
+    }
+    .ezd-xl-col-10{
+        grid-column: span 10 / span 10;
+    }
+    .ezd-xl-col-2{
         grid-column: span 2 / span 2;
     }
 }
@@ -105,9 +170,28 @@
 
 
 ul{
-    padding-left: 0;
-    list-style: none;
+    padding-left: 0 !important;
+    list-style: none !important;
 }
 .tab-content{
     display: block;
 }
+
+.ezd-custom-container.ezd-container {
+    width: 100%;
+    @media (min-width: 1300px) {
+      max-width: 1240px;
+    }
+    @media (min-width: 1500px) {
+      max-width: 1470px;
+    }
+  }
+  
+  .eazydocs_shortcode .ezd-container, .ezd-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    @media (min-width: 1200px) {
+      max-width: 1200px;
+    }
+  }

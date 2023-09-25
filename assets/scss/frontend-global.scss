@@ -5,22 +5,6 @@
   max-width: 100% !important;
 }
 
-.custom_container.container {
-  width: 100%;
-  @media (min-width: 1300px) {
-    max-width: 1240px;
-  }
-  @media (min-width: 1500px) {
-    max-width: 1470px;
-  }
-}
-
-.eazydocs_shortcode .container, .container {
-  width: 100%;
-  @media (min-width: 1200px) {
-    max-width: 1200px;
-  }
-}
 
 .categories_guide_item {
   border-radius: 6px;

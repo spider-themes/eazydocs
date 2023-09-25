@@ -2,7 +2,7 @@
 
     <div class="tabs_sliders">
         <span class="left scroller-btn"><i class="arrow_carrot-left"></i></span>
-        <ul class="nav nav-tabs mb-5" role="tablist">
+        <ul class="nav nav-tabs mb-5 tab-menu">
             <?php
             $slug_type = $settings['docs_slug_format'] ?? '';
             $widget_id = $this->get_id();
@@ -29,8 +29,8 @@
                     $atts .= " aria-controls='doc-{$post_title_slug}'";
                     ?>
             <li class="nav-item">
-                <a <?php echo $atts; ?> id="<?php echo $post_title_slug; ?>-tab"
-                    class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>" data-bs-toggle="tab">
+                <a <?php echo $atts; ?> data-rel="<?php echo $post_title_slug; ?>"
+                    class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
                     <?php
                             echo get_the_post_thumbnail($doc_id, 'docy_16x16');
                             if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -62,8 +62,8 @@
                         $aria_controls = " aria-controls='doc-{$doc->post_name}'";
                         ?>
             <li class="nav-item">
-                <a <?php echo $href.$aria_controls; ?> id="doc3<?php echo $doc->post_name; ?>-tab"
-                    class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>" data-bs-toggle="tab">
+                <a <?php echo $href.$aria_controls; ?> data-rel="doc3-<?php echo $doc->post_name; ?>"
+                    class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
                     <?php
                                 echo get_the_post_thumbnail($doc->ID, 'docy_16x16');
                                 if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -101,8 +101,7 @@
 		            $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
 	            }
                 ?>
-            <div class="tab-pane doc_tab_pane fade <?php echo $active; ?>" id="doc3-<?php echo $doc_id ?>"
-                role="tabpanel" aria-labelledby="<?php echo $doc_id ?>-tab">
+            <div class="doc_tab_pane tab-box <?php echo $active; ?>" id="doc3-<?php echo $doc_id ?>">
                 <div class="ezd-grid ezd-grid-cols-12">
                     <?php
                         if ( !empty($main_doc['sections']) ) :

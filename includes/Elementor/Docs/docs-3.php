@@ -28,7 +28,7 @@
 				    $atts .= " aria-controls='doc-{$post_title_slug}'";
 				    ?>
             <li class="nav-item">
-                <a <?php echo $atts; ?> data-rel="<?php echo $post_title_slug; ?>-tab"
+                <a <?php echo $atts; ?> data-rel="<?php echo $post_title_slug; ?>"
                     class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
                     <?php
 						    if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -97,8 +97,7 @@
 		        $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
 	        }
             ?>
-        <div class=" documentation_tab_pane tab-box <?php echo esc_attr($active); ?>" id="doc2-<?php echo $doc_id; ?>"
-            role="tabpanel" aria-labelledby="doc2-<?php echo $doc_id ?>-tab">
+        <div class=" documentation_tab_pane tab-box <?php echo esc_attr($active); ?>" id="doc2-<?php echo $doc_id; ?>">
             <div class="ezd-grid ezd-grid-cols-12">
                 <div class="ezd-lg-col-4 ezd-grid-column-full">
                     <div class="documentation_text">
