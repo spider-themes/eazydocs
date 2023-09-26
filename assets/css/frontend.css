@@ -2435,6 +2435,14 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   justify-content: space-between;
 }
 
+.ezd-password-body {
+  padding: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 20px;
+}
+
 /*============== Start doc_tag_area css =============*/
 .doc_tag {
   display: flex;
@@ -3786,6 +3794,10 @@ ul {
 
 .position-relative {
   position: relative;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .modal-content .shortcode_info .row {
