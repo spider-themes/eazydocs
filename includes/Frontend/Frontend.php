@@ -180,7 +180,8 @@ class Frontend {
 		if ( $doc_posts->have_posts() ) :
 			
             ?>
-<div class="ezd-lg-col-<?php echo esc_attr($related_column) .' '. esc_attr($visibility); ?> ezd-grid-column-full">
+<div
+    class="ezd-grid-column-full ezd-lg-col-<?php echo esc_attr($related_column) .' '. esc_attr($visibility); ?> ezd-grid-column-full">
     <div class="topic_list_item related-docs">
         <?php if( ! empty( $title ) ) : ?>
         <h4> <?php echo esc_html( $title ); ?> </h4>

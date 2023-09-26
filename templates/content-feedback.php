@@ -42,7 +42,7 @@ $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
                 <p class="left">
                     <i class="icon_mail_alt"></i>
                     <?php echo esc_html( $still_stuck ); ?>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#eazydocs_feedback">
+                    <a href="#" class="modal-toggle" data-id="1">
                         <?php echo esc_html( $link_text ); ?>
                     </a>
                 </p>

@@ -77,6 +77,7 @@ input[type=search]::-webkit-search-results-decoration {
     position: sticky !important;
     align-self: flex-start !important;
     z-index: 1;
+    top: 0;
   }
 }
 
@@ -1282,6 +1283,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   top: 50%;
   transform: translateY(-50%) !important;
   border-radius: 10px;
+  z-index: 999;
 }
 @media (max-width: 991px) {
   .help_form {
@@ -2171,6 +2173,7 @@ div#eazydocs_share > .modal-dialog {
   margin: auto;
   display: block;
   height: fit-content;
+  z-index: 999;
 }
 div#eazydocs_share > .modal-dialog > .modal-content {
   padding: 30px 30px 35px;
@@ -2457,6 +2460,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   line-height: 28px;
   margin: 0 5px;
   transition: all 0.4s linear;
+  display: inline-block;
 }
 .doc_tag .nav-item .nav-link:not(.active):hover {
   background: rgba(76, 76, 241, 0.2);
@@ -3504,6 +3508,11 @@ a.action_btn.all_doc_btn:hover {
   grid-column: 1/-1;
 }
 
+@media (max-width: 991px) {
+  [class^=ezd-lg-col] {
+    grid-column: 1/-1;
+  }
+}
 @media (min-width: 576px) {
   .ezd-sm-col-4 {
     grid-column: span 4/span 4;
@@ -3532,6 +3541,12 @@ a.action_btn.all_doc_btn:hover {
   .ezd-sm-col-2 {
     grid-column: span 2/span 2;
   }
+  .ezd-sm-col-11 {
+    grid-column: span 11/span 11;
+  }
+  .ezd-sm-col-12 {
+    grid-column: span 12/span 12;
+  }
 }
 @media (min-width: 768px) {
   .ezd-md-col-4 {
@@ -3557,6 +3572,12 @@ a.action_btn.all_doc_btn:hover {
   }
   .ezd-md-col-10 {
     grid-column: span 10/span 10;
+  }
+  .ezd-md-col-11 {
+    grid-column: span 11/span 11;
+  }
+  .ezd-md-col-12 {
+    grid-column: span 12/span 12;
   }
   .ezd-md-col-2 {
     grid-column: span 2/span 2;
@@ -3587,6 +3608,12 @@ a.action_btn.all_doc_btn:hover {
   .ezd-lg-col-10 {
     grid-column: span 10/span 10;
   }
+  .ezd-lg-col-11 {
+    grid-column: span 11/span 11;
+  }
+  .ezd-lg-col-12 {
+    grid-column: span 12/span 12;
+  }
   .ezd-lg-col-2 {
     grid-column: span 2/span 2;
   }
@@ -3616,6 +3643,12 @@ a.action_btn.all_doc_btn:hover {
   .ezd-xl-col-10 {
     grid-column: span 10/span 10;
   }
+  .ezd-xl-col-11 {
+    grid-column: span 11/span 11;
+  }
+  .ezd-xl-col-12 {
+    grid-column: span 12/span 12;
+  }
   .ezd-xl-col-2 {
     grid-column: span 2/span 2;
   }
@@ -3626,7 +3659,7 @@ ul {
 }
 
 .tab-content {
-  display: block;
+  lay: block;
 }
 
 .ezd-custom-container.ezd-container {
@@ -3643,6 +3676,21 @@ ul {
   }
 }
 
+.ezd-container {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+@media (min-width: 1200px) {
+  .ezd-container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 992px) {
+  .ezd-container {
+    max-width: 960px;
+  }
+}
+
 .eazydocs_shortcode .ezd-container, .ezd-container {
   width: 100%;
   margin-right: auto;
@@ -3652,6 +3700,92 @@ ul {
   .eazydocs_shortcode .ezd-container, .ezd-container {
     max-width: 1200px;
   }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1055;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 0.5rem;
+  pointer-events: none;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+.modal.is-visible {
+  visibility: visible;
+  display: block;
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: visibility 0s linear 0.3s, opacity 0.3s;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+  }
+}
+.ezd-d-flex {
+  display: flex;
+}
+
+.ezd-align-items-center {
+  align-items: center;
+}
+
+.ezd-align-items-start {
+  align-items: start;
+}
+
+.ezd-align-items-end {
+  align-items: end;
+}
+
+.ezd-justify-content-between {
+  justify-content: space-between;
+}
+
+.ezd-justify-content-center {
+  justify-content: center;
+}
+
+.ezd-justify-content-start {
+  justify-content: start;
+}
+
+.position-relative {
+  position: relative;
 }
 
 .modal-content .shortcode_info .row {

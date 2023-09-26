@@ -17,14 +17,15 @@ $docs_visibility = ( $related_docs_switch == 0 && $viewed_docs_switch == 0 ) ? '
 
 if ( $docs_visibility == '1' ) :
 	?>
-    <div class="row topic_item_tabs inner_tab_list related-recent-docs <?php echo esc_attr( $docs_visibility ); ?>">
-		<?php
+<div
+    class="ezd-grid ezd-grid-cols-12 topic_item_tabs inner_tab_list related-recent-docs <?php echo esc_attr( $docs_visibility ); ?>">
+    <?php
 		/*** Related Docs ***/
 		do_action( 'eazydocs_related_articles', $related_title, $related_docs, $related_visible, $related_see_more );
 
 		/*** Recently Viewed Docs ***/
 		do_action( 'eazydocs_viewed_articles', $reviewed_title, $viewed_docs, $viewed_visible, $viewed_see_more );
 		?>
-    </div>
-    <?php
+</div>
+<?php
 endif;

@@ -88,7 +88,7 @@ if ( ezd_is_premium() ) {
                         $main_doc_url = get_permalink( get_the_ID() );
                     }
                     ?>
-            <div class="doc-top d-flex align-items-start">
+            <div class="doc-top ezd-d-flex ezd-align-items-start">
                 <a class="doc_tag_title" href="<?php echo esc_url($main_doc_url); ?>">
                     <h4 class="title ezd_item_title"> <?php the_title(); ?> </h4>
                     <span class="badge"> <?php echo count($get_child_docs); esc_html_e(' Topics', 'eazydocs'); ?>

@@ -57,7 +57,7 @@ class Assets {
 				wp_enqueue_style( 'eazydocs-dark-mode', EAZYDOCS_ASSETS . '/css/frontend_dark-mode.css' );
 			}
 
-			wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css', array( 'bootstrap' ), EAZYDOCS_VERSION );
+			wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css', EAZYDOCS_VERSION );
 
 			if ( is_rtl() ) {
 				wp_enqueue_style( 'eazydocs-rtl', EAZYDOCS_ASSETS . '/css/rtl.css', array( 'eazydocs-frontend' ) );

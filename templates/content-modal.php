@@ -12,10 +12,11 @@ $title          = ! empty ( $options['feedback-form-title'] ) ? $options['feedba
 $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedback-form-desc'] : '';
 ?>
 
-<div class="modal fade" id="eazydocs_feedback" tabindex="-3" role="dialog" aria-hidden="false">
+<div class="modal fade" id="eazydocs_feedback" data-id="modal1">
+    <div class="modal-overlay"></div>
     <div class="modal-dialog help_form" role="document">
         <div class="modal-content">
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <button type="button" class="close">
                 <i class=" icon_close"></i>
             </button>
             <div class="shortcode_title">

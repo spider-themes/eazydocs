@@ -45,7 +45,7 @@ function ezd_is_promax() {
  * @return string
  */
 function ezd_container() {
-	return ezd_get_opt('docs_page_width') == 'full-width' ? 'container-fluid px-lg-5' : 'container custom_container';
+	return ezd_get_opt('docs_page_width') == 'full-width' ? 'container-fluid px-lg-5' : 'ezd-container ezd-custom-container';
 }
 
 /**
@@ -553,24 +553,24 @@ function main_date_sort( $a, $b ) {
  **/
 add_action( 'admin_footer', function () {
 	?>
-    <script>
-        // EazyDocs screen URL
-        eazyDocsClassic = "edit.php?post_type=docs";
-        // Tag screen URL
-        eazyDocsTag = "edit-tags.php?taxonomy=doc_tag&post_type=docs";
+<script>
+// EazyDocs screen URL
+eazyDocsClassic = "edit.php?post_type=docs";
+// Tag screen URL
+eazyDocsTag = "edit-tags.php?taxonomy=doc_tag&post_type=docs";
 
-        // EazyDocs menu active when it's EazyDocs screen
-        if (window.location.href.indexOf(eazyDocsTag) > -1) {
-            jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li').has('a[href*="taxonomy=doc_tag"]').addClass('current');
-        }
+// EazyDocs menu active when it's EazyDocs screen
+if (window.location.href.indexOf(eazyDocsTag) > -1) {
+    jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass(
+        'wp-has-current-submenu wp-menu-open').find('li').has('a[href*="taxonomy=doc_tag"]').addClass('current');
+}
 
-        // Tag Sub menu active when it's Tag screen
-        if (window.location.href.indexOf(eazyDocsClassic) > -1) {
-            jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open').find('li.wp-first-item').addClass('current');
-        }
-
-		
-    </script>
+// Tag Sub menu active when it's Tag screen
+if (window.location.href.indexOf(eazyDocsClassic) > -1) {
+    jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass(
+        'wp-has-current-submenu wp-menu-open').find('li.wp-first-item').addClass('current');
+}
+</script>
 <?php } );
 
 /**
@@ -620,19 +620,19 @@ function eazydocs_one_page( $doc_id ) {
 	if ( $post_status != 'draft' ) :
 		if ( count( $one_page_docs ) < 1 ) :
 			?>
-            <button class="button button-info one-page-doc" id="one-page-doc" name="submit"
-                    data-url="<?php echo admin_url( 'admin.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>&make_onepage=yes">
-				<?php esc_html_e( 'Make OnePage Doc', 'eazydocs' ); ?>
-            </button>
-		<?php
+<button class="button button-info one-page-doc" id="one-page-doc" name="submit"
+    data-url="<?php echo admin_url( 'admin.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>&make_onepage=yes">
+    <?php esc_html_e( 'Make OnePage Doc', 'eazydocs' ); ?>
+</button>
+<?php
 		else :
 			foreach ( $one_page_docs as $single_docs ) :
 				?>
-                <a class="button button-info view-page-doc" id="view-page-doc"
-                   href="<?php echo get_permalink( $single_docs ); ?>" target="_blank">
-					<?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
-                </a>
-			<?php
+<a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink( $single_docs ); ?>"
+    target="_blank">
+    <?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
+</a>
+<?php
 			endforeach;
 		endif;
 	endif;
@@ -824,34 +824,34 @@ add_action( 'add_meta_boxes', function () {
 global $post;
 function ezd_onepage_docs() {
 	?>
-    <p>
-        <b>Doc Layout</b><br/>
-        <input type="text" disabled name="ezd_doc_layout"
-               value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_layout', true ); ?>" class="widefat"/>
-    </p> <br>
+<p>
+    <b>Doc Layout</b><br />
+    <input type="text" disabled name="ezd_doc_layout"
+        value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_layout', true ); ?>" class="widefat" />
+</p> <br>
 
-    <p class="ezd_left_content_heading"> Left Side Content</p>
+<p class="ezd_left_content_heading"> Left Side Content</p>
 
-    <p><b>Content Type</b><br/>
-        <input type="text" disabled name="ezd_doc_content_type"
-               value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_type', true ); ?>" class="widefat"/>
-    </p>
-    <p><b>Content Box</b><br/>
-        <textarea name="ezd_doc_left_sidebar" disabled cols="30" rows="3"
-                  class="widefat"> <?php echo get_post_meta( get_the_ID(), "ezd_doc_left_sidebar", true ); ?> </textarea>
-    </p>
+<p><b>Content Type</b><br />
+    <input type="text" disabled name="ezd_doc_content_type"
+        value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_type', true ); ?>" class="widefat" />
+</p>
+<p><b>Content Box</b><br />
+    <textarea name="ezd_doc_left_sidebar" disabled cols="30" rows="3"
+        class="widefat"> <?php echo get_post_meta( get_the_ID(), "ezd_doc_left_sidebar", true ); ?> </textarea>
+</p>
 
-    <p class="ezd_left_content_heading"> Right Side Content</p>
+<p class="ezd_left_content_heading"> Right Side Content</p>
 
-    <p><b>Content Type</b><br/>
-        <input type="text" disabled name="ezd_doc_content_type_right"
-               value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true ); ?>" class="widefat"/>
-    </p>
-    <p><b>Content Box</b><br/>
-        <textarea disabled name="ezd_doc_content_box_right" id="" cols="30" rows="3"
-                  class="widefat"><?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true ); ?></textarea>
-    </p>
-	<?php
+<p><b>Content Type</b><br />
+    <input type="text" disabled name="ezd_doc_content_type_right"
+        value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true ); ?>" class="widefat" />
+</p>
+<p><b>Content Box</b><br />
+    <textarea disabled name="ezd_doc_content_box_right" id="" cols="30" rows="3"
+        class="widefat"><?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true ); ?></textarea>
+</p>
+<?php
 }
 
 add_action( 'save_post', function ( $post_id ) {
@@ -877,53 +877,55 @@ function ezd_password_form( $output, $post = 0 ) {
 	$protected_form_subtitle = ! empty( $protected_form['protected_form_subtitle'] ) ? $protected_form['protected_form_subtitle'] : __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
 	if ( ! empty( $protected_form_switcher == 'eazydocs-form' ) ) :
 		?>
-        <div class="card ezd-password-wrap">
-            <div class="card-body p-0 ezd-password-head">
-                <div class="text-center p-4">
-					<?php
+<div class="card ezd-password-wrap">
+    <div class="card-body p-0 ezd-password-head">
+        <div class="text-center p-4">
+            <?php
 					if ( has_post_thumbnail() ) :
 						?>
-                        <a href="<?php the_permalink(); ?>" class="logo logo-admin">
-							<?php the_post_thumbnail( 'ezd_searrch_thumb50x50', [ 'class' => 'mb-3' ] ); ?>
-                        </a>
-					    <?php
+            <a href="<?php the_permalink(); ?>" class="logo logo-admin">
+                <?php the_post_thumbnail( 'ezd_searrch_thumb50x50', [ 'class' => 'mb-3' ] ); ?>
+            </a>
+            <?php
 					endif;
 					?>
-                    <p class="mb-1 ezd-password-title">
-						<?php echo esc_html( $protected_form_title ); ?>
-                    </p>
-                    <p class="mb-0 ezd-password-subtitle">
-						<?php echo esc_html( $protected_form_subtitle ); ?>
-                    </p>
+            <p class="mb-1 ezd-password-title">
+                <?php echo esc_html( $protected_form_title ); ?>
+            </p>
+            <p class="mb-0 ezd-password-subtitle">
+                <?php echo esc_html( $protected_form_subtitle ); ?>
+            </p>
+        </div>
+    </div>
+    <div class="card-body ezd-password-body p-4">
+        <form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" method="post"
+            class="form-horizontal auth-form">
+            <div class="form-group mb-2">
+                <label class="form-label" for="ezd_password">
+                    <?php esc_html_e( 'Password', 'eazydocs' ); ?>
+                </label>
+                <div class="input-group mb-3">
+                    <input name="post_password" required id="ezd_password" class="form-control" type="password"
+                        placeholder="Enter password" />
                 </div>
             </div>
-            <div class="card-body ezd-password-body p-4">
-                <form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" method="post" class="form-horizontal auth-form">
-                    <div class="form-group mb-2">
-                        <label class="form-label" for="ezd_password">
-							<?php esc_html_e( 'Password', 'eazydocs' ); ?>
-                        </label>
-                        <div class="input-group mb-3">
-                            <input name="post_password" required id="ezd_password" class="form-control" type="password" placeholder="Enter password"/>
-                        </div>
-                    </div>
-                    <!--end form-group-->
+            <!--end form-group-->
 
-                    <div class="form-group mb-0 row">
-                        <div class="col-12">
-                            <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">
-								<?php esc_html_e( 'Unlock', 'eazydocs' ); ?>
-                                <i class="fas fa-sign-in-alt ms-1"></i>
-                            </button>
-                        </div>
-                        <!--end col-->
-                    </div>
-                    <!--end form-group-->
-                </form>
-                <!--end form-->
+            <div class="form-group mb-0 row">
+                <div class="col-12">
+                    <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">
+                        <?php esc_html_e( 'Unlock', 'eazydocs' ); ?>
+                        <i class="fas fa-sign-in-alt ms-1"></i>
+                    </button>
+                </div>
+                <!--end col-->
             </div>
-        </div>
-	<?php
+            <!--end form-group-->
+        </form>
+        <!--end form-->
+    </div>
+</div>
+<?php
 	else :
 		return $output;
 	endif;
@@ -1189,15 +1191,15 @@ function eazydocs_unlock_with_themes() {
  */
 function ezd_customizer_script() {
     ?>
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            // Add .is_ezd_premium class to body
-            if ( eazydocs_local_object.is_ezd_premium == "yes" ) {
-                jQuery("body").addClass("ezd-premium");
-            }
-        });
-    </script>
-    <?php
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    // Add .is_ezd_premium class to body
+    if (eazydocs_local_object.is_ezd_premium == "yes") {
+        jQuery("body").addClass("ezd-premium");
+    }
+});
+</script>
+<?php
 }
 add_action( 'customize_controls_print_footer_scripts', 'ezd_customizer_script' );
 
@@ -1262,25 +1264,28 @@ function load_more_contributors() {
 	if ( ! empty( $users ) ) :
 		foreach ($users as $user ) :
 			?>
-			<ul class="users_wrap_item to-add-<?php echo esc_attr('user-'.$user->ID); ?>" id="to-add-<?php echo esc_attr('user-'.$user->ID); ?>">
-				<li>
-					<a href='<?php echo get_author_posts_url($user->ID); ?>'>
-					<?php echo get_avatar($user->ID, '35'); ?>
-					</a>
-				</li>
-				<li>
-					<a href='<?php echo get_author_posts_url($user->ID); ?>'>
-						<?php echo $user->display_name ?? ''; ?>
-					</a>
-					<span> <?php echo $user->user_email ?? ''; ?> </span>
-				</li>
-				<li>
-					<a data_name="<?php echo get_the_author_meta( 'display_name', $user->ID ); ?>" class="circle-btn ezd_contribute_add" data-contributor-add="<?php echo esc_attr($user->ID); ?>" data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
-						&plus;
-					</a>
-				</li>
-			</ul>
-		<?php
+<ul class="users_wrap_item to-add-<?php echo esc_attr('user-'.$user->ID); ?>"
+    id="to-add-<?php echo esc_attr('user-'.$user->ID); ?>">
+    <li>
+        <a href='<?php echo get_author_posts_url($user->ID); ?>'>
+            <?php echo get_avatar($user->ID, '35'); ?>
+        </a>
+    </li>
+    <li>
+        <a href='<?php echo get_author_posts_url($user->ID); ?>'>
+            <?php echo $user->display_name ?? ''; ?>
+        </a>
+        <span> <?php echo $user->user_email ?? ''; ?> </span>
+    </li>
+    <li>
+        <a data_name="<?php echo get_the_author_meta( 'display_name', $user->ID ); ?>"
+            class="circle-btn ezd_contribute_add" data-contributor-add="<?php echo esc_attr($user->ID); ?>"
+            data-doc-id="<?php echo esc_attr(get_the_ID()); ?>">
+            &plus;
+        </a>
+    </li>
+</ul>
+<?php
 		endforeach;
 	endif;
 	die;

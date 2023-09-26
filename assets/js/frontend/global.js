@@ -1,73 +1,113 @@
-;(function ($) {
-    "use strict";
+(function ($) {
+	'use strict';
 
-    $(document).ready(function() {
-        /**
-         * Make the overflow of ancestor Elements to visible of Position Sticky Element
-         * @type {HTMLElement}
-         */
-        let parent_selector = document.querySelector('.sticky-lg-top');
-        if ( parent_selector ) {
-            let parent = parent_selector.parentElement;
-            while (parent) {
-                const hasOverflow = getComputedStyle(parent).overflow;
-                if (hasOverflow !== 'visible') {
-                    parent.style.overflow = 'visible';
-                }
-                parent = parent.parentElement;
-            }
-        }
+	$(document).ready(function () {
+		/**
+		 * Make the overflow of ancestor Elements to visible of Position Sticky Element
+		 * @type {HTMLElement}
+		 */
+		let parent_selector = document.querySelector('.sticky-lg-top');
+		if (parent_selector) {
+			let parent = parent_selector.parentElement;
+			while (parent) {
+				const hasOverflow = getComputedStyle(parent).overflow;
+				if (hasOverflow !== 'visible') {
+					parent.style.overflow = 'visible';
+				}
+				parent = parent.parentElement;
+			}
+		}
 
-        $('.body_wrapper').addClass('eazydocs_assistant_body');
-        
-        $(window).scroll(function() {
-            $(".doc-book-layout .nav-sidebar li a").filter(".nav-link").index();
-        });
+		$('.body_wrapper').addClass('eazydocs_assistant_body');
 
-        /**
-         * Left Sidebar Toggle icon
-         */
-        if ($(".doc_documentation_area.fullscreen-layout").length > 0) {
-            //switcher
-            var switchs = true;
-            $("#right").on("click", function (e) {
-                e.preventDefault();
-                if (switchs) {
-                    $(".doc_documentation_area.fullscreen-layout").addClass("overlay");
+		$(window).scroll(function () {
+			$('.doc-book-layout .nav-sidebar li a').filter('.nav-link').index();
+		});
 
-                    $(this).animate({
-                        "right": "250px"
-                    }, 500);
+		/**
+		 * Left Sidebar Toggle icon
+		 */
+		if ($('.doc_documentation_area.fullscreen-layout').length > 0) {
+			//switcher
+			var switchs = true;
+			$('#right').on('click', function (e) {
+				e.preventDefault();
+				if (switchs) {
+					$('.doc_documentation_area.fullscreen-layout').addClass(
+						'overlay'
+					);
 
-                    switchs = false;
+					$(this).animate(
+						{
+							right: '250px',
+						},
+						500
+					);
 
-                } else {
-                    $(".doc_documentation_area.fullscreen-layout").removeClass("overlay");
+					switchs = false;
+				} else {
+					$('.doc_documentation_area.fullscreen-layout').removeClass(
+						'overlay'
+					);
 
-                    $(this).animate({
-                        "right": "0px"
-                    }, 500);
+					$(this).animate(
+						{
+							right: '0px',
+						},
+						500
+					);
 
-                    switchs = true;
-                }
-            })
+					switchs = true;
+				}
+			});
 
-            $("#left").on("click", function (e) {
-                e.preventDefault()
-                if (switchs) {
-                    $(".doc_documentation_area.fullscreen-layout").addClass("overlay");
-                    $(".fullscreen-layout .doc_mobile_menu.left-column").animate({
-                        "left": "0px"
-                    }, 300);
-                    switchs = false;
-                } else {
-                    $(".doc_documentation_area.fullscreen-layout").removeClass("overlay");
-                    $(".fullscreen-layout .doc_mobile_menu.left-column").animate({
-                        "left": "-260px"
-                    }, 300);
-                    switchs = true
-                }
-            });
-        }
-    })
+			$('#left').on('click', function (e) {
+				e.preventDefault();
+				if (switchs) {
+					$('.doc_documentation_area.fullscreen-layout').addClass(
+						'overlay'
+					);
+					$(
+						'.fullscreen-layout .doc_mobile_menu.left-column'
+					).animate(
+						{
+							left: '0px',
+						},
+						300
+					);
+					switchs = false;
+				} else {
+					$('.doc_documentation_area.fullscreen-layout').removeClass(
+						'overlay'
+					);
+					$(
+						'.fullscreen-layout .doc_mobile_menu.left-column'
+					).animate(
+						{
+							left: '-260px',
+						},
+						300
+					);
+					switchs = true;
+				}
+			});
+		}
+
+		$('.modal-toggle').on('click', function (e) {
+			e.preventDefault();
+			$('.modal-overlay').fadeIn();
+			var id = $(this).data('id');
+			$('.modal[data-id="modal' + id + '"]').fadeIn();
+
+			// $('.modal').toggleClass('is-visible');
+		});
+		$('.close').on('click', function () {
+			$('.modal-overlay').fadeOut();
+			$('.modal').fadeOut();
+		});
+		$('.modal-overlay').on('click', function () {
+			$('.modal-overlay').fadeOut();
+			$('.modal').fadeOut();
+		});
+	});
 })(jQuery);

@@ -153,6 +153,9 @@
   border-radius: 0;
   padding: 0;
   margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
   .breadcrumb-item {
     color: var(--black_300);
     font-size: 13px;
@@ -191,3 +194,6 @@
     }
   }
 }
+
+
+

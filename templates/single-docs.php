@@ -37,15 +37,15 @@ if ( ezd_is_premium() ) {
 
 switch ( $layout ) {
 	case 'left_sidebar':
-		$md_content_col = '.ezd-lg-col-9';
+		$md_content_col = 'ezd-lg-col-9 ezd-grid-column-full';
 		break;
 
 	case 'right_sidebar':
-		$md_content_col = '.ezd-lg-col-10';
+		$md_content_col = 'ezd-lg-col-10 ezd-grid-column-full';
 		break;
 
 	default:
-		$md_content_col = '.ezd-xl-col-7 .ezd-lg-col-6';
+		$md_content_col = 'ezd-xl-col-7 ezd-lg-col-6 ezd-grid-column-full';
 }
 
 $current_theme = get_template();
@@ -70,7 +70,7 @@ if ( $single_layout == 'default' ) {
     }
     ?>
      <div class="position-relative <?php echo esc_attr( $doc_container ); ?>">
-         <div class="row">
+         <div class="ezd-grid ezd-grid-cols-12">
              <?php
             while ( have_posts() ) : the_post();
                 if ( $layout == 'left_sidebar' || $layout == 'both_sidebar' ) {
@@ -93,10 +93,12 @@ if ( $single_layout == 'default' ) {
  <?php 
 if ( $credit_enable == '1' ) : ?>
  <div class="section eazydocs-footer">
-     <div class="ezd-grid ezd-grid-cols-12">
-         <div class="ezd-grid-column-full text-center">
-             <div class="eazydocx-credit-text">
-                 <?php echo wp_kses_post( wpautop( $credit_text ) ); ?>
+     <div class="ezd-container">
+         <div class="ezd-grid ezd-grid-cols-12">
+             <div class="ezd-grid-column-full text-center">
+                 <div class="eazydocx-credit-text">
+                     <?php echo wp_kses_post( wpautop( $credit_text ) ); ?>
+                 </div>
              </div>
          </div>
      </div>

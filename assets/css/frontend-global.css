@@ -190,6 +190,9 @@
   border-radius: 0;
   padding: 0;
   margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
 }
 .breadcrumb .breadcrumb-item {
   color: var(--black_300);

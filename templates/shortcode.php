@@ -65,7 +65,7 @@ if ( $docs ) :
                     <?php
                             }
                             ?>
-                    <div class="doc-top d-flex align-items-start">
+                    <div class="doc-top ezd-d-flex ezd-align-items-start">
                         <?php echo get_the_post_thumbnail( $main_doc['doc']->ID, 'full', array( 'class' => 'featured-image' ) ); ?>
 
                         <?php
