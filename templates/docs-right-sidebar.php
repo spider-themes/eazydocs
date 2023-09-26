@@ -5,7 +5,7 @@ $toc_switcher   = $opt['toc_switcher'] ?? '';
 $toc_heading    = $opt['toc_heading'] ?? __( 'CONTENTS', 'eazydocs' );
 $is_pro_themes  = wp_get_theme();
 ?>
-<div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-lg-top">
+<div class="ezd-xl-col-2 ezd-lg-col-3 ezd-grid-column-full doc_right_mobile_menu sticky-lg-top">
     <div class="doc_rightsidebar scroll">
         <div class="open_icon" id="right">
             <i class="arrow_carrot-left"></i>
@@ -13,7 +13,7 @@ $is_pro_themes  = wp_get_theme();
         </div>
 
         <div class="pageSideSection">
-			<?php
+            <?php
 			/**
 			 * Collaboration Buttons
 			 */
@@ -41,15 +41,15 @@ $is_pro_themes  = wp_get_theme();
 
 			if ( ! empty ( $toc_switcher ) ) :
 				?>
-                <div class="table-of-content">
-                    <h6><i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?></h6>
-                    <nav class="list-unstyled doc_menu toc_right" data-toggle="toc" id="eazydocs-toc"></nav>
-                </div>
-			<?php
+            <div class="table-of-content">
+                <h6><i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?></h6>
+                <nav class="list-unstyled doc_menu toc_right" data-toggle="toc" id="eazydocs-toc"></nav>
+            </div>
+            <?php
 			endif;
 			?>
             <div class="ezd-widgets">
-				<?php
+                <?php
 				// Widgets area
 				$parent_doc_id    = function_exists( 'get_root_parent_id' ) ? get_root_parent_id( get_queried_object_id() ) : '';
 				$content_type     = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar_type', true );

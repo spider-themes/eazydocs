@@ -1,8 +1,8 @@
 <section class="h_doc_documentation_area">
     <div class="tabs_sliders">
         <span class="left scroller-btn"><i class="arrow_carrot-left"></i></span>
-        <ul class="nav nav-tabs documentation_tab" id="myTabs" role="tablist">
-		    <?php
+        <ul class="nav nav-tabs documentation_tab tab-menu">
+            <?php
 		    $slug_type = $settings['docs_slug_format'] ?? '';
 		    $widget_id = $this->get_id();
 		    if ( $settings['is_custom_order'] == 'yes' && !empty($settings['docs']) ) {
@@ -27,18 +27,19 @@
 
 				    $atts .= " aria-controls='doc-{$post_title_slug}'";
 				    ?>
-                    <li class="nav-item">
-                        <a <?php echo $atts; ?> id="<?php echo $post_title_slug; ?>-tab" class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>" data-bs-toggle="tab">
-						    <?php
+            <li class="nav-item">
+                <a <?php echo $atts; ?> data-rel="<?php echo $post_title_slug; ?>"
+                    class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
+                    <?php
 						    if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 							    echo wp_kses_post($doc_name[0]);
 						    } else {
 							    echo get_the_title($doc_id);
 						    }
 						    ?>
-                        </a>
-                    </li>
-				    <?php
+                </a>
+            </li>
+            <?php
 				    ++$i;
 			    }
 		    } else {
@@ -60,18 +61,19 @@
 
 					    $aria_controls = " aria-controls='doc-{$doc->post_name}'";
 					    ?>
-                        <li class="nav-item">
-                            <a <?php echo $href.$aria_controls; ?> id="doc2-<?php echo $doc->post_name; ?>-tab" class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>" data-bs-toggle="tab">
-							    <?php
+            <li class="nav-item">
+                <a <?php echo $href.$aria_controls; ?> data-rel="doc2-<?php echo $doc->post_name; ?>"
+                    class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
+                    <?php
 							    if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 								    echo wp_kses_post($doc_name[0]);
 							    } else {
 								    echo wp_kses_post($doc->post_title);
 							    }
 							    ?>
-                            </a>
-                        </li>
-				    <?php
+                </a>
+            </li>
+            <?php
 				    endforeach;
 			    endif;
 		    }
@@ -95,42 +97,42 @@
 		        $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
 	        }
             ?>
-            <div class="tab-pane documentation_tab_pane <?php echo esc_attr($active); ?>" id="doc2-<?php echo $doc_id; ?>" role="tabpanel" aria-labelledby="doc2-<?php echo $doc_id ?>-tab">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="documentation_text">
-                            <?php if ( has_post_thumbnail($main_doc['doc']->ID) ) : ?>
-                                <?php echo get_the_post_thumbnail( $main_doc['doc']->ID, 'full', array( 'class' => 'doc-logo' )); ?>
-                            <?php endif; ?>
+        <div class=" documentation_tab_pane tab-box <?php echo esc_attr($active); ?>" id="doc2-<?php echo $doc_id; ?>">
+            <div class="ezd-grid ezd-grid-cols-12">
+                <div class="ezd-lg-col-4 ezd-grid-column-full">
+                    <div class="documentation_text">
+                        <?php if ( has_post_thumbnail($main_doc['doc']->ID) ) : ?>
+                        <?php echo get_the_post_thumbnail( $main_doc['doc']->ID, 'full', array( 'class' => 'doc-logo' )); ?>
+                        <?php endif; ?>
 
-                            <?php if ( !empty($main_doc['doc']->post_title) ) : ?>
-                                <h4 class="ezd_item_parent_title"><?php echo wp_kses_post($main_doc['doc']->post_title); ?></h4>
-                            <?php endif; ?>
+                        <?php if ( !empty($main_doc['doc']->post_title) ) : ?>
+                        <h4 class="ezd_item_parent_title"><?php echo wp_kses_post($main_doc['doc']->post_title); ?></h4>
+                        <?php endif; ?>
 
-                            <p class="ezd_item_content">
-	                            <?php
+                        <p class="ezd_item_content">
+                            <?php
 	                            if( strlen(trim($main_doc['doc']->post_excerpt)) != 0 ) {
 		                            echo wp_trim_words($main_doc['doc']->post_excerpt, $settings['main_doc_excerpt'], '');
 	                            } else{
 		                            echo wp_trim_words($main_doc['doc']->post_content, $settings['main_doc_excerpt'], '');
 	                            }
 	                            ?>
-                            </p>
+                        </p>
 
 
-                            <a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="learn_btn ezd_btn">
-                                <?php echo esc_html($settings['read_more']); ?> <i class="<?php ezd_arrow() ?>"></i>
-                            </a>
-                        </div>
+                        <a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="learn_btn ezd_btn">
+                            <?php echo esc_html($settings['read_more']); ?> <i class="<?php ezd_arrow() ?>"></i>
+                        </a>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="d-items">
-                            <?php
+                </div>
+                <div class="ezd-lg-col-8 ezd-grid-column-full">
+                    <div class="d-items">
+                        <?php
                             foreach ($main_doc['sections'] as $section) :
                                 ?>
-                                <div class="media documentation_item">
-                                        <div class="icon bs-sm">
-                                            <?php
+                        <div class="media documentation_item">
+                            <div class="icon bs-sm">
+                                <?php
                                             if ( has_post_thumbnail($section->ID) ) {
                                                 echo get_the_post_thumbnail($section->ID, 'full');
                                             } else {
@@ -138,29 +140,30 @@
                                                 echo "<img src='$default_icon' alt='{$section->post_title}'>";
                                             }
                                             ?>
-                                        </div>
-                                        <div class="media-body">
-                                            <a href="<?php echo get_permalink($section->ID); ?>">
-                                                <h5 class="title ezd_item_title"> <?php echo wp_kses_post($section->post_title); ?> </h5>
-                                            </a>
-                                            <p class="ezd_item_content">
-                                                <?php
+                            </div>
+                            <div class="media-body">
+                                <a href="<?php echo get_permalink($section->ID); ?>">
+                                    <h5 class="title ezd_item_title"> <?php echo wp_kses_post($section->post_title); ?>
+                                    </h5>
+                                </a>
+                                <p class="ezd_item_content">
+                                    <?php
                                                 if( strlen(trim($section->post_excerpt)) != 0 ) {
                                                     echo wp_trim_words($section->post_excerpt, $settings['doc_sec_excerpt'], '');
                                                 } else {
                                                     echo wp_trim_words($section->post_content, $settings['doc_sec_excerpt'], '');
                                                 }
                                                 ?>
-                                            </p>
-                                        </div>
+                                </p>
                             </div>
-                                <?php
+                        </div>
+                        <?php
                             endforeach;
                             ?>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         <?php
         endforeach;
         ?>

@@ -841,77 +841,93 @@ class Doc_Widget extends Widget_Base {
         }
 
 		?>
-		<script type="text/javascript">
+<script type="text/javascript">
+;
+(function($) {
+    "use strict";
 
-            ;(function ($) {
-                "use strict";
+    $(document).ready(function() {
 
-                $(document).ready(function () {
+        //=== Tabs Slider
+        let tabWrapWidth = $('.tabs_sliders').outerWidth();
+        let totalWidth = 0;
 
-                    //=== Tabs Slider
-                    let tabWrapWidth = $('.tabs_sliders').outerWidth();
-                    let totalWidth = 0;
+        let slideArrowBtn = $('.scroller-btn');
+        let slideBtnLeft = $('.scroller-btn.left');
+        let slideBtnRight = $('.scroller-btn.right');
+        let navWrap = $('ul.nav-tabs');
+        let navWrapItem = $('ul.nav-tabs li');
 
-                    let slideArrowBtn = $('.scroller-btn');
-                    let slideBtnLeft = $('.scroller-btn.left');
-                    let slideBtnRight = $('.scroller-btn.right');
-                    let navWrap = $('ul.nav-tabs');
-                    let navWrapItem = $('ul.nav-tabs li');
+        navWrapItem.each(function() {
+            totalWidth += navWrapItem.outerWidth();
+        });
 
-                    navWrapItem.each(function () {
-                        totalWidth += navWrapItem.outerWidth();
-                    });
+        if (totalWidth > tabWrapWidth) {
+            slideArrowBtn.removeClass('inactive');
+        } else {
+            slideArrowBtn.addClass('inactive');
+        }
 
-                    if (totalWidth > tabWrapWidth) {
-                        slideArrowBtn.removeClass('inactive');
-                    }
-                    else {
-                        slideArrowBtn.addClass('inactive');
-                    }
+        if (navWrap.scrollLeft() === 0) {
+            slideBtnLeft.addClass('inactive');
+        } else {
+            slideBtnLeft.removeClass('inactive');
+        }
 
-                    if (navWrap.scrollLeft() === 0) {
-                        slideBtnLeft.addClass('inactive');
-                    } else {
-                        slideBtnLeft.removeClass('inactive');
-                    }
+        slideBtnRight.on('click', function() {
+            navWrap.animate({
+                scrollLeft: '+=200px'
+            }, 300);
+            console.log(navWrap.scrollLeft() + " px");
+        });
 
-                    slideBtnRight.on('click', function () {
-                        navWrap.animate({scrollLeft: '+=200px'}, 300);
-                        console.log(navWrap.scrollLeft() + " px");
-                    });
+        slideBtnLeft.on('click', function() {
+            navWrap.animate({
+                scrollLeft: '-=200px'
+            }, 300);
+        });
 
-                    slideBtnLeft.on('click', function () {
-                        navWrap.animate({scrollLeft: '-=200px'}, 300);
-                    });
+        scrollerHide();
 
-                    scrollerHide();
-                    function scrollerHide() {
-                        let scrollLeftPrev = 0;
-                        navWrap.scroll(function () {
-                            let $elem = navWrap;
-                            let newScrollLeft = $elem.scrollLeft(),
-                                width = $elem.outerWidth(),
-                                scrollWidth = $elem.get(0).scrollWidth;
-                            if (scrollWidth - newScrollLeft === width) {
-                                slideBtnRight.addClass('inactive');
-                            } else {
-                                slideBtnRight.removeClass('inactive');
-                            }
-                            if (newScrollLeft === 0) {
-                                slideBtnLeft.addClass('inactive');
-                            } else {
-                                slideBtnLeft.removeClass('inactive');
-                            }
-                            scrollLeftPrev = newScrollLeft;
-                        });
-                    }
+        function scrollerHide() {
+            let scrollLeftPrev = 0;
+            navWrap.scroll(function() {
+                let $elem = navWrap;
+                let newScrollLeft = $elem.scrollLeft(),
+                    width = $elem.outerWidth(),
+                    scrollWidth = $elem.get(0).scrollWidth;
+                if (scrollWidth - newScrollLeft === width) {
+                    slideBtnRight.addClass('inactive');
+                } else {
+                    slideBtnRight.removeClass('inactive');
+                }
+                if (newScrollLeft === 0) {
+                    slideBtnLeft.addClass('inactive');
+                } else {
+                    slideBtnLeft.removeClass('inactive');
+                }
+                scrollLeftPrev = newScrollLeft;
+            });
+        }
 
-                });
+    });
 
-            })(jQuery);
 
-		</script>
-		<?php
+    // custom tab js
+    $('.tab-menu li a').on('click', function() {
+        var target = $(this).attr('data-rel');
+        $('.tab-menu li a').removeClass('active');
+        $(this).addClass('active');
+        $('#' + target)
+            .fadeIn('slow')
+            .siblings('.tab-box')
+            .hide();
+        return false;
+    });
+
+})(jQuery);
+</script>
+<?php
 
 
 	}

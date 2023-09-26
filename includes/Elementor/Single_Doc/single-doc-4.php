@@ -1,25 +1,23 @@
-<div class="row h_content_items">
-	<?php
+<div class="ezd-grid <?php echo esc_attr( $ppp_column ); ?> h_content_items">
+    <?php
 	foreach ( $sections as $section ) :
 		?>
-        <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-sm-6">
-            <a href="<?php echo get_permalink( $section->ID ) ?>">
-                <div class="h_item">
-					<?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
-                    <h4 class="ct-heading-text"><?php echo wp_kses_post( $section->post_title ); ?></h4>
-                    <div class="ct-content-text">
-						<?php
+    <a href="<?php echo get_permalink( $section->ID ) ?>">
+        <div class="h_item">
+            <?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
+            <h4 class="ct-heading-text"><?php echo wp_kses_post( $section->post_title ); ?></h4>
+            <div class="ct-content-text">
+                <?php
 						if ( strlen( trim( $section->post_excerpt ) ) != 0 ) {
 							echo wpautop( $section->post_excerpt );
 						} else {
 							echo wpautop( wp_trim_words( $section->post_content, $settings['doc_sec_excerpt'], '' ) );
 						}
 						?>
-                    </div>
-                </div>
-            </a>
+            </div>
         </div>
-	<?php
+    </a>
+    <?php
 	endforeach;
 	?>
 </div>
@@ -37,27 +35,27 @@ $sections2 = get_children( array(
 ?>
 <div class="h_content_items box-item collapse-wrap">
     <div class="row">
-		<?php
+        <?php
 		foreach ( $sections2 as $section ) :
 			?>
-            <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-sm-6">
-                <a href="<?php echo get_permalink( $section->ID ) ?>">
-                    <div class="h_item">
-						<?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
-                        <h4 class="ct-heading-text"><?php echo wp_kses_post( $section->post_title ); ?></h4>
-                        <div class="ct-content-text">
-							<?php
+        <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-sm-6">
+            <a href="<?php echo get_permalink( $section->ID ) ?>">
+                <div class="h_item">
+                    <?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
+                    <h4 class="ct-heading-text"><?php echo wp_kses_post( $section->post_title ); ?></h4>
+                    <div class="ct-content-text">
+                        <?php
 							if ( strlen( trim( $section->post_excerpt ) ) != 0 ) {
 								echo wpautop( $section->post_excerpt );
 							} else {
 								echo wpautop( wp_trim_words( $section->post_content, $settings['doc_sec_excerpt'], '' ) );
 							}
 							?>
-                        </div>
                     </div>
-                </a>
-            </div>
-		<?php
+                </div>
+            </a>
+        </div>
+        <?php
 		endforeach;
 		?>
     </div>
@@ -66,11 +64,17 @@ $sections2 = get_children( array(
 <?php 
 if ( ! empty( $settings['show_more_btn'] ) ) : 
 	?>
-	<div class="more text-center">
-		<a class="icon_btn2 blue collapse-btn" href="#">
-			<span> <ion-icon name="caret-down-circle-outline"></ion-icon> <?php echo wp_kses_post( $settings['show_more_btn'] ); ?> </span>
-			<span> <ion-icon name="caret-up-circle-outline"></ion-icon> <?php echo wp_kses_post( $settings['show_less_btn'] ); ?> </span>
-		</a>
-	</div>
-	<?php 
+<div class="more text-center">
+    <a class="icon_btn2 blue collapse-btn" href="#">
+        <span>
+            <ion-icon name="caret-down-circle-outline"></ion-icon>
+            <?php echo wp_kses_post( $settings['show_more_btn'] ); ?>
+        </span>
+        <span>
+            <ion-icon name="caret-up-circle-outline"></ion-icon>
+            <?php echo wp_kses_post( $settings['show_less_btn'] ); ?>
+        </span>
+    </a>
+</div>
+<?php 
 endif;

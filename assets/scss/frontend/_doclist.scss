@@ -790,6 +790,7 @@ body {
   top: 50%;
   transform: translateY(-50%) !important;
   border-radius: 10px;
+  z-index: 999;
   @media (max-width: 991px) {
     max-width: 600px;
     padding: 40px 30px;
@@ -1873,6 +1874,7 @@ div#eazydocs_share {
     margin: auto;
     display: block;
     height: fit-content;
+    z-index: 999;
 
     > .modal-content {
       padding: 30px 30px 35px;

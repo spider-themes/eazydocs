@@ -42,28 +42,29 @@ if ( $credit_enable == '1' ) {
 }
 ?>
 
-<div class="col-xl-3 col-lg-3 doc_mobile_menu left-column sticky-lg-top">
+<div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu left-column sticky-lg-top">
     <aside class="doc_left_sidebarlist <?php echo esc_attr( $credit_text_wrap .' '. $nav_sidebar_active ); ?>">
         <div class="open_icon" id="left">
             <i class="arrow_carrot-right"></i>
             <i class="arrow_carrot-left"></i>
         </div>
         <h2 class="doc-title">
-			<?php echo get_post_field( 'post_title', $parent, 'display' ); ?>
+            <?php echo get_post_field( 'post_title', $parent, 'display' ); ?>
         </h2>
         <?php
         if ( $sidebar_search == 1 ) :
             ?>
-            <div class="filter_form">
-                <div class="filterform">
-                    <input id="doc_filter" type="search" name="filter" placeholder="<?php esc_attr_e( 'Filter', 'eazydocs' ); ?>" data-uw-styling-context="true">
-                </div>
+        <div class="filter_form">
+            <div class="filterform">
+                <input id="doc_filter" type="search" name="filter"
+                    placeholder="<?php esc_attr_e( 'Filter', 'eazydocs' ); ?>" data-uw-styling-context="true">
             </div>
-            <?php
+        </div>
+        <?php
         endif;
 		?>
 
-		<div class="scroll">
+        <div class="scroll">
             <?php
             if ( $children ) :
                 if ( $content_layout == 'category_base' && ezd_is_premium() ) {
@@ -112,6 +113,6 @@ if ( $credit_enable == '1' ) {
                 }
             echo '</div>';
             ?>
-		</div>
+        </div>
     </aside>
 </div>

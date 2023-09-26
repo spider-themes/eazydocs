@@ -21,6 +21,7 @@
       line-height: 28px;
       margin: 0 5px;
       transition: all 0.4s linear;
+      display: inline-block;
       &:not(.active):hover {
         background: brand_color_rgba(.2);
       }
@@ -1028,14 +1029,13 @@ a.action_btn {
 .tabs_sliders {
   position: relative;
   ul{
-    &.nav-tabs {
       align-items: flex-start;
       flex-wrap: nowrap !important;
+      display: flex;
       overflow: hidden;
       li {
         min-width: fit-content;
       }
-    }
   }
   span{
     &.scroller-btn {

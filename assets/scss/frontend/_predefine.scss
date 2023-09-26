@@ -29,5 +29,6 @@ input[type="search"]::-webkit-search-results-decoration {
     position: sticky !important;
     align-self: flex-start !important;
     z-index: 1;
+    top: 0;
   }
 }
