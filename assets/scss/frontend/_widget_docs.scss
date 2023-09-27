@@ -120,6 +120,7 @@
       background: transparent;
       border-radius: 5px 5px 0 0;
       text-decoration: none;
+      display: block;
       &:before {
         content: "";
         width: 0;
@@ -223,6 +224,7 @@
       color: var(--black_900);
       margin-right: 20px;
       font-size: 15px;
+      display: block;
       span.chapter-part {
         display: block;
         text-transform: uppercase;
@@ -1056,5 +1058,12 @@ a.action_btn {
     &.inactive {
       display: none;
     }
+  }
+}
+
+.tab-box {
+  display: none;
+  &.active{
+    display: block;
   }
 }

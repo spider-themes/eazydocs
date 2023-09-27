@@ -2561,6 +2561,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   background: transparent;
   border-radius: 5px 5px 0 0;
   text-decoration: none;
+  display: block;
 }
 .documentation_tab .nav-item .nav-link:before {
   content: "";
@@ -2660,6 +2661,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   color: var(--black_900);
   margin-right: 20px;
   font-size: 15px;
+  display: block;
 }
 .book-chapter-nav li a span.chapter-part {
   display: block;
@@ -3450,6 +3452,13 @@ a.action_btn.all_doc_btn:hover {
 }
 .tabs_sliders span.inactive {
   display: none;
+}
+
+.tab-box {
+  display: none;
+}
+.tab-box.active {
+  display: block;
 }
 
 .ezd-grid {
