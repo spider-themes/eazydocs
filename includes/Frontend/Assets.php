@@ -116,6 +116,9 @@ class Assets {
 		if ( is_single() && get_post_type() == 'docs' || get_post_type() == 'onepage-docs' || is_page_template( 'page-onepage.php' ) ) {
 			wp_enqueue_style( 'eazydocs-responsive', EAZYDOCS_ASSETS . '/css/frontend/ezd-responsive.css' );
 		}
+		if ( is_single() && get_post_type() == 'docs' && ezd_get_opt( 'is_doc_ajax' ) == '1' && ezd_is_premium() == true ) {
+			wp_enqueue_script( 'eazydocs-ajax-loading', EAZYDOCS_ASSETS . '/js/frontend/ajax.js', array( 'jquery' ), EAZYDOCS_VERSION );
+		}
 	}
 
 	private static function ezd_global_scope() {
