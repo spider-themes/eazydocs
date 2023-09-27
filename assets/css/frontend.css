@@ -772,7 +772,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .nav-sidebar .nav-item.current_page_item > .doc-link {
   color: var(--ezd_brand_color);
-  background: var(--bs-white);
+  background: #fff;
   border: 1px solid var(--black_50);
 }
 .nav-sidebar .nav-item.current_page_item > .doc-link a {
@@ -1307,7 +1307,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 
 .contact_form .form-group {
   margin-bottom: 15px;
-  padding: 0 8px;
+  padding: 0px;
 }
 .contact_form .form-group.submit-area {
   margin-bottom: 0;
@@ -1317,11 +1317,12 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   border: 1px solid var(--black_50);
   height: 52px;
   border-radius: 5px;
-  background-color: var(--bs-white);
+  background-color: #fff;
   color: var(--black_800);
   font-weight: 400;
   padding-left: 25px;
   box-shadow: none;
+  width: 100%;
 }
 .contact_form .form-group .form-control.placeholder, .contact_form .form-group textarea.placeholder {
   color: #878b99;
@@ -1693,7 +1694,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 
 .fontsize-controllers .btn-group {
   border: 1px solid var(--black_50);
-  background-color: var(--bs-white);
+  background-color: #fff;
   box-shadow: 0 1px 0 0 rgba(3, 13, 37, 0.2), inset 0 -8px 14px 0 rgba(3, 13, 37, 0.1);
   border-radius: 4px;
 }
@@ -1923,7 +1924,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .d-items .documentation_item .icon {
   border-radius: 50%;
-  background-color: var(--bs-white);
+  background-color: #fff;
   box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
   text-align: center;
   margin-right: 20px;
@@ -2177,7 +2178,7 @@ div#eazydocs_share > .modal-dialog {
 }
 div#eazydocs_share > .modal-dialog > .modal-content {
   padding: 30px 30px 35px;
-  background-color: var(--bs-white);
+  background-color: #fff;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .close {
   position: absolute;
@@ -3049,7 +3050,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   z-index: 2;
   position: relative;
   margin-left: 0;
-  border: 2px solid var(--bs-white);
+  border: 2px solid #fff;
 }
 .doc_community_item .doc_entry_info .author_avatar li img {
   max-width: 30px;
@@ -3671,7 +3672,6 @@ a.action_btn.all_doc_btn:hover {
   }
 }
 ul {
-  padding-left: 0 !important;
   list-style: none !important;
 }
 
@@ -3769,7 +3769,6 @@ ul {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
     margin: 1.75rem auto;
   }
 }
@@ -3886,7 +3885,7 @@ p .footnotes-link::after {
 }
 .filter_form input:focus, .filter_form input[type=search]:focus {
   outline: thin dotted;
-  background-color: var(--bs-white);
+  background-color: #fff;
 }
 .filter_form input::placeholder, .filter_form input[type=search]::placeholder {
   color: var(--black_400);

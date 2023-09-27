@@ -86,7 +86,7 @@ p .footnotes-link::after {
     color: var(--black_800) !important;
     &:focus {
       outline: thin dotted;
-      background-color: var(--bs-white);
+      background-color: #fff;
     }
     &::placeholder {
       color: var(--black_400)

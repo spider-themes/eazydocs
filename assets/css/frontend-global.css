@@ -399,6 +399,9 @@
   .ezd-lg-col-2 {
     grid-column: span 2/span 2;
   }
+  .p-lg-5 {
+    padding: 3rem;
+  }
 }
 @media (min-width: 1200px) {
   .ezd-xl-col-4 {
@@ -436,12 +439,19 @@
   }
 }
 ul {
-  padding-left: 0 !important;
   list-style: none !important;
 }
 
 .tab-content {
-  lay: block;
+  display: block;
+}
+
+.ezd-container-fluid {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .ezd-custom-container.ezd-container {
@@ -534,7 +544,6 @@ ul {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
     margin: 1.75rem auto;
   }
 }

@@ -359,6 +359,9 @@ grid-template-columns: repeat(12, minmax(0, 1fr));
   .ezd-lg-col-2{
       grid-column: span 2 / span 2;
   }
+  .p-lg-5 {
+    padding: 3rem;
+  }
 }
 @media (min-width: 1200px){
   .ezd-xl-col-4{
@@ -399,11 +402,17 @@ grid-template-columns: repeat(12, minmax(0, 1fr));
 
 
 ul{
-  padding-left: 0 !important;
   list-style: none !important;
 }
 .tab-content{
-  lay: block;
+  display: block;
+}
+.ezd-container-fluid{
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .ezd-custom-container.ezd-container {
@@ -426,6 +435,8 @@ ul{
       max-width: 960px;
   }
 }
+
+
 
 .eazydocs_shortcode .ezd-container, .ezd-container {
   width: 100%;
@@ -484,7 +495,6 @@ ul{
 }
 @media (min-width: 576px){
   .modal-dialog {
-      max-width: 500px;
       margin: 1.75rem auto;
   }
 }
@@ -516,4 +526,5 @@ ul{
 .text-center{
   text-align: center;
 }
+
 

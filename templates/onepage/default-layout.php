@@ -18,25 +18,27 @@ $children           = wp_list_pages( array(
 	'walker'        => new EazyDocs_Walker_Onepage(),
 ) );
 ?>
-    <section class="doc_documentation_area onepage_doc_area classic-onepage" id="sticky_doc">
-        <div class="overlay_bg"></div>
-        <div class="container-fluid p-lg-5">
-            <div class="row doc-container">
-                <div class="col-xl-3 col-lg-3 doc_mobile_menu doc-sidebar sticky-top sticky-lg-top left-column">
-                    <aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap">
-                        <div class="open_icon" id="left">
-                            <i class="arrow_carrot-right"></i>
-                            <i class="arrow_carrot-left"></i>
-                        </div>
-                        <h3 class="nav_title">
-							<?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
-                        </h3>
-						<?php
+<section class="doc_documentation_area onepage_doc_area classic-onepage" id="sticky_doc">
+    <div class="overlay_bg"></div>
+    <div class="ezd-container-fluid p-lg-5">
+        <div class="ezd-grid ezd-grid-cols-12 doc-container">
+            <div
+                class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top sticky-lg-top left-column">
+                <aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap">
+                    <div class="open_icon" id="left">
+                        <i class="arrow_carrot-right"></i>
+                        <i class="arrow_carrot-left"></i>
+                    </div>
+                    <h3 class="nav_title">
+                        <?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
+                    </h3>
+                    <?php
 						if ( $children ) :
 							?>
-                            <nav class="scroll op-docs-sidebar">
-                                <ul class="list-unstyled nav-sidebar default-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
-									<?php
+                    <nav class="scroll op-docs-sidebar">
+                        <ul class="list-unstyled nav-sidebar default-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap"
+                            id="eazydocs-toc">
+                            <?php
 									echo wp_list_pages(array(
 										'title_li' => '',
 										'order' => 'menu_order',
@@ -47,9 +49,9 @@ $children           = wp_list_pages( array(
 										'depth' => 3
 									));
 									?>
-                                </ul>
-                            </nav>
-						<?php
+                        </ul>
+                    </nav>
+                    <?php
 						endif;
 						
 						$parent_doc_id_left      = get_the_ID();
@@ -74,12 +76,12 @@ $children           = wp_list_pages( array(
 							}
 						}
 	                    ?>
-                    </aside>
+                </aside>
 
-                </div>
-                <div class="col-xl-7 col-lg-6 middle-content">
-                    <div class="documentation_info" id="post">
-						<?php
+            </div>
+            <div class="ezd-xl-col-7 ezd-lg-col-6 ezd-grid-column-full middle-content">
+                <div class="documentation_info" id="post">
+                    <?php
 						$sections = get_children( array(
 							'post_parent'    => $post_id->ID,
 							'post_type'      => 'docs',
@@ -104,14 +106,15 @@ $children           = wp_list_pages( array(
 								$get_title 	= 'ezd-'.sanitize_title($doc_item->post_title); 
 							}
 							?>
-                            <article class="documentation_body doc-section onepage-doc-sec" id="<?php echo $get_title; ?>" itemscope itemtype="http://schema.org/Article">
-								<?php if ( !empty($doc_item->post_title) ) : ?>
-                                    <div class="shortcode_title">
-                                        <h2> <?php echo esc_html($doc_item->post_title); ?> </h2>
-                                    </div>
-								<?php endif; ?>
-                                <div class="doc-content">
-									<?php
+                    <article class="documentation_body doc-section onepage-doc-sec" id="<?php echo $get_title; ?>"
+                        itemscope itemtype="http://schema.org/Article">
+                        <?php if ( !empty($doc_item->post_title) ) : ?>
+                        <div class="shortcode_title">
+                            <h2> <?php echo esc_html($doc_item->post_title); ?> </h2>
+                        </div>
+                        <?php endif; ?>
+                        <div class="doc-content">
+                            <?php
 									if ( did_action( 'elementor/loaded' ) ) {
 										$parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content($doc_item->ID);
 										echo !empty($parent_content) ? $parent_content : apply_filters('the_content', $doc_item->post_content);
@@ -119,41 +122,41 @@ $children           = wp_list_pages( array(
 										echo apply_filters('the_content', $doc_item->post_content);
 									}
 									?>
-                                </div>
+                        </div>
 
-								<?php if ( $child_sections ) : ?>
-                                    <div class="articles-list mt-5">
-                                        <h4 class="c_head"> <?php esc_html_e('Articles', 'eazydocs'); ?></h4>
-                                        <ul class="article_list one-page-docs-tag-list">
-											<?php
+                        <?php if ( $child_sections ) : ?>
+                        <div class="articles-list mt-5">
+                            <h4 class="c_head"> <?php esc_html_e('Articles', 'eazydocs'); ?></h4>
+                            <ul class="article_list one-page-docs-tag-list">
+                                <?php
 											foreach ( $child_sections as $child_section ) :
 												?>
-                                                <li>
-                                                    <a href="#<?php echo sanitize_title($child_section->post_title) ?>">
-                                                        <i class="icon_document_alt"></i>
-														<?php echo $child_section->post_title; ?>
-                                                    </a>
-                                                </li>
-											<?php
+                                <li>
+                                    <a href="#<?php echo sanitize_title($child_section->post_title) ?>">
+                                        <i class="icon_document_alt"></i>
+                                        <?php echo $child_section->post_title; ?>
+                                    </a>
+                                </li>
+                                <?php
 											endforeach;
 											?>
-                                        </ul>
-                                    </div>
-								<?php endif; ?>
+                            </ul>
+                        </div>
+                        <?php endif; ?>
 
-								<?php
+                        <?php
 								foreach ( $child_sections as $child_section ) :
 									$get_child_title 		= sanitize_title($child_section->post_title);
 									if ( preg_match('#[0-9]#',$get_child_title) ) {
 										$get_child_title 	= 'ezd-'.sanitize_title($child_section->post_title); 
 									}
 									?>
-                                    <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_child_title) ?>">
-                                        <div class="shortcode_title depth-two">
-                                            <h3> <?php echo $child_section->post_title ?> </h3>
-                                        </div>
-                                        <div class="doc-content">
-											<?php
+                        <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_child_title) ?>">
+                            <div class="shortcode_title depth-two">
+                                <h3> <?php echo $child_section->post_title ?> </h3>
+                            </div>
+                            <div class="doc-content">
+                                <?php
 											if ( did_action( 'elementor/loaded' ) ) {
 												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($child_section->ID);
 												echo !empty($child_content) ? $child_content : apply_filters('the_content', $child_section->post_content);
@@ -161,9 +164,9 @@ $children           = wp_list_pages( array(
 												echo apply_filters('the_content', $child_section->post_content);
 											}
 											?>
-                                        </div>
-                                    </div>
-								<?php
+                            </div>
+                        </div>
+                        <?php
 
 								
 								$last_depth = get_children( array(
@@ -181,12 +184,12 @@ $children           = wp_list_pages( array(
 										$get_last_child_title 	= 'ezd-'.sanitize_title($last_depth_doc->post_title); 
 									}
 									?>
-									<div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_last_child_title) ?>">
-                                        <div class="shortcode_title depth-three">
-                                            <h4> <?php echo $last_depth_doc->post_title ?> </h4>
-                                        </div>
-                                        <div class="doc-content">
-											<?php
+                        <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_last_child_title) ?>">
+                            <div class="shortcode_title depth-three">
+                                <h4> <?php echo $last_depth_doc->post_title ?> </h4>
+                            </div>
+                            <div class="doc-content">
+                                <?php
 											if ( did_action( 'elementor/loaded' ) ) {
 												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($last_depth_doc->ID);
 												echo !empty($child_content) ? $child_content : apply_filters('the_content', $last_depth_doc->post_content);
@@ -194,27 +197,27 @@ $children           = wp_list_pages( array(
 												echo apply_filters('the_content', $last_depth_doc->post_content);
 											}
 											?>
-                                        </div>
-                                    </div>
-									<?php
+                            </div>
+                        </div>
+                        <?php
 								endforeach;
 								endforeach;
 								?>
-                            </article>
-							<?php
+                    </article>
+                    <?php
 							++$i;
 						}
 						?>
-                    </div>
                 </div>
-                <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-top sticky-lg-top">
-                    <div class="open_icon" id="right">
-                        <i class="arrow_carrot-left"></i>
-                        <i class="arrow_carrot-right"></i>
-                    </div>
-                    <div class="doc_rightsidebar scroll one-page-docs-right-sidebar">
-                        <div class="pageSideSection">
-							<?php
+            </div>
+            <div class="ezd-xl-col-2 ezd-lg-col-3 ezd-grid-column-full doc_right_mobile_menu sticky-top sticky-lg-top">
+                <div class="open_icon" id="right">
+                    <i class="arrow_carrot-left"></i>
+                    <i class="arrow_carrot-right"></i>
+                </div>
+                <div class="doc_rightsidebar scroll one-page-docs-right-sidebar">
+                    <div class="pageSideSection">
+                        <?php
                             /**
                              * Conditional Dropdown
                              */
@@ -231,9 +234,9 @@ $children           = wp_list_pages( array(
                             eazydocs_get_template_part('tools/dark-mode-switcher');
 							?>
 
-                            <div class="onepage-sidebar doc_sidebar <?php echo esc_attr($ezd_content_none); ?>">
-                                <div class="hire-us">
-									<?php
+                        <div class="onepage-sidebar doc_sidebar <?php echo esc_attr($ezd_content_none); ?>">
+                            <div class="hire-us">
+                                <?php
 									// Widgets area
 									$parent_doc_id      = get_the_ID();
 									$content_type       = get_post_meta( $parent_doc_id, 'ezd_doc_content_type_right', true );
@@ -262,14 +265,14 @@ $children           = wp_list_pages( array(
 										}            
 									}
 									?>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <?php
 get_footer();
