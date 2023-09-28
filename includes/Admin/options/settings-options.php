@@ -1005,6 +1005,17 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'         => 'toc_auto_numbering',
+			'type'       => 'switcher',
+			'desc'      => esc_html__( 'Enable to add numbers before each table of content item.', 'eazydocs' ),
+			'title'      => esc_html__( 'Auto Numbering', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_width' => 72,
+			'dependency' => array( 'toc_switcher', '==', '1' ),
+		),
+
+		array(
 			'title'      => esc_html__( 'Widgets Area', 'eazydocs' ),
 			'desc'       => esc_html__( "Enable to register a Sidebar Widgets area named 'Doc Right Sidebar' in Appearance > Widgets.", 'eazydocs' ),
 			'id'         => 'is_widget_sidebar',

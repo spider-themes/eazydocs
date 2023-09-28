@@ -4,6 +4,7 @@ $widget_sidebar = $opt['is_widget_sidebar'] ?? '';
 $toc_switcher   = $opt['toc_switcher'] ?? '';
 $toc_heading    = $opt['toc_heading'] ?? __( 'CONTENTS', 'eazydocs' );
 $is_pro_themes  = wp_get_theme();
+$toc_auto_numbering = $opt['toc_auto_numbering'] == '1' ? ' toc_auto_numbering' : '';
 ?>
 <div class="col-xl-2 col-lg-3 doc_right_mobile_menu sticky-lg-top">
     <div class="doc_rightsidebar scroll">
@@ -43,11 +44,12 @@ $is_pro_themes  = wp_get_theme();
 				?>
                 <div class="table-of-content">
                     <h6><i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?></h6>
-                    <nav class="list-unstyled doc_menu toc_right" data-toggle="toc" id="eazydocs-toc"></nav>
+					<nav class="list-unstyled doc_menu toc_right<?php echo esc_attr($toc_auto_numbering) ?>" data-toggle="toc" id="eazydocs-toc"></nav>
                 </div>
 			<?php
 			endif;
 			?>
+			
             <div class="ezd-widgets">
 				<?php
 				// Widgets area

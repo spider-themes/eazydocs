@@ -1113,9 +1113,9 @@ body {
       font-weight: 500;
       color: var(--ezd_brand_color);
 
-      + .nav .active::before {
-        display: none;
-      }
+      // + .nav .active::before {
+      //   display: none;
+      // }
 
       &::before {
         left: -20px;
@@ -1124,6 +1124,47 @@ body {
         position: absolute;
         border-left: 2px solid;
         color: var(--ezd_brand_color);
+      }
+    }
+  }
+}
+
+
+//  TOC numbering 
+@media (max-width: 991px) {
+  .left-column {
+    .doc_left_sidebarlist,
+    .single-docs .doc_rightsidebar {
+      margin-top: 90px;
+    }
+  }
+  .doc-middle-content {
+    margin-top: 30px;
+  }
+}
+
+.toc_auto_numbering {
+  ul {
+    counter-reset: item;
+    flex-wrap: wrap;
+    display: block;
+    li {
+      counter-increment: item;
+      white-space: normal;
+    }
+  }
+  .nav-link {
+    &::before {
+      content: counters(item, ".") ". ";
+    }
+    &.active {
+      &::before {
+        content: counters(item, ".") ". ";
+        left: 0;
+        height: auto;
+        position: relative;
+        border: none;
+        color: inherit;
       }
     }
   }

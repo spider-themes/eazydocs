@@ -279,7 +279,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 #ezd-search-results .search-result-item {
   padding: 7px 15px;
   position: relative;
-  border-bottom: 1px solid #f5f5fa;
+  border-bottom: 1px solid rgb(245, 245, 250);
   transition: 0.3s all;
   cursor: pointer;
 }
@@ -313,8 +313,8 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 }
 
 .eazydocs-breadcrumb-root-title li.breadcrumb-item {
-  color: #777aaf !important;
-  background: #f5f5fa;
+  color: rgb(119, 122, 175) !important;
+  background: rgb(245, 245, 250);
   width: 100%;
   padding: 5px 15px !important;
 }
@@ -678,6 +678,9 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
     min-height: 1000px;
   }
 }
+.doc_documentation_area a:focus {
+  background: transparent !important;
+}
 .doc_documentation_area .overlay_bg {
   position: absolute;
   top: 0;
@@ -720,7 +723,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   width: 200%;
   right: 0;
   height: 100%;
-  background: #f5f7f9;
+  background: rgb(245, 247, 249);
   position: absolute;
   border-right: 1px solid var(--border_on_white);
   top: 0;
@@ -1201,18 +1204,16 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   background: #d84334;
 }
 .feedback_link .h_btn span {
-  height: 15px;
+  height: 17px;
   display: inline-block;
   border-radius: 50%;
   text-align: center;
-  line-height: 16px;
+  line-height: 17px;
   font-size: 10px;
   background: rgba(255, 255, 255, 0.7);
   font-weight: 400;
   color: #101010;
-  margin-left: 6px;
-  position: relative;
-  top: -1px;
+  margin-left: 5px;
   padding: 0 5px;
 }
 .feedback_link .h_btn:hover {
@@ -1527,11 +1528,11 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a i {
   padding-right: 8px;
 }
-.doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active, .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:hover {
+.doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active {
   background: #f6f6f6;
   color: var(--ezd_brand_color);
 }
-.doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active:before, .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:hover:before {
+.doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a.active:before {
   height: 100%;
 }
 .doc_rightsidebar #font-switcher {
@@ -1563,9 +1564,6 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   font-weight: 500;
   color: var(--ezd_brand_color);
 }
-.toc_right .nav-link.active + .nav .active::before {
-  display: none;
-}
 .toc_right .nav-link.active::before {
   left: -20px;
   height: 100%;
@@ -1573,6 +1571,36 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   position: absolute;
   border-left: 2px solid;
   color: var(--ezd_brand_color);
+}
+
+@media (max-width: 991px) {
+  .left-column .doc_left_sidebarlist,
+  .left-column .single-docs .doc_rightsidebar {
+    margin-top: 90px;
+  }
+  .doc-middle-content {
+    margin-top: 30px;
+  }
+}
+.toc_auto_numbering ul {
+  counter-reset: item;
+  flex-wrap: wrap;
+  display: block;
+}
+.toc_auto_numbering ul li {
+  counter-increment: item;
+  white-space: normal;
+}
+.toc_auto_numbering .nav-link::before {
+  content: counters(item, ".") ". ";
+}
+.toc_auto_numbering .nav-link.active::before {
+  content: counters(item, ".") ". ";
+  left: 0;
+  height: auto;
+  position: relative;
+  border: none;
+  color: inherit;
 }
 
 .mobile_menu {
@@ -2159,7 +2187,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 div#eazydocs_share {
-  background: #00000066;
+  background: rgba(0, 0, 0, 0.4);
 }
 div#eazydocs_share > .modal-dialog {
   max-width: 500px;
@@ -2217,13 +2245,13 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .so
   line-height: 24px;
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(2) > i {
-  color: #4267b2;
+  color: rgb(66, 103, 178);
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(3) > i {
-  color: #0072b1;
+  color: rgb(0, 114, 177);
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(4) > i {
-  color: #1da1f2;
+  color: rgb(29, 161, 242);
 }
 div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > p {
   font-size: 14px;
@@ -2385,7 +2413,7 @@ body.admin-bar .ezd-link-copied-wrap {
   margin: auto;
   font-family: "ElegantIcons";
   font-size: 26px;
-  color: #8899a8;
+  color: rgb(136, 153, 168);
 }
 .eazydocs-next-prev-wrap .next-prev-pager.second {
   padding-right: 50px;
@@ -2402,7 +2430,7 @@ body.admin-bar .ezd-link-copied-wrap {
   margin: auto;
   font-family: "ElegantIcons";
   font-size: 26px;
-  color: #8899a8;
+  color: rgb(136, 153, 168);
   content: "$";
   left: unset;
   right: 20px;
@@ -2590,7 +2618,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #0fccd0;
+  background-color: rgb(15, 204, 208);
   box-shadow: 0 20px 30px 0 rgba(24, 211, 214, 0.2);
   display: block;
   text-align: center;
@@ -2775,7 +2803,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   background: var(--black_50);
 }
 .section5-article ul li:hover {
-  background: #f1f1f17a;
+  background: rgba(241, 241, 241, 0.4784313725);
 }
 .section5-article ul li a {
   color: var(--p_color);
@@ -2807,12 +2835,10 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   width: 100px;
 }
 .docs6 .doc_community_item .doc_community_icon img {
-  max-height: 100%;
-  width: auto;
   margin: auto;
   align-items: center;
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 80px !important;
+  max-height: 80px !important;
 }
 .docs6 .doc_entry_content {
   width: 80%;
@@ -3091,7 +3117,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 
 .doc_features_item_one {
   border-radius: 6px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 8px 0 rgba(4, 73, 89, 0.05);
   padding: 30px;
   transition: all 0.3s linear;
@@ -3320,7 +3346,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   max-width: 60px;
   height: auto;
   max-height: 70px;
-  margin: 0 10px 0 0;
+  margin: 0 15px 0 0;
 }
 .categories_guide_item .doc-top {
   margin-bottom: 30px;
@@ -3679,12 +3705,12 @@ p .footnotes-link::after {
   height: 50px;
   margin-top: -50px;
   overflow-x: hidden;
-  background: -moz-linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
-  background: -webkit-linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
-  background: -o-linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
-  background: -ms-linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#03ffffff", endColorstr="#ffffff", GradientType=0 );
-  background: linear-gradient(bottom, white 15%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
   display: block;
 }
 
