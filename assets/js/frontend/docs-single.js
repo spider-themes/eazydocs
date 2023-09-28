@@ -535,12 +535,7 @@
         }
 
         Menu_js();
-
-        /**
-         * Load Doc single page via ajax
-         */
         
-
         /*------------ Cookie functions and color js ------------*/
         function createCookie(name, value, days) {
             var expires = '';
