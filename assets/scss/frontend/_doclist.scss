@@ -1092,13 +1092,42 @@ body {
 
     li {
       margin: 0;
+      display: block;
+      width: 100%;
     }
 
     ul {
       padding-left: 20px;
     }
   }
-
+  li{
+    &:not(.active) {
+      .nav-link{
+        color: var(--black_500);
+      }
+    }
+    &.active{
+      > .nav-link{
+        color: var(--ezd_brand_color);
+        &::before {
+          left: -20px;
+          height: 100%;
+          content: " ";
+          position: absolute;
+          border-left: 2px solid;
+          color: var(--ezd_brand_color);
+          top: 0;
+        }
+      }
+      .nav .active{
+        .nav-link{
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
   .nav-link {
     font-size: 14px;
     font-weight: 400;
@@ -1113,8 +1142,6 @@ body {
 
     &.active {
       font-weight: 500;
-      color: var(--ezd_brand_color);
-
       + .nav .active::before {
         display: none;
       }
@@ -1738,6 +1765,22 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 // Eazydocs password protected form
+.single-docs #post{
+  .doc-scrollable.editor-content{
+    .ezd-password-wrap{
+      p.ezd-password-title {
+        color: #fff;
+        font-weight: 500;
+      }
+  
+      p.ezd-password-subtitle {
+        color: #a4abc5;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
 .ezd-password-wrap {
   border: 1px solid #0c213a;
   border-radius: 5px;
@@ -1756,7 +1799,7 @@ body:not(.onepage-doc) .sticky_menu {
 
     p.ezd-password-title {
       font-size: 18px;
-      color: #fff;
+      color: #fff !important;
       font-weight: 500;
     }
 
@@ -1786,6 +1829,7 @@ body:not(.onepage-doc) .sticky_menu {
         font-weight: 400;
         line-height: 1.5;
         border-radius: 3px;
+        width: 100%;
 
         &:focus {
           color: #303e67;

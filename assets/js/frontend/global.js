@@ -98,8 +98,6 @@
 			$('.modal-overlay').fadeIn();
 			var id = $(this).data('id');
 			$('.modal[data-id="modal' + id + '"]').fadeIn();
-
-			// $('.modal').toggleClass('is-visible');
 		});
 		$('.close').on('click', function () {
 			$('.modal-overlay').fadeOut();
@@ -108,6 +106,10 @@
 		$('.modal-overlay').on('click', function () {
 			$('.modal-overlay').fadeOut();
 			$('.modal').fadeOut();
+		});
+
+		var spy = new Gumshoe('#eazydocs-toc a', {
+			nested: true,
 		});
 	});
 })(jQuery);

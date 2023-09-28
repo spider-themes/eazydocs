@@ -1547,9 +1547,29 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .toc_right ul li {
   margin: 0;
+  display: block;
+  width: 100%;
 }
 .toc_right ul ul {
   padding-left: 20px;
+}
+.toc_right li:not(.active) .nav-link {
+  color: var(--black_500);
+}
+.toc_right li.active > .nav-link {
+  color: var(--ezd_brand_color);
+}
+.toc_right li.active > .nav-link::before {
+  left: -20px;
+  height: 100%;
+  content: " ";
+  position: absolute;
+  border-left: 2px solid;
+  color: var(--ezd_brand_color);
+  top: 0;
+}
+.toc_right li.active .nav .active .nav-link:before {
+  display: none;
 }
 .toc_right .nav-link {
   font-size: 14px;
@@ -1564,7 +1584,6 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .toc_right .nav-link.active {
   font-weight: 500;
-  color: var(--ezd_brand_color);
 }
 .toc_right .nav-link.active + .nav .active::before {
   display: none;
@@ -2061,6 +2080,15 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   }
 }
 
+.single-docs #post .doc-scrollable.editor-content .ezd-password-wrap p.ezd-password-title {
+  color: #fff;
+  font-weight: 500;
+}
+.single-docs #post .doc-scrollable.editor-content .ezd-password-wrap p.ezd-password-subtitle {
+  color: #a4abc5;
+  line-height: 1.6;
+}
+
 .ezd-password-wrap {
   border: 1px solid #0c213a;
   border-radius: 5px;
@@ -2078,7 +2106,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .ezd-password-wrap .ezd-password-head p.ezd-password-title {
   font-size: 18px;
-  color: #fff;
+  color: #fff !important;
   font-weight: 500;
 }
 .ezd-password-wrap .ezd-password-head p.ezd-password-subtitle {
@@ -2102,6 +2130,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   font-weight: 400;
   line-height: 1.5;
   border-radius: 3px;
+  width: 100%;
 }
 .ezd-password-wrap .ezd-password-body form input:focus {
   color: #303e67;
@@ -3314,6 +3343,9 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   margin-bottom: 30px;
   position: relative;
 }
+.categories_guide_item.bg-dark {
+  background: #212529;
+}
 .categories_guide_item.bg-dark .title {
   color: #fff !important;
 }
@@ -4094,23 +4126,39 @@ p .footnotes-link::after {
   font-size: 1.8em;
   display: flex;
   align-items: center;
+  color: #0c0d0e;
 }
 .single-docs #post h3 {
   font-size: 1.5em;
+  color: #0c0d0e;
 }
 .single-docs #post h4 {
   font-size: 1.3em;
+  color: #0c0d0e;
 }
 .single-docs #post h5 {
   font-size: 1em;
+  color: #0c0d0e;
 }
 .single-docs #post h6 {
   font-size: 0.8em;
+  color: #0c0d0e;
+}
+.single-docs #post p {
+  font-weight: 400;
+  margin-top: 0;
+  line-height: 28px;
+  color: #2D3748;
+}
+
+.form-control {
+  width: 100%;
 }
 
 .anchor-enabled h2 {
   padding-top: 80px;
   margin-top: -80px;
+  color: #0c0d0e;
 }
 
 .toggle_btn {

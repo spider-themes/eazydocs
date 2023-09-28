@@ -334,24 +334,39 @@ p .footnotes-link::after {
     font-size: 1.8em;
     display: flex;
     align-items: center;
+    color: #0c0d0e;
   }
   h3 {
     font-size: 1.5em;
+    color: #0c0d0e;
   }
   h4 {
     font-size: 1.3em;
+    color: #0c0d0e;
   }
   h5 {
     font-size: 1em;
+    color: #0c0d0e;
   }
   h6 {
     font-size: .8em;
+    color: #0c0d0e;
   }
+  p{
+    font-weight: 400;
+    margin-top: 0;
+    line-height: 28px;
+    color: #2D3748;
+  }
+}
+.form-control{
+  width: 100%;
 }
 
 .anchor-enabled h2 {
   padding-top: 80px;
   margin-top: -80px;
+  color: #0c0d0e;
 }
 
 .toggle_btn {
