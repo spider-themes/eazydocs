@@ -527,14 +527,14 @@ CSF::createSection( $prefix, array(
 			),
 			'default'    => array(
 				array(
-					'title' => 'Keyword #1',
+					'title' => esc_html__('Keyword #1', 'eazydocs'),
 				),
 				array(
-					'title' => 'Keyword #2',
+                    'title' => esc_html__('Keyword #2', 'eazydocs'),
 				),
 			),
 			'class'      => 'eazydocs-pro-notice',
-            'button'     => esc_html__( 'Add New', 'eazydocs' ),
+            'button_title'     => esc_html__( 'Add New', 'eazydocs' ),
 		),
 
 		array(
@@ -1041,7 +1041,21 @@ CSF::createSection( $prefix, array(
 			),
 			'dependency' => array( 'is_conditional_dropdown', '==', '1' ),
 			'class'      => 'eazydocs-pro-notice active-theme',
-            'button'     => esc_html__( 'Add New', 'eazydocs' ),
+            'default'   => array(
+                array(
+                    'title' => esc_html__('Windows', 'eazydocs'),
+                    'icon' => 'fab fa-windows',
+                ),
+                array(
+                    'title' => esc_html__('iOs', 'eazydocs'),
+                    'icon' => 'fab fa-apple',
+                ),
+                array(
+                    'title' => esc_html__('Linux', 'eazydocs'),
+                    'icon' => 'fab fa-linux',
+                ),
+            ),
+            'button_title'     => esc_html__( 'Add New', 'eazydocs' ),
 		),
 	)
 ) );
