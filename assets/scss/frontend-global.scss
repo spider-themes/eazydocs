@@ -21,7 +21,12 @@
       max-width: 50px;
     }
   }
-
+  &.bg-warning{
+    background: #ffe69c;
+  }
+  &.bg-dark { 
+    background: #212529;
+  }
   .private {
     position: absolute;
     right: -6px;
@@ -101,6 +106,7 @@
   .article_list {
     margin-bottom: 42px;
     margin-left: 0;
+    padding-left: 0;
     li {
       margin: 15px 0 0 0;
       padding: 0;
@@ -359,7 +365,7 @@ grid-template-columns: repeat(12, minmax(0, 1fr));
   .ezd-lg-col-2{
       grid-column: span 2 / span 2;
   }
-  .p-lg-5 {
+  .p-lg-5,.ezd-container-fluid.p-lg-5{
     padding: 3rem;
   }
 }

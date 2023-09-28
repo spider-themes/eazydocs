@@ -110,6 +110,7 @@
 
 		var spy = new Gumshoe('#eazydocs-toc a', {
 			nested: true,
+			// nestedClass: 'active',
 		});
 	});
 })(jQuery);

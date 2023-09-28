@@ -297,7 +297,14 @@ body {
             }
           }
         }
-
+        &.active {
+          a{
+            color: var(--ezd_brand_color);
+            i {
+              color: var(--ezd_brand_color);
+            }
+          }
+        }
         .dropdown_nav li {
           margin-right: 0;
           margin-left: -10px;
@@ -386,8 +393,12 @@ body {
             display: inline-block;
             font-size: 14px;
             font-weight: 400;
-
             &.active {
+              color: var(--ezd_brand_color);
+            }
+          }
+          &.active {
+            a{
               color: var(--ezd_brand_color);
             }
           }
@@ -1033,12 +1044,13 @@ body {
 
   .bootstrap-select {
     margin-bottom: 20px;
-
+    position: relative;
     > .dropdown-menu {
       box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11);
       background: #fff;
       border: 0;
-
+      position: absolute;
+      z-index: 1000;
       .inner {
         .dropdown-menu {
           border: 0;
@@ -1048,7 +1060,9 @@ body {
               color: var(--p_color);
               position: relative;
               font-size: 14px;
-
+              display: block;
+              width: 100%;
+              padding: 0.25rem 1rem;
               &:before {
                 content: "";
                 width: 2px;
@@ -1135,7 +1149,7 @@ body {
     padding: 0;
     position: relative;
     margin-bottom: 10px;
-
+    text-decoration: none;
     &:not(.active) {
       color: var(--black_500);
     }

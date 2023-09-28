@@ -413,6 +413,11 @@
     box-shadow: 0 2px 3px rgba(3, 27, 78, 0.05);
     > .navbar-nav{
       margin-left: 0;
+      display: flex;
+      flex-direction: column;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
     }
     @include transition;
     img {
@@ -915,6 +920,9 @@
     .badge{
       color: #fff !important;
     }
+  }
+  &.bg-warning{
+    background: #ffe69c;
   }
   .private {
     position: absolute;

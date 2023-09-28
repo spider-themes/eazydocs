@@ -72,6 +72,7 @@
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 25px;
+  color: var(--h_title);
 }
 
 #post .onepage-doc-sec {
@@ -223,7 +224,7 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   color: #fff;
   opacity: 0.7;
 }
-.single-onepage-docs .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item a.active, .single-onepage-docs .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item a:hover {
+.single-onepage-docs .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item.active a, .single-onepage-docs .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item:hover a {
   color: #fff;
   opacity: 1;
 }
@@ -237,7 +238,7 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   opacity: 1;
 }
 
-.documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav .nav-item a.active {
+.documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav .nav-item.active a {
   background: transparent;
   color: #fff;
   font-weight: 500;

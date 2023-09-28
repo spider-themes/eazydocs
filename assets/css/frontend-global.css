@@ -68,6 +68,12 @@
   margin-right: 15px;
   max-width: 50px;
 }
+.categories_guide_item.bg-warning {
+  background: #ffe69c;
+}
+.categories_guide_item.bg-dark {
+  background: #212529;
+}
 .categories_guide_item .private {
   position: absolute;
   right: -6px;
@@ -143,6 +149,7 @@
 .categories_guide_item .article_list {
   margin-bottom: 42px;
   margin-left: 0;
+  padding-left: 0;
 }
 .categories_guide_item .article_list li {
   margin: 15px 0 0 0;
@@ -399,7 +406,7 @@
   .ezd-lg-col-2 {
     grid-column: span 2/span 2;
   }
-  .p-lg-5 {
+  .p-lg-5, .ezd-container-fluid.p-lg-5 {
     padding: 3rem;
   }
 }
