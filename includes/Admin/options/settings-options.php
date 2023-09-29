@@ -223,6 +223,40 @@ CSF::createSection( $prefix, array(
 ) );
 
 
+// Dark Mode Fields
+CSF::createSection( $prefix, array(
+    'id'     => 'dark_mode',
+    'title'  => esc_html__( 'Dark Mode', 'eazydocs' ),
+    'icon'   => 'fas fa-adjust',
+    'fields' => array(
+
+        array(
+            'title'         => esc_html__( 'Dark Mode Switcher', 'eazydocs' ),
+            'subtitle'      => esc_html__( 'By show/hiding the Dark Mode Switcher, you are enable/disabling the Dark mode feature.', 'eazydocs' ),
+            'id'            => 'is_dark_switcher',
+            'type'          => 'switcher',
+            'text_on'       => esc_html__( 'Show', 'eazydocs' ),
+            'text_off'      => esc_html__( 'Hide', 'eazydocs' ),
+            'text_width'    => 92,
+            'default'       => false,
+            'class'         => 'eazydocs-pro-notice active-theme-docly'
+        ),
+
+        array(
+            'id'            => 'ezd_brand_color_dark',
+            'type'          => 'color',
+            'title'         => esc_html__( 'Brand Color on Dark Mode', 'eazydocs' ),
+            'subtitle'      => esc_html__( 'Accent Color for dark mode on Frontend. You can choose a different color the Dark mode from here.', 'eazydocs' ),
+            'output'        => ':root',
+            'output_mode'   => '--ezd_brand_color_dark',
+            'dependency'    => array( 'is_dark_switcher', '==', '1' ),
+        ),
+
+    )
+) );
+
+
+
 //
 // Single Doc Fields
 //
@@ -955,33 +989,11 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'title'      => esc_html__( 'Dark Mode Switcher', 'eazydocs' ),
-			'id'         => 'is_dark_switcher',
-			'type'       => 'switcher',
-			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
-			'text_width' => 92,
-			'default'    => false,
-			'class'      => 'eazydocs-pro-notice active-theme-docly'
-		),
-
-        array(
-            'id'            => 'ezd_brand_color_dark',
-            'type'          => 'color',
-            'title'         => esc_html__( 'Frontend Brand Color (Dark)', 'eazydocs' ),
-            'subtitle'      => esc_html__( 'Accent Color for dark mode', 'eazydocs' ),
-            'output'        => ':root',
-            'output_mode'   => '--ezd_brand_color_dark',
-            'dependency'    => array( 'is_dark_switcher', '==', '1' ),
-        ),
-
-		array(
-			'id'       => 'toc_switcher',
-			'type'     => 'switcher',
-			'title'    => esc_html__( 'Table on Contents (TOC)', 'eazydocs' ),
-			'subtitle' => esc_html__( 'EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation.',
-				'eazydocs' ),
-			'default'  => true,
+			'id'        => 'toc_switcher',
+			'type'      => 'switcher',
+			'title'     => esc_html__( 'Table on Contents (TOC)', 'eazydocs' ),
+			'desc'      => esc_html__( 'EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation.', 'eazydocs' ),
+			'default'   => true,
 		),
 
 		array(
@@ -989,6 +1001,17 @@ CSF::createSection( $prefix, array(
 			'type'       => 'text',
 			'title'      => esc_html__( 'TOC Heading', 'eazydocs' ),
 			'default'    => esc_html__( 'CONTENTS', 'eazydocs' ),
+			'dependency' => array( 'toc_switcher', '==', '1' ),
+		),
+
+		array(
+			'id'         => 'toc_auto_numbering',
+			'type'       => 'switcher',
+			'desc'      => esc_html__( 'Enable to add numbers before each table of content item.', 'eazydocs' ),
+			'title'      => esc_html__( 'Auto Numbering', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_width' => 72,
 			'dependency' => array( 'toc_switcher', '==', '1' ),
 		),
 

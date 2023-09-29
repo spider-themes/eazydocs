@@ -606,7 +606,12 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   font-weight: 500;
   justify-content: center;
   margin-top: 10px;
-
+  &.justify-content-end{
+    justify-content: flex-end;
+  }
+  &.justify-content-start{
+    justify-content: flex-start;
+  }
   span {
     font-size: 14px;
     margin-right: 10px;

@@ -47,12 +47,11 @@
         if ( ! empty( $docs ) ) :
             foreach ( $docs as $i => $main_doc ) :
                 // Active Doc
-
-	            if( $slug_type == 1 ) {
-		            $doc_id       = $main_doc['doc']->post_name;
-	            }else{
-		            $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
-	            }
+                if ( $slug_type == 1 ) {
+                    $doc_id       = $main_doc['doc']->post_name;
+                } else {
+                    $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
+                }
                 ?>
         <div id="doc-4<?php echo $doc_id ?>" class="doc_section_wrap ">
             <div class="ezd-grid ezd-grid-cols-12">

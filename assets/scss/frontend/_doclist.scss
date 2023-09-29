@@ -43,6 +43,10 @@ body {
     min-height: 1000px;
   }
 
+  a:focus {
+    background: transparent !important;
+  }
+
   .overlay_bg {
     position: absolute;
     top: 0;
@@ -713,18 +717,16 @@ body {
     }
 
     span {
-      height: 15px;
+      height: 17px;
       display: inline-block;
       border-radius: 50%;
       text-align: center;
-      line-height: 16px;
+      line-height: 17px;
       font-size: 10px;
-      background: rgb(255 255 255 / 0.7);
+      background: rgba(255, 255, 255, 0.7);
       font-weight: 400;
       color: #101010;
-      margin-left: 6px;
-      position: relative;
-      top: -1px;
+      margin-left: 5px;
       padding: 0 5px;
     }
 
@@ -1078,11 +1080,9 @@ body {
                 padding-right: 8px;
               }
 
-              &.active,
-              &:hover {
+              &.active {
                 background: #f6f6f6;
                 color: var(--ezd_brand_color);
-
                 &:before {
                   height: 100%;
                 }
@@ -1159,6 +1159,10 @@ body {
       + .nav .active::before {
         display: none;
       }
+      color: var(--ezd_brand_color);
+      // + .nav .active::before {
+      //   display: none;
+      // }
 
       &::before {
         left: -20px;
@@ -1167,6 +1171,47 @@ body {
         position: absolute;
         border-left: 2px solid;
         color: var(--ezd_brand_color);
+      }
+    }
+  }
+}
+
+
+//  TOC numbering 
+@media (max-width: 991px) {
+  .left-column {
+    .doc_left_sidebarlist,
+    .single-docs .doc_rightsidebar {
+      margin-top: 90px;
+    }
+  }
+  .doc-middle-content {
+    margin-top: 30px;
+  }
+}
+
+.toc_auto_numbering {
+  ul {
+    counter-reset: item;
+    flex-wrap: wrap;
+    display: block;
+    li {
+      counter-increment: item;
+      white-space: normal;
+    }
+  }
+  .nav-link {
+    &::before {
+      content: counters(item, ".") ". ";
+    }
+    &.active {
+      &::before {
+        content: counters(item, ".") ". ";
+        left: 0;
+        height: auto;
+        position: relative;
+        border: none;
+        color: inherit;
       }
     }
   }

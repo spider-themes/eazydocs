@@ -1085,7 +1085,7 @@ function ezd_docs_layout_option() {
 				'icon'  => 'docs-4',
 			],
 			'6' => [
-				'title' => __( 'List Style', 'eazydocs' ),
+				'title' => __( 'Collaborative Docs', 'eazydocs' ),
 				'icon'  => 'docs-5',
 			]
 		];

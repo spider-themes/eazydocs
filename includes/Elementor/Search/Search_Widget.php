@@ -156,9 +156,8 @@ class Search_Widget extends Widget_Base {
 				    'end' => [
 					    'title' => __( 'Right', 'eazydocs' ),
 					    'icon' => 'eicon-h-align-right',
-				    ],
-			    ],
-			    'prefix_class' => 'elementor%s-align-',
+				    ]
+			    ]
 		    ]
 	    );
 
