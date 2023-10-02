@@ -111,7 +111,7 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 1;
   font-size: 0.95rem;
-  margin-left: -78px;
+  margin-left: -90px;
   .left-arrow {
     display: block;
     border: #e8e8e8 solid 1px;
@@ -435,4 +435,13 @@ body.single-docs {
 }
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
 	width: 100%;
+}
+
+.contribut-btns{
+  flex-wrap: wrap;
+}
+@media (max-width:1440px){
+  .contribut-btns a{
+    margin-bottom: 3px;
+  }
 }

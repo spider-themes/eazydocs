@@ -276,6 +276,11 @@ form.ezd_search_form {
       margin: auto;
       display: none;
     }
+    .breadcrumb .breadcrumb-item{
+      a{
+        display: inline-flex;
+      }
+    }
   }
 }
 

@@ -313,6 +313,9 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   margin: auto;
   display: none;
 }
+#ezd-search-results .search-result-item .breadcrumb .breadcrumb-item a {
+  display: inline-flex;
+}
 
 .eazydocs-breadcrumb-root-title li.breadcrumb-item {
   color: rgb(119, 122, 175) !important;
@@ -4038,7 +4041,7 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 1;
   font-size: 0.95rem;
-  margin-left: -78px;
+  margin-left: -90px;
 }
 .left-sidebar-toggle .left-arrow {
   display: block;
@@ -4320,6 +4323,16 @@ body.single-docs #main .doc_left_sidebarlist h2.doc-title {
 
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
   width: 100%;
+}
+
+.contribut-btns {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1440px) {
+  .contribut-btns a {
+    margin-bottom: 3px;
+  }
 }
 
 /*# sourceMappingURL=frontend.css.map */
