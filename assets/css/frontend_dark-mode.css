@@ -104,5 +104,8 @@ body.body_dark .documentation_area_sticky {
 body.body_dark pre {
   background: #3a3a3c;
 }
+body.body_dark .spinner-border {
+  border: 0.25em solid rgba(248, 241, 241, 0.14);
+}
 
 /*# sourceMappingURL=frontend_dark-mode.css.map */
