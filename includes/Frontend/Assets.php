@@ -50,7 +50,6 @@ class Assets {
 			wp_enqueue_script( 'bootstrap-toc', EAZYDOCS_ASSETS . '/js/frontend/bootstrap-toc.min.js', array( 'jquery' ) );
 			wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array( 'jquery' ), EAZYDOCS_VERSION );
 			wp_register_script( 'eazydocs-onepage', EAZYDOCS_ASSETS . '/js/frontend/onepage.js', array( 'jquery' ), EAZYDOCS_VERSION );
-			wp_enqueue_script( 'bootstrap' );
 
 			$is_dark_switcher = $opt['is_dark_switcher'] ?? '';
 
@@ -90,10 +89,8 @@ class Assets {
 		wp_register_style( 'eazydocs-frontend-global', EAZYDOCS_ASSETS . '/css/frontend-global.css' );
 
 		// Global Scripts
-		// wp_register_style( 'bootstrap', EAZYDOCS_VEND . '/bootstrap/bootstrap.min.css' );
 		wp_register_style( 'elegant-icon', EAZYDOCS_VEND . '/elegant-icon/style.css' );
 		if ( self::ezd_global_scope() ) {
-			wp_enqueue_style( 'bootstrap' );
 			wp_enqueue_style( 'elegant-icon' );
 			wp_enqueue_style( 'eazydocs-frontend-global' );
 
