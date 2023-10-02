@@ -6,18 +6,18 @@
             foreach( $docs as $doc ) :
                 $doc_id = $doc['doc']->ID;
             ?>
-            <div class="doc_community_item topic-item wow fadeInUp" data-wow-delay="<?php echo esc_attr($delay) ?>s">
-                <div class="doc_community_icon ezd-docs5-icon-wrap">
-                    <?php echo get_the_post_thumbnail( $doc_id, 'full'); ?>
-                </div>
-                <div class="doc_entry_content">
-                    <a href="<?php echo get_the_permalink( $doc_id ); ?>">
-                        <h4 class="ezd_item_title"><?php echo wp_kses_post( $doc['doc']->post_title ); ?></h4>
-                    </a>
-                    <p class="ezd_item_content"><?php ezd_widget_excerpt( $doc_id, 15 ); ?></p>
-                    <div class="doc_entry_info">
-                        <ul class="list-unstyled author_avatar">
-                            <?php
+        <div class="doc_community_item topic-item wow fadeInUp" data-wow-delay="<?php echo esc_attr($delay) ?>s">
+            <div class="doc_community_icon ezd-docs5-icon-wrap">
+                <?php echo get_the_post_thumbnail( $doc_id, 'full'); ?>
+            </div>
+            <div class="doc_entry_content">
+                <a href="<?php echo get_the_permalink( $doc_id ); ?>">
+                    <h4 class="ezd_item_title"><?php echo wp_kses_post( $doc['doc']->post_title ); ?></h4>
+                </a>
+                <p class="ezd_item_content"><?php ezd_widget_excerpt( $doc_id, 15 ); ?></p>
+                <div class="doc_entry_info">
+                    <ul class="list-unstyled author_avatar">
+                        <?php
                             $docs = new WP_Query(array(
                                 'post_type'     => 'docs',
                                 'post_per_page' => -1,
@@ -93,15 +93,15 @@
                             $remaining_authors_count = $author_count - $show_avatar_count;
                             $others = '';
                             if ( $author_count > $show_avatar_count ) : ?>
-                                <li class="avatar_plus">+<?php echo $remaining_authors_count; ?></li>
-                                <?php 
+                        <li class="avatar_plus">+<?php echo $remaining_authors_count; ?></li>
+                        <?php 
                             $others = __(' and '.$remaining_authors_count.' others', 'eazydocs');
                             endif;
                             ?>
-                        </ul>
-                        <div class="text">
-                            <?php echo count( $doc_counter ) ?> <?php esc_html_e('Article in this Docs.'); ?> <br>
-                            <?php 
+                    </ul>
+                    <div class="text">
+                        <?php echo count( $doc_counter ) ?> <?php esc_html_e('Article in this Docs.'); ?> <br>
+                        <?php 
                             esc_html_e('Written by ', 'eazydocs');
                             echo esc_html( $doc_author );
                             foreach ($author_names as $author_name) {
@@ -109,10 +109,10 @@
                             }
                             echo esc_html( $others );
                             ?>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         <?php endforeach; ?>
     </div>
 </section>

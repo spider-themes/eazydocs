@@ -54,7 +54,7 @@ body.body_dark .help_form, body.body_dark .nav-sidebar.one-page-doc-nav-wrap .na
 body.body_dark .onepage-doc .nav-sidebar .nav-item, body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu,
 body.body_dark .doc_rightsidebar .dropdown-toggle, body.body_dark onepage-doc .nav-sidebar .nav-item .dropdown_nav,
 body.body_dark .doc_rightsidebar .doc_switch input[type=checkbox], body.body_dark .breadcrumb_area_three,
-body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu {
+body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu, body.body_dark .fontsize-controllers .btn-group {
   background: #2c303a;
 }
 body.body_dark .doc_left_sidebarlist::after,
@@ -80,7 +80,10 @@ body.body_dark .doc_rightsidebar .doc_right_link li a {
   color: #bbb;
 }
 body.body_dark .doc_menu .nav-link.active, body.body_dark .doc_menu .nav-link:hover,
-body.body_dark h1, body.body_dark h2, body.body_dark h3, body.body_dark h4, body.body_dark h5, body.body_dark h6 {
+body.body_dark h1, body.body_dark h2, body.body_dark h3, body.body_dark h4, body.body_dark h5, body.body_dark h6, body.body_dark.single-docs #post p {
+  color: #fff;
+}
+body.body_dark.single-docs #post h2, body.body_dark.single-docs #post h3, body.body_dark.single-docs #post h4, body.body_dark.single-docs #post h5, body.body_dark.single-docs #post h6 {
   color: #fff;
 }
 body.body_dark .doc_rightsidebar .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
@@ -94,6 +97,12 @@ body.body_dark .question_box .signup_form .input-group .form-control {
 }
 body.body_dark .question_box .signup_form .input-group button:before {
   background: #384c59;
+}
+body.body_dark .documentation_area_sticky {
+  background: transparent;
+}
+body.body_dark pre {
+  background: #3a3a3c;
 }
 
 /*# sourceMappingURL=frontend_dark-mode.css.map */

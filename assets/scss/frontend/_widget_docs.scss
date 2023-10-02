@@ -22,6 +22,7 @@
       margin: 0 5px;
       transition: all 0.4s linear;
       display: inline-block;
+      cursor: pointer;
       &:not(.active):hover {
         background: brand_color_rgba(.2);
       }
@@ -121,6 +122,7 @@
       border-radius: 5px 5px 0 0;
       text-decoration: none;
       display: block;
+      cursor: pointer;
       &:before {
         content: "";
         width: 0;
@@ -834,6 +836,7 @@
         gap: 10px;
         align-items: center;
         background: transparent;
+        cursor: pointer;
         ion-icon {
           color: var(--p_color);
           position: relative;
@@ -850,9 +853,9 @@
         &.active {
           color: #fff;
           background: var(--ezd_brand_color);
-          img {
-            filter: brightness(0) invert(1);
-          }
+          // img {
+          //   filter: brightness(0) invert(1);
+          // }
           ion-icon {
             color: #fff;
           }
@@ -1044,6 +1047,7 @@ a.action_btn {
       flex-wrap: nowrap !important;
       display: flex;
       overflow: hidden;
+      list-style: none;
       li {
         min-width: fit-content;
       }
@@ -1068,7 +1072,7 @@ a.action_btn {
   }
 }
 
-.tab-box {
+.ezd-tab-box {
   display: none;
   &.active{
     display: block;

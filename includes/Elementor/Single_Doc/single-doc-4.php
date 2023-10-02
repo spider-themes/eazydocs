@@ -74,5 +74,22 @@ if ( ! empty( $settings['show_more_btn'] ) ) :
         </span>
     </a>
 </div>
+<script type="text/javascript">
+;
+(function($) {
+    "use strict";
+
+    $(document).ready(function() {
+        if ($('.collapse-btn').length > 0) {
+            $('.collapse-btn').on('click', function(e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                $('.collapse-wrap').slideToggle(500);
+            });
+        }
+    });
+
+})(jQuery);
+</script>
 <?php 
 endif;

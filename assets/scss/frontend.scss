@@ -334,22 +334,20 @@ p .footnotes-link::after {
     font-size: 1.8em;
     display: flex;
     align-items: center;
-    color: #0c0d0e;
   }
   h3 {
     font-size: 1.5em;
-    color: #0c0d0e;
   }
   h4 {
     font-size: 1.3em;
-    color: #0c0d0e;
   }
   h5 {
     font-size: 1em;
-    color: #0c0d0e;
   }
   h6 {
     font-size: .8em;
+  }
+  h2,h3,h4,h5,h6{
     color: #0c0d0e;
   }
   p{

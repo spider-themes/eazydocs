@@ -1,8 +1,7 @@
 <div class=" docs4">
     <div id="bookchapter" class="doc4-nav-bar">
-        <div class="container">
-            <ul id="bcNav" class="book-chapter-nav list-unstyled">
-                <?php
+        <ul id="bcNav" class="book-chapter-nav list-unstyled">
+            <?php
 			$slug_type = $settings['docs_slug_format'] ?? '';
 			$widget_id = $this->get_id();
 			$part_no                 = 1;
@@ -20,28 +19,27 @@
 					}
 
 					?>
-                <li class="nav-item<?php echo esc_attr( $active ) ?>">
-                    <a <?php echo $atts; ?> class="nav-link">
-                        <?php
+            <li class="nav-item<?php echo esc_attr( $active ) ?>">
+                <a <?php echo $atts; ?> class="nav-link">
+                    <?php
 							if ( ! empty( $settings['book_chapter_prefix'] ) ):
 								?>
-                        <span class="chapter-part">
-                            <?php echo esc_html( $settings['book_chapter_prefix'] . " " . $part_no ++ ); ?></span>
-                        <?php
+                    <span class="chapter-part">
+                        <?php echo esc_html( $settings['book_chapter_prefix'] . " " . $part_no ++ ); ?></span>
+                    <?php
 							endif;
 							echo wp_kses_post( $doc->post_title );
 							?>
-                    </a>
-                </li>
-                <?php
+                </a>
+            </li>
+            <?php
 				endforeach;
 			endif;
 			?>
-            </ul>
-        </div>
+        </ul>
     </div>
 
-    <div class="copic-contentn container">
+    <div class="copic-contentn ezd-container">
         <?php
         $sc_n = 1;
         if ( ! empty( $docs ) ) :

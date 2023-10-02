@@ -2,7 +2,7 @@
 
     <div class="tabs_sliders">
         <span class="left scroller-btn"><i class="arrow_carrot-left"></i></span>
-        <ul class="nav nav-tabs mb-5 tab-menu">
+        <ul class="nav nav-tabs mb-5 ezd-tab-menu">
             <?php
             $slug_type = $settings['docs_slug_format'] ?? '';
             $widget_id = $this->get_id();
@@ -26,10 +26,9 @@
                         $atts = "href='#doc3-{$widget_id}-{$doc_id}'";
                     }
 
-                    $atts .= " aria-controls='doc-{$post_title_slug}'";
                     ?>
             <li class="nav-item">
-                <a <?php echo $atts; ?> data-rel="<?php echo $post_title_slug; ?>"
+                <a data-rel="<?php echo $post_title_slug; ?>"
                     class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
                     <?php
                             echo get_the_post_thumbnail($doc_id, 'docy_16x16');
@@ -59,10 +58,9 @@
                         }else{
                             $href       = "href='#doc3-{$widget_id}-{$doc->ID}'";
                         }
-                        $aria_controls = " aria-controls='doc-{$doc->post_name}'";
                         ?>
             <li class="nav-item">
-                <a <?php echo $href.$aria_controls; ?> data-rel="doc3-<?php echo $doc->post_name; ?>"
+                <a data-rel="doc3-<?php echo $doc->post_name; ?>"
                     class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
                     <?php
                                 echo get_the_post_thumbnail($doc->ID, 'docy_16x16');
@@ -101,7 +99,7 @@
 		            $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
 	            }
                 ?>
-            <div class="doc_tab_pane tab-box <?php echo $active; ?>" id="doc3-<?php echo $doc_id ?>">
+            <div class="doc_tab_pane ezd-tab-box <?php echo $active; ?>" id="doc3-<?php echo $doc_id ?>">
                 <div class="ezd-grid ezd-grid-cols-12">
                     <?php
                         if ( !empty($main_doc['sections']) ) :

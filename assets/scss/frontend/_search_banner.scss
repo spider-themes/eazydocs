@@ -308,6 +308,42 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
   border-width: 2px;
   width: 18px;
   height: 18px;
+  vertical-align: -0.125em;
+}
+
+.spinner-border{
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: middle;
+  border: 0.25em solid rgba(0, 0, 0, .14);
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: .75s linear infinite spinner-border;
+  animation: .75s linear infinite spinner-border;
+  &.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.2em;
+  }
+  .visually-hidden{
+    visibility: hidden;
+  }
+}
+
+@keyframes spinner-border {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.alert-danger {
+  background: rgba(255,243,244,.7);
+  border-color: #fbadb3;
+}
+.alert-success {
+  background: rgba(241,253,243,.7);
+  border-color: #94e3a1;
 }
 
 .has_drop #ezd_searchInput {

@@ -108,9 +108,10 @@
 			$('.modal').fadeOut();
 		});
 
-		var spy = new Gumshoe('#eazydocs-toc a', {
-			nested: true,
-			// nestedClass: 'active',
-		});
+		if ($('#eazydocs-toc a').length > 0) {
+			var spy = new Gumshoe('#eazydocs-toc a', {
+				nested: true,
+			});
+		}
 	});
 })(jQuery);

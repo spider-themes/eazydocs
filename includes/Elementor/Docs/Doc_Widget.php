@@ -911,15 +911,22 @@ class Doc_Widget extends Widget_Base {
         }
 
         // custom tab js
-        $('.tab-menu li a').on('click', function(e) {
+        $('.ezd-tab-menu li a').on('click', function(e) {
             e.preventDefault();
-            var target = $(this).attr('data-rel');
-            $('.tab-menu li a').removeClass('active');
+
+            // Remove active class from all tabs within the same menu
+            $(this).closest('.ezd-tab-menu').find('li a').removeClass('active');
+
+            // Add active class to the clicked tab
             $(this).addClass('active');
+
+            var target = $(this).attr('data-rel');
+
             $('#' + target)
-                .fadeIn('slow')
-                .siblings('.tab-box')
-                .hide();
+                .addClass('active')
+                .siblings('.ezd-tab-box')
+                .removeClass('active');
+
             return false;
         });
     });

@@ -4,6 +4,7 @@
   --green_color: #27ae60;
   --p_color: #425466;
   --body_bg: #fff;
+  --bs-white: #fff;
   --black_25: #f9f9f9;
   --black_50: #ebebeb;
   --black_100: #d6d9dc;
@@ -588,6 +589,10 @@ ul {
 
 .text-center {
   text-align: center;
+}
+
+.ezd-shadow-lg {
+  box-shadow: 0 1rem 1.2rem rgba(0, 0, 0, 0.175) !important;
 }
 
 /*# sourceMappingURL=frontend-global.css.map */

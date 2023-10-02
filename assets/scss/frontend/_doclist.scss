@@ -704,15 +704,15 @@ body {
     border-radius: 15px;
     text-decoration: none !important;
 
-    &:hover {
-      background: #1f9852;
+    &:hover,&:focus{
+      background: #1f9852 !important;
     }
 
     &.red {
       background: #e74c3c;
 
-      &:hover {
-        background: #d84334;
+      &:hover,&:focus{
+        background: #d84334 !important;
       }
     }
 
@@ -1830,6 +1830,7 @@ body:not(.onepage-doc) .sticky_menu {
       p.ezd-password-title {
         color: #fff;
         font-weight: 500;
+        margin-bottom: 5px;
       }
   
       p.ezd-password-subtitle {
@@ -1850,7 +1851,7 @@ body:not(.onepage-doc) .sticky_menu {
     background-color: #0c213a;
     flex: 1 1 auto;
     border-radius: 5px 5px 0 0;
-
+    padding: 22px 10px 10px;
     .logo img {
       display: block;
       margin: 0 auto;

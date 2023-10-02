@@ -786,6 +786,10 @@ body.search-focused .ezd_click_capture {
 ============================================================================================ */
 /* H item css
     ============================================================================================ */
+.h_content_items.box-item.collapse-wrap {
+  display: none;
+}
+
 .h_item {
   background: #fff;
   padding-top: 30px;
