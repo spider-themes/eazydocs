@@ -342,10 +342,6 @@ body.admin-bar {
 }
 
 @media screen and ( min-width: 768px ) {
-  .doc_rightsidebar.one-page-docs-right-sidebar {
-    position: unset;
-    right: unset
-  }
 
   .fullscreen-layout .doc_right_mobile_menu {
     position: fixed;
@@ -523,9 +519,11 @@ ul {
   .documentation_area_sticky .one-page-docs-sidebar-wrap,.fullscreen-layout .doc_right_mobile_menu {
     width: 100% !important;
   }
-
+  .fullscreen-layout .doc_right_mobile_menu{
+    right: 0;
+  }
+  .onepage_doc_area.fullscreen-layout .doc_rightsidebar{
+    margin-top: 0;
+    max-width: 250px;
+  } 
 }
-
-// .fullscreen-layout .ezd-container-fluid.p-lg-5{
-//   padding: 0px;
-// }

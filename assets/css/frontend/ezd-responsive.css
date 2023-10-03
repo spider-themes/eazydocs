@@ -11,6 +11,7 @@
 		padding-top: 30px;
 		padding-left: 20px;
 		overflow-y: visible;
+		margin-top: 90px;
 	}
 
 	.doc_rightsidebar .pageSideSection::before {
@@ -40,7 +41,7 @@
 	}
 
 	.doc_rightsidebar {
-		max-width: 250px;
+		max-width: 290px;
 		width: 100%;
 		position: absolute;
 		right: -290px;
@@ -87,7 +88,7 @@
 		left: auto;
 	}
 
-	.doc_rightsidebar .open_icon {
+	.open_icon {
 		display: block;
 		left: -40px;
 		right: auto;

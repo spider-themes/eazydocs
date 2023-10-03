@@ -315,10 +315,6 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
 }
 
 @media screen and (min-width: 768px) {
-  .doc_rightsidebar.one-page-docs-right-sidebar {
-    position: unset;
-    right: unset;
-  }
   .fullscreen-layout .doc_right_mobile_menu {
     position: fixed;
     right: 20px;
@@ -455,6 +451,13 @@ ul.doc-last-depth-fullscreen {
   }
   .documentation_area_sticky .one-page-docs-sidebar-wrap, .fullscreen-layout .doc_right_mobile_menu {
     width: 100% !important;
+  }
+  .fullscreen-layout .doc_right_mobile_menu {
+    right: 0;
+  }
+  .onepage_doc_area.fullscreen-layout .doc_rightsidebar {
+    margin-top: 0;
+    max-width: 250px;
   }
 }
 
