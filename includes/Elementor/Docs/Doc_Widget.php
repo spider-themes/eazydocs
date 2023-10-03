@@ -841,100 +841,101 @@ class Doc_Widget extends Widget_Base {
         }
 
 		?>
-<script type="text/javascript">
-;
-(function($) {
-    "use strict";
+        <script type="text/javascript">
 
-    $(document).ready(function() {
 
-        //=== Tabs Slider
-        let tabWrapWidth = $('.tabs_sliders').outerWidth();
-        let totalWidth = 0;
+            ;(function($) {
+                "use strict";
 
-        let slideArrowBtn = $('.scroller-btn');
-        let slideBtnLeft = $('.scroller-btn.left');
-        let slideBtnRight = $('.scroller-btn.right');
-        let navWrap = $('ul.nav-tabs');
-        let navWrapItem = $('ul.nav-tabs li');
+                $(document).ready(function() {
 
-        navWrapItem.each(function() {
-            totalWidth += navWrapItem.outerWidth();
-        });
+                    // === Tabs Slider
+                    var tabSliderContainers = $(".tabs_sliders");
 
-        if (totalWidth > tabWrapWidth) {
-            slideArrowBtn.removeClass('inactive');
-        } else {
-            slideArrowBtn.addClass('inactive');
-        }
+                    tabSliderContainers.each(function () {
+                        let $scope = $(this);
+                        let tabWrapWidth = $scope.outerWidth();
+                        let totalWidth = 0;
 
-        if (navWrap.scrollLeft() === 0) {
-            slideBtnLeft.addClass('inactive');
-        } else {
-            slideBtnLeft.removeClass('inactive');
-        }
+                        let slideArrowBtn = $(".scroller-btn");
+                        let slideBtnLeft = $(".scroller-btn.left");
+                        let slideBtnRight = $(".scroller-btn.right");
+                        let navWrap = $(".slide_nav_tabs");
+                        let navWrapItem = $(".slide_nav_tabs li");
 
-        slideBtnRight.on('click', function() {
-            navWrap.animate({
-                scrollLeft: '+=200px'
-            }, 300);
-            console.log(navWrap.scrollLeft() + " px");
-        });
+                        navWrapItem.each(function () {
+                            totalWidth += $(this).outerWidth();
+                        });
 
-        slideBtnLeft.on('click', function() {
-            navWrap.animate({
-                scrollLeft: '-=200px'
-            }, 300);
-        });
+                        if (totalWidth > tabWrapWidth) {
+                            slideArrowBtn.removeClass("inactive");
+                        }
 
-        scrollerHide();
+                        if (navWrap.scrollLeft() === 0) {
+                            slideBtnLeft.addClass("inactive");
+                        }
 
-        function scrollerHide() {
-            let scrollLeftPrev = 0;
-            navWrap.scroll(function() {
-                let $elem = navWrap;
-                let newScrollLeft = $elem.scrollLeft(),
-                    width = $elem.outerWidth(),
-                    scrollWidth = $elem.get(0).scrollWidth;
-                if (scrollWidth - newScrollLeft === width) {
-                    slideBtnRight.addClass('inactive');
-                } else {
-                    slideBtnRight.removeClass('inactive');
-                }
-                if (newScrollLeft === 0) {
-                    slideBtnLeft.addClass('inactive');
-                } else {
-                    slideBtnLeft.removeClass('inactive');
-                }
-                scrollLeftPrev = newScrollLeft;
-            });
-        }
+                        slideBtnRight.on("click", function () {
+                            navWrap.animate({ scrollLeft: "+=200px" }, 300);
+                            console.log(navWrap.scrollLeft() + " px");
+                        });
 
-        // custom tab js
-        $('.ezd-tab-menu li a').on('click', function(e) {
-            e.preventDefault();
+                        slideBtnLeft.on("click", function () {
+                            navWrap.animate({ scrollLeft: "-=200px" }, 300);
+                        });
 
-            // Remove active class from all tabs within the same menu
-            $(this).closest('.ezd-tab-menu').find('li a').removeClass('active');
+                        scrollerHide(navWrap, slideBtnLeft, slideBtnRight);
+                    });
 
-            // Add active class to the clicked tab
-            $(this).addClass('active');
+                    function scrollerHide(navWrap, slideBtnLeft, slideBtnRight) {
+                        let scrollLeftPrev = 0;
+                        navWrap.scroll(function () {
+                            let $elem = $(this);
+                            let newScrollLeft = $elem.scrollLeft(),
+                                width = $elem.outerWidth(),
+                                scrollWidth = $elem.get(0).scrollWidth;
+                            if (scrollWidth - newScrollLeft === width) {
+                                slideBtnRight.addClass("inactive");
+                            } else {
+                                slideBtnRight.removeClass("inactive");
+                            }
+                            if (newScrollLeft === 0) {
+                                slideBtnLeft.addClass("inactive");
+                            } else {
+                                slideBtnLeft.removeClass("inactive");
+                            }
+                            scrollLeftPrev = newScrollLeft;
+                        });
+                    }
 
-            var target = $(this).attr('data-rel');
+                    // custom tab js
+                    $('.ezd-tab-menu li a').on('click', function(e) {
+                        e.preventDefault();
 
-            $('#' + target)
-                .addClass('active')
-                .siblings('.ezd-tab-box')
-                .removeClass('active');
+                        // Remove active class from all tabs within the same menu
+                        $(this).closest('.ezd-tab-menu').find('li a').removeClass('active');
 
-            return false;
-        });
-    });
+                        // Add active class to the clicked tab
+                        $(this).addClass('active');
 
-})(jQuery);
-</script>
-<?php
+                        var target = $(this).attr('data-rel');
 
+                        $('#' + target)
+                            .addClass('active')
+                            .siblings('.ezd-tab-box')
+                            .removeClass('active');
+
+                        return false;
+                    });
+
+                });
+
+            })(jQuery);
+
+
+
+        </script>
+        <?php
 
 	}
 }
