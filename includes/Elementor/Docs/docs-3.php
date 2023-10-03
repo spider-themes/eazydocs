@@ -1,7 +1,7 @@
 <section class="h_doc_documentation_area">
     <div class="tabs_sliders">
         <span class="left scroller-btn"><i class="arrow_carrot-left"></i></span>
-        <ul class="nav nav-tabs documentation_tab tab-menu">
+        <ul class="nav nav-tabs documentation_tab ezd-tab-menu">
             <?php
 		    $slug_type = $settings['docs_slug_format'] ?? '';
 		    $widget_id = $this->get_id();
@@ -24,11 +24,9 @@
 				    } else {
 					    $atts = "href='#doc2-{$widget_id}-{$doc_id}'";
 				    }
-
-				    $atts .= " aria-controls='doc-{$post_title_slug}'";
 				    ?>
             <li class="nav-item">
-                <a <?php echo $atts; ?> data-rel="<?php echo $post_title_slug; ?>"
+                <a data-rel="<?php echo $post_title_slug; ?>"
                     class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
                     <?php
 						    if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -59,10 +57,9 @@
 						    $href       = "href='#doc2-{$widget_id}-{$doc->ID}'";
 					    }
 
-					    $aria_controls = " aria-controls='doc-{$doc->post_name}'";
 					    ?>
             <li class="nav-item">
-                <a <?php echo $href.$aria_controls; ?> data-rel="doc2-<?php echo $doc->post_name; ?>"
+                <a data-rel="doc2-<?php echo $doc->post_name; ?>"
                     class="nav-link ezd_tab_title<?php echo esc_attr($active) ?>">
                     <?php
 							    if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -97,7 +94,8 @@
 		        $doc_id       = "{$widget_id}-{$main_doc['doc']->ID}";
 	        }
             ?>
-        <div class=" documentation_tab_pane tab-box <?php echo esc_attr($active); ?>" id="doc2-<?php echo $doc_id; ?>">
+        <div class=" documentation_tab_pane ezd-tab-box <?php echo esc_attr($active); ?>"
+            id="doc2-<?php echo $doc_id; ?>">
             <div class="ezd-grid ezd-grid-cols-12">
                 <div class="ezd-lg-col-4 ezd-grid-column-full">
                     <div class="documentation_text">

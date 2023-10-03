@@ -98,8 +98,6 @@
 			$('.modal-overlay').fadeIn();
 			var id = $(this).data('id');
 			$('.modal[data-id="modal' + id + '"]').fadeIn();
-
-			// $('.modal').toggleClass('is-visible');
 		});
 		$('.close').on('click', function () {
 			$('.modal-overlay').fadeOut();
@@ -109,5 +107,11 @@
 			$('.modal-overlay').fadeOut();
 			$('.modal').fadeOut();
 		});
+
+		if ($('#eazydocs-toc a').length > 0) {
+			var spy = new Gumshoe('#eazydocs-toc a', {
+				nested: true,
+			});
+		}
 	});
 })(jQuery);

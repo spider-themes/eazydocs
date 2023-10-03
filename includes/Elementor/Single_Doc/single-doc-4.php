@@ -34,27 +34,25 @@ $sections2 = get_children( array(
 ) );
 ?>
 <div class="h_content_items box-item collapse-wrap">
-    <div class="row">
+    <div class="ezd-grid <?php echo esc_attr( $ppp_column ); ?>">
         <?php
 		foreach ( $sections2 as $section ) :
 			?>
-        <div class="col-lg-<?php echo esc_attr( $ppp_column ); ?> col-sm-6">
-            <a href="<?php echo get_permalink( $section->ID ) ?>">
-                <div class="h_item">
-                    <?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
-                    <h4 class="ct-heading-text"><?php echo wp_kses_post( $section->post_title ); ?></h4>
-                    <div class="ct-content-text">
-                        <?php
+        <a href="<?php echo get_permalink( $section->ID ) ?>">
+            <div class="h_item">
+                <?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
+                <h4 class="ct-heading-text"><?php echo wp_kses_post( $section->post_title ); ?></h4>
+                <div class="ct-content-text">
+                    <?php
 							if ( strlen( trim( $section->post_excerpt ) ) != 0 ) {
 								echo wpautop( $section->post_excerpt );
 							} else {
 								echo wpautop( wp_trim_words( $section->post_content, $settings['doc_sec_excerpt'], '' ) );
 							}
 							?>
-                    </div>
                 </div>
-            </a>
-        </div>
+            </div>
+        </a>
         <?php
 		endforeach;
 		?>
@@ -76,5 +74,22 @@ if ( ! empty( $settings['show_more_btn'] ) ) :
         </span>
     </a>
 </div>
+<script type="text/javascript">
+;
+(function($) {
+    "use strict";
+
+    $(document).ready(function() {
+        if ($('.collapse-btn').length > 0) {
+            $('.collapse-btn').on('click', function(e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                $('.collapse-wrap').slideToggle(500);
+            });
+        }
+    });
+
+})(jQuery);
+</script>
 <?php 
 endif;

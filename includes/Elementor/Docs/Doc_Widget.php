@@ -910,19 +910,25 @@ class Doc_Widget extends Widget_Base {
             });
         }
 
-    });
+        // custom tab js
+        $('.ezd-tab-menu li a').on('click', function(e) {
+            e.preventDefault();
 
+            // Remove active class from all tabs within the same menu
+            $(this).closest('.ezd-tab-menu').find('li a').removeClass('active');
 
-    // custom tab js
-    $('.tab-menu li a').on('click', function() {
-        var target = $(this).attr('data-rel');
-        $('.tab-menu li a').removeClass('active');
-        $(this).addClass('active');
-        $('#' + target)
-            .fadeIn('slow')
-            .siblings('.tab-box')
-            .hide();
-        return false;
+            // Add active class to the clicked tab
+            $(this).addClass('active');
+
+            var target = $(this).attr('data-rel');
+
+            $('#' + target)
+                .addClass('active')
+                .siblings('.ezd-tab-box')
+                .removeClass('active');
+
+            return false;
+        });
     });
 
 })(jQuery);

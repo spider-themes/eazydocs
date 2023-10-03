@@ -22,6 +22,7 @@
       margin: 0 5px;
       transition: all 0.4s linear;
       display: inline-block;
+      cursor: pointer;
       &:not(.active):hover {
         background: brand_color_rgba(.2);
       }
@@ -120,6 +121,8 @@
       background: transparent;
       border-radius: 5px 5px 0 0;
       text-decoration: none;
+      display: block;
+      cursor: pointer;
       &:before {
         content: "";
         width: 0;
@@ -223,6 +226,7 @@
       color: var(--black_900);
       margin-right: 20px;
       font-size: 15px;
+      display: block;
       span.chapter-part {
         display: block;
         text-transform: uppercase;
@@ -409,6 +413,11 @@
     box-shadow: 0 2px 3px rgba(3, 27, 78, 0.05);
     > .navbar-nav{
       margin-left: 0;
+      display: flex;
+      flex-direction: column;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
     }
     @include transition;
     img {
@@ -619,7 +628,7 @@
         z-index: 2;
         position: relative;
         margin-left: 0;
-        border: 2px solid var(--bs-white);
+        border: 2px solid #fff;
         img {
           max-width: 30px;
           border-radius: 50%;
@@ -827,6 +836,7 @@
         gap: 10px;
         align-items: center;
         background: transparent;
+        cursor: pointer;
         ion-icon {
           color: var(--p_color);
           position: relative;
@@ -843,9 +853,9 @@
         &.active {
           color: #fff;
           background: var(--ezd_brand_color);
-          img {
-            filter: brightness(0) invert(1);
-          }
+          // img {
+          //   filter: brightness(0) invert(1);
+          // }
           ion-icon {
             color: #fff;
           }
@@ -903,6 +913,7 @@
   margin-bottom: 30px;
   position: relative;
   &.bg-dark { 
+    background: #212529;
     .title {
       color: #fff !important;
     }
@@ -910,6 +921,9 @@
     .badge{
       color: #fff !important;
     }
+  }
+  &.bg-warning{
+    background: #ffe69c;
   }
   .private {
     position: absolute;
@@ -1033,6 +1047,7 @@ a.action_btn {
       flex-wrap: nowrap !important;
       display: flex;
       overflow: hidden;
+      list-style: none;
       li {
         min-width: fit-content;
       }
@@ -1054,5 +1069,12 @@ a.action_btn {
     &.inactive {
       display: none;
     }
+  }
+}
+
+.ezd-tab-box {
+  display: none;
+  &.active{
+    display: block;
   }
 }

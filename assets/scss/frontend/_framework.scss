@@ -199,12 +199,11 @@ grid-template-columns: repeat(12, minmax(0, 1fr));
 
 
 
-ul{
-    padding-left: 0 !important;
+.list-unstyled{
     list-style: none !important;
 }
 .tab-content{
-    lay: block;
+    display: block;
 }
 
 .ezd-custom-container.ezd-container {
@@ -285,7 +284,6 @@ ul{
 }
 @media (min-width: 576px){
     .modal-dialog {
-        max-width: 500px;
         margin: 1.75rem auto;
     }
 }
@@ -314,3 +312,11 @@ ul{
 .position-relative{
     position: relative;
 }
+.text-center{
+    text-align: center;
+}
+
+.ezd-shadow-lg {
+    box-shadow: 0 1rem 1.2rem rgba(0,0,0,.175)!important;
+}
+  

@@ -162,7 +162,7 @@ body {
     &.current_page_item {
       > .doc-link {
         color: var(--ezd_brand_color);
-        background: var(--bs-white);
+        background: #fff;
         border: 1px solid var(--black_50);
 
         a {
@@ -301,7 +301,14 @@ body {
             }
           }
         }
-
+        &.active {
+          a{
+            color: var(--ezd_brand_color);
+            i {
+              color: var(--ezd_brand_color);
+            }
+          }
+        }
         .dropdown_nav li {
           margin-right: 0;
           margin-left: -10px;
@@ -390,8 +397,12 @@ body {
             display: inline-block;
             font-size: 14px;
             font-weight: 400;
-
             &.active {
+              color: var(--ezd_brand_color);
+            }
+          }
+          &.active {
+            a{
               color: var(--ezd_brand_color);
             }
           }
@@ -693,15 +704,15 @@ body {
     border-radius: 15px;
     text-decoration: none !important;
 
-    &:hover {
-      background: #1f9852;
+    &:hover,&:focus{
+      background: #1f9852 !important;
     }
 
     &.red {
       background: #e74c3c;
 
-      &:hover {
-        background: #d84334;
+      &:hover,&:focus{
+        background: #d84334 !important;
       }
     }
 
@@ -813,7 +824,7 @@ body {
 .contact_form {
   .form-group {
     margin-bottom: 15px;
-    padding: 0 8px;
+    padding: 0px;
 
     &.submit-area {
       margin-bottom: 0;
@@ -824,11 +835,12 @@ body {
       border: 1px solid var(--black_50);
       height: 52px;
       border-radius: 5px;
-      background-color: var(--bs-white);
+      background-color: #fff;
       color: var(--black_800);
       font-weight: 400;
       padding-left: 25px;
       box-shadow: none;
+      width: 100%;
       @include placeholder {
         color: #878b99;
       }
@@ -1034,12 +1046,13 @@ body {
 
   .bootstrap-select {
     margin-bottom: 20px;
-
+    position: relative;
     > .dropdown-menu {
       box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11);
       background: #fff;
       border: 0;
-
+      position: absolute;
+      z-index: 1000;
       .inner {
         .dropdown-menu {
           border: 0;
@@ -1049,7 +1062,9 @@ body {
               color: var(--p_color);
               position: relative;
               font-size: 14px;
-
+              display: block;
+              width: 100%;
+              padding: 0.25rem 1rem;
               &:before {
                 content: "";
                 width: 2px;
@@ -1091,13 +1106,42 @@ body {
 
     li {
       margin: 0;
+      display: block;
+      width: 100%;
     }
 
     ul {
       padding-left: 20px;
     }
   }
-
+  li{
+    &:not(.active) {
+      .nav-link{
+        color: var(--black_500);
+      }
+    }
+    &.active{
+      > .nav-link{
+        color: var(--ezd_brand_color);
+        &::before {
+          left: -20px;
+          height: 100%;
+          content: " ";
+          position: absolute;
+          border-left: 2px solid;
+          color: var(--ezd_brand_color);
+          top: 0;
+        }
+      }
+      .nav .active{
+        .nav-link{
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
   .nav-link {
     font-size: 14px;
     font-weight: 400;
@@ -1105,18 +1149,20 @@ body {
     padding: 0;
     position: relative;
     margin-bottom: 10px;
-
+    text-decoration: none;
     &:not(.active) {
       color: var(--black_500);
     }
 
     &.active {
       font-weight: 500;
-      color: var(--ezd_brand_color);
-
       + .nav .active::before {
         display: none;
       }
+      color: var(--ezd_brand_color);
+      // + .nav .active::before {
+      //   display: none;
+      // }
 
       &::before {
         left: -20px;
@@ -1125,6 +1171,47 @@ body {
         position: absolute;
         border-left: 2px solid;
         color: var(--ezd_brand_color);
+      }
+    }
+  }
+}
+
+
+//  TOC numbering 
+@media (max-width: 991px) {
+  .left-column {
+    .doc_left_sidebarlist,
+    .single-docs .doc_rightsidebar {
+      margin-top: 90px;
+    }
+  }
+  .doc-middle-content {
+    margin-top: 30px;
+  }
+}
+
+.toc_auto_numbering {
+  ul {
+    counter-reset: item;
+    flex-wrap: wrap;
+    display: block;
+    li {
+      counter-increment: item;
+      white-space: normal;
+    }
+  }
+  .nav-link {
+    &::before {
+      content: counters(item, ".") ". ";
+    }
+    &.active {
+      &::before {
+        content: counters(item, ".") ". ";
+        left: 0;
+        height: auto;
+        position: relative;
+        border: none;
+        color: inherit;
       }
     }
   }
@@ -1288,7 +1375,7 @@ body:not(.onepage-doc) .sticky_menu {
 .fontsize-controllers {
   .btn-group {
     border: 1px solid var(--black_50);
-    background-color: var(--bs-white);
+    background-color: #fff;
     box-shadow: 0 1px 0 0 rgba(3, 13, 37, 0.2), inset 0 -8px 14px 0 rgba(3, 13, 37, 0.1);
     border-radius: 4px;
 
@@ -1566,7 +1653,7 @@ body:not(.onepage-doc) .sticky_menu {
     }
     .icon {
       border-radius: 50%;
-      background-color: var(--bs-white);
+      background-color: #fff;
       box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
       text-align: center;
       margin-right: 20px;
@@ -1737,6 +1824,23 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 // Eazydocs password protected form
+.single-docs #post{
+  .doc-scrollable.editor-content{
+    .ezd-password-wrap{
+      p.ezd-password-title {
+        color: #fff;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+  
+      p.ezd-password-subtitle {
+        color: #a4abc5;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
 .ezd-password-wrap {
   border: 1px solid #0c213a;
   border-radius: 5px;
@@ -1747,7 +1851,7 @@ body:not(.onepage-doc) .sticky_menu {
     background-color: #0c213a;
     flex: 1 1 auto;
     border-radius: 5px 5px 0 0;
-
+    padding: 22px 10px 10px;
     .logo img {
       display: block;
       margin: 0 auto;
@@ -1755,7 +1859,7 @@ body:not(.onepage-doc) .sticky_menu {
 
     p.ezd-password-title {
       font-size: 18px;
-      color: #fff;
+      color: #fff !important;
       font-weight: 500;
     }
 
@@ -1785,6 +1889,7 @@ body:not(.onepage-doc) .sticky_menu {
         font-weight: 400;
         line-height: 1.5;
         border-radius: 3px;
+        width: 100%;
 
         &:focus {
           color: #303e67;
@@ -1878,7 +1983,7 @@ div#eazydocs_share {
 
     > .modal-content {
       padding: 30px 30px 35px;
-      background-color: var(--bs-white);
+      background-color: #fff;
 
       > .close {
         position: absolute;
@@ -2182,4 +2287,11 @@ body.rtl {
 
 body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwide {
   justify-content: space-between;
+}
+
+.ezd-password-body{
+  padding: 20px;
+}
+.mb-3{
+  margin-bottom: 20px;
 }

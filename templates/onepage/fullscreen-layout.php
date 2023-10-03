@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
     <!-- Charset Meta -->
     <meta charset="<?php bloginfo('charset' ); ?>">
@@ -11,7 +12,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); if(function_exists('docy_has_scrollspy')){docy_has_scrollspy();} ?> >
+<body <?php body_class(); if(function_exists('docy_has_scrollspy')){docy_has_scrollspy();} ?>>
     <?php
     if ( function_exists('wp_body_open') ) {
         wp_body_open();
@@ -36,30 +37,33 @@
         'depth' => 3
     ) );
     ?>
-    <section class="documentation_area_sticky doc_documentation_area onepage_doc_area fullscreen-layout" id="sticky_doc">
-            <div class="overlay_bg"></div>
-            <div class="container-fluid p-lg-5">
-                <div class="row doc-container">
-                    <div class="col-xl-3 col-lg-3 doc_mobile_menu doc-sidebar sticky-top sticky-lg-top left-column">
-                        <aside class=" one-page-docs-sidebar-wrap">
-                            <div class="open_icon" id="left">
-                                <i class="arrow_carrot-right"></i>
-                                <i class="arrow_carrot-left"></i>
-                            </div>
+    <section class="documentation_area_sticky doc_documentation_area onepage_doc_area fullscreen-layout"
+        id="sticky_doc">
+        <div class="overlay_bg"></div>
+        <div class="ezd-container-fluid p-lg-5">
+            <div class="ezd-grid ezd-grid-cols-12 doc-container">
+                <div
+                    class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top sticky-lg-top left-column">
+                    <aside class=" one-page-docs-sidebar-wrap">
+                        <div class="open_icon" id="left">
+                            <i class="arrow_carrot-right"></i>
+                            <i class="arrow_carrot-left"></i>
+                        </div>
 
-                            <?php
+                        <?php
                             echo get_the_post_thumbnail($post_id->ID, 'full');
                             ?>
-                            <h3 class="doc-title">
-                                <?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
-                            </h3>
-                            <?php
+                        <h3 class="doc-title">
+                            <?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
+                        </h3>
+                        <?php
 
                             if ( $children ) :
                                 ?>
-                                <nav class="scroll op-docs-sidebar">
-                                    <ul class="list-unstyled nav-sidebar fullscreen-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
-                                        <?php
+                        <nav class="scroll op-docs-sidebar">
+                            <ul class="list-unstyled nav-sidebar fullscreen-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap"
+                                id="eazydocs-toc">
+                                <?php
                                         echo wp_list_pages(array(
                                             'title_li' => '',
                                             'order' => 'menu_order',
@@ -70,9 +74,9 @@
                                             'depth' => 3
                                         ));
                                         ?>
-                                    </ul>
-                                </nav>
-                            <?php
+                            </ul>
+                        </nav>
+                        <?php
                             endif;
                             
                             $parent_doc_id_left      = get_the_ID();
@@ -98,11 +102,11 @@
                             }
 
                             ?>
-                        </aside>
-                    </div>
-                    <div class="col-xl-7 col-lg-6 col-md-9 middle-content">
-                        <div class="documentation_info" id="post">
-                            <?php
+                    </aside>
+                </div>
+                <div class="ezd-xl-col-7 ezd-lg-col-6 ezd-md-col-9 ezd-grid-column-full middle-content">
+                    <div class="documentation_info" id="post">
+                        <?php
                             $sections = get_children( array(
                                 'post_parent'    => $post_id->ID,
                                 'post_type'      => 'docs',
@@ -129,14 +133,16 @@
                                     $get_title 	= 'ezd-'.sanitize_title($doc_item->post_title); 
                                 }
                                 ?>
-                                <article class="documentation_body doc-section onepage-doc-sec" id="<?php echo sanitize_title($get_title) ?>" itemscope itemtype="http://schema.org/Article">
-                                    <?php if ( !empty($doc_item->post_title) ) : ?>
-                                        <div class="shortcode_title doc-sec-title">
-                                            <h2> <?php echo $sec_serial.'. ' . $doc_item->post_title; ?> </h2>
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="doc-content">
-                                        <?php
+                        <article class="documentation_body doc-section onepage-doc-sec"
+                            id="<?php echo sanitize_title($get_title) ?>" itemscope
+                            itemtype="http://schema.org/Article">
+                            <?php if ( !empty($doc_item->post_title) ) : ?>
+                            <div class="shortcode_title doc-sec-title">
+                                <h2> <?php echo $sec_serial.'. ' . $doc_item->post_title; ?> </h2>
+                            </div>
+                            <?php endif; ?>
+                            <div class="doc-content">
+                                <?php
                                         if ( did_action( 'elementor/loaded' ) ) {
                                             $parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content($doc_item->ID);
                                             echo !empty($parent_content) ? $parent_content : apply_filters('the_content', $doc_item->post_content);
@@ -144,8 +150,8 @@
                                             echo apply_filters('the_content', $doc_item->post_content);
                                         }
                                         ?>
-                                    </div>
-                                    <?php
+                            </div>
+                            <?php
                                     $child_serial = 0;
                                     foreach ( $child_sections as $child_section ) :
                                         $child_serial++;
@@ -154,17 +160,17 @@
                                             $get_child_title 	= 'ezd-'.sanitize_title($child_section->post_title); 
                                         }
                                         ?>
-                                        <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_child_title) ?>">
-                                            <div class="shortcode_title depth-two">
-                                                <h3>
-                                                    <?php
+                            <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_child_title) ?>">
+                                <div class="shortcode_title depth-two">
+                                    <h3>
+                                        <?php
                                                     echo $sec_serial.'.'.$child_serial.' ';
                                                     echo $child_section->post_title;
-                                                    ?> 
-                                                </h3>
-                                            </div>
-                                            <div class="doc-content">
-                                                <?php
+                                                    ?>
+                                    </h3>
+                                </div>
+                                <div class="doc-content">
+                                    <?php
                                                 if ( did_action( 'elementor/loaded' ) ) {
                                                     $child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($child_section->ID);
                                                     echo !empty($child_content) ? $child_content : apply_filters('the_content', $child_section->post_content);
@@ -172,9 +178,9 @@
                                                     echo apply_filters('the_content', $child_section->post_content);
                                                 }
                                                 ?>
-                                            </div>
-                                        </div>
-                                    <?php
+                                </div>
+                            </div>
+                            <?php
 
                                     $last_depth = get_children( array(
                                         'post_parent'    => $child_section->ID,
@@ -192,17 +198,18 @@
                                             $get_last_child_title 	= 'ezd-'.sanitize_title($last_depth_doc->post_title); 
                                         }
                                         ?>
-                                        <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title($get_last_child_title) ?>">
-                                            <div class="shortcode_title depth-three">
-                                                <h4>
-                                                    <?php
+                            <div class="child-doc onepage-doc-sec"
+                                id="<?php echo sanitize_title($get_last_child_title) ?>">
+                                <div class="shortcode_title depth-three">
+                                    <h4>
+                                        <?php
                                                     echo $sec_serial.'.'.$child_serial.'.'.$last_depth_serial.' ';
                                                     echo $last_depth_doc->post_title;
                                                     ?>
-                                                </h4>
-                                            </div>
-                                            <div class="doc-content">
-                                                <?php
+                                    </h4>
+                                </div>
+                                <div class="doc-content">
+                                    <?php
                                                 if ( did_action( 'elementor/loaded' ) ) {
                                                     $child_content = \Elementor\Plugin::instance()->frontend->get_builder_content($last_depth_doc->ID);
                                                     echo !empty($child_content) ? $child_content : apply_filters('the_content', $last_depth_doc->post_content);
@@ -210,27 +217,27 @@
                                                     echo apply_filters('the_content', $last_depth_doc->post_content);
                                                 }
                                                 ?>
-                                            </div>
-                                        </div>
-                                        <?php
+                                </div>
+                            </div>
+                            <?php
                                     endforeach;
                                     endforeach;
                                     ?>
-                                </article>
-                                <?php
+                        </article>
+                        <?php
                                 ++$i;
                             }
                             ?>
-                        </div>
                     </div>
-                    <div class="col-xl-2 col-lg-3 col-md-3 doc_right_mobile_menu">
-                        <div class="open_icon" id="right">
-                            <i class="arrow_carrot-left"></i>
-                            <i class="arrow_carrot-right"></i>
-                        </div>
-                        <div class="doc_rightsidebar scroll one-page-docs-right-sidebar">
-                            <div class="pageSideSection">
-                                <?php
+                </div>
+                <div class="ezd-xl-col-2 ezd-lg-col-3 ezd-md-col-3 ezd-grid-column-full doc_right_mobile_menu">
+                    <div class="open_icon" id="right">
+                        <i class="arrow_carrot-left"></i>
+                        <i class="arrow_carrot-right"></i>
+                    </div>
+                    <div class="doc_rightsidebar scroll one-page-docs-right-sidebar">
+                        <div class="pageSideSection">
+                            <?php
                                 /**
                                  * Conditional Dropdown
                                  */
@@ -247,8 +254,8 @@
                                 eazydocs_get_template_part('tools/dark-mode-switcher');
                                 ?>
 
-                                <div class="onepage-sidebar doc_sidebar">
-                                    <?php
+                            <div class="onepage-sidebar doc_sidebar">
+                                <?php
                                     // Widgets area
 									$parent_doc_id      = get_the_ID();
 									$content_type       = get_post_meta( $parent_doc_id, 'ezd_doc_content_type_right', true );
@@ -277,13 +284,14 @@
 										}            
 									}
                                     ?>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     <?php wp_footer(); ?>
 </body>
+
 </html>

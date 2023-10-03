@@ -534,6 +534,12 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   justify-content: center;
   margin-top: 10px;
 }
+.header_search_keyword.justify-content-end {
+  justify-content: flex-end;
+}
+.header_search_keyword.justify-content-start {
+  justify-content: flex-start;
+}
 .header_search_keyword span {
   font-size: 14px;
   margin-right: 10px;
@@ -780,6 +786,10 @@ body.search-focused .ezd_click_capture {
 ============================================================================================ */
 /* H item css
     ============================================================================================ */
+.h_content_items.box-item.collapse-wrap {
+  display: none;
+}
+
 .h_item {
   background: #fff;
   padding-top: 30px;

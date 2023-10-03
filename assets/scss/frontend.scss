@@ -86,7 +86,7 @@ p .footnotes-link::after {
     color: var(--black_800) !important;
     &:focus {
       outline: thin dotted;
-      background-color: var(--bs-white);
+      background-color: #fff;
     }
     &::placeholder {
       color: var(--black_400)
@@ -111,7 +111,7 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 1;
   font-size: 0.95rem;
-  margin-left: -78px;
+  margin-left: -90px;
   .left-arrow {
     display: block;
     border: #e8e8e8 solid 1px;
@@ -347,11 +347,24 @@ p .footnotes-link::after {
   h6 {
     font-size: .8em;
   }
+  h2,h3,h4,h5,h6{
+    color: #0c0d0e;
+  }
+  p{
+    font-weight: 400;
+    margin-top: 0;
+    line-height: 28px;
+    color: #2D3748;
+  }
+}
+.form-control{
+  width: 100%;
 }
 
 .anchor-enabled h2 {
   padding-top: 80px;
   margin-top: -80px;
+  color: #0c0d0e;
 }
 
 .toggle_btn {
@@ -396,5 +409,39 @@ body.single-docs {
 }
 
 
+// select css 
 
+.bootstrap-select.open > .dropdown-menu{
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	-webkit-transform: scale(1) translateY(0);
+	-ms-transform: scale(1) translateY(0);
+	transform: scale(1) translateY(0);
+}
+.bootstrap-select > .dropdown-menu{
+	opacity: 0;
+	max-height: 330px !important;
+	visibility: hidden;
+	overflow: hidden;
+	-webkit-transform-origin: 50% 0;
+	-ms-transform-origin: 50% 0;
+	transform-origin: 50% 0;
+	-webkit-transform: scale(0.85) translateY(-5px);
+	-ms-transform: scale(0.85) translateY(-5px);
+	transform: scale(0.85) translateY(-5px);
+	-webkit-transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+	transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+}
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+	width: 100%;
+}
 
+.contribut-btns{
+  flex-wrap: wrap;
+}
+@media (max-width:1440px){
+  .contribut-btns a{
+    margin-bottom: 3px;
+  }
+}
