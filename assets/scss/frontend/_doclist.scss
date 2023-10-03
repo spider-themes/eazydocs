@@ -43,7 +43,7 @@ body {
     min-height: 1000px;
   }
 
-  a:focus {
+  .doc-scrollable a:focus {
     background: transparent !important;
   }
 
@@ -823,8 +823,8 @@ body {
 
 .contact_form {
   .form-group {
-    margin-bottom: 15px;
-    padding: 0px;
+    margin-bottom: 20px;
+    padding: 0;
 
     &.submit-area {
       margin-bottom: 0;
@@ -1445,6 +1445,7 @@ body:not(.onepage-doc) .sticky_menu {
   ul.card_tagged {
     padding-left: 0;
     margin: 0;
+    display: flex;
 
     li {
       font-size: 14px;

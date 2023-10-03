@@ -26,7 +26,7 @@ export default function Edit({ attributes, setAttributes }) {
 		return select('core').getSite().url;
 	})
 	const settingsPage = siteURL + '/wp-admin/admin.php?page=eazydocs-settings#tab=doc-single/search-banner';
-	console.log(settingsPage)
+
 	return (
 		<Fragment>
 			<InspectorControls>

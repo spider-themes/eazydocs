@@ -232,7 +232,7 @@ CSF::createSection( $prefix, array(
 
         array(
             'title'         => esc_html__( 'Dark Mode Switcher', 'eazydocs' ),
-            'subtitle'      => esc_html__( 'By show/hiding the Dark Mode Switcher, you are enable/disabling the Dark mode feature.', 'eazydocs' ),
+            'subtitle'      => esc_html__( 'By show/hiding the Dark Mode Switcher, you are enable/disabling the Dark mode feature on the Doc single page.', 'eazydocs' ),
             'id'            => 'is_dark_switcher',
             'type'          => 'switcher',
             'text_on'       => esc_html__( 'Show', 'eazydocs' ),

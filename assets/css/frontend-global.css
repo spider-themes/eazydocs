@@ -108,7 +108,7 @@
   font-size: 11px;
   background: rgba(76, 76, 241, 0.1);
   color: var(--black_800);
-  padding: 3px 5px 0;
+  padding: 3px 8px 0;
   border-radius: 3px;
   margin-right: 5px;
   display: inline-block;
@@ -237,7 +237,7 @@
 .ezd-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 25px;
+  grid-column-gap: 20px;
 }
 .ezd-grid.one {
   grid-template-columns: repeat(1, 1fr);

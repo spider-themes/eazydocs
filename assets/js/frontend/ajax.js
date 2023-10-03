@@ -127,7 +127,7 @@
         let user_img          = $(this).parent().parent().find('img').attr('src');
         let user_name         = $(this).attr('data_name');
         let user_url          = $(this).parent().parent().find('a').attr('href');
-        console.log(user_name);
+
         $.ajax({
           url: eazydocs_ajax_search.ajax_url,
           method: 'POST',
@@ -280,7 +280,6 @@
                         $scope: $('.doc-scrollable'),
                     });
                     docLeftSidebarToggle();
-                    console.log('hello');
                 },
                 error: function () {
                     console.log('Oops! Something wrong, try again!');

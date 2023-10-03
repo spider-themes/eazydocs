@@ -674,21 +674,8 @@ body.search-focused {
     transition: all .3s linear;
   }
 }
-
 /** Search Form End **/
 
-
-/** Single Doc widget css **/
-.categories_guide_item {
-  a.doc_tag_title {
-    > span {
-      color: var(--ezd_brand_color);
-      margin-top: 15px;
-      display: block;
-      font-size: 16px;
-    }
-  }
-}
 
 /*============== recommended_topic_area css  ===========*/
 .recommended_topic_inner {
@@ -1014,7 +1001,6 @@ body.search-focused {
 
 /* End H item css
   ============================================================================================ */
-
 .docs-single-5-wrap {
   .section5-section-title {
     h6 {

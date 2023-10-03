@@ -19,7 +19,7 @@
             <?php echo wp_get_attachment_image( get_post_thumbnail_id( $section->ID ) ); ?>
             <a class="doc_tag_title" href="<?php echo get_the_permalink($section->ID); ?>">
                 <h4 class="title"> <?php echo get_the_title($section->ID); ?> </h4>
-                <span class="badge">
+                <span class="ezd-badge">
                     <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
                     <?php esc_html_e( 'Topics', 'eazydocs' ) ?>
                 </span>

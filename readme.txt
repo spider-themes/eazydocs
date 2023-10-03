@@ -207,6 +207,15 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.3.0 (21 September 2023) =
+New: Auto Numbering option added for the Doc Sidebar Toc in the EazyDocs > Settings > Single Doc > Right Sidebar
+Tweaked: Bootstrap dependency removed from EazyDocs completely. Now EazyDocs will not conflict with any theme or plugin.
+Tweaked: Prefix common class like badge, utility classes to avoid conflict with other themes and plugins.
+Tweaked: Coding standard improved and some unnecessary code removed.
+Tweaked: Some design improved for mobile devices.
+Fixed: Private Docs count was not showing on the EazyDocs shortcode and Elementor widgets.
+Fixed: Sometime the doc View counter not updated.
+
 = v2.2.4 (21 September 2023) =
 New: Brand Color on Dark Mode option added in the EazyDocs > Settings > General
 Updated: Freemius SDK to the latest version 2.5.12
