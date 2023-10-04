@@ -21,7 +21,7 @@
                     <?php echo wp_kses_post( $section->post_title ); ?>
                 </h6>
             </div>
-            <ul class="navbar-nav docs-single5-nav-wrap">
+            <ul class="navbar-nav docs-single5-nav-wrap list-unstyled">
                 <?php
 					$doc_count = count($doc_items);
 					foreach ( $doc_items as $doc_item ) :

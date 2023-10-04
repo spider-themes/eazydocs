@@ -719,7 +719,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
     min-height: 1000px;
   }
 }
-.doc_documentation_area a:focus {
+.doc_documentation_area .doc-scrollable a:focus {
   background: transparent !important;
 }
 .doc_documentation_area .overlay_bg {
@@ -1356,8 +1356,8 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 
 .contact_form .form-group {
-  margin-bottom: 15px;
-  padding: 0px;
+  margin-bottom: 20px;
+  padding: 0;
 }
 .contact_form .form-group.submit-area {
   margin-bottom: 0;
@@ -1861,6 +1861,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .doc-btm ul.card_tagged {
   padding-left: 0;
   margin: 0;
+  display: flex;
 }
 .doc-btm ul.card_tagged li {
   font-size: 14px;
@@ -2958,7 +2959,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 .topic_list_item {
   border-radius: 10px;
   margin-bottom: 30px;
-  padding: 36px 36px 38px;
+  padding: 36px 30px 38px 36px;
   border: 1px solid var(--black_25);
   transition: all 300ms linear 0s;
   box-shadow: 0 2px 3px rgba(3, 27, 78, 0.05);
@@ -2985,11 +2986,6 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   margin-bottom: 25px;
   display: flex;
   width: 100%;
-}
-.topic_list_item .count {
-  color: var(--p_color);
-  font-size: 14px;
-  font-weight: 400;
 }
 .topic_list_item ul li {
   margin-bottom: 10px;
@@ -3319,9 +3315,12 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   color: var(--p_color);
   transition: all 300ms linear 0s;
 }
-.question_menu .nav-tabs li a:hover, .question_menu .nav-tabs li a.active {
+.question_menu .nav-tabs li a:hover {
   background: var(--ezd_brand_color);
   color: #fff;
+}
+.question_menu .nav-tabs li a.active {
+  background: rgba(76, 76, 241, 0.2);
 }
 
 .question_list .fade {
@@ -3345,8 +3344,6 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   background: #fff;
 }
 
-/* End Question List Area css
-  ============================================================================================ */
 /* Quesiton Area css
   ============================================================================================ */
 .question_menu.docs3 .nav {
@@ -3460,7 +3457,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 }
 .categories_guide_item.single-doc-layout-one .doc-top > img {
   width: auto;
-  max-width: 60px;
+  max-width: 50px;
   height: auto;
   max-height: 70px;
   margin: 0 15px 0 0;
@@ -3477,21 +3474,6 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   font-size: 20px;
   text-decoration: none;
   margin: 0;
-}
-.categories_guide_item a.doc_tag_title span.badge {
-  background: rgba(175, 184, 193, 0.2);
-  color: var(--black_800);
-  font-size: 11px;
-  padding: 3px 5px 0;
-  border-radius: 3px;
-  margin-right: 5px;
-  display: inline-block;
-  line-height: 1.45;
-  vertical-align: middle;
-  font-weight: 500;
-  height: 20px;
-  letter-spacing: 0.2px;
-  margin-top: 5px;
 }
 .categories_guide_item .doc_border_btn {
   border: 1px solid rgba(76, 76, 241, 0.2);
@@ -3528,7 +3510,6 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 }
 
 a.action_btn.all_doc_btn {
-  padding: 10px 40px;
   margin-top: 30px;
   font-size: 16px;
   font-weight: 400;
@@ -3536,7 +3517,7 @@ a.action_btn.all_doc_btn {
   border-radius: 4px;
   background: var(--ezd_brand_color);
   display: inline-block;
-  padding: 14px 28px;
+  padding: 10px 28px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
   text-decoration: none !important;
 }
@@ -3901,8 +3882,13 @@ a.action_btn.all_doc_btn:hover {
     margin: 1.75rem auto;
   }
 }
+/** === Utility Classes === **/
 .ezd-d-flex {
   display: flex;
+}
+
+.ezd-circle {
+  border-radius: 50% !important;
 }
 
 .ezd-align-items-center {
@@ -3939,6 +3925,23 @@ a.action_btn.all_doc_btn:hover {
 
 .ezd-shadow-lg {
   box-shadow: 0 1rem 1.2rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/** === UI Elements === **/
+.ezd-badge {
+  background: rgba(175, 184, 193, 0.2);
+  color: var(--black_800);
+  font-size: 11px;
+  padding: 3px 8px 0;
+  border-radius: 3px;
+  margin-right: 5px;
+  display: inline-block;
+  line-height: 1.45;
+  vertical-align: middle;
+  font-weight: 500;
+  height: 20px;
+  letter-spacing: 0.2px;
+  margin-top: 5px;
 }
 
 .modal-content .shortcode_info .row {

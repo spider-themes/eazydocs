@@ -197,7 +197,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		}
 
 		/**
-		 * Initializes the plugin
+		 * Initializes the plugin based on the locations
 		 * @return void
 		 */
 		public function init_plugin() {
