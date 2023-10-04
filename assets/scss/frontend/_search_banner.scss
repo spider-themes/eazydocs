@@ -618,9 +618,10 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   justify-content: center;
   margin-top: 10px;
 
-  span {
+  .search_keyword_label {
     font-size: 14px;
     margin-right: 10px;
+    color: var(--black_100);
   }
 
   ul {

@@ -631,9 +631,10 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   justify-content: center;
   margin-top: 10px;
 }
-.header_search_keyword span {
+.header_search_keyword .search_keyword_label {
   font-size: 14px;
   margin-right: 10px;
+  color: var(--black_100);
 }
 .header_search_keyword ul {
   margin: 0;
@@ -2045,7 +2046,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   height: 70px;
 }
 .d-items .documentation_item .icon img {
-  max-width: 40px !important;
+  max-width: 35px !important;
   height: auto !important;
 }
 .d-items .documentation_item .media-body {
