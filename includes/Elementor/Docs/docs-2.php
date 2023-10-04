@@ -1,6 +1,6 @@
-<section class="doc_tag_area">
+<section class="doc_tag_area" id="Arrow_slides-<?php echo esc_attr($this->get_id()) ?>">
     <div class="tabs_sliders">
-        <span class="scroller-btn left inactive"><i class="arrow_carrot-left"></i></span>
+        <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>
         <ul class="nav nav-tabs doc_tag ezd-tab-menu slide_nav_tabs">
             <?php
             $slug_type = $settings[ 'docs_slug_format' ] ?? '';
@@ -77,7 +77,7 @@
             }
             ?>
         </ul>
-        <span class="scroller-btn right inactive" id="right"><i class="arrow_carrot-right"></i></span>
+        <span class="scroller-btn right"><i class="arrow_carrot-right"></i></span>
     </div>
     <div class="tab-content">
         <?php

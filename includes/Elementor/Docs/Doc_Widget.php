@@ -840,9 +840,8 @@ class Doc_Widget extends Widget_Base {
             include( "docs-1.php" );
         }
 
-		?>
+        ?>
         <script type="text/javascript">
-
 
             ;(function($) {
                 "use strict";
@@ -850,18 +849,18 @@ class Doc_Widget extends Widget_Base {
                 $(document).ready(function() {
 
                     // === Tabs Slider
-                    var tabSliderContainers = $(".tabs_sliders");
+                    var tabId = "#Arrow_slides-<?php echo esc_js($this->get_id()) ?>";
+                    var tabSliderContainers = $(tabId + " .tabs_sliders");
 
                     tabSliderContainers.each(function () {
-                        let $scope = $(this);
-                        let tabWrapWidth = $scope.outerWidth();
+                        let tabWrapWidth = $(this).outerWidth();
                         let totalWidth = 0;
 
-                        let slideArrowBtn = $(".scroller-btn");
-                        let slideBtnLeft = $(".scroller-btn.left");
-                        let slideBtnRight = $(".scroller-btn.right");
-                        let navWrap = $(".slide_nav_tabs");
-                        let navWrapItem = $(".slide_nav_tabs li");
+                        let slideArrowBtn = $(tabId + " .scroller-btn");
+                        let slideBtnLeft = $(tabId + " .scroller-btn.left");
+                        let slideBtnRight = $(tabId + " .scroller-btn.right");
+                        let navWrap = $(tabId + " .slide_nav_tabs");
+                        let navWrapItem = $(tabId + " .slide_nav_tabs li");
 
                         navWrapItem.each(function () {
                             totalWidth += $(this).outerWidth();
@@ -869,10 +868,14 @@ class Doc_Widget extends Widget_Base {
 
                         if (totalWidth > tabWrapWidth) {
                             slideArrowBtn.removeClass("inactive");
+                        } else {
+                            slideArrowBtn.addClass("inactive");
                         }
 
                         if (navWrap.scrollLeft() === 0) {
                             slideBtnLeft.addClass("inactive");
+                        } else {
+                            slideBtnLeft.removeClass("inactive");
                         }
 
                         slideBtnRight.on("click", function () {
@@ -929,10 +932,7 @@ class Doc_Widget extends Widget_Base {
                     });
 
                 });
-
             })(jQuery);
-
-
 
         </script>
         <?php
