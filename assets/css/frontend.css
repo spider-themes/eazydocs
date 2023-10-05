@@ -3577,53 +3577,66 @@ a.action_btn.all_doc_btn:hover {
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 25px;
 }
-.ezd-grid.one {
+.ezd-grid.ezd-column-1 {
   grid-template-columns: repeat(1, 1fr);
 }
-.ezd-grid.two {
+.ezd-grid.ezd-column-2 {
   grid-template-columns: repeat(2, 1fr);
 }
 @media (max-width: 600px) {
-  .ezd-grid.two {
+  .ezd-grid.ezd-column-2 {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-.ezd-grid.four {
+.ezd-grid.ezd-column-4 {
   grid-template-columns: repeat(4, 1fr);
 }
 @media (max-width: 991px) {
-  .ezd-grid.four {
+  .ezd-grid.ezd-column-4 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 600px) {
-  .ezd-grid.four {
+  .ezd-grid.ezd-column-4 {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-.ezd-grid.three {
+.ezd-grid.ezd-column-3 {
   grid-template-columns: repeat(3, 1fr);
 }
 @media (max-width: 991px) {
-  .ezd-grid.three {
+  .ezd-grid.ezd-column-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 600px) {
-  .ezd-grid.three {
+  .ezd-grid.ezd-column-3 {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-.ezd-grid.six {
+.ezd-grid.ezd-column-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 991px) {
+  .ezd-grid.ezd-column-5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .ezd-grid.ezd-column-5 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.ezd-grid.ezd-column-6 {
   grid-template-columns: repeat(6, 1fr);
 }
 @media (max-width: 991px) {
-  .ezd-grid.six {
+  .ezd-grid.ezd-column-6 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 600px) {
-  .ezd-grid.six {
+  .ezd-grid.ezd-column-6 {
     grid-template-columns: repeat(1, 1fr);
   }
 }

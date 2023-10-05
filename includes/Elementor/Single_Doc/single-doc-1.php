@@ -1,4 +1,4 @@
-<div class="ezd-grid <?php echo esc_attr( $ppp_column ); ?>">
+<div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
     <?php
         foreach ( $sections as $section ) :
             $doc_items = get_children( array(

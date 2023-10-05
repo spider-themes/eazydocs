@@ -203,47 +203,61 @@
 
 
 
-// ezd grid columns css 
-
-.ezd-grid{
+// ezd grid columns css
+.ezd-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 20px;
-  &.one{
+  grid-column-gap: 25px;
+
+  &.ezd-column-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &.ezd-column-2 {
+    grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 600px) {
       grid-template-columns: repeat(1, 1fr);
+    }
   }
-  &.two{
+
+  &.ezd-column-4 {
+    grid-template-columns: repeat(4, 1fr);
+    @media (max-width: 991px) {
       grid-template-columns: repeat(2, 1fr);
-      @media (max-width:600px){
-          grid-template-columns: repeat(1, 1fr);
-      }
+    }
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
-  &.four{
-      grid-template-columns: repeat(4, 1fr);
-      @media (max-width:991px){
-          grid-template-columns: repeat(2, 1fr);
-      }
-      @media (max-width:600px){
-          grid-template-columns: repeat(1, 1fr);
-      }
+
+  &.ezd-column-3 {
+    grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
-  &.three{
+
+  &.ezd-column-5 {
+    grid-template-columns: repeat(5, 1fr);
+    @media (max-width: 991px) {
       grid-template-columns: repeat(3, 1fr);
-      @media (max-width:991px){
-          grid-template-columns: repeat(2, 1fr);
-      }
-      @media (max-width:600px){
-          grid-template-columns: repeat(1, 1fr);
-      }
+    }
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
-  &.six{
-      grid-template-columns: repeat(6, 1fr);
-      @media (max-width:991px){
-          grid-template-columns: repeat(2, 1fr);
-      }
-      @media (max-width:600px){
-          grid-template-columns: repeat(1, 1fr);
-      }
+
+  &.ezd-column-6 {
+    grid-template-columns: repeat(6, 1fr);
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
 

@@ -160,11 +160,12 @@ class Single_Doc extends Widget_Base {
 				'description' => esc_html__( 'Number of column to show', 'eazydocs' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'	  => [
-					'one' 	  => esc_html__( '1 Column', 'eazydocs' ),
-					'two' 	  => esc_html__( '2 Column', 'eazydocs' ),
-					'three' 	  => esc_html__( '3 Column', 'eazydocs' ),
-					'four' 	  => esc_html__( '4 Column', 'eazydocs' ),
-					'six' 	  => esc_html__( '6 Column', 'eazydocs' ),
+					'1' 	  => esc_html__( '1 Column', 'eazydocs' ),
+					'2' 	  => esc_html__( '2 Column', 'eazydocs' ),
+					'3' 	  => esc_html__( '3 Column', 'eazydocs' ),
+					'4' 	  => esc_html__( '4 Column', 'eazydocs' ),
+					'5' 	  => esc_html__( '5 Column', 'eazydocs' ),
+					'6' 	  => esc_html__( '6 Column', 'eazydocs' ),
 				],
 				'default'     => 'three',
 				'condition'   => [
