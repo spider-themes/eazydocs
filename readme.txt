@@ -209,12 +209,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 = v2.3.0 (21 September 2023) =
 New: Auto Numbering option added for the Doc Sidebar Toc in the EazyDocs > Settings > Single Doc > Right Sidebar
+New: Doc views count column in Classic view mode on the admin dashboard. See it https://i.postimg.cc/HnzYnhMr/image.png
 Tweaked: Bootstrap dependency removed from EazyDocs completely. Now EazyDocs will not conflict with any theme or plugin.
 Tweaked: Prefix common class like badge, utility classes to avoid conflict with other themes and plugins.
 Tweaked: Coding standard improved and some unnecessary code removed.
 Tweaked: Some design improved for mobile devices.
 Fixed: Private Docs count was not showing on the EazyDocs shortcode and Elementor widgets.
-Fixed: Sometime the doc View counter not updated.
+Fixed: In some cases, the doc View counter was not update.
+Fixed: Some JavaScript functions were not working on the Single doc Ajax loading.
 
 = v2.2.4 (21 September 2023) =
 New: Brand Color on Dark Mode option added in the EazyDocs > Settings > General

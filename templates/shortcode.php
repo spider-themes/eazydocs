@@ -17,8 +17,7 @@ if ( $docs ) :
 	?>
 
 <div class="eazydocs_shortcode">
-    <div class="ezd-container">
-        <div class="ezd-grid ezd-grid-cols-12" <?php do_action( 'eazydocs_masonry_wrap', $layout ); ?>>
+    <div class="ezd-grid">
             <?php
 				$i = 1;
 				foreach ( $docs as $main_doc ) :
@@ -66,7 +65,6 @@ if ( $docs ) :
 						}
 						?>
                     <div class="doc-top ezd-d-flex ezd-align-items-start">
-                        <?php echo get_the_post_thumbnail( $main_doc['doc']->ID, 'full', array( 'class' => 'featured-image' ) ); ?>
 
                         <?php
 							if ( $private_doc_mode == 'login' ) {
@@ -143,11 +141,10 @@ if ( $docs ) :
                         <i class="arrow_right"></i>
                     </a>
                 </div>
-            </div>
+           
             <?php
 				endforeach;
 				?>
-        </div>
     </div>
 </div>
 <?php
