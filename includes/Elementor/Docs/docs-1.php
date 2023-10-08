@@ -71,28 +71,9 @@ if ( ezd_is_premium() ) {
             </div>
             <?php
 					}
-
-					if ( ezd_is_premium() ) {
-						if ( $private_doc_mode == 'login' ) {
-							if ( get_post_status( get_the_ID() ) == 'private' ) {
-								$login_page_id  = get_post_field( 'post_name', $private_doc_login_page );
-								$current_doc_id = get_post_field( 'post_name', get_the_ID() );
-								$get_post_type  = get_post_type( get_the_ID() );
-								if ( is_user_logged_in() ) {
-									$main_doc_url = site_url( $get_post_type . '/' . $current_doc_id );
-								} else {
-									$main_doc_url = site_url( $login_page_id . '?after_login=' ) . site_url( $get_post_type . '/' . $current_doc_id . '&add_new_doc=yes' );
-								}
-							} else {
-								$main_doc_url = get_permalink( get_the_ID() );
-							}
-						}
-					} else {
-						$main_doc_url = get_permalink( get_the_ID() );
-					}
 					?>
             <div class="doc-top d-flex align-items-start">
-                <a class="doc_tag_title" href="<?php echo esc_url( $main_doc_url ); ?>">
+                <a class="doc_tag_title" href="<?php the_permalink(); ?>">
                     <h4 class="title ezd_item_title"> <?php the_title(); ?> </h4>
                     <span class="ezd-badge">
                         <?php echo count( $get_child_docs );
