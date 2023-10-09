@@ -209,62 +209,34 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 25px;
-
   &.ezd-column-1 {
     grid-template-columns: repeat(1, 1fr);
-    .categories_guide_item {
-      max-width: 100%;
-    }
   }
 
   &.ezd-column-2 {
     grid-template-columns: repeat(2, 1fr);
-    .categories_guide_item {
-      max-width: 50%;
-    }
     @media (max-width: 600px) {
       grid-template-columns: repeat(1, 1fr);
-      .categories_guide_item {
-        max-width: 100%;
-      }
     }
   }
 
   &.ezd-column-4 {
     grid-template-columns: repeat(4, 1fr);
-    .categories_guide_item {
-      width: 25%;
-    }
     @media (max-width: 991px) {
       grid-template-columns: repeat(2, 1fr);
-      .categories_guide_item {
-        max-width: 50%;
-      }
     }
     @media (max-width: 600px) {
       grid-template-columns: repeat(1, 1fr);
-      .categories_guide_item {
-        max-width: 100%;
-      }
     }
   }
 
   &.ezd-column-3 {
     grid-template-columns: repeat(3, 1fr);
-    .categories_guide_item {
-      max-width: 33.33%;
-    }
     @media (max-width: 991px) {
       grid-template-columns: repeat(2, 1fr);
-      .categories_guide_item {
-        max-width: 50%;
-      }
     }
     @media (max-width: 600px) {
       grid-template-columns: repeat(1, 1fr);
-      .categories_guide_item {
-        max-width: 50%;
-      }
     }
   }
 
@@ -280,23 +252,16 @@
 
   &.ezd-column-6 {
     grid-template-columns: repeat(6, 1fr);
-    .categories_guide_item {
-      max-width: 16.66%;
-    }
     @media (max-width: 991px) {
       grid-template-columns: repeat(2, 1fr);
-      .categories_guide_item {
-        max-width: 500%;
-      }
     }
     @media (max-width: 600px) {
       grid-template-columns: repeat(1, 1fr);
-      .categories_guide_item {
-        max-width: 100%;
-      }
     }
   }
 }
+
+
 
 
 
@@ -503,7 +468,7 @@ ul{
 }
 
 
-.modal {
+.ezd-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -516,21 +481,19 @@ ul{
   outline: 0;
 }
 
-.modal-dialog {
+.ezd-modal-dialog {
   position: relative;
   width: auto;
   margin: 0.5rem;
   pointer-events: none;
 }
-.modal-content {
+.ezd-modal-content {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.2);
   border-radius: 0.3rem;
   outline: 0;
 }
@@ -539,7 +502,7 @@ ul{
   display: block;
 }
 
-.modal-overlay {
+.ezd-modal-overlay {
   position: fixed;
   z-index: 10;
   top: 0;
@@ -549,13 +512,87 @@ ul{
   transition: visibility 0s linear 0.3s, opacity 0.3s;
 }
 @media (min-width: 576px){
-  .modal-dialog {
+  .ezd-modal-dialog {
       margin: 1.75rem auto;
   }
 }
 
 .ezd-d-flex{
   display: flex;
+  .ezd-col-width{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  &.ezd-column-1{
+    .ezd-col-width{
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+  &.ezd-column-2{
+    .ezd-col-width{
+      flex: 0 0 50%;
+      max-width: 50%;
+      @media (max-width: 600px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+  &.ezd-column-3{
+    .ezd-col-width{
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+      @media (max-width: 991px) {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+      @media (max-width: 600px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+  &.ezd-column-4{
+    .ezd-col-width{
+      flex: 0 0 25%;
+      max-width: 25%;
+      @media (max-width: 991px) {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+      @media (max-width: 600px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+  &.ezd-column-6{
+    .ezd-col-width{
+      flex: 0 0 16.67%;
+      max-width: 16.67%;
+      @media (max-width: 991px) {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+      @media (max-width: 600px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+.eazydocs_shortcode{
+  .ezd-d-flex{
+    margin-left: -15px;
+    margin-right: -15px;
+    flex-wrap: wrap;
+    &.ezd-masonry{
+      .ezd-col-width{
+        width: 100%;
+      }
+    }
+  }
 }
 .ezd-align-items-center{
   align-items: center;

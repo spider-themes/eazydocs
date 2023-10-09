@@ -12,12 +12,12 @@ $title          = ! empty ( $options['feedback-form-title'] ) ? $options['feedba
 $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedback-form-desc'] : '';
 ?>
 
-<div class="modal" id="eazydocs_feedback" data-id="modal1">
-    <div class="modal-overlay"></div>
-    <div class="modal-dialog help_form" role="document">
-        <div class="modal-content">
-            <button type="button" class="close">
-                <i class=" icon_close"></i>
+<div class="ezd-modal" id="eazydocs_feedback" data-id="modal1">
+    <div class="ezd-modal-overlay"></div>
+    <div class="ezd-modal-dialog help_form" role="document">
+        <div class="ezd-modal-content">
+            <button type="button" class="close ezd-close">
+                <i class="icon_close"></i>
             </button>
             <div class="shortcode_title">
                 <h3 class="title mb-2"> <?php echo esc_html( $title ); ?> </h3>

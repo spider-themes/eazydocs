@@ -6,7 +6,7 @@
 		 * Make the overflow of ancestor Elements to visible of Position Sticky Element
 		 * @type {HTMLElement}
 		 */
-		let parent_selector = document.querySelector('.sticky-lg-top');
+		let parent_selector = document.querySelector('.ezd-sticky-lg-top');
 		if (parent_selector) {
 			let parent = parent_selector.parentElement;
 			while (parent) {
@@ -95,17 +95,17 @@
 
 		$('.modal-toggle').on('click', function (e) {
 			e.preventDefault();
-			$('.modal-overlay').fadeIn();
+			$('.ezd-modal-overlay').fadeIn();
 			var id = $(this).data('id');
-			$('.modal[data-id="modal' + id + '"]').fadeIn();
+			$('.ezd-modal[data-id="modal' + id + '"]').fadeIn();
 		});
-		$('.close').on('click', function () {
-			$('.modal-overlay').fadeOut();
-			$('.modal').fadeOut();
+		$('.ezd-close').on('click', function () {
+			$('.ezd-modal-overlay').fadeOut();
+			$('.ezd-modal').fadeOut();
 		});
-		$('.modal-overlay').on('click', function () {
-			$('.modal-overlay').fadeOut();
-			$('.modal').fadeOut();
+		$('.ezd-modal-overlay').on('click', function () {
+			$('.ezd-modal-overlay').fadeOut();
+			$('.ezd-modal').fadeOut();
 		});
 
 		if ($('#eazydocs-toc a').length > 0) {

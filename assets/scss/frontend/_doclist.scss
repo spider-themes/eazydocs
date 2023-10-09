@@ -1970,7 +1970,7 @@ body:not(.onepage-doc) .sticky_menu {
 div#eazydocs_share {
   background: #00000066;
 
-  > .modal-dialog {
+  > .ezd-modal-dialog {
     max-width: 500px;
     position: fixed;
     bottom: 0;
@@ -1982,7 +1982,7 @@ div#eazydocs_share {
     height: fit-content;
     z-index: 999;
 
-    > .modal-content {
+    > .ezd-modal-content {
       padding: 30px 30px 35px;
       background-color: #fff;
 

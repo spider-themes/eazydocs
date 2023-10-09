@@ -93,8 +93,8 @@ body.body_dark {
   }
 
   .doc_menu .nav-link.active, .doc_menu .nav-link:hover,
-  h1, h2, h3, h4, h5, h6,&.single-docs #post p{
-    color: #fff;
+  h1, h2, h3, h4, h5, h6,&.single-docs #post p, &.single-docs #post em strong span{
+    color: #fff !important;
   }
   &.single-docs #post{
     h2,h3,h4,h5,h6{

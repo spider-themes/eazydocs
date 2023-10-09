@@ -23,7 +23,7 @@ $children           = wp_list_pages( array(
     <div class="ezd-container-fluid p-lg-5">
         <div class="ezd-grid ezd-grid-cols-12 doc-container">
             <div
-                class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top sticky-lg-top left-column">
+                class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top ezd-sticky-lg-top left-column">
                 <aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap">
                     <div class="open_icon" id="left">
                         <i class="arrow_carrot-right"></i>
@@ -210,7 +210,8 @@ $children           = wp_list_pages( array(
 						?>
                 </div>
             </div>
-            <div class="ezd-xl-col-2 ezd-lg-col-3 ezd-grid-column-full doc_right_mobile_menu sticky-top sticky-lg-top">
+            <div
+                class="ezd-xl-col-2 ezd-lg-col-3 ezd-grid-column-full doc_right_mobile_menu sticky-top ezd-sticky-lg-top">
                 <div class="open_icon" id="right">
                     <i class="arrow_carrot-left"></i>
                     <i class="arrow_carrot-right"></i>

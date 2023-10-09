@@ -15,11 +15,11 @@ if ( $is_social_links ) :
     <?php echo ezd_get_opt( 'share_btn_label', __( 'Share', 'eazydocs' ) ) ?>
 </a>
 
-<div class="modal" id='eazydocs_share' data-id="modal2">
-    <div class="modal-overlay modal-toggle"></div>
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <a class="close">
+<div class="ezd-modal" id='eazydocs_share' data-id="modal2">
+    <div class="ezd-modal-overlay modal-toggle"></div>
+    <div class="ezd-modal-dialog" role="document">
+        <div class="ezd-modal-content">
+            <a class="close ezd-close">
                 <i class=" icon_close"></i>
             </a>
             <div class="eazydocs-share-wrap">

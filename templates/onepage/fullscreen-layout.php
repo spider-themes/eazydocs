@@ -43,7 +43,7 @@
         <div class="ezd-container-fluid p-lg-5">
             <div class="ezd-grid ezd-grid-cols-12 doc-container">
                 <div
-                    class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top sticky-lg-top left-column">
+                    class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top ezd-sticky-lg-top left-column">
                     <aside class=" one-page-docs-sidebar-wrap">
                         <div class="open_icon" id="left">
                             <i class="arrow_carrot-right"></i>

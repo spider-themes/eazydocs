@@ -74,7 +74,7 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 @media (min-width: 992px) {
-  .sticky-lg-top {
+  .ezd-sticky-lg-top {
     position: sticky !important;
     align-self: flex-start !important;
     z-index: 1;
@@ -2285,7 +2285,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 div#eazydocs_share {
   background: rgba(0, 0, 0, 0.4);
 }
-div#eazydocs_share > .modal-dialog {
+div#eazydocs_share > .ezd-modal-dialog {
   max-width: 500px;
   position: fixed;
   bottom: 0;
@@ -2297,11 +2297,11 @@ div#eazydocs_share > .modal-dialog {
   height: fit-content;
   z-index: 999;
 }
-div#eazydocs_share > .modal-dialog > .modal-content {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content {
   padding: 30px 30px 35px;
   background-color: #fff;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .close {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .close {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -2311,16 +2311,16 @@ div#eazydocs_share > .modal-dialog > .modal-content > .close {
   color: var(--black_600);
   text-decoration: none;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .close:hover {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .close:hover {
   color: #cd2653;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > h2 {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > h2 {
   font-size: 24px;
   font-weight: 700;
   line-height: 1.3;
   margin: 0 10px 20px 0;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a {
   width: 56px;
   height: 56px;
   background-color: rgba(208, 215, 222, 0.55);
@@ -2334,31 +2334,31 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .so
   margin-right: 10px;
   text-decoration: none;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:hover {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a:hover {
   background-color: rgba(208, 215, 222, 0.4);
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a i {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a i {
   font-size: 24px;
   line-height: 24px;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(2) > i {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a:nth-child(2) > i {
   color: rgb(66, 103, 178);
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(3) > i {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a:nth-child(3) > i {
   color: rgb(0, 114, 177);
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .social-links a:nth-child(4) > i {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a:nth-child(4) > i {
   color: rgb(29, 161, 242);
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > p {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > p {
   font-size: 14px;
   margin: 20px 0 2px;
   color: var(--black_600);
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap {
   position: relative;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap input {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap input {
   width: 100%;
   background-color: #f5f5f9;
   opacity: 1;
@@ -2371,11 +2371,11 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .co
   border: 1px solid #b9b9b9;
   border-radius: 4px;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap input:focus {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap input:focus {
   outline: 2px solid #0044c0;
   outline-offset: -1px;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc {
   width: 20px;
   position: absolute;
   right: 11px;
@@ -2387,10 +2387,10 @@ div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .co
   line-height: 0;
   height: 23px;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc:hover {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc:hover {
   cursor: pointer;
 }
-div#eazydocs_share > .modal-dialog > .modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc > img {
+div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc > img {
   vertical-align: text-top;
   max-height: 23px;
   max-width: 25px;
@@ -2600,6 +2600,10 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   background-color: var(--ezd_brand_color);
   border-color: var(--ezd_brand_color);
   color: #fff;
+}
+
+.tabs_sliders .ezd-tab-menu {
+  width: 100%;
 }
 
 .doc_tag_title {
@@ -3581,65 +3585,38 @@ a.action_btn.all_doc_btn:hover {
 .ezd-grid.ezd-column-1 {
   grid-template-columns: repeat(1, 1fr);
 }
-.ezd-grid.ezd-column-1 .categories_guide_item {
-  max-width: 100%;
-}
 .ezd-grid.ezd-column-2 {
   grid-template-columns: repeat(2, 1fr);
-}
-.ezd-grid.ezd-column-2 .categories_guide_item {
-  max-width: 50%;
 }
 @media (max-width: 600px) {
   .ezd-grid.ezd-column-2 {
     grid-template-columns: repeat(1, 1fr);
   }
-  .ezd-grid.ezd-column-2 .categories_guide_item {
-    max-width: 100%;
-  }
 }
 .ezd-grid.ezd-column-4 {
   grid-template-columns: repeat(4, 1fr);
-}
-.ezd-grid.ezd-column-4 .categories_guide_item {
-  max-width: 25%;
 }
 @media (max-width: 991px) {
   .ezd-grid.ezd-column-4 {
     grid-template-columns: repeat(2, 1fr);
   }
-  .ezd-grid.ezd-column-4 .categories_guide_item {
-    max-width: 50%;
-  }
 }
 @media (max-width: 600px) {
   .ezd-grid.ezd-column-4 {
     grid-template-columns: repeat(1, 1fr);
-  }
-  .ezd-grid.ezd-column-4 .categories_guide_item {
-    max-width: 100%;
   }
 }
 .ezd-grid.ezd-column-3 {
   grid-template-columns: repeat(3, 1fr);
 }
-.ezd-grid.ezd-column-3 .categories_guide_item {
-  max-width: 33.33%;
-}
 @media (max-width: 991px) {
   .ezd-grid.ezd-column-3 {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .ezd-grid.ezd-column-3 .categories_guide_item {
-    max-width: 50%;
   }
 }
 @media (max-width: 600px) {
   .ezd-grid.ezd-column-3 {
     grid-template-columns: repeat(1, 1fr);
-  }
-  .ezd-grid.ezd-column-3 .categories_guide_item {
-    max-width: 50%;
   }
 }
 .ezd-grid.ezd-column-5 {
@@ -3658,23 +3635,14 @@ a.action_btn.all_doc_btn:hover {
 .ezd-grid.ezd-column-6 {
   grid-template-columns: repeat(6, 1fr);
 }
-.ezd-grid.ezd-column-6 .categories_guide_item {
-  max-width: 16.66%;
-}
 @media (max-width: 991px) {
   .ezd-grid.ezd-column-6 {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .ezd-grid.ezd-column-6 .categories_guide_item {
-    max-width: 500%;
   }
 }
 @media (max-width: 600px) {
   .ezd-grid.ezd-column-6 {
     grid-template-columns: repeat(1, 1fr);
-  }
-  .ezd-grid.ezd-column-6 .categories_guide_item {
-    max-width: 100%;
   }
 }
 

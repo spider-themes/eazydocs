@@ -80,8 +80,8 @@ body.body_dark .doc_rightsidebar .doc_right_link li a {
   color: #bbb;
 }
 body.body_dark .doc_menu .nav-link.active, body.body_dark .doc_menu .nav-link:hover,
-body.body_dark h1, body.body_dark h2, body.body_dark h3, body.body_dark h4, body.body_dark h5, body.body_dark h6, body.body_dark.single-docs #post p {
-  color: #fff;
+body.body_dark h1, body.body_dark h2, body.body_dark h3, body.body_dark h4, body.body_dark h5, body.body_dark h6, body.body_dark.single-docs #post p, body.body_dark.single-docs #post em strong span {
+  color: #fff !important;
 }
 body.body_dark.single-docs #post h2, body.body_dark.single-docs #post h3, body.body_dark.single-docs #post h4, body.body_dark.single-docs #post h5, body.body_dark.single-docs #post h6 {
   color: #fff;
