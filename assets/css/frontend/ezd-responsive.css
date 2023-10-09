@@ -12,6 +12,7 @@
 		padding-left: 20px;
 		overflow-y: visible;
 		margin-top: 90px;
+		height: 100%;
 	}
 
 	.doc_rightsidebar .pageSideSection::before {
