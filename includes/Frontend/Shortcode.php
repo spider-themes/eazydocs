@@ -41,39 +41,17 @@ class Shortcode {
         $opt  = get_option( 'eazydocs_settings' );
 
         $defaults = [
-            'col'     => $opt['docs-column'] ?? '3',
-            'include' => 'any',
-            'exclude' => '',
-            'show_docs' => $opt['docs-number'] ?? -1,
+            'col'           => $opt['docs-column'] ?? '3',
+            'include'       => 'any',
+            'exclude'       => '',
+            'show_docs'     => $opt['docs-number'] ?? -1,
             'show_articles' => $opt['show_articles'] ?? 5,
-            'more' => esc_html__( 'View Details', 'eazydocs' ),
+            'more'          => esc_html__( 'View Details', 'eazydocs' ),
         ];
 
         $args     = wp_parse_args( $args, $defaults );
         $arranged = [];
-
-            switch ( $args['col'] ) {
-                case 1:
-                    $args['col'] = '12';
-                    break;
-
-                case 2:
-                    $args['col'] = '6';
-                    break;
-
-                case 3:
-                    $args['col'] = '4';
-                    break;
-
-                case 4:
-                    $args['col'] = '3';
-                    break;
-
-                case 6:
-                    $args['col'] = '2';
-                    break;
-            }
-
+        
         // Parent Docs
         $parent_args = [
             'post_type'   => 'docs',
