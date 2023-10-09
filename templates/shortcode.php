@@ -5,10 +5,12 @@ $topics                 = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs
 $private_doc_mode       = $opt['private_doc_mode'] ?? '';
 $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
 $layout 				= 'grid';
+$is_masonry 			= '';
 
 // Check pro plugin class exists
 if ( ezd_is_premium() ) {
 	$layout 			= $opt['docs-archive-layout'] ?? $layout; // id of field
+	$is_masonry 		= $layout == 'masonry' ? ' ezd-masonry' : '';
 	if ( empty ( $col ) ) { 
 		$col 			= apply_filters( 'before_docs_column_wrapper', $col );
 	}
@@ -19,9 +21,10 @@ if ( $docs ) :
 
 <div class="eazydocs_shortcode">
     <div <?php do_action('eazydocs_masonry_wrap', $layout); ?>
-        class="ezd-grid ezd-column-<?php echo esc_attr($col); ?>">
+        class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
 
         <?php
+
 				$i = 1;
 				foreach ( $docs as $main_doc ) :
 					$doc_counter = get_pages( [
