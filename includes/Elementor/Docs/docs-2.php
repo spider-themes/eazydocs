@@ -79,7 +79,7 @@
         </ul>
         <span class="scroller-btn right"><i class="arrow_carrot-right"></i></span>
     </div>
-    <div class="tab-content">
+    <div class="ezd-tab-content">
         <?php
         foreach ( $docs as $i => $main_doc ) :
             // Active Doc

@@ -188,7 +188,7 @@
   color: #d1d1d1 !important;
 }
 
-.col-lg-4 .categories_guide_item img.featured-image {
+.ezd-column-4 .categories_guide_item img.featured-image {
   max-width: 60px !important;
 }
 
@@ -242,38 +242,65 @@
 .ezd-grid.ezd-column-1 {
   grid-template-columns: repeat(1, 1fr);
 }
+.ezd-grid.ezd-column-1 .categories_guide_item {
+  max-width: 100%;
+}
 .ezd-grid.ezd-column-2 {
   grid-template-columns: repeat(2, 1fr);
+}
+.ezd-grid.ezd-column-2 .categories_guide_item {
+  max-width: 50%;
 }
 @media (max-width: 600px) {
   .ezd-grid.ezd-column-2 {
     grid-template-columns: repeat(1, 1fr);
   }
+  .ezd-grid.ezd-column-2 .categories_guide_item {
+    max-width: 100%;
+  }
 }
 .ezd-grid.ezd-column-4 {
   grid-template-columns: repeat(4, 1fr);
+}
+.ezd-grid.ezd-column-4 .categories_guide_item {
+  width: 25%;
 }
 @media (max-width: 991px) {
   .ezd-grid.ezd-column-4 {
     grid-template-columns: repeat(2, 1fr);
   }
+  .ezd-grid.ezd-column-4 .categories_guide_item {
+    max-width: 50%;
+  }
 }
 @media (max-width: 600px) {
   .ezd-grid.ezd-column-4 {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .ezd-grid.ezd-column-4 .categories_guide_item {
+    max-width: 100%;
   }
 }
 .ezd-grid.ezd-column-3 {
   grid-template-columns: repeat(3, 1fr);
 }
+.ezd-grid.ezd-column-3 .categories_guide_item {
+  max-width: 33.33%;
+}
 @media (max-width: 991px) {
   .ezd-grid.ezd-column-3 {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .ezd-grid.ezd-column-3 .categories_guide_item {
+    max-width: 50%;
   }
 }
 @media (max-width: 600px) {
   .ezd-grid.ezd-column-3 {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .ezd-grid.ezd-column-3 .categories_guide_item {
+    max-width: 50%;
   }
 }
 .ezd-grid.ezd-column-5 {
@@ -292,14 +319,23 @@
 .ezd-grid.ezd-column-6 {
   grid-template-columns: repeat(6, 1fr);
 }
+.ezd-grid.ezd-column-6 .categories_guide_item {
+  max-width: 16.66%;
+}
 @media (max-width: 991px) {
   .ezd-grid.ezd-column-6 {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .ezd-grid.ezd-column-6 .categories_guide_item {
+    max-width: 500%;
   }
 }
 @media (max-width: 600px) {
   .ezd-grid.ezd-column-6 {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .ezd-grid.ezd-column-6 .categories_guide_item {
+    max-width: 100%;
   }
 }
 
@@ -461,10 +497,6 @@
 }
 ul {
   list-style: none !important;
-}
-
-.tab-content {
-  display: block;
 }
 
 .ezd-container-fluid {
