@@ -1,6 +1,6 @@
 /*============ Dark Mode css ========*/
 body.body_dark {
-  --ezd_brand_color: var(--ezd_brand_color_dark, #4c4cf1) !important;
+  --ezd_brand_color: var(--ezd_brand_color_dark, #0866ff) !important;
   --bs-white: #2c303a !important;
   --p_color: #cecece !important;
   --black_700: #e1e1e1 !important;
@@ -50,7 +50,7 @@ body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .drop
 body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:hover {
   background: #444857;
 }
-body.body_dark .help_form, body.body_dark .nav-sidebar.one-page-doc-nav-wrap .nav-item, body.body_dark .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav:before,
+body.body_dark .nav-sidebar.one-page-doc-nav-wrap .nav-item, body.body_dark .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav:before,
 body.body_dark .onepage-doc .nav-sidebar .nav-item, body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu,
 body.body_dark .doc_rightsidebar .dropdown-toggle, body.body_dark onepage-doc .nav-sidebar .nav-item .dropdown_nav,
 body.body_dark .doc_rightsidebar .doc_switch input[type=checkbox], body.body_dark .breadcrumb_area_three,

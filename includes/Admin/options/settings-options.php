@@ -102,7 +102,7 @@ CSF::createSection( $prefix, array(
 			'id'          => 'brand_color',
 			'type'        => 'color',
 			'title'       => esc_html__( 'Frontend Brand Color', 'eazydocs' ),
-			'default'     => '#4c4cf1',
+			'default'     => '#0866ff',
 			'output'      => ':root',
 			'output_mode' => '--ezd_brand_color',
 		),
@@ -508,7 +508,7 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'default'    => false,
-			'text_width' => 90,
+			'text_width' => 96,
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'single_doc_layout', '==', 'default' ),
@@ -1260,9 +1260,10 @@ CSF::createSection( $prefix, array(
 			'id'      => 'private_doc_mode',
 			'type'    => 'select',
 			'title'   => esc_html__( 'Visibility Mode', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Select what to show when a logged out user try to visit a private doc URL.', 'eazydocs' ),
 			'options' => [
-				'login' => esc_html__( 'Login Required', 'eazydocs' ),
-				'none'  => esc_html__( 'None', 'eazydocs' ),
+				'login' => esc_html__( 'Login Page', 'eazydocs' ),
+				'none'  => esc_html__( '404 Error', 'eazydocs' ),
 			],
 			'default' => 'none',
 			'class'   => 'eazydocs-pro-notice'
@@ -1273,8 +1274,7 @@ CSF::createSection( $prefix, array(
 			'placeholder' => 'Select page',
 			'title'       => esc_html__( 'Select Page', 'eazydocs' ),
 			'subtitle'    => esc_html__( 'Select Doc login page', 'eazydocs' ),
-			'desc'        => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.',
-				'eazydocs' ),
+			'desc'        => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.', 'eazydocs' ),
 			'options'     => 'pages',
 			'class'       => 'eazydocs-pro-notice',
 			'dependency'  => array(

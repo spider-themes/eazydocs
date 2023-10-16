@@ -1,6 +1,6 @@
 /*============ Dark Mode css ========*/
 body.body_dark {
-  --ezd_brand_color: var(--ezd_brand_color_dark, #4c4cf1) !important;
+  --ezd_brand_color: var(--ezd_brand_color_dark, #0866ff) !important;
   --bs-white : #2c303a !important;
   --p_color: #cecece !important;
   --black_700: #e1e1e1 !important;
@@ -58,7 +58,7 @@ body.body_dark {
     background: #444857;
   }
 
-  .help_form, .nav-sidebar.one-page-doc-nav-wrap .nav-item, .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav:before,
+  .nav-sidebar.one-page-doc-nav-wrap .nav-item, .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav:before,
   .onepage-doc .nav-sidebar .nav-item, .doc_rightsidebar .bootstrap-select > .dropdown-menu,
   .doc_rightsidebar .dropdown-toggle, onepage-doc .nav-sidebar .nav-item .dropdown_nav,
   .doc_rightsidebar .doc_switch input[type=checkbox], .breadcrumb_area_three,

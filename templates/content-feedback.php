@@ -15,6 +15,7 @@ $link_text           = ! empty ( $options['feedback-link-text'] ) ? $options['fe
 $doc_feedback_label  = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : __( 'Was this page helpful?', 'eazydocs' );
 $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
 ?>
+
 <div class="doc-btm">
     <?php
 	$has_next_prev = '';
@@ -48,33 +49,33 @@ $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
                 </p>
             </div>
             <?php
-	            // Initialize the modal template
-	            eazydocs_get_template_part( 'content-modal' );
+            // Initialize the modal template
+            eazydocs_get_template_part( 'content-modal' );
             endif;
             if ( $helpful_feedback == '1' ) :
                 ?>
-            <div class="ezd-lg-col-7 ezd-grid-column-full eazydocs-feedback-wrap eazydocs-hide-print">
-                <p class="<?php echo esc_attr( $right_alignment ) ?>">
-                    <?php echo esc_html( $doc_feedback_label ) ?>
-                    <span class="vote-link-wrap">
-                        <a href="#" class="h_btn positive" data-id="<?php the_ID(); ?>" data-type="positive"
-                            title="<?php echo esc_attr( $positive_title ); ?>">
-                            <?php esc_html_e( 'Yes', 'eazydocs' ); ?>
-                            <?php if ( $positive && $feedback_count ) { ?>
-                            <span class="count"> <?php echo number_format_i18n( $positive ); ?> </span>
-                            <?php } ?>
-                        </a>
-                        <a href="#" class="h_btn negative red" data-id="<?php the_ID(); ?>" data-type="negative"
-                            title="<?php echo esc_attr( $negative_title ); ?>">
-                            <?php esc_html_e( 'No', 'eazydocs' ); ?>
-                            <?php if ( $negative && $feedback_count ) { ?>
-                            <span class="count"><?php echo number_format_i18n( $negative ); ?></span>
-                            <?php } ?>
-                        </a>
-                    </span>
-                </p>
-            </div>
-            <?php
+                <div class="ezd-lg-col-7 ezd-grid-column-full eazydocs-feedback-wrap eazydocs-hide-print">
+                    <p class="<?php echo esc_attr( $right_alignment ) ?>">
+                        <?php echo esc_html( $doc_feedback_label ) ?>
+                        <span class="vote-link-wrap">
+                            <a href="#" class="h_btn positive" data-id="<?php the_ID(); ?>" data-type="positive"
+                                title="<?php echo esc_attr( $positive_title ); ?>">
+                                <?php esc_html_e( 'Yes', 'eazydocs' ); ?>
+                                <?php if ( $positive && $feedback_count ) { ?>
+                                <span class="count"> <?php echo number_format_i18n( $positive ); ?> </span>
+                                <?php } ?>
+                            </a>
+                            <a href="#" class="h_btn negative red" data-id="<?php the_ID(); ?>" data-type="negative"
+                                title="<?php echo esc_attr( $negative_title ); ?>">
+                                <?php esc_html_e( 'No', 'eazydocs' ); ?>
+                                <?php if ( $negative && $feedback_count ) { ?>
+                                <span class="count"><?php echo number_format_i18n( $negative ); ?></span>
+                                <?php } ?>
+                            </a>
+                        </span>
+                    </p>
+                </div>
+                <?php
             endif;
             ?>
         </div>

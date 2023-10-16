@@ -1238,12 +1238,13 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   font-weight: 500;
   color: #fff;
   display: inline-block;
-  padding: 3px 15px;
+  padding: 5px 15px;
   background-color: var(--green_color);
   transition: all 0.2s linear;
   margin-left: 5px;
   border-radius: 15px;
   text-decoration: none !important;
+  line-height: 1;
 }
 .feedback_link .h_btn:hover, .feedback_link .h_btn:focus {
   background: #1f9852 !important;
@@ -1288,6 +1289,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   font-weight: 500;
   background: rgba(76, 76, 241, 0.9);
   color: #fff;
+  border-radius: 5px;
 }
 #eazydocs_feedback .action_btn:hover {
   background: var(--ezd_brand_color);
@@ -1368,8 +1370,8 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   border: 1px solid var(--black_50);
   height: 52px;
   border-radius: 5px;
-  background-color: #fff;
-  color: var(--black_800);
+  background-color: var(--bs-white);
+  color: var(--black_800) !important;
   font-weight: 400;
   padding-left: 25px;
   box-shadow: none;
@@ -1392,6 +1394,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .contact_form .form-group .form-control:disabled, .contact_form .form-group textarea:disabled {
   color: var(--black_500);
+  background: var(--black_25);
 }
 .contact_form .form-group .form-control:disabled:hover, .contact_form .form-group textarea:disabled:hover {
   cursor: not-allowed;
@@ -1640,6 +1643,9 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .toc_right .nav-link:not(.active) {
   color: var(--black_500);
 }
+.toc_right .nav-link:focus {
+  background-color: transparent !important;
+}
 .toc_right .nav-link.active {
   font-weight: 500;
   color: var(--ezd_brand_color);
@@ -1801,39 +1807,37 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .fontsize-controllers .btn-group {
-  border: 1px solid var(--black_50);
-  background-color: #fff;
   box-shadow: 0 1px 0 0 rgba(3, 13, 37, 0.2), inset 0 -8px 14px 0 rgba(3, 13, 37, 0.1);
   border-radius: 4px;
+  display: flex;
+  align-items: center;
 }
 .fontsize-controllers .btn-group button {
+  height: 36px;
   font-size: 16px;
   font-weight: 400;
-  color: var(--black_700);
-  line-height: 1.2;
+  color: var(--black_700) !important;
   border: 0;
-  display: inline-block;
   text-align: center;
   text-decoration: none;
-  vertical-align: middle;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-  background-color: transparent;
-  padding: 0.375rem 0.75rem;
+  background-color: transparent !important;
+  padding: 5px 12px;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .fontsize-controllers .btn-group button:focus, .fontsize-controllers .btn-group button:hover {
   outline: none;
   box-shadow: none;
-  background: #eff0f1;
-  color: #242729;
+  background: rgba(0, 0, 0, 0.2) !important;
 }
 .fontsize-controllers .btn-group button.rvfs-reset {
   border-left: 1px solid var(--black_50);
   border-right: 1px solid var(--black_50);
+  padding: 5px 14px;
 }
 
 .print {
@@ -1952,7 +1956,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .doc-middle-content .topic_item_tabs .topic_list_item {
   background: transparent;
   border: 1px solid var(--black_50);
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 37px 35px 35px;
   box-shadow: none !important;
 }
@@ -1972,12 +1976,17 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .doc-middle-content .topic_item_tabs .topic_list_item .navbar-nav li {
   margin: 0 0 10px;
+  font-size: 16px;
 }
 .doc-middle-content .topic_item_tabs .topic_list_item .navbar-nav li a {
-  color: var(--p_color);
+  color: var(--black_600);
   font-size: 16px;
   transition: all 300ms linear 0s;
   text-decoration: none;
+}
+.doc-middle-content .topic_item_tabs .topic_list_item .navbar-nav li a:focus {
+  background-color: transparent !important;
+  outline: none !important;
 }
 .doc-middle-content .topic_item_tabs .topic_list_item .navbar-nav li a i {
   color: var(--ezd_brand_color);
@@ -1988,9 +1997,6 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .doc-middle-content .topic_item_tabs .topic_list_item .navbar-nav li:hover a i {
   color: var(--ezd_brand_color);
-}
-.doc-middle-content .topic_item_tabs .topic_list_item:hover {
-  border-color: #e6edf0;
 }
 
 .search .searchbar-tabs {
@@ -2019,6 +2025,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .d-items {
   display: flex;
   flex-wrap: wrap;
+  padding-top: 20px;
 }
 .d-items .documentation_item {
   display: flex;
@@ -2033,7 +2040,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .d-items .documentation_item .icon {
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--bs-white);
   box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
   text-align: center;
   margin-right: 20px;
@@ -2070,7 +2077,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   color: var(--ezd_brand_color);
 }
 .d-items .documentation_item .media-body p {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
   font-size: 16px;
 }
 
@@ -2277,9 +2284,13 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   gap: 8px;
   text-decoration: none !important;
   cursor: pointer;
+  font-size: 16px;
 }
 .ezd-share-btn:hover {
   color: var(--ezd_brand_color);
+}
+.ezd-share-btn:focus {
+  background-color: transparent !important;
 }
 
 div#eazydocs_share {
@@ -2299,7 +2310,7 @@ div#eazydocs_share > .ezd-modal-dialog {
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content {
   padding: 30px 30px 35px;
-  background-color: #fff;
+  background-color: var(--bs-white);
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .close {
   position: absolute;
@@ -2323,7 +2334,7 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a {
   width: 56px;
   height: 56px;
-  background-color: rgba(208, 215, 222, 0.55);
+  background-color: var(--black_50);
   display: inline-block;
   border-radius: 30px;
   text-align: center;
@@ -2333,9 +2344,10 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
   color: var(--black_600);
   margin-right: 10px;
   text-decoration: none;
+  transition: all 0.2s linear;
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a:hover {
-  background-color: rgba(208, 215, 222, 0.4);
+  background-color: var(--black_25);
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .social-links a i {
   font-size: 24px;
@@ -2360,15 +2372,15 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap input {
   width: 100%;
-  background-color: #f5f5f9;
+  background-color: var(--black_50);
   opacity: 1;
   height: 37px;
   padding: 16px 48px 16px 10px;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
-  color: #1b1b1b;
-  border: 1px solid #b9b9b9;
+  color: var(--black_700);
+  border: 1px solid var(--black_50);
   border-radius: 4px;
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap input:focus {
@@ -4020,7 +4032,7 @@ p .footnotes-link::after {
 
 .filter_form {
   margin-bottom: 30px;
-  margin-right: 25px;
+  margin-right: 30px;
   padding: 0 5px 0 0;
   position: relative;
 }
@@ -4054,7 +4066,7 @@ p .footnotes-link::after {
 
 .left-sidebar-toggle {
   position: absolute;
-  top: 125px;
+  top: 80px;
   color: #656565;
   line-height: 22px;
   cursor: pointer;

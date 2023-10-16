@@ -943,7 +943,9 @@ function ezydocs_admin_pages() {
 	$admin_page = $_GET['page'] ?? '';
 	$post_type  = $_GET['post_type'] ?? '';
 
-	if ( $admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings' || $admin_page == 'ezd-user-feedback' || $admin_page == 'ezd-analytics'
+	if ( $admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings'
+         || $admin_page == 'ezd-user-feedback'
+         || $admin_page == 'ezd-analytics'
 	     || $admin_page == 'ezd-user-feedback-archived'
 	     || $admin_page == 'ezd-onepage-presents'
 	     || $post_type == 'onepage-docs'
@@ -1194,7 +1196,7 @@ function ezd_customizer_script() {
 <script type="text/javascript">
 jQuery(document).ready(function() {
     // Add .is_ezd_premium class to body
-    if (eazydocs_local_object.is_ezd_premium == "yes") {
+    if ( eazydocs_local_object.is_ezd_premium == "yes" ) {
         jQuery("body").addClass("ezd-premium");
     }
 });

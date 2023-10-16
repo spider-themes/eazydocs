@@ -106,15 +106,15 @@ $count = $query->found_posts;
                                     do_action('eazydocs_doc_sidebar', get_the_ID(), $left_type, $left_content, $right_type, $right_content);
                                 else :
                                     ?>
-                                    <a href="javascript:void(0);" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>">
+                                    <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>">
                                         <span class="dashicons dashicons-admin-page"></span>
                                         <span><?php esc_html_e('Duplicate', 'eazydocs'); ?></span>
                                     </a>
-                                    <a href="javascript:void(0);" target="_blank" class="docs-visibility eazydocs-pro-notice" title="<?php esc_attr_e('Docs visibility', 'eazydocs'); ?>">
+                                    <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-visibility eazydocs-pro-notice" title="<?php esc_attr_e('Docs visibility', 'eazydocs'); ?>">
                                         <span class="dashicons dashicons-visibility"></span>
                                         <span> <?php esc_html_e('Visibility', 'eazydocs'); ?> </span>
                                     </a>
-                                    <a href="javascript:void(0);" target="_blank" class="docs-sidebar eazydocs-pro-notice" title="<?php esc_attr_e('Docs sidebar', 'eazydocs'); ?>">
+                                    <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-sidebar eazydocs-pro-notice" title="<?php esc_attr_e('Docs sidebar', 'eazydocs'); ?>">
                                         <span class="dashicons dashicons-welcome-widgets-menus"></span>
                                         <span> <?php esc_html_e('Sidebar', 'eazydocs'); ?> </span>
                                     </a>
