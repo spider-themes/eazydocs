@@ -229,27 +229,18 @@
     z-index: -1;
   }
 
-  li {
+  .nav-item {
     display: inline-block;
-    padding: 0 15px;
+    padding: 0px;
     border-bottom: 2px solid transparent;
     min-width: 150px;
     margin: 0;
-
-    &.active {
-      border-color: var(--ezd_brand_color);
-
-      a {
-        color: var(--ezd_brand_color);
-      }
-    }
-
     a {
       padding: 12px 0;
       font-weight: 500;
       position: relative;
       color: var(--black_900);
-      margin-right: 20px;
+      margin-right: 0px;
       font-size: 15px;
       display: block;
 
@@ -259,6 +250,13 @@
         font-size: 90%;
         font-weight: 400;
         color: var(--black_700)
+      }
+    }
+    &.active {
+      border-color: var(--ezd_brand_color);
+
+      a {
+        color: var(--ezd_brand_color);
       }
     }
   }
@@ -296,6 +294,13 @@
   .book-chapter-nav {
     margin-bottom: 0 !important;
     border-bottom: none;
+    .nav-item{
+      &.active{
+        a{
+          color: red;
+        }
+      }
+    }
   }
 }
 
@@ -879,7 +884,7 @@
         color: var(--p_color);
         @include transition;
 
-        &:hover, {
+        &:hover{
           background: var(--ezd_brand_color);
           color: #fff;
         }

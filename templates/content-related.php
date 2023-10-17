@@ -1,10 +1,10 @@
 <?php
 $cz_options          = get_option( 'eazydocs_settings' );
 $related_docs_switch = $cz_options['related-docs'] ?? '';
-$related_docs        = $related_docs_switch == '0' ? 'd-none' : '1';
+$related_docs        = $related_docs_switch == '0' ? 'ezd-d-none' : '1';
 
 $viewed_docs_switch = $cz_options['viewed-docs'] ?? '';
-$viewed_docs        = $viewed_docs_switch == '0' ? 'd-none' : '1';
+$viewed_docs        = $viewed_docs_switch == '0' ? 'ezd-d-none' : '1';
 
 $related_title    = $cz_options['related-docs-title'] ?? esc_html__( 'Related Articles', 'eazydocs' ); // id of field
 $related_visible  = $cz_options['related-visible-docs'] ?? '4';
@@ -13,7 +13,7 @@ $related_see_more = $cz_options['related-docs-more-btn'] ?? esc_html__( 'See Mor
 $reviewed_title  = $cz_options['viewed-docs-title'] ?? esc_html__( 'Recently Viewed Articles', 'eazydocs' );
 $viewed_visible  = $cz_options['viewed-visible-docs'] ?? '4';
 $viewed_see_more = $cz_options['view-docs-more-btn'] ?? esc_html__( 'See More', 'eazydocs' );
-$docs_visibility = ( $related_docs_switch == 0 && $viewed_docs_switch == 0 ) ? 'd-none' : '1';
+$docs_visibility = ( $related_docs_switch == 0 && $viewed_docs_switch == 0 ) ? 'ezd-d-none' : '1';
 
 if ( $docs_visibility == '1' ) :
 	?>

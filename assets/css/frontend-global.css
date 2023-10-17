@@ -885,6 +885,10 @@ ul {
   }
 }
 
+.ezd-d-none {
+  display: none;
+}
+
 .eazydocs_shortcode .ezd-container, .ezd-container {
   width: 100%;
   margin-right: auto;
@@ -1058,6 +1062,10 @@ ul {
 
 .ezd-shadow-lg {
   box-shadow: 0 1rem 1.2rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.categories_guide_item.bg-dark a, .categories_guide_item.bg-dark .badge {
+  color: #fff !important;
 }
 
 /*# sourceMappingURL=frontend-global.css.map */
