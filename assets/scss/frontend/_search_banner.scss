@@ -441,7 +441,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
     .search_submit_btn {
       right: 0 !important;
       padding: 5px 20px 5px 5px;
-
+      box-shadow: none !important;
       > i {
         font-size: 16px;
       }
@@ -522,6 +522,9 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 
   &.eazydocs-search-wrapper {
     padding-left: 0;
+    background: transparent;
+    padding-top: 0px;
+    padding-bottom: 0;
   }
 }
 
@@ -646,6 +649,15 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 .header_search_form_info {
   input[type="search"] {
     padding-right: 0 !important;
+  }
+  &.search_form_wrap{
+    .form-group{
+      padding-bottom: 0;
+    }
+    input[type="search"] {
+      height: 75px;
+      background: #fff;
+    }
   }
 }
 

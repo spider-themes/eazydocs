@@ -1398,7 +1398,7 @@ body:not(.onepage-doc) .sticky_menu {
       padding: 5px 12px;
       border-radius: .25rem;
       transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-      margin-bottom: 0px;
+      margin: 0px;
       box-shadow: none;
       &:focus, &:hover {
         outline: none;
@@ -1850,7 +1850,7 @@ body:not(.onepage-doc) .sticky_menu {
 .ezd-password-wrap {
   border: 1px solid #0c213a;
   border-radius: 5px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   margin-bottom: 40px;
 
   .ezd-password-head {
@@ -1861,6 +1861,8 @@ body:not(.onepage-doc) .sticky_menu {
     .logo img {
       display: block;
       margin: 0 auto;
+      width: 50px;
+      height: 50px;
     }
 
     p.ezd-password-title {
@@ -1879,13 +1881,22 @@ body:not(.onepage-doc) .sticky_menu {
 
   .ezd-password-body {
     form {
+      margin-bottom: 0;
+      padding-bottom: 0;
       label {
         margin-bottom: 0.5rem;
         color: #656d9a;
         font-weight: 500;
         font-size: 13px;
       }
-
+      .form-group {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+        .col-12{
+          padding: 0;
+        }
+      }
       input {
         border: 1px solid #e3ebf6;
         box-shadow: none;
@@ -1896,7 +1907,9 @@ body:not(.onepage-doc) .sticky_menu {
         line-height: 1.5;
         border-radius: 3px;
         width: 100%;
-
+        height: 40px;
+        margin-bottom: 0px;
+        background: #fff;
         &:focus {
           color: #303e67;
           background-color: #fff;
@@ -1909,7 +1922,8 @@ body:not(.onepage-doc) .sticky_menu {
         border: none;
         background-color: brand_color_rgba(0.8);
         color: #fff;
-
+        box-shadow: none;
+        padding: 0.4em 1em;
         &:hover {
           background-color: var(--ezd_brand_color);
         }
@@ -2303,6 +2317,13 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 
 .ezd-password-body{
   padding: 20px;
+  .auth-form{
+    .form-group{
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  
 }
 .mb-3{
   margin-bottom: 20px;
