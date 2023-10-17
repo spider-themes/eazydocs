@@ -43,7 +43,7 @@ class Doc_Widget extends Widget_Base {
     }
 
 	public function get_script_depends() {
-		return [ 'ezd-script-handle', 'bootstrap' ];
+		return [ 'ezd-script-handle', 'scrollspy' ];
 	}
     
 	public function get_keywords() {
@@ -841,101 +841,104 @@ class Doc_Widget extends Widget_Base {
         }
 
         ?>
-        <script type="text/javascript">
+<script type="text/javascript">
+;
+(function($) {
+    "use strict";
 
-            ;(function($) {
-                "use strict";
+    $(document).ready(function() {
 
-                $(document).ready(function() {
+        // === Tabs Slider
+        var tabId = "#Arrow_slides-<?php echo esc_js($this->get_id()) ?>";
+        var tabSliderContainers = $(tabId + " .tabs_sliders");
 
-                    // === Tabs Slider
-                    var tabId = "#Arrow_slides-<?php echo esc_js($this->get_id()) ?>";
-                    var tabSliderContainers = $(tabId + " .tabs_sliders");
+        tabSliderContainers.each(function() {
+            let tabWrapWidth = $(this).outerWidth();
+            let totalWidth = 0;
 
-                    tabSliderContainers.each(function () {
-                        let tabWrapWidth = $(this).outerWidth();
-                        let totalWidth = 0;
+            let slideArrowBtn = $(tabId + " .scroller-btn");
+            let slideBtnLeft = $(tabId + " .scroller-btn.left");
+            let slideBtnRight = $(tabId + " .scroller-btn.right");
+            let navWrap = $(tabId + " .slide_nav_tabs");
+            let navWrapItem = $(tabId + " .slide_nav_tabs li");
 
-                        let slideArrowBtn = $(tabId + " .scroller-btn");
-                        let slideBtnLeft = $(tabId + " .scroller-btn.left");
-                        let slideBtnRight = $(tabId + " .scroller-btn.right");
-                        let navWrap = $(tabId + " .slide_nav_tabs");
-                        let navWrapItem = $(tabId + " .slide_nav_tabs li");
+            navWrapItem.each(function() {
+                totalWidth += $(this).outerWidth();
+            });
 
-                        navWrapItem.each(function () {
-                            totalWidth += $(this).outerWidth();
-                        });
+            if (totalWidth > tabWrapWidth) {
+                slideArrowBtn.removeClass("inactive");
+            } else {
+                slideArrowBtn.addClass("inactive");
+            }
 
-                        if (totalWidth > tabWrapWidth) {
-                            slideArrowBtn.removeClass("inactive");
-                        } else {
-                            slideArrowBtn.addClass("inactive");
-                        }
+            if (navWrap.scrollLeft() === 0) {
+                slideBtnLeft.addClass("inactive");
+            } else {
+                slideBtnLeft.removeClass("inactive");
+            }
 
-                        if (navWrap.scrollLeft() === 0) {
-                            slideBtnLeft.addClass("inactive");
-                        } else {
-                            slideBtnLeft.removeClass("inactive");
-                        }
+            slideBtnRight.on("click", function() {
+                navWrap.animate({
+                    scrollLeft: "+=200px"
+                }, 300);
+                console.log(navWrap.scrollLeft() + " px");
+            });
 
-                        slideBtnRight.on("click", function () {
-                            navWrap.animate({ scrollLeft: "+=200px" }, 300);
-                            console.log(navWrap.scrollLeft() + " px");
-                        });
+            slideBtnLeft.on("click", function() {
+                navWrap.animate({
+                    scrollLeft: "-=200px"
+                }, 300);
+            });
 
-                        slideBtnLeft.on("click", function () {
-                            navWrap.animate({ scrollLeft: "-=200px" }, 300);
-                        });
+            scrollerHide(navWrap, slideBtnLeft, slideBtnRight);
+        });
 
-                        scrollerHide(navWrap, slideBtnLeft, slideBtnRight);
-                    });
+        function scrollerHide(navWrap, slideBtnLeft, slideBtnRight) {
+            let scrollLeftPrev = 0;
+            navWrap.scroll(function() {
+                let $elem = $(this);
+                let newScrollLeft = $elem.scrollLeft(),
+                    width = $elem.outerWidth(),
+                    scrollWidth = $elem.get(0).scrollWidth;
+                if (scrollWidth - newScrollLeft === width) {
+                    slideBtnRight.addClass("inactive");
+                } else {
+                    slideBtnRight.removeClass("inactive");
+                }
+                if (newScrollLeft === 0) {
+                    slideBtnLeft.addClass("inactive");
+                } else {
+                    slideBtnLeft.removeClass("inactive");
+                }
+                scrollLeftPrev = newScrollLeft;
+            });
+        }
 
-                    function scrollerHide(navWrap, slideBtnLeft, slideBtnRight) {
-                        let scrollLeftPrev = 0;
-                        navWrap.scroll(function () {
-                            let $elem = $(this);
-                            let newScrollLeft = $elem.scrollLeft(),
-                                width = $elem.outerWidth(),
-                                scrollWidth = $elem.get(0).scrollWidth;
-                            if (scrollWidth - newScrollLeft === width) {
-                                slideBtnRight.addClass("inactive");
-                            } else {
-                                slideBtnRight.removeClass("inactive");
-                            }
-                            if (newScrollLeft === 0) {
-                                slideBtnLeft.addClass("inactive");
-                            } else {
-                                slideBtnLeft.removeClass("inactive");
-                            }
-                            scrollLeftPrev = newScrollLeft;
-                        });
-                    }
+        // custom tab js
+        $('.ezd-tab-menu li a').on('click', function(e) {
+            e.preventDefault();
 
-                    // custom tab js
-                    $('.ezd-tab-menu li a').on('click', function(e) {
-                        e.preventDefault();
+            // Remove active class from all tabs within the same menu
+            $(this).closest('.ezd-tab-menu').find('li a').removeClass('active');
 
-                        // Remove active class from all tabs within the same menu
-                        $(this).closest('.ezd-tab-menu').find('li a').removeClass('active');
+            // Add active class to the clicked tab
+            $(this).addClass('active');
 
-                        // Add active class to the clicked tab
-                        $(this).addClass('active');
+            var target = $(this).attr('data-rel');
 
-                        var target = $(this).attr('data-rel');
+            $('#' + target)
+                .addClass('active')
+                .siblings('.ezd-tab-box')
+                .removeClass('active');
 
-                        $('#' + target)
-                            .addClass('active')
-                            .siblings('.ezd-tab-box')
-                            .removeClass('active');
+            return false;
+        });
 
-                        return false;
-                    });
-
-                });
-            })(jQuery);
-
-        </script>
-        <?php
+    });
+})(jQuery);
+</script>
+<?php
 
 	}
 }

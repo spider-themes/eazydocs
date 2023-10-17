@@ -2842,6 +2842,9 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   margin-bottom: 0 !important;
   border-bottom: none;
 }
+.dock4-nav-sticky .book-chapter-nav .nav-item.active a {
+  color: red;
+}
 
 .chapter_counter {
   font-size: 14px;
@@ -3972,6 +3975,10 @@ a.action_btn.all_doc_btn:hover {
   height: 20px;
   letter-spacing: 0.2px;
   margin-top: 5px;
+}
+
+.bg-dark .ezd-badge {
+  color: #fff;
 }
 
 .modal-content .shortcode_info .row {

@@ -294,6 +294,13 @@
   .book-chapter-nav {
     margin-bottom: 0 !important;
     border-bottom: none;
+    .nav-item{
+      &.active{
+        a{
+          color: red;
+        }
+      }
+    }
   }
 }
 
