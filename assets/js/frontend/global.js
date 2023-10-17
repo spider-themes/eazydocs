@@ -108,8 +108,8 @@
 			$('.ezd-modal').fadeOut();
 		});
 
-		if ($('#eazydocs-toc a').length > 0) {
-			var spy = new Gumshoe('#eazydocs-toc a', {
+		if ($('#eazydocs-toc a,.book-chapter-nav a').length > 0) {
+			var spy = new Gumshoe('#eazydocs-toc a,.book-chapter-nav a', {
 				nested: true,
 			});
 		}

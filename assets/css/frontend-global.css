@@ -433,6 +433,10 @@
   margin-top: 5px;
 }
 
+.bg-dark .ezd-badge {
+  color: #fff;
+}
+
 .eazydocs_shortcode {
   width: 100% !important;
   max-width: 100% !important;

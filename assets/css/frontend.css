@@ -3977,6 +3977,10 @@ a.action_btn.all_doc_btn:hover {
   margin-top: 5px;
 }
 
+.bg-dark .ezd-badge {
+  color: #fff;
+}
+
 .modal-content .shortcode_info .row {
   margin-top: 20px;
 }

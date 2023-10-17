@@ -169,45 +169,45 @@
     });
 
     // Cache selectors
-    var lastId,
-        topMenu = $("#bcNav"),
-        topMenuHeight = topMenu.outerHeight() + 15,
-        // All list items
-        menuItems = topMenu.find("a"),
-        // Anchors corresponding to menu items
-        scrollItems = menuItems.map(function() {
-            var item = $(this).attr("href");
-            if (item != '#') {
-                return $(item)
-            }
-        });
+    // var lastId,
+    //     topMenu = $("#bcNav"),
+    //     topMenuHeight = topMenu.outerHeight() + 15,
+    //     // All list items
+    //     menuItems = topMenu.find("a"),
+    //     // Anchors corresponding to menu items
+    //     scrollItems = menuItems.map(function() {
+    //         var item = $(this).attr("href");
+    //         if (item != '#') {
+    //             return $(item)
+    //         }
+    //     });
 
     // Bind to scroll
-    $(window).scroll(function() {
-        // Get container scroll position
-        var fromTop = $(this).scrollTop() + topMenuHeight;
+    // $(window).scroll(function() {
+    //     // Get container scroll position
+    //     var fromTop = $(this).scrollTop() + topMenuHeight;
 
-        // Get id of current scroll item
-        var cur = scrollItems.map(function() {
-            if ($(this).offset().top < fromTop)
-                // console.log(this)
-                return this;
-        });
-        // Get the id of the current element
-        cur = cur[cur.length - 1];
-        var id = cur && cur.length ? cur[0].id : "";
+    //     // Get id of current scroll item
+    //     var cur = scrollItems.map(function() {
+    //         if ($(this).offset().top < fromTop)
+    //             // console.log(this)
+    //             return this;
+    //     });
+    //     // Get the id of the current element
+    //     cur = cur[cur.length - 1];
+    //     var id = cur && cur.length ? cur[0].id : "";
 
-        if (lastId !== id) {
-            lastId = id;
-            // Set/remove active class
-            menuItems
-                .parent().removeClass("active")
-                .end().filter("[href='#" + id + "']").parent().addClass("active");
-            let is_active_added = jQuery('.book-chapter-nav li').hasClass('active')
-            if (is_active_added != true) {
-                jQuery('.book-chapter-nav li:first-child').addClass('active');
-            }
-        }
-    });
+    //     if (lastId !== id) {
+    //         lastId = id;
+    //         // Set/remove active class
+    //         menuItems
+    //             .parent().removeClass("active")
+    //             .end().filter("[href='#" + id + "']").parent().addClass("active");
+    //         let is_active_added = jQuery('.book-chapter-nav li').hasClass('active')
+    //         if (is_active_added != true) {
+    //             jQuery('.book-chapter-nav li:first-child').addClass('active');
+    //         }
+    //     }
+    // });
 })(jQuery, window, document);
 </script>
