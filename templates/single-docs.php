@@ -15,7 +15,7 @@ get_header();
 $theme_data = wp_get_theme();
 $theme_name = $theme_data->get( 'Name' ); 
 ?>
- <p class="d-none"><?php echo $theme_name; ?></p>
+ <p class="ezd-d-none"><?php echo $theme_name; ?></p>
  <?php
 $options         = get_option( 'eazydocs_settings' );
 $single_layout   = $options['single_doc_layout'] ?? 'default';

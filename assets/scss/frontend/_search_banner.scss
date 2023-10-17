@@ -426,7 +426,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   left: 0;
   height: 100%;
   visibility: hidden;
-  z-index: 99;
+  z-index: 101;
   opacity: 0;
   background: rgba(0, 0, 0, 0.4);
   transition: all 0.3s linear;
@@ -567,7 +567,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 }
 
 #docy-search-result .search-result-item a {
-  display: flex;
+  display: inline-flex;
 }
 
 #docy-search-result .search-result-item a.title {
