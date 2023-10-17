@@ -1398,7 +1398,8 @@ body:not(.onepage-doc) .sticky_menu {
       padding: 5px 12px;
       border-radius: .25rem;
       transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-
+      margin-bottom: 0px;
+      box-shadow: none;
       &:focus, &:hover {
         outline: none;
         box-shadow: none;

@@ -150,7 +150,8 @@ form.ezd_search_form {
   max-width: 650px;
 }
 form.ezd_search_form .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+  padding-bottom: 0;
 }
 form.ezd_search_form .form-group .input-wrapper {
   max-width: 650px;
@@ -166,6 +167,7 @@ form.ezd_search_form .form-group .input-wrapper input {
   line-height: 50px;
   box-shadow: 0 1px 1px rgba(11, 80, 115, 0.3), 0 1px 5px rgba(60, 64, 67, 0.1);
   padding-right: 30px;
+  margin-bottom: 0;
 }
 form.ezd_search_form .form-group .input-wrapper input::-webkit-search-cancel-button {
   -webkit-appearance: searchfield-cancel-button;
@@ -448,7 +450,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   left: 0;
   height: 100%;
   visibility: hidden;
-  z-index: 101;
+  z-index: 99;
   opacity: 0;
   background: rgba(0, 0, 0, 0.4);
   transition: all 0.3s linear;
@@ -580,7 +582,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 }
 
 #docy-search-result .search-result-item a {
-  display: inline-flex;
+  display: flex;
 }
 
 #docy-search-result .search-result-item a.title {
@@ -1828,6 +1830,8 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   padding: 5px 12px;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 0px;
+  box-shadow: none;
 }
 .fontsize-controllers .btn-group button:focus, .fontsize-controllers .btn-group button:hover {
   outline: none;
