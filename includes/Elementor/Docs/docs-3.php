@@ -83,9 +83,9 @@
 		foreach ( $docs as $i => $main_doc ) :
 			// Active Doc
 			if ( ! empty( $settings['active_doc'] ) ) {
-				$active = $main_doc['doc']->ID == $settings['active_doc'] ? ' show active' : '';
+				$active = $main_doc['doc']->ID == $settings['active_doc'] ? ' active' : '';
 			} else {
-				$active = ( $i == 0 ) ? ' show active' : '';
+				$active = ( $i == 0 ) ? ' active' : '';
 			}
 
 			if ( $slug_type == 1 ) {

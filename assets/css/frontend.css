@@ -667,6 +667,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 .header_search_form_info.search_form_wrap input[type=search] {
   height: 75px;
   background: #fff;
+  border: 0px !important;
 }
 
 .spinner.search_form_spinner {
@@ -1544,7 +1545,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   font-size: 16px;
   font-weight: 400;
 }
-.doc_rightsidebar .dropdown-toggle {
+.doc_rightsidebar .pageSideSection .dropdown .dropdown-toggle.btn-default {
   background: #fafcfd;
   border: 1px solid #e1e4e5;
   border-radius: 5px;
@@ -1552,8 +1553,9 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   color: #6b707f;
   padding: 5px 20px 3px;
   box-shadow: none;
+  margin: 0px;
 }
-.doc_rightsidebar .dropdown-toggle:after {
+.doc_rightsidebar .pageSideSection .dropdown .dropdown-toggle.btn-default:after {
   content: "3";
   border: 0;
   font-family: "ElegantIcons";
@@ -1561,12 +1563,27 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   position: relative;
   color: #6b707f;
 }
-.doc_rightsidebar .dropdown-toggle i {
+.doc_rightsidebar .pageSideSection .dropdown .dropdown-toggle.btn-default i {
   padding-right: 8px;
 }
-.doc_rightsidebar .dropdown-toggle:focus {
+.doc_rightsidebar .pageSideSection .dropdown .dropdown-toggle.btn-default:focus {
   outline: none !important;
   box-shadow: none !important;
+  background: #fff;
+}
+.doc_rightsidebar .pageSideSection .dropdown .dropdown-toggle.btn-default:hover {
+  color: #6b707f !important;
+}
+.doc_rightsidebar .pageSideSection .dropdown .dropdown-toggle.btn-default .bs-caret {
+  display: none;
+}
+.doc_rightsidebar .pageSideSection .dropdown:hover .dropdown-menu.open {
+  opacity: 0;
+  visibility: hidden;
+}
+.doc_rightsidebar .pageSideSection .dropdown.open:hover .dropdown-menu.open {
+  opacity: 1;
+  visibility: visible;
 }
 .doc_rightsidebar .bootstrap-select {
   margin-bottom: 20px;
@@ -1581,6 +1598,8 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu {
   border: 0;
+  visibility: visible;
+  opacity: 1;
 }
 .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a {
   color: var(--p_color);
@@ -1589,6 +1608,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   display: block;
   width: 100%;
   padding: 0.25rem 1rem;
+  line-height: 30px;
 }
 .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu li a:before {
   content: "";
@@ -1859,7 +1879,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   color: var(--p_color);
   font-size: 18px;
   text-decoration: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 /* Collaps Tabs Area css
@@ -2217,8 +2237,6 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .ezd-password-wrap .ezd-password-head .logo img {
   display: block;
   margin: 0 auto;
-  width: 50px;
-  height: 50px;
 }
 .ezd-password-wrap .ezd-password-head p.ezd-password-title {
   font-size: 18px;
@@ -2403,10 +2421,12 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap {
   position: relative;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap input {
   width: 100%;
-  background-color: var(--black_50);
+  background: var(--black_50);
   opacity: 1;
   height: 37px;
   padding: 16px 48px 16px 10px;
@@ -2416,6 +2436,7 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
   color: var(--black_700);
   border: 1px solid var(--black_50);
   border-radius: 4px;
+  margin-bottom: 0;
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap input:focus {
   outline: 2px solid #0044c0;
@@ -2431,7 +2452,9 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
   margin: auto;
   display: block;
   line-height: 0;
-  height: 23px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap > .share-this-doc:hover {
   cursor: pointer;
@@ -2921,6 +2944,9 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   margin-top: 0;
   margin-bottom: 20px;
   color: var(--secondary_color);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.5;
 }
 
 /*book chapter Dark*/
@@ -3021,6 +3047,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   border: 1px solid var(--black_25);
   transition: all 300ms linear 0s;
   box-shadow: 0 2px 3px rgba(3, 27, 78, 0.05);
+  display: grid;
   transition: all 300ms linear 0s;
 }
 .topic_list_item > .navbar-nav {
@@ -3030,6 +3057,11 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  flex-wrap: wrap;
+  margin-top: 0;
+}
+.topic_list_item .doc4-section-title {
+  width: 100%;
 }
 .topic_list_item img {
   padding-right: 15px;
@@ -4305,6 +4337,7 @@ p .footnotes-link::after {
   font-size: 1.8em;
   display: flex;
   align-items: center;
+  margin-bottom: 0;
 }
 .single-docs #post h3 {
   font-size: 1.5em;
@@ -4354,6 +4387,10 @@ p .footnotes-link::after {
 .eazydocx-credit-text p {
   font-size: 14px;
   color: var(--black_400);
+}
+
+body:not(.woocommerce-page) button:not([class^=fl-]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.close) {
+  box-shadow: none;
 }
 
 /** === Popular Themes Support === **/

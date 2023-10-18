@@ -343,6 +343,9 @@
   margin-top: 0;
   margin-bottom: 20px;
   color: var(--secondary_color);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.5;
 }
 
 /*book chapter Dark*/
@@ -460,7 +463,7 @@
   border: 1px solid var(--black_25);
   transition: all 300ms linear 0s;
   box-shadow: 0 2px 3px rgba(3, 27, 78, 0.05);
-
+  display: grid;
   > .navbar-nav {
     margin-left: 0;
     display: flex;
@@ -468,8 +471,12 @@
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+    flex-wrap: wrap;
+    margin-top: 0;
   }
-
+  .doc4-section-title{
+    width: 100%;
+  }
   @include transition;
 
   img {

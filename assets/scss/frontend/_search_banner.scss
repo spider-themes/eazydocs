@@ -657,6 +657,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
     input[type="search"] {
       height: 75px;
       background: #fff;
+      border: 0px !important;
     }
   }
 }

@@ -333,6 +333,7 @@ p .footnotes-link::after {
     font-size: 1.8em;
     display: flex;
     align-items: center;
+    margin-bottom: 0;
   }
   h3 {
     font-size: 1.5em;
@@ -384,6 +385,9 @@ p .footnotes-link::after {
     font-size: 14px;
     color: var(--black_400);
   }
+}
+body:not(.woocommerce-page) button:not([class^="fl-"]):not(.hestia-scroll-to-top):not(.navbar-toggle):not(.close){
+  box-shadow: none;
 }
 
 /** === Popular Themes Support === **/

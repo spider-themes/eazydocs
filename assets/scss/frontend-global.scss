@@ -82,6 +82,11 @@
       }
     }
   }
+  &.bg-dark{
+    a.doc_tag_title span{
+      color: #fff;
+    }
+  }
 
   .doc_border_btn {
     border: 1px solid rgba(76, 76, 241, 0.2);
@@ -172,8 +177,8 @@
 }
 
 /** === Breadcrumb === **/
-.breadcrumb {
-  background: transparent;
+nav .breadcrumb {
+  background: transparent !important;
   border-radius: 0;
   padding: 0;
   margin: 0;
@@ -454,7 +459,7 @@ ul {
 }
 
 .ezd-container-fluid {
-  width: 100%;
+  width: auto;
   margin-right: auto;
   margin-left: auto;
   padding-left: 0.75rem;
@@ -671,4 +676,12 @@ ul {
   color: #fff !important;
 }
 
-
+pre{
+  background:#edf2f7;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.5em;
+  white-space: pre-wrap;
+}

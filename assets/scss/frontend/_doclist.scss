@@ -1019,33 +1019,56 @@ body {
     font-weight: 400;
   }
 
-  .dropdown-toggle {
-    background: #fafcfd;
-    border: 1px solid #e1e4e5;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #6b707f;
-    padding: 5px 20px 3px;
-    box-shadow: none;
-
-    &:after {
-      content: "\33";
-      border: 0;
-      font-family: "ElegantIcons";
-      top: -2px;
-      position: relative;
+ .pageSideSection .dropdown{
+    .dropdown-toggle.btn-default {
+      background: #fafcfd;
+      border: 1px solid #e1e4e5;
+      border-radius: 5px;
+      font-size: 16px;
       color: #6b707f;
-    }
+      padding: 5px 20px 3px;
+      box-shadow: none;
+      margin: 0px;
+      &:after {
+        content: "\33";
+        border: 0;
+        font-family: "ElegantIcons";
+        top: -2px;
+        position: relative;
+        color: #6b707f;
+      }
 
-    i {
-      padding-right: 8px;
-    }
+      i {
+        padding-right: 8px;
+      }
 
-    &:focus {
-      outline: none !important;
-      box-shadow: none !important;
+      &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        background: #fff;
+      }
+      &:hover{
+        color: #6b707f !important;
+      }
+      .bs-caret{
+        display: none;
+      }
     }
-  }
+    &:hover{
+      .dropdown-menu.open{
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    &.open{
+      &:hover{
+        .dropdown-menu.open{
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+ } 
 
   .bootstrap-select {
     margin-bottom: 20px;
@@ -1059,7 +1082,8 @@ body {
       .inner {
         .dropdown-menu {
           border: 0;
-
+          visibility: visible;
+          opacity: 1;
           li {
             a {
               color: var(--p_color);
@@ -1068,6 +1092,7 @@ body {
               display: block;
               width: 100%;
               padding: 0.25rem 1rem;
+              line-height: 30px;
               &:before {
                 content: "";
                 width: 2px;
@@ -1419,7 +1444,7 @@ body:not(.onepage-doc) .sticky_menu {
   color: var(--p_color);
   font-size: 18px;
   text-decoration: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 /* Collaps Tabs Area css
@@ -1861,8 +1886,6 @@ body:not(.onepage-doc) .sticky_menu {
     .logo img {
       display: block;
       margin: 0 auto;
-      width: 50px;
-      height: 50px;
     }
 
     p.ezd-password-title {
@@ -2086,10 +2109,11 @@ div#eazydocs_share {
 
         > .copy-url-wrap {
           position: relative;
-
+          padding-bottom: 0px;
+          margin-bottom: 0px;
           input {
             width: 100%;
-            background-color: var(--black_50);
+            background: var(--black_50);
             opacity: 1;
             height: 37px;
             padding: 16px 48px 16px 10px;
@@ -2099,7 +2123,7 @@ div#eazydocs_share {
             color: var(--black_700);
             border: 1px solid var(--black_50);
             border-radius: 4px;
-
+            margin-bottom: 0;
             &:focus {
               outline: 2px solid #0044c0;
               outline-offset: -1px;
@@ -2116,8 +2140,9 @@ div#eazydocs_share {
             margin: auto;
             display: block;
             line-height: 0;
-            height: 23px;
-
+            height: 100%;
+            display: flex;
+            align-items: center;
             &:hover {
               cursor: pointer;
             }
