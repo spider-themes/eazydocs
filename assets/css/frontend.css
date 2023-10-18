@@ -2237,6 +2237,8 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .ezd-password-wrap .ezd-password-head .logo img {
   display: block;
   margin: 0 auto;
+  width: 55px;
+  height: auto;
 }
 .ezd-password-wrap .ezd-password-head p.ezd-password-title {
   font-size: 18px;
