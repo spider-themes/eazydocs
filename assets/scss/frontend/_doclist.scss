@@ -1151,6 +1151,8 @@ body {
     &.active{
       > .nav-link{
         color: var(--ezd_brand_color);
+        background: transparent;
+        opacity: 1;
         &::before {
           left: -20px;
           height: 100%;
