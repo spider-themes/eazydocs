@@ -182,7 +182,7 @@ form.ezd_search_form .form-group .input-wrapper input:focus, form.ezd_search_for
 form.ezd_search_form .form-group .input-wrapper input:focus {
   background: #fff;
   color: #242729;
-  outline: thin dotted;
+  outline: none;
 }
 form.ezd_search_form .form-group .input-wrapper input:focus::placeholder {
   color: var(--black_500);
@@ -336,6 +336,9 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 
 #ezd-search-results .breadcrumb.eazydocs-search-wrapper {
   padding-left: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
 }
 
 #ezd_searchInput ~ .spinner {
@@ -536,12 +539,22 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 
 #docy-search-result .breadcrumb {
   padding-left: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
 }
 #docy-search-result .breadcrumb.eazydocs-search-wrapper {
   padding-left: 0;
   background: transparent;
   padding-top: 0px;
   padding-bottom: 0;
+}
+
+.breadcrumb .breadcrumb-item + .breadcrumb-item:before {
+  content: "5";
+  font-family: eleganticons;
+  color: #b7b9be;
+  padding-right: 3px;
 }
 
 #docy-search-result .breadcrumb .breadcrumb-item:last-child {
@@ -658,6 +671,10 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   color: #fff;
 }
 
+button:not(:hover):not(:active):not(.has-background) {
+  background-color: transparent;
+}
+
 .header_search_form_info input[type=search] {
   padding-right: 0 !important;
 }
@@ -668,6 +685,9 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   height: 75px;
   background: #fff;
   border: 0px !important;
+}
+.header_search_form_info.search_form_wrap input[type=search]:focus {
+  outline: none;
 }
 
 .spinner.search_form_spinner {
@@ -2909,7 +2929,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   border-bottom: none;
 }
 .dock4-nav-sticky .book-chapter-nav .nav-item.active a {
-  color: red;
+  color: var(--ezd_brand_color);
 }
 
 .chapter_counter {
@@ -3665,6 +3685,16 @@ a.action_btn.all_doc_btn:hover {
 }
 .ezd-tab-box.active {
   display: block;
+}
+
+pre {
+  background: #edf2f7;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.5em;
+  white-space: pre-wrap;
 }
 
 .ezd-grid {

@@ -1075,14 +1075,4 @@ ul {
   color: #fff !important;
 }
 
-pre {
-  background: #edf2f7;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  max-width: 100%;
-  overflow: auto;
-  padding: 1.5em;
-  white-space: pre-wrap;
-}
-
 /*# sourceMappingURL=frontend-global.css.map */

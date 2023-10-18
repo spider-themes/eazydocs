@@ -297,7 +297,7 @@
     .nav-item{
       &.active{
         a{
-          color: red;
+          color: var(--ezd_brand_color);
         }
       }
     }
@@ -980,9 +980,6 @@
         &.active {
           color: #fff;
           background: var(--ezd_brand_color);
-          // img {
-          //   filter: brightness(0) invert(1);
-          // }
           ion-icon {
             color: #fff;
           }
@@ -1220,4 +1217,14 @@ a.action_btn {
   &.active {
     display: block;
   }
+}
+
+pre{
+  background:#edf2f7;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.5em;
+  white-space: pre-wrap;
 }
