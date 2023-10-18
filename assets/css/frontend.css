@@ -2267,6 +2267,9 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .ezd-password-wrap .ezd-password-body form .form-group .col-12 {
   padding: 0;
 }
+.ezd-password-wrap .ezd-password-body form .form-group .input-group {
+  width: 100%;
+}
 .ezd-password-wrap .ezd-password-body form input {
   border: 1px solid #e3ebf6;
   box-shadow: none;
