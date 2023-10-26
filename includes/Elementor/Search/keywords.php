@@ -7,7 +7,7 @@ if ( $settings['is_ezd_search_keywords'] == 'yes' && !empty($settings['ezd_searc
             <span class="header-search-form__keywords-label search_keyword_label"> <?php echo $settings['ezd_search_keywords_label'] ?> </span>
             <?php
 		endif;
-		if ( !empty($settings['ezd_search_keywords_repeater']) ) : ?>
+		if ( !empty($settings['ezd_search_keywords_repeater']) && ezd_is_premium() ) : ?>
 			<ul class="list-unstyled" id="ezd-search-keywords">
 				<?php
 				foreach ( $settings['ezd_search_keywords_repeater'] as $keyword ) :
