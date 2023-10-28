@@ -141,7 +141,8 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   margin-top: 45px;
 }
 
-.ezd_search_form, .doc_banner_text .banner_search_form {
+.ezd_search_form,
+.doc_banner_text .banner_search_form {
   position: relative;
 }
 
@@ -205,10 +206,12 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 #ezd-search-results .search-result-item:hover {
   background: var(--ezd_brand_color);
 }
-#ezd-search-results .search-result-item:hover .breadcrumb-item, #ezd-search-results .search-result-item:hover a {
+#ezd-search-results .search-result-item:hover .breadcrumb-item,
+#ezd-search-results .search-result-item:hover a {
   color: #fff;
 }
-#ezd-search-results .search-result-item img, #ezd-search-results .search-result-item svg.block.h-full.w-auto {
+#ezd-search-results .search-result-item img,
+#ezd-search-results .search-result-item svg.block.h-full.w-auto {
   position: absolute;
   top: 12px;
   margin: auto;
@@ -511,7 +514,8 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   color: #fff;
 }
 
-#docy-search-result .search-result-item img, #docy-search-result .search-result-item svg.block.h-full.w-auto {
+#docy-search-result .search-result-item img,
+#docy-search-result .search-result-item svg.block.h-full.w-auto {
   position: absolute;
   top: 12px;
   margin: auto;
@@ -587,7 +591,7 @@ body.search-focused .ezd_click_capture {
   width: 100%;
   height: 100%;
   visibility: hidden;
-  z-index: 110;
+  z-index: 10014;
   opacity: 0;
   background: rgba(0, 0, 0, 0.4);
   transition: all 0.3s linear;
