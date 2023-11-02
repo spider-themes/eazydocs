@@ -201,6 +201,7 @@ form.ezd_search_form {
   display: none;
   transition: all .4s;
   z-index: 99;
+  top: 60px;
 
   a {
     text-decoration: none;
@@ -233,17 +234,22 @@ form.ezd_search_form {
   .doc-section {
     border-right: none;
     padding-left: 25px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: initial;
+    margin-bottom: 5px;
   }
 
   .search-result-item {
-    padding: 7px 15px;
+    padding: 10px 20px;
     position: relative;
     border-bottom: 1px solid rgb(245 245 250);
     transition: .3s all;
     cursor: pointer;
 
-    a {
+    a.title {
       display: flex;
+      color: var(--black_700);
     }
 
     &:last-child {
@@ -304,6 +310,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  margin: 0;
 }
 
 #ezd_searchInput ~ .spinner {
@@ -657,10 +664,6 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   }
 }
 
-
-button:not(:hover):not(:active):not(.has-background){
-  background-color: transparent;
-}
 .header_search_form_info {
   input[type="search"] {
     padding-right: 0 !important;
@@ -672,7 +675,7 @@ button:not(:hover):not(:active):not(.has-background){
     input[type="search"] {
       height: 75px;
       background: #fff;
-      border: 0px !important;
+      border: 0 !important;
       &:focus{
         outline: none;
       }

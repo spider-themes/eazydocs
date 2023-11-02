@@ -251,6 +251,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   display: none;
   transition: all 0.4s;
   z-index: 99;
+  top: 60px;
 }
 #ezd-search-results a {
   text-decoration: none;
@@ -279,16 +280,21 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 #ezd-search-results .doc-section {
   border-right: none;
   padding-left: 25px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: initial;
+  margin-bottom: 5px;
 }
 #ezd-search-results .search-result-item {
-  padding: 7px 15px;
+  padding: 10px 20px;
   position: relative;
   border-bottom: 1px solid rgb(245, 245, 250);
   transition: 0.3s all;
   cursor: pointer;
 }
-#ezd-search-results .search-result-item a {
+#ezd-search-results .search-result-item a.title {
   display: flex;
+  color: var(--black_700);
 }
 #ezd-search-results .search-result-item:last-child {
   border-bottom: none;
@@ -339,6 +345,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  margin: 0;
 }
 
 #ezd_searchInput ~ .spinner {
@@ -671,10 +678,6 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   color: #fff;
 }
 
-button:not(:hover):not(:active):not(.has-background) {
-  background-color: transparent;
-}
-
 .header_search_form_info input[type=search] {
   padding-right: 0 !important;
 }
@@ -684,7 +687,7 @@ button:not(:hover):not(:active):not(.has-background) {
 .header_search_form_info.search_form_wrap input[type=search] {
   height: 75px;
   background: #fff;
-  border: 0px !important;
+  border: 0 !important;
 }
 .header_search_form_info.search_form_wrap input[type=search]:focus {
   outline: none;
@@ -4422,14 +4425,10 @@ p .footnotes-link::after {
 .single-docs #post h6 {
   font-size: 0.8em;
 }
-.single-docs #post h2, .single-docs #post h3, .single-docs #post h4, .single-docs #post h5, .single-docs #post h6 {
-  color: #0c0d0e;
-}
 .single-docs #post p {
   font-weight: 400;
   margin-top: 0;
   line-height: 28px;
-  color: #2D3748;
 }
 
 .form-control {

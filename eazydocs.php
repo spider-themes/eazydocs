@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 2.2.4
+ * Version: 2.3.1
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -61,6 +61,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 
 		// Init Freemius.
 		eaz_fs()->add_filter( 'deactivate_on_activation', '__return_false' );
+		eaz_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
 
 		// Signal that SDK was initiated.
 		do_action( 'eaz_fs_loaded' );

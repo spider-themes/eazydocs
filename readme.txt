@@ -21,10 +21,10 @@ Simplify the process of creating and managing documentation with EazyDocs, makin
 ## 🔗 USEFUL LINKS ##
 
 - [Get EazyDocs Premium](https://spider-themes.net/eazydocs/)
-- [Try Free EazyDocs Premium](https://wordpress-plugins.spider-themes.net/eazydocs-pro/demo/)
+- [Try EazyDocs Premium](https://wordpress-plugins.spider-themes.net/eazydocs-pro/demo/)
 - [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
-- [Plugin's Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
-- [Plugin’s Forum](https://wordpress.org/support/plugin/eazydocs/)
+- [EazyDocs Documentation (Made by EazyDocs)](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+- [EazyDocs Support Forum](https://wordpress.org/support/plugin/eazydocs/)
 - [Free Version Demo](https://wordpress-plugins.spider-themes.net/eazydocs/)
 - [Premium Version Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 
@@ -142,7 +142,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Bulk Doc Visibility (Private/internal, Password Protected, Public)
 - User Restriction, Internal / External Site Support
 - Editable Single Doc Sidebar Area
-- RTL Ready
+- Fully RTL Compatibility
 - Duplicate Bulk/Individual Documentation
 
 ## EazyDocs Promax plan features include:
@@ -162,8 +162,20 @@ Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
 = Does EazyDocs work with any theme? =
 Yes, the EazyDocs works with any standard WordPress theme.
 
+= What makes EazyDocs unique compared to other documentation plugins? =
+EazyDocs is a comprehensive and feature-rich knowledge base and documentation builder plugin for WordPress. With EazyDocs, you have the freedom to create unlimited knowledge bases for your products, without any limitations. The plugin offers a user-friendly interface, allowing you to easily order and nest your documents by simply dragging and dropping them. EazyDocs comes with a modern and professional design by default, and it also offers customization options to match your brand identity.
+
+= Can I use EazyDocs on a multisite network? =
+Yes, you can use EazyDocs on a multisite network.
+
+= Can I restrict access to certain documentation? =
+Absolutely! EazyDocs provides options to restrict access to specific documentation or make it private for logged-in users.
+
+= Can I add a search bar to my documentation? =
+Yes, you can add a search bar to your documentation. EazyDocs comes with a search bar block that allows your readers to search for docs without leaving the page.
+
 = Do I need coding skills to use EazyDocs? =
-Absolutely not! EazyDocs is as easy to use, as you can think of.
+No coding skills are required. EazyDocs offers a user-friendly interface for creating and organizing content.
 
 = Where can I report bugs or contribute to the project? =
 To report bugs or to contribute, head over to the [GitHub repository](https://github.com/spider-themes/eazydocs/issues)
@@ -207,7 +219,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.3.0 (21 September 2023) =
+= v2.3.1 (02 November 2023) =
+Tweaked: Search results styling
+
+= v2.3.0 (02 November 2023) =
 New: Auto Numbering option added for the Doc Sidebar Toc in the EazyDocs > Settings > Single Doc > Right Sidebar
 New: Doc views count column in Classic view mode on the admin dashboard. See it https://i.postimg.cc/HnzYnhMr/image.png
 Tweaked: Default brand color changed to #0866ff to make the design more clean and minimal.
@@ -216,6 +231,7 @@ Tweaked: Bootstrap dependency removed from EazyDocs completely. Now EazyDocs wil
 Tweaked: Prefix common class like badge, utility classes to avoid conflict with other themes and plugins.
 Tweaked: Coding standard improved and some unnecessary code removed.
 Tweaked: Some design improved for mobile devices.
+Tweaked: Tested and make fully compatible the plugin with some popular themes like Astra, Blocksy, Storefront, Hello Elementor, GeneratePress, Twenty Twenty Two, Twenty Twenty One, Avada, Divi, Hestia, Jupiter and more.
 Fixed: Private Docs count was not showing on the EazyDocs shortcode and Elementor widgets.
 Fixed: In some cases, the doc View counter was not update.
 Fixed: Some JavaScript functions were not working on the Single doc Ajax loading.
