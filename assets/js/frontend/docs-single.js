@@ -80,13 +80,6 @@
             $(this).ezd_social_popup(e);
         });
 
-        // Bootstrap Tooltip
-        // let tooltipTriggerList = [].slice.call(
-        // 	document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        // );
-        // let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        // 	return new bootstrap.Tooltip(tooltipTriggerEl);
-        // });
 
         // Add scroll spy attributes to body
         $('body').attr({
@@ -733,15 +726,6 @@
             }
         });
 
-        if (
-            $(
-                ".ezd_connect_theme:contains('Docly'), .ezd_connect_theme:contains('Docy')"
-            ).length
-        ) {
-        } else {
-            $('body').prepend("<div class='ezd_click_capture'></div>");
-        }
-
         // CONTRIBUTOR SEARCH
         $('#ezd-contributor-search').on('keyup', function () {
             var value = $(this).val().toLowerCase();
@@ -783,15 +767,6 @@
                 }
                 $speech.animate({fontSize: num + 'px'});
             });
-        }
-
-        // Search results should close on clearing the input field
-        if (document.getElementById('ezd_searchInput')) {
-            document
-                .getElementById('ezd_searchInput')
-                .addEventListener('search', function (event) {
-                    $('#ezd-search-results').empty().removeClass('ajax-search');
-                });
         }
     });
 })(jQuery);

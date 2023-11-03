@@ -23,21 +23,12 @@ $this->add_responsive_control(
     ]
 );
 
-$this->add_group_control(
-    \Elementor\Group_Control_Border::get_type(),
-    [
-        'name' => 'input-border',
-        'label' => esc_html__( 'Border', 'eazydocs' ),
-        'selector' => '{{WRAPPER}} .search_field_wrap',
-    ]
-);
-
 $this->add_control(
 	'input_background', [
 		'label'     => esc_html__( 'Background Color', 'eazydocs' ),
 		'type'      => Controls_Manager::COLOR,
 		'selectors' => [
-			'{{WRAPPER}} .search_field_wrap' => 'background: {{VALUE}};',
+			'{{WRAPPER}} form.ezd_search_form .form-group .input-wrapper input#ezd_searchInput' => 'background: {{VALUE}};',
 		],
 	]
 );
@@ -47,20 +38,9 @@ $this->add_control(
 		'label'     => esc_html__( 'Focus Background Color', 'eazydocs' ),
 		'type'      => Controls_Manager::COLOR,
 		'selectors' => [
-			'{{WRAPPER}} .search_form_wrap input:focus' => 'background: {{VALUE}};',
+			'{{WRAPPER}} form.ezd_search_form .form-group .input-wrapper input#ezd_searchInput:focus' => 'background: {{VALUE}};',
 		],
 	]
-);
-
-$this->add_responsive_control(
-    'border-radius', [
-        'label'      => __( 'Border Radius', 'eazydocs' ),
-        'type'       => Controls_Manager::DIMENSIONS,
-        'size_units' => [ 'px', '%', 'em' ],
-        'selectors'  => [
-            '{{WRAPPER}} .search_field_wrap' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-        ],
-    ]
 );
 
 $this->add_control(
@@ -69,7 +49,7 @@ $this->add_control(
 		'type'      => Controls_Manager::COLOR,
         'separator'  => 'before',
 		'selectors' => [
-			'{{WRAPPER}} .search_form_wrap .search_field_wrap::placeholder' => 'color: {{VALUE}};',
+			'{{WRAPPER}} form.ezd_search_form .form-group .input-wrapper input#ezd_searchInput::placeholder' => 'color: {{VALUE}};',
 		],
 	]
 );
@@ -78,8 +58,7 @@ $this->add_group_control(
 	Group_Control_Typography::get_type(), [
 		'name'     => 'typography_placeholder',
 		'label'    => esc_html__( 'Typography', 'eazydocs' ),
-		'scheme'   => Typography::TYPOGRAPHY_1,
-		'selector' => '{{WRAPPER}} .search_form_wrap .search_field_wrap::placeholder',
+		'selector' => '{{WRAPPER}} form.ezd_search_form .form-group .input-wrapper input#ezd_searchInput::placeholder',
 	]
 );
 
@@ -88,31 +67,83 @@ $this->add_control(
 		'label'     => esc_html__( 'Text Color', 'eazydocs' ),
 		'type'      => Controls_Manager::COLOR,
 		'selectors' => [
-			'{{WRAPPER}} .search_form_wrap .search_field_wrap' => 'color: {{VALUE}};',
+			'{{WRAPPER}} form.ezd_search_form .form-group .input-wrapper input#ezd_searchInput' => 'color: {{VALUE}};',
 		],
 		'separator' => 'before'
 	]
 );
 
 $this->add_control(
+    'input-border-divider',
+    [
+        'label'     => esc_html__( 'Border', 'eazydocs' ),
+        'type'      => \Elementor\Controls_Manager::HEADING,
+        'separator' => 'before',
+    ]
+);
+
+$this->add_group_control(
+	\Elementor\Group_Control_Border::get_type(),
+	[
+		'name' => 'input-border',
+		'selector' => '{{WRAPPER}} form.ezd_search_form .form-group .input-wrapper input#ezd_searchInput',
+	]
+);
+
+$this->add_responsive_control(
+	'border-radius', [
+		'label'      => __( 'Border Radius', 'eazydocs' ),
+		'type'       => Controls_Manager::DIMENSIONS,
+		'size_units' => [ 'px', '%', 'em' ],
+		'selectors'  => [
+			'{{WRAPPER}} form.ezd_search_form .form-group .input-wrapper input#ezd_searchInput' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+		],
+	]
+);
+
+
+// Button styling
+$this->add_control(
     'btn-style-divider',
     [
-        'label' => esc_html__( 'Button', 'eazydocs' ),
+        'label' => esc_html__( 'Submit Button', 'eazydocs' ),
         'type'      => \Elementor\Controls_Manager::HEADING,
         'separator' => 'before',
     ]
 );
 
 $this->add_responsive_control(
-    'btn-padding', [
-        'label'      => __( 'Padding', 'eazydocs' ),
-        'type'       => Controls_Manager::DIMENSIONS,
-        'size_units' => [ 'px', '%', 'em' ],
-        'separator'  => 'before',
-        'selectors'  => [
-            '{{WRAPPER}} .search_form_wrap .search_submit_btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-        ],
-    ]
+	'btn-border-radius', [
+		'label'      => __( 'Border Radius', 'eazydocs' ),
+		'type'       => Controls_Manager::DIMENSIONS,
+		'size_units' => [ 'px', '%', 'em' ],
+		'selectors'  => [
+			'{{WRAPPER}} .search_form_wrap .search_submit_btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+		],
+	]
+);
+
+$this->add_responsive_control(
+	'btn-width', [
+		'label'      => __( 'Width', 'eazydocs' ),
+		'type'       => Controls_Manager::SLIDER,
+		'size_units' => [ 'px', '%' ],
+		'range'      => [
+			'px' => [
+				'min'  => 0,
+				'max'  => 500,
+				'step' => 1,
+			],
+			'%'  => [
+				'min'  => 0,
+				'max'  => 100,
+				'step' => 1,
+			],
+		],
+		'selectors'  => [
+			'{{WRAPPER}} .search_form_wrap .search_submit_btn' => 'width: {{SIZE}}{{UNIT}};',
+		],
+	]
 );
 
 $this->add_control(
@@ -139,6 +170,8 @@ $this->add_control(
 
 $this->end_controls_section();
 
+
+// Keywords styling
 $this->start_controls_section(
 	'ezd_search_style_keywords', [
 		'label' => esc_html__( 'Keywords', 'eazydocs' ),

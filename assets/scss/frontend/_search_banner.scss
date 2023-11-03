@@ -1,27 +1,3 @@
-/*=========== Start page_breadcrumb css ============*/
-.page_breadcrumb {
-  background: var(--black_50);
-  padding: 12px 0;
-  position: relative;
-  z-index: 1;
-  margin-top: -2px;
-
-  .row {
-    align-items: center;
-  }
-
-  .date {
-    color: var(--black_500);
-    float: right;
-    font-size: 13px;
-
-    i {
-      padding-right: 5px;
-    }
-  }
-}
-
-/*=========== End page_breadcrumb css ============*/
 
 /* Search Banner area
 ============================================================================================ */
@@ -83,16 +59,10 @@ form.ezd_search_form {
   max-width: 650px;
 
   .form-group {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     padding-bottom: 0;
+
     .input-wrapper {
-      max-width: 650px;
-      margin-right: 0;
-
-      i {
-        color: #fff;
-      }
-
       input {
         font-size: 14px;
         font-weight: 400;
@@ -101,8 +71,8 @@ form.ezd_search_form {
         box-shadow: 0 1px 1px rgba(11, 80, 115, 0.3), 0 1px 5px rgba(60, 64, 67, 0.1);
         padding-right: 30px;
         margin-bottom: 0;
+
         &::-webkit-search-cancel-button {
-          -webkit-appearance: searchfield-cancel-button;
           padding-right: 28px;
 
           &:hover {
@@ -194,14 +164,14 @@ form.ezd_search_form {
   position: absolute;
   width: 100%;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 10px;
   box-shadow: 0 3px 4px 0 rgba(4, 73, 89, 0.06);
   font-size: 14px;
   font-weight: 400;
   display: none;
   transition: all .4s;
   z-index: 99;
-  top: 60px;
+  top: calc(100% - 28px);
 
   a {
     text-decoration: none;
@@ -233,7 +203,7 @@ form.ezd_search_form {
 
   .doc-section {
     border-right: none;
-    padding-left: 25px;
+    padding-left: 30px;
     font-size: 16px;
     font-weight: 700;
     line-height: initial;
@@ -282,8 +252,9 @@ form.ezd_search_form {
       margin: auto;
       display: none;
     }
-    .breadcrumb .breadcrumb-item{
-      a{
+
+    .breadcrumb .breadcrumb-item {
+      a {
         display: inline-flex;
       }
     }
@@ -306,7 +277,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 }
 
 #ezd-search-results .breadcrumb.eazydocs-search-wrapper {
-  padding-left: 25px;
+  padding-left: 30px;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -326,7 +297,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
   vertical-align: -0.125em;
 }
 
-.spinner-border{
+.spinner-border {
   display: inline-block;
   width: 2rem;
   height: 2rem;
@@ -336,12 +307,14 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
   border-radius: 50%;
   -webkit-animation: .75s linear infinite spinner-border;
   animation: .75s linear infinite spinner-border;
+
   &.spinner-border-sm {
     width: 1rem;
     height: 1rem;
     border-width: 0.2em;
   }
-  .visually-hidden{
+
+  .visually-hidden {
     visibility: hidden;
   }
 }
@@ -353,11 +326,12 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 }
 
 .alert-danger {
-  background: rgba(255,243,244,.7);
+  background: rgba(255, 243, 244, .7);
   border-color: #fbadb3;
 }
+
 .alert-success {
-  background: rgba(241,253,243,.7);
+  background: rgba(241, 253, 243, .7);
   border-color: #94e3a1;
 }
 
@@ -385,11 +359,11 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
     position: relative;
     flex: 1;
 
-    i {
+    i.left-icon {
       position: absolute;
       left: 25px;
       font-size: 16px;
-      color: #b6bac3;
+      color: #fff;
       top: 50%;
       transform: translateY(-50%) rotate(-90deg);
     }
@@ -449,11 +423,29 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 
   &.search_form_wrap {
     .search_submit_btn {
-      right: 0 !important;
-      padding: 5px 20px 5px 5px;
+      position: absolute;
+      right: 0;
       box-shadow: none !important;
+      height: 100%;
+      width: 50px;
+      border: none;
+      background: var(--ezd_brand_color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 0;
+
       > i {
         font-size: 16px;
+      }
+
+      > svg {
+        width: auto;
+        max-width: 20px;
+        height: auto;
+        max-height: 100%;
+        min-width: 18px;
+        object-fit: cover;
       }
     }
   }
@@ -486,148 +478,11 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 }
 
 
-#docy-search-result {
-  padding: 0;
-  border: none;
-  position: absolute;
-  width: 100%;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 30px 40px 0 rgba(4, 73, 89, 0.1);
-  font-size: 14px;
-  font-weight: 400;
-  display: none;
-  transition: all 0.4s;
-  z-index: 99;
-  margin-top: 10px;
-}
-
-#docy-search-result .searchbar-tabs {
-  padding: 0 10px 15px;
-}
-
-#docy-search-result a {
-  text-decoration: none;
-}
-
-#docy-search-result.ajax-search {
-  display: block;
-}
-
-#docy-search-result::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  background: #fff;
-  position: absolute;
-  top: -6px;
-  transform: rotate(45deg);
-  left: 40px;
-  border-left: 1px solid #e6eeef;
-  border-top: 1px solid #e6eeef;
-}
-
-#docy-search-result .breadcrumb {
-  padding-left: 25px;
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  &.eazydocs-search-wrapper {
-    padding-left: 0;
-    background: transparent;
-    padding-top: 0px;
-    padding-bottom: 0;
-  }
-}
 .breadcrumb .breadcrumb-item + .breadcrumb-item:before {
   content: "5";
   font-family: eleganticons;
   color: #b7b9be;
-  padding-right: 3px;
-}
-
-#docy-search-result .breadcrumb .breadcrumb-item:last-child {
-  display: none;
-}
-
-#docy-search-result h5 {
-  margin-bottom: 10px;
-  text-align: left;
-  color: #dc3545;
-  padding: 10px;
-}
-
-#docy-search-result .error.title {
-  margin-bottom: 0;
-  text-align: left;
-  color: #dc3545;
-  margin-top: 0;
-  padding: 20px 15px;
-  font-size: 18px;
-}
-
-#docy-search-result .doc-section {
-  border-right: none;
-  padding-left: 25px;
-}
-
-#docy-search-result #forum-search-results .breadcrumb .breadcrumb-item:nth-child(2)::before {
-  display: none;
-}
-
-#docy-search-result #forum-search-results .breadcrumb .breadcrumb-item:last-child {
-  display: block;
-}
-
-#docy-search-result .search-result-item {
-  padding: 7px 15px;
-  position: relative;
-  border-bottom: 1px solid rgba(216, 216, 224, 0.6);
-  transition: 0.3s all;
-  cursor: pointer;
-}
-
-#docy-search-result .search-result-item a {
-  display: flex;
-}
-
-#docy-search-result .search-result-item a.title {
-  color: var(--black_800);
-}
-
-#docy-search-result .search-result-item:last-child {
-  border-bottom: none;
-}
-
-#docy-search-result .search-result-item:hover svg.block.h-auto.w-16 {
-  display: block;
-}
-
-#docy-search-result .search-result-item:hover {
-  background: var(--ezd_brand_color);
-}
-
-#docy-search-result .search-result-item:hover .breadcrumb-item {
-  color: var(--black_100);
-}
-
-#docy-search-result .search-result-item:hover a {
-  color: #fff;
-}
-
-#docy-search-result .search-result-item img, #docy-search-result .search-result-item svg.block.h-full.w-auto {
-  position: absolute;
-  top: 12px;
-  margin: auto;
-}
-
-#docy-search-result .search-result-item svg.block.h-auto.w-16 {
-  position: absolute;
-  right: 20px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  display: none;
+  padding: 0 2px;
 }
 
 .header_search_keyword {
@@ -668,15 +523,18 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   input[type="search"] {
     padding-right: 0 !important;
   }
-  &.search_form_wrap{
-    .form-group{
+
+  &.search_form_wrap {
+    .form-group {
       padding-bottom: 0;
     }
+
     input[type="search"] {
       height: 75px;
       background: #fff;
-      border: 0 !important;
-      &:focus{
+      border: 0;
+
+      &:focus {
         outline: none;
       }
     }
@@ -686,7 +544,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 .spinner {
   &.search_form_spinner {
     position: absolute;
-    right: 20px !important;
+    right: 20px;
     top: 50%;
     transform: translateY(-55%);
     display: none;
@@ -699,7 +557,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   }
 }
 
-body.search-focused {
+body.ezd-search-focused {
   .ezd_click_capture {
     position: fixed;
     top: 0;

@@ -29,15 +29,15 @@ class Search_Widget extends Widget_Base {
 	}
 
     public function get_script_depends() {
-        return [ 'eazydocs-el-widgets' ];
+        return [ ];
     }
 
     public function get_style_depends (){
-        return [ 'ezd-el-widgets', 'font-awesome' ];
+        return [ 'ezd-el-widgets', 'elegant-icon' ];
     }
     
 	public function get_keywords() {
-		return [ 'search' ];
+		return [ 'search', 'find', 'docs' ];
 	}
  
 	protected function register_controls() {
@@ -59,6 +59,32 @@ class Search_Widget extends Widget_Base {
                 'default' => 'Search for Topics....',
             ]
         );
+		
+		$this->add_control(
+		    'form-width',
+		    [
+		        'label' => esc_html__( 'Form Width', 'eazydocs' ),
+		        'type' => \Elementor\Controls_Manager::SLIDER,
+		        'size_units' => [ 'px', '%' ],
+		        'range' => [
+		            'px' => [
+		                'min' => 300,
+		                'max' => 1000,
+		                'step' => 2,
+		            ],
+		            '%' => [
+		                'min' => 0,
+		                'max' => 100,
+		            ],
+		        ],
+		        'default' => [
+		            'unit' => 'px',
+		        ],
+		        'selectors' => [
+		            '{{WRAPPER}} form.ezd_search_form' => 'max-width: {{SIZE}}{{UNIT}};',
+		        ],
+		    ]
+		);
 
         $this->add_control(
             'btn-divider',
@@ -75,37 +101,31 @@ class Search_Widget extends Widget_Base {
 			    'label' => esc_html__( 'Submit Button Icon', 'eazydocs' ),
 			    'type' => \Elementor\Controls_Manager::ICONS,
 			    'default' => [
-				    'value' => 'fas fa-search',
-				    'library' => 'solid',
+				    'value' => 'icon_search',
+				    'library' => 'elegant-icon',
 			    ],
 		    ]
 	    );
 
-        $this->add_control(
-            'btn-position',
-            [
-                'label' => esc_html__( 'Position', 'eazydocs' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .search_form_wrap .search_submit_btn' => 'right: {{SIZE}}{{UNIT}} !important;',
-                ],
-            ]
-        );
+        // button position left or right. Choose field
+		$this->add_control(
+		    'btn-position',
+		    [
+		        'label' => esc_html__( 'Button Position', '' ),
+		        'type' => \Elementor\Controls_Manager::CHOOSE,
+		        'options' => [
+			        'left' => [
+				        'title' => esc_html__( 'Left', 'elementor' ),
+				        'icon' => 'eicon-h-align-left',
+			        ],
+			        'right' => [
+				        'title' => esc_html__( 'Right', 'elementor' ),
+				        'icon' => 'eicon-h-align-right',
+			        ],
+		        ],
+		        'default' => 'right',
+		    ]
+		);
 
         $this->end_controls_section();
 
@@ -174,7 +194,7 @@ class Search_Widget extends Widget_Base {
         $this->add_control(
             'ezd_search_keywords_repeater',
             [
-                'label' => __( 'Repeater List', 'eazydocs' ),
+                'label' => __( 'Keywords', 'eazydocs' ),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $keywords->get_controls(),
                 'default' => [
@@ -205,9 +225,7 @@ class Search_Widget extends Widget_Base {
 
     protected function render() {
 		$settings       = $this->get_settings();
-        $title_tag = !empty($settings['title_tag']) ? $settings['title_tag'] : 'h2';
         
         include( "ezd-search.php" );
-
 	}
 }

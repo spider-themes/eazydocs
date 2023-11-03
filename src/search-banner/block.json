@@ -13,5 +13,8 @@
 	},
 	"textdomain": "eazydocs",
 	"editorScript": "file:./index.js",
-	"style": "file:./style-index.css"
+	"editorStyle": "file:./index.css",
+	"style": [
+		"ezd-search-block"
+	]
 }

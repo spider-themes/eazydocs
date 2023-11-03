@@ -19,7 +19,7 @@ ob_start();
                             <div class="input-wrapper">
                                 <input type='search' id="ezd_searchInput" name="s" placeholder='<?php esc_attr_e( 'Search here', 'eazydocs' ); ?>' autocomplete="off" value="<?php echo get_search_query(); ?>"/>
                                 <label for="ezd_searchInput">
-                                    <i class="icon_search"></i>
+                                    <i class="left-icon icon_search"></i>
                                 </label>
                                 <div class="spinner-border spinner" role="status">
                                     <span class="visually-hidden">Loading...</span>
@@ -68,7 +68,7 @@ ob_start();
             jQuery.ajax({
                 url: eazydocs_local_object.ajaxurl,
                 type: 'post',
-                data: {action: 'eazydocs_search_results', keyword: keyword},
+                data: { action: 'eazydocs_search_results', keyword: keyword },
                 beforeSend: function () {
                     jQuery(".spinner-border").show();
                 },

@@ -18,9 +18,9 @@
 		$('#ezd_searchInput').keyup(
 			fetchDelay(function (e) {
 				let keyword = $('#ezd_searchInput').val();
-				let noresult = $('#docy-search-result').attr('data-noresult');
+				let noresult = $('#ezd-search-results').attr('data-noresult');
 				if (keyword === '') {
-					$('#docy-search-result')
+					$('#ezd-search-results')
 						.removeClass('ajax-search')
 						.html('');
 				} else {
@@ -36,13 +36,13 @@
 						},
 						success: function (data) {
 							if (data.length > 0) {
-								$('#docy-search-result')
+								$('#ezd-search-results')
 									.addClass('ajax-search')
 									.html(data);
 								$('.spinner').hide();
 							} else {
 								var data_error = '<h5>' + noresult + '</h5>';
-								$('#docy-search-result')
+								$('#ezd-search-results')
 									.removeClass('ajax-search')
 									.html(data_error);
 							}
@@ -57,18 +57,18 @@
 			var content = $(this).text();
 			$('#ezd_searchInput').val(content).focus();
 			$('#ezd_searchInput').keyup();
-			$('#docy-search-result').css({ 'z-index': '9999' });
+			$('#ezd-search-results').css({ 'z-index': '9999' });
 		});
 
 		$('.header_search_form_info input[type=search]').focus(function () {
 			let ezd_current_theme = $('body').hasClass('ezd-theme-docy');
 
 			if (ezd_current_theme === true) {
-				$('body').addClass('search-focused');
+				$('body').addClass('ezd-search-focused');
 				$('.header_search_form_info').css({ 'z-index': '9999' });
 			} else {
-				$('body').addClass('search-focused');
-				$('body.search-focused').prepend(
+				$('body').addClass('ezd-search-focused');
+				$('body.ezd-search-focused').prepend(
 					'<div class="ezd_click_capture"></div>'
 				);
 				$('.ezd_click_capture').css({
@@ -76,20 +76,20 @@
 					opacity: '1',
 					'z-index': '9999',
 				});
-				$('.header_search_form_info, #docy-search-result').css({
+				$('.header_search_form_info, #ezd-search-results').css({
 					'z-index': '9999',
 				});
 			}
 		});
 
 		$('.header_search_form_info input[type=search]').focusout(function () {
-			$('body').removeClass('search-focused');
+			$('body').removeClass('ezd-search-focused');
 			$('.ezd_click_capture').css({
 				visibility: 'hidden',
 				opacity: '0',
 				'z-index': '',
 			});
-			$('.header_search_form_info, #docy-search-result').css({
+			$('.header_search_form_info, #ezd-search-results').css({
 				'z-index': '',
 			});
 			$('.ezd_click_capture').remove();
@@ -97,7 +97,7 @@
 
 		$('#ezd_searchInput').on('input', function (e) {
 			if ('' == this.value) {
-				$('#docy-search-result').removeClass('ajax-search');
+				$('#ezd-search-results').removeClass('ajax-search');
 			}
 		});
 	});

@@ -219,8 +219,15 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.3.1 (02 November 2023) =
-Tweaked: Search results styling
+= v2.3.2 (03 November 2023) =
+Note: The EazyDocs Search Form widget re-structured and improved. If you are using the EazyDocs Search Form widget on your site, you may need to re-configure the widget settings.
+New: Submit button position, border radius and Form Width fields are added in the EazyDocs Search Elementor widget
+Fixed: Console error on block editor if the 'EazyDocs Search Banner' block is used on the page
+Tweaked: EazyDocs Search Elementor widget's markup, design and design improved
+Tweaked: Ajax Search results styling improved
+Tweaked: Made the Block's assets load conditional. Now the assets will load only if the block is used on the page.
+Tweaked: Deleted some unnecessary files (src/shortcode/block-shortcode-render.php) and code
+Tweaked: Code structure improved
 
 = v2.3.0 (02 November 2023) =
 New: Auto Numbering option added for the Doc Sidebar Toc in the EazyDocs > Settings > Single Doc > Right Sidebar

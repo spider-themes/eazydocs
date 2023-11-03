@@ -28,7 +28,6 @@ class Assets {
 		wp_register_script( 'scrollspy', EAZYDOCS_ASSETS.'/js/frontend/scrollspy-gumshoe.js', array( 'jquery' ), '5.1.2', true );
 		wp_register_script( 'eazydocs-el-widgets', EAZYDOCS_ASSETS.'/js/frontend/elementor-widgets.js' );
 
-		wp_enqueue_style( 'eazydocs-blocks', EAZYDOCS_ASSETS.'/css/blocks.css' );
 		wp_register_style( 'elegant-icon', EAZYDOCS_ASSETS.'/vendors/elegant-icon/style.css' );
 		wp_register_style( 'ezd-el-widgets', EAZYDOCS_ASSETS.'/css/ezd-el-widgets.css' );
 

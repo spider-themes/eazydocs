@@ -22,16 +22,18 @@ import colors from '../colors-palette';
  * @constructor
  */
 export default function Edit({ attributes, setAttributes }) {
+	// Get the main site url
 	const siteURL = useSelect( (select) => {
 		return select('core').getSite().url;
 	})
+
 	const settingsPage = siteURL + '/wp-admin/admin.php?page=eazydocs-settings#tab=doc-single/search-banner';
 
 	return (
 		<Fragment>
 			<InspectorControls>
 				<PanelBody>
-					<small>The search banner settings/ background image, colors, keywords are getting from the plugins<a href={settingsPage} target="_blank"> Settings page </a></small>
+					<small>The search banner settings/ background image, colors, keywords are getting from the "EazyDocs > Settings > Doc Single > Search Banner" page </small>
 				</PanelBody>
 			</InspectorControls>
 
@@ -47,7 +49,7 @@ export default function Edit({ attributes, setAttributes }) {
 											<div className="input-wrapper">
 												<input type='search' id="ezd_searchInput" name="s" placeholder="Search here"/>
 												<label htmlFor="ezd_searchInput">
-													<i className="icon_search"></i>
+													<i className="left-icon icon_search"></i>
 												</label>
 												<div className="spinner-border spinner" role="status">
 													<span className="visually-hidden">Loading...</span>

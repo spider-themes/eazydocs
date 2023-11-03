@@ -5,8 +5,8 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
 	$custom_banner  = $cz_options['doc_banner_bg'] ?? '';
 	$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
 	?>
-<div class="focus_overlay"></div>
-<section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap ); ?>">
+    <div class="focus_overlay"></div>
+    <section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap ); ?>">
     <div class="ezd-container">
         <div class="ezd-grid ezd-grid-cols-12 doc_banner_content">
             <div class="ezd-grid-column-full">
@@ -19,7 +19,7 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
                                     placeholder='<?php esc_attr_e( 'Search here', 'eazydocs' ); ?>' autocomplete="off"
                                     value="<?php echo get_search_query(); ?>" />
                                 <label for="ezd_searchInput">
-                                    <i class="icon_search"></i>
+                                    <i class="left-icon icon_search"></i>
                                 </label>
                                 <div class="spinner-border spinner" role="status">
                                     <span class="visually-hidden">Loading...</span>
@@ -33,10 +33,10 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
                     <div id="ezd-search-results" class="eazydocs-search-tree"
                         data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
                     <?php
-                        if ( ezd_is_premium() ) {
-                            eazydocs_get_template_part('keywords');
-                        }
-                        ?>
+                    if ( ezd_is_premium() ) {
+                        eazydocs_get_template_part('keywords');
+                    }
+                    ?>
                 </form>
             </div>
         </div>
@@ -151,4 +151,13 @@ jQuery('#ezd_searchInput').keyup(
         }
     }, 500)
 );
+
+// Search results should close on clearing the input field
+if (document.getElementById('ezd_searchInput')) {
+    document
+        .getElementById('ezd_searchInput')
+        .addEventListener('search', function (event) {
+            jQuery('#ezd-search-results').empty().removeClass('ajax-search');
+        });
+}
 </script>
