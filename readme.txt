@@ -14,12 +14,12 @@ EazyDocs is a powerful knowledge base, documentation builder plugin for WordPres
 
 EazyDocs is a comprehensive and feature-rich knowledge base and documentation builder plugin for WordPress. With EazyDocs, you have the freedom to create unlimited knowledge bases for your products, without any limitations. The plugin offers a user-friendly interface, allowing you to easily order and nest your documents by simply dragging and dropping them. EazyDocs comes with a modern and professional design by default, and it also offers customization options to match your brand identity.
 
+### Video Overview (Showcased free and premium features)
+[youtube https://youtu.be/7YH12s8y_pY?si=Nr3Jpi0w5Vofafsn]
+
 Designed with the reader in mind, EazyDocs prioritizes a seamless user experience. It is optimized for search engines, integrated with Schema.org, and provides sticky sidebars for easy navigation. The plugin supports multilingual and RTL languages, ensuring accessibility for a global audience. EazyDocs is responsive and retina-ready, ensuring your knowledge base looks great on all devices. It also includes advanced features like live search, feedback collection, article voting, revision history, and more.
 
 Simplify the process of creating and managing documentation with EazyDocs, making it an essential tool for businesses, developers, and content creators.
-
-### Video Overview (Showcased free and premium features)
-[youtube https://youtu.be/7YH12s8y_pY?si=Nr3Jpi0w5Vofafsn]
 
 ## 🔗 USEFUL LINKS ##
 

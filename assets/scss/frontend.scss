@@ -15,14 +15,6 @@
   padding-top: 60px;
 }
 
-.full-width-doc .eazydocs-comments-wrap {
-  padding-bottom: 100px;
-}
-
-.full-width-doc .eazydocs-comments-wrap #comments {
-  padding: 0 15px;
-}
-
 p .footnotes-link {
   color: var(--ezd_brand_color) !important;
 }
@@ -110,12 +102,12 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 1;
   font-size: 0.95rem;
-  margin-left: -90px;
+  left: -40px;
   .left-arrow {
     display: block;
-    border: rgb(8 102 255 / 30%) solid 1px;
+    border: var(--black_50) solid 1px;
     border-radius: 20px;
-    background: rgb(8 102 255 / 25%);
+    background: var(--black_25);
     padding: 3px 8px 0 3.5px;
     height: 24px;
     transition: padding 0.2s;
@@ -129,9 +121,9 @@ p .footnotes-link::after {
   }
   .right-arrow {
     display: none;
-    border: #e8e8e8 solid 1px;
+    border: var(--black_50) solid 1px;
     border-radius: 20px;
-    background: #fafafa;
+    background: var(--black_25);
     padding: 3px 7.5px 3px 9px;
     height: 24px;
     transition: padding .2s;
@@ -142,6 +134,12 @@ p .footnotes-link::after {
       border-color: var(--ezd_brand_color);
       padding: 3px 8px 3px 16px;
     }
+  }
+}
+
+.ezd-col-extended {
+  .left-sidebar-toggle {
+    left: -15px;
   }
 }
 
@@ -318,22 +316,12 @@ p .footnotes-link::after {
     padding-bottom: 30px;
 }
 
-#post {
-  h2, h3, h4 {
-    font-weight: 500;
-    margin-bottom: 20px;
-    padding-top: 80px;
-    margin-top: -80px;
-  }
-}
-
 .single-docs #post {
   h2 {
     font-weight: 600;
     font-size: 1.8em;
     display: flex;
     align-items: center;
-    margin-bottom: 0;
   }
   h3 {
     font-size: 1.5em;

@@ -102,14 +102,7 @@ body.body_dark h3,
 body.body_dark h4,
 body.body_dark h5,
 body.body_dark h6, body.body_dark.single-docs #post p, body.body_dark.single-docs #post em strong span {
-  color: #fff !important;
-}
-body.body_dark.single-docs #post h2,
-body.body_dark.single-docs #post h3,
-body.body_dark.single-docs #post h4,
-body.body_dark.single-docs #post h5,
-body.body_dark.single-docs #post h6 {
-  color: #fff;
+  color: #d4d4d4 !important;
 }
 body.body_dark .doc_rightsidebar .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
   color: #c7c9d3;

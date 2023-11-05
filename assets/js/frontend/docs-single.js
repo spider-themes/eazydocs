@@ -376,7 +376,7 @@
                 if (middle_column.hasClass('ezd-xl-col-7')) {
                     $('.doc-middle-content')
                         .removeClass('ezd-col-7')
-                        .addClass('ezd-xl-col-10');
+                        .addClass('ezd-xl-col-10 ezd-col-extended');
                 } else if (middle_column.hasClass('ezd-xl-col-8')) {
                     $('.doc-middle-content')
                         .removeClass('ezd-xl-col-8')
@@ -393,7 +393,7 @@
                 if (middle_column.hasClass('ezd-xl-col-10')) {
                     $('.doc-middle-content')
                         .removeClass('ezd-xl-col-10')
-                        .addClass('col-xl-7');
+                        .addClass('ezd-col-xl-7');
                 } else if (middle_column.hasClass('ezd-xl-col-8')) {
                     $('.doc-middle-content')
                         .removeClass('ezd-xl-col-10')
