@@ -4,7 +4,7 @@ Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs
 Requires at least: 5.0
 Tested up to: 6.3
 Requires PHP: 7.4
-Stable tag: 2.2.x
+Stable tag: 2.3.x
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,9 @@ EazyDocs is a comprehensive and feature-rich knowledge base and documentation bu
 Designed with the reader in mind, EazyDocs prioritizes a seamless user experience. It is optimized for search engines, integrated with Schema.org, and provides sticky sidebars for easy navigation. The plugin supports multilingual and RTL languages, ensuring accessibility for a global audience. EazyDocs is responsive and retina-ready, ensuring your knowledge base looks great on all devices. It also includes advanced features like live search, feedback collection, article voting, revision history, and more.
 
 Simplify the process of creating and managing documentation with EazyDocs, making it an essential tool for businesses, developers, and content creators.
+
+### Video Overview (Showcased free and premium features)
+[youtube https://youtu.be/7YH12s8y_pY?si=Nr3Jpi0w5Vofafsn]
 
 ## 🔗 USEFUL LINKS ##
 
@@ -218,6 +221,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 7. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.3.3 (05 November 2023) =
+Tweaked: Full width layout improved (padding adjusted)
+Tweaked: Hover state improved on the current Doc item on the Left sidebar on the single doc page.
+Fixed: Keywords were missing in the Search Banner block (unlocked in Docy, Docly themes and EazyDocs Premium plans)
 
 = v2.3.2 (03 November 2023) =
 Note: The EazyDocs Search Form widget re-structured and improved. If you are using the EazyDocs Search Form widget on your site, you may need to re-configure the widget settings.

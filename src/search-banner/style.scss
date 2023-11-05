@@ -12,6 +12,10 @@
   width: 100% !important;
   max-width: 100% !important;
 
+  &.no_keywords #ezd-search-results {
+    top: calc(100% + 10px)
+  }
+
   &.has_bg_dark {
     background-size: cover;
     background-repeat: no-repeat;

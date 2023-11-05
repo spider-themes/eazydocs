@@ -84,8 +84,8 @@ p .footnotes-link::after {
     background: var(--black_50);
     color: var(--black_800) !important;
     &:focus {
-      outline: thin dotted;
-      background-color: #fff;
+      outline: none;
+      background-color: var(--black_25);
     }
     &::placeholder {
       color: var(--black_400)
@@ -113,12 +113,12 @@ p .footnotes-link::after {
   margin-left: -90px;
   .left-arrow {
     display: block;
-    border: #e8e8e8 solid 1px;
+    border: rgb(8 102 255 / 30%) solid 1px;
     border-radius: 20px;
-    background: #fafafa;
+    background: rgb(8 102 255 / 25%);
     padding: 3px 8px 0 3.5px;
     height: 24px;
-    transition: padding .2s;
+    transition: padding 0.2s;
     font-size: 16px;
     &:hover {
       color: #ffffff;
@@ -145,7 +145,7 @@ p .footnotes-link::after {
   }
 }
 
-.single-docs .doc_documentation_full_area .doc_rightsidebar {
+.single-docs .doc_full_width .doc_rightsidebar {
   width: 100%;
 }
 

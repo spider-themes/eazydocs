@@ -1,5 +1,5 @@
 <header class="easydocs-header-area">
-    <div class="container-fluid">
+    <div class="ezd-container-fluid">
         <div class="row alignment-center justify-content-between">
             <div class="navbar-left d-flex alignment-center">
                 <div class="easydocs-logo-area">

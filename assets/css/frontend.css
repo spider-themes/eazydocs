@@ -95,6 +95,9 @@ input[type=search]::-webkit-search-results-decoration {
   width: 100% !important;
   max-width: 100% !important;
 }
+.ezd_search_banner.no_keywords #ezd-search-results {
+  top: calc(100% + 10px);
+}
 .ezd_search_banner.has_bg_dark {
   background-size: cover;
   background-repeat: no-repeat;
@@ -821,7 +824,13 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   border-radius: 5px;
 }
 .nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item {
-  background: rgba(76, 76, 241, 0.1);
+  background: rgba(8, 102, 25, 0.1);
+}
+.nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item:hover {
+  background: rgba(8, 102, 25, 0.2);
+}
+.nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item:hover a {
+  color: var(--ezd_brand_color);
 }
 .nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item.has_child .doc-link a {
   color: var(--black_800);
@@ -945,10 +954,10 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   transform: none;
 }
 
-.single-docs .nav-sidebar .nav-item .dropdown_nav li:not(.has_child):hover {
+.nav-sidebar .nav-item .dropdown_nav li:not(.has_child):hover {
   background: rgba(208, 215, 222, 0.32);
 }
-.single-docs .nav-sidebar .nav-item .dropdown_nav li:not(.has_child):hover a {
+.nav-sidebar .nav-item .dropdown_nav li:not(.has_child):hover a {
   color: var(--black_800);
 }
 
@@ -1016,7 +1025,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .shortcode_title .btn {
   display: inline-block;
   padding: 0 9.5px;
-  background: rgba(76, 76, 241, 0.5);
+  background: rgba(8, 102, 25, 0.5);
   color: #fff;
   text-transform: uppercase;
   line-height: 20px;
@@ -1203,7 +1212,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   padding: 15px 40px;
   box-shadow: none;
   font-weight: 500;
-  background: rgba(76, 76, 241, 0.9);
+  background: rgba(8, 102, 25, 0.9);
   color: #fff;
   border-radius: 5px;
 }
@@ -1845,7 +1854,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 .doc-btm ul.card_tagged li a:hover {
   color: var(--ezd_brand_color);
-  background: rgba(76, 76, 241, 0.15);
+  background: rgba(8, 102, 25, 0.15);
 }
 
 /** === Dark Mode Switcher === **/
@@ -1873,8 +1882,8 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .doc_switch input[type=checkbox] {
   width: 50px;
   height: 22px;
-  border: 1px solid rgba(76, 76, 241, 0.3);
-  background: rgba(76, 76, 241, 0.25);
+  border: 1px solid rgba(8, 102, 25, 0.3);
+  background: rgba(8, 102, 25, 0.25);
   display: block;
   border-radius: 25px;
   margin: 0 10px 0 12px;
@@ -2218,7 +2227,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 .ezd-password-wrap .ezd-password-body form button {
   font-size: 14px;
   border: none;
-  background-color: rgba(76, 76, 241, 0.8);
+  background-color: rgba(8, 102, 25, 0.8);
   color: #fff;
   box-shadow: none;
   padding: 0.4em 1em;
@@ -2356,7 +2365,7 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
 }
 div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wrap > .copy-url-wrap input {
   width: 100%;
-  background: var(--black_50);
+  background: var(--black_25);
   opacity: 1;
   height: 37px;
   padding: 16px 48px 16px 10px;
@@ -2588,7 +2597,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   font-size: 14px;
   font-weight: 400;
   color: var(--ezd_brand_color);
-  border: 1px solid rgba(76, 76, 241, 0.2);
+  border: 1px solid rgba(8, 102, 25, 0.2);
   border-radius: 4px;
   background-color: rgba(16, 179, 214, 0.031);
   padding: 0 20px;
@@ -2599,7 +2608,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   cursor: pointer;
 }
 .doc_tag .nav-item .nav-link:not(.active):hover {
-  background: rgba(76, 76, 241, 0.2);
+  background: rgba(8, 102, 25, 0.2);
 }
 .doc_tag .nav-item .nav-link.active {
   background-color: var(--ezd_brand_color);
@@ -3329,7 +3338,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 }
 .question_menu .nav-tabs li a {
   border: none;
-  background: rgba(76, 76, 241, 0.07);
+  background: rgba(8, 102, 25, 0.07);
   font-size: 14px;
   font-weight: 400;
   line-height: 40px;
@@ -3350,7 +3359,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   transition: opacity 0.5s linear;
 }
 .question_list .ques_item {
-  background: rgba(76, 76, 241, 0.07);
+  background: rgba(8, 102, 25, 0.07);
   padding: 35px 25px 35px 35px;
   border-radius: 5px;
 }
@@ -3402,7 +3411,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 }
 .question_menu.docs3 .nav li a:hover {
   color: var(--ezd_brand_color);
-  background: rgba(76, 76, 241, 0.2);
+  background: rgba(8, 102, 25, 0.2);
 }
 .question_menu.docs3 .nav li a:hover ion-icon {
   color: var(--ezd_brand_color);
@@ -4070,8 +4079,8 @@ p .footnotes-link::after {
   color: var(--black_800) !important;
 }
 .filter_form input:focus, .filter_form input[type=search]:focus {
-  outline: thin dotted;
-  background-color: #fff;
+  outline: none;
+  background-color: var(--black_25);
 }
 .filter_form input::placeholder, .filter_form input[type=search]::placeholder {
   color: var(--black_400);
@@ -4098,9 +4107,9 @@ p .footnotes-link::after {
 }
 .left-sidebar-toggle .left-arrow {
   display: block;
-  border: #e8e8e8 solid 1px;
+  border: rgba(8, 102, 255, 0.3) solid 1px;
   border-radius: 20px;
-  background: #fafafa;
+  background: rgba(8, 102, 255, 0.25);
   padding: 3px 8px 0 3.5px;
   height: 24px;
   transition: padding 0.2s;
@@ -4129,7 +4138,7 @@ p .footnotes-link::after {
   padding: 3px 8px 3px 16px;
 }
 
-.single-docs .doc_documentation_full_area .doc_rightsidebar {
+.single-docs .doc_full_width .doc_rightsidebar {
   width: 100%;
 }
 

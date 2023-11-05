@@ -530,7 +530,7 @@
   transition: all 0.2s linear, color 0s linear;
 }
 .categories_guide_item .doc_border_btn:hover, .categories_guide_item .doc_border_btn:focus {
-  box-shadow: 0 10px 20px 0 rgba(76, 76, 241, 0.2);
+  box-shadow: 0 10px 20px 0 rgba(8, 102, 25, 0.2);
   background-color: var(--ezd_brand_color) !important;
   border-color: var(--ezd_brand_color);
   color: #fff;
@@ -862,8 +862,8 @@ ul {
   width: auto;
   margin-right: auto;
   margin-left: auto;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .ezd-custom-container.ezd-container {

@@ -5,11 +5,12 @@ if ( ezd_is_premium() ) {
 	$custom_banner  = $cz_options['doc_banner_bg'] ?? '';
 	$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
 }
+$is_keywords = ezd_get_opt('is_keywords') != '1' ? ' no_keywords' : '';
 
 ob_start();
 ?>
 <div class="focus_overlay"></div>
-<section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap ); ?>">
+<section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap.$is_keywords ); ?>">
     <div class="container">
         <div class="row doc_banner_content">
             <div class="col-md-12">
@@ -31,6 +32,11 @@ ob_start();
                         </div>
                     </div>
                     <div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
+	                <?php
+	                if ( ezd_is_premium() ) {
+		                eazydocs_get_template_part('keywords');
+	                }
+	                ?>
                 </form>
             </div>
         </div>
@@ -137,6 +143,15 @@ ob_start();
         }
     }, 500 )
 )
+
+// Search results should close on clearing the input field
+if (document.getElementById('ezd_searchInput')) {
+    document
+        .getElementById('ezd_searchInput')
+        .addEventListener('search', function (event) {
+            jQuery('#ezd-search-results').empty().removeClass('ajax-search');
+        });
+}
 
 </script>
 

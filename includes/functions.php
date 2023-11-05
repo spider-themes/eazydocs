@@ -45,7 +45,7 @@ function ezd_is_promax() {
  * @return string
  */
 function ezd_container() {
-	return ezd_get_opt('docs_page_width') == 'full-width' ? 'container-fluid px-lg-5' : 'ezd-container ezd-custom-container';
+	return ezd_get_opt('docs_page_width') == 'full-width' ? 'ezd-container-fluid' : 'ezd-container ezd-custom-container';
 }
 
 /**

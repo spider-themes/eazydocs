@@ -11,6 +11,9 @@
   width: 100% !important;
   max-width: 100% !important;
 }
+.ezd_search_banner.no_keywords #ezd-search-results {
+  top: calc(100% + 10px);
+}
 .ezd_search_banner.has_bg_dark {
   background-size: cover;
   background-repeat: no-repeat;

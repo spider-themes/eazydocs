@@ -4,9 +4,10 @@ $cz_options     = get_option( 'eazydocs_settings' );
 if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
 	$custom_banner  = $cz_options['doc_banner_bg'] ?? '';
 	$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
+    $is_keywords = ezd_get_opt('is_keywords') != '1' ? ' no_keywords' : '';
 	?>
     <div class="focus_overlay"></div>
-    <section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap ); ?>">
+    <section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap.$is_keywords ); ?>">
     <div class="ezd-container">
         <div class="ezd-grid ezd-grid-cols-12 doc_banner_content">
             <div class="ezd-grid-column-full">
@@ -30,8 +31,7 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
                             </div>
                         </div>
                     </div>
-                    <div id="ezd-search-results" class="eazydocs-search-tree"
-                        data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
+                    <div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
                     <?php
                     if ( ezd_is_premium() ) {
                         eazydocs_get_template_part('keywords');

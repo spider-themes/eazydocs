@@ -26,8 +26,8 @@ $credit_enable   = '1';
 
 $layout          = $options['docs_single_layout'] ?? 'both_sidebar';
 $doc_width       = $options['docs_page_width'] ?? '';
-$doc_container   = $doc_width == 'full-width' ? 'container-fluid px-lg-5' : 'ezd-container ezd-custom-container';
-$content_wrapper = $doc_width == 'full-width' ? 'doc_documentation_full_area' : '';
+$doc_container   = $doc_width == 'full-width' ? 'ezd-container-fluid px-lg-5' : 'ezd-container ezd-custom-container';
+$content_wrapper = $doc_width == 'full-width' ? 'doc_full_width' : '';
 
 $credit_text     = $options['eazydocs-credit-text'] ?? sprintf( __( "Powered By %s EazyDocs %s", 'eazydocs' ), '<a href="https://wordpress.org/plugins/eazydocs/" target="_blank">', '</a>' );
 

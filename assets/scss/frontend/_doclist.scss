@@ -310,6 +310,12 @@ body {
 
         &.current_page_item {
           background: brand_color_rgba(0.1);
+          &:hover {
+            background: brand_color_rgba(0.2);
+            a {
+              color: var(--ezd_brand_color);
+            }
+          }
         }
 
         &.current_page_item.has_child .doc-link a {
@@ -472,7 +478,7 @@ body {
   }
 }
 
-.single-docs .nav-sidebar .nav-item .dropdown_nav li:not(.has_child):hover {
+.nav-sidebar .nav-item .dropdown_nav li:not(.has_child):hover {
   background: rgba(208, 215, 222, 0.32);
 
   a {
@@ -2212,7 +2218,7 @@ div#eazydocs_share {
 
           input {
             width: 100%;
-            background: var(--black_50);
+            background: var(--black_25);
             opacity: 1;
             height: 37px;
             padding: 16px 48px 16px 10px;
