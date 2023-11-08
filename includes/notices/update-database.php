@@ -1,30 +1,4 @@
 <?php
-/*
- * Do stuff is eazydocs table not found
- */
-add_action( 'admin_notices', 'eazydocs_database_not_found' );
-function eazydocs_database_not_found() {
-	global $wpdb;
-	$table_name  = $wpdb->prefix . 'eazydocs_search_keyword';
-	$table_name2 = $wpdb->prefix . 'eazydocs_search_log';
-	$table_name3 = $wpdb->prefix . 'eazydocs_view_log';
-
-	if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name
-	     || $wpdb->get_var( "SHOW TABLES LIKE '$table_name2'" ) != $table_name2
-	     || $wpdb->get_var( "SHOW TABLES LIKE '$table_name3'" ) != $table_name3
-	) {
-		?>
-        <div class="notice notice-error is-dismissible eazydocs_table_error">
-            <p><?php esc_html_e( 'EazyDocs database need an update. Please click Update button to update your database.', 'eazydocs' ); ?></p>
-            <form method="get">
-                <input type="hidden" name="eazydocs_table_create" value="1">
-                <input type="submit" class="button button-primary" value="<?php esc_html_e( 'Update Database', 'eazydocs' ) ?>">
-            </form>
-        </div>
-		<?php
-	}
-}
-
 // add button for create table
 if ( isset( $_GET['eazydocs_table_create'] ) ) {
 

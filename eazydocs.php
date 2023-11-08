@@ -102,6 +102,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'i18n' ] );
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+			if ( eaz_fs()->is_plan('promax') ) {
+				add_action( 'admin_notices', [ $this, 'eazydocs_database_not_found' ] );
+			}
 		}
 
 		// get the instance of the EazyDocs class
@@ -288,7 +291,32 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			if ( $eazydocs_search_keyword !== $search_keyword || $eazydocs_search_log !== $search_logs || $eazydocs_view_log !== $view_logs ) {
 				// Send notification to user
-				eazydocs_database_not_found();
+				$this->eazydocs_database_not_found();
+			}
+		}
+
+		/**
+		 * Database not found
+		 */
+		function eazydocs_database_not_found() {
+			global $wpdb;
+			$table_name  = $wpdb->prefix . 'eazydocs_search_keyword';
+			$table_name2 = $wpdb->prefix . 'eazydocs_search_log';
+			$table_name3 = $wpdb->prefix . 'eazydocs_view_log';
+		
+			if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name
+				 || $wpdb->get_var( "SHOW TABLES LIKE '$table_name2'" ) != $table_name2
+				 || $wpdb->get_var( "SHOW TABLES LIKE '$table_name3'" ) != $table_name3
+			) {
+				?>
+				<div class="notice notice-error is-dismissible eazydocs_table_error">
+					<p><?php esc_html_e( 'EazyDocs database need an update. Please click Update button to update your database.', 'eazydocs' ); ?></p>
+					<form method="get">
+						<input type="hidden" name="eazydocs_table_create" value="1">
+						<input type="submit" class="button button-primary" value="<?php esc_html_e( 'Update Database', 'eazydocs' ) ?>">
+					</form>
+				</div>
+				<?php
 			}
 		}
 
