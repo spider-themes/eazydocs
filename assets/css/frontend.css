@@ -234,7 +234,8 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   margin-top: 45px;
 }
 
-.ezd_search_form, .doc_banner_text .banner_search_form {
+.ezd_search_form,
+.doc_banner_text .banner_search_form {
   position: relative;
 }
 
@@ -299,10 +300,12 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 #ezd-search-results .search-result-item:hover {
   background: var(--ezd_brand_color);
 }
-#ezd-search-results .search-result-item:hover .breadcrumb-item, #ezd-search-results .search-result-item:hover a {
+#ezd-search-results .search-result-item:hover .breadcrumb-item,
+#ezd-search-results .search-result-item:hover a {
   color: #fff;
 }
-#ezd-search-results .search-result-item img, #ezd-search-results .search-result-item svg.block.h-full.w-auto {
+#ezd-search-results .search-result-item img,
+#ezd-search-results .search-result-item svg.block.h-full.w-auto {
   position: absolute;
   top: 12px;
   margin: auto;
@@ -626,7 +629,8 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   color: #fff;
 }
 
-#docy-search-result .search-result-item img, #docy-search-result .search-result-item svg.block.h-full.w-auto {
+#docy-search-result .search-result-item img,
+#docy-search-result .search-result-item svg.block.h-full.w-auto {
   position: absolute;
   top: 12px;
   margin: auto;
@@ -669,10 +673,6 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   border-radius: 45px;
   background: var(--ezd_brand_color);
   color: #fff;
-}
-
-button:not(:hover):not(:active):not(.has-background) {
-  background-color: transparent;
 }
 
 .header_search_form_info input[type=search] {
@@ -1158,8 +1158,14 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   padding-top: 1px;
 }
 
+.doc_rightsidebar.sroll .mCSB_container {
+  overflow: visible;
+}
+
 .single-docs .shortcode_title {
   margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
 }
 .single-docs .shortcode_title h1 {
   margin-bottom: 10px;
