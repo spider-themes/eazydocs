@@ -648,8 +648,7 @@ nav .breadcrumb .active {
   color: var(--black_800);
 }
 
-.single-onepage-docs #post img,
-single-docs #post img {
+.single-onepage-docs #post img, .single-docs #post img {
   max-width: 100% !important;
   margin: 10px 0;
 }

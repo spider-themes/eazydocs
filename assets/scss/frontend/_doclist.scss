@@ -493,8 +493,16 @@ body {
   }
 }
 
+.doc_rightsidebar.sroll {
+  .mCSB_container {
+    overflow: visible;
+  }
+}
+
 .single-docs .shortcode_title {
   margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
 
   h1 {
     margin-bottom: 10px;
@@ -628,6 +636,7 @@ body {
       }
     }
   }
+
 
   p.right {
     margin: 0;
