@@ -3,7 +3,6 @@
 @import 'frontend/search_banner';
 @import 'frontend/doclist';
 @import 'frontend/widget_docs';
-@import 'frontend/framework.scss';
 
 .modal-content .shortcode_info .row {
   margin-top: 20px;
@@ -145,13 +144,17 @@ p .footnotes-link::after {
 
 .single-docs .doc_full_width .doc_rightsidebar {
   width: 100%;
+  padding-right: 10px;
+  .pageSideSection {
+    padding-left: 25px;
+  }
 }
 
 .opened .open_icon {
   i {
     display: none;
     + i {
-      display: block;
+      display: inline-block;
     }
   }
 }

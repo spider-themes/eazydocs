@@ -93,23 +93,26 @@
 			});
 		}
 
-		$('.modal-toggle').on('click', function (e) {
-			e.preventDefault();
-			$('.ezd-modal-overlay').fadeIn();
-			var id = $(this).data('id');
-			$('.ezd-modal[data-id="modal' + id + '"]').fadeIn();
-		});
-		$('.ezd-close').on('click', function () {
-			$('.ezd-modal-overlay').fadeOut();
-			$('.ezd-modal').fadeOut();
-		});
-		$('.ezd-modal-overlay').on('click', function () {
-			$('.ezd-modal-overlay').fadeOut();
-			$('.ezd-modal').fadeOut();
-		});
+		/** Modal **/
+		if ( $('.modal-toggle').length > 0 ) {
+			$(document).on('click', '.modal-toggle', function (e) {
+				e.preventDefault();
+				$('.ezd-modal-overlay').fadeIn();
+				let id = $(this).data('id');
+				$('.ezd-modal[data-id="modal' + id + '"]').fadeIn();
+			});
+			$(document).on('click', '.ezd-close', function () {
+				$('.ezd-modal-overlay').fadeOut();
+				$('.ezd-modal').fadeOut();
+			});
+			$(document).on('click', '.ezd-modal-overlay', function () {
+				$('.ezd-modal-overlay').fadeOut();
+				$('.ezd-modal').fadeOut();
+			});
+		}
 
-		if ($('#eazydocs-toc a,.book-chapter-nav a').length > 0) {
-			var spy = new Gumshoe('#eazydocs-toc a,.book-chapter-nav a', {
+		if ( $('#eazydocs-toc a,.book-chapter-nav a').length > 0 ) {
+			let spy = new Gumshoe('#eazydocs-toc a,.book-chapter-nav a', {
 				nested: true,
 			});
 		}

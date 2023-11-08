@@ -85,13 +85,13 @@
 
 	.doc_left_sidebarlist .open_icon {
 		display: block;
-		right: -40px;
+		right: -22px;
 		left: auto;
 	}
 
 	.open_icon {
 		display: block;
-		left: -40px;
+		left: -22px;
 		right: auto;
 	}
 
@@ -102,11 +102,6 @@
 
 	article#post {
 		padding-bottom: 0;
-	}
-
-	.doc-middle-content {
-		padding-right: 20px;
-		padding-top: 100px;
 	}
 
 	.onepage_doc_area .container-fluid.pr-60 {
@@ -141,7 +136,7 @@
 
 	.doc_rightsidebar .pageSideSection {
 		margin-left: 0;
-		padding-left: 0;
+		padding-left: 0 !important;
 		padding-right: 10px;
 	}
 

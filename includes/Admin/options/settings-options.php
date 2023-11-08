@@ -379,14 +379,14 @@ CSF::createSection( $prefix, array(
 
 		array(
 			'title'      => esc_html__( 'Ajax Loading', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Load doc pages via Ajax.', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Load the doc single page without refreshing the page.', 'eazydocs' ),
 			'id'         => 'is_doc_ajax',
 			'type'       => 'switcher',
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'text_width' => 90,
 			'default'    => false,
-			'class'      => 'eazydocs-pro-notice active-theme-eazydocs',
+			'class'      => 'eazydocs-pro-notice active-theme-docy',
 		),
 
 		array(
@@ -1423,26 +1423,6 @@ CSF::createSection( $prefix, array(
 	)
 ) );
 
-
-// OnePage Doc
-CSF::createSection( $prefix, array(
-	'id'     => 'ezd-onepage-docs',
-	'title'  => esc_html__( 'OnePage Doc', 'eazydocs' ),
-	'class'  => 'eazydocs-pro-notice',
-	'icon'   => 'fas fa-plus-circle',
-	'fields' => [
-		array(
-			'id'      => 'onepage_layout',
-			'type'    => 'select',
-			'title'   => esc_html__( 'Layout', 'eazydocs' ),
-			'options' => [
-				'main'              => __( 'Classic OnePage Doc', 'eazydocs' ),
-				'fullscreen-layout' => __( 'Fullscreen OnePage Doc', 'eazydocs' ),
-			],
-			'default' => 'main',
-		),
-	]
-) );
 
 // Select docs page
 $options      = get_option( 'eazydocs_settings' );

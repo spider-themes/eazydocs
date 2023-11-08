@@ -2,7 +2,12 @@
     'use strict';
 
     $(document).ready(function () {
-        // Match Fade gradient Shadow color
+
+        /**
+         * Match Fade gradient Shadow color
+         * Used it for the fade gradient shadow on the Read More button
+         * @type {string}
+         */
         let bgColor = window
                 .getComputedStyle(document.body, null)
                 .getPropertyValue('background-color'),
@@ -19,7 +24,10 @@
             );
         }
 
-        // Copy the current page link to clipboard
+        /**
+         * Social Share options
+         * Copy the current page link to clipboard
+         */
         if ($('.share-this-doc').length) {
             $('.share-this-doc').on('click', function (e) {
                 e.preventDefault();
@@ -41,6 +49,7 @@
                 }, 3500);
             });
         }
+
         $('.ezd-link-copied-wrap').click(function () {
             $(this).removeClass('copied');
         });
@@ -72,9 +81,7 @@
                     intHeight +
                     ',resizable=' +
                     strResize,
-                objWindow = window
-                    .open(this.attr('href'), strTitle, strParam)
-                    .focus();
+                objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
         };
         $('.social-links a:not(:first)').on('click', function (e) {
             $(this).ezd_social_popup(e);
@@ -88,15 +95,27 @@
         });
 
         /**
-         * Make the Titles clickable
+         * Make the Titles clickable with anchor js
          * If no selector is provided, it falls back to a default selector of:
          * 'h2, h3, h4, h5, h6'
          */
         anchors.add(
             '.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4'
         );
+        // Anchor JS scroll
+        var urlHash = window.location.href.split('#')[1];
+        if (urlHash) {
+            $('html,body').animate(
+                {
+                    scrollTop: $('#' + urlHash).offset().top,
+                },
+                30
+            );
+        }
 
-        /** === Contact Form Ajax === **/
+        /**
+         * Feedback Contact Form Ajax Handler
+         */
         $('form#edocs-contact-form').on('submit', function (e) {
             e.preventDefault();
             let that = $(this),
@@ -140,8 +159,10 @@
             $('form#edocs-contact-form')[0].reset();
         });
 
-        /** === Feedback Handler === **/
-        $('.vote-link-wrap a.h_btn').on('click', function (e) {
+        /**
+         * Feedback voting Handler
+         */
+        $(document).on('click', '.vote-link-wrap a.h_btn', function (e) {
             e.preventDefault();
             let self = $(this);
             $.ajax({
@@ -169,49 +190,33 @@
             });
         });
 
-        /*--------------- nav-sidebar js--------*/
+
+        /**
+         * Expand and collapse the sidebar menu on clicking on the arrow icon
+         */
         if ($('.nav-sidebar > li').hasClass('active')) {
             $('.nav-sidebar > li.active').find('ul').slideDown(700);
         }
 
-        function active_dropdown(is_ajax = false) {
-            if (is_ajax == true) {
-                $(document).on(
-                    'click',
-                    '.nav-sidebar .nav-item .nav-link',
-                    function (e) {
-                        $('.nav-sidebar .nav-item').removeClass('active');
-                        $(this).parent().addClass('active');
-                        $(this).parent().find('ul').first().show(300);
-                        $(this).parent().siblings().find('ul').hide(300);
-                    }
-                );
-            } else {
-                $('.nav-sidebar > li .doc-link .icon').on(
-                    'click',
-                    function (e) {
-                        $(this)
-                            .parent()
-                            .parent()
-                            .find('ul')
-                            .first()
-                            .toggle(300);
-                        $(this)
-                            .parent()
-                            .parent()
-                            .siblings()
-                            .find('ul')
-                            .hide(300);
-                    }
-                );
+        $(document).on('click', '.nav-sidebar > li .doc-link .icon', function (e) {
+                $(this)
+                    .parent()
+                    .parent()
+                    .find('ul')
+                    .first()
+                    .toggle(300);
+                $(this)
+                    .parent()
+                    .parent()
+                    .siblings()
+                    .find('ul')
+                    .hide(300);
             }
-        }
-
-        active_dropdown();
+        );
 
         $('.nav-sidebar > li > .doc-link .icon').each(function () {
             let $this = $(this);
-            $this.on('click', function (e) {
+            $(document).on('click', $this, function (e) {
                 let has = $this.parent().parent().hasClass('active');
                 $('.nav-sidebar li').removeClass('active');
                 if (has) {
@@ -225,7 +230,7 @@
         $('.nav-sidebar > li > .dropdown_nav > li > .doc-link .icon').each(
             function () {
                 let $this = $(this);
-                $this.on('click', function (e) {
+                $(document).on('click', $this, function (e) {
                     $this.parent().parent().toggleClass('active');
                 });
             }
@@ -243,7 +248,7 @@
         });
 
         /**
-         * Doc Menu
+         * TOC Menu
          */
         $('.doc_menu a[href^="#"]:not([href="#"]').on(
             'click',
@@ -267,7 +272,7 @@
         if ($('.doc_documentation_area').length > 0) {
             //switcher
             var switchs = true;
-            $('#right').on('click', function (e) {
+            $(document).on('click', '#right', function (e) {
                 e.preventDefault();
                 if (switchs) {
                     $('.doc_documentation_area').addClass('overlay');
@@ -290,7 +295,7 @@
                 }
             });
 
-            $('#left').on('click', function (e) {
+            $(document).on('click', '#left', function (e) {
                 e.preventDefault();
                 if (switchs) {
                     $('.doc_documentation_area').addClass('overlay');
@@ -319,11 +324,11 @@
         }
 
         // Mobile menu on the Doc single page
-        $('.single-docs .mobile_menu_btn').on('click', function () {
+        $(document).on('click', '.single-docs .mobile_menu_btn', function () {
             $('body').removeClass('menu-is-closed').addClass('menu-is-opened');
         });
 
-        $('.single-docs .close_nav').on('click', function (e) {
+        $(document).on('click', '.single-docs .close_nav', function (e) {
             if ($('.side_menu').hasClass('menu-opened')) {
                 $('.side_menu').removeClass('menu-opened');
                 $('body').removeClass('menu-is-opened');
@@ -332,7 +337,9 @@
             }
         });
 
-        // Filter doc chapters
+        /**
+         * Filter doc menu items on the left sidebar
+         **/
         if ($('#doc_filter').length) {
             $('#doc_filter').keyup(function () {
                 var value = $(this).val().toLowerCase();
@@ -366,11 +373,13 @@
                 });
         }
 
-        // Collapse left sidebar
+        /**
+         * Collapse left sidebar
+         **/
         function docLeftSidebarToggle() {
             let left_column = $('.doc_mobile_menu');
             let middle_column = $('.doc-middle-content');
-            $('.left-sidebar-toggle .left-arrow').on('click', function () {
+            $(document).on('click', '.left-sidebar-toggle .left-arrow', function () {
                 $('.doc_mobile_menu').hide(500);
 
                 if (middle_column.hasClass('ezd-xl-col-7')) {
@@ -387,7 +396,7 @@
                 $('.left-sidebar-toggle .right-arrow').show(500);
             });
 
-            $('.left-sidebar-toggle .right-arrow').on('click', function () {
+            $(document).on('click', '.left-sidebar-toggle .right-arrow', function () {
                 $('.doc_mobile_menu').show(500);
 
                 if (middle_column.hasClass('ezd-xl-col-10')) {
@@ -407,66 +416,16 @@
 
         docLeftSidebarToggle();
 
-        //*=============menu sticky js =============*//
-        var $window = $(window);
-        var didScroll,
-            lastScrollTop = 0,
-            delta = 5,
-            $mainNav = $('#sticky'),
-            $mainNavHeight = $mainNav.outerHeight(),
-            scrollTop;
-
-        $window.on('scroll', function () {
-            didScroll = true;
-            scrollTop = $(this).scrollTop();
-        });
-
-        setInterval(function () {
-            if (
-                didScroll &&
-                $('.navbar button.navbar-toggler.collapsed').length
-            ) {
-                hasScrolled();
-                didScroll = false;
-            }
-        }, 200);
-
-        function hasScrolled() {
-            if (Math.abs(lastScrollTop - scrollTop) <= delta) {
-                return;
-            }
-            if (scrollTop > lastScrollTop && scrollTop > $mainNavHeight) {
-                $mainNav
-                    .removeClass('fadeInDown')
-                    .addClass('fadeInUp')
-                    .css('top', -$mainNavHeight);
-                $('body').removeClass('navbar-shown').addClass('navbar-hidden');
-            } else {
-                if (scrollTop + $(window).height() < $(document).height()) {
-                    $mainNav
-                        .removeClass('fadeInUp')
-                        .addClass('fadeInDown')
-                        .css('top', 0);
-                    $('body')
-                        .removeClass('navbar-hidden')
-                        .addClass('navbar-shown');
-                }
-            }
-            lastScrollTop = scrollTop;
-        }
-
-        //*=============menu sticky js =============*//
-
         //  page scroll
         function bodyFixed() {
             var windowWidth = $(window).width();
             if ($('#sticky_doc').length) {
                 if (windowWidth > 576) {
-                    var tops = $('#sticky_doc');
-                    var leftOffset = tops.offset().top;
+                    let tops = $('#sticky_doc');
+                    let leftOffset = tops.offset().top;
 
                     $(window).on('scroll', function () {
-                        var scroll = $(window).scrollTop();
+                        let scroll = $(window).scrollTop();
                         if (scroll >= leftOffset) {
                             tops.addClass('body_fixed');
                         } else {
@@ -517,147 +476,14 @@
         bodyFixed2();
 
         /*  Menu Click js  */
-        function Menu_js() {
-            if ($('.submenu').length) {
-                $('.submenu > .dropdown-toggle').click(function () {
-                    var location = $(this).attr('href');
-                    window.location.href = location;
-                    return false;
-                });
-            }
+        if ($('.submenu').length) {
+            $('.submenu > .dropdown-toggle').click(function () {
+                var location = $(this).attr('href');
+                window.location.href = location;
+                return false;
+            });
         }
 
-        Menu_js();
-
-        /**
-         * Load Doc single page via ajax
-         */
-        if (eazydocs_local_object.is_doc_ajax == '1') {
-            $(document).on(
-                'click',
-                '.single-docs .nav-sidebar .nav-item .dropdown_nav li a',
-                function (e) {
-                    e.preventDefault();
-                    let self = $(this);
-                    let title = self.text();
-                    let postid = $(this).attr('data-postid');
-
-                    function changeurl(page_title) {
-                        let new_url = self.attr('href');
-                        window.history.pushState('data', 'Title', new_url);
-                        document.title = page_title;
-                    }
-
-                    $.ajax({
-                        url: eazydocs_local_object.ajaxurl,
-                        method: 'post',
-                        data: {
-                            action: 'docs_single_content',
-                            postid: postid,
-                        },
-                        beforeSend: function () {
-                            $('#reading-progress-fill').css({
-                                width: '100%',
-                                display: 'block',
-                            });
-                        },
-                        success: function (response) {
-                            $('#reading-progress-fill').css({
-                                display: 'none',
-                            });
-                            $('.doc-middle-content').html(response);
-                            changeurl(title);
-                            $('.nav-sidebar .nav-item').removeClass(
-                                'current_page_item'
-                            );
-
-                            $(
-                                '.nav-sidebar .nav-item .dropdown_nav li a'
-                            ).removeClass('active');
-                            if (!self.parent().parent().hasClass('has_child')) {
-                                self.addClass('active');
-                                self.parent().addClass('current_page_item');
-                            } else if (
-                                self.parent().parent().hasClass('has_child')
-                            ) {
-                                self.parent()
-                                    .parent()
-                                    .addClass('current_page_item');
-                            }
-
-                            // Toc
-                            $('#eazydocs-toc').empty();
-                            Toc.init({
-                                $nav: $('#eazydocs-toc'),
-                                $scope: $('.doc-scrollable'),
-                            });
-                            docLeftSidebarToggle();
-                        },
-                        error: function () {
-                            console.log('Oops! Something wrong, try again!');
-                        },
-                    });
-                }
-            );
-
-            $(document).on(
-                'click',
-                '.single-docs .nav-sidebar .nav-item .nav-link',
-                function (e) {
-                    e.preventDefault();
-                    let self = $(this);
-                    let title = self.text();
-                    let postid = $(this).attr('data-postid');
-
-                    function changeurl(page_title) {
-                        let new_url = self.attr('href');
-                        window.history.pushState('data', 'Title', new_url);
-                        document.title = page_title;
-                    }
-
-                    $.ajax({
-                        url: eazydocs_local_object.ajaxurl,
-                        method: 'post',
-                        data: {
-                            action: 'docs_single_content',
-                            postid: postid,
-                        },
-                        beforeSend: function () {
-                            $('#reading-progress-fill').css({
-                                width: '100%',
-                                display: 'block',
-                            });
-                        },
-                        success: function (response) {
-                            active_dropdown(true);
-                            $('#reading-progress-fill').css({
-                                display: 'none',
-                            });
-                            $('.doc-middle-content').html(response);
-                            changeurl(title);
-                            $('.nav-sidebar .nav-item').removeClass(
-                                'current_page_item'
-                            );
-                            self.addClass('active');
-                            self.parent()
-                                .parent()
-                                .addClass('current_page_item');
-
-                            docLeftSidebarToggle();
-                            // Toc
-                            $('#eazydocs-toc').empty();
-                            Toc.init({
-                                $nav: $('#eazydocs-toc'),
-                                $scope: $('.doc-scrollable'),
-                            });
-                        },
-                        error: function () {
-                            console.log('Oops! Something wrong, try again!');
-                        },
-                    });
-                }
-            );
-        }
 
         /*------------ Cookie functions and color js ------------*/
         function createCookie(name, value, days) {
@@ -686,6 +512,10 @@
             createCookie(name, '', -1);
         }
 
+        /**
+         * Dark mode switcher
+         * @type {boolean}
+         */
         let prefersDark =
             window.matchMedia &&
             window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -728,7 +558,7 @@
 
         // CONTRIBUTOR SEARCH
         $('#ezd-contributor-search').on('keyup', function () {
-            var value = $(this).val().toLowerCase();
+            let value = $(this).val().toLowerCase();
             $('.users_wrap_item').filter(function () {
                 $(this).toggle(
                     $(this).text().toLowerCase().indexOf(value) > -1
@@ -736,24 +566,13 @@
             });
         });
 
-        // Anchor JS scroll
-        var urlHash = window.location.href.split('#')[1];
-        if (urlHash) {
-            $('html,body').animate(
-                {
-                    scrollTop: $('#' + urlHash).offset().top,
-                },
-                30
-            );
-        }
-
         // Font size switcher
         if ($('#rvfs-controllers button').length) {
             var $speech = $(
                 '#post p, #post ul li:not(.process_tab_shortcode ul li), #post ol li, #post table:not(.basic_table_info,.table-dark), #post table tr td, #post .tab-content'
             );
             var $defaultSize = $speech.css('fontSize');
-            $('#rvfs-controllers button').click(function () {
+            $(document).on('click', '#rvfs-controllers button', function () {
                 var num = parseFloat($speech.css('fontSize'));
                 switch (this.id) {
                     case 'switcher-large':

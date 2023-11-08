@@ -216,14 +216,6 @@
   }
 }
 
-.list-unstyled {
-  list-style: none !important;
-}
-
-.ezd-tab-content{
-  display: block;
-}
-
 .ezd-custom-container.ezd-container {
   width: 100%;
   @media (min-width: 1300px) {
@@ -246,8 +238,16 @@
   }
 }
 
-.container-fluid {
-
+.ezd-container-fluid {
+  width: auto;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+  @media ( max-width: 991px ) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .eazydocs_shortcode .ezd-container, .ezd-container {
@@ -259,7 +259,8 @@
   }
 }
 
-.modal {
+/** === Modal === **/
+.ezd-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -272,24 +273,27 @@
   outline: 0;
 }
 
-.modal-dialog {
+.ezd-modal-dialog {
   position: relative;
   width: auto;
   margin: 0.5rem;
   pointer-events: none;
 }
 
-.modal-content {
+.ezd-modal-content {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 0.3rem;
   outline: 0;
+  .shortcode_title {
+    .title {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .modal.is-visible {
@@ -297,7 +301,7 @@
   display: block;
 }
 
-.modal-overlay {
+.ezd-modal-overlay {
   position: fixed;
   z-index: 10;
   top: 0;
@@ -305,6 +309,12 @@
   width: 100%;
   height: 100%;
   transition: visibility 0s linear 0.3s, opacity 0.3s;
+}
+
+@media (min-width: 576px) {
+  .ezd-modal-dialog {
+    margin: 1.75rem auto;
+  }
 }
 
 @media (min-width: 576px) {
@@ -357,6 +367,20 @@
 .ezd-shadow-lg {
   box-shadow: 0 1rem 1.2rem rgba(0, 0, 0, .175) !important;
 }
+
+.ezd-d-none {
+  display: none;
+}
+
+.list-unstyled {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.ezd-tab-content{
+  display: block;
+}
+
 
 /** === UI Elements === **/
 .ezd-badge {

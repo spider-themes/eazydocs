@@ -30,6 +30,18 @@ function ezd_is_premium() {
 }
 
 /**
+ * Unlock the plugin with themes
+ *
+ * @return bool|void
+ */
+function ezd_unlock_themes() {
+	$current_theme = get_template();
+	if ( $current_theme == 'Docy' || $current_theme == 'Docly' || ezd_is_premium() ) {
+		return true;
+	}
+}
+
+/**
  * Check if the pro plugin and plan is active
  *
  * @return bool|void
@@ -1174,18 +1186,6 @@ function ezd_all_shortcodes( $content ) {
 	}
 
 	return $return;
-}
-
-/**
- * Unlock the plugin with themes
- *
- * @return bool|void
- */
-function eazydocs_unlock_with_themes() {
-	$current_theme = get_template();
-	if ( $current_theme == 'Docy' || $current_theme == 'docy' || $current_theme == 'Docly' || $current_theme == 'docly' || ezd_is_premium() ) {
-		return true;
-	}
 }
 
 /**

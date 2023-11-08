@@ -40,13 +40,11 @@ $children = wp_list_pages( array(
 	'depth'     => 3
 ) );
 ?>
-<section class="documentation_area_sticky doc_documentation_area onepage_doc_area fullscreen-layout"
-         id="sticky_doc">
+<section class="documentation_area_sticky doc_documentation_area onepage_doc_area fullscreen-layout" id="sticky_doc">
     <div class="overlay_bg"></div>
     <div class="ezd-container-fluid p-lg-5">
         <div class="ezd-grid ezd-grid-cols-12 doc-container">
-            <div
-                    class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top ezd-sticky-lg-top left-column">
+            <div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top ezd-sticky-lg-top left-column">
                 <aside class=" one-page-docs-sidebar-wrap">
                     <div class="open_icon" id="left">
                         <i class="arrow_carrot-right"></i>
@@ -136,9 +134,7 @@ $children = wp_list_pages( array(
 							$get_title = 'ezd-' . sanitize_title( $doc_item->post_title );
 						}
 						?>
-                        <article class="documentation_body doc-section onepage-doc-sec"
-                                 id="<?php echo sanitize_title( $get_title ) ?>" itemscope
-                                 itemtype="http://schema.org/Article">
+                        <article class="documentation_body doc-section onepage-doc-sec" id="<?php echo sanitize_title( $get_title ) ?>" itemscope itemtype="http://schema.org/Article">
 							<?php if ( ! empty( $doc_item->post_title ) ) : ?>
                                 <div class="shortcode_title doc-sec-title">
                                     <h2> <?php echo $sec_serial . '. ' . $doc_item->post_title; ?> </h2>
@@ -184,7 +180,6 @@ $children = wp_list_pages( array(
                                     </div>
                                 </div>
 								<?php
-
 								$last_depth        = get_children( array(
 									'post_parent'    => $child_section->ID,
 									'post_type'      => 'docs',
@@ -233,64 +228,14 @@ $children = wp_list_pages( array(
 					?>
                 </div>
             </div>
-            <div class="ezd-xl-col-2 ezd-lg-col-3 ezd-md-col-3 ezd-grid-column-full doc_right_mobile_menu">
-                <div class="open_icon" id="right">
-                    <i class="arrow_carrot-left"></i>
-                    <i class="arrow_carrot-right"></i>
-                </div>
-                <div class="doc_rightsidebar scroll one-page-docs-right-sidebar">
-                    <div class="pageSideSection">
-						<?php
-						/**
-						 * Conditional Dropdown
-						 */
-						eazydocs_get_template_part( 'tools/conditional-dropdown' );
 
-						/**
-						 * Font Size Switcher & Print Icon
-						 */
-						eazydocs_get_template_part( 'tools/font-switcher' );
+	        <?php
+	        /**
+             * OnePage Right Sidebar Template
+             */
+	        eazydocs_get_template_part( 'onepage/right-sidebar' );
+	        ?>
 
-						/**
-						 * Dark Mode switcher
-						 */
-						eazydocs_get_template_part( 'tools/dark-mode-switcher' );
-						?>
-
-                        <div class="onepage-sidebar doc_sidebar">
-							<?php
-							// Widgets area
-							$parent_doc_id    = get_the_ID();
-							$content_type     = get_post_meta( $parent_doc_id, 'ezd_doc_content_type_right', true );
-							$ezd_shortcode    = get_post_meta( $parent_doc_id, 'ezd_doc_content_box_right', true );
-							$is_valid_post_id = is_null( get_post( $ezd_shortcode ) ) ? 'No' : 'Yes';
-
-							if ( $content_type == 'string_data_right' && ! empty ( $ezd_shortcode ) ) {
-								echo do_shortcode( html_entity_decode( $ezd_shortcode ) );
-							} elseif ( $content_type == 'shortcode_right' ) {
-								if ( is_active_sidebar( 'doc_sidebar' ) && $widget_sidebar == 1 ) {
-									dynamic_sidebar( 'doc_sidebar' );
-								}
-							} else {
-								if ( $content_type == 'widget_data_right' && ! empty( $is_valid_post_id ) ) {
-									$wp_blocks = new WP_Query( [
-										'post_type' => 'wp_block',
-										'p'         => $ezd_shortcode
-									] );
-
-									if ( $wp_blocks->have_posts() ) {
-										while ( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
-											the_content();
-										endwhile;
-										wp_reset_postdata();
-									}
-								}
-							}
-							?>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

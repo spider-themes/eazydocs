@@ -162,7 +162,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
 			}
 
-			if ( eazydocs_unlock_with_themes() ) {
+			if ( ezd_unlock_themes() ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
 			}
 

@@ -222,6 +222,15 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.3.4 (08 December 2023) =
+- Fixed: Left sidebar arrow icon toggle not working on Ajax load
+- Fixed: Some JS was not working on the Ajax loaded content
+- New: Right sidebar template added OnePage Doc
+- Tweaked: Improved the custom framework CSS
+- Tweaked: Improved the OnePage Doc design
+- Tweaked: Deleted some unnecessary codes
+- Tweaked: Sidebar open icon made smaller on mobile device to adjust spacing with the doc content.
+
 = v2.3.3 (05 November 2023) =
 Tweaked: Full width layout improved (padding adjusted)
 Tweaked: Hover state improved on the current Doc item on the Left sidebar on the single doc page.
