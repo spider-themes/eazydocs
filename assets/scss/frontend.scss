@@ -12,6 +12,20 @@
 .eazydocs-comments-wrap {
 	padding-bottom: 100px;
 	padding-top: 60px;
+	.comments-area {
+		.comments-title {
+			margin-bottom: 20px;
+		}
+		.comment-list {
+			list-style: none;
+			margin-left: 0;
+			.comment {
+				& + .comment {
+					margin-top: 25px;
+				}
+			}
+		}
+	}
 }
 
 p .footnotes-link {

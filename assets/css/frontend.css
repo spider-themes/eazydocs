@@ -3591,6 +3591,16 @@ pre {
   padding-bottom: 100px;
   padding-top: 60px;
 }
+.eazydocs-comments-wrap .comments-area .comments-title {
+  margin-bottom: 20px;
+}
+.eazydocs-comments-wrap .comments-area .comment-list {
+  list-style: none;
+  margin-left: 0;
+}
+.eazydocs-comments-wrap .comments-area .comment-list .comment + .comment {
+  margin-top: 25px;
+}
 
 p .footnotes-link {
   color: var(--ezd_brand_color) !important;
