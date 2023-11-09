@@ -72,7 +72,10 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
-.ezd-grid-column-full {
+.ezd-grid-column-full,
+[class^=ezd-lg-col],
+[class^=ezd-md-col],
+[class^=ezd-sm-col] {
   grid-column: 1/-1;
 }
 
@@ -264,13 +267,15 @@
   }
 }
 
-.eazydocs_shortcode .ezd-container, .ezd-container {
+.eazydocs_shortcode .ezd-container,
+.ezd-container {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 @media (min-width: 1200px) {
-  .eazydocs_shortcode .ezd-container, .ezd-container {
+  .eazydocs_shortcode .ezd-container,
+  .ezd-container {
     max-width: 1200px;
   }
 }
@@ -339,6 +344,72 @@
 .ezd-d-flex {
   display: flex;
 }
+.ezd-d-flex .ezd-col-width {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.ezd-d-flex.ezd-column-1 .ezd-col-width {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.ezd-d-flex.ezd-column-2 .ezd-col-width {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+@media (max-width: 600px) {
+  .ezd-d-flex.ezd-column-2 .ezd-col-width {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.ezd-d-flex.ezd-column-3 .ezd-col-width {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+}
+@media (max-width: 991px) {
+  .ezd-d-flex.ezd-column-3 .ezd-col-width {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media (max-width: 600px) {
+  .ezd-d-flex.ezd-column-3 .ezd-col-width {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.ezd-d-flex.ezd-column-4 .ezd-col-width {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+@media (max-width: 991px) {
+  .ezd-d-flex.ezd-column-4 .ezd-col-width {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media (max-width: 600px) {
+  .ezd-d-flex.ezd-column-4 .ezd-col-width {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.ezd-d-flex.ezd-column-6 .ezd-col-width {
+  flex: 0 0 16.67%;
+  max-width: 16.67%;
+}
+@media (max-width: 991px) {
+  .ezd-d-flex.ezd-column-6 .ezd-col-width {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media (max-width: 600px) {
+  .ezd-d-flex.ezd-column-6 .ezd-col-width {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
 
 .ezd-circle {
   border-radius: 50% !important;
@@ -384,9 +455,13 @@
   display: none;
 }
 
-.list-unstyled {
+.ezd-list-unstyled {
   list-style: none !important;
-  padding-left: 0 !important;
+  padding-left: 0;
+}
+
+.ezd-shadow-lg {
+  box-shadow: 0 1rem 1.2rem rgba(0, 0, 0, 0.175) !important;
 }
 
 .ezd-tab-content {

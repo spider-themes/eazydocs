@@ -3636,7 +3636,8 @@ p .footnotes-link::after {
   padding: 0 5px 0 0;
   position: relative;
 }
-.filter_form input, .filter_form input[type=search] {
+.filter_form input,
+.filter_form input[type=search] {
   border: 1px solid var(--black_50) !important;
   width: 100%;
   padding: 3px 18px;
@@ -3649,11 +3650,13 @@ p .footnotes-link::after {
   background: var(--black_50);
   color: var(--black_800) !important;
 }
-.filter_form input:focus, .filter_form input[type=search]:focus {
+.filter_form input:focus,
+.filter_form input[type=search]:focus {
   outline: none;
   background-color: var(--black_25);
 }
-.filter_form input::placeholder, .filter_form input[type=search]::placeholder {
+.filter_form input::placeholder,
+.filter_form input[type=search]::placeholder {
   color: var(--black_400);
 }
 .filter_form .filter_no_result {
@@ -3674,7 +3677,7 @@ p .footnotes-link::after {
   text-align: left;
   z-index: 1;
   font-size: 0.95rem;
-  left: -40px;
+  margin-left: -90px;
 }
 .left-sidebar-toggle .left-arrow {
   display: block;
@@ -3707,10 +3710,6 @@ p .footnotes-link::after {
   background: var(--ezd_brand_color);
   border-color: var(--ezd_brand_color);
   padding: 3px 8px 3px 16px;
-}
-
-.ezd-col-extended .left-sidebar-toggle {
-  left: -15px;
 }
 
 .single-docs .doc_full_width .doc_rightsidebar {
@@ -3835,7 +3834,8 @@ p .footnotes-link::after {
   max-width: 100%;
   height: auto;
 }
-.doc-scrollable ul, .doc-scrollable ol {
+.doc-scrollable ul,
+.doc-scrollable ol {
   padding-left: 20px;
   margin: 10px 0;
 }
@@ -3914,7 +3914,8 @@ body:not(.woocommerce-page) button:not([class^=fl-]):not(.hestia-scroll-to-top):
 
 /** === Popular Themes Support === **/
 body.single-docs .container.grid-container,
-body.single-docs .site-content, body.single-docs .col-full,
+body.single-docs .site-content,
+body.single-docs .col-full,
 body.single-docs #main .fusion-row,
 body.single-docs .site-content .ast-container {
   display: block;

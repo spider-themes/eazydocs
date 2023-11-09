@@ -1,7 +1,7 @@
 <section class="h_doc_documentation_area" id="Arrow_slides-<?php echo esc_attr( $this->get_id() ) ?>">
     <div class="tabs_sliders">
         <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>
-        <ul class="nav nav-tabs documentation_tab ezd-tab-menu slide_nav_tabs list-unstyled">
+        <ul class="nav nav-tabs documentation_tab ezd-tab-menu slide_nav_tabs ezd-list-unstyled">
             <?php
 			$slug_type = $settings['docs_slug_format'] ?? '';
 			$widget_id = $this->get_id();

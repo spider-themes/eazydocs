@@ -1,7 +1,7 @@
 <div class=" docs4">
     <div id="bookchapter" class="doc4-nav-bar">
         <div class="container">
-            <ul id="bcNav" class="book-chapter-nav list-unstyled">
+            <ul id="bcNav" class="book-chapter-nav ezd-list-unstyled">
                 <?php
 			$slug_type = $settings['docs_slug_format'] ?? '';
 			$widget_id = $this->get_id();

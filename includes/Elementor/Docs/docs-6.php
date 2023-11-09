@@ -16,7 +16,7 @@
                 </a>
                 <p class="ezd_item_content"><?php ezd_widget_excerpt( $doc_id, 15 ); ?></p>
                 <div class="doc_entry_info">
-                    <ul class="list-unstyled author_avatar">
+                    <ul class="ezd-list-unstyled author_avatar">
                         <?php
                             $docs = new WP_Query(array(
                                 'post_type'     => 'docs',

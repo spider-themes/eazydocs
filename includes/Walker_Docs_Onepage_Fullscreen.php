@@ -33,7 +33,7 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat("\t", $depth);
-		$output .= "$indent<ul class='list-unstyled dropdown_nav'>\n";
+		$output .= "$indent<ul class='ezd-list-unstyled dropdown_nav'>\n";
 
 		if ( $args['has_children'] && $depth == 0 ) {
 			$classes = isset($parent_item->ID) ? array( 'page_item', 'extra-class', 'page-item-' . self::$parent_item->ID ) : '';

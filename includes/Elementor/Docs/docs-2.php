@@ -1,7 +1,7 @@
 <section class="doc_tag_area" id="Arrow_slides-<?php echo esc_attr( $this->get_id() ) ?>">
     <div class="tabs_sliders">
         <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>
-        <ul class="nav nav-tabs doc_tag ezd-tab-menu slide_nav_tabs list-unstyled">
+        <ul class="nav nav-tabs doc_tag ezd-tab-menu slide_nav_tabs ezd-list-unstyled">
             <?php
 			$slug_type = $settings['docs_slug_format'] ?? '';
 			$widget_id = $this->get_id();
@@ -119,7 +119,7 @@
 										'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
 									) );
 									if ( ! empty( $doc_items ) ) : ?>
-                        <ul class="list-unstyled tag_list">
+                        <ul class="ezd-list-unstyled tag_list">
                             <?php
 											foreach ( $doc_items as $doc_item ) :
 												?>

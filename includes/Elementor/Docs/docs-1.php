@@ -84,7 +84,7 @@ if ( ezd_is_premium() ) {
             <?php
 					if ( $sections ) :
 						?>
-            <ul class="list-unstyled article_list">
+            <ul class="ezd-list-unstyled article_list">
                 <?php
 							foreach ( $sections as $section ) :
 								?>

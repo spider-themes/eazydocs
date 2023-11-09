@@ -36,7 +36,7 @@ $title_tag = ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
 			endif;
 
 			if ( ! empty( $doc_items ) ) : ?>
-        <ul class="navbar-nav list-unstyled">
+        <ul class="navbar-nav ezd-list-unstyled">
             <?php
 					foreach ( $doc_items as $doc_item ) :
 						?>
