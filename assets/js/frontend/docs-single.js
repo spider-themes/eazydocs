@@ -400,11 +400,11 @@
 
 					if (middle_column.hasClass('ezd-xl-col-10')) {
 						$('.doc-middle-content')
-							.removeClass('ezd-xl-col-10')
+							.removeClass('ezd-xl-col-10 ezd-col-extended')
 							.addClass('ezd-xl-col-7');
 					} else if (middle_column.hasClass('ezd-xl-col-8')) {
 						$('.doc-middle-content')
-							.removeClass('ezd-xl-col-10')
+							.removeClass('ezd-xl-col-10 ezd-col-extended')
 							.addClass('ezd-xl-col-8');
 					}
 
@@ -418,7 +418,9 @@
 
 		//  page scroll
 		function bodyFixed() {
-			var windowWidth = $(window).width();
+			let windowWidth = $(window).width();
+			let middle_column = $('.doc-middle-content');
+			
 			if ($('#sticky_doc').length) {
 				if (windowWidth > 576) {
 					let tops = $('#sticky_doc');
