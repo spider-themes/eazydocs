@@ -15,55 +15,58 @@
 				<?php endif; ?>
             </div>
 		<?php endif; ?>
-        <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
-			<?php
-			$delay = 0.2;
-			foreach ( $sections as $section ) :
-				$doc_items = get_children( array(
-					'post_parent'    => $section->ID,
-					'post_type'      => 'docs',
-					'post_status'    => 'publish',
-					'orderby'        => 'menu_order',
-					'order'          => 'ASC',
-					'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-				) );
-				?>
-                <div class="recommended_item box-item wow fadeInUp" data-wow-delay="<?php echo esc_attr( $delay ) ?>s">
-					<?php
-					if ( has_post_thumbnail( $section->ID ) ) {
-						echo get_the_post_thumbnail( $section->ID, 'full' );
-					}
+        <div class="ezd-container">
+            <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
+		        <?php
+		        $delay = 0.2;
+		        foreach ( $sections as $section ) :
+			        $doc_items = get_children( array(
+				        'post_parent'    => $section->ID,
+				        'post_type'      => 'docs',
+				        'post_status'    => 'publish',
+				        'orderby'        => 'menu_order',
+				        'order'          => 'ASC',
+				        'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
+			        ) );
+			        ?>
+                    <div class="recommended_item box-item wow fadeInUp" data-wow-delay="<?php echo esc_attr( $delay ) ?>s">
+				        <?php
+				        if ( has_post_thumbnail( $section->ID ) ) {
+					        echo get_the_post_thumbnail( $section->ID, 'full' );
+				        }
 
-					if ( ! empty( $section->post_title ) ) { ?>
-                        <a href="<?php echo get_permalink( $section->ID ); ?>">
-                            <h3 class="ct-heading-text"> <?php echo wp_kses_post( $section->post_title ); ?> </h3>
-                        </a>
-						<?php
-					}
+				        if ( ! empty( $section->post_title ) ) { ?>
+                            <a href="<?php echo get_permalink( $section->ID ); ?>">
+                                <h3 class="ct-heading-text"> <?php echo wp_kses_post( $section->post_title ); ?> </h3>
+                            </a>
+					        <?php
+				        }
 
-					if ( ! empty( $doc_items ) ) : ?>
-                        <ul class="list-unstyled">
-							<?php
-							foreach ( $doc_items as $doc_item ) :
-								?>
-                                <li>
-                                    <a class="ct-content-text" href="<?php echo get_permalink( $doc_item->ID ) ?>">
-										<?php echo wp_kses_post( $doc_item->post_title ) ?>
-                                    </a>
-                                </li>
-							<?php
-							endforeach;
-							?>
-                        </ul>
-					<?php
-					endif;
-					?>
-                </div>
-				<?php
-				$delay = $delay + 0.1;
-			endforeach;
-			?>
+				        if ( ! empty( $doc_items ) ) : ?>
+                            <ul class="list-unstyled">
+						        <?php
+						        foreach ( $doc_items as $doc_item ) :
+							        ?>
+                                    <li>
+                                        <a class="ct-content-text" href="<?php echo get_permalink( $doc_item->ID ) ?>">
+									        <?php echo wp_kses_post( $doc_item->post_title ) ?>
+                                        </a>
+                                    </li>
+						        <?php
+						        endforeach;
+						        ?>
+                            </ul>
+				        <?php
+				        endif;
+				        ?>
+                    </div>
+			        <?php
+			        $delay = $delay + 0.1;
+		        endforeach;
+		        ?>
+            </div>
         </div>
+
 		<?php
 		if ( $settings['section_btn'] == 'yes' && ! empty( $settings['section_btn_txt'] ) ) : ?>
             <div class="text-center wow fadeInUp" data-wow-delay="0.2s">
