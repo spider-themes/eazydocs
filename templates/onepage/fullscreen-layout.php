@@ -46,7 +46,7 @@ $children = wp_list_pages( array(
         <div class="ezd-grid ezd-grid-cols-12 doc-container">
             <div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top ezd-sticky-lg-top left-column">
                 <aside class=" one-page-docs-sidebar-wrap">
-                    <div class="open_icon" id="left">
+                    <div class="open_icon" id="mobile-left-toggle">
                         <i class="arrow_carrot-right"></i>
                         <i class="arrow_carrot-left"></i>
                     </div>

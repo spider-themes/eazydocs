@@ -94,8 +94,10 @@
 .fullscreen-layout nav.scroll.op-docs-sidebar {
   margin-left: -5px;
 }
-.fullscreen-layout #post .doc-section {
-  padding-top: 100px;
+@media (min-width: 991px) {
+  .fullscreen-layout #post .doc-section {
+    padding-top: 100px;
+  }
 }
 .fullscreen-layout .nav-sidebar.one-page-doc-nav-wrap .nav-item a {
   padding: 12px 15px;
@@ -367,14 +369,6 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   border-color: #B11D8A;
   color: #fff;
   background: transparent;
-}
-
-.open_icon#right {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  right: 0;
-  left: auto;
-  z-index: 9;
 }
 
 .fullscreen-layout.onepage_doc_area .middle-content {

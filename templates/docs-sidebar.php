@@ -44,7 +44,7 @@ if ( $credit_enable == '1' ) {
 
 <div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu left-column ezd-sticky-lg-top">
     <aside class="doc_left_sidebarlist <?php echo esc_attr( $credit_text_wrap .' '. $nav_sidebar_active ); ?>">
-        <div class="open_icon" id="left">
+        <div class="open_icon" id="mobile-left-toggle">
             <i class="arrow_carrot-right"></i>
             <i class="arrow_carrot-left"></i>
         </div>

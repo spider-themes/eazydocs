@@ -861,12 +861,12 @@ body {
     color: #fff;
   }
 
-  &#right {
+  &#mobile-right-toggle {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
   }
 
-  &#left {
+  &#mobile-left-toggle {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
@@ -1208,11 +1208,11 @@ body {
   .left-column {
     .doc_left_sidebarlist,
     .single-docs .doc_rightsidebar {
-      margin-top: 90px;
+      margin-top: 15px;
     }
   }
   .doc-middle-content {
-    margin-top: 30px;
+    margin-top: 40px;
   }
 }
 

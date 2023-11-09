@@ -30,7 +30,7 @@
 		if ($('.doc_documentation_area.fullscreen-layout').length > 0) {
 			//switcher
 			var switchs = true;
-			$('#right').on('click', function (e) {
+			$('#mobile-right-toggle').on('click', function (e) {
 				e.preventDefault();
 				if (switchs) {
 					$('.doc_documentation_area.fullscreen-layout').addClass(
@@ -61,7 +61,7 @@
 				}
 			});
 
-			$('#left').on('click', function (e) {
+			$('#mobile-left-toggle').on('click', function (e) {
 				e.preventDefault();
 				if (switchs) {
 					$('.doc_documentation_area.fullscreen-layout').addClass(

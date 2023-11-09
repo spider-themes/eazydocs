@@ -272,7 +272,7 @@
         if ($('.doc_documentation_area').length > 0) {
             //switcher
             var switchs = true;
-            $(document).on('click', '#right', function (e) {
+            $(document).on('click', '#mobile-right-toggle', function (e) {
                 e.preventDefault();
                 if (switchs) {
                     $('.doc_documentation_area').addClass('overlay');
@@ -295,7 +295,7 @@
                 }
             });
 
-            $(document).on('click', '#left', function (e) {
+            $(document).on('click', '#mobile-left-toggle', function (e) {
                 e.preventDefault();
                 if (switchs) {
                     $('.doc_documentation_area').addClass('overlay');

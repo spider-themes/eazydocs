@@ -6,11 +6,12 @@ $sticky_class = $layout == 'classic-onepage-layout' ? 'ezd-sticky-lg-top' : '';
 ?>
 
 <div class="ezd-xl-col-2 ezd-lg-col-3 ezd-grid-column-full doc_right_mobile_menu sticky-top <?php echo esc_attr($sticky_class) ?>">
-    <div class="open_icon" id="right">
-        <i class="arrow_carrot-left"></i>
-        <i class="arrow_carrot-right"></i>
-    </div>
+
     <div class="doc_rightsidebar scroll one-page-docs-right-sidebar">
+        <div class="open_icon" id="mobile-right-toggle">
+            <i class="arrow_carrot-left"></i>
+            <i class="arrow_carrot-right"></i>
+        </div>
         <div class="pageSideSection">
 			<?php
 			/**

@@ -1323,11 +1323,11 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   background: var(--ezd_brand_color);
   color: #fff;
 }
-.open_icon#right {
+.open_icon#mobile-right-toggle {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.open_icon#left {
+.open_icon#mobile-left-toggle {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
@@ -1587,10 +1587,10 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 @media (max-width: 991px) {
   .left-column .doc_left_sidebarlist,
   .left-column .single-docs .doc_rightsidebar {
-    margin-top: 90px;
+    margin-top: 15px;
   }
   .doc-middle-content {
-    margin-top: 30px;
+    margin-top: 40px;
   }
 }
 .toc_auto_numbering ul {

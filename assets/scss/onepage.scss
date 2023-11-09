@@ -136,9 +136,10 @@ $breakpoint-lg: 991px;
     margin-left: -5px;
   }
 
-
-  #post .doc-section {
-    padding-top: 100px;
+  @media ( min-width: 991px ) {
+    #post .doc-section {
+      padding-top: 100px;
+    }
   }
 
   .nav-sidebar.one-page-doc-nav-wrap .nav-item a {
@@ -531,14 +532,6 @@ body {
       }
     }
   }
-}
-
-.open_icon#right {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  right: 0;
-  left: auto;
-  z-index: 9;
 }
 
 .fullscreen-layout {
