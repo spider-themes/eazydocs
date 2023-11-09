@@ -1226,6 +1226,9 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
   z-index: 1;
   padding: 100px 0;
 }
+.recommended_topic_inner .recommended_item .ct-heading-text {
+  margin-bottom: 25px;
+}
 
 .doc_shap_one,
 .doc_round {
@@ -1299,6 +1302,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 .recommended_item ul {
   margin-left: 0;
   margin-bottom: 0;
+  padding-left: 0;
 }
 .recommended_item ul li {
   padding-left: 20px;
