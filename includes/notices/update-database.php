@@ -2,12 +2,12 @@
 // add button for create table
 if ( isset( $_GET['eazydocs_table_create'] ) ) {
 
-	add_action( 'admin_init', "eazydocs_create_analytics_db" );
+	add_action( 'admin_init', "ezd_analytics_db_update_success_notice" );
 
 	/**
-	 * Create eazydocs_search_keyword table and eazydocs_search_log table
+	 * Show notice after database created
 	 */
-	function eazydocs_create_analytics_db() {
+	function ezd_analytics_db_update_success_notice() {
 		global $wpdb;
 		$charset_collate = $wpdb->get_charset_collate();
 		$search_keyword  = $wpdb->prefix . 'eazydocs_search_keyword';
@@ -42,9 +42,9 @@ if ( isset( $_GET['eazydocs_table_create'] ) ) {
 		dbDelta( $sql2 );
 		dbDelta( $sql3 );
 
-		// if table created then eazydocs_database_not_found notice will be removed and return true
+		// if table created then database_not_found notice will be removed and return true
 		if ( $sql && $sql2 && $sql3 ) {
-			remove_action( 'admin_notices', 'eazydocs_database_not_found' );
+			remove_action( 'admin_notices', 'database_not_found' );
 		}
 
 		$url = admin_url( 'admin.php?page=ezd-analytics' );
@@ -53,9 +53,9 @@ if ( isset( $_GET['eazydocs_table_create'] ) ) {
 
 	?>
     <div class="notice notice-success is-dismissible">
-        <p> <?php _e( 'EazyDocs database updated successfully.', 'eazydocs' ); ?> </p>
+        <p> <?php esc_html_e( 'EazyDocs database updated successfully.', 'eazydocs' ); ?> </p>
     </div>
-    <!-- after eazydocs_table_create done then remove eazydocs_database_not_found notice in php -->
+    <!-- after eazydocs_table_create done then remove database_not_found notice in php -->
     <script>
         jQuery(document).ready(function ($) {
             $('.eazydocs_table_error').remove();

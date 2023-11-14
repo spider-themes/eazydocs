@@ -545,7 +545,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'keywords_label',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Keywords Label', 'eazydocs' ),
-			'default'    => esc_html__( 'Popular Searches', 'eazydocs' ),
+			'default'    => esc_html__( 'Popular Searches:', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'is_keywords', '==', 'true' ),

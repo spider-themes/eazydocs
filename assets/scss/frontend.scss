@@ -157,6 +157,9 @@ p .footnotes-link::after {
 	.pageSideSection {
 		padding-left: 25px;
 	}
+	.toc_right .nav-link.active::before {
+		left: -25px;
+	}
 }
 
 .opened .open_icon {

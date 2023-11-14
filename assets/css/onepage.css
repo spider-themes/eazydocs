@@ -91,7 +91,7 @@
 }
 
 /** === Fullscreen layout === **/
-.fullscreen-layout nav.scroll.op-docs-sidebar {
+.fullscreen-layout nav.ezd-scroll.op-docs-sidebar {
   margin-left: -5px;
 }
 @media (min-width: 991px) {

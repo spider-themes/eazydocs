@@ -5,7 +5,7 @@
  * Plugin URI: https://spider-themes.net/eazydocs
  * Author: spider-themes
  * Author URI: https://spider-themes.net/eazydocs
- * Version: 2.3.3
+ * Version: 2.3.4
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -81,7 +81,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 	class EazyDocs {
 
 		// Default constants
-		const version = '2.2.4';
+		const version = '2.3.4';
 		public $plugin_path;
 		public $theme_dir_path;
 		public static $dir = '';
@@ -102,8 +102,8 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'i18n' ] );
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
-			if ( eaz_fs()->is_plan('promax') ) {
-				add_action( 'admin_notices', [ $this, 'eazydocs_database_not_found' ] );
+			if ( eaz_fs()->is_plan( 'promax' ) ) {
+				add_action( 'admin_notices', [ $this, 'database_not_found' ] );
 			}
 		}
 
@@ -138,11 +138,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 */
 		public function core_includes() {
 			require_once __DIR__ . '/includes/functions.php';
-            // Notices
+			// Notices
 			require_once __DIR__ . '/includes/notices/deactivate-other-doc-plugins.php';
-            require_once __DIR__ . '/includes/notices/asking-for-review.php';
+			require_once __DIR__ . '/includes/notices/asking-for-review.php';
 
-			if ( eaz_fs()->is_plan('promax') ) {
+			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				require_once __DIR__ . '/includes/notices/update-database.php';
 			}
 
@@ -160,7 +160,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// Options
 			require_once __DIR__ . '/vendor/csf/classes/setup.class.php';
 			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
-			
+
 			if ( ezd_is_premium() ) {
 				require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
 			}
@@ -169,7 +169,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
 			}
 
-            // Blocks
+			// Blocks
 			require_once __DIR__ . '/blocks.php';
 		}
 
@@ -189,6 +189,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 		/**
 		 * Initializes a singleton instances
+		 *
 		 * @return void
 		 */
 		public static function init() {
@@ -202,6 +203,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 		/**
 		 * Initializes the plugin based on the locations
+		 *
 		 * @return void
 		 */
 		public function init_plugin() {
@@ -213,7 +215,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Admin\Assets();
 				new eazyDocs\One_Page();
 				new eazyDocs\Edit_OnePage();
-			} elseif ( !is_admin() ) {
+			} elseif ( ! is_admin() ) {
 				new eazyDocs\Frontend\Frontend();
 				new eazyDocs\Frontend\Assets();
 				new eazyDocs\Frontend\Shortcode();
@@ -237,7 +239,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			update_option( 'EazyDocs_version', EAZYDOCS_VERSION );
 
 			// Insert the documentation page into the database if not exists
-			if ( ! ezd_get_page_by_title('Documentation') ) {
+			if ( ! ezd_get_page_by_title( 'Documentation' ) ) {
 				// Create page object
 				$docs_page = [
 					'post_title'   => wp_strip_all_tags( 'Documentation' ),
@@ -248,74 +250,85 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				];
 				wp_insert_post( $docs_page );
 			}
-			// Insert easydocs search key table and search key logs table into the database if not exists
+
+            if ( eaz_fs()->is_plan( 'promax' ) ) {
+	            $this->create_analytics_db_tables();
+            }
+		}
+
+		/**
+		 * Create database table if not exists
+		 * Insert search keywords table and search key logs table into the database if not exists
+		 */
+		public function create_analytics_db_tables() {
 			global $wpdb;
 
-			$charset_collate 	= $wpdb->get_charset_collate();
-			$search_keyword      = $wpdb->prefix . 'eazydocs_search_keyword';
-			$search_logs     	= $wpdb->prefix . 'eazydocs_search_log';
-			$view_logs 			= $wpdb->prefix . 'eazydocs_view_log';
+			$charset_collate = $wpdb->get_charset_collate();
+			$search_keyword  = $wpdb->prefix . 'eazydocs_search_keyword';
+			$search_logs     = $wpdb->prefix . 'eazydocs_search_log';
+			$view_logs       = $wpdb->prefix . 'eazydocs_view_log';
 
-			$sql = "CREATE TABLE $search_keyword (
-				id bigint(9) NOT NULL AUTO_INCREMENT,
-				keyword varchar(255) NOT NULL,
-				UNIQUE KEY id (id)
-			) $charset_collate;";
+			// Use table names directly in SQL since these are not user inputs
+			$sql = "CREATE TABLE {$search_keyword} (
+                id bigint(9) NOT NULL AUTO_INCREMENT,
+                keyword varchar(255) NOT NULL,
+                UNIQUE KEY id (id)
+            ) {$charset_collate};";
 
-			$sql2 = "CREATE TABLE $search_logs (
-				id bigint(9) NOT NULL AUTO_INCREMENT,
-				keyword_id bigint(255) NOT NULL references $search_keyword(id), 
-				count mediumint(255) NOT NULL,
-				not_found_count mediumint(9) NOT NULL,
-				created_at datetime NOT NULL,
-				UNIQUE KEY id (id)
-			) $charset_collate;";
+			$sql2 = "CREATE TABLE {$search_logs} (
+                id bigint(9) NOT NULL AUTO_INCREMENT,
+                keyword_id bigint(255) NOT NULL references {$search_keyword}(id), 
+                count mediumint(255) NOT NULL,
+                not_found_count mediumint(9) NOT NULL,
+                created_at datetime NOT NULL,
+                UNIQUE KEY id (id)
+            ) {$charset_collate};";
 
-			$sql3 = "CREATE TABLE $view_logs (
-				id bigint(9) NOT NULL AUTO_INCREMENT,
-				post_id bigint(255) NOT NULL,
-				count mediumint(255) NOT NULL,
-				created_at datetime NOT NULL,
-				UNIQUE KEY id (id)
-			) $charset_collate;";
+			$sql3 = "CREATE TABLE {$view_logs} (
+                id bigint(9) NOT NULL AUTO_INCREMENT,
+                post_id bigint(255) NOT NULL,
+                count mediumint(255) NOT NULL,
+                created_at datetime NOT NULL,
+                UNIQUE KEY id (id)
+            ) {$charset_collate};";
 
 			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 			dbDelta( $sql );
 			dbDelta( $sql2 );
 			dbDelta( $sql3 );
 
-			// Check table exists or not if not then create it
-			$eazydocs_search_keyword = $wpdb->get_var( "SHOW TABLES LIKE '$search_keyword'" );
-			$eazydocs_search_log     = $wpdb->get_var( "SHOW TABLES LIKE '$search_logs'" );
-			$eazydocs_view_log     = $wpdb->get_var( "SHOW TABLES LIKE '$view_logs'" );
-
-			if ( $eazydocs_search_keyword !== $search_keyword || $eazydocs_search_log !== $search_logs || $eazydocs_view_log !== $view_logs ) {
+			// Check table exists using WordPress functions instead of raw SQL
+			if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $search_keyword ) ) !== $search_keyword
+			     || $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $search_logs ) ) !== $search_logs
+			     || $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $view_logs ) ) !== $view_logs
+			) {
 				// Send notification to user
-				$this->eazydocs_database_not_found();
+				$this->database_not_found();
 			}
 		}
 
 		/**
 		 * Database not found
 		 */
-		function eazydocs_database_not_found() {
+		function database_not_found() {
 			global $wpdb;
-			$table_name  = $wpdb->prefix . 'eazydocs_search_keyword';
+			$table_name = $wpdb->prefix . 'eazydocs_search_keyword';
 			$table_name2 = $wpdb->prefix . 'eazydocs_search_log';
 			$table_name3 = $wpdb->prefix . 'eazydocs_view_log';
-		
-			if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name
-				 || $wpdb->get_var( "SHOW TABLES LIKE '$table_name2'" ) != $table_name2
-				 || $wpdb->get_var( "SHOW TABLES LIKE '$table_name3'" ) != $table_name3
+
+			// Use $wpdb->prepare to safely include table names in SQL queries
+			if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) != $table_name
+			     || $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name2 ) ) != $table_name2
+			     || $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name3 ) ) != $table_name3
 			) {
 				?>
-				<div class="notice notice-error is-dismissible eazydocs_table_error">
-					<p><?php esc_html_e( 'EazyDocs database need an update. Please click Update button to update your database.', 'eazydocs' ); ?></p>
-					<form method="get">
-						<input type="hidden" name="eazydocs_table_create" value="1">
-						<input type="submit" class="button button-primary" value="<?php esc_html_e( 'Update Database', 'eazydocs' ) ?>">
-					</form>
-				</div>
+                <div class="notice notice-error is-dismissible eazydocs_table_error">
+                    <p><?php esc_html_e( 'EazyDocs database needs an update. Please click the Update button to update your database.', 'eazydocs' ); ?></p>
+                    <form method="get">
+                        <input type="hidden" name="eazydocs_table_create" value="1">
+                        <input type="submit" class="button button-primary" value="<?php esc_html_e( 'Update Database', 'eazydocs' ); ?>">
+                    </form>
+                </div>
 				<?php
 			}
 		}

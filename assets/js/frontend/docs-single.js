@@ -306,7 +306,7 @@
 						.removeClass('opened')
 						.animate(
 							{
-								left: '-300px',
+								left: '-330px',
 							},
 							300
 						);

@@ -152,6 +152,11 @@ input[type=search]::-webkit-search-results-decoration {
 form.ezd_search_form {
   max-width: 650px;
 }
+@media (max-width: 767px) {
+  form.ezd_search_form {
+    max-width: 80%;
+  }
+}
 form.ezd_search_form .form-group {
   margin-bottom: 0;
   padding-bottom: 0;
@@ -501,16 +506,16 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   align-items: center;
   font-weight: 500;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .ezd_search_keywords span {
   font-size: 14px;
   color: #fff;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 .ezd_search_keywords ul {
-  margin-bottom: 0;
-  margin-left: 0;
+  margin: 0;
+  padding: 0;
 }
 .ezd_search_keywords ul li {
   display: inline-block;
@@ -718,14 +723,14 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .doc_left_sidebarlist.one-page-docs-sidebar-wrap img {
   max-width: 150px;
 }
-.doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
+.doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar) {
   max-height: 650px;
   overflow-y: auto;
   padding-right: 15px;
   margin-left: -10px;
 }
 @media (max-height: 630px) {
-  .doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
+  .doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar) {
     padding-bottom: 0;
     max-height: 450px;
   }
@@ -913,13 +918,13 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   margin-top: 50px;
 }
 
-.scroll::-webkit-scrollbar {
+.ezd-scroll::-webkit-scrollbar {
   width: 8px;
 }
-.scroll::-webkit-scrollbar-track {
+.ezd-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
-.scroll::-webkit-scrollbar-thumb {
+.ezd-scroll::-webkit-scrollbar-thumb {
   background: var(--black_200);
   border-radius: 30px;
 }
@@ -1349,10 +1354,6 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   display: inline-block;
 }
 
-.full-width-doc .doc_rightsidebar {
-  padding-right: 15px;
-}
-
 .single-docs .doc_rightsidebar {
   max-height: 800px;
   overflow-y: auto;
@@ -1386,7 +1387,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   background: var(--border_on_white);
   left: 0;
 }
-.doc_rightsidebar.scroll .mCSB_inside > .mCSB_container {
+.doc_rightsidebar.ezd-scroll .mCSB_inside > .mCSB_container {
   margin-right: 0;
 }
 .doc_rightsidebar h6 {
@@ -1641,17 +1642,6 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 
 /*=============== doc_documentation_full_area css =========*/
-.full-width-doc .doc_left_sidebarlist {
-  margin-right: 0;
-  padding-left: 0;
-}
-.full-width-doc.body_fixed .doc_left_sidebarlist {
-  width: 287px;
-}
-.full-width-doc .doc_rightsidebar {
-  margin-left: 0;
-}
-
 body.doc-no-banner .doc_left_sidebarlist {
   padding-top: 0;
   margin-top: 70px;
@@ -1949,30 +1939,18 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .d-items {
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 20px;
+  display: grid;
+  padding-top: 25px;
+  grid-template-columns: auto auto;
+  gap: 30px 20px;
+}
+@media (max-width: 768px) {
+  .d-items {
+    grid-template-columns: auto;
+  }
 }
 .d-items .documentation_item {
   display: flex;
-  width: 50%;
-  margin-bottom: 40px;
-}
-@media (max-width: 480px) {
-  .d-items .documentation_item {
-    width: 100%;
-  }
-}
-.d-items .documentation_item:last-child {
-  margin-bottom: 0;
-}
-.d-items .documentation_item:nth-child(even) {
-  padding-left: 30px;
-}
-@media (max-width: 480px) {
-  .d-items .documentation_item:nth-child(even) {
-    padding-left: 0;
-  }
 }
 .d-items .documentation_item .icon {
   border-radius: 50%;
@@ -2514,7 +2492,7 @@ body.rtl .contact_form .form-group textarea {
   padding-top: 10px;
   padding-right: 14px;
 }
-body.rtl .doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
+body.rtl .doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar) {
   margin-left: 27px;
 }
 body.rtl .ezd-link-copied-wrap.copied {
@@ -3728,6 +3706,9 @@ p .footnotes-link::after {
 }
 .single-docs .doc_full_width .doc_rightsidebar .pageSideSection {
   padding-left: 25px;
+}
+.single-docs .doc_full_width .doc_rightsidebar .toc_right .nav-link.active::before {
+  left: -25px;
 }
 
 .opened .open_icon i {
