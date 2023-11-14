@@ -222,17 +222,18 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.3.4 (14 November 2023) =
-- Fixed: Left sidebar arrow icon toggle not working on Ajax load
-- Fixed: Some JS was not working on the Ajax loaded content
-- New: Right sidebar template added OnePage Doc (unlocked in Docy, Docly themes and EazyDocs Premium plans)
-- Tweaked: Improved the OnePage Doc design
-- Tweaked: Improved the custom framework CSS to avoid conflict with other frameworks, themes and plugins
-- Tweaked: Deleted some unnecessary codes and files
-- Tweaked: Sidebar open icon made smaller on mobile device to adjust spacing with the doc content
-- Tweaked: Properly sanitized $wpdb queries and custom SQL queries to avoid SQL injection vulnerabilities (Thanks to the EazyDocs users for the report)
-- Tweaked: Compatibility with FSE/block themes (tested with 'Twenty Twenty-Four' and 'Twenty Twenty-Three' improved
-- Tweaked: Feedback modal UX improved (the modal will close on clicking on the modal overlay area)
+= v2.3.4 (15 November 2023) =
+Fixed: Left sidebar arrow icon toggle not working on Ajax load
+Fixed: Some JS was not working on the Ajax loaded content
+New: Right sidebar template added OnePage Doc (unlocked in Docy, Docly themes and EazyDocs Premium plans)
+Tweaked: Improved the OnePage Doc design
+Tweaked: Improved the custom framework CSS to avoid conflict with other frameworks, themes and plugins
+Tweaked: Deleted some unnecessary codes and files
+Tweaked: Sidebar open icon made smaller on mobile device to adjust spacing with the doc content
+Tweaked: Properly sanitized $wpdb queries and custom SQL queries to avoid SQL injection vulnerabilities (Thanks to the EazyDocs users for the report)
+Tweaked: Compatibility with FSE/block themes (tested with 'Twenty Twenty-Four' and 'Twenty Twenty-Three' improved
+Tweaked: Feedback modal UX improved (the modal will close on clicking on the modal overlay area)
+Updated: Freemius SDK updated to 2.6.0
 
 = v2.3.3 (05 November 2023) =
 Tweaked: Full width layout improved (padding adjusted)
