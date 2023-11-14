@@ -242,7 +242,7 @@ endif;
                 <?php
             }
 
-            the_content();
+            echo get_the_content();
             eazydocs_get_template_part( 'single-doc-home' );
             $children = ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
             if ( $children && $post->post_parent != 0 ) {

@@ -632,16 +632,16 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   display: none;
 }
 
-.single-docs h1,
-.single-docs h2,
-.single-docs h3,
-.single-docs h4,
-.single-docs h5,
-.single-docs h6 {
+.single-docs #post h1,
+.single-docs #post h2,
+.single-docs #post h3,
+.single-docs #post h4,
+.single-docs #post h5,
+.single-docs #post h6 {
   margin-top: 0;
   font-weight: 700;
 }
-.single-docs .ezd-meta {
+.single-docs #post .ezd-meta {
   color: var(--black_500);
   font-size: 15px;
   font-weight: 400;
@@ -650,7 +650,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   gap: 2px;
 }
 @media (max-width: 767px) {
-  .single-docs .ezd-meta {
+  .single-docs #post .ezd-meta {
     gap: 10px;
   }
 }
@@ -842,7 +842,6 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .nav-sidebar .nav-item .dropdown_nav {
   margin: 0;
   padding: 0 0 0 34px;
-  width: 100% !important;
   display: none;
   list-style: none;
 }
@@ -1091,7 +1090,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   font-weight: 500;
   font-size: 14px !important;
   color: var(--p_color);
-  margin-bottom: 0 !important;
+  margin: 0 !important;
 }
 @media (max-width: 767px) {
   .feedback_link p.left,
@@ -1195,6 +1194,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   border-radius: 3px;
   transition: all 0.3s;
   border: none;
+  cursor: pointer;
 }
 @media (max-width: 991px) {
   #eazydocs_feedback .close {
@@ -3596,6 +3596,7 @@ p .footnotes-link::after {
   font-size: 24px;
   font-weight: 500;
   padding-right: 10px;
+  color: var(--black_800);
 }
 
 .page-template-page-onepage #post {

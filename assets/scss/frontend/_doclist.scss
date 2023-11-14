@@ -40,7 +40,7 @@ body {
   }
 }
 
-.single-docs {
+.single-docs #post {
   h1,
   h2,
   h3,
@@ -298,7 +298,6 @@ body {
     .dropdown_nav {
       margin: 0;
       padding: 0 0 0 34px;
-      width: 100% !important;
       display: none;
       list-style: none;
 
@@ -616,7 +615,7 @@ body {
     font-weight: 500;
     font-size: 14px !important;
     color: var(--p_color);
-    margin-bottom: 0 !important;
+    margin: 0 !important;
     @media (max-width: 767px) {
       text-align: center;
     }
@@ -735,6 +734,7 @@ body {
     border-radius: 3px;
     transition: all 0.3s;
     border: none;
+    cursor: pointer;
     @media (max-width: 991px) {
       right: -10px;
       top: -25px;

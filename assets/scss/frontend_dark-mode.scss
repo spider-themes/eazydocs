@@ -128,15 +128,9 @@ body.body_dark {
 
   .doc_menu .nav-link.active,
   .doc_menu .nav-link:hover,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
   &.single-docs #post p,
   &.single-docs #post em strong span {
-    color: #d4d4d4 !important;
+    color: #eaeaea !important;
   }
 
   .doc_rightsidebar

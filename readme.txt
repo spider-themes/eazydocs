@@ -232,6 +232,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 - Tweaked: Sidebar open icon made smaller on mobile device to adjust spacing with the doc content
 - Tweaked: Properly sanitized $wpdb queries and custom SQL queries to avoid SQL injection vulnerabilities (Thanks to the EazyDocs users for the report)
 - Tweaked: Compatibility with FSE/block themes (tested with 'Twenty Twenty-Four' and 'Twenty Twenty-Three' improved
+- Tweaked: Feedback modal UX improved (the modal will close on clicking on the modal overlay area)
 
 = v2.3.3 (05 November 2023) =
 Tweaked: Full width layout improved (padding adjusted)
