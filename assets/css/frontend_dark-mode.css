@@ -61,20 +61,12 @@ body.body_dark onepage-doc .nav-sidebar .nav-item .dropdown_nav,
 body.body_dark .doc_rightsidebar .doc_switch input[type=checkbox],
 body.body_dark .breadcrumb_area_three,
 body.body_dark .doc_rightsidebar .bootstrap-select > .dropdown-menu .inner .dropdown-menu,
-body.body_dark .fontsize-controllers .btn-group,
-body.body_dark .doc_rightsidebar .pageSideSection .ezd_btn_select,
-body.body_dark .doc_rightsidebar .pageSideSection .ezd_b {
+body.body_dark .fontsize-controllers .btn-group {
   background: #2c303a;
 }
 body.body_dark .doc_left_sidebarlist::after,
-body.body_dark .doc_left_sidebarlist:not(.one-page-docs-sidebar-wrap)::before,
-body.body_dark .doc_rightsidebar .pageSideSection .ezd_b ul li:hover,
-body.body_dark .doc_rightsidebar .pageSideSection .ezd_b ul li.active {
+body.body_dark .doc_left_sidebarlist:not(.one-page-docs-sidebar-wrap)::before {
   background: #1e1f26;
-}
-body.body_dark .doc_rightsidebar .pageSideSection .ezd_b ul li:hover,
-body.body_dark .doc_rightsidebar .pageSideSection .ezd_b ul li.active {
-  color: #fff;
 }
 body.body_dark .doc_rightsidebar .doc_switch input[type=checkbox],
 body.body_dark .doc_left_sidebarlist::after,
@@ -89,8 +81,7 @@ body.body_dark .basic_table_info,
 body.body_dark .basic_table_info tbody tr th,
 body.body_dark .basic_table_info tbody tr td,
 body.body_dark .typography_content .code-preview,
-body.body_dark .doc_left_sidebarlist:before,
-body.body_dark .doc_rightsidebar .pageSideSection .ezd_btn_select {
+body.body_dark .doc_left_sidebarlist:before {
   border-color: #272830;
 }
 body.body_dark .onepage-doc .nav-sidebar .nav-item .dropdown_nav:before {

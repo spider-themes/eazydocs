@@ -116,49 +116,5 @@
 				nested: true,
 			});
 		}
-
-		// select picker js custom
-		if ($('.vodiapicker option').length > 0) {
-			var langArray = [];
-			$('.vodiapicker option').each(function () {
-				var icon = $(this).attr('data-content');
-				var text = this.innerText;
-				var item =
-					'<li> <i class="' +
-					icon +
-					'"></i> <span>' +
-					text +
-					'</span></li>';
-				langArray.push(item);
-			});
-
-			$('#ezd_a').html(langArray);
-
-			//Set the button value to the first el of the array
-			$('.ezd_btn_select').html(langArray[0]);
-			$('.ezd_btn_select').attr('value', 'windows');
-			$('#ezd_a li').first().addClass('active');
-			//change button stuff on click
-			$('#ezd_a li').click(function () {
-				var icon = $(this).find('i').attr('class');
-				var value = $(this).find('i').attr('value');
-				var text = this.innerText;
-				var item =
-					'<li> <i class="' +
-					icon +
-					'"></i> <span>' +
-					text +
-					'</span></li>';
-				$('.ezd_btn_select').html(item);
-				$('.ezd_btn_select').attr('value', value);
-				$('.ezd_b').toggleClass('ezd_show');
-				$('#ezd_a li').removeClass('active');
-				$(this).addClass('active');
-			});
-
-			$('.ezd_btn_select').click(function () {
-				$('.ezd_b').toggleClass('ezd_show');
-			});
-		}
 	});
 })(jQuery);

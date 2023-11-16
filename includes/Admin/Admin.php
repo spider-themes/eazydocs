@@ -41,63 +41,61 @@ class Admin {
 
 		$matched_roles 		= array_intersect($default_roles, $current_rols);		
 		$current_user_role 	= reset($matched_roles);
-	 
-		if ( function_exists( 'eazydocspro_get_option' ) ) {
 
-			$access    = eazydocspro_get_option( 'docs-write-access', 'eazydocs_settings' );
-			$cz_access = eazydocspro_get_option( 'customizer-edit-access', 'eazydocs_settings' );
-			$sz_access = eazydocspro_get_option( 'settings-edit-access', 'eazydocs_settings' );
 
-			$all_roles = '';
-			$cz_roles  = '';
-			$sz_roles  = '';
+        $access    = ezd_get_opt( 'docs-write-access', 'eazydocs_settings' );
+        $cz_access = ezd_get_opt( 'customizer-edit-access', 'eazydocs_settings' );
+        $sz_access = ezd_get_opt( 'settings-edit-access', 'eazydocs_settings' );
 
-			if ( is_array( $access ) ) {
-				$all_roles = ! empty( $access ) ? implode( ',', $access ) : '';
-			}
-			$all_roled = explode( ',', $all_roles );
+        $all_roles = '';
+        $cz_roles  = '';
+        $sz_roles  = '';
 
-			if ( is_array( $cz_access ) ) {
-				$cz_roles = ! empty( $cz_access ) ? implode( ',', $cz_access ) : '';
-			}
+        if ( is_array( $access ) ) {
+            $all_roles = ! empty( $access ) ? implode( ',', $access ) : '';
+        }
+        $all_roled = explode( ',', $all_roles );
 
-			$cz_roled = explode( ',', $cz_roles );
+        if ( is_array( $cz_access ) ) {
+            $cz_roles = ! empty( $cz_access ) ? implode( ',', $cz_access ) : '';
+        }
 
-			if ( is_array( $sz_access ) ) {
-				$sz_roles = ! empty( $sz_access ) ? implode( ',', $sz_access ) : '';
-			}
-			$sz_roled = explode( ',', $sz_roles );
+        $cz_roled = explode( ',', $cz_roles );
 
-			if ( ! function_exists( 'wp_get_current_user' ) ) {
-				include( ABSPATH . "wp-includes/pluggable.php" );
-			}
+        if ( is_array( $sz_access ) ) {
+            $sz_roles = ! empty( $sz_access ) ? implode( ',', $sz_access ) : '';
+        }
+        $sz_roled = explode( ',', $sz_roles );
 
-			if ( in_array( $current_user_role, $all_roled ) ) {
-				switch ( $current_user_role ) {
-					case 'administrator':
-						$capabilites = 'manage_options';
-						break;
+        if ( ! function_exists( 'wp_get_current_user' ) ) {
+            include( ABSPATH . "wp-includes/pluggable.php" );
+        }
 
-					case 'editor':
-						$capabilites = 'publish_pages';
-						break;
+        if ( in_array( $current_user_role, $all_roled ) ) {
+            switch ( $current_user_role ) {
+                case 'administrator':
+                    $capabilites = 'manage_options';
+                    break;
 
-					case 'author':
-						$capabilites = 'publish_posts';
-						break;
+                case 'editor':
+                    $capabilites = 'publish_pages';
+                    break;
 
-					case 'contributor':
-						$capabilites = 'edit_posts';
-						break;
+                case 'author':
+                    $capabilites = 'publish_posts';
+                    break;
 
-					case 'subscriber':
-						$capabilites = 'read';
-						break;
-				}
-			} else {
-				$capabilites = 'manage_options';
-			}
-		}
+                case 'contributor':
+                    $capabilites = 'edit_posts';
+                    break;
+
+                case 'subscriber':
+                    $capabilites = 'read';
+                    break;
+            }
+        } else {
+            $capabilites = 'manage_options';
+        }
 
 
 		if ( class_exists('EazyDocsPro') ) {

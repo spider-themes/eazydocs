@@ -15,9 +15,8 @@ $prefix = 'eazydocs_settings';
 $ezd_options = get_option( 'eazydocs_settings' );
 
 $edit_access = [];
-if ( function_exists( 'eazydocspro_get_option' ) ) {
-	$edit_access = eazydocspro_get_option( 'settings-edit-access', 'eazydocs_settings' );
-}
+$edit_access = ezd_get_opt( 'settings-edit-access', 'eazydocs_settings' );
+
 
 $all_roles = '';
 if ( is_array( $edit_access ) ) {
@@ -81,8 +80,7 @@ CSF::createSection( $prefix, array(
 			'options'    => 'pages',
 			'class'      => 'docs-page-wrap',
 			'multiple'   => false,
-			'desc'       => sprintf( wp_kses_post( __( 'The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode or design your own',
-				'eazydocs' ) ) ),
+			'desc'       => sprintf( wp_kses_post( __( 'The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs' ) ) ),
 			'query_args' => array(
 				'posts_per_page' => - 1,
 			),

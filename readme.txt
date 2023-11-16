@@ -2,7 +2,7 @@
 Contributors: mdjwel, spiderdevs
 Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
 Requires at least: 5.0
-Tested up to: 6.3
+Tested up to: 6.4
 Requires PHP: 7.4
 Stable tag: 2.3.x
 License: GPLv2 or later
@@ -221,6 +221,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 7. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.3.5 (17 November 2023) =
+Fixed: Shortcode wasn't rendering in the doc content area.
+Fixed: Console error for the Conditional dropdown on the right sidebar (unlocked in EazyDocs Pro, Docy and Docly themes)
+Fixed: Conditional dropdown was conflicting with Bootstrap based themes (removed the bootstrap-select JS and made it with custom JS)
 
 = v2.3.4 (15 November 2023) =
 Fixed: Left sidebar arrow icon toggle not working on Ajax load

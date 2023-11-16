@@ -87,13 +87,13 @@
 
 	.doc_left_sidebarlist .open_icon {
 		display: block;
-		right: -22px;
+		right: -25px;
 		left: auto;
 	}
 
 	.open_icon {
 		display: block;
-		left: -22px;
+		left: -25px;
 		right: auto;
 	}
 

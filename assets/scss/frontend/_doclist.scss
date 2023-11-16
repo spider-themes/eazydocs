@@ -843,7 +843,7 @@ body {
 }
 
 .open_icon {
-	width: 22px;
+	width: 25px;
 	height: 35px;
 	background: #e8eeff;
 	font-size: 20px;
@@ -977,25 +977,29 @@ body {
 		}
 	}
 
-	.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
-		font-size: 16px;
-		font-weight: 400;
-	}
-
 	.pageSideSection {
+		&.open {
+			&:hover {
+				.dropdown-menu.open {
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+
 		.ezd_btn_select {
-			background: #fafcfd;
-			border: 1px solid #e1e4e5;
+			background: var(--black_25);
+			border: 1px solid var(--black_50);
 			border-radius: 5px;
 			font-size: 16px;
 			color: #6b707f;
 			padding: 5px 20px 3px;
 			box-shadow: none;
-			margin: 0px;
+			margin: 0;
 			width: 100%;
 			text-align: left;
 			position: relative;
-			&:after {
+			&::after {
 				content: "\33";
 				border: 0;
 				font-family: "ElegantIcons";
@@ -1010,17 +1014,15 @@ body {
 			i {
 				padding-right: 8px;
 			}
-
 			&:focus {
 				outline: none !important;
 				box-shadow: none !important;
-				background: #fff;
+				background: var(--bs-white);
 			}
 
 			&:hover {
 				color: #6b707f !important;
 			}
-
 			.bs-caret {
 				display: none;
 			}
@@ -1036,9 +1038,9 @@ body {
 			left: 0;
 			width: 100%;
 			box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11);
-			background: #fff;
+			background: var(--bs-white);
 			z-index: 2;
-			border: 0px;
+			border: 0;
 			&.ezd_show {
 				display: block;
 			}
@@ -1058,7 +1060,7 @@ body {
 					}
 					&:hover,
 					&.active {
-						background: #f6f6f6;
+						background: var(--black_25);
 						color: var(--ezd_brand_color);
 					}
 				}
@@ -1068,15 +1070,6 @@ body {
 			.dropdown-menu.open {
 				opacity: 0;
 				visibility: hidden;
-			}
-		}
-
-		&.open {
-			&:hover {
-				.dropdown-menu.open {
-					opacity: 1;
-					visibility: visible;
-				}
 			}
 		}
 	}
@@ -1791,6 +1784,10 @@ body:not(.onepage-doc) .sticky_menu {
 			}
 		}
 	}
+}
+
+.single-docs #post .d-items .documentation_item .icon img {
+  max-width: 35px !important;
 }
 
 /*============== End doc_categories_guide_area css =============*/
