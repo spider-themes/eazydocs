@@ -226,6 +226,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 Fixed: Shortcode wasn't rendering in the doc content area.
 Fixed: Console error for the Conditional dropdown on the right sidebar (unlocked in EazyDocs Pro, Docy and Docly themes)
 Fixed: Conditional dropdown was conflicting with Bootstrap based themes (removed the bootstrap-select JS and made it with custom JS)
+Fixed: On Doc single page, the left sidebar doc menu item's child expand icon (which has children item) click wasn't working as expected
 
 = v2.3.4 (15 November 2023) =
 Fixed: Left sidebar arrow icon toggle not working on Ajax load

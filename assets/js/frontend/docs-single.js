@@ -197,36 +197,23 @@
 			$('.nav-sidebar > li.active').find('ul').slideDown(700);
 		}
 
-		$(document).on(
-			'click',
-			'.nav-sidebar > li .doc-link .icon',
-			function (e) {
-				$(this).parent().parent().find('ul').first().toggle(300);
-				$(this).parent().parent().siblings().find('ul').hide(300);
-			}
-		);
+		// Handle click event for all .icon elements inside .nav-sidebar
+		$('.nav-sidebar').on('click', '.doc-link .icon', function(e) {
+			// Prevent default action
+			e.preventDefault();
 
-		$('.nav-sidebar > li > .doc-link .icon').each(function () {
-			let $this = $(this);
-			$(document).on('click', $this, function (e) {
-				let has = $this.parent().parent().hasClass('active');
-				$('.nav-sidebar li').removeClass('active');
-				if (has) {
-					$this.parent().parent().removeClass('active');
-				} else {
-					$this.parent().parent().addClass('active');
-				}
-			});
+			// Find the closest parent li element and toggle its active class
+			let parentLi = $(this).closest('li.nav-item');
+			parentLi.toggleClass('active');
+
+			// Toggle the display of the immediate child ul element
+			parentLi.children('ul.dropdown_nav').toggle(300);
+
+			// Hide sibling submenus
+			parentLi.siblings().find('ul.dropdown_nav').hide(300);
+			parentLi.siblings().removeClass('active');
 		});
 
-		$('.nav-sidebar > li > .dropdown_nav > li > .doc-link .icon').each(
-			function () {
-				let $this = $(this);
-				$(document).on('click', $this, function (e) {
-					$this.parent().parent().toggleClass('active');
-				});
-			}
-		);
 
 		/**
 		 * Print doc
