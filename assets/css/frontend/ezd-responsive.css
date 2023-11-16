@@ -13,6 +13,7 @@
 		overflow-y: visible;
 		margin-top: 90px;
 		height: 100%;
+		box-sizing: border-box;
 	}
 
 	.doc_rightsidebar .pageSideSection::before {
@@ -23,7 +24,7 @@
 		padding-left: 0;
 	}
 
-	.doc_left_sidebarlist .scroll:not(.op-docs-sidebar) {
+	.doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar) {
 		padding-right: 0;
 	}
 
@@ -33,12 +34,13 @@
 	}
 
 	.left-column .doc_left_sidebarlist {
-		max-width: 300px;
+		max-width: 330px;
 		width: 100%;
-		left: -300px;
+		left: -330px;
 		position: absolute;
 		z-index: 2;
-		padding: 30px 15px;
+		padding: 30px 25px;
+		box-sizing: border-box;
 	}
 
 	.doc_rightsidebar {

@@ -44,6 +44,7 @@ p .footnotes-link::after {
 	font-size: 24px;
 	font-weight: 500;
 	padding-right: 10px;
+	color: var(--black_800)
 }
 
 .page-template-page-onepage #post {
@@ -156,6 +157,9 @@ p .footnotes-link::after {
 	padding-right: 10px;
 	.pageSideSection {
 		padding-left: 25px;
+	}
+	.toc_right .nav-link.active::before {
+		left: -25px;
 	}
 }
 

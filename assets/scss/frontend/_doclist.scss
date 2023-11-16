@@ -147,7 +147,7 @@ body {
 		}
 	}
 
-	.scroll:not(.op-docs-sidebar) {
+	.ezd-scroll:not(.op-docs-sidebar) {
 		max-height: 650px;
 		overflow-y: auto;
 		padding-right: 15px;
@@ -935,7 +935,7 @@ body {
 		}
 	}
 
-	&.scroll {
+	&.ezd-scroll {
 		.mCSB_inside > .mCSB_container {
 			margin-right: 0;
 		}

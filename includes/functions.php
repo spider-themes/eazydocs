@@ -1144,7 +1144,15 @@ function ezd_docs_layout_option() {
  */
 function eaz_get_nestable_parent_id( $page_id ) {
 	global $wpdb;
-	$parent = $wpdb->get_var( "SELECT post_parent FROM $wpdb->posts WHERE post_type='docs' AND post_status='publish' AND ID = '$page_id'" );
+	// Ensure that $page_id is an integer
+	$page_id = intval($page_id);
+
+	// Prepare the SQL statement using placeholders
+	$query = $wpdb->prepare( "SELECT post_parent FROM $wpdb->posts WHERE post_type='docs' AND post_status='publish' AND ID = %d", $page_id );
+
+	// Execute the query
+	$parent = $wpdb->get_var( $query );
+
 	if ( $parent == 0 ) {
 		return $page_id;
 	} else {

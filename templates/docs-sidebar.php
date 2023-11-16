@@ -64,7 +64,7 @@ if ( $credit_enable == '1' ) {
         endif;
 		?>
 
-        <div class="scroll">
+        <div class="ezd-scroll">
             <?php
             if ( $children ) :
                 if ( $content_layout == 'category_base' && ezd_is_premium() ) {
@@ -73,7 +73,7 @@ if ( $credit_enable == '1' ) {
                     $doc_walker = $walker;
                 }
             ?>
-            <ul class="list-unstyled nav-sidebar left-sidebar-results">
+            <ul class="list-unstyled nav-sidebar left-sidebar-results ezd-list-unstyled">
                 <?php
                 echo wp_list_pages( array(
                     'title_li'  => '',

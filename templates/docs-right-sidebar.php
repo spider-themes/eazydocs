@@ -1,21 +1,21 @@
 <?php
-$opt            = get_option( 'eazydocs_settings' );
-$widget_sidebar = $opt['is_widget_sidebar'] ?? '';
-$toc_switcher   = $opt['toc_switcher'] ?? '';
-$toc_heading    = $opt['toc_heading'] ?? __( 'CONTENTS', 'eazydocs' );
-$is_pro_themes  = wp_get_theme();
+$opt                = get_option( 'eazydocs_settings' );
+$widget_sidebar     = $opt['is_widget_sidebar'] ?? '';
+$toc_switcher       = $opt['toc_switcher'] ?? '';
+$toc_heading        = $opt['toc_heading'] ?? __( 'CONTENTS', 'eazydocs' );
+$is_pro_themes      = wp_get_theme();
 $toc_auto_numbering = $opt['toc_auto_numbering'] ?? '';
 $toc_auto_numbering = $toc_auto_numbering == '1' ? ' toc_auto_numbering' : '';
 ?>
 <div class="ezd-xl-col-2 ezd-lg-col-3 ezd-grid-column-full doc_right_mobile_menu ezd-sticky-lg-top">
-    <div class="doc_rightsidebar scroll">
+    <div class="doc_rightsidebar ezd-scroll">
         <div class="open_icon" id="mobile-right-toggle">
             <i class="arrow_carrot-left"></i>
             <i class="arrow_carrot-right"></i>
         </div>
 
         <div class="pageSideSection">
-            <?php
+			<?php
 			/**
 			 * Collaboration Buttons
 			 */
@@ -43,23 +43,23 @@ $toc_auto_numbering = $toc_auto_numbering == '1' ? ' toc_auto_numbering' : '';
 
 			if ( ! empty ( $toc_switcher ) ) :
 				?>
-            <div class="table-of-content">
-                <h6><i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?></h6>
-                <nav class="list-unstyled doc_menu toc_right" data-toggle="toc" id="eazydocs-toc"></nav>
-            </div>
-            <?php
+                <div class="table-of-content">
+                    <h6><i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?></h6>
+                    <nav class="list-unstyled doc_menu toc_right" data-toggle="toc" id="eazydocs-toc"></nav>
+                </div>
+			<?php
 			endif;
 			?>
 
             <div class="ezd-widgets">
-                <?php
+				<?php
 				// Widgets area
 				$parent_doc_id    = function_exists( 'get_root_parent_id' ) ? get_root_parent_id( get_queried_object_id() ) : '';
 				$content_type     = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar_type', true );
 				$ezd_shortcode    = get_post_meta( $parent_doc_id, 'ezd_doc_right_sidebar', true );
 				$is_valid_post_id = is_null( get_post( $ezd_shortcode ) ) ? 'No' : 'Yes';
 
-				if ( ezd_is_premium() == true ) {
+				if ( ezd_is_premium() ) {
 					if ( $content_type == 'string_data_right' && ! empty ( $ezd_shortcode ) ) {
 						echo do_shortcode( html_entity_decode( $ezd_shortcode ) );
 					} elseif ( $content_type == 'shortcode_right' ) {

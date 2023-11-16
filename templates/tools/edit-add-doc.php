@@ -33,7 +33,7 @@ if ( eaz_fs()->is_plan('promax') ) :
                     }
                     ?>
                 </div>
-            <?php
+                <?php
             endif;
         endif;
     endif;

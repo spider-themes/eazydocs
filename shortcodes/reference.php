@@ -4,7 +4,7 @@ add_shortcode( 'reference', function ( $atts, $content ) {
 	$atts = shortcode_atts( array(
 		'number' => '1',
 	), $atts );
-	if ( ezd_unlock_themes() == false ) {
+	if ( ! ezd_unlock_themes() ) {
 		return false;
 	}
 	?>
@@ -41,7 +41,7 @@ add_filter( 'the_content', function ( $ezd_content ) {
 	if ( has_shortcode( $ezd_content, 'reference' ) ) {
 		$footnotes_contents = $ezd_footnote_title . "<div ezd-data-column='" . $footnotes_column . "' class='ezd-footnote-footer'>" . $all_shortcoded
 		                      . "</div>";
-		return $ezd_content . $footnotes_contents;
 	}
 
+	return $ezd_content . $footnotes_contents;
 } );

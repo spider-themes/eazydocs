@@ -545,7 +545,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'keywords_label',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Keywords Label', 'eazydocs' ),
-			'default'    => esc_html__( 'Popular Searches', 'eazydocs' ),
+			'default'    => esc_html__( 'Popular Searches:', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'is_keywords', '==', 'true' ),
@@ -1639,11 +1639,31 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'          => 'docs_frontend_login_page',
+			'type'        => 'select',
+			'placeholder' => 'Select page',
+			'title'       => esc_html__( 'Login Page', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Type in the field to select the login page. User would require to login to edit/add docs from frontend.', 'eazydocs' ),
+			'desc'        => esc_html__( 'This page is required to select to show/enable the Add/Edit doc buttons. You can use the shortcode [ezd_login_form] for the login page.', 'eazydocs' ),
+			'options'     => 'pages',
+			'class'       => 'eazydocs-promax-notice',
+			'chosen'      => true,
+			'ajax'        => true,
+			'query_args'  => array(
+				'posts_per_page' => - 1,
+			),
+			'dependency'  => array(
+				array( 'is_doc_contribution', '==', 'true' )
+			)
+		),
+
+		array(
 			'id'         => 'ezd_add_doc_heading',
 			'type'       => 'heading',
 			'title'      => esc_html__( 'Add Doc', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1657,7 +1677,8 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
-				array( 'is_doc_contribution', '==', 'true' )
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1669,6 +1690,7 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 				array( 'frontend_add_switcher', '==', 'true' ),
 			)
 		),
@@ -1678,7 +1700,8 @@ CSF::createSection( $prefix, array(
 			'type'       => 'heading',
 			'title'      => esc_html__( 'Edit Doc', 'eazydocs' ),
 			'dependency' => array(
-				array( 'is_doc_contribution', '==', 'true' )
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1693,6 +1716,7 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1705,26 +1729,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 				array( 'frontend_edit_switcher', '==', 'true' ),
-			)
-		),
-
-		array(
-			'id'          => 'docs_frontend_login_page',
-			'type'        => 'select',
-			'placeholder' => 'Select page',
-			'title'       => esc_html__( 'Login Page', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Select Doc login page', 'eazydocs' ),
-			'desc'        => esc_html__( 'If you want to change this page, use this shortcode [ezd_login_form] to display the login form on your desired page.',
-				'eazydocs' ),
-			'options'     => 'pages',
-			'class'       => 'eazydocs-promax-notice',
-			'chosen'      => true,
-			'ajax'        => true,
-			'query_args'  => array(
-				'posts_per_page' => - 1,
-			),
-			'dependency'  => array(
-				array( 'is_doc_contribution', '==', 'true' )
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1734,6 +1739,7 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Meta Content', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1748,6 +1754,7 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1759,7 +1766,8 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
-				array( 'contributor_meta_visibility', '==', true )
+				array( 'contributor_meta_visibility', '==', true ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1771,7 +1779,8 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
-				array( 'contributor_meta_visibility', '==', true )
+				array( 'contributor_meta_visibility', '==', true ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 			)
 		),
 
@@ -1787,6 +1796,7 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 				array( 'contributor_meta_visibility', '==', true )
 			)
 		),
@@ -1803,6 +1813,7 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 				array( 'contributor_meta_visibility', '==', true )
 			)
 		),
@@ -1815,6 +1826,7 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 				array( 'contributor_meta_visibility', '==', true ),
 				array( 'contributor_load_more', '==', true )
 			)
@@ -1828,6 +1840,7 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 				array( 'contributor_meta_visibility', '==', true ),
 				array( 'contributor_load_more', '==', true )
 			)
@@ -1842,6 +1855,7 @@ CSF::createSection( $prefix, array(
 			'default'    => 3,
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
 				array( 'contributor_meta_visibility', '==', true ),
 				array( 'contributor_load_more', '!=', true )
 			)
