@@ -56,6 +56,9 @@ code {
 .notice {
   padding: 10px;
 }
+.notice b {
+  font-weight: bold;
+}
 
 .eazydocs-close-notice {
   display: inline-block;

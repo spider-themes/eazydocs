@@ -7,6 +7,9 @@ code {
 /** === WordPress default notices === **/
 .notice {
     padding: 10px;
+    b {
+        font-weight: bold;
+    }
 }
 
 .eazydocs-close-notice {

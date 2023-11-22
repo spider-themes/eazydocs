@@ -813,6 +813,13 @@ class Doc_Widget extends Widget_Base {
 		}
 
 		/**
+		 * Docs re-arrange according to menu order
+		*/
+		usort($parent_docs, function($a, $b) {
+            return $a->menu_order - $b->menu_order;
+        });
+
+		/**
 		 * Get the doc sections
 		 */
 		if ( $parent_docs ) {
