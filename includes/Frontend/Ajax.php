@@ -102,29 +102,42 @@ class Ajax {
 			);
 
 			while ( $posts->have_posts() ) : $posts->the_post();
+				$no_thumbnail 		= ezd_get_opt('is_search_result_thumbnail') == false ? 'no-thumbnail' :  '';
 				?>
-                <div class="search-result-item" onclick="document.location='<?php echo get_the_permalink( get_the_ID() ); ?>'">
+                <div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" onclick="document.location='<?php echo get_the_permalink( get_the_ID() ); ?>'">
                     <a href="<?php echo get_the_permalink( get_the_ID() ); ?>" class="title">
-						<?php
-						if ( has_post_thumbnail() ) :
-							the_post_thumbnail( 'ezd_searrch_thumb16x16' );
-						else :
-							?>
-                            <svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img"><title
-                                        id="title">Building Search UI</title>
-                                <path d="M14.72,0H2.28A2.28,2.28,0,0,0,0,2.28V14.72A2.28,2.28,0,0,0,2.28,17H14.72A2.28,2.28,0,0,0,17,14.72V2.28A2.28,2.28,0,0,0,14.72,0ZM2.28,1H14.72A1.28,1.28,0,0,1,16,2.28V5.33H1V2.28A1.28,1.28,0,0,1,2.28,1ZM1,14.72V6.33H5.33V16H2.28A1.28,1.28,0,0,1,1,14.72ZM14.72,16H6.33V6.33H16v8.39A1.28,1.28,0,0,1,14.72,16Z"></path>
-                            </svg>
-						<?php endif; ?>
+						
+						<?php						
+						if ( ezd_get_opt('is_search_result_thumbnail') ) :
+							if ( has_post_thumbnail() ) :
+								the_post_thumbnail( 'ezd_searrch_thumb16x16' );
+								else :
+								?>
+								<svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img">
+									<title id="title">Building Search UI</title>
+									<path d="M14.72,0H2.28A2.28,2.28,0,0,0,0,2.28V14.72A2.28,2.28,0,0,0,2.28,17H14.72A2.28,2.28,0,0,0,17,14.72V2.28A2.28,2.28,0,0,0,14.72,0ZM2.28,1H14.72A1.28,1.28,0,0,1,16,2.28V5.33H1V2.28A1.28,1.28,0,0,1,2.28,1ZM1,14.72V6.33H5.33V16H2.28A1.28,1.28,0,0,1,1,14.72ZM14.72,16H6.33V6.33H16v8.39A1.28,1.28,0,0,1,14.72,16Z"></path>
+								</svg>
+								<?php 
+							endif;
+						endif;						
+						?>
+
                         <span class="doc-section">
                             <?php the_title(); ?>
                         </span>
+
                         <svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round"
                              stroke-linejoin="round" class="block h-auto w-16">
                             <polyline points="9 10 4 15 9 20"></polyline>
                             <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
                         </svg>
+
                     </a>
-					<?php eazydocs_search_breadcrumbs(); ?>
+					<?php 
+					if ( ezd_get_opt('is_search_result_breadcrumb') ) {
+						eazydocs_search_breadcrumbs(); 
+					}
+					?>
                 </div>
 			    <?php
 			endwhile;

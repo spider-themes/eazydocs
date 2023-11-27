@@ -606,6 +606,48 @@ CSF::createSection( $prefix, array(
 				array( 'search_banner_layout', '==', 'default' ),
 			),
 			'class'       => 'eazydocs-pro-notice'
+		),
+
+		//Search Keywords
+		array(
+			'type'       => 'subheading',
+			'title'      => esc_html__( 'Search Results', 'eazydocs' ),
+			'dependency' => array(
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' ),
+			),
+		),
+
+		array(
+			'id'         => 'is_search_result_breadcrumb',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Breadcrumb', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show / Hide the breadcrumbs in search results', 'docy' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'default'    => false,
+			'text_width' => 70,
+			'dependency' => array(
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' ),
+			),
+			'class'      => 'eazydocs-pro-notice'
+		),
+
+		array(
+			'id'         => 'is_search_result_thumbnail',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Thumbnail', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show / Hide the thumbnail in search results', 'docy' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'default'    => false,
+			'text_width' => 70,
+			'dependency' => array(
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' ),
+			),
+			'class'      => 'eazydocs-pro-notice'
 		)
 	)
 ) );

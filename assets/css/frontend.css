@@ -293,6 +293,9 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   transition: 0.3s all;
   cursor: pointer;
 }
+#ezd-search-results .search-result-item.no-thumbnail .breadcrumb.eazydocs-search-wrapper, #ezd-search-results .search-result-item.no-thumbnail .doc-section {
+  padding-left: 0;
+}
 #ezd-search-results .search-result-item a.title {
   display: flex;
   color: var(--black_700);
