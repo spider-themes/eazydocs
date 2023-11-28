@@ -489,9 +489,13 @@
 								'style&equals;',
 								'style@'
 							);
-							
-						let encoded 		= encodeURIComponent(JSON.stringify(style_attr_update));
-						let encoded_right 	= encodeURIComponent(JSON.stringify(right_style_attr_update));
+
+						let encoded = encodeURIComponent(
+							JSON.stringify(style_attr_update)
+						);
+						let encoded_right = encodeURIComponent(
+							JSON.stringify(right_style_attr_update)
+						);
 
 						window.location.href =
 							href +
