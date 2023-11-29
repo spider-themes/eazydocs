@@ -51,9 +51,14 @@ class One_Page {
 			 *  Current permalink structure
 			 */
 			$current_permalink = get_option( 'permalink_structure' );
-
-			$post = ezd_get_page_by_title( $_GET['single_doc_title'], 'docs' );
-			$post = ezd_get_page_by_title( $_GET['single_doc_title'], 'docs' );
+			$is_parent_id 		= $_GET['parentID'] ?? '';
+			
+			if ( ! empty ( $is_parent_id ) ) {
+				$post_slug = get_post_field('post_name', $_GET['parentID'] ?? '');
+			} else {
+				$post = ezd_get_page_by_title( $_GET['single_doc_title'], 'docs' );
+				$post_slug = $post[0]->post_name ?? '';
+			}
 
 			if ( empty ( $_GET['self_doc'] ) ) {
 				$redirect = 'admin.php?page=eazydocs';
@@ -62,13 +67,13 @@ class One_Page {
 			}
 
 			if ( ! ezd_get_page_by_title( $page_title, 'onepage-docs' ) ) {
-				// Create page object
+		
 				$one_page_doc = array(
 					'post_title'   => wp_strip_all_tags( $page_title ),
 					'post_status'  => 'publish',
 					'post_author'  => 1,
 					'post_type'    => 'onepage-docs',
-					'post_name'    => $post->post_name
+					'post_name'    => $post_slug
 				);
 				$post_id      = wp_insert_post( $one_page_doc, $wp_error = '' );
 				if ( $post_id != 0 ) {
