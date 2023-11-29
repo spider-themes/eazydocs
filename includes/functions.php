@@ -180,6 +180,7 @@ function ezd_list_pages( $args = '' ) {
 		'link_after'   => '',
 		'item_spacing' => 'preserve',
 		'walker'       => '',
+		'post_status'  => ['publish', 'private']
 	);
 
 	$r = wp_parse_args( $args, $defaults );
@@ -189,8 +190,8 @@ function ezd_list_pages( $args = '' ) {
 		$r['item_spacing'] = $defaults['item_spacing'];
 	}
 
-	$output       = '';
-	$current_page = 0;
+	$output       		= '';
+	$current_page		= 0;
 
 	// sanitize, mostly to keep spaces out
 	$r['exclude'] = preg_replace( '/[^0-9,]/', '', $r['exclude'] );
