@@ -74,21 +74,6 @@ CSF::createSection( $prefix, array(
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
 		array(
-			'id'         => 'docs-slug',
-			'type'       => 'select',
-			'title'      => esc_html__( 'Docs Page', 'eazydocs' ),
-			'options'    => 'pages',
-			'class'      => 'docs-page-wrap',
-			'multiple'   => false,
-			'desc'       => sprintf( wp_kses_post( __( 'The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode or design your own', 'eazydocs' ) ) ),
-			'query_args' => array(
-				'posts_per_page' => - 1,
-			),
-			'chosen'     => true,
-			'ajax'       => true,
-		),
-
-		array(
 			'id'      => 'docs-type-slug',
 			'type'    => 'text',
 			'title'   => esc_html__( 'Docs Slug', 'eazydocs' ),
@@ -115,6 +100,21 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs Archive', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
+		array(
+			'id'         => 'docs-slug',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Docs Archive Page', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Select the Docs Archive page. This page will be used to show the Docs.', 'eazydocs' ),
+			'desc'       => esc_html__( 'You can create this page with using [eazydocs] shortcode or EazyDocs Gutenberg blocks or EazyDocs Elementor widgets.', 'eazydocs' ),
+			'options'    => 'pages',
+			'class'      => 'docs-page-wrap',
+			'multiple'   => false,
+			'query_args' => array(
+				'posts_per_page' => - 1,
+			),
+			'chosen'     => true,
+			'ajax'       => true,
+		),
 
 		array(
 			'id'         => 'docs-column',

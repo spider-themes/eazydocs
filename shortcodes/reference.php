@@ -9,7 +9,7 @@ add_shortcode( 'reference', function ( $atts, $content ) {
 	}
 	?>
 
-    <span ezd-note-serial="<?php echo $atts['number'] ?>" class="ezd-footnotes-link-item" data-bs-original-title='<?php echo $content; ?>'>
+    <span ezd-note-serial="<?php echo $atts['number'] ?>" class="ezd-footnotes-link-item">
         <i onclick="location.href='#note-name-<?php echo esc_attr( $atts['number'] ); ?>'">
             [<?php echo $atts['number'] ?? ''; ?>]
         </i>

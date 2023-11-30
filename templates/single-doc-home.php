@@ -14,7 +14,7 @@ $sections = get_children( array(
 
 if ( $sections && $post->post_parent === 0 ) :
     ?>
-    <div class="d-items doc-items mt-5">
+    <div class="d-items doc-items">
     <?php
     foreach ( $sections as $section ) : 
         ?>

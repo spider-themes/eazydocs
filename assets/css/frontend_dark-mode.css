@@ -15,9 +15,8 @@ body.body_dark {
   --body_bg: #131417 !important;
   --border_on_white: #2c303a !important;
   color: #f6f6f6 !important;
-  background: #131417 !important;
 }
-body.body_dark #wrapper,
+body.body_dark #wrapper, body.body_dark .doc_documentation_area,
 body.body_dark .nav-sidebar.one-page-doc-nav-wrap .nav-item .dropdown_nav {
   background: #131417 !important;
 }

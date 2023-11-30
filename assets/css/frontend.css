@@ -710,7 +710,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .doc_left_sidebarlist:before {
   content: "";
-  width: 200%;
+  width: 400%;
   right: 0;
   height: 100%;
   background: rgb(245, 247, 249);
@@ -1017,6 +1017,9 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   margin-top: -0.8rem;
 }
 
+.doc_documentation_area {
+  background: #fff;
+}
 @media (min-width: 992px) {
   .doc_documentation_area.onepage_doc_area {
     padding-top: 120px;
@@ -1053,7 +1056,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   padding: 0 0 0;
 }
 .help_text .border_bottom {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 .help_text .help_info {
   display: flex;
@@ -1289,6 +1292,10 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .contact_form .form-group textarea:focus {
   border-color: var(--black_100);
 }
+.contact_form .form-group .form-control:focus::placeholder,
+.contact_form .form-group textarea:focus::placeholder {
+  color: var(--black_800);
+}
 .contact_form .form-group .form-control:disabled,
 .contact_form .form-group textarea:disabled {
   color: var(--black_500);
@@ -1454,6 +1461,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .doc_rightsidebar .pageSideSection .ezd_btn_select li {
   list-style: none;
+  color: var(--black_500);
 }
 .doc_rightsidebar .pageSideSection .ezd_btn_select i {
   padding-right: 8px;
@@ -1565,7 +1573,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   margin: 0;
 }
 .toc_right ul li {
-  margin: 0;
+  margin: 0 0 8px;
   display: block;
   width: 100%;
 }
@@ -1573,7 +1581,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   padding-left: 20px;
   position: relative !important;
   background: transparent !important;
-  border: 0px !important;
+  border: 0 !important;
   opacity: 1 !important;
   visibility: visible !important;
   width: 100% !important;
@@ -1639,7 +1647,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
     margin-top: 15px;
   }
   .doc-middle-content {
-    margin-top: 40px;
+    margin-top: 50px;
   }
 }
 .toc_auto_numbering ul {
@@ -1847,7 +1855,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   font-size: 14px;
   font-weight: 500;
   color: var(--black_500);
-  margin: 0 5px 5px 0;
+  margin: 0 8px 5px 0;
 }
 .doc-btm ul.card_tagged li a {
   background: rgba(175, 184, 193, 0.2);
@@ -1998,37 +2006,25 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .d-items {
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 20px;
+  display: grid;
+  padding-top: 25px;
+  grid-template-columns: auto auto;
+  gap: 30px 20px;
+}
+@media (max-width: 768px) {
+  .d-items {
+    grid-template-columns: auto;
+  }
 }
 .d-items .documentation_item {
   display: flex;
-  width: 50%;
-  margin-bottom: 40px;
-}
-@media (max-width: 480px) {
-  .d-items .documentation_item {
-    width: 100%;
-  }
-}
-.d-items .documentation_item:last-child {
-  margin-bottom: 0;
-}
-.d-items .documentation_item:nth-child(even) {
-  padding-left: 30px;
-}
-@media (max-width: 480px) {
-  .d-items .documentation_item:nth-child(even) {
-    padding-left: 0;
-  }
 }
 .d-items .documentation_item .icon {
   border-radius: 50%;
   background-color: var(--bs-white);
   box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
   text-align: center;
-  margin-right: 20px;
+  margin-right: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3372,9 +3368,6 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   background: var(--ezd_brand_color);
   color: #fff;
 }
-.question_menu .nav-tabs li a.active {
-  background: rgba(76, 76, 241, 0.2);
-}
 
 .question_list .fade {
   transition: opacity 0.5s linear;
@@ -3944,7 +3937,6 @@ p .footnotes-link::after {
 .single-docs #post p {
   font-weight: 400;
   margin-top: 0;
-  line-height: 28px;
 }
 
 .form-control {

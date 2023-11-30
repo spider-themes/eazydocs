@@ -126,7 +126,7 @@ body {
 
 	&:before {
 		content: "";
-		width: 200%;
+		width: 400%;
 		right: 0;
 		height: 100%;
 		background: rgba(245, 247, 249, 1);
@@ -523,6 +523,7 @@ body {
 }
 
 .doc_documentation_area {
+	background: #fff;
 	&.onepage_doc_area {
 		@media (min-width: 992px) {
 			padding-top: 120px;
@@ -568,7 +569,7 @@ body {
 	padding: 0 0 0;
 
 	.border_bottom {
-		margin-top: 25px;
+		margin-top: 30px;
 	}
 
 	.help_info {
@@ -811,6 +812,9 @@ body {
 
 			&:focus {
 				border-color: var(--black_100);
+				&::placeholder {
+					color: var(--black_800);
+				}
 			}
 
 			&:disabled {
@@ -1010,6 +1014,7 @@ body {
 			}
 			li {
 				list-style: none;
+				color: var(--black_500);
 			}
 			i {
 				padding-right: 8px;
@@ -1142,7 +1147,7 @@ body {
 		margin: 0;
 
 		li {
-			margin: 0;
+			margin: 0 0 8px;
 			display: block;
 			width: 100%;
 		}
@@ -1151,7 +1156,7 @@ body {
 			padding-left: 20px;
 			position: relative !important;
 			background: transparent !important;
-			border: 0px !important;
+			border: 0 !important;
 			opacity: 1 !important;
 			visibility: visible !important;
 			width: 100% !important;
@@ -1247,7 +1252,7 @@ body {
 		}
 	}
 	.doc-middle-content {
-		margin-top: 40px;
+		margin-top: 50px;
 	}
 }
 
@@ -1521,7 +1526,7 @@ body:not(.onepage-doc) .sticky_menu {
 			font-size: 14px;
 			font-weight: 500;
 			color: var(--black_500);
-			margin: 0 5px 5px 0;
+			margin: 0 8px 5px 0;
 
 			a {
 				background: rgba(175, 184, 193, 0.2);
@@ -1712,36 +1717,24 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 .d-items {
-	display: flex;
-	flex-wrap: wrap;
-	padding-top: 20px;
+	display: grid;
+	padding-top: 25px;
+	grid-template-columns: auto auto;
+	gap: 30px 20px;
+
+	@media (max-width: 768px) {
+		grid-template-columns: auto;
+	}
 
 	.documentation_item {
 		display: flex;
-		width: 50%;
-		margin-bottom: 40px;
-
-		@media (max-width: 480px) {
-			width: 100%;
-		}
-
-		&:last-child {
-			margin-bottom: 0;
-		}
-
-		&:nth-child(even) {
-			padding-left: 30px;
-			@media (max-width: 480px) {
-				padding-left: 0;
-			}
-		}
 
 		.icon {
 			border-radius: 50%;
 			background-color: var(--bs-white);
 			box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
 			text-align: center;
-			margin-right: 20px;
+			margin-right: 22px;
 			display: flex;
 			justify-content: center;
 			align-items: center;

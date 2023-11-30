@@ -73,7 +73,7 @@ if ( $credit_enable == '1' ) {
                     $doc_walker = $walker;
                 }
             ?>
-            <ul class="list-unstyled nav-sidebar left-sidebar-results ezd-list-unstyled">
+            <ul class="ezd-list-unstyled nav-sidebar left-sidebar-results ezd-list-unstyled">
                 <?php
                 echo wp_list_pages( array(
                     'title_li'  => '',

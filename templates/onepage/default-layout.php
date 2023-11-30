@@ -35,8 +35,7 @@ $children         = wp_list_pages( array(
                     if ( $children ) :
                         ?>
                         <nav class="scroll op-docs-sidebar">
-                            <ul class="list-unstyled nav-sidebar default-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap"
-                                id="eazydocs-toc">
+                            <ul class="ezd-list-unstyled nav-sidebar default-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
                                 <?php
                                 echo wp_list_pages( array(
                                     'title_li'  => '',
@@ -79,7 +78,7 @@ $children         = wp_list_pages( array(
 
             </div>
             <div class="ezd-xl-col-7 ezd-lg-col-6 ezd-grid-column-full middle-content">
-                <div class="documentation_info" id="post">
+                <div class="documentation_info ezd-container" id="post">
                     <?php
                     $sections = get_children( array(
                         'post_parent'    => $child_of_id,
