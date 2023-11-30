@@ -322,7 +322,7 @@ class Admin {
 				'post_parent' => eaz_get_nestable_parent_id( $value->id )
 			], true );
 
-			if ( array_key_exists( 'children', $value ) ) {
+			if ( is_array( $value->children ) ) {
 				foreach ( $value->children as $child ) {
 					$c ++;
 					wp_update_post( [
@@ -330,7 +330,7 @@ class Admin {
 						'menu_order'  => $c,
 						'post_parent' => $value->id
 					], true );
-					if ( array_key_exists( 'children', $child ) ) {
+					if ( is_array( $child->children ) ) {
 						foreach ( $child->children as $of_child ) {
 							$c_of ++;
 							wp_update_post(
