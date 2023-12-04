@@ -797,7 +797,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   bottom: 0;
   left: 0;
   top: 0;
-  max-height: 48px;
+  max-height: 60px;
 }
 .nav-sidebar .nav-item .nav-link {
   padding: 0;
