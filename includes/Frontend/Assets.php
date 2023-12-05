@@ -41,7 +41,7 @@ class Assets {
 
 			wp_enqueue_script( 'anchor' );
 			wp_enqueue_script('scrollspy');
-			wp_enqueue_script( 'bootstrap-toc', EAZYDOCS_ASSETS . '/js/frontend/bootstrap-toc.min.js', array( 'jquery' ) );
+			wp_enqueue_script( 'bootstrap-toc-js', EAZYDOCS_ASSETS . '/js/frontend/bootstrap-toc.min.js', array( 'jquery' ) );
 			wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array( 'jquery' ), EAZYDOCS_VERSION );
 			wp_register_script( 'eazydocs-onepage', EAZYDOCS_ASSETS . '/js/frontend/onepage.js', array( 'jquery' ), EAZYDOCS_VERSION );
 

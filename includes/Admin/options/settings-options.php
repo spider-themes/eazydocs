@@ -617,7 +617,13 @@ CSF::createSection( $prefix, array(
 				array( 'search_banner_layout', '==', 'default' ),
 			),
 		),
-
+		
+		array(
+			'type'    => 'notice',
+			'style'   => 'success',
+			'content' => esc_html__( 'This settings will be applied for the "EazyDocs Search" Elementor widget and Search Banner in Doc Single.', 'eazydocs' )
+		),
+		
 		array(
 			'id'         => 'is_search_result_breadcrumb',
 			'type'       => 'switcher',
