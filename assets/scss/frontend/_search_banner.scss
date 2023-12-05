@@ -199,7 +199,7 @@ form.ezd_search_form {
 	border: none;
 	position: absolute;
 	width: 100%;
-	background: #fff;
+	background: var(--bs-white);
 	border-radius: 10px;
 	box-shadow: 0 3px 4px 0 rgba(4, 73, 89, 0.06);
 	font-size: 14px;
@@ -221,13 +221,13 @@ form.ezd_search_form {
 		content: "";
 		width: 12px;
 		height: 12px;
-		background: #fff;
+		background: var(--bs-white);
 		position: absolute;
 		top: -6px;
 		transform: rotate(45deg);
 		left: 40px;
-		border-left: 1px solid #e6eeef;
-		border-top: 1px solid #e6eeef;
+		border-left: 1px solid var(--bs-white);
+		border-top: 1px solid var(--bs-white);
 	}
 
 	.error.title {
@@ -249,7 +249,7 @@ form.ezd_search_form {
 	.search-result-item {
 		padding: 10px 20px;
 		position: relative;
-		border-bottom: 1px solid rgb(245 245 250);
+		border-bottom: 1px solid var(--black_50);
 		transition: 0.3s all;
 		cursor: pointer;
 		&.no-thumbnail{

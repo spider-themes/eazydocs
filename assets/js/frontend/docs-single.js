@@ -99,9 +99,12 @@
 		 * If no selector is provided, it falls back to a default selector of:
 		 * 'h2, h3, h4, h5, h6'
 		 */
-		anchors.add(
-			'.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4'
-		);
+		if ( $('.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4').length ) {
+			anchors.add(
+					'.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4'
+			);
+		}
+
 		// Anchor JS scroll
 		var urlHash = window.location.href.split('#')[1];
 		if (urlHash) {

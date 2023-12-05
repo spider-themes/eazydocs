@@ -41,7 +41,7 @@ class Single_Doc extends Widget_Base {
     }
 
     public function get_style_depends (){
-        return [ 'ezd-el-widgets', 'ezd-docs-widget', 'bootstrap', 'elegant-icon' ];
+        return [ 'ezd-el-widgets', 'ezd-docs-widget', 'elegant-icon' ];
     }
 
 	protected function register_controls() {

@@ -222,11 +222,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.3.6 (02 December 2023) =
+= v2.3.6 (04 December 2023) =
 Tweaked: Single Doc page and OnePage Doc frontend design improved in 4k resolution display
 Tweaked: The "Docs Page" option moved to the Archive tab in the EazyDocs > Settings > Docs Archive page
 Tweaked: Frontend design improved (Doc single page, OnePage Doc, Feedback modal)
+Tweaked: Rating notice text updated with created doc count
 Updated: eazydocs.pot file in the languages folder
+Fixed: In some cases, the drag-n-drop doc ordering was not working on the Docs builder UI
 
 = v2.3.5 (17 November 2023) =
 Fixed: Shortcode wasn't rendering in the doc content area.

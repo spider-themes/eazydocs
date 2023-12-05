@@ -27,99 +27,6 @@
 
 /*=========== End page_breadcrumb css ============*/
 
-/* Search Banner area
-============================================================================================ */
-.ezd_search_banner {
-	background-color: #fafafa;
-	padding-top: 120px;
-	padding-bottom: 70px;
-	background-position: bottom;
-	background-repeat: no-repeat;
-	background-size: contain;
-	margin: 0 !important;
-	width: 100% !important;
-	max-width: 100% !important;
-
-	&.has_bg_dark {
-		background-size: cover;
-		background-repeat: no-repeat;
-
-		.ezd_search_keywords {
-			.label {
-				color: #d6d9dc;
-			}
-
-			ul li a {
-				color: #ebebeb;
-				text-decoration: none;
-			}
-		}
-
-		&.no_cs_bg {
-			background-image: url("../images/search-bg.jpeg");
-		}
-	}
-
-	.input-wrapper label {
-		position: absolute;
-		top: 48%;
-		left: -2px;
-	}
-
-	.banner_shap_img {
-		li {
-			&:first-child {
-				top: auto;
-				bottom: 0;
-			}
-
-			&:last-child {
-				top: auto;
-				bottom: 0;
-				left: auto;
-				right: 0;
-			}
-		}
-	}
-}
-
-.ezd_search_keywords {
-	text-align: center;
-	justify-content: center;
-
-	.label {
-		color: #54595d;
-		font-weight: 400;
-	}
-
-	ul {
-		li {
-			margin-left: 0;
-			margin-bottom: 0;
-			margin-top: 0;
-
-			a {
-				background: transparent;
-				padding: 0;
-				border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-				transition: all 300ms linear 0s;
-				border-radius: 0;
-				color: #54595d;
-				font-weight: 500;
-				font-size: 14px;
-				line-height: 1.2;
-				display: inline;
-			}
-
-			&:hover {
-				a {
-					border-color: rgba(255, 255, 255, 0.5);
-				}
-			}
-		}
-	}
-}
-
 /** === Doc search form result === **/
 .doc_banner_text .banner_search_form {
 	transition: all 0.4s;
@@ -156,6 +63,9 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 }
 
 .elementor-widget-ezd_search_form {
+	.header_search_form_info.search_form_wrap .search_submit_btn > i {
+		color: #fff;
+	}
 	input#ezd_searchInput {
 		padding-left: 25px;
 		border-radius: 5px;
@@ -216,48 +126,6 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 			li {
 				display: inline-block;
 				margin-right: 7px;
-			}
-		}
-	}
-}
-
-.header_search_keyword {
-	text-align: left;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	font-weight: 500;
-	justify-content: center;
-	margin-top: 10px;
-
-	&.justify-content-end {
-		justify-content: flex-end;
-	}
-
-	&.justify-content-start {
-		justify-content: flex-start;
-	}
-
-	span {
-		font-size: 14px;
-		margin-right: 10px;
-	}
-
-	ul {
-		margin: 0;
-
-		li {
-			display: inline-block;
-			margin: 0 3px 0;
-
-			a {
-				display: block;
-				font-size: 13px;
-				padding: 0 19px;
-				border-radius: 45px;
-				background: var(--ezd_brand_color);
-				color: #fff;
-				text-decoration: none !important;
 			}
 		}
 	}

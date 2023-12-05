@@ -647,7 +647,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   border: none;
   position: absolute;
   width: 100%;
-  background: #fff;
+  background: var(--bs-white);
   border-radius: 10px;
   box-shadow: 0 3px 4px 0 rgba(4, 73, 89, 0.06);
   font-size: 14px;
@@ -667,13 +667,13 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   content: "";
   width: 12px;
   height: 12px;
-  background: #fff;
+  background: var(--bs-white);
   position: absolute;
   top: -6px;
   transform: rotate(45deg);
   left: 40px;
-  border-left: 1px solid #e6eeef;
-  border-top: 1px solid #e6eeef;
+  border-left: 1px solid var(--bs-white);
+  border-top: 1px solid var(--bs-white);
 }
 #ezd-search-results .error.title {
   margin-bottom: 0;
@@ -692,7 +692,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 #ezd-search-results .search-result-item {
   padding: 10px 20px;
   position: relative;
-  border-bottom: 1px solid rgb(245, 245, 250);
+  border-bottom: 1px solid var(--black_50);
   transition: 0.3s all;
   cursor: pointer;
 }
@@ -1026,78 +1026,6 @@ body.ezd-search-focused .ezd_click_capture {
 }
 
 /*=========== End page_breadcrumb css ============*/
-/* Search Banner area
-============================================================================================ */
-.ezd_search_banner {
-  background-color: #fafafa;
-  padding-top: 120px;
-  padding-bottom: 70px;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: contain;
-  margin: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-.ezd_search_banner.has_bg_dark {
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.ezd_search_banner.has_bg_dark .ezd_search_keywords .label {
-  color: #d6d9dc;
-}
-.ezd_search_banner.has_bg_dark .ezd_search_keywords ul li a {
-  color: #ebebeb;
-  text-decoration: none;
-}
-.ezd_search_banner.has_bg_dark.no_cs_bg {
-  background-image: url("../images/search-bg.jpeg");
-}
-.ezd_search_banner .input-wrapper label {
-  position: absolute;
-  top: 48%;
-  left: -2px;
-}
-.ezd_search_banner .banner_shap_img li:first-child {
-  top: auto;
-  bottom: 0;
-}
-.ezd_search_banner .banner_shap_img li:last-child {
-  top: auto;
-  bottom: 0;
-  left: auto;
-  right: 0;
-}
-
-.ezd_search_keywords {
-  text-align: center;
-  justify-content: center;
-}
-.ezd_search_keywords .label {
-  color: #54595d;
-  font-weight: 400;
-}
-.ezd_search_keywords ul li {
-  margin-left: 0;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.ezd_search_keywords ul li a {
-  background: transparent;
-  padding: 0;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  transition: all 300ms linear 0s;
-  border-radius: 0;
-  color: #54595d;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.2;
-  display: inline;
-}
-.ezd_search_keywords ul li:hover a {
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
 /** === Doc search form result === **/
 .doc_banner_text .banner_search_form {
   transition: all 0.4s;
@@ -1130,6 +1058,9 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
   position: absolute;
 }
 
+.elementor-widget-ezd_search_form .header_search_form_info.search_form_wrap .search_submit_btn > i {
+  color: #fff;
+}
 .elementor-widget-ezd_search_form input#ezd_searchInput {
   padding-left: 25px;
   border-radius: 5px;
@@ -1180,42 +1111,6 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 .elementor-widget-ezd_search_form .ezd_search_keywords ul li {
   display: inline-block;
   margin-right: 7px;
-}
-
-.header_search_keyword {
-  text-align: left;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  font-weight: 500;
-  justify-content: center;
-  margin-top: 10px;
-}
-.header_search_keyword.justify-content-end {
-  justify-content: flex-end;
-}
-.header_search_keyword.justify-content-start {
-  justify-content: flex-start;
-}
-.header_search_keyword span {
-  font-size: 14px;
-  margin-right: 10px;
-}
-.header_search_keyword ul {
-  margin: 0;
-}
-.header_search_keyword ul li {
-  display: inline-block;
-  margin: 0 3px 0;
-}
-.header_search_keyword ul li a {
-  display: block;
-  font-size: 13px;
-  padding: 0 19px;
-  border-radius: 45px;
-  background: var(--ezd_brand_color);
-  color: #fff;
-  text-decoration: none !important;
 }
 
 .header_search_form_info input[type=search] {

@@ -84,7 +84,7 @@ class Assets {
 
 		// Global Scripts
 		wp_register_style( 'elegant-icon', EAZYDOCS_VEND . '/elegant-icon/style.css' );
-		if ( self::ezd_global_scope() ) {
+		if ( self::global_scope() ) {
 			wp_enqueue_style( 'elegant-icon' );
 			wp_enqueue_style( 'eazydocs-frontend-global' );
 
@@ -115,7 +115,7 @@ class Assets {
 		}
 	}
 
-	private static function ezd_global_scope() {
+	private static function global_scope() {
 		if ( has_block( 'eazydocs/search-banner' )
 		     || in_array( 'eazydocs_shortcode', get_body_class() )
 		     || is_singular( 'docs' )
