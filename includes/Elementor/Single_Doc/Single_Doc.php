@@ -50,7 +50,7 @@ class Single_Doc extends Widget_Base {
 		$support_pro = 'ezd-free-docs';
 		$skins_label = 'pro-label';
 
-		if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' ) {
+		if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' || $theme == 'docy-child' || $theme == 'Docy Child' ) {
 			$support_pro = '';
 			$skins_label = '';
 		}
@@ -637,7 +637,7 @@ class Single_Doc extends Widget_Base {
 			
 			// get theme name
 			$theme = wp_get_theme();
-			if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' ) {
+			if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' || $theme == 'docy-child' || $theme == 'Docy Child' ) {
 				include( "single-doc-{$settings['doc-widget-single-search']}.php" );
 			} else {
 				include( "single-doc-1.php" );
