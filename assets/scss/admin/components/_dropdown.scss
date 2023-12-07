@@ -18,9 +18,78 @@
     }
 }
 
+/** === Notification CSS === **/
+$clr-white: #ffffff;
+
 .notification-dropdown {
     width: 320px;
-    @include pseudo(top rem(-10px) right 2.5rem){
-        @include triangle(top, 20px, 10px, var(--clr-white));
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: 2.5rem;
+        @include triangle(top, 20px, 10px, $clr-white);
+    }
+}
+
+.notification-head {
+    padding: 15px 25px !important;
+    box-shadow: none !important;
+
+    &.ez-pb-0 {
+        padding-bottom: 0 !important;
+    }
+
+    .header-text {
+        font-size: 16px !important;
+    }
+}
+
+.notification-body {
+    .easydocs-filters {
+        .dashicons {
+            font-size: 14px;
+            color: gray;
+            padding-top: 2px;
+
+            .easydocs-btn {
+                &.mixitup-control-active {
+                    &:hover,
+                    &.mixitup-control-active {
+                        .dashicons {
+                            color: #1877f2;
+                        }
+                    }
+                }
+
+                &:hover {
+                    .dashicons {
+                        color: gray;
+                    }
+                }
+            }
+        }
+    }
+
+    .notification-item {
+        .notification-image {
+            img {
+                border-radius: 50%;
+                height: auto;
+                width: auto;
+                max-width: 40px;
+                min-height: auto;
+                object-fit: contain;
+            }
+        }
+    }
+
+    .no-notification-text {
+        color: var(--clr-text-light);
+    }
+
+    a.notification-item-permalink {
+        text-decoration: none;
     }
 }

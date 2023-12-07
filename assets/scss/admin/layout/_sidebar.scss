@@ -91,6 +91,7 @@
         }
         .link {
             display: flex;
+            align-items: self-end;
             a {
                 padding-left: 2px;
                 padding-right: 2px;
@@ -238,4 +239,90 @@ button.nestable--button.nestable--expand {
         background: rgba(37, 39, 51, 0.05);
         --grid-icon: var(--clr-blue);
     }
+}
+
+/* BULK OPTIONS CSS*/
+.ezd-admin-bulk-options {
+    position: relative;
+
+    .ezd-admin-bulk-actions {
+        position: absolute;
+        right: -8px;
+        display: none;
+        z-index: 5;
+        background-color: rgb(42 43 70);
+        padding-top: 15px;
+        min-width: 35px;
+        padding-left: 7px;
+        padding-right: 7px;
+
+        a {
+            color: var(--black_200);
+            width: 100%;
+            text-align: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #e5e5e52e;
+            display: flex;
+            font-size: 12px;
+            align-items: baseline;
+            &:last-child {
+                border-bottom: none;
+            }
+            &:hover span {
+                color: #fff;
+            }
+
+            .dashicons {
+                font-size: 12px;
+                line-height: 21px;
+                padding-right: 2px;
+            }
+        }
+    }
+
+    .dashicons-arrow-down-alt2 {
+        transition: .15s all;
+
+        &:before {
+            color: var(--black_200);
+        }
+    }
+
+    &.active {
+        .ezd-admin-bulk-actions {
+            display: block;
+        }
+
+        .dashicons.arrow-active {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+/* Doc visibility */
+.docs_visibility_wrapper p {
+    margin-bottom: 30px;
+    font-size: 0.94em;
+}
+
+.docs_visibility_field_wrap {
+    text-align: left;
+}
+
+.docs_visibility_field_wrap label {
+    margin-right: 10px;
+}
+
+.docs_visibility_field_wrap input#ezd_password_input {
+    width: 100%;
+    border: 1px solid gray;
+    margin-top: 10px;
+    padding: 0px 10px;
+    font-size: 15px;
+    color: black;
+}
+
+.docs_visibility_field_wrap input#ezd_password_input:focus {
+    outline: none;
+    box-shadow: none;
 }

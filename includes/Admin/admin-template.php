@@ -4,8 +4,7 @@ $depth_two_parents = [];
 $posts             = get_posts( [ 'post_type' => 'docs',  'post_status' => ['all'] ] );
 $docs_num          = count( $posts );
 ?>
-<div class="wrap">
-    <div class="body-dark">
+<div class="ezd_doc_builder">
 		<?php
 		if ( $docs_num > 0 ) :
 			require_once __DIR__ . '/template/header.php';
@@ -36,5 +35,4 @@ $docs_num          = count( $posts );
 		    <?php
 		endif;
 		?>
-    </div>
 </div>

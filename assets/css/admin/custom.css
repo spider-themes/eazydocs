@@ -157,54 +157,8 @@ div.search_result {
     font-weight: 400;
 }
 
-.notification-head {
-    padding: 15px 25px !important;
-    box-shadow: none !important;
-}
-
-.ez-pb-0.notification-head {
-    padding: 15px 25px 0 !important;
-}
-
 .create_onepage_doc_area {
     overflow: hidden;
-}
-
-.notification-head .header-text {
-    font-size: 16px !important;
-}
-
-/** Notification CSS **/
-.notification-body .easydocs-filters .dashicons {
-    font-size: 14px;
-    color: gray;
-    padding-top: 2px;
-}
-
-.notification-body .easydocs-filters .easydocs-btn.mixitup-control-active:hover .dashicons,
-.notification-body .easydocs-filters .easydocs-btn.mixitup-control-active .dashicons {
-    color: #1877f2;
-}
-
-.notification-body .easydocs-filters .easydocs-btn:hover .dashicons {
-    color: gray;
-}
-
-.notification-item .notification-image img {
-    border-radius: 50%;
-    height: auto;
-    width: auto;
-    min-width: 40px;
-    min-height: 40px;
-    object-fit: contain;
-}
-
-.no-notification-text {
-    color: var(--clr-text-light);
-}
-
-a.notification-item-permalink {
-    text-decoration: none;
 }
 
 label[for='ezd-shortcode-edit'],

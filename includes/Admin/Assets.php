@@ -33,7 +33,6 @@ class Assets {
 	 **/
 	public function eazydocs_dashboard_scripts() {
 		/* Stylesheets */
-		wp_enqueue_style( 'normalize', EAZYDOCS_ASSETS . '/css/admin/normalize.css' );
 		wp_enqueue_style( 'nice-select', EAZYDOCS_ASSETS . '/css/admin/nice-select.css' );
 		wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
 		wp_enqueue_style( 'eazyDocs-main', EAZYDOCS_ASSETS . '/css/admin.css', array(), EAZYDOCS_VERSION );
