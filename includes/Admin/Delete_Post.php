@@ -19,14 +19,15 @@ class Delete_Post {
 	 */
 	public function delete_doc() {
 
-		if ( isset ( $_GET['Doc_Delete'] ) && ! empty ( $_GET['DeleteID'] ) && ! empty ( $_GET['Doc_Delete'] == 'yes' ) ) {
-			echo 'DeleteID: ' . $_GET['DeleteID'] . '<br>';
+		if ( isset($_GET['Doc_Delete']) && $_GET['Doc_Delete'] == 'yes' && isset($_GET['DeleteID']) && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['DeleteID']) ) {
+
+			echo 'test';
 			$posts                  = sanitize_text_field( $_GET['DeleteID'] );
 			$parent_id              = $posts . ',';
 
 			/**
 			 * Section Docs
-			 **/
+			**/
 			$parent                 = get_children( [
 				'post_parent'       => $posts
 			] );
@@ -58,7 +59,7 @@ class Delete_Post {
 			}
 			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
 
-		} elseif ( isset ( $_GET['Section_Delete'] ) && ! empty ( $_GET['ID'] ) && ! empty ( $_GET['Section_Delete'] == 'yes' )) {
+		} elseif ( isset($_GET['Section_Delete']) && $_GET['Section_Delete'] == 'yes' && isset($_GET['ID']) && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['ID']) ) {
 			
 			$posts                  = sanitize_text_field( $_GET['ID'] );
 			$parent_id              = $posts . ',';
@@ -92,15 +93,21 @@ class Delete_Post {
 			$delete_ids = $parent_id . $sec_ids . $child_sec_ids . $child_ids;
 			$doc_ids                  = explode( ',', $delete_ids );
 			$doc_ids_int              = array_map( 'intval', $doc_ids );
+
 			foreach ( $doc_ids_int as $deletes ) {
 				wp_trash_post( $deletes, true );
 			}
 			
 			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
-		} elseif ( isset ( $_GET['Last_Child_Delete'] ) && ! empty ( $_GET['ID'] ) && ! empty ( $_GET['Last_Child_Delete'] == 'yes' )) {
+
+		} elseif ( isset($_GET['Last_Child_Delete']) && $_GET['Last_Child_Delete'] == 'yes' && isset($_GET['ID']) && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['ID']) ) {
+
 			$last_doc_id = sanitize_text_field( $_GET['ID'] );
+
 			wp_trash_post( $last_doc_id, true );
+
 			header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
+
 		}
 	}
 }

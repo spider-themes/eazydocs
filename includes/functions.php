@@ -604,7 +604,7 @@ function eazydocs_pro_doc_list() {
 	foreach ( $docs as $doc ) {
 		if ( ! get_page_by_path( $doc->post_name, OBJECT, 'onepage-docs' ) ) {
 			$doc_item_count ++;
-			$doc_items .= '<option name="' . $doc->post_title . '">' . $doc->post_title . '</option>';
+			$doc_items .= '<option _wpnonce="'.wp_create_nonce($doc->ID).'" value="' . $doc->ID . '">' . $doc->post_title . '</option>';
 		}
 	}
 	if ( $doc_item_count === 0 ) {
@@ -633,19 +633,17 @@ function eazydocs_one_page( $doc_id ) {
 	if ( $post_status != 'draft' ) :
 		if ( count( $one_page_docs ) < 1 ) :
 			?>
-<button class="button button-info one-page-doc" id="one-page-doc" name="submit"
-    data-url="<?php echo admin_url( 'admin.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>&make_onepage=yes">
-    <?php esc_html_e( 'Make OnePage Doc', 'eazydocs' ); ?>
-</button>
-<?php
+			<button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo admin_url( 'admin.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>&make_onepage=yes&_wpnonce=<?php echo wp_create_nonce($doc_id); ?>">
+				<?php esc_html_e( 'Make OnePage Doc', 'eazydocs' ); ?>
+			</button>
+			<?php
 		else :
 			foreach ( $one_page_docs as $single_docs ) :
 				?>
-<a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink( $single_docs ); ?>"
-    target="_blank">
-    <?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
-</a>
-<?php
+				<a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink( $single_docs ); ?>" target="_blank">
+					<?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
+				</a>
+				<?php
 			endforeach;
 		endif;
 	endif;
@@ -1259,3 +1257,29 @@ function ezd_single_banner($classes) {
     return $classes;
 }
 add_filter('body_class', 'ezd_single_banner');
+
+
+add_action('wp_head', function(){
+	// $args = [
+	// 	'post_type'  		=> 'docs',
+	// 	'posts_per_page'  	=> -1
+	// ];
+	// $query = new \WP_Query($args);
+	// while($query->have_posts()) : $query->the_post();
+	// wp_delete_post(get_the_ID(), true);
+	// endwhile;
+});
+
+/**
+ * Editor & Administrator access
+ */
+function ezd_is_admin_or_editor(){
+	if (current_user_can('editor') || current_user_can('administrator')) {
+		return true;
+	}
+}
+
+// function ezd_nonce_create($doc_id){
+// 	$nonce = wp_create_nonce('ezd_nonce_'.$doc_id);
+// 	return $nonce;
+// }

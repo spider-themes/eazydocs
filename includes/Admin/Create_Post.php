@@ -22,50 +22,51 @@ class Create_Post {
      */
     public function create_parent_doc() {
 
-	    if ( ! empty ( $_GET['parent_title'] ) && ! empty ( $_GET['Create_doc'] == 'yes' ) ) {
-			
-			$title = !empty($_GET['parent_title']) ? htmlspecialchars($_GET['parent_title']) : 0;
+		if ( isset($_GET['parent_title']) && isset($_GET['Create_doc']) && $_GET['Create_doc'] == 'yes' && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'parent_doc_nonce') ) {
 
-			$str 				= ['ezd_ampersand','ezd_hash', 'ezd_plus'];
-			$rplc 				= ['&','#', '+'];
-			$title_text 		= str_replace($str, $rplc, $title);
-			
-            $args = [
-                'post_type'   	=> 'docs',
-                'post_parent' 	=> 0
-            ];
-
-            $query	 			= new \WP_Query( $args );
-            $total 				= $query->found_posts;
-            $add   				= 2;
-            $order 				= $total + $add;
-
-            // Create post object
-            $parent_doc = array(
-                'post_title'   => $title_text,
-                'post_parent'  => 0,
-                'post_content' => '',
-                'post_type'    => 'docs',
-                'post_status'  => 'publish',
-                'post_author'  => get_current_user_id(),
-                'menu_order'   => $order,
-            );
-            wp_insert_post( $parent_doc, $wp_error = '' );            
-            wp_safe_redirect( admin_url('admin.php?page=eazydocs') );
-        }
+			$title 			= !empty($_GET['parent_title']) ? htmlspecialchars($_GET['parent_title']) : 0;
+			$str         	= ['ezd_ampersand', 'ezd_hash', 'ezd_plus'];
+			$rplc        	= ['&', '#', '+'];
+			$title_text  	= str_replace($str, $rplc, $title);
+		
+			$args = [
+				'post_type'   => 'docs',
+				'post_parent' => 0,
+			];
+		
+			$query   = new \WP_Query($args);
+			$total   = $query->found_posts;
+			$add     = 2;
+			$order   = $total + $add;
+		
+			// Create post object
+			$parent_doc = array(
+				'post_title'   => $title_text,
+				'post_parent'  => 0,
+				'post_content' => '',
+				'post_type'    => 'docs',
+				'post_status'  => 'publish',
+				'post_author'  => get_current_user_id(),
+				'menu_order'   => $order,
+			);
+			wp_insert_post($parent_doc, $wp_error = '');
+			wp_safe_redirect(admin_url('admin.php?page=eazydocs'));
+		}
     }
 
 	/**
 	 * Create new Doc post
 	 */
 	public function create_new_doc() {
-		if ( ! empty ( $_GET['new_doc'] )  && ! empty ( $_GET['Create_doc'] == 'yes') ) {
-			
-			$doc_title      	= ! empty ( $_GET['new_doc'] ) ? htmlspecialchars( $_GET['new_doc'] ) : 0;
-			$str 				= ['ezd_ampersand','ezd_hash', 'ezd_plus'];
-			$rplc 				= ['&','#', '+'];
-			$doc_title_text 	= str_replace($str, $rplc, $doc_title);
 
+		if ( isset($_GET['new_doc']) && isset($_GET['Create_doc']) && $_GET['Create_doc'] == 'yes' && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'create_new_doc_nonce')
+		) {
+
+			$doc_title 		= !empty($_GET['new_doc']) ? htmlspecialchars($_GET['new_doc']) : 0;		
+			$str            = ['ezd_ampersand', 'ezd_hash', 'ezd_plus'];
+			$rplc           = ['&', '#', '+'];
+			$doc_title_text = str_replace($str, $rplc, $doc_title);
+		
 			// Create post object
 			$new_doc = array(
 				'post_title'   => $doc_title_text,
@@ -73,11 +74,11 @@ class Create_Post {
 				'post_content' => '',
 				'post_type'    => 'docs',
 				'post_status'  => 'publish',
-				'menu_order'   => 1
+				'menu_order'   => 1,
 			);
-			wp_insert_post( $new_doc, $wp_error = '' );
-			wp_safe_redirect( admin_url('admin.php?page=eazydocs') );
-		}
+			wp_insert_post($new_doc, $wp_error = '');
+			wp_safe_redirect(admin_url('admin.php?page=eazydocs'));
+		}		
 	}
 
 	/**
@@ -85,7 +86,7 @@ class Create_Post {
 	 */
 	public function create_section_doc() {
 
-		if ( ! empty ( $_GET['is_section'] ) && ! empty ( $_GET['Create_Section'] == 'yes' )) {
+		if ( isset($_GET['is_section']) && isset($_GET['Create_Section']) && $_GET['Create_Section'] == 'yes' && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['parentID']) ) {
 
 			$parentID      			= ! empty ( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;
 			$section_title 			= ! empty ( $_GET['is_section'] ) ? htmlspecialchars( $_GET['is_section'] ) : '';
@@ -137,7 +138,7 @@ class Create_Post {
 	 */
 	public function create_child_doc() {
 
-		if ( ! empty ( $_GET['child'] ) && ! empty ( $_GET['Create_Child'] == 'yes' ) ) {
+		if ( isset($_GET['child']) && isset($_GET['Create_Child']) && $_GET['Create_Child'] == 'yes' && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['childID']) ) {
 			
 			$child_id    		= ! empty ( $_GET['childID'] ) ? absint( $_GET['childID'] ) : 0;
 			$child_title 		= ! empty ( $_GET['child'] ) ? htmlspecialchars( $_GET['child'] ) : '';	

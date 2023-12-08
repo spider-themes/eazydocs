@@ -8,6 +8,11 @@
   .easydocs-row {
     @include margin(mx, 0);
   }
+  .row{
+    &.ml-0{
+      margin-left: 0;
+    }
+  }
 }
 
 .navbar-left {
@@ -87,6 +92,7 @@
         color: #747474;
         padding-top: 10px;
         display: block;
+        text-decoration: none;
         }
         .easydocs-badge {
           background: #333;

@@ -289,7 +289,9 @@ class Admin {
 			$ezd_content_right  = str_replace( '#', ';hash;', $ezd_content_right );
 			$ezd_content_right  = str_replace( 'style&equals;', 'style@', $ezd_content_right );
 			$ezd_contents_right = ! empty( $ezd_content_right ) ? '&content_right=' . $ezd_content_right : null;
-			$link               = $link . $doc_layout . $content_type . $content_null . $content_type_right . $ezd_contents_right;
+
+			$ezd_onepage_nonce	= '&_wpnonce='.wp_create_nonce($post_ID);
+			$link               = $link . $ezd_onepage_nonce . $doc_layout . $content_type . $content_null . $content_type_right . $ezd_contents_right;
 		}
 
 		return $link;

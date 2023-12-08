@@ -1040,6 +1040,9 @@ body.rtl a.child-delete {
   margin-left: 0;
   margin-right: 0;
 }
+.easydocs-header-area .row.ml-0 {
+  margin-left: 0;
+}
 
 .navbar-left {
   gap: var(--gutter-20);
@@ -1109,6 +1112,7 @@ body.rtl a.child-delete {
   color: #747474;
   padding-top: 10px;
   display: block;
+  text-decoration: none;
 }
 .easydocs-settings .header-notify-icon.ezd-trashicon .easydocs-badge {
   background: #333;

@@ -13,39 +13,40 @@ class Edit_OnePage {
 	}
 
 	function edit_doc_one_page() {
+ 
+		if ( isset($_GET['edit_docs']) && isset($_GET['edit_onepage']) && $_GET['edit_onepage'] == 'yes' && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['doc_id']) ) {
 
-		if ( ! empty ( $_GET['edit_docs'] ) && ! empty ( $_GET['edit_onepage'] == 'yes' ) ) {
-			$page_id      = $_GET['doc_id'] ?? '';
-			$layout       = $_GET['layout'] ?? '';
-			$content_type = $_GET['content_type'] ?? '';
+			$page_id      		= sanitize_text_field( $_GET['doc_id'] ?? '' );
+			$layout       		= sanitize_text_field( $_GET['layout'] ?? '' );
+			$content_type 		= sanitize_text_field( $_GET['content_type'] ?? '' );
+			$content_type_right = sanitize_text_field( $_GET['shortcode_right'] ?? '' );
 
-			$content_type_right  = $_GET['shortcode_right'] ?? '';
 			$page_content_rights = '';
 			$page_content_right  = '';
 
 			if ( $content_type_right == 'widget_data_right' ) {
-				$shortcode_content_right = $_GET['right_side_sidebar'] ?? '';
+				$shortcode_content_right = sanitize_text_field( $_GET['right_side_sidebar'] ?? '' );
 			} elseif ( $content_type_right == 'shortcode_right' ) {
 				$shortcode_content_right = 'doc_sidebar';
 			} else {
-				$page_content_rights     = $_GET['shortcode_content_right'] ?? '';
-				$page_content_right      = substr( ezd_chrEncode( $page_content_rights ), 1 );
-				$shortcode_content_right = substr_replace( $page_content_right, "", - 1 );
+				$page_content_rights     = esc_textarea( $_GET['shortcode_content_right'] ?? '' );
+				$page_content_right      = substr( ezd_chrEncode( $page_content_rights ), 6 );
+				$shortcode_content_right = substr_replace( $page_content_right, "", - 6 );
 				$shortcode_content_right = str_replace( 'style@', "style=", $shortcode_content_right );
 				$shortcode_content_right = str_replace( ';hash;', "#", $shortcode_content_right );
 			}
 
-			$page_contents = '';
-			$page_content  = '';
+			$page_contents 		= '';
+			$page_content  		= '';
 
 			if ( $content_type == 'widget_data' ) {
-				$page_content = $_GET['left_side_sidebar'] ?? '';;
+				$page_content 	= sanitize_text_field( $_GET['left_side_sidebar'] ?? '' );
 			} else {
-				$page_contents = $_GET['edit_content'] ?? '';
-				$page_content  = substr( ezd_chrEncode( $page_contents ), 1 );
-				$page_content  = substr_replace( $page_content, "", - 1 );
-				$page_content  = str_replace( 'style@', "style=", $page_content );
-				$page_content  = str_replace( ';hash;', "#", $page_content );
+				$page_contents 	= esc_textarea( $_GET['edit_content'] ?? '');				 
+				$page_content  	= substr( ezd_chrEncode( $page_contents ), 6 );
+				$page_content  	= substr_replace( $page_content, "", - 6 );
+				$page_content  	= str_replace( 'style@', "style=", $page_content );				
+				$page_content  	= str_replace( ';hash;', "#", $page_content );
 			}
 
 			update_post_meta( $page_id, 'ezd_doc_layout', $layout );
