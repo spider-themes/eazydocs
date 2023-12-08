@@ -1106,8 +1106,7 @@ CSF::createSection( $prefix, array(
 
 		array(
 			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
-			'desc'       => __( 'You can display conditional contents using the [conditional_data] shortcode in documentation based on the dropdown value. See the shortcode usage tutorial <a href="https://tinyurl.com/yd46mfax" target="_blank">here</a>.',
-				'eazydocs' ),
+			'desc'       => __( 'You can display conditional contents using the [conditional_data] shortcode in documentation based on the dropdown value. See the shortcode usage tutorial <a href="https://tinyurl.com/yd46mfax" target="_blank">here</a>.', 'eazydocs' ),
 			'id'         => 'is_conditional_dropdown',
 			'type'       => 'switcher',
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
