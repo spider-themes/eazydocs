@@ -729,7 +729,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar) {
   max-height: 650px;
   overflow-y: auto;
-  padding-right: 15px;
+  padding-right: 20px;
   margin-left: -10px;
 }
 @media (max-height: 630px) {
@@ -805,7 +805,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
-  color: var(--black_500);
+  color: var(--black_600);
   align-items: start;
   flex: 1;
   text-decoration: none;
@@ -870,7 +870,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .nav-sidebar .nav-item .dropdown_nav li:not(.has_child) a {
   font-size: 14px;
   font-weight: 400;
-  color: var(--black_500);
+  color: var(--black_600);
   padding: 0;
   text-decoration: none;
 }

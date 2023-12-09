@@ -222,7 +222,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.3.6 (09 December 2023) =
+= v2.3.6 (10 December 2023) =
+Fixed: COMPATIBILITY ISSUE WITH WPDATATABLES PLUGIN SOLVED (the plugin was conflicting with the EazyDocs plugin)
+Fixed: In some cases, the drag-n-drop doc ordering was not working on the Docs builder UI
+Fixed: Table of content navigation active issue with scrolling on Doc single page
+Fixed: Mixitup JS library was missing, ERROR 500 on the admin side
+Fixed: Resolved a critical issue causing an E_ERROR at line 168 in the feedback.php file.
 Tweaked: Data secured by nonce and sanitized output - followed by wp.org standards and best practices
 Tweaked: Single Doc page and OnePage Doc frontend design improved in 4k resolution display
 Tweaked: The "Docs Page" option moved to the Archive tab in the EazyDocs > Settings > Docs Archive page
@@ -232,8 +237,8 @@ Tweaked: Modified user feedback settings to make them private, restricting visit
 Tweaked: Implemented measures to make user feedback non-accessible, preventing Google indexing for enhanced privacy.
 Tweaked: Doc Builder UI design improved
 Tweaked: Removed some unnecessary files and code (normalize.css)
+Tweaked: Added "Breadcrumb" show/hide option in the Settings > Doc Single > Search Banner, so that a user can enable or disable the breadcrumbs in the search Ajax results
 Updated: eazydocs.pot file in the languages folder
-Fixed: In some cases, the drag-n-drop doc ordering was not working on the Docs builder UI
 
 = v2.3.5 (17 November 2023) =
 Fixed: Shortcode wasn't rendering in the doc content area.

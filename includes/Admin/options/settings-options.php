@@ -611,17 +611,12 @@ CSF::createSection( $prefix, array(
 		//Search Keywords
 		array(
 			'type'       => 'subheading',
-			'title'      => esc_html__( 'Search Results', 'eazydocs' ),
+			'title'      => esc_html__( 'Ajax Search Results', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'The Search Results settings is global. This settings will be applied to all Ajax Doc Search Results in the plugin.', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'search_banner_layout', '==', 'default' ),
 			),
-		),
-		
-		array(
-			'type'    => 'notice',
-			'style'   => 'success',
-			'content' => esc_html__( 'This settings will be applied for the "EazyDocs Search" Elementor widget and Search Banner in Doc Single.', 'eazydocs' )
 		),
 		
 		array(

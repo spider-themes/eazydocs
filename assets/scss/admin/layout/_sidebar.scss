@@ -168,8 +168,7 @@ button.nestable--button.nestable--expand {
         align-items: center;
         justify-content: center;
         gap: rem(5px);
-        --btn-py: 0.25rem;
-        --btn-px: 0.75rem;
+        padding: 0.2rem 1.2rem 0.2rem;
         --btn-fs: var(--fs-14);
         &.easydocs-btn-black-light {
             --btn-icon: #0D0E2B;
@@ -214,6 +213,10 @@ button.nestable--button.nestable--expand {
                 --btn-clr: var(--clr-white);
                 --btn-icon: var(--clr-white);
             }
+        }
+
+        span.dashicons {
+            font-size: 18px;
         }
     }
 }
