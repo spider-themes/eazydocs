@@ -36,7 +36,7 @@ function ezd_is_premium() {
  */
 function ezd_unlock_themes() {
 	$current_theme = get_template();
-	if ( $current_theme == 'Docy' || $current_theme == 'Docly' || ezd_is_premium() ) {
+	if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
 		return true;
 	}
 }
