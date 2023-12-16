@@ -9,7 +9,7 @@
                 </div>
 
                 <?php 
-                if ( current_user_can('editor') || current_user_can('administrator') ) : 
+                    if ( current_user_can( 'publish_pages' ) ) :
                     ?>
                     <button type="button" data-url="<?php echo admin_url('admin.php'); ?>?Create_doc=yes&_wpnonce=<?php echo wp_create_nonce('parent_doc_nonce'); ?>&parent_title=" id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round">
                         <span class="dashicons dashicons-plus-alt2"></span>
@@ -31,7 +31,7 @@
                 <ul class="d-flex justify-content-end">
 
                     <?php 
-                    if ( current_user_can('editor') || current_user_can('administrator') ) : 
+                    if ( current_user_can('publish_pages') ) : 
                         ?>
                         <li>
                             <div class="easydocs-settings">

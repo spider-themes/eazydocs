@@ -1258,28 +1258,11 @@ function ezd_single_banner($classes) {
 }
 add_filter('body_class', 'ezd_single_banner');
 
-
-add_action('wp_head', function(){
-	// $args = [
-	// 	'post_type'  		=> 'docs',
-	// 	'posts_per_page'  	=> -1
-	// ];
-	// $query = new \WP_Query($args);
-	// while($query->have_posts()) : $query->the_post();
-	// wp_delete_post(get_the_ID(), true);
-	// endwhile;
-});
-
 /**
  * Editor & Administrator access
  */
 function ezd_is_admin_or_editor(){
-	if (current_user_can('editor') || current_user_can('administrator')) {
+	if ( current_user_can('publish_pages') ) {
 		return true;
 	}
 }
-
-// function ezd_nonce_create($doc_id){
-// 	$nonce = wp_create_nonce('ezd_nonce_'.$doc_id);
-// 	return $nonce;
-// }

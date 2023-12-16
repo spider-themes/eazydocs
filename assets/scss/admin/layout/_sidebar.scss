@@ -53,6 +53,7 @@
             display: flex;
             .dd-handle {
                 cursor: move;
+                margin: 4px 0 -4px;
             }
             .drag-icon {
                 margin-bottom: -5px;
@@ -91,7 +92,10 @@
         }
         .link {
             display: flex;
-            align-items: self-end;
+            align-items: center;
+            .dd-handle {
+                margin: 0px;
+            }
             a {
                 padding-left: 2px;
                 padding-right: 2px;
@@ -133,6 +137,9 @@
     &:hover svg {
         color: #fff;
         fill-color: #fff;
+    }
+    .dd-handle {
+        line-height: 12px;
     }
 }
 

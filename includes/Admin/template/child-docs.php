@@ -94,7 +94,7 @@ if (is_array($depth_one_parents)) :
                             <li <?php post_class("dd-item dd3-item dd-item-parent easydocs-accordion-item accordion ez-section-acc-item mix " . esc_attr($post_status . ' ' . $eaz_children_class . ' child-' . $child->ID)); ?> data-id="<?php echo esc_attr($child->ID); ?>">
                                 <?php 
                                 if ( ezd_is_admin_or_editor() ) :
-                                    ?> 
+                                    ?>
                                     <div class="dd-handle dd3-handle">
                                         <svg class="dd-handle-icon" width="12px" height="12px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="<?php esc_attr_e('Hold the mouse and drag to move this doc.', 'eazydocs'); ?>">
                                             <path fill="none" stroke="#000" stroke-width="2" d="M15,5 L17,5 L17,3 L15,3 L15,5 Z M7,5 L9,5 L9,3 L7,3 L7,5 Z M15,13 L17,13 L17,11 L15,11 L15,13 Z M7,13 L9,13 L9,11 L7,11 L7,13 Z M15,21 L17,21 L17,19 L15,19 L15,21 Z M7,21 L9,21 L9,19 L7,19 L7,21 Z" />
@@ -508,7 +508,7 @@ if (is_array($depth_one_parents)) :
             </div>
 
             <?php 
-            if ( current_user_can('editor') || current_user_can('administrator') ) : 
+            if ( current_user_can('publish_pages') ) : 
                 ?>
                 <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url('admin.php'); ?>?Create_Section=yes&_wpnonce=<?php echo wp_create_nonce($item); ?>&parentID=<?php echo $item; ?>&is_section=">
                     <?php esc_html_e('Add Section', 'eazydocs'); ?>

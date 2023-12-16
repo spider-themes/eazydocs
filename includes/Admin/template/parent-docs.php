@@ -64,7 +64,7 @@ $count = $query->found_posts;
                         do_action('eazydocs_parent_doc_drag');
                     }
 
-                    if ( current_user_can('editor') || current_user_can('administrator') ) :
+                    if ( current_user_can('publish_pages') ) :
                         ?>
                         <a href="<?php echo get_edit_post_link(get_the_ID()); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
                             <span class="dashicons dashicons-edit"></span>
@@ -78,7 +78,7 @@ $count = $query->found_posts;
                     </a>
 
                     <?php 
-                    if ( current_user_can('editor') || current_user_can('administrator') ) : 
+                    if ( current_user_can('publish_pages') ) : 
                         ?>
                         
                         <a href="<?php echo admin_url('admin.php'); ?>?Doc_Delete=yes&_wpnonce=<?php echo wp_create_nonce(get_the_ID()); ?>&DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">

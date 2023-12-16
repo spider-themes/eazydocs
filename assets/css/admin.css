@@ -1482,6 +1482,7 @@ body.rtl a.child-delete {
 }
 .easydocs-navitem.is-active .link .dd-handle {
   cursor: move;
+  margin: 4px 0 -4px;
 }
 .easydocs-navitem.is-active .link .drag-icon {
   margin-bottom: -5px;
@@ -1518,7 +1519,10 @@ body.rtl a.child-delete {
 }
 .easydocs-navitem:hover .link {
   display: flex;
-  align-items: self-end;
+  align-items: center;
+}
+.easydocs-navitem:hover .link .dd-handle {
+  margin: 0px;
 }
 .easydocs-navitem:hover .link a {
   padding-left: 2px;
@@ -1558,6 +1562,9 @@ body.rtl a.child-delete {
 .link:hover svg {
   color: #fff;
   fill-color: #fff;
+}
+.link .dd-handle {
+  line-height: 12px;
 }
 
 .easydocs-tab-content {
