@@ -222,6 +222,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.3.7 (17 December 2023) =
+Updated: Freemius SDK updated to 2.6.1
+Tweaked: Users role replaced by their capabilities - Followed by org review
+Fixed: theme check in ezd_unlock_themes (Merge pull request #10 from EazyDocs Github repository)
+
 = v2.3.6 (10 December 2023) =
 Fixed: COMPATIBILITY ISSUE WITH WPDATATABLES PLUGIN SOLVED (the plugin was conflicting with the EazyDocs plugin)
 Fixed: In some cases, the drag-n-drop doc ordering was not working on the Docs builder UI
