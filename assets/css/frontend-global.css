@@ -305,10 +305,11 @@
 
 .ezd-container-fluid {
   width: auto;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 50px;
-  padding-right: 50px;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+  max-width: 100% !important;
 }
 @media (max-width: 991px) {
   .ezd-container-fluid {

@@ -58,7 +58,7 @@ class Docs {
 		];
 		$args = [
 			'labels'              => $labels,
-			'supports'            => [ 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes', 'comments', 'author', 'excerpt' ],
+			'supports'            => [ 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes', 'comments', 'author', 'excerpt', 'blocks' ],
 			'hierarchical'        => true,
 			'public'              => true,
 			'show_ui'             => true,

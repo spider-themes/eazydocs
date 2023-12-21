@@ -578,5 +578,9 @@
 				$speech.animate({ fontSize: num + 'px' });
 			});
 		}
+
+		// Block theme container
+		let doc_layout = eazydocs_local_object.ezd_layout_container;
+		$('.is-layout-flex').addClass(doc_layout);
 	});
 })(jQuery);

@@ -76,7 +76,8 @@ class Assets {
 				'ajaxurl'            => $ajax_url,
 				'EAZYDOCS_FRONT_CSS' => EAZYDOCS_FRONT_CSS,
 				'nonce'              => wp_create_nonce( 'eazydocs-ajax' ),
-				'is_doc_ajax'        => ezd_get_opt( 'is_doc_ajax' )
+				'is_doc_ajax'        => ezd_get_opt( 'is_doc_ajax' ),
+				'ezd_layout_container' => ezd_container(),
 			)
 		);
 

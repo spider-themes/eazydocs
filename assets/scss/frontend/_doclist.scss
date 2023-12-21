@@ -1790,9 +1790,9 @@ body:not(.onepage-doc) .sticky_menu {
 
 .eazydocs-footer {
 	overflow-x: hidden;
-	padding-top: 30px;
-	margin-top: 0;
-	padding-bottom: 10px;
+	padding-top: 26px;
+	margin-top: 0 !important;
+	background: #fff;
 }
 
 .doc-middle-content {
@@ -1822,10 +1822,9 @@ body:not(.onepage-doc) .sticky_menu {
 	clear: both;
 	content: "";
 	width: 200%;
-	right: 0;
+	right: 1px;
 	background: #f5f7f9;
 	position: absolute;
-	border-right: 1px solid ;
 	bottom: -75px;
 	z-index: -1;
 	height: 75px;
@@ -2428,4 +2427,12 @@ body.single-docs.ezd-theme-twenty.twenty-three
 
 .mb-3 {
 	margin-bottom: 20px;
+}
+.is-layout-flex {
+    justify-content: space-between;
+}
+.wp-block-group.is-vertical.is-layout-flex.wp-block-group-is-layout-flex {
+    align-items: start;
+    display: grid;
+    gap: 16px;
 }

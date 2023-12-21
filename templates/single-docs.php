@@ -7,11 +7,11 @@
  * @package eazydocs
  */
 // If block theme is active, load the header
-ezd_header_with_block_theme();
+
 
 // If block theme is not active, load the header
 get_header();
-
+ezd_header_with_block_theme();
 $theme_data = wp_get_theme();
 $options         = get_option( 'eazydocs_settings' );
 $single_layout   = $options['single_doc_layout'] ?? 'default';
