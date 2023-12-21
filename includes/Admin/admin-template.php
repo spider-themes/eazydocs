@@ -26,7 +26,7 @@ $docs_num          = count( $posts );
                 <img src="<?php echo EAZYDOCS_IMG ?>/icon/folder-open.png" alt="<?php esc_attr_e( 'Folder Open', 'eazydocs' ); ?>">
 				<p class="big-p"> <?php esc_html_e( 'No docs has been found. Perhaps', 'eazydocs' ); ?> </p>
                 <p> <br>
-                    <a class="button button-primary ezd-btn btn-lg" href="<?php echo admin_url( 'admin.php' ); ?>?Create_doc=yes&new_doc=" id="new-doc">
+                    <a class="button button-primary ezd-btn btn-lg" href="<?php echo admin_url( 'admin.php' ); ?>?Create_doc=yes&_wpnonce=<?php echo wp_create_nonce('create_new_doc_nonce'); ?>&new_doc=" id="new-doc">
                         <?php esc_html_e( 'Create a Doc', 'eazydocs' ); ?>
                     </a>
                 </p>
