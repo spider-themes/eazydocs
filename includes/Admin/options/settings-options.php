@@ -1986,6 +1986,50 @@ CSF::createSection( $prefix, array(
 			'text_width' => 92,
 			'default'    => false
 		),
+		
+		array(
+			'id'         => 'assistant_visibility_by',
+			'type'       => 'button_set',
+			'title'      => esc_html__( 'Display Location', 'eazydocs' ),
+			'subtitle' 	 => esc_html__( 'Set your assistant where should be appears.', 'eazydocs' ),
+			'options'    => array(
+			  'global' 		=>  esc_html__( 'Everywhere', 'eazydocs' ),
+			  'pages'  		=>  esc_html__( 'Pages', 'eazydocs' ),
+			  'post_type' 	=>  esc_html__( 'Post Type', 'eazydocs' ),
+			),
+			'default'    => 'global',
+			'dependency' => array(
+				array( 'assistant_visibility', '==', 'true' )
+			)
+		),
+		
+		array(
+			'id'         => 'assistant_pages',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Select Pages', 'eazydocs' ),
+			'subtitle' 	 => esc_html__( 'Select pages where should be appears.', 'eazydocs' ),
+			'options'    => 'pages',
+			'chosen'     => true,
+			'multiple'   => true,
+			'dependency' => array(
+				array( 'assistant_visibility_by', '==', 'pages' ),
+				array( 'assistant_visibility', '==', 'true' )
+			)
+		),
+		
+		array(
+			'id'         => 'assistant_post_types',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Select Post Types', 'eazydocs' ),
+			'subtitle' 	 => esc_html__( 'Pick your preferred post types where should be appears.', 'eazydocs' ),
+			'options'    => 'post_types',
+			'chosen'     => true,
+			'multiple'   => true,
+			'dependency' => array(
+				array( 'assistant_visibility_by', '==', 'post_type' ),
+				array( 'assistant_visibility', '==', 'true' )
+			)
+		),
 
 		array(
 			'id'             => 'assistant_open_icon',
