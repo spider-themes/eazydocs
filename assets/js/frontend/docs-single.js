@@ -129,37 +129,76 @@
 			let subject = $('#subject').val();
 			let doc_id = $('#doc_id').val();
 			let message = $('#massage').val();
-			$.ajax({
-				url: eazydocs_local_object.ajaxurl,
-				type: 'post',
-				dataType: 'text',
-				data: {
-					action: 'eazydocs_feedback_email',
-					name: name,
-					email: email,
-					subject: subject,
-					doc_id: doc_id,
-					message: message,
-				},
-				beforeSend: function () {
-					$('.eazydocs-form-result').html(
-						'<div class="spinner-border spinner-border-sm" role="status">\n' +
-							'<span class="visually-hidden">Loading...</span>\n' +
-							'</div>'
-					);
-				},
-				success: function (response) {
-					$('.eazydocs-form-result').html(
-						'Your message has been sent successfully.'
-					);
-				},
-				error: function () {
-					$('.eazydocs-form-result').html(
-						'Oops! Something wrong, try again!'
-					);
-				},
-			});
-			$('form#edocs-contact-form')[0].reset();
+			
+			if ( nameDisallowedCharacters(name) ) {
+				$('.form-name-field').append('<span class="ezd-input-warning-text">Special characters not allowed</span>');
+				$('.ezd-input-warning-text:not(:last)').remove();
+				// remove the error message after 3 seconds
+				setTimeout(function() {
+					$('.ezd-input-warning-text').remove();
+				}, 3000);
+
+		 	} else if ( emailDisallowedCharacters(email) ) {
+				$('.form-email-field').append('<span class="ezd-input-warning-text">Invalid email format.</span>');
+				$('.ezd-input-warning-text:not(:last)').remove();
+				// remove the error message after 3 seconds
+				setTimeout(function() {
+					$('.ezd-input-warning-text').remove();
+				}, 3000);
+
+			} else {
+
+				$.ajax({
+					url: eazydocs_local_object.ajaxurl,
+					type: 'post',
+					dataType: 'text',
+					data: {
+						action: 'eazydocs_feedback_email',
+						name: name,
+						email: email,
+						subject: subject,
+						doc_id: doc_id,
+						message: message,
+					},
+					beforeSend: function () {
+						$('.eazydocs-form-result').html(
+							'<div class="spinner-border spinner-border-sm" role="status">\n' +
+								'<span class="visually-hidden">Loading...</span>\n' +
+								'</div>'
+						);
+					},
+					success: function (response) {
+						$('.eazydocs-form-result').html(
+							'Your message has been sent successfully.'
+						);						
+						setTimeout(function() {
+							$('.eazydocs-form-result').remove();
+						}, 3000);
+					},
+					error: function () {
+						$('.eazydocs-form-result').html(
+							'Oops! Something wrong, try again!'
+						);
+					},
+				});
+				$('form#edocs-contact-form')[0].reset();
+			}
+
+			// Check for disallowed characters in the name field
+			function nameDisallowedCharacters(str) {
+				// Regular expression to check for disallowed characters
+				var pattern = /[#$%^&*()+={}\[\];:'",<>\/?@]/;
+				return pattern.test(str);
+			}
+
+			// Check for disallowed characters in the email field
+			function emailDisallowedCharacters(email) {
+				// Regular expression to check for disallowed characters
+				var mailPattern = /[#$%^&*()+={}\[\];:'",<>\/?]/;	
+				// Check if there is more than one "@" symbol
+				var atSymbolCount = (email.match(/@/g) || []).length;				
+				return atSymbolCount !== 1 || mailPattern.test(email);
+			}
 		});
 
 		/**

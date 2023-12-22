@@ -67,8 +67,8 @@
 		wp_mail( $email_to, wp_specialchars_decode( $subject ), $email_body, $message_headers );
 
 		$args = [
-			'post_type' => 'ezd_feedback',
-			'post_title'=> $feedback_subject .' - '. $author,
+			'post_type' 	=> 'ezd_feedback',
+			'post_title'	=> $feedback_subject .' - '. $author,
 			'post_content'	=> $message,
 			'post_status'	=> 'publish'
 			

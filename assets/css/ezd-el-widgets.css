@@ -316,6 +316,12 @@
 .ezd-modal-content .shortcode_title .title {
   margin-bottom: 0;
 }
+.ezd-modal-content span.ezd-input-warning-text {
+  font-size: 15px;
+  color: red;
+  margin-left: 5px;
+  font-style: italic;
+}
 
 .modal.is-visible {
   visibility: visible;

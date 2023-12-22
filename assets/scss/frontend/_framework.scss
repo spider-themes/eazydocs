@@ -299,6 +299,14 @@
 			margin-bottom: 0;
 		}
 	}
+	span {
+		&.ezd-input-warning-text{
+		font-size: 15px;
+		color: red;
+		margin-left: 5px;
+		font-style: italic;
+		}
+	}
 }
 
 .modal.is-visible {

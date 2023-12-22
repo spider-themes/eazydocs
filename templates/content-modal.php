@@ -25,14 +25,14 @@ $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedbac
             </div>
             <form method="post" id="edocs-contact-form" class="contact_form">
                 <div class="ezd-grid ezd-grid-cols-12">
-                    <div class="form-group ezd-md-col-6 ezd-grid-column-full">
+                    <div class="form-group ezd-md-col-6 ezd-grid-column-full form-name-field">
                         <input type="text" class="form-control" value="<?php echo esc_attr( $name ); ?>" name="name"
                             id="name" placeholder="<?php esc_attr_e( 'Name', 'eazydocs' ); ?>" required>
                     </div>
-                    <div class="form-group ezd-md-col-6 ezd-grid-column-full">
+                    <div class="form-group ezd-md-col-6 ezd-grid-column-full form-email-field">
                         <input type="email" class="form-control" value="<?php echo esc_attr( $email_from ); ?>"
                             name="email" id="email" placeholder="<?php esc_attr_e( 'Email', 'eazydocs' ); ?>"
-                            <?php disabled( is_user_logged_in() ); ?> required>
+                            <?php disabled(  ! is_user_logged_in() ); ?> required>
                     </div>
                     <div class="form-group ezd-grid-column-full">
                         <input type="text" class="form-control" name="subject" id="subject"
