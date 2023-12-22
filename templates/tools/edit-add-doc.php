@@ -25,10 +25,21 @@ if ( eaz_fs()->is_plan('promax') ) :
                     }
 
                     if ( $is_add_doc == 1 ) {
+
+                        // get total number of child post
+                        $args = array(
+                            'post_type'      => 'docs',
+                            'post_parent'    => get_the_ID(),
+                            'posts_per_page' => -1,
+                            'post_status'    => 'publish',
+                        );
+                        $child_posts    = get_children( $args );
+                        $order          = count($child_posts) + 1;
+
                         if ( is_user_logged_in() ) {
-                            do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'), get_the_ID());
+                            do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'), get_the_ID(), $order);
                         } else {
-                            do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'), get_the_ID());
+                            do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'), get_the_ID(), $order);
                         }
                     }
                     ?>
