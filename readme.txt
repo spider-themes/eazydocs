@@ -222,6 +222,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.3.8 (25 December 2023) =
+Fixed: In some cases, the doc creation was not working
+Tweaked: Compatibility with any block theme (the header and footer of block theme will show properly)
+Tweaked: Compatibility with the latest EazyDocs Pro v1.4.3
+Tweaked: The Feedback form is now more secure
+Updated: Language (.pot) file
+
 = v2.3.7 (17 December 2023) =
 Updated: Freemius SDK updated to 2.6.1
 Tweaked: Users role replaced by their capabilities - Followed by org review

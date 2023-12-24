@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EazyDocs\n"
-"POT-Creation-Date: 2023-12-09 18:44+0600\n"
+"POT-Creation-Date: 2023-12-25 03:45+0600\n"
 "PO-Revision-Date: 2023-07-31 23:20+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: eazydocs.php\n"
@@ -270,10 +270,10 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1790
 #: includes/Admin/options/settings-options.php:1832
 #: includes/Admin/options/settings-options.php:1849
-#: includes/Admin/options/settings-options.php:2034
-#: includes/Admin/options/settings-options.php:2054
-#: includes/Admin/options/settings-options.php:2078
-#: includes/Admin/options/settings-options.php:2107
+#: includes/Admin/options/settings-options.php:2081
+#: includes/Admin/options/settings-options.php:2101
+#: includes/Admin/options/settings-options.php:2125
+#: includes/Admin/options/settings-options.php:2154
 msgid "Show"
 msgstr ""
 
@@ -301,10 +301,10 @@ msgstr ""
 #: includes/Admin/options/settings-options.php:1791
 #: includes/Admin/options/settings-options.php:1833
 #: includes/Admin/options/settings-options.php:1850
-#: includes/Admin/options/settings-options.php:2035
-#: includes/Admin/options/settings-options.php:2055
-#: includes/Admin/options/settings-options.php:2079
-#: includes/Admin/options/settings-options.php:2108
+#: includes/Admin/options/settings-options.php:2082
+#: includes/Admin/options/settings-options.php:2102
+#: includes/Admin/options/settings-options.php:2126
+#: includes/Admin/options/settings-options.php:2155
 msgid "Hide"
 msgstr ""
 
@@ -627,7 +627,7 @@ msgid ""
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:495
-#: includes/Admin/options/settings-options.php:2214
+#: includes/Admin/options/settings-options.php:2261
 #: includes/Admin/options/taxonomy-options.php:30
 #: includes/Elementor/Single_Doc/Single_Doc.php:340
 msgid "Background"
@@ -704,7 +704,7 @@ msgid ""
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:625
-#: includes/Admin/options/settings-options.php:2077
+#: includes/Admin/options/settings-options.php:2124
 msgid "Breadcrumb"
 msgstr ""
 
@@ -1384,7 +1384,7 @@ msgid "Manage Contributors"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:1830
-#: includes/Admin/options/settings-options.php:2053
+#: includes/Admin/options/settings-options.php:2100
 msgid "Search"
 msgstr ""
 
@@ -1488,125 +1488,163 @@ msgid "Assistant Settings"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:1993
+msgid "Display Location"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1994
+msgid "Set your assistant where should be appears."
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1997
+msgid "Everywhere"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1998
+#: includes/Walker_Docs_Onepage.php:251
+#: includes/Walker_Docs_Onepage_Fullscreen.php:242 includes/functions.php:175
+msgid "Pages"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:1999
+msgid "Post Type"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:2010
+msgid "Select Pages"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:2011
+msgid "Select pages where should be appears."
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:2025
+msgid "Select Post Types"
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:2026
+msgid "Pick your preferred post types where should be appears."
+msgstr ""
+
+#: includes/Admin/options/settings-options.php:2040
 msgid "Open Icon"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2007
+#: includes/Admin/options/settings-options.php:2054
 msgid "Close Icon"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2022
+#: includes/Admin/options/settings-options.php:2069
 msgid "Tab Settings"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2028
-#: includes/Admin/options/settings-options.php:2044
+#: includes/Admin/options/settings-options.php:2075
+#: includes/Admin/options/settings-options.php:2091
 msgid "Knowledge Base"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2033
+#: includes/Admin/options/settings-options.php:2080
 msgid "Knowledge-base Tab"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2043
-#: includes/Admin/options/settings-options.php:2116
+#: includes/Admin/options/settings-options.php:2090
+#: includes/Admin/options/settings-options.php:2163
 msgid "Heading"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2066
+#: includes/Admin/options/settings-options.php:2113
 msgid "Search Placeholder"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2067
+#: includes/Admin/options/settings-options.php:2114
 msgid "Search..."
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2090
-#: includes/Admin/options/settings-options.php:2091
+#: includes/Admin/options/settings-options.php:2137
+#: includes/Admin/options/settings-options.php:2138
 msgid "Docs not Found"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2101
-#: includes/Admin/options/settings-options.php:2117
+#: includes/Admin/options/settings-options.php:2148
+#: includes/Admin/options/settings-options.php:2164
 msgid "Contact"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2106
+#: includes/Admin/options/settings-options.php:2153
 msgid "Contact Tab"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2126
+#: includes/Admin/options/settings-options.php:2173
 msgid "Receiver Email"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2136
+#: includes/Admin/options/settings-options.php:2183
 msgid "Form Input"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2145
-#: includes/Admin/options/settings-options.php:2146
+#: includes/Admin/options/settings-options.php:2192
+#: includes/Admin/options/settings-options.php:2193
 msgid "Full name"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2155
+#: includes/Admin/options/settings-options.php:2202
 #: templates/content-modal.php:34
 msgid "Email"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2156
+#: includes/Admin/options/settings-options.php:2203
 msgid "name@example.com"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2165
-#: includes/Admin/options/settings-options.php:2166
+#: includes/Admin/options/settings-options.php:2212
+#: includes/Admin/options/settings-options.php:2213
 #: templates/content-modal.php:39
 msgid "Subject"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2175
+#: includes/Admin/options/settings-options.php:2222
 #: templates/content-modal.php:43
 msgid "Message"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2176
+#: includes/Admin/options/settings-options.php:2223
 msgid "Write Your Message"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2185
-#: includes/Admin/options/settings-options.php:2222
+#: includes/Admin/options/settings-options.php:2232
+#: includes/Admin/options/settings-options.php:2269
 #: includes/Elementor/Search/style-control.php:109
 msgid "Submit Button"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2186
+#: includes/Admin/options/settings-options.php:2233
 msgid "Send Message"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2195
+#: includes/Admin/options/settings-options.php:2242
 #: includes/Admin/options/taxonomy-options.php:24
 #: includes/Elementor/Single_Doc/Single_Doc.php:472
 #: includes/Elementor/Single_Doc/Single_Doc.php:505
 msgid "Color"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2200
+#: includes/Admin/options/settings-options.php:2247
 msgid "Icon Color"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2207
+#: includes/Admin/options/settings-options.php:2254
 msgid "Header Background"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2230
-#: includes/Admin/options/settings-options.php:2235
+#: includes/Admin/options/settings-options.php:2277
+#: includes/Admin/options/settings-options.php:2282
 msgid "Position"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2241
+#: includes/Admin/options/settings-options.php:2288
 msgid "Vertical Position"
 msgstr ""
 
-#: includes/Admin/options/settings-options.php:2253
+#: includes/Admin/options/settings-options.php:2300
 msgid "Horizontal Position"
 msgstr ""
 
@@ -2532,11 +2570,6 @@ msgstr ""
 
 #: includes/Walker_Docs_Onepage.php:127
 msgid "Folder icon"
-msgstr ""
-
-#: includes/Walker_Docs_Onepage.php:251
-#: includes/Walker_Docs_Onepage_Fullscreen.php:242 includes/functions.php:175
-msgid "Pages"
 msgstr ""
 
 #: includes/functions.php:155

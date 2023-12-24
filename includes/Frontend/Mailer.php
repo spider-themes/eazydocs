@@ -53,10 +53,10 @@
 		$email_body .= sprintf( __( 'Doc Permalink: %s', 'eazydocs' ), get_permalink( $document ) ) . "\r\n";
 		$email_body .= sprintf( __( 'Edit Doc: %s', 'eazydocs' ), admin_url( 'post.php?action=edit&post=' . $doc_id ) ) . "\r\n";
 
-		$from     = "From: \"${author}\" <${wp_email}>";
-		$reply_to = "Reply-To: \"${email}\" <${email}>";
+		$from     = "From: \"{$author}\" <{$wp_email}>";
+		$reply_to = "Reply-To: \"{$email}\" <{$email}>";
 
-		$message_headers = "${from}\n"
+		$message_headers = "{$from}\n"
 		                   . 'Content-Type: text/plain; charset ="' . get_option( 'blog_charset' ) . "\"\n";
 		$message_headers .= $reply_to . "\n";
 

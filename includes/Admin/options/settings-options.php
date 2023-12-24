@@ -1992,6 +1992,7 @@ CSF::createSection( $prefix, array(
 			'type'       => 'button_set',
 			'title'      => esc_html__( 'Display Location', 'eazydocs' ),
 			'subtitle' 	 => esc_html__( 'Set your assistant where should be appears.', 'eazydocs' ),
+			'class'      => 'eazydocs-pro-notice',
 			'options'    => array(
 			  'global' 		=>  esc_html__( 'Everywhere', 'eazydocs' ),
 			  'pages'  		=>  esc_html__( 'Pages', 'eazydocs' ),
@@ -2000,7 +2001,7 @@ CSF::createSection( $prefix, array(
 			'default'    => 'global',
 			'dependency' => array(
 				array( 'assistant_visibility', '==', 'true' )
-			)
+			),
 		),
 		
 		array(
@@ -2009,6 +2010,7 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Select Pages', 'eazydocs' ),
 			'subtitle' 	 => esc_html__( 'Select pages where should be appears.', 'eazydocs' ),
 			'options'    => 'pages',
+			'class'      => 'eazydocs-pro-notice',
 			'chosen'     => true,
 			'multiple'   => true,
 			'dependency' => array(
@@ -2023,6 +2025,7 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Select Post Types', 'eazydocs' ),
 			'subtitle' 	 => esc_html__( 'Pick your preferred post types where should be appears.', 'eazydocs' ),
 			'options'    => 'post_types',
+			'class'      => 'eazydocs-pro-notice',
 			'chosen'     => true,
 			'multiple'   => true,
 			'dependency' => array(
