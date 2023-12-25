@@ -48,9 +48,9 @@ if ( function_exists( 'eaz_fs' ) ) {
 						],
 						'menu'            => [
 							'slug'       => 'eazydocs',
-							'first-path' => 'admin.php?page=eazydocs',
 							'contact'    => false,
 							'support'    => false,
+							'first-path' => 'admin.php?page=eazydocs'
 						],
 					]
 				);
