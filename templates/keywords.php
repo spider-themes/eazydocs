@@ -15,32 +15,56 @@ if ( ezd_get_opt('is_keywords') == '1' ) :
             <?php 
         endif;
 
-        if ( !empty($keywords) || ezd_get_opt('is_dynamic_keywords') == '1' ) : 
+        if ( ezd_get_opt('keywords_by') == 'static' || ezd_get_opt('keywords_by') == 'dynamic' ) : 
             ?>
             <ul class="list-unstyled">
                 <?php
-                if ( !empty($keywords) ) : 
-                    foreach ( $keywords as $keyword ) :
-                        ?>
-                        <li class="wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="#"> <?php echo esc_html($keyword['title']) ?> </a>
-                        </li>
-                        <?php
-                    endforeach;
-                endif;
-                
-                if ( ezd_get_opt('is_dynamic_keywords') == '1' ) :
-                    global $wpdb;                    
-                    $search_keyword = $wpdb->get_results( "SELECT keyword, COUNT(*) AS count FROM {$wpdb->prefix}eazydocs_search_keyword GROUP BY keyword ORDER BY count DESC LIMIT 20" );
-                    if ( count( $search_keyword ) > 0 ) :
-                        foreach ( $search_keyword as $key => $item ): 
+                if ( ezd_get_opt('keywords_by') == 'static' ) : 
+                    if ( !empty($keywords) ) : 
+                        foreach ( $keywords as $keyword ) :
                             ?>
                             <li class="wow fadeInUp" data-wow-delay="0.2s">
-                                <a href="#"> <?php echo esc_html( $item->keyword ); ?> </a>
+                                <a href="#"> <?php echo esc_html($keyword['title']) ?> </a>
                             </li>
-                            <?php 
+                            <?php
                         endforeach;
                     endif;
+                else :
+                    global $wpdb;                    
+                    $search_keyword = $wpdb->get_results( "SELECT keyword, COUNT(*) AS count FROM {$wpdb->prefix}eazydocs_search_keyword GROUP BY keyword ORDER BY count DESC" );
+                    $all_keys = [];
+                    if ( count( $search_keyword ) > 0 ) :
+                        foreach ( $search_keyword as $item ): 
+                           $all_keys[] =  $item->keyword;
+                        endforeach;
+                    endif;
+                    
+                    if ( ezd_get_opt('is_exclude_not_found') == '1' ) {
+                        $notFoundKeywords   = ezd_get_search_keywords();
+                        $notFound_keys      = [];
+                        if ( count( $notFoundKeywords ) > 0 ) :
+                            foreach ( $notFoundKeywords as $notFoundKey ) : 
+                            $notFound_keys[] =  $notFoundKey->keyword;
+                            endforeach; 
+                        endif;
+                        $all_keys = array_diff($all_keys, $notFound_keys);
+                    }
+
+                    if ( count( $all_keys ) > 0 ) :
+                        $i = 0;
+                        foreach ( $all_keys as $key => $search_item ): 
+                            $i++;
+                            ?>
+                            <li class="wow fadeInUp" data-wow-delay="0.2s">
+                                <a href="#"> <?php echo esc_html( $search_item ); ?> </a>
+                            </li>
+                            <?php
+                            if ( $i == ezd_get_opt('keywords_limit') ) {
+                                break;
+                            }
+                        endforeach;
+                    endif;
+                    
                 endif;
                 ?>
             </ul>

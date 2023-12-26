@@ -566,6 +566,63 @@ CSF::createSection( $prefix, array(
 			'class'       => 'eazydocs-pro-notice'
 		),
 
+		// keyword by dynamic || static select
+		array(
+			'id'         => 'keywords_by',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Keywords By', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Select your preferred keywords type', 'eazydocs' ),
+			'options'    => array(
+				'static'	=> esc_html__( 'Static', 'eazydocs' ),
+				'dynamic'  	=> esc_html__( 'Dynamic', 'eazydocs' ),
+			),
+			'default'    => 'static',
+			'dependency' => array(
+				array( 'is_keywords', '==', 'true' ),
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' ),
+			),
+			'class'      => 'eazydocs-pro-notice'
+		),
+
+		array(
+			'id'         => 'keywords_limit',
+			'type'       => 'slider',
+			'title'      => esc_html__( 'Keywords Limit', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Set the number of keywords to show.', 'eazydocs' ),
+			'default'    => 6,
+			'min'        => 1,
+			'max'        => 200,
+			'step'       => 1,
+			'dependency' => array(
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'is_keywords', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' ),
+				array( 'keywords_by', '==', 'dynamic' ),
+			),
+			'class'      => 'eazydocs-pro-notice',
+		),
+
+		// not found keywords exclude checkbox
+		array(
+			'id'         => 'is_exclude_not_found',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Exclude Not Found Keywords', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Exclude the keywords that are not found in the search results.', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Yes', 'eazydocs' ),
+			'text_off'   => esc_html__( 'No', 'eazydocs' ),
+			'default'    => false,
+			'text_width' => 70,
+			'dependency' => array(
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'is_keywords', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' ),
+				array( 'keywords_by', '==', 'dynamic' ),
+			),
+			'class'      => 'eazydocs-pro-notice',
+		),
+		
+
 		array(
 			'id'         => 'keywords',
 			'type'       => 'repeater',
@@ -574,6 +631,7 @@ CSF::createSection( $prefix, array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'is_keywords', '==', 'true' ),
 				array( 'search_banner_layout', '==', 'default' ),
+				array( 'keywords_by', '==', 'static' ),
 			),
 			'fields'     => array(
 				array(
@@ -607,26 +665,7 @@ CSF::createSection( $prefix, array(
 			),
 			'class'       => 'eazydocs-pro-notice'
 		),
-
-		// dynamic search keywords enable/disable
-		array(
-			'id'         => 'is_dynamic_keywords',
-			'type'       => 'switcher',
-			'title'      => esc_html__( 'Dynamic Keywords', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Show / Hide the dynamic keywords across all doc search forms in the plugin.', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
-			'default'    => false,
-			'text_width' => 70,
-			'dependency' => array(
-				array( 'is_keywords', '==', 'true' ),
-				array( 'is_search_banner', '==', 'true' ),
-				array( 'search_banner_layout', '==', 'default' ),
-			),
-			'class'      => 'eazydocs-pro-notice'
-		),
-
-		//Search Keywords
+		
 		array(
 			'type'       => 'subheading',
 			'title'      => esc_html__( 'Ajax Search Results', 'eazydocs' ),
