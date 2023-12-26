@@ -608,6 +608,24 @@ CSF::createSection( $prefix, array(
 			'class'       => 'eazydocs-pro-notice'
 		),
 
+		// dynamic search keywords enable/disable
+		array(
+			'id'         => 'is_dynamic_keywords',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Dynamic Keywords', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show / Hide the dynamic keywords across all doc search forms in the plugin.', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'default'    => false,
+			'text_width' => 70,
+			'dependency' => array(
+				array( 'is_keywords', '==', 'true' ),
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' ),
+			),
+			'class'      => 'eazydocs-pro-notice'
+		),
+
 		//Search Keywords
 		array(
 			'type'       => 'subheading',
@@ -623,7 +641,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'is_search_result_breadcrumb',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Breadcrumb', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Show / Hide the breadcrumbs in search results', 'docy' ),
+			'subtitle'   => esc_html__( 'Show / Hide the breadcrumbs in search results', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => false,
@@ -639,7 +657,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'is_search_result_thumbnail',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Thumbnail', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Show / Hide the thumbnail in search results', 'docy' ),
+			'subtitle'   => esc_html__( 'Show / Hide the thumbnail in search results', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => false,

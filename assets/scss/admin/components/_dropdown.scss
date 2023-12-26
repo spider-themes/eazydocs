@@ -1,7 +1,7 @@
 // Dropdown Menu
 .easydocs-dropdown {
     @include shadow(0, 10px, 35px, #000, 0.06);
-    right: -30px;
+    right: -20px;
     position: absolute;
     top: calc(100% + 20px);
     width: 260px;
@@ -28,7 +28,7 @@ $clr-white: #ffffff;
         content: '';
         position: absolute;
         top: -10px;
-        right: 2.5rem;
+        right: 2.0rem;
         @include triangle(top, 20px, 10px, $clr-white);
     }
 }

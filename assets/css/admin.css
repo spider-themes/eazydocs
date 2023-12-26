@@ -844,7 +844,7 @@ body.rtl a.child-delete {
   -webkit-box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.06);
   -moz-box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.06);
   box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.06);
-  right: -30px;
+  right: -20px;
   position: absolute;
   top: calc(100% + 20px);
   width: 260px;
@@ -869,7 +869,7 @@ body.rtl a.child-delete {
   content: "";
   position: absolute;
   top: -10px;
-  right: 2.5rem;
+  right: 2rem;
   width: 0;
   height: 0;
   border-style: solid;
@@ -1230,6 +1230,9 @@ body.rtl a.child-delete {
   --btn-clr: var(--clr-dark);
   --btn-bc: transparent;
   font-size: 12px;
+}
+.notification-body .filter-button-group .easydocs-btn span.dashicons {
+  height: unset;
 }
 .notification-body .filter-button-group .easydocs-btn.mixitup-control-active {
   background-color: #e7f3ff;

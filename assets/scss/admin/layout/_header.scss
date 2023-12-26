@@ -233,6 +233,10 @@
       --btn-bc: transparent;
       font-size: 12px;
 
+      span.dashicons {
+        height: unset;
+      }
+
       &.mixitup-control-active {
         background-color: #e7f3ff;
         color: #1877f2;
