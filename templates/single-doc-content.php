@@ -1,4 +1,5 @@
 <?php
+eazydoocs_set_post_view();
 $options                    = get_option( 'eazydocs_settings' );
 $comment_visibility         = $options['enable-comment'] ?? '1';
 $reading_time_visibility    = $options['enable-reading-time'] ?? '1';
@@ -6,8 +7,6 @@ $views_visibility           = $options['enable-views'] ?? '1';
 $docs_feedback              = $options['docs-feedback'] ?? '1';
 $sidebar_toggle             = $options['toggle_visibility'] ?? '1';
 $layout                     = $options['docs_single_layout'] ?? 'both_sidebar';
-
-
 
 if( $sidebar_toggle == 1 ) :
     if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) : ?>
