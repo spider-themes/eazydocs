@@ -1271,8 +1271,13 @@ add_filter('body_class', 'ezd_single_banner');
 /**
  * Editor & Administrator access
  */
-function ezd_is_admin_or_editor(){
-	if ( current_user_can('publish_pages') ) {
+function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
+	if ( $action == 'delete' && get_current_user_id() == get_post_field( 'post_author', $post_id ) ) {
+		return true;
+	} elseif ( $action == 'edit' && current_user_can('edit_pages') && get_current_user_id() == get_post_field( 'post_author', $post_id ) ) {
+		return true;
+	} elseif ( current_user_can('manage_options') ) {
 		return true;
 	}
+	return false;
 }

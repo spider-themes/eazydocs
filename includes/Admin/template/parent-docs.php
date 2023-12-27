@@ -61,10 +61,12 @@ $count = $query->found_posts;
                 <div class="link">
                     <?php
                     if ( ezd_is_premium() ) {
-                        do_action('eazydocs_parent_doc_drag');
+                        if ( current_user_can('manage_options') ) {
+                            do_action('eazydocs_parent_doc_drag');
+                        }
                     }
-
-                    if ( current_user_can('publish_pages') ) :
+                    
+                     if ( ezd_is_admin_or_editor(get_the_ID(), 'edit') ) :
                         ?>
                         <a href="<?php echo get_edit_post_link(get_the_ID()); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
                             <span class="dashicons dashicons-edit"></span>
@@ -78,13 +80,16 @@ $count = $query->found_posts;
                     </a>
 
                     <?php 
-                    if ( current_user_can('publish_pages') ) : 
+                     if ( ezd_is_admin_or_editor(get_the_ID(), 'delete') ) :
                         ?>
-                        
                         <a href="<?php echo admin_url('admin.php'); ?>?Doc_Delete=yes&_wpnonce=<?php echo wp_create_nonce(get_the_ID()); ?>&DeleteID=<?php echo get_the_ID(); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                             <span class="dashicons dashicons-trash"></span>
                         </a>
-                        
+                        <?php 
+                    endif;
+
+                    if ( current_user_can('manage_options') ) :
+                        ?>  
                         <span class="ezd-admin-bulk-options" id="bulk-options-<?php echo get_the_ID(); ?>">
                             <span class="dashicons dashicons-arrow-down-alt2"></span>
                             <span class="ezd-admin-bulk-actions">

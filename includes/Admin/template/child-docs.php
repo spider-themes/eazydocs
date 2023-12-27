@@ -92,8 +92,8 @@ if (is_array($depth_one_parents)) :
                             $eaz_children_class = $eaz_children ? ' dd3-have-children dd3-has-children ' : ' dd3-have-no-children ';
                             ?>
                             <li <?php post_class("dd-item dd3-item dd-item-parent easydocs-accordion-item accordion ez-section-acc-item mix " . esc_attr($post_status . ' ' . $eaz_children_class . ' child-' . $child->ID)); ?> data-id="<?php echo esc_attr($child->ID); ?>">
-                                <?php 
-                                if ( ezd_is_admin_or_editor() ) :
+                                <?php
+                                if ( current_user_can('manage_options') ) :
                                     ?>
                                     <div class="dd-handle dd3-handle">
                                         <svg class="dd-handle-icon" width="12px" height="12px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="<?php esc_attr_e('Hold the mouse and drag to move this doc.', 'eazydocs'); ?>">
@@ -109,8 +109,8 @@ if (is_array($depth_one_parents)) :
                                         <?php
                                         $edit_link = 'javascript:void(0)';
                                         $target = '_self';
-                                        if ( ezd_is_admin_or_editor() ) {
-                                            $edit_link = get_edit_post_link($child);
+                                        if ( ezd_is_admin_or_editor($child->ID, 'edit') ) {
+                                            $edit_link = admin_url('post.php').'?post='.$child->ID.'&action=edit';
                                             $target = '_blank';
                                         }
                                         ?>
@@ -132,7 +132,7 @@ if (is_array($depth_one_parents)) :
                                             <ul class="actions">
                                                 
                                                 <?php
-                                                if ( ezd_is_admin_or_editor() ) :
+                                                if ( ezd_is_admin_or_editor($child->ID, '') ) :
                                                     if ( ezd_is_premium() ) : 
                                                         ?>
                                                         <li class="duplicate">
@@ -177,7 +177,7 @@ if (is_array($depth_one_parents)) :
                                                 </li>
 
                                                 <?php
-                                                if ( ezd_is_admin_or_editor() ) :
+                                                if ( ezd_is_admin_or_editor($child->ID, 'delete' ) ) :
                                                     ?>
                                                     <li class="delete">
                                                         <a href="<?php echo admin_url('admin.php'); ?>?Section_Delete=yes&_wpnonce=<?php echo wp_create_nonce($child->ID); ?>&ID=<?php echo $child->ID; ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
@@ -251,8 +251,8 @@ if (is_array($depth_one_parents)) :
                                             $eaz_children_sub_class = $child_of ? ' dd3-have-sub-children dd3-has-children ' : ' dd3-have-no-sub-children ';
                                             ?>
                                             <li <?php post_class("dd-item dd3-item dd-item-child easydocs-accordion-item " . $sub_post_status . ' ' . $eaz_children_sub_class . ' child-of-' . $sub_child->ID); ?> data-id="<?php echo esc_attr($sub_child->ID); ?>">
-                                                <?php 
-                                                if ( ezd_is_admin_or_editor() ) : 
+                                                <?php
+                                                if ( current_user_can('manage_options') ) :
                                                     ?>    
                                                     <div class="dd-handle dd3-handle">
                                                         <svg class="dd-handle-icon" width="12px" height="12px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="<?php esc_attr_e('Hold the mouse and drag to move this doc.', 'eazydocs'); ?>">
@@ -268,15 +268,15 @@ if (is_array($depth_one_parents)) :
                                                         $edit_link = 'javascript:void(0)';
                                                         $target = '_self';
                                                         
-                                                        if ( ezd_is_admin_or_editor() ) {
-                                                            $edit_link = get_edit_post_link($sub_child);
+                                                        if ( ezd_is_admin_or_editor($sub_child->ID, 'edit') ) {
+                                                            $edit_link = admin_url('post.php').'?post='.$sub_child->ID.'&action=edit';
                                                             $target = '_blank';
                                                         }
                                                         ?>
                                                         <div class="left-content">
                                                             <h4>
                                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="section-last-label">
-                                                                    <?php echo get_the_title($sub_child); ?>
+                                                                    <?php echo get_the_title($sub_child->ID); ?>
                                                                 </a>
                                                                 <?php if (count($child_depth) > 0) : ?>
                                                                     <span class="count ezd-badge">
@@ -286,7 +286,7 @@ if (is_array($depth_one_parents)) :
                                                             </h4>
                                                             <ul class="actions">
                                                                 <?php
-                                                                if ( ezd_is_admin_or_editor() ) :
+                                                                if ( ezd_is_admin_or_editor($sub_child->ID, '') ) :
                                                                     
                                                                     if ( ezd_is_premium() ) : ?>
                                                                         <li class="duplicate">
@@ -331,7 +331,7 @@ if (is_array($depth_one_parents)) :
                                                                 </li>
                                                                 
                                                                 <?php 
-                                                                if ( ezd_is_admin_or_editor() ) :
+                                                                if ( ezd_is_admin_or_editor($sub_child->ID, 'delete' ) ) :
                                                                     ?>
                                                                     <li class="delete">
                                                                       <a href="<?php echo admin_url('admin.php'); ?>?Section_Delete=yes&_wpnonce=<?php echo wp_create_nonce($sub_child->ID); ?>&ID=<?php echo esc_attr( $sub_child->ID ); ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
@@ -400,7 +400,7 @@ if (is_array($depth_one_parents)) :
                                                             <li <?php post_class("dd-item dd3-item child-of-child easydocs-accordion-item accordion mix child-one"); ?> data-id="<?php echo esc_attr($of_sub_child->ID); ?>">
                                                                
                                                                 <?php 
-                                                                if ( ezd_is_admin_or_editor() ) :
+                                                                if ( current_user_can('manage_options') ) :
                                                                     ?>
                                                                     <div class="dd-handle dd3-handle">
                                                                         <svg class="dd-handle-icon" width="12px" height="12px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="<?php esc_attr_e('Hold the mouse and drag to move this doc.', 'eazydocs'); ?>">
@@ -417,8 +417,8 @@ if (is_array($depth_one_parents)) :
                                                                         <?php
                                                                         $edit_link = 'javascript:void(0)';
                                                                         $target = '_self';
-                                                                        if ( ezd_is_admin_or_editor() ) {
-                                                                            $edit_link = get_edit_post_link($of_sub_child);
+                                                                        if ( ezd_is_admin_or_editor($of_sub_child->ID, 'edit') ) {
+                                                                            $edit_link = admin_url('post.php').'?post='.$of_sub_child->ID.'&action=edit';
                                                                             $target = '_blank';
                                                                         }
                                                                         ?>
@@ -426,13 +426,13 @@ if (is_array($depth_one_parents)) :
 
                                                                             <h4>
                                                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="child-last-label">
-                                                                                    <?php echo get_the_title($of_sub_child); ?>
+                                                                                    <?php echo get_the_title($of_sub_child->ID); ?>
                                                                                 </a>
                                                                             </h4>
 
                                                                             <ul class="actions">
                                                                                 <?php
-                                                                                if ( ezd_is_admin_or_editor() ) :
+                                                                                if ( ezd_is_admin_or_editor($of_sub_child->ID, '') ) :
 
                                                                                     if ( ezd_is_premium() ) : ?>
                                                                                         <li>
@@ -459,7 +459,7 @@ if (is_array($depth_one_parents)) :
                                                                                 </li>
 
                                                                                 <?php 
-                                                                                    if ( ezd_is_admin_or_editor() ) : ?>
+                                                                                    if ( ezd_is_admin_or_editor($of_sub_child->ID, 'delete' ) ) : ?>
                                                                                         <li class="delete">
                                                                                             <a href="<?php echo admin_url('admin.php'); ?>?Last_Child_Delete=yes&_wpnonce=<?php echo wp_create_nonce($of_sub_child->ID); ?>&ID=<?php echo esc_attr($of_sub_child->ID); ?>" class="child-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                                                                 <span class="dashicons dashicons-trash"></span>
@@ -508,14 +508,14 @@ if (is_array($depth_one_parents)) :
             </div>
 
             <?php 
-            if ( current_user_can('publish_pages') ) : 
+            if ( current_user_can('manage_options') ) : 
                 ?>
                 <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url('admin.php'); ?>?Create_Section=yes&_wpnonce=<?php echo wp_create_nonce($item); ?>&parentID=<?php echo $item; ?>&is_section=">
                     <?php esc_html_e('Add Section', 'eazydocs'); ?>
                 </button>
 
                 <?php
-                $current_theme      = get_template();
+                $current_theme = get_template();
                 if ($current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
                     eazydocs_one_page($item);
                 }
