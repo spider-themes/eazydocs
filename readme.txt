@@ -222,11 +222,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.3.9 (28 December 2023) =
-Fixed: Resolved the issue with the show more button in Single Doc elementor widget preset 4.
-Fixed: The problem with Analytics views.
-Tweaked: Added an option in the settings for dynamic popular keywords in the doc search form.
-New: Users can now delete their own documents.
+= v2.3.9 (29 December 2023) =
+Fixed: Resolved the issue with the show more button in Single Doc elementor widget preset 4
+Fixed: The problem with Analytics views
+Tweaked: Added an option in the settings for dynamic popular keywords in the doc search form
+Tweaked: Notification dropdown box design improved
+New: Users can now delete their own documents
 
 = v2.3.8 (25 December 2023) =
 Fixed: In some cases, the doc creation was not working

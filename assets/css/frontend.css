@@ -196,10 +196,6 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   font-weight: 400;
 }
 
-.ezd_search_keywords {
-  text-align: center;
-  justify-content: center;
-}
 .ezd_search_keywords .label {
   color: #54595d;
   font-weight: 400;

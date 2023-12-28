@@ -23,6 +23,10 @@ $clr-white: #ffffff;
 
 .notification-dropdown {
     width: 320px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-radius: 3px;
+    box-shadow: 3px 2px 7px 1px rgba(0,0,0,0.08);
 
     &:after {
         content: '';

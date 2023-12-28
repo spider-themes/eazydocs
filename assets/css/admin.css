@@ -864,6 +864,10 @@ body.rtl a.child-delete {
 /** === Notification CSS === **/
 .notification-dropdown {
   width: 320px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  box-shadow: 3px 2px 7px 1px rgba(0, 0, 0, 0.08);
 }
 .notification-dropdown:after {
   content: "";
@@ -1252,7 +1256,7 @@ body.rtl a.child-delete {
 
 .notify-column {
   margin-top: 16px;
-  max-height: 18.75rem;
+  max-height: 20rem;
   overflow-y: auto;
   scrollbar-width: thin;
 }
