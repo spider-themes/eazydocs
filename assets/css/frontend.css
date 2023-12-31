@@ -2604,6 +2604,23 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   gap: 16px;
 }
 
+.ezd-doc-warning-wrap {
+  padding: 65px 0px;
+  display: grid;
+  text-align: center;
+  margin-top: 30px;
+}
+.ezd-doc-warning-wrap i {
+  font-size: 100px;
+  color: #b9b9b9;
+}
+.ezd-doc-warning-wrap span {
+  font-size: 20px;
+  color: #b9b9b9;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
 /*============== Start doc_tag_area css =============*/
 .doc_tag {
   display: flex;

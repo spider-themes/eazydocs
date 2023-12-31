@@ -1407,8 +1407,46 @@ CSF::createSection( $prefix, array(
 			),
 			'chosen'      => true,
 			'ajax'        => true,
+		),
+		
+		array(
+			'id'         => 'private_doc_user_restriction',
+			'type'      => 'fieldset',
+			'title'      => esc_html__( 'Restrict Access to', 'eazydocs' ),
+			'fields'    => array(
+				array(
+					'id'         => 'private_doc_all_user',
+					'type'       => 'checkbox',
+					'title'      => null,
+					'text_on'    => esc_html__( 'Yes', 'eazydocs' ),
+					'text_off'   => esc_html__( 'No', 'eazydocs' ),
+					'label'	 	 => esc_html__( 'All logged in users', 'eazydocs' ),
+					'default'    => false,
+					'class'      => 'eazydocs-pro-notice',
+				),
+				array(
+					'id'         => 'private_doc_roles',
+					'type'       => 'select',
+					'title'      => esc_html__( 'User Roles', 'eazydocs' ),
+					'desc'   => esc_html__( 'Only selected User Roles will be able to view your Knowledge Base', 'eazydocs' ),
+					'options'    => [
+						'administrator' => esc_html__( 'Administrator', 'eazydocs' ),
+						'editor'        => esc_html__( 'Editor', 'eazydocs' ),
+						'author'        => esc_html__( 'Author', 'eazydocs' ),
+						'contributor'   => esc_html__( 'Contributor', 'eazydocs' ),
+						'subscriber'    => esc_html__( 'Subscriber', 'eazydocs' ),
+					],
+					'default'    => 'administrator',
+					'chosen'      => true,
+					'ajax'        => true,
+					'multiple'    => true,
+					'class'      => 'eazydocs-pro-notice',
+					'dependency' => array(
+						array( 'private_doc_all_user', '==', 'false' ),
+					)
+				)
+			)
 		)
-
 	)
 ) );
 

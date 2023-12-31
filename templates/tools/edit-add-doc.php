@@ -11,17 +11,8 @@ if ( eaz_fs()->is_plan('promax') ) :
                 ?>
                 <div class="contribut-btns">
                     <?php
-                    $edit_url          = get_the_ID();
-                    $doc_edit_btn_text = ezd_get_opt('frontend_edit_btn_text') ?? esc_html__('Edit', 'eazydocs');
-
                     if ( $is_edit_doc == 1 ) {
-                        $doc_edit_url = get_edit_post_link(get_the_ID());
-
-                        if ( is_user_logged_in() ) {
-                            do_action('eazydocs_fronted_editing', $doc_edit_url);
-                        } else {
-                            do_action('eazydocs_fronted_editing', '?edit_doc_url='.$edit_url);
-                        }
+                        do_action('eazydocs_fronted_editing', get_the_ID());                       
                     }
 
                     if ( $is_add_doc == 1 ) {
@@ -33,14 +24,9 @@ if ( eaz_fs()->is_plan('promax') ) :
                             'posts_per_page' => -1,
                             'post_status'    => 'publish',
                         );
-                        $child_posts    = get_children( $args );
-                        $order          = count($child_posts) + 1;
-
-                        if ( is_user_logged_in() ) {
-                            do_action('eazydocs_fronted_submission', admin_url('/post-new.php?post_type=docs'), get_the_ID(), $order);
-                        } else {
-                            do_action('eazydocs_fronted_submission', '?add_new='.admin_url('/post-new.php?post_type=docs'), get_the_ID(), $order);
-                        }
+                        $child_posts = get_children( $args );
+                        $order       = count($child_posts) + 1;
+                       echo do_action('eazydocs_fronted_submission', get_the_ID(), $order);                        
                     }
                     ?>
                 </div>

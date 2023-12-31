@@ -1281,3 +1281,36 @@ function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
 	}
 	return false;
 }
+
+/**
+ * Internal doc secured by user role
+ * @param int $doc_id
+ */
+function ezd_internal_doc_security( $doc_id =  0 ) {
+	// Private doc restriction
+	if ( get_post_status( $doc_id ) == 'private' ) {
+
+		$user_group = ezd_get_opt('private_doc_user_restriction');
+		if ( $user_group['private_doc_all_user'] == 0 ) {
+
+			// current user role
+			$current_user_id    = get_current_user_id();
+			$current_user       = new WP_User( $current_user_id );
+			$current_roles      = ( array ) $current_user->roles;
+			
+			// All selected roles
+			$private_doc_roles = $user_group['private_doc_roles'];
+			$matching_roles 	= array_intersect($current_roles, $private_doc_roles);
+
+			if ( empty( $matching_roles )) {
+				if ( is_singular( 'docs' ) ) {				
+					$message = esc_html__("You don't have permission to access this document!", 'eazydocs');
+					$output = sprintf('<div class="ezd-lg-col-9"><span class="ezd-doc-warning-wrap"><i class="icon_lock"></i><span>%s</span></span></div>', $message);
+					echo $output;
+				}
+				return null;
+			}
+		}
+	}
+	return true;
+}

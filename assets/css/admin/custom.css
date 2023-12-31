@@ -759,3 +759,10 @@ body.rtl .easydocs-notification {
 body.rtl .easydocs-settings {
     gap: 1rem;
 }
+
+.csf-fieldset-content[data-depend-id="private_doc_user_restriction"] [data-controller="private_doc_all_user"] .csf-title {
+    width: 18%;
+}
+.csf-fieldset-content[data-depend-id="private_doc_user_restriction"] [data-controller="private_doc_all_user"] .csf-fieldset {
+    width: 82%;
+}

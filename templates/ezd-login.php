@@ -1,26 +1,21 @@
 
 <?php
 wp_enqueue_style('font-awesome-5');
-global $wp;
-$redirect_to                = home_url( $wp->request );
-$redirect_to			    = $_GET['after_login'] ?? '';
-$add_doc                    = $_GET['after_login'] ?? '';
-$private_doc                = $_GET['private_doc'] ?? '';
-
-if( $add_doc ){
-    $add_new_doc			= $_GET['after_login'] ?? '';
-}else{
-    $add_new_doc			= get_the_ID();
-}
-$add_new                    = $_GET['add_new_doc'] ?? '';
-$ezd_login                  = array(
-     'user_login'           => $_GET['ezd_username'] ?? '',
-     'user_password'        => $_GET['ezd_password'] ?? '',
-     'remember'             => true
+$args = array(
+    'post_type'     => 'docs',
+    'post_parent'   => get_the_ID(),
+    'posts_per_page' => -1,
+    'post_status'   => 'publish',
 );
-$login_info                 = '';
-if( isset( $_GET['ezd_login']) ){
-    $login_info             = wp_signon( $ezd_login, false );
+$child_posts        = get_children( $args );
+$order              = count($child_posts) + 1;
+
+if ( isset( $_GET['add_new_doc'] ) && $_GET['add_new_doc'] == 'yes' ) {
+    $redirect_to = admin_url('/post-new.php?post_type=docs&add_new_doc=yes').'&ezd_doc_parent='.$_GET['post_id'].'&ezd_doc_order='. $order;
+} elseif ( isset( $_GET['ezd_edit_doc'] ) && $_GET['ezd_edit_doc'] == 'yes' ) {
+    $redirect_to = admin_url('/post.php?post='.$_GET['post_id'].'&action=edit');
+} else {
+    $redirect_to = get_permalink($_GET['post_id'] ?? '');
 }
 ?>
 <div class="ezd_doc_login_wrap">
@@ -33,23 +28,19 @@ if( isset( $_GET['ezd_login']) ){
         </div>
         <div class="ezd-login-form-wrap"> 
             <?php echo wpautop($login_subtitle); ?>
-            <form action="" method="GET">
-                <input type="text" placeholder="<?php esc_attr_e('Username', 'eazydocs'); ?>" name="ezd_username" id="username">
-                <input type="password" placeholder="<?php esc_attr_e('Password', 'eazydocs'); ?>" name="ezd_password" id="password">
-                <input type="hidden" name="ezd_private_doc" value="<?php echo esc_attr($redirect_to); ?>">
-                <input type="hidden" name="after_login" value="<?php echo esc_attr($add_new_doc); ?>">
-                <input type="hidden" name="add_new_doc" value="<?php echo esc_attr($add_new); ?>">
-                <input type="hidden" name="private_doc" value="<?php echo esc_attr($private_doc); ?>" id="">
+ 
+            <form action="<?php echo esc_url(site_url('wp-login.php', 'login_post')); ?>" method="POST" class="ezd-form-wrap">
+                <input type="text" placeholder="<?php esc_attr_e('Username', 'eazydocs'); ?>" name="log" id="user_login">
+                <input type="password" placeholder="<?php esc_attr_e('Password', 'eazydocs'); ?>" name="pwd" id="user_pass">
+                <input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect_to); ?>">
                 <input type="submit" name="ezd_login" value="<?php echo esc_attr($login_btn); ?>">
+                <input type="hidden" name="testcookie" value="1" />
             </form>
+
             <a href="<?php echo esc_url( wp_lostpassword_url( get_permalink() ) ); ?>">
                 <?php echo esc_html($login_forgot_btn); ?>
             </a>
-            <?php 
-            if ( is_wp_error( $login_info ) ) {
-                echo "<div class='ezd-login-error'>" . $login_info->get_error_message() . "</div>";
-            }
-            ?>
+            <div class='ezd-login-error'></div>
         </div>
     </div> 
 </div>

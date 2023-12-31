@@ -72,14 +72,17 @@ if ( $single_layout == 'default' ) {
                 if ( $layout == 'left_sidebar' || $layout == 'both_sidebar' ) {
                     eazydocs_get_template_part( 'docs-sidebar' );
                 }
-                ?>
-             <div class="<?php echo esc_attr( $md_content_col ); ?> doc-middle-content">
-                 <?php eazydocs_get_template_part( 'single-doc-content' ); ?>
-             </div>
-             <?php
-                if ( $layout == 'right_sidebar' || $layout == 'both_sidebar' ) {
-                    eazydocs_get_template_part( 'docs-right-sidebar' );
-                }
+                
+                if ( ezd_internal_doc_security( get_the_ID() ) == true ) :
+                    ?>
+                    <div class="<?php echo esc_attr( $md_content_col ); ?> doc-middle-content">
+                        <?php eazydocs_get_template_part( 'single-doc-content' ); ?>
+                    </div>
+                    <?php
+                    if ( $layout == 'right_sidebar' || $layout == 'both_sidebar' ) {
+                        eazydocs_get_template_part( 'docs-right-sidebar' );
+                    }
+                endif;
             endwhile;
             ?>
          </div>
