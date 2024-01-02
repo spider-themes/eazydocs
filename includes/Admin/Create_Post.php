@@ -124,8 +124,7 @@ class Create_Post {
      		$section_doc_id 	= wp_insert_post( $section_doc );
 			if ($section_doc_id && !is_wp_error($section_doc_id)) {
 				wp_update_post([
-					'ID' 		=> $section_doc_id,
-					'post_name' => $section_slug .'-'. $section_doc_id
+					'ID' 		=> $section_doc_id
 				]);
 			}
 			
@@ -173,11 +172,10 @@ class Create_Post {
 				'menu_order'   => $order
 			);
 
-			$child_doc_id 			= wp_insert_post( $child_doc );
+			$child_doc_id 	   = wp_insert_post( $child_doc );
 			if ($child_doc_id && !is_wp_error($child_doc_id)) {
 				wp_update_post([
-					'ID' 		=> $child_doc_id,
-					'post_name' => $child_slug .'-'. $child_doc_id
+					'ID' 		=> $child_doc_id
 				]);
 			}
 

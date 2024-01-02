@@ -1,5 +1,5 @@
 <?php
-eazydoocs_set_post_view();
+eazydocs_set_post_view();
 $options                    = get_option( 'eazydocs_settings' );
 $comment_visibility         = $options['enable-comment'] ?? '1';
 $reading_time_visibility    = $options['enable-reading-time'] ?? '1';

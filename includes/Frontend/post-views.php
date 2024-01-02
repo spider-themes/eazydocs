@@ -3,7 +3,7 @@
  * Get post views
  * @return string
  */
- function eazydoocs_set_post_view() {
+ function eazydocs_set_post_view() {
 
     if ( is_single() && get_post_type() == 'docs' ) {
         global $wpdb;
