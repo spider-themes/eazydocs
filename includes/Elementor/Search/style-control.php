@@ -282,7 +282,6 @@ $this->add_group_control(
 	Group_Control_Typography::get_type(), [
 		'name'     => 'typography_keywords',
 		'label'    => esc_html__( 'Typography', 'eazydocs' ),
-		'scheme'   => Typography::TYPOGRAPHY_1,
 		'selector' => '{{WRAPPER}} .header_search_keyword ul li a',
 	]
 );

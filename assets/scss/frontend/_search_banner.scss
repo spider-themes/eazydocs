@@ -450,7 +450,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 	left: 0;
 	height: 100%;
 	visibility: hidden;
-	z-index: 99;
+	z-index: 999;
 	opacity: 0;
 	background: rgba(0, 0, 0, 0.4);
 	transition: all 0.3s linear;
