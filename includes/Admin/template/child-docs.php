@@ -132,7 +132,7 @@ if (is_array($depth_one_parents)) :
                                             <ul class="actions">
                                                 
                                                 <?php
-                                                if ( ezd_is_admin_or_editor($child->ID, '') ) :
+                                                if ( ezd_is_admin_or_editor($child->ID, 'edit') ) :
                                                     if ( ezd_is_premium() ) : 
                                                         ?>
                                                         <li class="duplicate">
@@ -286,7 +286,7 @@ if (is_array($depth_one_parents)) :
                                                             </h4>
                                                             <ul class="actions">
                                                                 <?php
-                                                                if ( ezd_is_admin_or_editor($sub_child->ID, '') ) :
+                                                                if ( ezd_is_admin_or_editor($sub_child->ID, 'edit') ) :
                                                                     
                                                                     if ( ezd_is_premium() ) : ?>
                                                                         <li class="duplicate">
@@ -432,7 +432,7 @@ if (is_array($depth_one_parents)) :
 
                                                                             <ul class="actions">
                                                                                 <?php
-                                                                                if ( ezd_is_admin_or_editor($of_sub_child->ID, '') ) :
+                                                                                if ( ezd_is_admin_or_editor($of_sub_child->ID, 'edit') ) :
 
                                                                                     if ( ezd_is_premium() ) : ?>
                                                                                         <li>
