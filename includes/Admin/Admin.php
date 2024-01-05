@@ -175,6 +175,9 @@ class Admin {
 			case 'docly':
 				$classes .= ' ' . trim( get_option( 'docly_purchase_code_status' ) );
 				break;
+			case 'ama':
+				$classes .= ' ezd-premium';
+				break;
 			default:
 				$classes .= '';
 		}

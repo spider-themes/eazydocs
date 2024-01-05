@@ -234,7 +234,7 @@ CSF::createSection( $prefix, array(
             'type'          => 'switcher',
             'text_on'       => esc_html__( 'Show', 'eazydocs' ),
             'text_off'      => esc_html__( 'Hide', 'eazydocs' ),
-            'text_width'    => 92,
+            'text_width'    => 72,
             'default'       => false,
             'class'         => 'eazydocs-pro-notice active-theme-docly'
         ),
@@ -383,7 +383,7 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'text_width' => 90,
 			'default'    => false,
-			'class'      => 'eazydocs-pro-notice active-theme-docy',
+			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama',
 		),
 
 		array(
@@ -1625,7 +1625,7 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
 			'default'    => true,
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
 
 		array(
@@ -1636,6 +1636,7 @@ CSF::createSection( $prefix, array(
 				array( 'is_footnotes_heading', '==', 'true' ),
 			),
 			'default'    => esc_html__( 'Footnotes', 'eazydocs' ),
+			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
 
 		array(
@@ -1652,7 +1653,8 @@ CSF::createSection( $prefix, array(
 			],
 			'chosen'   => true,
 			'multiple' => false,
-			'default'  => '1'
+			'default'  => '1',
+			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
 
 		array(
@@ -1665,7 +1667,7 @@ CSF::createSection( $prefix, array(
 			'attributes' => array(
 				'readonly' => 'readonly',
 			),
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
 	]
 ) );
@@ -1732,7 +1734,7 @@ CSF::createSection( $prefix, array(
 			'attributes' => array(
 				'readonly' => 'readonly',
 			),
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
 		array(
 			'id'         => 'ezdocs_embed_post_shortcode',
