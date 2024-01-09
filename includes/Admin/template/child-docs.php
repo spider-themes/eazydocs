@@ -157,7 +157,7 @@ if (is_array($depth_one_parents)) :
                                                     </li>
 
                                                     <?php
-                                                    if ( ezd_is_premium() ) :
+                                                    if ( ezd_is_premium() && current_user_can( 'manage_options' ) ) :
                                                         if (!empty($get_section_children_one)) :
                                                             ?>
                                                             <li class="visibility">
@@ -309,9 +309,9 @@ if (is_array($depth_one_parents)) :
                                                                             <span class="dashicons dashicons-plus-alt2"></span>
                                                                         </a>
                                                                     </li>
-
+                                                                    
                                                                     <?php
-                                                                    if ( ezd_is_premium() ) :
+                                                                    if ( ezd_is_premium() && current_user_can( 'manage_options' ) ) :
                                                                         if (!empty($get_section_children_two)) :
                                                                             ?>
                                                                             <li class="visibility">
@@ -508,16 +508,18 @@ if (is_array($depth_one_parents)) :
             </div>
 
             <?php 
-            if ( current_user_can('manage_options') ) : 
+            if ( current_user_can( 'edit_posts' ) ) : 
                 ?>
                 <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url('admin.php'); ?>?Create_Section=yes&_wpnonce=<?php echo wp_create_nonce($item); ?>&parentID=<?php echo $item; ?>&is_section=">
                     <?php esc_html_e('Add Section', 'eazydocs'); ?>
                 </button>
-
                 <?php
+            endif;
+                
+            if ( current_user_can( 'manage_options' ) ) : 
                 $current_theme = get_template();
-                if ($current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
-                    eazydocs_one_page($item);
+                if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
+                    eazydocs_one_page( $item );
                 }
             endif;
             ?>
