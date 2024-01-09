@@ -489,6 +489,19 @@
   margin-top: 5px;
 }
 
+.ezd-alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+.ezd-alert.ezd-alert-info {
+  background: #f1fbfd;
+  border-color: #a0e3f2;
+  color: #055160;
+}
+
 .bg-dark .ezd-badge {
   color: #fff;
 }

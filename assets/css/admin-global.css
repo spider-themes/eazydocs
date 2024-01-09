@@ -146,6 +146,10 @@ a.eazydocs-close-notice:active {
   max-width: 1200px;
 }
 
+.csf-field-text input {
+  width: 70%;
+}
+
 .csf-field .csf-title {
   width: 30%;
 }

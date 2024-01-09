@@ -149,6 +149,7 @@
     display: flex;
     align-items: center;
     font-weight: normal;
+    margin: 0;
 
     a {
       text-decoration: none;
@@ -205,6 +206,7 @@
       }
 
       a {
+        text-decoration: none;
         .dashicons {
           color: var(--black_150);
           font-size: 18px;

@@ -1228,6 +1228,10 @@ function ezd_header_with_block_theme() {
 	}	
 }
 
+/**
+ * Footer with block theme
+ * @return void
+ */
 function ezd_footer_with_block_theme(){
 	if ( function_exists( 'block_footer_area' ) ) {
 		block_template_part('footer');
@@ -1240,8 +1244,11 @@ function ezd_footer_with_block_theme(){
 	<?php
 	}
 }
-	
-// Get all templates from Elementor
+
+/**
+ * Get all templates from Elementor
+ * @return array
+ */
 function ezd_get_elementor_templates() {
 	$elementor_templates = get_posts( array(
 		'post_type' 		=> 'elementor_library',
@@ -1258,7 +1265,10 @@ function ezd_get_elementor_templates() {
 	return $elementor_templates_array;
 }
 
-// Disable docly header when single doc layout is elementor template
+/**
+ * Get all templates from Elementor
+ * @return array
+ */
 function ezd_single_banner($classes) {
 	$current_theme = get_template();
 	if ( is_single() && get_post_type() == 'docs' && ! empty( ezd_get_opt('single_doc_layout') == 'el-template' ) &&  ! empty( ezd_get_opt('single_layout_id') ) && $current_theme == 'docly' ) {
@@ -1319,25 +1329,23 @@ function ezd_internal_doc_security( $doc_id =  0 ) {
 /**
  * Delete doc secured by user role security
 */
-function ezd_perform_edit_delete_actions($action = 'delete', $docID){
+function ezd_perform_edit_delete_actions( $action = 'delete', $docID ){
 	// Get the current user ID
 	$current_user_id = get_current_user_id();
 	$inline_styles   = "margin: 50px auto; background: #f5f3f3;padding: 10px 80px;	width: max-content;	font-size: 16px;font-weight: 500;font-family: system-ui;border-radius: 3px;	color: #363636;";
 
 	// Check if the current user has the 'delete_posts' capability
-	if (current_user_can($action.'_posts') && $docID) {
+	if ( current_user_can($action.'_posts') && $docID ) {
 		// Check if the current user is the author of the post
 		$post_author_id = (int) get_post_field('post_author', $docID);
 
 		if ($current_user_id === $post_author_id || current_user_can('manage_options') ) {
 			return true;
-
 		} else {
 			echo "<p style='$inline_styles'>You don't have permission to $action this post.</p>";
 		}
-
 	} else {
 		// User does not have delete_posts capability
-		echo "<p style='$inline_styles'>You don't have sufficient permissions.</p>";
+		echo "<p style='$inline_styles'>You don't have sufficient permission to perform this action.</p>";
 	}
 }

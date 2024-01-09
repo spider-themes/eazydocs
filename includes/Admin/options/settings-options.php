@@ -2012,8 +2012,8 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'       => 'docs-write-access',
 			'type'     => 'select',
-			'title'    => esc_html__( 'Who Can View Docs?', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Allow users to view Docs.', 'eazydocs' ),
+			'title'    => esc_html__( 'Who Can Create Docs?', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Allow users to view & create Docs from the Doc Builder UI in the admin dashboard.', 'eazydocs' ),
 			'options'  => [
 				'administrator' => __( 'Administrator', 'eazydocs' ),
 				'editor'        => __( 'Editor', 'eazydocs' ),
@@ -2199,7 +2199,7 @@ CSF::createSection( $prefix, array(
 							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
-							'default'    => false,
+							'default'    => true,
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' )
 							)
@@ -2223,7 +2223,7 @@ CSF::createSection( $prefix, array(
 							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
-							'default'    => false,
+							'default'    => true,
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' )
 							)

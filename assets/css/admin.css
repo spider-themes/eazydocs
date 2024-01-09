@@ -489,6 +489,7 @@
   display: flex;
   align-items: center;
   font-weight: normal;
+  margin: 0;
 }
 .accordion-title h4 a {
   text-decoration: none;
@@ -533,6 +534,9 @@
 }
 .accordion-title ul.actions li:hover {
   --section-icon: var(--clr-dark);
+}
+.accordion-title ul.actions li a {
+  text-decoration: none;
 }
 .accordion-title ul.actions li a .dashicons {
   color: var(--black_150);
@@ -999,7 +1003,7 @@ body.rtl a.child-delete {
   display: flex;
   padding: 1px 7px;
   transition: all 0.3s;
-  min-width: 20px;
+  min-width: fit-content;
   border-radius: 2em;
   font-weight: 500;
 }
