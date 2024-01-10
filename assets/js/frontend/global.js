@@ -116,5 +116,42 @@
 				nested: true,
 			});
 		}
+		
+		// Masonry [ Doc Archive ]
+		function ezd_masonry_column() {
+
+			var masonryCols = $(".ezd-masonry").attr("ezd-massonry-col");
+			  var masonryColumns = parseInt(masonryCols);
+			
+			if ($(window).width() <= 1024 ) {
+				  var masonryColumns = 2
+			}
+			
+			if ($(window).width() <= 768 ) {
+			  var masonryColumns = 1
+			}
+			
+			var count = 0
+			var content = $(".ezd-masonry > *");
+			
+			$(".ezd-masonry").before("<div class='ezd-masonry-columns'></div>");
+		  
+			content.each(function(index) {
+				count = count + 1
+				$(this).addClass("ezd-masonry-sort-" + count + "")
+		
+				if (count == masonryColumns) {
+					count = 0
+				}
+			});
+			
+			for( var i = 0 + 1; i < masonryColumns + 1 ; i++ ) {
+			  $(".ezd-masonry-columns").append("<div class='ezd-masonry-"+ i +"'></div>");
+			  $(".ezd-masonry-sort-" + i).appendTo(".ezd-masonry-" + i);
+			}
+		  }
+		  
+		  ezd_masonry_column();
+		  
 	});
 })(jQuery);

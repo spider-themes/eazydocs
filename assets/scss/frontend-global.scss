@@ -251,3 +251,14 @@ nav .breadcrumb {
 .categories_guide_item.bg-dark .badge {
 	color: #fff !important;
 }
+
+// Masonry [ Doc Archive ]
+.ezd-masonry-columns {
+	display: flex;
+	box-sizing: border-box;
+	gap: 25px;
+
+	> * {
+		flex: 1;
+	}
+}

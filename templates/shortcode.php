@@ -20,8 +20,7 @@ if ( $docs ) :
 	?>
 
     <div class="eazydocs_shortcode">
-        <div <?php do_action( 'eazydocs_masonry_wrap', $layout ); ?>
-                class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
+        <div <?php echo do_action( 'eazydocs_masonry_wrap', $layout, $col ); ?> class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
 			<?php
 			$i = 1;
 			foreach ( $docs as $main_doc ) :

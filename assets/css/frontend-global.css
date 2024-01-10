@@ -1275,4 +1275,13 @@ nav .breadcrumb .active {
   color: #fff !important;
 }
 
+.ezd-masonry-columns {
+  display: flex;
+  box-sizing: border-box;
+  gap: 25px;
+}
+.ezd-masonry-columns > * {
+  flex: 1;
+}
+
 /*# sourceMappingURL=frontend-global.css.map */
