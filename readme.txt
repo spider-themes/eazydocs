@@ -28,7 +28,6 @@ Simplify the process of creating and managing documentation with EazyDocs, makin
 - [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 - [EazyDocs Documentation (Made by EazyDocs)](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
 - [EazyDocs Support Forum](https://wordpress.org/support/plugin/eazydocs/)
-- [Free Version Demo](https://wordpress-plugins.spider-themes.net/eazydocs/)
 - [Premium Version Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 
 ### Reasons to Choose EazyDocs ###
