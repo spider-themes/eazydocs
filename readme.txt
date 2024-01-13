@@ -221,6 +221,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.4.0 (14 January 2024) =
+Fixed: Delete and Create doc secured by user role (user who has not the capability to delete or create doc, they can't delete or create doc)
+Fixed: Feedback Email field did not work in incognito mode
+Fixed: Solved fatal error by reverting a function name with template override
+Fixed: Archive page masonry layout was not working
+Tweaked: Doc excerpt design improved with non-bootstrap based themes
+Updated: Freemius SDK updated to 2.6.2
+
 = v2.3.9 (29 December 2023) =
 Fixed: Resolved the issue with the show more button in Single Doc elementor widget preset 4
 Fixed: The problem with Analytics views

@@ -31,8 +31,8 @@ $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedbac
                     </div>
                     <div class="form-group ezd-md-col-6 ezd-grid-column-full form-email-field">
                         <input type="email" class="form-control" value="<?php echo esc_attr( $email_from ); ?>"
-                            name="email" id="email" placeholder="<?php esc_attr_e( 'Email', 'eazydocs' ); ?>"
-                            <?php disabled(  is_user_logged_in() ? true : false ); ?> required>
+                               name="email" id="email" placeholder="<?php esc_attr_e( 'Email', 'eazydocs' ); ?>"
+                            <?php disabled( is_user_logged_in() ); ?> required>
                     </div>
                     <div class="form-group ezd-grid-column-full">
                         <input type="text" class="form-control" name="subject" id="subject"
