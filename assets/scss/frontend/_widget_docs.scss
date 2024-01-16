@@ -217,7 +217,7 @@
 	flex-flow: row nowrap;
 	display: flex;
 	overflow-x: auto;
-	gap: 15px;
+	gap: 20px;
 	margin: 0;
 
 	&::after {
@@ -317,7 +317,8 @@
 
 	h3 {
 		margin-top: 0;
-		font-size: 18px;
+		font-size: 26px;
+		font-weight: 700;
 	}
 
 	p {
@@ -463,6 +464,7 @@
 	border: 1px solid var(--black_25);
 	transition: all 300ms linear 0s;
 	box-shadow: 0 2px 3px rgba(3, 27, 78, 0.05);
+	background: var(--bs-white);
 	display: grid;
 	> .navbar-nav {
 		margin-left: 0;

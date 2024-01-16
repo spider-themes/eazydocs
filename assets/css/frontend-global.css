@@ -507,6 +507,10 @@
   display: none;
 }
 
+.p-0 {
+  padding: 0;
+}
+
 .ezd-list-unstyled {
   list-style: none !important;
   padding-left: 0 !important;
