@@ -99,10 +99,10 @@ if ( $docs ) :
 						<?php
 						endif;
 						?>
-                        <a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
-							<?php echo $more; ?>
-                            <i class="arrow_right"></i>
-                        </a>
+						<a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
+							<?php esc_html_e( $more, 'eazydocs' );  ?>
+							<i class="arrow_right"></i>
+						</a>
                     </div>
                 </div>
 

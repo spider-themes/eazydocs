@@ -97,6 +97,26 @@ class Doc_Widget extends Widget_Base {
 		);
 
 		$this->add_control(
+			'ppp_column', [
+				'label'       => esc_html__( 'Column', 'eazydocs' ),
+				'description' => esc_html__( 'Number of column to show', 'eazydocs' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'	  => [
+					'1' 	  => esc_html__( '1 Column', 'eazydocs' ),
+					'2' 	  => esc_html__( '2 Column', 'eazydocs' ),
+					'3' 	  => esc_html__( '3 Column', 'eazydocs' ),
+					'4' 	  => esc_html__( '4 Column', 'eazydocs' ),
+					'5' 	  => esc_html__( '5 Column', 'eazydocs' ),
+					'6' 	  => esc_html__( '6 Column', 'eazydocs' ),
+				],
+				'default'     => 'three',
+				'condition'   => [
+					'doc-widget-skin' => [ '1' ]
+				]
+			]
+		);
+
+		$this->add_control(
 			'doc-widget-tab-alignment', [
 				'label'   => esc_html__( 'Tab Alignment', 'eazydocs' ),
 				'type'    => Controls_Manager::CHOOSE,
