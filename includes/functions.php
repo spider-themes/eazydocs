@@ -1329,7 +1329,7 @@ function ezd_internal_doc_security( $doc_id =  0 ) {
 /**
  * Delete doc secured by user role security
 */
-function ezd_perform_edit_delete_actions( $action = 'delete', $docID ){
+function ezd_perform_edit_delete_actions( $action = 'delete', $docID = 0 ){
 	// Get the current user ID
 	$current_user_id = get_current_user_id();
 	$inline_styles   = "margin: 50px auto; background: #f5f3f3;padding: 10px 80px;	width: max-content;	font-size: 16px;font-weight: 500;font-family: system-ui;border-radius: 3px;	color: #363636;";
@@ -1348,4 +1348,20 @@ function ezd_perform_edit_delete_actions( $action = 'delete', $docID ){
 		// User does not have delete_posts capability
 		echo "<p style='$inline_styles'>You don't have sufficient permission to perform this action.</p>";
 	}
+}
+
+/**
+ * Get doc parent id by current id
+ */
+function ezd_get_doc_parent_id( $doc_id = 0 ) {
+	
+	$parent_id = get_post_ancestors( get_the_ID() );
+	$ancestors = end($parent_id);
+	
+	if ( ! empty( $ancestors ) ) {
+		return $ancestors;
+	} else {
+		return $doc_id;
+	}
+
 }

@@ -17,6 +17,10 @@ $toc_auto_numbering = $toc_auto_numbering == '1' ? ' toc_auto_numbering' : '';
         <div class="pageSideSection">
 			<?php
 			/**
+			 * Subscription
+			 */
+			do_action( 'eazydocs_docs_subscription', ezd_get_doc_parent_id(get_the_ID()) );
+			/**
 			 * Collaboration Buttons
 			 */
 			eazydocs_get_template_part( 'tools/edit-add-doc' );

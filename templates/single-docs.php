@@ -108,3 +108,6 @@ endif;
 
 ezd_footer_with_block_theme();
 get_footer();
+
+// Subscription modal form
+do_action( 'eazydocs_suscription_modal_form', ezd_get_doc_parent_id(get_the_ID()) );
