@@ -1,10 +1,12 @@
 <?php 
 
-		$doc_number     = $settings['ppp_doc_items'] ?? -1;
-		$doc_order      = $settings['order'] ?? '';
-		$doc_exclude    = $settings['exclude'] ?? '';
-		$is_masonry     = $settings['masonry'] ?? '';
-        
+		$doc_number       = $settings['ppp_doc_items'] ?? -1;
+		$doc_order        = $settings['order'] ?? '';
+		$doc_exclude      = $settings['exclude'] ?? '';
+		$is_masonry       = $settings['masonry'] ?? '';
+    $masonry_layout   = $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : '';
+    $masonry_attr     = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
+    
 		/**
 		 * Get the parent docs with query
 		 */
@@ -126,7 +128,8 @@
               </div>
             </div>
           </div>
-          <div class="ezd-grid ezd-grid-cols-12">
+          
+          <div class="ezd-grid ezd-grid-cols-12 <?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
             <?php
             $sections = 1;
             if (!empty($main_doc['sections'])):
@@ -183,12 +186,12 @@
     ?>
   </div>
 </div>
-
+	
 <script>
   ;
   (function ($) {
     'use strict';
-
+    
     $(document).ready(function () {
 
       function navFixed() {
@@ -211,8 +214,42 @@
           }
         }
       }
-
       navFixed();
+
+      function ezd_book_chapter_masonry() {
+
+          var masonryCols = $(".ezd-masonry").attr("ezd-massonry-col");
+          var masonryColumns = parseInt(masonryCols);
+
+          if ($(window).width() <= 1024 ) {
+              var masonryColumns = 2
+          }
+
+          if ($(window).width() <= 768 ) {
+            var masonryColumns = 1
+          }
+
+          var count = 0
+          var content = $(".ezd-masonry > *");
+
+          $(".ezd-masonry").before("<div class='ezd-masonry-columns'></div>");
+
+          content.each(function(index) {
+            count = count + 1
+            $(this).addClass("ezd-masonry-sort-" + count + "")
+
+            if (count == masonryColumns) {
+              count = 0
+            }
+          });
+
+          for( var i = 0 + 1; i < masonryColumns + 1 ; i++ ) {
+            $(".ezd-masonry-columns").append("<div class='ezd-masonry-"+ i +"'></div>");
+            $(".ezd-masonry-sort-" + i).appendTo(".ezd-masonry-" + i);
+          }
+      }
+      ezd_book_chapter_masonry();
+
     });
   })(jQuery);
 

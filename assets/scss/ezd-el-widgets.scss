@@ -490,3 +490,12 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		}
 	}
 }
+
+.ezd-masonry-columns {
+	display: flex;
+	box-sizing: border-box;
+	gap: 25px;
+	 > * {
+	flex: 1;
+  }
+}

@@ -355,10 +355,7 @@ class Book_Chapters extends Widget_Base {
 	 * Author: spider-themes
 	 */
 	protected function render() {
-		$settings       = $this->get_settings();
-
+		$settings       = $this->get_settings();		
 		include "book-chapters.php" ;
-
-
 	}
 }
