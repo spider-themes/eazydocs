@@ -48,9 +48,11 @@
                             endif;
                             
                             // get current user role
-                            $user   = wp_get_current_user();
-                            $roles  = ( array ) $user->roles;
-                            if ( in_array( $roles[0], ezd_get_opt( 'settings-edit-access' ) ) )  :
+                            $user       = wp_get_current_user();
+                            $user_roles = $user->roles;
+                            $user_role  = array_shift( $user_roles );                        
+                             
+                            if ( in_array( $user_role, ezd_get_opt( 'settings-edit-access' ) ) )  :
                                 ?>
                                 <div class="header-notify-icon" title="<?php esc_attr_e( 'Central settings page', 'eazydocs' ) ?>">
                                     <a href="admin.php?page=eazydocs-settings">

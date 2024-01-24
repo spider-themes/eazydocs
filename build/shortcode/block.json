@@ -31,6 +31,26 @@
     "more": {
       "type": "string",
       "default": "View Details"
+    },
+    "show_topic": {
+      "type": "checkbox",
+      "default": true
+    },
+    "topic_label": {
+      "type": "string",
+      "default": "Topics"
+    },
+    "parent_docs_order": {
+      "type": "string",
+      "default": "none"
+    },
+    "child_docs_order": {
+      "type": "string",
+      "default": "desc"
+    },
+    "docs_layout": {
+      "type": "string",
+      "default": "grid"
     }
   },
   "textdomain": "eazydocs",

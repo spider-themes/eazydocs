@@ -1,20 +1,18 @@
 <?php
 $opt                    = get_option( 'eazydocs_settings' );
-$topics_count           = $opt['topics_count'] ?? '1';
+// $topics_count           = $opt['topics_count'] ?? '1';
 $topics                 = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
 $private_doc_mode       = $opt['private_doc_mode'] ?? '';
 $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
-$layout                 = 'grid';
+// $layout                 = 'grid';
 $is_masonry             = '';
-
 // Check pro plugin class exists
 if ( ezd_is_premium() ) {
-	$layout     = $opt['docs-archive-layout'] ?? $layout; // id of field
 	$is_masonry = $layout == 'masonry' ? ' ezd-masonry' : '';
 	if ( empty ( $col ) ) {
 		$col = apply_filters( 'before_docs_column_wrapper', $col );
 	}
-}
+} 
 
 if ( $docs ) :
 	?>
@@ -72,10 +70,10 @@ if ( $docs ) :
 										<?php echo $main_doc['doc']->post_title; ?>
                                     </h4>
 								<?php endif;
-								if ( $topics_count == '1' ) : ?>
+								if ( $show_topic == true ) : ?>
                                     <span class="ezd-badge">
                             <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
-                            <?php echo esc_html( $topics ); ?>
+                            <?php echo esc_html( $topic_label ); ?>
                         </span>
 								<?php endif; ?>
                             </a>

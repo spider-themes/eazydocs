@@ -72,6 +72,23 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs General', 'eazydocs' ),
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
+
+		array(
+			'id'         => 'docs-slug',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Docs Archive Page', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Select the Docs Archive page. This page will be used to show the Docs.', 'eazydocs' ),
+			'desc'       => esc_html__( 'You can create this page with using [eazydocs] shortcode or EazyDocs Gutenberg blocks or EazyDocs Elementor widgets.', 'eazydocs' ),
+			'options'    => 'pages',
+			'class'      => 'docs-page-wrap',
+			'multiple'   => false,
+			'query_args' => array(
+				'posts_per_page' => -1,
+			),
+			'chosen'     => true,
+			'ajax'       => true,
+		),
+
 		array(
 			'id'      => 'docs-type-slug',
 			'type'    => 'text',
@@ -91,134 +108,6 @@ CSF::createSection( $prefix, array(
 
 	)
 ) );
-
-
-// Docs Archive Fields
-CSF::createSection( $prefix, array(
-	'id'     => 'docs_archive',
-	'title'  => esc_html__( 'Docs Archive', 'eazydocs' ),
-	'icon'   => 'fas fa-plus-circle',
-	'fields' => array(
-		array(
-			'id'         => 'docs-slug',
-			'type'       => 'select',
-			'title'      => esc_html__( 'Docs Archive Page', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Select the Docs Archive page. This page will be used to show the Docs.', 'eazydocs' ),
-			'desc'       => esc_html__( 'You can create this page with using [eazydocs] shortcode or EazyDocs Gutenberg blocks or EazyDocs Elementor widgets.', 'eazydocs' ),
-			'options'    => 'pages',
-			'class'      => 'docs-page-wrap',
-			'multiple'   => false,
-			'query_args' => array(
-				'posts_per_page' => - 1,
-			),
-			'chosen'     => true,
-			'ajax'       => true,
-		),
-
-		array(
-			'id'         => 'docs-column',
-			'type'       => 'image_select',
-			'class'      => 'docs-layout-img-wrap',
-			'title'      => esc_html__( 'Docs Columns', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'This option will set the default value of column attribute of ', 'eazydocs' ) . '<code>[eazydocs]</code> shortcode.',
-			'options'    => array(
-				'4' => EAZYDOCS_IMG . '/customizer/4.svg',
-				'3' => EAZYDOCS_IMG . '/customizer/3.svg',
-				'2' => EAZYDOCS_IMG . '/customizer/2.svg',
-			),
-			'attributes' => [
-				'width' => '100px'
-			],
-			'default'    => '3'
-		),
-
-		array(
-			'id'      => 'docs-view-more',
-			'type'    => 'text',
-			'title'   => esc_html__( 'View More Button', 'eazydocs' ),
-			'default' => esc_html__( 'View More', 'eazydocs' )
-		),
-
-		array(
-			'id'         => 'topics_count',
-			'type'       => 'switcher',
-			'title'      => esc_html__( 'Topics Count', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
-			'text_width' => 72,
-			'default'    => true // or false
-		),
-
-		array(
-			'id'         => 'topics_text',
-			'type'       => 'text',
-			'title'      => esc_html__( 'Topics Count Text', 'eazydocs' ),
-			'default'    => esc_html__( 'Topics', 'eazydocs' ),
-			'dependency' => array(
-				array( 'topics_count', '==', 'true' )
-			)
-		),
-
-		array(
-			'id'      => 'docs-order',
-			'type'    => 'select',
-			'title'   => esc_html__( 'Child Docs Order', 'eazydocs' ),
-			'options' => array(
-				'DESC' => esc_html__( 'Descending', 'eazydocs' ),
-				'ASC'  => esc_html__( 'Ascending', 'eazydocs' ),
-			),
-			'default' => 'ASC',
-		),
-
-		array(
-			'id'       => 'docs-number',
-			'type'     => 'number',
-			'title'    => esc_html__( 'Number of Docs', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Number of Main Docs to show', 'eazydocs' ),
-			'default'  => 6,
-		),
-
-		array(
-			'id'       => 'show_articles',
-			'type'     => 'number',
-			'title'    => esc_html__( 'Number of Articles', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Number of Articles to show under each Docs.', 'eazydocs' ),
-			'default'  => 4,
-		),
-
-		array(
-			'id'      => 'docs-archive-layout',
-			'type'    => 'radio',
-			'title'   => esc_html__( 'Docs Layout', 'eazydocs' ),
-			'options' => array(
-				'grid'    => esc_html__( 'Grid', 'eazydocs' ),
-				'masonry' => esc_html__( 'Masonry', 'eazydocs' ),
-			),
-			'default' => 'grid',
-			'class'   => 'eazydocs-pro-notice'
-		),
-
-		array(
-			'id'      => 'docs-order-by',
-			'type'    => 'select',
-			'title'   => esc_html__( 'Docs Order By', 'eazydocs' ),
-			'options' => array(
-				'none'          => esc_html__( 'No Order', 'eazydocs' ),
-				'ID'            => esc_html__( 'Post ID', 'eazydocs' ),
-				'author'        => esc_html__( 'Post Author', 'eazydocs' ),
-				'title'         => esc_html__( 'Title', 'eazydocs' ),
-				'date'          => esc_html__( 'Date', 'eazydocs' ),
-				'modified'      => esc_html__( 'Last Modified Date', 'eazydocs' ),
-				'rand'          => esc_html__( 'Random', 'eazydocs' ),
-				'comment_count' => esc_html__( 'Comment Count', 'eazydocs' ),
-				'menu_order'    => esc_html__( 'Menu Order', 'eazydocs' ),
-			),
-			'default' => 'menu_order',
-			'class'   => 'eazydocs-pro-notice'
-		),
-	)
-) );
-
 
 // Dark Mode Fields
 CSF::createSection( $prefix, array(

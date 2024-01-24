@@ -620,6 +620,6 @@
 
 		// Block theme container
 		let doc_layout = eazydocs_local_object.ezd_layout_container;
-		$('.is-layout-flex, .container').addClass(doc_layout);
+		$('.alignwide.is-layout-flex, .container').addClass(doc_layout);
 	});
 })(jQuery);

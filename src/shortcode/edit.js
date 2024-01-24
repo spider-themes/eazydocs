@@ -5,7 +5,7 @@ import {
 	RichText,
 } from '@wordpress/block-editor';
 import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
-import { PanelBody, FormTokenField, RangeControl, TextControl } from '@wordpress/components';
+import { PanelBody, FormTokenField, RangeControl, TextControl, CheckboxControl, SelectControl, RadioControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
@@ -21,7 +21,7 @@ import {doc_ids} from "../custom-functions";
 import colors from '../colors-palette';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { col, include, exclude, show_docs, show_articles, more, list } = attributes;
+	const { col, include, exclude, show_docs, show_articles, more, list, show_topic, topic_label, child_docs_order, parent_docs_order, docs_layout } = attributes;
 	const blockProps = useBlockProps();
 
 	const docs = useSelect( (select) => {
@@ -32,9 +32,8 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [])
 
 
-	const docSuggestions = docs && docs.map( ( doc ) => {
-		return doc.id + " | " + doc.title.rendered
-	})
+	const docSuggestions = docs ? docs.map((doc) => doc.id + " | " + doc.title.rendered) : [];
+
 
 	// console.log( docSuggestions )
 
@@ -44,8 +43,29 @@ export default function Edit( { attributes, setAttributes } ) {
 			col: newCol == '' ? 3 : newCol
 		})
 	}
-
-
+ 
+	const orderOptions = [
+		{ label: __('Ascending', 'eazydocs'), value: 'asc' },
+		{ label: __('Descending', 'eazydocs'), value: 'desc' },
+	];
+	
+	const layoutOptions = [
+		{ label: __('Masonry', 'eazydocs'), value: 'masonry' },
+		{ label: __('Grid', 'eazydocs'), value: 'grid' },
+	];
+	
+	const parentOrderOptions = [
+		{ label: __('No Order', 'eazydocs'), value: 'none' },
+		{ label: __('Post ID', 'eazydocs'), value: 'ID' },
+		{ label: __('Post Author', 'eazydocs'), value: 'author' },
+		{ label: __('Title', 'eazydocs'), value: 'title' },
+		{ label: __('Date', 'eazydocs'), value: 'date' },
+		{ label: __('Last Modified Date', 'eazydocs'), value: 'modified' },
+		{ label: __('Random', 'eazydocs'), value: 'rand' },
+		{ label: __('Comment Count', 'eazydocs'), value: 'comment_count' },
+		{ label: __('Menu Order', 'eazydocs'), value: 'menu_order' },
+	];
+	
 	// Shortcode attributes
 	let include_doc_ids = doc_ids(include) ? 'include="'+doc_ids(include)+'"' : '';
 	let exclude_doc_ids = doc_ids(exclude) ? 'exclude="'+doc_ids(exclude)+'"' : '';
@@ -53,6 +73,8 @@ export default function Edit( { attributes, setAttributes } ) {
 	let ppp = show_docs ? 'show_docs="'+show_docs+'"' : '';
 	let articles = show_articles ? 'show_articles="'+show_articles+'"' : '';
 	let more_txt = more ? 'more="'+more+'"' : '';
+
+	const proAlert = eazydocs_local_object.is_ezd_premium == 'yes' ? '' : 'Pro';
 
 	return (
 		<>
@@ -69,30 +91,73 @@ export default function Edit( { attributes, setAttributes } ) {
 						shiftStep={ 1 }
 						onChange={ onChangeCol }
 					/>
+					
+					<TextControl
+						help={__('Button/link to get the full docs', 'eazydocs')}
+						label={__('View More Button', 'eazydocs')}
+						value={more}
+						onChange={(value) => setAttributes({ more: value })}
+					/>
+					
+					<CheckboxControl
+						label={__('Show Topic', 'eazydocs')}
+						checked={ show_topic }
+						onChange={ (value) => setAttributes({ show_topic: value }) }
+					/>
 
+					{ show_topic &&
+						<TextControl
+							label={__('Topics Count Text', 'eazydocs')}
+							value={topic_label}
+							onChange={(value) => setAttributes({ topic_label: value })}
+						/>
+					}
+					
+					<SelectControl
+						label={__('Parent Docs Order ' + `${proAlert}`, 'eazydocs')}
+						value={parent_docs_order}
+						options={parentOrderOptions}
+						disabled={eazydocs_local_object.is_ezd_premium == 'yes' ? false : true}
+						className='eazydocs-pro-notice'
+						onChange={(value) => setAttributes({ parent_docs_order: value })}
+					/>
+
+					<SelectControl
+						label={__('Child Docs Order', 'eazydocs')}
+						value={child_docs_order}
+						options={orderOptions}
+						onChange={(value) => setAttributes({ child_docs_order: value })}
+					/>
+					
 					<NumberControl
-						label={__('Docs Show Count', 'eazydocs')}
+						label={__('Number of Docs', 'eazydocs')}
 						isShiftStepEnabled={ true }
 						onChange={(value) => setAttributes({ show_docs: value })}
 						shiftStep={ 1 }
 						value={ show_docs }
 						min={1}
 						__nextHasNoMarginBottom
+						help={__('Number of Main Docs to show', 'eazydocs')}
 					/>
-					<small>{__('How many docs to display.', 'eazydocs')}</small>
-					<br/><br/>
-
+					
 					<NumberControl
-						label={__('Docs Article Count', 'eazydocs')}
+						label={__('Number of Articles', 'eazydocs')}
 						isShiftStepEnabled={ true }
 						onChange={(value) => setAttributes({ show_articles: value })}
 						shiftStep={ 1 }
 						value={ show_articles }
 						min={1}
 						__nextHasNoMarginBottom
+						help={__('Number of Articles to show under each Docs.', 'eazydocs')}
 					/>
-					<small>{__('Articles/child-docs show under every Docs.', 'eazydocs')}</small>
-					<br/><br/>
+
+					<RadioControl
+						label={__('Docs Layout ' + `${proAlert}`, 'eazydocs')}
+						selected={docs_layout}
+						options={layoutOptions}
+						disabled={eazydocs_local_object.is_ezd_premium == 'yes' ? false : true}
+						onChange={(value) => setAttributes({ docs_layout: value })}
+					/>
 
 					<FormTokenField
 						__experimentalAutoSelectFirstMatch
@@ -110,13 +175,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						suggestions={ docSuggestions}
 						value={exclude}
 						onChange={(value) => setAttributes({ exclude: value })}
-					/>
-
-					<TextControl
-						help={__('Button/link to get the full docs', 'eazydocs')}
-						label={__('More Button Label', 'eazydocs')}
-						value={more}
-						onChange={(value) => setAttributes({ more: value })}
 					/>
 				</PanelBody>
 			</InspectorControls>
