@@ -1,10 +1,8 @@
 <?php
 $opt                    = get_option( 'eazydocs_settings' );
-// $topics_count           = $opt['topics_count'] ?? '1';
 $topics                 = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
 $private_doc_mode       = $opt['private_doc_mode'] ?? '';
 $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
-// $layout                 = 'grid';
 $is_masonry             = '';
 // Check pro plugin class exists
 if ( ezd_is_premium() ) {
@@ -16,7 +14,6 @@ if ( ezd_is_premium() ) {
 
 if ( $docs ) :
 	?>
-
     <div class="eazydocs_shortcode">
         <div <?php echo do_action( 'eazydocs_masonry_wrap', $layout, $col ); ?> class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
 			<?php
