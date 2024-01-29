@@ -40,6 +40,7 @@ if ( $docs ) :
                     <div class="categories_guide_item <?php echo $private_bg . $protected_bg; ?> wow fadeInUp"
 						<?php echo $private_bg_op; ?>>
 						<?php
+
 						if ( $main_doc['doc']->post_status == 'private' ) {
 							$pd_txt = esc_html__( 'Private Doc', 'eazydocs' );
 							echo "<div class='private' title='$pd_txt'><i class='icon_lock'></i></div>";
@@ -98,6 +99,15 @@ if ( $docs ) :
 							<?php esc_html_e( $more, 'eazydocs' );  ?>
 							<i class="arrow_right"></i>
 						</a>
+
+						<?php 
+						/**
+						 * Subscription
+						 */
+						do_action( 'eazydocs_docs_subscription', ezd_get_doc_parent_id($main_doc['doc']->ID), 'ezd-block-subscribe' );
+						do_action( 'eazydocs_suscription_modal_form', ezd_get_doc_parent_id($main_doc['doc']->ID ) );
+						?>
+						
                     </div>
                 </div>
 
