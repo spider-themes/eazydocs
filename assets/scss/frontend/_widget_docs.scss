@@ -227,7 +227,6 @@
 		left: 0;
 		width: 100%;
 		border-top: 2px solid var(--border_on_white);
-		z-index: -1;
 	}
 
 	.nav-item {
@@ -255,8 +254,9 @@
 		}
 		&.active {
 			border-color: var(--ezd_brand_color);
+			z-index: 1;
 
-			a {
+			a, span.chapter-part  {
 				color: var(--ezd_brand_color);
 			}
 		}
@@ -499,10 +499,11 @@
 	}
 
 	ul {
+		padding-left: 0 !important;
 		li {
 			margin-bottom: 10px;
 			margin-left: 0;
-
+			list-style: none;
 			a {
 				i {
 					padding-right: 12px;

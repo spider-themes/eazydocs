@@ -78,15 +78,22 @@
             }
             ?>
             <li class="nav-item<?php echo esc_attr($active) ?>">
-              <a <?php echo $atts; ?> class="nav-link">
+              <a <?php echo $atts; ?> class="nav-link ezd_tab_title">
                 <?php
-                if (!empty($settings['book_chapter_prefix'])):
-                  ?>
-                  <span class="chapter-part">
-                    <?php echo esc_html($settings['book_chapter_prefix'] . " " . $part_no++); ?>
-                  </span>
-                  <?php
-                endif;
+                  if (!empty($settings['book_chapter_prefix'])):
+                    ?>
+                    <span class="chapter-part">
+                      <?php
+                      if ($settings['prefix_auto_numbering'] == 'yes') {
+                        echo esc_html($settings['book_chapter_prefix'] . " " . $part_no++);
+                      } else {
+                        echo esc_html($settings['book_chapter_prefix']) . ' ';
+                      }
+                      ?>
+                    </span>
+
+                    <?php
+                  endif;
                 echo wp_kses_post($doc->post_title);
                 ?>
               </a>
@@ -140,7 +147,7 @@
                   <div class="topic_list_item">
                     <?php if (!empty($section->post_title)): ?>
                       <a class="doc4-section-title" href="<?php echo get_permalink($section->ID); ?>">
-                        <h4>
+                        <h4 class="ezd_item_title">
                           <?php echo wp_kses_post($section->post_title); ?>
                         </h4>
                       </a>
@@ -161,7 +168,7 @@
                         $child_count = $child++
                           ?>
                         <li>
-                          <a href="<?php echo get_permalink($doc_item->ID) ?>">
+                          <a class="ezd_item_list_title" href="<?php echo get_permalink($doc_item->ID) ?>">
                             <span class="chapter_counter">
                               <?php echo esc_html($section_count . "." . $child_count . " "); ?>
                             </span>

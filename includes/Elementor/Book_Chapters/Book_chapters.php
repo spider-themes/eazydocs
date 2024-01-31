@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 use Elementor\Repeater;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Text_Shadow;
 use WP_Query;
 use WP_Post;
 
@@ -45,7 +45,7 @@ class Book_Chapters extends Widget_Base {
 	}
     
 	public function get_keywords() {
-		return [ 'eazydocs', 'docs', 'documentations', 'knowledge base', 'knowledgebase', 'kb', 'eazydocs', 'book', 'book-chapters', 'tutorials' ];
+		return [ 'eazydocs', 'docs', 'documentations', 'knowledge base', 'kb', 'book', 'book-chapters', 'tutorials' ];
 	}
 
 	/**
@@ -154,22 +154,18 @@ class Book_Chapters extends Widget_Base {
 					'DESC' => 'DESC'
 				],
 				'default'   => 'ASC',
-				'condition' => [
-					'is_custom_order' => ''
-				]
 			]
 		);
 
+		// $doc = new Repeater();
 
-		$doc = new Repeater();
-
-		$doc->add_control(
-			'doc', [
-				'label'       => __( 'Doc', 'eazydocs' ),
-				'type'        => Controls_Manager::SELECT,
-				'options'     => ezd_get_posts(),
-			]
-		);
+        // $doc->add_control(
+        //     'doc', [
+        //         'label'       => __( 'Doc', 'eazydocs' ),
+        //         'type'        => Controls_Manager::SELECT,
+        //         'options'     => ezd_get_posts(),
+        //     ]
+        // );
 
 
 		$this->end_controls_section();
@@ -181,27 +177,28 @@ class Book_Chapters extends Widget_Base {
 		);
 
 		$this->add_control(
-			'is_tab_title_first_word', [
-				'label'        => __( 'Tab Title First Word', 'eazydocs' ),
-				'description'  => __( 'Show the first word of the doc in Tab Title.', 'eazydocs' ),
-				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'return_value' => 'yes',
+			'book_chapter_prefix',
+			[
+				'label'         => __( 'Prefix', 'eazydocs' ),
+                'description'   => __( 'You can insert your designated prefix above the document title.', 'eazydocs' ),
+				'type'          => \Elementor\Controls_Manager::TEXT,
 			]
 		);
 
+		// Add a switcher control for auto-numbering
 		$this->add_control(
-			'book_chapter_prefix',
+			'prefix_auto_numbering',
 			[
-				'label'     => __( 'Book Chapters / Tutorials Prefix', 'docy-core' ),
-				'type'      => \Elementor\Controls_Manager::TEXT,
+				'label'         => __( 'Enable Auto Numbering', 'eazydocs' ),
+				'description'	=> __('Enable/Disable Auto Numbering after the prefix text', 'eazydocs'),
+				'type'          => \Elementor\Controls_Manager::SWITCHER,
+				'default'       => 'yes',
 			]
 		);
 
 		$this->end_controls_section(); // End Controls Section
 
 	}
-
-
 
 	/**
 	 * Name: elementor_style_control()
@@ -211,7 +208,6 @@ class Book_Chapters extends Widget_Base {
 	 * Author: spider-themes
 	 */
 	public function elementor_style_control() {
-
 
 		//============================ Tab Style ============================//
 		$this->start_controls_section(
@@ -223,19 +219,8 @@ class Book_Chapters extends Widget_Base {
 
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(), [
-				'name' => 'tab_title_typo',
-				'selector' => '{{WRAPPER}} .ezd_tab_title',
-			]
-		);
-
-		$this->add_responsive_control(
-			'tab_title_padding',[
-				'label' => __( 'Padding', 'eazydocs' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .ezd_tab_title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
+				'name'      => 'tab_title_typo',
+				'selector'  => '{{WRAPPER}} .ezd_tab_title',
 			]
 		);
 
@@ -253,23 +238,22 @@ class Book_Chapters extends Widget_Base {
 		//=== Normal Tab Title
 		$this->start_controls_tab(
 			'style_tab_title_normal', [
-				'label' => __( 'Normal', 'eazydocs' ),
+				'label'	=> __( 'Normal', 'eazydocs' ),
 			]
 		);
 
 		$this->add_control(
 			'normal_tab_title_text_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .ezd_tab_title' => 'color: {{VALUE}}',
+				'label' 	=> __( 'Color', 'eazydocs' ),
+				'type' 		=> Controls_Manager::COLOR,
+				'selectors'	=> array(
+					'{{WRAPPER}} .book-chapter-nav .nav-item a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .book-chapter-nav .nav-item a span.chapter-part' => 'color: {{VALUE}}',
 				)
 			]
 		);
 
-
 		$this->end_controls_tab(); //End Normal Tab Title
-
 
 		//=== Active Tab Title
 		$this->start_controls_tab(
@@ -280,10 +264,21 @@ class Book_Chapters extends Widget_Base {
 
 		$this->add_control(
 			'active_tab_title_text_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .ezd_tab_title.active, {{WRAPPER}} .ezd_tab_title:hover' => 'color: {{VALUE}};',
+				'label' 	=> __( 'Color', 'eazydocs' ),
+				'type' 		=> Controls_Manager::COLOR,
+				'selectors'	=> array(
+					'{{WRAPPER}} .book-chapter-nav .nav-item.active a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .book-chapter-nav .nav-item.active span.chapter-part' => 'color: {{VALUE}};',
+				)
+			]
+		);
+
+		$this->add_control(
+			'active_tab_title_border_color', [
+				'label' 	=> __( 'Border Color', 'eazydocs' ),
+				'type' 		=> Controls_Manager::COLOR,
+				'selectors'	=> array(
+					'{{WRAPPER}} .book-chapter-nav .nav-item.active' => 'border-color: {{VALUE}};',
 				)
 			]
 		);
@@ -298,50 +293,252 @@ class Book_Chapters extends Widget_Base {
 		//============================ Style Contents ============================//
 		$this->start_controls_section(
 			'style_contents', [
-				'label' => __( 'Contents', 'eazydocs' ),
+				'label'	=> __( 'Contents', 'eazydocs' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-
-		//=== Item Title
+		//=== Docs Title 
 		$this->add_control(
-			'item_title_heading', [
-				'label' => __( 'Item Title', 'eazydocs' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
+			'docs_title_heading', [
+				'label'	=> __( 'Docs Title', 'eazydocs' ),
+				'type' 	=> Controls_Manager::HEADING,
+			]
+		);
+		$this->add_control(
+			'docs_title_color',
+			[
+				'label'		=> esc_html__( 'Color', 'eazydocs' ),
+				'type' 		=> Controls_Manager::COLOR,
+				'selectors'	=> [
+					'{{WRAPPER}} .docs4-heading h3' => 'color: {{VALUE}}',
+				],
 			]
 		);
 
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(), [
-				'name' => 'item_title_typo',
-				'selector' => '{{WRAPPER}} .ezd_item_title',
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' 		=> 'docs_typography',
+				'selector'	=> '{{WRAPPER}} .docs4-heading h3',
+			]
+		); 
+		//=== Docs Title End
+
+		//=== Docs Excerpt 
+		$this->add_control(
+			'docs_excerpt', [
+				'label' 	=> __( 'Docs Excerpt', 'eazydocs' ),
+				'type' 		=> Controls_Manager::HEADING,
+				'separator'	=> 'before',
+			]
+		);
+		$this->add_control(
+			'docs_excerpt_color',
+			[
+				'label' 	=> esc_html__( 'Color', 'eazydocs' ),
+				'type' 		=> Controls_Manager::COLOR,
+				'selectors'	=> [
+					'{{WRAPPER}} .docs4-heading p' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' 		=> 'docs_expert_typography',
+				'selector' 	=> '{{WRAPPER}} .docs4-heading p',
+				'separator'	=> 'before',
+			]
+		); 
+		//=== Docs Excerpt End
+
+		//=== Item Title
+		$this->add_control(
+			'item_title_heading', [
+				'label' 	=> __( 'Item Title', 'eazydocs' ),
+				'type' 		=> Controls_Manager::HEADING,
+				'separator'	=> 'before',
 			]
 		);
 
 		$this->add_control(
 			'item_title_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => array(
+				'label' 	=> __( 'Color', 'eazydocs' ),
+				'type' 		=> Controls_Manager::COLOR,
+				'selectors'	=> array(
 					'{{WRAPPER}} .ezd_item_title' => 'color: {{VALUE}};',
 				),
 			]
 		);
 
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(), [
+				'name' 		=> 'item_title_typo',
+				'selector'	=> '{{WRAPPER}} .ezd_item_title',
+			]
+		);  
+		// End Item Title
+
+		//=== Item List Title
 		$this->add_control(
-			'item_title_hover_color', [
-				'label' => __( 'Text Hover Color', 'eazydocs' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .ezd_item_title:hover' => 'color: {{VALUE}}; text-decoration-color: {{VALUE}};',
+			'item_list_title_heading', [
+				'label' 	=> __( 'Item Title List', 'eazydocs' ),
+				'type' 		=> Controls_Manager::HEADING,
+				'separator'	=> 'before',
+			]
+		);
+
+		$this->add_control(
+			'item_list_title_color', [
+				'label' 	=> __( 'Color', 'eazydocs' ),
+				'type' 		=> Controls_Manager::COLOR,
+				'selectors'	=> array(
+					'{{WRAPPER}} .ezd_item_list_title' 		=> 'color: {{VALUE}};',
+					'{{WRAPPER}} .ezd_item_list_title span'	=> 'color: {{VALUE}};',
 				),
 			]
-		); // End Item Title
+		);
 
+		$this->add_control(
+			'item_list_title_hover_color', [
+				'label' 	=> __( 'Hover Color', 'eazydocs' ),
+				'type' 		=> Controls_Manager::COLOR,
+				'selectors'	=> array(
+					'{{WRAPPER}} .ezd_item_list_title:hover' 		=> 'color: {{VALUE}};',
+					'{{WRAPPER}} .ezd_item_list_title span:hover'	=> 'color: {{VALUE}};',
+				),
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(), [
+				'name' 		=> 'item_list_title_typo',
+				'selector'	=> '{{WRAPPER}} .ezd_item_list_title',
+			]
+		);
+		// End Item Title
 
 		$this->end_controls_section(); // End Contents Style
+		
+		//============================ Style Item Box ============================//
+		$this->start_controls_section(
+			'item_box_style', [
+				'label' => __( 'Item Box', 'eazydocs' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		// Background Hover and active tab
+		$this->start_controls_tabs(
+			'box_bg_tab'
+		);
+		
+		// start normal tab
+		$this->start_controls_tab(
+			'box_bg_normal',
+			[
+				'label' => esc_html__( 'Normal', 'eazydocs' ),
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' 		=> 'item_box_bg',
+				'label' 	=> esc_html__( 'Background', 'eazydocs' ),
+				'types' 	=> [ 'classic', 'gradient' ],
+				'exclude' 	=> [ 'image' ],
+				'selector'	=> '{{WRAPPER}} .topic_list_item',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(), [
+			  'name'     => 'item_box_noraml_shadow',
+			  'selector' => '{{WRAPPER}} .topic_list_item',
+			]
+		);
+		
+		$this->end_controls_tab(); //End Normal tab
+
+		// start hover tab
+		$this->start_controls_tab(
+			'box_bg_hover',
+			[
+				'label' => esc_html__( 'Hover', 'eazydocs' ),
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' 		=> 'item_box_bg_hover',
+				'label' 	=> esc_html__( 'Background', 'eazydocs' ),
+				'types' 	=> [ 'classic', 'gradient' ],
+				'exclude' 	=> [ 'image' ],
+				'selector'	=> '{{WRAPPER}} .topic_list_item:hover',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(), [
+			  'name'     => 'item_box_hover_shadow',
+			  'selector' => '{{WRAPPER}} .topic_list_item:hover',
+			]
+		);
+		
+		$this->end_controls_tab(); //End hover tab
+		
+		$this->end_controls_tabs();
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' 		=> 'item_box-border',
+				'label'		=> esc_html__( 'Border', 'eazydocs' ),
+				'selector'	=> '{{WRAPPER}} .topic_list_item',
+			]
+		);
+
+		$this->add_responsive_control(
+			'item_box-border_radius',
+			[
+				'label' 		=> esc_html__( 'Border Radius', 'eazydocs' ),
+				'type' 			=> \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units'	=> [ 'px', 'em' ],
+				'selectors' 	=> [
+					'{{WRAPPER}} .topic_list_item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'item_box-margin',
+			[
+				'label' 		=> esc_html__( 'Margin', 'eazydocs' ),
+				'type' 			=> \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units'	=> [ 'px', 'em' ],
+				'selectors' 	=> [
+					'{{WRAPPER}} .topic_list_item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'item_box-padding',
+			[
+				'label' 		=> esc_html__( 'Padding', 'eazydocs' ),
+				'type' 			=> \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units'	=> [ 'px', 'em' ],
+				'selectors' 	=> [
+					'{{WRAPPER}} .topic_list_item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section(); // End Item Box Style
 
 
 	}
