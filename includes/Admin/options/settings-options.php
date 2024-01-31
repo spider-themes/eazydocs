@@ -90,11 +90,32 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'         => 'docs-url-structure',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Root URL Format', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Select the Docs URL Structure. This will be used to generate the Docs URL.', 'eazydocs' ),			
+			'desc'   	=> sprintf( __( '<b>Note:</b> After changing the URL structure, go to %s Settings > Permalinks %s and click on the Save Changes button.', 'eazydocs' ), '<a href="'.admin_url('/options-permalink.php').'" target="_blank">', '</a>' ),
+			'options'    => array(
+				'custom-slug' 	=> esc_html__( 'Custom slug before post name', 'eazydocs' ),
+				'post-name' 	=> esc_html__( 'Post Name', 'eazydocs' ),
+			),
+			'default'    => 'custom-slug',
+			'class'      => 'eazydocs-pro-notice',
+			'multiple'   => false,
+			'ajax'     	 => true,
+			'attributes' => array(
+				'style'  => 'width:250px',
+			),
+		),
+
+		array(
 			'id'      => 'docs-type-slug',
 			'type'    => 'text',
-			'title'   => esc_html__( 'Docs Slug', 'eazydocs' ),
-			'default' => esc_html__( 'docs', 'eazydocs' ),
-			'desc'    => esc_html__( 'After changing the slug, go to Settings > Permalinks and click on the Save Changes button.', 'eazydocs' )
+			'title'   => esc_html__( 'Root slug', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Make sure to keep Docs Root Slug in the Single Docs Permalink. You are not able to keep it blank.', 'eazydocs' ),
+			'default'  => esc_html__( 'docs', 'eazydocs' ),	
+			'desc'     => sprintf( __( '<b>Note:</b> After changing the slug, go to %s Settings > Permalinks %s and click on the Save Changes button.', 'eazydocs' ), '<a href="'.admin_url('/options-permalink.php').'" target="_blank">', '</a>' ),
+			'dependency' => array( 'docs-url-structure', '==', 'custom-slug' ),
 		),
 
 		array(
@@ -104,8 +125,7 @@ CSF::createSection( $prefix, array(
 			'default'     => '#0866ff',
 			'output'      => ':root',
 			'output_mode' => '--ezd_brand_color',
-		),
-
+		)
 	)
 ) );
 

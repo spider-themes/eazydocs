@@ -31,10 +31,30 @@ class Docs {
 		 * Docs slug
 		 * @var string
 		 */
-		$slug = 'docs';
+		$slug 				= 'docs';
         $settings_options   = get_option( 'eazydocs_settings' );
         $slug               = $settings_options['docs-type-slug'] ?? 'docs';
 
+		// Docs URL structure
+        $docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
+		
+		$rewrite_terms = [
+			'pages' 		=> true,
+			'feeds' 		=> true,
+		];
+				
+		if ( $docs_url == 'post-name' && ezd_is_premium() ) {
+			$rewrite = [
+				'slug' 		 => '/',
+				'with_front' => false
+			];
+		} else {
+			$rewrite = [
+				'slug' 		 => $slug,
+				'with_front' => true
+			];
+		}
+		
 		$labels = [
 			'name'               => _x( 'Docs', 'Post Type General Name', 'eazydocs' ),
 			'singular_name'      => _x( 'Doc', 'Post Type Singular Name', 'eazydocs' ),
@@ -50,12 +70,7 @@ class Docs {
 			'not_found'          => __( 'Not Doc found', 'eazydocs' ),
 			'not_found_in_trash' => __( 'Not found in Trash', 'eazydocs' ),
 		];
-		$rewrite = [
-			'slug'       => $slug,
-			'with_front' => true,
-			'pages'      => true,
-			'feeds'      => true,
-		];
+		
 		$args = [
 			'labels'              => $labels,
 			'supports'            => [ 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes', 'comments', 'author', 'excerpt', 'blocks' ],
@@ -71,7 +86,7 @@ class Docs {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'show_in_rest'        => true,
-			'rewrite'             => $rewrite,
+			'rewrite'             => array_merge($rewrite, $rewrite_terms),
 			'map_meta_cap'          => true,
 			'taxonomies'          => [ 'doc_tag' ]
 		];
