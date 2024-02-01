@@ -1363,33 +1363,4 @@ function ezd_get_doc_parent_id( $doc_id = 0 ) {
 	} else {
 		return $doc_id;
 	}
-
 }
-
-/**
-* Update all the queries after changing the docs url format
-* @param object $query
-**/
-function ezd_posts_parse_request( $query ) {
-	
-	global $wp_query;
-	global $wpdb;
-	$querys         = $wp_query->request ?? '';
-	$statuses       = $wpdb->get_results( $querys );
-	$is_post_id  	= '';
-
-	if ( $statuses ) {
-		foreach ( $statuses as $status ) {
-			$is_post_id     = $status->ID ?? '';
-		}
-	}
-	
-	if ( ! empty( $query->query['name'] ) ) {
-		$query->set( 'post_type',  'any' );
-	}
-
-	if ( get_post_type( $is_post_id ) == 'docs' ) {
-		$query->set( 'post_type',  'docs' );
-	}
-}
-add_action( 'pre_get_posts', 'ezd_posts_parse_request' );

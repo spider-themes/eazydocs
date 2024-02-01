@@ -31,27 +31,20 @@ class Docs {
 		 * Docs slug
 		 * @var string
 		 */
-		$slug 				= 'docs';
+		$slug 	= 'docs';
         $settings_options   = get_option( 'eazydocs_settings' );
         $slug               = $settings_options['docs-type-slug'] ?? 'docs';
-
+		
 		// Docs URL structure
         $docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
+		$rewrite 			= [];
 		
-		$rewrite_terms = [
-			'pages' 		=> true,
-			'feeds' 		=> true,
-		];
-				
-		if ( $docs_url == 'post-name' && ezd_is_premium() ) {
+		if ( $docs_url == 'custom-slug' ) {
 			$rewrite = [
-				'slug' 		 => '/',
-				'with_front' => false
-			];
-		} else {
-			$rewrite = [
-				'slug' 		 => $slug,
-				'with_front' => true
+				'slug'       => $slug,
+				'with_front' => true,
+				'pages'      => true,
+				'feeds'      => true,
 			];
 		}
 		
@@ -86,8 +79,8 @@ class Docs {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'show_in_rest'        => true,
-			'rewrite'             => array_merge($rewrite, $rewrite_terms),
-			'map_meta_cap'          => true,
+			'rewrite'             => $rewrite,
+			'map_meta_cap'        => true,
 			'taxonomies'          => [ 'doc_tag' ]
 		];
 
