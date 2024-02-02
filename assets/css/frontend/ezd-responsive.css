@@ -128,7 +128,7 @@
 	}
 
 	.doc_rightsidebar {
-		background: #fafcfd;
+		background: var(--black_50);
 		height: auto;
 	}
 

@@ -1639,6 +1639,9 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   border-left: 2px solid;
   color: var(--ezd_brand_color);
 }
+.toc_right li:last-child .nav-link {
+  margin-bottom: 0;
+}
 
 @media (max-width: 991px) {
   .left-column .doc_left_sidebarlist,
@@ -3031,7 +3034,7 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   padding: 36px 30px 38px 36px;
   border: 1px solid var(--black_25);
   transition: all 300ms linear 0s;
-  box-shadow: 0 2px 3px rgba(3, 27, 78, 0.05);
+  box-shadow: 0 50px 120px 0 rgba(4, 73, 89, 0.08);
   background: var(--bs-white);
   display: grid;
   transition: all 300ms linear 0s;
@@ -3426,11 +3429,10 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
 .question_menu.docs3 .nav {
   margin-bottom: 60px;
   margin-left: 0;
+  gap: 10px;
 }
 .question_menu.docs3 .nav li {
-  margin-right: 20px;
-  margin-bottom: 0;
-  margin-left: 0;
+  margin: 0;
 }
 .question_menu.docs3 .nav li:last-child {
   margin-right: 0;
@@ -3443,10 +3445,12 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   line-height: 55px;
   padding: 0 28px;
   display: inline-flex;
-  gap: 10px;
   align-items: center;
   background: transparent;
   cursor: pointer;
+  box-shadow: 0 0.3px 0.9px rgba(29, 56, 70, 0.1), 0 1.6px 3.6px rgba(29, 56, 70, 0.13);
+  margin: 2px;
+  background: var(--bs-white);
 }
 .question_menu.docs3 .nav li a ion-icon {
   color: var(--p_color);

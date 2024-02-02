@@ -1244,6 +1244,10 @@ body {
 			}
 		}
 	}
+
+	li:last-child .nav-link {
+		margin-bottom: 0;
+	}
 }
 
 //  TOC numbering

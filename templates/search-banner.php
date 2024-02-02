@@ -9,38 +9,38 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
     <div class="focus_overlay"></div>
     <section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap.$is_keywords ); ?>">
 
-    <div class="ezd-grid ezd-grid-cols-12 doc_banner_content">
-        <div class="ezd-grid-column-full">
-            <form action="<?php echo esc_url( home_url('/') ); ?>" role="search" method="post"
-                class="ezd_search_form">
-                <div class="header_search_form_info">
-                    <div class="form-group">
-                        <div class="input-wrapper">
-                            <input type='search' id="ezd_searchInput" name="s"
-                                placeholder='<?php esc_attr_e( 'Search here', 'eazydocs' ); ?>' autocomplete="off"
-                                value="<?php echo get_search_query(); ?>" />
-                            <label for="ezd_searchInput">
-                                <i class="left-icon icon_search"></i>
-                            </label>
-                            <div class="spinner-border spinner" role="status">
-                                <span class="visually-hidden">Loading...</span>
+        <div class="ezd-grid ezd-grid-cols-12 doc_banner_content">
+            <div class="ezd-grid-column-full">
+                <form action="<?php echo esc_url( home_url('/') ); ?>" role="search" method="post"
+                    class="ezd_search_form">
+                    <div class="header_search_form_info">
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <input type='search' id="ezd_searchInput" name="s"
+                                    placeholder='<?php esc_attr_e( 'Search here', 'eazydocs' ); ?>' autocomplete="off"
+                                    value="<?php echo get_search_query(); ?>" />
+                                <label for="ezd_searchInput">
+                                    <i class="left-icon icon_search"></i>
+                                </label>
+                                <div class="spinner-border spinner" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <?php if ( defined( 'ICL_LANGUAGE_CODE' ) ) : ?>
+                                <input type="hidden" name="lang" value="<?php echo( ICL_LANGUAGE_CODE ); ?>" />
+                                <?php endif; ?>
                             </div>
-                            <?php if ( defined( 'ICL_LANGUAGE_CODE' ) ) : ?>
-                            <input type="hidden" name="lang" value="<?php echo( ICL_LANGUAGE_CODE ); ?>" />
-                            <?php endif; ?>
                         </div>
                     </div>
-                </div>
-                <div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
-                <?php
-                if ( ezd_is_premium() ) {
-                    eazydocs_get_template_part('keywords');
-                }
-                ?>
-            </form>
+                    <div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
+                    <?php
+                    if ( ezd_is_premium() ) {
+                        eazydocs_get_template_part('keywords');
+                    }
+                    ?>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 <?php endif; ?>
 
 <script>
