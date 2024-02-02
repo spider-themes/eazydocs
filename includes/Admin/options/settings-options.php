@@ -96,16 +96,17 @@ CSF::createSection( $prefix, array(
 			'subtitle'   => esc_html__( 'Select the Docs URL Structure. This will be used to generate the Docs URL.', 'eazydocs' ),			
 			'desc'   	=> sprintf( __( '<b>Note:</b> After changing the URL structure, go to %s Settings > Permalinks %s and click on the Save Changes button.', 'eazydocs' ), '<a href="'.admin_url('/options-permalink.php').'" target="_blank">', '</a>' ),
 			'options'    => array(
-				'custom-slug' 	=> esc_html__( 'Custom slug before post name', 'eazydocs' ),
-				'post-name' 	=> esc_html__( 'Post Name', 'eazydocs' ),
+				'custom-slug' 	=> esc_html__( 'Custom slug', 'eazydocs' ),
+				'post-name' 	=> esc_html__( 'No slug', 'eazydocs' ),
 			),
 			'default'    => 'custom-slug',
-			'class'      => 'eazydocs-pro-notice',
+			'class'      => 'eazydocs-pro-notice docs-url-structure',
 			'multiple'   => false,
 			'ajax'     	 => true,
 			'attributes' => array(
 				'style'  => 'width:250px',
 			),
+			'after' 	=> esc_html__('Ignore the plain and numaric permalink', 'eazydocs'),
 		),
 
 		array(
@@ -117,7 +118,7 @@ CSF::createSection( $prefix, array(
 			'desc'     => sprintf( __( '<b>Note:</b> After changing the slug, go to %s Settings > Permalinks %s and click on the Save Changes button.', 'eazydocs' ), '<a href="'.admin_url('/options-permalink.php').'" target="_blank">', '</a>' ),
 			'dependency' => array( 'docs-url-structure', '==', 'custom-slug' ),
 		),
-
+		
 		array(
 			'id'          => 'brand_color',
 			'type'        => 'color',

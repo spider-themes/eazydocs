@@ -39,7 +39,7 @@ class Docs {
         $docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
 		$rewrite 			= [];
 		
-		if ( $docs_url == 'custom-slug' ) {
+		if ( $docs_url == 'custom-slug' || get_option('permalink_structure') === '' || get_option('permalink_structure') === '/archives/%post_id%' ) {	 
 			$rewrite = [
 				'slug'       => $slug,
 				'with_front' => true,

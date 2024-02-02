@@ -147,8 +147,12 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 				// Remove docs slug from URLs
 				$docs_url 			=  ezd_get_opt('docs-url-structure', 'custom-slug');
-				if ( $docs_url  == 'post-name' ) {
-					require_once __DIR__ . '/includes/Root_Conversion.php';
+				$permalink 			= get_option('permalink_structure');
+		
+				if ( $docs_url == 'post-name' ) {					
+					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {					 
+						require_once __DIR__ . '/includes/Root_Conversion.php';
+					}
 				}
 			}
 

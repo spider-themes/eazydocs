@@ -766,3 +766,13 @@ body.rtl .easydocs-settings {
 .csf-fieldset-content[data-depend-id="private_doc_user_restriction"] [data-controller="private_doc_all_user"] .csf-fieldset {
     width: 82%;
 }
+
+select[name="eazydocs_settings[docs-url-structure]"] {
+    float: left;
+    margin-right: 10px;
+}
+
+.docs-url-structure .csf-after-text {
+    font-size: 14px;
+    color: #a50303;
+}

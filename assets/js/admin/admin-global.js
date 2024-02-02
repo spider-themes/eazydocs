@@ -77,5 +77,23 @@
 
             })
         });
+
+        // Select field after text visibility by url structure
+        var url_structure = $('select[name="eazydocs_settings[docs-url-structure]"]').val();
+        $('select[name="eazydocs_settings[docs-url-structure]"]').on('change', function() {
+            url_structure = $(this).val();
+            if (url_structure == 'post-name') {
+                $('.docs-url-structure .csf-after-text').show();
+            } else {
+                $('.docs-url-structure .csf-after-text').hide();
+            }
+        });
+
+        if (url_structure == 'post-name') {
+            $('.docs-url-structure .csf-after-text').show();
+        } else {
+            $('.docs-url-structure .csf-after-text').hide();
+        }
+        
     });
 })(jQuery);
