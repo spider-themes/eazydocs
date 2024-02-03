@@ -221,6 +221,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.4.1 (04 February 2024) =
+Fixed: An error notice "This block has encountered an error and cannot be previewed" was showing on editing the existing gutenberg blocks
+Tweaked: Some settings are organized to control in ease (Settings > Doc Single > General)
+Tweaked: Moved Docs archive options in the [eazydocs] shortcode block
+Tweaked: Responsive design improved on the doc details page
+Tweaked: Integrated dynamic popular keywords option in the EazyDocs Search widget
+Tweaked: Book chapter layout improved
+
 = v2.4.0 (14 January 2024) =
 Fixed: Delete and Create doc secured by user role (user who has not the capability to delete or create doc, they can't delete or create doc)
 Fixed: Feedback Email field did not work in incognito mode
