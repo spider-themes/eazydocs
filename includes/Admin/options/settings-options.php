@@ -252,7 +252,7 @@ CSF::createSection( $prefix, array(
 			'id'      => 'enable-unique-views',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Unique Views', 'eazydocs' ),
-			'default' => false, // or false
+			'default' => false, // or false 
 			'dependency' => array(
 				array( 'enable-views', '==', 'true' ),
 			)

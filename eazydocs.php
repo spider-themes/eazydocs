@@ -102,9 +102,13 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'i18n' ] );
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				add_action( 'admin_notices', [ $this, 'database_not_found' ] );
 			}
+			
+			// Added Documentation links to plugin row meta
+			add_filter('plugin_row_meta',[ $this,  'eazydocs_row_meta' ], 10, 2);
 		}
 
 		// get the instance of the EazyDocs class
@@ -356,7 +360,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			return $this->plugin_url = untrailingslashit( plugins_url( '/', __FILE__ ) );
 		}
-
+		
 		/**
 		 * Get the plugin path.
 		 *
@@ -378,6 +382,23 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		public function template_path() {
 			return $this->plugin_path() . '/templates/';
 		}
+
+		/**
+		 * Documentation links to plugin row meta
+		 */
+		public function eazydocs_row_meta($links, $file) {
+			// Check if this is your plugin
+			if (plugin_basename(__FILE__) === $file) {
+				// Add your custom links
+				$plugin_links = array(
+					'<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank">Documentation</a>'
+				);		
+				// Merge the custom links with the existing links
+				$links = array_merge($links, $plugin_links);
+			}		
+			return $links;
+		}
+		// end
 	}
 }
 
