@@ -595,29 +595,46 @@
 				);
 			});
 		});
+			
+		
+		/*
+		* Font size switcher
+		* Check if there are buttons for font size switcher
+		*/
 
-		// Font size switcher
-		if ($('#rvfs-controllers button').length) {
-			var $speech = $(
-				'#post p, #post ul li:not(.process_tab_shortcode ul li), #post ol li, #post table:not(.basic_table_info,.table-dark), #post table tr td, #post .tab-content'
-			);
+		if ( $('#rvfs-controllers button').length ) {
+			var $speech = $('#post p, #post ul li:not(.process_tab_shortcode ul li), #post ol li, #post table:not(.basic_table_info,.table-dark), #post table tr td, #post .tab-content');
 			var $defaultSize = $speech.css('fontSize');
+	
+			// Function to check if cookie exists and apply font size
+			function checkFontSize() {
+				var cookieFontSize = readCookie("fontSize");
+				if (cookieFontSize) {
+					$speech.css('fontSize', cookieFontSize);
+				}
+			}
+	
+			// Apply font size when page loads
+			checkFontSize();
+	
+			// Event handler for font size buttons
 			$(document).on('click', '#rvfs-controllers button', function () {
-				var num = parseFloat($speech.css('fontSize'));
+				var num;
 				switch (this.id) {
 					case 'switcher-large':
-						num *= 1.1;
+						num = parseFloat($speech.css('fontSize')) * 1.1;
 						break;
 					case 'switcher-small':
-						num /= 1.1;
+						num = parseFloat($speech.css('fontSize')) / 1.1;
 						break;
 					default:
 						num = parseFloat($defaultSize);
 				}
-				$speech.animate({ fontSize: num + 'px' });
+				$speech.css('fontSize', num + 'px');
+				createCookie("fontSize", num + 'px', 30); // Set cookie with font size value for 30 days
 			});
 		}
-
+		
 		// Block theme container
 		let doc_layout = eazydocs_local_object.ezd_layout_container;
 		$('.alignwide.is-layout-flex, .container').addClass(doc_layout);
