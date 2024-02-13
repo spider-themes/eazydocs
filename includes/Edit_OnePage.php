@@ -5,7 +5,7 @@ namespace eazyDocs;
 /**
  * Class Single_Duplicate
  *
- * @package eazyDocsPro\Duplicator
+ * @package EZD_EazyDocsPro\Duplicator
  */
 class Edit_OnePage {
 	public function __construct() {

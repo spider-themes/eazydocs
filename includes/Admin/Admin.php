@@ -98,7 +98,7 @@ class Admin {
         }
 
 
-		if ( class_exists('EazyDocsPro') ) {
+		if ( class_exists('EZD_EazyDocsPro') ) {
 			$ezd_menu_title = __( 'EazyDocs Pro', 'eazydocs' );
 		} else {
 			$ezd_menu_title = __( 'EazyDocs', 'eazydocs' );

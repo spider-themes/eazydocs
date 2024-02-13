@@ -24,7 +24,7 @@ function ezd_get_opt( $option, $default = '' ) {
  * @return bool|void
  */
 function ezd_is_premium() {
-	if ( class_exists('EazyDocsPro') && eaz_fs()->can_use_premium_code() ) {
+	if ( class_exists('EZD_EazyDocsPro') && eaz_fs()->can_use_premium_code() ) {
 		return true;
 	}
 }
@@ -47,7 +47,7 @@ function ezd_unlock_themes() {
  * @return bool|void
  */
 function ezd_is_promax() {
-	if ( class_exists( 'EazyDocsPro' ) && eaz_fs()->can_use_premium_code() && eaz_fs()->is_plan( 'promax' ) ) {
+	if ( class_exists( 'EZD_EazyDocsPro' ) && eaz_fs()->can_use_premium_code() && eaz_fs()->is_plan( 'promax' ) ) {
 		return true;
 	}
 }

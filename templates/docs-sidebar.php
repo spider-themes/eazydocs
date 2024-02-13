@@ -27,7 +27,7 @@ $sidebar_search 	= $options['search_visibility'] ?? '1';
 $content_layout 	= $options['docs_content_layout'] ?? '1';
 $nav_sidebar_active = '';
 
-if ( class_exists('EazyDocsPro') && $content_layout == 'category_base' ){
+if ( class_exists('EZD_EazyDocsPro') && $content_layout == 'category_base' ){
 	$nav_sidebar_active = 'nav_category_layout';
 }
 

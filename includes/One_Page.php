@@ -3,7 +3,7 @@ namespace eazyDocs;
 
 /**
  * Class Single_Duplicate
- * @package eazyDocsPro\Duplicator
+ * @package EZD_EazyDocsPro\Duplicator
  */
 class One_Page {
 	public function __construct() {
