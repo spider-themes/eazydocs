@@ -82,7 +82,7 @@ endif;
             ?>
         </div>
         
-        <?php do_action( 'ezd_highlight_comment_lists', get_the_ID() ); ?>
+        <?php do_action( 'ezd_selected_comment_lists', get_the_ID() ); ?>
     
     </div>
     <?php

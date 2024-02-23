@@ -113,7 +113,6 @@
 			}, 30);
 		}
 
-
 		/**
 		 * Feedback Contact Form Ajax Handler
 		 */
