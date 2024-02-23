@@ -138,6 +138,52 @@ CSF::createSection( $prefix, array(
 			"step"     => 1,
 			"max"      => 100,
 		),
+		
+		array(
+			'type'       => 'subheading',
+			'content'    => esc_html__( 'Selected Comment', 'eazydocs' ),
+		),
+
+		array(
+			'id'         => 'enable-selected-comment',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Enable / Disable', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'text_width' => 92,
+			'default'    => true // or false
+		),
+		
+		array(
+			'id'         => 'selected-comment-heading',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Heading', 'eazydocs' ),
+			'default'    => esc_html__( 'Selected Comment', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+		
+		array(
+			'id'         => 'selected-comment-button-text',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Button Text', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'default'    => esc_html__( 'Comment', 'eazydocs' ),
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+		
+		array(
+			'id'         => 'selected-comment-roles',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Who can view comments?', 'eazydocs' ),
+			'options'    => 'roles',
+			'default'    => 'administrator',
+			'class'      => 'eazydocs-promax-notice',
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+			'multiple'   => true,
+			'chosen'     => true
+		),
 
 		// Doc Footer Elements
 		array(

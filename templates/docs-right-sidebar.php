@@ -15,7 +15,13 @@ $toc_auto_numbering = $toc_auto_numbering == '1' ? ' toc_auto_numbering' : '';
         </div>
 
         <div class="pageSideSection">
+			
 			<?php
+			/**
+			 * Highlighted Feedback
+			 */
+			do_action( 'ezd_highlited_comment_form', get_the_ID() );
+
 			/**
 			 * Subscription
 			 */

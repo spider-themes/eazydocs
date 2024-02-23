@@ -107,14 +107,12 @@
 
 		// Anchor JS scroll
 		var urlHash = window.location.href.split('#')[1];
-		if (urlHash) {
-			$('html,body').animate(
-				{
-					scrollTop: $('#' + urlHash).offset().top,
-				},
-				30
-			);
+		if (urlHash && $('#' + urlHash).length) {
+			$('html,body').animate({
+				scrollTop: $('#' + urlHash).offset().top
+			}, 30);
 		}
+
 
 		/**
 		 * Feedback Contact Form Ajax Handler

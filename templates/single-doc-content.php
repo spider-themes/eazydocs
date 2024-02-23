@@ -81,6 +81,9 @@ endif;
             ));
             ?>
         </div>
+        
+        <?php do_action( 'ezd_highlight_comment_lists', get_the_ID() ); ?>
+    
     </div>
     <?php
     if( $docs_feedback == '1' ) {
