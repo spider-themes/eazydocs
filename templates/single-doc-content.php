@@ -98,9 +98,9 @@ eazydocs_get_template_part('content-related');
 if ( $comment_visibility == '1' )  :
 	if ( comments_open() || get_comments_number() )  :
 		?>
-<div class="eazydocs-comments-wrap">
-    <?php comments_template(); ?>
-</div>
-<?php
+        <div class="eazydocs-comments-wrap">
+            <?php comments_template(); ?>
+        </div>
+        <?php
 	endif;
 endif;

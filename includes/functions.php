@@ -391,7 +391,7 @@ if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
 			$breadcrumbs = array_reverse( $breadcrumbs );
 
 			for ( $i = 0; $i < 2; ++ $i ) {
-				$html .= $breadcrumbs[ $i ];
+				$html .= $breadcrumbs[ $i ] ?? '';
 			}
 		}
 
