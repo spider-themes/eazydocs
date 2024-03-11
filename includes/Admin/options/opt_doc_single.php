@@ -152,14 +152,14 @@ CSF::createSection( $prefix, array(
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'text_width' => 92,
-			'default'    => true // or false
+			'default'    => false
 		),
-		
+				
 		array(
-			'id'         => 'selected-comment-heading',
+			'id'         => 'selected-comment-meta-title',
 			'type'       => 'text',
-			'title'      => esc_html__( 'Heading', 'eazydocs' ),
-			'default'    => esc_html__( 'Selected Comment', 'eazydocs' ),
+			'title'      => esc_html__( 'Meta Title', 'eazydocs' ),
+			'default'    => esc_html__( 'Feedback', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
 		),

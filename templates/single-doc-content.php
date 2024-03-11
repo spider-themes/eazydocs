@@ -42,6 +42,7 @@ endif;
                         endif;
                         
                         do_action('eazydocs_docs_contributor', get_the_ID());
+do_action('ezd_selected_comment_switcher_meta');
                     ?>
                 </div>
                 <?php
