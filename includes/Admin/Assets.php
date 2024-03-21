@@ -93,6 +93,8 @@ class Assets {
 				'get_reusable_blocks_right' => get_reusable_blocks_right(),
 				'manage_reusable_blocks'    => manage_reusable_blocks(),
 				'is_ezd_premium'            => eaz_fs()->is_paying_or_trial() ? 'yes' : '',
+				'ezd_get_conditional_items' => ezd_get_conditional_items(),
+				'ezd_plugin_url'    		=> EAZYDOCS_URL,
 			)
 		);
 	}

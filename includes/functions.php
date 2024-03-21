@@ -1364,3 +1364,21 @@ function ezd_get_doc_parent_id( $doc_id = 0 ) {
 		return $doc_id;
 	}
 }
+
+/**
+ * Get all conditional items
+ */
+ function ezd_get_conditional_items() {
+	$conditional_items 	= ezd_get_opt('condition_options');
+	$conditional_array 	= [];
+	
+	foreach( $conditional_items as $key => $value ) {
+		$conditional_array[$key] = [
+			'id'	=> $key,
+			'title'	=> ucwords( $value['title'] ),
+			'value'	=> strtolower( str_replace(' ', '-', $value['title'] ) )
+		];
+	}
+	
+	return $conditional_array;
+}

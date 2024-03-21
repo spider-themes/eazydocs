@@ -1,8 +1,8 @@
 <?php
 $is_social_links        = ezd_get_opt( 'is_social_links' ) ?? '';
 $is_copy_link           = ezd_get_opt( 'is_copy_link' ) ?? '';
-$copy_link_text         = ezd_get_opt( 'copy_link_text' ) ?? 'Copy Link';
-$copy_link_text_success = ezd_get_opt( 'copy_link_text_success' ) ?? 'Copied!';
+$copy_link_text         = ezd_get_opt( 'copy_link_text' ) ?? __( 'Copy Link', 'eazydocs' );
+$copy_link_text_success = ezd_get_opt( 'copy_link_text_success' ) ?? __( 'Copied!', 'eazydocs' );
 $is_post_share_title    = ezd_get_opt( 'is_post_share_title' ) ?? '';
 $is_social_btns         = ezd_get_opt( 'is_social_btns' ) ?? '';
 $copy_link_label        = ezd_get_opt( 'copy_link_label' ) ?? __( 'Or copy link', 'eazydocs' );
