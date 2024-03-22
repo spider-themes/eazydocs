@@ -56,7 +56,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
         $this->register_block( 'shortcode' );
 
         $post_id = isset( $_GET['post'] ) ? sanitize_text_field( $_GET['post'] ) : 0;        
-        if ( get_post_type( $post_id ) === 'docs' ) {
+        if ( get_post_type( $post_id ) === 'docs' && ezd_unlock_themes() ) {
             $this->register_block( 'eazydocs-toolbar' );
         }
 
