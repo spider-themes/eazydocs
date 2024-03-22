@@ -102,7 +102,7 @@ const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
                     value={numberValue}
                     onChange={(e) => setNumberValue(e.target.value)}
                 >
-                    <option value="">-- Select Device --</option>
+                    <option value="">-- Select Option --</option>
                     {dataItems}
                     </select>
                 <button onClick={() => ezdToolbarDropDown(numberValue)}>Insert</button>

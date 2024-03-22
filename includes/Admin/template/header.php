@@ -49,7 +49,7 @@
                             
                             // get current user role
                             $user       = wp_get_current_user();
-                            $user_roles = $user->roles;
+                            $user_roles = !empty($user->roles) ? $user->roles : array();
                             $user_role  = array_shift( $user_roles ); 
                             
                             $settings_edit_access = ezd_get_opt('settings-edit-access');

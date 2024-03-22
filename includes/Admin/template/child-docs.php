@@ -3,7 +3,7 @@
 $child_docs_depth  = [];
 $depth_two_parents = [];
 $depth_three_parents = [];
-$ids               = '';
+$ids               = 0;
 $container         = 1;
 if (is_array($depth_one_parents)) :
     foreach ($depth_one_parents as $item) :

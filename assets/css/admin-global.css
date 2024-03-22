@@ -142,6 +142,10 @@ a.eazydocs-close-notice:active {
   width: 100px;
 }
 
+.csf-field-repeater .csf-repeater-content {
+  background-color: rgba(247, 247, 247, 0.5607843137);
+}
+
 .csf-options {
   max-width: 1200px;
 }
