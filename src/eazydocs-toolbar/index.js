@@ -10,7 +10,6 @@ const name = 'eazydocs/eazydocs-toolbar';
 const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
     const [showPopover, setShowPopover] = useState(false);
     const [numberValue, setNumberValue] = useState('');
-    const [shortcodeCounter, setShortcodeCounter] = useState(1);
     const conditionalItems = eazydocs_local_object.ezd_get_conditional_items;
 
     const dataItems = conditionalItems.map((item) => (
@@ -27,9 +26,13 @@ const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
         const selectedText  = value.text.slice(value.start, value.end);
         let shortcode       = '';
 
-        // Increment counter and use it in the shortcode
-        const shortcodeNumber = shortcodeCounter;
-        setShortcodeCounter(shortcodeCounter + 1);
+        // Get the number of footnotes in the editor
+        let shortcodeNumber = jQuery('.is-root-container p').text().match(/\[reference number="(\d+)"\]/g);
+        if (shortcodeNumber !== null) {
+            shortcodeNumber = shortcodeNumber.length + 1;
+        } else {
+            shortcodeNumber = 1;
+        }
 
         // Wrap selected text with shortcode if text is selected
         if (selectedText) {
@@ -38,7 +41,7 @@ const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
             // Insert shortcode at cursor position if no text is selected
             shortcode = `[reference number="${shortcodeNumber}"][/reference]`;
         }
-
+        
         onChange(insert(value, shortcode));
     };
   
