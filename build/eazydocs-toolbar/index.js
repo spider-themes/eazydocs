@@ -178,6 +178,7 @@ const EazyDocs_Toolbar = ({
 }) => {
   const [showPopover, setShowPopover] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const [numberValue, setNumberValue] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)('');
+  const [shortcodeCounter, setShortcodeCounter] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
   const conditionalItems = eazydocs_local_object.ezd_get_conditional_items;
   const dataItems = conditionalItems.map(item => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     key: item.id,

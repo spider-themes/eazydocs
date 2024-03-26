@@ -10,6 +10,7 @@ const name = 'eazydocs/eazydocs-toolbar';
 const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
     const [showPopover, setShowPopover] = useState(false);
     const [numberValue, setNumberValue] = useState('');
+    const [shortcodeCounter, setShortcodeCounter] = useState(1);
     const conditionalItems = eazydocs_local_object.ezd_get_conditional_items;
 
     const dataItems = conditionalItems.map((item) => (
