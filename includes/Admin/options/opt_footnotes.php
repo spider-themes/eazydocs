@@ -16,7 +16,7 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
-
+		
 		array(
 			'id'         => 'footnotes_heading_text',
 			'type'       => 'text',
@@ -26,6 +26,21 @@ CSF::createSection( $prefix, array(
 			),
 			'default'    => esc_html__( 'Footnotes', 'eazydocs' ),
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
+		),
+		
+		array(
+			'id'         => 'footnotes_layout',
+			'title'      => esc_html__( 'Footnotes Layout', 'eazydocs' ),
+			'type'    	=> 'radio',
+			'options' 	=> [
+				'collapsed'    	=> esc_html__( 'Collapsed', 'eazydocs' ),
+				'expanded' 		=> esc_html__( 'Expanded', 'eazydocs' ),
+			],
+			'subtitle'      => esc_html__( 'Select how the footnote will look normally', 'eazydocs' ),
+			'default' => 'collapsed',
+			'dependency' => array(
+				array( 'is_footnotes_heading', '==', 'true' ),
+			)
 		),
 
 		array(
