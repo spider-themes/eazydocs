@@ -1,124 +1,31 @@
 /*
 EazyDocs Footnotes
 */
-.ezd-footnote-footer{
-    div{
-      display: flex;
-      break-inside: avoid;
-      margin-bottom: 5px;
-      word-break: break-all;
-      position: relative;
-      padding: 0;
-      font-size: 14px;
-      gap: 5px;
-      align-items: baseline;
-      &.ezd-footnote-texts{
-        display: block;
-        b, strong{
-          font-weight: bold;
-          font-size: 14px;
-          color: #1d2746;
-          padding-top: 0;
-          margin-bottom: 8px;
-          display: block;
-        }
-        img {
-          display: block;
-        }
-      }
-      .ezd-footnotes-serial{
-        width: max-content;
-      }
-      .ezd-footnote-texts{
-        h2{
-          display: block;
-        }
-        &:first-letter{
-          text-transform: capitalize;
-        }
-      }
-        &:target{
-          outline:none;
-          color: var(--ezd_brand_color);
-          margin: 0;
-        }
-        &:target{
-          strong{
-            color: var(--ezd_brand_color);          
-          }
-        }
-        a {
-          text-decoration: none;
-          color: var(--ezd_brand_color);
-          word-break: break-all;
-        }
-    }
-    span {
-      display: none;
-    }
-    img{
-      margin: 5px 0;
-    }
-    &.mt-30 {
-      margin-top: 30px;
-    }
-    &.collapsed{
-      display: none;
-    }
-  }
-  .ezd-footnotes-link-item {
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
+.ezd-footnote-footer {
+  column-gap: 30px;
+  div {
+    display: flex;
+    break-inside: avoid;
+    margin-bottom: 5px;
+    word-break: break-all;
     position: relative;
-    text-decoration: none !important;
-    > i {
-      font-style: normal;
-      color: var(--ezd_brand_color);
-      font-size: 14px;
-      line-height: 0;
-      cursor: pointer;
-      position: relative;
-      top: -5px;
+    padding: 0;
+    font-size: 14px;
+    gap: 5px;
+    align-items: baseline;
+
+    .ezd-note-indicator {
+      text-decoration: none;
+      svg {
+        position: relative;
+        top: -5px;
+      }
     }
-    span{
-      z-index: -1;
-      opacity: 0;
-      position: absolute;
-      top: 28px;
-      -moz-transition: all 1s ease;
-      -o-transition: all 1s ease;
-      transition: all 1s ease;
-      display: inline-block;
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
-      border-top-right-radius: 3px;
-      word-break: break-all;
-      -webkit-transform: scale(1, 1);
-      -moz-transform: scale(1, 1);
-      -o-transform: scale(1, 1);
-      -ms-transform: scale(1, 1);
-      transform: scale(1, 1);
-      -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-      -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
-      -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
-      -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
-      -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
-      transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
-      width: 300px;
-      background: #fff;
-      box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
-      border: 0;
-      transform: translate(-54%, 0%);
-      margin: 0;
-      font-size: 14px;
-      line-height: 26px;
-      color: #6b707f;
-      margin-bottom: 0;
-      padding: 25px;
-      box-sizing: border-box;
-      b, strong{
+
+    &.ezd-footnote-texts {
+      display: block;
+
+      b, strong {
         font-weight: bold;
         font-size: 14px;
         color: #1d2746;
@@ -126,101 +33,231 @@ EazyDocs Footnotes
         margin-bottom: 8px;
         display: block;
       }
+
       img {
-        margin: 10px 0;
         display: block;
       }
-      &::before{
-        content: "";
-        position: absolute;
-        top: -6px;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 0;
-        height: 0;
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-top: 7px solid transparent;
-        transform: rotate(224deg);
-        box-shadow: 1px 1px 0px rgb(110 108 108 / 25%);
-        background: white;
-        border-top-right-radius: 2px;
+    }
+
+    .ezd-footnotes-serial {
+      width: max-content;
+    }
+
+    .ezd-footnote-texts {
+      h2 {
+        display: block;
       }
-      a{
-        text-decoration: none;
+
+      &:first-letter {
+        text-transform: capitalize;
+      }
+    }
+
+    &:target {
+      outline: none;
+      color: var(--ezd_brand_color);
+      margin: 0;
+    }
+
+    &:target {
+      strong {
         color: var(--ezd_brand_color);
-        &:hover{
-          text-decoration: none;
-        }
       }
     }
-    &:hover{
-      span{
-        z-index: 9;
-        opacity: 1;
-        -webkit-transition: all 1s ease;
-        -moz-transition: all 1s ease;
-        -o-transition: all 1s ease;
-        transition: all 1s ease;
+
+    a {
+      word-break: break-all;
+      &:hover {
+        text-decoration-thickness: 1px;
       }
-    }
-    &:target i{
-      border: 2px solid var(--ezd_brand_color);
-        outline-offset: 0px;
-        padding: 0px;
-        letter-spacing: -.5px;
-        padding-left: 2px;
-        padding-bottom: 1px;
     }
   }
-  .ezd-footnote-title{
+
+  span {
     display: none;
-    font-size: 20px;
-    margin: 30px 0 10px;
-    font-weight: 500;
-    width: 100%;
+  }
+
+  img {
+    margin: 5px 0;
+  }
+
+  &.mt-30 {
+    margin-top: 30px;
+  }
+
+  &.collapsed {
+    display: none;
+  }
+}
+
+.ezd-footnotes-link-item {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  position: relative;
+  text-decoration: none !important;
+
+  > i {
+    font-style: normal;
+    color: var(--ezd_brand_color);
+    font-size: 14px;
+    line-height: 0;
     cursor: pointer;
-    span {
-      display: inline-flex;
-      align-items: center;
-      i {
-        font-size: 31px;
-        margin: 0 0 0 -8px;
-      }
-      &:first-child{
-        margin-right: 6px;
-      }
-      
-    } 
-    &.collapsed{
-      span {
-        i {
-          &.icon_minus-box{
-            display: none;
-          }
-          &.icon_plus-box{
-            display: block;
-          }
-        }
-        
+    position: relative;
+    top: -5px;
+  }
+
+  span {
+    z-index: -1;
+    opacity: 0;
+    position: absolute;
+    top: 28px;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    display: inline-block;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    word-break: break-all;
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+    -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+    border: 0;
+    transform: translate(-54%, 0%);
+    margin: 0;
+    font-size: 14px;
+    line-height: 26px;
+    color: #6b707f;
+    margin-bottom: 0;
+    padding: 25px;
+    box-sizing: border-box;
+
+    b, strong {
+      font-weight: bold;
+      font-size: 14px;
+      color: #1d2746;
+      padding-top: 0;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    img {
+      margin: 10px 0;
+      display: block;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-top: 7px solid transparent;
+      transform: rotate(224deg);
+      box-shadow: 1px 1px 0 rgb(110 108 108 / 25%);
+      background: white;
+      border-top-right-radius: 2px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--ezd_brand_color);
+
+      &:hover {
+        text-decoration: none;
       }
     }
-    &.expanded{
-      span{
-        i {
-          &.icon_minus-box{
-            display: block;
-          }
-          &.icon_plus-box{
-            display: none;
-          }
+  }
+
+  &:hover {
+    span {
+      z-index: 9;
+      opacity: 1;
+      transition: all 1s ease;
+    }
+  }
+
+  &:target i {
+    border: 2px solid var(--ezd_brand_color);
+    outline-offset: 0;
+    letter-spacing: -.5px;
+    padding: 0 0 1px 2px;
+  }
+}
+
+.ezd-footnote-title {
+  display: none;
+  font-size: 20px;
+  margin: 30px 0 10px;
+  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
+  align-items: flex-start;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+
+    i {
+      font-size: 31px;
+      margin: 0 0 0 -8px;
+    }
+
+    &.ezd-plus-minus {
+      margin-right: 6px;
+    }
+
+  }
+
+  &.collapsed {
+    span {
+      i {
+        &.icon_minus-box {
+          display: none;
         }
+
+        &.icon_plus-box {
+          display: block;
+        }
+      }
+
+    }
+  }
+
+  &.expanded {
+    span {
+      i {
+        &.icon_minus-box {
+          display: block;
+        }
+
+        &.icon_plus-box {
+          display: none;
+        }
+      }
     }
   }
 }
-  
+
 /* Sign in form [ private doc ] */
 
 .ezd-login-head {
@@ -245,18 +282,19 @@ EazyDocs Footnotes
     margin-right: 5px;
   }
 
-  .ezd-login-head-icon .fa{
+  .ezd-login-head-icon .fa {
     font-size: initial;
     margin: 5px;
   }
 
 }
+
 .ezd-login-form-wrap {
   text-align: center;
   background: #fff;
 
-  > form{
-  display: grid;
+  > form {
+    display: grid;
 
     input[type="text"],
     input[type="password"] {
@@ -268,7 +306,7 @@ EazyDocs Footnotes
       line-height: 16px;
       margin: 0 auto 10px;
       border-radius: 0;
-    
+
       &:focus {
         border-color: #c3c3c3;
 
@@ -292,7 +330,8 @@ EazyDocs Footnotes
       box-shadow: none;
       cursor: pointer;
     }
-  } 
+  }
+
   p {
     font-size: 18px;
     line-height: 22px;
@@ -302,12 +341,13 @@ EazyDocs Footnotes
     font-weight: 500;
     color: black;
   }
- 
+
   a {
     color: #385898;
     cursor: pointer;
     text-decoration: none;
     font-size: 12px;
+
     &:hover {
       text-decoration: underline;
     }
@@ -347,4 +387,4 @@ EazyDocs Footnotes
   }
 }
 
-  /*# sourceMappingURL=ezd-pro-footnotes.css.map */
+/*# sourceMappingURL=ezd-pro-footnotes.css.map */

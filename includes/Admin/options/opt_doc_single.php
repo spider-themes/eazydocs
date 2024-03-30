@@ -74,7 +74,7 @@ CSF::createSection( $prefix, array(
 
 		// Meta Information
 		array(
-			'type'       => 'subheading',
+			'type'       => 'heading',
 			'content'    => esc_html__( 'Meta Information', 'eazydocs' ),
 		),
 
@@ -106,7 +106,7 @@ CSF::createSection( $prefix, array(
 
 		// Excerpt settings
 		array(
-			'type'  => 'subheading',
+			'type'  => 'heading',
 			'content' => esc_html__( 'Excerpt', 'eazydocs' ),
 		),
 
@@ -138,56 +138,10 @@ CSF::createSection( $prefix, array(
 			"step"     => 1,
 			"max"      => 100,
 		),
-		
-		array(
-			'type'       => 'subheading',
-			'content'    => esc_html__( 'Selected Comment', 'eazydocs' ),
-		),
-
-		array(
-			'id'         => 'enable-selected-comment',
-			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable / Disable', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
-			'class'      => 'eazydocs-promax-notice',
-			'text_width' => 92,
-			'default'    => false
-		),
-				
-		array(
-			'id'         => 'selected-comment-meta-title',
-			'type'       => 'text',
-			'title'      => esc_html__( 'Meta Title', 'eazydocs' ),
-			'default'    => esc_html__( 'Feedback', 'eazydocs' ),
-			'class'      => 'eazydocs-promax-notice',
-			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
-		),
-		
-		array(
-			'id'         => 'selected-comment-button-text',
-			'type'       => 'text',
-			'title'      => esc_html__( 'Button Text', 'eazydocs' ),
-			'class'      => 'eazydocs-promax-notice',
-			'default'    => esc_html__( 'Comment', 'eazydocs' ),
-			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
-		),
-		
-		array(
-			'id'         => 'selected-comment-roles',
-			'type'       => 'select',
-			'title'      => esc_html__( 'Who can view comments?', 'eazydocs' ),
-			'options'    => 'roles',
-			'default'    => 'administrator',
-			'class'      => 'eazydocs-promax-notice',
-			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
-			'multiple'   => true,
-			'chosen'     => true
-		),
 
 		// Doc Footer Elements
 		array(
-			'type'       => 'subheading',
+			'type'       => 'heading',
 			'content'    => esc_html__( 'Doc Footer Elements', 'eazydocs' ),
 		),
 
@@ -664,7 +618,7 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'type'       => 'subheading',
+			'type'       => 'heading',
 			'title'      => esc_html__( 'Voting Feedback', 'eazydocs' ),
 			'dependency' => array(
 				array( 'docs-feedback', '==', 'true' ),
@@ -703,7 +657,57 @@ CSF::createSection( $prefix, array(
 				'==',
 				'true',
 			)
-		)
+		),
+
+		// Feedback on Selected Text
+		array(
+			'type'       => 'heading',
+			'content'    => esc_html__( 'Feedback on Selected Text Options', 'eazydocs' ),
+		),
+
+		array(
+			'id'         => 'enable-selected-comment',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Feedback on Selected Text', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Enable the feature to allow users to comment on selected text.', 'eazydocs' ),
+			'desc'       => esc_html__( 'Note: if enabled, a switcher will appear in the doc meta area to allow visitors to turn On/Off the feature.', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'text_width' => 95,
+			'default'    => false
+		),
+
+		array(
+			'id'         => 'selected-comment-meta-title',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Frontend Switcher Level', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'This title will be shown on the frontend to On/Off the feature.', 'eazydocs' ),
+			'default'    => esc_html__( 'Feedback', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+
+		array(
+			'id'         => 'selected-comment-button-text',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Button Text', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'default'    => esc_html__( 'Comment', 'eazydocs' ),
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+
+		array(
+			'id'         => 'selected-comment-roles',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Who can view comments?', 'eazydocs' ),
+			'options'    => 'roles',
+			'default'    => 'administrator',
+			'class'      => 'eazydocs-promax-notice',
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+			'multiple'   => true,
+			'chosen'     => true
+		),
 	)
 ) );
 

@@ -44,7 +44,14 @@ add_filter( 'the_content', function ( $ezd_content ) {
 
 	$ezd_footnote_title = '';
 	if ( ! empty( $notes_title_text ) && $is_notes_title == '1' && has_shortcode( $ezd_content, 'reference' ) ) {
-		$ezd_footnote_title = sprintf( '<div class="ezd-footnote-title '.$is_footnotes_expand.'"><span><i class="icon_plus-box"></i><i class="icon_minus-box"></i>%s</span><span>('.$shortcode_counter.')</span></div>', $notes_title_text );
+		$ezd_footnote_title = sprintf(
+            '<div class="ezd-footnote-title '.$is_footnotes_expand.'">
+                <span class="ezd-plus-minus"> <i class="icon_plus-box"></i><i class="icon_minus-box"></i></span>
+                <span class="ezd-title-txt"> %s </span>
+                <span> ('.$shortcode_counter.') </span>
+            </div>',
+            $notes_title_text .' '
+        );
 	}
 
 	$footnotes_contents = '';

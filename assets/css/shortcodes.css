@@ -1,6 +1,9 @@
 /*
 EazyDocs Footnotes
 */
+.ezd-footnote-footer {
+  column-gap: 30px;
+}
 .ezd-footnote-footer div {
   display: flex;
   break-inside: avoid;
@@ -11,6 +14,13 @@ EazyDocs Footnotes
   font-size: 14px;
   gap: 5px;
   align-items: baseline;
+}
+.ezd-footnote-footer div .ezd-note-indicator {
+  text-decoration: none;
+}
+.ezd-footnote-footer div .ezd-note-indicator svg {
+  position: relative;
+  top: -5px;
 }
 .ezd-footnote-footer div.ezd-footnote-texts {
   display: block;
@@ -44,9 +54,10 @@ EazyDocs Footnotes
   color: var(--ezd_brand_color);
 }
 .ezd-footnote-footer div a {
-  text-decoration: none;
-  color: var(--ezd_brand_color);
   word-break: break-all;
+}
+.ezd-footnote-footer div a:hover {
+  text-decoration-thickness: 1px;
 }
 .ezd-footnote-footer span {
   display: none;
@@ -141,7 +152,7 @@ EazyDocs Footnotes
   border-bottom: 7px solid transparent;
   border-top: 7px solid transparent;
   transform: rotate(224deg);
-  box-shadow: 1px 1px 0px rgba(110, 108, 108, 0.25);
+  box-shadow: 1px 1px 0 rgba(110, 108, 108, 0.25);
   background: white;
   border-top-right-radius: 2px;
 }
@@ -155,18 +166,13 @@ EazyDocs Footnotes
 .ezd-footnotes-link-item:hover span {
   z-index: 9;
   opacity: 1;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
   transition: all 1s ease;
 }
 .ezd-footnotes-link-item:target i {
   border: 2px solid var(--ezd_brand_color);
-  outline-offset: 0px;
-  padding: 0px;
+  outline-offset: 0;
   letter-spacing: -0.5px;
-  padding-left: 2px;
-  padding-bottom: 1px;
+  padding: 0 0 1px 2px;
 }
 
 .ezd-footnote-title {
@@ -176,6 +182,7 @@ EazyDocs Footnotes
   font-weight: 500;
   width: 100%;
   cursor: pointer;
+  align-items: flex-start;
 }
 .ezd-footnote-title span {
   display: inline-flex;
@@ -185,7 +192,7 @@ EazyDocs Footnotes
   font-size: 31px;
   margin: 0 0 0 -8px;
 }
-.ezd-footnote-title span:first-child {
+.ezd-footnote-title span.ezd-plus-minus {
   margin-right: 6px;
 }
 .ezd-footnote-title.collapsed span i.icon_minus-box {

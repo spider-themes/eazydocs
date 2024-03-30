@@ -6,7 +6,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs Subscriptions', 'eazydocs' ), 
 	'icon'   => 'fas fa-plus-circle',
 	'fields' => array(
-		
 		array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Subscriptions Options', 'eazydocs' )
@@ -15,13 +14,13 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'subscriptions',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable / Disable', 'eazydocs' ),
+			'title'      => esc_html__( 'Subscribe Feature', 'eazydocs' ),
 			'subtitle'   => esc_html__( 'Enable to show the subscription form in the single doc page.', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'default'    => false,
 			'class'      => 'eazydocs-promax-notice',
-			'text_width' => 72
+			'text_width' => 95
 		),
 		
 		array(
