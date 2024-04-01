@@ -14,7 +14,7 @@ get_header();
 ezd_header_with_block_theme();
 $theme_data = wp_get_theme();
 $options         = get_option( 'eazydocs_settings' );
-$single_layout   = $options['single_doc_layout'] ?? 'default';
+$single_layout   = $options['search_banner_layout'] ?? 'default';
 $cz_options      = '';
 $doc_container   = 'ezd-container ezd-custom-container';
 $content_wrapper = '';
