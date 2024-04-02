@@ -1796,7 +1796,7 @@ body:not(.onepage-doc) .sticky_menu {
 	overflow-x: hidden;
 	padding-top: 26px;
 	margin-top: 0 !important;
-	background: #fff;
+	background: var(--bs-white);
 }
 
 .doc-middle-content {
@@ -1825,7 +1825,7 @@ body:not(.onepage-doc) .sticky_menu {
 	display: block;
 	clear: both;
 	content: "";
-	width: 200%;
+	width: 300%;
 	right: 1px;
 	background: #f5f7f9;
 	position: absolute;
