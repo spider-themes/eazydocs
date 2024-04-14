@@ -139,6 +139,28 @@ CSF::createSection( $prefix, array(
 			"max"      => 100,
 		),
 
+		// Articles
+		array(
+			'type'       => 'heading',
+			'content'    => esc_html__( 'Articles', 'eazydocs' ),
+		),
+
+		array(
+			'id'         => 'is_articles',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Show Articles', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show the child pages of the current doc.', 'eazydocs' ),
+			'default'    => true,
+		),
+
+		array(
+			'id'         => 'articles_title',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Articles Title', 'eazydocs' ),
+			'default'    => esc_html__( 'Articles', 'eazydocs' ),
+			'dependency' => array( 'is_articles', '==', 'true' ),
+		),
+
 		// Doc Footer Elements
 		array(
 			'type'       => 'heading',
@@ -515,7 +537,7 @@ CSF::createSection( $prefix, array(
 //
 CSF::createSection( $prefix, array(
 	'parent' => 'single_doc',
-	'title'  => esc_html__( 'Feedback Area', 'eazydocs' ),
+	'title'  => esc_html__( 'Feedback Options', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
 		array(
@@ -530,13 +552,12 @@ CSF::createSection( $prefix, array(
 
 		array(
 			'type'       => 'heading',
-			'content'    => esc_html__( 'Feedback Area', 'eazydocs' ),
+			'content'    => esc_html__( 'Feedback Area Options', 'eazydocs' ),
 			'dependency' => array(
 				'docs-feedback',
 				'==',
 				'true'
 			),
-			'subtitle'   => esc_html__( 'Customize the feedback modal form here.', 'eazydocs' )
 		),
 
 		array(

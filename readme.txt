@@ -1,14 +1,14 @@
-=== EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin (easy docs, knowledgebase) ===
+=== EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin ===
 Contributors: mdjwel, spiderdevs
-Tags: docs, documentation, document, knowledge base, knowledgebase, kb, easydocs, support, faq, faqs, wiki, helpdesk, table of content, documentation generator, support center, knowledge base builder
+Tags: knowledgebase, kb, faq, wiki, helpdesk
 Requires at least: 5.0
-Tested up to: 6.4
+Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 2.3.x
+Stable tag: 2.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-EazyDocs is a powerful knowledge base, documentation builder plugin for WordPress. It is a complete solution for creating a knowledge base, documentation, helpdesk, support center, FAQ, wiki, and more.
+Build unlimited, professional knowledge bases in WordPress effortlessly. Drag and drop documents with ease. Customizable to match your brand.
 
 == Description ==
 
@@ -24,11 +24,11 @@ Simplify the process of creating and managing documentation with EazyDocs, makin
 ## 🔗 USEFUL LINKS ##
 
 - [Get EazyDocs Premium](https://spider-themes.net/eazydocs/)
+- [Frontend Demo (Premium version)](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 - [Try EazyDocs Premium](https://wordpress-plugins.spider-themes.net/eazydocs-pro/demo/)
 - [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 - [EazyDocs Documentation (Made by EazyDocs)](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
 - [EazyDocs Support Forum](https://wordpress.org/support/plugin/eazydocs/)
-- [Premium Version Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 
 ### Reasons to Choose EazyDocs ###
 
@@ -126,6 +126,9 @@ Organize and manage your articles efficiently by tagging them, making it easier 
 ## 🕑 Revision History ##
 Keep a record of article drafts and edits, and restore earlier versions if required.
 
+### 🚀 How to create a Knowledge base website with EazyDocs (premium version) ###
+[youtube https://youtu.be/4H2npHIR2qg?si=ilfv7FAqS0YTSQiz]
+
 ## EazyDocs Pro plan features include:
 - Voting & Comments Notifications
 - Doc Helper Assistant with Contact Form
@@ -221,16 +224,19 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.5.0 (04 February 2024) =
+= v2.4.1 (11 April 2024) =
+New: Some Control fields (Show/hide switcher, title field) are added for Articles in the 'EazyDocs > Settings > Doc Single > General' page
 Fixed: An error notice "This block has encountered an error and cannot be previewed" was showing on editing the existing gutenberg blocks
 Fixed: Uncaught TypeError in /eazydocs/includes/Admin/template/header.php on line 53
 Fixed: Deprecated: Increment on non-alphanumeric string is deprecated in /eazydocs/includes/Admin/template/child-docs.php on line 10
 Fixed: Deprecated: Increment on non-alphanumeric string is deprecated in /eazydocs/includes/Admin/template/parent-docs.php on line 17
 Tweaked: Some settings are organized to control in ease (Settings > Doc Single > General)
-Tweaked: Moved Docs archive options in the [eazydocs] shortcode block
+Tweaked: Moved Docs archive options in the 'EazyDocs Shortcode' block (No need to go to the settings page to change the Docs archive options)
 Tweaked: Responsive design improved on the doc details page
 Tweaked: Integrated dynamic popular keywords option in the EazyDocs Search widget
 Tweaked: Book chapter layout improved
+Tweaked: Improved the doc middle content on the big screen
+Tweaked: Necessary support added for EazyDocs Premium version 2.0.0
 
 = v2.4.0 (14 January 2024) =
 Fixed: Delete and Create doc secured by user role (user who has not the capability to delete or create doc, they can't delete or create doc)

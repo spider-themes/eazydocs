@@ -1097,7 +1097,7 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 }
 @media (max-width: 767px) {
   .feedback_link p.left,
-.feedback_link p.right {
+  .feedback_link p.right {
     text-align: center;
   }
 }
@@ -1645,10 +1645,9 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 
 @media (max-width: 991px) {
   .left-column .doc_left_sidebarlist,
-.left-column .single-docs .doc_rightsidebar {
+  .left-column .single-docs .doc_rightsidebar {
     margin-top: 15px;
   }
-
   .doc-middle-content {
     margin-top: 50px;
   }

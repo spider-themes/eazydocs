@@ -68,10 +68,13 @@ endif;
 				the_content();
 
 				eazydocs_get_template_part( 'single-doc-home' );
+
 				$children = ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
-				if ( $children && $post->post_parent != 0 ) {
+
+
+				if ( ezd_get_opt('is_articles', 1 ) && $children && $post->post_parent != 0 ) {
 					echo '<div class="details_cont ent recently_added" id="content_elements">';
-					echo '<h4 class="c_head">' . esc_html__( 'Articles', 'eazydocs' ) . '</h4>';
+					echo '<h4 class="c_head">' . ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' ) ) . '</h4>';
 					echo '<ul class="article_list">';
 					echo ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
 					echo '</ul>';
