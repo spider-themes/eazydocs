@@ -450,3 +450,9 @@ body.single-docs {
 		margin-bottom: 3px;
 	}
 }
+
+.wp-block-navigation__responsive-container {
+	&.is-menu-open {
+		padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--40) !important;
+	}
+  }
