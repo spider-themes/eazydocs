@@ -100,6 +100,15 @@
 				$('.ezd-modal-overlay').fadeIn();
 				let id = $(this).data('id');
 				$('.ezd-modal[data-id="modal' + id + '"]').fadeIn();
+				
+				// if click on esc fadeout it
+				$(document).on('keyup', function (e) {
+					if (e.keyCode === 27) {
+						$('.ezd-modal-overlay').fadeOut();
+						$('.ezd-modal').fadeOut();
+					}
+				});
+				
 			});
 			$(document).on('click', '.ezd-close', function () {
 				$('.ezd-modal-overlay').fadeOut();
