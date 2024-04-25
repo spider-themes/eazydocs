@@ -1384,3 +1384,18 @@ function ezd_get_doc_parent_id( $doc_id = 0 ) {
 	
 	return $conditional_array;
 }
+
+/**
+ * Docs custom slug field validation
+ */
+if ( ! function_exists( 'ezd_slug_validate' ) ) {
+    function ezd_slug_validate( $value ) {
+        // Define the allowed characters: letters, numbers, hyphens, and underscores.
+        $pattern = '/^[a-zA-Z0-9-_]+$/';
+
+        // If the value contains any characters other than letters, numbers, hyphens, and underscores.
+        if ( ! preg_match ( $pattern, $value ) ) {
+            return esc_html__( 'Please avoid using special characters other than hyphens and underscores!', 'eazydocs' );
+        }
+    }
+}
