@@ -32,13 +32,13 @@ CSF::createSection( $prefix, array(
 			'title'    => esc_html__( 'Who Can Edit Settings?', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Allow users to update options from settings.', 'eazydocs' ),
 			'options'  => [
-				'administrator' => __( 'Administrator', 'eazydocs' ),
-				'editor'        => __( 'Editor', 'eazydocs' ),
-				'author'        => __( 'Author', 'eazydocs' ),
+				'manage_options' 	=> __( 'Administrator', 'eazydocs' ),
+				'publish_pages'     => __( 'Administrator + Editor', 'eazydocs' ),
+				'publish_posts'     => __( 'Administrator + Editor + Author', 'eazydocs' ),
 			],
 			'chosen'   => true,
-			'default'  => 'administrator',
-			'multiple' => true,
+			'default'  => 'manage_options',
+			'multiple' => false,
 			'class'    => 'eazydocs-pro-notice'
 		),
 
@@ -56,6 +56,6 @@ CSF::createSection( $prefix, array(
 			'default'  => 'administrator',
 			'multiple' => true,
 			'class'    => 'eazydocs-pro-notice'
-		),
+		)
 	]
 ) );
