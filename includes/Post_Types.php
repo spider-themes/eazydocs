@@ -31,9 +31,13 @@ class Docs {
 		 * Docs slug
 		 * @var string
 		 */
-		$slug 	= 'docs';
         $settings_options   = get_option( 'eazydocs_settings' );
-        $slug               = $settings_options['docs-type-slug'] ?? 'docs';
+		$custom_slug 		= $settings_options['docs-type-slug'] ?? '';
+		
+		// Validate the slug
+		$pattern 			= '/[^a-zA-Z0-9-_]/';
+		$safe_slug 			= preg_replace( $pattern, '-', $custom_slug );		
+        $slug               = $safe_slug ?? 'docs';
 		
 		// Docs URL structure
         $docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');

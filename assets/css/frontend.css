@@ -3626,6 +3626,11 @@ a.action_btn.all_doc_btn:hover {
   overflow: hidden;
   list-style: none;
 }
+@media screen and (max-width: 991px) {
+  .tabs_sliders ul {
+    overflow-x: auto;
+  }
+}
 .tabs_sliders ul li {
   min-width: fit-content;
 }

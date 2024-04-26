@@ -1175,7 +1175,9 @@ a.action_btn {
 		display: flex;
 		overflow: hidden;
 		list-style: none;
-
+		@media screen and ( max-width: 991px ) {
+			overflow-x: auto;
+		}
 		li {
 			min-width: fit-content;
 		}
