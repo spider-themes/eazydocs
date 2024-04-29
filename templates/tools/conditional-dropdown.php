@@ -28,6 +28,7 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
       (function($) {
         'use strict';
         $(document).ready(function() {
+
           var updateEzdConVisibility = function(value) {
             var selector = '.ezd-con-' + value;
             if ($(selector).length > 0) {
@@ -68,12 +69,41 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
               $('#ezd_a li').removeClass('active');
               $(this).addClass('active');
               updateEzdConVisibility(value); // Update visibility based on selected value
+
+              // Hide / Show Toc items based on conditional dropdowns
+              $('[class^="ezd-con-"]').each(function(){              
+                  var ezd_con_id    = $(this).parent().attr('id');
+                    if (ezd_con_id !=  null ) {
+                        var ezd_con_inner_style = $('#'+ezd_con_id+' > span').attr('style');
+                        
+                        // if has display none with this innerStyle 
+                        if (!ezd_con_inner_style.includes('display: none;')) {
+                  
+                          $('.toc_right ul li a[href=#'+ezd_con_id+']').css('display','block');
+                        } else {
+                          $('.toc_right ul li a[href=#'+ezd_con_id+']').css('display','none');
+                        }
+                    }
+              });
+              
             });
 
             $('.ezd_btn_select').click(function() {
               $('.ezd_b').toggleClass('ezd_show');
             });
           }
+          
+          // Hide / Show Toc items based on conditional dropdowns
+          $('[class^="ezd-con-"]').each(function(){          
+              var ezd_con_id   = $(this).parent().attr('id');
+              if ( ezd_con_id !=  null ) {
+                var ezd_con_inner_style  = $('#'+ezd_con_id+' > span').attr('style');                
+                  if (ezd_con_inner_style.includes('display: none;')) {            
+                    $('.toc_right ul li a[href=#'+ezd_con_id+']').css('display','none');                    
+                 }
+              }
+          });
+
         });
       })(jQuery);
     </script>
