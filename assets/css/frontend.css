@@ -3977,6 +3977,7 @@ p .footnotes-link::after {
 .single-docs #post p {
   font-weight: 400;
   margin-top: 0;
+  line-height: 1.8;
 }
 
 .form-control {
