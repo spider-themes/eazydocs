@@ -14,13 +14,21 @@ $prefix = 'eazydocs_settings';
 /**
  * Settings options
  */
+$capability = ezd_get_opt( 'settings-edit-access' );
+
+// Check the last element exist of the array
+if ($capability === 'manage_options' || $capability === 'publish_pages' || $capability === 'publish_posts') {
+	$menu_capability = $capability;
+} else {
+    $menu_capability = "manage_options";
+}
 
 CSF::createOptions( $prefix, array(
 	'framework_title'    => esc_html__( 'EazyDocs', 'eazydocs' ) . ' <small> v' . EAZYDOCS_VERSION . '</small>',
 	'menu_title'         => esc_html__( 'Settings', 'eazydocs' ),
 	'menu_slug'          => 'eazydocs-settings',
 	'menu_type'          => 'submenu',
-	'menu_capability' 	 => ezd_get_opt( 'settings-edit-access', 'manage_options' ),
+	'menu_capability' 	 => $menu_capability,
 	'menu_parent'        => 'eazydocs',
 	'show_in_customizer' => ezd_get_opt( 'customizer_visibility' ),
 ) );
