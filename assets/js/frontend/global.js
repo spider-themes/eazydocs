@@ -30,37 +30,6 @@
 		if ($('.doc_documentation_area.fullscreen-layout').length > 0) {
 			//switcher
 			var switchs = true;
-			$('#mobile-right-toggle').on('click', function (e) {
-				e.preventDefault();
-				if (switchs) {
-					$('.doc_documentation_area.fullscreen-layout').addClass(
-						'overlay'
-					);
-
-					$(this).animate(
-						{
-							right: '250px',
-						},
-						500
-					);
-
-					switchs = false;
-				} else {
-					$('.doc_documentation_area.fullscreen-layout').removeClass(
-						'overlay'
-					);
-
-					$(this).animate(
-						{
-							right: '0px',
-						},
-						500
-					);
-
-					switchs = true;
-				}
-			});
-
 			$('#mobile-left-toggle').on('click', function (e) {
 				e.preventDefault();
 				if (switchs) {
@@ -84,7 +53,7 @@
 						'.fullscreen-layout .doc_mobile_menu.left-column'
 					).animate(
 						{
-							left: '-260px',
+							left: '-300px',
 						},
 						300
 					);
@@ -161,6 +130,11 @@
 		  }
 		  
 		  ezd_masonry_column();
+
+		  $('.nav-sidebar.one-page-doc-nav-wrap .nav-item').click(function () {
+			$(this).toggleClass('active');
+			$(this).siblings().removeClass('active');
+		}	);
 		  
 	});
 })(jQuery);

@@ -11,9 +11,12 @@
 		padding-top: 30px;
 		padding-left: 20px;
 		overflow-y: visible;
-		margin-top: 90px;
 		height: 100%;
 		box-sizing: border-box;
+	}
+
+	.doc_right_mobile_menu .doc_rightsidebar.one-page-docs-right-sidebar{
+		height: 100vh;
 	}
 
 	.doc_rightsidebar .pageSideSection::before {
@@ -95,6 +98,7 @@
 		display: block;
 		left: -25px;
 		right: auto;
+		top: unset;
 	}
 
 	.shortcode_info {
@@ -116,7 +120,7 @@
 
 	/** === Right Sidebar === **/
 	.open_icon {
-		top: 0;
+		top: 35px;
 	}
 
 	.body_fixed .open_icon {

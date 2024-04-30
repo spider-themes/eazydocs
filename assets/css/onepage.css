@@ -167,7 +167,7 @@
   }
   .doc_mobile_menu .open_icon {
     display: block;
-    right: -40px;
+    right: -25px;
     left: auto;
   }
 }
@@ -409,13 +409,11 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   .fullscreen-layout .doc_right_mobile_menu {
     position: fixed;
     right: 20px;
-    top: 70px;
     width: 16%;
   }
 }
 @media screen and (max-width: 767px) {
   .fullscreen-layout .doc_right_mobile_menu {
-    top: 0;
     position: fixed !important;
     z-index: 1;
     right: 0;
@@ -499,7 +497,7 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   .fullscreen-layout.doc_documentation_area {
     position: fixed;
     overflow: auto !important;
-    top: 28px;
+    top: 0;
     height: -webkit-fill-available;
     z-index: 11;
   }
@@ -524,11 +522,13 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   width: 300px;
   bottom: 0;
   margin: auto;
-  top: 0;
   transition: 0.3s all;
+  background: #182530;
 }
-.documentation_area_sticky.onepage_doc_area.fullscreen-layout.overlay .ezd-grid-column-full.doc_mobile_menu.doc-sidebar {
-  left: 0px;
+@media (min-width: 768px) {
+  .documentation_area_sticky.onepage_doc_area.fullscreen-layout .ezd-md-col-9 {
+    grid-column: default;
+  }
 }
 
 /*# sourceMappingURL=onepage.css.map */

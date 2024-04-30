@@ -244,7 +244,7 @@ $breakpoint-lg: 991px;
 
     .open_icon {
       display: block;
-      right: -40px;
+      right: -25px;
       left: auto;
     }
   }
@@ -597,12 +597,10 @@ body {
     @media screen and (min-width: 768px) {
       position: fixed;
       right: 20px;
-      top: 70px;
       width: 16%;
     }
 
     @media screen and (max-width: $breakpoint-sm) {
-      top: 0;
       position: fixed !important;
       z-index: 1;
       right: 0;
@@ -738,7 +736,7 @@ body {
     &.doc_documentation_area {
       position: fixed;
       overflow: auto !important;
-      top: 28px;
+      top:  0;
       height: -webkit-fill-available;
       z-index: 11;
     }
@@ -776,13 +774,13 @@ body {
     width: 300px;
     bottom: 0;
     margin: auto;
-    top: 0;
     transition: .3s all;
+    background: #182530;
   }
-
-  &.overlay{
-    .ezd-grid-column-full.doc_mobile_menu.doc-sidebar {
-      left:  0px;
+  @media (min-width: 768px) {
+    .ezd-md-col-9 {
+        grid-column: default;
     }
   }
 }
+
