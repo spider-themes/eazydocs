@@ -6,24 +6,6 @@
 		let ezd_note_column = $('.ezd-footnote-footer').attr('ezd-data-column');
 		$('.ezd-footnote-footer').css('column-count', ezd_note_column);
 
-		$('.ezd-footnotes-link-item').each(function () {
-			let ezd_note_content = $(this).attr('data-bs-original-title');
-			let ezd_note_serial = $(this).attr('ezd-note-serial');
-			let ezd_note_id = 'note-name-' + ezd_note_serial;
-			$('.ezd-footnote-footer').append(
-				"<div class='note-class-" + ezd_note_serial + "' id="+ezd_note_id+">" +
-					'<div class="ezd-footnotes-serial"> ' +
-						'<spna class="ezd-serial">' + ezd_note_serial + '. </spna> ' +
-						'<a class="ezd-note-indicator" href="#serial-id-'+ezd_note_serial+'">' +
-							'<i class="arrow_carrot-up"></i> ' +
-						'</a>' +
-					'</div>' +
-					'<div class="ezd-footnote-texts">' + ezd_note_content + '</div>' +
-				'</div>'
-			);
-			$('.note-class-' + ezd_note_serial).not(':first').remove();
-		});
-
 		$('.ezd-footnote-footer').children('span').remove();
 		let ezd_child_div = $('.ezd-footnote-footer').children('div');
 
@@ -55,6 +37,5 @@
 				$('.ezd-footnote-footer').css('display','block');
 			});
 		}
-
 	});
 })(jQuery);

@@ -4,6 +4,7 @@ namespace eazyDocs\Frontend;
 class Frontend {
 	public function __construct() {
 		add_filter( 'template_include', [ $this, 'template_loades' ], 20 );
+		add_action( 'eazydocs_footnote', [ $this, 'eazydocs_footnotes' ] );
 		add_action( 'eazydocs_related_articles', [ $this, 'eazydocs_related_articles' ], 99, 4 );
 		add_action( 'eazydocs_viewed_articles', [ $this, 'recently_viewed_docs' ], 99, 4 );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
@@ -42,6 +43,63 @@ class Frontend {
 		return apply_filters( 'eazydocs_template_' . $template, $file );
 	}
 
+	
+	/**
+	 * Footnotes
+	 * 
+	 * @param $post_id
+	 *
+	 */
+	public function eazydocs_footnotes($post_id){
+
+		$options 				= get_option( 'eazydocs_settings' );		
+		$is_notes_title   		= $options['is_footnotes_heading'] ?? '1';
+		$footnotes_layout  	 	= $options['footnotes_layout'] ?? 'collapsed';
+		$is_footnotes_expand 	= $is_notes_title == 1 ? $footnotes_layout : '';
+		$ezd_notes_footer_mt 	= $is_notes_title != '1' ? 'mt-30' : '';
+		$notes_title_text 		= $options['footnotes_heading_text'] ?? __( 'Footnotes', 'eazydocs' );
+		$footnotes_column 		= $options['footnotes_column'] ?? '1';
+
+		$reference_with_content = ezd_get_footnotes_in_content($post_id);
+		$shortcode_counter 		= count($reference_with_content);
+		
+		if ( $shortcode_counter == 0 ) {
+			return;
+		}
+
+		if ( ! empty( $notes_title_text ) && $is_notes_title == '1' ):
+			?>
+			<div class="ezd-footnote-title <?php echo esc_attr( $is_footnotes_expand ); ?>">
+				<span class="ezd-plus-minus"> <i class="icon_plus-box"></i><i class="icon_minus-box"></i></span>
+				<span class="ezd-title-txt"><?php echo esc_html( $notes_title_text ); ?></span>
+				<span> ( <?php echo esc_html( $shortcode_counter ); ?> ) </span>
+			</div>
+			<?php 
+		endif;
+		?>
+		
+		<div ezd-data-column="<?php echo esc_attr( $footnotes_column ); ?>" class="ezd-footnote-footer <?php echo esc_attr( $ezd_notes_footer_mt .' '. $is_footnotes_expand ); ?>">
+			<?php		  
+			$i = 0;
+			foreach( $reference_with_content as $reference_with_contents ) {
+				$i++;
+				?>
+				<div class="note-class-<?php echo esc_html( $reference_with_contents['id'] ); ?>" id="note-name-<?php echo esc_html( $reference_with_contents['id'] ); ?>">
+					<div class="ezd-footnotes-serial"> 
+						<spna class="ezd-serial"><?php echo esc_html($i); ?></spna> 
+						<a class="ezd-note-indicator" href="#serial-id-<?php echo esc_html( $reference_with_contents['id'] ); ?>"><i class="arrow_carrot-up"></i> </a>
+					</div>
+					<div class="ezd-footnote-texts"> 
+						<?php echo wp_kses_post( $reference_with_contents['content'] ); ?>
+					</div>
+				</div>
+				<?php
+			}
+			?>
+		</div>
+	<?php
+	}
+
 	/**
 	 * @return array
 	 *
@@ -72,11 +130,9 @@ class Frontend {
 		if ( is_array( $ft_cookie_posts ) && count( $ft_cookie_posts ) > 0 && isset( $ft_cookie_posts ) ) :
 			$eazydocs_option = get_option( 'eazydocs_settings' );
 
-
 			global $post;
 			$cats            = get_the_terms( get_the_ID(), 'doc_tag' );
 			$cat_ids         = ! empty( $cats ) ? wp_list_pluck( $cats, 'term_id' ) : '';
-			$eazydocs_option = get_option( 'eazydocs_settings' );
 
 			$doc_posts = new \WP_Query( array(
 				'post_type'           => 'docs',

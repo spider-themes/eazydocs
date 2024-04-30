@@ -1399,3 +1399,58 @@ if ( ! function_exists( 'ezd_slug_validate' ) ) {
         }
     }
 }
+
+/**
+ * Retrieve the "reference" shortcodes and their content in a post
+ *
+ * @return string
+ * 
+ * @param int $post_id The ID of the post to retrieve the "reference" shortcodes from
+ */
+function ezd_get_footnotes_in_content($post_id) {
+    // Retrieve the post by its ID
+    $post = get_post($post_id);
+
+    // Check if the post exists
+    if ( ! $post ) {
+        return [];
+    }
+
+    // Get the content of the post
+    $content = $post->post_content;
+
+    // Regular expression pattern to find "reference" shortcodes and their content
+    // The pattern captures the attributes and content between opening and closing "reference" shortcode tags
+    $shortcode_pattern = '/\[reference([^\]]*)\](.*?)\[\/reference\]/s';
+
+    // Array to store the found "reference" shortcodes with their content and ids
+    $reference_shortcodes_with_content = [];
+
+    // Use regular expression to find "reference" shortcodes and their content in the post content
+    if (preg_match_all($shortcode_pattern, $content, $matches, PREG_SET_ORDER)) {
+        // Iterate through the matches
+        foreach ($matches as $match) {
+            // Extract the attributes from the match
+            $attributes = $match[1];
+
+            // Extract the content from the match
+            $shortcode_content = $match[2];
+
+            // Parse the attributes to find the `number` attribute using a regular expression
+            $number = null;
+            if (preg_match('/number=["\']?(\d+)["\']?/', $attributes, $number_match)) {
+                // Extract the value of the `number` attribute
+                $number = $number_match[1];
+            }
+
+            // Add the id and content for the "reference" shortcode to the array
+            $reference_shortcodes_with_content[] = [
+                'id' 		=> $number,
+                'content' 	=> $shortcode_content,
+            ];
+        }
+    }
+
+    // Return the array of "reference" shortcodes with their content and ids
+    return $reference_shortcodes_with_content;
+}

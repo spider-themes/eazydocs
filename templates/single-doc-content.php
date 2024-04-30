@@ -18,84 +18,87 @@ if ( $sidebar_toggle == 1 ) :
 endif;
 ?>
 
-    <article class="shortcode_info" itemscope itemtype="http://schema.org/Article">
-        <div class="doc-post-content" id="post">
-            <div class="shortcode_title">
-				<?php the_title( '<h1>', '</h1>' ); ?>
-
-				<?php
-				if ( $reading_time_visibility == '1' || $views_visibility == '1' ) : ?>
-                    <div class="ezd-meta dot-sep">
-						<?php
-						if ( $reading_time_visibility == '1' ) : ?>
-                            <span class="read-time">
-                                <?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
-                                ezd_reading_time(); ?>
-                            </span>
-						<?php
-						endif;
-
-						if ( $views_visibility == '1' ) : ?>
-                            <span class="views sep">
-                                <?php echo eazydocs_get_post_view(); ?>
-                            </span>
-						<?php
-						endif;
-
-						do_action( 'eazydocs_docs_contributor', get_the_ID() );
-						do_action( 'ezd_selected_comment_switcher_meta' );
-						?>
-                    </div>
-				    <?php
-				endif;
-				?>
-
-            </div>
-            <div class="doc-scrollable editor-content">
-				<?php
-				if ( has_post_thumbnail() && ezd_get_opt( 'is_featured_image' ) == '1' ) {
-					the_post_thumbnail( 'full', array( 'class' => 'mb-3' ) );
-				}
-				if ( ezd_get_opt( 'is_excerpt' ) == '1' && has_excerpt() ) {
-					?>
-                    <p class="doc-excerpt ezd-alert ezd-alert-info">
-                        <strong><?php echo ezd_get_opt( 'excerpt_label', 'Summary' );; ?></strong>
-						<?php echo get_the_excerpt(); ?>
-                    </p>
+<article class="shortcode_info" itemscope itemtype="http://schema.org/Article">
+	<div class="doc-post-content" id="post">
+		
+		<div class="shortcode_title">
+			<?php 
+			the_title( '<h1>', '</h1>' );
+			
+			if ( $reading_time_visibility == '1' || $views_visibility == '1' ) : ?>
+				<div class="ezd-meta dot-sep">
 					<?php
-				}
+					if ( $reading_time_visibility == '1' ) : ?>
+						<span class="read-time">
+							<?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
+							ezd_reading_time(); ?>
+						</span>
+					<?php
+					endif;
 
-				the_content();
+					if ( $views_visibility == '1' ) : ?>
+						<span class="views sep">
+							<?php echo eazydocs_get_post_view(); ?>
+						</span>
+					<?php
+					endif;
 
-				eazydocs_get_template_part( 'single-doc-home' );
+					do_action( 'eazydocs_docs_contributor', get_the_ID() );
+					do_action( 'ezd_selected_comment_switcher_meta' );
+					?>
+				</div>
+				<?php
+			endif;
+			?>
+		</div>
 
-				$children = ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
-
-
-				if ( ezd_get_opt('is_articles', 1 ) && $children && $post->post_parent != 0 ) {
-					echo '<div class="details_cont ent recently_added" id="content_elements">';
-					echo '<h4 class="c_head">' . ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' ) ) . '</h4>';
-					echo '<ul class="article_list">';
-					echo ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
-					echo '</ul>';
-					echo '</div>';
-				}
-				wp_link_pages( array(
-					'before' => '<div class="page-links">' . esc_html__( 'Docs:', 'eazydocs' ),
-					'after'  => '</div>',
-				) );
+		<div class="doc-scrollable editor-content">
+			<?php
+			if ( has_post_thumbnail() && ezd_get_opt( 'is_featured_image' ) == '1' ) {
+				the_post_thumbnail( 'full', array( 'class' => 'mb-3' ) );
+			}
+			if ( ezd_get_opt( 'is_excerpt' ) == '1' && has_excerpt() ) {
 				?>
-            </div>
+				<p class="doc-excerpt ezd-alert ezd-alert-info">
+					<strong><?php echo ezd_get_opt( 'excerpt_label', 'Summary' );; ?></strong>
+					<?php echo get_the_excerpt(); ?>
+				</p>
+				<?php
+			}
 
-			<?php do_action( 'ezd_selected_comment_lists', get_the_ID() ); ?>
+			the_content();
+			
+			// Footnote
+			do_action( 'eazydocs_footnote', get_the_ID() );
+			
+			eazydocs_get_template_part( 'single-doc-home' );
 
-        </div>
-		<?php
-		if ( $docs_feedback == '1' ) {
-			eazydocs_get_template_part( 'content-feedback' );
-		}
-		?>
-    </article>
+			$children = ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
+
+			if ( ezd_get_opt('is_articles', 1 ) && $children && $post->post_parent != 0 ) {
+				echo '<div class="details_cont ent recently_added" id="content_elements">';
+				echo '<h4 class="c_head">' . ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' ) ) . '</h4>';
+				echo '<ul class="article_list">';
+				echo ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
+				echo '</ul>';
+				echo '</div>';
+			}
+			wp_link_pages( array(
+				'before' => '<div class="page-links">' . esc_html__( 'Docs:', 'eazydocs' ),
+				'after'  => '</div>',
+			) );
+			?>
+		</div>
+
+		<?php do_action( 'ezd_selected_comment_lists', get_the_ID() ); ?>
+
+	</div>
+	<?php
+	if ( $docs_feedback == '1' ) {
+		eazydocs_get_template_part( 'content-feedback' );
+	}
+	?>
+</article>
 
 <?php
 eazydocs_get_template_part( 'content-related' );

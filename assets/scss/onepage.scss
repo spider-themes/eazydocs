@@ -768,3 +768,21 @@ body {
     }
   }
 }
+
+.documentation_area_sticky.onepage_doc_area.fullscreen-layout{
+  .ezd-grid-column-full.doc_mobile_menu.doc-sidebar {
+    left: -300px;
+    position: fixed;
+    width: 300px;
+    bottom: 0;
+    margin: auto;
+    top: 0;
+    transition: .3s all;
+  }
+
+  &.overlay{
+    .ezd-grid-column-full.doc_mobile_menu.doc-sidebar {
+      left:  0px;
+    }
+  }
+}

@@ -98,7 +98,7 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
               var ezd_con_id   = $(this).parent().attr('id');
               if ( ezd_con_id !=  null ) {
                 var ezd_con_inner_style  = $('#'+ezd_con_id+' > span').attr('style');                
-                  if (ezd_con_inner_style.includes('display: none;')) {            
+                  if (ezd_con_inner_style && ezd_con_inner_style.includes('display: none;')) {            
                     $('.toc_right ul li a[href=#'+ezd_con_id+']').css('display','none');                    
                  }
               }

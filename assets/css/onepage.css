@@ -518,5 +518,17 @@ body.admin-bar .documentation_area_sticky .doc_rightsidebar {
     width: 100% !important;
   }
 }
+.documentation_area_sticky.onepage_doc_area.fullscreen-layout .ezd-grid-column-full.doc_mobile_menu.doc-sidebar {
+  left: -300px;
+  position: fixed;
+  width: 300px;
+  bottom: 0;
+  margin: auto;
+  top: 0;
+  transition: 0.3s all;
+}
+.documentation_area_sticky.onepage_doc_area.fullscreen-layout.overlay .ezd-grid-column-full.doc_mobile_menu.doc-sidebar {
+  left: 0px;
+}
 
 /*# sourceMappingURL=onepage.css.map */
