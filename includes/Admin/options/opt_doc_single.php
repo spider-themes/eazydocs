@@ -317,12 +317,13 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'          => 'keywords_label_color',
-			'type'        => 'color',
-			'title'       => esc_html__( 'Label Color', 'eazydocs' ),
-			'output_mode' => 'color',
-			'output'      => '.ezd_search_keywords .label',
-			'dependency'  => array(
+			'id'          		=> 'keywords_label_color',
+			'type'        		=> 'color',
+			'title'       		=> esc_html__( 'Label Color', 'eazydocs' ),
+			'output_mode' 		=> 'color',
+			'output'      		=> '.ezd_search_keywords .label',
+			'output_important'	=> true,
+			'dependency'  		=> array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'is_keywords', '==', 'true' ),
 				array( 'search_banner_layout', '==', 'default' ),
