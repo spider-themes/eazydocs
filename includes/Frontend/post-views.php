@@ -17,6 +17,7 @@ function eazydocs_set_post_view() {
         
             // Increment post views count
             if ( ! in_array( $post_id, $viewed_posts ) ) {
+
                 $count = get_post_meta( $post_id, 'post_views_count', true );
                 $count = $count ? $count : 0;
                 update_post_meta( $post_id, 'post_views_count', $count + 1 );
@@ -31,7 +32,7 @@ function eazydocs_set_post_view() {
                     array(
                         'post_id'    => $post_id,
                         'count'      => 1,
-                        'created_at' => current_time( 'mysql', 1 ),
+                        'created_at' => current_time( 'mysql', 1 )
                     ),
                     array(
                         '%d',
@@ -46,24 +47,20 @@ function eazydocs_set_post_view() {
             $count = get_post_meta( $post_id, 'post_views_count', true );
             $count = $count ? $count : 0;
             update_post_meta( $post_id, 'post_views_count', $count + 1 );
-
-            if ( $count == '') {
-
-                $wpdb->insert(
-                    $wpdb->prefix . 'eazydocs_view_log',
-                    array(
-                        'post_id'    => $post_id,
-                        'count'      => 1,
-                        'created_at' => current_time('mysql', 1)
-                    ),
-                    array(
-                        '%d',
-                        '%d',
-                        '%s',
-                    )
-                );
-            }           
-
+            
+            $wpdb->insert(
+                $wpdb->prefix . 'eazydocs_view_log',
+                array(
+                    'post_id'    => $post_id,
+                    'count'      => 1,
+                    'created_at' => current_time('mysql', 1)
+                ),
+                array(
+                    '%d',
+                    '%d',
+                    '%s',
+                )
+            );
         }
     }
 }
