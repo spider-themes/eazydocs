@@ -2624,6 +2624,10 @@ body.single-docs.ezd-theme-twenty.twenty-three .is-layout-constrained > .alignwi
   font-weight: bold;
 }
 
+form.ezd-password-form p {
+  display: none;
+}
+
 /*============== Start doc_tag_area css =============*/
 .doc_tag {
   display: flex;

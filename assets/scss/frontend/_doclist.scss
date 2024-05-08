@@ -2456,3 +2456,10 @@ body.single-docs.ezd-theme-twenty.twenty-three
 		font-weight: bold;
 	}
 }
+form{
+	&.ezd-password-form{
+		p {
+			display: none;
+		}
+	}
+}

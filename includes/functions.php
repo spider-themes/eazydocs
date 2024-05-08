@@ -881,68 +881,64 @@ add_image_size( 'ezd_searrch_thumb16x16', '16', '16', true );
 add_image_size( 'ezd_searrch_thumb50x50', '50', '50', true );
 
 // Doc password form
-function ezd_password_form( $output, $post = 0 ) {
+function ezd_password_form($output, $post = 0) {
+
+    // Check if post is set and is the desired custom post type
+    if (is_null($post) || (get_post_type($post) !== 'docs')) {
+        // If it's not the correct post type, return the original output
+        return $output;
+    }
+
 	$protected_form          = get_option( 'eazydocs_settings' );
 	$protected_form_switcher = $protected_form['protected_doc_form'] ?? '';
 	$protected_form_title    = ! empty( $protected_form['protected_form_title'] ) ? $protected_form['protected_form_title'] : __( 'Enter Password & Read this Doc', 'eazydocs' );
 	$protected_form_subtitle = ! empty( $protected_form['protected_form_subtitle'] ) ? $protected_form['protected_form_subtitle'] : __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
+			
 	if ( ! empty( $protected_form_switcher == 'eazydocs-form' ) ) :
+		ob_start();
 		?>
-<div class="card ezd-password-wrap">
-    <div class="card-body p-0 ezd-password-head">
-        <div class="text-center p-4">
-            <?php
+		<div class="card ezd-password-wrap">
+			<div class="card-body p-0 ezd-password-head">				
+				<div class="text-center p-4">					
+					<?php
 					if ( has_post_thumbnail() ) :
 						?>
-            <a href="<?php the_permalink(); ?>" class="logo logo-admin">
-                <?php the_post_thumbnail( 'ezd_searrch_thumb50x50', [ 'class' => 'mb-3' ] ); ?>
-            </a>
-            <?php
+						<a href="<?php the_permalink(); ?>" class="logo logo-admin">
+							<?php the_post_thumbnail( 'ezd_searrch_thumb50x50', [ 'class' => 'mb-3' ] ); ?>
+						</a>
+						<?php
 					endif;
 					?>
-            <p class="mb-1 ezd-password-title">
-                <?php echo esc_html( $protected_form_title ); ?>
-            </p>
-            <p class="mb-0 ezd-password-subtitle">
-                <?php echo esc_html( $protected_form_subtitle ); ?>
-            </p>
-        </div>
-    </div>
-    <div class="card-body ezd-password-body p-4">
-        <form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" method="post"
-            class="form-horizontal auth-form">
-            <div class="form-group mb-2">
-                <label class="form-label" for="ezd_password">
-                    <?php esc_html_e( 'Password', 'eazydocs' ); ?>
-                </label>
-                <div class="input-group mb-3">
-                    <input name="post_password" required id="ezd_password" class="form-control" type="password"
-                        placeholder="Enter password" />
-                </div>
-            </div>
-            <!--end form-group-->
-
-            <div class="form-group mb-0 row">
-                <div class="col-12">
-                    <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">
-                        <?php esc_html_e( 'Unlock', 'eazydocs' ); ?>
-                        <i class="fas fa-sign-in-alt ms-1"></i>
-                    </button>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end form-group-->
-        </form>
-        <!--end form-->
-    </div>
-</div>
-<?php
-	else :
-		return $output;
+					<p class="mb-1 ezd-password-title">
+						<?php echo esc_html( $protected_form_title ); ?>
+					</p>
+					<p class="mb-0 ezd-password-subtitle">
+						<?php echo esc_html( $protected_form_subtitle ); ?>
+					</p>
+				</div>
+			</div>
+			<div class="card-body ezd-password-body p-4">				
+				<form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" method="post" class="form-horizontal auth-form ezd-password-form">
+					<div class="form-group mb-2">
+						<label class="form-label" for="ezd_password"> <?php esc_html_e( 'Password', 'eazydocs' ); ?> </label>
+						<div class="input-group mb-3">
+							<input name="post_password" required id="ezd_password" class="form-control" type="password" placeholder="Enter password" />
+						</div>
+					</div>
+					<div class="form-group mb-0 row">
+						<div class="col-12">
+							<button class="btn btn-primary w-100 waves-effect waves-light" type="submit"> <?php esc_html_e( 'Unlock', 'eazydocs' ); ?> <i class="fas fa-sign-in-alt ms-1"></i> </button>
+						</div>
+					</div>
+				</form></div>
+			</div>
+		<?php
+		return ob_get_clean();
 	endif;
+	return $output;
 }
 
-add_filter( 'the_password_form', 'ezd_password_form', 20 );
+add_filter( 'the_password_form', 'ezd_password_form', 9999 );
 
 /**
  * EazyDocs Admin pages
