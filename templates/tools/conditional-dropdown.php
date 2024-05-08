@@ -74,14 +74,15 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
               $('[class^="ezd-con-"]').each(function(){              
                   var ezd_con_id    = $(this).parent().attr('id');
                     if (ezd_con_id !=  null ) {
-                        var ezd_con_inner_style = $('#'+ezd_con_id+' > span').attr('style');
-                        
+
+                        var ezd_con_inner_style = $('#'+ezd_con_id+' > span').attr('style');                        
+                        var escapedHref = $.escapeSelector('#'+ezd_con_id);
+
                         // if has display none with this innerStyle 
                         if (!ezd_con_inner_style.includes('display: none;')) {
-                  
-                          $('.toc_right ul li a[href=#'+ezd_con_id+']').css('display','block');
-                        } else {
-                          $('.toc_right ul li a[href=#'+ezd_con_id+']').css('display','none');
+                          $('.toc_right ul li a[href="' + escapedHref + '"]').css('display', 'block');
+                        } else {                          
+                          $('.toc_right ul li a[href="' + escapedHref + '"]').css('display', 'none');
                         }
                     }
               });
@@ -97,9 +98,12 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
           $('[class^="ezd-con-"]').each(function(){          
               var ezd_con_id   = $(this).parent().attr('id');
               if ( ezd_con_id !=  null ) {
-                var ezd_con_inner_style  = $('#'+ezd_con_id+' > span').attr('style');                
-                  if (ezd_con_inner_style && ezd_con_inner_style.includes('display: none;')) {            
-                    $('.toc_right ul li a[href=#'+ezd_con_id+']').css('display','none');                    
+                  var ezd_con_inner_style  = $('#'+ezd_con_id+' > span').attr('style');                
+                  if (ezd_con_inner_style && ezd_con_inner_style.includes('display: none;')) {
+
+                    var escapedHref = $.escapeSelector('#'+ezd_con_id);
+                    $('.toc_right ul li a[href="' + escapedHref + '"]').css('display', 'none');    
+
                  }
               }
           });
