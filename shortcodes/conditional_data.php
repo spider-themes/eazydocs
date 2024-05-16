@@ -6,7 +6,7 @@ add_shortcode( 'conditional_data', function( $atts, $content ) {
 		'dependency' => '',
 	), $atts );
 
-	$dependency = !empty($atts['dependency']) ? sanitize_title($atts['dependency']) : '';
+	$dependency = !empty($atts['dependency']) ? sanitize_text_field($atts['dependency']) : '';
 
 	if ( !empty($content) ) :
 		?>
