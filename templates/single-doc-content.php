@@ -57,17 +57,23 @@ endif;
 			if ( has_post_thumbnail() && ezd_get_opt( 'is_featured_image' ) == '1' ) {
 				the_post_thumbnail( 'full', array( 'class' => 'mb-3' ) );
 			}
-			if ( ezd_get_opt( 'is_excerpt' ) == '1' && has_excerpt() ) {
-				?>
-				<p class="doc-excerpt ezd-alert ezd-alert-info">
-					<strong><?php echo ezd_get_opt( 'excerpt_label', 'Summary' );; ?></strong>
-					<?php echo get_the_excerpt(); ?>
-				</p>
-				<?php
-			}
+			?>
 
-			the_content();
-			
+			<div class="doc-content-wrap">
+				<?php
+				if ( ezd_get_opt( 'is_excerpt' ) == '1' && has_excerpt() ) {
+					?>
+					<p class="doc-excerpt ezd-alert ezd-alert-info">
+						<strong><?php echo ezd_get_opt( 'excerpt_label', 'Summary' );; ?></strong>
+						<?php echo get_the_excerpt(); ?>
+					</p>
+					<?php
+				}
+				the_content();
+				?>	
+			</div>
+
+			<?php			
 			// Footnote
 			do_action( 'eazydocs_footnote', get_the_ID() );
 			
