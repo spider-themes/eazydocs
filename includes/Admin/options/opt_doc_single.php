@@ -675,9 +675,8 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Feedback Count', 'eazydocs' ),
 			'default'    => true,
 			'dependency' => array(
-				'docs-feedback',
-				'==',
-				'true',
+				array( 'docs-feedback', '==', 'true' ),
+				array( 'helpful_feedback', '==', 'true' ),
 			)
 		),
 

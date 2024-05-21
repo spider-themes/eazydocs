@@ -3,7 +3,6 @@ $options                 = get_option( 'eazydocs_settings' );
 $comment_visibility      = $options['enable-comment'] ?? '1';
 $reading_time_visibility = $options['enable-reading-time'] ?? '1';
 $views_visibility        = $options['enable-views'] ?? '1';
-$docs_feedback           = $options['docs-feedback'] ?? '1';
 $sidebar_toggle          = $options['toggle_visibility'] ?? '1';
 $layout                  = $options['docs_single_layout'] ?? 'both_sidebar';
 
@@ -99,11 +98,7 @@ endif;
 		<?php do_action( 'ezd_selected_comment_lists', get_the_ID() ); ?>
 
 	</div>
-	<?php
-	if ( $docs_feedback == '1' ) {
-		eazydocs_get_template_part( 'content-feedback' );
-	}
-	?>
+	<?php eazydocs_get_template_part( 'content-feedback' ); ?>
 </article>
 
 <?php
