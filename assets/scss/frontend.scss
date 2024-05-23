@@ -77,8 +77,7 @@ p .footnotes-link::after {
 	margin-right: 30px;
 	padding: 0 5px 0 0;
 	position: relative;
-	input,
-	input[type="search"] {
+	input, input[type="search"] {
 		border: 1px solid var(--black_50) !important;
 		width: 100%;
 		padding: 3px 18px;
@@ -90,6 +89,7 @@ p .footnotes-link::after {
 		border-radius: 3px;
 		background: var(--black_50);
 		color: var(--black_800) !important;
+		height: 48px;
 		&:focus {
 			outline: none;
 			background-color: var(--black_25);

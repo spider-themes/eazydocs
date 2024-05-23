@@ -214,15 +214,21 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Screenshots ==
 
-1. Docs builder UI in the WordPress Admin dashboard
-2. Ordering and Nesting Docs by Drag-n-Drop
-3. Creating the Docs page with EazyDocs Shortcode and Search Banner block
-4. Live customizer to change the colors, fonts, and other settings
-5. Live search results
-6. User Feedback and Voting
-7. Share button to share the docs via all possible ways
+1. Ordering and Nesting Docs by Drag-n-Drop
+2. Creating the Docs page with EazyDocs Shortcode and Search Banner block
+3 Live customizer to change the colors, fonts, and other settings
+4. Live search results
+5. User Feedback and Voting
+6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.4.2 (03 March 2024) =
+Fixed: Block theme hamburger and mobile menu issue solved
+Fixed: Vulnerability issue solved for custom slug field
+Fixed: SMTP conflict issue resolved
+Fixed: Settings menu capability related fatal error resolved
+Tweaked: Close the Feedback form on pressing the ESC button
 
 = v2.4.1 (11 April 2024) =
 New: Some Control fields (Show/hide switcher, title field) are added for Articles in the 'EazyDocs > Settings > Doc Single > General' page

@@ -3737,8 +3737,7 @@ p .footnotes-link::after {
   padding: 0 5px 0 0;
   position: relative;
 }
-.filter_form input,
-.filter_form input[type=search] {
+.filter_form input, .filter_form input[type=search] {
   border: 1px solid var(--black_50) !important;
   width: 100%;
   padding: 3px 18px;
@@ -3750,14 +3749,13 @@ p .footnotes-link::after {
   border-radius: 3px;
   background: var(--black_50);
   color: var(--black_800) !important;
+  height: 48px;
 }
-.filter_form input:focus,
-.filter_form input[type=search]:focus {
+.filter_form input:focus, .filter_form input[type=search]:focus {
   outline: none;
   background-color: var(--black_25);
 }
-.filter_form input::placeholder,
-.filter_form input[type=search]::placeholder {
+.filter_form input::placeholder, .filter_form input[type=search]::placeholder {
   color: var(--black_400);
 }
 .filter_form .filter_no_result {
