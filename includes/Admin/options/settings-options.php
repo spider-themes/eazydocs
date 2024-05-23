@@ -53,3 +53,4 @@ include EZD_SETTINGS_PATH . 'opt_docs_collaboration.php';
 include EZD_SETTINGS_PATH . 'opt_docs_role_manager.php';
 include EZD_SETTINGS_PATH . 'opt_docs_assistant.php';
 include EZD_SETTINGS_PATH . 'opt_docs_subscription.php';
+include EZD_SETTINGS_PATH . 'opt_backup.php';

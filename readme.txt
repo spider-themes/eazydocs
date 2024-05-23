@@ -223,11 +223,15 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.4.2 (03 March 2024) =
-Fixed: Block theme hamburger and mobile menu issue solved
-Fixed: Vulnerability issue solved for custom slug field
-Fixed: SMTP conflict issue resolved
+= v2.5.0 (23 May 2024) =
+New: Added Import/Export Option for Settings. now you're able to export your settings from 'EazyDocs > Settings > Backup' and you can import it another site.
+Fixed: Solved the sanitize function names being incorrect
+Fixed: TOC auto numbering & Label color option
+Fixed: Solved Font size switcher overlapping issue
 Fixed: Settings menu capability related fatal error resolved
+Fixed: SMTP conflict issue resolved
+Fixed: Block theme hamburger and mobile menu issue solved
+Tweaked: improved navigation and feedback switcher Settings
 Tweaked: Close the Feedback form on pressing the ESC button
 
 = v2.4.1 (11 April 2024) =
@@ -304,7 +308,7 @@ Tweaked: Improved the custom framework CSS to avoid conflict with other framewor
 Tweaked: Deleted some unnecessary codes and files
 Tweaked: Sidebar open icon made smaller on mobile device to adjust spacing with the doc content
 Tweaked: Properly sanitized $wpdb queries and custom SQL queries to avoid SQL injection vulnerabilities (Thanks to the EazyDocs users for the report)
-Tweaked: Compatibility with FSE/block themes (tested with 'Twenty Twenty-Four' and 'Twenty Twenty-Three' improved
+Tweaked: Compatibility with FSE/block themes (tested with 'Twenty Twenty-Four' and 'Twenty Twenty-Three' improved)
 Tweaked: Feedback modal UX improved (the modal will close on clicking on the modal overlay area)
 Updated: Freemius SDK updated to 2.6.0
 
