@@ -1940,9 +1940,9 @@ body:not(.onepage-doc) .sticky_menu {
 		border-radius: 5px 5px 0 0;
 		padding: 22px 10px 10px;
 
-		.logo img {
+		img.pw-logo {
 			display: block;
-			margin: 0 auto;
+			margin: 10px auto !important;
 			width: 55px;
 			height: auto;
 		}

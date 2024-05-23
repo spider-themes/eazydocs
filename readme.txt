@@ -225,12 +225,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 = v2.5.0 (23 May 2024) =
 New: Added Import/Export Option for Settings. now you're able to export your settings from 'EazyDocs > Settings > Backup' and you can import it another site.
-Fixed: Solved the sanitize function names being incorrect
+Fixed: Some sanitization function was misused in the plugin. Now, all the functions are properly sanitized and escaped.
 Fixed: TOC auto numbering & Label color option
 Fixed: Solved Font size switcher overlapping issue
 Fixed: Settings menu capability related fatal error resolved
 Fixed: SMTP conflict issue resolved
 Fixed: Block theme hamburger and mobile menu issue solved
+Fixed: Solved the Doc password protection form deprecated issues
 Tweaked: improved navigation and feedback switcher Settings
 Tweaked: Close the Feedback form on pressing the ESC button
 

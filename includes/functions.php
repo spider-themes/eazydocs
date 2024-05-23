@@ -903,9 +903,7 @@ function ezd_password_form($output, $post = 0) {
 					<?php
 					if ( has_post_thumbnail() ) :
 						?>
-						<a href="<?php the_permalink(); ?>" class="logo logo-admin">
-							<?php the_post_thumbnail( 'ezd_searrch_thumb50x50', [ 'class' => 'mb-3' ] ); ?>
-						</a>
+                        <?php the_post_thumbnail( 'ezd_searrch_thumb50x50', [ 'class' => 'pw-logo' ] ); ?>
 						<?php
 					endif;
 					?>
