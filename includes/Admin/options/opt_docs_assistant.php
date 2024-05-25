@@ -176,8 +176,20 @@ CSF::createSection( $prefix, array(
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' )
 							)
+						),
+						
+						array(
+							'id'         => 'docs_instant_answer',
+							'type'       => 'switcher',
+							'title'      => esc_html__( 'Instant Answer', 'eazydocs' ),
+							'text_on'    => esc_html__( 'Eanble', 'eazydocs' ),
+							'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
+							'text_width' => 83,
+							'default'    => false,
+							'dependency' => array(
+								array( 'kb_visibility', '==', 'true' )
+							)
 						)
-
 					)
 				),
 
