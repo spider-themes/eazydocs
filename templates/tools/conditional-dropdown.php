@@ -29,7 +29,8 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
         'use strict';
         $(document).ready(function() {
 
-          var updateEzdConVisibility = function(value) {
+          var updateEzdConVisibility = function(value) {            
+            value = value.toLowerCase().replace(/ /g, '-');
             var selector = '.ezd-con-' + value;
             if ($(selector).length > 0) {
               // Hide all elements with ezd-con- class only if matching elements are found
@@ -44,6 +45,9 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
               var icon = $(this).attr('data-content');
               var text = this.innerText;
               var value = $(this).val(); // Get the value of the option
+              // make value lowercase and remove spaces with hyphen
+              value = value.toLowerCase().replace(/ /g, '-');
+              
               var item = '<li data-value="' + value + '"> <i class="' + icon + '"></i> <span>' + text + '</span></li>';
               langArray.push(item);
             });
@@ -52,6 +56,7 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
 
             // Set the button value to the first element of the array
             var firstValue = $('.vodiapicker option').first().val();
+            firstValue = firstValue.toLowerCase().replace(/ /g, '-');
             $('.ezd_btn_select').html(langArray[0]);
             $('.ezd_btn_select').attr('value', firstValue);
             $('#ezd_a li').first().addClass('active');
@@ -61,6 +66,7 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
             $('#ezd_a li').click(function() {
               var icon = $(this).find('i').attr('class');
               var value = $(this).data('value'); // Get the value from data attribute
+              value = value.toLowerCase().replace(/ /g, '-');
               var text = this.innerText;
               var item = '<li> <i class="' + icon + '"></i> <span>' + text + '</span></li>';
               $('.ezd_btn_select').html(item);
@@ -107,9 +113,13 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
                  }
               }
           });
+          
+          $('#ezd_a li').on('click', function() {
+            $('[class^="ezd-con-"]').show().not('.ezd-con-' + $(this).attr('data-value')).hide();
+          });          
 
         });
       })(jQuery);
     </script>
-<?php
+  <?php
 endif;
