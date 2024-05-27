@@ -1448,3 +1448,52 @@ function ezd_get_footnotes_in_content($post_id) {
     // Return the array of "reference" shortcodes with their content and ids
     return $reference_shortcodes_with_content;
 }
+
+/**
+ * Customizer buttons visibility by user role
+ */
+function customizer_visibility_callback() {
+
+	$archive_url 	 = 'javascript:void(0)';
+	$single_url  	 = 'javascript:void(0)';
+	$target 		 = '_self';
+	$no_access  	 = 'no-customizer-access'; 
+
+	if ( class_exists( 'EZD_EazyDocsPro' ) && eaz_fs()->is_plan( 'promax' ) ) {
+		if ( in_array( implode(', ', ezd_get_current_user_role_by_id(get_current_user_id())) , ['administrator'] ) ) {
+
+		$options      = get_option( 'eazydocs_settings' );
+		$doc_id       = $options['docs-slug'] ?? '';
+		$doc_page     = get_post_field( 'post_name', $doc_id );
+		
+		$args         = array(
+			'post_type'      => 'docs',
+			'posts_per_page' => - 1,
+			'orderby'        => 'menu_order',
+			'order'          => 'asc'
+		);
+
+		$recent_posts 	= wp_get_recent_posts( $args );
+		$post_url     	= '';
+		$post_count   	= 0;
+
+		foreach ( $recent_posts as $recent ):
+			$post_url   = $recent['ID'];
+			$post_count ++;
+		endforeach;
+
+		$docs_url 		= $post_count > 0 ? $post_url : $doc_id;
+		$archive_url 	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $doc_id . '?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
+		$single_url  	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $docs_url . '?autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
+		$target 		= '_blank';
+		}
+	}
+	?>
+	<a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">
+		<?php echo esc_html__( 'Docs Archive', 'eazydocs' ) ?>
+	</a> 
+	<a href="<?php echo esc_attr( $single_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_single">
+		<?php echo esc_html__( 'Single Doc', 'eazydocs' ); ?>
+	</a>
+	<?php
+}

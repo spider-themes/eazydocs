@@ -94,6 +94,20 @@
         } else {
             $('.docs-url-structure .csf-after-text').hide();
         }
+
+        // Notice for customizer
+        $('.no-customizer-access').on('click', function(e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Access Denied',
+                html: 'You do not have sufficient permissions to perform this action. Only administrators are allowed to proceed',
+                icon: 'warning',
+                buttons: false,
+                dangerMode: true,
+                showCloseButton: true,
+                confirmButtonText: 'Got it'
+            });
+        });
         
     });
 })(jQuery);

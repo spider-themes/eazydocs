@@ -43,10 +43,10 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'       => 'customizer-edit-access',
+			'id'       => 'analytics-access',
 			'type'     => 'select',
-			'title'    => esc_html__( 'Who Can Edit Customizer?', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Allow users to customize Docs from customizer settings.', 'eazydocs' ),
+			'title'    => esc_html__( 'Who Can Check Analytics?', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Allow users to view and analyze site statistics and performance data.', 'eazydocs' ),
 			'options'  => [
 				'administrator' => __( 'Administrator', 'eazydocs' ),
 				'editor'        => __( 'Editor', 'eazydocs' ),
@@ -55,7 +55,7 @@ CSF::createSection( $prefix, array(
 			'chosen'   => true,
 			'default'  => 'administrator',
 			'multiple' => true,
-			'class'    => 'eazydocs-pro-notice'
+			'class'    => 'eazydocs-promax-notice'
 		)
 	]
 ) );
