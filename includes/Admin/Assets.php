@@ -66,6 +66,13 @@ class Assets {
 			wp_enqueue_script( 'eazydocs-nestable', EAZYDOCS_ASSETS . '/js/admin/jquery.nestable.js', array( 'jquery' ), true, true );
 			wp_enqueue_script( 'eazydocs-nestable-script', EAZYDOCS_ASSETS . '/js/admin/nestable-script.js', array( 'jquery' ), true, true );
 		}
+		
+		// Enqueue scripts and styles for initial setup page
+		if ( is_admin() && isset($_GET['page']) && $_GET['page'] == 'eazydocs-initial-setup' ) {			
+			wp_enqueue_style( 'wp-color-picker' );
+			wp_enqueue_script( 'wp-color-picker' );
+			wp_enqueue_script( 'smartwizard', EAZYDOCS_ASSETS . '/js/admin/jquery.smartWizard.min.js', array( 'jquery' ), true, true );
+		 }
 
 		// Localize the script with new data
 		$ajax_url              = admin_url( 'admin-ajax.php' );
@@ -95,6 +102,7 @@ class Assets {
 				'is_ezd_premium'            => eaz_fs()->is_paying_or_trial() ? 'yes' : '',
 				'ezd_get_conditional_items' => ezd_get_conditional_items(),
 				'ezd_plugin_url'    		=> EAZYDOCS_URL,
+
 			)
 		);
 	}

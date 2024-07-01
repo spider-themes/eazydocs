@@ -151,6 +151,7 @@ class Admin {
 			add_submenu_page( 'eazydocs', __( 'Analytics', 'eazydocs' ), __( 'Analytics', 'eazydocs' ), $capabilites, 'ezd-analytics',
 				[ $this, 'ezd_analytics_presents' ] );
 		}
+		add_submenu_page( 'eazydocs', __( 'Getting Started', 'eazydocs' ), __( 'Getting Started', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ]  );
 	}
 
 	/**
@@ -257,6 +258,131 @@ class Admin {
         </div><!-- /.wrap -->
 		<?php
 	}
+
+	public function ezd_setup_wizard() {
+		$opt 					= get_option('eazydocs_settings');
+		$slugType 				= $opt['docs-url-structure'] ?? '';
+		$custom_slug 			= $opt['docs-type-slug'] ?? '';
+		$brand_color 			= $opt['brand_color'] ?? '';
+		$docs_single_layout 	= $opt['docs_single_layout'] ?? '';
+		$docs_page_width 		= $opt['docs_page_width'] ?? '';
+		$customizer_visibility 	= $opt['customizer_visibility'] ?? '';
+		?>
+		<div class="wrap">
+			<div class="ezd-setup-wizard-wrapper">
+				<div class="ezd-setup-wizard-header">
+					<div>
+						<img src="<?php echo EAZYDOCS_URL . '/src/images/ezd-icon.png'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" />
+						<span><?php esc_html_e( 'EazyDocs', 'eazydocs' ); ?></span>
+					</div>
+
+					<div>						
+						<span class="dashicons dashicons-welcome-write-blog"></span>
+						<span><a target="__blank" href="https://wordpress.org/plugins/eazydocs/#developers"><?php esc_html_e( "What's New!", 'eazydocs' ); ?></a></span>
+					</div>
+				</div>
+			</div>
+					
+			<div id="ezd-setup-wizard-wrap">
+				<div class="ezd-wizard-head">
+					<div class="ezd-wizard-head-left">
+						<img src="<?php echo EAZYDOCS_URL . '/src/images/ezd-icon.png'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" />
+						<span><?php esc_html_e( 'GETTING STARTED', 'eazydocs' ); ?></span>
+					</div>
+					<div class="ezd-wizard-head-right">
+						<a href="<?php echo admin_url( 'admin.php?page=eazydocs' ); ?>" class="btn btn-primary"><?php esc_html_e( 'Skip', 'eazydocs' ); ?></a>
+					</div>
+				</div>
+				<div class="sw-toolbar">
+					<ul class="nav sr-only">
+						<li><a class="nav-link" href="#step-1"></a></li>
+						<li><a class="nav-link" href="#step-2"></a></li>
+						<li><a class="nav-link" href="#step-3"></a></li>
+						<li><a class="nav-link" href="#step-4"></a></li>
+					</ul>
+				</div>
+				<div class="tab-content">
+					
+					<div id="step-1" class="tab-pane" role="tabpanel">
+						<h2><?php esc_html_e( 'Welcome to EazyDocs', 'eazydocs' ); ?></h2>
+						<?php echo wpautop( 'Discover EazyDocs by this guide that walks you through creating professional, user-friendly <br> website documentation seamlessly. Then click next to setup initial settings.' ); ?>
+
+						<iframe width="650" height="350" src="https://www.youtube.com/embed/4H2npHIR2qg?si=ApQh7BL6CL5QM4zX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+					</div>
+
+					<div id="step-2" class="tab-pane" role="tabpanel" style="display:none">
+						
+					<h2><?php esc_html_e( 'Brand Color', 'eazydocs' ); ?></h2>
+						<p><?php esc_html_e( 'Select the Brand Color for your plugin.', 'eazydocs' ); ?></p>
+						<div class="brand-color-picker-wrap">
+							<input type="text" class="brand-color-picker" placeholder="Color Picker" value="<?php echo esc_attr( $brand_color ); ?>">
+						</div>
+						
+						<h2><?php esc_html_e( 'Doc Root URL Slug', 'eazydocs' ); ?></h2>
+						<p><?php esc_html_e( 'Select the Docs URL Structure. This will be used to generate the Docs URL.', 'eazydocs' ); ?></p>				
+						<div class="root-slug-wrap">
+
+							<input type="radio" id="post-name" name="slug" value="post-name" <?php checked( $slugType, 'post-name' ); ?>>							 
+							<label for="post-name" class="<?php if ( $slugType == 'post-name' ) { echo esc_attr( 'active' ); } ?>">Default Slug</label>
+
+							<input type="radio" id="custom-slug" name="slug" value="custom-slug" <?php checked( $slugType, 'custom-slug' ); ?>>						 
+							<label for="custom-slug" class="<?php if ( $slugType == 'custom-slug' ) { echo esc_attr( 'active' ); } ?>">Custom Slug</label>
+
+							<input type="text" class="custom-slug-field <?php if ( $slugType == 'custom-slug' ) { echo esc_attr( 'active' ); } ?>" placeholder="Basic Setting" value="<?php echo esc_attr( $custom_slug ); ?>">
+
+						</div>
+					</div>
+
+					<div id="step-3" class="tab-pane" role="tabpanel" style="display:none">
+
+					<h2><?php esc_html_e( 'Select Page Layout', 'eazydocs' ); ?></h2>
+						 
+						<div class="page-layout-wrap">
+							<input type="radio" id="both_sidebar" value="both_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'both_sidebar' ); ?>>
+							<label for="both_sidebar" class="<?php if ( $docs_single_layout == 'both_sidebar' ) { echo esc_attr( 'active' ); } ?>">
+								<img src="<?php echo EAZYDOCS_IMG . '/customizer/both_sidebar.jpg'; ?>" alt="<?php esc_attr_e( 'Welcome icon', 'eazydocs' ); ?>" />
+							</label>
+
+							<input type="radio" id="sidebar_left" value="sidebar_left" name="docs_single_layout" <?php checked( $docs_single_layout, 'sidebar_left' ); ?>>
+							<label for="sidebar_left" class="<?php if ( $docs_single_layout == 'sidebar_left' ) { echo esc_attr( 'active' ); } ?>">
+								<img src="<?php echo EAZYDOCS_IMG . '/customizer/sidebar_left.jpg'; ?>" alt="<?php esc_attr_e( 'Basic icon', 'eazydocs' ); ?>" />
+							</label>
+
+							<input type="radio" id="sidebar_right" value="sidebar_right" name="docs_single_layout" <?php checked( $docs_single_layout, 'sidebar_right' ); ?>>
+							<label for="sidebar_right" class="<?php if ( $docs_single_layout == 'sidebar_right' ) { echo esc_attr( 'active' ); } ?>">
+								<img src="<?php echo EAZYDOCS_IMG . '/customizer/sidebar_right.jpg'; ?>" alt="<?php esc_attr_e( 'Basic icon', 'eazydocs' ); ?>" />
+							</label>
+						</div>
+						 
+						<h2><?php esc_html_e( 'Page Width', 'eazydocs' ); ?></h2>
+						<div class="page-width-wrap">
+							<input type="radio" id="boxed" name="docsPageWidth" value="boxed" <?php checked( $docs_page_width, 'boxed' ); ?>>
+							<label for="boxed" class="<?php if ( $docs_page_width == 'boxed' ) { echo esc_attr( 'active' ); } ?>">Boxed Width</label>
+
+							<input type="radio" id="full-width" name="docsPageWidth" value="full-width" <?php checked( $docs_page_width, 'full-width' ); ?>>
+							<label for="full-width" class="<?php if ( $docs_page_width == 'full-width' ) { echo esc_attr( 'active' ); } ?>">full Width</label>
+						</div>
+						
+						<h2><?php esc_html_e( 'Live Customizer', 'eazydocs' ); ?></h2>
+						<label>
+							<input type="checkbox" id="live-customizer" name="customizer_visibility" value="1" <?php checked( $customizer_visibility, '1' ); ?>>
+							<?php esc_html_e( 'Enable Live Customizer', 'eazydocs' ); ?>
+						</label>
+					</div>
+
+					<div id="step-4" class="tab-pane" role="tabpanel" style="display:none">
+						<div class="swal2-icon swal2-question swal2-icon-show" style="display: flex;"><div class="swal2-icon-content">?</div></div>
+						<h2><?php esc_html_e( 'Review and Confirm', 'eazydocs' ); ?></h2>
+						<p><?php esc_html_e( 'Take a moment to review all your settings thoroughly before confirming your choices to ensure everything is set up correctly.', 'eazydocs' ); ?></p>
+						<button type="button" id="finish-btn" class="btn btn-primary"><?php esc_html_e( 'Confirm', 'eazydocs' ); ?></button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+	
 
 	/**
 	 * @param $link

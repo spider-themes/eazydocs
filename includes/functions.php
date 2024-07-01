@@ -953,6 +953,7 @@ function ezydocs_admin_pages() {
          || $admin_page == 'ezd-analytics'
 	     || $admin_page == 'ezd-user-feedback-archived'
 	     || $admin_page == 'ezd-onepage-presents'
+	     || $admin_page == 'eazydocs-initial-setup'
 	     || $post_type == 'onepage-docs'
 	     || strstr( $_SERVER['REQUEST_URI'], 'wp-admin/post-new.php' )
 	     || strstr( $_SERVER['REQUEST_URI'], 'wp-admin/post.php' )
@@ -1497,3 +1498,38 @@ function customizer_visibility_callback() {
 	</a>
 	<?php
 }
+
+/**
+ * Setup wizard save settings
+ */
+function ezd_setup_wizard_save_settings() {
+	
+    if ( ! current_user_can('manage_options') ) {
+        wp_send_json_error('Unauthorized user');
+    }
+
+    $rootslug 			= isset($_POST['rootslug']) ? sanitize_text_field($_POST['rootslug']) : '';
+    $brandColor 		= isset($_POST['brandColor']) ? sanitize_text_field($_POST['brandColor']) : '';
+    $slugType 			= isset($_POST['slugType']) ? sanitize_text_field($_POST['slugType']) : '';
+    $docSingleLayout	= isset($_POST['docSingleLayout']) ? sanitize_text_field($_POST['docSingleLayout']) : '';
+    $docsPageWidth 		= isset($_POST['docsPageWidth']) ? sanitize_text_field($_POST['docsPageWidth']) : '';
+	$live_customizer 	= isset($_POST['live_customizer']) ? sanitize_text_field($_POST['live_customizer']) : '';	
+    $options 			= get_option('eazydocs_settings');
+    
+    // Check if the option exists and is an array
+    if(is_array($options)) {
+        // Update the specific setting
+        $options['docs-type-slug'] 		= $rootslug; // Replace 'new-slug' with your desired slug
+        $options['brand_color'] 		= $brandColor; // Replace 'new-slug' with your desired slug
+        $options['docs-url-structure'] 	= $slugType; // Replace 'new-slug' with your desired slug
+        $options['docs_single_layout'] 	= $docSingleLayout; // Replace 'new-slug' with your desired slug
+        $options['docs_page_width'] 	= $docsPageWidth; // Replace 'new-slug' with your desired slug,
+		$options['customizer_visibility'] 	= $live_customizer; // Replace 'new-slug' with your desired slug
+        
+        // Update the option in the database
+        update_option('eazydocs_settings', $options);
+    }
+	
+    wp_send_json_success('Settings saved');
+}
+add_action('wp_ajax_ezd_setup_wizard_save_settings', 'ezd_setup_wizard_save_settings');
