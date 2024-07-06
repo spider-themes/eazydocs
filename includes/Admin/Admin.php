@@ -278,7 +278,7 @@ class Admin {
 
 					<div>						
 						<span class="dashicons dashicons-welcome-write-blog"></span>
-						<span><a target="__blank" href="https://wordpress.org/plugins/eazydocs/#developers"><?php esc_html_e( "What's New!", 'eazydocs' ); ?></a></span>
+						<span><a target="__blank" href="https://spider-themes.net/eazydocs/changelog/"><?php esc_html_e( "What's New!", 'eazydocs' ); ?></a></span>
 					</div>
 				</div>
 			</div>
@@ -306,14 +306,25 @@ class Admin {
 					<div id="step-1" class="tab-pane" role="tabpanel">
 						<h2><?php esc_html_e( 'Welcome to EazyDocs', 'eazydocs' ); ?></h2>
 						<?php echo wpautop( 'Discover EazyDocs by this guide that walks you through creating professional, user-friendly <br> website documentation seamlessly. Then click next to setup initial settings.' ); ?>
-
-						<iframe width="650" height="350" src="https://www.youtube.com/embed/4H2npHIR2qg?si=ApQh7BL6CL5QM4zX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-					</div>
+						<iframe width="650" height="350" src="https://www.youtube.com/embed/4H2npHIR2qg?si=ApQh7BL6CL5QM4zX" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="button-inline">
+                            <a class="button button-primary ezd-btn btn-lg" target="_blank" href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/">
+                                <i class="dashicons dashicons-sos"></i> Documentation
+                            </a>
+                            <a class="button button-primary ezd-btn btn-lg btn-red" target="_blank" href="https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ">
+                                <i class="dashicons dashicons-playlist-video"></i> Video Tutorials
+                            </a>
+                            <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" target="_blank" href="https://wordpress.org/support/plugin/eazydocs/">
+                                <i class="dashicons dashicons-editor-help"></i> Support
+                            </a>
+                            <p>
+                        </div>
+                    </div>
 
 					<div id="step-2" class="tab-pane" role="tabpanel" style="display:none">
 						
 					<h2><?php esc_html_e( 'Brand Color', 'eazydocs' ); ?></h2>
-						<p><?php esc_html_e( 'Select the Brand Color for your plugin.', 'eazydocs' ); ?></p>
+						<p><?php esc_html_e( 'Select the Brand Color for your knowledge base.', 'eazydocs' ); ?></p>
 						<div class="brand-color-picker-wrap">
 							<input type="text" class="brand-color-picker" placeholder="Color Picker" value="<?php echo esc_attr( $brand_color ); ?>">
 						</div>

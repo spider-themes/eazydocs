@@ -152,8 +152,8 @@
                     keyRight: [39] // Right key code
                 },
                 lang: { // Language variables for button
-                    next: 'Next',
-                    previous: 'Previous'
+                    next: ' Next →',
+                    previous: '← Previous',
                 }
             });
         }
