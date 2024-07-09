@@ -130,6 +130,8 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 [youtube https://youtu.be/4H2npHIR2qg?si=ilfv7FAqS0YTSQiz]
 
 ## EazyDocs Pro plan features include:
+- Doc Root URL
+- Book Chapter Elementor Widget
 - Voting & Comments Notifications
 - Doc Helper Assistant with Contact Form
 - Conditional Content Dropdown
@@ -149,9 +151,12 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Editable Single Doc Sidebar Area
 - Fully RTL Compatibility
 - Duplicate Bulk/Individual Documentation
+- Users Feedback Database
 
 ## EazyDocs Promax plan features include:
 - All Pro plan features
+- Subscribe to Docs
+- Feedback on Selected Text
 - Analytics
 - Contributor, Add/Edit doc from Frontend
 - Footnotes

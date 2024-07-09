@@ -236,6 +236,14 @@ class Doc_Widget extends Widget_Base {
 		);
 
 		$this->add_control(
+			'masonry', [
+				'label'             => esc_html__( 'Masonry', 'eazydocs-pro' ),
+				'type'              => \Elementor\Controls_Manager::SWITCHER,
+				'doc-widget-skin'   => [ '4', '5' ]
+			]
+		);
+
+		$this->add_control(
 			'order', [
 				'label'     => esc_html__( 'Order', 'eazydocs' ),
 				'type'      => Controls_Manager::SELECT,
