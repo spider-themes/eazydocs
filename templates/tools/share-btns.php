@@ -12,7 +12,7 @@ if ( $is_social_links ) :
 		?>
 <a href="#" class="ezd-share-btn modal-toggle" data-id="2">
     <i class="social_share_square"></i>
-    <?php echo ezd_get_opt( 'share_btn_label', __( 'Share', 'eazydocs' ) ) ?>
+    <?php echo esc_html(ezd_get_opt( 'share_btn_label', __( 'Share', 'eazydocs' ) )) ?>
 </a>
 
 <div class="ezd-modal" id='eazydocs_share' data-id="modal2">
@@ -36,7 +36,7 @@ if ( $is_social_links ) :
                         <i class="social_linkedin_square"></i>
                     </a>
                     <a
-                        href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php the_title(); ?> &amp;hashtags=<?php echo site_url(); ?>">
+                        href="https://twitter.com/share?url=<?php the_permalink(); ?>&amp;text=<?php the_title(); ?> &amp;hashtags=<?php echo esc_url(site_url()); ?>">
                         <i class="social_twitter"></i>
                     </a>
                 </div>
@@ -49,7 +49,7 @@ if ( $is_social_links ) :
                     <input readonly type="text" value="<?php the_permalink(); ?>" class="word-wrap">
                     <div class="share-this-doc"
                         data-success-message="<?php echo esc_attr( $copy_link_text_success ) ?>">
-                        <img src="<?php echo EAZYDOCS_IMG . '/clone.svg'; ?>"
+                        <img src="<?php echo esc_url(EAZYDOCS_IMG . '/clone.svg'); ?>"
                             alt="<?php esc_attr_e( 'Clipboard Icon', 'eazydocs' ); ?>">
                     </div>
                 </div>

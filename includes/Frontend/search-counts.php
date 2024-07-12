@@ -31,6 +31,6 @@ add_filter( 'manage_doc_posts_columns', function () {
 
 add_action( 'manage_doc_posts_custom_column', function ( $column ) {
     if ( $column === 'search_count') {
-        echo eazydocs_get_search_count();
+        echo esc_html(eazydocs_get_search_count());
     }
 });

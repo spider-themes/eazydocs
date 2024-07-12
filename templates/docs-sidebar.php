@@ -49,7 +49,7 @@ if ( $credit_enable == '1' ) {
             <i class="arrow_carrot-left"></i>
         </div>
         <h2 class="doc-title">
-            <?php echo get_post_field( 'post_title', $parent, 'display' ); ?>
+            <?php echo esc_html(get_post_field( 'post_title', $parent, 'display' )); ?>
         </h2>
         <?php
         if ( $sidebar_search == 1 ) :
@@ -75,7 +75,7 @@ if ( $credit_enable == '1' ) {
             ?>
             <ul class="ezd-list-unstyled nav-sidebar left-sidebar-results ezd-list-unstyled">
                 <?php
-                echo wp_list_pages( array(
+                echo wp_kses_post(wp_list_pages( array(
                     'title_li'  => '',
                     'order'     => 'menu_order',
                     'child_of'  => $parent,
@@ -83,7 +83,7 @@ if ( $credit_enable == '1' ) {
                     'post_type' => 'docs',
                     'walker'    => $doc_walker,
                     'post_status' => array( 'publish', 'private' ),
-                ) );
+                ) ));
                 ?>
             </ul>
             <?php

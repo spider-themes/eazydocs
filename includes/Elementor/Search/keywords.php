@@ -1,11 +1,11 @@
 <?php
 if ( $settings['is_ezd_search_keywords'] == 'yes' && !empty($settings['ezd_search_keywords_repeater']) ) : 
     ?>
-    <div class="header_search_keyword justify-content-<?php echo $settings['ezd_search_keywords_align'] ?>">
+    <div class="header_search_keyword justify-content-<?php esc_attr($settings['ezd_search_keywords_align']); ?>">
         <?php 
         if ( !empty($settings['ezd_search_keywords_label']) ) : ?>
             <span class="header-search-form__keywords-label search_keyword_label">
-                <?php echo $settings['ezd_search_keywords_label'] ?> </span>
+                <?php echo esc_attr($settings['ezd_search_keywords_label']) ?> </span>
             <?php
         endif;
         
@@ -25,7 +25,7 @@ if ( $settings['is_ezd_search_keywords'] == 'yes' && !empty($settings['ezd_searc
                         endforeach;
                     endif;
                 else :
-                    global $wpdb;                    
+                    global $wpdb;
                         $search_keyword = $wpdb->get_results( "SELECT keyword, COUNT(*) AS count FROM {$wpdb->prefix}eazydocs_search_keyword GROUP BY keyword ORDER BY count DESC" );
                         $all_keys = [];
                         if ( count( $search_keyword ) > 0 ) :

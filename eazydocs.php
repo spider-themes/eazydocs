@@ -17,57 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-if ( function_exists( 'eaz_fs' ) ) {
-	eaz_fs()->set_basename( false, __FILE__ );
-} else {
-	// DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
-
-	if ( ! function_exists( 'eaz_fs' ) ) {
-		// Create a helper function for easy SDK access.
-		function eaz_fs() {
-			global $eaz_fs;
-
-			if ( ! isset( $eaz_fs ) ) {
-				// Include Freemius SDK.
-				require_once dirname( __FILE__ ) . '/includes/fs/start.php';
-
-				$eaz_fs = fs_dynamic_init(
-					[
-						'id'              => '10290',
-						'slug'            => 'eazydocs',
-						'premium_slug'    => 'eazydocs-pro',
-						'type'            => 'plugin',
-						'public_key'      => 'pk_8474e4208f0893a7b28c04faf5045',
-						'is_premium'      => false,
-						'is_premium_only' => false,
-						'has_addons'      => false,
-						'has_paid_plans'  => true,
-						'trial'           => [
-							'days'               => 14,
-							'is_require_payment' => true,
-						],
-						'menu'            => [
-							'slug'       => 'eazydocs',
-							'contact'    => false,
-							'support'    => false,
-							'first-path' => 'admin.php?page=eazydocs'
-						],
-					]
-				);
-			}
-
-			return $eaz_fs;
-		}
-
-		// Init Freemius.
-		eaz_fs()->add_filter( 'deactivate_on_activation', '__return_false' );
-		eaz_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
-
-		// Signal that SDK was initiated.
-		do_action( 'eaz_fs_loaded' );
-	}
-}
-
 use eazyDocs\Post_Types;
 
 // Make sure the same class is not loaded.
@@ -103,9 +52,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 
-			if ( eaz_fs()->is_plan( 'promax' ) ) {
+			/*if ( eaz_fs()->is_plan( 'promax' ) ) {
 				add_action( 'admin_notices', [ $this, 'database_not_found' ] );
-			}
+			}*/
 			
 			// Added Documentation links to plugin row meta
 			add_filter('plugin_row_meta',[ $this,  'eazydocs_row_meta' ], 10, 2);
@@ -146,19 +95,19 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/notices/deactivate-other-doc-plugins.php';
 			require_once __DIR__ . '/includes/notices/asking-for-review.php';
 
-			if ( eaz_fs()->is_plan( 'promax' ) ) {
+	/*		if ( eaz_fs()->is_plan( 'promax' ) ) {
 				require_once __DIR__ . '/includes/notices/update-database.php';
 
 				// Remove docs slug from URLs
 				$docs_url 			=  ezd_get_opt('docs-url-structure', 'custom-slug');
 				$permalink 			= get_option('permalink_structure');
-		
-				if ( $docs_url == 'post-name' ) {					
-					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {					 
+
+				if ( $docs_url == 'post-name' ) {
+					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {
 						require_once __DIR__ . '/includes/Root_Conversion.php';
 					}
 				}
-			}
+			}*/
 
 			require_once __DIR__ . '/includes/sidebars.php';
 			require_once __DIR__ . '/includes/Frontend/Ajax.php';
@@ -266,9 +215,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				wp_insert_post( $docs_page );
 			}
 
-            if ( eaz_fs()->is_plan( 'promax' ) ) {
+           /* if ( eaz_fs()->is_plan( 'promax' ) ) {
 	            $this->create_analytics_db_tables();
-            }
+            }*/
 		}
 
 		/**

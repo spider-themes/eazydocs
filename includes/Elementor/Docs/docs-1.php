@@ -53,12 +53,12 @@ if ( ezd_is_premium() ) {
 				$protected_bg   = ! empty( $post->post_password ) ? 'bg-dark' : '';
 				?>
 		<div class="ezd-col-width">
-			<div class="categories_guide_item <?php echo $private_bg . $protected_bg; ?> wow fadeInUp"
-				<?php echo $private_bg_op; ?>>
+			<div class="categories_guide_item <?php echo esc_attr($private_bg . $protected_bg); ?> wow fadeInUp"
+				<?php echo esc_attr($private_bg_op); ?>>
 				<?php
 						if ( get_post_status() == 'private' ) {
 							$pd_txt = esc_html__( 'Private Doc', 'eazydocs' );
-							echo "<div class='private' title='$pd_txt'><i class='icon_lock'></i></div>";
+							echo '<div class="private" title="' . esc_attr($pd_txt) . '"><i class="icon_lock"></i></div>';
 						}
 						if ( ! empty( $post->post_password ) ) {
 							?>
@@ -91,8 +91,8 @@ if ( ezd_is_premium() ) {
 								foreach ( $sections as $section ) :
 									?>
 					<li>
-						<a href="<?php echo get_permalink( $section ); ?>" class="ezd_item_list_title">
-							<?php echo $section->post_title; ?>
+						<a href="<?php echo esc_url(get_permalink( $section )); ?>" class="ezd_item_list_title">
+							<?php echo esc_html($section->post_title); ?>
 						</a>
 					</li>
 					<?php

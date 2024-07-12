@@ -9,9 +9,9 @@ add_shortcode( 'reference', function ( $atts, $content ) {
 	}
 	?>
 
-    <span ezd-note-serial="<?php echo $atts['number'] ?>" id="serial-id-<?php echo esc_attr( $atts['number'] ); ?>" class="ezd-footnotes-link-item" data-bs-original-title="<?php echo esc_attr($content); ?>">
+    <span ezd-note-serial="<?php echo esc_attr($atts['number']) ?>" id="serial-id-<?php echo esc_attr( $atts['number'] ); ?>" class="ezd-footnotes-link-item" data-bs-original-title="<?php echo esc_attr($content); ?>">
         <i onclick="location.href='#note-name-<?php echo esc_attr( $atts['number'] ); ?>'">
-            [<?php echo $atts['number'] ?? ''; ?>]
+            [<?php echo esc_html($atts['number'] ?? ''); ?>]
         </i>
         <span><?php echo wp_kses_post( $content ); ?></span>
     </span>

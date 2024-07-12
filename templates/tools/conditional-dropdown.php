@@ -10,8 +10,8 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
 		<?php
 		foreach ( $condition_options as $option ) {
 			?>
-      <option value="<?php echo sanitize_text_field( $option['title'] ) ?>" data-content=" <?php echo esc_attr( $option['icon'] ) ?>">
-				<?php echo sanitize_text_field( $option['title'] ) ?>
+      <option value="<?php echo esc_attr( $option['title'] ) ?>" data-content=" <?php echo esc_attr( $option['icon'] ) ?>">
+				<?php echo esc_attr( $option['title'] ) ?>
       </option>
 			<?php
 		}

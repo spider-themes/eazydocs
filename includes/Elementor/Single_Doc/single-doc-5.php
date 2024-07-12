@@ -1,7 +1,7 @@
 <?php if ( !empty($sections) ) : ?>
 <div class="docs-box-item docs-single-5-wrap">
     <h5 class="docs-5-title">
-        <?php echo get_the_title( $settings['doc'] ); ?>
+        <?php echo esc_html(get_the_title( $settings['doc'] )); ?>
     </h5>
     <div class="dox5-section-item">
         <?php
@@ -32,7 +32,7 @@
 					}
 					?>
                 <li>
-                    <a href="<?php echo get_permalink( $doc_item->ID ) ?>">
+                    <a href="<?php echo esc_url(get_permalink( $doc_item->ID )) ?>">
                         <?php echo wp_kses_post( $doc_item->post_title ) ?>
                     </a>
                 </li>

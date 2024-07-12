@@ -34,7 +34,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 
 					?>
                     <li class="nav-item">
-                        <a data-rel="<?php echo $post_title_slug; ?>"
+                        <a data-rel="<?php echo esc_attr($post_title_slug); ?>"
                            class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 							<?php
 							echo get_the_post_thumbnail( $doc_id, 'docy_16x16' );
@@ -66,7 +66,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 						}
 						?>
                         <li class="nav-item">
-                            <a data-rel="doc3-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo $doc->post_name; ?>"
+                            <a data-rel="doc3-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr($doc->post_name); ?>"
                                class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 								<?php
 								echo get_the_post_thumbnail( $doc->ID, 'docy_16x16' );
@@ -131,7 +131,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 									foreach ( $doc_items as $doc_item ) :
 										?>
                                         <li>
-                                            <a href="<?php echo get_permalink( $doc_item->ID ) ?>" class="ezd_item_list_title">
+                                            <a href="<?php echo esc_url(get_permalink( $doc_item->ID )) ?>" class="ezd_item_list_title">
 												<?php echo wp_kses_post( $doc_item->post_title ) ?>
                                             </a>
                                         </li>
@@ -141,7 +141,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
                                 </ul>
 								<?php
 								if ( ! empty( $settings['read_more'] ) ) : ?>
-                                    <a href="<?php echo get_permalink( $section->ID ); ?>" class="text_btn dark_btn ezd_btn">
+                                    <a href="<?php echo esc_url(get_permalink( $section->ID )); ?>" class="text_btn dark_btn ezd_btn">
 										<?php echo esc_html( $settings['read_more'] ) ?>
                                         <i class="<?php ezd_arrow() ?>"></i>
                                     </a>

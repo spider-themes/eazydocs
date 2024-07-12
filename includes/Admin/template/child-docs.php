@@ -110,14 +110,14 @@ if (is_array($depth_one_parents)) :
                                         $edit_link = 'javascript:void(0)';
                                         $target = '_self';
                                         if ( ezd_is_admin_or_editor($child->ID, 'edit') ) {
-                                            $edit_link = admin_url('post.php').'?post='.$child->ID.'&action=edit';
+                                            $edit_link = esc_url(admin_url('post.php')).'?post='.$child->ID.'&action=edit';
                                             $target = '_blank';
                                         }
                                         ?>
                                         <div class="left-content">
                                             <h4>
                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>">
-                                                    <?php echo $child->post_title; ?>
+                                                    <?php echo esc_html($child->post_title); ?>
                                                 </a>
                                                 <?php 
                                                 if (count($doc_items) > 0) :
@@ -151,7 +151,7 @@ if (is_array($depth_one_parents)) :
                                                     ?>
 
                                                     <li>
-                                                        <a href="<?php echo admin_url('admin.php'); ?>?Create_Child=yes&childID=<?php echo $child->ID; ?>&_wpnonce=<?php echo wp_create_nonce($child->ID); ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                                                        <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Create_Child=yes&childID=<?php echo esc_attr($child->ID); ?>&_wpnonce=<?php echo esc_attr(wp_create_nonce($child->ID) ); ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
                                                             <span class="dashicons dashicons-plus-alt2"></span>
                                                         </a>
                                                     </li>
@@ -171,7 +171,7 @@ if (is_array($depth_one_parents)) :
                                                 ?>
 
                                                 <li>
-                                                    <a href="<?php echo get_permalink($child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
+                                                    <a href="<?php echo esc_url( get_permalink($child)); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                         <span class="dashicons dashicons-external"></span>
                                                     </a>
                                                 </li>
@@ -180,7 +180,7 @@ if (is_array($depth_one_parents)) :
                                                 if ( ezd_is_admin_or_editor($child->ID, 'delete' ) ) :
                                                     ?>
                                                     <li class="delete">
-                                                        <a href="<?php echo admin_url('admin.php'); ?>?Section_Delete=yes&_wpnonce=<?php echo wp_create_nonce($child->ID); ?>&ID=<?php echo $child->ID; ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
+                                                        <a href="<?php echo esc_url( admin_url('admin.php')); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce($child->ID) ); ?>&ID=<?php echo esc_attr($child->ID); ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                             <span class="dashicons dashicons-trash"></span>
                                                         </a>
                                                     </li>
@@ -203,7 +203,7 @@ if (is_array($depth_one_parents)) :
                                                 $sum_votes = $positive + $negative;
 
                                                 if ($positive || $negative) {
-                                                    echo "<progress id='file' value='$positive' max='$sum_votes' title='$positive_title$negative_title'> </progress>";
+	                                                echo '<progress id="file" value="' . esc_attr($positive) . '" max="' . esc_attr($sum_votes) . '" title="' . esc_attr($positive_title . $negative_title) . '"> </progress>';
                                                 } else {
                                                     esc_html_e('No rates', 'eazydocs');
                                                 }
@@ -269,14 +269,14 @@ if (is_array($depth_one_parents)) :
                                                         $target = '_self';
                                                         
                                                         if ( ezd_is_admin_or_editor($sub_child->ID, 'edit') ) {
-                                                            $edit_link = admin_url('post.php').'?post='.$sub_child->ID.'&action=edit';
+                                                            $edit_link = esc_url(admin_url('post.php')).'?post='.$sub_child->ID.'&action=edit';
                                                             $target = '_blank';
                                                         }
                                                         ?>
                                                         <div class="left-content">
                                                             <h4>
                                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="section-last-label">
-                                                                    <?php echo get_the_title($sub_child->ID); ?>
+                                                                    <?php echo esc_html(get_the_title($sub_child->ID)); ?>
                                                                 </a>
                                                                 <?php if (count($child_depth) > 0) : ?>
                                                                     <span class="count ezd-badge">
@@ -305,7 +305,7 @@ if (is_array($depth_one_parents)) :
                                                                     ?>
 
                                                                     <li>
-                                                                        <a href="<?php echo admin_url('admin.php'); ?>?Create_Child=yes&childID=<?php echo $sub_child->ID; ?>&_wpnonce=<?php echo wp_create_nonce($sub_child->ID); ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                                                                        <a href="<?php echo esc_url( admin_url('admin.php') ); ?>?Create_Child=yes&childID=<?php echo esc_attr($sub_child->ID); ?>&_wpnonce=<?php echo esc_attr( wp_create_nonce($sub_child->ID) ); ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
                                                                             <span class="dashicons dashicons-plus-alt2"></span>
                                                                         </a>
                                                                     </li>
@@ -325,7 +325,7 @@ if (is_array($depth_one_parents)) :
                                                                 ?>
 
                                                                 <li>
-                                                                    <a href="<?php echo get_permalink($sub_child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
+                                                                    <a href="<?php echo esc_url(get_permalink($sub_child)); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                                         <span class="dashicons dashicons-external"></span>
                                                                     </a>
                                                                 </li>
@@ -334,7 +334,7 @@ if (is_array($depth_one_parents)) :
                                                                 if ( ezd_is_admin_or_editor($sub_child->ID, 'delete' ) ) :
                                                                     ?>
                                                                     <li class="delete">
-                                                                      <a href="<?php echo admin_url('admin.php'); ?>?Section_Delete=yes&_wpnonce=<?php echo wp_create_nonce($sub_child->ID); ?>&ID=<?php echo esc_attr( $sub_child->ID ); ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
+                                                                      <a href="<?php echo esc_url(admin_url('admin.php') ); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce($sub_child->ID) ); ?>&ID=<?php echo esc_attr( $sub_child->ID ); ?>" class="section-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                                             <span class="dashicons dashicons-trash"></span>
                                                                         </a>
                                                                     </li>
@@ -356,7 +356,7 @@ if (is_array($depth_one_parents)) :
                                                                 $sum_votes = $positive + $negative;
 
                                                                 if ($positive || $negative) {
-                                                                    echo "<progress id='file' value='$positive' max='$sum_votes' title='$positive_title$negative_title'> </progress>";
+                                                                    echo '<progress id="file" value="' . esc_attr($positive) . '" max="' . esc_attr($sum_votes) . '" title="' . esc_attr($positive_title . $negative_title) . '"> </progress>';
                                                                 } else {
                                                                     esc_html_e('No rates', 'eazydocs');
                                                                 }
@@ -418,7 +418,7 @@ if (is_array($depth_one_parents)) :
                                                                         $edit_link = 'javascript:void(0)';
                                                                         $target = '_self';
                                                                         if ( ezd_is_admin_or_editor($of_sub_child->ID, 'edit') ) {
-                                                                            $edit_link = admin_url('post.php').'?post='.$of_sub_child->ID.'&action=edit';
+                                                                            $edit_link = esc_url(admin_url('post.php')).'?post='.$of_sub_child->ID.'&action=edit';
                                                                             $target = '_blank';
                                                                         }
                                                                         ?>
@@ -426,7 +426,7 @@ if (is_array($depth_one_parents)) :
 
                                                                             <h4>
                                                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="child-last-label">
-                                                                                    <?php echo get_the_title($of_sub_child->ID); ?>
+                                                                                    <?php echo esc_html(get_the_title($of_sub_child->ID)); ?>
                                                                                 </a>
                                                                             </h4>
 
@@ -453,7 +453,7 @@ if (is_array($depth_one_parents)) :
                                                                                 ?>
 
                                                                                 <li>
-                                                                                    <a href="<?php echo get_permalink($of_sub_child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
+                                                                                    <a href="<?php echo esc_url( get_permalink($of_sub_child)); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                                                         <span class="dashicons dashicons-external"></span>
                                                                                     </a>
                                                                                 </li>
@@ -461,7 +461,7 @@ if (is_array($depth_one_parents)) :
                                                                                 <?php 
                                                                                     if ( ezd_is_admin_or_editor($of_sub_child->ID, 'delete' ) ) : ?>
                                                                                         <li class="delete">
-                                                                                            <a href="<?php echo admin_url('admin.php'); ?>?Last_Child_Delete=yes&_wpnonce=<?php echo wp_create_nonce($of_sub_child->ID); ?>&ID=<?php echo esc_attr($of_sub_child->ID); ?>" class="child-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
+                                                                                            <a href="<?php echo esc_url( admin_url('admin.php')); ?>?Last_Child_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce($of_sub_child->ID)); ?>&ID=<?php echo esc_attr($of_sub_child->ID); ?>" class="child-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                                                                                                 <span class="dashicons dashicons-trash"></span>
                                                                                             </a>
                                                                                         </li>
@@ -482,7 +482,7 @@ if (is_array($depth_one_parents)) :
                                                                                 $sum_votes = $positive + $negative;
 
                                                                                 if ($positive || $negative) {
-                                                                                    echo "<progress id='file' value='$positive' max='$sum_votes' title='$positive_title$negative_title'> </progress>";
+	                                                                                echo '<progress id="file" value="' . esc_attr($positive) . '" max="' . esc_attr($sum_votes) . '" title="' . esc_attr($positive_title . $negative_title) . '"> </progress>';
                                                                                 } else {
                                                                                     esc_html_e('No rates', 'eazydocs');
                                                                                 }
@@ -510,7 +510,7 @@ if (is_array($depth_one_parents)) :
             <?php 
             if ( current_user_can( 'edit_posts' ) ) : 
                 ?>
-                <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url('admin.php'); ?>?Create_Section=yes&_wpnonce=<?php echo wp_create_nonce($item); ?>&parentID=<?php echo $item; ?>&is_section=">
+                <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo esc_url(admin_url('admin.php')); ?>?Create_Section=yes&_wpnonce=<?php echo esc_attr(wp_create_nonce($item)); ?>&parentID=<?php echo esc_attr($item); ?>&is_section=">
                     <?php esc_html_e('Add Section', 'eazydocs'); ?>
                 </button>
                 <?php

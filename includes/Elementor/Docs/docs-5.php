@@ -28,7 +28,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 						}
 						?>
                         <li class="nav-item<?php echo esc_attr( $active ) ?>">
-                            <a <?php echo $atts; ?> class="nav-link">
+                            <a <?php echo esc_attr($atts); ?> class="nav-link">
 								<?php
 								if ( ! empty( $settings['book_chapter_prefix'] ) ):
 									?>
@@ -60,7 +60,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 					$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
 				}
 				?>
-                <div id="doc-4<?php echo $doc_id ?>" class="doc_section_wrap ">
+                <div id="doc-4<?php echo esc_attr($doc_id) ?>" class="doc_section_wrap ">
                     <div class="ezd-grid ezd-grid-cols-12">
                         <div class="ezd-lg-col-12 ezd-md-col-12 ezd-grid-column-full">
                             <div class="docs4-heading">
@@ -68,10 +68,11 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 									<?php echo wp_kses_post( $main_doc['doc']->post_title ); ?>
                                 </h3>
 								<?php
-								if ( strlen( trim( $main_doc['doc']->post_excerpt ) ) != 0 ) {
-									echo wpautop( wp_trim_words( $main_doc['doc']->post_excerpt, $settings['main_doc_excerpt'], '' ) );
+
+								if (strlen(trim($main_doc['doc']->post_excerpt)) != 0) {
+									echo wp_kses_post(wpautop(wp_trim_words($main_doc['doc']->post_excerpt, $settings['main_doc_excerpt'], '')));
 								} else {
-									echo wpautop( wp_trim_words( $main_doc['doc']->post_content, $settings['main_doc_excerpt'], '' ) );
+									echo wp_kses_post(wpautop(wp_trim_words($main_doc['doc']->post_content, $settings['main_doc_excerpt'], '')));
 								}
 								?>
                             </div>
@@ -87,7 +88,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
                                 <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
                                     <div class="topic_list_item">
 										<?php if ( ! empty( $section->post_title ) ) : ?>
-                                            <a class="doc4-section-title" href="<?php echo get_permalink( $section->ID ); ?>">
+                                            <a class="doc4-section-title" href="<?php echo esc_url(get_permalink( $section->ID )); ?>">
                                                 <h4>
 													<?php echo wp_kses_post( $section->post_title ); ?>
                                                 </h4>
@@ -108,7 +109,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 												$child_count = $child ++
 												?>
                                                 <li>
-                                                    <a href="<?php echo get_permalink( $doc_item->ID ) ?>">
+                                                    <a href="<?php echo esc_url(get_permalink( $doc_item->ID )) ?>">
                                     <span class="chapter_counter">
                                         <?php echo esc_html( $section_count . "." . $child_count . " " ); ?>
                                     </span>

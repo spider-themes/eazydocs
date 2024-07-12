@@ -21,7 +21,7 @@ $desc           = ! empty ( $options['feedback-form-desc'] ) ? $options['feedbac
             </button>
             <div class="shortcode_title">
                 <h3 class="title mb-2"> <?php echo esc_html( $title ); ?> </h3>
-                <?php echo wpautop( $desc ); ?>
+	            <?php echo wp_kses_post( wpautop( $desc ) ); ?>
             </div>
             <form method="post" id="edocs-contact-form" class="contact_form">
                 <div class="ezd-grid ezd-grid-cols-12">

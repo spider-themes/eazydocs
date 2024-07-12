@@ -248,9 +248,9 @@ function ezd_list_pages( $args = '' ) {
 	 *
 	 */
 	if ( $r['echo'] ) {
-		echo apply_filters( 'ezd_list_pages', $output, $r, $pages );;
+		echo esc_html(apply_filters( 'ezd_list_pages', $output, $r, $pages ));;
 	} else {
-		return apply_filters( 'ezd_list_pages', $output, $r, $pages );;
+		return esc_html(apply_filters( 'ezd_list_pages', $output, $r, $pages ));;
 	}
 }
 
@@ -340,7 +340,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 
 		$html .= '</ol>';
 
-		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
+		echo esc_html(apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ));
 	}
 }
 
@@ -397,7 +397,7 @@ if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
 
 		$html .= ' ' . $args['before'] . get_the_title() . $args['after'];
 		$html .= '</ol>';
-		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
+		echo esc_html(apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ));
 	}
 }
 
@@ -461,7 +461,7 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 
 		$html .= '</ol>';
 
-		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
+		echo esc_html(apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ));
 	}
 }
 
@@ -633,14 +633,14 @@ function eazydocs_one_page( $doc_id ) {
 	if ( $post_status != 'draft' ) :
 		if ( count( $one_page_docs ) < 1 ) :
 			?>
-			<button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo admin_url( 'admin.php' ); ?>?parentID=<?php echo $doc_id; ?>&single_doc_title=<?php echo $one_page_title; ?>&make_onepage=yes&_wpnonce=<?php echo wp_create_nonce($doc_id); ?>">
+			<button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo esc_url(admin_url( 'admin.php' )); ?>?parentID=<?php echo esc_attr($doc_id); ?>&single_doc_title=<?php echo esc_html($one_page_title); ?>&make_onepage=yes&_wpnonce=<?php echo esc_attr(wp_create_nonce($doc_id)); ?>">
 				<?php esc_html_e( 'Make OnePage Doc', 'eazydocs' ); ?>
 			</button>
 			<?php
 		else :
 			foreach ( $one_page_docs as $single_docs ) :
 				?>
-				<a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink( $single_docs ); ?>" target="_blank">
+				<a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo esc_url(get_permalink( $single_docs )); ?>" target="_blank">
 					<?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
 				</a>
 				<?php
@@ -838,29 +838,29 @@ function ezd_onepage_docs() {
 <p>
     <b>Doc Layout</b><br />
     <input type="text" disabled name="ezd_doc_layout"
-        value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_layout', true ); ?>" class="widefat" />
+        value="<?php echo esc_attr(get_post_meta( get_the_ID(), 'ezd_doc_layout', true )); ?>" class="widefat" />
 </p> <br>
 
 <p class="ezd_left_content_heading"> Left Side Content</p>
 
 <p><b>Content Type</b><br />
     <input type="text" disabled name="ezd_doc_content_type"
-        value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_type', true ); ?>" class="widefat" />
+        value="<?php echo esc_attr(get_post_meta( get_the_ID(), 'ezd_doc_content_type', true )); ?>" class="widefat" />
 </p>
 <p><b>Content Box</b><br />
     <textarea name="ezd_doc_left_sidebar" disabled cols="30" rows="3"
-        class="widefat"> <?php echo get_post_meta( get_the_ID(), "ezd_doc_left_sidebar", true ); ?> </textarea>
+        class="widefat"> <?php echo esc_attr(get_post_meta( get_the_ID(), "ezd_doc_left_sidebar", true )); ?> </textarea>
 </p>
 
 <p class="ezd_left_content_heading"> Right Side Content</p>
 
 <p><b>Content Type</b><br />
     <input type="text" disabled name="ezd_doc_content_type_right"
-        value="<?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true ); ?>" class="widefat" />
+        value="<?php echo esc_attr(get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true )); ?>" class="widefat" />
 </p>
 <p><b>Content Box</b><br />
     <textarea disabled name="ezd_doc_content_box_right" id="" cols="30" rows="3"
-        class="widefat"><?php echo get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true ); ?></textarea>
+        class="widefat"><?php echo esc_attr(get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true )); ?></textarea>
 </p>
 <?php
 }
@@ -1008,7 +1008,9 @@ function ezd_get_posts( $post_type = 'docs' ) {
 }
 
 function ezd_widget_excerpt( $settings_key, $limit = 10 ) {
-	echo wp_trim_words( wpautop( get_the_excerpt( $settings_key ) ), $limit, '' );
+
+	echo wp_kses_post( wp_trim_words( wpautop( get_the_excerpt( $settings_key ) ), $limit, '' ) );
+
 }
 
 /**
@@ -1057,10 +1059,11 @@ function ezd_el_image( $settings_key = '', $alt = '', $class = '', $atts = [] ) 
 		//echo print_r($atts);
 		if ( ! empty( $atts ) ) {
 			foreach ( $atts as $k => $att ) {
-				$attss .= "$k=" . "'$att'";
+				$attss .= esc_attr( $k ) . '="' . esc_attr( $att ) . '" ';
 			}
 		}
-		echo "<img src='{$settings_key['url']}' $class alt='$alt' $attss>";
+		echo '<img src="' . esc_url( $settings_key['url'] ) . '" ' . esc_attr( $class ) . ' alt="' . esc_attr( $alt ) . '" ' . esc_attr( trim( $attss ) ) . '>';
+
 	}
 }
 
@@ -1311,7 +1314,7 @@ function ezd_internal_doc_security( $doc_id =  0 ) {
 				if ( is_singular( 'docs' ) ) {				
 					$message = esc_html__("You don't have permission to access this document!", 'eazydocs');
 					$output = sprintf('<div class="ezd-lg-col-9"><span class="ezd-doc-warning-wrap"><i class="icon_lock"></i><span>%s</span></span></div>', $message);
-					echo $output;
+					echo wp_kses_post($output);
 				}
 				return null;
 			}
@@ -1337,11 +1340,12 @@ function ezd_perform_edit_delete_actions( $action = 'delete', $docID = 0 ){
 		if ($current_user_id === $post_author_id || current_user_can('manage_options') ) {
 			return true;
 		} else {
-			echo "<p style='$inline_styles'>You don't have permission to $action this post.</p>";
+			echo '<p style="' . esc_attr( $inline_styles ) . '">' . esc_html__( "You don't have permission to " ) . esc_html( $action ) . esc_html__( " this post." ) . '</p>';
 		}
 	} else {
 		// User does not have delete_posts capability
-		echo "<p style='$inline_styles'>You don't have sufficient permission to perform this action.</p>";
+		echo '<p style="' . esc_attr( $inline_styles ) . '">' . esc_html__( 'You don\'t have sufficient permission to perform this action.', 'your-text-domain' ) . '</p>';
+
 	}
 }
 

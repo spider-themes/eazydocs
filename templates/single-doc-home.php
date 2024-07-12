@@ -25,15 +25,16 @@ if ( $sections && $post->post_parent === 0 ) :
                     echo get_the_post_thumbnail( $section->ID, 'full' );
                 } else {
                     $default_icon = EAZYDOCS_IMG . '/icon/folder.png';
-                    echo "<img src='$default_icon' alt='{$section->post_title}'>";
+	                echo '<img src="' . esc_url( $default_icon ) . '" alt="' . esc_attr( $section->post_title ) . '">';
+
                 }
                 ?>
             </div>
             <div class="media-body">
-                <a href="<?php echo get_permalink( $section->ID ); ?>" class="doc-sec title">
-                    <?php echo $section->post_title; ?>
+                <a href="<?php echo esc_url(get_permalink( $section->ID )); ?>" class="doc-sec title">
+                    <?php echo esc_html($section->post_title); ?>
                 </a>
-                <p> <?php echo wp_trim_words( get_the_excerpt($section->ID), $sec_excerpt, '' ); ?> </p>
+                <p> <?php echo wp_kses_post(wp_trim_words( get_the_excerpt($section->ID), $sec_excerpt, '' )); ?> </p>
             </div>
         </div>
         <?php 

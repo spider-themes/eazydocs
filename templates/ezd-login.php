@@ -27,7 +27,7 @@ if ( isset( $_GET['add_new_doc'] ) && $_GET['add_new_doc'] == 'yes' ) {
             <?php echo esc_html($login_title); ?>
         </div>
         <div class="ezd-login-form-wrap"> 
-            <?php echo wpautop($login_subtitle); ?>
+            <?php echo wp_kses_post(wpautop($login_subtitle)); ?>
  
             <form action="<?php echo esc_url(site_url('wp-login.php', 'login_post')); ?>" method="POST" class="ezd-form-wrap">
                 <input type="text" placeholder="<?php esc_attr_e('Username', 'eazydocs'); ?>" name="log" id="user_login">
