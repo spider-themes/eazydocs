@@ -168,9 +168,9 @@ class Frontend {
 								$count ++;
 								?>
                                 <li>
-                                    <a href="<?php echo get_the_permalink( $ft_post->ID ) ?>"> <i
+                                    <a href="<?php echo esc_url(get_the_permalink( $ft_post->ID )) ?>"> <i
                                                 class="icon_document_alt"></i>
-										<?php echo get_the_title( $ft_post->ID ) ?>
+										<?php echo esc_html(get_the_title( $ft_post->ID )) ?>
                                     </a>
                                 </li>
 								<?php
@@ -250,9 +250,9 @@ class Frontend {
 						while ( $doc_posts->have_posts() ) : $doc_posts->the_post();
 							?>
                             <li>
-                                <a href="<?php echo get_the_permalink( get_the_ID() ) ?>">
+                                <a href="<?php echo esc_url(get_the_permalink( get_the_ID() )) ?>">
                                     <i class="icon_document_alt"></i>
-									<?php echo get_the_title( get_the_ID() ) ?>
+									<?php echo esc_html(get_the_title( get_the_ID() )) ?>
                                 </a>
                             </li>
 						<?php
@@ -335,7 +335,7 @@ class Frontend {
 			<?php
 			if ( $previous_post_id != 0 ) :
 				?>
-                <a class="next-prev-pager first" href="<?php echo get_permalink( $previous_post_id ); ?>">
+                <a class="next-prev-pager first" href="<?php echo esc_url(get_permalink( $previous_post_id )); ?>">
                 <span>
                     <?php
                     echo esc_html( get_the_title( $current_parent_id ) );
@@ -349,7 +349,7 @@ class Frontend {
 
             if ( $next_post_id != 0 ) :
                 ?>
-                <a class="next-prev-pager second" href="<?php echo get_permalink( $next_post_id ); ?>">
+                <a class="next-prev-pager second" href="<?php echo esc_url(get_permalink( $next_post_id )); ?>">
                 <span>
                     <?php
                     esc_html_e( 'Next - ', 'eazydocs' );

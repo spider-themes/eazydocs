@@ -104,8 +104,8 @@ class Ajax {
 			while ( $posts->have_posts() ) : $posts->the_post();
 				$no_thumbnail 		= ezd_get_opt('is_search_result_thumbnail') == false ? 'no-thumbnail' :  '';
 				?>
-                <div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" onclick="document.location='<?php echo get_the_permalink( get_the_ID() ); ?>'">
-                    <a href="<?php echo get_the_permalink( get_the_ID() ); ?>" class="title">
+                <div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" onclick="document.location='<?php echo esc_url(get_the_permalink( get_the_ID() )); ?>'">
+                    <a href="<?php echo esc_url(get_the_permalink( get_the_ID() )) ?>" class="title">
 						
 						<?php						
 						if ( ezd_get_opt('is_search_result_thumbnail') ) :

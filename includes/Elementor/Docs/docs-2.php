@@ -26,14 +26,14 @@
 					}
 					?>
             <li class="nav-item">
-                <a data-rel="doc-<?php echo $post_title_slug; ?>"
+                <a data-rel="doc-<?php echo esc_attr($post_title_slug); ?>"
                     class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
                     <i class="icon_document_alt"></i>
                     <?php
 							if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 								echo wp_kses_post( $doc_name[0] );
 							} else {
-								echo get_the_title( $doc_id );
+								echo wp_kses_post(get_the_title($doc_id));
 							}
 							?>
                 </a>
@@ -60,7 +60,7 @@
 						}
 						?>
             <li class="nav-item">
-                <a data-rel="doc-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo $post_title_slug; ?>"
+                <a data-rel="doc-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr($post_title_slug); ?>"
                     class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
                     <?php
 								if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -94,8 +94,8 @@
 				$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
 			}
 			?>
-        <div class="doc_tab_pane ezd-tab-box <?php echo $active; ?>"
-            id="doc-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo $doc_id ?>">
+        <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr($active); ?>"
+            id="doc-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr($doc_id) ?>">
             <div class="ezd-grid ezd-grid-cols-12">
                 <?php
 					if ( ! empty( $main_doc['sections'] ) ) :
@@ -124,7 +124,7 @@
 											foreach ( $doc_items as $doc_item ) :
 												?>
                             <li>
-                                <a href="<?php echo get_permalink( $doc_item->ID ) ?>" class="ezd_item_list_title">
+                                <a href="<?php echo esc_url(get_permalink( $doc_item->ID )) ?>" class="ezd_item_list_title">
                                     <?php echo wp_kses_post( $doc_item->post_title ) ?>
                                 </a>
                             </li>
@@ -135,7 +135,7 @@
                         <?php
 									endif;
 									if ( ! empty( $settings['read_more'] ) ) : ?>
-                        <a href="<?php echo get_permalink( $section->ID ); ?>" class="learn_btn ezd_btn">
+                        <a href="<?php echo esc_url(get_permalink( $section->ID )); ?>" class="learn_btn ezd_btn">
                             <?php echo esc_html( $settings['read_more'] ) ?>
                             <i class="<?php ezd_arrow() ?>"></i>
                         </a>

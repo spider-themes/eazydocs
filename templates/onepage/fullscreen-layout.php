@@ -55,7 +55,7 @@ $children = wp_list_pages( array(
 					echo get_the_post_thumbnail( $post_id->ID, 'full' );
 					?>
                     <h3 class="doc-title">
-						<?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
+						<?php echo esc_html(get_post_field( 'post_title', $post_id->ID, 'display' )); ?>
                     </h3>
 					<?php
 
@@ -64,7 +64,7 @@ $children = wp_list_pages( array(
                         <nav class="scroll op-docs-sidebar">
                             <ul class="ezd-list-unstyled nav-sidebar fullscreen-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
 								<?php
-								echo wp_list_pages( array(
+								echo wp_kses_post(wp_list_pages( array(
 									'title_li'  => '',
 									'order'     => 'menu_order',
 									'child_of'  => $post_id->ID,
@@ -72,7 +72,7 @@ $children = wp_list_pages( array(
 									'post_type' => 'docs',
 									'walker'    => new Walker_Onepage_Fullscren(),
 									'depth'     => 3
-								) );
+								) ));
 								?>
                             </ul>
                         </nav>
@@ -133,19 +133,19 @@ $children = wp_list_pages( array(
 							$get_title = 'ezd-' . sanitize_title( $doc_item->post_title );
 						}
 						?>
-                        <article class="documentation_body doc-section onepage-doc-sec" id="<?php echo sanitize_title( $get_title ) ?>" itemscope itemtype="http://schema.org/Article">
+                        <article class="documentation_body doc-section onepage-doc-sec" id="<?php echo esc_attr( $get_title ) ?>" itemscope itemtype="http://schema.org/Article">
 							<?php if ( ! empty( $doc_item->post_title ) ) : ?>
                                 <div class="shortcode_title doc-sec-title">
-                                    <h2> <?php echo $sec_serial . '. ' . $doc_item->post_title; ?> </h2>
+                                    <h2> <?php echo esc_html($sec_serial . '. ' . $doc_item->post_title); ?> </h2>
                                 </div>
 							<?php endif; ?>
                             <div class="doc-content">
 								<?php
 								if ( did_action( 'elementor/loaded' ) ) {
 									$parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $doc_item->ID );
-									echo ! empty( $parent_content ) ? $parent_content : apply_filters( 'the_content', $doc_item->post_content );
+									echo ! empty( $parent_content ) ? wp_kses_post($parent_content) : wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
 								} else {
-									echo apply_filters( 'the_content', $doc_item->post_content );
+									echo wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
 								}
 								?>
                             </div>
@@ -158,12 +158,12 @@ $children = wp_list_pages( array(
 									$get_child_title = 'ezd-' . sanitize_title( $child_section->post_title );
 								}
 								?>
-                                <div class="child-doc onepage-doc-sec" id="<?php echo sanitize_title( $get_child_title ) ?>">
+                                <div class="child-doc onepage-doc-sec" id="<?php echo esc_attr( $get_child_title ) ?>">
                                     <div class="shortcode_title depth-two">
                                         <h3>
 											<?php
-											echo $sec_serial . '.' . $child_serial . ' ';
-											echo $child_section->post_title;
+											echo esc_html($sec_serial . '.' . $child_serial . ' ');
+											echo esc_html($child_section->post_title);
 											?>
                                         </h3>
                                     </div>
@@ -171,9 +171,9 @@ $children = wp_list_pages( array(
 										<?php
 										if ( did_action( 'elementor/loaded' ) ) {
 											$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $child_section->ID );
-											echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $child_section->post_content );
+											echo ! empty( $child_content ) ? wp_kses_post($child_content ): wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
 										} else {
-											echo apply_filters( 'the_content', $child_section->post_content );
+											echo wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
 										}
 										?>
                                     </div>
@@ -195,13 +195,12 @@ $children = wp_list_pages( array(
 										$get_last_child_title = 'ezd-' . sanitize_title( $last_depth_doc->post_title );
 									}
 									?>
-                                    <div class="child-doc onepage-doc-sec"
-                                         id="<?php echo sanitize_title( $get_last_child_title ) ?>">
+                                    <div class="child-doc onepage-doc-sec" id="<?php echo esc_attr( $get_last_child_title ) ?>">
                                         <div class="shortcode_title depth-three">
                                             <h4>
 												<?php
-												echo $sec_serial . '.' . $child_serial . '.' . $last_depth_serial . ' ';
-												echo $last_depth_doc->post_title;
+												echo esc_html($sec_serial . '.' . $child_serial . '.' . $last_depth_serial . ' ');
+												echo esc_html($last_depth_doc->post_title);
 												?>
                                             </h4>
                                         </div>
@@ -209,9 +208,9 @@ $children = wp_list_pages( array(
 											<?php
 											if ( did_action( 'elementor/loaded' ) ) {
 												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-												echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $last_depth_doc->post_content );
+												echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 											} else {
-												echo apply_filters( 'the_content', $last_depth_doc->post_content );
+												echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 											}
 											?>
                                         </div>

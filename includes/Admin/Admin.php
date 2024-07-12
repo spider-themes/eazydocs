@@ -183,9 +183,9 @@ class Admin {
 				$classes .= '';
 		}
 
-		if ( eaz_fs()->is_paying_or_trial() || eaz_fs()->is_premium() ) {
+		/*if ( eaz_fs()->is_paying_or_trial() || eaz_fs()->is_premium() ) {
 			$classes .= ' ezd-premium';
-		}
+		}*/
 
 		return $classes;
 	}
@@ -201,14 +201,14 @@ class Admin {
             <div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-                <img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
+                <img src="<?php echo esc_url(EAZYDOCS_IMG . '/icon/crown.svg'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
                 <h3> <?php echo esc_html__( 'Add Your OnePage Doc', 'eazydocs' ); ?> </h3>
                 <p class="big-p"> <?php esc_html_e( 'Onepage documentation format will generate all the pages of a Doc as sections in a single page which is scrollable by sections. Visitors can find the all guides on a single page and they can navigate through the different sections very fast.',
 						'eazydocs' ); ?> </p>
 				<?php // PHPCS - No need to escape a URL. The query arg is sanitized. 
 				?>
                 <div class="button-inline">
-                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url( 'admin.php?page=eazydocs-pricing' ); ?>">
+                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url(admin_url( 'admin.php?page=eazydocs-pricing' )); ?>">
 						<?php esc_html_e( 'Go Pro', 'eazydocs' ); ?>
                     </a>
                     <a class="button button-secondary ezd-btn btn-lg" target="_blank" href="https://wordpress-theme.spider-themes.net/docy/docy-documentation/"
@@ -227,11 +227,11 @@ class Admin {
             <div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-                <img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
+                <img src="<?php echo esc_url(EAZYDOCS_IMG . '/icon/crown.svg'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
                 <h3 class="title"> <?php echo esc_html__( 'Users Feedback', 'eazydocs' ); ?> </h3>
                 <p class="big-p"> <?php esc_html_e( 'You can get the Doc Feedbacks listed in this page to review.', 'eazydocs' ); ?> </p>
                 <div class="button-inline">
-                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url( 'admin.php?page=eazydocs-pricing' ); ?>">
+                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url(admin_url( 'admin.php?page=eazydocs-pricing' )); ?>">
 						<?php esc_html_e( 'Get Pro Plan', 'eazydocs' ); ?>
                     </a>
                 </div>
@@ -246,11 +246,11 @@ class Admin {
             <div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-                <img src="<?php echo EAZYDOCS_IMG . '/icon/crown.svg'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
+                <img src="<?php echo esc_url(EAZYDOCS_IMG . '/icon/crown.svg'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
                 <h3 class="title"> <?php echo esc_html__( 'EazyDocs Analytics', 'eazydocs' ); ?> </h3>
                 <p class="big-p"> <?php esc_html_e( 'Analytics page is available in the EazyDocs Premium Promax Plan', 'eazydocs' ); ?> </p>
                 <div class="button-inline">
-                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo admin_url( 'admin.php?page=eazydocs-pricing' ); ?>">
+                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url(admin_url( 'admin.php?page=eazydocs-pricing' )); ?>">
 						<?php esc_html_e( 'Get Promax Plan', 'eazydocs' ); ?>
                     </a>
                 </div>
@@ -272,7 +272,7 @@ class Admin {
 			<div class="ezd-setup-wizard-wrapper">
 				<div class="ezd-setup-wizard-header">
 					<div>
-						<img src="<?php echo EAZYDOCS_URL . '/src/images/ezd-icon.png'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" />
+						<img src="<?php echo esc_url(EAZYDOCS_URL . '/src/images/ezd-icon.png'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" />
 						<span><?php esc_html_e( 'EazyDocs', 'eazydocs' ); ?></span>
 					</div>
 
@@ -286,11 +286,11 @@ class Admin {
 			<div id="ezd-setup-wizard-wrap">
 				<div class="ezd-wizard-head">
 					<div class="ezd-wizard-head-left">
-						<img src="<?php echo EAZYDOCS_URL . '/src/images/ezd-icon.png'; ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" />
+						<img src="<?php echo esc_url(EAZYDOCS_URL . '/src/images/ezd-icon.png'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" />
 						<span><?php esc_html_e( 'GETTING STARTED', 'eazydocs' ); ?></span>
 					</div>
 					<div class="ezd-wizard-head-right">
-						<a href="<?php echo admin_url( 'admin.php?page=eazydocs' ); ?>" class="btn btn-primary"><?php esc_html_e( 'Skip', 'eazydocs' ); ?></a>
+						<a href="<?php echo esc_url(admin_url( 'admin.php?page=eazydocs' )); ?>" class="btn btn-primary"><?php esc_html_e( 'Skip', 'eazydocs' ); ?></a>
 					</div>
 				</div>
 				<div class="sw-toolbar">
@@ -305,7 +305,7 @@ class Admin {
 					
 					<div id="step-1" class="tab-pane" role="tabpanel">
 						<h2><?php esc_html_e( 'Welcome to EazyDocs', 'eazydocs' ); ?></h2>
-						<?php echo wpautop( 'Discover EazyDocs by this guide that walks you through creating professional, user-friendly <br> website documentation seamlessly. Then click next to setup initial settings.' ); ?>
+						<?php echo wp_kses_post(wpautop( 'Discover EazyDocs by this guide that walks you through creating professional, user-friendly <br> website documentation seamlessly. Then click next to setup initial settings.' )) ; ?>
 						<iframe width="650" height="350" src="https://www.youtube.com/embed/4H2npHIR2qg?si=ApQh7BL6CL5QM4zX" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         <div class="button-inline">
                             <a class="button button-primary ezd-btn btn-lg" target="_blank" href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/">
@@ -351,17 +351,17 @@ class Admin {
 						<div class="page-layout-wrap">
 							<input type="radio" id="both_sidebar" value="both_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'both_sidebar' ); ?>>
 							<label for="both_sidebar" class="<?php if ( $docs_single_layout == 'both_sidebar' ) { echo esc_attr( 'active' ); } ?>">
-								<img src="<?php echo EAZYDOCS_IMG . '/customizer/both_sidebar.jpg'; ?>" alt="<?php esc_attr_e( 'Welcome icon', 'eazydocs' ); ?>" />
+								<img src="<?php echo esc_url(EAZYDOCS_IMG . '/customizer/both_sidebar.jpg'); ?>" alt="<?php esc_attr_e( 'Welcome icon', 'eazydocs' ); ?>" />
 							</label>
 
 							<input type="radio" id="sidebar_left" value="sidebar_left" name="docs_single_layout" <?php checked( $docs_single_layout, 'sidebar_left' ); ?>>
 							<label for="sidebar_left" class="<?php if ( $docs_single_layout == 'sidebar_left' ) { echo esc_attr( 'active' ); } ?>">
-								<img src="<?php echo EAZYDOCS_IMG . '/customizer/sidebar_left.jpg'; ?>" alt="<?php esc_attr_e( 'Basic icon', 'eazydocs' ); ?>" />
+								<img src="<?php echo esc_url(EAZYDOCS_IMG . '/customizer/sidebar_left.jpg'); ?>" alt="<?php esc_attr_e( 'Basic icon', 'eazydocs' ); ?>" />
 							</label>
 
 							<input type="radio" id="sidebar_right" value="sidebar_right" name="docs_single_layout" <?php checked( $docs_single_layout, 'sidebar_right' ); ?>>
 							<label for="sidebar_right" class="<?php if ( $docs_single_layout == 'sidebar_right' ) { echo esc_attr( 'active' ); } ?>">
-								<img src="<?php echo EAZYDOCS_IMG . '/customizer/sidebar_right.jpg'; ?>" alt="<?php esc_attr_e( 'Basic icon', 'eazydocs' ); ?>" />
+								<img src="<?php echo esc_url(EAZYDOCS_IMG . '/customizer/sidebar_right.jpg'); ?>" alt="<?php esc_attr_e( 'Basic icon', 'eazydocs' ); ?>" />
 							</label>
 						</div>
 						 
@@ -439,11 +439,11 @@ class Admin {
 
 	public function admin_body_class( $admin_body ) {
 		$ezd_admin_classe = explode( ' ', $admin_body );
-		if ( empty( eaz_fs()->is_plan( 'promax' ) ) ) {
+	/*	if ( empty( eaz_fs()->is_plan( 'promax' ) ) ) {
 			$ezd_admin_classe = array_merge( $ezd_admin_classe, [
 				'ezd_no_promax'
 			] );
-		}
+		}*/
 
 		return implode( ' ', array_unique( $ezd_admin_classe ) );
 	}

@@ -25,7 +25,9 @@ if ( $tags || $docs_feedback == '1' || $enable_next_prev == '1' ) :
             echo '<ul class="nav card_tagged">';
             echo '<li>' . esc_html__( 'Tagged:', 'eazydocs' ) . '</li>';
             foreach ( $tags as $tag ) {
-                echo "<li><a href='" . get_term_link( $tag->term_id, 'doc_tag' ) . "'>{$tag->name}</a></li>";
+
+	            echo '<li><a href="' . esc_url( get_term_link( $tag->term_id, 'doc_tag' ) ) . '">' . esc_html( $tag->name ) . '</a></li>';
+
             }
             echo '</ul>';
             $has_next_prev = 'has_tags_next_prev';
@@ -69,8 +71,8 @@ if ( $tags || $docs_feedback == '1' || $enable_next_prev == '1' ) :
                                         
                                         if ( $positive && $feedback_count ) :
                                             ?>
-                                            <span class="count"> <?php echo number_format_i18n( $positive ); ?> </span>
-                                            <?php 
+                                            <span class="count"> <?php echo esc_html( number_format_i18n( $positive ) ); ?> </span>
+                                        <?php
                                         endif;
                                         ?>
                                     </a>
@@ -80,7 +82,7 @@ if ( $tags || $docs_feedback == '1' || $enable_next_prev == '1' ) :
 
                                         if ( $negative && $feedback_count ) :
                                             ?>
-                                            <span class="count"><?php echo number_format_i18n( $negative ); ?></span>
+                                            <span class="count"><?php echo esc_html(number_format_i18n( $negative )); ?></span>
                                             <?php 
                                         endif;
                                         ?>

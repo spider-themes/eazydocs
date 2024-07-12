@@ -37,7 +37,7 @@ endif;
 
 					if ( $views_visibility == '1' ) : ?>
 						<span class="views sep">
-							<?php echo eazydocs_get_post_view(); ?>
+							<?php echo esc_html(eazydocs_get_post_view()); ?>
 						</span>
 					<?php
 					endif;
@@ -63,8 +63,8 @@ endif;
 				if ( ezd_get_opt( 'is_excerpt' ) == '1' && has_excerpt() ) {
 					?>
 					<p class="doc-excerpt ezd-alert ezd-alert-info">
-						<strong><?php echo ezd_get_opt( 'excerpt_label', 'Summary' );; ?></strong>
-						<?php echo get_the_excerpt(); ?>
+						<strong><?php echo esc_html(ezd_get_opt( 'excerpt_label', 'Summary' ));; ?></strong>
+						<?php echo esc_html(get_the_excerpt()); ?>
 					</p>
 					<?php
 				}
@@ -82,9 +82,9 @@ endif;
 
 			if ( ezd_get_opt('is_articles', 1 ) && $children && $post->post_parent != 0 ) {
 				echo '<div class="details_cont ent recently_added" id="content_elements">';
-				echo '<h4 class="c_head">' . ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' ) ) . '</h4>';
+				echo '<h4 class="c_head">' . esc_html(ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' ) )) . '</h4>';
 				echo '<ul class="article_list">';
-				echo ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
+				echo wp_kses_post(ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type ));
 				echo '</ul>';
 				echo '</div>';
 			}

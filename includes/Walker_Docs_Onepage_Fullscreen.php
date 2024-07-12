@@ -313,8 +313,8 @@ function ezd_list_pages_onepage_others( $args = '' ) {
 	 */
 
 	if ( $r['echo'] ) {
-		echo apply_filters( 'ezd_list_pages_onepage_others', $output, $r, $pages );;
+		echo wp_kses_post(apply_filters( 'ezd_list_pages_onepage_others', $output, $r, $pages ));;
 	} else {
-		return apply_filters( 'ezd_list_pages_onepage_others', $output, $r, $pages );;
+		return wp_kses_post(apply_filters( 'ezd_list_pages_onepage_others', $output, $r, $pages ));;
 	}
 }

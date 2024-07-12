@@ -21,27 +21,27 @@ function ezd_notify_give_review() {
     ]);
     ?>
     <div class="notice notice-success is-dismissible" id="ezd_notify_review">
-        <h3><?php _e('Give EazyDocs a review', 'eazydocs')?></h3>
+        <h3><?php esc_html_e('Give EazyDocs a review', 'eazydocs'); ?></h3>
         <p>
             <?php
             if ( count($docs) <= 0 ) {
-            _e('Thank you for choosing EazyDocs. We hope you love it. Could you take a couple of seconds posting a nice review to share your happy experience?', 'eazydocs');
+	            esc_html_e('Thank you for choosing EazyDocs. We hope you love it. Could you take a couple of seconds posting a nice review to share your happy experience?', 'eazydocs');
             } else {
 
              $articles_count    = count($articles) - count($docs);
              $articles_text     = $articles_count > 0 ? " and <b>".$articles_count."</b> articles" : '';
 
-            _e("You have created <b>".count($docs)."</b> docs ".$articles_text." through EazyDocs. That's awesome! May we ask you to give it a 5-Star rating on WordPress. It will help us spread the word and boost our motivation.", 'eazydocs');
+	            esc_html_e("You have created <b>".count($docs)."</b> docs ".$articles_text." through EazyDocs. That's awesome! May we ask you to give it a 5-Star rating on WordPress. It will help us spread the word and boost our motivation.", 'eazydocs');
             }
             ?>
         </p>
         <p class="ezd_notify_review_subheading">
-            <?php _e('We will be forever grateful. Thank you in advance.', 'eazydocs'); ?>
+            <?php esc_html_e('We will be forever grateful. Thank you in advance.', 'eazydocs'); ?>
         </p>
         <p>
-            <a href="javascript:;" data="rateNow" class="button button-primary" style="margin-right: 5px"><?php _e('Rate now', 'eazydocs')?></a>
-            <a href="javascript:;" data="later" class="button" style="margin-right: 5px"><?php _e('Later', 'eazydocs')?></a>
-            <a href="javascript:;" data="alreadyDid" class="button"><?php _e('Already did', 'eazydocs')?></a>
+            <a href="javascript:;" data="rateNow" class="button button-primary" style="margin-right: 5px"><?php esc_html_e('Rate now', 'eazydocs')?></a>
+            <a href="javascript:;" data="later" class="button" style="margin-right: 5px"><?php esc_html_e('Later', 'eazydocs')?></a>
+            <a href="javascript:;" data="alreadyDid" class="button"><?php esc_html_e('Already did', 'eazydocs')?></a>
         </p>
     </div>
     <?php

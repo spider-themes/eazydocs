@@ -1,7 +1,7 @@
 <div class="focus_overlay"></div>
 <form action="<?php echo esc_url(home_url('/')) ?>" role="search" method="get" class="ezd_search_form" >
     <div class="header_search_form_info search_form_wrap">
-        <div class="form-group ezd-<?php echo $settings['btn-position'] ?? ''; ?>">
+        <div class="form-group ezd-<?php echo esc_attr($settings['btn-position'] ?? ''); ?>">
             <div class="input-wrapper">
                 <input type='search' class="search_field_wrap" id="ezd_searchInput" autocomplete="off" name="s"  placeholder="<?php echo esc_attr($settings['placeholder']) ?>">
                 <!-- Ajax Search Loading Spinner -->

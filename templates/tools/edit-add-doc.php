@@ -26,7 +26,7 @@ if ( eaz_fs()->is_plan('promax') ) :
                         );
                         $child_posts = get_children( $args );
                         $order       = count($child_posts) + 1;
-                       echo do_action('eazydocs_fronted_submission', get_the_ID(), $order);                        
+                       echo esc_html(do_action('eazydocs_fronted_submission', get_the_ID(), $order));
                     }
                     ?>
                 </div>

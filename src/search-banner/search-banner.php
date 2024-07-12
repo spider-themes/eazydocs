@@ -26,7 +26,7 @@ ob_start();
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
                                 <?php if ( defined( 'ICL_LANGUAGE_CODE' ) ) : ?>
-                                    <input type="hidden" name="lang" value="<?php echo( ICL_LANGUAGE_CODE ); ?>"/>
+                                    <input type="hidden" name="lang" value="<?php echo esc_attr( ICL_LANGUAGE_CODE ); ?>"/>
                                 <?php endif; ?>
                             </div>
                         </div>

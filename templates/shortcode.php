@@ -15,8 +15,10 @@ if ( ezd_is_premium() ) {
 if ( $docs ) :
 	?>
     <div class="eazydocs_shortcode">
-        <div <?php echo do_action( 'eazydocs_masonry_wrap', $layout, $col ); ?> class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
-			<?php
+
+        <div <?php echo 'class="' . esc_attr( do_action( 'eazydocs_masonry_wrap', $layout, $col ) ) . '"'; ?> class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
+
+            <?php
 			$i = 1;
 			foreach ( $docs as $main_doc ) :
 				$doc_counter = get_pages( [
@@ -37,13 +39,12 @@ if ( $docs ) :
 				?>
 
                 <div class="ezd-col-width">
-                    <div class="categories_guide_item <?php echo $private_bg . $protected_bg; ?> wow fadeInUp"
-						<?php echo $private_bg_op; ?>>
+                    <div class="categories_guide_item <?php echo esc_attr($private_bg . $protected_bg); ?> wow fadeInUp" <?php echo wp_kses_post($private_bg_op); ?>>
 						<?php
-
 						if ( $main_doc['doc']->post_status == 'private' ) {
-							$pd_txt = esc_html__( 'Private Doc', 'eazydocs' );
-							echo "<div class='private' title='$pd_txt'><i class='icon_lock'></i></div>";
+							$pd_txt = esc_attr__( 'Private Doc', 'eazydocs' );
+							echo '<div class="private" title="' . esc_attr( $pd_txt ) . '"><i class="icon_lock"></i></div>';
+
 						}
 						if ( ! empty( $main_doc['doc']->post_password ) ) {
 							?>
@@ -62,10 +63,10 @@ if ( $docs ) :
 						?>
                         <div class="doc-top ezd-d-flex ezd-align-items-start">
 
-                            <a class="doc_tag_title" href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>">
+                            <a class="doc_tag_title" href="<?php echo esc_url(get_permalink( $main_doc['doc']->ID )); ?>">
 								<?php if ( ! empty( $main_doc['doc']->post_title ) ) : ?>
                                     <h4 class="title">
-										<?php echo $main_doc['doc']->post_title; ?>
+										<?php echo esc_html($main_doc['doc']->post_title); ?>
                                     </h4>
 								<?php endif;
 								if ( $show_topic == true ) : ?>
@@ -84,7 +85,7 @@ if ( $docs ) :
 								foreach ( $main_doc['sections'] as $item ) :
 									?>
                                     <li>
-                                        <a href="<?php echo get_permalink( $item->ID ); ?>">
+                                        <a href="<?php echo esc_url(get_permalink( $item->ID )); ?>">
 											<?php echo esc_html( $item->post_title ); ?>
                                         </a>
                                     </li>
@@ -95,7 +96,7 @@ if ( $docs ) :
 						<?php
 						endif;
 						?>
-						<a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
+						<a href="<?php echo esc_url(get_permalink( $main_doc['doc']->ID )); ?>" class="doc_border_btn">
 							<?php esc_html_e( $more, 'eazydocs' );  ?>
 							<i class="arrow_right"></i>
 						</a>

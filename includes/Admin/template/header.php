@@ -11,7 +11,7 @@
                 <?php 
                 if ( current_user_can( 'edit_posts' ) ) :
                     ?>
-                    <button type="button" data-url="<?php echo admin_url('admin.php'); ?>?Create_doc=yes&_wpnonce=<?php echo wp_create_nonce('parent_doc_nonce'); ?>&parent_title=" id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round">
+                    <button type="button" data-url="<?php echo esc_url(admin_url('admin.php')); ?>?Create_doc=yes&_wpnonce=<?php echo esc_attr(wp_create_nonce('parent_doc_nonce')); ?>&parent_title=" id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round">
                         <span class="dashicons dashicons-plus-alt2"></span>
                         <?php esc_html_e( 'Add Doc', 'eazydocs' ); ?>
                     </button>
@@ -40,7 +40,7 @@
                             if ( current_user_can('edit_posts') ) : 
                                 ?>
                                     <div class="header-notify-icons">
-                                        <a href="<?php echo admin_url('edit.php?post_type=docs'); ?>" title="<?php esc_attr_e( 'Go to Classic UI', 'eazydocs' );?>">
+                                        <a href="<?php echo esc_url(admin_url('edit.php?post_type=docs')); ?>" title="<?php esc_attr_e( 'Go to Classic UI', 'eazydocs' );?>">
                                             <?php esc_html_e( 'Classic UI', 'eazydocs' );?>
                                         </a>
                                     </div>
@@ -50,8 +50,7 @@
                             // get current user role
                             $user       = wp_get_current_user();
                             $user_roles = !empty($user->roles) ? $user->roles : array();
-                            $user_role  = array_shift( $user_roles ); 
-                            
+                            $user_role  = array_shift( $user_roles );
                             $settings_edit_access = ezd_get_opt('settings-edit-access');
                             if ( ! is_array( $settings_edit_access ) ) {
                                 $settings_edit_access = array('administrator');
@@ -61,7 +60,7 @@
                                 ?>
                                 <div class="header-notify-icon" title="<?php esc_attr_e( 'Central settings page', 'eazydocs' ) ?>">
                                     <a href="admin.php?page=eazydocs-settings">
-                                        <img src="<?php echo EAZYDOCS_IMG ?>/admin/admin-settings.svg" alt="<?php esc_attr_e( 'Settings Icon', 'eazydocs' ); ?>">
+                                        <img src="<?php echo esc_url(EAZYDOCS_IMG) ?>/admin/admin-settings.svg" alt="<?php esc_attr_e( 'Settings Icon', 'eazydocs' ); ?>">
                                     </a>
                                 </div>
                                 <?php
@@ -89,8 +88,8 @@
                             ?>
                             <li class="easydocs-notification pro-notification-alert" title="<?php esc_attr_e('Notifications', 'eazydocs'); ?>">
                                 <div class="header-notify-icon">
-                                    <img class="notify-icon" src="<?php echo EAZYDOCS_IMG ?>/admin/notification.svg" alt="<?php esc_html_e( 'Notify Icon', 'eazydocs' ); ?>">
-                                    <img class="settings-pro-icon" src="<?php echo EAZYDOCS_IMG ?>/admin/pro-icon.png" alt="<?php esc_html_e( 'Pro Icon', 'eazydocs' ); ?>">
+                                    <img class="notify-icon" src="<?php echo esc_url(EAZYDOCS_IMG )?>/admin/notification.svg" alt="<?php esc_html_e( 'Notify Icon', 'eazydocs' ); ?>">
+                                    <img class="settings-pro-icon" src="<?php echo esc_url(EAZYDOCS_IMG) ?>/admin/pro-icon.png" alt="<?php esc_html_e( 'Pro Icon', 'eazydocs' ); ?>">
                                 </div>
                             </li>
                         <?php

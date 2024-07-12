@@ -322,8 +322,8 @@ function ezd_list_pages_onepage( $args = '' ) {
      */
 
     if ( $r['echo'] ) {
-        echo apply_filters( 'ezd_list_pages_onepage', $output, $r, $pages );;
+        echo wp_kses_post(apply_filters( 'ezd_list_pages_onepage', $output, $r, $pages ));;
     } else {
-        return apply_filters( 'ezd_list_pages_onepage', $output, $r, $pages );;
+        return wp_kses_post(apply_filters( 'ezd_list_pages_onepage', $output, $r, $pages ));;
     }
 }

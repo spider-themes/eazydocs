@@ -7,7 +7,7 @@ $query = new \WP_Query( [
 if ( $query->have_posts() ) {
     while ( $query->have_posts() ) {
         $query->the_post();
-        echo apply_filters( 'the_content', get_the_content() );
+        echo esc_html(apply_filters( 'the_content', get_the_content() ));
     }
 }
 wp_reset_postdata();
