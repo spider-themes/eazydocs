@@ -537,7 +537,7 @@
 
 		function eraseCookie(name) {
 			createCookie(name, '', -1);
-		}
+		} 
 
 		/**
 		 * Dark mode switcher
@@ -599,38 +599,68 @@
 		* Check if there are buttons for font size switcher
 		*/
 
-		if ( $('#rvfs-controllers button').length ) {
-			var $speech = $('#post p, #post ul li:not(.process_tab_shortcode ul li), #post ol li, #post table:not(.basic_table_info,.table-dark), #post table tr td, #post .tab-content');
-			var $defaultSize = $speech.css('fontSize');
-	
+		if ($('#rvfs-controllers button').length) {
+			var $speech = $('#post p, #post ul li:not(.process_tab_shortcode ul li), #post h1, #post h2, #post h3, #post h4, #post h5, #post h6, #post ol li, #post table:not(.basic_table_info,.table-dark), #post table tr td, #post .tab-content');
+			var originalSizes = {};
+		
 			// Function to check if cookie exists and apply font size
 			function checkFontSize() {
 				var cookieFontSize = readCookie("fontSize");
 				if (cookieFontSize) {
-					$speech.css('fontSize', cookieFontSize);
+					var sizeFactor = parseFloat(cookieFontSize);
+					$speech.each(function () {
+						var tagName = $(this).prop('tagName').toLowerCase();
+						var originalSize = originalSizes[tagName];
+						$(this).css('fontSize', originalSize * sizeFactor + 'px');
+					});
 				}
-			}
-	
+			}		
+			// Store the original font sizes
+			$speech.each(function () {
+				var tagName = $(this).prop('tagName').toLowerCase();
+				if (!originalSizes[tagName]) {
+					originalSizes[tagName] = parseFloat($(this).css('fontSize'));
+				}
+			});
+		
 			// Apply font size when page loads
 			checkFontSize();
-	
+		
 			// Event handler for font size buttons
 			$(document).on('click', '#rvfs-controllers button', function () {
-				var num;
+				var sizeFactor;
+				var currentFactor = parseFloat(readCookie("fontSize")) || 1;
+		
 				switch (this.id) {
 					case 'switcher-large':
-						num = parseFloat($speech.css('fontSize')) * 1.1;
+						sizeFactor = currentFactor * 1.1;
 						break;
 					case 'switcher-small':
-						num = parseFloat($speech.css('fontSize')) / 1.1;
+						sizeFactor = currentFactor / 1.1;
+						break;
+					case 'switcher-default':
+						sizeFactor = 1;
 						break;
 					default:
-						num = parseFloat($defaultSize);
+						sizeFactor = 1;
 				}
-				$speech.css('fontSize', num + 'px');
-				createCookie("fontSize", num + 'px', 30); // Set cookie with font size value for 30 days
+		
+				if (sizeFactor === 1) {
+					$speech.each(function () {
+						var tagName = $(this).prop('tagName').toLowerCase();
+						$(this).css('fontSize', originalSizes[tagName] + 'px');
+					});
+					eraseCookie("fontSize");
+				} else {
+					$speech.each(function () {
+						var tagName = $(this).prop('tagName').toLowerCase();
+						var originalSize = originalSizes[tagName];
+						$(this).css('fontSize', originalSize * sizeFactor + 'px');
+					});
+					createCookie("fontSize", sizeFactor, 30);
+				}
 			});
-		}
+		}		
 		// end
 	});
 })(jQuery);
