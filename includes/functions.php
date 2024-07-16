@@ -340,7 +340,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 
 		$html .= '</ol>';
 
-		echo esc_html(apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ));
+		echo wp_kses_post(apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ));
 	}
 }
 
