@@ -56,12 +56,17 @@ add_action( 'admin_notices', function () {
 /**
  * Deactivate Other Knowledge-base plugins
  */
-if ( isset( $_GET['deactivate'] ) && ! empty( $_GET['deactivate'] ) ) {
+if ( isset( $_GET['deactivate'] ) && ! empty( $_GET['deactivate'] ) ) {	
 	$plugin = sanitize_text_field( $_GET['deactivate'] );
 	add_action( 'admin_init', "eazydocs_deactivate_other_plugin" );
 	function eazydocs_deactivate_other_plugin() {
-		$plugin = ! empty ( $_GET['deactivate'] )
-			? sanitize_text_field( $_GET['deactivate'] ) : '';
+
+		// Check if the current user has the capability to activate plugins
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+
+		$plugin = ! empty ( $_GET['deactivate'] ) ? sanitize_text_field( $_GET['deactivate'] ) : '';
 		deactivate_plugins( "$plugin/$plugin.php" );
 		$url = admin_url( 'plugins.php' );
 		wp_safe_redirect( $url );
