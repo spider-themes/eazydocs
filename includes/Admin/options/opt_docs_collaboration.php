@@ -13,7 +13,7 @@ CSF::createSection( $prefix, array(
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Collaboration Feature', 'eazydocs' ),
 			'subtitle'   => esc_html__( 'Collaboration buttons on the doc Right Sidebar.', 'eazydocs' ),
-			'desc'       => esc_html__( 'By enabling this feature, you are allowing other people to contribute the docs. This will also let you manage the contributors from the Doc post editor.',
+			'desc'       => esc_html__( 'By enabling this feature, you are allowing to Administrator & Editor people to contribute the docs. This will also let you manage the contributors from the Doc post editor.',
 				'eazydocs' ),
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),

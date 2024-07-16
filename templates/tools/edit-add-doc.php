@@ -10,11 +10,19 @@ if ( eaz_fs()->is_plan('promax') ) :
             if ( ! empty( $user_login_page_id ) ) :
                 ?>
                 <div class="contribut-btns">
-                    <?php
-                    if ( $is_edit_doc == 1 ) {
-                        do_action('eazydocs_fronted_editing', get_the_ID());                       
+                    <?php                    
+                    $edit_access = '1';
+                    if ( is_user_logged_in() ) {
+                        // if current user role is not administartor || editor
+                        if ( ! current_user_can('administrator') && ! current_user_can('editor') ) {
+                            $edit_access = '';
+                        }
                     }
 
+                    if ( $is_edit_doc == 1 && $edit_access == 1 ) {
+                        do_action('eazydocs_fronted_editing', get_the_ID());                       
+                    }
+                    
                     if ( $is_add_doc == 1 ) {
 
                         // get total number of child post
@@ -26,7 +34,7 @@ if ( eaz_fs()->is_plan('promax') ) :
                         );
                         $child_posts = get_children( $args );
                         $order       = count($child_posts) + 1;
-                       echo esc_html(do_action('eazydocs_fronted_submission', get_the_ID(), $order));
+                        echo esc_html(do_action('eazydocs_fronted_submission', get_the_ID(), $order));
                     }
                     ?>
                 </div>

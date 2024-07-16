@@ -82,7 +82,11 @@ class Ajax {
 		if ( $posts->have_posts() ):
 			// save $keyword in wp_eazydocs_search_keywords table
 			global $wpdb;
+
 			$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+
+			// Suppress direct query warning for the insert operation
+			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 			$wpdb->insert(
 				$wp_eazydocs_search_keyword,
 				array(
@@ -90,8 +94,11 @@ class Ajax {
 				)
 			);
 
-			// save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
+			// Save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
 			$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+
+			// Suppress direct query warning for the insert operation
+			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 			$wpdb->insert(
 				$wp_eazydocs_search_log,
 				array(
@@ -146,6 +153,9 @@ class Ajax {
 			// save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
 			global $wpdb;
 			$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+
+			// Suppress direct query warning for the insert operation
+			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 			$wpdb->insert(
 				$wp_eazydocs_search_keyword,
 				array(
@@ -153,8 +163,11 @@ class Ajax {
 				)
 			);
 
-			// save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
+			// Save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
 			$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+
+			// Suppress direct query warning for the insert operation
+			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 			$wpdb->insert(
 				$wp_eazydocs_search_log,
 				array(

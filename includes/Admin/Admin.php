@@ -183,9 +183,9 @@ class Admin {
 				$classes .= '';
 		}
 
-		/*if ( eaz_fs()->is_paying_or_trial() || eaz_fs()->is_premium() ) {
+		if ( eaz_fs()->is_paying_or_trial() || eaz_fs()->is_premium() ) {
 			$classes .= ' ezd-premium';
-		}*/
+		}
 
 		return $classes;
 	}

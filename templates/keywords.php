@@ -30,7 +30,8 @@ if ( ezd_get_opt('is_keywords') == '1' ) :
                         endforeach;
                     endif;
                 else :
-                    global $wpdb;                    
+                    global $wpdb;    
+                    // @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery                
                     $search_keyword = $wpdb->get_results( "SELECT keyword, COUNT(*) AS count FROM {$wpdb->prefix}eazydocs_search_keyword GROUP BY keyword ORDER BY count DESC" );
                     $all_keys = [];
                     if ( count( $search_keyword ) > 0 ) :

@@ -248,10 +248,10 @@ function ezd_list_pages( $args = '' ) {
 	 *
 	 */
 	if ( $r['echo'] ) {
-		echo esc_html(apply_filters( 'ezd_list_pages', $output, $r, $pages ));;
+		echo wp_kses_post( apply_filters( 'ezd_list_pages', $output, $r, $pages ) );
 	} else {
-		return esc_html(apply_filters( 'ezd_list_pages', $output, $r, $pages ));;
-	}
+		return wp_kses_post( apply_filters( 'ezd_list_pages', $output, $r, $pages ) );
+	}	
 }
 
 if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
@@ -1145,9 +1145,11 @@ function eaz_get_nestable_parent_id( $page_id ) {
 	$page_id = intval($page_id);
 
 	// Prepare the SQL statement using placeholders
+	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 	$query = $wpdb->prepare( "SELECT post_parent FROM $wpdb->posts WHERE post_type='docs' AND post_status='publish' AND ID = %d", $page_id );
 
 	// Execute the query
+	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 	$parent = $wpdb->get_var( $query );
 
 	if ( $parent == 0 ) {

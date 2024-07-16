@@ -11,11 +11,14 @@ $child_posts        = get_children( $args );
 $order              = count($child_posts) + 1;
 
 if ( isset( $_GET['add_new_doc'] ) && $_GET['add_new_doc'] == 'yes' ) {
-    $redirect_to = admin_url('/post-new.php?post_type=docs&add_new_doc=yes').'&ezd_doc_parent='.$_GET['post_id'].'&ezd_doc_order='. $order;
+    $redirect_to    = admin_url('/post-new.php?post_type=docs&add_new_doc=yes').'&ezd_doc_parent='.$_GET['post_id'].'&ezd_doc_order='. $order;
+    $login_type     = 'add';
 } elseif ( isset( $_GET['ezd_edit_doc'] ) && $_GET['ezd_edit_doc'] == 'yes' ) {
-    $redirect_to = admin_url('/post.php?post='.$_GET['post_id'].'&action=edit');
+    $redirect_to    = admin_url('/post.php?post='.$_GET['post_id'].'&action=edit');
+    $login_type     = 'edit';
 } else {
-    $redirect_to = get_permalink($_GET['post_id'] ?? '');
+    $redirect_to    = get_permalink($_GET['post_id'] ?? '');
+    $login_type     = 'view';
 }
 ?>
 <div class="ezd_doc_login_wrap">
@@ -33,6 +36,7 @@ if ( isset( $_GET['add_new_doc'] ) && $_GET['add_new_doc'] == 'yes' ) {
                 <input type="text" placeholder="<?php esc_attr_e('Username', 'eazydocs'); ?>" name="log" id="user_login">
                 <input type="password" placeholder="<?php esc_attr_e('Password', 'eazydocs'); ?>" name="pwd" id="user_pass">
                 <input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect_to); ?>">
+                <input type="hidden" name="login_type" value="<?php echo esc_attr($login_type); ?>">
                 <input type="submit" name="ezd_login" value="<?php echo esc_attr($login_btn); ?>">
                 <input type="hidden" name="testcookie" value="1" />
             </form>
