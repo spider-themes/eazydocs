@@ -1,5 +1,5 @@
 <?php
-if ( ! eaz_fs()->is_plan( 'promax' ) ) {
+if ( ! ezd_is_premium() ) {
     return;
 }
 
