@@ -622,6 +622,28 @@ p.big-p {
   border: none;
   margin: 0 10px;
 }
+#ezd-setup-wizard-wrap .tab-content .archive-page-selection-wrap {
+  text-align: center;
+}
+#ezd-setup-wizard-wrap .tab-content .archive-page-selection-wrap select {
+  display: block;
+  text-align: center;
+  margin: 0 auto 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 3px 15px;
+  outline: none;
+}
+#ezd-setup-wizard-wrap .tab-content .archive-page-selection-wrap select:focus {
+  outline: none;
+  box-shadow: none;
+}
+#ezd-setup-wizard-wrap .tab-content .archive-page-selection-wrap span {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 10px;
+  color: brown;
+}
 #ezd-setup-wizard-wrap .tab-content .root-slug-wrap > input[type=radio] {
   visibility: hidden;
 }

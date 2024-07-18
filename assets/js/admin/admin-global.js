@@ -167,6 +167,10 @@
             var slugType    = $('.root-slug-wrap input[name="slug"]:checked').val();
             var live_customizer = $('input[name="customizer_visibility"]:checked').val();
 
+            // select field .archive-page-selection-wrap > select
+            var archivePage = $('.archive-page-selection-wrap select').val();
+            
+
             // doc single layout
             var docSingleLayout = $('.page-layout-wrap input[name="docs_single_layout"]:checked').val();
             var docsPageWidth = $('.page-width-wrap input[name="docsPageWidth"]:checked').val();
@@ -182,7 +186,8 @@
                     slugType: slugType,
                     docSingleLayout: docSingleLayout,
                     docsPageWidth: docsPageWidth,
-                    live_customizer: live_customizer
+                    live_customizer: live_customizer,
+                    archivePage: archivePage,
                 },
                 beforeSend: function() {
                     $('div#ezd-setup-wizard-wrap .tab-content #step-4 h2').html('Submitting...');

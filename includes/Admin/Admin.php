@@ -267,6 +267,7 @@ class Admin {
 		$docs_single_layout 	= $opt['docs_single_layout'] ?? '';
 		$docs_page_width 		= $opt['docs_page_width'] ?? '';
 		$customizer_visibility 	= $opt['customizer_visibility'] ?? '';
+		$docs_archive_page 		= $opt['docs-slug'] ?? '';
 		?>
 		<div class="wrap">
 			<div class="ezd-setup-wizard-wrapper">
@@ -323,7 +324,23 @@ class Admin {
 
 					<div id="step-2" class="tab-pane" role="tabpanel" style="display:none">
 						
-					<h2><?php esc_html_e( 'Brand Color', 'eazydocs' ); ?></h2>
+						<h2><?php esc_html_e( 'Docs Archive Page', 'eazydocs' ); ?></h2>
+						<p><?php esc_html_e( 'This page will show on the Doc single page breadcrumb and will be used to show the Docs.', 'eazydocs' ); ?></p>
+						<div class="archive-page-selection-wrap">
+							<select name="docs_archive_page" id="docs_archive_page">
+								<option value=""><?php esc_html_e( 'Select a page', 'eazydocs' ); ?></option>
+								<?php
+								$pages = get_pages();
+								foreach ( $pages as $page ) {
+									$selected = ( $page->ID == $docs_archive_page ) ? 'selected' : '';
+									echo '<option value="' . esc_attr( $page->ID ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $page->post_title ) . '</option>';
+								}
+								?>
+							</select>
+							<span><?php esc_html_e( 'You can create this page with using [eazydocs] shortcode or available EazyDocs Gutenberg blocks or Elementor widgets.', 'eazydocs' ); ?></span>
+						</div>
+
+						<h2><?php esc_html_e( 'Brand Color', 'eazydocs' ); ?></h2>
 						<p><?php esc_html_e( 'Select the Brand Color for your knowledge base.', 'eazydocs' ); ?></p>
 						<div class="brand-color-picker-wrap">
 							<input type="text" class="brand-color-picker" placeholder="Color Picker" value="<?php echo esc_attr( $brand_color ); ?>">

@@ -103,6 +103,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 
+			// Add the setup wizard
+			add_action('admin_init', [ $this, 'ezd_get_setup_wizard_init' ]);
+
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				add_action( 'admin_notices', [ $this, 'database_not_found' ] );
 			}
@@ -271,6 +274,24 @@ if ( ! class_exists( 'EazyDocs' ) ) {
             if ( eaz_fs()->is_plan( 'promax' ) ) {
 	            $this->create_analytics_db_tables();
             }
+
+			// Update the option when the setup wizard is activated
+			update_option('ezd_get_setup_wizard', true);
+
+		}
+
+		// Redirect to the setup wizard page
+		public function ezd_get_setup_wizard_init() {
+			// Check if the plugin has been activated
+			$opt 			= get_option('eazydocs_settings');			
+			$setup_wizard 	= $opt['setup_wizard_completed'] ?? '';
+
+			if ( get_option('ezd_get_setup_wizard') && $setup_wizard == '' ) {
+				// Redirect to the setup wizard page
+				wp_safe_redirect(admin_url('admin.php?page=eazydocs-initial-setup'));
+				// Remove the activation flag
+				delete_option('ezd_get_setup_wizard');
+			}
 		}
 
 		/**

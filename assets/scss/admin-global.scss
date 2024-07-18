@@ -638,6 +638,29 @@ p.big-p {
       }
     }
 
+    .archive-page-selection-wrap{
+      text-align: center;
+      select {
+        display: block;
+        text-align: center;
+        margin: 0 auto 12px;
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: 3px 15px;
+        outline: none;
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+      span {
+        font-size: 13px;
+        display: block;
+        margin-bottom: 10px;
+        color: brown;
+      }
+    }
+
     .root-slug-wrap {
       // input checkbox style
       > input[type="radio"] {
