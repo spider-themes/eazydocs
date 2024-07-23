@@ -55,7 +55,7 @@ $children = wp_list_pages( array(
 					echo get_the_post_thumbnail( $post_id->ID, 'full' );
 					?>
                     <h3 class="doc-title">
-						<?php echo esc_html(get_post_field( 'post_title', $post_id->ID, 'display' )); ?>
+						<?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
                     </h3>
 					<?php
 

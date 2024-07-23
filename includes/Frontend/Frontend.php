@@ -3,16 +3,16 @@ namespace eazyDocs\Frontend;
 
 class Frontend {
 	public function __construct() {
-		add_filter( 'template_include', [ $this, 'template_loades' ], 20 );
-		add_action( 'eazydocs_footnote', [ $this, 'eazydocs_footnotes' ] );
-		add_action( 'eazydocs_related_articles', [ $this, 'eazydocs_related_articles' ], 99, 4 );
+		add_filter( 'template_include', [ $this, 'template_loads' ], 20 );
+		add_action( 'eazydocs_footnote', [ $this, 'footnotes' ] );
+		add_action( 'eazydocs_related_articles', [ $this, 'related_articles' ], 99, 4 );
 		add_action( 'eazydocs_viewed_articles', [ $this, 'recently_viewed_docs' ], 99, 4 );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
-		add_action( 'eazydocs_prev_next_docs', [ $this, 'eazydocs_prev_next_docs' ] );		
-		add_action( 'ezd_get_breadcrumb', [ $this, 'ezd_breadcrumb' ], 10 );
+		add_action( 'eazydocs_prev_next_docs', [ $this, 'prev_next_docs' ] );
+		add_action( 'ezd_get_breadcrumb', [ $this, 'breadcrumb' ], 10 );
 	}
 
-	public function ezd_breadcrumb(){
+	public function breadcrumb(){
 		$opt              = get_option( 'eazydocs_settings' );
 		$update_text      = $opt['breadcrumb-update-text'] ?? esc_html__( 'Updated on', 'eazydocs' );
 		$doc_container    = 'ezd-container ezd-custom-container';
@@ -46,7 +46,7 @@ class Frontend {
 	 *
 	 * @since 1.0.0
 	 */
-	public function template_loades( $template ) {
+	public function template_loads( $template ) {
 		$file = '';
 		if ( is_single() && 'docs' == get_post_type() ) {
 			$single_template = 'single-docs.php';
@@ -80,7 +80,7 @@ class Frontend {
 	 * @param $post_id
 	 *
 	 */
-	public function eazydocs_footnotes($post_id){
+	public function footnotes($post_id){
 
 		$options 				= get_option( 'eazydocs_settings' );		
 		$is_notes_title   		= $options['is_footnotes_heading'] ?? '1';
@@ -200,7 +200,7 @@ class Frontend {
                                 <li>
                                     <a href="<?php echo esc_url(get_the_permalink( $ft_post->ID )) ?>"> <i
                                                 class="icon_document_alt"></i>
-										<?php echo esc_html(get_the_title( $ft_post->ID )) ?>
+										<?php echo get_the_title( $ft_post->ID ) ?>
                                     </a>
                                 </li>
 								<?php
@@ -244,7 +244,7 @@ class Frontend {
 	 * @param $visible_item
 	 * @param $see_more
 	 */
-	public function eazydocs_related_articles( $title, $visibility, $visible_item, $see_more ) {
+	public function related_articles( $title, $visibility, $visible_item, $see_more ) {
 		global $post;
 		$cats            = get_the_terms( get_the_ID(), 'doc_tag' );
 		$cat_ids         = ! empty( $cats ) ? wp_list_pluck( $cats, 'term_id' ) : '';
@@ -282,7 +282,7 @@ class Frontend {
                             <li>
                                 <a href="<?php echo esc_url(get_the_permalink( get_the_ID() )) ?>">
                                     <i class="icon_document_alt"></i>
-									<?php echo esc_html(get_the_title( get_the_ID() )) ?>
+									<?php echo get_the_title(get_the_ID()) ?>
                                 </a>
                             </li>
 						<?php
@@ -326,67 +326,39 @@ class Frontend {
 	 * @param $get_id
 	 * Single docs Previous & Next Link
 	 **/
-	public function eazydocs_prev_next_docs( $current_post_id ) {
+	public function prev_next_docs( $current_post_id ) {
 		$current_parent_id  = wp_get_post_parent_id( $current_post_id );
-		$args               = array(
-			'post_type'      => 'docs',
-			'post_parent'    => $current_parent_id,
-			'order'          => 'ASC',
-			'orderby'        => 'menu_order',
-			'posts_per_page' => - 1
-		);
-		$custom_query       = new \WP_Query( $args );
-		$next_post          = null;
-		$found_current_post = false;
 
-		while ( $custom_query->have_posts() ) {
-			$custom_query->the_post();
+		global $post, $wpdb;
+		$next_query = "SELECT ID FROM {$wpdb->posts}
+        WHERE post_parent = {$post->post_parent} and post_type = 'docs' and post_status = 'publish' and menu_order > {$post->menu_order}
+        ORDER BY menu_order ASC
+        LIMIT 0, 1";
 
-			if ( get_the_ID() === $current_post_id ) {
-				$found_current_post = true;
-				continue;
-			}
+		$prev_query = "SELECT ID FROM {$wpdb->posts}
+        WHERE post_parent = {$post->post_parent} and post_type = 'docs' and post_status = 'publish' and menu_order < {$post->menu_order}
+        ORDER BY menu_order DESC
+        LIMIT 0, 1";
 
-			if ( ! $found_current_post ) {
-				$previous_post = get_post();
-			} else {
-				$next_post = get_post();
-				break;
-			}
-		}
-
-		// Restore original post data
-		wp_reset_postdata();
-
-		$previous_post_id = ! empty ( $previous_post ) ? $previous_post->ID : 0;
-		$next_post_id     = ! empty ( $next_post ) ? $next_post->ID : 0;
+		$next_post_id = (int) $wpdb->get_var( $next_query );
+		$prev_post_id = (int) $wpdb->get_var( $prev_query );
 		?>
         <div class="eazydocs-next-prev-wrap">
 			<?php
-			if ( $previous_post_id != 0 ) :
+			if ( $prev_post_id != 0 ) :
 				?>
-                <a class="next-prev-pager first" href="<?php echo esc_url(get_permalink( $previous_post_id )); ?>">
-                <span>
-                    <?php
-                    echo esc_html( get_the_title( $current_parent_id ) );
-                    esc_html_e( ' - Previous', 'eazydocs' );
-                    ?>
-                </span>
-                <?php echo esc_html( get_the_title( $previous_post_id ) ); ?>
+                <a class="next-prev-pager first" href="<?php echo get_permalink( $previous_post_id ); ?>">
+                    <span> <?php echo get_the_title( $current_parent_id ); esc_html_e( ' - Previous', 'eazydocs' ); ?> </span>
+                    <?php echo get_the_title( $prev_post_id ); ?>
                 </a>
-                    <?php
+                <?php
             endif;
 
             if ( $next_post_id != 0 ) :
                 ?>
                 <a class="next-prev-pager second" href="<?php echo esc_url(get_permalink( $next_post_id )); ?>">
-                <span>
-                    <?php
-                    esc_html_e( 'Next - ', 'eazydocs' );
-                    echo esc_html( get_the_title( $current_parent_id ) );
-                    ?>
-                </span>
-					<?php echo esc_html( get_the_title( $next_post_id ) ); ?>
+                    <span> <?php esc_html_e( 'Next - ', 'eazydocs' ); echo get_the_title( $current_parent_id ); ?> </span>
+					<?php echo get_the_title( $next_post_id ); ?>
                 </a>
 			    <?php
 			endif;

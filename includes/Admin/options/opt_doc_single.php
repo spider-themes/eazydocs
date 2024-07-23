@@ -76,6 +76,21 @@ CSF::createSection( $prefix, array(
 		array(
 			'type'       => 'heading',
 			'content'    => esc_html__( 'Meta Information', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Meta information shows on the doc title area.', 'eazydocs' ),
+		),
+
+		array(
+			'id'      => 'is_parent_doc',
+			'type'    => 'switcher',
+			'title'   => esc_html__( 'Parent Doc Link', 'eazydocs' ),
+			'default' => true // or false
+		),
+
+		array(
+			'id'      => 'enable-reading-time',
+			'type'    => 'switcher',
+			'title'   => esc_html__( 'Estimated Reading Time', 'eazydocs' ),
+			'default' => true // or false
 		),
 
 		array(

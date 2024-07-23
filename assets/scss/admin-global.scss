@@ -101,6 +101,18 @@ a.eazydocs-close-notice:active {
   background-color: #f7f7f78f;
 }
 
+.csf-field-image_select {
+  img {
+    opacity: .6;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .csf--active img {
+    opacity: 1;
+  }
+}
+
 .csf-options {
   max-width: 1200px;
 }

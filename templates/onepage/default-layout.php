@@ -29,7 +29,7 @@ $children         = wp_list_pages( array(
                         <i class="arrow_carrot-left"></i>
                     </div>
                     <h3 class="nav_title">
-                        <?php echo esc_html(get_post_field( 'post_title', $child_of_id, 'display' )); ?>
+                        <?php echo get_post_field( 'post_title', $child_of_id, 'display' ); ?>
                     </h3>
                     <?php
                     if ( $children ) :

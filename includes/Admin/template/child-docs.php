@@ -276,7 +276,7 @@ if (is_array($depth_one_parents)) :
                                                         <div class="left-content">
                                                             <h4>
                                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="section-last-label">
-                                                                    <?php echo esc_html(get_the_title($sub_child->ID)); ?>
+                                                                    <?php echo get_the_title($sub_child->ID); ?>
                                                                 </a>
                                                                 <?php if (count($child_depth) > 0) : ?>
                                                                     <span class="count ezd-badge">
@@ -325,7 +325,7 @@ if (is_array($depth_one_parents)) :
                                                                 ?>
 
                                                                 <li>
-                                                                    <a href="<?php echo esc_url(get_permalink($sub_child)); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
+                                                                    <a href="<?php echo get_permalink($sub_child); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                                         <span class="dashicons dashicons-external"></span>
                                                                     </a>
                                                                 </li>
@@ -426,7 +426,7 @@ if (is_array($depth_one_parents)) :
 
                                                                             <h4>
                                                                                 <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr($target); ?>" class="child-last-label">
-                                                                                    <?php echo esc_html(get_the_title($of_sub_child->ID)); ?>
+                                                                                    <?php echo get_the_title($of_sub_child->ID); ?>
                                                                                 </a>
                                                                             </h4>
 

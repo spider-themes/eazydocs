@@ -251,7 +251,7 @@ function ezd_list_pages( $args = '' ) {
 		echo wp_kses_post( apply_filters( 'ezd_list_pages', $output, $r, $pages ) );
 	} else {
 		return wp_kses_post( apply_filters( 'ezd_list_pages', $output, $r, $pages ) );
-	}	
+	}
 }
 
 if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
@@ -543,7 +543,7 @@ function eazydocs_has_shortcode( $text = '' ) {
  *
  * @return false|int
  */
-function date_sort( $a, $b ) {
+function ezd_date_sort( $a, $b ) {
 	return strtotime( $b ) - strtotime( $a );
 }
 
@@ -553,7 +553,7 @@ function date_sort( $a, $b ) {
  *
  * @return bool
  */
-function main_date_sort( $a, $b ) {
+function ezd_main_date_sort( $a, $b ) {
 	$date1 = DateTime::createFromFormat( 'd/m/Y', $a );
 	$date2 = DateTime::createFromFormat( 'd/m/Y', $b );
 
@@ -566,24 +566,24 @@ function main_date_sort( $a, $b ) {
  **/
 add_action( 'admin_footer', function () {
 	?>
-<script>
-// EazyDocs screen URL
-eazyDocsClassic = "edit.php?post_type=docs";
-// Tag screen URL
-eazyDocsTag = "edit-tags.php?taxonomy=doc_tag&post_type=docs";
+    <script>
+    // EazyDocs screen URL
+    eazyDocsClassic = "edit.php?post_type=docs";
+    // Tag screen URL
+    eazyDocsTag = "edit-tags.php?taxonomy=doc_tag&post_type=docs";
 
-// EazyDocs menu active when it's EazyDocs screen
-if (window.location.href.indexOf(eazyDocsTag) > -1) {
-    jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass(
-        'wp-has-current-submenu wp-menu-open').find('li').has('a[href*="taxonomy=doc_tag"]').addClass('current');
-}
+    // EazyDocs menu active when it's EazyDocs screen
+    if (window.location.href.indexOf(eazyDocsTag) > -1) {
+        jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass(
+            'wp-has-current-submenu wp-menu-open').find('li').has('a[href*="taxonomy=doc_tag"]').addClass('current');
+    }
 
-// Tag Sub menu active when it's Tag screen
-if (window.location.href.indexOf(eazyDocsClassic) > -1) {
-    jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass(
-        'wp-has-current-submenu wp-menu-open').find('li.wp-first-item').addClass('current');
-}
-</script>
+    // Tag Sub menu active when it's Tag screen
+    if (window.location.href.indexOf(eazyDocsClassic) > -1) {
+        jQuery('.toplevel_page_eazydocs').removeClass('wp-not-current-submenu').addClass(
+            'wp-has-current-submenu wp-menu-open').find('li.wp-first-item').addClass('current');
+    }
+    </script>
 <?php } );
 
 /**
@@ -893,13 +893,13 @@ function ezd_password_form($output, $post = 0) {
 	$protected_form_switcher = $protected_form['protected_doc_form'] ?? '';
 	$protected_form_title    = ! empty( $protected_form['protected_form_title'] ) ? $protected_form['protected_form_title'] : __( 'Enter Password & Read this Doc', 'eazydocs' );
 	$protected_form_subtitle = ! empty( $protected_form['protected_form_subtitle'] ) ? $protected_form['protected_form_subtitle'] : __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
-			
+
 	if ( ! empty( $protected_form_switcher == 'eazydocs-form' ) ) :
 		ob_start();
 		?>
 		<div class="card ezd-password-wrap">
-			<div class="card-body p-0 ezd-password-head">				
-				<div class="text-center p-4">					
+			<div class="card-body p-0 ezd-password-head">
+				<div class="text-center p-4">
 					<?php
 					if ( has_post_thumbnail() ) :
 						?>
@@ -915,7 +915,7 @@ function ezd_password_form($output, $post = 0) {
 					</p>
 				</div>
 			</div>
-			<div class="card-body ezd-password-body p-4">				
+			<div class="card-body ezd-password-body p-4">
 				<form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" method="post" class="form-horizontal auth-form ezd-password-form">
 					<div class="form-group mb-2">
 						<label class="form-label" for="ezd_password"> <?php esc_html_e( 'Password', 'eazydocs' ); ?> </label>
@@ -1200,15 +1200,15 @@ function ezd_all_shortcodes( $content ) {
  */
 function ezd_customizer_script() {
     ?>
-<script type="text/javascript">
-jQuery(document).ready(function() {
-    // Add .is_ezd_premium class to body
-    if ( eazydocs_local_object.is_ezd_premium == "yes" ) {
-        jQuery("body").addClass("ezd-premium");
-    }
-});
-</script>
-<?php
+    <script type="text/javascript">
+    jQuery(document).ready(function() {
+        // Add .is_ezd_premium class to body
+        if ( eazydocs_local_object.is_ezd_premium == "yes" ) {
+            jQuery("body").addClass("ezd-premium");
+        }
+    });
+    </script>
+    <?php
 }
 add_action( 'customize_controls_print_footer_scripts', 'ezd_customizer_script' );
 
@@ -1225,7 +1225,7 @@ function ezd_header_with_block_theme() {
 			}
 		</style>
 	<?php
-	}	
+	}
 }
 
 /**
@@ -1255,7 +1255,7 @@ function ezd_get_elementor_templates() {
 		'posts_per_page' 	=> -1,
 		'status' 			=> 'publish'
 	) );
-	
+
 	$elementor_templates_array = array();
 	if ( ! empty( $elementor_templates ) ) {
 		foreach ( $elementor_templates as $elementor_template ) {
@@ -1307,13 +1307,13 @@ function ezd_internal_doc_security( $doc_id =  0 ) {
 			$current_user_id    = get_current_user_id();
 			$current_user       = new WP_User( $current_user_id );
 			$current_roles      = ( array ) $current_user->roles;
-			
+
 			// All selected roles
 			$private_doc_roles = $user_group['private_doc_roles'];
 			$matching_roles 	= array_intersect($current_roles, $private_doc_roles);
 
 			if ( empty( $matching_roles )) {
-				if ( is_singular( 'docs' ) ) {				
+				if ( is_singular( 'docs' ) ) {
 					$message = esc_html__("You don't have permission to access this document!", 'eazydocs');
 					$output = sprintf('<div class="ezd-lg-col-9"><span class="ezd-doc-warning-wrap"><i class="icon_lock"></i><span>%s</span></span></div>', $message);
 					echo wp_kses_post($output);
@@ -1355,10 +1355,10 @@ function ezd_perform_edit_delete_actions( $action = 'delete', $docID = 0 ){
  * Get doc parent id by current id
  */
 function ezd_get_doc_parent_id( $doc_id = 0 ) {
-	
+
 	$parent_id = get_post_ancestors( get_the_ID() );
 	$ancestors = end($parent_id);
-	
+
 	if ( ! empty( $ancestors ) ) {
 		return $ancestors;
 	} else {
@@ -1382,7 +1382,7 @@ function ezd_get_doc_parent_id( $doc_id = 0 ) {
 		    ];
 	    }
     }
-	
+
 	return $conditional_array;
 }
 
@@ -1405,7 +1405,7 @@ if ( ! function_exists( 'ezd_slug_validate' ) ) {
  * Retrieve the "reference" shortcodes and their content in a post
  *
  * @return string
- * 
+ *
  * @param int $post_id The ID of the post to retrieve the "reference" shortcodes from
  */
 function ezd_get_footnotes_in_content($post_id) {
@@ -1458,13 +1458,14 @@ function ezd_get_footnotes_in_content($post_id) {
 
 /**
  * Customizer buttons visibility by user role
+ * Used in the settings page
  */
 function customizer_visibility_callback() {
 
 	$archive_url 	 = 'javascript:void(0)';
 	$single_url  	 = 'javascript:void(0)';
 	$target 		 = '_self';
-	$no_access  	 = 'no-customizer-access'; 
+	$no_access  	 = 'no-customizer-access';
 
 	if ( class_exists( 'EZD_EazyDocsPro' ) && eaz_fs()->is_plan( 'promax' ) ) {
 		if ( in_array( implode(', ', ezd_get_current_user_role_by_id(get_current_user_id())) , ['administrator'] ) ) {
@@ -1472,7 +1473,7 @@ function customizer_visibility_callback() {
 		$options      = get_option( 'eazydocs_settings' );
 		$doc_id       = $options['docs-slug'] ?? '';
 		$doc_page     = get_post_field( 'post_name', $doc_id );
-		
+
 		$args         = array(
 			'post_type'      => 'docs',
 			'posts_per_page' => - 1,
@@ -1498,7 +1499,7 @@ function customizer_visibility_callback() {
 	?>
 	<a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">
 		<?php echo esc_html__( 'Docs Archive', 'eazydocs' ) ?>
-	</a> 
+	</a>
 	<a href="<?php echo esc_attr( $single_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_single">
 		<?php echo esc_html__( 'Single Doc', 'eazydocs' ); ?>
 	</a>
@@ -1509,38 +1510,39 @@ function customizer_visibility_callback() {
  * Setup wizard save settings
  */
 function ezd_setup_wizard_save_settings() {
-	
-    if ( ! current_user_can('manage_options') ) {
-        wp_send_json_error('Unauthorized user');
-    }
 
-    $rootslug 			= isset($_POST['rootslug']) ? sanitize_text_field($_POST['rootslug']) : '';
-    $brandColor 		= isset($_POST['brandColor']) ? sanitize_text_field($_POST['brandColor']) : '';
-    $slugType 			= isset($_POST['slugType']) ? sanitize_text_field($_POST['slugType']) : '';
-    $docSingleLayout	= isset($_POST['docSingleLayout']) ? sanitize_text_field($_POST['docSingleLayout']) : '';
-    $docsPageWidth 		= isset($_POST['docsPageWidth']) ? sanitize_text_field($_POST['docsPageWidth']) : '';
-	$live_customizer 	= isset($_POST['live_customizer']) ? sanitize_text_field($_POST['live_customizer']) : '';	
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( 'Unauthorized user' );
+	}
+
+	$rootslug        = isset( $_POST['rootslug'] ) ? sanitize_text_field( $_POST['rootslug'] ) : '';
+	$brandColor      = isset( $_POST['brandColor'] ) ? sanitize_text_field( $_POST['brandColor'] ) : '';
+	$slugType        = isset( $_POST['slugType'] ) ? sanitize_text_field( $_POST['slugType'] ) : '';
+	$docSingleLayout = isset( $_POST['docSingleLayout'] ) ? sanitize_text_field( $_POST['docSingleLayout'] ) : '';
+	$docsPageWidth   = isset( $_POST['docsPageWidth'] ) ? sanitize_text_field( $_POST['docsPageWidth'] ) : '';
+	$live_customizer = isset( $_POST['live_customizer'] ) ? sanitize_text_field( $_POST['live_customizer'] ) : '';
 	// int value
-	$archivePage 		= isset($_POST['archivePage']) ? intval($_POST['archivePage']) : '';
-    $options 			= get_option('eazydocs_settings');
-    
-    // Check if the option exists and is an array
-    if(is_array($options)) {
-		
-        // Update the specific setting
-        $options['docs-type-slug'] 			= $rootslug;
-        $options['brand_color'] 			= $brandColor;
-        $options['docs-url-structure'] 		= $slugType;
-        $options['docs_single_layout'] 		= $docSingleLayout;
-        $options['docs_page_width'] 		= $docsPageWidth;
-		$options['customizer_visibility'] 	= $live_customizer;
-		$options['docs-slug'] 				= $archivePage;
-		$options['setup_wizard_completed'] 	= true;
-        
-        // Update the option in the database
-        update_option('eazydocs_settings', $options);
-    }
-	
-    wp_send_json_success('Settings saved');
+	$archivePage = isset( $_POST['archivePage'] ) ? intval( $_POST['archivePage'] ) : '';
+	$options     = get_option( 'eazydocs_settings' );
+
+	// Check if the option exists and is an array
+	if ( is_array( $options ) ) {
+
+		// Update the specific setting
+		$options['docs-type-slug']         = $rootslug;
+		$options['brand_color']            = $brandColor;
+		$options['docs-url-structure']     = $slugType;
+		$options['docs_single_layout']     = $docSingleLayout;
+		$options['docs_page_width']        = $docsPageWidth;
+		$options['customizer_visibility']  = $live_customizer;
+		$options['docs-slug']              = $archivePage;
+		$options['setup_wizard_completed'] = true;
+
+		// Update the option in the database
+		update_option( 'eazydocs_settings', $options );
+	}
+
+	wp_send_json_success( 'Settings saved' );
 }
-add_action('wp_ajax_ezd_setup_wizard_save_settings', 'ezd_setup_wizard_save_settings');
+
+add_action( 'wp_ajax_ezd_setup_wizard_save_settings', 'ezd_setup_wizard_save_settings' );

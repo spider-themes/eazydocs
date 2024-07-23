@@ -6,6 +6,8 @@ $views_visibility        = $options['enable-views'] ?? '1';
 $sidebar_toggle          = $options['toggle_visibility'] ?? '1';
 $layout                  = $options['docs_single_layout'] ?? 'both_sidebar';
 
+$current_parent_id  = wp_get_post_parent_id( get_the_ID() );
+
 if ( $sidebar_toggle == 1 ) :
 	if ( ! empty( $layout == 'left_sidebar' ) || ! empty( $layout == 'both_sidebar' ) ) : ?>
         <div class="left-sidebar-toggle">
@@ -21,7 +23,14 @@ endif;
 	<div class="doc-post-content" id="post">
 		
 		<div class="shortcode_title">
-			<?php 
+            <?php
+            if ( ezd_get_opt('is_parent_doc', 1) && $current_parent_id ) : ?>
+                <a class="ezd-doc-badge" href="<?php echo get_the_permalink($current_parent_id) ?>">
+                    <?php echo get_the_title($current_parent_id) ?>
+                </a>
+                <?php
+            endif;
+
 			the_title( '<h1>', '</h1>' );
 			
 			if ( $reading_time_visibility == '1' || $views_visibility == '1' ) : ?>
@@ -32,14 +41,14 @@ endif;
 							<?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
 							ezd_reading_time(); ?>
 						</span>
-					<?php
+					    <?php
 					endif;
 
 					if ( $views_visibility == '1' ) : ?>
 						<span class="views sep">
 							<?php echo esc_html(eazydocs_get_post_view()); ?>
 						</span>
-					<?php
+					    <?php
 					endif;
 
 					do_action( 'eazydocs_docs_contributor', get_the_ID() );
@@ -64,7 +73,7 @@ endif;
 					?>
 					<p class="doc-excerpt ezd-alert ezd-alert-info">
 						<strong><?php echo esc_html(ezd_get_opt( 'excerpt_label', 'Summary' ));; ?></strong>
-						<?php echo esc_html(get_the_excerpt()); ?>
+						<?php echo get_the_excerpt(); ?>
 					</p>
 					<?php
 				}

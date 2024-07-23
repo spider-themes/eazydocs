@@ -100,6 +100,8 @@ class Assets {
 				$dynamic_css .= ".nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item { background: rgba($brand_rgb, .1) }";
 				$dynamic_css .= ".nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item:hover { background: rgba($brand_rgb, .2) }";
 				$dynamic_css .= ".documentation_item .media-body .title:hover { text-decoration-color: rgba($brand_rgb, 0.25)}";
+				$dynamic_css .= ".single-docs .shortcode_title .ezd-doc-badge { background: rgba($brand_rgb, .6) }";
+				$dynamic_css .= ".single-docs .shortcode_title .ezd-doc-badge:hover { background: rgba($brand_rgb, .7) }";
 			}
 
 			wp_add_inline_style( 'eazydocs-frontend-global', $dynamic_css );

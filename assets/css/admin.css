@@ -966,7 +966,7 @@ body.rtl a.child-delete {
   margin-right: auto;
 }
 .easydocs-search-form input, .easydocs-search-form input[type=search] {
-  color: #9199a1;
+  color: #000;
   padding: 10px 15px 10px 40px;
   border: 1px solid #EDEAE9;
   border-radius: 0.625rem;

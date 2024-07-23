@@ -1,7 +1,7 @@
 <?php if ( !empty($sections) ) : ?>
 <div class="docs-box-item docs-single-5-wrap">
     <h5 class="docs-5-title">
-        <?php echo esc_html(get_the_title( $settings['doc'] )); ?>
+        <?php echo get_the_title( $settings['doc'] ); ?>
     </h5>
     <div class="dox5-section-item">
         <?php

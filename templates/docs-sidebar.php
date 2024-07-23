@@ -49,7 +49,7 @@ if ( $credit_enable == '1' ) {
             <i class="arrow_carrot-left"></i>
         </div>
         <h2 class="doc-title">
-            <?php echo esc_html(get_post_field( 'post_title', $parent, 'display' )); ?>
+            <?php echo get_post_field( 'post_title', $parent, 'display' ); ?>
         </h2>
         <?php
         if ( $sidebar_search == 1 ) :

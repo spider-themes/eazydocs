@@ -146,6 +146,16 @@ a.eazydocs-close-notice:active {
   background-color: rgba(247, 247, 247, 0.5607843137);
 }
 
+.csf-field-image_select img {
+  opacity: 0.6;
+}
+.csf-field-image_select img:hover {
+  opacity: 1;
+}
+.csf-field-image_select .csf--active img {
+  opacity: 1;
+}
+
 .csf-options {
   max-width: 1200px;
 }
