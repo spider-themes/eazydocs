@@ -96,7 +96,7 @@ if ( $docs ) :
 						<?php
 						endif;
 						?>
-						<a href="<?php echo get_permalink( $main_doc['doc']->ID )); ?>" class="doc_border_btn">
+						<a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
 							<?php esc_html( $more );  ?> <i class="arrow_right"></i>
 						</a>
 

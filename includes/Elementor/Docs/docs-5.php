@@ -90,7 +90,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
                     <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
                         <div class="topic_list_item">
 							<?php if ( ! empty( $section->post_title ) ) : ?>
-                                <a class="doc4-section-title" href="<?php echo get_permalink( $section->ID )); ?>">
+                                <a class="doc4-section-title" href="<?php echo get_permalink( $section->ID ); ?>">
                                     <h4>
 										<?php echo wp_kses_post( $section->post_title ); ?>
                                     </h4>
@@ -111,7 +111,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 									$child_count = $child ++
 									?>
                                     <li>
-                                        <a href="<?php echo get_permalink( $doc_item->ID )) ?>">
+                                        <a href="<?php echo get_permalink( $doc_item->ID ) ?>">
                                     <span class="chapter_counter">
                                         <?php echo esc_html( $section_count . "." . $child_count . " " ); ?>
                                     </span>
