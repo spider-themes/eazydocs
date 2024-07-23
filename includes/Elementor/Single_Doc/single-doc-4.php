@@ -2,7 +2,7 @@
     <?php
 	foreach ( $sections as $section ) :
 		?>
-        <a href="<?php echo esc_url(get_permalink( $section->ID )) ?>">
+        <a href="<?php echo get_permalink( $section->ID ) ?>">
             <div class="h_item">
                 <?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
                 <h4 class="ct-heading-text"><?php echo wp_kses_post( $section->post_title ); ?></h4>
@@ -38,7 +38,7 @@ $sections2 = get_children( array(
         <?php
 		foreach ( $sections2 as $section ) :
 			?>
-            <a href="<?php echo esc_url(get_permalink( $section->ID )) ?>">
+            <a href="<?php echo get_permalink( $section->ID ); ?>">
                 <div class="h_item">
                     <?php echo ! empty( $section->ID ) ? get_the_post_thumbnail( $section->ID, 'full' ) : ''; ?>
                     <h4 class="ct-heading-text"><?php echo wp_kses_post( $section->post_title ); ?></h4>

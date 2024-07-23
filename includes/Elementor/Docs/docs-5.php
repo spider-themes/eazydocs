@@ -28,19 +28,19 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 						}
 						?>
                         <li class="nav-item<?php echo esc_attr( $active ) ?>">
-                            <a <?php echo esc_attr($atts); ?> class="nav-link">
+                            <a <?php echo esc_attr( $atts ); ?> class="nav-link">
 								<?php
 								if ( ! empty( $settings['book_chapter_prefix'] ) ):
 									?>
                                     <span class="chapter-part">
                                     <?php echo esc_html( $settings['book_chapter_prefix'] . " " . $part_no ++ ); ?></span>
-								    <?php
-                                endif;
+								<?php
+								endif;
 								echo wp_kses_post( $doc->post_title );
 								?>
                             </a>
                         </li>
-					    <?php
+					<?php
 					endforeach;
 				endif;
 				?>
@@ -52,87 +52,89 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 		<?php
 		$sc_n = 1;
 		if ( ! empty( $docs ) ) :
-			foreach ( $docs as $i => $main_doc ) :
-				// Active Doc
-				if ( $slug_type == 1 ) {
-					$doc_id = $main_doc['doc']->post_name;
-				} else {
-					$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
-				}
-				?>
-                <div id="doc-4<?php echo esc_attr($doc_id) ?>" class="doc_section_wrap ">
-                    <div class="ezd-grid ezd-grid-cols-12">
-                        <div class="ezd-lg-col-12 ezd-md-col-12 ezd-grid-column-full">
-                            <div class="docs4-heading">
-                                <h3>
-									<?php echo wp_kses_post( $main_doc['doc']->post_title ); ?>
-                                </h3>
-								<?php
+		foreach ( $docs
 
-								if (strlen(trim($main_doc['doc']->post_excerpt)) != 0) {
-									echo wp_kses_post(wpautop(wp_trim_words($main_doc['doc']->post_excerpt, $settings['main_doc_excerpt'], '')));
-								} else {
-									echo wp_kses_post(wpautop(wp_trim_words($main_doc['doc']->post_content, $settings['main_doc_excerpt'], '')));
-								}
-								?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ezd-grid ezd-grid-cols-12 <?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>">
+		as $i => $main_doc ) :
+		// Active Doc
+		if ( $slug_type == 1 ) {
+			$doc_id = $main_doc['doc']->post_name;
+		} else {
+			$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
+		}
+		?>
+        <div id="doc-4<?php echo esc_attr( $doc_id ) ?>" class="doc_section_wrap ">
+            <div class="ezd-grid ezd-grid-cols-12">
+                <div class="ezd-lg-col-12 ezd-md-col-12 ezd-grid-column-full">
+                    <div class="docs4-heading">
+                        <h3>
+							<?php echo wp_kses_post( $main_doc['doc']->post_title ); ?>
+                        </h3>
 						<?php
-						$sections = 1;
-						if ( ! empty( $main_doc['sections'] ) ) :
-							foreach ( $main_doc['sections'] as $section ) :
-								$section_count = $sections ++;
-								?>
-                                <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
-                                    <div class="topic_list_item">
-										<?php if ( ! empty( $section->post_title ) ) : ?>
-                                            <a class="doc4-section-title" href="<?php echo esc_url(get_permalink( $section->ID )); ?>">
-                                                <h4>
-													<?php echo wp_kses_post( $section->post_title ); ?>
-                                                </h4>
-                                            </a>
-										<?php endif; ?>
-                                        <ul class="navbar-nav">
-											<?php
-											$doc_items = get_children( array(
-												'post_parent'    => $section->ID,
-												'post_type'      => 'docs',
-												'post_status'    => 'publish',
-												'orderby'        => 'menu_order',
-												'order'          => 'ASC',
-												'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-											) );
-											$child     = 1;
-											foreach ( $doc_items as $doc_item ) :
-												$child_count = $child ++
-												?>
-                                                <li>
-                                                    <a href="<?php echo esc_url(get_permalink( $doc_item->ID )) ?>">
-                                    <span class="chapter_counter">
-                                        <?php echo esc_html( $section_count . "." . $child_count . " " ); ?>
-                                    </span>
-														<?php echo wp_kses_post( $doc_item->post_title ) ?>
-                                                    </a>
-                                                </li>
-											<?php
-											endforeach;
-											?>
-                                        </ul>
-                                    </div>
-                                </div>
-							<?php
-							endforeach;
-						endif;
+
+						if ( strlen( trim( $main_doc['doc']->post_excerpt ) ) != 0 ) {
+							echo wp_kses_post( wpautop( wp_trim_words( $main_doc['doc']->post_excerpt, $settings['main_doc_excerpt'], '' ) ) );
+						} else {
+							echo wp_kses_post( wpautop( wp_trim_words( $main_doc['doc']->post_content, $settings['main_doc_excerpt'], '' ) ) );
+						}
 						?>
                     </div>
                 </div>
+            </div>
+            <div class="ezd-grid ezd-grid-cols-12 <?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>">
 			<?php
-			endforeach;
-		endif;
-		?>
+			$sections = 1;
+			if ( ! empty( $main_doc['sections'] ) ) :
+				foreach ( $main_doc['sections'] as $section ) :
+					$section_count = $sections ++;
+					?>
+                    <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
+                        <div class="topic_list_item">
+							<?php if ( ! empty( $section->post_title ) ) : ?>
+                                <a class="doc4-section-title" href="<?php echo get_permalink( $section->ID )); ?>">
+                                    <h4>
+										<?php echo wp_kses_post( $section->post_title ); ?>
+                                    </h4>
+                                </a>
+							<?php endif; ?>
+                            <ul class="navbar-nav">
+								<?php
+								$doc_items = get_children( array(
+									'post_parent'    => $section->ID,
+									'post_type'      => 'docs',
+									'post_status'    => 'publish',
+									'orderby'        => 'menu_order',
+									'order'          => 'ASC',
+									'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
+								) );
+								$child     = 1;
+								foreach ( $doc_items as $doc_item ) :
+									$child_count = $child ++
+									?>
+                                    <li>
+                                        <a href="<?php echo get_permalink( $doc_item->ID )) ?>">
+                                    <span class="chapter_counter">
+                                        <?php echo esc_html( $section_count . "." . $child_count . " " ); ?>
+                                    </span>
+											<?php echo wp_kses_post( $doc_item->post_title ) ?>
+                                        </a>
+                                    </li>
+								<?php
+								endforeach;
+								?>
+                            </ul>
+                        </div>
+                    </div>
+				<?php
+				endforeach;
+			endif;
+			?>
+        </div>
     </div>
+	<?php
+	endforeach;
+	endif;
+	?>
+</div>
 </div>
 
 <script>
@@ -164,41 +166,42 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
       }
 
       navFixed();
-        // masonry
-        function ezd_book_chapter_masonry() {
 
-            var masonryCols = $('.ezd-masonry').attr('ezd-massonry-col');
-            var masonryColumns = parseInt(masonryCols);
+      // masonry
+      function ezd_book_chapter_masonry() {
 
-            if ($(window).width() <= 1024) {
-                var masonryColumns = 2;
-            }
+        var masonryCols = $('.ezd-masonry').attr('ezd-massonry-col');
+        var masonryColumns = parseInt(masonryCols);
 
-            if ($(window).width() <= 768) {
-                var masonryColumns = 1;
-            }
-
-            var count = 0;
-            var content = $('.ezd-masonry > *');
-
-            $('.ezd-masonry').before('<div class=\'ezd-masonry-columns\'></div>');
-
-            content.each(function(index) {
-                count = count + 1;
-                $(this).addClass('ezd-masonry-sort-' + count + '');
-
-                if (count == masonryColumns) {
-                    count = 0;
-                }
-            });
-
-            for (var i = 0 + 1; i < masonryColumns + 1; i++) {
-                $('.ezd-masonry-columns').append('<div class=\'ezd-masonry-' + i + '\'></div>');
-                $('.ezd-masonry-sort-' + i).appendTo('.ezd-masonry-' + i);
-            }
+        if ($(window).width() <= 1024) {
+          var masonryColumns = 2;
         }
 
-        ezd_book_chapter_masonry();
+        if ($(window).width() <= 768) {
+          var masonryColumns = 1;
+        }
+
+        var count = 0;
+        var content = $('.ezd-masonry > *');
+
+        $('.ezd-masonry').before('<div class=\'ezd-masonry-columns\'></div>');
+
+        content.each(function(index) {
+          count = count + 1;
+          $(this).addClass('ezd-masonry-sort-' + count + '');
+
+          if (count == masonryColumns) {
+            count = 0;
+          }
+        });
+
+        for (var i = 0 + 1; i < masonryColumns + 1; i++) {
+          $('.ezd-masonry-columns').append('<div class=\'ezd-masonry-' + i + '\'></div>');
+          $('.ezd-masonry-sort-' + i).appendTo('.ezd-masonry-' + i);
+        }
+      }
+
+      ezd_book_chapter_masonry();
 
     });
   })(jQuery);

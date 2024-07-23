@@ -91,7 +91,7 @@ if ( ezd_is_premium() ) {
 								foreach ( $sections as $section ) :
 									?>
 					<li>
-						<a href="<?php echo esc_url(get_permalink( $section )); ?>" class="ezd_item_list_title">
+						<a href="<?php echo get_permalink( $section ); ?>" class="ezd_item_list_title">
 							<?php echo esc_html($section->post_title); ?>
 						</a>
 					</li>

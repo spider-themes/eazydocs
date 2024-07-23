@@ -31,7 +31,7 @@ if ( $sections && $post->post_parent === 0 ) :
                 ?>
             </div>
             <div class="media-body">
-                <a href="<?php echo esc_url(get_permalink( $section->ID )); ?>" class="doc-sec title">
+                <a href="<?php echo get_permalink( $section->ID ); ?>" class="doc-sec title">
                     <?php echo esc_html($section->post_title); ?>
                 </a>
                 <p> <?php echo wp_kses_post(wp_trim_words( get_the_excerpt($section->ID), $sec_excerpt, '' )); ?> </p>

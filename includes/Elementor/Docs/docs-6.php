@@ -11,7 +11,7 @@
                 <?php echo get_the_post_thumbnail( $doc_id, 'full'); ?>
             </div>
             <div class="doc_entry_content">
-                <a href="<?php echo esc_url(get_the_permalink( $doc_id )); ?>">
+                <a href="<?php echo get_the_permalink( $doc_id ); ?>">
                     <h4 class="ezd_item_title"><?php echo wp_kses_post( $doc['doc']->post_title ); ?></h4>
                 </a>
                 <p class="ezd_item_content"><?php ezd_widget_excerpt( $doc_id, 15 ); ?></p>

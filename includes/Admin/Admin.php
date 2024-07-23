@@ -310,13 +310,13 @@ class Admin {
 						<iframe width="650" height="350" src="https://www.youtube.com/embed/4H2npHIR2qg?si=ApQh7BL6CL5QM4zX" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         <div class="button-inline">
                             <a class="button button-primary ezd-btn btn-lg" target="_blank" href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/">
-                                <i class="dashicons dashicons-sos"></i> Documentation
+                                <i class="dashicons dashicons-sos"></i> <?php esc_html_e( 'Documentation', 'eazydocs' ); ?>
                             </a>
                             <a class="button button-primary ezd-btn btn-lg btn-red" target="_blank" href="https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ">
-                                <i class="dashicons dashicons-playlist-video"></i> Video Tutorials
+                                <i class="dashicons dashicons-playlist-video"></i> <?php esc_html_e( 'Video Tutorials', 'eazydocs' ); ?>
                             </a>
                             <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" target="_blank" href="https://wordpress.org/support/plugin/eazydocs/">
-                                <i class="dashicons dashicons-editor-help"></i> Support
+                                <i class="dashicons dashicons-editor-help"></i> <?php esc_html_e( 'Support', 'eazydocs' ); ?>
                             </a>
                             <p>
                         </div>
@@ -347,17 +347,21 @@ class Admin {
 						</div>
 						
 						<h2><?php esc_html_e( 'Doc Root URL Slug', 'eazydocs' ); ?></h2>
-						<p><?php esc_html_e( 'Select the Docs URL Structure. This will be used to generate the Docs URL.', 'eazydocs' ); ?></p>				
+						<p><?php esc_html_e( 'Select the Docs URL Structure. This will be used to generate the Docs URL.', 'eazydocs' ); ?></p>
+
 						<div class="root-slug-wrap">
 
 							<input type="radio" id="post-name" name="slug" value="post-name" <?php checked( $slugType, 'post-name' ); ?>>							 
-							<label for="post-name" class="<?php if ( $slugType == 'post-name' ) { echo esc_attr( 'active' ); } ?>">Default Slug</label>
+							<label for="post-name" class="<?php if ( $slugType == 'post-name' ) { echo esc_attr( 'active' ); } ?>">
+                                <?php esc_html_e( 'Default Slug', 'eazydocs' ); ?>
+                            </label>
 
 							<input type="radio" id="custom-slug" name="slug" value="custom-slug" <?php checked( $slugType, 'custom-slug' ); ?>>						 
-							<label for="custom-slug" class="<?php if ( $slugType == 'custom-slug' ) { echo esc_attr( 'active' ); } ?>">Custom Slug</label>
+							<label for="custom-slug" class="<?php if ( $slugType == 'custom-slug' ) { echo esc_attr( 'active' ); } ?>">
+                                <?php esc_html_e( 'Custom Slug', 'eazydocs' ); ?>
+                            </label>
 
 							<input type="text" class="custom-slug-field <?php if ( $slugType == 'custom-slug' ) { echo esc_attr( 'active' ); } ?>" placeholder="Basic Setting" value="<?php echo esc_attr( $custom_slug ); ?>">
-
 						</div>
 					</div>
 
@@ -385,10 +389,14 @@ class Admin {
 						<h2><?php esc_html_e( 'Page Width', 'eazydocs' ); ?></h2>
 						<div class="page-width-wrap">
 							<input type="radio" id="boxed" name="docsPageWidth" value="boxed" <?php checked( $docs_page_width, 'boxed' ); ?>>
-							<label for="boxed" class="<?php if ( $docs_page_width == 'boxed' ) { echo esc_attr( 'active' ); } ?>">Boxed Width</label>
+							<label for="boxed" class="<?php if ( $docs_page_width == 'boxed' ) { echo esc_attr( 'active' ); } ?>">
+                                <?php esc_html_e( 'Boxed Width', 'eazydocs' ); ?>
+                            </label>
 
 							<input type="radio" id="full-width" name="docsPageWidth" value="full-width" <?php checked( $docs_page_width, 'full-width' ); ?>>
-							<label for="full-width" class="<?php if ( $docs_page_width == 'full-width' ) { echo esc_attr( 'active' ); } ?>">full Width</label>
+							<label for="full-width" class="<?php if ( $docs_page_width == 'full-width' ) { echo esc_attr( 'active' ); } ?>">
+                                <?php esc_html_e( 'Full Width', 'eazydocs' ); ?>
+                            </label>
 						</div>
 						
 						<h2><?php esc_html_e( 'Live Customizer', 'eazydocs' ); ?></h2>

@@ -171,7 +171,7 @@ if (is_array($depth_one_parents)) :
                                                 ?>
 
                                                 <li>
-                                                    <a href="<?php echo esc_url( get_permalink($child)); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
+                                                    <a href="<?php echo get_permalink( $child ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                         <span class="dashicons dashicons-external"></span>
                                                     </a>
                                                 </li>
@@ -453,7 +453,7 @@ if (is_array($depth_one_parents)) :
                                                                                 ?>
 
                                                                                 <li>
-                                                                                    <a href="<?php echo esc_url( get_permalink($of_sub_child)); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
+                                                                                    <a href="<?php echo get_permalink( $of_sub_child ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                                                                                         <span class="dashicons dashicons-external"></span>
                                                                                     </a>
                                                                                 </li>

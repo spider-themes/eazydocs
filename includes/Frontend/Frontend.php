@@ -356,7 +356,7 @@ class Frontend {
 
             if ( $next_post_id != 0 ) :
                 ?>
-                <a class="next-prev-pager second" href="<?php echo esc_url(get_permalink( $next_post_id )); ?>">
+                <a class="next-prev-pager second" href="<?php echo get_permalink( $next_post_id ); ?>">
                     <span> <?php esc_html_e( 'Next - ', 'eazydocs' ); echo get_the_title( $current_parent_id ); ?> </span>
 					<?php echo get_the_title( $next_post_id ); ?>
                 </a>
