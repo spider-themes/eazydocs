@@ -2,7 +2,7 @@
 Contributors: mdjwel, spiderdevs
 Tags: knowledgebase, kb, faq, wiki, helpdesk
 Requires at least: 5.0
-Tested up to: 6.5
+Tested up to: 6.6.1
 Requires PHP: 7.4
 Stable tag: 2.5.0
 License: GPLv2 or later
@@ -227,6 +227,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.5.1 (25 July 2024) =
+New: Setup wizard added
+New: Parent doc on the top of the Doc title
+Tweaked: Made the Font size switching compatible with heading tags
+Fixed: All code of EazyDocs is re-reviewed and fixed some security and vulnerability issues. Now, EazyDocs is more secured.
+Fixed: Previous doc link was not showing correctly on the Doc navigation
 
 = v2.5.0 (23 May 2024) =
 New: Added Import/Export Option for Settings. now you're able to export your settings from 'EazyDocs > Settings > Backup' and you can import it another site.
