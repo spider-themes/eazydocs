@@ -81,7 +81,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 	class EazyDocs {
 
 		// Default constants
-		const version = '2.5.0';
+		const version = '2.5.1';
 		public $plugin_path;
 		public $theme_dir_path;
 		public static $dir = '';
