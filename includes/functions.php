@@ -397,7 +397,7 @@ if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
 
 		$html .= ' ' . $args['before'] . get_the_title() . $args['after'];
 		$html .= '</ol>';
-		echo esc_html(apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ));
+		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
 	}
 }
 
@@ -461,7 +461,7 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 
 		$html .= '</ol>';
 
-		echo esc_html(apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ));
+		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
 	}
 }
 
