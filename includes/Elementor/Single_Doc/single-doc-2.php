@@ -1,16 +1,34 @@
 <section class="recommended_topic_area">
     <div class="recommended_topic_inner">
-		<?php ezd_el_image( $settings['bg_shape'], 'curve shape', 'doc_shap_one' ) ?>
+		<?php
+        $settings_key = $settings['bg_shape']; $alt = 'curve shape'; $class = 'doc_shap_one';
+        if ( ! empty( $settings_key['id'] ) ) {
+	        echo wp_get_attachment_image( $settings_key['id'], 'full', '', array( 'class' => $class ) );
+
+        } elseif ( ! empty( $settings_key['url'] ) && empty( $settings_key['id'] ) ) {
+	        $class = ! empty( $class ) ? "class='$class'" : '';
+	        $attss = '';
+	        //echo print_r($atts);
+	        if ( ! empty( $atts ) ) {
+		        foreach ( $atts as $k => $att ) {
+			        $attss .= "$k=" . "'$att'";
+		        }
+	        }
+	        echo "<img src='{$settings_key['url']}' $class alt='$alt' $attss>";
+        }
+        ?>
 		<?php if ( $settings['is_bg_objects'] == 'yes' ) : ?>
             <div class="doc_round one" data-parallax='{"x": -80, "y": -100, "rotateY":0}'></div>
             <div class="doc_round two" data-parallax='{"x": -10, "y": 70, "rotateY":0}'></div>
 		<?php endif; ?>
 		<?php if ( ! empty( $settings['title'] || $settings['subtitle'] ) ) : ?>
             <div class="doc_title text-center">
-				<?php echo ! empty( $settings['title'] ) ? sprintf( '<%1$s class="title" data-animation="wow fadeInUp" data-wow-delay="0.2s">%2$s</%1$s>',
-					esc_html( $title_tag ),
+				<?php
+                echo ! empty( $settings['title'] ) ? sprintf( '<%1$s class="title" data-animation="wow fadeInUp" data-wow-delay="0.2s">%2$s</%1$s>',
+	                esc_html( $title_tag ),
 					nl2br( esc_html( $settings['title'] ) )
-				) : ''; ?>
+				) : '';
+                ?>
 				<?php if ( ! empty( $settings['subtitle'] ) ) : ?>
                     <p class="subtitle wow fadeInUp" data-wow-delay="0.4s">
 						<?php echo wp_kses_post( $settings['subtitle'] ) ?> </p>
@@ -29,7 +47,7 @@
 						'orderby'        => 'menu_order',
 						'order'          => 'ASC',
 						'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-					) );
+					));
 					?>
                     <div class="recommended_item box-item wow fadeInUp" data-wow-delay="<?php echo esc_attr( $delay ) ?>s">
 						<?php
@@ -54,7 +72,7 @@
 											<?php echo wp_kses_post( $doc_item->post_title ) ?>
                                         </a>
                                     </li>
-								<?php
+								    <?php
 								endforeach;
 								?>
                             </ul>
