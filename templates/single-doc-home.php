@@ -1,6 +1,7 @@
 <?php
-$options        = get_option( 'eazydocs_settings' );
-$sec_excerpt    = $options['doc_sec_excerpt_limit'] ?? '8';
+$options                 = get_option( 'eazydocs_settings' );
+$is_full_excerpt 		 = $options['is_full_excerpt'] ?? false;
+$sec_excerpt 			 = $options['doc_sec_excerpt_limit'] ?? '8';
 
 $sections = get_children( array(
 	'post_parent'    => $post->ID,
@@ -34,7 +35,15 @@ if ( $sections && $post->post_parent === 0 ) :
                 <a href="<?php echo get_permalink( $section->ID ); ?>" class="doc-sec title">
                     <?php echo esc_html($section->post_title); ?>
                 </a>
-                <p> <?php echo wp_kses_post(wp_trim_words( get_the_excerpt($section->ID), $sec_excerpt, '' )); ?> </p>
+                <p> 
+                    <?php 
+                    if ( $is_full_excerpt == false ) {
+                        echo wp_kses_post(wp_trim_words( get_the_excerpt( $section->ID ), $sec_excerpt, '' )); 
+                    } else {
+                        echo wp_kses_post( get_the_excerpt( $section->ID ) ); 
+                    }
+                    ?>
+                </p>
             </div>
         </div>
         <?php 

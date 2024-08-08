@@ -143,6 +143,17 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'         => 'is_full_excerpt',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Full Excerpt', 'eazydocs' ),			
+			'subtitle'   => esc_html__( 'Show the full excerpt on the doc single sections.', 'eazydocs' ),
+			'default'    => false,
+			'text_on'    => esc_html__( 'Yes', 'eazydocs' ),
+			'text_off'   => esc_html__( 'No', 'eazydocs' ),
+			'dependency' => array( 'is_excerpt', '==', 'true' ),
+		),
+
+		array(
 			'title'    => esc_html__( 'Section Excerpt', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Define here the Doc section excerpt limit in word count to show. Use -1 to show the full excerpt.', 'eazydocs' ),
 			'desc'     => esc_html__( 'Note: If the excerpt leaves empty, the excerpt will be automatically taken from the doc post content.', 'eazydocs' ),
@@ -151,7 +162,11 @@ CSF::createSection( $prefix, array(
 			'default'  => 12,
 			"min"      => 1,
 			"step"     => 1,
-			"max"      => 100,
+			"max"      => 500,
+			'dependency' => array(
+				array( 'is_excerpt', '==', 'true' ),
+				array( 'is_full_excerpt', '==', 'false' ),
+			)
 		),
 
 		// Articles
