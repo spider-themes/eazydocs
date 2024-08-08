@@ -36,13 +36,13 @@ if ( $sections && $post->post_parent === 0 ) :
                     <?php echo esc_html($section->post_title); ?>
                 </a>
                 <p> 
-                    <?php 
-                    if ( $is_full_excerpt == false ) {
-                        echo wp_kses_post(wp_trim_words( get_the_excerpt( $section->ID ), $sec_excerpt, '' )); 
-                    } else {
-                        echo wp_kses_post( get_the_excerpt( $section->ID ) ); 
-                    }
-                    ?>
+                <?php 
+                if ( $is_full_excerpt == false ) {
+                    echo has_excerpt( $section->ID ) ? wp_kses_post( wp_trim_words( get_the_excerpt( $section->ID ), $sec_excerpt, '' ) ) : wp_kses_post( wp_trim_words( $section->post_content, $sec_excerpt, '' ) );
+                } else {
+                    echo has_excerpt( $section->ID ) ? wp_kses_post( get_the_excerpt( $section->ID ) ) : wp_kses_post( $section->post_content );
+                }
+                ?>
                 </p>
             </div>
         </div>
