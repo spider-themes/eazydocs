@@ -6,22 +6,14 @@ if ( ! ezd_is_premium() ) {
 /**
  * Post link filter
 */
-
-add_filter( 'post_type_link', function( $post_link, $post ){
-	if ( $post->post_type === 'docs' && $post->post_status === 'publish' ) {
-        $ancestors = get_post_ancestors($post);
-        $ancestors = array_reverse($ancestors);
-        $slug = '';
-
-        foreach ( $ancestors as $ancestor ) {
-            $ancestor_post = get_post($ancestor);
-            $slug .= $ancestor_post->post_name . '/';
-        }
-
-        $post_link = home_url( '/' . $slug . $post->post_name . '/' );
-    }
-    return $post_link;
-}, 10, 2 );
+ 
+add_filter( 'post_type_link', function($link, $post){
+    $post_meta = $post->ID;
+    if ( 'docs' == get_post_type( $post ) ) {
+        $link = str_replace( '/' . $post->post_type . '/', '/', $link );
+    } 
+    return $link;
+}, 1, 2 );
 
 
 /**
@@ -29,7 +21,6 @@ add_filter( 'post_type_link', function( $post_link, $post ){
 */
 
 add_action('init', function() {
-	add_rewrite_rule('^([^/]+)/([^/]+)/?$', 'index.php?docs=$matches[2]', 'top');
     add_rewrite_rule('^([^/]+)/?$', 'index.php?docs=$matches[1]', 'top');
 	add_rewrite_rule('^([^/]+)/([^/]+)/?$', 'index.php?docs=$matches[2]', 'top');
 	add_rewrite_rule('^([^/]+)/([^/]+)/([^/]+)/?$', 'index.php?docs=$matches[3]', 'top');
