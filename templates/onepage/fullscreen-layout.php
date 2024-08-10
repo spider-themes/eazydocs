@@ -136,16 +136,16 @@ $children = wp_list_pages( array(
                         <article class="documentation_body doc-section onepage-doc-sec" id="<?php echo esc_attr( $get_title ) ?>" itemscope itemtype="http://schema.org/Article">
 							<?php if ( ! empty( $doc_item->post_title ) ) : ?>
                                 <div class="shortcode_title doc-sec-title">
-                                    <h2> <?php echo esc_html($sec_serial . '. ' . $doc_item->post_title); ?> </h2>
+                                    <h2> <?php echo wp_kses_post($sec_serial . '. ' . $doc_item->post_title); ?> </h2>
                                 </div>
 							<?php endif; ?>
                             <div class="doc-content">
 								<?php
 								if ( did_action( 'elementor/loaded' ) ) {
 									$parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $doc_item->ID );
-									echo ! empty( $parent_content ) ? wp_kses_post($parent_content) : wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
+									echo ! empty( $parent_content ) ? $parent_content : apply_filters( 'the_content', $doc_item->post_content );
 								} else {
-									echo wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
+									echo apply_filters( 'the_content', $doc_item->post_content );
 								}
 								?>
                             </div>
@@ -163,7 +163,7 @@ $children = wp_list_pages( array(
                                         <h3>
 											<?php
 											echo esc_html($sec_serial . '.' . $child_serial . ' ');
-											echo esc_html($child_section->post_title);
+											echo wp_kses_post($child_section->post_title);
 											?>
                                         </h3>
                                     </div>
@@ -171,9 +171,9 @@ $children = wp_list_pages( array(
 										<?php
 										if ( did_action( 'elementor/loaded' ) ) {
 											$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $child_section->ID );
-											echo ! empty( $child_content ) ? wp_kses_post($child_content ): wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
+											echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $child_section->post_content );
 										} else {
-											echo wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
+											echo apply_filters( 'the_content', $child_section->post_content );
 										}
 										?>
                                     </div>
@@ -200,7 +200,7 @@ $children = wp_list_pages( array(
                                             <h4>
 												<?php
 												echo esc_html($sec_serial . '.' . $child_serial . '.' . $last_depth_serial . ' ');
-												echo esc_html($last_depth_doc->post_title);
+												echo wp_kses_post($last_depth_doc->post_title);
 												?>
                                             </h4>
                                         </div>
@@ -208,9 +208,9 @@ $children = wp_list_pages( array(
 											<?php
 											if ( did_action( 'elementor/loaded' ) ) {
 												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-												echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
+												echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $last_depth_doc->post_content );
 											} else {
-												echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
+												echo apply_filters( 'the_content', $last_depth_doc->post_content );
 											}
 											?>
                                         </div>
@@ -237,6 +237,7 @@ $children = wp_list_pages( array(
         </div>
     </div>
 </section>
+
 <?php wp_footer(); ?>
 </body>
 

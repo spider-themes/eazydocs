@@ -996,6 +996,9 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   background: rgba(8, 102, 25, 0.7);
   color: #fff;
 }
+.single-docs .shortcode_title .ezd-doc-badge a {
+  color: #fff;
+}
 .single-docs .shortcode_title h1 {
   margin-bottom: 10px;
   font-size: 2.6em;

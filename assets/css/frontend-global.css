@@ -1267,6 +1267,7 @@ nav .breadcrumb .active {
 .single-docs #post img {
   max-width: 100% !important;
   margin: 10px 0;
+  width: auto;
 }
 
 .eazydocs_shortcode .ezd-d-flex {
