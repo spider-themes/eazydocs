@@ -4,7 +4,7 @@ Tags: knowledgebase, kb, faq, wiki, helpdesk
 Requires at least: 5.0
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,6 +227,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.5.2 (11 August 2024) =
+New: Added a Switcher in the (Settings > Doc Single > General > Full Excerpt) for showing full excerpt in the parent doc page
+Fixed: Fixed search banner issue
+Fixed: Resolved the issue with 404 errors by removing the post type slug from URL
 
 = v2.5.1 (25 July 2024) =
 New: Setup wizard added
