@@ -42,7 +42,7 @@ CSF::createSection( $prefix, array(
 			'attributes' => array(
 				'style'  => 'width:250px',
 			),
-			'after' 	=> esc_html__('Ignore the plain permalink structure', 'eazydocs'),
+			'after' 	=> esc_html__('Ignore the plain and numeric permalink structure', 'eazydocs'),
 		),
 
 		array(

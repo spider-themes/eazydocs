@@ -41,6 +41,16 @@ class Docs {
 		
 		// Docs URL structure
         $docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
+		$rewrite 			= [];
+		
+		if ( $docs_url == 'custom-slug' || get_option('permalink_structure') === '' || get_option('permalink_structure') === '/archives/%post_id%' ) {	 
+			$rewrite = [
+				'slug'       => $slug,
+				'with_front' => true,
+				'pages'      => true,
+				'feeds'      => true,
+			];
+		}
 		
 		$labels = [
 			'name'               => _x( 'Docs', 'Post Type General Name', 'eazydocs' ),
@@ -62,6 +72,7 @@ class Docs {
 			'labels'              => $labels,
 			'supports'            => [ 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes', 'comments', 'author', 'excerpt', 'blocks' ],
 			'public'              => true,
+			'hierarchical'        => true,
 			'show_ui'             => true,
 			'show_in_menu'        => false,
 			'show_in_nav_menus'   => true,
@@ -76,28 +87,10 @@ class Docs {
 			'query_var' 			=> true,
 			'publicly_queryable' 	=> true,
 			'map_meta_cap'        	=> true,
-			'taxonomies'          	=> [ 'doc_tag' ]
+			'taxonomies'          	=> [ 'doc_tag' ],
+			'rewrite'             => $rewrite,
 		];
-
-		if ( $docs_url == 'custom-slug' || get_option('permalink_structure') === '' ) {	 
-			$args['hierarchical'] = true;			
-			$args['rewrite'] = [
-				'slug'       => $slug,
-				'with_front' => true,
-				'pages'      => true,
-				'feeds'      => true,
-			];
-		} else {
-			if ( is_admin() ) {
-				$args['hierarchical'] = true;
-			} else { 
-				$args['rewrite'] = [
-					'slug' 			=> '',
-					'with_front' 	=> false,
-					'hierarchical' 	=> true,
-				];
-			}
-		}
+ 
 		
 		register_post_type( $this->post_type, apply_filters( 'eazydocs_post_type', $args ) );
 	}

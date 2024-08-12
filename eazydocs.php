@@ -159,7 +159,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				$permalink 			= get_option('permalink_structure');
 
 				if ( $docs_url == 'post-name' ) {					
-					if ( empty ( $permalink == '' ) ) {					 
+					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {		 
 						require_once __DIR__ . '/includes/Root_Conversion.php';
 					}
 				}
