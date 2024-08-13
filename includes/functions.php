@@ -1490,11 +1490,13 @@ function customizer_visibility_callback() {
 			$post_count ++;
 		endforeach;
 
+		$no_access  	 = '';
 		$docs_url 		= $post_count > 0 ? $post_url : $doc_id;
 		$archive_url 	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $doc_id . '?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
 		$single_url  	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $docs_url . '?autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
 		$target 		= '_blank';
 		}
+
 	}
 	?>
 	<a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">

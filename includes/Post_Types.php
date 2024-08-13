@@ -71,8 +71,8 @@ class Docs {
 		$args = [
 			'labels'              => $labels,
 			'supports'            => [ 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes', 'comments', 'author', 'excerpt', 'blocks' ],
-			'public'              => true,
 			'hierarchical'        => true,
+			'public'              => true,
 			'show_ui'             => true,
 			'show_in_menu'        => false,
 			'show_in_nav_menus'   => true,
@@ -83,15 +83,11 @@ class Docs {
 			'exclude_from_search' => false,
 			'publicly_queryable'  => true,
 			'show_in_rest'        => true,
-			'has_archive' 			=> false, // Set to false if you don't want an archive page.
-			'query_var' 			=> true,
-			'publicly_queryable' 	=> true,
-			'map_meta_cap'        	=> true,
-			'taxonomies'          	=> [ 'doc_tag' ],
 			'rewrite'             => $rewrite,
+			'map_meta_cap'        => true,
+			'taxonomies'          => [ 'doc_tag' ]
 		];
- 
-		
+
 		register_post_type( $this->post_type, apply_filters( 'eazydocs_post_type', $args ) );
 	}
 
