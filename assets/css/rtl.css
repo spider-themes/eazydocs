@@ -934,3 +934,6 @@ ul {
 pre.wp-block-preformatted {
 	white-space: unset !important;
 }
+.recommended_item {
+	padding: 40px 35px 35px 25px !important;
+}

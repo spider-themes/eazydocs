@@ -27,6 +27,10 @@ class Assets {
 		wp_register_style( 'elegant-icon', EAZYDOCS_ASSETS.'/vendors/elegant-icon/style.css' );
 		wp_register_style( 'ezd-el-widgets', EAZYDOCS_ASSETS.'/css/ezd-el-widgets.css' );
 
+		if ( is_rtl() ) {
+			wp_enqueue_style( 'ezd-rtl', EAZYDOCS_ASSETS . '/css/ezd-main-rtl.css' );
+		}
+
 		$dynamic_cssd = ":root { --ezd_brand_color: " . ezd_get_opt( 'brand_color' ) . "; }";
 		wp_add_inline_style( 'eazydocs-blocks', $dynamic_cssd );
 
@@ -53,9 +57,10 @@ class Assets {
 
 			wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css', EAZYDOCS_VERSION );
 
-			if ( is_rtl() ) {
-				wp_enqueue_style( 'eazydocs-rtl', EAZYDOCS_ASSETS . '/css/rtl.css', array( 'eazydocs-frontend' ) );
-			}
+//			if ( is_rtl() ) {
+//				wp_enqueue_style( 'eazydocs-rtl', EAZYDOCS_ASSETS . '/css/rtl.css', array( 'eazydocs-frontend' ) );
+//			}
+
 		}
 
 		// Enqueue on onepage doc
