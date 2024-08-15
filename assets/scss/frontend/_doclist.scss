@@ -199,7 +199,7 @@ body {
 				}
 			}
 		}
-
+		
 		&.active {
 			> .doc-link .icon {
 				transform: rotate(-180deg);
@@ -212,8 +212,25 @@ body {
 					display: none;
 				}
 			}
+			img {
+				&.open {
+					display: block;
+				}
+				&.closed {
+					display: none;
+				}
+			}
 		}
 
+		img {
+			&.open {
+				display: none;
+			}
+			&.closed {
+				display: block;
+			}
+		}
+		
 		mark {
 			background-color: var(--ezd_brand_color);
 		}

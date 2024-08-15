@@ -86,6 +86,7 @@ class Walker_Docs extends Walker_Page {
     public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
 
         $opt        = get_option( 'eazydocs_settings' );
+        $icon_type  = $opt['doc_sec_icon_type'] ?? false;
 
         if ( isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ) {
             $t = "\t";
@@ -145,7 +146,7 @@ class Walker_Docs extends Walker_Page {
             $folder_open = $opt['doc_sec_icon_open']['url'] ?? EAZYDOCS_IMG . '/icon/folder-open.png';
             $folder_closed = $opt['doc_sec_icon']['url'] ?? EAZYDOCS_IMG . '/icon/folder-closed.png';
             $folder = "<img class='closed' src='$folder_closed' alt='".esc_attr__('Folder icon closed', 'eazydocs')."'> <img class='open' src='$folder_open' alt='".esc_attr__('Folder open icon', 'eazydocs')."'>";
-            $thumb  = has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
+            $thumb  = $icon_type == true && has_post_thumbnail($page->ID) ? get_the_post_thumbnail($page->ID) : $folder;
         }
         $ezd_badge  = '';
         if ( ezd_is_premium() ) {

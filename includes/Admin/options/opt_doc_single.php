@@ -815,6 +815,17 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice',
 		),
+		
+		array(
+			'id'         => 'doc_sec_icon_type',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Featured Image', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Enable this switcher to use featured image for the Doc sections icon.', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'default'    => false,
+			'text_width' => 72,
+		),
 
 		array(
 			'title'    => esc_html__( 'Doc Section Icon', 'eazydocs' ),
