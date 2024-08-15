@@ -562,10 +562,6 @@ div.code-toolbar > .toolbar {
 }
 
 /**=== Table Widget ===**/
-.doc-middle-content {
-  padding-right: 0;
-  padding-left: 60px;
-}
 
 .left-sidebar-toggle {
   margin-right: -90px;
@@ -858,10 +854,6 @@ ul {
   margin-left: 0 !important;
 }
 
-.doc_rightsidebar .pageSideSection::before {
-  display: none;
-}
-
 .eazydocs-next-prev-wrap .next-prev-pager.second::before {
   right: unset !important;
   left: 12px !important;
@@ -974,7 +966,7 @@ pre.wp-block-preformatted {
 }
 
 .tag_list {
-  padding-right: 0;
+  padding-right: 0 !important;
 
   li a:before {
     padding-right: 0 !important;
@@ -1007,8 +999,13 @@ pre.wp-block-preformatted {
   margin-right: 8px;
 }
 
-.ezd-grid .categories_guide_item .doc_border_btn:hover i {
-  transform: translateX(-8px) !important;
+.ezd-grid .categories_guide_item {
+  .doc_border_btn i {
+    transform: rotate(0deg);
+  }
+  .doc_border_btn:hover i {
+    transform: translateX(-8px) !important;
+  }
 }
 
 .docy_btn_w_icon .learn_btn i {
@@ -1121,6 +1118,12 @@ form.ezd_search_form .form-group .input-wrapper input {
 
 .single-docs .doc_rightsidebar {
   padding-left: 10px !important;
+  border-right: none;
+}
+
+.doc_rightsidebar .pageSideSection::before {
+    right: 0;
+    left: initial;
 }
 
 .toc_right li.active > .nav-link::before{
@@ -1137,4 +1140,9 @@ form.ezd_search_form .form-group .input-wrapper input {
   .social_share_square {
     transform: rotate(180deg);
   }
+}
+
+.doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar) {
+    margin-left: 0;
+    margin-right: -10px;
 }
