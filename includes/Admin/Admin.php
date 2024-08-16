@@ -187,6 +187,10 @@ class Admin {
 			$classes .= ' ezd-premium';
 		}
 
+		if ( eaz_fs()->is_plan( 'promax' ) == "yes" ) {
+			$classes .= ' ezd-promax';
+        }
+
 		return $classes;
 	}
 

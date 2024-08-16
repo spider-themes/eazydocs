@@ -2,8 +2,11 @@
     'use sticky'
     $(document).ready(function() {
 
-        // Eazydocs Pro notices
+        // Pro notices
         $('body:not(.ezd-premium) .eazydocs-pro-notice ul li:last-child label input').attr('disabled', true);
+        
+        // Promax notices
+        $('body:not(.ezd-promax) .eazydocs-promax-notice .csf-field').attr('disabled', true);
 
         // eazydocs pro notice
         function eazydocs_pro_notice() {
@@ -36,7 +39,7 @@
             }
             
             // eazydocs promax notice
-            $('body.ezd_promax .eazydocs-promax-notice').on('click', function (e) {
+            $('body:not(.ezd-promax) .eazydocs-promax-notice').on('click', function (e) {
                 e.preventDefault();
                 let href = $(this).attr('href')
                 Swal.fire({
