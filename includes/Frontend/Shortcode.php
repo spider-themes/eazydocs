@@ -100,9 +100,9 @@ class Shortcode {
         eazydocs_get_template( 'shortcode.php', [
             'docs'              => $arranged,
             'col'               => ! empty ($args['col']) ? (int) $args['col'] : 3,
-            'more'              => ! empty ($args['more']) ? $args['more'] : esc_html__( 'View Details', 'eazydocs' ),
+            'more'              => ! empty ($args['more']) ? $args['more'] : __( 'View Details', 'eazydocs' ),
             'show_topic'        => $args['show_topic'] ?? false,
-            'topic_label'       => ! empty ($args['topic_label']) ? $args['topic_label'] : esc_html__( 'Topics', 'eazydocs' ),
+            'topic_label'       => ! empty ($args['topic_label']) ? $args['topic_label'] : __( 'Topics', 'eazydocs' ),
             'layout'            => $args['docs_layout'] ?? 'grid'
         ] );
 	}

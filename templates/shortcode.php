@@ -16,7 +16,7 @@ if ( $docs ) :
 	?>
     <div class="eazydocs_shortcode">
 
-        <div <?php echo 'class="' . esc_attr( do_action( 'eazydocs_masonry_wrap', $layout, $col ) ) . '"'; ?> class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
+		<div <?php echo esc_attr( do_action( 'eazydocs_masonry_wrap', $layout, $col ) ); ?> class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
 
             <?php
 			$i = 1;
@@ -97,7 +97,7 @@ if ( $docs ) :
 						endif;
 						?>
 						<a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
-							<?php esc_html( $more );  ?> <i class="arrow_right"></i>
+							<?php echo esc_html( $more );  ?> <i class="arrow_right"></i>
 						</a>
 
 						<?php 
