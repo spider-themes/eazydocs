@@ -41,17 +41,23 @@ class Docs {
 		
 		// Docs URL structure
         $docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
-		$rewrite 			= [];
 		
-		if ( $docs_url == 'custom-slug' || get_option('permalink_structure') === '' || get_option('permalink_structure') === '/archives/%post_id%' ) {	 
+		if ( ezd_is_premium() && $docs_url == 'post-name' ) {		
+			$rewrite = [
+				'slug'       => '/',
+				'with_front' => true,
+				'pages'      => true,
+				'feeds'      => true,
+			];
+		} else {			
 			$rewrite = [
 				'slug'       => $slug,
 				'with_front' => true,
 				'pages'      => true,
 				'feeds'      => true,
-			];
+			];			
 		}
-		
+
 		$labels = [
 			'name'               => _x( 'Docs', 'Post Type General Name', 'eazydocs' ),
 			'singular_name'      => _x( 'Doc', 'Post Type Singular Name', 'eazydocs' ),

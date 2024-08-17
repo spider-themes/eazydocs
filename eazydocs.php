@@ -152,19 +152,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				require_once __DIR__ . '/includes/notices/update-database.php';		
 			}
-
-			if ( ezd_is_premium() ) {
-				// Remove docs slug from URLs
-				$docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
-				$permalink 			= get_option('permalink_structure');
-
-				if ( $docs_url == 'post-name' ) {					
-					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {					 
-						require_once __DIR__ . '/includes/Root_Conversion.php';
-					}
-				}
-			}
-
+			
 			require_once __DIR__ . '/includes/sidebars.php';
 			require_once __DIR__ . '/includes/Frontend/Ajax.php';
 			require_once __DIR__ . '/includes/Frontend/Mailer.php';
