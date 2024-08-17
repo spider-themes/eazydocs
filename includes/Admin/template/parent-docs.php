@@ -82,7 +82,7 @@ $count = $query->found_posts;
                     <?php 
                      if ( ezd_is_admin_or_editor(get_the_ID(), 'delete') ) :
                         ?>
-                         <a href="<?php echo esc_url(admin_url('admin.php?Doc_Delete=yes&_wpnonce=' . esc_attr(wp_create_nonce(get_the_ID())) . '&DeleteID=' . esc_attr(get_the_ID()))); ?>" class="link delete parent-delete" title="<?php echo esc_attr__('Move to Trash', 'eazydocs'); ?>">
+                         <a href="<?php echo admin_url('admin.php?Doc_Delete=yes&_wpnonce=' . esc_attr(wp_create_nonce(get_the_ID())) . '&DeleteID=' . esc_attr(get_the_ID())); ?>" class="link delete parent-delete" title="<?php echo esc_attr__('Move to Trash', 'eazydocs'); ?>">
                              <span class="dashicons dashicons-trash"></span>
                          </a>
                         <?php 
@@ -94,39 +94,39 @@ $count = $query->found_posts;
                             <span class="dashicons dashicons-arrow-down-alt2"></span>
                             <span class="ezd-admin-bulk-actions">
                                 <?php
-                                    if ( ezd_is_premium() ) :
-                                        do_action('eazydocs_parent_doc_duplicate', get_the_ID());
-                                        do_action('eazydocs_doc_visibility', get_the_ID());
+                                if ( ezd_is_premium() ) :
+                                    do_action('eazydocs_parent_doc_duplicate', get_the_ID());
+                                    do_action('eazydocs_doc_visibility', get_the_ID());
 
-                                        $left_type      = get_post_meta(get_the_ID(), 'ezd_doc_left_sidebar_type', true);
-                                        $left_type      = '&left_type=' . $left_type;
+                                    $left_type      = get_post_meta(get_the_ID(), 'ezd_doc_left_sidebar_type', true);
+                                    $left_type      = '&left_type=' . $left_type;
 
-                                        $left_content   = get_post_meta(get_the_ID(), 'ezd_doc_left_sidebar', true);
-                                        $left_content   = '&left_content=' . $left_content;
+                                    $left_content   = get_post_meta(get_the_ID(), 'ezd_doc_left_sidebar', true);
+                                    $left_content   = '&left_content=' . $left_content;
 
-                                        $right_type     = get_post_meta(get_the_ID(), 'ezd_doc_right_sidebar_type', true);
-                                        $right_type     = '&right_type=' . $right_type;
+                                    $right_type     = get_post_meta(get_the_ID(), 'ezd_doc_right_sidebar_type', true);
+                                    $right_type     = '&right_type=' . $right_type;
 
-                                        $right_content  = get_post_meta(get_the_ID(), 'ezd_doc_right_sidebar', true);
-                                        $right_content  = '&right_content=' . $right_content;
+                                    $right_content  = get_post_meta(get_the_ID(), 'ezd_doc_right_sidebar', true);
+                                    $right_content  = '&right_content=' . $right_content;
 
-                                        do_action('eazydocs_doc_sidebar', get_the_ID(), $left_type, $left_content, $right_type, $right_content);
-                                    else :
-                                        ?>
-                                        <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>">
-                                            <span class="dashicons dashicons-admin-page"></span>
-                                            <span><?php esc_html_e('Duplicate', 'eazydocs'); ?></span>
-                                        </a>
-                                        <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-visibility eazydocs-pro-notice" title="<?php esc_attr_e('Docs visibility', 'eazydocs'); ?>">
-                                            <span class="dashicons dashicons-visibility"></span>
-                                            <span> <?php esc_html_e('Visibility', 'eazydocs'); ?> </span>
-                                        </a>
-                                        <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-sidebar eazydocs-pro-notice" title="<?php esc_attr_e('Docs sidebar', 'eazydocs'); ?>">
-                                            <span class="dashicons dashicons-welcome-widgets-menus"></span>
-                                            <span> <?php esc_html_e('Sidebar', 'eazydocs'); ?> </span>
-                                        </a>
-                                        <?php
-                                    endif;
+                                    do_action('eazydocs_doc_sidebar', get_the_ID(), $left_type, $left_content, $right_type, $right_content);
+                                else :
+                                    ?>
+                                    <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-duplicate eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>">
+                                        <span class="dashicons dashicons-admin-page"></span>
+                                        <span><?php esc_html_e('Duplicate', 'eazydocs'); ?></span>
+                                    </a>
+                                    <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-visibility eazydocs-pro-notice" title="<?php esc_attr_e('Docs visibility', 'eazydocs'); ?>">
+                                        <span class="dashicons dashicons-visibility"></span>
+                                        <span> <?php esc_html_e('Visibility', 'eazydocs'); ?> </span>
+                                    </a>
+                                    <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-sidebar eazydocs-pro-notice" title="<?php esc_attr_e('Docs sidebar', 'eazydocs'); ?>">
+                                        <span class="dashicons dashicons-welcome-widgets-menus"></span>
+                                        <span> <?php esc_html_e('Sidebar', 'eazydocs'); ?> </span>
+                                    </a>
+                                    <?php
+                                endif;
                                 ?>
                             </span>
                         </span>

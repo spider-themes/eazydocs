@@ -66,7 +66,7 @@ if ( $docs ) :
                             <a class="doc_tag_title" href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>">
 								<?php if ( ! empty( $main_doc['doc']->post_title ) ) : ?>
                                     <h4 class="title">
-										<?php echo esc_html($main_doc['doc']->post_title); ?>
+										<?php echo wp_kses_post($main_doc['doc']->post_title); ?>
                                     </h4>
 								<?php endif;
 								if ( $show_topic == true ) : ?>

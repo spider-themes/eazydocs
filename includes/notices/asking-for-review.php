@@ -31,7 +31,7 @@ function ezd_notify_give_review() {
              $articles_count    = count($articles) - count($docs);
              $articles_text     = $articles_count > 0 ? " and <b>".$articles_count."</b> articles" : '';
 
-	            esc_html_e("You have created <b>".count($docs)."</b> docs ".$articles_text." through EazyDocs. That's awesome! May we ask you to give it a 5-Star rating on WordPress. It will help us spread the word and boost our motivation.", 'eazydocs');
+	            _e("You have created <b>".count($docs)."</b> docs ".$articles_text." through EazyDocs. That's awesome! May we ask you to give it a 5-Star rating on WordPress. It will help us spread the word and boost our motivation.", 'eazydocs');
             }
             ?>
         </p>
