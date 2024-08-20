@@ -208,6 +208,13 @@ class Walker_Docs extends Walker_Page {
             }*/
         }
 
+        if ( ezd_is_premium() && ! empty ( get_post_meta( $page->ID, 'ezd_doc_secondary_title', true ) ) ) {
+            $post_title = esc_html( get_post_meta( $page->ID, 'ezd_doc_secondary_title', true ) );
+        } else {
+            /** This filter is documented in wp-includes/post-template.php */
+            $post_title = apply_filters( 'the_title', $page->post_title, $page->ID );
+        }
+
         $output .= $indent . sprintf(
                 '<li%s> %s <a%s>%s%s%s</a>',
                 // '<li%s><a%s>%s%s%s</a>',
@@ -215,12 +222,12 @@ class Walker_Docs extends Walker_Page {
                 $doc_link,
                 $attributes,
                 $args['link_before'],
-                /** This filter is documented in wp-includes/post-template.php */
-                apply_filters( 'the_title', $page->post_title, $page->ID ),
+                $post_title,
                 $args['link_after']
             );
 
         if ( ! empty( $args['show_date'] ) ) {
+
             if ( 'modified' == $args['show_date'] ) {
                 $time = $page->post_modified;
             } else {

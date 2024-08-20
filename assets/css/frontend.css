@@ -2108,9 +2108,12 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   position: relative;
 }
 
-.dot-sep span.sep::before {
+.dot-sep span.sep:before {
   content: "•";
   margin: 0 5px;
+}
+.dot-sep span.sep:first-child::before {
+  display: none;
 }
 
 .credit-text-container::after {

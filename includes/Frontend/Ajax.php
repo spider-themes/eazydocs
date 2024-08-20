@@ -67,12 +67,57 @@ class Ajax {
 	 * @return void
 	 */
 	function eazydocs_search_results() {
-		$posts = new WP_Query( [
-            'post_type' 	=> 'docs',
-            's'         	=> $_POST['keyword'] ?? '',
-			'post_status' 	=> [ 'publish', 'private' ]
-        ]);
+ 
+		$keyword = sanitize_text_field($_POST['keyword']);
 
+		// Search by keyword
+		$args = [
+			'post_type'      	=> 'docs',
+			'posts_per_page' 	=> -1,
+			'post_status'    	=> ['publish', 'private'],    
+			's' 				=> $keyword, // Include keyword search
+		];
+		
+		$posts = new WP_Query($args);
+		
+		// Search by tag
+		$getTags 	= get_terms([ 'taxonomy' => 'doc_tag', 'hide_empty' => false, 'object_ids' => get_posts([ 'post_type' => 'docs', 'posts_per_page' => -1, 'fields' => 'ids', ]) ]);
+		$checkTags 	= [];
+
+		if ( ! empty( $getTags ) && !is_wp_error( $getTags ) ) {
+			foreach ($getTags as $tag) {
+				$checkTags[] =  $tag->name;
+			}
+		}
+
+		$postsByTags = [];
+
+		if ( array_search( $keyword, $checkTags ) !== false ) {
+			$args = [
+				'post_type'      => 'docs',
+				'posts_per_page' => -1,
+				'post_status'    => ['publish', 'private'],
+				'tax_query'      => [
+					[
+						'taxonomy' => 'doc_tag',
+						'field'    => 'name',
+						'terms'    => $keyword,
+					],
+				],
+			];
+
+			$postsByTags 	= new WP_Query($args);
+			$merged_posts 	= array_merge($posts->posts, $postsByTags->posts);
+			$merged_posts 	= array_unique($merged_posts, SORT_REGULAR);
+
+			$posts = new WP_Query([
+				'post_type'      => 'docs',
+				'posts_per_page' => -1,
+				'post__in'       => wp_list_pluck($merged_posts, 'ID'),
+				'orderby'        => 'post__in', // Maintain order
+			]);
+		}
+		
 		// store search keyword data in wp_eazydocs_search_keywords table wordpress
 		$keyword = $_POST['keyword'] ?? '';
 		$keyword = sanitize_text_field( $keyword );

@@ -71,7 +71,7 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama',
 		),
-
+		
 		// Meta Information
 		array(
 			'type'       => 'heading',
@@ -83,28 +83,29 @@ CSF::createSection( $prefix, array(
 			'id'      => 'is_parent_doc',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Parent Doc Link', 'eazydocs' ),
-			'default' => true // or false
+			'default' => true 
+		),
+
+		array(
+			'id'         => 'is_doc_title',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Doc Title', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show the doc title on the top of the doc content area.', 'eazydocs' ),
+			'default'    => true,
 		),
 
 		array(
 			'id'      => 'enable-reading-time',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Estimated Reading Time', 'eazydocs' ),
-			'default' => true // or false
+			'default' => true
 		),
-
-		array(
-			'id'      => 'enable-reading-time',
-			'type'    => 'switcher',
-			'title'   => esc_html__( 'Estimated Reading Time', 'eazydocs' ),
-			'default' => true // or false
-		),
-
+		
 		array(
 			'id'      => 'enable-views',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Views', 'eazydocs' ),
-			'default' => true // or false
+			'default' => true
 		),
 
 		array(
@@ -112,7 +113,7 @@ CSF::createSection( $prefix, array(
 			'type'    		=> 'switcher',
 			'title'   		=> esc_html__( 'Unique Views', 'eazydocs' ),
 			'subtitle'		=> esc_html__( 'Unique views will stop counting views from reload pages.', 'eazydocs' ),
-			'default' 		=> false, // or false
+			'default' 		=> false,
 			'class'   		=> 'eazydocs-pro-notice',
 			'dependency'	=> array(
 				array( 'enable-views', '==', 'true' ),
@@ -204,14 +205,14 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'text_width' => 92,
-			'default'    => true // or false
+			'default'    => true
 		),
 
 		array(
 			'id'      => 'enable-next-prev-links',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Next & Previous Link', 'eazydocs' ),
-			'default' => false, // or false
+			'default' => false,
 			'class'   => 'eazydocs-pro-notice'
 		),
 
@@ -522,7 +523,7 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 70,
-			'default'    => true, // or false
+			'default'    => true,
 		),
 
 		array(

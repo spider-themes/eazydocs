@@ -22,7 +22,7 @@ $children 			= wp_list_pages( array(
     'post_status' 	=> array( 'publish', 'private' ),
 ));
 
-$options = get_option( 'eazydocs_settings' );
+$options            = get_option( 'eazydocs_settings' );
 $sidebar_search 	= $options['search_visibility'] ?? '1';
 $content_layout 	= $options['docs_content_layout'] ?? '1';
 $nav_sidebar_active = '';
@@ -49,15 +49,20 @@ if ( $credit_enable == '1' ) {
             <i class="arrow_carrot-left"></i>
         </div>
         <h2 class="doc-title">
-            <?php echo get_post_field( 'post_title', $parent, 'display' ); ?>
+            <?php 
+            if ( ezd_is_premium() && ! empty ( get_post_meta( $parent, 'ezd_doc_secondary_title', true ) ) ) {
+                echo esc_html( get_post_meta( $parent, 'ezd_doc_secondary_title', true ) );
+            } else {
+                echo get_post_field( 'post_title', $parent, 'display' );
+            }
+            ?>
         </h2>
         <?php
         if ( $sidebar_search == 1 ) :
             ?>
         <div class="filter_form">
             <div class="filterform">
-                <input id="doc_filter" type="search" name="filter"
-                    placeholder="<?php esc_attr_e( 'Filter', 'eazydocs' ); ?>" data-uw-styling-context="true">
+                <input id="doc_filter" type="search" name="filter" placeholder="<?php esc_attr_e( 'Filter', 'eazydocs' ); ?>" data-uw-styling-context="true">
             </div>
         </div>
         <?php
