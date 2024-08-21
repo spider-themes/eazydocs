@@ -177,6 +177,18 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				require_once __DIR__ . '/shortcodes/conditional_data.php';
 			}
 
+			if ( ezd_is_premium() ) {
+				// Remove docs slug from URLs
+				$docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
+				$permalink 			= get_option('permalink_structure');
+
+				if ( $docs_url == 'post-name' ) {					
+					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {					 
+						require_once __DIR__ . '/includes/Root_Conversion.php';
+					}
+				}
+			}
+
 			// Blocks
 			require_once __DIR__ . '/blocks.php';
 		}
