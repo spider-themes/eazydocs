@@ -392,10 +392,14 @@ if ( ! class_exists( 'CSF_Metabox' ) ) {
 
         if ( $this->args['data_type'] !== 'serialize' ) {
           foreach ( $data as $key => $value ) {
-            update_post_meta( $post_id, $key, $value );
+            if ( ! empty( $value ) ) {
+              update_post_meta( $post_id, $key, $value );
+            }
           }
         } else {
-          update_post_meta( $post_id, $this->unique, $data );
+          if ( ! empty( $data ) ) {
+            update_post_meta( $post_id, $this->unique, $data );
+          }
         }
 
         if ( ! empty( $errors ) ) {

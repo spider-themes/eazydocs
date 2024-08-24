@@ -75,10 +75,23 @@
 		];
 		$feedback = wp_insert_post($args, $wp_error = '' );
 			if($feedback != 0 ){
-				update_post_meta($feedback, 'ezd_feedback_id', $doc_id);
-				update_post_meta($feedback, 'ezd_feedback_name', $author);
-				update_post_meta($feedback, 'ezd_feedback_email', $email);
-				update_post_meta($feedback, 'ezd_feedback_subject', $feedback_subject);
+
+				if ( ! empty( $doc_id ) ) {
+					update_post_meta( $feedback, 'ezd_feedback_id', $doc_id );
+				}
+
+				if ( ! empty( $author ) ) {
+					update_post_meta( $feedback, 'ezd_feedback_name', $author );
+				}
+				
+				if ( ! empty( $email ) ) {
+					update_post_meta( $feedback, 'ezd_feedback_email', $email );
+				}
+				
+				if ( ! empty( $feedback_subject ) ) {
+					update_post_meta( $feedback, 'ezd_feedback_subject', $feedback_subject );
+				}
+				
 			}
 			wp_die();
 		}

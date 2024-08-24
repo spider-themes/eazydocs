@@ -73,12 +73,31 @@ class One_Page {
 			$post_id      = wp_insert_post( $one_page_doc, $wp_error = '' );
 
 			if ( $post_id != 0 ) {
-				update_post_meta( $post_id, 'ezd_doc_layout', $layout );
-				update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
-				update_post_meta( $post_id, 'ezd_doc_left_sidebar', $shortcode_content );
 
-				update_post_meta( $post_id, 'ezd_doc_content_type_right', $content_type );
-				update_post_meta( $post_id, 'ezd_doc_content_box_right', $shortcode_content_right );
+				if ( 'onepage-docs' != get_post_type( $post_id ) ) {
+					return;
+				}
+				
+				if ( ! empty( $layout ) ) {
+					update_post_meta( $post_id, 'ezd_doc_layout', $layout );
+				}
+
+				if ( ! empty( $ezd_doc_content_type ) ) {
+					update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
+				}
+				
+				if ( ! empty( $shortcode_content ) ) {
+					update_post_meta( $post_id, 'ezd_doc_left_sidebar', $shortcode_content );
+				}
+				
+				if ( ! empty( $content_type ) ) {
+					update_post_meta( $post_id, 'ezd_doc_content_type_right', $content_type );
+				}
+
+				if ( ! empty( $shortcode_content_right ) ) {
+					update_post_meta( $post_id, 'ezd_doc_content_box_right', $shortcode_content_right );
+				}
+				
 			}
 
 			global $wp_rewrite;
