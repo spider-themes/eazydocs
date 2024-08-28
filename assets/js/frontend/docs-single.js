@@ -90,7 +90,7 @@
 
 		// Add scroll spy attributes to body
 		$('body').attr({
-			'data-bs-spy': 'scroll',
+			// 'data-bs-spy': 'scroll',
 			'data-bs-target': '#eazydocs-toc',
 		});
 
