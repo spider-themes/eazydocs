@@ -1,9 +1,9 @@
 <?php
 if ( $settings['is_ezd_search_keywords'] == 'yes' && !empty($settings['ezd_search_keywords_repeater']) ) : 
     ?>
-    <div class="header_search_keyword justify-content-<?php esc_attr($settings['ezd_search_keywords_align']); ?>">
+    <div class="header_search_keyword justify-content-<?php echo esc_attr($settings['ezd_search_keywords_align']); ?>">
         <?php 
-        if ( !empty($settings['ezd_search_keywords_label']) ) : ?>
+        if ( ! empty( $settings['ezd_search_keywords_label'] )  && ezd_is_premium() ) : ?>
             <span class="header-search-form__keywords-label search_keyword_label">
                 <?php echo esc_attr($settings['ezd_search_keywords_label']) ?> </span>
             <?php
