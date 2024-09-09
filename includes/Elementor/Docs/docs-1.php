@@ -106,7 +106,7 @@ if ( ezd_is_premium() ) {
 						?>
                     </div>
                 </div>
-			<?php
+			    <?php
 			endwhile;
 		endif;
 		?>

@@ -340,11 +340,19 @@ p .footnotes-link::after {
   ol {
     padding-left: 20px;
     margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
   }
 
   ul {
     list-style: disc;
   }
+}
+
+.doc-excerpt {
+  margin-bottom: 30px;
 }
 
 .border_bottom {

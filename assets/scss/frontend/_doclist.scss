@@ -1199,6 +1199,11 @@ body {
 			}
 		}
 
+		a.nav-link {
+			font-size: 14px;
+			padding: 0;
+		}
+
 		&.active {
 			> .nav-link {
 				color: var(--ezd_brand_color);

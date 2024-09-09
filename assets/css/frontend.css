@@ -1605,6 +1605,10 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
 .toc_right li:not(.active) .nav-link {
   color: var(--black_500);
 }
+.toc_right li a.nav-link {
+  font-size: 14px;
+  padding: 0;
+}
 .toc_right li.active > .nav-link {
   color: var(--ezd_brand_color);
   background: transparent;
@@ -3956,9 +3960,17 @@ p .footnotes-link::after {
 .doc-scrollable ol {
   padding-left: 20px;
   margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 20px;
 }
 .doc-scrollable ul {
   list-style: disc;
+}
+
+.doc-excerpt {
+  margin-bottom: 30px;
 }
 
 .border_bottom {

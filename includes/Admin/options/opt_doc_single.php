@@ -83,7 +83,7 @@ CSF::createSection( $prefix, array(
 			'id'      => 'is_parent_doc',
 			'type'    => 'switcher',
 			'title'   => esc_html__( 'Parent Doc Link', 'eazydocs' ),
-			'default' => true 
+			'default' => false
 		),
 
 		array(

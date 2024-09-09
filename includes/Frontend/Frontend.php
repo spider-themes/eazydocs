@@ -342,6 +342,10 @@ class Frontend {
 
 		$next_post_id = (int) $wpdb->get_var( $next_query );
 		$prev_post_id = (int) $wpdb->get_var( $prev_query );
+
+        // If the queries return null or empty, ensure these variables are still defined.
+		$next_post_id = $next_post_id ? $next_post_id : 0;
+		$prev_post_id = $prev_post_id ? $prev_post_id : 0;
 		?>
         <div class="eazydocs-next-prev-wrap">
 			<?php
@@ -349,21 +353,22 @@ class Frontend {
 				?>
                 <a class="next-prev-pager first" href="<?php echo get_permalink( $prev_post_id ); ?>">
                     <span> <?php echo get_the_title( $current_parent_id ); esc_html_e( ' - Previous', 'eazydocs' ); ?> </span>
-                    <?php echo get_the_title( $prev_post_id ); ?>
+					<?php echo get_the_title( $prev_post_id ); ?>
                 </a>
-                <?php
-            endif;
+			<?php
+			endif;
 
-            if ( $next_post_id != 0 ) :
-                ?>
+			if ( $next_post_id != 0 ) :
+				?>
                 <a class="next-prev-pager second" href="<?php echo get_permalink( $next_post_id ); ?>">
                     <span> <?php esc_html_e( 'Next - ', 'eazydocs' ); echo get_the_title( $current_parent_id ); ?> </span>
 					<?php echo get_the_title( $next_post_id ); ?>
                 </a>
-			    <?php
+			<?php
 			endif;
 			?>
         </div>
 		<?php
+
 	}
 }
