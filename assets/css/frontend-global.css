@@ -353,8 +353,8 @@
 }
 @media (max-width: 991px) {
   .ezd-container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
   }
 }
 
