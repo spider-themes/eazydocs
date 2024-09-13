@@ -194,13 +194,15 @@ p .footnotes-link::after {
   list-style: none !important;
 
   li {
-    margin: 15px 0 0 0;
+    margin: 5px 0 0 0;
     padding: 0;
 
     ul.children {
       list-style: none;
       padding-left: 28px;
       margin: 0;
+      padding-bottom: 0;
+      padding-top: 10px;
 
       li {
         a::before {

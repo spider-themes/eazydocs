@@ -1,7 +1,7 @@
 <?php
 if ( $settings['is_ezd_search_keywords'] == 'yes' && !empty($settings['ezd_search_keywords_repeater']) ) : 
     ?>
-    <div class="header_search_keyword justify-content-<?php echo esc_attr($settings['ezd_search_keywords_align']); ?>">
+    <div class="header_search_keyword justify-content-<?php echo $settings['ezd_search_keywords_align']; ?>">
         <?php 
         if ( ! empty( $settings['ezd_search_keywords_label'] )  && ezd_is_premium() ) : ?>
             <span class="header-search-form__keywords-label search_keyword_label">
@@ -18,7 +18,7 @@ if ( $settings['is_ezd_search_keywords'] == 'yes' && !empty($settings['ezd_searc
                     if ( ! empty( $settings['ezd_search_keywords_repeater'] ) ) :
                         foreach ( $settings['ezd_search_keywords_repeater'] as $keyword ) :
                             ?>
-                            <li class="wow fadeInUp" data-wow-delay="0.2s" data-keywords="<?php echo esc_html($keyword['title']); ?>">
+                            <li class="wow fadeInUp" data-wow-delay="0.2s" data-keywords="<?php echo esc_attr($keyword['title']); ?>">
                                 <a class="has-bg" href="#"> <?php echo esc_html($keyword['title']); ?> </a>
                             </li>
                             <?php 

@@ -217,7 +217,7 @@
 	flex-flow: row nowrap;
 	display: flex;
 	overflow-x: auto;
-	gap: 20px;
+	gap: 25px;
 	margin: 0;
 
 	&::after {
@@ -231,7 +231,7 @@
 
 	.nav-item {
 		display: inline-block;
-		padding: 0px;
+		padding: 0;
 		border-bottom: 2px solid transparent;
 		min-width: 150px;
 		margin: 0;
@@ -243,6 +243,7 @@
 			margin-right: 0px;
 			font-size: 15px;
 			display: block;
+			text-align: left;
 
 			span.chapter-part {
 				display: block;

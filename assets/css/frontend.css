@@ -2841,7 +2841,7 @@ form.ezd-password-form p {
   flex-flow: row nowrap;
   display: flex;
   overflow-x: auto;
-  gap: 20px;
+  gap: 25px;
   margin: 0;
 }
 .book-chapter-nav::after {
@@ -2854,7 +2854,7 @@ form.ezd-password-form p {
 }
 .book-chapter-nav .nav-item {
   display: inline-block;
-  padding: 0px;
+  padding: 0;
   border-bottom: 2px solid transparent;
   min-width: 150px;
   margin: 0;
@@ -2867,6 +2867,7 @@ form.ezd-password-form p {
   margin-right: 0px;
   font-size: 15px;
   display: block;
+  text-align: left;
 }
 .book-chapter-nav .nav-item a span.chapter-part {
   display: block;
@@ -3855,13 +3856,15 @@ p .footnotes-link::after {
   list-style: none !important;
 }
 .article_list li {
-  margin: 15px 0 0 0;
+  margin: 5px 0 0 0;
   padding: 0;
 }
 .article_list li ul.children {
   list-style: none;
   padding-left: 28px;
   margin: 0;
+  padding-bottom: 0;
+  padding-top: 10px;
 }
 .article_list li ul.children li a::before {
   content: "=";
