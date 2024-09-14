@@ -4,7 +4,7 @@ Tags: knowledgebase, kb, faq, wiki, helpdesk
 Requires at least: 5.0
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,6 +227,22 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.5.3 (14 September 2024) =
+New: Added a secondary title option for long titles, allowing you to display a shorter title in the left sidebar.
+New: Added an option to show/hide the main title on single pages via 'EazyDocs > Settings > General'.
+Fixed: User access issue with settings customizer options
+Fixed: Shortcode block settings issue fixed
+Fixed: The 'Prev' button at the bottom of the content page were not working
+Fixed: Empty meta fields creation issue resolved
+Fixed: Removed data-bs-spy attribute to fix Docy tab active state issue
+Tweaked: Ul, Ol design improved
+Tweaked: Wrong escaping removed
+Tweaked: Removed settings link from admin bar
+Tweaked: Added some CSS for rtl
+Tweaked: Tags based result display in search result
+Tweaked: Promax notice added for subscription & selected comment feature
+Tweaked: Search Elementor widget level text locked "popular" with pro
 
 = v2.5.2 (11 August 2024) =
 New: Added a Switcher in the (Settings > Doc Single > General > Full Excerpt) for showing full excerpt in the parent doc page
