@@ -228,7 +228,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= v2.5.3 (14 September 2024) =
+= v2.5.3 (17 September 2024) =
 New: Added a secondary title option for long titles, allowing you to display a shorter title in the left sidebar.
 New: Added an option to show/hide the main title on single pages via 'EazyDocs > Settings > General'.
 Fixed: User access issue with settings customizer options
@@ -236,6 +236,7 @@ Fixed: Shortcode block settings issue fixed
 Fixed: The 'Prev' button at the bottom of the content page were not working
 Fixed: Empty meta fields creation issue resolved
 Fixed: Removed data-bs-spy attribute to fix Docy tab active state issue
+Fixed: Parent doc link background and color option added 'EazyDocs > Settings > Doc Single'
 Tweaked: Ul, Ol design improved
 Tweaked: Wrong escaping removed
 Tweaked: Removed settings link from admin bar
