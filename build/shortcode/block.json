@@ -44,6 +44,10 @@
       "type": "string",
       "default": "none"
     },
+    "parent_docs_order_by": {
+      "type": "string",
+      "default": "none"
+    },
     "child_docs_order": {
       "type": "string",
       "default": "desc"

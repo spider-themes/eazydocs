@@ -259,7 +259,7 @@
 		 */
 		$('.pageSideSection .print').on('click', function (e) {
 			e.preventDefault();
-			$('.doc-middle-content .doc-post-content').printThis({
+			$('.doc-middle-content .doc-post-content, body.single-onepage-docs .documentation_info').printThis({
 				loadCSS:
 					eazydocs_local_object.EAZYDOCS_FRONT_CSS + '/print.css',
 			});

@@ -85,6 +85,22 @@ CSF::createSection( $prefix, array(
 			'title'   => esc_html__( 'Parent Doc Link', 'eazydocs' ),
 			'default' => false
 		),
+		
+		array(
+			'id'         => 'parent_doc_bg',
+			'type'       => 'background',
+			'title'      => esc_html__( 'Parent Doc Link Background', 'eazydocs' ),
+			'output'     => '.single-docs .shortcode_title .ezd-doc-badge',
+			'dependency' => array( 'is_parent_doc', '==', 'true' )
+		),
+		
+		array(
+			'id'         => 'parent_doc_color',
+			'type'       => 'color',
+			'title'      => esc_html__( 'Parent Doc Link Color', 'eazydocs' ),
+			'output'     => '.single-docs .shortcode_title .ezd-doc-badge',
+			'dependency' => array( 'is_parent_doc', '==', 'true' )
+		),
 
 		array(
 			'id'         => 'is_doc_title',

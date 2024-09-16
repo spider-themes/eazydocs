@@ -1,1 +1,581 @@
-(()=>{"use strict";(()=>{const e=window.wp.blocks,o=JSON.parse('{"apiVersion":2,"name":"eazydocs/shortcode","version":"0.1.0","title":"EazyDocs Shortcode","category":"eazydocs","icon":"media-document","description":"Display the Docs on the website frontend.","supports":{"html":false,"anchor":true},"attributes":{"col":{"type":"number","default":3},"include":{"type":"array","default":[]},"exclude":{"type":"string"},"show_docs":{"type":"number"},"show_articles":{"type":"number"},"more":{"type":"string","default":"View Details"},"show_topic":{"type":"checkbox","default":true},"topic_label":{"type":"string","default":"Topics"},"parent_docs_order":{"type":"string","default":"none"},"child_docs_order":{"type":"string","default":"desc"},"docs_layout":{"type":"string","default":"grid"}},"textdomain":"eazydocs","editorScript":"file:./index.js"}'),t=window.wp.element,l=window.wp.i18n,a=window.wp.blockEditor,s=window.wp.components,c=window.wp.data;function n(e){var o="";if(e)for(let t=0;t<e.length;t++)o+=e[t].split("|")[0].trim()+(t===e.length-1?"":",");return o}const{__}=wp.i18n,{Fragment:r}=(__("Black","boilerplate"),__("White","boilerplate"),__("Red","boilerplate"),__("Green","boilerplate"),__("Blue","boilerplate"),__("Yellow","boilerplate"),wp.element);(0,e.registerBlockType)(o,{edit:function(e){let{attributes:o,setAttributes:d}=e;const{col:i,include:_,exclude:u,show_docs:p,show_articles:m,more:y,list:h,show_topic:b,topic_label:w,child_docs_order:z,parent_docs_order:g,docs_layout:f}=o,v=(0,a.useBlockProps)(),C=(0,c.useSelect)((e=>e("core").getEntityRecords("postType","docs",{parent:0,status:["publish","private"]})),[]),x=C?C.map((e=>e.id+" | "+e.title.rendered)):[],E=[{label:(0,l.__)("Ascending","eazydocs"),value:"asc"},{label:(0,l.__)("Descending","eazydocs"),value:"desc"}],S=[{label:(0,l.__)("Masonry","eazydocs"),value:"masonry"},{label:(0,l.__)("Grid","eazydocs"),value:"grid"}],D=[{label:(0,l.__)("No Order","eazydocs"),value:"none"},{label:(0,l.__)("Post ID","eazydocs"),value:"ID"},{label:(0,l.__)("Post Author","eazydocs"),value:"author"},{label:(0,l.__)("Title","eazydocs"),value:"title"},{label:(0,l.__)("Date","eazydocs"),value:"date"},{label:(0,l.__)("Last Modified Date","eazydocs"),value:"modified"},{label:(0,l.__)("Random","eazydocs"),value:"rand"},{label:(0,l.__)("Comment Count","eazydocs"),value:"comment_count"},{label:(0,l.__)("Menu Order","eazydocs"),value:"menu_order"}];let k=n(_)?'include="'+n(_)+'"':"",N=n(u)?'exclude="'+n(u)+'"':"",F=i?'col="'+i+'"':"",T=p?'show_docs="'+p+'"':"",B=m?'show_articles="'+m+'"':"",M=y?'more="'+y+'"':"";const O="yes"==eazydocs_local_object.is_ezd_premium?"":"Pro";return(0,t.createElement)(r,null,(0,t.createElement)(a.InspectorControls,null,(0,t.createElement)(s.PanelBody,{title:(0,l.__)("Filters","eazydocs"),initialOpen:!0},(0,t.createElement)(s.RangeControl,{initialPosition:3,label:(0,l.__)("Columns","eazydocs"),max:4,min:1,shiftStep:1,onChange:e=>{d({col:""==e?3:e})}}),(0,t.createElement)(s.TextControl,{help:(0,l.__)("Button/link to get the full docs","eazydocs"),label:(0,l.__)("View More Button","eazydocs"),value:y,onChange:e=>d({more:e})}),(0,t.createElement)(s.CheckboxControl,{label:(0,l.__)("Show Topic","eazydocs"),checked:b,onChange:e=>d({show_topic:e})}),b&&(0,t.createElement)(s.TextControl,{label:(0,l.__)("Topics Count Text","eazydocs"),value:w,onChange:e=>d({topic_label:e})}),(0,t.createElement)(s.SelectControl,{label:(0,l.__)(`Parent Docs Order ${O}`,"eazydocs"),value:g,options:D,disabled:"yes"!=eazydocs_local_object.is_ezd_premium,className:"eazydocs-pro-notice",onChange:e=>d({parent_docs_order:e})}),(0,t.createElement)(s.SelectControl,{label:(0,l.__)("Child Docs Order","eazydocs"),value:z,options:E,onChange:e=>d({child_docs_order:e})}),(0,t.createElement)(s.__experimentalNumberControl,{label:(0,l.__)("Number of Docs","eazydocs"),isShiftStepEnabled:!0,onChange:e=>d({show_docs:e}),shiftStep:1,value:p,min:1,__nextHasNoMarginBottom:!0,help:(0,l.__)("Number of Main Docs to show","eazydocs")}),(0,t.createElement)(s.__experimentalNumberControl,{label:(0,l.__)("Number of Articles","eazydocs"),isShiftStepEnabled:!0,onChange:e=>d({show_articles:e}),shiftStep:1,value:m,min:1,__nextHasNoMarginBottom:!0,help:(0,l.__)("Number of Articles to show under each Docs.","eazydocs")}),(0,t.createElement)(s.RadioControl,{label:(0,l.__)(`Docs Layout ${O}`,"eazydocs"),selected:f,options:S,disabled:"yes"!=eazydocs_local_object.is_ezd_premium,onChange:e=>d({docs_layout:e})}),(0,t.createElement)(s.FormTokenField,{__experimentalAutoSelectFirstMatch:!0,__experimentalExpandOnFocus:!0,label:(0,l.__)("Docs to Show","eazydocs"),suggestions:x,value:_,onChange:e=>d({include:e})}),(0,t.createElement)(s.FormTokenField,{__experimentalAutoSelectFirstMatch:!0,__experimentalExpandOnFocus:!0,label:(0,l.__)("Docs Not to Show","eazydocs"),suggestions:x,value:u,onChange:e=>d({exclude:e})}))),(0,t.createElement)("div",v,"[eazydocs ",F," ",k," ",N," ",T," ",B," ",M,"]"))},save:function(e){const{col:o,include:l,exclude:s,show_docs:c,show_articles:r,more:d,parent_docs_order:i,child_docs_order:_,show_topic:u,topic_label:p,docs_layout:m}=e.attributes,y=a.useBlockProps.save();let h=n(l)?'include="'+n(l)+'"':"",b=n(s)?'exclude="'+n(s)+'"':"",w=o?'col="'+o+'"':"",z=c?'show_docs="'+c+'"':"",g=r?'show_articles="'+r+'"':"",f=d?'more="'+d+'"':"",v=u?'show_topic="'+u+'"':"",C=v?'topic_label="'+p+'"':"",x=i?'parent_docs_order="'+i+'"':"",E=_?'child_docs_order="'+_+'"':"",S=m?'docs_layout="'+m+'"':"";return(0,t.createElement)(t.Fragment,null,(0,t.createElement)("div",y,"[eazydocs ",w," ",h," ",b," ",z," ",g," ",f," ",v," ",C," ",x," ",E," ",S,"]"))}})})()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/colors-palette.js":
+/*!*******************************!*\
+  !*** ./src/colors-palette.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const {
+  __
+} = wp.i18n;
+const colors = [{
+  name: __('Black', 'boilerplate'),
+  color: '#000000'
+}, {
+  name: __('White', 'boilerplate'),
+  color: '#ffffff'
+}, {
+  name: __('Red', 'boilerplate'),
+  color: '#ff0000'
+}, {
+  name: __('Green', 'boilerplate'),
+  color: '#00ff00'
+}, {
+  name: __('Blue', 'boilerplate'),
+  color: '#0000ff'
+}, {
+  name: __('Yellow', 'boilerplate'),
+  color: '#ffff00'
+}];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (colors);
+
+/***/ }),
+
+/***/ "./src/custom-functions.js":
+/*!*********************************!*\
+  !*** ./src/custom-functions.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   doc_ids: () => (/* binding */ doc_ids)
+/* harmony export */ });
+/**
+ * Custom Functions
+ */
+function doc_ids(arr) {
+  var doc_ids = '';
+  if (arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let doc_split = arr[i].split('|');
+      let doc_id = doc_split[0].trim();
+      let comma = i === arr.length - 1 ? '' : ',';
+      doc_ids += doc_id + comma;
+    }
+  }
+  return doc_ids;
+}
+
+/***/ }),
+
+/***/ "./src/shortcode/edit.js":
+/*!*******************************!*\
+  !*** ./src/shortcode/edit.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/shortcode/editor.scss");
+/* harmony import */ var _custom_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../custom-functions */ "./src/custom-functions.js");
+/* harmony import */ var _colors_palette__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../colors-palette */ "./src/colors-palette.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+
+
+var {
+  Fragment
+} = wp.element; // editor style
+
+ // Custom functions
+
+ // colors
+
+
+
+
+
+function Edit(_ref) {
+  var {
+    attributes,
+    setAttributes
+  } = _ref;
+  var {
+    col,
+    include,
+    exclude,
+    show_docs,
+    show_articles,
+    more,
+    list,
+    show_topic,
+    topic_label,
+    child_docs_order,
+    parent_docs_order,
+    parent_docs_order_by,
+    docs_layout
+  } = attributes;
+  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+  var docs = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => {
+    return select("core").getEntityRecords('postType', 'docs', {
+      parent: 0,
+      status: ['publish', 'private']
+    });
+  }, []);
+  var docSuggestions = docs ? docs.map(doc => doc.id + " | " + doc.title.rendered) : []; // console.log( docSuggestions )
+  // Set attributes value
+
+  var onChangeCol = newCol => {
+    setAttributes({
+      col: newCol == '' ? 3 : newCol
+    });
+  };
+
+  var orderOptions = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Ascending', 'eazydocs'),
+    value: 'asc'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Descending', 'eazydocs'),
+    value: 'desc'
+  }];
+  var layoutOptions = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Masonry', 'eazydocs'),
+    value: 'masonry'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid', 'eazydocs'),
+    value: 'grid'
+  }];
+  var parentOrderOptions = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No Order', 'eazydocs'),
+    value: 'none'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Post ID', 'eazydocs'),
+    value: 'ID'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Post Author', 'eazydocs'),
+    value: 'author'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Title', 'eazydocs'),
+    value: 'title'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Date', 'eazydocs'),
+    value: 'date'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Last Modified Date', 'eazydocs'),
+    value: 'modified'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Random', 'eazydocs'),
+    value: 'rand'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Comment Count', 'eazydocs'),
+    value: 'comment_count'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Menu Order', 'eazydocs'),
+    value: 'menu_order'
+  }]; // Shortcode attributes
+
+  var include_doc_ids = (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(include) ? 'include="' + (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(include) + '"' : '';
+  var exclude_doc_ids = (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(exclude) ? 'exclude="' + (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(exclude) + '"' : '';
+  var columns = col ? 'col="' + col + '"' : '';
+  var ppp = show_docs ? 'show_docs="' + show_docs + '"' : '';
+  var articles = show_articles ? 'show_articles="' + show_articles + '"' : '';
+  var more_txt = more ? 'more="' + more + '"' : '';
+  jQuery('.eazydocs-pro-block-notice').on('click', function (e) {
+    e.preventDefault();
+    var href = jQuery(this).attr('href');
+    Swal.fire({
+      title: 'Opps...',
+      html: 'This is a PRO feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
+      icon: "warning",
+      buttons: [false, "Close"],
+      dangerMode: true
+    });
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Filters', 'eazydocs'),
+        initialOpen: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          initialPosition: 3,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Columns', 'eazydocs'),
+          max: 4,
+          min: 1,
+          shiftStep: 1,
+          onChange: onChangeCol
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button/link to get the full docs', 'eazydocs'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('View More Button', 'eazydocs'),
+          value: more,
+          onChange: value => setAttributes({
+            more: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.CheckboxControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show Topic', 'eazydocs'),
+          checked: show_topic,
+          onChange: value => setAttributes({
+            show_topic: value
+          })
+        }), show_topic && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Topics Count Text', 'eazydocs'),
+          value: topic_label,
+          onChange: value => setAttributes({
+            topic_label: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Parent Docs Order By', 'eazydocs'),
+          value: parent_docs_order,
+          options: parentOrderOptions,
+          className: eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice',
+          onChange: value => setAttributes({
+            parent_docs_order: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Parent Docs Order', 'eazydocs'),
+          value: parent_docs_order_by,
+          options: orderOptions,
+          className: eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice',
+          onChange: value => setAttributes({
+            parent_docs_order_by: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Child Docs Order', 'eazydocs'),
+          value: child_docs_order,
+          options: orderOptions,
+          onChange: value => setAttributes({
+            child_docs_order: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Number of Docs', 'eazydocs'),
+          isShiftStepEnabled: true,
+          onChange: value => setAttributes({
+            show_docs: value
+          }),
+          shiftStep: 1,
+          value: show_docs,
+          min: 1,
+          __nextHasNoMarginBottom: true,
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Number of Main Docs to show', 'eazydocs')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Number of Articles', 'eazydocs'),
+          isShiftStepEnabled: true,
+          onChange: value => setAttributes({
+            show_articles: value
+          }),
+          shiftStep: 1,
+          value: show_articles,
+          min: 1,
+          __nextHasNoMarginBottom: true,
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Number of Articles to show under each Docs.', 'eazydocs')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RadioControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Docs Layout ', 'eazydocs'),
+          selected: docs_layout,
+          options: layoutOptions,
+          className: eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice',
+          onChange: value => setAttributes({
+            docs_layout: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FormTokenField, {
+          __experimentalAutoSelectFirstMatch: true,
+          __experimentalExpandOnFocus: true,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Docs to Show', 'eazydocs'),
+          suggestions: docSuggestions,
+          value: include,
+          onChange: value => setAttributes({
+            include: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FormTokenField, {
+          __experimentalAutoSelectFirstMatch: true,
+          __experimentalExpandOnFocus: true,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Docs Not to Show', 'eazydocs'),
+          suggestions: docSuggestions,
+          value: exclude,
+          onChange: value => setAttributes({
+            exclude: value
+          })
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", { ...blockProps,
+      children: ["[eazydocs ", columns, " ", include_doc_ids, " ", exclude_doc_ids, " ", ppp, " ", articles, " ", more_txt, "]"]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./src/shortcode/save.js":
+/*!*******************************!*\
+  !*** ./src/shortcode/save.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ save)
+/* harmony export */ });
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _custom_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../custom-functions */ "./src/custom-functions.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+// import { __ } from '@wordpress/i18n';
+
+
+// Custom functions
+
+
+/**
+ * The save function defines the way in which the different attributes should
+ * be combined into the final markup, which is then serialized by the block
+ * editor into `post_content`.
+ *
+ * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+ *
+ * @return {WPElement} Element to render.
+ */
+
+function save(props) {
+  const {
+    col,
+    include,
+    exclude,
+    show_docs,
+    show_articles,
+    more,
+    parent_docs_order,
+    child_docs_order,
+    parent_docs_order_by,
+    show_topic,
+    topic_label,
+    docs_layout
+  } = props.attributes;
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save();
+
+  //  Shorlettcode attributes
+  let include_doc_ids = (0,_custom_functions__WEBPACK_IMPORTED_MODULE_1__.doc_ids)(include) ? 'include="' + (0,_custom_functions__WEBPACK_IMPORTED_MODULE_1__.doc_ids)(include) + '"' : '';
+  let exclude_doc_ids = (0,_custom_functions__WEBPACK_IMPORTED_MODULE_1__.doc_ids)(exclude) ? 'exclude="' + (0,_custom_functions__WEBPACK_IMPORTED_MODULE_1__.doc_ids)(exclude) + '"' : '';
+  let columns = col ? 'col="' + col + '"' : '';
+  let ppp = show_docs ? 'show_docs="' + show_docs + '"' : '';
+  let articles = show_articles ? 'show_articles="' + show_articles + '"' : '';
+  let more_txt = more ? 'more="' + more + '"' : '';
+  let is_topic = show_topic ? 'show_topic="' + show_topic + '"' : '';
+  let is_topic_label = is_topic ? 'topic_label="' + topic_label + '"' : '';
+  let is_parent_docs_order = parent_docs_order ? 'parent_docs_order="' + parent_docs_order + '"' : '';
+  let is_child_docs_order = child_docs_order ? 'child_docs_order="' + child_docs_order + '"' : '';
+  let is_parent_docs_order_by = parent_docs_order_by ? 'parent_docs_order_by="' + parent_docs_order_by + '"' : '';
+  let is_docs_layout = docs_layout ? 'docs_layout="' + docs_layout + '"' : '';
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      ...blockProps,
+      children: ["[eazydocs ", columns, " ", include_doc_ids, " ", exclude_doc_ids, " ", ppp, " ", articles, " ", more_txt, " ", is_topic, " ", is_topic_label, " ", is_parent_docs_order, " ", is_child_docs_order, " ", is_parent_docs_order_by, " ", is_docs_layout, "]"]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./src/shortcode/editor.scss":
+/*!***********************************!*\
+  !*** ./src/shortcode/editor.scss ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["data"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "./src/shortcode/block.json":
+/*!**********************************!*\
+  !*** ./src/shortcode/block.json ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"eazydocs/shortcode","version":"0.1.0","title":"EazyDocs Shortcode","category":"eazydocs","icon":"media-document","description":"Display the Docs on the website frontend.","supports":{"html":false,"anchor":true},"attributes":{"col":{"type":"number","default":3},"include":{"type":"array","default":[]},"exclude":{"type":"string"},"show_docs":{"type":"number"},"show_articles":{"type":"number"},"more":{"type":"string","default":"View Details"},"show_topic":{"type":"checkbox","default":true},"topic_label":{"type":"string","default":"Topics"},"parent_docs_order":{"type":"string","default":"none"},"parent_docs_order_by":{"type":"string","default":"none"},"child_docs_order":{"type":"string","default":"desc"},"docs_layout":{"type":"string","default":"grid"}},"textdomain":"eazydocs","editorScript":"file:./index.js"}');
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+/*!********************************!*\
+  !*** ./src/shortcode/index.js ***!
+  \********************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/shortcode/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/shortcode/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/shortcode/save.js");
+
+//import './style.scss';
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+/**
+ * Block Registration
+ */
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_1__, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

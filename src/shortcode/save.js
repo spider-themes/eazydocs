@@ -14,7 +14,7 @@ import {doc_ids} from "../custom-functions";
  * @return {WPElement} Element to render.
  */
 export default function save( props ) {
-	const { col, include, exclude, show_docs, show_articles, more, parent_docs_order, child_docs_order, show_topic, topic_label, docs_layout  } = props.attributes;
+	const { col, include, exclude, show_docs, show_articles, more, parent_docs_order, child_docs_order, parent_docs_order_by, show_topic, topic_label, docs_layout  } = props.attributes;
 	const blockProps = useBlockProps.save();
 
 	//  Shorlettcode attributes
@@ -28,12 +28,13 @@ export default function save( props ) {
 	let is_topic_label = is_topic ? 'topic_label="'+topic_label+'"' : '';
 	let is_parent_docs_order = parent_docs_order ? 'parent_docs_order="'+parent_docs_order+'"' : '';
 	let is_child_docs_order = child_docs_order ? 'child_docs_order="'+child_docs_order+'"' : '';
+	let is_parent_docs_order_by = parent_docs_order_by ? 'parent_docs_order_by="'+parent_docs_order_by+'"' : '';
 	let is_docs_layout = docs_layout ? 'docs_layout="'+docs_layout+'"' : '';
 
 	return (
 		<>
 			<div { ...blockProps }>
-				[eazydocs {columns} {include_doc_ids} {exclude_doc_ids} {ppp} {articles} {more_txt} {is_topic} {is_topic_label} {is_parent_docs_order} {is_child_docs_order} {is_docs_layout}]
+				[eazydocs {columns} {include_doc_ids} {exclude_doc_ids} {ppp} {articles} {more_txt} {is_topic} {is_topic_label} {is_parent_docs_order} {is_child_docs_order} {is_parent_docs_order_by} {is_docs_layout}]
 			</div>
 		</>
 	);

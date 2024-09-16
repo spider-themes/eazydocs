@@ -21,7 +21,7 @@ import {doc_ids} from "../custom-functions";
 import colors from '../colors-palette';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { col, include, exclude, show_docs, show_articles, more, list, show_topic, topic_label, child_docs_order, parent_docs_order, docs_layout } = attributes;
+	const { col, include, exclude, show_docs, show_articles, more, list, show_topic, topic_label, child_docs_order, parent_docs_order, parent_docs_order_by, docs_layout } = attributes;
 	const blockProps = useBlockProps();
 
 	const docs = useSelect( (select) => {
@@ -74,7 +74,17 @@ export default function Edit( { attributes, setAttributes } ) {
 	let articles = show_articles ? 'show_articles="'+show_articles+'"' : '';
 	let more_txt = more ? 'more="'+more+'"' : '';
 
-	const proAlert = eazydocs_local_object.is_ezd_premium == 'yes' ? '' : 'Pro';
+	jQuery('.eazydocs-pro-block-notice').on('click', function (e) {
+		e.preventDefault();
+		let href = jQuery(this).attr('href')
+		Swal.fire({
+			title: 'Opps...',
+			html: 'This is a PRO feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
+			icon: "warning",
+			buttons: [false, "Close"],
+			dangerMode: true
+		})
+	});
 
 	return (
 		<>
@@ -114,14 +124,22 @@ export default function Edit( { attributes, setAttributes } ) {
 					}
 					
 					<SelectControl
-						label={__('Parent Docs Order ' + `${proAlert}`, 'eazydocs')}
+						label={__('Parent Docs Order By', 'eazydocs')}
 						value={parent_docs_order}
 						options={parentOrderOptions}
-						disabled={eazydocs_local_object.is_ezd_premium == 'yes' ? false : true}
-						className='eazydocs-pro-notice'
+						className={eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice'}
 						onChange={(value) => setAttributes({ parent_docs_order: value })}
 					/>
 
+
+					<SelectControl
+						label={__('Parent Docs Order', 'eazydocs')}
+						value={parent_docs_order_by}
+						options={orderOptions}
+						className={eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice'}
+						onChange={(value) => setAttributes({ parent_docs_order_by: value })}
+					/>
+					
 					<SelectControl
 						label={__('Child Docs Order', 'eazydocs')}
 						value={child_docs_order}
@@ -152,11 +170,11 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 
 					<RadioControl
-						label={__('Docs Layout ' + `${proAlert}`, 'eazydocs')}
+						label={__('Docs Layout ', 'eazydocs')}
 						selected={docs_layout}
 						options={layoutOptions}
-						disabled={eazydocs_local_object.is_ezd_premium == 'yes' ? false : true}
-						onChange={(value) => setAttributes({ docs_layout: value })}
+						className={eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice'}
+						onChange={(value) => setAttributes({ docs_layout: value })}						
 					/>
 
 					<FormTokenField

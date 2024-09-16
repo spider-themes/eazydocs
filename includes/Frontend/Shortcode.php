@@ -74,10 +74,18 @@ class Shortcode {
         // arrange the docs
         if ( $parent_docs ) {
 
-            usort( $parent_docs, function ($a, $b) use ($args) {
-                $parent_args = $args['parent_docs_order'];            
-                return ($a->$parent_args > $b->$parent_args) ? -1 : 1;
-            });
+            if ( ezd_is_premium() ) {
+                usort( $parent_docs, function ($a, $b) use ($args) {
+                    $parent_args = $args['parent_docs_order'];    
+                    $parent_docs_order_by = $args['parent_docs_order_by'] ?? 'asc'; 
+                    if ( $parent_docs_order_by == 'asc' ) {
+                        return ($a->$parent_args < $b->$parent_args) ? -1 : 1;
+                    } else {
+                        return ($a->$parent_args > $b->$parent_args) ? -1 : 1;
+                    }
+                    
+                });
+            }
             
             foreach ( $parent_docs as $root ) {
                 $sections = get_children( [

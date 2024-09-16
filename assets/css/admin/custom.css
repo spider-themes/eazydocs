@@ -776,3 +776,32 @@ select[name="eazydocs_settings[docs-url-structure]"] {
     font-size: 14px;
     color: #a50303;
 }
+
+.eazydocs-pro-block-notice.components-radio-control .components-flex,
+.eazydocs-pro-block-notice .components-input-control__container {
+	background: gainsboro;
+	padding: 10px !important;
+	border-radius: 5px;
+    position: relative;
+}
+
+.eazydocs-pro-block-notice.components-radio-control .components-flex::after, .eazydocs-pro-block-notice .components-input-control__container::after {
+    content: 'PRO';
+    display: block;
+    clear: both;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    background: #002a7361;
+    color: white;
+    padding-top: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
