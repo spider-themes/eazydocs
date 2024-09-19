@@ -1,7 +1,20 @@
 <?php
 $optionReview = get_option('ezd_notify_review');
 if ( time() >= (int)$optionReview && $optionReview !== '0' ) {
-    add_action('admin_notices', 'ezd_notify_give_review');
+    $ezd_installed = get_option('eazyDocs_installed');
+    // Check if timestamp exists
+    if ( $ezd_installed ) {
+        // Add 7days to the timestamp
+        $show_notice = $ezd_installed + (7 * 24 * 60 * 60);
+
+        // Get the current time
+        $current_time = current_time('timestamp');
+
+        // Compare current time with timestamp + 7 days
+        if ($current_time >= $show_notice) {
+            add_action('admin_notices', 'ezd_notify_give_review');
+        }
+    }
 }
 add_action('wp_ajax_ezd_notify_save_review', 'ezd_notify_save_review');
 
