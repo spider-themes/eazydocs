@@ -338,8 +338,10 @@ p .footnotes-link::after {
     height: auto;
   }
 
-  ul,
-  ol {
+  ul:not([class]),
+  ul.wp-block-list,
+  ol:not([class]),
+  ol.wp-block-list {
     padding-left: 20px;
     margin: 10px 0;
     display: flex;

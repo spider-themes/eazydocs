@@ -315,7 +315,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'search_banner_padding',
 			'type'       => 'spacing',
 			'title'      => esc_html__( 'Padding', 'eazydocs' ),
-			'output'     => '.ezd_search_banner',
+			'output'     => 'body .ezd_search_banner',
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'search_banner_layout', '==', 'default' ),

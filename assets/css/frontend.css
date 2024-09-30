@@ -7,7 +7,7 @@
   --body_bg: #fff;
   --bs-white: #fff;
   --black_25: #f9f9f9;
-  --black_50: #ebebeb;
+  --black_50: #f2f2f2;
   --black_100: #d6d9dc;
   --black_150: #c8ccd0;
   --black_200: #bbc0c4;
@@ -3965,8 +3965,10 @@ p .footnotes-link::after {
   max-width: 100%;
   height: auto;
 }
-.doc-scrollable ul,
-.doc-scrollable ol {
+.doc-scrollable ul:not([class]),
+.doc-scrollable ul.wp-block-list,
+.doc-scrollable ol:not([class]),
+.doc-scrollable ol.wp-block-list {
   padding-left: 20px;
   margin: 10px 0;
   display: flex;
