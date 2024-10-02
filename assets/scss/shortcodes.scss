@@ -72,11 +72,7 @@ EazyDocs Footnotes
       }
     }
   }
-
-  span {
-    display: none;
-  }
-
+  
   img {
     margin: 5px 0;
   }
@@ -97,6 +93,7 @@ EazyDocs Footnotes
   transition: all 1s ease;
   position: relative;
   text-decoration: none !important;
+  display: inline-block;
 
   > i {
     font-style: normal;
@@ -108,7 +105,7 @@ EazyDocs Footnotes
     top: -5px;
   }
 
-  span {
+  span.ezd-footnote-content {
     z-index: -1;
     opacity: 0;
     position: absolute;
@@ -188,8 +185,14 @@ EazyDocs Footnotes
     }
   }
 
+  .ezd-footnote-content {
+    input {
+      max-width: 100%;
+    }
+  }
+
   &:hover {
-    span {
+    span.ezd-footnote-content {
       z-index: 9;
       opacity: 1;
       transition: all 1s ease;

@@ -59,9 +59,6 @@ EazyDocs Footnotes
 .ezd-footnote-footer div a:hover {
   text-decoration-thickness: 1px;
 }
-.ezd-footnote-footer span {
-  display: none;
-}
 .ezd-footnote-footer img {
   margin: 5px 0;
 }
@@ -79,6 +76,7 @@ EazyDocs Footnotes
   transition: all 1s ease;
   position: relative;
   text-decoration: none !important;
+  display: inline-block;
 }
 .ezd-footnotes-link-item > i {
   font-style: normal;
@@ -89,7 +87,7 @@ EazyDocs Footnotes
   position: relative;
   top: -5px;
 }
-.ezd-footnotes-link-item span {
+.ezd-footnotes-link-item span.ezd-footnote-content {
   z-index: -1;
   opacity: 0;
   position: absolute;
@@ -126,7 +124,7 @@ EazyDocs Footnotes
   padding: 25px;
   box-sizing: border-box;
 }
-.ezd-footnotes-link-item span b, .ezd-footnotes-link-item span strong {
+.ezd-footnotes-link-item span.ezd-footnote-content b, .ezd-footnotes-link-item span.ezd-footnote-content strong {
   font-weight: bold;
   font-size: 14px;
   color: #1d2746;
@@ -134,11 +132,11 @@ EazyDocs Footnotes
   margin-bottom: 8px;
   display: block;
 }
-.ezd-footnotes-link-item span img {
+.ezd-footnotes-link-item span.ezd-footnote-content img {
   margin: 10px 0;
   display: block;
 }
-.ezd-footnotes-link-item span::before {
+.ezd-footnotes-link-item span.ezd-footnote-content::before {
   content: "";
   position: absolute;
   top: -6px;
@@ -156,14 +154,17 @@ EazyDocs Footnotes
   background: white;
   border-top-right-radius: 2px;
 }
-.ezd-footnotes-link-item span a {
+.ezd-footnotes-link-item span.ezd-footnote-content a {
   text-decoration: none;
   color: var(--ezd_brand_color);
 }
-.ezd-footnotes-link-item span a:hover {
+.ezd-footnotes-link-item span.ezd-footnote-content a:hover {
   text-decoration: none;
 }
-.ezd-footnotes-link-item:hover span {
+.ezd-footnotes-link-item .ezd-footnote-content input {
+  max-width: 100%;
+}
+.ezd-footnotes-link-item:hover span.ezd-footnote-content {
   z-index: 9;
   opacity: 1;
   transition: all 1s ease;

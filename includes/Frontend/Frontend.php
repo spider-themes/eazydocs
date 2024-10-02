@@ -120,7 +120,7 @@ class Frontend {
 						<a class="ezd-note-indicator" href="#serial-id-<?php echo esc_html( $reference_with_contents['id'] ); ?>"><i class="arrow_carrot-up"></i> </a>
 					</div>
 					<div class="ezd-footnote-texts"> 
-						<?php echo wp_kses_post( $reference_with_contents['content'] ); ?>
+						<?php echo do_shortcode( $reference_with_contents['content'] ); ?>
 					</div>
 				</div>
 				<?php
