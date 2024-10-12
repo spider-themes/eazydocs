@@ -4,7 +4,7 @@ Tags: knowledgebase, kb, faq, wiki, helpdesk
 Requires at least: 5.0
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 2.5.3
+Stable tag: 2.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,6 +227,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.5.4 (12 October 2024) =
+Fixed: The Padding settings wasn't working on the Search Banner Block
+Fixed: ul,ol was style was conflicting with theme css
+Tweaked: Added shortcode support inside footnote
 
 = v2.5.3 (17 September 2024) =
 New: Added a secondary title option for long titles, allowing you to display a shorter title in the left sidebar.
