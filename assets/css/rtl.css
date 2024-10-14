@@ -345,26 +345,32 @@ div.code-toolbar > .toolbar {
     margin-left: 0;
     margin-right: 0;
   }
+
   .shortcode_info {
     padding-right: 0;
     padding-left: 55px;
   }
+
   .doc_rightsidebar {
     margin-right: -60px;
     padding-right: 20px;
   }
+
   .doc_rightsidebar .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn),
-  body:not(.onepage-doc) .body_fixed #font-switcher {
+body:not(.onepage-doc) .body_fixed #font-switcher {
     width: 177px;
   }
+
   .feedback_link p,
-  .feedback_link h6 {
+.feedback_link h6 {
     font-size: 13px;
     margin-left: 0;
   }
+
   .feedback_link .h_btn {
     margin-right: 0;
   }
+
   .feedback_link .h_btn {
     padding: 1px 11px 0;
   }
@@ -373,74 +379,94 @@ div.code-toolbar > .toolbar {
   .nav-sidebar .nav-item .nav-link {
     flex-direction: row-reverse;
   }
+
   .doc_left_sidebarlist .mCustomScrollBox {
     direction: ltr;
   }
+
   .mobile_main_menu .menu_toggle {
     margin-left: 18px;
     margin-right: 0;
   }
+
   .doc_rightsidebar {
     width: 210px;
   }
+
   .mCS-dir-rtl > .mCSB_inside > .mCSB_container {
     margin-right: 0 !important;
   }
+
   .menu .nav-item .mobile_dropdown_icon {
     right: auto;
     left: 0;
   }
+
   .menu > .nav-item {
     text-align: right;
   }
+
   .menu > .nav-item + .nav-item {
     margin-right: 0;
   }
+
   .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover::after,
-  .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active::after {
+.menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active::after {
     left: 8px;
     right: auto;
   }
+
   .link_widget.pl_70 {
     padding-right: 30px;
     padding-left: 0;
   }
+
   .documentation_info {
     padding-left: 0;
   }
+
   .side_menu .menu > .nav-item.submenu .dropdown-menu .nav-item .mobile_dropdown_icon {
     left: 25px;
     right: auto;
   }
+
   .feedback_link p {
     text-align: right;
   }
+
   .nav_btn {
     margin-left: 15px;
     margin-right: 0;
   }
+
   .doc_rightsidebar {
     margin-right: 0;
   }
+
   .shortcode_info {
     padding-left: 0;
   }
+
   .doc_rightsidebar .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn),
-  body:not(.onepage-doc) .body_fixed #font-switcher {
+body:not(.onepage-doc) .body_fixed #font-switcher {
     width: 100%;
   }
+
   .feedback_link p {
     float: none;
   }
+
   .feedback_link .h_btn {
     margin-right: 8px;
   }
+
   .feedback_link p,
-  .feedback_link h6 {
+.feedback_link h6 {
     font-size: 15px;
   }
+
   .doc_left_sidebarlist::after,
-  .doc_left_sidebarlist::before {
+.doc_left_sidebarlist::before {
     right: 0 !important;
   }
 }
@@ -453,6 +479,7 @@ div.code-toolbar > .toolbar {
   .page_breadcrumb .date {
     float: none;
   }
+
   .doc_right_mobile_menu {
     max-width: 250px;
   }
@@ -690,29 +717,36 @@ ul {
     left: auto;
     right: 100%;
   }
+
   .preset_footer .f_widget {
     padding-left: 15px;
     padding-right: 15px;
   }
+
   .preset_footer .footer_widget:nth-child(1) {
     padding-left: 40px;
     padding-right: 0;
   }
+
   .preset_footer .footer_widget:nth-child(2) {
     padding-left: 0;
     padding-right: 30px;
   }
+
   .preset_footer .footer_widget:nth-child(3) {
     padding-left: 0;
     padding-right: 32px;
   }
+
   .preset_footer .footer_widget:nth-child(4) {
     padding-left: 0;
     padding-right: 38px;
   }
+
   .eazydocs-comments-wrap {
     padding-bottom: 0;
   }
+
   .shortcode_info {
     padding-left: 40px !important;
     padding-right: 0 !important;
@@ -723,22 +757,27 @@ ul {
     padding-left: 15px;
     padding-right: 15px;
   }
+
   .preset_footer .footer_widget:nth-child(1) {
     padding-left: 40px;
     padding-right: 0;
   }
+
   .preset_footer .footer_widget:nth-child(2) {
     padding-left: 0;
     padding-right: 30px;
   }
+
   .preset_footer .footer_widget:nth-child(3) {
     padding-left: 40px;
     padding-right: 0;
   }
+
   .preset_footer .footer_widget:nth-child(4) {
     padding-left: 0;
     padding-right: 30px;
   }
+
   .eazydocs-comments-wrap {
     padding-bottom: 0;
   }
@@ -885,9 +924,6 @@ pre.wp-block-preformatted {
   margin-right: 8px;
 }
 
-.ezd-grid .categories_guide_item .doc_border_btn i {
-  transform: rotate(0deg);
-}
 .ezd-grid .categories_guide_item .doc_border_btn:hover i {
   transform: translateX(-8px) !important;
 }
