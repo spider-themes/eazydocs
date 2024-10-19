@@ -1294,10 +1294,32 @@ body {
 		li {
 			counter-increment: item;
 			white-space: normal;
+
+
+			&.active {
+				> .nav-link {
+					padding-left: 16px;
+					letter-spacing: .5px;
+	
+					&::before {
+						content: counters(item, ".") ". ";
+						padding-left: 18px;
+					}
+				}
+				.active {
+					> .nav-link {
+						padding-left: unset;
+					}
+				}
+			}
+
+
+
 		}
 	}
 
 	.nav-link {
+		letter-spacing: .5px;
 		&::before {
 			content: counters(item, ".") ". ";
 		}

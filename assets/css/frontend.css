@@ -1684,6 +1684,20 @@ body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
   counter-increment: item;
   white-space: normal;
 }
+.toc_auto_numbering ul li.active > .nav-link {
+  padding-left: 16px;
+  letter-spacing: 0.5px;
+}
+.toc_auto_numbering ul li.active > .nav-link::before {
+  content: counters(item, ".") ". ";
+  padding-left: 18px;
+}
+.toc_auto_numbering ul li.active .active > .nav-link {
+  padding-left: unset;
+}
+.toc_auto_numbering .nav-link {
+  letter-spacing: 0.5px;
+}
 .toc_auto_numbering .nav-link::before {
   content: counters(item, ".") ". ";
 }
