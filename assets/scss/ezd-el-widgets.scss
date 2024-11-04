@@ -499,3 +499,14 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	flex: 1;
   }
 }
+.ezd-mobile-column {
+	@media (max-width: 881px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.ezd-mobile-column {
+	@media (max-width: 540px) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

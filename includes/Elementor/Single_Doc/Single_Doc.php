@@ -1,4 +1,5 @@
 <?php
+
 namespace EazyDocs\Elementor\Single_Doc;
 
 use Elementor\Widget_Base;
@@ -17,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class Single_doc
+ *
  * @package DocyCore\Widgets
  */
 class Single_Doc extends Widget_Base {
@@ -25,7 +27,7 @@ class Single_Doc extends Widget_Base {
 	}
 
 	public function get_title() {
-		return __( 'EazyDocs Single Doc', 'eazydocs' );
+		return esc_html__( 'EazyDocs Single Doc', 'eazydocs' );
 	}
 
 	public function get_icon() {
@@ -36,17 +38,17 @@ class Single_Doc extends Widget_Base {
 		return [ 'eazydocs' ];
 	}
 
-    public function get_keywords() {
-        return ['eazydocs', 'doc', 'documentation', 'knowledge base', 'knowledgebase', 'kb'];
-    }
+	public function get_keywords() {
+		return [ 'eazydocs', 'doc', 'documentation', 'knowledge base', 'knowledgebase', 'kb' ];
+	}
 
-    public function get_style_depends (){
-        return [ 'ezd-el-widgets', 'ezd-docs-widget', 'elegant-icon' ];
-    }
+	public function get_style_depends() {
+		return [ 'ezd-el-widgets', 'ezd-docs-widget', 'elegant-icon' ];
+	}
 
 	protected function register_controls() {
 
-		$theme = wp_get_theme();
+		$theme       = wp_get_theme();
 		$support_pro = 'ezd-free-docs';
 		$skins_label = 'pro-label';
 
@@ -57,7 +59,7 @@ class Single_Doc extends Widget_Base {
 		// ---Start Document Setting
 		$this->start_controls_section(
 			'doc_design_sec', [
-				'label' => __( 'Preset Skin', 'eazydocs' ),
+				'label' => esc_html__( 'Preset Skin', 'eazydocs' ),
 			]
 		);
 
@@ -67,24 +69,24 @@ class Single_Doc extends Widget_Base {
 				'type'    => Controls_Manager::CHOOSE,
 				'options' => [
 					'1' => [
-						'title' => __( 'Light', 'eazydocs' ),
+						'title' => esc_html__( 'Light', 'eazydocs' ),
 						'icon'  => 'single-doc1',
 					],
 					'2' => [
-						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Creative', 'eazydocs' ),
-						'icon'  => 'single-doc2 '.$support_pro.'',
+						'title' => esc_html__( ! empty ( $skins_label ) ? 'pro-label' : 'Creative', 'eazydocs' ),
+						'icon'  => 'single-doc2 ' . $support_pro . '',
 					],
 					'3' => [
-						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Box', 'eazydocs' ),
-						'icon'  => 'single-doc3  '.$support_pro.'',
+						'title' => esc_html__( ! empty ( $skins_label ) ? 'pro-label' : 'Box', 'eazydocs' ),
+						'icon'  => 'single-doc3  ' . $support_pro . '',
 					],
 					'4' => [
-						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Topic Boxes', 'eazydocs' ),
-						'icon'  => 'single-doc4  '.$support_pro.'',
+						'title' => esc_html__( ! empty ( $skins_label ) ? 'pro-label' : 'Topic Boxes', 'eazydocs' ),
+						'icon'  => 'single-doc4  ' . $support_pro . '',
 					],
 					'5' => [
-						'title' => __( ! empty ( $skins_label ) ? 'pro-label' : 'Docs Boxes', 'eazydocs' ),
-						'icon'  => 'single-doc5  '.$support_pro.'',
+						'title' => esc_html__( ! empty ( $skins_label ) ? 'pro-label' : 'Docs Boxes', 'eazydocs' ),
+						'icon'  => 'single-doc5  ' . $support_pro . '',
 					],
 				],
 				'toggle'  => false,
@@ -118,7 +120,7 @@ class Single_Doc extends Widget_Base {
 
 		$this->add_control(
 			'title_tag', [
-				'label'     => __( 'Title Tag', 'eazydocs' ),
+				'label'     => esc_html__( 'Title Tag', 'eazydocs' ),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'default'   => 'h2',
 				'options'   => ezd_el_title_tags(),
@@ -141,7 +143,7 @@ class Single_Doc extends Widget_Base {
 		// --- Doc ------------------------------------
 		$this->start_controls_section(
 			'doc_opt', [
-				'label' => __( 'Doc', 'eazydocs' ),
+				'label' => esc_html__( 'Doc', 'eazydocs' ),
 			]
 		);
 
@@ -153,19 +155,19 @@ class Single_Doc extends Widget_Base {
 			]
 		);
 
-		
+
 		$this->add_control(
 			'ppp_column', [
 				'label'       => esc_html__( 'Column', 'eazydocs' ),
 				'description' => esc_html__( 'Number of column to show', 'eazydocs' ),
 				'type'        => Controls_Manager::SELECT,
-				'options'	  => [
-					'1' 	  => esc_html__( '1 Column', 'eazydocs' ),
-					'2' 	  => esc_html__( '2 Column', 'eazydocs' ),
-					'3' 	  => esc_html__( '3 Column', 'eazydocs' ),
-					'4' 	  => esc_html__( '4 Column', 'eazydocs' ),
-					'5' 	  => esc_html__( '5 Column', 'eazydocs' ),
-					'6' 	  => esc_html__( '6 Column', 'eazydocs' ),
+				'options'     => [
+					'1' => esc_html__( '1 Column', 'eazydocs' ),
+					'2' => esc_html__( '2 Column', 'eazydocs' ),
+					'3' => esc_html__( '3 Column', 'eazydocs' ),
+					'4' => esc_html__( '4 Column', 'eazydocs' ),
+					'5' => esc_html__( '5 Column', 'eazydocs' ),
+					'6' => esc_html__( '6 Column', 'eazydocs' ),
 				],
 				'default'     => 'three',
 				'condition'   => [
@@ -200,7 +202,8 @@ class Single_Doc extends Widget_Base {
 		$this->add_control(
 			'doc_sec_excerpt', [
 				'label'       => esc_html__( 'Excerpt', 'eazydocs' ),
-				'description' => esc_html__( 'Excerpt word limit of the documentation sections. If the excerpt got empty, this will get from the post content.', 'eazydocs' ),
+				'description' => esc_html__( 'Excerpt word limit of the documentation sections. If the excerpt got empty, this will get from the post content.',
+					'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
 				'label_block' => true,
 				'default'     => 8,
@@ -239,8 +242,8 @@ class Single_Doc extends Widget_Base {
 		// Buttons
 		$this->start_controls_section(
 			'view_all_btn_opt', [
-				'label' => __( 'Buttons', 'eazydocs' ),
-				'condition'   => [
+				'label'     => esc_html__( 'Buttons', 'eazydocs' ),
+				'condition' => [
 					'doc-widget-single-search' => [ '1', '2', '3' ]
 				]
 			]
@@ -261,7 +264,7 @@ class Single_Doc extends Widget_Base {
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => 'yes',
-				'condition'   => [
+				'condition'    => [
 					'doc-widget-single-search' => [ '1', '2' ]
 				]
 			]
@@ -274,7 +277,7 @@ class Single_Doc extends Widget_Base {
 				'label_block' => true,
 				'default'     => 'View More',
 				'condition'   => [
-					'section_btn' => 'yes',
+					'section_btn'              => 'yes',
 					'doc-widget-single-search' => [ '1', '2' ]
 				]
 			]
@@ -286,7 +289,7 @@ class Single_Doc extends Widget_Base {
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'condition'   => [
-					'section_btn' => 'yes',
+					'section_btn'              => 'yes',
 					'doc-widget-single-search' => [ '1', '2' ]
 				]
 			]
@@ -325,10 +328,10 @@ class Single_Doc extends Widget_Base {
 		 */
 		$this->start_controls_section(
 			'style_box', [
-				'label'     => __( 'Box', 'eazydocs' ),
+				'label'     => esc_html__( 'Box', 'eazydocs' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
-				'condition'   => [
-					'doc-widget-single-search' => [ '1', '2', '3', '4'  ]
+				'condition' => [
+					'doc-widget-single-search' => [ '1', '2', '3', '4' ]
 				]
 			]
 		);
@@ -336,9 +339,9 @@ class Single_Doc extends Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Background::get_type(),
 			[
-				'name' => 'box-background',
-				'label' => esc_html__( 'Background', 'eazydocs' ),
-				'types' => [ 'classic', 'gradient' ],
+				'name'     => 'box-background',
+				'label'    => esc_html__( 'Background', 'eazydocs' ),
+				'types'    => [ 'classic', 'gradient' ],
 				'selector' => '{{WRAPPER}} .box-item',
 			]
 		);
@@ -346,8 +349,8 @@ class Single_Doc extends Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Border::get_type(),
 			[
-				'name' => 'box-border',
-				'label' => esc_html__( 'Border', 'eazydocs' ),
+				'name'     => 'box-border',
+				'label'    => esc_html__( 'Border', 'eazydocs' ),
 				'selector' => '{{WRAPPER}} .box-item',
 			]
 		);
@@ -355,10 +358,10 @@ class Single_Doc extends Widget_Base {
 		$this->add_control(
 			'box-padding',
 			[
-				'label' => esc_html__( 'Padding', 'eazydocs' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Padding', 'eazydocs' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em' ],
-				'selectors' => [
+				'selectors'  => [
 					'{{WRAPPER}} .box-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
@@ -372,7 +375,7 @@ class Single_Doc extends Widget_Base {
 		 */
 		$this->start_controls_section(
 			'style_title', [
-				'label'     => __( 'Title', 'eazydocs' ),
+				'label'     => esc_html__( 'Title', 'eazydocs' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'doc-widget-single-search' => [ '2' ]
@@ -382,7 +385,7 @@ class Single_Doc extends Widget_Base {
 
 		$this->add_control(
 			'color_title', [
-				'label'     => __( 'Text Color', 'eazydocs' ),
+				'label'     => esc_html__( 'Text Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .title' => 'color: {{VALUE}};',
@@ -411,7 +414,7 @@ class Single_Doc extends Widget_Base {
 		//------------------------------ Style Subtitle ------------------------------
 		$this->start_controls_section(
 			'style_subtitle_sec', [
-				'label'     => __( 'Subtitle', 'eazydocs' ),
+				'label'     => esc_html__( 'Subtitle', 'eazydocs' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'doc-widget-single-search' => [ '2' ]
@@ -421,7 +424,7 @@ class Single_Doc extends Widget_Base {
 
 		$this->add_control(
 			'color_subtitle', [
-				'label'     => __( 'Text Color', 'eazydocs' ),
+				'label'     => esc_html__( 'Text Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .subtitle' => 'color: {{VALUE}};',
@@ -453,23 +456,23 @@ class Single_Doc extends Widget_Base {
 		 */
 		$this->start_controls_section(
 			'style_content', [
-				'label' => __( 'Content', 'eazydocs' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-				'condition'   => [
-					'doc-widget-single-search' => [ '1', '2', '3', '4'  ]
+				'label'     => esc_html__( 'Content', 'eazydocs' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'doc-widget-single-search' => [ '1', '2', '3', '4' ]
 				]
 			]
 		);
 
 		$this->add_control(
 			'heading_title', [
-				'label' => __( 'Title', 'eazydocs' ),
+				'label' => esc_html__( 'Title', 'eazydocs' ),
 				'type'  => Controls_Manager::HEADING
 			]
 		);
 		$this->add_control(
 			'doc_color_title', [
-				'label'     => __( 'Color', 'eazydocs' ),
+				'label'     => esc_html__( 'Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ct-heading-text' => 'color: {{VALUE}};',
@@ -495,14 +498,14 @@ class Single_Doc extends Widget_Base {
 
 		$this->add_control(
 			'heading_content', [
-				'label'     => __( 'Content', 'eazydocs' ),
+				'label'     => esc_html__( 'Content', 'eazydocs' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
 		);
 		$this->add_control(
 			'doc_color_content', [
-				'label'     => __( 'Color', 'eazydocs' ),
+				'label'     => esc_html__( 'Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .ct-content-text, {{WRAPPER}} .ct-content-text p' => 'color: {{VALUE}};',
@@ -557,7 +560,7 @@ class Single_Doc extends Widget_Base {
 				'description' => esc_html__( 'The background shape should be transparent png or svg image.', 'eazydocs' ),
 				'type'        => Controls_Manager::MEDIA,
 				'default'     => [
-					'url' =>  EAZYDOCS_IMG . '/widgets/docbg-shap.png'
+					'url' => EAZYDOCS_IMG . '/widgets/docbg-shap.png'
 				],
 				'condition'   => [
 					'is_bg_objects' => [ 'yes' ]
@@ -577,7 +580,7 @@ class Single_Doc extends Widget_Base {
 
 		$this->add_control(
 			'round1_color', [
-				'label'     => __( 'Round 01 Color', 'eazydocs' ),
+				'label'     => esc_html__( 'Round 01 Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .doc_round.one' => 'background: {{VALUE}}',
@@ -601,7 +604,7 @@ class Single_Doc extends Widget_Base {
 
 		$this->add_control(
 			'round2_color', [
-				'label'     => __( 'Round 02 Color', 'eazydocs' ),
+				'label'     => esc_html__( 'Round 02 Color', 'eazydocs' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .doc_round.two' => 'background: {{VALUE}}',
@@ -618,8 +621,8 @@ class Single_Doc extends Widget_Base {
 	}
 
 	protected function render() {
-		$settings  	= $this->get_settings();
-		$title_tag 	= ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
+		$settings   = $this->get_settings();
+		$title_tag  = ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
 		$ppp_column = ! empty( $settings['ppp_column'] ) ? $settings['ppp_column'] : '3';
 
 		/**
@@ -634,7 +637,7 @@ class Single_Doc extends Widget_Base {
 				'order'          => $settings['order'],
 				'posts_per_page' => ! empty( $settings['ppp_sections'] ) ? $settings['ppp_sections'] : 8,
 			) );
-			
+
 			// get theme name
 			$theme = wp_get_theme();
 			if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' || $theme == 'docy-child' || $theme == 'Docy Child' ) {

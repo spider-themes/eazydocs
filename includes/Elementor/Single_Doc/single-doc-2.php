@@ -36,7 +36,7 @@
             </div>
 		<?php endif; ?>
         <div class="ezd-container">
-            <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
+            <div class="ezd-grid ezd-mobile-column ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
 				<?php
 				$delay = 0.2;
 				foreach ( $sections as $section ) :
