@@ -109,7 +109,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				add_action( 'admin_notices', [ $this, 'database_not_found' ] );
 			}
-			
+
 			// Added Documentation links to plugin row meta
 			add_filter('plugin_row_meta',[ $this,  'eazydocs_row_meta' ], 10, 2);
 		}
@@ -150,9 +150,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/notices/asking-for-review.php';
 
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
-				require_once __DIR__ . '/includes/notices/update-database.php';		
+				require_once __DIR__ . '/includes/notices/update-database.php';
 			}
-			
+
 			require_once __DIR__ . '/includes/sidebars.php';
 			require_once __DIR__ . '/includes/Frontend/Ajax.php';
 			require_once __DIR__ . '/includes/Frontend/Mailer.php';
@@ -182,8 +182,8 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				$docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
 				$permalink 			= get_option('permalink_structure');
 
-				if ( $docs_url == 'post-name' ) {					
-					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {					 
+				if ( $docs_url == 'post-name' ) {
+					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {
 						require_once __DIR__ . '/includes/Root_Conversion.php';
 					}
 				}
@@ -283,7 +283,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		// Redirect to the setup wizard page
 		public function ezd_get_setup_wizard_init() {
 			// Check if the plugin has been activated
-			$opt 			= get_option('eazydocs_settings');			
+			$opt 			= get_option('eazydocs_settings');
 			$setup_wizard 	= $opt['setup_wizard_completed'] ?? '';
 
 			if ( get_option('ezd_get_setup_wizard') && $setup_wizard == '' ) {
@@ -301,55 +301,59 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		public function create_analytics_db_tables() {
 			global $wpdb;
 
-			$charset_collate = $wpdb->get_charset_collate();
-			$search_keyword  = $wpdb->prefix . 'eazydocs_search_keyword';
-			$search_logs     = $wpdb->prefix . 'eazydocs_search_log';
-			$view_logs       = $wpdb->prefix . 'eazydocs_view_log';
+			$charset_collate   = $wpdb->get_charset_collate();
+			$search_keyword    = $wpdb->prefix . 'eazydocs_search_keyword';
+			$search_logs       = $wpdb->prefix . 'eazydocs_search_log';
+			$view_logs         = $wpdb->prefix . 'eazydocs_view_log';
 
-			// Use table names directly in SQL since these are not user inputs
+            // SQL statements to create tables.
 			$sql = "CREATE TABLE {$search_keyword} (
-                id bigint(9) NOT NULL AUTO_INCREMENT,
-                keyword varchar(255) NOT NULL,
+                id BIGINT(20) NOT NULL AUTO_INCREMENT,
+                keyword VARCHAR(255) NOT NULL,
                 UNIQUE KEY id (id)
             ) {$charset_collate};";
 
-			$sql2 = "CREATE TABLE {$search_logs} (
-                id bigint(9) NOT NULL AUTO_INCREMENT,
-                keyword_id bigint(255) NOT NULL references {$search_keyword}(id), 
-                count mediumint(255) NOT NULL,
-                not_found_count mediumint(9) NOT NULL,
-                created_at datetime NOT NULL,
-                UNIQUE KEY id (id)
+            $sql2 = "CREATE TABLE {$search_logs} (
+                id BIGINT(20) NOT NULL AUTO_INCREMENT,
+                keyword_id BIGINT(20) UNSIGNED NOT NULL,
+                count MEDIUMINT(8) UNSIGNED NOT NULL,
+                not_found_count MEDIUMINT(8) UNSIGNED NOT NULL,
+                created_at DATETIME NOT NULL,
+                UNIQUE KEY id (id),
+                FOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE
             ) {$charset_collate};";
 
 			$sql3 = "CREATE TABLE {$view_logs} (
-                id bigint(9) NOT NULL AUTO_INCREMENT,
-                post_id bigint(255) NOT NULL,
-                count mediumint(255) NOT NULL,
-                created_at datetime NOT NULL,
+                id BIGINT(20) NOT NULL AUTO_INCREMENT,
+                post_id BIGINT(20) UNSIGNED NOT NULL,
+                count MEDIUMINT(8) UNSIGNED NOT NULL,
+                created_at DATETIME NOT NULL,
                 UNIQUE KEY id (id)
             ) {$charset_collate};";
 
-			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+            // Load the required upgrade file.
+			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+            // Execute the table creation queries.
 			dbDelta( $sql );
 			dbDelta( $sql2 );
 			dbDelta( $sql3 );
-			
-			global $wpdb;
 
-			// Check if the tables are created
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$keyword_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $search_keyword ) );
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$logs_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $search_logs ) );
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$view_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $view_logs ) );
+            // Check if the tables were created successfully.
+			$tables_created   = true;
+			$tables_to_check  = array( $search_keyword, $search_logs, $view_logs );
 
-			if ( $keyword_exists !== $search_keyword || $logs_exists !== $search_logs || $view_exists !== $view_logs ) {
-				// Send notification to user
-				$this->database_not_found();
+			foreach ( $tables_to_check as $table ) {
+				if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) ) !== $table ) {
+					$tables_created = false;
+					break;
+				}
 			}
 
+            // If any table was not created, send a notification.
+			if ( ! $tables_created ) {
+				$this->database_not_found();
+			}
 		}
 
 		/**
@@ -369,7 +373,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$view_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name3 ) );
 
-			if ( $keyword_exists != $table_name || $logs_exists != $table_name2 || $view_exists != $table_name3 ) {    
+			if ( $keyword_exists != $table_name || $logs_exists != $table_name2 || $view_exists != $table_name3 ) {
 				?>
                 <div class="notice notice-error is-dismissible eazydocs_table_error">
                     <p><?php esc_html_e( 'EazyDocs database needs an update. Please click the Update button to update your database.', 'eazydocs' ); ?></p>
@@ -394,7 +398,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			return $this->plugin_url = untrailingslashit( plugins_url( '/', __FILE__ ) );
 		}
-		
+
 		/**
 		 * Get the plugin path.
 		 *
@@ -426,10 +430,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				// Add your custom links
 				$plugin_links = array(
 					'<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank">Documentation</a>'
-				);		
+				);
 				// Merge the custom links with the existing links
 				$links = array_merge($links, $plugin_links);
-			}		
+			}
 			return $links;
 		}
 		// end
