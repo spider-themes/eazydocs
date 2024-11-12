@@ -81,8 +81,6 @@ EazyDocs Footnotes
 .ezd-footnotes-link-item > i {
   font-style: normal;
   color: var(--ezd_brand_color);
-  font-size: 14px;
-  line-height: 0;
   cursor: pointer;
   position: relative;
   top: -5px;
@@ -91,7 +89,7 @@ EazyDocs Footnotes
   z-index: -1;
   opacity: 0;
   position: absolute;
-  top: 28px;
+  top: 100%;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
   transition: all 1s ease;

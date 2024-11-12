@@ -8,11 +8,10 @@ add_shortcode( 'reference', function ( $atts, $content ) {
 		return false;
 	}
 	?>
-    <div ezd-note-serial="<?php echo esc_attr($atts['number']) ?>" id="serial-id-<?php echo esc_attr( $atts['number'] ); ?>" class="ezd-footnotes-link-item" data-bs-original-title="<?php echo esc_attr($content); ?>">
+    <span ezd-note-serial="<?php echo esc_attr($atts['number']) ?>" id="serial-id-<?php echo esc_attr( $atts['number'] ); ?>" class="ezd-footnotes-link-item" data-bs-original-title="<?php echo esc_attr($content); ?>">
         <i onclick="location.href='#note-name-<?php echo esc_attr( $atts['number'] ); ?>'">
             [<?php echo esc_html($atts['number'] ?? ''); ?>]
         </i>
-        <div>
 		<span class="ezd-footnote-content">
 			<?php
 			// Execute the shortcode
@@ -26,9 +25,7 @@ add_shortcode( 'reference', function ( $atts, $content ) {
 			echo $output;
 			?>
 		</span>
-
-		</div>
-	</div>
+	</span>
 	<?php
 	return ob_get_clean();
 } );

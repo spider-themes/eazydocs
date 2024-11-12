@@ -74,7 +74,7 @@ class Ajax {
 		$args = [
 			'post_type'      	=> 'docs',
 			'posts_per_page' 	=> -1,
-			'post_status'    	=> ['publish', 'private'],    
+			'post_status'    	=> ['publish', 'private', 'protected' ],    
 			's' 				=> $keyword, // Include keyword search
 		];
 		
@@ -96,7 +96,7 @@ class Ajax {
 			$args = [
 				'post_type'      => 'docs',
 				'posts_per_page' => -1,
-				'post_status'    => ['publish', 'private'],
+				'post_status'    => ['publish', 'private', 'protected'],
 				'tax_query'      => [
 					[
 						'taxonomy' => 'doc_tag',
