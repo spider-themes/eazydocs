@@ -470,10 +470,10 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   max-width: 100% !important;
 }
 
-.header_search_form_info {
+.ezd_search_form .header_search_form_info {
   position: relative;
 }
-.header_search_form_info.search_form_wrap .search_submit_btn {
+.ezd_search_form .header_search_form_info.search_form_wrap .search_submit_btn {
   position: absolute;
   right: 0;
   box-shadow: none !important;
@@ -486,10 +486,10 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   justify-content: center;
   top: 0;
 }
-.header_search_form_info.search_form_wrap .search_submit_btn > i {
+.ezd_search_form .header_search_form_info.search_form_wrap .search_submit_btn > i {
   font-size: 16px;
 }
-.header_search_form_info.search_form_wrap .search_submit_btn > svg {
+.ezd_search_form .header_search_form_info.search_form_wrap .search_submit_btn > svg {
   width: auto;
   max-width: 20px;
   height: auto;
