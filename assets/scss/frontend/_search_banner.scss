@@ -1,5 +1,5 @@
-/*=========== Start page_breadcrumb css ============*/
-.page_breadcrumb {
+/*=========== Start ezd-page_breadcrumb css ============*/
+.ezd-page_breadcrumb {
 	background: var(--black_50);
 	padding: 12px 0;
 	position: relative;
@@ -21,7 +21,7 @@
 	}
 }
 
-/*=========== End page_breadcrumb css ============*/
+/*=========== End ezd-page_breadcrumb css ============*/
 
 /* Search Banner area
 ============================================================================================ */
@@ -543,12 +543,14 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 
 	.search_keyword_label {
 		font-size: 14px;
-		margin-right: 10px;
+		margin-right: 15px;
 		color: var(--black_100);
 	}
 
 	ul {
 		margin: 0;
+		display: flex !important;
+		flex-flow: row !important;
 
 		li {
 			display: inline-block;

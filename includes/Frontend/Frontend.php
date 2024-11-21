@@ -19,7 +19,7 @@ class Frontend {
 		$doc_container    = $opt['docs_page_width'] ?? '';
 		$doc_container    = $doc_container == 'full-width' ? 'ezd-container-fluid px-lg-5' : 'ezd-container ezd-custom-container';
 		?>
-		<section class="page_breadcrumb ezd-breadcrumb">
+		<section class="ezd-page_breadcrumb ezd-breadcrumb">
 			<div class="<?php echo esc_html( ezd_container() ); ?>">
 				<div class="ezd-grid ezd-grid-cols-12">
 					<div class="ezd-lg-col-9 ezd-md-col-8 ezd-grid-column-full">

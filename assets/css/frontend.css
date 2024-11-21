@@ -82,27 +82,27 @@ input[type=search]::-webkit-search-results-decoration {
   }
 }
 
-/*=========== Start page_breadcrumb css ============*/
-.page_breadcrumb {
+/*=========== Start ezd-page_breadcrumb css ============*/
+.ezd-page_breadcrumb {
   background: var(--black_50);
   padding: 12px 0;
   position: relative;
   z-index: 1;
   margin-top: -2px;
 }
-.page_breadcrumb .row {
+.ezd-page_breadcrumb .row {
   align-items: center;
 }
-.page_breadcrumb .date {
+.ezd-page_breadcrumb .date {
   color: var(--black_500);
   float: right;
   font-size: 13px;
 }
-.page_breadcrumb .date i {
+.ezd-page_breadcrumb .date i {
   padding-right: 5px;
 }
 
-/*=========== End page_breadcrumb css ============*/
+/*=========== End ezd-page_breadcrumb css ============*/
 /* Search Banner area
 ============================================================================================ */
 .ezd_search_banner {
@@ -545,11 +545,13 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 }
 .header_search_keyword .search_keyword_label {
   font-size: 14px;
-  margin-right: 10px;
+  margin-right: 15px;
   color: var(--black_100);
 }
 .header_search_keyword ul {
   margin: 0;
+  display: flex !important;
+  flex-flow: row !important;
 }
 .header_search_keyword ul li {
   display: inline-block;
@@ -605,7 +607,7 @@ body.ezd-search-focused .ezd_click_capture {
   transition: all 0.3s linear;
 }
 
-/*=========== Start page_breadcrumb css ============*/
+/*=========== Start ezd-page_breadcrumb css ============*/
 .ezd-breadcrumb {
   background: var(--black_50);
   padding: 12px 0;
@@ -626,14 +628,14 @@ body.ezd-search-focused .ezd_click_capture {
 }
 
 body.disable-docly-header section.breadcrumb_area,
-body.disable-docly-header section.page_breadcrumb {
+body.disable-docly-header section.ezd-page_breadcrumb {
   display: none;
 }
 body.disable-docly-header section.breadcrumb_area.ezd-breadcrumb,
-body.disable-docly-header section.page_breadcrumb.ezd-breadcrumb {
+body.disable-docly-header section.ezd-page_breadcrumb.ezd-breadcrumb {
   display: block;
 }
-body.single-docs.ezd-theme-docly .page_breadcrumb:not(.ezd-breadcrumb) {
+body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
   display: none;
 }
 
@@ -3874,6 +3876,9 @@ p .footnotes-link::after {
   padding: 0 0 0 20px;
   margin: 0;
   list-style: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 .article_list li {
   margin: 5px 0 0 0;

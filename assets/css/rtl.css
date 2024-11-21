@@ -37,7 +37,7 @@ blockquote,
   text-align: right;
 }
 
-.page_breadcrumb .date {
+.ezd-page_breadcrumb .date {
   float: left;
 }
 
@@ -450,7 +450,7 @@ div.code-toolbar > .toolbar {
   }
 }
 @media (max-width: 670px) {
-  .page_breadcrumb .date {
+  .ezd-page_breadcrumb .date {
     float: none;
   }
   .doc_right_mobile_menu {

@@ -1,4 +1,4 @@
-/*=========== Start page_breadcrumb css ============*/
+/*=========== Start ezd-page_breadcrumb css ============*/
 .ezd-breadcrumb {
 	background: var(--black_50);
 	padding: 12px 0;
@@ -24,7 +24,7 @@
 body {
 	&.disable-docly-header {
 		section.breadcrumb_area,
-		section.page_breadcrumb {
+		section.ezd-page_breadcrumb {
 			display: none;
 
 			&.ezd-breadcrumb {
@@ -34,7 +34,7 @@ body {
 	}
 
 	&.single-docs.ezd-theme-docly {
-		.page_breadcrumb:not(.ezd-breadcrumb) {
+		.ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 			display: none;
 		}
 	}

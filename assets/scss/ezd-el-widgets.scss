@@ -1,31 +1,8 @@
 // Search Widget
-/*=========== Start page_breadcrumb css ============*/
+/*=========== Start ezd-page_breadcrumb css ============*/
 @import "frontend/framework";
-@import "frontend/search_banner";
 
-.page_breadcrumb {
-	background: #edefec;
-	padding: 12px 0;
-	position: relative;
-	z-index: 1;
-	margin-top: -2px;
-
-	.row {
-		align-items: center;
-	}
-
-	.date {
-		color: var(--black_500);
-		float: right;
-		font-size: 13px;
-
-		i {
-			padding-right: 5px;
-		}
-	}
-}
-
-/*=========== End page_breadcrumb css ============*/
+/*=========== End ezd-page_breadcrumb css ============*/
 
 /** === Doc search form result === **/
 .doc_banner_text .banner_search_form {
@@ -354,11 +331,6 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	}
 }
 
-/* End Topic List Area css
-============================================================================================ */
-
-/* H item css
-    ============================================================================================ */
 .h_content_items.box-item.collapse-wrap {
 	display: none;
 }
@@ -467,8 +439,6 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	}
 }
 
-/* End H item css
-  ============================================================================================ */
 .docs-single-5-wrap {
 	.section5-section-title {
 		h6 {
