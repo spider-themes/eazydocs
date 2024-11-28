@@ -260,8 +260,10 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
 		 * @access   private
 		 */
 		public static function set_locale() {
-			// Get the current plugin directory path.
-			load_plugin_textdomain( 'eazydocs', false, 'eazydocs/languages' );
+			// Hook the textdomain loading to init.
+			add_action('init', function () {
+				load_plugin_textdomain('eazydocs', false, 'eazydocs/languages');
+			});
 		}
 
 		// Create options
