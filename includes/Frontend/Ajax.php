@@ -74,7 +74,7 @@ class Ajax {
 		$args = [
 			'post_type'      	=> 'docs',
 			'posts_per_page' 	=> -1,
-			'post_status'    	=> ['publish', 'private', 'protected' ],    
+			'post_status'     => is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'], 
 			's' 				=> $keyword, // Include keyword search
 		];
 		
@@ -96,7 +96,7 @@ class Ajax {
 			$args = [
 				'post_type'      => 'docs',
 				'posts_per_page' => -1,
-				'post_status'    => ['publish', 'private', 'protected'],
+				'post_status'     => is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'],
 				'tax_query'      => [
 					[
 						'taxonomy' => 'doc_tag',
@@ -113,6 +113,7 @@ class Ajax {
 			$posts = new WP_Query([
 				'post_type'      => 'docs',
 				'posts_per_page' => -1,
+				'post_status'     => is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'],
 				'post__in'       => wp_list_pluck($merged_posts, 'ID'),
 				'orderby'        => 'post__in', // Maintain order
 			]);
