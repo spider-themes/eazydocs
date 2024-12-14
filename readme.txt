@@ -4,7 +4,7 @@ Tags: knowledgebase, kb, faq, wiki, helpdesk
 Requires at least: 5.0
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 2.5.4
+Stable tag: 2.5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,6 +227,17 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.5.5 (14 December 2024) =
+Fixed: Fixed the TOC auto numbering, when an item is active
+Fixed: WordPress database error: [Table 'wp.wp_eazydocs_view_log' doesn't exist]
+Fixed: Shortcode support inside footnote has been reverted, as it was breaking the design
+Fixed: Protected posts of docs enabled in search result
+Fixed: CSF translation issue resolved
+Tweaked: Improve some CSS in Single Doc widget
+Tweaked: Include private docs in search for logged-in users
+Tweaked: Exclude private docs from search for visitors
+Updated: Freemius SDK updated to 2.10.1
 
 = v2.5.4 (12 October 2024) =
 Fixed: The Padding settings wasn't working on the Search Banner Block
