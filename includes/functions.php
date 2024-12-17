@@ -1565,3 +1565,19 @@ function ezd_setup_wizard_save_settings() {
 }
 
 add_action( 'wp_ajax_ezd_setup_wizard_save_settings', 'ezd_setup_wizard_save_settings' );
+
+/**
+ * Add the post thumbnail to the RSS feed for 'docs'
+ */
+function ezd_add_thumbnail_to_rss_feed() {
+    $post_id = get_the_ID();
+
+    // Check if the post type is 'docs' and it has a thumbnail.
+    if ('docs' === get_post_type($post_id) && has_post_thumbnail($post_id)) {
+        printf(
+            '<thumbnail url="%s" />',
+            esc_url(get_the_post_thumbnail_url($post_id, 'full'))
+        );
+    }
+}
+add_action('rss2_item', 'ezd_add_thumbnail_to_rss_feed');
