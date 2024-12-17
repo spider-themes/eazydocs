@@ -396,7 +396,6 @@ class Single_Doc extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(), [
 				'name'     => 'typography_prefix',
-				'scheme'   => Typography::TYPOGRAPHY_1,
 				'selector' => '
                     {{WRAPPER}} .title'
 			]
@@ -435,7 +434,6 @@ class Single_Doc extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(), [
 				'name'     => 'typography_subtitle',
-				'scheme'   => Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .subtitle',
 			]
 		);
@@ -483,7 +481,6 @@ class Single_Doc extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(), [
 				'name'     => 'title_typography_prefix',
-				'scheme'   => Typography::TYPOGRAPHY_1,
 				'selector' => '
                     {{WRAPPER}} .ct-heading-text'
 			]
@@ -516,7 +513,6 @@ class Single_Doc extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(), [
 				'name'     => 'content_typography_prefix',
-				'scheme'   => Typography::TYPOGRAPHY_1,
 				'selector' => '
                     {{WRAPPER}} .ct-content-text, {{WRAPPER}} .ct-content-text p'
 			]

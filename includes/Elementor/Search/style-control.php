@@ -208,7 +208,6 @@ $this->add_group_control(
 	[
 		'name'     => 'keyword_label_typography',
 		'label'    => __( 'Label Typography', 'eazydocs' ),
-		'scheme'   => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 		'selector' => '{{WRAPPER}} .search_keyword_label',
 	]
 );
