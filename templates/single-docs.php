@@ -64,29 +64,31 @@ if ( $single_layout == 'default' ) {
     if ( ezd_get_opt('docs-breadcrumb', '1') == '1' && $current_theme != 'docy' ) {
         eazydocs_get_template_part( 'breadcrumbs' );
     }
+    do_action( 'ezd_before_single_content' ); 
     ?>
-     <div class="position-relative <?php echo esc_attr( $doc_container ); ?>">
-         <div class="ezd-grid ezd-grid-cols-12">
-             <?php
-            while ( have_posts() ) : the_post();
-                if ( $layout == 'left_sidebar' || $layout == 'both_sidebar' ) {
-                    eazydocs_get_template_part( 'docs-sidebar' );
+    <div class="position-relative <?php echo esc_attr( $doc_container ); ?>">
+        <div class="ezd-grid ezd-grid-cols-12">
+            <?php
+        while ( have_posts() ) : the_post();
+            if ( $layout == 'left_sidebar' || $layout == 'both_sidebar' ) {
+                eazydocs_get_template_part( 'docs-sidebar' );
+            }
+            
+            if ( ezd_internal_doc_security( get_the_ID() ) == true ) :
+                ?>
+                <div class="<?php echo esc_attr( $md_content_col ); ?> doc-middle-content">
+                    <?php eazydocs_get_template_part( 'single-doc-content' ); ?>
+                </div>
+                <?php
+                if ( $layout == 'right_sidebar' || $layout == 'both_sidebar' ) {
+                    eazydocs_get_template_part( 'docs-right-sidebar' );
                 }
-                
-                if ( ezd_internal_doc_security( get_the_ID() ) == true ) :
-                    ?>
-                    <div class="<?php echo esc_attr( $md_content_col ); ?> doc-middle-content">
-                        <?php eazydocs_get_template_part( 'single-doc-content' ); ?>
-                    </div>
-                    <?php
-                    if ( $layout == 'right_sidebar' || $layout == 'both_sidebar' ) {
-                        eazydocs_get_template_part( 'docs-right-sidebar' );
-                    }
-                endif;
-            endwhile;
-            ?>
-         </div>
-     </div>
+            endif;
+        endwhile;
+        ?>
+        </div>
+    </div>
+    <?php do_action( 'ezd_after_single_content' ); ?>
  </section>
 
  <?php 

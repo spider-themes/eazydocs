@@ -9,38 +9,8 @@ class Frontend {
 		add_action( 'eazydocs_viewed_articles', [ $this, 'recently_viewed_docs' ], 99, 4 );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
 		add_action( 'eazydocs_prev_next_docs', [ $this, 'prev_next_docs' ] );
-		add_action( 'ezd_get_breadcrumb', [ $this, 'breadcrumb' ], 10 );
 	}
-
-	public function breadcrumb(){
-		$opt              = get_option( 'eazydocs_settings' );
-		$update_text      = $opt['breadcrumb-update-text'] ?? esc_html__( 'Updated on', 'eazydocs' );
-		$doc_container    = 'ezd-container ezd-custom-container';
-		$doc_container    = $opt['docs_page_width'] ?? '';
-		$doc_container    = $doc_container == 'full-width' ? 'ezd-container-fluid px-lg-5' : 'ezd-container ezd-custom-container';
-		?>
-		<section class="ezd-page_breadcrumb ezd-breadcrumb">
-			<div class="<?php echo esc_html( ezd_container() ); ?>">
-				<div class="ezd-grid ezd-grid-cols-12">
-					<div class="ezd-lg-col-9 ezd-md-col-8 ezd-grid-column-full">
-						<nav aria-label="breadcrumb">
-							<?php eazydocs_breadcrumbs(); ?>
-						</nav>
-					</div>
-					<div class="ezd-lg-col-3 ezd-md-col-4 ezd-grid-column-full">
-						<time itemprop="dateModified" datetime="<?php the_modified_time( get_option( 'date_format' ) ); ?>"
-							class="date">
-							<i class="<?php echo is_rtl() ? 'icon_quotations' : 'icon_clock_alt'; ?>"></i>
-							<?php echo esc_html( $update_text ); ?>
-							<?php the_modified_time( get_option( 'date_format' ) ); ?>
-						</time>
-					</div>
-				</div>
-			</div>
-		</section>
-	<?php 
-	}
-
+	
 	/**
 	 * Returns template file
 	 *
