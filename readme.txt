@@ -4,7 +4,7 @@ Tags: knowledgebase, kb, faq, wiki, helpdesk
 Requires at least: 5.0
 Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 2.5.5
+Stable tag: 2.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,6 +227,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.5.6 (18 December 2024) =
+Fixed: Removed Scheme Key from Widget for compatibility with the latest version of Elementor (3.26.0)
+Tweaked: Removed ezd_get_breadcrumb action
+Tweaked: Reverted breadcrumbs markup
+Tweaked: Before and after hook added for single doc content
 
 = v2.5.5 (14 December 2024) =
 Fixed: Fixed the TOC auto numbering, when an item is active
