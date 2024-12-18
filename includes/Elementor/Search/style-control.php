@@ -2,7 +2,6 @@
 /** ============ Content Styling ============ **/
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Core\Schemes\Typography;
 
 $this->start_controls_section(
 	'style_form', [
