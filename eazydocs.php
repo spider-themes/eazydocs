@@ -112,6 +112,23 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			// Added Documentation links to plugin row meta
 			add_filter('plugin_row_meta',[ $this,  'eazydocs_row_meta' ], 10, 2);
+
+			/**
+			 * Removes admin notices on the BBP Core Forum builder page.
+			 *
+			 * @return void
+			 */
+			add_action( 'admin_head', function () {
+				// Get the current screen
+				$screen = get_current_screen();
+
+				// Check if the current screen is for your plugin page
+				if ( isset( $_GET['page'] ) && in_array( $_GET['page'], [ 'eazydocs', 'ezd-analytics', 'eazydocs-account', 'eazydocs-initial-setup' ] ) ) {
+					// Remove admin notices
+					remove_all_actions( 'admin_notices' );
+					remove_all_actions( 'all_admin_notices' );
+				}
+			});
 		}
 
 		// get the instance of the EazyDocs class

@@ -4,7 +4,6 @@
  */
 namespace EazyDocs\Elementor\Docs;
 
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -19,7 +18,6 @@ use WP_Query;
 use WP_Post;
 
 class Doc_Widget extends Widget_Base {
-
 	public function get_name() {
 		return 'ezd_docs';
 	}
