@@ -182,8 +182,12 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
 			// Options
-			require_once __DIR__ . '/vendor/csf/classes/setup.class.php';
-			require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+            if ( isset( $_GET['page'] ) && in_array( $_GET['page'], [ 'eazydocs-settings' ] ) ) {
+	            require_once __DIR__ . '/vendor/csf/classes/setup.class.php';
+	            if ( class_exists( 'CSF' ) ) {
+		            require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+	            }
+            }
 
 			if ( ezd_is_premium() ) {
 				require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
