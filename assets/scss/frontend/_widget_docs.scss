@@ -534,6 +534,10 @@
 		box-shadow: 0 16px 40px 0 rgba(10, 50, 102, 0.1);
 		border-color: #fff;
 	}
+	
+	@media (max-width: 560px) {
+		width: 100%;
+	}
 }
 
 /* End Topic List Area css
@@ -1040,6 +1044,10 @@
 	padding: 40px 35px 50px;
 	margin-bottom: 30px;
 	position: relative;
+
+	@media (max-width: 560px) {
+		width: 100%;
+	}
 
 	&.bg-dark {
 		background: #212529;
