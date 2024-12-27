@@ -1043,8 +1043,8 @@ function ezd_admin_taxonomy( $tax = [] ) {
  *
  * @return bool|void
  */
-function ezydocs_frontend_assets() {
-	if ( is_singular( 'docs' ) || is_singular( 'onepage-docs' ) || is_page_template( 'page-onepage.php' ) ) {
+function ezd_frontend_pages() {
+	if ( is_singular('docs') || is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
 		return true;
 	}
 }

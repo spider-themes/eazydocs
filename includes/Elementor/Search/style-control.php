@@ -12,7 +12,7 @@ $this->start_controls_section(
 
 $this->add_responsive_control(
     'input-padding', [
-        'label'      => __( 'Padding', 'eazydocs' ),
+        'label'      => esc_html__( 'Padding', 'eazydocs' ),
         'type'       => Controls_Manager::DIMENSIONS,
         'size_units' => [ 'px', '%', 'em' ],
         'separator'  => 'before',
@@ -91,7 +91,7 @@ $this->add_group_control(
 
 $this->add_responsive_control(
 	'border-radius', [
-		'label'      => __( 'Border Radius', 'eazydocs' ),
+		'label'      => esc_html__( 'Border Radius', 'eazydocs' ),
 		'type'       => Controls_Manager::DIMENSIONS,
 		'size_units' => [ 'px', '%', 'em' ],
 		'selectors'  => [
@@ -113,7 +113,7 @@ $this->add_control(
 
 $this->add_responsive_control(
 	'btn-border-radius', [
-		'label'      => __( 'Border Radius', 'eazydocs' ),
+		'label'      => esc_html__( 'Border Radius', 'eazydocs' ),
 		'type'       => Controls_Manager::DIMENSIONS,
 		'size_units' => [ 'px', '%', 'em' ],
 		'selectors'  => [
@@ -124,7 +124,7 @@ $this->add_responsive_control(
 
 $this->add_responsive_control(
 	'btn-width', [
-		'label'      => __( 'Width', 'eazydocs' ),
+		'label'      => esc_html__( 'Width', 'eazydocs' ),
 		'type'       => Controls_Manager::SLIDER,
 		'size_units' => [ 'px', '%' ],
 		'range'      => [
@@ -158,7 +158,7 @@ $this->add_control(
 $this->add_control(
 	'search_bg',
 	[
-		'label'     => __( 'Background Color', 'eazydocs' ),
+		'label'     => esc_html__( 'Background Color', 'eazydocs' ),
 		'type'      => \Elementor\Controls_Manager::COLOR,
 		'separator' => 'before',
 		'selectors' => [
@@ -180,8 +180,8 @@ $this->start_controls_section(
 
 $this->add_control(
 	'margin_keywords', [
-		'label'       => __( 'Margin', 'eazydocs' ),
-		'description' => __( 'Margin around the keywords block', 'eazydocs' ),
+		'label'       => esc_html__( 'Margin', 'eazydocs' ),
+		'description' => esc_html__( 'Margin around the keywords block', 'eazydocs' ),
 		'type'        => Controls_Manager::DIMENSIONS,
 		'size_units'  => [ 'px', '%', 'em' ],
 		'selectors'   => [ '{{WRAPPER}} .header_search_keyword' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
@@ -206,7 +206,7 @@ $this->add_group_control(
 	\Elementor\Group_Control_Typography::get_type(),
 	[
 		'name'     => 'keyword_label_typography',
-		'label'    => __( 'Label Typography', 'eazydocs' ),
+		'label'    => esc_html__( 'Label Typography', 'eazydocs' ),
 		'selector' => '{{WRAPPER}} .search_keyword_label',
 	]
 );
@@ -267,6 +267,7 @@ $this->add_control(
     'color_keywords_bg_hover', [
         'label'     => esc_html__( 'Background Color', 'eazydocs' ),
         'type'      => Controls_Manager::COLOR,
+        'separator' => 'after',
         'selectors' => [
             '{{WRAPPER}} .header_search_keyword ul li a:hover' => 'background: {{VALUE}};',
         ],
@@ -286,7 +287,7 @@ $this->add_group_control(
 
 $this->add_control(
 	'keywords_padding', [
-		'label'      => __( 'Padding', 'eazydocs' ),
+		'label'      => esc_html__( 'Padding', 'eazydocs' ),
 		'type'       => Controls_Manager::DIMENSIONS,
 		'size_units' => [ 'px', '%', 'em' ],
 		'selectors'  => [ '{{WRAPPER}} .header_search_keyword ul li a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
@@ -298,7 +299,7 @@ $this->add_control(
 
 $this->add_control(
 	'border_radius', [
-		'label'      => __( 'Border Radius', 'eazydocs' ),
+		'label'      => esc_html__( 'Border Radius', 'eazydocs' ),
 		'type'       => Controls_Manager::DIMENSIONS,
 		'size_units' => [ 'px', '%', 'em' ],
 		'selectors'  => [ '{{WRAPPER}} .header_search_keyword ul li a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],

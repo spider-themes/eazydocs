@@ -182,13 +182,13 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
 			// Options
-            if ( ezd_admin_pages() || ezd_admin_taxonomy('doc_badge') ) {
+            //if ( ezd_admin_pages() || ezd_admin_taxonomy('doc_badge') || !is_admin() ) {
 	            require __DIR__ . '/vendor/csf/classes/setup.class.php';
                 require __DIR__ . '/includes/Admin/options/settings-options.php';
 	            if ( ezd_is_premium() ) {
 		            require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
 	            }
-            }
+            //}
 
 			if ( ezd_unlock_themes() ) {
 				require_once __DIR__ . '/shortcodes/reference.php';

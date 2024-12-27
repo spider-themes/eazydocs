@@ -69,7 +69,7 @@ class Doc_Widget extends Widget_Base {
 		// ---Start Document Setting
 		$this->start_controls_section(
 			'doc_design_sec', [
-				'label' => __( 'Preset Skin', 'eazydocs' ),
+				'label' => esc_html__( 'Preset Skin', 'eazydocs' ),
 			]
 		);
 
@@ -88,7 +88,7 @@ class Doc_Widget extends Widget_Base {
 		// --- Filter Options
 		$this->start_controls_section(
 			'document_filter', [
-				'label' => __( 'Filter Options', 'eazydocs' ),
+				'label' => esc_html__( 'Filter Options', 'eazydocs' ),
 			]
 		);
 
@@ -184,8 +184,8 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'active_doc', [
-				'label'       => __( 'Active Doc', 'eazydocs' ),
-				'description' => __( 'Select the active Doc tab by default.', 'eazydocs' ),
+				'label'       => esc_html__( 'Active Doc', 'eazydocs' ),
+				'description' => esc_html__( 'Select the active Doc tab by default.', 'eazydocs' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => ezd_get_posts(),
 				'condition'   => [
@@ -256,8 +256,8 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'is_custom_order', [
-				'label'        => __( 'Custom Order', 'eazydocs' ),
-				'description'  => __( 'Order the Doc tabs as you want.', 'eazydocs' ),
+				'label'        => esc_html__( 'Custom Order', 'eazydocs' ),
+				'description'  => esc_html__( 'Order the Doc tabs as you want.', 'eazydocs' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => '',
@@ -286,7 +286,7 @@ class Doc_Widget extends Widget_Base {
 
 		$doc->add_control(
 			'doc', [
-				'label'       => __( 'Doc', 'eazydocs' ),
+				'label'       => esc_html__( 'Doc', 'eazydocs' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => ezd_get_posts(),
 			]
@@ -294,7 +294,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'docs', [
-				'label'         => __( 'Tabs Items', 'eazydocs' ),
+				'label'         => esc_html__( 'Tabs Items', 'eazydocs' ),
 				'type'          => Controls_Manager::REPEATER,
 				'fields'        => $doc->get_controls(),
 				'title_field'   => '{{{ doc }}}',
@@ -315,8 +315,8 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'is_tab_title_first_word', [
-				'label'        => __( 'Tab Title First Word', 'eazydocs' ),
-				'description'  => __( 'Show the first word of the doc in Tab Title.', 'eazydocs' ),
+				'label'        => esc_html__( 'Tab Title First Word', 'eazydocs' ),
+				'description'  => esc_html__( 'Show the first word of the doc in Tab Title.', 'eazydocs' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'condition'   => [
@@ -339,7 +339,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'book_chapter_prefix', [
-				'label'     => __( 'Book Chapters / Tutorials Prefix', 'eazydocs' ),
+				'label'     => esc_html__( 'Book Chapters / Tutorials Prefix', 'eazydocs' ),
 				'type'      => \Elementor\Controls_Manager::TEXT,
 				'condition' => [
 					'doc-widget-skin' => [ '4' ]
@@ -365,7 +365,7 @@ class Doc_Widget extends Widget_Base {
 		//============================ Tab Style ============================//
 		$this->start_controls_section(
 			'style_tab_title', [
-				'label' => __( 'Tab Title', 'eazydocs' ),
+				'label' => esc_html__( 'Tab Title', 'eazydocs' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'doc-widget-skin' => [ '2', '3', '4' ]
@@ -382,7 +382,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_responsive_control(
 			'tab_title_padding',[
-				'label' => __( 'Padding', 'eazydocs' ),
+				'label' => esc_html__( 'Padding', 'eazydocs' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -405,13 +405,13 @@ class Doc_Widget extends Widget_Base {
 		//=== Normal Tab Title
 		$this->start_controls_tab(
 			'style_tab_title_normal', [
-				'label' => __( 'Normal', 'eazydocs' ),
+				'label' => esc_html__( 'Normal', 'eazydocs' ),
 			]
 		);
 
 		$this->add_control(
 			'normal_tab_title_text_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_tab_title' => 'color: {{VALUE}}',
@@ -421,7 +421,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'normal_tab_title_border_color', [
-				'label' => __( 'Border Color', 'eazydocs' ),
+				'label' => esc_html__( 'Border Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_tab_title' => 'border-color: {{VALUE}};',
@@ -450,13 +450,13 @@ class Doc_Widget extends Widget_Base {
 		//=== Active Tab Title
 		$this->start_controls_tab(
 			'style_tab_title_active', [
-				'label' => __( 'Active', 'eazydocs' ),
+				'label' => esc_html__( 'Active', 'eazydocs' ),
 			]
 		);
 
 		$this->add_control(
 			'active_tab_title_text_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_tab_title.active, {{WRAPPER}} .ezd_tab_title:hover' => 'color: {{VALUE}};',
@@ -466,7 +466,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'active_tab_title_border_color', [
-				'label' => __( 'Border Color', 'eazydocs' ),
+				'label' => esc_html__( 'Border Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_tab_title.active, {{WRAPPER}} .ezd_tab_title:hover' => 'border-color: {{VALUE}};',
@@ -499,7 +499,7 @@ class Doc_Widget extends Widget_Base {
 		//============================ Style Contents ============================//
 		$this->start_controls_section(
 			'style_contents', [
-				'label' => __( 'Contents', 'eazydocs' ),
+				'label' => esc_html__( 'Contents', 'eazydocs' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'doc-widget-skin' => [ '1', '2', '3', '4', '6' ]
@@ -510,7 +510,7 @@ class Doc_Widget extends Widget_Base {
 		//=== Item Parent Title
 		$this->add_control(
 			'item_title_parent_heading', [
-				'label' => __( 'Item Parent Title', 'eazydocs' ),
+				'label' => esc_html__( 'Item Parent Title', 'eazydocs' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -531,7 +531,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'item_parent_title_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_parent_title' => 'color: {{VALUE}};',
@@ -546,7 +546,7 @@ class Doc_Widget extends Widget_Base {
 		//=== Item Title
 		$this->add_control(
 			'item_title_heading', [
-				'label' => __( 'Item Title', 'eazydocs' ),
+				'label' => esc_html__( 'Item Title', 'eazydocs' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -561,7 +561,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'item_title_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_title' => 'color: {{VALUE}};',
@@ -571,7 +571,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'item_title_hover_color', [
-				'label' => __( 'Text Hover Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Hover Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_title:hover' => 'color: {{VALUE}}; text-decoration-color: {{VALUE}};',
@@ -583,7 +583,7 @@ class Doc_Widget extends Widget_Base {
 		//=== Item List Title
 		$this->add_control(
 			'item_list_title_heading', [
-				'label' => __( 'Item Title List', 'eazydocs' ),
+				'label' => esc_html__( 'Item Title List', 'eazydocs' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -606,7 +606,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'item_list_title_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_list_title' => 'color: {{VALUE}};',
@@ -620,11 +620,11 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'item_list_title_hover_color', [
-				'label' => __( 'Text Hover Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Hover Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .ezd_item_list_title:hover' => 'color: {{VALUE}};',
-				),
+				'selectors' => [
+					'{{WRAPPER}} .article_list li a.ezd_item_list_title:hover' => 'color: {{VALUE}}',
+                ],
 				'condition' => [
 					'doc-widget-skin' => [ '1', '2', '4'],
 					'doc-widget-skin!' => ['6']
@@ -636,7 +636,7 @@ class Doc_Widget extends Widget_Base {
 		//=== Item Contents
 		$this->add_control(
 			'item_content_heading', [
-				'label' => __( 'Item Contents', 'eazydocs' ),
+				'label' => esc_html__( 'Item Contents', 'eazydocs' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
@@ -657,7 +657,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'item_content_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_content' => 'color: {{VALUE}};',
@@ -675,7 +675,7 @@ class Doc_Widget extends Widget_Base {
 		//============================ Style Button ============================//
 		$this->start_controls_section(
 			'style_buttons', [
-				'label' => __( 'Button', 'eazydocs' ),
+				'label' => esc_html__( 'Button', 'eazydocs' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'doc-widget-skin' => [ '1', '2', '3', '4' ]
@@ -699,13 +699,13 @@ class Doc_Widget extends Widget_Base {
 		//=== Normal Button
 		$this->start_controls_tab(
 			'style_btn_normal', [
-				'label' => __( 'Normal', 'eazydocs' ),
+				'label' => esc_html__( 'Normal', 'eazydocs' ),
 			]
 		);
 
 		$this->add_control(
 			'btn_text_normal_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_btn' => 'color: {{VALUE}};',
@@ -730,13 +730,13 @@ class Doc_Widget extends Widget_Base {
 		//=== Hover Button
 		$this->start_controls_tab(
 			'style_btn_hover', [
-				'label' => __( 'Hover', 'eazydocs' ),
+				'label' => esc_html__( 'Hover', 'eazydocs' ),
 			]
 		);
 
 		$this->add_control(
 			'btn_text_hover_color', [
-				'label' => __( 'Text Color', 'eazydocs' ),
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_btn:hover' => 'color: {{VALUE}};',
@@ -746,7 +746,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'btn_border_hover_color', [
-				'label' => __( 'Border Color', 'eazydocs' ),
+				'label' => esc_html__( 'Border Color', 'eazydocs' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_btn:hover' => 'border-color: {{VALUE}};',
@@ -779,7 +779,7 @@ class Doc_Widget extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
-					'{{WRAPPER}} .your-class' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .ezd_btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'separator' => 'before',
 				'condition' => [
