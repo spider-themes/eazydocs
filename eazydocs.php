@@ -123,7 +123,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				$screen = get_current_screen();
 
 				// Check if the current screen is for your plugin page
-				if ( isset( $_GET['page'] ) && in_array( $_GET['page'], [ 'eazydocs', 'ezd-analytics', 'eazydocs-account', 'eazydocs-initial-setup' ] ) ) {
+				if ( ezd_admin_pages() ) {
 					// Remove admin notices
 					remove_all_actions( 'admin_notices' );
 					remove_all_actions( 'all_admin_notices' );
@@ -182,16 +182,13 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 
 			// Options
-            if ( isset( $_GET['page'] ) && in_array( $_GET['page'], [ 'eazydocs-settings' ] ) ) {
-	            require_once __DIR__ . '/vendor/csf/classes/setup.class.php';
-	            if ( class_exists( 'CSF' ) ) {
-		            require_once __DIR__ . '/includes/Admin/options/settings-options.php';
+            if ( ezd_admin_pages() || ezd_admin_taxonomy('doc_badge') ) {
+	            require __DIR__ . '/vendor/csf/classes/setup.class.php';
+                require __DIR__ . '/includes/Admin/options/settings-options.php';
+	            if ( ezd_is_premium() ) {
+		            require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
 	            }
             }
-
-			if ( ezd_is_premium() ) {
-				require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';
-			}
 
 			if ( ezd_unlock_themes() ) {
 				require_once __DIR__ . '/shortcodes/reference.php';

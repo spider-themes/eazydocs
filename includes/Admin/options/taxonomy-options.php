@@ -21,13 +21,13 @@ if( class_exists( 'CSF' ) ) {
       array(
         'id'          => 'ezd-badge-color',
         'type'        => 'color',
-        'title'       => esc_html__( 'Color', 'eazydocs' ),
+        'title'       => esc_html__( 'Badge Text Color', 'eazydocs' ),
       ),
 
       array(
         'id'          => 'ezd-badge-bg',
         'type'        => 'color',
-        'title'       => esc_html__( 'Background', 'eazydocs' ),
+        'title'       => esc_html__( 'Badge Background Color', 'eazydocs' ),
       ),
 
     )

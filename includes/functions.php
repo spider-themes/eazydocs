@@ -24,7 +24,7 @@ function ezd_get_opt( $option, $default = '' ) {
  * @return bool|void
  */
 function ezd_is_premium() {
-	if ( class_exists('EZD_EazyDocsPro') && eaz_fs()->can_use_premium_code() ) {
+	if ( eaz_fs()->can_use_premium_code() ) {
 		return true;
 	}
 }
@@ -956,29 +956,93 @@ function ezd_password_form($output, $post = 0) {
 add_filter( 'the_password_form', 'ezd_password_form', 9999 );
 
 /**
- * EazyDocs Admin pages
- * If any of the admin pages match the current page, return true.
+ * Get EazyDocs admin pages
  *
- * @return bool|void
+ * @param array $pages
+ *
+ * @return true|void
  */
-function ezydocs_admin_pages() {
-	$admin_page = $_GET['page'] ?? '';
-	$post_type  = $_GET['post_type'] ?? '';
+function ezd_admin_pages( $pages = [] ) {
+    // if $pages is string, convert it to an array
+    if ( is_string( $pages ) ) {
+        $pages = [ $pages ];
+    }
 
-	if ( $admin_page == 'eazydocs' || $admin_page == 'eazydocs-settings'
-         || $admin_page == 'ezd-user-feedback'
-         || $admin_page == 'ezd-analytics'
-	     || $admin_page == 'ezd-user-feedback-archived'
-	     || $admin_page == 'ezd-onepage-presents'
-	     || $admin_page == 'eazydocs-initial-setup'
-	     || $post_type == 'onepage-docs'
-	     || strstr( $_SERVER['REQUEST_URI'], 'wp-admin/post-new.php' )
-	     || strstr( $_SERVER['REQUEST_URI'], 'wp-admin/post.php' )
-	) {
+    if ( empty( $pages ) ) {
+        // Default admin pages of EazyDocs
+	    $admin_pages = !empty($_GET['page']) ? in_array( $_GET['page'], [
+		    'eazydocs', 'eazydocs-settings', 'ezd-user-feedback', 'ezd-user-feedback-archived',
+            'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account'
+	    ] ) : '';
+    } else {
+        // Selected admin pages of EazyDocs
+	    $admin_pages = !empty($_GET['page']) ? in_array( $_GET['page'], $pages ) : '';
+    }
+
+	if ( $admin_pages ) {
 		return true;
 	}
 }
 
+/**
+ * Get EazyDocs post type pages in admin
+ * @param $post_type
+ *
+ * @return true|void
+ */
+function ezd_admin_post_types( $post_types = [] ) {
+    // if $post_types is string, convert it to an array
+    if ( is_string( $post_types ) ) {
+        $post_types = [ $post_types ];
+    }
+
+    if ( empty( $post_types ) ) {
+        // Default post types of EazyDocs
+        $admin_post_types = !empty($_GET['post_type']) ? in_array( $_GET['post_type'], [
+            'docs', 'onepage-docs'
+        ] ) : '';
+    } else {
+        // Selected post types of EazyDocs
+        $admin_post_types = !empty($_GET['post_type']) ? in_array( $_GET['post_type'], $post_types ) : '';
+    }
+
+    if ( $admin_post_types ) {
+        return true;
+    }
+}
+
+/**
+ * Get EazyDocs taxonomy pages in admin
+ * @param $tax
+ *
+ * @return true|void
+ */
+function ezd_admin_taxonomy( $tax = [] ) {
+    // if $tax is string, convert it to an array
+    if ( is_string( $tax ) ) {
+        $tax = [ $tax ];
+    }
+
+    if ( empty( $tax ) ) {
+        // Default taxonomies of EazyDocs
+        $admin_tax = !empty($_GET['taxonomy']) ? in_array( $_GET['taxonomy'], [
+            'doc_tag', 'doc_category', 'doc_badge'
+        ] ) : '';
+    } else {
+        // Selected taxonomies of EazyDocs
+        $admin_tax = !empty($_GET['taxonomy']) ? in_array( $_GET['taxonomy'], $tax ) : '';
+    }
+
+    if ( $admin_tax ) {
+        return true;
+    }
+}
+
+/**
+ * EazyDocs Frontend Assets
+ *
+ * @return bool|void
+ */
 function ezydocs_frontend_assets() {
 	if ( is_singular( 'docs' ) || is_singular( 'onepage-docs' ) || is_page_template( 'page-onepage.php' ) ) {
 		return true;
