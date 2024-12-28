@@ -567,7 +567,7 @@
 }
 @media only screen and (max-width: 782px) {
   .csf .csf-fieldset,
-  .csf .csf-content {
+.csf .csf-content {
     margin-right: 0;
   }
 }
@@ -588,3 +588,5 @@
   right: auto;
   left: 10px;
 }
+
+/*# sourceMappingURL=style-rtl.css.map */

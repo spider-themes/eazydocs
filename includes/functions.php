@@ -53,6 +53,18 @@ function ezd_is_promax() {
 }
 
 /**
+ * Check if the current page is the Page Editor.
+ * @return bool
+ */
+function ezd_is_page_editor() {
+	$screen = function_exists('get_current_screen') ? get_current_screen() : null;
+	if ($screen && $screen->base === 'post' && $screen->post_type === 'post') {
+		return true;
+	}
+	return false;
+}
+
+/**
  * Get the container class
  * @return string
  */

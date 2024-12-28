@@ -28,47 +28,7 @@
 			createCookie(name, '', -1);
 		}
 
-		var prefersDark =
-			window.matchMedia &&
-			window.matchMedia('(prefers-color-scheme: dark)').matches;
-		var selectedNightTheme = readCookie('body_dark');
-
-		if (
-			selectedNightTheme == 'true' ||
-			(selectedNightTheme === null && prefersDark)
-		) {
-			applyNight();
-			$('.dark_mode_switcher').prop('checked', true);
-		} else {
-			applyDay();
-			$('.dark_mode_switcher').prop('checked', false);
-		}
-
-		function applyNight() {
-			if ($('.js-darkmode-btn .ball').length) {
-				$('.js-darkmode-btn .ball').css('left', '45px');
-			}
-			$('body').addClass('body_dark');
-		}
-
-		function applyDay() {
-			if ($('.js-darkmode-btn .ball').length) {
-				$('.js-darkmode-btn .ball').css('left', '4px');
-			}
-			$('body').removeClass('body_dark');
-		}
-
-		$('.dark_mode_switcher').change(function () {
-			if ($(this).is(':checked')) {
-				applyNight();
-				createCookie('body_dark', true, 999);
-			} else {
-				applyDay();
-				createCookie('body_dark', false, 999);
-			}
-		});
-
-		// Filter Select
+			// Filter Select
 		$('select').niceSelect();
 
 		// Sidebar Tabs [COOKIE]
@@ -435,7 +395,8 @@
 						'<label for="string_data_right">Normal Content</label>' +
 						'<input type="radio" id="shortcode_right" name="ezd_docs_content_type_right" value="shortcode_right">' +
 						'<label for="shortcode_right">Doc Sidebar</label>' +
-						'<div class="ezd-doc-sidebar-intro">To show the doc sidebar data, you have to go to <b>appearance</b> then <b>widgets</b> and just add your content inside <b>Doc Right Sidebar</b> location. If you cant find the location in the Widgets area, go to <b>EazyDocs</b> -> <b>Settings</b>. Then go to <b>Doc Single</b> -> <b>Right Sidebar</b> and then enable the option called <b>"Widgets Area"</b>' +
+						'<div class="ezd-doc-sidebar-intro">To show the doc sidebar data, you have to go to <b>appearance</b> then <b>widgets</b> and just add your content inside <b>Doc Right Sidebar</b> location. ' +
+							'If you cant find the location in the Widgets area, go to <b>EazyDocs</b> -> <b>Settings</b>. Then go to <b>Doc Single</b> -> <b>Right Sidebar</b> and then enable the option called <b>"Widgets Area"</b>' +
 						'</div>' +
 						'</div>' +
 						'<div class="ezd_shortcode_content_wrap_right">' +

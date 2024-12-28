@@ -3740,6 +3740,7 @@
     border-right: none;
     border-bottom: 1px solid #e5e5e5;
   }
+
   .csf-features-cols .csf--key-features {
     width: 100%;
   }
@@ -3769,43 +3770,53 @@
     width: 100%;
     margin-bottom: 10px;
   }
+
   .csf-form-result {
     float: none;
     margin-right: 0;
     margin-bottom: 10px;
   }
+
   .csf-search,
 .csf-header-right,
 .csf-header-left {
     width: 100%;
   }
+
   .csf-search {
     text-align: center;
     margin-bottom: 15px;
   }
+
   .csf-footer {
     text-align: center;
   }
+
   .csf-buttons {
     float: none;
   }
+
   .csf-copyright {
     float: none;
     margin-top: 10px;
   }
+
   .csf-nav,
 .csf-expand-all,
 .csf-reset-section,
 .csf-nav-background {
     display: none !important;
   }
+
   .csf-nav-normal + .csf-content {
     margin-left: 0;
   }
+
   .csf-section-title,
 .csf-section {
     display: block !important;
   }
+
   .csf-field .csf-title {
     float: none;
     width: 100%;
@@ -3815,11 +3826,13 @@
     float: none;
     width: 100%;
   }
+
   .csf-field-color .button.wp-picker-clear {
     padding: 0 8px;
     line-height: 2.14285714;
     min-height: 32px;
   }
+
   .csf-profile-options > .csf-field > .csf-title,
 .csf-taxonomy-edit-fields > .csf-field > .csf-title {
     float: none;
@@ -3831,6 +3844,7 @@
     float: none;
     width: 100%;
   }
+
   .csf-nav-menu-options > .csf-fields {
     margin-left: -10px;
     margin-right: -10px;
@@ -5163,3 +5177,5 @@ span.flatpickr-weekday {
     transform: translate3d(0, 0, 0);
   }
 }
+
+/*# sourceMappingURL=style.css.map */

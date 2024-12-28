@@ -237,14 +237,10 @@ if ( ! class_exists( 'CSF_Nav_Menu_Options' ) ) {
 
         if ( $this->args['data_type'] !== 'serialize' ) {
           foreach ( $data as $key => $value ) {
-            if ( ! empty( $key ) ) {
-              update_post_meta( $menu_item_db_id, $key, $value );
-            }            
+            update_post_meta( $menu_item_db_id, $key, $value );
           }
         } else {
-          if ( ! empty( $data ) ) {
-            update_post_meta( $menu_item_db_id, $this->unique, $data );
-          }
+          update_post_meta( $menu_item_db_id, $this->unique, $data );
         }
 
         if ( ! empty( $errors ) ) {
