@@ -44,7 +44,7 @@ class Assets {
 			wp_enqueue_script( 'jquery-nice-select', EAZYDOCS_ASSETS . '/js/admin/jquery.nice-select.min.js', array( 'jquery' ), '', true );
 		}
 
-		if ( ezd_admin_pages( ['eazydocs', 'eazydocs-settings', 'eazydocs-initial-setup'] ) || ezd_admin_post_types('onepage-docs') ) {
+		if ( ezd_admin_pages( ['eazydocs', 'eazydocs-settings', 'eazydocs-initial-setup', 'ezd-user-feedback'] ) || ezd_admin_post_types('onepage-docs') ) {
 			wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
 			wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), '', true );
 		}
