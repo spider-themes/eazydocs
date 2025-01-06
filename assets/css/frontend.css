@@ -2983,6 +2983,7 @@ form.ezd-password-form p {
   font-weight: 700;
   font-size: 22px;
   line-height: 1.5;
+  transition: 0.3s;
 }
 
 /*book chapter Dark*/

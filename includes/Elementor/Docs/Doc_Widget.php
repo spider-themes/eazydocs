@@ -368,7 +368,7 @@ class Doc_Widget extends Widget_Base {
 				'label' => esc_html__( 'Tab Title', 'eazydocs' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'doc-widget-skin' => [ '2', '3', '4' ]
+					'doc-widget-skin' => [ '2', '3', '4', '5' ]
 				]
 			]
 		);
@@ -376,7 +376,8 @@ class Doc_Widget extends Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(), [
 				'name' => 'tab_title_typo',
-				'selector' => '{{WRAPPER}} .ezd_tab_title',
+				'selector' => '{{WRAPPER}} .ezd_tab_title,
+				               {{WRAPPER}} .book-chapter-nav .nav-item a',
 			]
 		);
 
@@ -387,6 +388,7 @@ class Doc_Widget extends Widget_Base {
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
 					'{{WRAPPER}} .ezd_tab_title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .book-chapter-nav .nav-item a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -415,6 +417,7 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_tab_title' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .book-chapter-nav .nav-item a' => 'color: {{VALUE}}',
 				)
 			]
 		);
@@ -425,9 +428,10 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_tab_title' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .book-chapter-nav::after' => 'border-color: {{VALUE}};',
 				),
 				'condition' => [
-					'doc-widget-skin' => [ '2' ]
+					'doc-widget-skin' => [ '2', ]
 				]
 			]
 		);
@@ -439,7 +443,8 @@ class Doc_Widget extends Widget_Base {
 				'exclude' => [ 'image'],
 				'selector' => '{{WRAPPER}} .ezd_tab_title',
 				'condition' => [
-					'doc-widget-skin' => [ '2', '4' ]
+					'doc-widget-skin' => [ '2', '4' ],
+					'doc-widget-skin!' => [ '5' ]
 				]
 			]
 		);
@@ -460,6 +465,7 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_tab_title.active, {{WRAPPER}} .ezd_tab_title:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .book-chapter-nav .nav-item.active a' => 'color: {{VALUE}};',
 				)
 			]
 		);
@@ -470,9 +476,10 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_tab_title.active, {{WRAPPER}} .ezd_tab_title:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .book-chapter-nav .nav-item.active' => 'border-color: {{VALUE}};',
 				),
 				'condition' => [
-					'doc-widget-skin' => [ '2' ]
+					'doc-widget-skin' => [ '2','5' ]
 				]
 			]
 		);
@@ -484,7 +491,8 @@ class Doc_Widget extends Widget_Base {
 				'exclude' => [ 'image'],
 				'selector' => '{{WRAPPER}} .ezd_tab_title.active, {{WRAPPER}} .ezd_tab_title:hover',
 				'condition' => [
-					'doc-widget-skin' => [ '2', '4' ]
+					'doc-widget-skin' => [ '2', '4' ],
+					'doc-widget-skin!' => [ '5' ]
 				]
 			]
 		);
@@ -501,9 +509,6 @@ class Doc_Widget extends Widget_Base {
 			'style_contents', [
 				'label' => esc_html__( 'Contents', 'eazydocs' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'doc-widget-skin' => [ '1', '2', '3', '4', '6' ]
-				]
 			]
 		);
 
@@ -514,7 +519,7 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
-					'doc-widget-skin' => '3'
+					'doc-widget-skin' => [ '3', '5' ]
 				]
 			]
 		);
@@ -522,9 +527,10 @@ class Doc_Widget extends Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(), [
 				'name' => 'item_parent_title_typo',
-				'selector' => '{{WRAPPER}} .ezd_item_parent_title',
+				'selector' => '{{WRAPPER}} .ezd_item_parent_title,
+			                   {{WRAPPER}} .docs4-heading h3',
 				'condition' => [
-					'doc-widget-skin' => '3'
+					'doc-widget-skin' => [ '3', '5' ]
 				]
 			]
 		);
@@ -535,13 +541,48 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_parent_title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .docs4-heading h3' => 'color: {{VALUE}};',
 				),
 				'condition' => [
-					'doc-widget-skin' => '3'
+					'doc-widget-skin' => [ '3', '5' ]
 				]
 			]
 		); // End Item Parent Title
 
+		//=== Item Parent description
+		$this->add_control(
+			'item_title_parent_desc', [
+				'label' => esc_html__( 'Item Parent Description', 'eazydocs' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'doc-widget-skin' => [ '5' ]
+				]
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(), [
+				'name' => 'parent_desc_typo',
+				'selector' => '{{WRAPPER}} .docs4-heading p',
+				'condition' => [
+					'doc-widget-skin' => [ '5' ]
+				]
+			]
+		);
+
+		$this->add_control(
+			'parent_desc_color', [
+				'label' => esc_html__( 'Text Color', 'eazydocs' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .docs4-heading p' => 'color: {{VALUE}};',
+				),
+				'condition' => [
+					'doc-widget-skin' => [ '5' ]
+				]
+			]
+		); // End Item Parent Description
 
 		//=== Item Title
 		$this->add_control(
@@ -555,7 +596,8 @@ class Doc_Widget extends Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(), [
 				'name' => 'item_title_typo',
-				'selector' => '{{WRAPPER}} .ezd_item_title',
+				'selector' => '{{WRAPPER}} .ezd_item_title,
+				               {{WRAPPER}} .doc4-section-title h4',
 			]
 		);
 
@@ -565,6 +607,7 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .doc4-section-title h4' => 'color: {{VALUE}};',
 				),
 			]
 		);
@@ -575,6 +618,7 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_title:hover' => 'color: {{VALUE}}; text-decoration-color: {{VALUE}};',
+					'{{WRAPPER}} .doc4-section-title h4:hover' => 'color: {{VALUE}};',
 				),
 			]
 		); // End Item Title
@@ -587,7 +631,7 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => [
-					'doc-widget-skin' => [ '1', '2', '4'],
+					'doc-widget-skin' => [ '1', '2', '4', '5' ],
 					'doc-widget-skin!' => [ '6' ]
 				]
 			]
@@ -596,9 +640,11 @@ class Doc_Widget extends Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(), [
 				'name' => 'item_list_title_typo',
-				'selector' => '{{WRAPPER}} .ezd_item_list_title',
+				'selector' => '{{WRAPPER}} .ezd_item_list_title,
+				               {{WRAPPER}} .topic_list_item ul li a,
+				               {{WRAPPER}} .topic_list_item ul li a .chapter_counter',
 				'condition' => [
-					'doc-widget-skin' => [ '1', '2', '4'],
+					'doc-widget-skin' => [ '1', '2', '4', '5' ],
 					'doc-widget-skin!' => [ '6' ]
 				]
 			]
@@ -610,9 +656,11 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .ezd_item_list_title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .topic_list_item ul li a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .topic_list_item ul li a .chapter_counter' => 'color: {{VALUE}};',
 				),
 				'condition' => [
-					'doc-widget-skin' => [ '1', '2', '4'],
+					'doc-widget-skin' => [ '1', '2', '4', '5' ],
 					'doc-widget-skin!' => ['6']
 				]
 			]
@@ -624,9 +672,11 @@ class Doc_Widget extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .article_list li a.ezd_item_list_title:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .topic_list_item ul li a:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .topic_list_item ul li a:hover .chapter_counter' => 'color: {{VALUE}}',
                 ],
 				'condition' => [
-					'doc-widget-skin' => [ '1', '2', '4'],
+					'doc-widget-skin' => [ '1', '2', '4', '5' ],
 					'doc-widget-skin!' => ['6']
 				]
 			]
