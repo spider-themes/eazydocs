@@ -33,7 +33,7 @@ class Search_Widget extends Widget_Base {
     }
 
     public function get_style_depends (){
-        return [ 'ezd-el-widgets', 'elegant-icon', 'ezd-docs-widget' ];
+        return [ 'ezd-docs-widgets', 'elegant-icon' ];
     }
 
 	    

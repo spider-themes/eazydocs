@@ -1,6 +1,8 @@
 // Search Widget
 /*=========== Start ezd-page_breadcrumb css ============*/
+@import "frontend/variables";
 @import "frontend/framework";
+@import "frontend/widget_docs";
 
 /*=========== End ezd-page_breadcrumb css ============*/
 
@@ -254,8 +256,6 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		color: var(--ezd_brand_color);
 	}
 }
-
-/*============== recommended_topic_area css  ===========*/
 
 /* Topic List Area css
   ============================================================================================ */

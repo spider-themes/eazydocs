@@ -1,8 +1,6 @@
 @import "frontend/variables";
 @import "frontend/predefine";
-@import "frontend/search_banner";
 @import "frontend/doclist";
-@import "frontend/widget_docs";
 
 .modal-content .shortcode_info .row {
   margin-top: 20px;
@@ -93,13 +91,13 @@ p .footnotes-link::after {
     line-height: 30px;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
     border-radius: 3px;
-    background: var(--black_50);
+    background: var(--black_25);
     color: var(--black_800) !important;
     height: 48px;
 
     &:focus {
       outline: none;
-      background-color: var(--black_25);
+      background-color: var(--bs-white)
     }
 
     &::placeholder {

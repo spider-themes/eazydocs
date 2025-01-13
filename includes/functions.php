@@ -127,7 +127,6 @@ function eazydocs_get_template_part( $template ) {
 	}
 }
 
-
 /**
  * Get template part implementation for eazydocs.
  * Looks at the theme directory first
@@ -1066,13 +1065,21 @@ function ezd_frontend_pages() {
  *
  * @return bool|void
  */
-function ezydocspro_shortcodes_assets() {
+function ezd_has_shortcode( $shortcodes = [] ) {
 	global $post;
 	$post_content_check = $post->post_content ?? '';
-	if ( has_shortcode( $post_content_check, 'ezd_login_form' ) || has_shortcode( $post_content_check, 'reference' ) ) {
-		return true;
+
+	if ( ! empty( $shortcodes ) && is_array( $shortcodes ) ) {
+		foreach ( $shortcodes as $shortcode ) {
+			if ( has_shortcode( $post_content_check, $shortcode ) ) {
+				return true;
+			}
+		}
 	}
+
+	return false; // Explicitly return false if no shortcode is found
 }
+
 
 /**
  * Get all posts
@@ -1101,9 +1108,7 @@ function ezd_get_posts( $post_type = 'docs' ) {
 }
 
 function ezd_widget_excerpt( $settings_key, $limit = 10 ) {
-
 	echo wp_kses_post( wp_trim_words( wpautop( get_the_excerpt( $settings_key ) ), $limit, '' ) );
-
 }
 
 /**
@@ -1156,7 +1161,6 @@ function ezd_el_image( $settings_key = '', $alt = '', $class = '', $atts = [] ) 
 			}
 		}
 		echo '<img src="' . esc_url( $settings_key['url'] ) . '" ' . esc_attr( $class ) . ' alt="' . esc_attr( $alt ) . '" ' . esc_attr( trim( $attss ) ) . '>';
-
 	}
 }
 

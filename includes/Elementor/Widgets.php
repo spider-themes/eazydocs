@@ -11,7 +11,6 @@ class Widgets{
 
         // Register Scripts
         add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'ezd_elementor_editor_styles' ] );
-        add_action( 'elementor/frontend/after_register_scripts', [ $this, 'ezd_register_scripts' ] );
     }
 
     // Register Widgets
@@ -32,11 +31,6 @@ class Widgets{
                 'title' => __( 'EazyDocs', 'eazydocs' ),
             ]
         );
-    }
-
-    // Register scripts
-    public function ezd_register_scripts() {
-        wp_register_style( 'ezd-docs-widget', EAZYDOCS_ASSETS . '/css/frontend.css' );
     }
 
     // Register editor styles

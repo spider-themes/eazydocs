@@ -35,7 +35,7 @@ class Doc_Widget extends Widget_Base {
 	}
 
     public function get_style_depends (){
-        return [ 'ezd-el-widgets', 'ezd-docs-widget', 'elegant-icon' ];
+        return [ 'ezd-docs-widgets', 'elegant-icon' ];
     }
 
 	public function get_script_depends() {

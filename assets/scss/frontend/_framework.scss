@@ -485,13 +485,13 @@
 
 .ezd-alert {
 	position: relative;
-	padding: 1rem 1rem;
+	padding: 15px 20px;
 	margin-bottom: 1rem;
 	border: 1px solid transparent;
 	border-radius: .25rem;
 	&.ezd-alert-info {
-		background: #f1fbfd;
-		border-color: #a0e3f2;
+		background: #daf9ff63;
+		border-color: #6ddaf375;
 		color: #055160;
 	}
 }

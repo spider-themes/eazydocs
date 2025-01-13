@@ -162,11 +162,7 @@ body.body_dark {
 	}
 
 	.fadeGradient {
-		background: -webkit-linear-gradient(
-			bottom,
-			rgb(44 48 58) 15%,
-			rgb(44 48 58) 100%
-		);
+		background: -webkit-linear-gradient(bottom, rgb(44 48 58) 15%, rgb(44 48 58) 100%);
 	}
 
 	body.body_dark textarea#comment {
