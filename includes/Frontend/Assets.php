@@ -90,13 +90,13 @@ class Assets {
 			)
 		);
 
-		wp_register_style( 'eazydocs-frontend-global', EAZYDOCS_ASSETS . '/css/frontend-global.css' );
+		wp_register_style( 'ezd-frontend-global', EAZYDOCS_ASSETS . '/css/frontend-global.css' );
 
 		// Global Scripts
 		wp_register_style( 'elegant-icon', EAZYDOCS_VEND . '/elegant-icon/style.css' );
 		if ( self::global_scope() ) {
 			wp_enqueue_style( 'elegant-icon' );
-			wp_enqueue_style( 'eazydocs-frontend-global' );
+			wp_enqueue_style( 'ezd-frontend-global' );
 
 			// Dynamic CSS
 			$dynamic_css = '';
@@ -113,7 +113,7 @@ class Assets {
 				$dynamic_css .= ".single-docs .shortcode_title .ezd-doc-badge:hover { background: rgba($brand_rgb, .7) }";
 			}
 
-			wp_add_inline_style( 'eazydocs-frontend-global', $dynamic_css );
+			wp_add_inline_style( 'ezd-frontend-global', $dynamic_css );
 			wp_enqueue_script( 'eazydocs-global', EAZYDOCS_ASSETS . '/js/frontend/global.js', array( 'jquery' ), EAZYDOCS_VERSION );
 		}
 	}

@@ -28,12 +28,8 @@ class Search_Widget extends Widget_Base {
 		return [ 'eazydocs' ];
 	}
 
-    public function get_script_depends() {
-        return [ ];
-    }
-
     public function get_style_depends (){
-        return [ 'ezd-docs-widgets', 'elegant-icon' ];
+        return [ 'ezd-frontend-global', 'elegant-icon' ];
     }
 
 	    
