@@ -1,0 +1,122 @@
+.article_list {
+  padding: 0 0 0 20px;
+  margin: 0;
+  list-style: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  li {
+    margin: 5px 0 0 0;
+    padding: 0;
+
+    ul.children {
+      list-style: none;
+      padding-left: 28px;
+      margin: 0;
+      padding-bottom: 0;
+      padding-top: 10px;
+
+      li {
+        a::before {
+          content: "=";
+          padding-right: 10px;
+        }
+      }
+    }
+
+    a {
+      font-size: 15px;
+      color: var(--p_color);
+      line-height: 22px;
+      transition: color 0.2s linear;
+      display: flex;
+      align-items: baseline;
+      text-decoration: none !important;
+
+      &:before {
+        content: "\68";
+        font-family: "ElegantIcons";
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        padding-right: 15px;
+      }
+
+      i {
+        margin-right: 15px;
+      }
+
+      &:hover {
+        color: var(--ezd_brand_color);
+      }
+    }
+  }
+}
+
+.d-items {
+  display: grid;
+  padding-top: 25px;
+  grid-template-columns: auto auto;
+  gap: 30px 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: auto;
+  }
+
+  .documentation_item {
+    display: flex;
+
+    .icon {
+      border-radius: 50%;
+      background-color: var(--bs-white);
+      box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
+      text-align: center;
+      margin-right: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: content-box;
+      line-height: 1.4;
+      width: 70px;
+      height: 70px;
+
+      img {
+        max-width: 35px !important;
+        height: auto !important;
+      }
+    }
+
+    .media-body {
+      flex: 1;
+
+      .title {
+        font-weight: 500;
+        margin: 0 0 8px;
+        transition: color 0.2s linear;
+        display: block;
+        color: var(--black_900);
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 1.5;
+
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: var(--ezd_brand_color);
+          text-decoration-thickness: 2px;
+          text-underline-offset: 3px;
+          color: var(--ezd_brand_color);
+        }
+      }
+
+      p {
+        margin-bottom: 0 !important;
+        font-size: 16px;
+      }
+    }
+  }
+}

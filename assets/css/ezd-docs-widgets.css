@@ -1,4 +1,3 @@
-/*=========== Start ezd-page_breadcrumb css ============*/
 /* Colors */
 :root {
   --secondary_color: #1d2746;
@@ -1614,7 +1613,114 @@ pre {
   white-space: pre-wrap;
 }
 
-/*=========== End ezd-page_breadcrumb css ============*/
+.article_list {
+  padding: 0 0 0 20px;
+  margin: 0;
+  list-style: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.article_list li {
+  margin: 5px 0 0 0;
+  padding: 0;
+}
+.article_list li ul.children {
+  list-style: none;
+  padding-left: 28px;
+  margin: 0;
+  padding-bottom: 0;
+  padding-top: 10px;
+}
+.article_list li ul.children li a::before {
+  content: "=";
+  padding-right: 10px;
+}
+.article_list li a {
+  font-size: 15px;
+  color: var(--p_color);
+  line-height: 22px;
+  transition: color 0.2s linear;
+  display: flex;
+  align-items: baseline;
+  text-decoration: none !important;
+}
+.article_list li a:before {
+  content: "h";
+  font-family: "ElegantIcons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 15px;
+}
+.article_list li a i {
+  margin-right: 15px;
+}
+.article_list li a:hover {
+  color: var(--ezd_brand_color);
+}
+
+.d-items {
+  display: grid;
+  padding-top: 25px;
+  grid-template-columns: auto auto;
+  gap: 30px 20px;
+}
+@media (max-width: 768px) {
+  .d-items {
+    grid-template-columns: auto;
+  }
+}
+.d-items .documentation_item {
+  display: flex;
+}
+.d-items .documentation_item .icon {
+  border-radius: 50%;
+  background-color: var(--bs-white);
+  box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
+  text-align: center;
+  margin-right: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  line-height: 1.4;
+  width: 70px;
+  height: 70px;
+}
+.d-items .documentation_item .icon img {
+  max-width: 35px !important;
+  height: auto !important;
+}
+.d-items .documentation_item .media-body {
+  flex: 1;
+}
+.d-items .documentation_item .media-body .title {
+  font-weight: 500;
+  margin: 0 0 8px;
+  transition: color 0.2s linear;
+  display: block;
+  color: var(--black_900);
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.d-items .documentation_item .media-body .title:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--ezd_brand_color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  color: var(--ezd_brand_color);
+}
+.d-items .documentation_item .media-body p {
+  margin-bottom: 0 !important;
+  font-size: 16px;
+}
+
 /** === Doc search form result === **/
 .doc_banner_text .banner_search_form {
   transition: all 0.4s;

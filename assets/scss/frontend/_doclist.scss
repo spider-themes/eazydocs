@@ -1,3 +1,5 @@
+@import "single_and_docs_widget";
+
 /*=========== Start ezd-page_breadcrumb css ============*/
 .ezd-breadcrumb {
 	background: var(--black_50);
@@ -1762,69 +1764,6 @@ body:not(.onepage-doc) .sticky_menu {
 				margin-bottom: 5px;
 				line-height: 1.6;
 				font-size: 15px;
-			}
-		}
-	}
-}
-
-.d-items {
-	display: grid;
-	padding-top: 25px;
-	grid-template-columns: auto auto;
-	gap: 30px 20px;
-
-	@media (max-width: 768px) {
-		grid-template-columns: auto;
-	}
-
-	.documentation_item {
-		display: flex;
-
-		.icon {
-			border-radius: 50%;
-			background-color: var(--bs-white);
-			box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
-			text-align: center;
-			margin-right: 22px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			box-sizing: content-box;
-			line-height: 1.4;
-			width: 70px;
-			height: 70px;
-
-			img {
-				max-width: 35px !important;
-				height: auto !important;
-			}
-		}
-
-		.media-body {
-			flex: 1;
-
-			.title {
-				font-weight: 500;
-				margin: 0 0 8px;
-				transition: color 0.2s linear;
-				display: block;
-				color: var(--black_900);
-				text-decoration: none;
-				font-size: 18px;
-				line-height: 1.5;
-
-				&:hover {
-					text-decoration: underline;
-					text-decoration-color: var(--ezd_brand_color);
-					text-decoration-thickness: 2px;
-					text-underline-offset: 3px;
-					color: var(--ezd_brand_color);
-				}
-			}
-
-			p {
-				margin-bottom: 0 !important;
-				font-size: 16px;
 			}
 		}
 	}
