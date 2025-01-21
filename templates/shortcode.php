@@ -6,7 +6,7 @@ $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
 $is_masonry             = '';
 // Check pro plugin class exists
 if ( ezd_is_premium() ) {
-	$is_masonry = $layout == 'masonry' ? ' ezd-masonry' : '';
+	$is_masonry = $layout == 'masonry' ? ' ezd-masonry' : 'ezd-grid';
 	if ( empty ( $col ) ) {
 		$col = apply_filters( 'before_docs_column_wrapper', $col );
 	}
@@ -15,9 +15,7 @@ if ( ezd_is_premium() ) {
 if ( $docs ) :
 	?>
     <div class="eazydocs_shortcode">
-
-        <div <?php echo esc_attr( do_action( 'eazydocs_masonry_wrap', $layout, $col ) ); ?> class="ezd-grid ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
-
+        <div <?php echo esc_attr( do_action( 'eazydocs_masonry_wrap', $layout, $col ) ); ?> class="ezd-grid ezd-masonry ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
 			<?php
 			$i = 1;
 			foreach ( $docs as $main_doc ) :

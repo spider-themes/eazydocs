@@ -15,6 +15,7 @@ class Assets {
 			add_action( 'admin_enqueue_scripts', [ $this, 'dashboard_scripts' ] );
 		}
 		add_action( 'admin_enqueue_scripts', [ $this, 'global_scripts' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 	}
 
 	/**
@@ -44,9 +45,12 @@ class Assets {
 			wp_enqueue_script( 'jquery-nice-select', EAZYDOCS_ASSETS . '/js/admin/jquery.nice-select.min.js', array( 'jquery' ), '', true );
 		}
 
-		if ( ezd_admin_pages( ['eazydocs', 'eazydocs-settings', 'eazydocs-initial-setup', 'ezd-user-feedback'] ) || ezd_admin_post_types('onepage-docs') ) {
-			wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
-			wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), '', true );
+		wp_register_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css' );
+		wp_register_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), '', true );
+
+		if ( ezd_admin_pages( ['eazydocs', 'eazydocs-settings', 'eazydocs-initial-setup', 'ezd-user-feedback'] ) || ezd_admin_post_types('onepage-docs') ) {			
+			wp_enqueue_style( 'sweetalert' );
+			wp_enqueue_script( 'sweetalert' );
 		}
 
 		if ( ezd_admin_post_types('onepage-docs')  ) {
@@ -62,6 +66,28 @@ class Assets {
 
 		wp_enqueue_style( 'ezd-main', EAZYDOCS_ASSETS . '/css/admin.css', array(), EAZYDOCS_VERSION );
 		wp_enqueue_style( 'ezd-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css' );
+	}
+
+	public function enqueue_block_editor_assets() {
+
+		$post_id 	= isset($_GET['post']) ? intval($_GET['post']) : null;
+		// Define the blocks you want to check for
+		$ezd_blocks = [ 'eazydocs-pro/eazy-docs' ];
+	
+		// Check if the post contains any of the target blocks
+		if ($post_id) {
+			$post_content = get_post($post_id)->post_content;
+			foreach ($ezd_blocks as $block) {
+				if ( has_block($block, $post_content) ) {
+					// Enqueue your styles and scripts
+					wp_enqueue_style('sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css');
+					wp_enqueue_script('sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', ['jquery'], '', true);
+					wp_enqueue_style( 'elegant-icon', EAZYDOCS_ASSETS.'/vendors/elegant-icon/style.css' );
+					wp_enqueue_style( 'ezd-docs-widgets', EAZYDOCS_ASSETS.'/css/ezd-docs-widgets.css' );
+					break; // Exit loop once a matching block is found
+				}
+			}
+		}
 	}
 
 	/**
