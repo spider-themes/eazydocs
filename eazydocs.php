@@ -114,14 +114,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_filter('plugin_row_meta',[ $this,  'eazydocs_row_meta' ], 10, 2);
 
 			/**
-			 * Removes admin notices on the BBP Core Forum builder page.
+			 * Removes admin notices on the EazyDocs pages.
 			 *
 			 * @return void
 			 */
 			add_action( 'admin_head', function () {
-				// Get the current screen
-				$screen = get_current_screen();
-
 				// Check if the current screen is for your plugin page
 				if ( ezd_admin_pages() ) {
 					// Remove admin notices

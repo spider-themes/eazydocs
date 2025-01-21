@@ -203,7 +203,7 @@ body.valid .active-theme.csf-field::after {
   display: none;
 }
 
-body:not(.ezd-premium) .eazydocs-pro-notice.csf-field::before {
+body:not(.ezd-premium, .valid) .eazydocs-pro-notice.csf-field::before {
   content: "Pro";
   background-color: #f1bd6c;
   color: #000;
@@ -211,7 +211,7 @@ body:not(.ezd-premium) .eazydocs-pro-notice.csf-field::before {
   border-radius: 3px;
   margin-bottom: 10px;
 }
-body:not(.ezd-premium) .eazydocs-pro-notice.csf-field::after {
+body:not(.ezd-premium, .valid) .eazydocs-pro-notice.csf-field::after {
   position: absolute;
   content: "";
   width: 100%;
@@ -221,8 +221,8 @@ body:not(.ezd-premium) .eazydocs-pro-notice.csf-field::after {
   background-color: transparent;
   z-index: 2;
 }
-body:not(.ezd-premium) .eazydocs-pro-notice .csf-title,
-body:not(.ezd-premium) .eazydocs-pro-notice .csf-fieldset {
+body:not(.ezd-premium, .valid) .eazydocs-pro-notice .csf-title,
+body:not(.ezd-premium, .valid) .eazydocs-pro-notice .csf-fieldset {
   opacity: 0.5;
   pointer-events: none;
 }

@@ -165,7 +165,7 @@ body.valid .active-theme.csf-field::after {
 }
 
 body {
-  &:not(.ezd-premium) {
+  &:not(.ezd-premium, .valid) {
     .eazydocs-pro-notice.csf-field {
       &::before {
         content: "Pro";

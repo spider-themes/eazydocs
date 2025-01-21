@@ -15,7 +15,6 @@ class Admin {
 		add_filter( 'admin_body_class', [ $this, 'body_class' ] );
 		add_filter( 'get_edit_post_link', [ $this, 'one_page_docs_edit_content' ], 10, 3 );
 
-		add_filter( 'admin_body_class', [ $this, 'admin_body_class' ] );
 		add_action( 'wp_ajax_eaz_nestable_docs', [ $this, 'nestable_callback' ] );
 		add_action( 'wp_ajax_eaz_parent_nestable_docs', [ $this, 'parent_nestable_callback' ] );
 	}

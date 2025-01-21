@@ -16,7 +16,6 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'General', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
-
 		array(
 			'id'      => 'docs_single_layout',
 			'type'    => 'image_select',
