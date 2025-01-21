@@ -107,7 +107,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action('admin_init', [ $this, 'ezd_get_setup_wizard_init' ]);
 
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
-				add_action( 'admin_notices', [ $this, 'database_not_found' ] );
+				add_action( 'admin_notices', [ $this, 'update_database' ] );
 			}
 
 			// Added Documentation links to plugin row meta
@@ -365,14 +365,14 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
             // If any table was not created, send a notification.
 			if ( ! $tables_created ) {
-				$this->database_not_found();
+				$this->update_database();
 			}
 		}
 
 		/**
 		 * Database not found
 		 */
-		function database_not_found() {
+		function update_database() {
 			global $wpdb;
 			$table_name = $wpdb->prefix . 'eazydocs_search_keyword';
 			$table_name2 = $wpdb->prefix . 'eazydocs_search_log';
