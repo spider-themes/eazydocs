@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs
 Tags: knowledgebase, kb, faq, wiki, helpdesk
 Requires at least: 5.0
-Tested up to: 6.6.1
+Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 2.5.6
+Stable tag: 2.5.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -228,7 +228,24 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.5.7 (22 January 2025) =
+New: Added functions for detecting EazyDocs admin pages, post types and taxonomy page
+Fixed: Some control & responsive issue of "Single Doc" Elementor widget
+Fixed: Search widget dependency issue solved
+Fixed: The search widget static keyword text field was not editable, it resolved
+Fixed: Codestar conflicts with Docy theme
+Fixed: Cannot modify header information - headers already sent by... PHP error
+Fixed: Undefined issue resolved by defining eazydocs settings option in right sidebar for widgets
+Fixed: Some control issue of "EazyDocs Multi Doc" Elementor widget
+Tweaked: Removed notices from EazyDocs pages
+Tweaked: Improved admin assets loading
+Tweaked: File loading dependency improved
+Tweaked: Codestar updated
+Tweaked: Assets re-organized
+Tweaked: Related docs design
+
 = v2.5.6 (18 December 2024) =
+New: Add featured image support to the 'docs' RSS feed
 Fixed: Removed Scheme Key from Widget for compatibility with the latest version of Elementor (3.26.0)
 Tweaked: Removed ezd_get_breadcrumb action
 Tweaked: Reverted breadcrumbs markup
