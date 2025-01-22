@@ -22,7 +22,19 @@ if ( function_exists( 'eaz_fs' ) ) {
 } else {
 	// DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
 
-	if ( ! function_exists( 'eaz_fs' ) ) {
+	if ( ! function_exists( 'eaz_fs' ) ) {		
+		
+		// Retrieve the Eazydocs settings option
+		$opt 			= get_option('eazydocs_settings', []);
+		// Check if the setup wizard has been completed (defaulting to an empty string if not set)
+		$setup_wizard 	= isset($opt['setup_wizard_completed']) ? $opt['setup_wizard_completed'] : '';
+		
+		// Check if the setup wizard is not completed and ezd_get_setup_wizard option is set
+		if ( get_option( 'ezd_get_setup_wizard' ) && ! empty( $setup_wizard ) ) {
+			// Remove the activation flag if the setup wizard is not completed
+			delete_option( 'ezd_get_setup_wizard' );
+		}
+
 		// Create a helper function for easy SDK access.
 		function eaz_fs() {
 			global $eaz_fs;
@@ -50,7 +62,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 							'slug'       => 'eazydocs',
 							'contact'    => false,
 							'support'    => false,
-							'first-path' => 'admin.php?page=eazydocs'
+							'first-path' => get_option('ezd_get_setup_wizard') ? 'admin.php?page=eazydocs-initial-setup' : 'admin.php?page=eazydocs'
 						],
 					]
 				);
@@ -102,10 +114,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'i18n' ] );
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
-
-			// Add the setup wizard
-			add_action('admin_init', [ $this, 'ezd_get_setup_wizard_init' ]);
-
+			
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				add_action( 'admin_notices', [ $this, 'update_database' ] );
 			}
@@ -292,21 +301,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			update_option('ezd_get_setup_wizard', true);
 
 		}
-
-		// Redirect to the setup wizard page
-		public function ezd_get_setup_wizard_init() {
-			// Check if the plugin has been activated
-			$opt 			= get_option('eazydocs_settings');
-			$setup_wizard 	= $opt['setup_wizard_completed'] ?? '';
-
-			if ( get_option('ezd_get_setup_wizard') && $setup_wizard == '' ) {
-				// Redirect to the setup wizard page
-				wp_safe_redirect(admin_url('admin.php?page=eazydocs-initial-setup'));
-				// Remove the activation flag
-				delete_option('ezd_get_setup_wizard');
-			}
-		}
-
+		
 		/**
 		 * Create database table if not exists
 		 * Insert search keywords table and search key logs table into the database if not exists

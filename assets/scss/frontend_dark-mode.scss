@@ -168,4 +168,14 @@ body.body_dark {
 	body.body_dark textarea#comment {
 		background: #2c303a;
 	}
+
+	span.ezd_mark_text {
+		&.active{
+			color: black;
+		}
+	}
+	.ezd-footnotes-link-item span.ezd-footnote-content{
+		color:black
+	}
+
 }
