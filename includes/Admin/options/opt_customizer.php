@@ -11,7 +11,9 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Options Visibility on Customizer', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+			'default'	 => true,
 			'text_width' => 100,
+			'class'      => 'eazydocs-promax-notice'
 		),
 		
 		array(
@@ -20,6 +22,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'customizer_visibility', '==', true ),
 			),
+			'class'      => 'eazydocs-promax-notice'
 		)
 	]
 ) );

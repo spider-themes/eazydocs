@@ -189,7 +189,11 @@ class Admin {
 		if ( eaz_fs()->is_plan( 'promax' ) == "yes" ) {
 			$classes .= ' ezd-promax';
         }
-
+		
+		if ( empty( eaz_fs()->is_plan( 'promax' ) ) ) {
+			$classes .= ' ezd_no_promax';
+		}
+		
 		return $classes;
 	}
 
@@ -464,18 +468,7 @@ class Admin {
 
 		return $link;
 	}
-
-	public function admin_body_class( $admin_body ) {
-		$ezd_admin_classe = explode( ' ', $admin_body );
-	/*	if ( empty( eaz_fs()->is_plan( 'promax' ) ) ) {
-			$ezd_admin_classe = array_merge( $ezd_admin_classe, [
-				'ezd_no_promax'
-			] );
-		}*/
-
-		return implode( ' ', array_unique( $ezd_admin_classe ) );
-	}
-
+	
 	/**
 	 ** Nestable Callback function
 	 **/

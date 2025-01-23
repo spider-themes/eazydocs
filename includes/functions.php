@@ -1243,7 +1243,7 @@ function eaz_get_nestable_parent_id( $page_id ) {
 
 	// Prepare the SQL statement using placeholders
 	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-	$query = $wpdb->prepare( "SELECT post_parent FROM $wpdb->posts WHERE post_type='docs' AND post_status='publish' AND ID = %d", $page_id );
+	$query = $wpdb->prepare( "SELECT post_parent FROM $wpdb->posts WHERE post_type='docs' AND  ID = %d", $page_id );
 
 	// Execute the query
 	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
@@ -1564,36 +1564,34 @@ function customizer_visibility_callback() {
 	$target 		 = '_self';
 	$no_access  	 = 'no-customizer-access';
 
-	if ( class_exists( 'EZD_EazyDocsPro' ) && eaz_fs()->is_plan( 'promax' ) ) {
+	if ( class_exists( 'EZD_EazyDocsPro' ) && ezd_is_promax() ) {
 		if ( in_array( implode(', ', ezd_get_current_user_role_by_id(get_current_user_id())) , ['administrator'] ) ) {
+			$options      = get_option( 'eazydocs_settings' );
+			$doc_id       = $options['docs-slug'] ?? '';
+			$doc_page     = get_post_field( 'post_name', $doc_id );
 
-		$options      = get_option( 'eazydocs_settings' );
-		$doc_id       = $options['docs-slug'] ?? '';
-		$doc_page     = get_post_field( 'post_name', $doc_id );
+			$args = array(
+				'post_type'      => 'docs',
+				'posts_per_page' => - 1,
+				'orderby'        => 'menu_order',
+				'order'          => 'asc'
+			);
 
-		$args         = array(
-			'post_type'      => 'docs',
-			'posts_per_page' => - 1,
-			'orderby'        => 'menu_order',
-			'order'          => 'asc'
-		);
+			$recent_posts 	= wp_get_recent_posts( $args );
+			$post_url     	= '';
+			$post_count   	= 0;
 
-		$recent_posts 	= wp_get_recent_posts( $args );
-		$post_url     	= '';
-		$post_count   	= 0;
+			foreach ( $recent_posts as $recent ):
+				$post_url   = $recent['ID'];
+				$post_count ++;
+			endforeach;
 
-		foreach ( $recent_posts as $recent ):
-			$post_url   = $recent['ID'];
-			$post_count ++;
-		endforeach;
-
-		$no_access  	 = '';
-		$docs_url 		= $post_count > 0 ? $post_url : $doc_id;
-		$archive_url 	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $doc_id . '?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
-		$single_url  	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $docs_url . '?autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
-		$target 		= '_blank';
+			$no_access  	= '';
+			$docs_url 		= $post_count > 0 ? $post_url : $doc_id;
+			$archive_url	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $doc_id . '?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
+			$single_url  	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $docs_url . '?autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
+			$target 		= '_blank';
 		}
-
 	}
 	?>
 	<a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">
