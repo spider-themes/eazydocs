@@ -10,6 +10,8 @@ body.body_dark {
 	--black_500: #b9b9b9 !important;
 	--black_400: #a2a2a2 !important;
 	--black_150: rgba(255, 255, 255, 0.3) !important;
+	--black_100: #5e5e5e !important;
+	--black_75: #535353 !important;
 	--black_50: #494949 !important;
 	--black_25: #383838 !important;
 	--body_bg: #131417 !important;
@@ -39,11 +41,7 @@ body.body_dark {
 	}
 
 	.fadeGradient {
-		background: -webkit-linear-gradient(
-			bottom,
-			rgb(19 20 23) 15%,
-			rgba(245, 245, 245, 0) 100%
-		) !important;
+		background: -webkit-linear-gradient(bottom, rgb(19 20 23) 15%, rgba(245, 245, 245, 0) 100%) !important;
 	}
 
 	.search_form .form-control {
@@ -83,18 +81,15 @@ body.body_dark {
 
 	.doc_rightsidebar .doc_switch input[type="checkbox"],
 	.doc_left_sidebarlist::after,
-	.doc_rightsidebar .dropdown-toggle,
 	.doc_left_sidebarlist:before,
 	.doc_left_sidebarlist,
+	.doc_rightsidebar .dropdown-toggle,
+	.doc_rightsidebar, .v_menu,
 	.nav-sidebar + .nav-sidebar,
-	.doc_rightsidebar,
-	.v_menu,
-	.toggle_body,
-	.basic_table_info,
+	.toggle_body, .basic_table_info,
 	.basic_table_info tbody tr th,
 	.basic_table_info tbody tr td,
-	.typography_content .code-preview,
-	.doc_left_sidebarlist:before {
+	.typography_content .code-preview {
 		border-color: #272830;
 	}
 
@@ -118,10 +113,7 @@ body.body_dark {
 		color: #eaeaea !important;
 	}
 
-	.doc_rightsidebar
-		.bootstrap-select
-		.dropdown-toggle
-		.filter-option-inner-inner {
+	.doc_rightsidebar .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
 		color: #c7c9d3;
 	}
 
@@ -169,13 +161,8 @@ body.body_dark {
 		background: #2c303a;
 	}
 
-	span.ezd_mark_text {
-		&.active{
-			color: black;
-		}
-	}
+	span.ezd_mark_text,
 	.ezd-footnotes-link-item span.ezd-footnote-content{
 		color:black
 	}
-
 }

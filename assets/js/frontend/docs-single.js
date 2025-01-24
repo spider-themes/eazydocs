@@ -560,13 +560,13 @@
 		}
 
 		function applyNight() {
-			$('body').addClass('body_dark');
+			$('body.single-docs').addClass('body_dark');
 			$('.light-mode').removeClass('active');
 			$('.dark-mode').addClass('active');
 		}
 
 		function applyDay() {
-			$('body').removeClass('body_dark');
+			$('body.single-docs').removeClass('body_dark');
 			$('.dark-mode').removeClass('active');
 			$('.light-mode').addClass('active');
 		}

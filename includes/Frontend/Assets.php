@@ -52,7 +52,7 @@ class Assets {
 
 			$is_dark_switcher = $opt['is_dark_switcher'] ?? '';
 
-			if ( $is_dark_switcher == '1' ) {
+			if ( $is_dark_switcher == '1' && is_singular( ['docs', 'doc'] ) ) {
 				wp_enqueue_style( 'eazydocs-dark-mode', EAZYDOCS_ASSETS . '/css/frontend_dark-mode.css' );
 			}
 

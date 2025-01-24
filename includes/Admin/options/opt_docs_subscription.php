@@ -15,7 +15,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'subscriptions',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Subscribe Feature', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Enable to show the subscription form in the single doc page.', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Enable to show the subscription button.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'default'    => false,

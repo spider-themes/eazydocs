@@ -10,6 +10,8 @@ body.body_dark {
   --black_500: #b9b9b9 !important;
   --black_400: #a2a2a2 !important;
   --black_150: rgba(255, 255, 255, 0.3) !important;
+  --black_100: #5e5e5e !important;
+  --black_75: #535353 !important;
   --black_50: #494949 !important;
   --black_25: #383838 !important;
   --body_bg: #131417 !important;
@@ -69,18 +71,15 @@ body.body_dark .doc_left_sidebarlist:not(.one-page-docs-sidebar-wrap)::before {
 }
 body.body_dark .doc_rightsidebar .doc_switch input[type=checkbox],
 body.body_dark .doc_left_sidebarlist::after,
-body.body_dark .doc_rightsidebar .dropdown-toggle,
 body.body_dark .doc_left_sidebarlist:before,
 body.body_dark .doc_left_sidebarlist,
+body.body_dark .doc_rightsidebar .dropdown-toggle,
+body.body_dark .doc_rightsidebar, body.body_dark .v_menu,
 body.body_dark .nav-sidebar + .nav-sidebar,
-body.body_dark .doc_rightsidebar,
-body.body_dark .v_menu,
-body.body_dark .toggle_body,
-body.body_dark .basic_table_info,
+body.body_dark .toggle_body, body.body_dark .basic_table_info,
 body.body_dark .basic_table_info tbody tr th,
 body.body_dark .basic_table_info tbody tr td,
-body.body_dark .typography_content .code-preview,
-body.body_dark .doc_left_sidebarlist:before {
+body.body_dark .typography_content .code-preview {
   border-color: #272830;
 }
 body.body_dark .onepage-doc .nav-sidebar .nav-item .dropdown_nav:before {
@@ -133,9 +132,7 @@ body.body_dark .fadeGradient {
 body.body_dark body.body_dark textarea#comment {
   background: #2c303a;
 }
-body.body_dark span.ezd_mark_text.active {
-  color: black;
-}
+body.body_dark span.ezd_mark_text,
 body.body_dark .ezd-footnotes-link-item span.ezd-footnote-content {
   color: black;
 }
