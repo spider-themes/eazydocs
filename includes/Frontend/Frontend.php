@@ -51,7 +51,6 @@ class Frontend {
 	 *
 	 */
 	public function footnotes($post_id){
-
 		$options 				= get_option( 'eazydocs_settings' );		
 		$is_notes_title   		= $options['is_footnotes_heading'] ?? '1';
 		$footnotes_layout  	 	= $options['footnotes_layout'] ?? 'collapsed';
@@ -78,15 +77,15 @@ class Frontend {
 		endif;
 		?>
 		
-		<div ezd-data-column="<?php echo esc_attr( $footnotes_column ); ?>" class="ezd-footnote-footer <?php echo esc_attr( $ezd_notes_footer_mt .' '. $is_footnotes_expand ); ?>">
-			<?php		  
+		<div data-column="<?php echo esc_attr( $footnotes_column ); ?>" class="ezd-footnote-footer <?php echo esc_attr( $ezd_notes_footer_mt .' '. $is_footnotes_expand ); ?>">
+			<?php
 			$i = 0;
 			foreach( $reference_with_content as $reference_with_contents ) {
 				$i++;
 				?>
 				<div class="note-class-<?php echo esc_html( $reference_with_contents['id'] ); ?>" id="note-name-<?php echo esc_html( $reference_with_contents['id'] ); ?>">
 					<div class="ezd-footnotes-serial"> 
-						<spna class="ezd-serial"><?php echo esc_html($i); ?></spna> 
+						<span class="ezd-serial"><?php echo esc_html($i); ?></span>
 						<a class="ezd-note-indicator" href="#serial-id-<?php echo esc_html( $reference_with_contents['id'] ); ?>"><i class="arrow_carrot-up"></i> </a>
 					</div>
 					<div class="ezd-footnote-texts"> 

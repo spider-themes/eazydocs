@@ -1,5 +1,6 @@
 <?php
 // add button for create table
+
 if ( isset( $_GET['eazydocs_table_create'] ) ) {
 
 	add_action( 'admin_init', "ezd_analytics_db_update_success_notice" );

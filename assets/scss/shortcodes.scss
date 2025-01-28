@@ -2,11 +2,45 @@
 EazyDocs Footnotes
 */
 .ezd-footnote-footer {
-  column-gap: 30px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  /* Styling based on data-column value */
+  &[data-column="1"] {
+    > div {
+      flex: 1 1 100%;
+    }
+  }
+
+  &[data-column="2"] {
+    > div {
+      flex: 1 1 50%;
+    }
+  }
+
+  &[data-column="3"] {
+    > div {
+      flex: 1 1 33.33%;
+    }
+  }
+
+  &[data-column="4"] {
+    > div {
+      flex: 1 1 25%;
+    }
+  }
+
+  /* Adjust for smaller screens (responsive design) */
+  @media (max-width: 768px) {
+    > div {
+      flex: 1 1 100%;
+    }
+  }
+
   div {
     display: flex;
     break-inside: avoid;
-    margin-bottom: 5px;
     word-break: break-all;
     position: relative;
     padding: 0;
@@ -55,7 +89,9 @@ EazyDocs Footnotes
 
     &:target {
       outline: none;
-      color: var(--ezd_brand_color);
+      background-color: var(--ezd-color-10);
+      padding: 5px 10px;
+      border-radius: 4px;
       margin: 0;
     }
 
@@ -116,27 +152,18 @@ EazyDocs Footnotes
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
     word-break: break-all;
-    -webkit-transform: scale(1, 1);
-    -moz-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
-    -ms-transform: scale(1, 1);
-    transform: scale(1, 1);
-    -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-    -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
     -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
-    -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
     -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
     transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
     width: 300px;
-    background: #fff;
+    background: var(--bs-white);
+    color: var(--black_800);
     box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
     border: 0;
     transform: translate(-54%, 0%);
-    margin: 0;
     font-size: 14px;
     line-height: 26px;
-    color: #6b707f;
-    margin-bottom: 0;
+    margin: 0;
     padding: 25px;
     box-sizing: border-box;
 
@@ -169,7 +196,7 @@ EazyDocs Footnotes
       border-top: 7px solid transparent;
       transform: rotate(224deg);
       box-shadow: 1px 1px 0 rgb(110 108 108 / 25%);
-      background: white;
+      background: var(--bs-white);
       border-top-right-radius: 2px;
     }
 
@@ -208,7 +235,7 @@ EazyDocs Footnotes
 .ezd-footnote-title {
   display: none;
   font-size: 20px;
-  margin: 30px 0 10px;
+  margin: 40px 0 10px;
   font-weight: 500;
   width: 100%;
   cursor: pointer;

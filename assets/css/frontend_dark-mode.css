@@ -132,8 +132,7 @@ body.body_dark .fadeGradient {
 body.body_dark body.body_dark textarea#comment {
   background: #2c303a;
 }
-body.body_dark span.ezd_mark_text,
-body.body_dark .ezd-footnotes-link-item span.ezd-footnote-content {
+body.body_dark span.ezd_mark_text {
   color: black;
 }
 

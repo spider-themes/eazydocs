@@ -1833,6 +1833,11 @@ body:not(.onepage-doc) .sticky_menu {
 	}
 }
 
+#comments {
+	background: var(--bs-white);
+	border-radius: 15px;
+}
+
 .doc-post-content {
 	.doc-scrollable {
 		section {
