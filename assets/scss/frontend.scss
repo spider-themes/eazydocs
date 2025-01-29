@@ -321,6 +321,13 @@ p .footnotes-link::after {
     align-items: center;
   }
 
+  h2, h3, h4, h5, h6 {
+    scroll-margin-top: 100px;
+    scroll-padding-top: 100px;
+    margin-top: -50px;
+    padding-top: 50px;
+  }
+
   h3 {
     font-size: 1.5em;
   }

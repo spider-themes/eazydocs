@@ -34,6 +34,7 @@ EazyDocs Footnotes
   font-size: 14px;
   gap: 5px;
   align-items: baseline;
+  scroll-margin-top: 100px;
 }
 .ezd-footnote-footer div .ezd-note-indicator {
   text-decoration: none;
@@ -194,7 +195,10 @@ EazyDocs Footnotes
   font-weight: 500;
   width: 100%;
   cursor: pointer;
-  align-items: flex-start;
+  align-items: center;
+}
+.ezd-footnote-title .cite-count {
+  font-size: 14px;
 }
 .ezd-footnote-title span {
   display: inline-flex;
@@ -202,7 +206,7 @@ EazyDocs Footnotes
 }
 .ezd-footnote-title span i {
   font-size: 31px;
-  margin: 0 0 0 -8px;
+  margin: -5px 0 0 -8px;
 }
 .ezd-footnote-title span.ezd-plus-minus {
   margin-right: 6px;

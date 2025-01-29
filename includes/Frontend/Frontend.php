@@ -71,7 +71,7 @@ class Frontend {
 			<div class="ezd-footnote-title <?php echo esc_attr( $is_footnotes_expand ); ?>">
 				<span class="ezd-plus-minus"> <i class="icon_plus-box"></i><i class="icon_minus-box"></i></span>
 				<span class="ezd-title-txt"><?php echo esc_html( $notes_title_text ); ?></span>
-				<span> ( <?php echo esc_html( $shortcode_counter ); ?> ) </span>
+                &nbsp; <span class="cite-count">(<?php echo esc_html( $shortcode_counter ); ?>) </span>
 			</div>
 			<?php 
 		endif;
@@ -96,6 +96,31 @@ class Frontend {
 			}
 			?>
 		</div>
+
+        <script>
+            ;(function ($) {
+                'use strict';
+                $(document).ready(function () {
+                    const $footnoteFooter = $('.ezd-footnote-footer');
+                    const $footnoteTitle = $('.ezd-footnote-title');
+                    const $footnoteLinks = $('.ezd-footnotes-link-item');
+                    if ($footnoteFooter.children('div').length) {
+                        $footnoteTitle.css('display', 'flex').on('click', function () {
+                            $(this).toggleClass('expanded collapsed');
+                            $footnoteFooter.stop(true, true).slideToggle({
+                                complete: function () {
+                                    $(this).css('display', $(this).is(':visible') ? 'flex' : 'none');
+                                }
+                            });
+                        });
+                        $footnoteLinks.on('click', function () {
+                            $footnoteTitle.addClass('expanded').removeClass('collapsed');
+                            $footnoteFooter.css({ display: 'flex', height: 'auto' });
+                        });
+                    }
+                });
+            })(jQuery);
+        </script>
 	<?php
 	}
 

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* Colors */
 :root {
-  --ezd-color-10: #e6efff;
+  --ezd-color-10: rgba(171, 198, 245, 0.22);
   --ezd-color-25: #cee0ff;
   --ezd-color-50: #b5d1ff;
   --ezd-color-100: #9cc2ff;
@@ -1478,7 +1478,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 }
 
 .doc-btm {
-  margin-top: 70px;
+  margin-top: 60px;
   clear: both;
 }
 .doc-btm ul.card_tagged {
@@ -2470,6 +2470,12 @@ p .footnotes-link::after {
   font-size: 1.8em;
   display: flex;
   align-items: center;
+}
+.single-docs #post h2, .single-docs #post h3, .single-docs #post h4, .single-docs #post h5, .single-docs #post h6 {
+  scroll-margin-top: 100px;
+  scroll-padding-top: 100px;
+  margin-top: -50px;
+  padding-top: 50px;
 }
 .single-docs #post h3 {
   font-size: 1.5em;

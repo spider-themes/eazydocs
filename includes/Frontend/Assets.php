@@ -33,7 +33,6 @@ class Assets {
 
 		if ( ezd_has_shortcode( ['ezd_login_form', 'reference'] ) ) {
 			wp_enqueue_style( 'eazydocs-shortcodes', EAZYDOCS_ASSETS . '/css/shortcodes.css' );
-			wp_enqueue_script( 'eazydocs-shortcodes', EAZYDOCS_ASSETS . '/js/shortcodes.js' );
 		}
 
 		if ( ezd_has_shortcode( ['eazydocs'] ) ) {
