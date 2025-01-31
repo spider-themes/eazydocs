@@ -31,7 +31,7 @@ class Assets {
 		$dynamic_cssd = ":root { --ezd_brand_color: " . ezd_get_opt( 'brand_color' ) . "; }";
 		wp_add_inline_style( 'eazydocs-blocks', $dynamic_cssd );
 
-		if ( ezd_has_shortcode( ['ezd_login_form', 'reference'] ) ) {
+		if ( ezd_has_shortcode( ['ezd_login_form', 'reference'] ) || has_ezd_mark_text_class() ) {
 			wp_enqueue_style( 'eazydocs-shortcodes', EAZYDOCS_ASSETS . '/css/shortcodes.css' );
 		}
 

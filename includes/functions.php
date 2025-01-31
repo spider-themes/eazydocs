@@ -1659,3 +1659,16 @@ function ezd_add_thumbnail_to_rss_feed() {
     }
 }
 add_action('rss2_item', 'ezd_add_thumbnail_to_rss_feed');
+
+/*
+ * Check if has selected comment class exists 
+ */
+function has_ezd_mark_text_class() {
+    global $post;
+
+    if ( is_singular('docs') && isset($post->post_content) ) {
+        return strpos($post->post_content, 'class="ezd_mark_text"') !== false;
+    }
+
+    return false;
+}

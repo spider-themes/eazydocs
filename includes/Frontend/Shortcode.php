@@ -55,8 +55,8 @@ class Shortcode {
         $parent_args = [
             'post_type'     => 'docs',
             'parent'        => 0,
-            'orderby'       => $args['parent_docs_order'] ?? 'ID',
-            'order'         => 'ASC',
+            'orderby'       => $args['parent_docs_order'] ?? 'menu_order',
+            'order'         => $args['parent_docs_order_by'] ?? 'desc',
             'post_status'   => array( 'publish', 'private' ),
             'number'        => ! empty ( $args['show_docs'] ) ? (int) $args['show_docs'] : -1,
         ];
@@ -93,7 +93,7 @@ class Shortcode {
                     'post_type'      => 'docs',
                     'numberposts'    => ! empty ( $args['show_articles'] ) ? (int) $args['show_articles'] : 5,
                     'post_status'    => array( 'publish', 'private' ),
-                    'orderby'        => 'menu_order',
+                    'orderby'        => $args['parent_docs_order'],
                     'order'          => $args['child_docs_order'] ?? 'ASC',
                 ] );
 
@@ -106,12 +106,12 @@ class Shortcode {
 
         // call the template
         eazydocs_get_template( 'shortcode.php', [
-            'docs'              => $arranged,
-            'col'               => ! empty ($args['col']) ? (int) $args['col'] : 3,
-            'more'              => ! empty ($args['more']) ? $args['more'] : __( 'View Details', 'eazydocs' ),
-            'show_topic'        => $args['show_topic'] ?? false,
-            'topic_label'       => ! empty ($args['topic_label']) ? $args['topic_label'] : __( 'Topics', 'eazydocs' ),
-            'layout'            => $args['docs_layout'] ?? 'grid'
+            'docs'                => $arranged,
+            'col'                 => ! empty ($args['col']) ? (int) $args['col'] : 3,
+            'more'                => ! empty ($args['more']) ? $args['more'] : __( 'View Details', 'eazydocs' ),
+            'show_topic'          => $args['show_topic'] ?? false,
+            'topic_label'         => ! empty ($args['topic_label']) ? $args['topic_label'] : __( 'Topics', 'eazydocs' ),
+            'layout'              => $args['docs_layout'] ?? 'grid'            
         ] );
 	}
 }

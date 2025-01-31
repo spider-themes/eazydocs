@@ -8,6 +8,7 @@ $layout                  = $options['docs_single_layout'] ?? 'both_sidebar';
 $is_doc_title			 = $options['is_doc_title'] ?? true;
 $is_doc_contribution	 = $options['is_doc_contribution'] ?? false;
 $is_selected_comment 	 = $options['enable-selected-comment'] ?? false;
+$selected_comment_active = $is_selected_comment == true ? 'selected-comment-active' : '';
 $current_parent_id  	 = wp_get_post_parent_id( get_the_ID() );
 
 $is_meta_visible 		 = false;
@@ -32,7 +33,7 @@ endif;
 ?>
 
 <article class="shortcode_info" itemscope itemtype="http://schema.org/Article">
-	<div class="doc-post-content" id="post">
+	<div class="doc-post-content <?php echo esc_attr( $selected_comment_active ); ?>" id="post">
 		
 		<?php 
 		if ( $is_parent_doc || $is_meta_visible || $is_doc_title ) :
