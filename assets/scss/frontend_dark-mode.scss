@@ -25,6 +25,18 @@ body.body_dark {
 
 	.ezdoc_contributed_user_avatar .ezdoc_contributed_users .doc_users_dropdown {
 		box-shadow: none;
+		form {
+			input {
+				color: black;
+				&::placeholder{
+					color: black;
+				}
+				&::focus{
+					color: black;
+					opacity: 1;
+				}
+			}
+		}
 	}
 
 	.doc_rightsidebar {

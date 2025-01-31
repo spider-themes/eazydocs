@@ -33,7 +33,7 @@ $post_id   = get_page_by_path( $post_slug, OBJECT, array( 'docs' ) );
 $children = wp_list_pages( array(
 	'title_li'  => '',
 	'order'     => 'menu_order',
-	'child_of'  => $post_id->ID,
+	'child_of'  => $post_id->ID ?? 0,
 	'echo'      => false,
 	'post_type' => 'docs',
 	'walker'    => new Walker_Onepage_Fullscren(),
@@ -52,10 +52,10 @@ $children = wp_list_pages( array(
                     </div>
 
 					<?php
-					echo get_the_post_thumbnail( $post_id->ID, 'full' );
+					echo get_the_post_thumbnail( $post_id->ID ?? 0, 'full' );
 					?>
                     <h3 class="doc-title">
-						<?php echo get_post_field( 'post_title', $post_id->ID, 'display' ); ?>
+						<?php echo get_post_field( 'post_title', $post_id->ID ?? 0, 'display' ); ?>
                     </h3>
 					<?php
 
@@ -67,7 +67,7 @@ $children = wp_list_pages( array(
 								echo wp_kses_post(wp_list_pages( array(
 									'title_li'  => '',
 									'order'     => 'menu_order',
-									'child_of'  => $post_id->ID,
+									'child_of'  => $post_id->ID ?? 0,
 									'echo'      => false,
 									'post_type' => 'docs',
 									'walker'    => new Walker_Onepage_Fullscren(),
@@ -108,7 +108,7 @@ $children = wp_list_pages( array(
                 <div class="documentation_info ezd-container" id="post">
 					<?php
 					$sections = get_children( array(
-						'post_parent'    => $post_id->ID,
+						'post_parent'    => $post_id->ID ?? 0,
 						'post_type'      => 'docs',
 						'post_status'    => 'publish',
 						'orderby'        => 'menu_order',

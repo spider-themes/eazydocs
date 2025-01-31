@@ -558,15 +558,15 @@
 			applyDay();
 			$('#ezd_dark_switch').prop('checked', false);
 		}
-
 		function applyNight() {
-			$('body.single-docs').addClass('body_dark');
+			$('body.single-docs, body.single-onepage-docs').addClass('body_dark');
+			$('body.single-onepage-docs').addClass('body_dark');
 			$('.light-mode').removeClass('active');
 			$('.dark-mode').addClass('active');
 		}
 
 		function applyDay() {
-			$('body.single-docs').removeClass('body_dark');
+			$('body.single-docs, body.single-onepage-docs').removeClass('body_dark');
 			$('.dark-mode').removeClass('active');
 			$('.light-mode').addClass('active');
 		}
@@ -584,15 +584,21 @@
 		});
 
 		// CONTRIBUTOR SEARCH
-		$('#ezd-contributor-search').on('keyup', function () {
+		$('#ezd-contributor-search').on('input', function () {
 			let value = $(this).val().toLowerCase();
-			$('.users_wrap_item').filter(function () {
+		  
+			if (value === '') {
+			  // Show all users when input is cleared
+			  $('.users_wrap_item').show();
+			} else {
+			  // Filter the users based on input
+			  $('.users_wrap_item').filter(function () {
 				$(this).toggle(
-					$(this).text().toLowerCase().indexOf(value) > -1
+				  $(this).text().toLowerCase().indexOf(value) > -1
 				);
-			});
-		});
-			
+			  });
+			}
+		  });			
 		
 		/*
 		* Font size switcher
