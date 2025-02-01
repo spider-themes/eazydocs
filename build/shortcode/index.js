@@ -213,12 +213,16 @@ function Edit({
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Filters', 'eazydocs'),
         initialOpen: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          value: col // Bind the control value to the attribute
+          ,
           initialPosition: 3,
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Columns', 'eazydocs'),
           max: 4,
           min: 1,
           shiftStep: 1,
-          onChange: onChangeCol
+          onChange: value => setAttributes({
+            col: value
+          }) // Update the attribute when changed
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button/link to get the full docs', 'eazydocs'),
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('View More Button', 'eazydocs'),

@@ -15,7 +15,7 @@ if ( ezd_is_premium() ) {
 if ( $docs ) :
 	?>
     <div class="eazydocs_shortcode">
-        <div <?php echo esc_attr( do_action( 'eazydocs_masonry_wrap', $layout, $col ) ); ?> class="ezd-grid ezd-masonry ezd-column-<?php echo esc_attr( $col . $is_masonry ); ?>">
+        <div <?php echo esc_attr( do_action( 'eazydocs_masonry_wrap', $layout, $col ) ); ?> class="ezd-grid ezd-masonry ezd-column-<?php echo esc_attr( $col .' '. $is_masonry ); ?>">
 			<?php
 			$i = 1;
 			foreach ( $docs as $main_doc ) :

@@ -94,12 +94,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					initialOpen={true}
 				>
 					<RangeControl
+						value={col} // Bind the control value to the attribute
 						initialPosition={3}
 						label={__('Columns', 'eazydocs')}
 						max={4}
 						min={1}
-						shiftStep={ 1 }
-						onChange={ onChangeCol }
+						shiftStep={1}
+						onChange={(value) => setAttributes({ col: value })} // Update the attribute when changed
 					/>
 					
 					<TextControl
