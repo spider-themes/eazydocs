@@ -1,10 +1,10 @@
 === EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin ===
 Contributors: mdjwel, spiderdevs
-Tags: knowledgebase, kb, faq, wiki, helpdesk
+Tags: knowledge base, kb, faq, wiki, helpdesk
 Requires at least: 5.0
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 2.5.7
+Stable tag: 2.5.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -228,6 +228,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.5.8 (01 February 2025) =
+New: Brand color shades added in css variables
+Fixed: Resolved redirection issue during plugin activation
+Fixed: Private docs drag and drop issue resolved
+Fixed: An PHP error fixed
+Tweaked: Frontend view in dark mode improved
+Updated: Freemius SDK updated to 2.11.0
+
 = v2.5.7 (22 January 2025) =
 New: Added functions for detecting EazyDocs admin pages, post types and taxonomy page
 Fixed: Some control & responsive issue of "Single Doc" Elementor widget
@@ -241,7 +249,7 @@ Tweaked: Removed notices from EazyDocs pages
 Tweaked: Improved admin assets loading
 Tweaked: File loading dependency improved
 Tweaked: Codestar updated
-Tweaked: Assets re-organized
+Tweaked: Plugin's Assets files are re-organized to enhance performance and loading time
 Tweaked: Related docs design
 
 = v2.5.6 (18 December 2024) =
