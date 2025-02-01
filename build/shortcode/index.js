@@ -97,24 +97,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var {
+const {
   Fragment
-} = wp.element; // editor style
+} = wp.element;
 
- // Custom functions
-
- // colors
+// editor style
 
 
+// Custom functions
 
 
+// colors
 
-function Edit(_ref) {
-  var {
-    attributes,
-    setAttributes
-  } = _ref;
-  var {
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
     col,
     include,
     exclude,
@@ -129,37 +129,38 @@ function Edit(_ref) {
     parent_docs_order_by,
     docs_layout
   } = attributes;
-  var blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
-  var docs = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => {
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+  const docs = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => {
     return select("core").getEntityRecords('postType', 'docs', {
       parent: 0,
       status: ['publish', 'private']
     });
   }, []);
-  var docSuggestions = docs ? docs.map(doc => doc.id + " | " + doc.title.rendered) : []; // console.log( docSuggestions )
-  // Set attributes value
+  const docSuggestions = docs ? docs.map(doc => doc.id + " | " + doc.title.rendered) : [];
 
-  var onChangeCol = newCol => {
+  // console.log( docSuggestions )
+
+  // Set attributes value
+  const onChangeCol = newCol => {
     setAttributes({
       col: newCol == '' ? 3 : newCol
     });
   };
-
-  var orderOptions = [{
+  const orderOptions = [{
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Ascending', 'eazydocs'),
     value: 'asc'
   }, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Descending', 'eazydocs'),
     value: 'desc'
   }];
-  var layoutOptions = [{
+  const layoutOptions = [{
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Masonry', 'eazydocs'),
     value: 'masonry'
   }, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Grid', 'eazydocs'),
     value: 'grid'
   }];
-  var parentOrderOptions = [{
+  const parentOrderOptions = [{
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No Order', 'eazydocs'),
     value: 'none'
   }, {
@@ -186,17 +187,18 @@ function Edit(_ref) {
   }, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Menu Order', 'eazydocs'),
     value: 'menu_order'
-  }]; // Shortcode attributes
+  }];
 
-  var include_doc_ids = (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(include) ? 'include="' + (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(include) + '"' : '';
-  var exclude_doc_ids = (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(exclude) ? 'exclude="' + (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(exclude) + '"' : '';
-  var columns = col ? 'col="' + col + '"' : '';
-  var ppp = show_docs ? 'show_docs="' + show_docs + '"' : '';
-  var articles = show_articles ? 'show_articles="' + show_articles + '"' : '';
-  var more_txt = more ? 'more="' + more + '"' : '';
+  // Shortcode attributes
+  let include_doc_ids = (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(include) ? 'include="' + (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(include) + '"' : '';
+  let exclude_doc_ids = (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(exclude) ? 'exclude="' + (0,_custom_functions__WEBPACK_IMPORTED_MODULE_6__.doc_ids)(exclude) + '"' : '';
+  let columns = col ? 'col="' + col + '"' : '';
+  let ppp = show_docs ? 'show_docs="' + show_docs + '"' : '';
+  let articles = show_articles ? 'show_articles="' + show_articles + '"' : '';
+  let more_txt = more ? 'more="' + more + '"' : '';
   jQuery('.eazydocs-pro-block-notice').on('click', function (e) {
     e.preventDefault();
-    var href = jQuery(this).attr('href');
+    let href = jQuery(this).attr('href');
     Swal.fire({
       title: 'Opps...',
       html: 'This is a PRO feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
@@ -238,7 +240,7 @@ function Edit(_ref) {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Parent Docs Order By', 'eazydocs'),
-          value: parent_docs_order,
+          value: parent_docs_order || 'menu_order',
           options: parentOrderOptions,
           className: eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice',
           onChange: value => setAttributes({
@@ -246,7 +248,7 @@ function Edit(_ref) {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Parent Docs Order', 'eazydocs'),
-          value: parent_docs_order_by,
+          value: parent_docs_order_by || 'asc',
           options: orderOptions,
           className: eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice',
           onChange: value => setAttributes({
@@ -309,7 +311,8 @@ function Edit(_ref) {
           })
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", { ...blockProps,
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      ...blockProps,
       children: ["[eazydocs ", columns, " ", include_doc_ids, " ", exclude_doc_ids, " ", ppp, " ", articles, " ", more_txt, "]"]
     })]
   });
@@ -476,7 +479,7 @@ module.exports = window["wp"]["i18n"];
   \**********************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"eazydocs/shortcode","version":"0.1.0","title":"EazyDocs Shortcode","category":"eazydocs","icon":"media-document","description":"Display the Docs on the website frontend.","supports":{"html":false,"anchor":true},"attributes":{"col":{"type":"number","default":3},"include":{"type":"array","default":[]},"exclude":{"type":"string"},"show_docs":{"type":"number"},"show_articles":{"type":"number"},"more":{"type":"string","default":"View Details"},"show_topic":{"type":"checkbox","default":true},"topic_label":{"type":"string","default":"Topics"},"parent_docs_order":{"type":"string","default":"none"},"parent_docs_order_by":{"type":"string","default":"none"},"child_docs_order":{"type":"string","default":"desc"},"docs_layout":{"type":"string","default":"grid"}},"textdomain":"eazydocs","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"eazydocs/shortcode","version":"0.1.0","title":"EazyDocs Shortcode","category":"eazydocs","icon":"media-document","description":"Display the Docs on the website frontend.","supports":{"html":false,"anchor":true},"attributes":{"col":{"type":"number","default":3},"include":{"type":"array","default":[]},"exclude":{"type":"string"},"show_docs":{"type":"number"},"show_articles":{"type":"number"},"more":{"type":"string","default":"View Details"},"show_topic":{"type":"checkbox","default":true},"topic_label":{"type":"string","default":"Topics"},"parent_docs_order":{"type":"string","default":"menu_order"},"parent_docs_order_by":{"type":"string","default":"asc"},"child_docs_order":{"type":"string","default":"desc"},"docs_layout":{"type":"string","default":"grid"}},"textdomain":"eazydocs","editorScript":"file:./index.js"}');
 
 /***/ })
 
@@ -549,6 +552,8 @@ module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"eazydocs/short
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
 /*!********************************!*\
   !*** ./src/shortcode/index.js ***!
   \********************************/
@@ -576,6 +581,8 @@ __webpack_require__.r(__webpack_exports__);
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

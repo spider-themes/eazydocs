@@ -125,16 +125,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					
 					<SelectControl
 						label={__('Parent Docs Order By', 'eazydocs')}
-						value={parent_docs_order}
+						value={parent_docs_order || 'menu_order'}
 						options={parentOrderOptions}
 						className={eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice'}
 						onChange={(value) => setAttributes({ parent_docs_order: value })}
 					/>
 
-
 					<SelectControl
 						label={__('Parent Docs Order', 'eazydocs')}
-						value={parent_docs_order_by}
+						value={parent_docs_order_by || 'asc'}
 						options={orderOptions}
 						className={eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice'}
 						onChange={(value) => setAttributes({ parent_docs_order_by: value })}

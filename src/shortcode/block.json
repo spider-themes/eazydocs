@@ -42,11 +42,11 @@
 		},
 		"parent_docs_order": {
 			"type": "string",
-			"default": "none"
+			"default": "menu_order"
 		},
 		"parent_docs_order_by": {
 			"type": "string",
-			"default": "none"
+			"default": "asc"
 		},
 		"child_docs_order": {
 			"type": "string",

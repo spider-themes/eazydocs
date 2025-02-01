@@ -93,7 +93,7 @@ class Shortcode {
                     'post_type'      => 'docs',
                     'numberposts'    => ! empty ( $args['show_articles'] ) ? (int) $args['show_articles'] : 5,
                     'post_status'    => array( 'publish', 'private' ),
-                    'orderby'        => $args['parent_docs_order'],
+                    'orderby'        => $args['parent_docs_order'] ?? 'menu_order',
                     'order'          => $args['child_docs_order'] ?? 'ASC',
                 ] );
 
