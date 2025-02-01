@@ -799,6 +799,19 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'       => 'docs_to_view',
+			'type'     => 'radio',
+			'title'    => esc_html__( 'Docs to view', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Select All Docs to display all the top label docs or choose Self Docs to show child docs of the current doc.', 'eazydocs' ),
+			'options'  => [
+				'all_docs'  => esc_html__( 'All Docs', 'eazydocs' ),
+				'self_docs' => esc_html__( 'Self Docs', 'eazydocs' ),
+			],
+			'default'  => 'self_docs',
+			'class'    => 'eazydocs-pro-notice',
+		),
+		
+		array(
 			'id'         => 'toggle_visibility',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Sidebar Toggle', 'eazydocs' ),

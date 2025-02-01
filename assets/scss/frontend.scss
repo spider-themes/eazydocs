@@ -68,7 +68,7 @@ p .footnotes-link::after {
       transition: 0.3s all;
     }
 
-    &.active .dropdown_nav {
+    &.active > .dropdown_nav {
       display: block !important;
     }
   }

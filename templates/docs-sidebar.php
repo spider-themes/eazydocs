@@ -10,18 +10,22 @@ if ( $post->post_parent ) {
 	$parent     	= $post->ID;
 }
 
-// var_dump( $parent, $ancestors, $root );
-$walker         	= new eazyDocs\Frontend\Walker_Docs();
-$children 			= wp_list_pages( array(
-	'title_li'  	=> '',
-	'order'     	=> 'menu_order',
-	'child_of'  	=> $parent,
-	'echo'      	=> false,
-	'post_type' 	=> 'docs',
-	'walker'    	=> $walker,
-    'post_status' 	=> array( 'publish', 'private' ),
-));
+$walker = new eazyDocs\Frontend\Walker_Docs();
+$children = array(
+    'title_li'    => '',
+    'order'       => 'menu_order',
+    'echo'        => false,
+    'post_type'   => 'docs',
+    'walker'      => $walker,
+    'post_status' => array('publish', 'private'),
+);
+// If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
+$sidebar_source = ezd_get_opt('docs_to_view', 'self_docs');
+if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
+    $children['child_of'] = $parent;
+}
 
+$children           = wp_list_pages($children);
 $options            = get_option( 'eazydocs_settings' );
 $sidebar_search 	= $options['search_visibility'] ?? '1';
 $content_layout 	= $options['docs_content_layout'] ?? '1';
@@ -41,7 +45,6 @@ if ( $credit_enable == '1' ) {
 	$credit_text_wrap = 'credit-text-container';
 }
 ?>
-
 <div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu left-column ezd-sticky-lg-top">
     <aside class="doc_left_sidebarlist <?php echo esc_attr( $credit_text_wrap .' '. $nav_sidebar_active ); ?>">
         <div class="open_icon" id="mobile-left-toggle">
@@ -80,15 +83,19 @@ if ( $credit_enable == '1' ) {
             ?>
             <ul class="ezd-list-unstyled nav-sidebar left-sidebar-results ezd-list-unstyled">
                 <?php
-                echo wp_kses_post(wp_list_pages( array(
-                    'title_li'  => '',
-                    'order'     => 'menu_order',
-                    'child_of'  => $parent,
-                    'echo'      => false,
-                    'post_type' => 'docs',
-                    'walker'    => $doc_walker,
-                    'post_status' => array( 'publish', 'private' ),
-                ) ));
+                $args = [
+                    'title_li'    => '',
+                    'order'       => 'menu_order',
+                    'echo'        => false,
+                    'post_type'   => 'docs',
+                    'walker'      => $doc_walker,
+                    'post_status' => ['publish', 'private'],
+                ];
+                // If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
+                if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
+                    $args['child_of'] = $parent;
+                }
+                echo wp_kses_post(wp_list_pages($args));
                 ?>
             </ul>
             <?php
