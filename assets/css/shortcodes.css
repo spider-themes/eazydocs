@@ -3,7 +3,6 @@ EazyDocs Footnotes
 */
 .ezd-footnote-footer {
   display: flex;
-  gap: 15px;
   flex-wrap: wrap;
   /* Styling based on data-column value */
   /* Adjust for smaller screens (responsive design) */
@@ -30,11 +29,12 @@ EazyDocs Footnotes
   break-inside: avoid;
   word-break: break-all;
   position: relative;
-  padding: 0;
+  padding: 5px;
   font-size: 14px;
   gap: 5px;
   align-items: baseline;
   scroll-margin-top: 100px;
+  box-sizing: border-box;
 }
 .ezd-footnote-footer div .ezd-note-indicator {
   text-decoration: none;

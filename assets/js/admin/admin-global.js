@@ -4,6 +4,7 @@
 
         // Pro notices
         $('body:not(.ezd-premium) .eazydocs-pro-notice ul li:last-child label input').attr('disabled', true);
+        $('body:not(.ezd-premium) .eazydocs-pro-notice input').attr('disabled', true);
         
         // Promax notices
         $('body:not(.ezd-promax) .eazydocs-promax-notice .csf-field').attr('disabled', true);

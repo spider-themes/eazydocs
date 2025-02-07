@@ -283,64 +283,67 @@
 				event.preventDefault();
 			}
 		);
-
-		/**
-		 * Left Sidebar Toggle icon
-		 */
+		
+		// Ensure sidebars are sticky and toggle logic works properly
 		if ($('.doc_documentation_area').length > 0) {
-			//switcher
-			var switchs = true;
+			var leftOpen = false;
+			var rightOpen = false;
+
+			// Right sidebar toggle
 			$(document).on('click', '#mobile-right-toggle', function (e) {
 				e.preventDefault();
-				if (switchs) {
+				if (leftOpen) closeLeftSidebar();
+
+				if (!rightOpen) {
 					$('.doc_documentation_area').addClass('overlay');
-					$('.doc_rightsidebar').addClass('opened').animate(
-						{
-							right: '0px',
-						},
-						100
-					);
-					switchs = false;
+					$('.doc_rightsidebar').addClass('opened').animate({ right: '0px' }, 100);
+					rightOpen = true;
 				} else {
-					$('.doc_documentation_area').removeClass('overlay');
-					$('.doc_rightsidebar').removeClass('opened').animate(
-						{
-							right: '-290px',
-						},
-						100
-					);
-					switchs = true;
+					closeRightSidebar();
 				}
 			});
 
+			// Left sidebar toggle
 			$(document).on('click', '#mobile-left-toggle', function (e) {
 				e.preventDefault();
-				if (switchs) {
+				if (rightOpen) closeRightSidebar();
+
+				if (!leftOpen) {
 					$('.doc_documentation_area').addClass('overlay');
 					$('.left-column .doc_left_sidebarlist')
 						.addClass('opened')
-						.animate(
-							{
-								left: '0px',
-							},
-							300
-						);
-					switchs = false;
+						.animate({ left: '0px' }, 300);
+					leftOpen = true;
 				} else {
-					$('.doc_documentation_area').removeClass('overlay');
-					$('.left-column .doc_left_sidebarlist')
-						.removeClass('opened')
-						.animate(
-							{
-								left: '-330px',
-							},
-							300
-						);
-					switchs = true;
+					closeLeftSidebar();
 				}
 			});
-		}
 
+			// Close sidebars when clicking outside
+			$(document).on('click', function (e) {
+				if (
+					!$(e.target).closest('.doc_rightsidebar, .left-column, #mobile-right-toggle, #mobile-left-toggle').length
+				) {
+					if (leftOpen) closeLeftSidebar();
+					if (rightOpen) closeRightSidebar();
+				}
+			});
+
+			function closeLeftSidebar() {
+				$('.doc_documentation_area').removeClass('overlay');
+				$('.left-column .doc_left_sidebarlist')
+					.removeClass('opened')
+					.animate({ left: '-330px' }, 300);
+				leftOpen = false;
+			}
+
+			function closeRightSidebar() {
+				$('.doc_documentation_area').removeClass('overlay');
+				$('.doc_rightsidebar').removeClass('opened').animate({ right: '-290px' }, 100);
+				rightOpen = false;
+			}
+		}
+	
 		// Mobile menu on the Doc single page
 		$(document).on('click', '.single-docs .mobile_menu_btn', function () {
 			$('body').removeClass('menu-is-closed').addClass('menu-is-opened');

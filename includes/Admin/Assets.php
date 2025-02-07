@@ -76,12 +76,21 @@ class Assets {
 	
 		// Check if the post contains any of the target blocks
 		if ($post_id) {
+			
+			wp_register_style('sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css');
+			wp_register_script('sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', ['jquery'], '', true);
+
+			if ( get_post_type( $post_id ) == 'docs' ) {
+				wp_enqueue_style( 'sweetalert' );
+				wp_enqueue_script( 'sweetalert' );
+			}
+
 			$post_content = get_post($post_id)->post_content;
 			foreach ($ezd_blocks as $block) {
 				if ( has_block($block, $post_content) ) {
 					// Enqueue your styles and scripts
-					wp_enqueue_style('sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css');
-					wp_enqueue_script('sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', ['jquery'], '', true);
+					wp_enqueue_style( 'sweetalert' );
+					wp_enqueue_script( 'sweetalert' );					
 					wp_enqueue_style( 'elegant-icon', EAZYDOCS_ASSETS.'/vendors/elegant-icon/style.css' );
 					wp_enqueue_style( 'ezd-docs-widgets', EAZYDOCS_ASSETS.'/css/ezd-docs-widgets.css' );
 					break; // Exit loop once a matching block is found

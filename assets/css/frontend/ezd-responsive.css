@@ -39,6 +39,7 @@
 	.left-column .doc_left_sidebarlist {
 		max-width: 330px;
 		width: 100%;
+		height: auto;
 		left: -330px;
 		position: absolute;
 		z-index: 2;
@@ -144,6 +145,8 @@
 		margin-left: 0;
 		padding-left: 0 !important;
 		padding-right: 10px;
+		overflow: auto;
+		height: 100%;
 	}
 
 	.feedback_link .eazydocs-feedback-wrap {
