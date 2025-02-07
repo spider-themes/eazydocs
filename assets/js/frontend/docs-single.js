@@ -266,23 +266,63 @@
 		});
 
 		/**
-		 * TOC Menu
+		 * ============================
+		 * Navbar Show / Hide Script
+		 * ============================
+		 * This script handles dynamic adjustments of the navbar's top margin based on user interactions:
+		 * - Clicking internal page anchor links (.doc_menu and .ezd-note-indicator)
+		 * - Clicking outside the anchor links
+		 * - Scrolling the page
+		 * ============================
 		 */
-		$('.doc_menu a[href^="#"]:not([href="#"]').on(
-			'click',
-			function (event) {
-				var $anchor = $(this);
-				$('html, body')
-					.stop()
-					.animate(
-						{
-							scrollTop: $($anchor.attr('href')).offset().top,
-						},
-						900
-					);
-				event.preventDefault();
+
+		// Function to handle navbar margin adjustments
+		function ezdSetNavbarMarginTop(active) {
+			let height = $('.navbar.navbar_fixed').outerHeight(); // Get navbar height
+			let adminBarOffset = $('body').hasClass('admin-bar') ? 32 : 0; // Check for admin bar
+			let marginTop = active ? `-${height}px` : `${adminBarOffset}px`;
+
+			// Apply the appropriate margin and toggle active class
+			$('.navbar.navbar_fixed').toggleClass('doc_menu_active', active).css('margin-top', marginTop);
+		}
+
+		/**
+		 * Handle link click for internal page navigation
+		 * Applies to both .doc_menu and .ezd-note-indicator mean footnote elements.
+		 */
+		$('.doc_menu a[href^="#"]:not([href="#"]), .ezd-note-indicator').on('click', function (event) {
+			event.preventDefault();
+			ezdSetNavbarMarginTop(true); // Set navbar margin on link click
+			$('html, body').stop().animate({
+				scrollTop: $($(this).attr('href')).offset().top
+			}, 900); // Smooth scroll animation
+		});
+
+		/**
+		 * Handle click outside the target links
+		 * Reset navbar margin when clicking outside the links.
+		 */
+		$(document).on('click', function (event) {
+			if (!$(event.target).closest('.doc_menu a, .ezd-note-indicator').length) {
+				ezdSetNavbarMarginTop(false);
 			}
-		);
+		});
+
+		/**
+		 * Handle scroll events
+		 * Reset navbar margin when scrolled near the top.
+		 */
+		$(window).on('scroll', function () {
+			if ($(this).scrollTop() <= $('.navbar.navbar_fixed').outerHeight()) {
+				ezdSetNavbarMarginTop(false);
+			}
+		});
+
+		/**
+		 * ============================
+		 * End of Navbar Show / Hide Script
+		 * ============================
+		 */
 		
 		// Ensure sidebars are sticky and toggle logic works properly
 		if ($('.doc_documentation_area').length > 0) {
@@ -290,7 +330,7 @@
 			var rightOpen = false;
 
 			// Right sidebar toggle
-			$(document).on('click', '#mobile-right-toggle', function (e) {
+			$(document).on('click', '#mobile-right-toggle, .doc_rightsidebar.opened .doc_menu a', function (e) {
 				e.preventDefault();
 				if (leftOpen) closeLeftSidebar();
 
@@ -322,7 +362,7 @@
 			// Close sidebars when clicking outside
 			$(document).on('click', function (e) {
 				if (
-					!$(e.target).closest('.doc_rightsidebar, .left-column, #mobile-right-toggle, #mobile-left-toggle').length
+					!$(e.target).closest('.doc_rightsidebar, .doc_rightsidebar.opened .doc_menu a, .left-column, #mobile-right-toggle, #mobile-left-toggle').length
 				) {
 					if (leftOpen) closeLeftSidebar();
 					if (rightOpen) closeRightSidebar();

@@ -57,8 +57,9 @@ class Frontend {
 		$is_footnotes_expand 	= $is_notes_title == 1 ? $footnotes_layout : '';
 		$ezd_notes_footer_mt 	= $is_notes_title != '1' ? 'mt-30' : '';
 		$notes_title_text 		= $options['footnotes_heading_text'] ?? __( 'Footnotes', 'eazydocs' );
-		$meta_options 			= get_post_meta( $post_id, 'eazydocs_meta', true ); 
-		$footnotes_column 		= $meta_options['footnote_column'] ?? ( $options['footnotes_column'] ?? '1' );
+
+		$meta_options 			= get_post_meta( $post_id, 'eazydocs_meta', true );
+		$footnotes_column 		= $meta_options['footnote_meta']['footnote_column_by'] == 'custom' ?  $meta_options['footnote_meta']['footnote_col'] : ( $options['footnotes_column'] ?? '1' );
 
 		$reference_with_content = ezd_get_footnotes_in_content($post_id);
 		$shortcode_counter 		= count($reference_with_content);
