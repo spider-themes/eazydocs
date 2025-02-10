@@ -19,6 +19,32 @@ function ezd_get_opt( $option, $default = '' ) {
 }
 
 /**
+ * Get post-meta value or theme option value.
+ *
+ * This function first attempts to retrieve a post-meta value. If the post meta
+ * is not set or is empty, it falls back to the theme option value.
+ *
+ * @param string $option_id
+ * @param string|null $default The default value to return if both meta and option are not set.
+ * @return mixed The post meta value, theme option value, or default value.
+ */
+
+function ezd_meta_apply(string $option_id, null|string $default = '' ): mixed {
+	// Get post meta and theme option values
+	$meta_value = get_post_meta( get_the_ID(), $option_id, true );
+	$option_value = ezd_get_opt($option_id, $default);
+
+	// Check if meta value is an array and empty
+	$is_meta_arr_empty = is_array($meta_value) && empty(array_filter($meta_value));
+	if ( $meta_value == 'default' || $meta_value == '' || $meta_value == null || $is_meta_arr_empty ) {
+		return $option_value;
+	}
+
+	// Return meta if it's a valid non-empty value
+	return $meta_value;
+}
+
+/**
  * Check if the pro plugin and plan is active
  *
  * @return bool|void

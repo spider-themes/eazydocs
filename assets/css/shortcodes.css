@@ -107,6 +107,7 @@ EazyDocs Footnotes
   cursor: pointer;
   position: relative;
   top: -5px;
+  font-size: 14px;
 }
 .ezd-footnotes-link-item span.ezd-footnote-content {
   z-index: -1;

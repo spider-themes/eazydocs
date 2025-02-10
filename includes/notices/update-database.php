@@ -47,9 +47,6 @@ if ( isset( $_GET['eazydocs_table_create'] ) ) {
 		if ( $sql && $sql2 && $sql3 ) {
 			remove_action( 'admin_notices', 'database_not_found' );
 		}
-
-		$url = admin_url( 'admin.php?page=ezd-analytics' );
-		wp_safe_redirect( $url );
 	}
 
 	?>

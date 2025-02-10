@@ -294,7 +294,7 @@ class Admin {
 			<div id="ezd-setup-wizard-wrap">
 				<div class="ezd-wizard-head">
 					<div class="ezd-wizard-head-left">
-						<img src="<?php echo esc_url(EAZYDOCS_URL . '/src/images/ezd-icon.png'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" />
+						<img src="<?php echo esc_url(EAZYDOCS_IMG . '/eazydocs-favicon.png'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" />
 						<span><?php esc_html_e( 'GETTING STARTED', 'eazydocs' ); ?></span>
 					</div>
 					<div class="ezd-wizard-head-right">
