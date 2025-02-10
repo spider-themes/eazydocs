@@ -57,11 +57,7 @@ class Frontend {
 		$is_footnotes_expand 	= $is_notes_title == 1 ? $footnotes_layout : '';
 		$ezd_notes_footer_mt 	= $is_notes_title != '1' ? 'mt-30' : '';
 		$notes_title_text 		= $options['footnotes_heading_text'] ?? __( 'Footnotes', 'eazydocs' );
-
-		$meta_options 			= get_post_meta( $post_id, 'eazydocs_meta', true );
-        $footnote_column_by     = $meta_options['footnote_meta']['footnote_column_by'] ?? '';
-        $footnote_col           = $meta_options['footnote_meta']['footnote_col'] ?? '';
-		$footnotes_column 		= $footnote_column_by == 'custom' ?  $footnote_col : ( $options['footnotes_column'] ?? '1' );
+		$footnotes_column 		= ezd_meta_apply('footnotes_column');
 
 		$reference_with_content = ezd_get_footnotes_in_content($post_id);
 		$shortcode_counter 		= count($reference_with_content);
@@ -87,10 +83,10 @@ class Frontend {
 			foreach( $reference_with_content as $reference_with_contents ) {
 				$i++;
 				?>
-				<div class="note-class-<?php echo esc_html( $reference_with_contents['id'] ); ?>" id="note-name-<?php echo esc_html( $reference_with_contents['id'] ); ?>">
+				<div class="note-class-<?php echo esc_attr( $i ); ?>" id="note-name-<?php echo esc_attr( $i ); ?>">
 					<div class="ezd-footnotes-serial"> 
 						<span class="ezd-serial"><?php echo esc_html($i); ?></span>
-						<a class="ezd-note-indicator" href="#serial-id-<?php echo esc_html( $reference_with_contents['id'] ); ?>"><i class="arrow_carrot-up"></i> </a>
+						<a class="ezd-note-indicator" href="#serial-id-<?php echo esc_attr( $i ); ?>"><i class="arrow_carrot-up"></i> </a>
 					</div>
 					<div class="ezd-footnote-texts"> 
 						<?php echo do_shortcode( $reference_with_contents['content'] ); ?>

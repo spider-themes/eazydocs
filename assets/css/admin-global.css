@@ -778,23 +778,4 @@ p.big-p {
   display: none;
 }
 
-.csf-fieldset-content[data-depend-id=footnote_meta] {
-  display: flex;
-  border-color: transparent;
-  margin-top: -15px;
-}
-.csf-fieldset-content[data-depend-id=footnote_meta] .csf-field[data-value=custom] {
-  border: none;
-}
-.csf-fieldset-content[data-depend-id=footnote_meta] .csf-field .csf-title {
-  width: 92px;
-  align-items: center;
-  display: flex;
-  margin-top: 5px;
-}
-.csf-fieldset-content[data-depend-id=footnote_meta] .csf-field .csf-fieldset {
-  margin-top: -24px;
-  margin-left: 15px;
-}
-
 /*# sourceMappingURL=admin-global.css.map */

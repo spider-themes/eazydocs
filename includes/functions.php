@@ -1536,48 +1536,101 @@ function ezd_get_footnotes_in_content($post_id) {
     $post = get_post($post_id);
 
     // Check if the post exists
-    if ( ! $post ) {
+    if (!$post) {
         return [];
     }
 
     // Get the content of the post
-    $content = $post->post_content;
+    $content 			= $post->post_content;
 
-    // Regular expression pattern to find "reference" shortcodes and their content
-    // The pattern captures the attributes and content between opening and closing "reference" shortcode tags
-    $shortcode_pattern = '/\[reference([^\]]*)\](.*?)\[\/reference\]/s';
+    // Regular expression for finding both [reference] shortcodes and target span elements
+    $shortcode_pattern 	= '/\[reference([^\]]*)\](.*?)\[\/reference\]/s';
+    $span_pattern 		= '/<span id="serial-id-(\d+)" class="ezd-footnotes-link-item" data-bs-original-title=".*?">.*?<span class="ezd-footnote-content">(.*?)<\/span><\/span>/s';
 
-    // Array to store the found "reference" shortcodes with their content and ids
     $reference_shortcodes_with_content = [];
 
-    // Use regular expression to find "reference" shortcodes and their content in the post content
-    if (preg_match_all($shortcode_pattern, $content, $matches, PREG_SET_ORDER)) {
-        // Iterate through the matches
-        foreach ($matches as $match) {
-            // Extract the attributes from the match
-            $attributes = $match[1];
-
-            // Extract the content from the match
-            $shortcode_content = $match[2];
-
-            // Parse the attributes to find the `number` attribute using a regular expression
-            $number = null;
-            if (preg_match('/number=["\']?(\d+)["\']?/', $attributes, $number_match)) {
-                // Extract the value of the `number` attribute
-                $number = $number_match[1];
-            }
-
-            // Add the id and content for the "reference" shortcode to the array
+    // Extract span content if present
+    if (preg_match_all($span_pattern, $content, $span_matches, PREG_SET_ORDER)) {
+        foreach ($span_matches as $match) {
             $reference_shortcodes_with_content[] = [
-                'id' 		=> $number,
-                'content' 	=> $shortcode_content,
+                'id'      => $match[1], // Serial ID
+                'content' => $match[2], // Footnote content
             ];
         }
     }
 
-    // Return the array of "reference" shortcodes with their content and ids
+    // Handle [reference] shortcodes
+    if (preg_match_all($shortcode_pattern, $content, $matches, PREG_SET_ORDER)) {
+        foreach ($matches as $match) {
+            $attributes 		= $match[1];
+            $shortcode_content 	= $match[2];
+
+            // Extract the `number` attribute
+            $number = null;
+            if (preg_match('/number=["\']?(\d+)["\']?/', $attributes, $number_match)) {
+                $number = $number_match[1];
+            }
+
+            // Skip if the span already handled this number
+            $exists = array_filter($reference_shortcodes_with_content, fn($item) => $item['id'] == $number);
+            if (!$exists) {
+                $reference_shortcodes_with_content[] = [
+                    'id'      => $number,
+                    'content' => $shortcode_content,
+                ];
+            }
+        }
+    }
+
     return $reference_shortcodes_with_content;
 }
+
+/**
+ * Replace footenote number attribute
+ */
+function ezd_footnote_number_attribute( $content ) {
+    return preg_replace('/\[reference number="##"\]/', '[reference number="1"]', $content);
+}
+add_filter('the_content', 'ezd_footnote_number_attribute');
+
+/**
+ * This function dynamically updates footnote content in the single 'docs'
+ * It targets <span> elements with specific attributes and checks for <i> tags to add an onclick event.
+ */
+function ezd_update_footnotes_content($content) {
+    // Apply only to single 'docs' post type
+    if (is_singular('docs')) {
+        // Regular expression to match the required span tag
+        $pattern = '/<span id="serial-id-(\d+)" class="ezd-footnotes-link-item" data-bs-original-title="(.*?)">.*?<i(.*?)>(.*?)<\/i>.*?<span class="ezd-footnote-content">(.*?)<\/span><\/span>/s';
+
+        $content = preg_replace_callback($pattern, function ($matches) {
+            $id 				= $matches[1];
+            $original_title 	= $matches[2];
+            $i_attributes 		= $matches[3];
+            $i_content 			= $matches[4];
+            $footnote_content 	= $matches[5];
+
+            // Check if the <i> tag already has an onclick event
+            if (!strpos($i_attributes, 'onclick')) {
+                // Add the onclick event
+                $i_attributes .= " onclick=\"location.href='#note-name-$id'\"";
+            }
+
+            // Return the updated span content
+            return sprintf(
+                '<span id="serial-id-%d" class="ezd-footnotes-link-item" data-bs-original-title="%s"><i%s>%s</i><span class="ezd-footnote-content">%s</span></span>',
+                $id,
+                esc_attr($original_title),
+                $i_attributes,
+                esc_html($i_content),
+                esc_html($footnote_content)
+            );
+        }, $content);
+    }
+
+    return $content;
+}
+add_filter('the_content', 'ezd_update_footnotes_content');
 
 /**
  * Customizer buttons visibility by user role

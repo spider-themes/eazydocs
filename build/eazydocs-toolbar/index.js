@@ -193,20 +193,11 @@ const EazyDocs_Toolbar = ({
     const selectedText = value.text.slice(value.start, value.end);
     let shortcode = '';
 
-    // Get the number of footnotes in the editor
-    let shortcodeNumber = jQuery('.is-root-container p').text().match(/\[reference number="(\d+)"\]/g);
-    if (shortcodeNumber !== null) {
-      shortcodeNumber = shortcodeNumber.length + 1;
-    } else {
-      shortcodeNumber = 1;
-    }
-
-    // Wrap selected text with shortcode if text is selected
+    // Shortcode without the number attribute
     if (selectedText) {
-      shortcode = `[reference number="${shortcodeNumber}"]${selectedText}[/reference]`;
+      shortcode = `[reference]${selectedText}[/reference]`;
     } else {
-      // Insert shortcode at cursor position if no text is selected
-      shortcode = `[reference number="${shortcodeNumber}"][/reference]`;
+      shortcode = `[reference][/reference]`;
     }
     onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__.insert)(value, shortcode));
   };
