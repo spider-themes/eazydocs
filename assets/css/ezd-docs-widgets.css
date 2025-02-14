@@ -1190,12 +1190,12 @@
 }
 .doc_community_item .doc_entry_info .author_avatar {
   display: flex;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   margin-right: 15px;
   margin-left: 0;
+  margin-top: 0;
 }
 .doc_community_item .doc_entry_info .author_avatar li {
-  line-height: 34px;
   border-radius: 50%;
   font-size: 14px;
   font-weight: 500;
@@ -1205,6 +1205,9 @@
   position: relative;
   margin-left: 0;
   border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .doc_community_item .doc_entry_info .author_avatar li img {
   max-width: 30px;
@@ -1220,7 +1223,6 @@
   align-self: end;
   line-height: 28px;
   font-size: 12px;
-  padding-left: 2px;
   z-index: 0;
   margin-left: -8px;
 }
@@ -1579,6 +1581,7 @@ a.action_btn.all_doc_btn:hover {
   display: flex;
   overflow: hidden;
   list-style: none;
+  justify-content: flex-start;
 }
 @media screen and (max-width: 991px) {
   .tabs_sliders ul {

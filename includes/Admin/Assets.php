@@ -69,34 +69,25 @@ class Assets {
 	}
 
 	public function enqueue_block_editor_assets() {
-
-		$post_id 	= isset($_GET['post']) ? intval($_GET['post']) : null;
-		// Define the blocks you want to check for
-		$ezd_blocks = [ 'eazydocs-pro/eazy-docs' ];
+		 // Enqueue initial assets for the editor
+		 wp_enqueue_script(
+			'ezd-block-insert-handler',
+			EAZYDOCS_ASSETS . '/js/block-insert-handler.js',
+			['wp-data', 'wp-blocks', 'wp-edit-post'],
+			'',
+			true
+		);
 	
-		// Check if the post contains any of the target blocks
-		if ($post_id) {
-			
-			wp_register_style('sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css');
-			wp_register_script('sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', ['jquery'], '', true);
-
-			if ( get_post_type( $post_id ) == 'docs' ) {
-				wp_enqueue_style( 'sweetalert' );
-				wp_enqueue_script( 'sweetalert' );
-			}
-
-			$post_content = get_post($post_id)->post_content;
-			foreach ($ezd_blocks as $block) {
-				if ( has_block($block, $post_content) ) {
-					// Enqueue your styles and scripts
-					wp_enqueue_style( 'sweetalert' );
-					wp_enqueue_script( 'sweetalert' );					
-					wp_enqueue_style( 'elegant-icon', EAZYDOCS_ASSETS.'/vendors/elegant-icon/style.css' );
-					wp_enqueue_style( 'ezd-docs-widgets', EAZYDOCS_ASSETS.'/css/ezd-docs-widgets.css' );
-					break; // Exit loop once a matching block is found
-				}
-			}
-		}
+		wp_localize_script('ezd-block-insert-handler', 'ezdAssets', [
+			'styles' => [
+				EAZYDOCS_ASSETS . '/vendors/elegant-icon/style.css',
+				EAZYDOCS_ASSETS . '/css/ezd-docs-widgets.css',
+			],
+			'scripts' => [
+				EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js',
+			],
+			'ezd_img_dir' 		=> EAZYDOCS_IMG
+		]);
 	}
 
 	/**
@@ -135,9 +126,7 @@ class Assets {
 				'manage_reusable_blocks'    => manage_reusable_blocks(),
 				'is_ezd_premium'            => eaz_fs()->is_paying_or_trial() ? 'yes' : '',
 				'is_ezd_pro_block'          => ezd_is_premium() ? 'yes' : '',
-				'ezd_get_conditional_items' => ezd_get_conditional_items(),
-				'ezd_plugin_url'    		=> EAZYDOCS_URL,
-
+				'ezd_get_conditional_items' => ezd_get_conditional_items()
 			)
 		);
 	}

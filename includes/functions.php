@@ -1541,29 +1541,30 @@ function ezd_get_footnotes_in_content($post_id) {
     }
 
     // Get the content of the post
-    $content 			= $post->post_content;
+    $content = $post->post_content;
 
-    // Regular expression for finding both [reference] shortcodes and target span elements
-    $shortcode_pattern 	= '/\[reference([^\]]*)\](.*?)\[\/reference\]/s';
-    $span_pattern 		= '/<span id="serial-id-(\d+)" class="ezd-footnotes-link-item" data-bs-original-title=".*?">.*?<span class="ezd-footnote-content">(.*?)<\/span><\/span>/s';
+    // Regular expressions for [reference] shortcodes and target span elements
+    $shortcode_pattern = '/\[reference([^\]]*)\](.*?)\[\/reference\]/s';
+    $span_pattern = '/<span id="serial-id-(\d+)" class="ezd-footnotes-link-item" data-bs-original-title=".*?">.*?<span class="ezd-footnote-content">(.*?)<\/span><\/span>/s';
 
-    $reference_shortcodes_with_content = [];
+    $references = [];
 
-    // Extract span content if present
+    // Extract spans
     if (preg_match_all($span_pattern, $content, $span_matches, PREG_SET_ORDER)) {
         foreach ($span_matches as $match) {
-            $reference_shortcodes_with_content[] = [
+            $references[] = [
                 'id'      => $match[1], // Serial ID
                 'content' => $match[2], // Footnote content
+                'source'  => 'span',
             ];
         }
     }
 
-    // Handle [reference] shortcodes
+    // Extract [reference] shortcodes
     if (preg_match_all($shortcode_pattern, $content, $matches, PREG_SET_ORDER)) {
         foreach ($matches as $match) {
-            $attributes 		= $match[1];
-            $shortcode_content 	= $match[2];
+            $attributes = $match[1];
+            $shortcode_content = $match[2];
 
             // Extract the `number` attribute
             $number = null;
@@ -1571,19 +1572,18 @@ function ezd_get_footnotes_in_content($post_id) {
                 $number = $number_match[1];
             }
 
-            // Skip if the span already handled this number
-            $exists = array_filter($reference_shortcodes_with_content, fn($item) => $item['id'] == $number);
-            if (!$exists) {
-                $reference_shortcodes_with_content[] = [
-                    'id'      => $number,
-                    'content' => $shortcode_content,
-                ];
-            }
+            // Add the reference regardless of the existence of spans
+            $references[] = [
+                'id'      => $number,
+                'content' => $shortcode_content,
+                'source'  => 'shortcode',
+            ];
         }
     }
 
-    return $reference_shortcodes_with_content;
+    return $references;
 }
+
 
 /**
  * Replace footenote number attribute
@@ -1643,34 +1643,32 @@ function customizer_visibility_callback() {
 	$target 		 = '_self';
 	$no_access  	 = 'no-customizer-access';
 
-	if ( class_exists( 'EZD_EazyDocsPro' ) && ezd_is_promax() ) {
-		if ( in_array( implode(', ', ezd_get_current_user_role_by_id(get_current_user_id())) , ['administrator'] ) ) {
-			$options      = get_option( 'eazydocs_settings' );
-			$doc_id       = $options['docs-slug'] ?? '';
-			$doc_page     = get_post_field( 'post_name', $doc_id );
+	if ( in_array( implode(', ', ezd_get_current_user_role_by_id(get_current_user_id())) , ['administrator'] ) ) {
+		$options      = get_option( 'eazydocs_settings' );
+		$doc_id       = $options['docs-slug'] ?? '';
+		$doc_page     = get_post_field( 'post_name', $doc_id );
 
-			$args = array(
-				'post_type'      => 'docs',
-				'posts_per_page' => - 1,
-				'orderby'        => 'menu_order',
-				'order'          => 'asc'
-			);
+		$args = array(
+			'post_type'      => 'docs',
+			'posts_per_page' => - 1,
+			'orderby'        => 'menu_order',
+			'order'          => 'asc'
+		);
 
-			$recent_posts 	= wp_get_recent_posts( $args );
-			$post_url     	= '';
-			$post_count   	= 0;
+		$recent_posts 	= wp_get_recent_posts( $args );
+		$post_url     	= '';
+		$post_count   	= 0;
 
-			foreach ( $recent_posts as $recent ):
-				$post_url   = $recent['ID'];
-				$post_count ++;
-			endforeach;
+		foreach ( $recent_posts as $recent ):
+			$post_url   = $recent['ID'];
+			$post_count ++;
+		endforeach;
 
-			$no_access  	= '';
-			$docs_url 		= $post_count > 0 ? $post_url : $doc_id;
-			$archive_url	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $doc_id . '?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
-			$single_url  	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $docs_url . '?autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
-			$target 		= '_blank';
-		}
+		$no_access  	= '';
+		$docs_url 		= $post_count > 0 ? $post_url : $doc_id;
+		$archive_url	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $doc_id . '?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
+		$single_url  	= admin_url( 'customize.php?url=' ) . site_url( '/' ) . '?p=' . $docs_url . '?autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
+		$target 		= '_blank';
 	}
 	?>
 	<a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">
