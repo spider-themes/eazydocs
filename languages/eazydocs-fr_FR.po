@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EazyDocs\n"
-"POT-Creation-Date: 2023-07-31 23:20+0600\n"
-"PO-Revision-Date: 2023-07-31 23:21+0600\n"
+"POT-Creation-Date: 2025-02-21 19:25+0600\n"
+"PO-Revision-Date: 2025-02-21 19:25+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: eazydocs.php\n"
@@ -24,84 +24,106 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
 #. Plugin Name of the plugin/theme
-#: blocks.php:74 includes/Admin/Admin.php:106
-#: includes/Admin/Elementor/Widgets.php:32 includes/Post_Types.php:41
+#: blocks.php:81 includes/Admin/Admin.php:103 includes/Admin/Admin.php:284
+#: includes/Admin/options/settings-options.php:27
+#: includes/Elementor/Widgets.php:31 includes/Post_Types.php:58
 msgid "EazyDocs"
 msgstr "EazyDocs"
 
-#: build/search-banner/index.js:1 build/shortcode/index.js:1
+#: build/search-banner/index.js:19 build/shortcode/index.js:19
 #: src/colors-palette.js:4
 msgid "Black"
 msgstr "Noir"
 
-#: build/search-banner/index.js:1 build/shortcode/index.js:1
+#: build/search-banner/index.js:22 build/shortcode/index.js:22
 #: src/colors-palette.js:8
 msgid "White"
 msgstr "Blanc"
 
-#: build/search-banner/index.js:1 build/shortcode/index.js:1
+#: build/search-banner/index.js:25 build/shortcode/index.js:25
 #: src/colors-palette.js:12
 msgid "Red"
 msgstr "Rouge"
 
-#: build/search-banner/index.js:1 build/shortcode/index.js:1
+#: build/search-banner/index.js:28 build/shortcode/index.js:28
 #: src/colors-palette.js:16
 msgid "Green"
 msgstr "Vert"
 
-#: build/search-banner/index.js:1 build/shortcode/index.js:1
+#: build/search-banner/index.js:31 build/shortcode/index.js:31
 #: src/colors-palette.js:20
 msgid "Blue"
 msgstr "Bleu"
 
-#: build/search-banner/index.js:1 build/shortcode/index.js:1
+#: build/search-banner/index.js:34 build/shortcode/index.js:34
 #: src/colors-palette.js:24
 msgid "Yellow"
 msgstr "Jaune"
 
-#: includes/Admin/Admin.php:104
+#: eazydocs.php:391
+#, fuzzy
+#| msgid ""
+#| "EazyDocs database need an update. Please click Update button to update "
+#| "your database."
+msgid ""
+"EazyDocs database needs an update. Please click the Update button to update "
+"your database."
+msgstr ""
+"La base de données EazyDocs a besoin d’une mise à jour. Cliquez sur le "
+"bouton Mettre à jour pour mettre à jour votre base de données."
+
+#: eazydocs.php:394
+msgid "Update Database"
+msgstr "Mise à jour de la base de données"
+
+#: includes/Admin/Admin.php:101
 msgid "EazyDocs Pro"
 msgstr "EazyDocs Pro"
 
-#: includes/Admin/Admin.php:111
+#: includes/Admin/Admin.php:108
 msgid "Docs Builder"
 msgstr "Générateur de documents"
 
-#: includes/Admin/Admin.php:132
+#: includes/Admin/Admin.php:129
+#: includes/Admin/options/opt_docs_subscription.php:29
 msgid "Customize"
 msgstr "Personnaliser"
 
-#: includes/Admin/Admin.php:137 includes/Post_Types.php:91
+#: includes/Admin/Admin.php:134 includes/Post_Types.php:103
 msgid "Tags"
 msgstr "Étiquettes"
 
-#: includes/Admin/Admin.php:141
+#: includes/Admin/Admin.php:138
 msgid "OnePage Docs"
 msgstr "Documents OnePage"
 
-#: includes/Admin/Admin.php:144
-#: includes/Admin/options/settings-options.php:1350
+#: includes/Admin/Admin.php:141
 msgid "OnePage Doc"
 msgstr "OnePage Doc"
 
-#: includes/Admin/Admin.php:151 includes/Admin/Admin.php:229
+#: includes/Admin/Admin.php:148 includes/Admin/Admin.php:238
 msgid "Users Feedback"
 msgstr "Commentaires des utilisateurs"
 
-#: includes/Admin/Admin.php:153
+#: includes/Admin/Admin.php:150
 msgid "Analytics"
 msgstr "Analytics"
 
-#: includes/Admin/Admin.php:202 includes/Admin/Admin.php:228
-#: includes/Admin/Admin.php:247
+#: includes/Admin/Admin.php:153
+msgid "Getting Started"
+msgstr ""
+
+#: includes/Admin/Admin.php:211 includes/Admin/Admin.php:237
+#: includes/Admin/Admin.php:256 includes/Admin/Admin.php:283
+#: includes/Admin/Admin.php:297
 msgid "crown icon"
 msgstr "icône de couronne"
 
-#: includes/Admin/Admin.php:203
+#: includes/Admin/Admin.php:212
 msgid "Add Your OnePage Doc"
 msgstr "Ajouter votre document OnePage"
 
-#: includes/Admin/Admin.php:204
+#: includes/Admin/Admin.php:213
 msgid ""
 "Onepage documentation format will generate all the pages of a Doc as "
 "sections in a single page which is scrollable by sections. Visitors can find "
@@ -113,49 +135,202 @@ msgstr ""
 "sections. Les visiteurs peuvent trouver tous les guides sur une seule page "
 "et ils peuvent naviguer dans les différentes sections très rapidement."
 
-#: includes/Admin/Admin.php:210
+#: includes/Admin/Admin.php:219
 msgid "Go Pro"
 msgstr "Go Pro"
 
-#: includes/Admin/Admin.php:213
+#: includes/Admin/Admin.php:222
 msgid "View Frontend Demo"
 msgstr "Voir la démo Frontend"
 
-#: includes/Admin/Admin.php:214
+#: includes/Admin/Admin.php:223
 msgid "View Demo"
 msgstr "Voir la démo"
 
-#: includes/Admin/Admin.php:230
+#: includes/Admin/Admin.php:239
 msgid "You can get the Doc Feedbacks listed in this page to review."
 msgstr ""
 "Vous pouvez obtenir les commentaires Doc répertoriés dans cette page pour "
 "les examiner."
 
-#: includes/Admin/Admin.php:233
+#: includes/Admin/Admin.php:242
 msgid "Get Pro Plan"
 msgstr "Obtenir un plan Pro"
 
-#: includes/Admin/Admin.php:248
+#: includes/Admin/Admin.php:257
 msgid "EazyDocs Analytics"
 msgstr "EazyDocs Analytique"
 
-#: includes/Admin/Admin.php:249
+#: includes/Admin/Admin.php:258
 msgid "Analytics page is available in the EazyDocs Premium Promax Plan"
 msgstr "La page Analytics est disponible dans le plan EazyDocs Premium Promax"
 
-#: includes/Admin/Admin.php:252
+#: includes/Admin/Admin.php:261
 msgid "Get Promax Plan"
 msgstr "Obtenir le plan Promax"
 
-#: includes/Admin/Assets.php:87
+#: includes/Admin/Admin.php:289
+msgid "What's New!"
+msgstr ""
+
+#: includes/Admin/Admin.php:298
+msgid "GETTING STARTED"
+msgstr ""
+
+#: includes/Admin/Admin.php:301
+msgid "Skip"
+msgstr ""
+
+#: includes/Admin/Admin.php:314
+msgid "Welcome to EazyDocs"
+msgstr ""
+
+#: includes/Admin/Admin.php:315
+msgid ""
+"Discover EazyDocs by this guide that walks you through creating "
+"professional, user-friendly website documentation seamlessly. Then click "
+"next to setup initial settings."
+msgstr ""
+
+#: includes/Admin/Admin.php:319
+#, fuzzy
+#| msgid "Documentations"
+msgid "Documentation"
+msgstr "Documentations"
+
+#: includes/Admin/Admin.php:322
+msgid "Video Tutorials"
+msgstr ""
+
+#: includes/Admin/Admin.php:325
+msgid "Support"
+msgstr ""
+
+#: includes/Admin/Admin.php:332 includes/Admin/options/opt_docs_general.php:15
+#, fuzzy
+#| msgid "Docs Archive Page Title"
+msgid "Docs Archive Page"
+msgstr "Titre de la page d’archive Docs"
+
+#: includes/Admin/Admin.php:333 includes/Admin/options/opt_docs_general.php:16
+msgid ""
+"This page will show on the Doc single page breadcrumb and will be used to "
+"show the Docs."
+msgstr ""
+
+#: includes/Admin/Admin.php:336
+#, fuzzy
+#| msgid "Select Page"
+msgid "Select a page"
+msgstr "Sélection de la page"
+
+#: includes/Admin/Admin.php:345
+msgid ""
+"You can create this page with using [eazydocs] shortcode or available "
+"EazyDocs blocks or Elementor widgets."
+msgstr ""
+
+#: includes/Admin/Admin.php:348
+#, fuzzy
+#| msgid "Border Color"
+msgid "Brand Color"
+msgstr "Couleur de la bordure"
+
+#: includes/Admin/Admin.php:349
+msgid "Select the Brand Color for your knowledge base."
+msgstr ""
+
+#: includes/Admin/Admin.php:354 includes/Admin/options/opt_docs_general.php:31
+#, fuzzy
+#| msgid "Docs Slug"
+msgid "Doc Root URL Slug"
+msgstr "Docs Slug"
+
+#: includes/Admin/Admin.php:355 includes/Admin/options/opt_docs_general.php:32
+msgid ""
+"Select the Docs URL Structure. This will be used to generate the Docs URL."
+msgstr ""
+
+#: includes/Admin/Admin.php:361
+#, fuzzy
+#| msgid "Default"
+msgid "Default Slug"
+msgstr "Par défaut"
+
+#: includes/Admin/Admin.php:366
+#, fuzzy
+#| msgid "Custom Order"
+msgid "Custom Slug"
+msgstr "Ordre personnalisé"
+
+#: includes/Admin/Admin.php:375
+#, fuzzy
+#| msgid "Select Layout"
+msgid "Select Page Layout"
+msgstr "Sélectionnez la mise en page"
+
+#: includes/Admin/Admin.php:380
+#, fuzzy
+#| msgid "crown icon"
+msgid "Welcome icon"
+msgstr "icône de couronne"
+
+#: includes/Admin/Admin.php:385 includes/Admin/Admin.php:390
+#, fuzzy
+#| msgid "crown icon"
+msgid "Basic icon"
+msgstr "icône de couronne"
+
+#: includes/Admin/Admin.php:394 includes/Admin/options/opt_doc_single.php:35
+msgid "Page Width"
+msgstr "Largeur de page"
+
+#: includes/Admin/Admin.php:398
+#, fuzzy
+#| msgid "Page Width"
+msgid "Boxed Width"
+msgstr "Largeur de page"
+
+#: includes/Admin/Admin.php:402 includes/Admin/options/opt_doc_single.php:38
+msgid "Full Width"
+msgstr "Pleine largeur"
+
+#: includes/Admin/Admin.php:406
+#, fuzzy
+#| msgid "Customizer"
+msgid "Live Customizer"
+msgstr "Personnalisation"
+
+#: includes/Admin/Admin.php:409
+#, fuzzy
+#| msgid "Customizer"
+msgid "Enable Live Customizer"
+msgstr "Personnalisation"
+
+#: includes/Admin/Admin.php:415
+msgid "Review and Confirm"
+msgstr ""
+
+#: includes/Admin/Admin.php:416
+msgid ""
+"Take a moment to review all your settings thoroughly before confirming your "
+"choices to ensure everything is set up correctly."
+msgstr ""
+
+#: includes/Admin/Admin.php:417
+#: includes/Admin/options/opt_docs_subscription.php:154
+msgid "Confirm"
+msgstr ""
+
+#: includes/Admin/Assets.php:116
 msgid "Enter Doc Title"
 msgstr "Entrez le titre du document"
 
-#: includes/Admin/Assets.php:88
+#: includes/Admin/Assets.php:117
 msgid "Are you sure to delete?"
 msgstr "Êtes-vous sûr de vouloir supprimer ?"
 
-#: includes/Admin/Assets.php:89
+#: includes/Admin/Assets.php:118
 msgid ""
 "This doc will be trashed with the child docs and you will be able to restore "
 "it later from the trash!"
@@ -163,908 +338,317 @@ msgstr ""
 "Ce document sera mis à la poubelle avec les docs enfants et vous pourrez le "
 "restaurer plus tard à partir de la corbeille!"
 
-#: includes/Admin/Assets.php:90
+#: includes/Admin/Assets.php:119
 msgid "Are you sure to Duplicate this doc?"
 msgstr "Êtes-vous sûr de dupliquer ce document ?"
 
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:30
-msgid "EazyDocs Multi Docs"
-msgstr "EazyDocs Multi Docs"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:78
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:60
-msgid "Preset Skin"
-msgstr "Enveloppe prédéfinie"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:84
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:66
-msgid "Skins"
-msgstr "Habillage graphique"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:97
-msgid "Filter Options"
-msgstr "Recherche avancée"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:103
-msgid "Tab Alignment"
-msgstr "Alignement des onglets"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:107
-#: includes/Admin/Elementor/Search/Search_Widget.php:148
-msgid "Left"
-msgstr "Gauche"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:111
-msgid "center"
-msgstr "centre"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:115
-#: includes/Admin/Elementor/Search/Search_Widget.php:156
-msgid "Right"
-msgstr "Droite"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:121
-msgid ""
-"Choose whether you want to position the tab buttons left, right or center "
-"from here."
-msgstr ""
-"Choisissez si vous souhaitez positionner les boutons d’onglet à gauche, à "
-"droite ou au centre à partir d’ici."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:136
-msgid "ID Format"
-msgstr "Format d’identification"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:142
-msgid "If the slug ID does not work then you should pick the number ID."
-msgstr "Si l’ID du slug ne fonctionne pas, vous devez choisir l’ID du numéro."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:152
-msgid "Exclude Docs"
-msgstr "Exclure des documents"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:161
-msgid "Show Section Count"
-msgstr "Afficher le nombre de sections"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:162
-msgid ""
-"The number of sections to show under every documentation tab. Leave empty or "
-"give value -1 to show all sections."
-msgstr ""
-"Nombre de sections à afficher sous chaque onglet de documentation. Laissez "
-"vide ou donnez la valeur -1 pour afficher toutes les sections."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:173
-msgid "Active Doc"
-msgstr "Doc actif"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:174
-msgid "Select the active Doc tab by default."
-msgstr "Sélectionnez l’onglet Doc actif par défaut."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:185
-msgid "Show Doc Item"
-msgstr "Afficher l’élément Doc"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:186
-msgid ""
-"The number of doc items to under every doc sections. Leave empty or give "
-"value -1 to show all sections."
-msgstr ""
-"Nombre d’éléments de document sous chaque section de document. Laissez vide "
-"ou donnez la valeur -1 pour afficher toutes les sections."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:198
-msgid "Main Doc Excerpt"
-msgstr "Extrait principal du document"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:199
-msgid ""
-"Excerpt word limit of main documentation. If the excerpt got empty, this "
-"will get from the post content."
-msgstr ""
-"Extrait limite de mots de la documentation principale. Si l’extrait est "
-"vide, cela proviendra du contenu de la publication."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:210
-msgid "Doc Section Excerpt"
-msgstr "Extrait de la section Doc"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:211
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:202
-msgid ""
-"Excerpt word limit of the documentation sections. If the excerpt got empty, "
-"this will get from the post content."
-msgstr ""
-"Extrait limite de mots des sections de documentation. Si l’extrait est vide, "
-"cela proviendra du contenu de la publication."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:222
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:225
-msgid "Order"
-msgstr "Commande"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:237
-msgid "Custom Order"
-msgstr "Ordre personnalisé"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:238
-msgid "Order the Doc tabs as you want."
-msgstr "Commandez les onglets Doc comme vous le souhaitez."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:253
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:144
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:150
-msgid "Doc"
-msgstr "Document"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:261
-msgid "Tabs Items"
-msgstr "Éléments des onglets"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:276
-msgid "Labels"
-msgstr "Étiquettes"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:282
-msgid "Tab Title First Word"
-msgstr "Titre de l’onglet Premier mot"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:283
-msgid "Show the first word of the doc in Tab Title."
-msgstr "Affichez le premier mot du document dans Titre de l’onglet."
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:294
-msgid "Read More Text"
-msgstr "Texte “Lire la suite”"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:306
-msgid "Book Chapters / Tutorials Prefix"
-msgstr "Préfixe des chapitres de livres / tutoriels"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:332
-msgid "Tab Title"
-msgstr "Titre de l'onglet"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:349
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:742
-#: includes/Admin/Elementor/Search/style-control.php:16
-#: includes/Admin/Elementor/Search/style-control.php:108
-#: includes/Admin/Elementor/Search/style-control.php:259
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:357
-#: includes/Admin/options/settings-options.php:454
-msgid "Padding"
-msgstr "Marges intérieures"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:372
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:666
-#: includes/Admin/Elementor/Search/style-control.php:190
-msgid "Normal"
-msgstr "Normal"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:378
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:423
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:498
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:528
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:573
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:624
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:672
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:703
-#: includes/Admin/Elementor/Search/style-control.php:88
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:384
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:423
-msgid "Text Color"
-msgstr "Couleur du texte"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:388
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:433
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:713
-msgid "Border Color"
-msgstr "Couleur de la bordure"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:417
-msgid "Active"
-msgstr "Actif"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:466
-msgid "Contents"
-msgstr "Contenus"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:477
-msgid "Item Parent Title"
-msgstr "Titre parent de l’élément"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:513
-msgid "Item Title"
-msgstr "Titre de l'élément"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:538
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:587
-msgid "Text Hover Color"
-msgstr "Couleur du texte au survol"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:550
-msgid "Item Title List"
-msgstr "Liste des titres d’objet"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:603
-msgid "Item Contents"
-msgstr "Contenu de l’article"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:642
-#: includes/Admin/Elementor/Search/Search_Widget.php:65
-#: includes/Admin/Elementor/Search/style-control.php:100
-#: includes/Admin/options/settings-options.php:1096
-#: includes/Admin/options/settings-options.php:1172
-#: includes/Admin/options/settings-options.php:1317
-#: includes/Admin/options/settings-options.php:1583
-#: includes/Admin/options/settings-options.php:1618
-msgid "Button"
-msgstr "Bouton"
-
-#: includes/Admin/Elementor/Docs/Doc_Widget.php:697
-#: includes/Admin/Elementor/Search/style-control.php:221
-msgid "Hover"
-msgstr "Survol"
-
-#: includes/Admin/Elementor/Docs/docs-1.php:4
-#: includes/Admin/Elementor/Single_Doc/single-doc-1.php:26
-#: includes/Admin/options/settings-options.php:158 templates/shortcode.php:4
-msgid "Topics"
-msgstr "Sujets"
-
-#: includes/Admin/Elementor/Docs/docs-1.php:56
-#: includes/Admin/options/settings-options.php:1197
-#: includes/Admin/options/settings-options.php:1203
-#: includes/Admin/template/parent-docs.php:37 templates/shortcode.php:49
-msgid "Private Doc"
-msgstr "Doc privé"
-
-#: includes/Admin/Elementor/Docs/docs-1.php:94
-msgid " Topics"
-msgstr " Sujets"
-
-#: includes/Admin/Elementor/Docs/docs-6.php:58
-msgid "Article in this Docs."
-msgstr "Article dans ce Docs."
-
-#: includes/Admin/Elementor/Docs/docs-6.php:59
-msgid "Written by "
-msgstr "Écrit par "
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:19
-msgid "EazyDocs Search"
-msgstr "Recherche EazyDocs"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:48
-#: includes/Admin/Elementor/Search/style-control.php:9
-#: includes/Admin/options/settings-options.php:1263
-msgid "Form"
-msgstr "Formulaire"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:55
-msgid "Placeholder"
-msgstr "Etiquette"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:74
-msgid "Submit Button Icon"
-msgstr "Icône de bouton Soumettre"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:86
-#: includes/Admin/options/settings-options.php:2037
-msgid "Position"
-msgstr "Position"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:114
-#: includes/Admin/Elementor/Search/Search_Widget.php:120
-#: includes/Admin/Elementor/Search/style-control.php:144
-#: includes/Admin/options/settings-options.php:472
-#: includes/Admin/options/settings-options.php:514
-msgid "Keywords"
-msgstr "Mots clés"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:131
-#: includes/Admin/options/settings-options.php:487
-msgid "Keywords Label"
-msgstr "Mots-clés Étiquette"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:144
-msgid "Alignment"
-msgstr "Alignement"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:152
-msgid "Center"
-msgstr "Centre"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:168
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:102
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:374
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:465
-#: includes/Admin/options/settings-options.php:211
-#: includes/Admin/options/settings-options.php:1016
-#: includes/Admin/options/settings-options.php:1056
-#: includes/Admin/options/settings-options.php:1132
-#: includes/Admin/options/settings-options.php:1281
-#: includes/Admin/options/settings-options.php:1672
-msgid "Title"
-msgstr "Titre"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:177
-msgid "Repeater List"
-msgstr "Liste répéteur"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:182
-msgid "Keyword #1"
-msgstr "Mot-clé #1"
-
-#: includes/Admin/Elementor/Search/Search_Widget.php:185
-msgid "Keyword #2"
-msgstr "Mot-clé #2"
-
-#: includes/Admin/Elementor/Search/ajax-sarch-results.php:1
-#: src/search-banner/search-banner.php:33 templates/search-banner.php:30
-msgid "No Results Found"
-msgstr "Aucun résultat trouvé"
-
-#: includes/Admin/Elementor/Search/ezd-search.php:8
-msgid "loading"
-msgstr "chargement"
-
-#: includes/Admin/Elementor/Search/style-control.php:30
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:349
-msgid "Border"
-msgstr "Bordure"
-
-#: includes/Admin/Elementor/Search/style-control.php:37
-#: includes/Admin/Elementor/Search/style-control.php:131
-#: includes/Admin/Elementor/Search/style-control.php:207
-#: includes/Admin/Elementor/Search/style-control.php:237
-#: includes/Admin/options/settings-options.php:306
-#: includes/Admin/options/settings-options.php:848
-msgid "Background Color"
-msgstr "Couleur d’arrière-plan"
-
-#: includes/Admin/Elementor/Search/style-control.php:47
-msgid "Focus Background Color"
-msgstr "Couleur d’arrière-plan du champ en surbrillance"
-
-#: includes/Admin/Elementor/Search/style-control.php:57
-#: includes/Admin/Elementor/Search/style-control.php:271
-msgid "Border Radius"
-msgstr "Rayon de la bordure"
-
-#: includes/Admin/Elementor/Search/style-control.php:68
-msgid "Placeholder Color"
-msgstr "Couleur du texte d’exemple"
-
-#: includes/Admin/Elementor/Search/style-control.php:80
-#: includes/Admin/Elementor/Search/style-control.php:251
-msgid "Typography"
-msgstr "Typographie"
-
-#: includes/Admin/Elementor/Search/style-control.php:120
-msgid "Icon/Label Color"
-msgstr "Couleur de l’icône/de l’étiquette"
-
-#: includes/Admin/Elementor/Search/style-control.php:151
-msgid "Margin"
-msgstr "Marge"
-
-#: includes/Admin/Elementor/Search/style-control.php:152
-msgid "Margin around the keywords block"
-msgstr "Marge autour du bloc de mots-clés"
-
-#: includes/Admin/Elementor/Search/style-control.php:165
-#: includes/Admin/options/settings-options.php:500
-msgid "Label Color"
-msgstr "Couleur de l'étiquette"
-
-#: includes/Admin/Elementor/Search/style-control.php:177
-msgid "Label Typography"
-msgstr "Typographie des libellés"
-
-#: includes/Admin/Elementor/Search/style-control.php:196
-#: includes/Admin/Elementor/Search/style-control.php:227
-msgid "Keyword Color"
-msgstr "Couleur du mot-clé"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:28
-msgid "EazyDocs Single Doc"
-msgstr "EazyDocs Single Doc"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:70
-msgid "Light"
-msgstr "Clair"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:74
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:78
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:82
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:86
-msgid "pro-label"
-msgstr "Pro-label"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:112
-msgid "Title Text"
-msgstr "Texte du titre"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:121
-msgid "Title Tag"
-msgstr "Balise titre"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:132
-msgid "Subtitle Text"
-msgstr "Texte du sous-titre"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:159
-msgid "Column"
-msgstr "Colonne"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:160
-msgid "Number of column to show"
-msgstr "Nombre de colonnes à afficher"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:163
-#: includes/Admin/options/settings-options.php:1448
-msgid "1 Column"
-msgstr "1 colonne"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:164
-#: includes/Admin/options/settings-options.php:1449
-msgid "2 Column"
-msgstr "2 colonnes"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:165
-#: includes/Admin/options/settings-options.php:1450
-msgid "3 Column"
-msgstr "3 colonnes"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:166
-#: includes/Admin/options/settings-options.php:1451
-msgid "4 Column"
-msgstr "4 colonnes"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:167
-#: includes/Admin/options/settings-options.php:1453
-msgid "6 Column"
-msgstr "6 Colonnes"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:178
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:188
-msgid "Sections"
-msgstr "Sections"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:179
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:189
-msgid "Number of section to show"
-msgstr "Numéro de section à afficher"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:201
-#: includes/Admin/options/settings-options.php:364
-msgid "Excerpt"
-msgstr "Extrait"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:214
-#: templates/onepage/default-layout.php:126
-#: templates/single-doc-content.php:223
-msgid "Articles"
-msgstr "Articles"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:215
-msgid "Number of articles to show under every sections"
-msgstr "Nombre d’articles à afficher sous chaque section"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:241
-msgid "Buttons"
-msgstr "Boutons"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:250
-msgid "Read More Button"
-msgstr "Bouton Lire la suite"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:259
-msgid "Section Button"
-msgstr "Bouton de section"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:271
-msgid "Button Text"
-msgstr "Texte du bouton"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:284
-msgid "Button URL"
-msgstr "URL du bouton"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:296
-msgid "Show More Button"
-msgstr "Afficher Bouton - En savoir plus"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:308
-msgid "Show Less Text"
-msgstr "Afficher moins de texte"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:327
-msgid "Box"
-msgstr "Boîte"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:339
-#: includes/Admin/options/settings-options.php:446
-#: includes/Admin/options/settings-options.php:2016
-#: includes/Admin/options/taxonomy-options.php:30
-msgid "Background"
-msgstr "Arrière-plan"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:413
-msgid "Subtitle"
-msgstr "Sous-titre"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:455
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:497
-msgid "Content"
-msgstr "Contenu"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:471
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:504
-#: includes/Admin/options/taxonomy-options.php:24
-msgid "Color"
-msgstr "Couleur"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:536
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:546
-msgid "Background Objects"
-msgstr "Objets d’arrière-plan"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:555
-msgid "Shape"
-msgstr "Forme"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:556
-msgid "The background shape should be transparent png or svg image."
-msgstr "La forme d’arrière-plan doit être une image png ou svg transparente."
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:569
-msgid "Round Objects 01"
-msgstr "Objets ronds 01"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:579
-msgid "Round 01 Color"
-msgstr "Couleur ronde 01"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:593
-msgid "Round Objects 02"
-msgstr "Objets ronds 02"
-
-#: includes/Admin/Elementor/Single_Doc/Single_Doc.php:603
-msgid "Round 02 Color"
-msgstr "Couleur Round 02"
-
-#: includes/Admin/admin-template.php:27
+#: includes/Admin/admin-template.php:26
 msgid "Folder Open"
 msgstr "Dossier ouvert"
 
-#: includes/Admin/admin-template.php:28
+#: includes/Admin/admin-template.php:27
 msgid "No docs has been found. Perhaps"
 msgstr "Aucun document n’a été trouvé. Peut-être"
 
-#: includes/Admin/admin-template.php:31
+#: includes/Admin/admin-template.php:30
 msgid "Create a Doc"
 msgstr "Nouveau document"
 
-#: includes/Admin/options/settings-options.php:61
+#: includes/Admin/options/opt_backup.php:5
+#: includes/Admin/options/opt_backup.php:12
 #, fuzzy
-msgid "Settings"
-msgstr "Paramètres"
+#| msgid "Background"
+msgid "Backup"
+msgstr "Arrière-plan"
 
-#: includes/Admin/options/settings-options.php:74
-msgid "Docs General"
-msgstr "Docs Généralités Ira"
+#: includes/Admin/options/opt_customizer.php:5
+msgid "Customizer"
+msgstr "Personnalisation"
 
-#: includes/Admin/options/settings-options.php:80
-msgid "Docs Page"
-msgstr "Page Doc"
+#: includes/Admin/options/opt_customizer.php:11
+msgid "Options Visibility on Customizer"
+msgstr "Options Visibilité sur Customizer"
 
-#: includes/Admin/options/settings-options.php:84
-msgid ""
-"The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode or "
-"design your own"
-msgstr ""
-"La page Archive des documents. Utilisez de préférence un <code>[eazydocs]</"
-"code> shortcode ou concevez votre propre code"
-
-#: includes/Admin/options/settings-options.php:95
-msgid "Docs Slug"
-msgstr "Docs Slug"
-
-#: includes/Admin/options/settings-options.php:96
-msgid "docs"
-msgstr "docs"
-
-#: includes/Admin/options/settings-options.php:97
-msgid ""
-"After changing the slug, go to Settings > Permalinks and click on the Save "
-"Changes button."
-msgstr ""
-"Après avoir modifié le slug, allez dans Paramètres > Permaliens et cliquez "
-"sur le bouton Enregistrer les modifications."
-
-#: includes/Admin/options/settings-options.php:103
-msgid "Frontend Brand Color"
-msgstr "Couleur de la marque Frontend"
-
-#: includes/Admin/options/settings-options.php:116
-#: includes/Admin/options/settings-options.php:1405
-msgid "Docs Archive"
-msgstr "Archive de documents"
-
-#: includes/Admin/options/settings-options.php:124
-msgid "Docs Columns"
-msgstr "Colonnes Docs"
-
-#: includes/Admin/options/settings-options.php:125
-msgid "This option will set the default value of column attribute of "
-msgstr "Cette option définit la valeur par défaut de l’attribut column de "
-
-#: includes/Admin/options/settings-options.php:140
-msgid "View More Button"
-msgstr "Voir Plus Bouton"
-
-#: includes/Admin/options/settings-options.php:141
-msgid "View More"
-msgstr "Voir plus"
-
-#: includes/Admin/options/settings-options.php:147
-msgid "Topics Count"
-msgstr "Nombre d'étapes"
-
-#: includes/Admin/options/settings-options.php:148
-#: includes/Admin/options/settings-options.php:297
-#: includes/Admin/options/settings-options.php:436
-#: includes/Admin/options/settings-options.php:567
-#: includes/Admin/options/settings-options.php:623
-#: includes/Admin/options/settings-options.php:644
-#: includes/Admin/options/settings-options.php:787
-#: includes/Admin/options/settings-options.php:798
-#: includes/Admin/options/settings-options.php:872
-#: includes/Admin/options/settings-options.php:893
-#: includes/Admin/options/settings-options.php:931
-#: includes/Admin/options/settings-options.php:941
-#: includes/Admin/options/settings-options.php:1047
-#: includes/Admin/options/settings-options.php:1123
-#: includes/Admin/options/settings-options.php:1427
-#: includes/Admin/options/settings-options.php:1570
-#: includes/Admin/options/settings-options.php:1605
-#: includes/Admin/options/settings-options.php:1659
-#: includes/Admin/options/settings-options.php:1696
-#: includes/Admin/options/settings-options.php:1836
-#: includes/Admin/options/settings-options.php:1856
-#: includes/Admin/options/settings-options.php:1880
-#: includes/Admin/options/settings-options.php:1909
-msgid "Show"
-msgstr "Afficher"
-
-#: includes/Admin/options/settings-options.php:149
-#: includes/Admin/options/settings-options.php:298
-#: includes/Admin/options/settings-options.php:437
-#: includes/Admin/options/settings-options.php:568
-#: includes/Admin/options/settings-options.php:624
-#: includes/Admin/options/settings-options.php:645
-#: includes/Admin/options/settings-options.php:788
-#: includes/Admin/options/settings-options.php:799
-#: includes/Admin/options/settings-options.php:873
-#: includes/Admin/options/settings-options.php:894
-#: includes/Admin/options/settings-options.php:932
-#: includes/Admin/options/settings-options.php:942
-#: includes/Admin/options/settings-options.php:1048
-#: includes/Admin/options/settings-options.php:1124
-#: includes/Admin/options/settings-options.php:1428
-#: includes/Admin/options/settings-options.php:1571
-#: includes/Admin/options/settings-options.php:1606
-#: includes/Admin/options/settings-options.php:1660
-#: includes/Admin/options/settings-options.php:1697
-#: includes/Admin/options/settings-options.php:1837
-#: includes/Admin/options/settings-options.php:1857
-#: includes/Admin/options/settings-options.php:1881
-#: includes/Admin/options/settings-options.php:1910
-msgid "Hide"
-msgstr "Cacher"
-
-#: includes/Admin/options/settings-options.php:157
-msgid "Topics Count Text"
-msgstr "Nombre de sujets Texte"
-
-#: includes/Admin/options/settings-options.php:167
-msgid "Child Docs Order"
-msgstr "Commande de docs enfants"
-
-#: includes/Admin/options/settings-options.php:169
-msgid "Descending"
-msgstr "Descendant"
-
-#: includes/Admin/options/settings-options.php:170
-msgid "Ascending"
-msgstr "Ascendant"
-
-#: includes/Admin/options/settings-options.php:178
-msgid "Number of Docs"
-msgstr "Nombre de documents"
-
-#: includes/Admin/options/settings-options.php:179
-msgid "Number of Main Docs to show"
-msgstr "Nombre de documents principaux à afficher"
-
-#: includes/Admin/options/settings-options.php:186
-msgid "Number of Articles"
-msgstr "Nombre d’articles"
-
-#: includes/Admin/options/settings-options.php:187
-msgid "Number of Articles to show under each Docs."
-msgstr "Nombre d’articles à afficher sous chaque document."
-
-#: includes/Admin/options/settings-options.php:194
-msgid "Docs Layout"
-msgstr "Mise en page des documents"
-
-#: includes/Admin/options/settings-options.php:196
-msgid "Grid"
-msgstr "Grille"
-
-#: includes/Admin/options/settings-options.php:197
-msgid "Masonry"
-msgstr "Masonry"
-
-#: includes/Admin/options/settings-options.php:206
-msgid "Docs Order By"
-msgstr "Ordre des docs par"
-
-#: includes/Admin/options/settings-options.php:208
-msgid "No Order"
-msgstr "Pas de commande"
-
-#: includes/Admin/options/settings-options.php:209
-msgid "Post ID"
-msgstr "ID de l'article"
-
-#: includes/Admin/options/settings-options.php:210
-msgid "Post Author"
-msgstr "Auteur de l’article"
-
-#: includes/Admin/options/settings-options.php:212
-msgid "Date"
-msgstr "Date"
-
-#: includes/Admin/options/settings-options.php:213
-msgid "Last Modified Date"
-msgstr "Date de dernière modification"
-
-#: includes/Admin/options/settings-options.php:214
-msgid "Random"
-msgstr "Aléatoire"
-
-#: includes/Admin/options/settings-options.php:215
-msgid "Comment Count"
-msgstr "Nombre de commentaires"
-
-#: includes/Admin/options/settings-options.php:216
-msgid "Menu Order"
-msgstr "Ordre du menu"
-
-#: includes/Admin/options/settings-options.php:230
-msgid "Doc Single"
-msgstr "Doc Single"
-
-#: includes/Admin/options/settings-options.php:240
-msgid "General"
-msgstr "Général"
-
-#: includes/Admin/options/settings-options.php:247
-msgid "Select Layout"
-msgstr "Sélectionnez la mise en page"
-
-#: includes/Admin/options/settings-options.php:260
-msgid "Page Width"
-msgstr "Largeur de page"
-
-#: includes/Admin/options/settings-options.php:262
-msgid "Boxed"
-msgstr "Encadré"
-
-#: includes/Admin/options/settings-options.php:263
-msgid "Full Width"
-msgstr "Pleine largeur"
-
-#: includes/Admin/options/settings-options.php:271
-msgid "Meta Information"
-msgstr "Meta-données"
-
-#: includes/Admin/options/settings-options.php:281
-msgid "Estimated Reading Time"
-msgstr "Estimation du temps de lecture"
-
-#: includes/Admin/options/settings-options.php:288
-#: includes/Frontend/post-views.php:56
-msgid "Views"
-msgstr "Vues"
-
-#: includes/Admin/options/settings-options.php:295
-msgid "Featured Image"
-msgstr "Image à la une"
-
-#: includes/Admin/options/settings-options.php:296
-msgid "Show the Featured Image on the top of the doc content area."
-msgstr "Affichez l’image en vedette en haut de la zone de contenu du document."
-
-#: includes/Admin/options/settings-options.php:314
-msgid "Comment"
-msgstr "Commentaire"
-
-#: includes/Admin/options/settings-options.php:315
-#: includes/Admin/options/settings-options.php:334
-#: includes/Admin/options/settings-options.php:473
-#: includes/Admin/options/settings-options.php:957
-#: includes/Admin/options/settings-options.php:985
-#: includes/Admin/options/settings-options.php:1003
-#: includes/Admin/options/settings-options.php:1398
-#: includes/Admin/options/settings-options.php:1550
-#: includes/Admin/options/settings-options.php:1785
+#: includes/Admin/options/opt_customizer.php:12
+#: includes/Admin/options/opt_doc_single.php:67
+#: includes/Admin/options/opt_doc_single.php:220
+#: includes/Admin/options/opt_doc_single.php:341
+#: includes/Admin/options/opt_doc_single.php:741
+#: includes/Admin/options/opt_doc_single.php:1030
+#: includes/Admin/options/opt_doc_single.php:1048
+#: includes/Admin/options/opt_docs_assistant.php:20
+#: includes/Admin/options/opt_docs_collaboration.php:18
+#: includes/Admin/options/opt_docs_subscription.php:19
 msgid "Enabled"
 msgstr "Activé"
 
-#: includes/Admin/options/settings-options.php:316
-#: includes/Admin/options/settings-options.php:335
-#: includes/Admin/options/settings-options.php:474
-#: includes/Admin/options/settings-options.php:958
-#: includes/Admin/options/settings-options.php:986
-#: includes/Admin/options/settings-options.php:1004
-#: includes/Admin/options/settings-options.php:1399
-#: includes/Admin/options/settings-options.php:1551
-#: includes/Admin/options/settings-options.php:1786
+#: includes/Admin/options/opt_customizer.php:13
+#: includes/Admin/options/opt_doc_single.php:68
+#: includes/Admin/options/opt_doc_single.php:221
+#: includes/Admin/options/opt_doc_single.php:342
+#: includes/Admin/options/opt_doc_single.php:742
+#: includes/Admin/options/opt_doc_single.php:1031
+#: includes/Admin/options/opt_doc_single.php:1049
+#: includes/Admin/options/opt_docs_assistant.php:21
+#: includes/Admin/options/opt_docs_collaboration.php:19
+#: includes/Admin/options/opt_docs_subscription.php:20
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: includes/Admin/options/settings-options.php:324
-msgid "Next & Previous Link"
-msgstr "Lien suivant et précédent"
+#: includes/Admin/options/opt_dark_mode.php:6
+#, fuzzy
+#| msgid "Dark Mode Switcher"
+msgid "Dark Mode"
+msgstr "Sélecteur de mode sombre"
 
-#: includes/Admin/options/settings-options.php:330
+#: includes/Admin/options/opt_dark_mode.php:10
+msgid "Dark Mode Switcher"
+msgstr "Sélecteur de mode sombre"
+
+#: includes/Admin/options/opt_dark_mode.php:11
+msgid ""
+"By show/hiding the Dark Mode Switcher, you are enable/disabling the Dark "
+"mode feature on the Doc single page."
+msgstr ""
+
+#: includes/Admin/options/opt_dark_mode.php:14
+#: includes/Admin/options/opt_doc_single.php:56
+#: includes/Admin/options/opt_doc_single.php:295
+#: includes/Admin/options/opt_doc_single.php:496
+#: includes/Admin/options/opt_doc_single.php:512
+#: includes/Admin/options/opt_doc_single.php:538
+#: includes/Admin/options/opt_doc_single.php:594
+#: includes/Admin/options/opt_doc_single.php:614
+#: includes/Admin/options/opt_doc_single.php:819
+#: includes/Admin/options/opt_doc_single.php:830
+#: includes/Admin/options/opt_doc_single.php:853
+#: includes/Admin/options/opt_doc_single.php:917
+#: includes/Admin/options/opt_doc_single.php:938
+#: includes/Admin/options/opt_doc_single.php:976
+#: includes/Admin/options/opt_doc_single.php:986
+#: includes/Admin/options/opt_doc_single.php:1019
+#: includes/Admin/options/opt_doc_single.php:1107
+#: includes/Admin/options/opt_doc_single.php:1183
+#: includes/Admin/options/opt_docs_assistant.php:118
+#: includes/Admin/options/opt_docs_assistant.php:138
+#: includes/Admin/options/opt_docs_assistant.php:162
+#: includes/Admin/options/opt_docs_assistant.php:203
+#: includes/Admin/options/opt_docs_collaboration.php:58
+#: includes/Admin/options/opt_docs_collaboration.php:96
+#: includes/Admin/options/opt_docs_collaboration.php:134
+#: includes/Admin/options/opt_docs_collaboration.php:176
+#: includes/Admin/options/opt_docs_collaboration.php:193
+#: includes/Admin/options/opt_footnotes.php:13
+msgid "Show"
+msgstr "Afficher"
+
+#: includes/Admin/options/opt_dark_mode.php:15
+#: includes/Admin/options/opt_doc_single.php:57
+#: includes/Admin/options/opt_doc_single.php:296
+#: includes/Admin/options/opt_doc_single.php:497
+#: includes/Admin/options/opt_doc_single.php:513
+#: includes/Admin/options/opt_doc_single.php:539
+#: includes/Admin/options/opt_doc_single.php:595
+#: includes/Admin/options/opt_doc_single.php:615
+#: includes/Admin/options/opt_doc_single.php:820
+#: includes/Admin/options/opt_doc_single.php:831
+#: includes/Admin/options/opt_doc_single.php:854
+#: includes/Admin/options/opt_doc_single.php:918
+#: includes/Admin/options/opt_doc_single.php:939
+#: includes/Admin/options/opt_doc_single.php:977
+#: includes/Admin/options/opt_doc_single.php:987
+#: includes/Admin/options/opt_doc_single.php:1020
+#: includes/Admin/options/opt_doc_single.php:1108
+#: includes/Admin/options/opt_doc_single.php:1184
+#: includes/Admin/options/opt_docs_assistant.php:119
+#: includes/Admin/options/opt_docs_assistant.php:139
+#: includes/Admin/options/opt_docs_assistant.php:163
+#: includes/Admin/options/opt_docs_assistant.php:204
+#: includes/Admin/options/opt_docs_collaboration.php:59
+#: includes/Admin/options/opt_docs_collaboration.php:97
+#: includes/Admin/options/opt_docs_collaboration.php:135
+#: includes/Admin/options/opt_docs_collaboration.php:177
+#: includes/Admin/options/opt_docs_collaboration.php:194
+#: includes/Admin/options/opt_footnotes.php:14
+msgid "Hide"
+msgstr "Cacher"
+
+#: includes/Admin/options/opt_dark_mode.php:22
+#, fuzzy
+#| msgid "Text Color"
+msgid "Accent color"
+msgstr "Couleur du texte"
+
+#: includes/Admin/options/opt_dark_mode.php:23
+msgid "Different accent color on Dark Mode."
+msgstr ""
+
+#: includes/Admin/options/opt_dark_mode.php:26
+#: includes/Admin/options/opt_doc_single.php:167
+#: includes/Admin/options/opt_doc_single.php:424
+#: includes/Admin/options/opt_docs_subscription.php:144
+#: includes/Admin/options/opt_restricted_docs.php:65
+#: templates/content-feedback.php:70
+msgid "Yes"
+msgstr "Oui"
+
+#: includes/Admin/options/opt_dark_mode.php:27
+#: includes/Admin/options/opt_doc_single.php:168
+#: includes/Admin/options/opt_doc_single.php:425
+#: includes/Admin/options/opt_docs_subscription.php:145
+#: includes/Admin/options/opt_restricted_docs.php:66
+#: templates/content-feedback.php:81
+msgid "No"
+msgstr "Non"
+
+#: includes/Admin/options/opt_dark_mode.php:37
+msgid "Brand Color on Dark Mode"
+msgstr ""
+
+#: includes/Admin/options/opt_dark_mode.php:38
+msgid ""
+"Accent Color for dark mode on Frontend. You can choose a different color the "
+"Dark mode from here."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:6
+msgid "Doc Single"
+msgstr "Doc Single"
+
+#: includes/Admin/options/opt_doc_single.php:16
+msgid "General"
+msgstr "Général"
+
+#: includes/Admin/options/opt_doc_single.php:22
+msgid "Select Layout"
+msgstr "Sélectionnez la mise en page"
+
+#: includes/Admin/options/opt_doc_single.php:37
+msgid "Boxed"
+msgstr "Encadré"
+
+#: includes/Admin/options/opt_doc_single.php:46
+#: includes/Admin/options/opt_doc_single.php:893
+#: includes/Elementor/Search/style-control.php:27
+#: includes/Elementor/Search/style-control.php:161
+#: includes/Elementor/Search/style-control.php:238
+#: includes/Elementor/Search/style-control.php:268
+msgid "Background Color"
+msgstr "Couleur d’arrière-plan"
+
+#: includes/Admin/options/opt_doc_single.php:54
+#: includes/Admin/options/opt_doc_single.php:851
+msgid "Featured Image"
+msgstr "Image à la une"
+
+#: includes/Admin/options/opt_doc_single.php:55
+msgid "Show the Featured Image on the top of the doc content area."
+msgstr "Affichez l’image en vedette en haut de la zone de contenu du document."
+
+#: includes/Admin/options/opt_doc_single.php:63
 msgid "Ajax Loading"
 msgstr "Ajax Loading"
 
-#: includes/Admin/options/settings-options.php:331
-msgid "Load doc pages via Ajax."
-msgstr "Chargez des pages de documents via Ajax."
+#: includes/Admin/options/opt_doc_single.php:64
+msgid "Load the doc single page without refreshing the page."
+msgstr ""
 
-#: includes/Admin/options/settings-options.php:344
-msgid "Credit"
-msgstr "Crédit"
+#: includes/Admin/options/opt_doc_single.php:77
+msgid "Meta Information"
+msgstr "Meta-données"
 
-#: includes/Admin/options/settings-options.php:351
-msgid "Credit Text"
-msgstr "Texte de crédit"
+#: includes/Admin/options/opt_doc_single.php:78
+msgid "Meta information shows on the doc title area."
+msgstr ""
 
-#: includes/Admin/options/settings-options.php:370
+#: includes/Admin/options/opt_doc_single.php:84
+#, fuzzy
+#| msgid "Parent Doc"
+msgid "Parent Doc Link"
+msgstr "Doc Parent"
+
+#: includes/Admin/options/opt_doc_single.php:91
+#, fuzzy
+#| msgid "Header Background"
+msgid "Parent Doc Link Background"
+msgstr "Arrière-plan de l’en-tête"
+
+#: includes/Admin/options/opt_doc_single.php:99
+#, fuzzy
+#| msgid "Parent Doc"
+msgid "Parent Doc Link Color"
+msgstr "Doc Parent"
+
+#: includes/Admin/options/opt_doc_single.php:107
+#, fuzzy
+#| msgid "Enter Doc Title"
+msgid "Doc Title"
+msgstr "Entrez le titre du document"
+
+#: includes/Admin/options/opt_doc_single.php:108
+#, fuzzy
+#| msgid "Show the Featured Image on the top of the doc content area."
+msgid "Show the doc title on the top of the doc content area."
+msgstr "Affichez l’image en vedette en haut de la zone de contenu du document."
+
+#: includes/Admin/options/opt_doc_single.php:115
+msgid "Estimated Reading Time"
+msgstr "Estimation du temps de lecture"
+
+#: includes/Admin/options/opt_doc_single.php:122
+msgid "Views"
+msgstr "Vues"
+
+#: includes/Admin/options/opt_doc_single.php:129
+msgid "Unique Views"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:130
+msgid "Unique views will stop counting views from reload pages."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:141
+#: includes/Elementor/Single_Doc/Single_Doc.php:204
+msgid "Excerpt"
+msgstr "Extrait"
+
+#: includes/Admin/options/opt_doc_single.php:147
 msgid "Show Excerpt"
 msgstr "Afficher l’extrait"
 
-#: includes/Admin/options/settings-options.php:371
+#: includes/Admin/options/opt_doc_single.php:148
 msgid "Show excerpt on doc single page."
 msgstr "Afficher l’extrait sur une seule page de doc."
 
-#: includes/Admin/options/settings-options.php:378
+#: includes/Admin/options/opt_doc_single.php:155
 msgid "Excerpt Label"
 msgstr "Extrait Étiquette"
 
-#: includes/Admin/options/settings-options.php:379
+#: includes/Admin/options/opt_doc_single.php:156
 msgid "Excerpt label on doc single page."
 msgstr "Étiquette d’extrait sur une seule page doc."
 
-#: includes/Admin/options/settings-options.php:380
+#: includes/Admin/options/opt_doc_single.php:157
 msgid "Summary: "
 msgstr "Résumé : "
 
-#: includes/Admin/options/settings-options.php:385
+#: includes/Admin/options/opt_doc_single.php:164
+#, fuzzy
+#| msgid "Excerpt"
+msgid "Full Excerpt"
+msgstr "Extrait"
+
+#: includes/Admin/options/opt_doc_single.php:165
+#, fuzzy
+#| msgid "Show excerpt on doc single page."
+msgid "Show the full excerpt on the doc single sections."
+msgstr "Afficher l’extrait sur une seule page de doc."
+
+#: includes/Admin/options/opt_doc_single.php:173
 msgid "Section Excerpt"
 msgstr "Extrait de section"
 
-#: includes/Admin/options/settings-options.php:386
+#: includes/Admin/options/opt_doc_single.php:174
 msgid ""
 "Define here the Doc section excerpt limit in word count to show. Use -1 to "
 "show the full excerpt."
@@ -1072,7 +656,7 @@ msgstr ""
 "Définissez ici la limite d’extraits de la section Doc en nombre de mots à "
 "afficher. Utilisez -1 pour afficher l’extrait complet."
 
-#: includes/Admin/options/settings-options.php:387
+#: includes/Admin/options/opt_doc_single.php:175
 msgid ""
 "Note: If the excerpt leaves empty, the excerpt will be automatically taken "
 "from the doc post content."
@@ -1080,39 +664,84 @@ msgstr ""
 "Remarque : Si l’extrait reste vide, l’extrait sera automatiquement extrait "
 "du contenu de l’article de la publication."
 
-#: includes/Admin/options/settings-options.php:403
-#: includes/Admin/options/settings-options.php:435
+#: includes/Admin/options/opt_doc_single.php:191
+#: includes/Admin/options/opt_doc_single.php:206
+#: includes/Elementor/Single_Doc/Single_Doc.php:218
+#: templates/onepage/default-layout.php:127
+#: templates/single-doc-content.php:120
+msgid "Articles"
+msgstr "Articles"
+
+#: includes/Admin/options/opt_doc_single.php:197
+#, fuzzy
+#| msgid "Articles"
+msgid "Show Articles"
+msgstr "Articles"
+
+#: includes/Admin/options/opt_doc_single.php:198
+msgid "Show the child pages of the current doc."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:205
+#, fuzzy
+#| msgid "Articles"
+msgid "Articles Title"
+msgstr "Articles"
+
+#: includes/Admin/options/opt_doc_single.php:213
+msgid "Doc Footer Elements"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:219
+#: includes/Admin/options/opt_doc_single.php:763
+msgid "Comment"
+msgstr "Commentaire"
+
+#: includes/Admin/options/opt_doc_single.php:229
+msgid "Next & Previous Link"
+msgstr "Lien suivant et précédent"
+
+#: includes/Admin/options/opt_doc_single.php:237
+msgid "Credit"
+msgstr "Crédit"
+
+#: includes/Admin/options/opt_doc_single.php:244
+msgid "Credit Text"
+msgstr "Texte de crédit"
+
+#: includes/Admin/options/opt_doc_single.php:262
+#: includes/Admin/options/opt_doc_single.php:294
 msgid "Search Banner"
 msgstr "Chercher Bannière"
 
-#: includes/Admin/options/settings-options.php:408
+#: includes/Admin/options/opt_doc_single.php:267
 msgid "Search Banner Settings"
 msgstr "Paramètres de la bannière de recherche"
 
-#: includes/Admin/options/settings-options.php:414
+#: includes/Admin/options/opt_doc_single.php:273
 msgid "Search Banner layout"
 msgstr "Mise en page de la bannière de recherche"
 
-#: includes/Admin/options/settings-options.php:416
-#: includes/Admin/options/settings-options.php:1256
+#: includes/Admin/options/opt_doc_single.php:275
+#: includes/Admin/options/opt_restricted_docs.php:115
 msgid "Default"
 msgstr "Par défaut"
 
-#: includes/Admin/options/settings-options.php:417
+#: includes/Admin/options/opt_doc_single.php:276
 msgid "Elementor Template"
 msgstr "Modèle Elementor"
 
-#: includes/Admin/options/settings-options.php:420
+#: includes/Admin/options/opt_doc_single.php:279
 msgid "Select how the header of the doc detail page will be displayed"
 msgstr ""
 "Sélectionnez le mode d’affichage de l’en-tête de la page de détails du "
 "document"
 
-#: includes/Admin/options/settings-options.php:426
+#: includes/Admin/options/opt_doc_single.php:285
 msgid "Select Elementor Template"
 msgstr "Sélectionnez Elementor Template"
 
-#: includes/Admin/options/settings-options.php:429
+#: includes/Admin/options/opt_doc_single.php:288
 msgid ""
 "How to create Elementor template <a target=\"__blank\" href=\"https://"
 "shorturl.at/filGI\">See guide</a>"
@@ -1120,181 +749,398 @@ msgstr ""
 "Comment créer un modèle Elementor <a target=\"__blank\" href=\"https://"
 "shorturl.at/filGI\">Voir le guide</a>"
 
-#: includes/Admin/options/settings-options.php:465
+#: includes/Admin/options/opt_doc_single.php:305
+#: includes/Admin/options/opt_docs_assistant.php:310
+#: includes/Elementor/Single_Doc/Single_Doc.php:343
+msgid "Background"
+msgstr "Arrière-plan"
+
+#: includes/Admin/options/opt_doc_single.php:316
+#: includes/Elementor/Docs/Doc_Widget.php:386
+#: includes/Elementor/Docs/Doc_Widget.php:828
+#: includes/Elementor/Search/style-control.php:15
+#: includes/Elementor/Search/style-control.php:290
+#: includes/Elementor/Single_Doc/Single_Doc.php:361
+msgid "Padding"
+msgstr "Marges intérieures"
+
+#: includes/Admin/options/opt_doc_single.php:330
 msgid "Search Keywords"
 msgstr "Recherche mots-clés"
 
-#: includes/Admin/options/settings-options.php:488
-msgid "Popular Searches"
+#: includes/Admin/options/opt_doc_single.php:340
+#: includes/Admin/options/opt_doc_single.php:441
+#: includes/Elementor/Search/Search_Widget.php:132
+#: includes/Elementor/Search/Search_Widget.php:138
+#: includes/Elementor/Search/Search_Widget.php:212
+#: includes/Elementor/Search/style-control.php:176
+msgid "Keywords"
+msgstr "Mots clés"
+
+#: includes/Admin/options/opt_doc_single.php:355
+#: includes/Elementor/Search/Search_Widget.php:149
+msgid "Keywords Label"
+msgstr "Mots-clés Étiquette"
+
+#: includes/Admin/options/opt_doc_single.php:356
+#, fuzzy
+#| msgid "Popular Searches"
+msgid "Popular Searches:"
 msgstr "Recherches populaires"
 
-#: includes/Admin/options/settings-options.php:524
+#: includes/Admin/options/opt_doc_single.php:368
+#: includes/Elementor/Search/style-control.php:197
+msgid "Label Color"
+msgstr "Couleur de l'étiquette"
+
+#: includes/Admin/options/opt_doc_single.php:384
+#: includes/Elementor/Search/Search_Widget.php:186
+#, fuzzy
+#| msgid "Keywords"
+msgid "Keywords By"
+msgstr "Mots clés"
+
+#: includes/Admin/options/opt_doc_single.php:385
+msgid "Select your preferred keywords type."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:386
+#: includes/Elementor/Search/Search_Widget.php:187
+msgid ""
+"Static keywords are predefined, while dynamic keywords are generated by "
+"queries from website visitors"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:388
+#: includes/Elementor/Search/Search_Widget.php:189
+msgid "Static"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:389
+#: includes/Elementor/Search/Search_Widget.php:190
+msgid "Dynamic (Sort by popular)"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:403
+#: includes/Elementor/Search/Search_Widget.php:236
+#, fuzzy
+#| msgid "Keywords"
+msgid "Keywords Limit"
+msgstr "Mots clés"
+
+#: includes/Admin/options/opt_doc_single.php:404
+#: includes/Elementor/Search/Search_Widget.php:237
+#, fuzzy
+#| msgid "Number of section to show"
+msgid "Set the number of keywords to show."
+msgstr "Numéro de section à afficher"
+
+#: includes/Admin/options/opt_doc_single.php:422
+#: includes/Elementor/Search/Search_Widget.php:254
+msgid "Exclude Not Found Keywords"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:423
+#: includes/Elementor/Search/Search_Widget.php:255
+msgid "Exclude the keywords that are not found in the search results."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:452
 msgid "Keyword"
 msgstr "Mot-clé"
 
-#: includes/Admin/options/settings-options.php:541
+#: includes/Admin/options/opt_doc_single.php:457
+#: includes/Elementor/Search/Search_Widget.php:217
+msgid "Keyword #1"
+msgstr "Mot-clé #1"
+
+#: includes/Admin/options/opt_doc_single.php:460
+#: includes/Elementor/Search/Search_Widget.php:220
+msgid "Keyword #2"
+msgstr "Mot-clé #2"
+
+#: includes/Admin/options/opt_doc_single.php:464
+#: includes/Admin/options/opt_doc_single.php:1087
+#: includes/One_page_doc_type.php:42 includes/Post_Types.php:63
+msgid "Add New"
+msgstr "Ajouter"
+
+#: includes/Admin/options/opt_doc_single.php:470
 msgid "Keywords Color"
 msgstr "Mots-clés Couleur"
 
-#: includes/Admin/options/settings-options.php:559
+#: includes/Admin/options/opt_doc_single.php:483
+msgid "Ajax Search Results"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:484
+msgid ""
+"The Search Results settings is global. This settings will be applied to all "
+"Ajax Doc Search Results in the plugin."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:494
+#: includes/Admin/options/opt_docs_assistant.php:161
+msgid "Breadcrumb"
+msgstr "Fil d'Ariane"
+
+#: includes/Admin/options/opt_doc_single.php:495
+msgid "Show / Hide the breadcrumbs in search results"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:510
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:511
+msgid "Show / Hide the thumbnail in search results"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:530
 msgid "Breadcrumbs"
 msgstr "Fil d’Ariane"
 
-#: includes/Admin/options/settings-options.php:565
+#: includes/Admin/options/opt_doc_single.php:536
 msgid "Show/Hide Breadcrumb"
 msgstr "Afficher/Masquer le fil d'Ariane"
 
-#: includes/Admin/options/settings-options.php:566
+#: includes/Admin/options/opt_doc_single.php:537
 msgid "Toggle this switch to Show/Hide the Breadcrumb bar."
 msgstr "Basculez ce commutateur sur Afficher/Masquer la barre de navigation."
 
-#: includes/Admin/options/settings-options.php:576
+#: includes/Admin/options/opt_doc_single.php:547
 msgid "Frontpage Name"
 msgstr "Nom de la page d’accueil"
 
-#: includes/Admin/options/settings-options.php:577 includes/functions.php:277
-#: includes/functions.php:401
+#: includes/Admin/options/opt_doc_single.php:548 includes/functions.php:347
+#: includes/functions.php:469
 msgid "Home"
 msgstr "Accueil"
 
-#: includes/Admin/options/settings-options.php:588
+#: includes/Admin/options/opt_doc_single.php:559
 msgid "Docs Archive Page Title"
 msgstr "Titre de la page d’archive Docs"
 
-#: includes/Admin/options/settings-options.php:600
+#: includes/Admin/options/opt_doc_single.php:560 includes/functions.php:364
+#: includes/functions.php:427 includes/functions.php:493
+msgid "Docs"
+msgstr "Docs"
+
+#: includes/Admin/options/opt_doc_single.php:571
 msgid "Updated Text"
 msgstr "texte mis à jour"
 
-#: includes/Admin/options/settings-options.php:601 templates/breadcrumbs.php:3
+#: includes/Admin/options/opt_doc_single.php:572 templates/breadcrumbs.php:3
 msgid "Updated on"
 msgstr "Mis à jour le"
 
-#: includes/Admin/options/settings-options.php:616
-#: includes/Admin/options/settings-options.php:622
-#: includes/Admin/options/settings-options.php:631
+#: includes/Admin/options/opt_doc_single.php:587
+#, fuzzy
+#| msgid "Feedback Count"
+msgid "Feedback Options"
+msgstr "Compter les rétroactions"
+
+#: includes/Admin/options/opt_doc_single.php:593
 msgid "Feedback Area"
 msgstr "Zone de commentaires"
 
-#: includes/Admin/options/settings-options.php:637
-msgid "Customize the feedback modal form here."
-msgstr "Personnalisez le formulaire modal de commentaires ici."
+#: includes/Admin/options/opt_doc_single.php:602
+#, fuzzy
+#| msgid "Feedback Area"
+msgid "Feedback Area Options"
+msgstr "Zone de commentaires"
 
-#: includes/Admin/options/settings-options.php:643
+#: includes/Admin/options/opt_doc_single.php:613
 msgid "Message Feedback"
 msgstr "Commentaires sur les messages"
 
-#: includes/Admin/options/settings-options.php:658
+#: includes/Admin/options/opt_doc_single.php:628
 msgid "Still Stuck"
 msgstr "Toujours coincé"
 
-#: includes/Admin/options/settings-options.php:659
-#: templates/content-feedback.php:12
+#: includes/Admin/options/opt_doc_single.php:629
+#: templates/content-feedback.php:13
 msgid "Still stuck?"
 msgstr "Toujours coincé ?"
 
-#: includes/Admin/options/settings-options.php:669
+#: includes/Admin/options/opt_doc_single.php:639
 msgid "Help form link text"
 msgstr "Texte du lien du formulaire d’aide"
 
-#: includes/Admin/options/settings-options.php:670
-#: includes/Admin/options/settings-options.php:701
-#: templates/content-feedback.php:14 templates/content-modal.php:10
+#: includes/Admin/options/opt_doc_single.php:640
+#: includes/Admin/options/opt_doc_single.php:671
+#: templates/content-feedback.php:15 templates/content-modal.php:10
 msgid "How can we help?"
 msgstr "Comment pouvons-nous vous aider ?"
 
-#: includes/Admin/options/settings-options.php:680
+#: includes/Admin/options/opt_doc_single.php:650
 msgid "Email Address"
 msgstr "Adresse e-mail"
 
-#: includes/Admin/options/settings-options.php:690
+#: includes/Admin/options/opt_doc_single.php:660
 msgid "Feedback Modal"
 msgstr "Modal de rétroaction"
 
-#: includes/Admin/options/settings-options.php:700
+#: includes/Admin/options/opt_doc_single.php:670
 msgid "Form Title"
 msgstr "Titre du Formulaire"
 
-#: includes/Admin/options/settings-options.php:711
+#: includes/Admin/options/opt_doc_single.php:681
 msgid "Form Subtitle"
 msgstr "Sous-titre du formulaire"
 
-#: includes/Admin/options/settings-options.php:720
+#: includes/Admin/options/opt_doc_single.php:690
 msgid "Voting Feedback"
 msgstr "Commentaires sur le vote"
 
-#: includes/Admin/options/settings-options.php:729
+#: includes/Admin/options/opt_doc_single.php:699
 msgid "Helpful feedback"
 msgstr "Commentaires utiles"
 
-#: includes/Admin/options/settings-options.php:741
+#: includes/Admin/options/opt_doc_single.php:711
 msgid "Feedback Label"
 msgstr "Libellé du commentaire"
 
-#: includes/Admin/options/settings-options.php:742
-#: templates/content-feedback.php:15
+#: includes/Admin/options/opt_doc_single.php:712
+#: templates/content-feedback.php:16
 msgid "Was this page helpful?"
 msgstr "Cette page a-t-elle été utile?"
 
-#: includes/Admin/options/settings-options.php:751
+#: includes/Admin/options/opt_doc_single.php:721
 msgid "Feedback Count"
 msgstr "Compter les rétroactions"
 
-#: includes/Admin/options/settings-options.php:767
+#: includes/Admin/options/opt_doc_single.php:732
+msgid "Feedback on Selected Text Options"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:738
+#, fuzzy
+#| msgid "Feedback Count"
+msgid "Feedback on Selected Text"
+msgstr "Compter les rétroactions"
+
+#: includes/Admin/options/opt_doc_single.php:739
+msgid "Enable the feature to allow users to comment on selected text."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:740
+msgid ""
+"Note: if enabled, a switcher will appear in the doc meta area to allow "
+"visitors to turn On/Off the feature."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:751
+#, fuzzy
+#| msgid "Font Size Switcher"
+msgid "Frontend Switcher Level"
+msgstr "Sélecteur de taille de police"
+
+#: includes/Admin/options/opt_doc_single.php:752
+msgid "This title will be shown on the frontend to On/Off the feature."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:753
+#, fuzzy
+#| msgid "Feedback: %s"
+msgid "Feedback"
+msgstr "Commentaires : %s"
+
+#: includes/Admin/options/opt_doc_single.php:761
+#: includes/Elementor/Single_Doc/Single_Doc.php:275
+msgid "Button Text"
+msgstr "Texte du bouton"
+
+#: includes/Admin/options/opt_doc_single.php:770
+#, fuzzy
+#| msgid "Who Can View Docs?"
+msgid "Who can view comments?"
+msgstr "Qui peut consulter les documents ?"
+
+#: includes/Admin/options/opt_doc_single.php:786
 msgid "Left Sidebar"
 msgstr "Barre latérale gauche"
 
-#: includes/Admin/options/settings-options.php:773
+#: includes/Admin/options/opt_doc_single.php:792
 msgid "Docs Navigation Layout"
 msgstr "Mise en page de navigation Docs"
 
-#: includes/Admin/options/settings-options.php:775
+#: includes/Admin/options/opt_doc_single.php:794
 msgid "Collapsed with Icons"
 msgstr "Réduit avec des icônes"
 
-#: includes/Admin/options/settings-options.php:776
+#: includes/Admin/options/opt_doc_single.php:795
 msgid "Extended Docs"
 msgstr "Documents étendus"
 
-#: includes/Admin/options/settings-options.php:785
+#: includes/Admin/options/opt_doc_single.php:804
+#, fuzzy
+#| msgid "Docs to Show"
+msgid "Docs to view"
+msgstr "Documents à afficher"
+
+#: includes/Admin/options/opt_doc_single.php:805
+msgid ""
+"Select All Docs to display all the top label docs or choose Self Docs to "
+"show child docs of the current doc."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:807
+#: includes/One_page_doc_type.php:39 includes/Post_Types.php:60
+msgid "All Docs"
+msgstr "Tous les documents"
+
+#: includes/Admin/options/opt_doc_single.php:808
+#, fuzzy
+#| msgid "All Docs"
+msgid "Self Docs"
+msgstr "Tous les documents"
+
+#: includes/Admin/options/opt_doc_single.php:817
 msgid "Sidebar Toggle"
 msgstr "Basculement de la barre latérale"
 
-#: includes/Admin/options/settings-options.php:786
+#: includes/Admin/options/opt_doc_single.php:818
 msgid "Collapse and Expand the left Sidebar with a Toggle button."
 msgstr ""
 "Réduisez et développez la barre latérale gauche à l’aide d’un bouton bascule."
 
-#: includes/Admin/options/settings-options.php:796
+#: includes/Admin/options/opt_doc_single.php:828
 msgid "Filter Form"
 msgstr "Formulaire de Filtre"
 
-#: includes/Admin/options/settings-options.php:797
+#: includes/Admin/options/opt_doc_single.php:829
 msgid "Filter the left sidebar doc items by typing latter."
 msgstr ""
 "Filtrez les éléments de la doc de la barre latérale gauche en tapant ce "
 "dernier."
 
-#: includes/Admin/options/settings-options.php:807
+#: includes/Admin/options/opt_doc_single.php:839
 msgid "Mark Words"
 msgstr "Marquer les mots"
 
-#: includes/Admin/options/settings-options.php:808
+#: includes/Admin/options/opt_doc_single.php:840
 msgid "Highlight the typed keyword in the docs."
 msgstr "Mettez en surbrillance le mot-clé tapé dans la documentation."
 
-#: includes/Admin/options/settings-options.php:809
+#: includes/Admin/options/opt_doc_single.php:841
 msgid "Enable"
 msgstr "Activer"
 
-#: includes/Admin/options/settings-options.php:810
+#: includes/Admin/options/opt_doc_single.php:842
+#: includes/Admin/options/opt_docs_assistant.php:186
 msgid "Disable"
 msgstr "Désactiver"
 
-#: includes/Admin/options/settings-options.php:817
+#: includes/Admin/options/opt_doc_single.php:852
+msgid "Enable this switcher to use featured image for the Doc sections icon."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:860
 msgid "Doc Section Icon"
 msgstr "Icône de section Doc"
 
-#: includes/Admin/options/settings-options.php:818
+#: includes/Admin/options/opt_doc_single.php:861
 msgid ""
 "This is the Doc's default icon. If you don't use icon for the article "
 "section individually, this icon will be shown."
@@ -1302,11 +1148,11 @@ msgstr ""
 "Il s’agit de l’icône par défaut du document. Si vous n’utilisez pas l’icône "
 "pour la section de l’article individuellement, cette icône sera affichée."
 
-#: includes/Admin/options/settings-options.php:828
+#: includes/Admin/options/opt_doc_single.php:872
 msgid "Doc Section Icon Open"
 msgstr "Icône de section Doc Ouvrir"
 
-#: includes/Admin/options/settings-options.php:829
+#: includes/Admin/options/opt_doc_single.php:873
 msgid ""
 "This is the Doc's default icon. If you don't use icon for the article "
 "section individually, this icon will be shown on open states of the Doc "
@@ -1316,76 +1162,72 @@ msgstr ""
 "pour la section de l’article individuellement, cette icône sera affichée sur "
 "les états ouverts des sections Doc."
 
-#: includes/Admin/options/settings-options.php:841
+#: includes/Admin/options/opt_doc_single.php:886
 msgid "Doc Title Typography"
 msgstr "Typographie du titre du document"
 
-#: includes/Admin/options/settings-options.php:860
+#: includes/Admin/options/opt_doc_single.php:905
 msgid "Right Sidebar"
 msgstr "Barre latérale droite"
 
-#: includes/Admin/options/settings-options.php:865
+#: includes/Admin/options/opt_doc_single.php:910
 msgid "Sharing Doc"
 msgstr "Partage de Doc"
 
-#: includes/Admin/options/settings-options.php:871
+#: includes/Admin/options/opt_doc_single.php:916
 msgid "Share Button"
 msgstr "Bouton de partage"
 
-#: includes/Admin/options/settings-options.php:881
+#: includes/Admin/options/opt_doc_single.php:926
 msgid "Share Button Label"
 msgstr "Étiquette du bouton Partager"
 
-#: includes/Admin/options/settings-options.php:882
+#: includes/Admin/options/opt_doc_single.php:927
 msgid "Share this Doc"
 msgstr "Partager ce document"
 
-#: includes/Admin/options/settings-options.php:892
+#: includes/Admin/options/opt_doc_single.php:937
 msgid "Copy Link Button"
 msgstr "Bouton Copier le lien"
 
-#: includes/Admin/options/settings-options.php:903
+#: includes/Admin/options/opt_doc_single.php:948
 msgid "Copy Link Label"
 msgstr "Copier l’étiquette du lien"
 
-#: includes/Admin/options/settings-options.php:904
+#: includes/Admin/options/opt_doc_single.php:949
 #: templates/tools/share-btns.php:8
 msgid "Or copy link"
 msgstr "Ou copier le lien"
 
-#: includes/Admin/options/settings-options.php:914
+#: includes/Admin/options/opt_doc_single.php:959
 msgid "Success Message"
 msgstr "Message de succès"
 
-#: includes/Admin/options/settings-options.php:915
+#: includes/Admin/options/opt_doc_single.php:960
 msgid "URL copied to clipboard"
 msgstr "URL copiée dans le presse-papiers"
 
-#: includes/Admin/options/settings-options.php:924
+#: includes/Admin/options/opt_doc_single.php:969
 msgid "Tools"
 msgstr "Outils"
 
-#: includes/Admin/options/settings-options.php:930
+#: includes/Admin/options/opt_doc_single.php:975
 msgid "Font Size Switcher"
 msgstr "Sélecteur de taille de police"
 
-#: includes/Admin/options/settings-options.php:940
+#: includes/Admin/options/opt_doc_single.php:985
 msgid "Print Article"
 msgstr "Imprimer l’article"
 
-#: includes/Admin/options/settings-options.php:950
+#: includes/Admin/options/opt_doc_single.php:995
 msgid "Features"
 msgstr "Caractéristiques"
 
-#: includes/Admin/options/settings-options.php:954
-msgid "Dark Mode Switcher"
-msgstr "Sélecteur de mode sombre"
-
-#: includes/Admin/options/settings-options.php:967
+#: includes/Admin/options/opt_doc_single.php:1001
 msgid "Table on Contents (TOC)"
 msgstr "Table des matières (TOC)"
 
-#: includes/Admin/options/settings-options.php:968
+#: includes/Admin/options/opt_doc_single.php:1002
 msgid ""
 "EazyDocs will automatically create a structured Table Of Contents(TOC) while "
 "you are writing your documentation."
@@ -1393,20 +1235,30 @@ msgstr ""
 "EazyDocs créera automatiquement une table des matières structurée pendant "
 "que vous rédigez votre documentation."
 
-#: includes/Admin/options/settings-options.php:975
+#: includes/Admin/options/opt_doc_single.php:1009
 msgid "TOC Heading"
 msgstr "En-tête de table des matières"
 
-#: includes/Admin/options/settings-options.php:976
+#: includes/Admin/options/opt_doc_single.php:1010
 #: templates/docs-right-sidebar.php:5
 msgid "CONTENTS"
 msgstr "CONTENU"
 
-#: includes/Admin/options/settings-options.php:981
+#: includes/Admin/options/opt_doc_single.php:1017
+msgid "Enable to add numbers before each table of content item."
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:1018
+#, fuzzy
+#| msgid "Docs Number"
+msgid "Auto Numbering"
+msgstr "Numéro de document"
+
+#: includes/Admin/options/opt_doc_single.php:1026
 msgid "Widgets Area"
 msgstr "Zone de Widgets"
 
-#: includes/Admin/options/settings-options.php:982
+#: includes/Admin/options/opt_doc_single.php:1027
 msgid ""
 "Enable to register a Sidebar Widgets area named 'Doc Right Sidebar' in "
 "Appearance > Widgets."
@@ -1414,13 +1266,14 @@ msgstr ""
 "Permet d’enregistrer une zone de widgets de la barre latérale nommée « Barre "
 "latérale droite de Doc » dans Apparence > widgets."
 
-#: includes/Admin/options/settings-options.php:994
-#: includes/Admin/options/settings-options.php:999
-#: includes/Admin/options/settings-options.php:1489
+#: includes/Admin/options/opt_doc_single.php:1039
+#: includes/Admin/options/opt_doc_single.php:1044
+#: includes/Admin/options/opt_docs_shortcodes.php:31
+#: src/eazydocs-toolbar/index.js:88
 msgid "Conditional Dropdown"
 msgstr "Liste déroulante conditionnelle"
 
-#: includes/Admin/options/settings-options.php:1000
+#: includes/Admin/options/opt_doc_single.php:1045
 msgid ""
 "You can display conditional contents using the [conditional_data] shortcode "
 "in documentation based on the dropdown value. See the shortcode usage "
@@ -1431,205 +1284,598 @@ msgstr ""
 "déroulante. Voir le tutoriel d’utilisation du shortcode <a href=\"https://"
 "tinyurl.com/yd46mfax\" target=\"_blank\">ici</a>."
 
-#: includes/Admin/options/settings-options.php:1011
+#: includes/Admin/options/opt_doc_single.php:1056
 msgid "Dropdown Options"
 msgstr "Options en liste déroulante"
 
-#: includes/Admin/options/settings-options.php:1021
+#: includes/Admin/options/opt_doc_single.php:1061
+#: includes/Admin/options/opt_doc_single.php:1116
+#: includes/Admin/options/opt_doc_single.php:1192
+#: includes/Admin/options/opt_docs_collaboration.php:148
+#: includes/Admin/options/opt_restricted_docs.php:140
+#: includes/Elementor/Search/Search_Widget.php:203
+#: includes/Elementor/Single_Doc/Single_Doc.php:104
+#: includes/Elementor/Single_Doc/Single_Doc.php:378
+#: includes/Elementor/Single_Doc/Single_Doc.php:467 src/shortcode/edit.js:61
+msgid "Title"
+msgstr "Titre"
+
+#: includes/Admin/options/opt_doc_single.php:1066
 msgid "Icon"
 msgstr "Icône"
 
-#: includes/Admin/options/settings-options.php:1035
+#: includes/Admin/options/opt_doc_single.php:1075
+msgid "Windows"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:1079
+msgid "iOs"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:1083
+msgid "Linux"
+msgstr ""
+
+#: includes/Admin/options/opt_doc_single.php:1095
 #: templates/content-related.php:9
 msgid "Related Articles"
 msgstr "Articles liés"
 
-#: includes/Admin/options/settings-options.php:1040
+#: includes/Admin/options/opt_doc_single.php:1100
 msgid "Related Docs Settings"
 msgstr "Paramètres Docs associés"
 
-#: includes/Admin/options/settings-options.php:1046
+#: includes/Admin/options/opt_doc_single.php:1106
 msgid "Related Docs"
 msgstr "Documents connexes"
 
-#: includes/Admin/options/settings-options.php:1057
+#: includes/Admin/options/opt_doc_single.php:1117
 msgid "Related articles"
 msgstr "Articles similaires"
 
-#: includes/Admin/options/settings-options.php:1068
-#: includes/Admin/options/settings-options.php:1144
+#: includes/Admin/options/opt_doc_single.php:1128
+#: includes/Admin/options/opt_doc_single.php:1204
 msgid "Docs Number"
 msgstr "Numéro de document"
 
-#: includes/Admin/options/settings-options.php:1069
-#: includes/Admin/options/settings-options.php:1145
+#: includes/Admin/options/opt_doc_single.php:1129
+#: includes/Admin/options/opt_doc_single.php:1205
 msgid "4"
 msgstr "4"
 
-#: includes/Admin/options/settings-options.php:1080
-#: includes/Admin/options/settings-options.php:1156
+#: includes/Admin/options/opt_doc_single.php:1140
+#: includes/Admin/options/opt_doc_single.php:1216
 msgid "Column Width"
 msgstr "Largeur colonne"
 
-#: includes/Admin/options/settings-options.php:1082
-#: includes/Admin/options/settings-options.php:1158
+#: includes/Admin/options/opt_doc_single.php:1142
+#: includes/Admin/options/opt_doc_single.php:1218
 msgid "Half"
 msgstr "Demi"
 
-#: includes/Admin/options/settings-options.php:1083
-#: includes/Admin/options/settings-options.php:1159
+#: includes/Admin/options/opt_doc_single.php:1143
+#: includes/Admin/options/opt_doc_single.php:1219
 msgid "Fullwidth"
 msgstr "Pleine largeur"
 
-#: includes/Admin/options/settings-options.php:1097
-#: includes/Admin/options/settings-options.php:1173
+#: includes/Admin/options/opt_doc_single.php:1156
+#: includes/Admin/options/opt_doc_single.php:1232
+#: includes/Admin/options/opt_docs_collaboration.php:72
+#: includes/Admin/options/opt_docs_collaboration.php:110
+#: includes/Admin/options/opt_docs_subscription.php:40
+#: includes/Admin/options/opt_docs_subscription.php:122
+#: includes/Admin/options/opt_restricted_docs.php:176
+#: includes/Elementor/Docs/Doc_Widget.php:728
+#: includes/Elementor/Search/Search_Widget.php:89
+msgid "Button"
+msgstr "Bouton"
+
+#: includes/Admin/options/opt_doc_single.php:1157
+#: includes/Admin/options/opt_doc_single.php:1233
 #: templates/content-related.php:11 templates/content-related.php:15
 msgid "See More"
 msgstr "Voir plus"
 
-#: includes/Admin/options/settings-options.php:1111
+#: includes/Admin/options/opt_doc_single.php:1171
 msgid "Viewed Articles"
 msgstr "Articles consultés"
 
-#: includes/Admin/options/settings-options.php:1116
+#: includes/Admin/options/opt_doc_single.php:1176
 msgid "Recently Viewed Docs Options"
 msgstr "Options des documents récemment consultés"
 
-#: includes/Admin/options/settings-options.php:1122
+#: includes/Admin/options/opt_doc_single.php:1182
 msgid "Recently Viewed Docs"
 msgstr "Documents récemment consultés"
 
-#: includes/Admin/options/settings-options.php:1133
+#: includes/Admin/options/opt_doc_single.php:1193
 msgid "Recently Viewed articles"
 msgstr "Articles récemment consultés"
 
-#: includes/Admin/options/settings-options.php:1189
-msgid "Restricted Docs"
-msgstr "Documents restreints"
+#: includes/Admin/options/opt_docs_assistant.php:8
+#: includes/Admin/options/opt_docs_assistant.php:19
+msgid "Docs Assistant"
+msgstr "Docs Assistant"
 
-#: includes/Admin/options/settings-options.php:1208
-msgid "Visibility Mode"
-msgstr "Mode de visibilité"
+#: includes/Admin/options/opt_docs_assistant.php:13
+msgid "Assistant Settings"
+msgstr "Paramètres de l’assistant"
 
-#: includes/Admin/options/settings-options.php:1210
-msgid "Login Required"
-msgstr "Connexion requise"
+#: includes/Admin/options/opt_docs_assistant.php:30
+msgid "Display Location"
+msgstr ""
 
-#: includes/Admin/options/settings-options.php:1211
+#: includes/Admin/options/opt_docs_assistant.php:31
+msgid "Set your assistant where should be appears."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_assistant.php:34
+msgid "Everywhere"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_assistant.php:35
+#: includes/Walker_Docs_Onepage.php:251
+#: includes/Walker_Docs_Onepage_Fullscreen.php:242 includes/functions.php:232
+msgid "Pages"
+msgstr "Pages"
+
+#: includes/Admin/options/opt_docs_assistant.php:36
 #, fuzzy
-msgid "None"
-msgstr "Aucun"
+#| msgid "Post ID"
+msgid "Post Type"
+msgstr "ID de l'article"
 
-#: includes/Admin/options/settings-options.php:1220
-msgid "Select Page"
+#: includes/Admin/options/opt_docs_assistant.php:47
+#, fuzzy
+#| msgid "Select Page"
+msgid "Select Pages"
 msgstr "Sélection de la page"
 
-#: includes/Admin/options/settings-options.php:1221
-#: includes/Admin/options/settings-options.php:1632
-msgid "Select Doc login page"
-msgstr "Sélectionnez la page de connexion Doc"
-
-#: includes/Admin/options/settings-options.php:1222
-#: includes/Admin/options/settings-options.php:1633
-msgid ""
-"If you want to change this page, use this shortcode [ezd_login_form] to "
-"display the login form on your desired page."
+#: includes/Admin/options/opt_docs_assistant.php:48
+msgid "Select pages where should be appears."
 msgstr ""
-"Si vous souhaitez modifier cette page, utilisez ce shortcode "
-"[ezd_login_form] pour afficher le formulaire de connexion sur la page "
-"souhaitée."
 
-#: includes/Admin/options/settings-options.php:1242
-#: includes/Admin/options/settings-options.php:1248
-msgid "Protected Doc"
-msgstr "Doc protégé"
+#: includes/Admin/options/opt_docs_assistant.php:62
+#, fuzzy
+#| msgid "Select Page"
+msgid "Select Post Types"
+msgstr "Sélection de la page"
 
-#: includes/Admin/options/settings-options.php:1253
-msgid "Password Form"
-msgstr "Formulaire de mot de passe"
+#: includes/Admin/options/opt_docs_assistant.php:63
+msgid "Pick your preferred post types where should be appears."
+msgstr ""
 
-#: includes/Admin/options/settings-options.php:1255
-msgid "EazyDocs Form"
-msgstr "Formulaire EazyDocs"
+#: includes/Admin/options/opt_docs_assistant.php:77
+msgid "Open Icon"
+msgstr "Icône d’ouverture"
 
-#: includes/Admin/options/settings-options.php:1271
-msgid "Header Color"
-msgstr "Couleur de l'en-tête"
+#: includes/Admin/options/opt_docs_assistant.php:91
+msgid "Close Icon"
+msgstr "Fermer l'icône"
 
-#: includes/Admin/options/settings-options.php:1289
-msgid "Title Color"
-msgstr "Couleur du titre"
+#: includes/Admin/options/opt_docs_assistant.php:106
+#, fuzzy
+msgid "Tab Settings"
+msgstr "Paramètres"
 
-#: includes/Admin/options/settings-options.php:1299
-msgid "Sub Title"
-msgstr "Sous-titre"
+#: includes/Admin/options/opt_docs_assistant.php:112
+#: includes/Admin/options/opt_docs_assistant.php:128
+msgid "Knowledge Base"
+msgstr "Base de connaissances"
 
-#: includes/Admin/options/settings-options.php:1307
-msgid "Sub Title Color"
-msgstr "Couleur du sous-titre"
+#: includes/Admin/options/opt_docs_assistant.php:117
+msgid "Knowledge-base Tab"
+msgstr "Onglet Base de connaissances"
 
-#: includes/Admin/options/settings-options.php:1325
-msgid "Button Text Color"
-msgstr "Couleur du texte du bouton"
+#: includes/Admin/options/opt_docs_assistant.php:127
+#: includes/Admin/options/opt_docs_assistant.php:212
+#: includes/Admin/options/opt_docs_subscription.php:47
+#: includes/Admin/options/opt_docs_subscription.php:129
+msgid "Heading"
+msgstr "En-tête"
 
-#: includes/Admin/options/settings-options.php:1335
-msgid "Button Background Color"
-msgstr "Couleur d’arrière plan du bouton"
+#: includes/Admin/options/opt_docs_assistant.php:137
+#: includes/Admin/options/opt_docs_collaboration.php:174
+msgid "Search"
+msgstr "Rechercher"
 
-#: includes/Admin/options/settings-options.php:1357
-msgid "Layout"
-msgstr "Mise en page"
+#: includes/Admin/options/opt_docs_assistant.php:150
+msgid "Search Placeholder"
+msgstr "Rechercher sur le site"
 
-#: includes/Admin/options/settings-options.php:1359
-msgid "Classic OnePage Doc"
-msgstr "Doc OnePage classique"
+#: includes/Admin/options/opt_docs_assistant.php:151
+msgid "Search..."
+msgstr "Rechercher..."
 
-#: includes/Admin/options/settings-options.php:1360
-msgid "Fullscreen OnePage Doc"
-msgstr "Doc OnePage plein écran"
+#: includes/Admin/options/opt_docs_assistant.php:174
+#: includes/Admin/options/opt_docs_assistant.php:175
+msgid "Docs not Found"
+msgstr "Documents introuvables"
 
-#: includes/Admin/options/settings-options.php:1391
-msgid "Customizer"
-msgstr "Personnalisation"
+#: includes/Admin/options/opt_docs_assistant.php:184
+msgid "Instant Answer"
+msgstr ""
 
-#: includes/Admin/options/settings-options.php:1397
-msgid "Options Visibility on Customizer"
-msgstr "Options Visibilité sur Customizer"
+#: includes/Admin/options/opt_docs_assistant.php:185
+msgid "Eanble"
+msgstr ""
 
-#: includes/Admin/options/settings-options.php:1405
-msgid "Single Doc"
-msgstr "Document unique"
+#: includes/Admin/options/opt_docs_assistant.php:197
+#: includes/Admin/options/opt_docs_assistant.php:213
+msgid "Contact"
+msgstr "Contact"
 
-#: includes/Admin/options/settings-options.php:1419
-#: includes/Admin/options/settings-options.php:1441 shortcodes/reference.php:26
-msgid "Footnotes"
-msgstr "Notes de bas de page"
+#: includes/Admin/options/opt_docs_assistant.php:202
+msgid "Contact Tab"
+msgstr "Onglet Contact"
 
-#: includes/Admin/options/settings-options.php:1426
-msgid "Footnotes Heading"
-msgstr "Notes de bas de page Titre"
+#: includes/Admin/options/opt_docs_assistant.php:222
+msgid "Receiver Email"
+msgstr "Courriel du destinataire"
 
-#: includes/Admin/options/settings-options.php:1437
-msgid "Footnotes Heading Text"
-msgstr "Notes de bas de page Texte de titre"
+#: includes/Admin/options/opt_docs_assistant.php:232
+msgid "Form Input"
+msgstr "Entrée de formulaire"
 
-#: includes/Admin/options/settings-options.php:1446
-msgid "Footnotes Column"
-msgstr "Colonne Notes de bas de page"
+#: includes/Admin/options/opt_docs_assistant.php:241
+#: includes/Admin/options/opt_docs_assistant.php:242
+msgid "Full name"
+msgstr "Nom complet"
 
-#: includes/Admin/options/settings-options.php:1452
-msgid "5 Column"
-msgstr "5 Colonnes"
+#: includes/Admin/options/opt_docs_assistant.php:251
+#: includes/Admin/options/opt_docs_subscription.php:68
+#: templates/content-modal.php:34
+#, fuzzy
+msgid "Email"
+msgstr "E-mail"
 
-#: includes/Admin/options/settings-options.php:1467
+#: includes/Admin/options/opt_docs_assistant.php:252
+msgid "name@example.com"
+msgstr "nom@exemple.com"
+
+#: includes/Admin/options/opt_docs_assistant.php:261
+#: includes/Admin/options/opt_docs_assistant.php:262
+#: templates/content-modal.php:39
+msgid "Subject"
+msgstr "Sujet"
+
+#: includes/Admin/options/opt_docs_assistant.php:271
+#: templates/content-modal.php:43
+msgid "Message"
+msgstr "Message"
+
+#: includes/Admin/options/opt_docs_assistant.php:272
+msgid "Write Your Message"
+msgstr "Rédigez votre message"
+
+#: includes/Admin/options/opt_docs_assistant.php:281
+#: includes/Admin/options/opt_docs_assistant.php:318
+#: includes/Admin/options/opt_docs_subscription.php:80
+#: includes/Admin/options/opt_docs_subscription.php:153
+#: includes/Elementor/Search/style-control.php:108
+msgid "Submit Button"
+msgstr "Bouton Envoyer"
+
+#: includes/Admin/options/opt_docs_assistant.php:282
+msgid "Send Message"
+msgstr "Envoyer le message"
+
+#: includes/Admin/options/opt_docs_assistant.php:291
+#: includes/Elementor/Single_Doc/Single_Doc.php:473
+#: includes/Elementor/Single_Doc/Single_Doc.php:505
+msgid "Color"
+msgstr "Couleur"
+
+#: includes/Admin/options/opt_docs_assistant.php:296
+msgid "Icon Color"
+msgstr "Couleur de l’icône"
+
+#: includes/Admin/options/opt_docs_assistant.php:303
+msgid "Header Background"
+msgstr "Arrière-plan de l’en-tête"
+
+#: includes/Admin/options/opt_docs_assistant.php:326
+#: includes/Admin/options/opt_docs_assistant.php:331
+msgid "Position"
+msgstr "Position"
+
+#: includes/Admin/options/opt_docs_assistant.php:337
+#, fuzzy
+#| msgid "Position"
+msgid "Vertical Position"
+msgstr "Position"
+
+#: includes/Admin/options/opt_docs_assistant.php:349
+msgid "Horizontal Position"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_collaboration.php:8
+#, fuzzy
+#| msgid "Docs Contribution"
+msgid "Docs Collaboration"
+msgstr "Docs Contribution"
+
+#: includes/Admin/options/opt_docs_collaboration.php:14
+#, fuzzy
+#| msgid "Contribution Feature"
+msgid "Collaboration Feature"
+msgstr "Fonction de contribution"
+
+#: includes/Admin/options/opt_docs_collaboration.php:15
+#, fuzzy
+#| msgid "Contribution buttons on the doc Right Sidebar."
+msgid "Collaboration buttons on the doc Right Sidebar."
+msgstr "Boutons de contribution dans la barre latérale droite du document."
+
+#: includes/Admin/options/opt_docs_collaboration.php:16
+#, fuzzy
+#| msgid ""
+#| "By enabling this feature, you are allowing other people to contribute the "
+#| "docs. This will also let you manage the contributors from the Doc post "
+#| "editor."
+msgid ""
+"By enabling this feature, you are allowing to Administrator & Editor people "
+"to contribute the docs. This will also let you manage the contributors from "
+"the Doc post editor."
+msgstr ""
+"En activant cette fonctionnalité, vous autorisez d’autres personnes à "
+"contribuer aux documents. Cela vous permettra également de gérer les "
+"contributeurs à partir de l’éditeur de publication Doc."
+
+#: includes/Admin/options/opt_docs_collaboration.php:29
+#: includes/Admin/options/opt_restricted_docs.php:30
+msgid "Login Page"
+msgstr "Page de connexion"
+
+#: includes/Admin/options/opt_docs_collaboration.php:30
+msgid ""
+"Type in the field to select the login page. User would require to login to "
+"edit/add docs from frontend."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_collaboration.php:31
+msgid ""
+"This page is required to select to show/enable the Add/Edit doc buttons. You "
+"can use the shortcode [ezd_login_form] for the login page."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_collaboration.php:47
+#: includes/Admin/options/opt_docs_collaboration.php:73
+#: includes/Admin/template/header.php:16 includes/One_page_doc_type.php:41
+#: includes/Post_Types.php:62
+msgid "Add Doc"
+msgstr "Ajouter Doc"
+
+#: includes/Admin/options/opt_docs_collaboration.php:57
+msgid "Add Button"
+msgstr "Ajouter Bouton"
+
+#: includes/Admin/options/opt_docs_collaboration.php:85
+#: includes/Admin/options/opt_docs_collaboration.php:111
+#: includes/Post_Types.php:64
+msgid "Edit Doc"
+msgstr "Modifier"
+
+#: includes/Admin/options/opt_docs_collaboration.php:95
+msgid "Edit Button"
+msgstr "Modifier le  Bouton"
+
+#: includes/Admin/options/opt_docs_collaboration.php:123
+msgid "Meta Content"
+msgstr "Méta-contenu"
+
+#: includes/Admin/options/opt_docs_collaboration.php:133
+msgid "Enable / Disable"
+msgstr "Activer/Désactiver"
+
+#: includes/Admin/options/opt_docs_collaboration.php:149
+msgid "Contributors"
+msgstr "Contributeurs"
+
+#: includes/Admin/options/opt_docs_collaboration.php:161
+msgid "Dropdown Heading"
+msgstr "Titre déroulant"
+
+#: includes/Admin/options/opt_docs_collaboration.php:162
+msgid "Manage Contributors"
+msgstr "Gérer les contributeurs"
+
+#: includes/Admin/options/opt_docs_collaboration.php:175
+msgid "Search through the existing users"
+msgstr "Rechercher parmi les utilisateurs existants"
+
+#: includes/Admin/options/opt_docs_collaboration.php:191
+#, fuzzy
+#| msgid "Load doc pages via Ajax."
+msgid "Load More By Ajax"
+msgstr "Chargez des pages de documents via Ajax."
+
+#: includes/Admin/options/opt_docs_collaboration.php:192
+msgid "Enable / Disable the Load more users with scrolling"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_collaboration.php:208
+#, fuzzy
+#| msgid "Read More Text"
+msgid "Load More Text"
+msgstr "Texte “Lire la suite”"
+
+#: includes/Admin/options/opt_docs_collaboration.php:209
+#, fuzzy
+#| msgid "loading"
+msgid "Loading"
+msgstr "chargement"
+
+#: includes/Admin/options/opt_docs_collaboration.php:222
+msgid "Load Per Scroll"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_collaboration.php:223
+#, fuzzy
+#| msgid "H3"
+msgid "3"
+msgstr "H3"
+
+#: includes/Admin/options/opt_docs_collaboration.php:236
+#, fuzzy
+#| msgid "Docs Number"
+msgid "Show User Number"
+msgstr "Numéro de document"
+
+#: includes/Admin/options/opt_docs_collaboration.php:237
+msgid "Number of users that can be added"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_general.php:8
+msgid "Docs General"
+msgstr "Docs Généralités Ira"
+
+#: includes/Admin/options/opt_docs_general.php:17
+msgid ""
+"You can create this page with using [eazydocs] shortcode or available "
+"EazyDocs Gutenberg blocks or Elementor widgets."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_general.php:33
+#, fuzzy, php-format
+#| msgid ""
+#| "After changing the slug, go to Settings > Permalinks and click on the "
+#| "Save Changes button."
+msgid ""
+"<b>Note:</b> To apply this settings, After changing the URL structure here, "
+"go to %s Settings > Permalinks %s and click on the Save Changes button."
+msgstr ""
+"Après avoir modifié le slug, allez dans Paramètres > Permaliens et cliquez "
+"sur le bouton Enregistrer les modifications."
+
+#: includes/Admin/options/opt_docs_general.php:35
+#, fuzzy
+#| msgid "Custom Order"
+msgid "Custom slug"
+msgstr "Ordre personnalisé"
+
+#: includes/Admin/options/opt_docs_general.php:36
+msgid "No slug"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_general.php:45
+msgid "Ignore the plain and numeric permalink structure"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_general.php:51
+msgid "Root slug"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_general.php:52
+msgid ""
+"Make sure to keep Docs Root Slug in the Single Docs Permalink. You are not "
+"able to keep it blank."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_general.php:53
+msgid "docs"
+msgstr "docs"
+
+#: includes/Admin/options/opt_docs_general.php:54
+#, fuzzy, php-format
+#| msgid ""
+#| "After changing the slug, go to Settings > Permalinks and click on the "
+#| "Save Changes button."
+msgid ""
+"<b>Note:</b> After changing the slug, go to %s Settings > Permalinks %s and "
+"click on the Save Changes button."
+msgstr ""
+"Après avoir modifié le slug, allez dans Paramètres > Permaliens et cliquez "
+"sur le bouton Enregistrer les modifications."
+
+#: includes/Admin/options/opt_docs_general.php:62
+msgid "Frontend Brand Color"
+msgstr "Couleur de la marque Frontend"
+
+#: includes/Admin/options/opt_docs_role_manager.php:8
+msgid "Docs Role Manager"
+msgstr "Gestionnaire de rôles Docs"
+
+#: includes/Admin/options/opt_docs_role_manager.php:14
+#, fuzzy
+#| msgid "Who Can View Docs?"
+msgid "Who Can Create Docs?"
+msgstr "Qui peut consulter les documents ?"
+
+#: includes/Admin/options/opt_docs_role_manager.php:15
+msgid ""
+"Allow users to view & create Docs from the Doc Builder UI in the admin "
+"dashboard."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_role_manager.php:17
+#: includes/Admin/options/opt_docs_role_manager.php:35
+#: includes/Admin/options/opt_docs_role_manager.php:51
+#: includes/Admin/options/opt_restricted_docs.php:77
+msgid "Administrator"
+msgstr "Administrateur"
+
+#: includes/Admin/options/opt_docs_role_manager.php:18
+#: includes/Admin/options/opt_docs_role_manager.php:52
+#: includes/Admin/options/opt_restricted_docs.php:78
+msgid "Editor"
+msgstr "Éditeur"
+
+#: includes/Admin/options/opt_docs_role_manager.php:19
+#: includes/Admin/options/opt_docs_role_manager.php:53
+#: includes/Admin/options/opt_restricted_docs.php:79
+msgid "Author"
+msgstr "Auteur"
+
+#: includes/Admin/options/opt_docs_role_manager.php:20
+#: includes/Admin/options/opt_restricted_docs.php:80
+msgid "Contributor"
+msgstr "Contributeur"
+
+#: includes/Admin/options/opt_docs_role_manager.php:21
+#: includes/Admin/options/opt_restricted_docs.php:81
+msgid "Subscriber"
+msgstr "Abonné"
+
+#: includes/Admin/options/opt_docs_role_manager.php:32
+msgid "Who Can Edit Settings?"
+msgstr "Qui peut accéder au contenu ?"
+
+#: includes/Admin/options/opt_docs_role_manager.php:33
+msgid "Allow users to update options from settings."
+msgstr ""
+"Autoriser les utilisateurs à mettre à jour les options à partir des "
+"paramètres."
+
+#: includes/Admin/options/opt_docs_role_manager.php:36
+#, fuzzy
+#| msgid "Administrator"
+msgid "Administrator + Editor"
+msgstr "Administrateur"
+
+#: includes/Admin/options/opt_docs_role_manager.php:37
+msgid "Administrator + Editor + Author"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_role_manager.php:48
+#, fuzzy
+#| msgid "Who Can View Docs?"
+msgid "Who Can Check Analytics?"
+msgstr "Qui peut consulter les documents ?"
+
+#: includes/Admin/options/opt_docs_role_manager.php:49
+msgid "Allow users to view and analyze site statistics and performance data."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_shortcodes.php:8
 msgid "Docs Shortcodes"
 msgstr "Codes courts Docs"
 
-#: includes/Admin/options/settings-options.php:1474
+#: includes/Admin/options/opt_docs_shortcodes.php:15
 msgid "Docs archive"
 msgstr "Archives des documents"
 
-#: includes/Admin/options/settings-options.php:1476
+#: includes/Admin/options/opt_docs_shortcodes.php:17
 #, php-format
 msgid ""
 "Use this shortcode to display the Docs. Learn more about the shortcode and "
@@ -1638,302 +1884,434 @@ msgstr ""
 "Utilisez ce shortcode pour afficher la documentation. Pour en savoir plus "
 "sur le shortcode et les attributs %s cliquez ici %s."
 
-#: includes/Admin/options/settings-options.php:1479
-#: includes/Admin/options/settings-options.php:1501
-#: includes/Admin/options/settings-options.php:1513
+#: includes/Admin/options/opt_docs_shortcodes.php:20
 msgid "See the shortcode with the available attributes"
 msgstr "Voir le shortcode avec les attributs disponibles"
 
-#: includes/Admin/options/settings-options.php:1490
-msgid ""
-"Know the usage of this shortcode <a href=\"https://tinyurl.com/24d9rw72\" "
-"target=\"_blank\"> here </a>"
+#: includes/Admin/options/opt_docs_shortcodes.php:32
+#, php-format
+msgid "Know the usage of this shortcode %s here %s"
 msgstr ""
-"Connaître l’utilisation de ce shortcode <a href=\"https://tinyurl."
-"com/24d9rw72\" target=\"_blank\"> ici </a>"
 
-#: includes/Admin/options/settings-options.php:1499
+#: includes/Admin/options/opt_docs_shortcodes.php:42
 msgid "Docs Login"
 msgstr "Connexion Docs"
 
-#: includes/Admin/options/settings-options.php:1500
+#: includes/Admin/options/opt_docs_shortcodes.php:43
 msgid "Use this shortcode to display login form."
 msgstr "Utilisez ce shortcode pour afficher le formulaire de connexion."
 
-#: includes/Admin/options/settings-options.php:1511
+#: includes/Admin/options/opt_docs_shortcodes.php:44
+#: includes/Admin/options/opt_docs_shortcodes.php:59
+#: includes/Admin/options/opt_footnotes.php:69
+#, fuzzy
+#| msgid "See the shortcode with the available attributes"
+msgid "See the shortcode example with the available attributes"
+msgstr "Voir le shortcode avec les attributs disponibles"
+
+#: includes/Admin/options/opt_docs_shortcodes.php:56
+#: includes/Admin/options/opt_footnotes.php:67
 msgid "Footnote Shortcode"
 msgstr "Note de bas de page Shortcode"
 
-#: includes/Admin/options/settings-options.php:1512
-msgid "Use this shortcode to display footnotes."
+#: includes/Admin/options/opt_docs_shortcodes.php:57
+#: includes/Admin/options/opt_footnotes.php:68
+#, fuzzy, php-format
+#| msgid "Use this shortcode to display footnotes."
+msgid ""
+"Use this shortcode to display footnotes. %s Learn how to create Footnotes %s"
 msgstr "Utilisez ce shortcode pour afficher les notes de bas de page."
 
-#: includes/Admin/options/settings-options.php:1523
+#: includes/Admin/options/opt_docs_shortcodes.php:70
 msgid "Embed Post Shortcode"
 msgstr "Intégrer le shortcode de publication"
 
-#: includes/Admin/options/settings-options.php:1524
-msgid "Use this shortcode to display a doc inside another doc."
+#: includes/Admin/options/opt_docs_shortcodes.php:71
+#, fuzzy, php-format
+#| msgid "Use this shortcode to display a doc inside another doc."
+msgid ""
+"Use this shortcode to display a doc inside another doc. Know the usage of "
+"this shortcode %s here %s"
 msgstr ""
 "Utilisez ce shortcode pour afficher un document à l’intérieur d’un autre "
 "document."
 
-#: includes/Admin/options/settings-options.php:1525
-msgid ""
-"See the shortcode with the available attributes. <br><code>[embed_post "
-"id=\"POST_ID\" limit=\"no\" thumbnail=\"yes\"]</code> <br> Know the usage of "
-"this shortcode <a href=\"https://tinyurl.com/bde27yn4\" "
-"target=\"_blank\">here</a> "
-msgstr ""
-"Voir le shortcode avec les attributs disponibles. <br><code>[embed_post "
-"id=\"POST_ID\" limit=\"no\" thumbnail=\"yes\"]</code> <br> Connaître "
-"l’utilisation de ce shortcode <a href=\"https://tinyurl.com/bde27yn4\" "
-"target=\"_blank\">ici</a> "
+#: includes/Admin/options/opt_docs_shortcodes.php:73
+#, fuzzy
+#| msgid "See the shortcode with the available attributes"
+msgid "See the shortcode with the available attributes."
+msgstr "Voir le shortcode avec les attributs disponibles"
 
-#: includes/Admin/options/settings-options.php:1541
-msgid "Docs Contribution"
+#: includes/Admin/options/opt_docs_subscription.php:6
+#, fuzzy
+#| msgid "Docs Contribution"
+msgid "Docs Subscriptions"
 msgstr "Docs Contribution"
 
-#: includes/Admin/options/settings-options.php:1547
-msgid "Contribution Feature"
-msgstr "Fonction de contribution"
+#: includes/Admin/options/opt_docs_subscription.php:11
+#, fuzzy
+#| msgid "Dropdown Options"
+msgid "Subscriptions Options"
+msgstr "Options en liste déroulante"
 
-#: includes/Admin/options/settings-options.php:1548
-msgid "Contribution buttons on the doc Right Sidebar."
-msgstr "Boutons de contribution dans la barre latérale droite du document."
-
-#: includes/Admin/options/settings-options.php:1549
-msgid ""
-"By enabling this feature, you are allowing other people to contribute the "
-"docs. This will also let you manage the contributors from the Doc post "
-"editor."
-msgstr ""
-"En activant cette fonctionnalité, vous autorisez d’autres personnes à "
-"contribuer aux documents. Cela vous permettra également de gérer les "
-"contributeurs à partir de l’éditeur de publication Doc."
-
-#: includes/Admin/options/settings-options.php:1560
-#: includes/Admin/options/settings-options.php:1584
-#: includes/Admin/template/header.php:12 includes/One_page_doc_type.php:41
-#: includes/Post_Types.php:45
-msgid "Add Doc"
-msgstr "Ajouter Doc"
-
-#: includes/Admin/options/settings-options.php:1569
-msgid "Add Button"
-msgstr "Ajouter Bouton"
-
-#: includes/Admin/options/settings-options.php:1595
-#: includes/Admin/options/settings-options.php:1619 includes/Post_Types.php:47
-msgid "Edit Doc"
-msgstr "Modifier"
-
-#: includes/Admin/options/settings-options.php:1604
-msgid "Edit Button"
-msgstr "Modifier le  Bouton"
-
-#: includes/Admin/options/settings-options.php:1631
-msgid "Login Page"
-msgstr "Page de connexion"
-
-#: includes/Admin/options/settings-options.php:1649
-msgid "Meta Content"
-msgstr "Méta-contenu"
-
-#: includes/Admin/options/settings-options.php:1658
-msgid "Enable / Disable"
-msgstr "Activer/Désactiver"
-
-#: includes/Admin/options/settings-options.php:1673
-#: templates/single-doc-content.php:12
-msgid "Contributors"
-msgstr "Contributeurs"
-
-#: includes/Admin/options/settings-options.php:1683
-msgid "Dropdown Heading"
-msgstr "Titre déroulant"
-
-#: includes/Admin/options/settings-options.php:1684
-#: templates/single-doc-content.php:13
-msgid "Manage Contributors"
-msgstr "Gérer les contributeurs"
-
-#: includes/Admin/options/settings-options.php:1694
-#: includes/Admin/options/settings-options.php:1855
-msgid "Search"
-msgstr "Rechercher"
-
-#: includes/Admin/options/settings-options.php:1695
-msgid "Search through the existing users"
-msgstr "Rechercher parmi les utilisateurs existants"
-
-#: includes/Admin/options/settings-options.php:1713
-msgid "Docs Role Manager"
-msgstr "Gestionnaire de rôles Docs"
-
-#: includes/Admin/options/settings-options.php:1719
-msgid "Who Can View Docs?"
-msgstr "Qui peut consulter les documents ?"
-
-#: includes/Admin/options/settings-options.php:1720
-msgid "Allow users to view Docs."
-msgstr "Autoriser les utilisateurs à afficher Docs."
-
-#: includes/Admin/options/settings-options.php:1722
-#: includes/Admin/options/settings-options.php:1740
-#: includes/Admin/options/settings-options.php:1756
-msgid "Administrator"
-msgstr "Administrateur"
-
-#: includes/Admin/options/settings-options.php:1723
-#: includes/Admin/options/settings-options.php:1741
-#: includes/Admin/options/settings-options.php:1757
-msgid "Editor"
-msgstr "Éditeur"
-
-#: includes/Admin/options/settings-options.php:1724
-#: includes/Admin/options/settings-options.php:1742
-#: includes/Admin/options/settings-options.php:1758
-msgid "Author"
-msgstr "Auteur"
-
-#: includes/Admin/options/settings-options.php:1725
-msgid "Contributor"
-msgstr "Contributeur"
-
-#: includes/Admin/options/settings-options.php:1726
-msgid "Subscriber"
+#: includes/Admin/options/opt_docs_subscription.php:17
+#, fuzzy
+#| msgid "Subscriber"
+msgid "Subscribe Feature"
 msgstr "Abonné"
 
-#: includes/Admin/options/settings-options.php:1737
-msgid "Who Can Edit Settings?"
-msgstr "Qui peut accéder au contenu ?"
-
-#: includes/Admin/options/settings-options.php:1738
-msgid "Allow users to update options from settings."
+#: includes/Admin/options/opt_docs_subscription.php:18
+msgid "Enable to show the subscription button."
 msgstr ""
-"Autoriser les utilisateurs à mettre à jour les options à partir des "
-"paramètres."
 
-#: includes/Admin/options/settings-options.php:1753
-msgid "Who Can Edit Customizer?"
-msgstr "Qui peut modifier le personnalisateur ?"
-
-#: includes/Admin/options/settings-options.php:1754
-msgid "Allow users to customize Docs from customizer settings."
-msgstr ""
-"Autorisez les utilisateurs à personnaliser Docs à partir des paramètres du "
-"personnalisateur."
-
-#: includes/Admin/options/settings-options.php:1773
-#: includes/Admin/options/settings-options.php:1784
-msgid "Docs Assistant"
-msgstr "Docs Assistant"
-
-#: includes/Admin/options/settings-options.php:1778
-msgid "Assistant Settings"
-msgstr "Paramètres de l’assistant"
-
-#: includes/Admin/options/settings-options.php:1795
-msgid "Open Icon"
-msgstr "Icône d’ouverture"
-
-#: includes/Admin/options/settings-options.php:1809
-msgid "Close Icon"
-msgstr "Fermer l'icône"
-
-#: includes/Admin/options/settings-options.php:1835
-msgid "Knowledge-base Tab"
-msgstr "Onglet Base de connaissances"
-
-#: includes/Admin/options/settings-options.php:1845
-#: includes/Admin/options/settings-options.php:1918
-msgid "Heading"
-msgstr "En-tête"
-
-#: includes/Admin/options/settings-options.php:1846
-msgid "Knowledge Base"
-msgstr "Base de connaissances"
-
-#: includes/Admin/options/settings-options.php:1868
-msgid "Search Placeholder"
-msgstr "Rechercher sur le site"
-
-#: includes/Admin/options/settings-options.php:1869
-msgid "Search..."
-msgstr "Rechercher..."
-
-#: includes/Admin/options/settings-options.php:1879
-msgid "Breadcrumb"
-msgstr "Fil d'Ariane"
-
-#: includes/Admin/options/settings-options.php:1892
-#: includes/Admin/options/settings-options.php:1893
-msgid "Docs not Found"
-msgstr "Documents introuvables"
-
-#: includes/Admin/options/settings-options.php:1908
-msgid "Contact Tab"
-msgstr "Onglet Contact"
-
-#: includes/Admin/options/settings-options.php:1919
-msgid "Contact"
-msgstr "Contact"
-
-#: includes/Admin/options/settings-options.php:1928
-msgid "Receiver Email"
-msgstr "Courriel du destinataire"
-
-#: includes/Admin/options/settings-options.php:1938
-msgid "Form Input"
-msgstr "Entrée de formulaire"
-
-#: includes/Admin/options/settings-options.php:1947
-#: includes/Admin/options/settings-options.php:1948
-msgid "Full name"
-msgstr "Nom complet"
-
-#: includes/Admin/options/settings-options.php:1957
-#: templates/content-modal.php:32
+#: includes/Admin/options/opt_docs_subscription.php:30
 #, fuzzy
-msgid "Email"
-msgstr "E-mail"
+#| msgid "Customize the feedback modal form here."
+msgid "Customize the subscription form here."
+msgstr "Personnalisez le formulaire modal de commentaires ici."
 
-#: includes/Admin/options/settings-options.php:1958
-msgid "name@example.com"
-msgstr "nom@exemple.com"
+#: includes/Admin/options/opt_docs_subscription.php:35
+#: includes/Admin/options/opt_docs_subscription.php:48
+#: includes/Admin/options/opt_docs_subscription.php:81
+#, fuzzy
+#| msgid "Subscriber"
+msgid "Subscribe"
+msgstr "Abonné"
 
-#: includes/Admin/options/settings-options.php:1967
-#: includes/Admin/options/settings-options.php:1968
-#: templates/content-modal.php:35
-msgid "Subject"
-msgstr "Sujet"
+#: includes/Admin/options/opt_docs_subscription.php:41
+#, fuzzy
+#| msgid "Subscriber"
+msgid "Subscribe for updates"
+msgstr "Abonné"
 
-#: includes/Admin/options/settings-options.php:1977
-#: templates/content-modal.php:38
-msgid "Message"
-msgstr "Message"
+#: includes/Admin/options/opt_docs_subscription.php:54
+msgid "Input :: Name"
+msgstr ""
 
-#: includes/Admin/options/settings-options.php:1978
-msgid "Write Your Message"
-msgstr "Rédigez votre message"
+#: includes/Admin/options/opt_docs_subscription.php:55
+#: templates/content-modal.php:30
+msgid "Name"
+msgstr "Nom"
 
-#: includes/Admin/options/settings-options.php:1987
-#: includes/Admin/options/settings-options.php:2024
-msgid "Submit Button"
-msgstr "Bouton Envoyer"
+#: includes/Admin/options/opt_docs_subscription.php:61
+#, fuzzy
+#| msgid "Enter Doc Title"
+msgid "Enter your name"
+msgstr "Entrez le titre du document"
 
-#: includes/Admin/options/settings-options.php:1988
-msgid "Send Message"
-msgstr "Envoyer le message"
+#: includes/Admin/options/opt_docs_subscription.php:67
+msgid "Input :: Email"
+msgstr ""
 
-#: includes/Admin/options/settings-options.php:2002
-msgid "Icon Color"
-msgstr "Couleur de l’icône"
+#: includes/Admin/options/opt_docs_subscription.php:74
+#, fuzzy
+#| msgid "Enter Doc Title"
+msgid "Enter your email"
+msgstr "Entrez le titre du document"
 
-#: includes/Admin/options/settings-options.php:2009
-msgid "Header Background"
-msgstr "Arrière-plan de l’en-tête"
+#: includes/Admin/options/opt_docs_subscription.php:87
+#: includes/Admin/options/opt_docs_subscription.php:160
+#, fuzzy
+#| msgid "Share Button"
+msgid "Cancel Button"
+msgstr "Bouton de partage"
+
+#: includes/Admin/options/opt_docs_subscription.php:88
+#: includes/Admin/options/opt_docs_subscription.php:161
+msgid "Cancel"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:95
+#, fuzzy
+#| msgid "Success Message"
+msgid "Success"
+msgstr "Message de succès"
+
+#: includes/Admin/options/opt_docs_subscription.php:96
+msgid "Confirmation email sent successfully!"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:102
+#, fuzzy
+#| msgid "Email: %s"
+msgid "Email exist"
+msgstr "Email : %s"
+
+#: includes/Admin/options/opt_docs_subscription.php:103
+msgid "Already email exists."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:109
+msgid "Special Character"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:110
+msgid "Special characters not allowed!"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:116
+#: includes/Admin/options/opt_docs_subscription.php:123
+#: includes/Admin/options/opt_docs_subscription.php:130
+#, fuzzy
+#| msgid "Subscriber"
+msgid "Unsubscribe"
+msgstr "Abonné"
+
+#: includes/Admin/options/opt_docs_subscription.php:136
+#, fuzzy
+#| msgid "Position"
+msgid "Description"
+msgstr "Position"
+
+#: includes/Admin/options/opt_docs_subscription.php:137
+msgid "Are you sure you'd like to stop receiving updates"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:143
+#, fuzzy
+#| msgid "Form Subtitle"
+msgid "Post title"
+msgstr "Sous-titre du formulaire"
+
+#: includes/Admin/options/opt_docs_subscription.php:146
+msgid "Include post title in the description"
+msgstr ""
+
+#: includes/Admin/options/opt_footnotes.php:6
+#: includes/Admin/options/opt_footnotes.php:27
+#: includes/Admin/options/opt_footnotes.php:91
+#: includes/Frontend/Frontend.php:59 src/eazydocs-toolbar/index.js:84
+msgid "Footnotes"
+msgstr "Notes de bas de page"
+
+#: includes/Admin/options/opt_footnotes.php:12
+msgid "Footnotes Heading"
+msgstr "Notes de bas de page Titre"
+
+#: includes/Admin/options/opt_footnotes.php:23
+msgid "Footnotes Heading Text"
+msgstr "Notes de bas de page Texte de titre"
+
+#: includes/Admin/options/opt_footnotes.php:33
+#, fuzzy
+#| msgid "Footnotes Column"
+msgid "Footnotes Layout"
+msgstr "Colonne Notes de bas de page"
+
+#: includes/Admin/options/opt_footnotes.php:36
+#, fuzzy
+#| msgid "Collapsed with Icons"
+msgid "Collapsed"
+msgstr "Réduit avec des icônes"
+
+#: includes/Admin/options/opt_footnotes.php:37
+msgid "Expanded"
+msgstr ""
+
+#: includes/Admin/options/opt_footnotes.php:39
+msgid "Select how the footnote will look normally"
+msgstr ""
+
+#: includes/Admin/options/opt_footnotes.php:49
+#: includes/Admin/options/opt_footnotes.php:96
+msgid "Footnotes Column"
+msgstr "Colonne Notes de bas de page"
+
+#: includes/Admin/options/opt_footnotes.php:51
+#: includes/Admin/options/opt_footnotes.php:98
+#: includes/Elementor/Docs/Doc_Widget.php:101
+#: includes/Elementor/Single_Doc/Single_Doc.php:165
+msgid "1 Column"
+msgstr "1 colonne"
+
+#: includes/Admin/options/opt_footnotes.php:52
+#: includes/Elementor/Docs/Doc_Widget.php:102
+#: includes/Elementor/Single_Doc/Single_Doc.php:166
+msgid "2 Column"
+msgstr "2 colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:53
+#: includes/Elementor/Docs/Doc_Widget.php:103
+#: includes/Elementor/Single_Doc/Single_Doc.php:167
+msgid "3 Column"
+msgstr "3 colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:54
+#: includes/Elementor/Docs/Doc_Widget.php:104
+#: includes/Elementor/Single_Doc/Single_Doc.php:168
+msgid "4 Column"
+msgstr "4 colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:55
+#: includes/Elementor/Docs/Doc_Widget.php:105
+#: includes/Elementor/Single_Doc/Single_Doc.php:169
+msgid "5 Column"
+msgstr "5 Colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:56
+#: includes/Elementor/Docs/Doc_Widget.php:106
+#: includes/Elementor/Single_Doc/Single_Doc.php:170
+msgid "6 Column"
+msgstr "6 Colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:82
+#, fuzzy
+#| msgid "Dropdown Options"
+msgid "Docs :: Options"
+msgstr "Options en liste déroulante"
+
+#: includes/Admin/options/opt_footnotes.php:99
+#, fuzzy
+#| msgid "2 Column"
+msgid "2 Columns"
+msgstr "2 colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:100
+#, fuzzy
+#| msgid "3 Column"
+msgid "3 Columns"
+msgstr "3 colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:101
+#, fuzzy
+#| msgid "4 Column"
+msgid "4 Columns"
+msgstr "4 colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:102
+#, fuzzy
+#| msgid "5 Column"
+msgid "5 Columns"
+msgstr "5 Colonnes"
+
+#: includes/Admin/options/opt_footnotes.php:103
+#, fuzzy
+#| msgid "6 Column"
+msgid "6 Columns"
+msgstr "6 Colonnes"
+
+#: includes/Admin/options/opt_restricted_docs.php:8
+msgid "Restricted Docs"
+msgstr "Documents restreints"
+
+#: includes/Admin/options/opt_restricted_docs.php:16
+#: includes/Admin/options/opt_restricted_docs.php:22
+#: includes/Admin/template/parent-docs.php:37
+#: includes/Elementor/Docs/docs-1.php:59 templates/shortcode.php:44
+msgid "Private Doc"
+msgstr "Doc privé"
+
+#: includes/Admin/options/opt_restricted_docs.php:27
+msgid "Visibility Mode"
+msgstr "Mode de visibilité"
+
+#: includes/Admin/options/opt_restricted_docs.php:28
+msgid ""
+"Select what to show when a logged out user try to visit a private doc URL."
+msgstr ""
+
+#: includes/Admin/options/opt_restricted_docs.php:31
+msgid "404 Error"
+msgstr ""
+
+#: includes/Admin/options/opt_restricted_docs.php:40
+msgid "Select Page"
+msgstr "Sélection de la page"
+
+#: includes/Admin/options/opt_restricted_docs.php:41
+msgid "Select Doc login page"
+msgstr "Sélectionnez la page de connexion Doc"
+
+#: includes/Admin/options/opt_restricted_docs.php:42
+msgid ""
+"If you want to change this page, use this shortcode [ezd_login_form] to "
+"display the login form on your desired page."
+msgstr ""
+"Si vous souhaitez modifier cette page, utilisez ce shortcode "
+"[ezd_login_form] pour afficher le formulaire de connexion sur la page "
+"souhaitée."
+
+#: includes/Admin/options/opt_restricted_docs.php:58
+#, fuzzy
+#| msgid "Restricted Docs"
+msgid "Restrict Access to"
+msgstr "Documents restreints"
+
+#: includes/Admin/options/opt_restricted_docs.php:59
+msgid "Select who can view your private docs."
+msgstr ""
+
+#: includes/Admin/options/opt_restricted_docs.php:67
+msgid "All logged in users"
+msgstr ""
+
+#: includes/Admin/options/opt_restricted_docs.php:74
+msgid "User Roles"
+msgstr ""
+
+#: includes/Admin/options/opt_restricted_docs.php:75
+msgid "Only selected User Roles will be able to view your Knowledge Base"
+msgstr ""
+
+#: includes/Admin/options/opt_restricted_docs.php:101
+#: includes/Admin/options/opt_restricted_docs.php:107
+msgid "Protected Doc"
+msgstr "Doc protégé"
+
+#: includes/Admin/options/opt_restricted_docs.php:112
+msgid "Password Form"
+msgstr "Formulaire de mot de passe"
+
+#: includes/Admin/options/opt_restricted_docs.php:114
+msgid "EazyDocs Form"
+msgstr "Formulaire EazyDocs"
+
+#: includes/Admin/options/opt_restricted_docs.php:122
+#: includes/Elementor/Search/Search_Widget.php:46
+#: includes/Elementor/Search/style-control.php:8
+msgid "Form"
+msgstr "Formulaire"
+
+#: includes/Admin/options/opt_restricted_docs.php:130
+msgid "Header Color"
+msgstr "Couleur de l'en-tête"
+
+#: includes/Admin/options/opt_restricted_docs.php:148
+msgid "Title Color"
+msgstr "Couleur du titre"
+
+#: includes/Admin/options/opt_restricted_docs.php:158
+msgid "Sub Title"
+msgstr "Sous-titre"
+
+#: includes/Admin/options/opt_restricted_docs.php:166
+msgid "Sub Title Color"
+msgstr "Couleur du sous-titre"
+
+#: includes/Admin/options/opt_restricted_docs.php:184
+msgid "Button Text Color"
+msgstr "Couleur du texte du bouton"
+
+#: includes/Admin/options/opt_restricted_docs.php:194
+msgid "Button Background Color"
+msgstr "Couleur d’arrière plan du bouton"
+
+#: includes/Admin/options/settings-options.php:28
+#, fuzzy
+msgid "Settings"
+msgstr "Paramètres"
+
+#: includes/Admin/options/taxonomy-options.php:24
+#, fuzzy
+#| msgid "Text Color"
+msgid "Badge Text Color"
+msgstr "Couleur du texte"
+
+#: includes/Admin/options/taxonomy-options.php:30
+#, fuzzy
+#| msgid "Background Color"
+msgid "Badge Background Color"
+msgstr "Couleur d’arrière-plan"
 
 #: includes/Admin/template/child-docs.php:19
 msgid "All articles"
@@ -1955,76 +2333,76 @@ msgstr "Protégé"
 msgid "Draft"
 msgstr "Brouillon"
 
-#: includes/Admin/template/child-docs.php:95
-#: includes/Admin/template/child-docs.php:236
-#: includes/Admin/template/child-docs.php:365
+#: includes/Admin/template/child-docs.php:99
+#: includes/Admin/template/child-docs.php:258
+#: includes/Admin/template/child-docs.php:406
 msgid "Hold the mouse and drag to move this doc."
 msgstr ""
 "Maintenez la souris enfoncée et faites-la glisser pour déplacer ce document."
 
-#: includes/Admin/template/child-docs.php:133
-#: includes/Admin/template/child-docs.php:272
-#: includes/Admin/template/child-docs.php:398
-#: includes/Admin/template/parent-docs.php:109
+#: includes/Admin/template/child-docs.php:145
+#: includes/Admin/template/child-docs.php:299
+#: includes/Admin/template/child-docs.php:445
+#: includes/Admin/template/parent-docs.php:116
 msgid "Duplicate this doc with the child docs."
 msgstr "Dupliquez ce document avec les documents enfants."
 
-#: includes/Admin/template/child-docs.php:142
-#: includes/Admin/template/child-docs.php:281
+#: includes/Admin/template/child-docs.php:154
+#: includes/Admin/template/child-docs.php:308
 msgid "Add new doc under this doc"
 msgstr "Ajouter un nouveau document sous ce document"
 
-#: includes/Admin/template/child-docs.php:160
-#: includes/Admin/template/child-docs.php:297
-#: includes/Admin/template/child-docs.php:408
-#: includes/Admin/template/parent-docs.php:76
+#: includes/Admin/template/child-docs.php:174
+#: includes/Admin/template/child-docs.php:328
+#: includes/Admin/template/child-docs.php:456
+#: includes/Admin/template/parent-docs.php:78
 msgid "View this doc item in new tab"
 msgstr "Afficher cet élément de document dans un nouvel onglet"
 
-#: includes/Admin/template/child-docs.php:168
-#: includes/Admin/template/child-docs.php:303
-#: includes/Admin/template/child-docs.php:414
-#: includes/Admin/template/parent-docs.php:80
+#: includes/Admin/template/child-docs.php:183
+#: includes/Admin/template/child-docs.php:337
+#: includes/Admin/template/child-docs.php:464
+#: includes/Admin/template/parent-docs.php:85
 msgid "Move to Trash"
 msgstr "Mettre à la corbeille"
 
-#: includes/Admin/template/child-docs.php:182
-#: includes/Admin/template/child-docs.php:316
-#: includes/Admin/template/child-docs.php:427
+#: includes/Admin/template/child-docs.php:200
+#: includes/Admin/template/child-docs.php:353
+#: includes/Admin/template/child-docs.php:479
 #, php-format
 msgid "%d Positive vote, "
 msgid_plural "%d Positive votes and "
 msgstr[0] "%d vote positif, "
 msgstr[1] "%d Votes positifs et "
 
-#: includes/Admin/template/child-docs.php:182
-#: includes/Admin/template/child-docs.php:316
-#: includes/Admin/template/child-docs.php:427
+#: includes/Admin/template/child-docs.php:200
+#: includes/Admin/template/child-docs.php:353
+#: includes/Admin/template/child-docs.php:479
 msgid "No Positive votes, "
 msgstr "Pas de votes positifs, "
 
-#: includes/Admin/template/child-docs.php:183
-#: includes/Admin/template/child-docs.php:317
-#: includes/Admin/template/child-docs.php:428
+#: includes/Admin/template/child-docs.php:201
+#: includes/Admin/template/child-docs.php:354
+#: includes/Admin/template/child-docs.php:480
 #, php-format
 msgid "%d Negative vote found."
 msgid_plural "%d Negative votes found."
 msgstr[0] "%d Vote négatif trouvé."
 msgstr[1] "%d Votes négatifs trouvés."
 
-#: includes/Admin/template/child-docs.php:183
-#: includes/Admin/template/child-docs.php:317
-#: includes/Admin/template/child-docs.php:428
+#: includes/Admin/template/child-docs.php:201
+#: includes/Admin/template/child-docs.php:354
+#: includes/Admin/template/child-docs.php:480
 msgid "No Negative votes."
 msgstr "Pas de votes négatifs."
 
-#: includes/Admin/template/child-docs.php:190
-#: includes/Admin/template/child-docs.php:324
-#: includes/Admin/template/child-docs.php:435
+#: includes/Admin/template/child-docs.php:208
+#: includes/Admin/template/child-docs.php:361
+#: includes/Admin/template/child-docs.php:487
 msgid "No rates"
 msgstr "Dates"
 
-#: includes/Admin/template/child-docs.php:458
+#: includes/Admin/template/child-docs.php:514
 msgid "Add Section"
 msgstr "Ajouter une section"
 
@@ -2032,39 +2410,39 @@ msgstr "Ajouter une section"
 msgid "Documentations"
 msgstr "Documentations"
 
-#: includes/Admin/template/header.php:20
+#: includes/Admin/template/header.php:27
 msgid "Search for"
 msgstr "Rechercher"
 
-#: includes/Admin/template/header.php:29
+#: includes/Admin/template/header.php:43
 msgid "Go to Classic UI"
 msgstr "Accéder à l’interface utilisateur classique"
 
-#: includes/Admin/template/header.php:30
+#: includes/Admin/template/header.php:44
 msgid "Classic UI"
 msgstr "Interface utilisateur classique"
 
-#: includes/Admin/template/header.php:35
+#: includes/Admin/template/header.php:61
 msgid "Central settings page"
 msgstr "Page Paramètres centraux"
 
-#: includes/Admin/template/header.php:37
+#: includes/Admin/template/header.php:63
 msgid "Settings Icon"
 msgstr "Icône Paramètres"
 
-#: includes/Admin/template/header.php:44
+#: includes/Admin/template/header.php:71
 msgid "View, manage, restore the trashed docs"
 msgstr "Afficher, gérer, restaurer les documents mis à la corbeille"
 
-#: includes/Admin/template/header.php:58
+#: includes/Admin/template/header.php:89
 msgid "Notifications"
 msgstr "Notifications"
 
-#: includes/Admin/template/header.php:60
+#: includes/Admin/template/header.php:91
 msgid "Notify Icon"
 msgstr "Icône de notification"
 
-#: includes/Admin/template/header.php:61
+#: includes/Admin/template/header.php:92
 msgid "Pro Icon"
 msgstr "Icône Pro"
 
@@ -2080,29 +2458,501 @@ msgstr "Ébauche de document"
 msgid "Password Protected Doc"
 msgstr "Document protégé par mot de passe"
 
-#: includes/Admin/template/parent-docs.php:69
+#: includes/Admin/template/parent-docs.php:71
 msgid "Edit this doc"
 msgstr "Modifier ce document"
 
-#: includes/Admin/template/parent-docs.php:111
+#: includes/Admin/template/parent-docs.php:118
 msgid "Duplicate"
 msgstr "Dupliquer"
 
-#: includes/Admin/template/parent-docs.php:113
+#: includes/Admin/template/parent-docs.php:120
 msgid "Docs visibility"
 msgstr "Visibilité de Docs"
 
-#: includes/Admin/template/parent-docs.php:115
+#: includes/Admin/template/parent-docs.php:122
 msgid "Visibility"
 msgstr "Visibilité"
 
-#: includes/Admin/template/parent-docs.php:117
+#: includes/Admin/template/parent-docs.php:124
 msgid "Docs sidebar"
 msgstr "Barre latérale Docs"
 
-#: includes/Admin/template/parent-docs.php:119
+#: includes/Admin/template/parent-docs.php:126
 msgid "Sidebar"
 msgstr "Barre latérale"
+
+#: includes/Elementor/Docs/Doc_Widget.php:26
+msgid "EazyDocs Multi Docs"
+msgstr "EazyDocs Multi Docs"
+
+#: includes/Elementor/Docs/Doc_Widget.php:72
+#: includes/Elementor/Single_Doc/Single_Doc.php:62
+msgid "Preset Skin"
+msgstr "Enveloppe prédéfinie"
+
+#: includes/Elementor/Docs/Doc_Widget.php:78
+#: includes/Elementor/Single_Doc/Single_Doc.php:68
+msgid "Skins"
+msgstr "Habillage graphique"
+
+#: includes/Elementor/Docs/Doc_Widget.php:91
+msgid "Filter Options"
+msgstr "Recherche avancée"
+
+#: includes/Elementor/Docs/Doc_Widget.php:97
+#: includes/Elementor/Single_Doc/Single_Doc.php:161
+msgid "Column"
+msgstr "Colonne"
+
+#: includes/Elementor/Docs/Doc_Widget.php:98
+#: includes/Elementor/Single_Doc/Single_Doc.php:162
+msgid "Number of column to show"
+msgstr "Nombre de colonnes à afficher"
+
+#: includes/Elementor/Docs/Doc_Widget.php:117
+msgid "Tab Alignment"
+msgstr "Alignement des onglets"
+
+#: includes/Elementor/Docs/Doc_Widget.php:121
+#: includes/Elementor/Search/Search_Widget.php:115
+#: includes/Elementor/Search/Search_Widget.php:166
+msgid "Left"
+msgstr "Gauche"
+
+#: includes/Elementor/Docs/Doc_Widget.php:125
+msgid "center"
+msgstr "centre"
+
+#: includes/Elementor/Docs/Doc_Widget.php:129
+#: includes/Elementor/Search/Search_Widget.php:119
+#: includes/Elementor/Search/Search_Widget.php:174
+msgid "Right"
+msgstr "Droite"
+
+#: includes/Elementor/Docs/Doc_Widget.php:135
+msgid ""
+"Choose whether you want to position the tab buttons left, right or center "
+"from here."
+msgstr ""
+"Choisissez si vous souhaitez positionner les boutons d’onglet à gauche, à "
+"droite ou au centre à partir d’ici."
+
+#: includes/Elementor/Docs/Doc_Widget.php:150
+msgid "ID Format"
+msgstr "Format d’identification"
+
+#: includes/Elementor/Docs/Doc_Widget.php:156
+msgid "If the slug ID does not work then you should pick the number ID."
+msgstr "Si l’ID du slug ne fonctionne pas, vous devez choisir l’ID du numéro."
+
+#: includes/Elementor/Docs/Doc_Widget.php:166
+msgid "Exclude Docs"
+msgstr "Exclure des documents"
+
+#: includes/Elementor/Docs/Doc_Widget.php:175
+msgid "Show Section Count"
+msgstr "Afficher le nombre de sections"
+
+#: includes/Elementor/Docs/Doc_Widget.php:176
+msgid ""
+"The number of sections to show under every documentation tab. Leave empty or "
+"give value -1 to show all sections."
+msgstr ""
+"Nombre de sections à afficher sous chaque onglet de documentation. Laissez "
+"vide ou donnez la valeur -1 pour afficher toutes les sections."
+
+#: includes/Elementor/Docs/Doc_Widget.php:187
+msgid "Active Doc"
+msgstr "Doc actif"
+
+#: includes/Elementor/Docs/Doc_Widget.php:188
+msgid "Select the active Doc tab by default."
+msgstr "Sélectionnez l’onglet Doc actif par défaut."
+
+#: includes/Elementor/Docs/Doc_Widget.php:199
+msgid "Show Doc Item"
+msgstr "Afficher l’élément Doc"
+
+#: includes/Elementor/Docs/Doc_Widget.php:200
+msgid ""
+"The number of doc items to under every doc sections. Leave empty or give "
+"value -1 to show all sections."
+msgstr ""
+"Nombre d’éléments de document sous chaque section de document. Laissez vide "
+"ou donnez la valeur -1 pour afficher toutes les sections."
+
+#: includes/Elementor/Docs/Doc_Widget.php:212
+msgid "Main Doc Excerpt"
+msgstr "Extrait principal du document"
+
+#: includes/Elementor/Docs/Doc_Widget.php:213
+msgid ""
+"Excerpt word limit of main documentation. If the excerpt got empty, this "
+"will get from the post content."
+msgstr ""
+"Extrait limite de mots de la documentation principale. Si l’extrait est "
+"vide, cela proviendra du contenu de la publication."
+
+#: includes/Elementor/Docs/Doc_Widget.php:224
+msgid "Doc Section Excerpt"
+msgstr "Extrait de la section Doc"
+
+#: includes/Elementor/Docs/Doc_Widget.php:225
+#: includes/Elementor/Single_Doc/Single_Doc.php:205
+msgid ""
+"Excerpt word limit of the documentation sections. If the excerpt got empty, "
+"this will get from the post content."
+msgstr ""
+"Extrait limite de mots des sections de documentation. Si l’extrait est vide, "
+"cela proviendra du contenu de la publication."
+
+#: includes/Elementor/Docs/Doc_Widget.php:236 src/shortcode/edit.js:53
+msgid "Masonry"
+msgstr "Masonry"
+
+#: includes/Elementor/Docs/Doc_Widget.php:244
+#: includes/Elementor/Single_Doc/Single_Doc.php:229
+msgid "Order"
+msgstr "Commande"
+
+#: includes/Elementor/Docs/Doc_Widget.php:259
+msgid "Custom Order"
+msgstr "Ordre personnalisé"
+
+#: includes/Elementor/Docs/Doc_Widget.php:260
+msgid "Order the Doc tabs as you want."
+msgstr "Commandez les onglets Doc comme vous le souhaitez."
+
+#: includes/Elementor/Docs/Doc_Widget.php:273
+#, fuzzy
+#| msgid "Contributors"
+msgid "Show Contributors"
+msgstr "Contributeurs"
+
+#: includes/Elementor/Docs/Doc_Widget.php:274
+#, fuzzy
+#| msgid "Number of section to show"
+msgid "The number of contributors to show."
+msgstr "Numéro de section à afficher"
+
+#: includes/Elementor/Docs/Doc_Widget.php:289
+#: includes/Elementor/Single_Doc/Single_Doc.php:146
+#: includes/Elementor/Single_Doc/Single_Doc.php:152
+msgid "Doc"
+msgstr "Document"
+
+#: includes/Elementor/Docs/Doc_Widget.php:297
+msgid "Tabs Items"
+msgstr "Éléments des onglets"
+
+#: includes/Elementor/Docs/Doc_Widget.php:312
+msgid "Labels"
+msgstr "Étiquettes"
+
+#: includes/Elementor/Docs/Doc_Widget.php:318
+msgid "Tab Title First Word"
+msgstr "Titre de l’onglet Premier mot"
+
+#: includes/Elementor/Docs/Doc_Widget.php:319
+msgid "Show the first word of the doc in Tab Title."
+msgstr "Affichez le premier mot du document dans Titre de l’onglet."
+
+#: includes/Elementor/Docs/Doc_Widget.php:330
+msgid "Read More Text"
+msgstr "Texte “Lire la suite”"
+
+#: includes/Elementor/Docs/Doc_Widget.php:342
+msgid "Book Chapters / Tutorials Prefix"
+msgstr "Préfixe des chapitres de livres / tutoriels"
+
+#: includes/Elementor/Docs/Doc_Widget.php:368
+msgid "Tab Title"
+msgstr "Titre de l'onglet"
+
+#: includes/Elementor/Docs/Doc_Widget.php:410
+#: includes/Elementor/Docs/Doc_Widget.php:752
+#: includes/Elementor/Search/style-control.php:221
+msgid "Normal"
+msgstr "Normal"
+
+#: includes/Elementor/Docs/Doc_Widget.php:416
+#: includes/Elementor/Docs/Doc_Widget.php:464
+#: includes/Elementor/Docs/Doc_Widget.php:540
+#: includes/Elementor/Docs/Doc_Widget.php:576
+#: includes/Elementor/Docs/Doc_Widget.php:606
+#: includes/Elementor/Docs/Doc_Widget.php:655
+#: includes/Elementor/Docs/Doc_Widget.php:710
+#: includes/Elementor/Docs/Doc_Widget.php:758
+#: includes/Elementor/Docs/Doc_Widget.php:789
+#: includes/Elementor/Search/style-control.php:66
+#: includes/Elementor/Single_Doc/Single_Doc.php:388
+#: includes/Elementor/Single_Doc/Single_Doc.php:426
+msgid "Text Color"
+msgstr "Couleur du texte"
+
+#: includes/Elementor/Docs/Doc_Widget.php:427
+#: includes/Elementor/Docs/Doc_Widget.php:475
+#: includes/Elementor/Docs/Doc_Widget.php:799
+msgid "Border Color"
+msgstr "Couleur de la bordure"
+
+#: includes/Elementor/Docs/Doc_Widget.php:458
+msgid "Active"
+msgstr "Actif"
+
+#: includes/Elementor/Docs/Doc_Widget.php:510
+msgid "Contents"
+msgstr "Contenus"
+
+#: includes/Elementor/Docs/Doc_Widget.php:518
+msgid "Item Parent Title"
+msgstr "Titre parent de l’élément"
+
+#: includes/Elementor/Docs/Doc_Widget.php:555
+#, fuzzy
+#| msgid "Item Parent Title"
+msgid "Item Parent Description"
+msgstr "Titre parent de l’élément"
+
+#: includes/Elementor/Docs/Doc_Widget.php:590
+msgid "Item Title"
+msgstr "Titre de l'élément"
+
+#: includes/Elementor/Docs/Doc_Widget.php:617
+#: includes/Elementor/Docs/Doc_Widget.php:671
+msgid "Text Hover Color"
+msgstr "Couleur du texte au survol"
+
+#: includes/Elementor/Docs/Doc_Widget.php:630
+msgid "Item Title List"
+msgstr "Liste des titres d’objet"
+
+#: includes/Elementor/Docs/Doc_Widget.php:689
+msgid "Item Contents"
+msgstr "Contenu de l’article"
+
+#: includes/Elementor/Docs/Doc_Widget.php:783
+#: includes/Elementor/Search/style-control.php:252
+msgid "Hover"
+msgstr "Survol"
+
+#: includes/Elementor/Docs/docs-1.php:4
+#: includes/Elementor/Single_Doc/single-doc-1.php:24
+#: includes/Frontend/Shortcode.php:113 templates/shortcode.php:3
+msgid "Topics"
+msgstr "Sujets"
+
+#: includes/Elementor/Docs/docs-1.php:80
+msgid " Topics"
+msgstr " Sujets"
+
+#: includes/Elementor/Docs/docs-6.php:98
+msgid " and "
+msgstr ""
+
+#: includes/Elementor/Docs/docs-6.php:103
+msgid "Article in this Docs."
+msgstr "Article dans ce Docs."
+
+#: includes/Elementor/Docs/docs-6.php:105
+msgid "Written by "
+msgstr "Écrit par "
+
+#: includes/Elementor/Search/Search_Widget.php:20
+msgid "EazyDocs Search"
+msgstr "Recherche EazyDocs"
+
+#: includes/Elementor/Search/Search_Widget.php:53
+msgid "Placeholder"
+msgstr "Etiquette"
+
+#: includes/Elementor/Search/Search_Widget.php:63
+#, fuzzy
+#| msgid "Column Width"
+msgid "Form Width"
+msgstr "Largeur colonne"
+
+#: includes/Elementor/Search/Search_Widget.php:98
+msgid "Submit Button Icon"
+msgstr "Icône de bouton Soumettre"
+
+#: includes/Elementor/Search/Search_Widget.php:111
+#, fuzzy
+#| msgid "Position"
+msgid "Button Position"
+msgstr "Position"
+
+#: includes/Elementor/Search/Search_Widget.php:162
+msgid "Alignment"
+msgstr "Alignement"
+
+#: includes/Elementor/Search/Search_Widget.php:170
+msgid "Center"
+msgstr "Centre"
+
+#: includes/Elementor/Search/ajax-sarch-results.php:1
+#: src/search-banner/search-banner.php:34 templates/search-banner.php:34
+msgid "No Results Found"
+msgstr "Aucun résultat trouvé"
+
+#: includes/Elementor/Search/style-control.php:37
+msgid "Focus Background Color"
+msgstr "Couleur d’arrière-plan du champ en surbrillance"
+
+#: includes/Elementor/Search/style-control.php:47
+msgid "Placeholder Color"
+msgstr "Couleur du texte d’exemple"
+
+#: includes/Elementor/Search/style-control.php:59
+#: includes/Elementor/Search/style-control.php:283
+msgid "Typography"
+msgstr "Typographie"
+
+#: includes/Elementor/Search/style-control.php:78
+#: includes/Elementor/Single_Doc/Single_Doc.php:353
+msgid "Border"
+msgstr "Bordure"
+
+#: includes/Elementor/Search/style-control.php:94
+#: includes/Elementor/Search/style-control.php:116
+#: includes/Elementor/Search/style-control.php:302
+msgid "Border Radius"
+msgstr "Rayon de la bordure"
+
+#: includes/Elementor/Search/style-control.php:127
+#, fuzzy
+#| msgid "Page Width"
+msgid "Width"
+msgstr "Largeur de page"
+
+#: includes/Elementor/Search/style-control.php:150
+msgid "Icon/Label Color"
+msgstr "Couleur de l’icône/de l’étiquette"
+
+#: includes/Elementor/Search/style-control.php:183
+msgid "Margin"
+msgstr "Marge"
+
+#: includes/Elementor/Search/style-control.php:184
+msgid "Margin around the keywords block"
+msgstr "Marge autour du bloc de mots-clés"
+
+#: includes/Elementor/Search/style-control.php:209
+msgid "Label Typography"
+msgstr "Typographie des libellés"
+
+#: includes/Elementor/Search/style-control.php:227
+#: includes/Elementor/Search/style-control.php:258
+msgid "Keyword Color"
+msgstr "Couleur du mot-clé"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:30
+msgid "EazyDocs Single Doc"
+msgstr "EazyDocs Single Doc"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:72
+msgid "Light"
+msgstr "Clair"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:76
+#: includes/Elementor/Single_Doc/Single_Doc.php:80
+#: includes/Elementor/Single_Doc/Single_Doc.php:84
+#: includes/Elementor/Single_Doc/Single_Doc.php:88
+msgid "pro-label"
+msgstr "Pro-label"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:114
+msgid "Title Text"
+msgstr "Texte du titre"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:123
+msgid "Title Tag"
+msgstr "Balise titre"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:134
+msgid "Subtitle Text"
+msgstr "Texte du sous-titre"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:181
+#: includes/Elementor/Single_Doc/Single_Doc.php:191
+msgid "Sections"
+msgstr "Sections"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:182
+#: includes/Elementor/Single_Doc/Single_Doc.php:192
+msgid "Number of section to show"
+msgstr "Numéro de section à afficher"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:219
+msgid "Number of articles to show under every sections"
+msgstr "Nombre d’articles à afficher sous chaque section"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:245
+msgid "Buttons"
+msgstr "Boutons"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:254
+msgid "Read More Button"
+msgstr "Bouton Lire la suite"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:263
+msgid "Section Button"
+msgstr "Bouton de section"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:288
+msgid "Button URL"
+msgstr "URL du bouton"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:300
+msgid "Show More Button"
+msgstr "Afficher Bouton - En savoir plus"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:312
+msgid "Show Less Text"
+msgstr "Afficher moins de texte"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:331
+msgid "Box"
+msgstr "Boîte"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:416
+msgid "Subtitle"
+msgstr "Sous-titre"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:457
+#: includes/Elementor/Single_Doc/Single_Doc.php:498
+msgid "Content"
+msgstr "Contenu"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:536
+#: includes/Elementor/Single_Doc/Single_Doc.php:546
+msgid "Background Objects"
+msgstr "Objets d’arrière-plan"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:555
+msgid "Shape"
+msgstr "Forme"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:556
+msgid "The background shape should be transparent png or svg image."
+msgstr "La forme d’arrière-plan doit être une image png ou svg transparente."
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:569
+msgid "Round Objects 01"
+msgstr "Objets ronds 01"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:579
+msgid "Round 01 Color"
+msgstr "Couleur ronde 01"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:593
+msgid "Round Objects 02"
+msgstr "Objets ronds 02"
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:603
+msgid "Round 02 Color"
+msgstr "Couleur Round 02"
 
 #: includes/Frontend/Ajax.php:36
 msgid "Sorry, you've already recorded your feedback!"
@@ -2112,15 +2962,15 @@ msgstr "Désolé, vous avez déjà enregistré vos commentaires!"
 msgid "Thanks for your feedback!"
 msgstr "Merci pour votre retour !"
 
-#: includes/Frontend/Ajax.php:156
+#: includes/Frontend/Ajax.php:229
 msgid "No result found!"
 msgstr "Aucun résultat trouvé !"
 
-#: includes/Frontend/Frontend.php:278
+#: includes/Frontend/Frontend.php:349
 msgid " - Previous"
 msgstr " -Précédent"
 
-#: includes/Frontend/Frontend.php:291
+#: includes/Frontend/Frontend.php:358
 msgid "Next - "
 msgstr "Prochain- "
 
@@ -2171,36 +3021,30 @@ msgstr "Doc Permalien: %s"
 msgid "Edit Doc: %s"
 msgstr "Modifier Doc: %s"
 
-#: includes/Frontend/Shortcode.php:49
+#: includes/Frontend/Shortcode.php:111
 msgid "View Details"
 msgstr "Voir les détails"
 
 #. translators: %d: ID of a post
-#: includes/Frontend/Walker_Docs.php:140 includes/Walker_Docs_Onepage.php:122
+#: includes/Frontend/Walker_Docs.php:141 includes/Walker_Docs_Onepage.php:122
 #: includes/Walker_Docs_Onepage_Fullscreen.php:129
 #, php-format
 msgid "#%d (no title)"
 msgstr "#%d (aucun titre)"
 
-#: includes/Frontend/Walker_Docs.php:147 includes/Walker_Docs_Onepage.php:127
+#: includes/Frontend/Walker_Docs.php:148 includes/Walker_Docs_Onepage.php:127
 msgid "Folder icon closed"
 msgstr "Icône de dossier fermée"
 
-#: includes/Frontend/Walker_Docs.php:147
+#: includes/Frontend/Walker_Docs.php:148
 msgid "Folder open icon"
 msgstr "Icône d’ouverture de dossier"
 
-#: includes/Frontend/post-views.php:26
-msgid "views"
+#: includes/Frontend/post-views.php:104
+#, fuzzy
+#| msgid "views"
+msgid " views"
 msgstr "vues"
-
-#: includes/Frontend/post-views.php:72
-msgid ""
-"eazydocs_view_log table not found, please deactivate and activate the plugin "
-"again"
-msgstr ""
-"eazydocs_view_log tableau introuvable, veuillez désactiver et réactiver le "
-"plugin"
 
 #: includes/Frontend/search-counts.php:9
 msgid "search count"
@@ -2224,205 +3068,197 @@ msgstr "OnePage Doc"
 msgid "EazyDocs OnePage"
 msgstr "EazyDocs OnePage"
 
-#: includes/One_page_doc_type.php:38 includes/Post_Types.php:42
+#: includes/One_page_doc_type.php:38 includes/Post_Types.php:59
 msgid "Parent Doc"
 msgstr "Doc Parent"
 
-#: includes/One_page_doc_type.php:39 includes/Post_Types.php:43
-msgid "All Docs"
-msgstr "Tous les documents"
-
-#: includes/One_page_doc_type.php:40 includes/Post_Types.php:44
+#: includes/One_page_doc_type.php:40 includes/Post_Types.php:61
 msgid "View Doc"
 msgstr "Voir le document"
 
-#: includes/One_page_doc_type.php:42 includes/Post_Types.php:46
-msgid "Add New"
-msgstr "Ajouter"
-
-#: includes/One_page_doc_type.php:44 includes/Post_Types.php:48
+#: includes/One_page_doc_type.php:44 includes/Post_Types.php:65
 msgid "Update Doc"
 msgstr "Mettre à jour le document"
 
-#: includes/One_page_doc_type.php:45 includes/Post_Types.php:49
+#: includes/One_page_doc_type.php:45 includes/Post_Types.php:66
 msgid "Search Doc"
 msgstr "Rechercher dans Doc"
 
-#: includes/One_page_doc_type.php:46 includes/Post_Types.php:50
+#: includes/One_page_doc_type.php:46 includes/Post_Types.php:67
 msgid "Not Doc found"
 msgstr "Pas Doc trouvé"
 
-#: includes/One_page_doc_type.php:47 includes/Post_Types.php:51
+#: includes/One_page_doc_type.php:47 includes/Post_Types.php:68
 msgid "Not found in Trash"
 msgstr "Non trouvé dans la corbeille"
 
-#: includes/Post_Types.php:39
+#: includes/Post_Types.php:56
 msgctxt "Post Type General Name"
 msgid "Docs"
 msgstr "Docs"
 
-#: includes/Post_Types.php:40
+#: includes/Post_Types.php:57
 msgctxt "Post Type Singular Name"
 msgid "Doc"
 msgstr "Document"
 
-#: includes/Post_Types.php:89
+#: includes/Post_Types.php:101
 msgctxt "Taxonomy General Name"
 msgid "Tags"
 msgstr "Étiquettes"
 
-#: includes/Post_Types.php:90
+#: includes/Post_Types.php:102
 msgctxt "Taxonomy Singular Name"
 msgid "Tag"
 msgstr "Tag"
 
-#: includes/Post_Types.php:92
+#: includes/Post_Types.php:104
 msgid "All Tags"
 msgstr "Tous les mots-clés"
 
-#: includes/Post_Types.php:93
+#: includes/Post_Types.php:105
 msgid "Parent Tag"
 msgstr "Étiquette parente"
 
-#: includes/Post_Types.php:94
+#: includes/Post_Types.php:106
 msgid "Parent Tag:"
 msgstr "Étiquette parente :"
 
-#: includes/Post_Types.php:95
+#: includes/Post_Types.php:107
 msgid "New Tag"
 msgstr "Nouvelle Étiquette"
 
-#: includes/Post_Types.php:96
+#: includes/Post_Types.php:108
 msgid "Add New Item"
 msgstr "Ajouter un nouvel élément"
 
-#: includes/Post_Types.php:97
+#: includes/Post_Types.php:109
 msgid "Edit Tag"
 msgstr "Modifier le mot-clé"
 
-#: includes/Post_Types.php:98
+#: includes/Post_Types.php:110
 msgid "Update Tag"
 msgstr "Mettre à jour le mot-clé"
 
-#: includes/Post_Types.php:99
+#: includes/Post_Types.php:111
 msgid "View Tag"
 msgstr "Voir l’étiquette"
 
-#: includes/Post_Types.php:100
+#: includes/Post_Types.php:112
 msgid "Separate items with commas"
 msgstr "Séparer les éléments par des virgules"
 
-#: includes/Post_Types.php:101
+#: includes/Post_Types.php:113
 msgid "Add or remove items"
 msgstr "Ajouter ou supprimer des éléments"
 
-#: includes/Post_Types.php:102 includes/Post_Types.php:149
+#: includes/Post_Types.php:114 includes/Post_Types.php:161
 msgid "Choose from the most used"
 msgstr "Choisir parmi les plus utilisés"
 
-#: includes/Post_Types.php:103
+#: includes/Post_Types.php:115
 msgid "Popular Tags"
 msgstr "Etiquettes populaires"
 
-#: includes/Post_Types.php:104
+#: includes/Post_Types.php:116
 msgid "Search Tags"
 msgstr "Rechercher des étiquettes"
 
-#: includes/Post_Types.php:105 includes/Post_Types.php:152
+#: includes/Post_Types.php:117 includes/Post_Types.php:164
 msgid "Not Found"
 msgstr "Non trouvé"
 
-#: includes/Post_Types.php:106
+#: includes/Post_Types.php:118
 msgid "No items"
 msgstr "Aucun élément"
 
-#: includes/Post_Types.php:107
+#: includes/Post_Types.php:119
 msgid "Tags list"
 msgstr "Liste des tags"
 
-#: includes/Post_Types.php:108
+#: includes/Post_Types.php:120
 msgid "Tags list navigation"
 msgstr "Navigation de la liste des tags"
 
-#: includes/Post_Types.php:136
+#: includes/Post_Types.php:148
 msgctxt "Taxonomy General Name"
 msgid "Badge"
 msgstr "Badge"
 
-#: includes/Post_Types.php:137
+#: includes/Post_Types.php:149
 msgctxt "Taxonomy Singular Name"
 msgid "Badge"
 msgstr "Badge"
 
-#: includes/Post_Types.php:138
+#: includes/Post_Types.php:150
 msgid "Badge"
 msgstr "Badge"
 
-#: includes/Post_Types.php:139
+#: includes/Post_Types.php:151
 msgid "All Badges"
 msgstr "Tout les Badges"
 
-#: includes/Post_Types.php:140
+#: includes/Post_Types.php:152
 msgid "Parent Badge"
 msgstr "Parent Badge"
 
-#: includes/Post_Types.php:141
+#: includes/Post_Types.php:153
 msgid "Parent Badge:"
 msgstr "Badge parent :"
 
-#: includes/Post_Types.php:142
+#: includes/Post_Types.php:154
 msgid "New Badge"
 msgstr "Nouveau Badge"
 
-#: includes/Post_Types.php:143
+#: includes/Post_Types.php:155
 msgid "Add New Badge"
 msgstr "Ajouter nouveau Badge"
 
-#: includes/Post_Types.php:144
+#: includes/Post_Types.php:156
 msgid "Edit Badge"
 msgstr "Modifier le badge"
 
-#: includes/Post_Types.php:145
+#: includes/Post_Types.php:157
 msgid "Update Badge"
 msgstr "MAJ Badges"
 
-#: includes/Post_Types.php:146
+#: includes/Post_Types.php:158
 msgid "View Badge"
 msgstr "Voir le badge"
 
-#: includes/Post_Types.php:147
+#: includes/Post_Types.php:159
 msgid "Separate Badges with commas"
 msgstr "Badges séparés par des virgules"
 
-#: includes/Post_Types.php:148
+#: includes/Post_Types.php:160
 msgid "Add or remove Badges"
 msgstr "Ajouter ou supprimer des badges"
 
-#: includes/Post_Types.php:150
+#: includes/Post_Types.php:162
 msgid "Popular Badges"
 msgstr "Badges populaires"
 
-#: includes/Post_Types.php:151
+#: includes/Post_Types.php:163
 msgid "Search Badges"
 msgstr "Chercher Badges"
 
-#: includes/Post_Types.php:153
+#: includes/Post_Types.php:165
 msgid "No Badges"
 msgstr "Pas de badges"
 
-#: includes/Post_Types.php:154
+#: includes/Post_Types.php:166
 msgid "Badges list"
 msgstr "Liste des badges"
 
-#: includes/Post_Types.php:155
+#: includes/Post_Types.php:167
 msgid "Badges list navigation"
 msgstr "Navigation dans la liste des badges"
 
-#: includes/Post_Types.php:156
+#: includes/Post_Types.php:168
 msgid "Back to Badges"
 msgstr "Retour aux badges"
 
-#: includes/Post_Types.php:157
+#: includes/Post_Types.php:169
 msgid "Badge updated"
 msgstr "Badge mis à jour"
 
@@ -2430,33 +3266,23 @@ msgstr "Badge mis à jour"
 msgid "Folder icon"
 msgstr "Icône de dossier"
 
-#: includes/Walker_Docs_Onepage.php:251
-#: includes/Walker_Docs_Onepage_Fullscreen.php:242 includes/functions.php:163
-msgid "Pages"
-msgstr "Pages"
-
-#: includes/functions.php:143
+#: includes/functions.php:212
 msgid " minute"
 msgstr " minute"
 
-#: includes/functions.php:145
+#: includes/functions.php:214
 msgid " minutes"
 msgstr " minutes"
 
-#: includes/functions.php:295 includes/functions.php:359
-#: includes/functions.php:425
-msgid "Docs"
-msgstr "Docs"
-
-#: includes/functions.php:625
+#: includes/functions.php:689
 msgid "Make OnePage Doc"
 msgstr "Créer un document OnePage"
 
-#: includes/functions.php:633
+#: includes/functions.php:696
 msgid "View OnePage Doc"
 msgstr "Afficher le document OnePage"
 
-#: includes/functions.php:798
+#: includes/functions.php:861
 #, php-format
 msgid ""
 "<p class=\"ezd-text-support\"> <a href=\"%s\" target=\"_blank\">Manage "
@@ -2465,11 +3291,11 @@ msgstr ""
 "<p class=\"ezd-text-support\"><a href=\"%s\" target=\"_blank\">Gérer les "
 "blocs réutilisables</a></p>"
 
-#: includes/functions.php:876
+#: includes/functions.php:963
 msgid "Enter Password & Read this Doc"
 msgstr "Entrez le mot de passe et lisez ce document"
 
-#: includes/functions.php:877
+#: includes/functions.php:964
 msgid ""
 "This content is password protected. To view it please enter your password "
 "below:"
@@ -2477,79 +3303,114 @@ msgstr ""
 "Cet article est protégé par un mot de passe. \n"
 "Pour le lire, veuillez saisir votre mot de passe ci-dessous&nbsp;:"
 
-#: includes/functions.php:904 templates/ezd-login.php:38
+#: includes/functions.php:990 templates/ezd-login.php:37
 msgid "Password"
 msgstr "Mot de passe"
 
-#: includes/functions.php:915
+#: includes/functions.php:997
 msgid "Unlock"
 msgstr "Déverrouiller"
 
-#: includes/functions.php:1021
+#: includes/functions.php:1172
 msgid "H1"
 msgstr "H1"
 
-#: includes/functions.php:1022
+#: includes/functions.php:1173
 msgid "H2"
 msgstr "H2"
 
-#: includes/functions.php:1023
+#: includes/functions.php:1174
 msgid "H3"
 msgstr "H3"
 
-#: includes/functions.php:1024
+#: includes/functions.php:1175
 msgid "H4"
 msgstr "H4"
 
-#: includes/functions.php:1025
+#: includes/functions.php:1176
 msgid "H5"
 msgstr "H5"
 
-#: includes/functions.php:1026
+#: includes/functions.php:1177
 msgid "H6"
 msgstr "H6"
 
-#: includes/functions.php:1027
+#: includes/functions.php:1178
 msgid "Div"
 msgstr "Div"
 
-#: includes/functions.php:1028
+#: includes/functions.php:1179
 msgid "Span"
 msgstr "Span"
 
-#: includes/functions.php:1029
+#: includes/functions.php:1180
 msgid "Paragraph"
 msgstr "Paragraphe"
 
-#: includes/functions.php:1066 includes/functions.php:1093
+#: includes/functions.php:1217 includes/functions.php:1244
 msgid "Docs without tab"
 msgstr "Documents sans onglet"
 
-#: includes/functions.php:1070 includes/functions.php:1097
+#: includes/functions.php:1221 includes/functions.php:1248
 msgid "Tabbed with doc lists"
 msgstr "Onglets avec des listes de documents"
 
-#: includes/functions.php:1074 includes/functions.php:1101
+#: includes/functions.php:1225 includes/functions.php:1252
 msgid "Flat tabbed docs"
 msgstr "Documents à onglets plats"
 
-#: includes/functions.php:1078 includes/functions.php:1105
+#: includes/functions.php:1229 includes/functions.php:1256
 msgid "Boxed Style"
 msgstr "Boxed Style"
 
-#: includes/functions.php:1082 includes/functions.php:1109
+#: includes/functions.php:1233 includes/functions.php:1260
 msgid "Book Chapters / Tutorials"
 msgstr "Chapitres de livres / Tutoriels"
 
-#: includes/functions.php:1086 includes/functions.php:1113
+#: includes/functions.php:1237
+#, fuzzy
+#| msgid "Related Docs"
+msgid "Collaborative Docs"
+msgstr "Documents connexes"
+
+#: includes/functions.php:1264
 msgid "List Style"
 msgstr "Style de liste"
 
-#: includes/notices/asking-for-review.php:14
+#: includes/functions.php:1455
+msgid "You don't have permission to access this document!"
+msgstr ""
+
+#: includes/functions.php:1483
+msgid "You don't have permission to "
+msgstr ""
+
+#: includes/functions.php:1483
+msgid " this post."
+msgstr ""
+
+#: includes/functions.php:1487
+msgid "You don't have sufficient permission to perform this action."
+msgstr ""
+
+#: includes/functions.php:1537
+msgid ""
+"Please avoid using special characters other than hyphens and underscores!"
+msgstr ""
+
+#: includes/functions.php:1690
+msgid "Docs Archive"
+msgstr "Archive de documents"
+
+#: includes/functions.php:1693
+msgid "Single Doc"
+msgstr "Document unique"
+
+#: includes/notices/asking-for-review.php:22
 msgid "Give EazyDocs a review"
 msgstr "Donner un avis à EazyDocs"
 
-#: includes/notices/asking-for-review.php:16
+#: includes/notices/asking-for-review.php:26
 msgid ""
 "Thank you for choosing EazyDocs. We hope you love it. Could you take a "
 "couple of seconds posting a nice review to share your happy experience?"
@@ -2558,31 +3419,40 @@ msgstr ""
 "prendre quelques secondes pour poster une belle critique pour partager votre "
 "expérience heureuse?"
 
-#: includes/notices/asking-for-review.php:19
+#. translators: 1: number of docs created, 2: additional articles text
+#: includes/notices/asking-for-review.php:33
+#, php-format
+msgid ""
+"You have created <b>%1$d</b> docs%2$s with EazyDocs. That's awesome! May we "
+"ask you to give it a 5-Star rating on WordPress? It will help us spread the "
+"word and boost our motivation."
+msgstr ""
+
+#: includes/notices/asking-for-review.php:46
 msgid "We will be forever grateful. Thank you in advance."
 msgstr "Nous vous en serons éternellement reconnaissants. Merci d’avance."
 
-#: includes/notices/asking-for-review.php:22
+#: includes/notices/asking-for-review.php:49
 msgid "Rate now"
 msgstr "Évaluer maintenant"
 
-#: includes/notices/asking-for-review.php:23
+#: includes/notices/asking-for-review.php:50
 msgid "Later"
 msgstr "Plus tard"
 
-#: includes/notices/asking-for-review.php:24
+#: includes/notices/asking-for-review.php:51
 msgid "Already did"
 msgstr "C'est déjà fait"
 
 #: includes/notices/deactivate-other-doc-plugins.php:13
-#: includes/notices/deactivate-other-doc-plugins.php:40
+#: includes/notices/deactivate-other-doc-plugins.php:37
 msgid "We have detected another Knowledge Base Plugin installed in this site."
 msgstr ""
 "Nous avons détecté un autre plugin de base de connaissances installé sur ce "
 "site."
 
-#: includes/notices/deactivate-other-doc-plugins.php:15
-#: includes/notices/deactivate-other-doc-plugins.php:42
+#: includes/notices/deactivate-other-doc-plugins.php:14
+#: includes/notices/deactivate-other-doc-plugins.php:38
 msgid ""
 "For EazyDocs to work efficiently, you need to migrate the data and "
 "deactivate that plugin to avoid conflict."
@@ -2590,27 +3460,20 @@ msgstr ""
 "Pour qu’EazyDocs fonctionne efficacement, vous devez migrer les données et "
 "désactiver ce plugin pour éviter les conflits."
 
-#: includes/notices/deactivate-other-doc-plugins.php:21
+#: includes/notices/deactivate-other-doc-plugins.php:18
 msgid "Deactivate weDocs"
 msgstr "Désactiver weDocs"
 
-#: includes/notices/deactivate-other-doc-plugins.php:48
+#: includes/notices/deactivate-other-doc-plugins.php:42
 msgid "Deactivate BetterDocs"
 msgstr "Désactiver BetterDocs"
 
-#: includes/notices/update-database.php:18
-msgid ""
-"EazyDocs database need an update. Please click Update button to update your "
-"database."
+#: includes/notices/offer.php:22 includes/notices/offer.php:30
+msgctxt "coupon"
+msgid "Coupon"
 msgstr ""
-"La base de données EazyDocs a besoin d’une mise à jour. Cliquez sur le "
-"bouton Mettre à jour pour mettre à jour votre base de données."
 
-#: includes/notices/update-database.php:21
-msgid "Update Database"
-msgstr "Mise à jour de la base de données"
-
-#: includes/notices/update-database.php:82
+#: includes/notices/update-database.php:54
 msgid "EazyDocs database updated successfully."
 msgstr "La base de données EazyDocs a été mise à jour avec succès."
 
@@ -2622,85 +3485,161 @@ msgstr "Doc Barre latérale droite"
 msgid "Add widgets here for the Right Sidebar of the Doc pages"
 msgstr "Ajouter des widgets ici pour la barre latérale droite des pages de doc"
 
-#: src/search-banner/search-banner.php:20 templates/search-banner.php:17
+#: src/eazydocs-toolbar/index.js:81
+#, fuzzy
+#| msgid "Docs Shortcodes"
+msgid "Insert EazyDocs Shortcode"
+msgstr "Codes courts Docs"
+
+#: src/eazydocs-toolbar/index.js:114
+#, fuzzy
+#| msgid "EazyDocs Form"
+msgid "EazyDocs Toolbar"
+msgstr "Formulaire EazyDocs"
+
+#: src/search-banner/search-banner.php:21 templates/search-banner.php:20
 msgid "Search here"
 msgstr "Rechercher"
 
-#: src/shortcode/edit.js:61
+#: src/shortcode/edit.js:48
+msgid "Ascending"
+msgstr "Ascendant"
+
+#: src/shortcode/edit.js:49
+msgid "Descending"
+msgstr "Descendant"
+
+#: src/shortcode/edit.js:54
+msgid "Grid"
+msgstr "Grille"
+
+#: src/shortcode/edit.js:58
+msgid "No Order"
+msgstr "Pas de commande"
+
+#: src/shortcode/edit.js:59
+msgid "Post ID"
+msgstr "ID de l'article"
+
+#: src/shortcode/edit.js:60
+msgid "Post Author"
+msgstr "Auteur de l’article"
+
+#: src/shortcode/edit.js:62
+msgid "Date"
+msgstr "Date"
+
+#: src/shortcode/edit.js:63
+msgid "Last Modified Date"
+msgstr "Date de dernière modification"
+
+#: src/shortcode/edit.js:64
+msgid "Random"
+msgstr "Aléatoire"
+
+#: src/shortcode/edit.js:65
+msgid "Comment Count"
+msgstr "Nombre de commentaires"
+
+#: src/shortcode/edit.js:66
+msgid "Menu Order"
+msgstr "Ordre du menu"
+
+#: src/shortcode/edit.js:93
 msgid "Filters"
 msgstr "Filtres"
 
-#: src/shortcode/edit.js:66
+#: src/shortcode/edit.js:99
 msgid "Columns"
 msgstr "Colonnes"
 
-#: src/shortcode/edit.js:74
-msgid "Docs Show Count"
-msgstr "Docs Afficher le nombre"
-
-#: src/shortcode/edit.js:82
-msgid "How many docs to display."
-msgstr "Combien de documents afficher."
-
-#: src/shortcode/edit.js:86
-msgid "Docs Article Count"
-msgstr "Nombre d’articles Docs"
-
-#: src/shortcode/edit.js:94
-msgid "Articles/child-docs show under every Docs."
-msgstr "Les articles/enfants-docs s’affichent sous chaque Docs."
-
-#: src/shortcode/edit.js:100
-msgid "Docs to Show"
-msgstr "Documents à afficher"
-
-#: src/shortcode/edit.js:109
-msgid "Docs Not to Show"
-msgstr "Documents à ne pas afficher"
-
-#: src/shortcode/edit.js:116
+#: src/shortcode/edit.js:107
 msgid "Button/link to get the full docs"
 msgstr "Bouton/lien pour obtenir la documentation complète"
 
-#: src/shortcode/edit.js:117
-msgid "More Button Label"
-msgstr "Label du bouton En Savoir Plus"
+#: src/shortcode/edit.js:108
+msgid "View More Button"
+msgstr "Voir Plus Bouton"
 
-#: templates/content-feedback.php:10
+#: src/shortcode/edit.js:114
+#, fuzzy
+#| msgid " Topics"
+msgid "Show Topic"
+msgstr " Sujets"
+
+#: src/shortcode/edit.js:121
+msgid "Topics Count Text"
+msgstr "Nombre de sujets Texte"
+
+#: src/shortcode/edit.js:128
+#, fuzzy
+#| msgid "Docs Order By"
+msgid "Parent Docs Order By"
+msgstr "Ordre des docs par"
+
+#: src/shortcode/edit.js:136
+#, fuzzy
+#| msgid "Parent Doc"
+msgid "Parent Docs Order"
+msgstr "Doc Parent"
+
+#: src/shortcode/edit.js:144
+msgid "Child Docs Order"
+msgstr "Commande de docs enfants"
+
+#: src/shortcode/edit.js:151
+msgid "Number of Docs"
+msgstr "Nombre de documents"
+
+#: src/shortcode/edit.js:158
+msgid "Number of Main Docs to show"
+msgstr "Nombre de documents principaux à afficher"
+
+#: src/shortcode/edit.js:162
+msgid "Number of Articles"
+msgstr "Nombre d’articles"
+
+#: src/shortcode/edit.js:169
+msgid "Number of Articles to show under each Docs."
+msgstr "Nombre d’articles à afficher sous chaque document."
+
+#: src/shortcode/edit.js:173
+#, fuzzy
+#| msgid "Docs Layout"
+msgid "Docs Layout "
+msgstr "Mise en page des documents"
+
+#: src/shortcode/edit.js:183
+msgid "Docs to Show"
+msgstr "Documents à afficher"
+
+#: src/shortcode/edit.js:192
+msgid "Docs Not to Show"
+msgstr "Documents à ne pas afficher"
+
+#: templates/content-feedback.php:11
 #, php-format
 msgid "%d person found this useful"
 msgid_plural "%d persons found this useful"
 msgstr[0] "% d personne a trouvé cette utile"
 msgstr[1] "% d personnes ont trouvé cet outil utile"
 
-#: templates/content-feedback.php:10 templates/content-feedback.php:11
+#: templates/content-feedback.php:11 templates/content-feedback.php:12
 msgid "No votes yet"
 msgstr "Pas encore de votes"
 
-#: templates/content-feedback.php:11
+#: templates/content-feedback.php:12
 #, php-format
 msgid "%d person found this not useful"
 msgid_plural "%d persons found this not useful"
 msgstr[0] "% d personne a trouvé cela inutile"
 msgstr[1] "% d personnes trouvées cela n'est pas utile"
 
-#: templates/content-feedback.php:23
+#: templates/content-feedback.php:26
 msgid "Tagged:"
 msgstr "Étiquetté :"
 
-#: templates/content-feedback.php:61
-msgid "Yes"
-msgstr "Oui"
-
-#: templates/content-feedback.php:67
-msgid "No"
-msgstr "Non"
-
-#: templates/content-modal.php:28
-msgid "Name"
-msgstr "Nom"
-
-#: templates/content-modal.php:43
+#: templates/content-modal.php:48
 msgid "Send"
 msgstr "Envoyer"
 
@@ -2708,80 +3647,78 @@ msgstr "Envoyer"
 msgid "Recently Viewed Articles"
 msgstr "Articles récemment consultés"
 
-#: templates/docs-sidebar.php:59
+#: templates/docs-sidebar.php:68
 msgid "Filter"
 msgstr "Filtre"
 
-#: templates/ezd-login.php:37
+#: templates/ezd-login.php:36
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: templates/single-doc-content.php:20
+#: templates/single-doc-content.php:27
 msgid "Hide category"
 msgstr "Cacher cette catégorie."
 
-#: templates/single-doc-content.php:21
+#: templates/single-doc-content.php:28
 msgid "Show category"
 msgstr "Afficher la catégorie"
 
-#: templates/single-doc-content.php:38
+#: templates/single-doc-content.php:59
 msgid "Estimated reading: "
 msgstr "Temps estimé :"
 
-#: templates/single-doc-content.php:91
-msgid "Search By Email"
-msgstr "Recherche par e-mail"
-
-#: templates/single-doc-content.php:186
-msgid "Loading..."
-msgstr "Chargement..."
-
-#: templates/single-doc-content.php:230
+#: templates/single-doc-content.php:127
 msgid "Docs:"
 msgstr "Docs:"
 
-#: templates/single-docs.php:27 templates/single-docs.php:34
+#: templates/single-docs.php:28
 #, php-format
-msgid "%s"
-msgstr "%s"
+msgid "Powered By %s EazyDocs %s"
+msgstr ""
 
-#: templates/tools/edit-add-doc.php:15
-msgid "Edit"
-msgstr "Modifier"
-
-#: templates/tools/font-switcher.php:12
+#: templates/tools/font-switcher.php:13
 msgid "Decrease font size"
 msgstr "Réduire la taille du texte"
 
-#: templates/tools/font-switcher.php:13
+#: templates/tools/font-switcher.php:14
 msgid "A-"
 msgstr "A-"
 
-#: templates/tools/font-switcher.php:15
+#: templates/tools/font-switcher.php:17
 msgid "Default font size"
 msgstr "Taille de police par défaut"
 
-#: templates/tools/font-switcher.php:16
+#: templates/tools/font-switcher.php:18
 msgid "A"
 msgstr "A"
 
-#: templates/tools/font-switcher.php:18
+#: templates/tools/font-switcher.php:21
 msgid "Increase font size"
 msgstr "Augmenter la taille de la police"
 
-#: templates/tools/font-switcher.php:19
+#: templates/tools/font-switcher.php:22
 msgid "A+"
 msgstr "A+"
+
+#: templates/tools/share-btns.php:4
+#, fuzzy
+#| msgid "Copy Link Label"
+msgid "Copy Link"
+msgstr "Copier l’étiquette du lien"
+
+#: templates/tools/share-btns.php:5
+msgid "Copied!"
+msgstr ""
 
 #: templates/tools/share-btns.php:15
 msgid "Share"
 msgstr "Partager"
 
-#: templates/tools/share-btns.php:27
+#: templates/tools/share-btns.php:28
 msgid "Check out this doc"
 msgstr "Consultez ce document"
 
-#: templates/tools/share-btns.php:49
+#: templates/tools/share-btns.php:53
 msgid "Clipboard Icon"
 msgstr "Icône du presse-papiers"
 
@@ -2791,9 +3728,116 @@ msgid "https://spider-themes.net/eazydocs"
 msgstr "https://spider-themes.net/eazydocs"
 
 #. Description of the plugin/theme
-msgid "A powerful & beautiful documentation builder plugin."
+#, fuzzy
+#| msgid "A powerful & beautiful documentation builder plugin."
+msgid "A powerful & beautiful documentation, knowledge base builder plugin."
 msgstr "Un plugin de création de documentation puissant et beau."
 
 #. Author of the plugin/theme
 msgid "spider-themes"
 msgstr "Thèmes d’araignée"
+
+#~ msgid "Repeater List"
+#~ msgstr "Liste répéteur"
+
+#~ msgid "Docs Page"
+#~ msgstr "Page Doc"
+
+#~ msgid ""
+#~ "The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode "
+#~ "or design your own"
+#~ msgstr ""
+#~ "La page Archive des documents. Utilisez de préférence un "
+#~ "<code>[eazydocs]</code> shortcode ou concevez votre propre code"
+
+#~ msgid "Docs Columns"
+#~ msgstr "Colonnes Docs"
+
+#~ msgid "This option will set the default value of column attribute of "
+#~ msgstr "Cette option définit la valeur par défaut de l’attribut column de "
+
+#~ msgid "View More"
+#~ msgstr "Voir plus"
+
+#~ msgid "Topics Count"
+#~ msgstr "Nombre d'étapes"
+
+#~ msgid "Login Required"
+#~ msgstr "Connexion requise"
+
+#, fuzzy
+#~ msgid "None"
+#~ msgstr "Aucun"
+
+#~ msgid "Layout"
+#~ msgstr "Mise en page"
+
+#~ msgid "Classic OnePage Doc"
+#~ msgstr "Doc OnePage classique"
+
+#~ msgid "Fullscreen OnePage Doc"
+#~ msgstr "Doc OnePage plein écran"
+
+#~ msgid ""
+#~ "Know the usage of this shortcode <a href=\"https://tinyurl.com/24d9rw72\" "
+#~ "target=\"_blank\"> here </a>"
+#~ msgstr ""
+#~ "Connaître l’utilisation de ce shortcode <a href=\"https://tinyurl."
+#~ "com/24d9rw72\" target=\"_blank\"> ici </a>"
+
+#~ msgid ""
+#~ "See the shortcode with the available attributes. <br><code>[embed_post "
+#~ "id=\"POST_ID\" limit=\"no\" thumbnail=\"yes\"]</code> <br> Know the usage "
+#~ "of this shortcode <a href=\"https://tinyurl.com/bde27yn4\" "
+#~ "target=\"_blank\">here</a> "
+#~ msgstr ""
+#~ "Voir le shortcode avec les attributs disponibles. <br><code>[embed_post "
+#~ "id=\"POST_ID\" limit=\"no\" thumbnail=\"yes\"]</code> <br> Connaître "
+#~ "l’utilisation de ce shortcode <a href=\"https://tinyurl.com/bde27yn4\" "
+#~ "target=\"_blank\">ici</a> "
+
+#~ msgid "Allow users to view Docs."
+#~ msgstr "Autoriser les utilisateurs à afficher Docs."
+
+#~ msgid "Who Can Edit Customizer?"
+#~ msgstr "Qui peut modifier le personnalisateur ?"
+
+#~ msgid "Allow users to customize Docs from customizer settings."
+#~ msgstr ""
+#~ "Autorisez les utilisateurs à personnaliser Docs à partir des paramètres "
+#~ "du personnalisateur."
+
+#~ msgid ""
+#~ "eazydocs_view_log table not found, please deactivate and activate the "
+#~ "plugin again"
+#~ msgstr ""
+#~ "eazydocs_view_log tableau introuvable, veuillez désactiver et réactiver "
+#~ "le plugin"
+
+#~ msgid "Docs Show Count"
+#~ msgstr "Docs Afficher le nombre"
+
+#~ msgid "How many docs to display."
+#~ msgstr "Combien de documents afficher."
+
+#~ msgid "Docs Article Count"
+#~ msgstr "Nombre d’articles Docs"
+
+#~ msgid "Articles/child-docs show under every Docs."
+#~ msgstr "Les articles/enfants-docs s’affichent sous chaque Docs."
+
+#~ msgid "More Button Label"
+#~ msgstr "Label du bouton En Savoir Plus"
+
+#~ msgid "Search By Email"
+#~ msgstr "Recherche par e-mail"
+
+#~ msgid "Loading..."
+#~ msgstr "Chargement..."
+
+#, php-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Edit"
+#~ msgstr "Modifier"

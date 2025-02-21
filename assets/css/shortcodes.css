@@ -106,7 +106,6 @@ EazyDocs Footnotes
   color: var(--ezd_brand_color);
   cursor: pointer;
   position: relative;
-  top: -5px;
   font-size: 14px;
 }
 .ezd-footnotes-link-item span.ezd-footnote-content {
@@ -118,12 +117,10 @@ EazyDocs Footnotes
   -o-transition: all 1s ease;
   transition: all 1s ease;
   display: inline-block;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
   word-break: break-all;
-  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
-  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
   width: 300px;
   background: var(--bs-white);
@@ -133,7 +130,7 @@ EazyDocs Footnotes
   transform: translate(-54%, 0%);
   font-size: 14px;
   line-height: 26px;
-  margin: 0;
+  margin: 15px 0 0;
   padding: 25px;
   box-sizing: border-box;
 }

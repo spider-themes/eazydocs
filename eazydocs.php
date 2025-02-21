@@ -133,6 +133,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 					// Remove admin notices
 					remove_all_actions( 'admin_notices' );
 					remove_all_actions( 'all_admin_notices' );
+
+					// Re-add a specific notice
+                    if ( !ezd_is_premium() ) {
+	                    ezd_show_notice_after_period('ezd_offer_notice', 12);
+                    }
 				}
 			});
 		}
@@ -169,8 +174,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		public function core_includes() {
 			require_once __DIR__ . '/includes/functions.php';
 			// Notices
-			require_once __DIR__ . '/includes/notices/deactivate-other-doc-plugins.php';
-			require_once __DIR__ . '/includes/notices/asking-for-review.php';
+			require_once __DIR__ . '/includes/notices/_notices.php';
 
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				require_once __DIR__ . '/includes/notices/update-database.php';

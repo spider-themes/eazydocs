@@ -554,14 +554,14 @@
 .ezd-alert {
   position: relative;
   padding: 15px 20px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
 .ezd-alert.ezd-alert-info {
   background: rgba(218, 249, 255, 0.3882352941);
   border-color: rgba(109, 218, 243, 0.4588235294);
-  color: #055160;
+  margin-bottom: 40px;
 }
 
 .bg-dark .ezd-badge {

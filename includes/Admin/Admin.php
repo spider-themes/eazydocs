@@ -310,10 +310,9 @@ class Admin {
 					</ul>
 				</div>
 				<div class="tab-content">
-					
 					<div id="step-1" class="tab-pane" role="tabpanel">
 						<h2><?php esc_html_e( 'Welcome to EazyDocs', 'eazydocs' ); ?></h2>
-						<?php echo wp_kses_post(wpautop( 'Discover EazyDocs by this guide that walks you through creating professional, user-friendly <br> website documentation seamlessly. Then click next to setup initial settings.' )) ; ?>
+						<?php esc_html_e('Discover EazyDocs by this guide that walks you through creating professional, user-friendly website documentation seamlessly. Then click next to setup initial settings.', 'eazydocs') ; ?>
 						<iframe width="650" height="350" src="https://www.youtube.com/embed/4H2npHIR2qg?si=ApQh7BL6CL5QM4zX" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         <div class="button-inline">
                             <a class="button button-primary ezd-btn btn-lg" target="_blank" href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/">
@@ -325,7 +324,6 @@ class Admin {
                             <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" target="_blank" href="https://wordpress.org/support/plugin/eazydocs/">
                                 <i class="dashicons dashicons-editor-help"></i> <?php esc_html_e( 'Support', 'eazydocs' ); ?>
                             </a>
-                            <p>
                         </div>
                     </div>
 
@@ -344,7 +342,7 @@ class Admin {
 								}
 								?>
 							</select>
-							<span><?php esc_html_e( 'You can create this page with using [eazydocs] shortcode or available EazyDocs Gutenberg blocks or Elementor widgets.', 'eazydocs' ); ?></span>
+							<span><?php esc_html_e( 'You can create this page with using [eazydocs] shortcode or available EazyDocs blocks or Elementor widgets.', 'eazydocs' ); ?></span>
 						</div>
 
 						<h2><?php esc_html_e( 'Brand Color', 'eazydocs' ); ?></h2>
@@ -399,7 +397,6 @@ class Admin {
 							<label for="boxed" class="<?php if ( $docs_page_width == 'boxed' ) { echo esc_attr( 'active' ); } ?>">
                                 <?php esc_html_e( 'Boxed Width', 'eazydocs' ); ?>
                             </label>
-
 							<input type="radio" id="full-width" name="docsPageWidth" value="full-width" <?php checked( $docs_page_width, 'full-width' ); ?>>
 							<label for="full-width" class="<?php if ( $docs_page_width == 'full-width' ) { echo esc_attr( 'active' ); } ?>">
                                 <?php esc_html_e( 'Full Width', 'eazydocs' ); ?>
@@ -419,7 +416,6 @@ class Admin {
 						<p><?php esc_html_e( 'Take a moment to review all your settings thoroughly before confirming your choices to ensure everything is set up correctly.', 'eazydocs' ); ?></p>
 						<button type="button" id="finish-btn" class="btn btn-primary"><?php esc_html_e( 'Confirm', 'eazydocs' ); ?></button>
 					</div>
-
 				</div>
 			</div>
 		</div>

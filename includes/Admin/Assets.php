@@ -14,6 +14,7 @@ class Assets {
 		if ( ezd_admin_pages() || ezd_admin_post_types() ) {
 			add_action( 'admin_enqueue_scripts', [ $this, 'dashboard_scripts' ] );
 		}
+
 		add_action( 'admin_enqueue_scripts', [ $this, 'global_scripts' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 	}

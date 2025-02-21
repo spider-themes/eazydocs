@@ -14,6 +14,7 @@
   h2 {
     margin-bottom: 15px;
   }
+
   p {
     font-size: 16px;
   }
@@ -23,10 +24,140 @@
   height: auto;
 }
 
-.ezd-no-feedback-found{
+.ezd-no-feedback-found {
   font-size: 15px;
   margin-left: 0;
   text-transform: capitalize;
   font-weight: 400;
   display: initial;
+}
+
+/** === Offer Notice design === **/
+.ezd-offer-wrap {
+  background-color: #7474FC;
+  color: #fff;
+  width: 100%; /* Set full width */
+  position: relative;
+  border-radius: 10px;
+}
+
+.ezd-offer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  width: 80%;
+  align-items: center; /* Align items vertically center */
+  justify-items: center; /* Align items horizontally center */
+  box-sizing: border-box; /* Ensure padding doesn't exceed 100% width */
+
+  .ezd-col {
+    padding: 20px;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    width: 280px;
+
+    .ezd-col-box label {
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(-50%, -50%);
+      height: 65px;
+      width: 1px;
+      background-color: rgb(255 255 255 / 20%);
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      filter: invert(1);
+    }
+
+    .ezd-col-text {
+      p {
+        margin-top: 0;
+        margin-bottom: 8px;
+
+        strong {
+          font-size: 1.2em;
+        }
+      }
+    }
+
+    .buy-btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #FFC107;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      background-color: #FFA000;
+    }
+  }
+}
+
+.coupon-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  #coupon {
+    border: 1px solid #fff;
+    background-color: #fff;
+    color: #333;
+    font-weight: bold;
+    border-radius: 5px;
+    width: auto;
+  }
+
+  .copy-btn {
+    padding: 7px 10px;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .copy-btn:hover {
+    background-color: #FFA000;
+    border-color: #FFA000;
+  }
+
+  .copy-message {
+    display: none;
+    color: #028c02;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-left: 10px;
+    position: absolute;
+    background: #fff;
+  }
+}
+
+.dismiss-btn {
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  transform: translate(-50%, -25px);
+  font-weight: 400;
+  z-index: 1;
 }

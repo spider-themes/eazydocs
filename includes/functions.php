@@ -79,16 +79,36 @@ function ezd_is_promax() {
 }
 
 /**
- * Check if the current page is the Page Editor.
- * @return bool
+ * Handles the activation period logic for a plugin and triggers a notice after a defined number of days.
+ *
+ * @param int $days Number of days to wait before showing the notice.
+ * @param callable $notice_action The callback function to display the admin notice.
+ *
+ * @return void
  */
-function ezd_is_page_editor() {
-	$screen = function_exists('get_current_screen') ? get_current_screen() : null;
-	if ($screen && $screen->base === 'post' && $screen->post_type === 'post') {
-		return true;
+function ezd_plugin_activation_period( $notice_action, $days = 7 ) {
+	$optionReview = get_option('ezd_notify_review');
+	if ( time() >= (int) $optionReview && $optionReview !== '0' ) {
+		$ezd_installed = get_option( 'eazyDocs_installed' );
+		// Check if timestamp exists
+		if ( $ezd_installed ) {
+			// Ensure $days is an integer before performing the multiplication
+			$days = (int) $days;
+
+			// Add 7 days to the timestamp
+			$show_notice = $ezd_installed + ( $days * 24 * 60 * 60 );
+
+			// Get the current time
+			$current_time = current_time( 'timestamp' );
+
+			// Compare current time with timestamp + 7 days
+			if ( $current_time >= $show_notice ) {
+				add_action( 'admin_notices', $notice_action );
+			}
+		}
 	}
-	return false;
 }
+
 
 /**
  * Get the container class
@@ -303,9 +323,9 @@ if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
 	 */
 	function eazydocs_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
 		return '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="' . esc_attr( $permalink ) . '">
+            <a itemprop="item" href="' . esc_url( $permalink ) . '">
             <span itemprop="name">' . esc_html( $label ) . '</span></a>
-            <meta itemprop="position" content="' . $position . '" />
+            <meta itemprop="position" content="' . esc_attr($position) . '" />
         </li>';
 	}
 
@@ -323,7 +343,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 	 */
 	function eazydocs_breadcrumbs() {
 		global $post;
-		$home_text  = ezd_get_opt( 'breadcrumb-home-text' );
+		$home_text  = ezd_get_opt('breadcrumb-home-text');
 		$front_page = ! empty( $home_text ) ? esc_html( $home_text ) : esc_html__( 'Home', 'eazydocs' );
 
 		$html = '';
@@ -332,14 +352,13 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 			'home'      => $front_page,
 			'before'    => '<li class="breadcrumb-item active">',
 			'after'     => '</li>',
-		] );
+		]);
 
 		$breadcrumb_position = 1;
 
 		$html .= '<ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">';
 		$html .= eazydocs_get_breadcrumb_item( $args['home'], home_url( '/' ), $breadcrumb_position );
 		$html .= $args['delimiter'];
-
 
 		$docs_page_title = ezd_get_opt( 'docs-page-title' );
 		$docs_page_title = ! empty( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docs', 'eazydocs' );
@@ -359,7 +378,6 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 
 			while ( $parent_id ) {
 				++ $breadcrumb_position;
-
 				$page          = get_post( $parent_id );
 				$breadcrumbs[] = eazydocs_get_breadcrumb_item( get_the_title( $page->ID ), get_permalink( $page->ID ), $breadcrumb_position );
 				$parent_id     = $page->post_parent;
@@ -480,7 +498,6 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 
 			while ( $parent_id ) {
 				++ $breadcrumb_position;
-
 				$page          = get_post( $parent_id );
 				$breadcrumbs[] = eazydocs_get_breadcrumb_root_title( get_the_title( $page->ID ) );
 				$parent_id     = $page->post_parent;
@@ -515,7 +532,6 @@ if ( ! function_exists( 'docs_root_title' ) ) {
  *
  */
 function eazydocs_get_global_post_field( $field = 'ID', $context = 'edit' ) {
-
 	// Get the post, and maybe get a field from it
 	$post   = get_post();
 	$retval = isset( $post->{$field} )
@@ -543,7 +559,6 @@ function eazydocs_get_global_post_field( $field = 'ID', $context = 'edit' ) {
  *
  */
 function eazydocs_has_shortcode( $text = '' ) {
-
 	// Default return value
 	$retval = false;
 	$found  = array();
