@@ -1,6 +1,5 @@
 <?php
 ezd_show_notice_after_period('ezd_notify_give_review');
-
 add_action( 'wp_ajax_ezd_notify_save_review', 'ezd_notify_save_review' );
 
 /**

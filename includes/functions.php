@@ -86,7 +86,7 @@ function ezd_is_promax() {
  *
  * @return void
  */
-function ezd_plugin_activation_period( $notice_action, $days = 7 ) {
+function ezd_show_notice_after_period( $notice_action, $days = 7 ) {
 	$optionReview = get_option('ezd_notify_review');
 	if ( time() >= (int) $optionReview && $optionReview !== '0' ) {
 		$ezd_installed = get_option( 'eazyDocs_installed' );
