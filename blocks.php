@@ -67,7 +67,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
 
     function search_banner_block_render( $attributes ) {
 	    wp_register_style( 'ezd-search-block', EAZYDOCS_URL.'/build/search-banner/style-index.css' );
-        return require_once __DIR__ . '/src/search-banner/search-banner.php';
+        return require_once __DIR__ . '/includes/block-templates/search-banner.php';
     }
 
     /**
