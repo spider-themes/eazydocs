@@ -50,6 +50,20 @@
   justify-items: center; /* Align items horizontally center */
   box-sizing: border-box; /* Ensure padding doesn't exceed 100% width */
 
+  .dismiss-btn {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    transform: translate(-50%, -25px);
+    font-weight: 400;
+    z-index: 1;
+  }
+
   .ezd-col {
     padding: 20px;
     position: relative;
@@ -146,18 +160,4 @@
     position: absolute;
     background: #fff;
   }
-}
-
-.dismiss-btn {
-  position: absolute;
-  top: 50%;
-  right: 25px;
-  border: none;
-  background: transparent;
-  color: #fff;
-  font-size: 30px;
-  cursor: pointer;
-  transform: translate(-50%, -25px);
-  font-weight: 400;
-  z-index: 1;
 }

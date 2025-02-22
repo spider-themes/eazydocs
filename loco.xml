@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle>
+    <domain name="eazydocs">
+        <project>
+            <source>
+                <exclude>
+                    <directory>assets</directory>
+                </exclude>
+            </source>
+            <target>
+                <directory>languages</directory>
+            </target>
+            <template>
+                <file>languages/eazydocs.pot</file>
+            </template>
+        </project>
+    </domain>
+    <domain name="freemius">
+        <project name="freemius">
+            <source>
+                <directory>vendor/fs</directory>
+            </source>
+            <target>
+                <directory>vendor/fs/languages</directory>
+            </target>
+            <template>
+                <file>vendor/fs/languages/freemius.pot</file>
+            </template>
+        </project>
+    </domain>
+</bundle>

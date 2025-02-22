@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EazyDocs\n"
-"POT-Creation-Date: 2025-02-21 19:24+0600\n"
+"POT-Creation-Date: 2025-02-22 15:24+0600\n"
 "PO-Revision-Date: 2023-07-31 23:20+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -3143,18 +3143,18 @@ msgstr ""
 msgid "Single Doc"
 msgstr ""
 
-#: includes/notices/asking-for-review.php:22
+#: includes/notices/asking-for-review.php:21
 msgid "Give EazyDocs a review"
 msgstr ""
 
-#: includes/notices/asking-for-review.php:26
+#: includes/notices/asking-for-review.php:25
 msgid ""
 "Thank you for choosing EazyDocs. We hope you love it. Could you take a "
 "couple of seconds posting a nice review to share your happy experience?"
 msgstr ""
 
 #. translators: 1: number of docs created, 2: additional articles text
-#: includes/notices/asking-for-review.php:33
+#: includes/notices/asking-for-review.php:32
 #, php-format
 msgid ""
 "You have created <b>%1$d</b> docs%2$s with EazyDocs. That's awesome! May we "
@@ -3162,19 +3162,19 @@ msgid ""
 "word and boost our motivation."
 msgstr ""
 
-#: includes/notices/asking-for-review.php:46
+#: includes/notices/asking-for-review.php:45
 msgid "We will be forever grateful. Thank you in advance."
 msgstr ""
 
-#: includes/notices/asking-for-review.php:49
+#: includes/notices/asking-for-review.php:48
 msgid "Rate now"
 msgstr ""
 
-#: includes/notices/asking-for-review.php:50
+#: includes/notices/asking-for-review.php:49
 msgid "Later"
 msgstr ""
 
-#: includes/notices/asking-for-review.php:51
+#: includes/notices/asking-for-review.php:50
 msgid "Already did"
 msgstr ""
 

@@ -3,9 +3,15 @@
  ** Give Notice
  **/
 function ezd_offer_notice() {
-	if ( isset( $_COOKIE['ezd_offer_dismissed'] ) && '1' === $_COOKIE['ezd_offer_dismissed'] ) {
-		return; // Don't show the notice if it has been dismissed
+	if ( is_user_logged_in() ) {
+		$user_id   = get_current_user_id();
+		$dismissed = get_user_meta( $user_id, 'ezd_offer_dismissed', true );
+
+		if ( '1' === $dismissed ) {
+			return; // Don't show the notice if it has been dismissed by this user
+		}
 	}
+
 	?>
     <div class="ezd-offer-wrap">
         <div class="ezd-offer">
@@ -44,7 +50,8 @@ function ezd_offer_notice() {
                 </div>
             </div>
             <div class="ezd-col">
-                <a href="https://spider-themes.net/eazydocs/pricing/" class="buy-btn" target="_blank"> Claim Discount </a>
+                <a href="https://spider-themes.net/eazydocs/pricing/" class="buy-btn" target="_blank"> Claim
+                    Discount </a>
             </div>
         </div>
     </div>
@@ -71,10 +78,40 @@ function ezd_offer_notice() {
             dismissBtn.addEventListener('click', function () {
                 offerWrap.style.display = 'none';
 
-                // Set a cookie to prevent the notice from showing again
-                document.cookie = "ezd_offer_dismissed=1; path=/; max-age=" + (60 * 60 * 24 * 30); // Cookie valid for 30 days
+                // Make an AJAX request to save the dismissal for the logged-in user
+                fetch('<?php echo admin_url( 'admin-ajax.php' ); ?>', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'action=ezd_dismiss_offer_notice&nonce=<?php echo wp_create_nonce( "ezd-dismiss-notice" ); ?>'
+                }).then(response => response.json()).then(data => {
+                    if (!data.success) {
+                        console.error('Error dismissing the notice:', data.message);
+                    }
+                }).catch(err => {
+                    console.error('Error dismissing the offer:', err);
+                });
             });
         });
     </script>
 	<?php
+}
+
+add_action( 'wp_ajax_ezd_dismiss_offer_notice', 'ezd_dismiss_offer_notice' );
+
+function ezd_dismiss_offer_notice() {
+	check_ajax_referer( 'ezd-dismiss-notice', 'nonce' );
+
+	if ( is_user_logged_in() ) {
+		$user_id = get_current_user_id();
+		update_user_meta( $user_id, 'ezd_offer_dismissed', '1' );
+
+		wp_send_json_success( array( 'message' => 'Notice dismissed for this user.' ) );
+	} else {
+		wp_send_json_error( array( 'message' => 'User not logged in.' ) );
+	}
+
+	wp_die();
 }
