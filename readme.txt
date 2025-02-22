@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, helpdesk
 Requires at least: 5.0
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 2.5.8
+Stable tag: 2.5.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,6 +227,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.5.9 (23 February 2025) =
+New: Offer notice added for our beloved users (not for new users)
+New: Loco.xml configuration file added for multiple text domains mapping in Loco translate plugin
+Fixed: Customizer settings option unlock with free instead of promax plan
+Updated: Language files (.pot and .po) updated with the latest strings
 
 = v2.5.8 (01 February 2025) =
 New: Brand color shades added in css variables
