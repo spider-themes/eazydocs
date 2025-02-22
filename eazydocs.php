@@ -27,7 +27,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 		// Retrieve the Eazydocs settings option
 		$opt 			= get_option('eazydocs_settings', []);
 		// Check if the setup wizard has been completed (defaulting to an empty string if not set)
-		$setup_wizard 	= isset($opt['setup_wizard_completed']) ? $opt['setup_wizard_completed'] : '';
+		$setup_wizard 	= $opt['setup_wizard_completed'] ?? '';
 		
 		// Check if the setup wizard is not completed and ezd_get_setup_wizard option is set
 		if ( get_option( 'ezd_get_setup_wizard' ) && ! empty( $setup_wizard ) ) {
@@ -41,7 +41,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 
 			if ( ! isset( $eaz_fs ) ) {
 				// Include Freemius SDK.
-				require_once dirname( __FILE__ ) . '/includes/fs/start.php';
+				require_once dirname( __FILE__ ) . '/vendor/fs/start.php';
 
 				$eaz_fs = fs_dynamic_init(
 					[
