@@ -1,6 +1,8 @@
 <?php
-ezd_show_notice_after_period('ezd_notify_give_review');
-add_action( 'wp_ajax_ezd_notify_save_review', 'ezd_notify_save_review' );
+if ( ezd_is_plugin_installed_for_days(18) ) {
+	add_action( 'admin_notices', 'ezd_notify_give_review' );
+	add_action( 'wp_ajax_ezd_notify_save_review', 'ezd_notify_save_review' );
+}
 
 /**
  ** Give Notice

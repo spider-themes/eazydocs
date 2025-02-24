@@ -135,8 +135,8 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 					remove_all_actions( 'all_admin_notices' );
 
 					// Re-add a specific notice
-                    if ( !ezd_is_premium() ) {
-	                    ezd_show_notice_after_period('ezd_offer_notice', 12);
+                    if ( !ezd_is_premium() && ezd_is_plugin_installed_for_days(12) ) {
+	                    add_action('admin_notices', 'ezd_offer_notice');
                     }
 				}
 			});

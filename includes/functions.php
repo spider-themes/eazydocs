@@ -78,36 +78,33 @@ function ezd_is_promax() {
 	}
 }
 
+
 /**
- * Handles the activation period logic for a plugin and triggers a notice after a defined number of days.
+ * Check if a plugin has been installed for specific number of days
  *
- * @param int $days Number of days to wait before showing the notice.
- * @param callable $notice_action The callback function to display the admin notice.
- *
- * @return void
+ * @param string $plugin_path The plugin path (e.g. 'woocommerce/woocommerce.php')
+ * @param int    $days        Number of days to check against
+ * @return bool  True if plugin is installed for specified days, false otherwise
  */
-function ezd_show_notice_after_period( $notice_action, $days = 7 ) {
-	$optionReview = get_option('ezd_notify_review');
-	if ( time() >= (int) $optionReview && $optionReview !== '0' ) {
-		$ezd_installed = get_option( 'eazyDocs_installed' );
-		// Check if timestamp exists
-		if ( $ezd_installed ) {
-			// Ensure $days is an integer before performing the multiplication
-			$days = (int) $days;
+function ezd_is_plugin_installed_for_days( $days, $plugin_slug='eazydocs' ) {
+	// Get the installation timestamp of the plugin
+	$installed_time = get_option( $plugin_slug . '_installed' );
 
-			// Add 7 days to the timestamp
-			$show_notice = $ezd_installed + ( $days * 24 * 60 * 60 );
-
-			// Get the current time
-			$current_time = current_time( 'timestamp' );
-
-			// Compare current time with timestamp + 7 days
-			if ( $current_time >= $show_notice ) {
-				add_action( 'admin_notices', $notice_action );
-			}
-		}
+	// Ensure it's a valid timestamp
+	if ( ! is_numeric( $installed_time ) || $installed_time <= 0 ) {
+		return false;
 	}
+
+	// Convert days to seconds
+	$required_time = (int) $days * DAY_IN_SECONDS;
+
+	// Get the current UTC time
+	$current_time = time();
+
+	// Check if the plugin has been installed for the required duration
+	return ( $current_time - $installed_time ) >= $required_time;
 }
+
 
 
 /**
