@@ -357,73 +357,74 @@
 	background: #131417;
 }
 
-/** === Docs-5 === **/
-.docs-5-title {
-	background: #171544;
-	color: #fff;
-	padding: 15px 20px;
-	font-size: 16px;
-	margin-bottom: 0;
-}
-
-.dox5-section-item {
-	border: 1px solid var(--border_on_white);
-	padding: 20px 0 0;
-	background: var(--body_bg);
-}
-
-.section5-section-title {
-	padding-bottom: 5px;
-
-	h6 {
-		font-size: 15px;
-		font-weight: 600;
-		color: var(--black_700);
+.docs-box-item {
+	margin-bottom: 25px;
+	
+	/** === Docs-5 === **/
+	.docs-5-title {
+		background: #171544;
+		color: #fff;
+		padding: 15px 20px;
+		font-size: 16px;
 		margin-bottom: 0;
-		padding-left: 20px;
-		text-transform: lowercase;
+	}
 
-		&::first-letter {
-			text-transform: uppercase;
+	.dox5-section-item {
+		border: 1px solid var(--border_on_white);
+		padding: 20px 0 0;
+		background: var(--body_bg);
+	}
+
+	.section5-section-title {
+		padding-bottom: 5px;
+
+		h6 {
+			font-size: 15px;
+			font-weight: 600;
+			color: var(--black_700);
+			margin-bottom: 0;
+			padding-left: 20px;
+			text-transform: lowercase;
+
+			&::first-letter {
+				text-transform: uppercase;
+			}
 		}
 	}
-}
 
-.section5-article {
-	margin-bottom: 15px;
+	.section5-article {
+		margin-bottom: 15px;
 
-	ul {
-		li {
-			padding: 10px 20px 10px 50px;
-			line-height: 1.5;
-			transition: all 0.3s;
+		ul {
+			li {
+				padding: 10px 20px 10px 50px;
+				line-height: 1.5;
+				transition: all 0.3s;
 
-			&:nth-child(even) {
-				background: var(--black_50);
-			}
-
-			&:hover {
-				background: #f1f1f17a;
-			}
-
-			a {
-				color: var(--p_color);
-				font-size: 15px;
+				&:nth-child(even) {
+					background: var(--black_50);
+				}
 
 				&:hover {
-					color: var(--ezd_brand_color);
+					background: #f1f1f17a;
+				}
+
+				a {
+					color: var(--p_color);
+					font-size: 15px;
+					text-decoration: none;
+
+					&:hover {
+						color: var(--ezd_brand_color);
+					}
 				}
 			}
 		}
-	}
 
-	&:last-child {
-		margin-bottom: 0;
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
-}
-
-.docs-box-item {
-	margin-bottom: 25px;
 }
 
 /** === Docs-6 (used in the Focused knowledge base demo) === **/
@@ -945,7 +946,7 @@
 
 		li {
 			margin: 0;
-
+			
 			&:last-child {
 				margin-right: 0;
 			}
@@ -1045,6 +1046,11 @@
 	padding: 40px 35px 50px;
 	margin-bottom: 30px;
 	position: relative;
+
+	img {
+		max-width: 60px;
+		margin-bottom: 10px;
+	}
 
 	@media (max-width: 560px) {
 		width: 100%;

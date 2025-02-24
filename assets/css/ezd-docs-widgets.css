@@ -888,25 +888,26 @@
   background: #131417;
 }
 
-/** === Docs-5 === **/
-.docs-5-title {
+.docs-box-item {
+  margin-bottom: 25px;
+  /** === Docs-5 === **/
+}
+.docs-box-item .docs-5-title {
   background: #171544;
   color: #fff;
   padding: 15px 20px;
   font-size: 16px;
   margin-bottom: 0;
 }
-
-.dox5-section-item {
+.docs-box-item .dox5-section-item {
   border: 1px solid var(--border_on_white);
   padding: 20px 0 0;
   background: var(--body_bg);
 }
-
-.section5-section-title {
+.docs-box-item .section5-section-title {
   padding-bottom: 5px;
 }
-.section5-section-title h6 {
+.docs-box-item .section5-section-title h6 {
   font-size: 15px;
   font-weight: 600;
   color: var(--black_700);
@@ -914,37 +915,33 @@
   padding-left: 20px;
   text-transform: lowercase;
 }
-.section5-section-title h6::first-letter {
+.docs-box-item .section5-section-title h6::first-letter {
   text-transform: uppercase;
 }
-
-.section5-article {
+.docs-box-item .section5-article {
   margin-bottom: 15px;
 }
-.section5-article ul li {
+.docs-box-item .section5-article ul li {
   padding: 10px 20px 10px 50px;
   line-height: 1.5;
   transition: all 0.3s;
 }
-.section5-article ul li:nth-child(even) {
+.docs-box-item .section5-article ul li:nth-child(even) {
   background: var(--black_50);
 }
-.section5-article ul li:hover {
+.docs-box-item .section5-article ul li:hover {
   background: rgba(241, 241, 241, 0.4784313725);
 }
-.section5-article ul li a {
+.docs-box-item .section5-article ul li a {
   color: var(--p_color);
   font-size: 15px;
+  text-decoration: none;
 }
-.section5-article ul li a:hover {
+.docs-box-item .section5-article ul li a:hover {
   color: var(--ezd_brand_color);
 }
-.section5-article:last-child {
+.docs-box-item .section5-article:last-child {
   margin-bottom: 0;
-}
-
-.docs-box-item {
-  margin-bottom: 25px;
 }
 
 /** === Docs-6 (used in the Focused knowledge base demo) === **/
@@ -1464,6 +1461,10 @@
   padding: 40px 35px 50px;
   margin-bottom: 30px;
   position: relative;
+}
+.categories_guide_item img {
+  max-width: 60px;
+  margin-bottom: 10px;
 }
 @media (max-width: 560px) {
   .categories_guide_item {
@@ -2013,11 +2014,14 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 .h_content_items.box-item.collapse-wrap {
   display: none;
 }
+.h_content_items a {
+  text-decoration: none !important;
+}
 
 .h_item {
   background: #fff;
-  padding-top: 30px;
-  padding-bottom: 22px;
+  padding: 30px 20px 22px;
+  box-sizing: border-box;
   margin-bottom: 30px;
   box-shadow: 0 1px 3px rgba(29, 56, 70, 0.16);
   border-radius: 5px;
