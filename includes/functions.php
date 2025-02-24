@@ -105,8 +105,6 @@ function ezd_is_plugin_installed_for_days( $days, $plugin_slug='eazydocs' ) {
 	return ( $current_time - $installed_time ) >= $required_time;
 }
 
-
-
 /**
  * Get the container class
  * @return string
