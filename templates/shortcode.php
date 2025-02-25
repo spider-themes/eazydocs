@@ -3,6 +3,7 @@ $opt                    = get_option( 'eazydocs_settings' );
 $topics                 = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
 $private_doc_mode       = $opt['private_doc_mode'] ?? '';
 $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
+$is_subscription 		= $opt['subscriptions'] ?? false;
 $is_masonry             = '';
 // Check pro plugin class exists
 if ( ezd_is_premium() ) {
@@ -37,8 +38,7 @@ if ( $docs ) :
 				?>
 
                 <div class="ezd-col-width">
-                    <div class="categories_guide_item <?php echo esc_attr( $private_bg
-					                                                       . $protected_bg ); ?> wow fadeInUp" <?php echo wp_kses_post( $private_bg_op ); ?>>
+                    <div class="categories_guide_item <?php echo esc_attr( $private_bg . $protected_bg ); ?> wow fadeInUp" <?php echo wp_kses_post( $private_bg_op ); ?>>
 						<?php
 						if ( $main_doc['doc']->post_status == 'private' ) {
 							$pd_txt = esc_attr__( 'Private Doc', 'eazydocs' );
@@ -92,17 +92,19 @@ if ( $docs ) :
 						    <?php
 						endif;
 						?>
-                        <a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
-							<?php echo esc_html( $more ); ?> <i class="arrow_right"></i>
-                        </a>
+						<div class="ezd-doc-btn-wrap <?php if ( $is_subscription == '1' ) { echo 'has-subscription'; } ?>">
+							<a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
+								<?php echo esc_html( $more ); ?> <i class="arrow_right"></i>
+							</a>
 
-						<?php
-						/**
-						 * Subscription
-						 */
-						do_action( 'eazydocs_docs_subscription', ezd_get_doc_parent_id( $main_doc['doc']->ID ), 'ezd-block-subscribe' );
-						do_action( 'eazydocs_suscription_modal_form', ezd_get_doc_parent_id( $main_doc['doc']->ID ) );
-						?>
+							<?php
+							/**
+							 * Subscription
+							 */
+							do_action( 'eazydocs_docs_subscription', ezd_get_doc_parent_id( $main_doc['doc']->ID ), 'ezd-block-subscribe' );
+							do_action( 'eazydocs_suscription_modal_form', ezd_get_doc_parent_id( $main_doc['doc']->ID ) );
+							?>
+						</div>
 
                     </div>
                 </div>
