@@ -1963,6 +1963,8 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 .topic_list_item img {
   padding-right: 15px;
   max-width: 40px;
+  height: auto;
+  max-height: 40px;
 }
 .topic_list_item .topic-title {
   display: flex;
