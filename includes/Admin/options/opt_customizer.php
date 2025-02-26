@@ -14,7 +14,6 @@ CSF::createSection( $prefix, array(
 			'default'	 => true,
 			'text_width' => 100
 		),
-		
 		array(
 			'type'     => 'callback',
 			'function' => 'customizer_visibility_callback',

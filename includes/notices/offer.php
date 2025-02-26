@@ -50,18 +50,17 @@ function ezd_offer_notice() {
                 </div>
             </div>
             <div class="ezd-col">
-                <a href="https://spider-themes.net/eazydocs/pricing/" class="buy-btn" target="_blank"> Claim
-                    Discount </a>
+                <a href="https://spider-themes.net/eazydocs/pricing/" class="buy-btn" target="_blank"> Claim Discount </a>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const copyBtn = document.querySelector('.copy-btn');
-            const couponInput = document.querySelector('.coupon');
-            const copyMessage = document.querySelector('.copy-message');
-            const dismissBtn = document.querySelector('.dismiss-btn');
+            const copyBtn = document.querySelector('.ezd-offer .copy-btn');
+            const couponInput = document.querySelector('.ezd-offer .coupon');
+            const copyMessage = document.querySelector('.ezd-offer .copy-message');
+            const dismissBtn = document.querySelector('.ezd-offer .dismiss-btn');
             const offerWrap = document.querySelector('.ezd-offer-wrap');
 
             copyBtn.addEventListener('click', function () {

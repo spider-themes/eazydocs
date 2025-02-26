@@ -15,7 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class EAZYDOCS_BLOCKS_CLASS {
     public function __construct() {
-
         // block initialization
         add_action( 'init', [ $this, 'blocks_init' ] );
 

@@ -96,7 +96,6 @@ class Assets {
 	 * Load on all pages of WordPress dashboard
 	 */
 	public function global_scripts() {
-		wp_enqueue_script( 'ezd-notify-review', EAZYDOCS_ASSETS . '/js/admin/review.js' );
 		wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', '', EAZYDOCS_VERSION );
 		wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js', array( 'jquery' ), EAZYDOCS_VERSION );
 

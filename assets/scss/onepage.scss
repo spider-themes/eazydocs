@@ -106,7 +106,6 @@ $breakpoint-lg: 991px;
       font-size: 20px;
       font-weight: 500;
       margin-bottom: 25px;
-      color: var(--h_title);
     }
   }
 }
@@ -405,7 +404,7 @@ body {
 
 .nav-sidebar.one-page-doc-nav-wrap {
   .nav-item {
-    background: #f2f2f2;
+    background: var(--black_25);
     margin: 3px 0 0;
     list-style: none;
     @media screen and (max-width: 991px) {
@@ -424,7 +423,7 @@ body {
       position: relative;
       padding-top: 10px;
       padding-bottom: 10px;
-      background: #fff;
+      background: var(--bs-white);
 
       &.doc-last-depth {
         padding-bottom: 0;
@@ -434,7 +433,7 @@ body {
         content: "";
         width: 2px;
         bottom: 15px;
-        background: #edf1f3;
+        background: var(--black_50);
         position: absolute;
         top: 15px;
         left: 20px;
