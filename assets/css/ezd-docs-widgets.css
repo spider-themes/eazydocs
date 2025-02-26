@@ -1380,6 +1380,7 @@
   margin-bottom: 60px;
   margin-left: 0;
   gap: 10px;
+  list-style-type: none;
 }
 .question_menu.docs3 .nav li {
   margin: 0;
