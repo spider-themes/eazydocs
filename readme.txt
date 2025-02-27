@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs
 Tags: knowledge base, kb, faq, wiki, helpdesk
 Requires at least: 5.0
-Tested up to: 6.7.1
+Tested up to: 6.7.3
 Requires PHP: 7.4
-Stable tag: 2.6.0
+Stable tag: 2.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,6 +227,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.6.1 (27 February 2025) =
+Fixed: Settings page hide issue
+Tweaked: Onepage dark Mode improved
+Tweaked: JS code optimized for better performance
 
 = v2.6.0 (24 February 2025) =
 Tweaked: Added conditions to ensure plugin notices are displayed only to the appropriate users.
