@@ -90,7 +90,7 @@ class Assets {
 			'ezd_img_dir' 		=> EAZYDOCS_IMG
 		]);
 	}
-
+ 
 	/**
 	 * Enqueue global scripts
 	 * Load on all pages of WordPress dashboard

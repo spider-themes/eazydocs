@@ -730,6 +730,7 @@
 .documentation_text .doc-logo {
   margin-bottom: 20px;
   max-width: 150px;
+  height: auto;
 }
 .documentation_text .round {
   width: 100px;
