@@ -987,6 +987,9 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
   width: calc(100% + 35px);
   padding-right: 10px;
 }
+.single-docs .doc_rightsidebar .ezd-subscription-btn {
+  margin-bottom: 20px;
+}
 
 .doc_rightsidebar {
   padding-top: 70px;
