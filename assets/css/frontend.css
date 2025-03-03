@@ -1268,12 +1268,14 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 }
 
 @media (max-width: 991px) {
-  .left-column .doc_left_sidebarlist,
-  .left-column .single-docs .doc_rightsidebar {
-    margin-top: 15px;
-  }
   .doc-middle-content {
     margin-top: 50px;
+  }
+  .doc_right_mobile_menu .doc_rightsidebar.sticky,
+  .left-column .doc_left_sidebarlist.sticky {
+    position: fixed;
+    top: 0;
+    margin-top: 0;
   }
 }
 .toc_auto_numbering ul {
@@ -2055,6 +2057,12 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
 
 body.admin-bar .ezd-link-copied-wrap {
   top: 42px;
+}
+@media screen and (max-width: 991px) {
+  body.admin-bar .doc_right_mobile_menu .doc_rightsidebar.sticky,
+  body.admin-bar .left-column .doc_left_sidebarlist.sticky {
+    top: 32px;
+  }
 }
 
 /** === Sidebar === **/

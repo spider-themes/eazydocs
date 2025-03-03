@@ -1,5 +1,4 @@
 @media (max-width: 1680px) {
-
 	.onepage_doc_area .doc_rightsidebar .bootstrap-select {
 		width: 100% !important;
 	}
@@ -39,7 +38,7 @@
 	.left-column .doc_left_sidebarlist {
 		max-width: 330px;
 		width: 100%;
-		height: auto;
+		height: 100vh;
 		left: -330px;
 		position: absolute;
 		z-index: 2;

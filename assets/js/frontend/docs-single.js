@@ -709,7 +709,32 @@
 					createCookie("fontSize", sizeFactor, 30);
 				}
 			});
-		}		
-		// end
+		}
+		
+		/**
+		 * Enables sticky behavior for the sidebar when it reaches the top of the viewport.
+		 * This applies to both the left sidebar and mobile right sidebar in smaller screens.
+		 */
+		function ezd_sidebar_enable_sticky() {
+			var $stickyElements = $('.left-column .doc_left_sidebarlist, .doc_right_mobile_menu .doc_rightsidebar'); // Select sidebar elements
+
+			if ( $stickyElements.length === 0 ) return; // Exit if no target elements found
+
+			var stickyOffset = $stickyElements.offset().top; // Get initial top position
+
+			$(window).on('scroll', function() {
+				var scrollTop = $(window).scrollTop(); // Current scroll position
+
+				if (scrollTop >= stickyOffset) {
+					$stickyElements.addClass('sticky');
+				} else {
+					$stickyElements.removeClass('sticky');
+				}
+			});
+		}
+
+		// Initialize the sticky sidebar function 
+    	ezd_sidebar_enable_sticky();
+ 
 	});
 })(jQuery);
