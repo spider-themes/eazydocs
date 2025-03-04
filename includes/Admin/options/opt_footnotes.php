@@ -57,8 +57,8 @@ CSF::createSection( $prefix, array(
 			],
 			'chosen'   => true,
 			'multiple' => false,
-			'default'  => '1',
-			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
+			'default'  => ezd_get_opt('footnotes_column', '4'),
+			'class'    => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
 
 		array(
