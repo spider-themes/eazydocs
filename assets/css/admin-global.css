@@ -193,6 +193,24 @@ body.ezd_no_promax .eazydocs-promax-notice.csf-field,
   cursor: pointer;
 }
 
+.csf-fieldset .csf-fieldset-content[data-depend-id=footnotes_colum_opt] {
+  border: none !important;
+  box-shadow: none;
+  outline: none;
+}
+.csf-fieldset .csf-fieldset-content[data-depend-id=footnotes_colum_opt] .csf-field {
+  float: left;
+  border: none;
+  padding: 0;
+}
+.csf-fieldset .csf-fieldset-content[data-depend-id=footnotes_colum_opt] .csf-field:last-child {
+  min-width: 240px;
+  margin-left: 25px;
+}
+.csf-fieldset .csf-fieldset-content[data-depend-id=footnotes_colum_opt] .csf-field:last-child .csf-title {
+  margin-top: 4px;
+}
+
 body.valid.docy .active-theme-docy .csf-title,
 body.valid.docy .active-theme-docy .csf-fieldset,
 body.valid.docly .active-theme-docly .csf-title,
@@ -606,6 +624,89 @@ p.big-p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 h2 {
+  margin-bottom: 30px;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 p {
+  margin-top: 20px;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li {
+  flex: 1;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  padding: 20px 10px 0px 10px;
+  box-sizing: border-box;
+  background: linear-gradient(209deg, #f9f9f9, rgba(245, 245, 245, 0.4705882353));
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li img {
+  max-width: 40px;
+  height: auto;
+  margin: 0;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li h2 {
+  margin: 10px 0 5px;
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li p {
+  font-size: 14px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div {
+  background: linear-gradient(179deg, #ffffff, rgba(207, 207, 207, 0.5294117647));
+  margin: 20px -10px 0px;
+  min-height: 50px;
+  border-top: 1px solid #d5d5d5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div .ezd-switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div .ezd-switch-toggle input {
+  display: none;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div .ezd-switch-toggle input:checked + .slider {
+  background-color: #0f9eff;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div .ezd-switch-toggle input:checked + .slider:before {
+  transform: translateX(24px);
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div .ezd-switch-toggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 25px;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div .ezd-switch-toggle .slider:before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3.5px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
 }
 #ezd-setup-wizard-wrap .tab-content .tab-pane h2 {
   font-size: 22px;

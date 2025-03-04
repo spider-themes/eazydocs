@@ -52,12 +52,17 @@ class Frontend {
 	 */
 	public function footnotes($post_id){
 		$options 				= get_option( 'eazydocs_settings' );		
+		$default_column 		= $options['footnotes_column'] ?? '4';		
 		$is_notes_title   		= $options['is_footnotes_heading'] ?? '1';
 		$footnotes_layout  	 	= $options['footnotes_layout'] ?? 'collapsed';
 		$is_footnotes_expand 	= $is_notes_title == 1 ? $footnotes_layout : '';
 		$ezd_notes_footer_mt 	= $is_notes_title != '1' ? 'mt-30' : '';
 		$notes_title_text 		= $options['footnotes_heading_text'] ?? __( 'Footnotes', 'eazydocs' );
-		$footnotes_column 		= ezd_meta_apply('footnotes_column');
+
+		$meta_options			= get_post_meta( $post_id, 'footnotes_colum_opt', true );
+		$col_meta 				= $meta_options['footnotes_column'] ?? '3';
+		$source 				= $meta_options['footnotes_column_source'] ?? 'default';
+		$footnotes_column 		= $source == 'default' ? $default_column : $col_meta;
 
 		$reference_with_content = ezd_get_footnotes_in_content($post_id);
 		$shortcode_counter 		= count($reference_with_content);
