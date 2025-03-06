@@ -1,8 +1,23 @@
 <?php
-if ( ezd_is_plugin_installed_for_days(18) ) {
-	add_action( 'admin_notices', 'ezd_notify_give_review' );
-	add_action( 'wp_ajax_ezd_notify_save_review', 'ezd_notify_save_review' );
+$optionReview = get_option('ezd_notify_review');
+if ( time() >= (int)$optionReview && $optionReview !== '0' ) {
+	$ezd_installed = get_option('eazyDocs_installed');
+	// Check if timestamp exists
+	if ( $ezd_installed ) {
+		// Add 7days to the timestamp
+		$show_notice = $ezd_installed + (7 * 24 * 60 * 60);
+
+		// Get the current time
+		$current_time = current_time('timestamp');
+
+		// Compare current time with timestamp + 7 days
+		if ($current_time >= $show_notice) {
+			add_action('admin_notices', 'ezd_notify_give_review');
+		}
+	}
 }
+
+add_action('wp_ajax_ezd_notify_save_review', 'ezd_notify_save_review');
 
 /**
  ** Give Notice
@@ -43,7 +58,7 @@ function ezd_notify_give_review() {
 			}
 			?>
         </p>
-        <p class="ezd_notify_review_subheading">
+        <p class="ezd_notify_review_subheading" style="margin-bottom: 20px;">
 			<?php esc_html_e( 'We will be forever grateful. Thank you in advance.', 'eazydocs' ); ?>
         </p>
         <p>
@@ -61,7 +76,7 @@ function ezd_notify_give_review() {
                 const fieldValue = jQuery(thisElement).attr("data");
                 const freeLink = "https://wordpress.org/support/plugin/eazydocs/reviews/#new-post";
                 let hidePopup = false;
-                if (fieldValue == "rateNow") {
+                if ( fieldValue === "rateNow" ) {
                     window.open(freeLink, "_blank");
                 } else {
                     hidePopup = true;
