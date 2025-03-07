@@ -643,11 +643,73 @@ p.big-p {
   padding: 20px 10px 0px 10px;
   box-sizing: border-box;
   background: linear-gradient(209deg, #f9f9f9, rgba(245, 245, 245, 0.4705882353));
+  position: relative;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li.active {
+  background: linear-gradient(301deg, #2271b1, #00253e);
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li.active p {
+  color: transparent;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li.active h2 {
+  color: white;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li .ezd-loading {
+  position: absolute;
+  width: 81px;
+  height: 42px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  bottom: 0;
+  margin: auto;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  top: 30px;
+  left: 0;
+  margin: auto;
+  z-index: 999999;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li .ezd-loading:not(.done)::before {
+  animation: rotate 4s linear infinite;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li .ezd-loading::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: #ccc;
+  background-repeat: no-repeat;
+  background-size: 50% 50%, 50% 50%;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  background-image: linear-gradient(#000000, #000000), linear-gradient(#000000, #000000), linear-gradient(#377af5, #377af5), linear-gradient(#377af5, #377af5);
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li .ezd-loading::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 6px;
+  top: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  background: white;
+  border-radius: 5px;
+  animation: opacityChange 3s infinite alternate;
 }
 #ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li img {
   max-width: 40px;
   height: auto;
   margin: 0;
+  border-radius: 3px;
 }
 #ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li h2 {
   margin: 10px 0 5px;
@@ -851,6 +913,12 @@ p.big-p {
   padding: 10px;
   background: #fbfbfb;
 }
+@media screen and (max-width: 767px) {
+  #ezd-setup-wizard-wrap .toolbar-bottom {
+    position: unset;
+    display: block;
+  }
+}
 #ezd-setup-wizard-wrap .toolbar-bottom button {
   padding: 10px 20px;
   background: #005ccb;
@@ -862,6 +930,9 @@ p.big-p {
   color: white;
   border: none;
   margin: 0 10px;
+  line-height: normal;
+  padding: 10px;
+  box-sizing: border-box;
 }
 #ezd-setup-wizard-wrap .toolbar-bottom button.sw-btn-prev {
   background: transparent;
@@ -877,6 +948,36 @@ p.big-p {
 }
 #ezd-setup-wizard-wrap .toolbar-bottom button.disabled {
   display: none;
+}
+
+button#ezd-install-selected-plugins {
+  position: absolute;
+  display: none;
+  bottom: 10px;
+  right: 20px;
+  z-index: 1;
+  height: auto;
+  padding: 9px;
+  background: #005ccb;
+  min-width: 150px;
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: normal;
+  box-sizing: border-box;
+  margin: 0;
+}
+button#ezd-install-selected-plugins:hover {
+  background: #00326e;
+}
+@media screen and (max-width: 767px) {
+  button#ezd-install-selected-plugins {
+    left: 0;
+    right: 0;
+    min-width: auto;
+    max-width: max-content;
+    margin: auto;
+  }
 }
 
 /*# sourceMappingURL=admin-global.css.map */

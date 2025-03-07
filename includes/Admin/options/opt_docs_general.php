@@ -51,6 +51,7 @@ CSF::createSection( $prefix, array(
 			'title'   => esc_html__( 'Root slug', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Make sure to keep Docs Root Slug in the Single Docs Permalink. You are not able to keep it blank.', 'eazydocs' ),
 			'default'  => esc_html__( 'docs', 'eazydocs' ),	
+			'class'      => 'eazydocs-pro-notice',
 			'desc'     => sprintf( __( '<b>Note:</b> After changing the slug, go to %s Settings > Permalinks %s and click on the Save Changes button.', 'eazydocs' ), '<a href="'.admin_url('/options-permalink.php').'" target="_blank">', '</a>' ),
 			'dependency' => array( 'docs-url-structure', '==', 'custom-slug' ),
 			'validate' => 'ezd_slug_validate'
