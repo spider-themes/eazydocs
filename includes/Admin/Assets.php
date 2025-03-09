@@ -54,6 +54,11 @@ class Assets {
 			wp_enqueue_script( 'sweetalert' );
 		}
 
+		if ( ezd_admin_pages() ) {
+			wp_deregister_style('csf-fa5');
+			wp_deregister_style('csf-fa5-v4-shims');
+		}
+
 		if ( ezd_admin_post_types('onepage-docs')  ) {
 			wp_enqueue_script( 'ezd-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js', array( 'jquery' ), EAZYDOCS_VERSION );
 		}

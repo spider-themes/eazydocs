@@ -4,7 +4,7 @@
 CSF::createSection( $prefix, array(
 	'id'    => 'single_doc',
 	'title' => esc_html__( 'Doc Single', 'eazydocs' ),
-	'icon'  => 'fas fa-plus-circle',
+	'icon'  => 'dashicons dashicons-media-document',
 ) );
 
 
@@ -840,7 +840,7 @@ CSF::createSection( $prefix, array(
 			'subtitle'   => esc_html__( 'Highlight the typed keyword in the docs.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
-			'text_width' => 80,
+			'text_width' => 85,
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice',
 		),

@@ -1,12 +1,11 @@
 <?php
-
 //
 // Restricted Docs Fields
 //
 CSF::createSection( $prefix, array(
 	'id'    => 'restricted_docs',
 	'title' => esc_html__( 'Restricted Docs', 'eazydocs' ),
-	'icon'  => 'fas fa-plus-circle',
+	'icon'  => 'dashicons dashicons-privacy',
 ) );
 
 // Private Doc
@@ -21,6 +20,7 @@ CSF::createSection( $prefix, array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Private Doc', 'eazydocs' )
 		),
+
 		array(
 			'id'      => 'private_doc_mode',
 			'type'    => 'select',
@@ -33,6 +33,7 @@ CSF::createSection( $prefix, array(
 			'default' => 'none',
 			'class'   => 'eazydocs-pro-notice'
 		),
+
 		array(
 			'id'          => 'private_doc_login_page',
 			'type'        => 'select',
@@ -106,6 +107,7 @@ CSF::createSection( $prefix, array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Protected Doc', 'eazydocs' )
 		),
+
 		array(
 			'id'      => 'protected_doc_form',
 			'type'    => 'select',
@@ -116,6 +118,7 @@ CSF::createSection( $prefix, array(
 			],
 			'default' => 'eazydocs-form'
 		),
+
 		array(
 			'id'         => 'protected_doc_form_info',
 			'type'       => 'subheading',
@@ -124,6 +127,7 @@ CSF::createSection( $prefix, array(
 				array( 'protected_doc_form', '==', 'eazydocs-form' ),
 			)
 		),
+
 		array(
 			'id'          => 'protected_form_head_color',
 			'type'        => 'color',
@@ -134,6 +138,7 @@ CSF::createSection( $prefix, array(
 			'output'      => '.ezd-password-wrap .ezd-password-head',
 			'output_mode' => 'background-color',
 		),
+
 		array(
 			'id'         => 'protected_form_title',
 			'type'       => 'text',
@@ -142,6 +147,7 @@ CSF::createSection( $prefix, array(
 				array( 'protected_doc_form', '==', 'eazydocs-form' ),
 			)
 		),
+
 		array(
 			'id'          => 'protected_form_title_color',
 			'type'        => 'color',
@@ -152,6 +158,7 @@ CSF::createSection( $prefix, array(
 			'output'      => '.ezd-password-wrap .ezd-password-head p.ezd-password-title',
 			'output_mode' => 'color',
 		),
+
 		array(
 			'id'         => 'protected_form_subtitle',
 			'type'       => 'text',
@@ -160,6 +167,7 @@ CSF::createSection( $prefix, array(
 				array( 'protected_doc_form', '==', 'eazydocs-form' ),
 			)
 		),
+
 		array(
 			'id'          => 'protected_form_subtitle_color',
 			'type'        => 'color',
@@ -170,6 +178,7 @@ CSF::createSection( $prefix, array(
 			'output'      => '.ezd-password-wrap .ezd-password-head p.ezd-password-subtitle',
 			'output_mode' => 'color',
 		),
+
 		array(
 			'id'         => 'protected_form_btn',
 			'type'       => 'text',
@@ -178,6 +187,7 @@ CSF::createSection( $prefix, array(
 				array( 'protected_doc_form', '==', 'eazydocs-form' ),
 			)
 		),
+
 		array(
 			'id'          => 'protected_form_btn_bgcolor',
 			'type'        => 'color',
@@ -188,6 +198,7 @@ CSF::createSection( $prefix, array(
 			'output'      => '.ezd-password-wrap .ezd-password-body form button',
 			'output_mode' => 'color',
 		),
+
 		array(
 			'id'          => 'protected_form_btn_textcolor',
 			'type'        => 'color',

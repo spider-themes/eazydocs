@@ -92,9 +92,36 @@ a.eazydocs-close-notice:active {
   }
 }
 
+
+/** === Codestar Fontawesome replaced with Dashicons === **/
+/** Down arrow **/
+.csf-field .chosen-container-single .chosen-single div b:before,
+.csf-nav ul li .csf-arrow:after {
+  content: "\f347";
+  font-family: dashicons;
+  font-size: 12px;
+}
+
+/** Cross icon **/
+.csf-field .chosen-container-single .chosen-single abbr:before,
+.csf-field .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:before {
+  content: "\f335" !important;
+  font-family: dashicons;
+}
+
+.csf-field .chosen-container-active.chosen-with-drop .chosen-single div b:before {
+  content: "\f343";
+  font-family: dashicons;
+}
+
 /** === Codestar options / Pro Alert === **/
 .csf-field-image_select figure {
   width: 100px;
+}
+
+.csf-nav .csf-tab-icon {
+  font-size: 15px;
+  padding-top: 2px;
 }
 
 .csf-field-repeater .csf-repeater-content {

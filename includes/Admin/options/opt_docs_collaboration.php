@@ -6,7 +6,7 @@
 CSF::createSection( $prefix, array(
 	'id'     => 'contributor_fields',
 	'title'  => esc_html__( 'Docs Collaboration', 'eazydocs' ),
-	'icon'   => 'fas fa-plus-circle',
+	'icon'   => 'dashicons dashicons-groups',
 	'fields' => [
 		array(
 			'id'         => 'is_doc_contribution',

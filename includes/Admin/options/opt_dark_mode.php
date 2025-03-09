@@ -4,7 +4,7 @@
 CSF::createSection( $prefix, array(
     'id'     => 'dark_mode',
     'title'  => esc_html__( 'Dark Mode', 'eazydocs' ),
-    'icon'   => 'fas fa-adjust',
+    'icon'   => 'dashicons dashicons-star-half',
     'fields' => array(
         array(
             'title'         => esc_html__( 'Dark Mode Switcher', 'eazydocs' ),

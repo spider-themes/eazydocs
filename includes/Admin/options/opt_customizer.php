@@ -3,7 +3,7 @@
 CSF::createSection( $prefix, array(
 	'id'     => 'design_fields',
 	'title'  => esc_html__( 'Customizer', 'eazydocs' ),
-	'icon'   => 'fas fa-plus-circle',
+	'icon'   => 'dashicons dashicons-admin-customizer',
 	'fields' => [
 		array(
 			'id'         => 'customizer_visibility',

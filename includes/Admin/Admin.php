@@ -144,7 +144,7 @@ class Admin {
 			add_submenu_page( 'eazydocs', __( 'Users Feedback', 'eazydocs' ), __( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [ $this, 'ezd_feedback_presents' ] );
 			add_submenu_page( 'eazydocs', __( 'Analytics', 'eazydocs' ), __( 'Analytics', 'eazydocs' ), $capabilites, 'ezd-analytics', [ $this, 'ezd_analytics_presents' ] );
 		}
-		add_submenu_page( 'eazydocs', __( 'Getting Started', 'eazydocs' ), __( 'Getting Started', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ]  );
+		add_submenu_page( 'eazydocs', __( 'Setup Wizard', 'eazydocs' ), __( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ]  );
 	}
 
 	/**

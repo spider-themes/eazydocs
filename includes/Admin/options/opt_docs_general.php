@@ -6,7 +6,7 @@
 CSF::createSection( $prefix, array(
 	'id'     => 'general_fields',
 	'title'  => esc_html__( 'Docs General', 'eazydocs' ),
-	'icon'   => 'fas fa-plus-circle',
+	'icon'   => 'dashicons dashicons-admin-settings',
 	'fields' => array(
 
 		array(

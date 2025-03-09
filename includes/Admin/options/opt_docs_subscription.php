@@ -4,7 +4,7 @@
 CSF::createSection( $prefix, array(
 	'id'     => 'subscriptions_opt',
 	'title'  => esc_html__( 'Docs Subscriptions', 'eazydocs' ), 
-	'icon'   => 'fas fa-plus-circle',
+	'icon'   => 'dashicons dashicons-email',
 	'fields' => array(
 		array(
 			'type'  => 'heading',

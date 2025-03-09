@@ -4,7 +4,7 @@
 CSF::createSection( $prefix, array(
 	'id'     => 'ezd_footnotes',
 	'title'  => esc_html__( 'Footnotes', 'eazydocs' ),
-	'icon'   => 'fas fa-plus-circle',
+	'icon'   => 'dashicons dashicons-text-page',
 	'fields' => [
 		array(
 			'id'         => 'is_footnotes_heading',

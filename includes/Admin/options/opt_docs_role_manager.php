@@ -6,7 +6,7 @@
 CSF::createSection( $prefix, array(
 	'id'     => 'role_manager_fields',
 	'title'  => esc_html__( 'Docs Role Manager', 'eazydocs' ),
-	'icon'   => 'fas fa-plus-circle',
+	'icon'   => 'dashicons dashicons-businessman',
 	'fields' => [
 		array(
 			'id'       => 'docs-write-access',

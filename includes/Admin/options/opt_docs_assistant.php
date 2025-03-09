@@ -6,7 +6,7 @@
 CSF::createSection( $prefix, array(
 	'id'     => 'eazydocs_instant_answer',
 	'title'  => esc_html__( 'Docs Assistant', 'eazydocs' ),
-	'icon'   => 'fas fa-plus-circle',
+	'icon'   => 'dashicons dashicons-format-chat',
 	'fields' => [
 		array(
 			'type'  => 'heading',
