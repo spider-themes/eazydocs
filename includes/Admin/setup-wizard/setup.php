@@ -127,21 +127,21 @@ $docs_archive_page 		= $opt['docs-slug'] ?? '';
 
             <div id="step-3" class="tab-pane" role="tabpanel" style="display:none">
                 <h2> <?php esc_html_e( 'Select Page Layout', 'eazydocs' ); ?> </h2>
-
+                 
                 <div class="page-layout-wrap">
                     <input type="radio" id="both_sidebar" value="both_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'both_sidebar' ); ?>>
                     <label for="both_sidebar" class="<?php if ( $docs_single_layout == 'both_sidebar' ) { echo esc_attr( 'active' ); } ?>">
-                        <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/both_sidebar.jpg' ); ?>" alt="<?php esc_attr_e( 'Both sidebar layout', 'eazydocs' ); ?>" />
+                        <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/both_sidebar.jpg' ); ?>" alt="<?php esc_attr_e( 'Welcome icon', 'eazydocs' ); ?>" />
                     </label>
 
                     <input type="radio" id="sidebar_left" value="sidebar_left" name="docs_single_layout" <?php checked( $docs_single_layout, 'sidebar_left' ); ?>>
-                    <label for="sidebar_left" class="<?php if ( $docs_single_layout == 'left_sidebar' ) { echo esc_attr( 'active' ); } ?>">
-                        <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/sidebar_left.jpg' ); ?>" alt="<?php esc_attr_e( 'Left sidebar layout', 'eazydocs' ); ?>" />
+                    <label for="sidebar_left" class="<?php if ( $docs_single_layout == 'sidebar_left' ) { echo esc_attr( 'active' ); } ?>">
+                        <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/sidebar_left.jpg' ); ?>" alt="<?php esc_attr_e( 'Basic icon', 'eazydocs' ); ?>" />
                     </label>
 
                     <input type="radio" id="sidebar_right" value="sidebar_right" name="docs_single_layout" <?php checked( $docs_single_layout, 'sidebar_right' ); ?>>
-                    <label for="sidebar_right" class="<?php if ( $docs_single_layout == 'right_sidebar' ) { echo esc_attr( 'active' ); } ?>">
-                        <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/sidebar_right.jpg' ); ?>" alt="<?php esc_attr_e( 'Right sidebar layout', 'eazydocs' ); ?>" />
+                    <label for="sidebar_right" class="<?php if ( $docs_single_layout == 'sidebar_right' ) { echo esc_attr( 'active' ); } ?>">
+                        <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/sidebar_right.jpg' ); ?>" alt="<?php esc_attr_e( 'Basic icon', 'eazydocs' ); ?>" />
                     </label>
                 </div>
                  
@@ -165,66 +165,65 @@ $docs_archive_page 		= $opt['docs-slug'] ?? '';
             </div>
 
             <div id="step-4" class="tab-pane" role="tabpanel" style="display:none">
-                <?php
-                 // Required to use plugin functions
-                include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+            <?php
+            // Include necessary WordPress functions for plugin management
+            if (!function_exists('is_plugin_active')) {
+                include_once ABSPATH . 'wp-admin/includes/plugin.php';
+            }
 
-                $plugins = [
-                    [
-                        'img'          => 'elementor-logo.png',
-                        'title'        => __('Elementor', 'eazydocs'),
-                        'slug'         => 'elementor',
-                        'file'         => 'elementor/elementor.php', // Added the correct file path
-                        'description'  => __('Required for Elementor widget', 'eazydocs'),
-                        'status'       => __('Required', 'eazydocs')
-                    ],
-                    [
-                        'img'          => 'bbp-core-logo.png',
-                        'title'        => __('BBP Core', 'eazydocs'),
-                        'slug'         => 'bbp-core',
-                        'file'         => 'bbp-core/bbp-core.php', // Added the correct file path
-                        'description'  => __('Recommended for Power-up bbPress forum', 'eazydocs'),
-                        'status'       => __('Recommended', 'eazydocs')
-                    ],
-                    [
-                        'img'          => 'changeloger-logo.png',
-                        'title'        => __('Changeloger', 'eazydocs'),
-                        'slug'         => 'changeloger',
-                        'file'         => 'changeloger/changeloger.php', // Added the correct file path
-                        'description'  => __('Recommended for publishing Software Changelog', 'eazydocs'),
-                        'status'       => __('Recommended', 'eazydocs')
-                    ]
-                ];
+            $plugins = [
+                [
+                    'img'         => 'elementor-logo.png',
+                    'title'       => __('Elementor', 'eazydocs'),
+                    'slug'        => 'elementor',
+                    'description' => __('Required for Elementor widget', 'eazydocs'),
+                    'status'      => __('Required', 'eazydocs')
+                ],
+                [
+                    'img'         => 'bbp-core-logo.png',
+                    'title'       => __('BBP Core', 'eazydocs'),
+                    'slug'        => 'bbp-core',
+                    'description' => __('Recommended for Power-up bbPress forum', 'eazydocs'),
+                    'status'      => __('Recommended', 'eazydocs')
+                ],
+                [
+                    'img'         => 'changeloger-logo.png',
+                    'title'       => __('Changeloger', 'eazydocs'),
+                    'slug'        => 'changeloger',
+                    'description' => __('Recommended for publishing Software Changelog', 'eazydocs'),
+                    'status'      => __('Recommended', 'eazydocs')
+                ]
+            ];
+            ?>
+
+            <h2><?php esc_html_e('Install Required Plugins', 'eazydocs'); ?></h2>
+
+            <ul class="ezd-plugins-wrap">
+                <?php foreach ($plugins as $plugin) : 
+                    $plugin_file = $plugin['slug'] . '/' . $plugin['slug'] . '.php';
+                    $is_active = is_plugin_active($plugin_file);
+                    $is_installed = file_exists(WP_PLUGIN_DIR . '/' . $plugin['slug']);
+
+                    $button_text = $is_active ? __('Activated', 'eazydocs') : ($is_installed ? __('Activate', 'eazydocs') : __('Install', 'eazydocs'));
+                    $button_class = $is_active ? 'button-disabled' : 'button-action';
+                    $button_attr = $is_active ? 'disabled' : sprintf('data-plugin="%s" data-action="%s"', esc_attr($plugin['slug']), $is_installed ? 'activate' : 'install');
                 ?>
-
-                <h2> <?php esc_html_e( 'Install Required Plugins', 'eazydocs' ); ?> </h2>
-
-                <ul class="ezd-plugins-wrap">
-                    <?php 
-                    foreach ( $plugins as $plugin ) : 
-                        $plugin_path 	= WP_PLUGIN_DIR . '/' . $plugin['file'];
-                        $is_installed 	= file_exists( $plugin_path );
-                        $is_active 		= is_plugin_active( $plugin['file'] );
-                        $checked 		= $is_active ? 'checked disabled' : '';
-                        ?>
-                        <li>
-                            <img src="<?php echo esc_url( EAZYDOCS_IMG . '/admin/' . $plugin['img']); ?>" alt="<?php echo esc_attr( $plugin['title'] ); ?>" />
-                            <h2> <?php echo esc_html( $plugin['title'] ); ?> </h2>
-                            <p> <?php echo esc_html( $plugin['description'] ); ?> </p>
-
-                            <div>
-                                <span> <?php echo esc_html($plugin['status']); ?> </span>
-                                <label class="ezd-switch-toggle">
-                                    <input type="checkbox" value="<?php echo esc_attr( $plugin['slug'] ); ?>" name="plugin_slugs[]" <?php echo esc_attr($checked); ?>  />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </li>
-                        <?php 
-                    endforeach; 
-                    ?>
-                </ul>
-                
+                    <li>
+                        <div>
+                            <img src="<?php echo esc_url(EAZYDOCS_IMG . '/admin/' . $plugin['img']); ?>" alt="<?php echo esc_attr($plugin['title']); ?>" />
+                            <h2><?php echo esc_html($plugin['title']); ?></h2>
+                            <p><?php echo esc_html($plugin['description']); ?></p>
+                        </div>
+                        <div class="action-btn-wrap">
+                            <span><?php echo esc_html($plugin['status']); ?></span>
+                            <button class="button-install-plugin <?php echo esc_attr($button_class); ?>" <?php echo $button_attr; ?>>
+                                <?php echo esc_html($button_text); ?>
+                            </button>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            
                 <p><?php esc_html_e( 'Install the plugins you need. Each one has a short description to help you choose the right ones for better functionality.', 'eazydocs' ); ?></p>
                 
                 <button id="ezd-install-selected-plugins" class="button button-primary">Install Selected Plugins →</button>

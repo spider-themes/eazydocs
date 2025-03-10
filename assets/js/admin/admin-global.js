@@ -212,78 +212,45 @@
             });
         });
         
-        function ezd_install_plugins_slug() { 
-            $('input[name="plugin_slugs[]"]').change( function() { 
-                
-                var selectedPlugins = $('input[name="plugin_slugs[]"]:checked').filter(function() {
-                    return ! $(this).prop('disabled');
-                });
+        // Plugin activation in setup wizard
+        function ezdHandlePluginAction(button, plugin, action) {
+            button.text(action === "install" ? "Installing.." : "Activating..").prop("disabled", true);
         
-                if ( selectedPlugins.length > 0 ) { 
-                    $('#ezd-install-selected-plugins').fadeIn();
-                } else { 
-                    $('#ezd-install-selected-plugins').fadeOut();
-                } 
-            }); 
-        }
-        ezd_install_plugins_slug();
-        
-        $(document).on('click', '#ezd-install-selected-plugins', function() { 
-            var selectedPlugins = []; 
-        
-            $('input[name="plugin_slugs[]"]:checked').each(function() { 
-                selectedPlugins.push($(this).val()); 
-            }); 
-        
-            if (selectedPlugins.length === 0) { 
-                alert('Please select at least one plugin.'); 
-                return; 
-            } 
-        
-            $(this).prop('disabled', true).text('Installing...'); 
-        
-            $.ajax({ 
-                url: eazydocs_local_object.ajaxurl, 
-                type: 'POST', 
-                data: { 
-                    action: 'ezd_install_selected_plugins', 
-                    slugs: selectedPlugins 
-                }, 
-                beforeSend: function() {   
-                    selectedPlugins.forEach(function(slug) {    
-                        let checkbox = $('input[name="plugin_slugs[]"][value="' + slug + '"]:not(:disabled)'); 
-                        let parentLi = checkbox.closest('li');   
-        
-                        if (parentLi.length) {  
-                            parentLi.addClass('active').append('<span class="ezd-loading">Installing</span>'); 
-                            checkbox.prop('disabled', true);
-                        } 
-                    }); 
-                }, 
-                success: function(response) { 
-                    if (response.success) { 
-                        $('.ezd-loading').text('Installed').addClass('done'); 
-                        setTimeout(function() {  
-                            selectedPlugins.forEach(function(slug) {  
-                                $('input[name="plugin_slugs[]"][value="' + slug + '"]').prop('checked', true).prop('disabled', true);
-                            }); 
-                        }, 2000); 
-        
-                        ezd_install_plugins_slug();
-        
-                        $('#ezd-setup-wizard-wrap .toolbar-bottom button.sw-btn-next').trigger('click'); 
-                        $('#ezd-install-selected-plugins').prop('disabled', false).fadeOut().text('Install Selected Plugins'); 
+            $.ajax({
+                url: eazydocs_local_object.ajaxurl,
+                type: "POST",
+                data: {
+                    action: "ezd_plugin_action",
+                    plugin: plugin,
+                    task: action,
+                    security: eazydocs_local_object.nonce
+                },
+                success: function (response) {
+                    if (response.success) {
+                        if (action === "install") {
+                            // Automatically trigger activation after install
+                            button.text("Activating...").attr("data-action", "activate").removeClass("button-action").addClass("button-activate");
+                            ezdHandlePluginAction(button, plugin, "activate"); // Call activation immediately
+                        } else {
+                            button.text("Activated").removeClass("button-activate button-action").addClass("button-disabled").prop("disabled", true);
+                        }
                     } else {
-                        console.log(response.message);
+                        alert("Error: " + response.data);
+                        button.text(action.charAt(0).toUpperCase() + action.slice(1)).prop("disabled", false);
                     }
-                }, 
-                error: function(xhr, status, error) { 
-                    console.log('Something went wrong:', error); 
-                    $('#ezd-install-selected-plugins').prop('disabled', false).text('Install Selected Plugins'); 
-                } 
-            }); 
-        });
+                }
+            });
+        }
         
+        $(document).on("click", ".button-action, .button-activate", function () {
+            let button = $(this);
+            let plugin = button.data("plugin");
+            let action = button.data("action");
+        
+            if (plugin && action) {
+                ezdHandlePluginAction(button, plugin, action);
+            }
+        });
         // Setup wizard scripts end       
     });
 })(jQuery);
