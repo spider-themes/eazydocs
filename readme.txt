@@ -1,6 +1,6 @@
 === EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin ===
 Contributors: mdjwel, spiderdevs
-Tags: knowledge base, kb, faq, wiki, helpdesk
+Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.7.3
 Requires PHP: 7.4

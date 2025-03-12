@@ -1755,6 +1755,9 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   }
 }
 
+.single-docs #post .doc-scrollable.editor-content .anchorjs-link {
+  padding-left: 5px;
+}
 .single-docs #post .doc-scrollable.editor-content .ezd-password-wrap p.ezd-password-title {
   color: #fff;
   font-weight: 500;

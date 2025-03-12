@@ -1916,6 +1916,9 @@ body:not(.onepage-doc) .sticky_menu {
 // Eazydocs password protected form
 .single-docs #post {
 	.doc-scrollable.editor-content {
+		.anchorjs-link {
+			padding-left: 5px;
+		}
 		.ezd-password-wrap {
 			p.ezd-password-title {
 				color: #fff;

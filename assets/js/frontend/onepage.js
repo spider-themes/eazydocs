@@ -60,22 +60,3 @@
 			.addClass('doc-last-depth-icon');
 	});
 })(jQuery);
-
-// jQuery(window).on('scroll', function () {
-// 	jQuery('.doc-nav .nav-item .nav-link').each(function () {
-// 		if (jQuery(this).hasClass('active')) {
-// 			jQuery(this).parent().addClass('active');
-// 			//jQuery(this).removeClass('active')
-// 		} else {
-// 			jQuery(this).parent().removeClass('active');
-// 		}
-// 	});
-// 	jQuery('.dropdown_nav li.active').parent().closest('li').addClass('active');
-
-// 	jQuery('.dropdown_nav li.active')
-// 		.parent('.dropdown_nav')
-// 		.closest('li')
-// 		.addClass('active');
-
-// 	//jQuery('.doc-nav .nav-item .nav-link.active').removeClass('active')
-// });
