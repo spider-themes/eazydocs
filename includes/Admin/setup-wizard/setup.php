@@ -134,13 +134,13 @@ $docs_archive_page 		= $opt['docs-slug'] ?? '';
                         <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/both_sidebar.jpg' ); ?>" alt="<?php esc_attr_e( 'Both sidebar layout', 'eazydocs' ); ?>" />
                     </label>
 
-                    <input type="radio" id="sidebar_left" value="sidebar_left" name="docs_single_layout" <?php checked( $docs_single_layout, 'sidebar_left' ); ?>>
-                    <label for="sidebar_left" class="<?php if ( $docs_single_layout == 'sidebar_left' ) { echo esc_attr( 'active' ); } ?>">
+                    <input type="radio" id="left_sidebar" value="left_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'left_sidebar' ); ?>>
+                    <label for="left_sidebar" class="<?php if ( $docs_single_layout == 'left_sidebar' ) { echo esc_attr( 'active' ); } ?>">
                         <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/sidebar_left.jpg' ); ?>" alt="<?php esc_attr_e( 'Left sidebar layout', 'eazydocs' ); ?>" />
                     </label>
 
-                    <input type="radio" id="sidebar_right" value="sidebar_right" name="docs_single_layout" <?php checked( $docs_single_layout, 'sidebar_right' ); ?>>
-                    <label for="sidebar_right" class="<?php if ( $docs_single_layout == 'sidebar_right' ) { echo esc_attr( 'active' ); } ?>">
+                    <input type="radio" id="right_sidebar" value="right_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'right_sidebar' ); ?>>
+                    <label for="right_sidebar" class="<?php if ( $docs_single_layout == 'right_sidebar' ) { echo esc_attr( 'active' ); } ?>">
                         <img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/sidebar_right.jpg' ); ?>" alt="<?php esc_attr_e( 'Right sidebar layout', 'eazydocs' ); ?>" />
                     </label>
                 </div>

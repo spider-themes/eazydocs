@@ -1731,8 +1731,8 @@ button.nestable--button.nestable--expand {
 
 /* Doc visibility */
 .docs_visibility_wrapper p {
-  margin-bottom: 30px;
-  font-size: 0.94em;
+  margin: 0 0 30px;
+  font-size: 14px;
 }
 
 .docs_visibility_field_wrap {

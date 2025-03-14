@@ -167,6 +167,12 @@ a.eazydocs-close-notice:active {
   font-family: dashicons;
 }
 
+.csf-field-image_select figure:before {
+  content: "\f147";
+  font-family: dashicons;
+  font-size: 14px;
+}
+
 /** === Codestar options / Pro Alert === **/
 .csf-field-image_select figure {
   width: 100px;
@@ -174,7 +180,6 @@ a.eazydocs-close-notice:active {
 
 .csf-nav .csf-tab-icon {
   font-size: 15px;
-  padding-top: 2px;
 }
 
 .csf-field-repeater .csf-repeater-content {
@@ -391,7 +396,7 @@ label[for=ezd_docs_sidebar] {
   display: block;
   text-align: left;
   margin: 20px 0 10px;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16px;
 }
 
