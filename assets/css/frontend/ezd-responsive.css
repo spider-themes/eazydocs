@@ -37,7 +37,7 @@
 
 	.left-column .doc_left_sidebarlist {
 		max-width: 330px;
-		width: 100%;
+		width: 330px;
 		height: 100vh;
 		left: -330px;
 		position: absolute;

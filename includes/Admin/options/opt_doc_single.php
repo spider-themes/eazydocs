@@ -864,10 +864,9 @@ CSF::createSection( $prefix, array(
 			'type'     => 'media',
 			'default'  => array(
 				'url' => EAZYDOCS_IMG . '/icon/folder-closed.png'
-			),
-			'class'    => 'eazydocs-pro-notice active-theme'
+			)
 		),
-
+		
 		array(
 			'title'    => esc_html__( 'Doc Section Icon Open', 'eazydocs' ),
 			'subtitle' => esc_html__( "This is the Doc's default icon. If you don't use icon for the article section individually, this icon will be shown on open states of the Doc sections.",
@@ -876,8 +875,7 @@ CSF::createSection( $prefix, array(
 			'type'     => 'media',
 			'default'  => array(
 				'url' => EAZYDOCS_IMG . '/icon/folder-open.png'
-			),
-			'class'    => 'eazydocs-pro-notice active-theme'
+			)
 		),
 
 		array(

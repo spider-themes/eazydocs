@@ -644,10 +644,10 @@ function eazydocs_pro_doc_list() {
 		'post_type'      => array( 'docs' ),
 		'post_parent'    => 0
 	);
-	$docs      = get_posts( $args );
-	$doc_items = '';
-
+	$docs      		= get_posts( $args );
 	$doc_item_count = 0;
+	$doc_items 		= '<option value="">Select a doc</option>';
+
 	foreach ( $docs as $doc ) {
 		if ( ! get_page_by_path( $doc->post_name, OBJECT, 'onepage-docs' ) ) {
 			$doc_item_count ++;
@@ -680,7 +680,7 @@ function eazydocs_one_page( $doc_id ) {
 	if ( $post_status != 'draft' ) :
 		if ( count( $one_page_docs ) < 1 ) :
 			?>
-			<button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo esc_url(admin_url( 'admin.php' )); ?>?parentID=<?php echo esc_attr($doc_id); ?>&single_doc_title=<?php echo esc_html($one_page_title); ?>&make_onepage=yes&_wpnonce=<?php echo esc_attr(wp_create_nonce($doc_id)); ?>">
+			<button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo esc_url(admin_url( 'admin.php' )); ?>?parentID=<?php echo esc_attr($doc_id); ?>&single_doc_title=<?php echo esc_html($one_page_title); ?>&make_onepage=yes">
 				<?php esc_html_e( 'Make OnePage Doc', 'eazydocs' ); ?>
 			</button>
 			<?php
