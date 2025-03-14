@@ -717,13 +717,21 @@ p.big-p {
   cursor: pointer;
   color: black;
   border: 1px solid;
-  padding: 5px 7px;
+  padding: 6px 12px;
   border-radius: 3px;
 }
-#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div.action-btn-wrap button:disabled {
-  background: #004a86 !important;
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div.action-btn-wrap button.button-action {
+  background: #007FFF;
   color: white !important;
-  border-color: #004a86 !important;
+  border: none;
+  transition: all 0.3s;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div.action-btn-wrap button.button-action:hover {
+  background: #002D62 !important;
+}
+#ezd-setup-wizard-wrap .tab-content .tab-pane#step-4 ul.ezd-plugins-wrap li div.action-btn-wrap button:disabled {
+  color: #787878 !important;
+  cursor: not-allowed;
 }
 #ezd-setup-wizard-wrap .tab-content .tab-pane h2 {
   font-size: 22px;
@@ -875,7 +883,6 @@ p.big-p {
   }
 }
 #ezd-setup-wizard-wrap .toolbar-bottom button {
-  padding: 10px 20px;
   background: #005ccb;
   border-radius: 5px;
   cursor: pointer;

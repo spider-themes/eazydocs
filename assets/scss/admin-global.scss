@@ -734,13 +734,23 @@ p.big-p {
                     cursor: pointer;
                     color: black;
                     border: 1px solid;
-                    padding: 5px 7px;
+                    padding: 6px 12px;
                     border-radius: 3px;
 
-                    &:disabled {
-                      background: #004a86 !important;
+                    &.button-action {
+                      background: #007FFF;
                       color: white !important;
-                      border-color: #004a86 !important;
+                      border: none;
+                      transition: all 0.3s;
+
+                      &:hover {
+                        background: #002D62 !important;
+                      }
+                    }
+
+                    &:disabled {
+                      color: #787878 !important;
+                      cursor: not-allowed;
                     }
                   }
                 }
@@ -936,7 +946,6 @@ p.big-p {
     }
 
     button {
-      padding: 10px 20px;
       background: #005ccb;
       border-radius: 5px;
       cursor: pointer;
