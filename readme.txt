@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.7.3
 Requires PHP: 7.4
-Stable tag: 2.6.1
+Stable tag: 2.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -152,6 +152,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Fully RTL Compatibility
 - Duplicate Bulk/Individual Documentation
 - Users Feedback Database
+- Single & Multidocs Block
 
 ## EazyDocs Promax plan features include:
 - All Pro plan features
@@ -227,6 +228,17 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+= v2.6.2 (16 March 2025) =
+New: Included required & recommended plugins installation section in setup wizard
+New: Added install/activate button in setup wizard plugin section instead of switcher
+Fixed: Resolved the review notice
+Tweaked: Dashicons used instead of fontawesome icon to optimize performance in the dashboard
+Tweaked: Enable Sticky for Left and Right Sidebars on Mobile Screens
+Tweaked: Getting Started renamed to Setup Wizard
+Tweaked: Padding added before anchor.js icon
+Tweaked: Removed some unnecessary code
+Tweaked: Improved the top spacing of the left sidebar on the OnePage docs
+Updated: Settings page icons changed
 
 = v2.6.1 (27 February 2025) =
 Fixed: Settings page hide issue
