@@ -1433,7 +1433,7 @@ function ezd_internal_doc_security( $doc_id =  0 ) {
 	// Private doc restriction
 	if ( get_post_status( $doc_id ) == 'private' ) {
 
-		$user_group = ezd_get_opt('private_doc_user_restriction');
+		$user_group  = ezd_get_opt('private_doc_user_restriction');
 		$is_all_user = $user_group['private_doc_all_user'] ?? 0;
 		if ( $is_all_user == 0 ) {
 
@@ -1443,7 +1443,7 @@ function ezd_internal_doc_security( $doc_id =  0 ) {
 			$current_roles      = ( array ) $current_user->roles;
 
 			// All selected roles
-			$private_doc_roles = $user_group['private_doc_roles'];
+			$private_doc_roles  = $user_group['private_doc_roles'] ?? [];
 			$matching_roles 	= array_intersect($current_roles, $private_doc_roles);
 
 			if ( empty( $matching_roles )) {
@@ -1458,7 +1458,6 @@ function ezd_internal_doc_security( $doc_id =  0 ) {
 	}
 	return true;
 }
-
 
 /**
  * Delete doc secured by user role security
