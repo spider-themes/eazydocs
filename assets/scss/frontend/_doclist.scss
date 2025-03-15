@@ -2287,6 +2287,14 @@ body.admin-bar {
 	.ezd-link-copied-wrap {
 		top: 42px;
 	}
+	.doc_documentation_area.body_fixed {
+		.doc_rightsidebar,
+		.doc_left_sidebarlist {
+			&.one-page-docs-sidebar-wrap {
+				padding-top: 100px;
+			}
+		}
+	}
 	@media screen and ( max-width: 991px ) {
 		.doc_right_mobile_menu .doc_rightsidebar,
 		.left-column .doc_left_sidebarlist {

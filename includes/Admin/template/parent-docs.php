@@ -5,6 +5,7 @@ $query = new WP_Query([
     'post_parent'    => 0,
     'orderby'        => 'menu_order',
     'order'          => 'ASC',
+    'post_status'       => ['publish', 'draft', 'private']
 ]);
 $count = $query->found_posts;
 ?>

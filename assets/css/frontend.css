@@ -2061,6 +2061,10 @@ div#eazydocs_share > .ezd-modal-dialog > .ezd-modal-content > .eazydocs-share-wr
 body.admin-bar .ezd-link-copied-wrap {
   top: 42px;
 }
+body.admin-bar .doc_documentation_area.body_fixed .doc_rightsidebar.one-page-docs-sidebar-wrap,
+body.admin-bar .doc_documentation_area.body_fixed .doc_left_sidebarlist.one-page-docs-sidebar-wrap {
+  padding-top: 100px;
+}
 @media screen and (max-width: 991px) {
   body.admin-bar .doc_right_mobile_menu .doc_rightsidebar.sticky,
   body.admin-bar .left-column .doc_left_sidebarlist.sticky {
