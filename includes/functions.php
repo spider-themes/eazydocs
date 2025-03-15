@@ -1434,7 +1434,8 @@ function ezd_internal_doc_security( $doc_id =  0 ) {
 	if ( get_post_status( $doc_id ) == 'private' ) {
 
 		$user_group = ezd_get_opt('private_doc_user_restriction');
-		if ( $user_group['private_doc_all_user'] == 0 ) {
+		$is_all_user = $user_group['private_doc_all_user'] ?? 0;
+		if ( $is_all_user == 0 ) {
 
 			// current user role
 			$current_user_id    = get_current_user_id();
