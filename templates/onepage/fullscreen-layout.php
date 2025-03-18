@@ -37,7 +37,7 @@ $children = wp_list_pages( array(
 	'echo'      => false,
 	'post_type' => 'docs',
 	'walker'    => new Walker_Onepage_Fullscren(),
-	'depth'     => 3
+	'depth'     => 4
 ) );
 ?>
 <section class="documentation_area_sticky doc_documentation_area onepage_doc_area fullscreen-layout" id="sticky_doc">
@@ -71,7 +71,7 @@ $children = wp_list_pages( array(
 									'echo'      => false,
 									'post_type' => 'docs',
 									'walker'    => new Walker_Onepage_Fullscren(),
-									'depth'     => 3
+									'depth'     => 4
 								) ));
 								?>
                             </ul>
@@ -215,8 +215,48 @@ $children = wp_list_pages( array(
 											?>
                                         </div>
                                     </div>
+
+								<?php								
+								$last_depth_fiveth = get_children( array(
+									'post_parent'    => $last_depth_doc->ID,
+									'post_type'      => 'docs',
+									'post_status'    => 'publish',
+									'orderby'        => 'menu_order',
+									'order'          => 'ASC',
+									'posts_per_page' => - 1,
+								) );
+								$last_depth_serial = 0;
+								foreach ( $last_depth_fiveth as $last_depth_doc ) :
+									$last_depth_serial ++;
+									$get_last_child_title = sanitize_title( $last_depth_doc->post_title );
+									if ( preg_match( '#[0-9]#', $get_last_child_title ) ) {
+										$get_last_child_title = 'ezd-' . sanitize_title( $last_depth_doc->post_title );
+									}
+									?>
+                                    <div class="child-doc onepage-doc-sec" id="<?php echo esc_attr( $get_last_child_title ) ?>">
+                                        <div class="shortcode_title depth-three">
+                                            <h4>
+												<?php
+												echo esc_html($sec_serial . '.' . $child_serial . '.' . $last_depth_serial . ' ');
+												echo wp_kses_post($last_depth_doc->post_title);
+												?>
+                                            </h4>
+                                        </div>
+                                        <div class="doc-content">
+											<?php
+											if ( did_action( 'elementor/loaded' ) ) {
+												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
+												echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $last_depth_doc->post_content );
+											} else {
+												echo apply_filters( 'the_content', $last_depth_doc->post_content );
+											}
+											?>
+                                        </div>
+                                    </div>
 								<?php
 								endforeach;
+							endforeach;
+							
 							endforeach;
 							?>
                         </article>
