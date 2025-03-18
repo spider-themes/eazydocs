@@ -321,10 +321,12 @@ button.nestable--button.nestable--expand {
 
 .docs_visibility_field_wrap label {
     margin-right: 10px;
+    margin-top: -5px;
+    display: inline-block;
 }
 
 .docs_visibility_field_wrap input#ezd_password_input {
-    width: 100%;
+    width: -webkit-fill-available;
     border: 1px solid gray;
     margin-top: 10px;
     padding: 0px 10px;
