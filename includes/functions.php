@@ -29,9 +29,9 @@ function ezd_get_opt( $option, $default = '' ) {
  * @return mixed The post meta value, theme option value, or default value.
  */
 
-function ezd_meta_apply(string $option_id, null|string $default = '' ): mixed {
+function ezd_meta_apply( $option_id, $default = '' ) {
 	// Get post meta and theme option values
-	$meta_value = get_post_meta( get_the_ID(), $option_id, true );
+	$meta_value	  = get_post_meta( get_the_ID(), $option_id, true );
 	$option_value = ezd_get_opt($option_id, $default);
 
 	// Check if meta value is an array and empty
@@ -77,7 +77,6 @@ function ezd_is_promax() {
 		return true;
 	}
 }
-
 
 /**
  * Check if a plugin has been installed for specific number of days

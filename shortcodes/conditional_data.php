@@ -11,7 +11,7 @@ add_shortcode( 'conditional_data', function( $atts, $content ) {
 	if ( !empty($content) ) :
 		?>
 		<span class="ezd-con-<?php echo esc_attr($dependency); ?>">
-			<?php echo wp_kses_post($content); ?>
+			<?php echo do_shortcode( wp_kses_post($content) ); ?>
 		</span>
 		<?php
 	endif;

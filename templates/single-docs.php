@@ -31,11 +31,16 @@ if ( ezd_is_premium() ) {
 	$credit_enable = $options['eazydocs-enable-credit'] ?? '1';
 }
 
-$md_content_col = match ( $layout ) {
-	'left_sidebar' => 'ezd-lg-col-9 ezd-grid-column-full',
-	'right_sidebar' => 'ezd-lg-col-10 ezd-grid-column-full',
-	default => 'ezd-xl-col-7 ezd-lg-col-6 ezd-grid-column-full',
-};
+switch ( $layout ) {
+    case 'left_sidebar':
+        $md_content_col = 'ezd-lg-col-9 ezd-grid-column-full';
+        break;
+    case 'right_sidebar':
+        $md_content_col = 'ezd-lg-col-10 ezd-grid-column-full';
+        break;
+    default:
+        $md_content_col = 'ezd-xl-col-7 ezd-lg-col-6 ezd-grid-column-full';
+}
 
 $current_theme = get_template();
 
