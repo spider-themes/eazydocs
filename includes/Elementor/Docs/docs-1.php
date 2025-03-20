@@ -5,9 +5,10 @@ $topics                 = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs
 $private_doc_mode       = $opt['private_doc_mode'] ?? '';
 $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
 $ppp_column             = ! empty( $settings['ppp_column'] ) ? $settings['ppp_column'] : '3';
-
-// Child docs per page
-$layout = 'grid';
+$is_masonry     		= $settings['masonry'] ?? '';
+$masonry_layout 		= $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : '';
+$masonry_attr   		= $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
+$layout 				= 'grid';
 
 // Check pro plugin class exists
 if ( ezd_is_premium() ) {
@@ -16,10 +17,10 @@ if ( ezd_is_premium() ) {
 ?>
 
 <div class="eazydocs_shortcode">
-    <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
+    <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column .' '. $masonry_layout ); ?>"  <?php echo wp_kses_post( $masonry_attr ); ?>>
+
 		<?php
 		$exclude_id = $doc_exclude ?? '';
-
 		$parent_args = new WP_Query( [
 			'post_type'      => 'docs',
 			'posts_per_page' => $doc_number,
@@ -36,7 +37,7 @@ if ( ezd_is_premium() ) {
 				$sections = get_children( [
 					'post_parent' => get_the_ID(),
 					'post_type'   => 'docs',
-					'numberposts' => 4,
+					'numberposts' => 14,
 					'post_status' => array( 'publish', 'private' ),
 					'orderby'     => 'menu_order',
 					'order'       => 'ASC',
@@ -48,6 +49,7 @@ if ( ezd_is_premium() ) {
 					'post_type'   => 'docs',
 					'post_status' => array( 'publish', 'private' ),
 				) );
+
 				$private_bg     = get_post_status() == 'private' ? 'bg-warning' : '';
 				$private_bg_op  = get_post_status() == 'private' ? 'style="--bs-bg-opacity: .4;"' : '';
 				$protected_bg   = ! empty( $post->post_password ) ? 'bg-dark' : '';
@@ -59,7 +61,8 @@ if ( ezd_is_premium() ) {
 							$pd_txt = esc_attr__( 'Private Doc', 'eazydocs' );
 							echo '<div class="private" title="' . $pd_txt . '"><i class="icon_lock"></i></div>';
 						}
-						if ( ! empty( $post->post_password ) ) {
+
+						if ( ! empty( $post->post_password ) ) :
 							?>
                             <div class="private" title="Password Protected Doc">
                                 <svg width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#4e5668">
@@ -70,17 +73,19 @@ if ( ezd_is_premium() ) {
                                 </svg>
                             </div>
 							<?php
-						}
+						endif;
 						?>
+
                         <div class="doc-top ezd-d-flex ezd-align-items-start">
                             <a class="doc_tag_title" href="<?php the_permalink(); ?>">
                                 <h4 class="title ezd_item_title"> <?php the_title(); ?> </h4>
                                 <span class="ezd-badge">
-							<?php echo count( $get_child_docs );
-							esc_html_e( ' Topics', 'eazydocs' ); ?>
-						</span>
+									<?php echo count( $get_child_docs );
+									esc_html_e( ' Topics', 'eazydocs' ); ?>
+								</span>
                             </a>
                         </div>
+
 						<?php
 						if ( $sections ) :
 							?>
@@ -97,6 +102,7 @@ if ( ezd_is_premium() ) {
 								endforeach;
 								?>
                             </ul>
+
                             <a href="<?php the_permalink(); ?>" class="doc_border_btn ezd_btn">
 								<?php echo esc_html( $read_more ); ?>
                                 <i class="arrow_right"></i>
@@ -104,6 +110,7 @@ if ( ezd_is_premium() ) {
 						    <?php
 						endif;
 						?>
+						
                     </div>
                 </div>
 			    <?php
@@ -113,3 +120,45 @@ if ( ezd_is_premium() ) {
 
     </div>
 </div>
+
+<script>
+    ;(function ($) {
+        'use strict';
+
+        $(document).ready(function () {
+            function ezd_docs4_masonry() {
+                var masonryCols 	= $('.ezd-masonry').attr('ezd-massonry-col');
+                var masonryColumns 	= parseInt(masonryCols);
+
+                if ($(window).width() <= 1024) {
+                    var masonryColumns = 2;
+                }
+
+                if ($(window).width() <= 768) {
+                    var masonryColumns = 1;
+                }
+
+                var count 	= 0;
+                var content = $('.ezd-masonry > *');
+
+                $('.ezd-masonry').before('<div class=\'ezd-masonry-columns\'></div>');
+
+                content.each(function (index) {
+                    count = count + 1;
+                    $(this).addClass('ezd-masonry-sort-' + count + '');
+
+                    if (count == masonryColumns) {
+                        count = 0;
+                    }
+                });
+
+                for (var i = 0 + 1; i < masonryColumns + 1; i++) {
+                    $('.ezd-masonry-columns').append('<div class=\'ezd-masonry-' + i + '\'></div>');
+                    $('.ezd-masonry-sort-' + i).appendTo('.ezd-masonry-' + i);
+                }
+            }
+            ezd_docs4_masonry();
+
+        });
+    })(jQuery);
+</script>

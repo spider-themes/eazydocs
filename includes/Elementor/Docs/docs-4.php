@@ -2,9 +2,7 @@
 $is_masonry     = $settings['masonry'] ?? '';
 $masonry_layout = $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : '';
 $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
-
 ?>
-
 <div class="question_menu docs3" id="Arrow_slides-<?php echo esc_attr( $this->get_id() ) ?>">
     <div class="tabs_sliders">
         <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>
@@ -108,7 +106,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 			?>
             <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>"
                  id="doc3-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr( $doc_id ) ?>">
-                <div class="ezd-grid ezd-grid-cols-12 <?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>">
+                <div class="ezd-grid ezd-grid-cols-12 <?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
 				<?php
 				if ( ! empty( $main_doc['sections'] ) ) :
 					foreach ( $main_doc['sections'] as $section ) :

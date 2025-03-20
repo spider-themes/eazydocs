@@ -81,6 +81,10 @@
     </div>
     <div class="ezd-tab-content">
 		<?php
+		$is_masonry     		= $settings['masonry'] ?? '';
+		$masonry_layout 		= $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : '';
+		$masonry_attr   		= $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
+
 		foreach ( $docs as $i => $main_doc ) :
 			// Active Doc
 			if ( ! empty( $settings['active_doc'] ) ) {
@@ -96,20 +100,25 @@
 			?>
             <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>"
                  id="doc-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr( $doc_id ) ?>">
-                <div class="ezd-grid ezd-grid-cols-12">
+                <div class="ezd-grid ezd-grid-cols-12 <?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
 					<?php
 					if ( ! empty( $main_doc['sections'] ) ) :
 						foreach ( $main_doc['sections'] as $section ) :
 							?>
                             <div class="ezd-grid-column-full ezd-sm-col-6 ezd-lg-col-4">
                                 <div class="doc_tag_item">
-									<?php if ( ! empty( $section->post_title ) ) : ?>
+									<?php 
+									if ( ! empty( $section->post_title ) ) : 
+										?>
                                         <div class="doc_tag_title">
-                                            <h4 class="ezd_item_title"><?php echo wp_kses_post( $section->post_title ); ?></h4>
+                                            <h4 class="ezd_item_title">
+												<?php echo wp_kses_post( $section->post_title ); ?>
+											</h4>
                                             <div class="line"></div>
                                         </div>
-									<?php endif; ?>
-									<?php
+										<?php 
+									endif;
+									
 									$doc_items = get_children( array(
 										'post_parent'    => $section->ID,
 										'post_type'      => 'docs',
@@ -118,7 +127,9 @@
 										'order'          => 'ASC',
 										'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
 									) );
-									if ( ! empty( $doc_items ) ) : ?>
+
+									if ( ! empty( $doc_items ) ) : 
+										?>
                                         <ul class="ezd-list-unstyled tag_list">
 											<?php
 											foreach ( $doc_items as $doc_item ) :
@@ -132,14 +143,18 @@
 											endforeach;
 											?>
                                         </ul>
-									<?php
+										<?php
 									endif;
-									if ( ! empty( $settings['read_more'] ) ) : ?>
+
+									if ( ! empty( $settings['read_more'] ) ) : 
+										?>
                                         <a href="<?php echo get_permalink( $section->ID ); ?>" class="learn_btn ezd_btn">
 											<?php echo esc_html( $settings['read_more'] ) ?>
                                             <i class="<?php ezd_arrow() ?>"></i>
                                         </a>
-									<?php endif; ?>
+										<?php 
+									endif; 
+									?>
                                 </div>
                             </div>
 						<?php
@@ -153,3 +168,45 @@
 		?>
     </div>
 </section>
+
+<script>
+    ;(function ($) {
+        'use strict';
+
+        $(document).ready(function () {
+            function ezd_docs4_masonry() {
+                var masonryCols 	= $('.ezd-masonry').attr('ezd-massonry-col');
+                var masonryColumns 	= parseInt(masonryCols);
+
+                if ($(window).width() <= 1024) {
+                    var masonryColumns = 2;
+                }
+
+                if ($(window).width() <= 768) {
+                    var masonryColumns = 1;
+                }
+
+                var count 	= 0;
+                var content = $('.ezd-masonry > *');
+
+                $('.ezd-masonry').before('<div class=\'ezd-masonry-columns\'></div>');
+
+                content.each(function (index) {
+                    count = count + 1;
+                    $(this).addClass('ezd-masonry-sort-' + count + '');
+
+                    if (count == masonryColumns) {
+                        count = 0;
+                    }
+                });
+
+                for (var i = 0 + 1; i < masonryColumns + 1; i++) {
+                    $('.ezd-masonry-columns').append('<div class=\'ezd-masonry-' + i + '\'></div>');
+                    $('.ezd-masonry-sort-' + i).appendTo('.ezd-masonry-' + i);
+                }
+            }
+            ezd_docs4_masonry();
+
+        });
+    })(jQuery);
+</script>
