@@ -11,11 +11,10 @@ class Assets {
 	 * Assets constructor.
 	 */
 	public function __construct() {
+		add_action( 'admin_enqueue_scripts', [ $this, 'global_scripts' ] );
 		if ( ezd_admin_pages() || ezd_admin_post_types() ) {
 			add_action( 'admin_enqueue_scripts', [ $this, 'dashboard_scripts' ] );
 		}
-
-		add_action( 'admin_enqueue_scripts', [ $this, 'global_scripts' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 	}
 
@@ -63,15 +62,24 @@ class Assets {
 			wp_enqueue_script( 'ezd-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js', array( 'jquery' ), EAZYDOCS_VERSION );
 		}
 
+		wp_enqueue_style( 'ezd-main', EAZYDOCS_ASSETS . '/css/admin.css', array(), EAZYDOCS_VERSION );
+		wp_enqueue_style( 'ezd-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css' );
+
 		// Enqueue scripts and styles for initial setup page
 		if ( ezd_admin_pages('eazydocs-initial-setup') ) {
+			// Deregister unnecessary styles and scripts
+			wp_deregister_style( 'ezd-main' );
+			wp_deregister_style( 'ezd-custom' );
+			wp_deregister_style( 'eazydocs-admin-global' );
+			wp_deregister_script( 'eazydocs-admin-global' );
+			// Frameworks
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'wp-color-picker' );
 			wp_enqueue_script( 'smartwizard', EAZYDOCS_ASSETS . '/js/admin/jquery.smartWizard.min.js', array('jquery'), true, true );
+			// Custom styles and scripts
+			wp_enqueue_style( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/css/admin_setup_wizard.css', array(), EAZYDOCS_VERSION );
+			wp_enqueue_script( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/js/admin/setup_wizard_config.js', array( 'jquery', 'smartwizard' ), EAZYDOCS_VERSION );
 		}
-
-		wp_enqueue_style( 'ezd-main', EAZYDOCS_ASSETS . '/css/admin.css', array(), EAZYDOCS_VERSION );
-		wp_enqueue_style( 'ezd-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css' );
 	}
 
 	public function enqueue_block_editor_assets() {
