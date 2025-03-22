@@ -89,8 +89,8 @@ EazyDocs has some pre-built widgets to make the Docs page building by drag-n-dro
 ## ⬅️ Collapsible Sidebar ##
 EazyDocs comes with a collapsible sidebar that allows your readers to hide the sidebar and focus on the content. The sidebar can be collapsed by clicking on the sidebar toggle button.
 
-## 🗂️ 5 Level Depth Supported ##
-EazyDocs supports a 5-level depth of docs. You can create a doc with 5 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth) > Article (5th depth)
+## 🗂️ 4 Level Depth Supported (With the Pro version, you'll receive an additional depth level) ##
+EazyDocs supports a 4-level depth of docs. You can create a doc with 4 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth).
 
 ## 📝 Doc Excerpt/Summary Content ##
 EazyDocs allows you to add excerpt/summary content to your docs. You can add the excerpt/summary content to your docs to show it on the docs list and single page.
@@ -153,6 +153,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Duplicate Bulk/Individual Documentation
 - Users Feedback Database
 - Single & Multidocs Block
+- Extra Depth Level
 
 ## EazyDocs Promax plan features include:
 - All Pro plan features
@@ -230,7 +231,6 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 == Changelog ==
 
 = v2.6.3 (22 March 2025) =
-New: Increased the documentation depth level from 4 to 5 (allowing for more hierarchical organization and better structuring of complex knowledge bases)
 Fixed: Resolved PHP 7.4 compatibility issue
 Fixed: Missing multidocs widgets masonry layout resolved
 Tweaked: Advanced Accordion Gutenberg Block plugin added in the Setup Wizard plugin recommendation step
