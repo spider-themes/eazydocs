@@ -38,6 +38,16 @@ const colors = [{
 
 /***/ }),
 
+/***/ "./src/search-banner/block.json":
+/*!**************************************!*\
+  !*** ./src/search-banner/block.json ***!
+  \**************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"eazydocs/search-banner","version":"0.1.0","title":"EazyDocs Search Banner","category":"eazydocs","icon":"search","keywords":["eazydocs","search"],"description":"EazyDocs search banner. Insert this block on a full-width page template to view it properly.","supports":{"html":false,"anchor":true},"textdomain":"eazydocs","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":["ezd-search-block"]}');
+
+/***/ }),
+
 /***/ "./src/search-banner/edit.js":
 /*!***********************************!*\
   !*** ./src/search-banner/edit.js ***!
@@ -157,6 +167,18 @@ function Edit({
 
 /***/ }),
 
+/***/ "./src/search-banner/editor.scss":
+/*!***************************************!*\
+  !*** ./src/search-banner/editor.scss ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/search-banner/index.js":
 /*!************************************!*\
   !*** ./src/search-banner/index.js ***!
@@ -217,18 +239,6 @@ function save({
 
 /***/ }),
 
-/***/ "./src/search-banner/editor.scss":
-/*!***************************************!*\
-  !*** ./src/search-banner/editor.scss ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./src/search-banner/style.scss":
 /*!**************************************!*\
   !*** ./src/search-banner/style.scss ***!
@@ -238,16 +248,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
-
-/***/ }),
-
-/***/ "react/jsx-runtime":
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
-/***/ ((module) => {
-
-module.exports = window["ReactJSXRuntime"];
 
 /***/ }),
 
@@ -301,13 +301,13 @@ module.exports = window["wp"]["i18n"];
 
 /***/ }),
 
-/***/ "./src/search-banner/block.json":
-/*!**************************************!*\
-  !*** ./src/search-banner/block.json ***!
-  \**************************************/
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"eazydocs/search-banner","version":"0.1.0","title":"EazyDocs Search Banner","category":"eazydocs","icon":"search","keywords":["eazydocs","search"],"description":"EazyDocs search banner. Insert this block on a full-width page template to view it properly.","supports":{"html":false,"anchor":true},"textdomain":"eazydocs","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":["ezd-search-block"]}');
+module.exports = window["ReactJSXRuntime"];
 
 /***/ })
 

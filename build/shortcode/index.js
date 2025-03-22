@@ -66,6 +66,16 @@ function doc_ids(arr) {
 
 /***/ }),
 
+/***/ "./src/shortcode/block.json":
+/*!**********************************!*\
+  !*** ./src/shortcode/block.json ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"eazydocs/shortcode","version":"0.1.0","title":"EazyDocs Shortcode","category":"eazydocs","icon":"media-document","description":"Display the Docs on the website frontend.","supports":{"html":false,"anchor":true},"attributes":{"col":{"type":"number","default":3},"include":{"type":"array","default":[]},"exclude":{"type":"string"},"show_docs":{"type":"number"},"show_articles":{"type":"number"},"more":{"type":"string","default":"View Details"},"show_topic":{"type":"checkbox","default":true},"topic_label":{"type":"string","default":"Topics"},"parent_docs_order":{"type":"string","default":"menu_order"},"parent_docs_order_by":{"type":"string","default":"asc"},"child_docs_order":{"type":"string","default":"desc"},"docs_layout":{"type":"string","default":"grid"}},"textdomain":"eazydocs","editorScript":"file:./index.js"}');
+
+/***/ }),
+
 /***/ "./src/shortcode/edit.js":
 /*!*******************************!*\
   !*** ./src/shortcode/edit.js ***!
@@ -324,6 +334,18 @@ function Edit({
 
 /***/ }),
 
+/***/ "./src/shortcode/editor.scss":
+/*!***********************************!*\
+  !*** ./src/shortcode/editor.scss ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/shortcode/save.js":
 /*!*******************************!*\
   !*** ./src/shortcode/save.js ***!
@@ -395,28 +417,6 @@ function save(props) {
 
 /***/ }),
 
-/***/ "./src/shortcode/editor.scss":
-/*!***********************************!*\
-  !*** ./src/shortcode/editor.scss ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "react/jsx-runtime":
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
-/***/ ((module) => {
-
-module.exports = window["ReactJSXRuntime"];
-
-/***/ }),
-
 /***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
@@ -477,13 +477,13 @@ module.exports = window["wp"]["i18n"];
 
 /***/ }),
 
-/***/ "./src/shortcode/block.json":
+/***/ "react/jsx-runtime":
 /*!**********************************!*\
-  !*** ./src/shortcode/block.json ***!
+  !*** external "ReactJSXRuntime" ***!
   \**********************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"eazydocs/shortcode","version":"0.1.0","title":"EazyDocs Shortcode","category":"eazydocs","icon":"media-document","description":"Display the Docs on the website frontend.","supports":{"html":false,"anchor":true},"attributes":{"col":{"type":"number","default":3},"include":{"type":"array","default":[]},"exclude":{"type":"string"},"show_docs":{"type":"number"},"show_articles":{"type":"number"},"more":{"type":"string","default":"View Details"},"show_topic":{"type":"checkbox","default":true},"topic_label":{"type":"string","default":"Topics"},"parent_docs_order":{"type":"string","default":"menu_order"},"parent_docs_order_by":{"type":"string","default":"asc"},"child_docs_order":{"type":"string","default":"desc"},"docs_layout":{"type":"string","default":"grid"}},"textdomain":"eazydocs","editorScript":"file:./index.js"}');
+module.exports = window["ReactJSXRuntime"];
 
 /***/ })
 

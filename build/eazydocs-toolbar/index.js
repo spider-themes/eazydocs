@@ -14,13 +14,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "react/jsx-runtime":
+/***/ "@wordpress/api-fetch":
 /*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
+  !*** external ["wp","apiFetch"] ***!
   \**********************************/
 /***/ ((module) => {
 
-module.exports = window["ReactJSXRuntime"];
+module.exports = window["wp"]["apiFetch"];
 
 /***/ }),
 
@@ -71,6 +71,16 @@ module.exports = window["wp"]["i18n"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["richText"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
 
 /***/ })
 
@@ -159,9 +169,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/rich-text */ "@wordpress/rich-text");
 /* harmony import */ var _wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/eazydocs-toolbar/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/eazydocs-toolbar/editor.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -176,65 +189,57 @@ const EazyDocs_Toolbar = ({
   onChange
 }) => {
   const [showPopover, setShowPopover] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const [numberValue, setNumberValue] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [shortcodeCounter, setShortcodeCounter] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-  const conditionalItems = eazydocs_local_object.ezd_get_conditional_items;
-  const dataItems = conditionalItems.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-    value: item.value,
-    children: item.title
-  }, item.id));
+  const [showEmbedPopup, setShowEmbedPopup] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [selectedValue, setSelectedValue] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [selectedDoc, setSelectedDoc] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [docsPosts, setDocsPosts] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const conditionalItems = eazydocs_local_object?.ezd_get_conditional_items || [];
+  const is_ezd_pro_block = eazydocs_local_object?.is_ezd_pro_block;
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+      path: '/wp/v2/docs?per_page=100'
+    }).then(posts => {
+      setDocsPosts(posts);
+    });
+  }, []);
 
-  // Footnotes
+  // Footnotes Shortcode
   const reference = () => {
     if (isActive) {
       onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__.removeFormat)(value, name));
       return;
     }
     const selectedText = value.text.slice(value.start, value.end);
-    let shortcode = '';
-
-    // Shortcode without the number attribute
-    if (selectedText) {
-      shortcode = `[reference]${selectedText}[/reference]`;
-    } else {
-      shortcode = `[reference][/reference]`;
-    }
+    const shortcode = selectedText ? `[reference]${selectedText}[/reference]` : `[reference][/reference]`;
     onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__.insert)(value, shortcode));
   };
 
-  // Conditional Dropdown
+  // Conditional Dropdown Shortcode
   const conditional_data = () => {
-    if (isActive) {
-      onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__.removeFormat)(value, name));
-      return;
-    }
     setShowPopover(true);
   };
-
-  // Insert shortcode with the selected value into the rich text
-  const ezdToolbarDropDown = selectedValue => {
-    // Insert shortcode with the selected value into the rich text
-    const shortcodeNumber = shortcodeCounter;
-    setShortcodeCounter(shortcodeCounter + 1);
+  const insertConditionalShortcode = () => {
+    if (!selectedValue) return;
     const selectedText = value.text.slice(value.start, value.end);
-    let shortcode = '';
-
-    // Wrap selected text with shortcode if text is selected
-    if (selectedText) {
-      shortcode = `[conditional_data dependency="${selectedValue}"]${selectedText}[/conditional_data]`;
-    } else {
-      // Insert shortcode at cursor position if no text is selected
-      shortcode = `[conditional_data dependency="${selectedValue}"][/conditional_data]`;
-    }
+    const shortcode = selectedText ? `[conditional_data dependency="${selectedValue}"]${selectedText}[/conditional_data]` : `[conditional_data dependency="${selectedValue}"][/conditional_data]`;
     onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__.insert)(value, shortcode));
-
-    // Hide the popover after insertion
     setShowPopover(false);
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToolbarGroup, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DropdownMenu, {
+
+  // Embed Post Shortcode
+  const embedPost = () => {
+    setShowEmbedPopup(true);
+  };
+  const insertEmbedPostShortcode = () => {
+    if (!selectedDoc) return;
+    const shortcode = `[embed_post id="${selectedDoc}"]`;
+    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_4__.insert)(value, shortcode));
+    setShowEmbedPopup(false);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToolbarGroup, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DropdownMenu, {
           className: "eazydocs-toolbar__dropdown",
           icon: "ezd-icon",
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Insert EazyDocs Shortcode', 'eazydocs'),
@@ -244,23 +249,51 @@ const EazyDocs_Toolbar = ({
           }, {
             title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Conditional Dropdown', 'eazydocs'),
             onClick: conditional_data
-          }]
+          }, ...(is_ezd_pro_block ? [{
+            title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Embed Post', 'eazydocs'),
+            onClick: embedPost
+          }] : [])]
         })
       })
-    }), showPopover && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Popover, {
+    }), showPopover && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Popover, {
       className: "ezd-conditional-dropdown-tool",
       position: "bottom center",
       onClose: () => setShowPopover(false),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
-        value: numberValue,
-        onChange: e => setNumberValue(e.target.value),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Condition', 'eazydocs')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+        value: selectedValue,
+        onChange: e => setSelectedValue(e.target.value),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
           value: "",
-          children: "-- Select Option --"
-        }), dataItems]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-        onClick: () => ezdToolbarDropDown(numberValue),
-        children: "Insert"
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('-- Select Option --', 'eazydocs')
+        }), conditionalItems.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+          value: item.value,
+          children: item.title
+        }, item.id))]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+        onClick: insertConditionalShortcode,
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Insert', 'eazydocs')
+      })]
+    }), showEmbedPopup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Popover, {
+      className: "ezd-embed-post-tool",
+      position: "bottom center",
+      onClose: () => setShowEmbedPopup(false),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Doc to Embed', 'eazydocs')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+        value: selectedDoc,
+        onChange: e => setSelectedDoc(e.target.value),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+          value: "",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('-- Select a Doc --', 'eazydocs')
+        }), docsPosts.map(post => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+          value: post.id,
+          children: post.title.rendered
+        }, post.id))]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+        onClick: insertEmbedPostShortcode,
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Insert', 'eazydocs')
       })]
     })]
   });

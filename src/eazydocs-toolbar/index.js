@@ -1,74 +1,64 @@
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { BlockControls } from '@wordpress/block-editor';
-import { Popover, ToolbarGroup, ToolbarButton, DropdownMenu } from '@wordpress/components';
-import { insert, registerFormatType, removeFormat, toggleFormat } from '@wordpress/rich-text';
+import { Popover, ToolbarGroup, DropdownMenu } from '@wordpress/components';
+import { insert, registerFormatType, removeFormat } from '@wordpress/rich-text';
+import apiFetch from '@wordpress/api-fetch';
 import './editor.scss';
 
 const name = 'eazydocs/eazydocs-toolbar';
 
 const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
     const [showPopover, setShowPopover] = useState(false);
-    const [numberValue, setNumberValue] = useState('');
-    const [shortcodeCounter, setShortcodeCounter] = useState(1);
-    const conditionalItems = eazydocs_local_object.ezd_get_conditional_items;
+    const [showEmbedPopup, setShowEmbedPopup] = useState(false);
+    const [selectedValue, setSelectedValue] = useState('');
+    const [selectedDoc, setSelectedDoc] = useState('');
+    const [docsPosts, setDocsPosts] = useState([]);
+    const conditionalItems = eazydocs_local_object?.ezd_get_conditional_items || [];
+    const is_ezd_pro_block = eazydocs_local_object?.is_ezd_pro_block;
 
-    const dataItems = conditionalItems.map((item) => (
-        <option key={item.id} value={item.value}>{item.title}</option>
-    ));
-    
-    // Footnotes
+    useEffect(() => {
+        apiFetch({ path: '/wp/v2/docs?per_page=100' }).then((posts) => {
+            setDocsPosts(posts);
+        });
+    }, []);
+
+    // Footnotes Shortcode
     const reference = () => {
         if (isActive) {
             onChange(removeFormat(value, name));
             return;
         }
-    
         const selectedText = value.text.slice(value.start, value.end);
-        let shortcode = '';
-    
-        // Shortcode without the number attribute
-        if (selectedText) {
-            shortcode = `[reference]${selectedText}[/reference]`;
-        } else {
-            shortcode = `[reference][/reference]`;
-        }
-    
+        const shortcode = selectedText ? `[reference]${selectedText}[/reference]` : `[reference][/reference]`;
         onChange(insert(value, shortcode));
     };
-    
-    
-  
-    // Conditional Dropdown
+
+    // Conditional Dropdown Shortcode
     const conditional_data = () => {
-        if (isActive) {
-            onChange(removeFormat(value, name));
-            return;
-        }
         setShowPopover(true);
     };
-    
-    // Insert shortcode with the selected value into the rich text
-    const ezdToolbarDropDown = (selectedValue) => {
-        // Insert shortcode with the selected value into the rich text
-        const shortcodeNumber = shortcodeCounter;
-        setShortcodeCounter(shortcodeCounter + 1);
 
-        const selectedText  = value.text.slice(value.start, value.end);
-        let shortcode       = '';
-        
-        // Wrap selected text with shortcode if text is selected
-        if (selectedText) {
-            shortcode = `[conditional_data dependency="${selectedValue}"]${selectedText}[/conditional_data]`;
-        } else {
-            // Insert shortcode at cursor position if no text is selected
-            shortcode = `[conditional_data dependency="${selectedValue}"][/conditional_data]`;
-        }
-        
+    const insertConditionalShortcode = () => {
+        if (!selectedValue) return;
+        const selectedText = value.text.slice(value.start, value.end);
+        const shortcode = selectedText
+            ? `[conditional_data dependency="${selectedValue}"]${selectedText}[/conditional_data]`
+            : `[conditional_data dependency="${selectedValue}"][/conditional_data]`;
         onChange(insert(value, shortcode));
-
-        // Hide the popover after insertion
         setShowPopover(false);
+    };
+
+    // Embed Post Shortcode
+    const embedPost = () => {
+        setShowEmbedPopup(true);
+    };
+
+    const insertEmbedPostShortcode = () => {
+        if (!selectedDoc) return;
+        const shortcode = `[embed_post id="${selectedDoc}"]`;
+        onChange(insert(value, shortcode));
+        setShowEmbedPopup(false);
     };
 
     return (
@@ -76,36 +66,48 @@ const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
             <BlockControls>
                 <ToolbarGroup>
                     <DropdownMenu
-                    className='eazydocs-toolbar__dropdown'                     
-                    icon= 'ezd-icon'
-                    label={__('Insert EazyDocs Shortcode', 'eazydocs')}
-                    controls={[                    
-                        {
-                            title: __('Footnotes', 'eazydocs'),
-                            onClick: reference
-                        },
-                        {
-                            title: __('Conditional Dropdown', 'eazydocs'),
-                            onClick: conditional_data,
-                        },
-                    ]}
+                        className='eazydocs-toolbar__dropdown'                     
+                        icon='ezd-icon'
+                        label={__('Insert EazyDocs Shortcode', 'eazydocs')}
+                        controls={[
+                            { title: __('Footnotes', 'eazydocs'), onClick: reference },
+                            { title: __('Conditional Dropdown', 'eazydocs'), onClick: conditional_data },
+                            ...(is_ezd_pro_block ? [{ title: __('Embed Post', 'eazydocs'), onClick: embedPost }] : [])
+                        ]}
                     />
                 </ToolbarGroup>
             </BlockControls>
             
+            {/* Conditional Dropdown Popover */}
             {showPopover && (
                 <Popover className='ezd-conditional-dropdown-tool' position="bottom center" onClose={() => setShowPopover(false)}>
-                <select 
-                    value={numberValue}
-                    onChange={(e) => setNumberValue(e.target.value)}
-                >
-                    <option value="">-- Select Option --</option>
-                    {dataItems}
+                    <h4>{__('Select Condition', 'eazydocs')}</h4>
+                    <select
+                        value={selectedValue}
+                        onChange={(e) => setSelectedValue(e.target.value)}
+                    >
+                        <option value="">{__('-- Select Option --', 'eazydocs')}</option>
+                        {conditionalItems.map((item) => (
+                            <option key={item.id} value={item.value}>{item.title}</option>
+                        ))}
                     </select>
-                <button onClick={() => ezdToolbarDropDown(numberValue)}>Insert</button>
-            </Popover>
+                    <button onClick={insertConditionalShortcode}>{__('Insert', 'eazydocs')}</button>
+                </Popover>
             )}
-            
+
+            {/* Embed Post Popover */}
+            {showEmbedPopup && (
+                <Popover className='ezd-embed-post-tool' position="bottom center" onClose={() => setShowEmbedPopup(false)}>
+                    <h4>{__('Select a Doc to Embed', 'eazydocs')}</h4>
+                    <select value={selectedDoc} onChange={(e) => setSelectedDoc(e.target.value)}>
+                        <option value="">{__('-- Select a Doc --', 'eazydocs')}</option>
+                        {docsPosts.map((post) => (
+                            <option key={post.id} value={post.id}>{post.title.rendered}</option>
+                        ))}
+                    </select>
+                    <button onClick={insertEmbedPostShortcode}>{__('Insert', 'eazydocs')}</button>
+                </Popover>
+            )}
         </>
     );
 };
