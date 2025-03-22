@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.7.3
 Requires PHP: 7.4
-Stable tag: 2.6.2
+Stable tag: 2.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,8 +89,8 @@ EazyDocs has some pre-built widgets to make the Docs page building by drag-n-dro
 ## ⬅️ Collapsible Sidebar ##
 EazyDocs comes with a collapsible sidebar that allows your readers to hide the sidebar and focus on the content. The sidebar can be collapsed by clicking on the sidebar toggle button.
 
-## 🗂️ 4 Level Depth Supported ##
-EazyDocs supports a 4-level depth of docs. You can create a doc with 4 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth)
+## 🗂️ 5 Level Depth Supported ##
+EazyDocs supports a 5-level depth of docs. You can create a doc with 5 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth) > Article (5th depth)
 
 ## 📝 Doc Excerpt/Summary Content ##
 EazyDocs allows you to add excerpt/summary content to your docs. You can add the excerpt/summary content to your docs to show it on the docs list and single page.
@@ -228,6 +228,15 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= v2.6.3 (22 March 2025) =
+New: Increased the documentation depth level from 4 to 5 (allowing for more hierarchical organization and better structuring of complex knowledge bases)
+Fixed: Resolved PHP 7.4 compatibility issue
+Fixed: Missing multidocs widgets masonry layout resolved
+Tweaked: Advanced Accordion Gutenberg Block plugin added in the Setup Wizard plugin recommendation step
+Tweaked: Unloaded unnecessary CSS and JS files from the Setup Wizard page
+Tweaked: Setup Wizard code file structure improved to make the maintenance easier
+
 = v2.6.2 (16 March 2025) =
 New: Included required & recommended plugins installation section in setup wizard
 New: Added install/activate button in setup wizard plugin section instead of switcher
