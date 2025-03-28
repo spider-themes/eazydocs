@@ -45,38 +45,3 @@
         }
     }
 }
-
-
-
-.direction_steps {
-    display: inline-flex;
-    align-items: center;
-  }
-  
-  @media(max-width: 767px){
-    .direction_steps {
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-  }
-  
-  .direction_step {
-    padding: 0 8px;
-    font-size: 13px;
-    border-radius: 4px;
-    background: rgba(127, 130, 248, 0.8);
-    color: #fff;
-    position: relative;
-    line-height: 20px;
-    & + .direction_step {
-      margin-left: 26px;
-      &:before {
-        content: "\24";
-        font-family: eleganticons;
-        position: absolute;
-        left: -20px;
-        color: rgba(127, 130, 248, 0.8);
-      }
-    }
-  }
-  
