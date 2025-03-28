@@ -100,5 +100,12 @@
 				$('#ezd-search-results').removeClass('ajax-search');
 			}
 		});
+		
+    	// Prevent form submission when pressing Enter in the search input field
+		$('#ezd_searchInput').on('keypress', function(event) {
+			if (event.key === 'Enter') {
+				event.preventDefault(); // Prevent form submission
+			}
+		});
 	});
 })(jQuery);

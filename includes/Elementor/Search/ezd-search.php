@@ -130,11 +130,19 @@
     });
 
     // Search results should close on clearing the input field
-    if (document.getElementById('ezd_searchInput')) {
-        document
-            .getElementById('ezd_searchInput')
-            .addEventListener('search', function (event) {
-                jQuery('#ezd-search-results').empty().removeClass('ajax-search');
-            });
+    if ( document.getElementById('ezd_searchInput') ) {
+        document.getElementById('ezd_searchInput').addEventListener('search', function (event) {
+            jQuery('#ezd-search-results').empty().removeClass('ajax-search');
+        });
     }
+
+    // Prevent form submission when pressing Enter in the search input field
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("ezd_searchInput");
+        searchInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    });
 </script>
