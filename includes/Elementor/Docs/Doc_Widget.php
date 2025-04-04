@@ -23,7 +23,7 @@ class Doc_Widget extends Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'EazyDocs Multi Docs', 'eazydocs' );
+		return esc_html__( '(EazyDocs) Multi Docs', 'eazydocs' );
 	}
 
 	public function get_icon() {
@@ -871,7 +871,7 @@ class Doc_Widget extends Widget_Base {
 		/**
 		 * Get the parent docs with query
 		 */
-		if ( ! empty( $settings['exclude'] ) ) {
+		if ( !empty( $settings['exclude'] ) ) {
 			$parent_docs = get_pages( array(
 				'post_type'  => 'docs',
 				'parent'     => 0,
@@ -889,7 +889,7 @@ class Doc_Widget extends Widget_Base {
 		/**
 		 * Docs re-arrange according to menu order
 		*/
-		usort($parent_docs, function($a, $b) {
+		usort( $parent_docs, function( $a, $b ) {
             return $a->menu_order - $b->menu_order;
         });
 
@@ -905,7 +905,7 @@ class Doc_Widget extends Widget_Base {
 					'orderby'        => 'menu_order',
 					'order'          => 'ASC',
 					'posts_per_page' => ! empty( $settings['show_section_count'] ) ? $settings['show_section_count'] : - 1,
-				) );
+				));
 
 				$docs[]   = array(
 					'doc'      => $root,
@@ -915,7 +915,7 @@ class Doc_Widget extends Widget_Base {
 			}
 		}
 
-        if ( ezd_is_premium() ) {
+        if ( ezd_unlock_themes() ) {
 		    include( "docs-{$settings['doc-widget-skin']}.php" );
         } else {
             include( "docs-1.php" );

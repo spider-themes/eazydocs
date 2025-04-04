@@ -143,7 +143,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 										<?php echo esc_html( $settings['read_more'] ) ?>
                                         <i class="<?php ezd_arrow() ?>"></i>
                                     </a>
-								<?php
+								    <?php
 								endif;
 								?>
                             </div>

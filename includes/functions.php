@@ -1205,63 +1205,30 @@ function ezd_el_image( $settings_key = '', $alt = '', $class = '', $atts = [] ) 
  * @return array[]
  */
 function ezd_docs_layout_option() {
-	if ( ezd_is_premium() ) {
-		$options = [
-			'1' => [
-				'title' => __( 'Docs without tab', 'eazydocs' ),
-				'icon'  => 'free-doc-tab'
-			],
-			'2' => [
-				'title' => __( 'Tabbed with doc lists', 'eazydocs' ),
-				'icon'  => 'docs-1',
-			],
-			'3' => [
-				'title' => __( 'Flat tabbed docs', 'eazydocs' ),
-				'icon'  => 'docs-2',
-			],
-			'4' => [
-				'title' => __( 'Boxed Style', 'eazydocs' ),
-				'icon'  => 'docs-3',
-			],
-			'5' => [
-				'title' => __( 'Book Chapters / Tutorials', 'eazydocs' ),
-				'icon'  => 'docs-4',
-			],
-			'6' => [
-				'title' => __( 'Collaborative Docs', 'eazydocs' ),
-				'icon'  => 'docs-5',
-			]
-		];
-	} else {
-		$options = [
-			'1' => [
-				'title' => __( 'Docs without tab', 'eazydocs' ),
-				'icon'  => 'free-doc-tab',
-			],
-			'2' => [
-				'title' => __( 'Tabbed with doc lists', 'eazydocs' ),
-				'icon'  => 'docs-1 ezd-free-docs',
-			],
-			'3' => [
-				'title' => __( 'Flat tabbed docs', 'eazydocs' ),
-				'icon'  => 'docs-2 ezd-free-docs',
-			],
-			'4' => [
-				'title' => __( 'Boxed Style', 'eazydocs' ),
-				'icon'  => 'docs-3 ezd-free-docs',
-			],
-			'5' => [
-				'title' => __( 'Book Chapters / Tutorials', 'eazydocs' ),
-				'icon'  => 'docs-4 ezd-free-docs',
-			],
-			'6' => [
-				'title' => __( 'List Style', 'eazydocs' ),
-				'icon'  => 'docs-5 ezd-free-docs',
-			]
+	$base_options = [
+		'1' => [
+			'title' => __( 'Docs without tab', 'eazydocs' ),
+			'icon'  => 'free-doc-tab'
+		]
+	];
+
+	$pro_options = [
+		'2' => [ 'title' => __( 'Tabbed with doc lists', 'eazydocs' ) ],
+		'3' => [ 'title' => __( 'Flat tabbed docs', 'eazydocs' ) ],
+		'4' => [ 'title' => __( 'Boxed Style', 'eazydocs' ) ],
+		'5' => [ 'title' => __( 'Book Chapters / Tutorials', 'eazydocs' ) ],
+		'6' => [ 'title' => __( 'List Style', 'eazydocs' ) ]
+	];
+
+	foreach ( $pro_options as $key => $option ) {
+		$icon_suffix          = ezd_unlock_themes() ? '' : ' ezd-pro-docs';
+		$base_options[ $key ] = [
+			'title' => $option['title'],
+			'icon'  => "docs-" . ( $key - 1 ) . $icon_suffix
 		];
 	}
 
-	return $options;
+	return $base_options;
 }
 
 /**

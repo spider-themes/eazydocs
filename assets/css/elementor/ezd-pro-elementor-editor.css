@@ -18,6 +18,6 @@
 .elementor-control-ezd_search_keywords_repeater::after,
 .elementor-control-ezd_search_keywords_label::after,
 .elementor-control-is_ezd_search_keywords::after,
-.ezd-free-docs::after {
+.ezd-pro-docs::after {
     display: none;
 }

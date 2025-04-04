@@ -27,7 +27,7 @@ class Single_Doc extends Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'EazyDocs Single Doc', 'eazydocs' );
+		return esc_html__( '(EazyDocs) Single Doc', 'eazydocs' );
 	}
 
 	public function get_icon() {
@@ -49,7 +49,7 @@ class Single_Doc extends Widget_Base {
 	protected function register_controls() {
 
 		$theme       = wp_get_theme();
-		$support_pro = 'ezd-free-docs';
+		$support_pro = 'ezd-pro-docs';
 		$skins_label = 'pro-label';
 
 		if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' || $theme == 'docy-child' || $theme == 'Docy Child' ) {
