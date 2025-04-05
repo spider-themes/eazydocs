@@ -85,10 +85,10 @@ class Doc_Widget extends Widget_Base {
 
 		$this->end_controls_section();
 
-		// --- Filter Options
+		// --- Layout Options
 		$this->start_controls_section(
-			'document_filter', [
-				'label' => esc_html__( 'Filter Options', 'eazydocs' ),
+			'layout', [
+				'label' => esc_html__( 'Layout Settings', 'eazydocs' ),
 			]
 		);
 
@@ -142,6 +142,37 @@ class Doc_Widget extends Widget_Base {
 				'condition' => [
 					'doc-widget-skin' => [ '2', '3', '4', '5' ]
 				]
+			]
+		);
+
+		$this->add_control(
+			'masonry', [
+				'label'             => esc_html__( 'Masonry', 'eazydocs-pro' ),
+				'type'              => \Elementor\Controls_Manager::SWITCHER,
+				'doc-widget-skin'   => [ '4', '5' ]
+			]
+		);
+
+		$this->add_control(
+			'show_contributors', [
+				'label'       => esc_html__( 'Show Contributors', 'eazydocs' ),
+				'description' => esc_html__( 'The number of contributors to show.', 'eazydocs' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 4,
+				'min'         => 1,
+				'max'         => 20,
+				'condition'   => [
+					'doc-widget-skin' => [ '6' ]
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		// --- Filter Options
+		$this->start_controls_section(
+			'document_filter', [
+				'label' => esc_html__( 'Filter Options', 'eazydocs' ),
 			]
 		);
 
@@ -232,14 +263,6 @@ class Doc_Widget extends Widget_Base {
 		);
 
 		$this->add_control(
-			'masonry', [
-				'label'             => esc_html__( 'Masonry', 'eazydocs-pro' ),
-				'type'              => \Elementor\Controls_Manager::SWITCHER,
-				'doc-widget-skin'   => [ '4', '5' ]
-			]
-		);
-
-		$this->add_control(
 			'order', [
 				'label'     => esc_html__( 'Order', 'eazydocs' ),
 				'type'      => Controls_Manager::SELECT,
@@ -265,20 +288,6 @@ class Doc_Widget extends Widget_Base {
 				'condition'    => [
 					'doc-widget-skin' => [ '2', '3', '5' ]
 				]
-			]
-		);
-
-		$this->add_control(
-			'show_contributors', [
-				'label'       => esc_html__( 'Show Contributors', 'eazydocs' ),
-				'description' => esc_html__( 'The number of contributors to show.', 'eazydocs' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 4,
-				'min'         => 1,
-				'max'         => 20,
-				'condition'   => [
-					'doc-widget-skin' => [ '6' ]
-				],
 			]
 		);
 
