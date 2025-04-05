@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.7.3
 Requires PHP: 7.4
-Stable tag: 2.6.3
+Stable tag: 2.6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -232,11 +232,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 = v2.6.4 (06 April 2025) =
 New: Embed Post shortcode added in EazyDocs Toolbar
+Fixed: Credit text overflown issue
 Tweaked: Disable the enter key for search field
 Tweaked: Multi Docs Elementor widget controls reorganized
 Tweaked: Multi Docs widget
 Tweaked: Removed some unused CSS
-Fixed: Credit text overflown issue
 
 = v2.6.3 (22 March 2025) =
 Fixed: Resolved PHP 7.4 compatibility issue
