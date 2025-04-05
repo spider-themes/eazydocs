@@ -4,6 +4,7 @@ $topics                 = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs
 $private_doc_mode       = $opt['private_doc_mode'] ?? '';
 $private_doc_login_page = $opt['private_doc_login_page'] ?? '';
 $is_subscription 		= $opt['subscriptions'] ?? false;
+$is_btn_show 			= ezd_get_opt('docs-view-all-btn');
 $is_masonry             = '';
 // Check pro plugin class exists
 if ( ezd_is_premium() ) {
@@ -93,11 +94,19 @@ if ( $docs ) :
 						endif;
 						?>
 						<div class="ezd-doc-btn-wrap <?php if ( $is_subscription == '1' ) { echo 'has-subscription'; } ?>">
-							<a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
-								<?php echo esc_html( $more ); ?> <i class="arrow_right"></i>
-							</a>
 
 							<?php
+							$has_children = count( $doc_counter ) > 0;
+
+							if ( ( ! $has_children && ! empty( $more ) && ! empty( $is_btn_show ) ) || 
+								( $has_children && ! empty( $more ) ) ) :
+								?>
+								<a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
+									<?php echo esc_html( $more ); ?> <i class="arrow_right"></i>
+								</a>
+								<?php 
+							endif;
+
 							/**
 							 * Subscription
 							 */

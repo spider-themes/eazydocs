@@ -24,6 +24,18 @@ CSF::createSection( $prefix, array(
 			'chosen'     => true,
 			'ajax'       => true,
 		),
+		
+		array(
+			'id'         => 'docs-view-all-btn',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'View All / Read More Button', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'This switch controls the visibility of the button in the Docs Archive page.', 'eazydocs' ),
+			'desc'       => esc_html__( 'If set to "Hide", the button will not appear for docs that do not have any child posts.', 'eazydocs' ), 
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'default'    => false,
+			'text_width' => 72,
+		),
 
 		array(
 			'id'         => 'docs-url-structure',

@@ -100,14 +100,12 @@ function ezd_child_docs_progress_bar( $post_id ) {
                      <?php 
                  endif;
                  
-                 if ( ezd_is_premium() && current_user_can( 'manage_options' ) ) :
-                     if ( $child_count > 0 ) : 
-                         ?>
-                         <li class="visibility">
-                             <?php do_action( 'eazydocs_doc_visibility_depth_one', $doc_item ); ?>
-                         </li>
-                         <?php
-                     endif;
+                 if ( ezd_is_premium() && current_user_can( 'manage_options' ) ) :                    
+                    ?>
+                    <li class="visibility">
+                        <?php do_action( 'eazydocs_doc_visibility_depth_one', $doc_item ); ?>
+                    </li>
+                    <?php               
                  endif;
          
              endif; 

@@ -101,7 +101,7 @@ function ezd_is_plugin_installed_for_days( $days, $plugin_slug='eazydocs' ) {
 	$current_time = time();
 
 	// Check if the plugin has been installed for the required duration
-	return ( $current_time - $installed_time ) >= $required_time;
+	return ( $current_time - $installed_time ) >= $required_time; 
 }
 
 /**
