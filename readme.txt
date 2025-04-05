@@ -230,6 +230,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= v2.6.4 (06 April 2025) =
+New: Embed Post shortcode added in EazyDocs Toolbar
+Tweaked: Disable the enter key for search field
+Tweaked: Multi Docs Elementor widget controls reorganized
+Tweaked: Multi Docs widget
+Tweaked: Removed some unused CSS
+Fixed: Credit text overflown issue
+
 = v2.6.3 (22 March 2025) =
 Fixed: Resolved PHP 7.4 compatibility issue
 Fixed: Missing multidocs widgets masonry layout resolved
