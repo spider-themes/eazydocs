@@ -127,9 +127,6 @@
 		top: 70px;
 	}
 
-	.body_fixed .doc_left_sidebarlist {
-		width: unset !important;
-	}
 
 	.doc_rightsidebar {
 		background: var(--black_50);
