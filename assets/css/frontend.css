@@ -1278,6 +1278,12 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
     margin-top: 0;
   }
 }
+@media (max-width: 591px) {
+  .doc_right_mobile_menu .doc_rightsidebar.sticky,
+  .left-column .doc_left_sidebarlist.sticky {
+    top: 40px;
+  }
+}
 .toc_auto_numbering ul {
   counter-reset: item;
   flex-wrap: wrap;
