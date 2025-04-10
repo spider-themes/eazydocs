@@ -370,10 +370,14 @@
 			});
 
 			function closeLeftSidebar() {
+				var screenWidth = $(window).width(); // Get current window width
+				var animationDistance = (screenWidth < 360) ? '-280px' : '-330px'; // Set distance based on screen width
+
 				$('.doc_documentation_area').removeClass('overlay');
 				$('.left-column .doc_left_sidebarlist')
 					.removeClass('opened')
-					.animate({ left: '-330px' }, 300);
+					.animate({ left: animationDistance }, 300);
+
 				leftOpen = false;
 			}
 
@@ -545,6 +549,19 @@
 		}
 
 		bodyFixed2();
+
+		function tocSidebarScrollHeight() {
+			var leftSidebarScrollOffset = $('.doc_left_sidebarlist  .ezd-scroll').position().top;
+			var maxHeightLeftSidebar = `calc(100vh - ${leftSidebarScrollOffset }px)`;
+			$('.doc_left_sidebarlist  .ezd-scroll').css('max-height', maxHeightLeftSidebar );
+
+			var rightSidebarScrollOffset = $('.single-docs .doc_rightsidebar .toc_right').position().top;
+			var maxHeightRightSidebar = `calc(100vh - ${rightSidebarScrollOffset + 70}px)`;
+
+			console.log(rightSidebarScrollOffset)
+			$('.single-docs .doc_rightsidebar .toc_right').css('max-height', maxHeightRightSidebar);
+		}
+		tocSidebarScrollHeight();
 
 		/*  Menu Click js  */
 		if ($('.submenu').length) {

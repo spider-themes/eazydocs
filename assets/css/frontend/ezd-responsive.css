@@ -44,6 +44,9 @@
 		z-index: 2;
 		padding: 30px 25px;
 		box-sizing: border-box;
+		&.opened{
+			z-index: 3;
+		}
 	}
 
 	.doc_rightsidebar {
@@ -57,6 +60,9 @@
 		top: 0;
 		background: #fff;
 		padding: 30px 15px 30px 0;
+		&.opened{
+			z-index: 3;
+		}
 	}
 
 	.onepage_doc_area .documentation_body {
@@ -120,11 +126,11 @@
 
 	/** === Right Sidebar === **/
 	.open_icon {
-		top: 70px;
+		top: 40px;
 	}
 
 	.body_fixed .open_icon {
-		top: 70px;
+		top: 40px;
 	}
 
 
@@ -179,9 +185,33 @@
 	}
 }
 
+@media (max-width: 576px) {
+	.open_icon {
+		width: 18px;
+		left: -18px;
+	}
+	.doc_left_sidebarlist .open_icon {
+		right: -18px;
+	}
+}
+
+@media (max-width: 360px) {
+
+	.left-column .doc_left_sidebarlist {
+		max-width: 280px;
+		width: 280px;
+		left: -280px;
+		padding: 30px 10px;
+	}
+
+}
+
+
 @media (max-width: 1024px) {
 
 	.container.custom_container {
 		max-width: 990px;
 	}
 }
+
+
