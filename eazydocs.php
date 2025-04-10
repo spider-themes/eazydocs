@@ -204,6 +204,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				require_once __DIR__ . '/shortcodes/conditional_data.php';
 			}
 
+			// Include and Register the Shortcode for Displaying Single Docs Content
+			require_once __DIR__ . '/shortcodes/ezd-view-docs.php';
+
 			if ( ezd_is_premium() ) {
 				// Remove docs slug from URLs
 				$docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
