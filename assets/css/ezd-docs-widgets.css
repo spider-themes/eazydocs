@@ -1385,6 +1385,7 @@
 }
 .question_menu.docs3 .nav li {
   margin: 0;
+  list-style: none;
 }
 .question_menu.docs3 .nav li:last-child {
   margin-right: 0;
