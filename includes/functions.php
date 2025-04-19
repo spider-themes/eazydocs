@@ -1731,17 +1731,18 @@ function has_ezd_mark_text_class() {
  * based on the EazyDocs 'private_doc_user_restriction' settings.
  */
 function ezd_read_private_docs_cap_to_user() {
-	
-	$user_group  = ezd_get_opt('private_doc_user_restriction');
-	$is_all_user = $user_group['private_doc_all_user'] ?? 0;
-	
-	if ( $is_all_user === '1' ) {
-		$get_users_role = array_values(array_keys(eazydocs_user_role_names()));
-	} else {
-		$get_users_role = $user_group['private_doc_roles'] ?? 0;
-	}
+    $user_group  = ezd_get_opt('private_doc_user_restriction');
+    $is_all_user = $user_group['private_doc_all_user'] ?? 0;
 
-    // Get all roles
+    if ( $is_all_user === '1' ) {
+        $get_users_role = array_values(array_keys(eazydocs_user_role_names()));
+    } else {
+        $get_users_role = $user_group['private_doc_roles'] ?? [];
+        if ( ! is_array($get_users_role) ) {
+            $get_users_role = [$get_users_role]; // Cast to array if not already
+        }
+    }
+
     global $wp_roles;
     if ( ! isset( $wp_roles ) ) {
         $wp_roles = new WP_Roles();
@@ -1751,10 +1752,8 @@ function ezd_read_private_docs_cap_to_user() {
         $role = get_role( $role_key );
 
         if ( in_array( $role_key, $get_users_role ) ) {
-            // Add capability
             $role->add_cap( 'read_private_docs' );
         } else {
-            // Remove capability
             $role->remove_cap( 'read_private_docs' );
         }
     }
