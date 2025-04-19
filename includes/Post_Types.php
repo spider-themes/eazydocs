@@ -88,6 +88,10 @@ class Docs {
 			'taxonomies'          => [ 'doc_tag' ]
 		];
 
+		if ( current_user_can('read_private_docs') ) {
+			$args['capability_type'] = 'doc';
+		}
+
 		register_post_type( $this->post_type, apply_filters( 'eazydocs_post_type', $args ) );
 	}
 
