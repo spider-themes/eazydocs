@@ -112,11 +112,11 @@ class Search_Widget extends Widget_Base {
 		        'type' => \Elementor\Controls_Manager::CHOOSE,
 		        'options' => [
 			        'left' => [
-				        'title' => esc_html__( 'Left', 'elementor' ),
+				        'title' => esc_html__( 'Left', 'eazydocs' ),
 				        'icon' => 'eicon-h-align-left',
 			        ],
 			        'right' => [
-				        'title' => esc_html__( 'Right', 'elementor' ),
+				        'title' => esc_html__( 'Right', 'eazydocs' ),
 				        'icon' => 'eicon-h-align-right',
 			        ],
 		        ],

@@ -477,6 +477,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 
 			> i {
 				font-size: 16px;
+				color: #fff;
 			}
 
 			> svg {
@@ -488,6 +489,30 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
 				object-fit: cover;
 			}
 		}
+	}
+
+	.form-group.ezd-right {
+		.search_field_wrap {
+			padding-left: 25px;
+			border-radius: 45px;
+		}
+		.search_submit_btn {
+			border-radius: 0 5px 5px 0;
+		}
+
+	}
+
+	.form-group.ezd-left {
+		.search_field_wrap {
+			padding-left: 70px !important;
+			border-radius: 45px;
+		}
+		.search_submit_btn {
+			left: 0;
+			right: auto;
+			border-radius: 5px 0 0 5px;
+		}
+
 	}
 }
 
