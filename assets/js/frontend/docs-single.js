@@ -551,17 +551,24 @@
 		bodyFixed2();
 
 		function tocSidebarScrollHeight() {
-			var leftSidebarScrollOffset = $('.doc_left_sidebarlist  .ezd-scroll').position().top;
-			var maxHeightLeftSidebar = `calc(100vh - ${leftSidebarScrollOffset }px)`;
-			$('.doc_left_sidebarlist  .ezd-scroll').css('max-height', maxHeightLeftSidebar );
+			var leftSidebarScrollElement = $('.doc_left_sidebarlist  .ezd-scroll');
+			if(leftSidebarScrollElement.length){
+				var leftSidebarScrollOffset = leftSidebarScrollElement.position().top;
+				var maxHeightLeftSidebar = `calc(100vh - ${leftSidebarScrollOffset }px)`;
+				leftSidebarScrollElement.css('max-height', maxHeightLeftSidebar );
 
-			var rightSidebarScrollOffset = $('.single-docs .doc_rightsidebar .toc_right').position().top;
-			var maxHeightRightSidebar = `calc(100vh - ${rightSidebarScrollOffset + 70}px)`;
+			}
 
-			console.log(rightSidebarScrollOffset)
-			$('.single-docs .doc_rightsidebar .toc_right').css('max-height', maxHeightRightSidebar);
+			var rightSidebarScrollElement = $('.single-docs .doc_rightsidebar .toc_right');
+			if(rightSidebarScrollElement.length){
+				var rightSidebarScrollOffset = rightSidebarScrollElement.position().top;
+				var maxHeightRightSidebar = `calc(100vh - ${rightSidebarScrollOffset + 70}px)`;
+				rightSidebarScrollElement.css('max-height', maxHeightRightSidebar);
+			}
+
 		}
 		tocSidebarScrollHeight();
+
 
 		/*  Menu Click js  */
 		if ($('.submenu').length) {
