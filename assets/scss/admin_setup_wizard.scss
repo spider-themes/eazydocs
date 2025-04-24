@@ -123,6 +123,17 @@
 
     .tab-pane {
 
+      .button-inline {
+        margin-top: 20px;
+
+        .button {
+          padding: 5px 20px;
+          display: inline-flex;
+          gap: 5px;
+          align-items: center;
+        }
+      }
+
       &#step-4 {
         padding: 20px;
         h2 {
@@ -194,6 +205,8 @@
                       display: flex;
                       align-items: center;
                       gap: 3px;
+                      color: #007FFF;
+                      border-color: #d0d0d0;
                     }
                   }
 

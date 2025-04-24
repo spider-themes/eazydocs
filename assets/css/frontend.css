@@ -369,6 +369,9 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 .nav-sidebar .nav-item.current_page_item > .doc-link a {
   color: var(--ezd_brand_color);
 }
+.nav-sidebar .nav-item.current_page_parent .nav-link {
+  color: var(--ezd_brand_color);
+}
 .nav-sidebar .nav-item.active > .doc-link .icon {
   transform: rotate(-180deg);
 }

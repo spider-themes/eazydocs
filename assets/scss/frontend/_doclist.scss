@@ -203,6 +203,12 @@ body {
 				}
 			}
 		}
+
+		&.current_page_parent {
+			.nav-link {
+				color: var(--ezd_brand_color);
+			}
+		}
 		
 		&.active {
 			> .doc-link .icon {
