@@ -133,7 +133,7 @@
 		  ezd_masonry_column();
 
 		$('.nav-sidebar.one-page-doc-nav-wrap .nav-item').click(function () {
-			$(this).toggleClass('active');
+		 
 			$(this).siblings().removeClass('active');
 		});
 		

@@ -58,5 +58,13 @@
 		$('.doc-last-depth-fullscreen')
 			.parent('.nav-item')
 			.addClass('doc-last-depth-icon');
+		
+		// Sidebar menu links active with scroll
+		$('.nav-sidebar.one-page-doc-nav-wrap .dropdown_nav .nav-item a').on('click', function (e) {
+			e.preventDefault();
+			$('.onepage-doc-sec.active').css('margin-top','-50px');
+			$('.onepage-doc-sec').css('padding-bottom','50px');
+		});
+		
 	});
 })(jQuery);
