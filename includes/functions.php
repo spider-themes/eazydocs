@@ -1753,9 +1753,27 @@ function ezd_read_private_docs_cap_to_user() {
 
         if ( in_array( $role_key, $get_users_role ) ) {
             $role->add_cap( 'read_private_docs' );
+            $role->add_cap( 'edit_private_docs' );
+            $role->add_cap( 'edit_docs' );
+            $role->add_cap( 'publish_docs' );
         } else {
             $role->remove_cap( 'read_private_docs' );
+            $role->remove_cap( 'edit_private_docs' );
+            $role->remove_cap( 'edit_docs' );
+            $role->remove_cap( 'publish_docs' );
         }
     }
 }
 add_action( 'init', 'ezd_read_private_docs_cap_to_user' );
+
+/**
+ * Admin bar hide for OnePage Docs
+ */
+add_filter('show_admin_bar', function() { 
+	if ( is_singular('onepage-docs') ) {
+		ob_start();
+		return ob_get_clean();
+	}
+    // Return true or false based on setting
+    return _get_admin_bar_pref();
+});
