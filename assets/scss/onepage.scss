@@ -305,6 +305,34 @@ body {
       }
     }
   }
+  :not(.body_dark){
+    .fullscreen-layout-onepage-sidebar{
+      .nav-item{
+        background: transparent;
+        .docs-progress-bar {
+          background: #444857;
+        }
+        a {
+          color: #fff;
+        }
+      &.active{
+        background: #2A3D4B;
+        a {
+          color: #fff;
+        }
+        &.active{
+          background-color: #2A3D4B;
+          a{
+            color: #fff;
+          }
+          .dropdown_nav{
+            background: transparent;
+          }
+        }
+      }
+    }
+    }
+  }
 }
 
 .single-onepage-docs {
@@ -782,4 +810,3 @@ body {
     }
   }
 }
-

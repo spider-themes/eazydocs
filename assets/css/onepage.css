@@ -197,6 +197,30 @@ body.admin-bar .documentation_area_sticky .doc_documentation_area.documentation_
 body.admin-bar .documentation_area_sticky .doc_rightsidebar {
   padding-top: 32px;
 }
+body :not(.body_dark) .fullscreen-layout-onepage-sidebar .nav-item {
+  background: transparent;
+}
+body :not(.body_dark) .fullscreen-layout-onepage-sidebar .nav-item .docs-progress-bar {
+  background: #444857;
+}
+body :not(.body_dark) .fullscreen-layout-onepage-sidebar .nav-item a {
+  color: #fff;
+}
+body :not(.body_dark) .fullscreen-layout-onepage-sidebar .nav-item.active {
+  background: #2A3D4B;
+}
+body :not(.body_dark) .fullscreen-layout-onepage-sidebar .nav-item.active a {
+  color: #fff;
+}
+body :not(.body_dark) .fullscreen-layout-onepage-sidebar .nav-item.active.active {
+  background-color: #2A3D4B;
+}
+body :not(.body_dark) .fullscreen-layout-onepage-sidebar .nav-item.active.active a {
+  color: #fff;
+}
+body :not(.body_dark) .fullscreen-layout-onepage-sidebar .nav-item.active.active .dropdown_nav {
+  background: transparent;
+}
 
 .single-onepage-docs .documentation_area_sticky .one-page-docs-sidebar-wrap img {
   display: block;
