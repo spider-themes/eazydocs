@@ -41,6 +41,7 @@ if ( ezd_is_premium() ) {
 					'post_status' => array( 'publish', 'private' ),
 					'orderby'     => 'menu_order',
 					'order'       => 'ASC',
+                    'posts_per_page' => ! empty( $settings['doc_items_articles'] ) ? $settings['doc_items_articles'] : - 1,
 				] );
 
 				global $post;

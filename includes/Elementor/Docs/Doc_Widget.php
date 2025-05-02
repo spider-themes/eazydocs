@@ -176,7 +176,7 @@ class Doc_Widget extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
+        $this->add_control(
 			'docs_slug_format', [
 				'label'     => esc_html__( 'ID Format', 'eazydocs' ),
 				'type'      => Controls_Manager::SELECT,
@@ -237,6 +237,18 @@ class Doc_Widget extends Widget_Base {
 				],
 			]
 		);
+
+        $this->add_control(
+            'doc_items_articles', [
+                'label'       => esc_html__( 'Articles', 'eazydocs' ),
+                'description' => esc_html__( 'Number of articles to show under every sections', 'eazydocs' ),
+                'type'        => Controls_Manager::NUMBER,
+                'default'     => 5,
+                'condition'   => [
+                    'doc-widget-skin' => [ '1' ]
+                ]
+            ]
+        );
 
 		$this->add_control(
 			'main_doc_excerpt', [
