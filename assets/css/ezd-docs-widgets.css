@@ -1684,7 +1684,7 @@ pre {
   display: grid;
   padding-top: 25px;
   grid-template-columns: auto auto;
-  gap: 30px 20px;
+  gap: 40px;
 }
 @media (max-width: 768px) {
   .d-items {
@@ -1705,11 +1705,11 @@ pre {
   align-items: center;
   box-sizing: content-box;
   line-height: 1.4;
-  width: 70px;
-  height: 70px;
+  width: 72px;
+  height: 72px;
 }
 .d-items .documentation_item .icon img {
-  max-width: 35px !important;
+  max-width: 32px !important;
   height: auto !important;
 }
 .d-items .documentation_item .media-body {

@@ -41,7 +41,7 @@
 }
 
 .single-onepage-docs .doc-section .shortcode_title {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   border-bottom: 1px solid var(--black_50);
   padding-bottom: 0 !important;
   letter-spacing: 2px;
@@ -109,7 +109,7 @@
   border-left: 5px solid var(--ezd_brand_color);
   border-bottom: none;
   margin: 30px 0;
-  padding-left: 15px;
+  padding-left: 20px;
 }
 .child-doc .shortcode_title.depth-two {
   background: rgba(214, 212, 212, 0.2);
