@@ -17,8 +17,9 @@ $children = array(
     'echo'        => false,
     'post_type'   => 'docs',
     'walker'      => $walker,
-    'post_status' => array('publish', 'private'),
+    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private' ] : ['publish'],
 );
+
 // If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
 $sidebar_source = ezd_get_opt('docs_to_view', 'self_docs');
 if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
@@ -89,8 +90,9 @@ if ( $credit_enable == '1' ) {
                     'echo'        => false,
                     'post_type'   => 'docs',
                     'walker'      => $doc_walker,
-                    'post_status' => ['publish', 'private'],
+                    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private' ] : ['publish'],
                 ];
+
                 // If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
                 if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
                     $args['child_of'] = $parent;

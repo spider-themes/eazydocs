@@ -1753,27 +1753,101 @@ function ezd_read_private_docs_cap_to_user() {
 
         if ( in_array( $role_key, $get_users_role ) ) {
             $role->add_cap( 'read_private_docs' );
-            $role->add_cap( 'edit_private_docs' );
-            $role->add_cap( 'edit_docs' );
-            $role->add_cap( 'publish_docs' );
         } else {
             $role->remove_cap( 'read_private_docs' );
-            $role->remove_cap( 'edit_private_docs' );
-            $role->remove_cap( 'edit_docs' );
-            $role->remove_cap( 'publish_docs' );
         }
     }
 }
 add_action( 'init', 'ezd_read_private_docs_cap_to_user' );
 
 /**
+ * Assigns or removes the 'add or edit_docs' capability to user roles
+ */
+function ezd_docs_cap_to_user() {
+    $get_users_role = ezd_get_opt( 'ezd_add_editable_roles', ['administrator','editor','author','contributors','subscriber'] );
+	
+    if ( empty( $get_users_role ) || ! is_array( $get_users_role ) ) {
+        return;
+    }
+
+    global $wp_roles;
+    if ( ! isset( $wp_roles ) ) {
+        $wp_roles = new WP_Roles();
+    }
+
+    // Define the custom capabilities to manage docs
+    $doc_caps = array(
+        'edit_doc',
+        'edit_posts',
+        'edit_docs',
+        'edit_others_docs',
+        'edit_private_docs',
+        'publish_docs',
+		'read_doc',
+		'ezd_doc_contribution'
+    );
+
+    // Loop through all roles
+    foreach ( $wp_roles->roles as $role_key => $role_data ) {
+        $role = get_role( $role_key );
+
+        if ( ! $role ) {
+            continue;
+        }
+
+        if ( in_array( $role_key, $get_users_role ) ) {
+            // Add all doc capabilities to allowed roles
+            foreach ( $doc_caps as $cap ) {
+                $role->add_cap( $cap );
+            }
+        } else {
+            // Remove all doc capabilities from other roles
+            foreach ( $doc_caps as $cap ) {
+                $role->remove_cap( $cap );
+            }
+        }
+    }
+}
+add_action( 'init', 'ezd_docs_cap_to_user' );
+
+/**
  * Admin bar hide for OnePage Docs
  */
-add_filter('show_admin_bar', function() { 
-	if ( is_singular('onepage-docs') ) {
-		ob_start();
-		return ob_get_clean();
-	}
-    // Return true or false based on setting
-    return _get_admin_bar_pref();
+add_filter('show_admin_bar', function( $show ) {
+    // Hide admin bar on singular onepage-docs
+    if ( is_singular('onepage-docs') ) {
+        return false;
+    }
+
+    // Only show admin bar if user is logged in
+    return is_user_logged_in();
 });
+
+
+/**
+ * 404 should return if the user has not private docs readability
+ */
+add_action( 'template_redirect', 'ezd_private_docs_access' );
+
+function ezd_private_docs_access() {
+    if ( is_singular( 'docs' ) ) {
+        global $post;
+
+        // Check if the doc is private
+        if ( get_post_status( $post->ID ) === 'private' ) {
+
+            // If user does not have permission to read private docs
+            if ( ! current_user_can( 'read_private_docs' ) ) {
+
+                // Show 404
+                global $wp_query;
+                $wp_query->set_404();
+                status_header( 404 );
+                nocache_headers();
+                include( get_query_template( '404' ) );
+                exit;
+
+            }
+        }
+    }
+}

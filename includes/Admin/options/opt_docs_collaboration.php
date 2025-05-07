@@ -40,7 +40,41 @@ CSF::createSection( $prefix, array(
 				array( 'is_doc_contribution', '==', 'true' )
 			)
 		),
-
+		
+		array(
+			'id'         => 'ezd_add_editable_role_opt',
+			'type'       => 'heading',
+			'title'      => esc_html__( 'Contributor Access Control', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Manage which user roles can contribute to your documentation.', 'eazydocs' ),
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
+			),
+		),
+		
+		array(
+			'id'         => 'ezd_add_editable_roles',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Allowed User Roles', 'eazydocs' ),
+			'desc'       => esc_html__( 'Select the user roles that can add or edit documentation from the frontend. These roles will have contributor privileges.', 'eazydocs' ),
+			'options'    => function_exists( 'eazydocs_user_role_names' ) && ezd_is_premium() ? eazydocs_user_role_names() : array(
+				'administrator' => esc_html__( 'Administrator', 'eazydocs' ),
+				'editor'        => esc_html__( 'Editor', 'eazydocs' ),
+				'author'        => esc_html__( 'Author', 'eazydocs' ),
+				'contributor'   => esc_html__( 'Contributor', 'eazydocs' ),
+				'subscriber'    => esc_html__( 'Subscriber', 'eazydocs' ),
+			),
+			'default'    => 'administrator',
+			'chosen'     => true,
+			'ajax'       => true,
+			'multiple'   => true,
+			'class'      => 'eazydocs-pro-notice',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+				array( 'docs_frontend_login_page', '!=', '' ),
+			)
+		),
+		
 		array(
 			'id'         => 'ezd_add_doc_heading',
 			'type'       => 'heading',

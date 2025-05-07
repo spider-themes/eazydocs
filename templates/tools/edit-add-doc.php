@@ -10,20 +10,12 @@ if ( eaz_fs()->is_plan('promax') ) :
             if ( ! empty( $user_login_page_id ) ) :
                 ?>
                 <div class="contribut-btns">
-                    <?php                    
-                    $edit_access = '1';
-                    if ( is_user_logged_in() ) {
-                        // if current user role is not administartor || editor
-                        if ( ! current_user_can('administrator') && ! current_user_can('editor') ) {
-                            $edit_access = '';
-                        }
-                    }
-
-                    if ( $is_edit_doc == 1 && $edit_access == 1 ) {
+                    <?php
+                    if ( $is_edit_doc ) {
                         do_action('eazydocs_fronted_editing', get_the_ID());                       
                     }
                     
-                    if ( $is_add_doc == 1 ) {
+                    if ( $is_add_doc ) {
 
                         // get total number of child post
                         $args = array(

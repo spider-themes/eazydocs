@@ -58,6 +58,9 @@ CSF::createSection( $prefix, array(
 			'type'      => 'fieldset',
 			'title'      => esc_html__( 'Restrict Access to', 'eazydocs' ),
 			'subtitle'   => esc_html__( 'Select who can view your private docs.', 'eazydocs' ),
+			'dependency'  => array(
+				array( 'private_doc_mode', '==', 'login' ),
+			),
 			'fields'    => array(
 				array(
 					'id'         => 'private_doc_all_user',

@@ -88,10 +88,26 @@ class Docs {
 			'taxonomies'          => [ 'doc_tag' ]
 		];
 
-		if ( current_user_can('read_private_docs') ) {
+		if ( current_user_can( 'read_private_docs' ) ) {
 			$args['capability_type'] = 'doc';
+			$args['capabilities'] = [
+				'read_private_posts' => 'read_private_docs'
+			];
 		}
-
+		
+		if ( current_user_can( 'ezd_doc_contribution' ) ) {
+			$args['capability_type'] = [ 'doc', 'docs' ];
+			$args['map_meta_cap']    = true;
+			$args['capabilities'] = [
+				'edit_post'             => 'edit_doc',
+				'edit_posts'            => 'edit_docs',
+				'edit_others_posts'     => 'edit_others_docs',
+				'edit_private_posts'    => 'edit_private_docs',
+				'edit_published_posts'  => 'edit_published_docs',
+				'publish_posts'         => 'publish_docs',
+			];
+		}
+		
 		register_post_type( $this->post_type, apply_filters( 'eazydocs_post_type', $args ) );
 	}
 
