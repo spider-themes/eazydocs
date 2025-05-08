@@ -1764,9 +1764,10 @@ add_action( 'init', 'ezd_read_private_docs_cap_to_user' );
  * Assigns or removes the 'add or edit_docs' capability to user roles
  */
 function ezd_docs_cap_to_user() {
-    $get_users_role = ezd_get_opt( 'ezd_add_editable_roles', ['administrator','editor','author','contributors','subscriber'] );
-	
-    if ( empty( $get_users_role ) || ! is_array( $get_users_role ) ) {
+	$is_doc_contribution 	= ezd_get_opt( 'is_doc_contribution' );
+    $get_users_role 		= ezd_get_opt( 'ezd_add_editable_roles', [ 'administrator','editor','author','contributors', 'subscriber' ] );
+
+    if ( empty( $is_doc_contribution ) || empty( $get_users_role ) || ! is_array( $get_users_role ) ) {
         return;
     }
 
@@ -1776,39 +1777,50 @@ function ezd_docs_cap_to_user() {
     }
 
     // Define the custom capabilities to manage docs
-    $doc_caps = array(
+    $doc_caps = [
         'edit_doc',
+        'edit_post',
         'edit_posts',
         'edit_docs',
+        'edit_others_posts',
         'edit_others_docs',
         'edit_private_docs',
         'publish_docs',
-		'read_doc',
-		'ezd_doc_contribution'
-    );
+        'read_doc',
+        'edit_published_docs'
+    ];
 
-    // Loop through all roles
+    // Assign/remove capabilities to roles
     foreach ( $wp_roles->roles as $role_key => $role_data ) {
         $role = get_role( $role_key );
-
         if ( ! $role ) {
             continue;
         }
 
         if ( in_array( $role_key, $get_users_role ) ) {
-            // Add all doc capabilities to allowed roles
             foreach ( $doc_caps as $cap ) {
                 $role->add_cap( $cap );
             }
         } else {
-            // Remove all doc capabilities from other roles
             foreach ( $doc_caps as $cap ) {
                 $role->remove_cap( $cap );
             }
         }
     }
+
+    // Give current user caps if they are the author of the post (only on single 'docs' post page)
+    if ( is_singular( 'docs' ) ) {
+        global $post;
+
+        if ( $post && (int) $post->post_author === get_current_user_id() ) {
+            $user = wp_get_current_user();
+            foreach ( $doc_caps as $cap ) {
+                $user->add_cap( $cap );
+            }
+        }
+    }
 }
-add_action( 'init', 'ezd_docs_cap_to_user' );
+add_action( 'wp', 'ezd_docs_cap_to_user' );
 
 /**
  * Admin bar hide for OnePage Docs
@@ -1851,3 +1863,6 @@ function ezd_private_docs_access() {
         }
     }
 }
+
+
+

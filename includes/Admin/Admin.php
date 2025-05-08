@@ -24,42 +24,31 @@ class Admin {
 	 * Register Menu
 	 */
 	public function eazyDocs_menu() {
-		$capabilites    = 'manage_options';
-		$cz_capabilites = 'manage_options';
-		$sz_capabilites = 'manage_options';
+		$capabilites    	= 'manage_options';
+		$cz_capabilites 	= 'manage_options';
+		$sz_capabilites 	= 'manage_options';
+		$is_customizer 		= ezd_get_opt('customizer_visibility');
 
-		$ezd_options   = get_option( 'eazydocs_settings' );
-		$is_customizer = $ezd_options['customizer_visibility'] ?? 'disabled';
+		$user_id           	= get_current_user_id(); // get the current user's ID
+		$user              	= get_userdata( $user_id );
+		$current_user_role 	= '';
+		$default_roles     	= [ 'administrator', 'editor', 'author', 'contributor', 'subscriber' ];
 
-		$user_id           = get_current_user_id(); // get the current user's ID
-		$user              = get_userdata( $user_id );
-		$current_user_role = '';
-		$default_roles     = [ 'administrator', 'editor', 'author', 'contributor', 'subscriber' ];
-
-		$current_rols = $user->caps;
-		$current_rols = array_keys( $current_rols );
-
-		$matched_roles     = array_intersect( $default_roles, $current_rols );
-		$current_user_role = reset( $matched_roles );
+		$current_rols 		= $user->caps;
+		$current_rols 		= array_keys( $current_rols );
+		$matched_roles     	= array_intersect( $default_roles, $current_rols );
+		$current_user_role 	= reset( $matched_roles );
 
 		$access    = ezd_get_opt( 'docs-write-access', 'administrator' );
-		$cz_access = ezd_get_opt( 'customizer-edit-access', 'eazydocs_settings' );
 		$sz_access = ezd_get_opt( 'settings-edit-access', 'manage_options' );
 
 		$all_roles = '';
-		$cz_roles  = '';
 		$sz_roles  = '';
 
 		if ( is_array( $access ) ) {
 			$all_roles = ! empty( $access ) ? implode( ',', $access ) : '';
 		}
 		$all_roled = explode( ',', $all_roles );
-
-		if ( is_array( $cz_access ) ) {
-			$cz_roles = ! empty( $cz_access ) ? implode( ',', $cz_access ) : '';
-		}
-
-		$cz_roled = explode( ',', $cz_roles );
 
 		if ( is_array( $sz_access ) ) {
 			$sz_roles = ! empty( $sz_access ) ? implode( ',', $sz_access ) : '';
@@ -106,26 +95,8 @@ class Admin {
 		add_submenu_page( 'eazydocs', __( 'Docs Builder', 'eazydocs' ), __( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
 
 		if ( ezd_is_premium() ) {
-			if ( in_array( $current_user_role, $cz_roled ) ) {
-				switch ( $current_user_role ) {
-					case 'administrator':
-						$cz_capabilites = 'manage_options';
-						break;
-
-					case 'editor':
-						$cz_capabilites = 'publish_pages';
-						break;
-
-					case 'author':
-						$cz_capabilites = 'publish_posts';
-						break;
-				}
-			} else {
-				$cz_capabilites = 'manage_options';
-			}
-			if ( $is_customizer == 'enable' ) {
-				add_submenu_page( 'eazydocs', __( 'Customize', 'eazydocs' ), __( 'Customize', 'eazydocs' ), $cz_capabilites,
-					'/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
+			if ( $is_customizer ) {
+				add_submenu_page( 'eazydocs', __( 'Customize', 'eazydocs' ), __( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
 			}
 		}
 
