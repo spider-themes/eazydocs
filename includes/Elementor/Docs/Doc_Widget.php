@@ -363,7 +363,7 @@ class Doc_Widget extends Widget_Base {
 				'label'     => esc_html__( 'Book Chapters / Tutorials Prefix', 'eazydocs' ),
 				'type'      => \Elementor\Controls_Manager::TEXT,
 				'condition' => [
-					'doc-widget-skin' => [ '4' ]
+					'doc-widget-skin' => [ '4', '5' ]
 				]
 			]
 		);

@@ -28,7 +28,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 						}
 						?>
                         <li class="nav-item<?php echo esc_attr( $active ) ?>">
-                            <a <?php echo esc_attr( $atts ); ?> class="nav-link">
+                            <a <?php echo $atts; ?> class="nav-link">
 								<?php
 								if ( ! empty( $settings['book_chapter_prefix'] ) ):
 									?>
