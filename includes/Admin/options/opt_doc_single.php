@@ -276,7 +276,7 @@ CSF::createSection( $prefix, array(
 				'el-template' => esc_html__( 'Elementor Template', 'eazydocs' ),
 			],
 			'default'  => 'default',
-			'subtitle' => __( 'Select how the header of the doc detail page will be displayed', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Select how the header of the doc detail page will be displayed', 'eazydocs' ),
 		),
 
 		array(
@@ -285,7 +285,7 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Select Elementor Template', 'eazydocs' ),
 			'options'    => ezd_get_elementor_templates(),
 			'dependency' => array( 'search_banner_layout', '==', 'el-template' ),
-			'subtitle'   => __( 'How to create Elementor template <a target="__blank" href="https://shorturl.at/filGI">See guide</a>', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'How to create Elementor template <a target="__blank" href="https://shorturl.at/filGI">See guide</a>', 'eazydocs' ),
 		),
 
 		array(
@@ -1040,7 +1040,7 @@ CSF::createSection( $prefix, array(
 
 		array(
 			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
-			'desc'       => __( 'You can display conditional contents using the [conditional_data] shortcode in documentation based on the dropdown value. See the shortcode usage tutorial <a href="https://tinyurl.com/yd46mfax" target="_blank">here</a>.', 'eazydocs' ),
+			'desc'       => esc_html__( 'You can display conditional contents using the [conditional_data] shortcode in documentation based on the dropdown value. See the shortcode usage tutorial <a href="https://tinyurl.com/yd46mfax" target="_blank">here</a>.', 'eazydocs' ),
 			'id'         => 'is_conditional_dropdown',
 			'type'       => 'switcher',
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
