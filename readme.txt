@@ -230,6 +230,20 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= 2.6.5 (10 May 2025) =
+New: Added option to hide "View All" button on Docs archive for docs that have no child items
+New: Added a control for show the Number of articles to show under every sections
+New: Added a new style hover tab option in the Eazydocs 'Multidocs' widget
+Fixed: Left sidebar menu active issue with ajax loading
+Fixed: Fixed the position of the TOC sidebar toggle button on mobile
+Fixed: TOC scroll height issue resolved
+Fixed: Resolved EazyDocs layout conflict with BuddyBoss Theme
+Fixed: Resolved deprecation warning by wrapping csf files in hook
+Fixed: Button alignment issue in the EazyDocs Search Elementor widget
+Fixed: Multi Docs widget tabs with masonry issue solved
+Tweaked: Active color added for the Parent doc of the current active Doc item
+Tweaked: Setup wizard design improved
+
 = v2.6.4 (06 April 2025) =
 New: Embed Post shortcode added in EazyDocs Toolbar
 Fixed: Credit text overflown issue
@@ -261,8 +275,5 @@ Updated: Settings page icons changed
 Fixed: Settings page hide issue
 Tweaked: Onepage dark Mode improved
 Tweaked: JS code optimized for better performance
-
-= v2.6.0 (24 February 2025) =
-Tweaked: Added conditions to ensure plugin notices are displayed only to the appropriate users.
 
 [See changelog for all versions](https://spider-themes.net/eazydocs/changelog/).
