@@ -1767,6 +1767,32 @@ function ezd_docs_cap_to_user() {
 	$is_doc_contribution 	= ezd_get_opt( 'is_doc_contribution' );
     $get_users_role 		= ezd_get_opt( 'ezd_add_editable_roles', [ 'administrator','editor','author','contributors', 'subscriber' ] );
 
+    // Define the custom capabilities to manage docs
+	$doc_caps = [
+		'edit_doc',
+		'edit_post',
+		'edit_posts',
+		'edit_docs',
+		'edit_others_posts',
+		'edit_others_docs',
+		'edit_private_docs',
+		'publish_docs',
+		'read_doc',
+		'edit_published_docs'
+	];
+
+	if ( is_singular( 'docs' ) ) {
+        global $post;
+
+        if ( $post && (int) $post->post_author === get_current_user_id() ) {
+            $user = wp_get_current_user();
+            foreach ( $doc_caps as $cap ) {
+                $user->add_cap( $cap );
+            }
+			return;
+        }
+    }
+
     if ( empty( $is_doc_contribution ) || empty( $get_users_role ) || ! is_array( $get_users_role ) ) {
         return;
     }
@@ -1775,20 +1801,6 @@ function ezd_docs_cap_to_user() {
     if ( ! isset( $wp_roles ) ) {
         $wp_roles = new WP_Roles();
     }
-
-    // Define the custom capabilities to manage docs
-    $doc_caps = [
-        'edit_doc',
-        'edit_post',
-        'edit_posts',
-        'edit_docs',
-        'edit_others_posts',
-        'edit_others_docs',
-        'edit_private_docs',
-        'publish_docs',
-        'read_doc',
-        'edit_published_docs'
-    ];
 
     // Assign/remove capabilities to roles
     foreach ( $wp_roles->roles as $role_key => $role_data ) {
@@ -1804,18 +1816,6 @@ function ezd_docs_cap_to_user() {
         } else {
             foreach ( $doc_caps as $cap ) {
                 $role->remove_cap( $cap );
-            }
-        }
-    }
-
-    // Give current user caps if they are the author of the post (only on single 'docs' post page)
-    if ( is_singular( 'docs' ) ) {
-        global $post;
-
-        if ( $post && (int) $post->post_author === get_current_user_id() ) {
-            $user = wp_get_current_user();
-            foreach ( $doc_caps as $cap ) {
-                $user->add_cap( $cap );
             }
         }
     }
