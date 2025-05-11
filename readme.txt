@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs
 Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
-Tested up to: 6.7.3
+Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.6.4
+Stable tag: 2.6.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -230,7 +230,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= 2.6.5 (10 May 2025) =
+= 2.6.5 (11 May 2025) =
 New: Added option to hide "View All" button on Docs archive for docs that have no child items
 New: Added a control for show the Number of articles to show under every sections
 New: Added a new style hover tab option in the Eazydocs 'Multidocs' widget
