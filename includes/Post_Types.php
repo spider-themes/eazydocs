@@ -95,9 +95,8 @@ class Docs {
 			];
 		}
 		
-		if ( current_user_can( 'ezd_doc_contribution' ) ) {
+		if ( current_user_can('edit_doc') ) {
 			$args['capability_type'] = [ 'doc', 'docs' ];
-			$args['map_meta_cap']    = true;
 			$args['capabilities'] = [
 				'edit_post'             => 'edit_doc',
 				'edit_posts'            => 'edit_docs',

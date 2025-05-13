@@ -1,4 +1,5 @@
 <?php
+
 namespace eazyDocs\Admin;
 
 /**
@@ -26,106 +27,76 @@ class Admin {
 		$capabilites    	= 'manage_options';
 		$cz_capabilites 	= 'manage_options';
 		$sz_capabilites 	= 'manage_options';
+		$is_customizer 		= ezd_get_opt('customizer_visibility');
 
-		$ezd_options   		= get_option( 'eazydocs_settings' );
-		$is_customizer 		= $ezd_options['customizer_visibility'] ?? 'disabled';
- 
-		$user_id 			= get_current_user_id(); // get the current user's ID
-		$user 				= get_userdata( $user_id );
+		$user_id           	= get_current_user_id(); // get the current user's ID
+		$user              	= get_userdata( $user_id );
 		$current_user_role 	= '';
-		$default_roles 		= ['administrator', 'editor', 'author', 'contributor', 'subscriber'];	 
+		$default_roles     	= [ 'administrator', 'editor', 'author', 'contributor', 'subscriber' ];
 
 		$current_rols 		= $user->caps;
-		$current_rols 		= array_keys($current_rols);
+		$current_rols 		= array_keys( $current_rols );
+		$matched_roles     	= array_intersect( $default_roles, $current_rols );
+		$current_user_role 	= reset( $matched_roles );
 
-		$matched_roles 		= array_intersect($default_roles, $current_rols);		
-		$current_user_role 	= reset($matched_roles);
+		$access    = ezd_get_opt( 'docs-write-access', 'administrator' );
+		$sz_access = ezd_get_opt( 'settings-edit-access', 'manage_options' );
 
-        $access    = ezd_get_opt( 'docs-write-access', 'eazydocs_settings' );
-        $cz_access = ezd_get_opt( 'customizer-edit-access', 'eazydocs_settings' );
-        $sz_access = ezd_get_opt( 'settings-edit-access', 'eazydocs_settings' );
+		$all_roles = '';
+		$sz_roles  = '';
 
-        $all_roles = '';
-        $cz_roles  = '';
-        $sz_roles  = '';
+		if ( is_array( $access ) ) {
+			$all_roles = ! empty( $access ) ? implode( ',', $access ) : '';
+		}
+		$all_roled = explode( ',', $all_roles );
 
-        if ( is_array( $access ) ) {
-            $all_roles = ! empty( $access ) ? implode( ',', $access ) : '';
-        }
-        $all_roled = explode( ',', $all_roles );
+		if ( is_array( $sz_access ) ) {
+			$sz_roles = ! empty( $sz_access ) ? implode( ',', $sz_access ) : '';
+		}
+		$sz_roled = explode( ',', $sz_roles );
 
-        if ( is_array( $cz_access ) ) {
-            $cz_roles = ! empty( $cz_access ) ? implode( ',', $cz_access ) : '';
-        }
+		if ( ! function_exists( 'wp_get_current_user' ) ) {
+			include( ABSPATH . "wp-includes/pluggable.php" );
+		}
 
-        $cz_roled = explode( ',', $cz_roles );
+		if ( in_array( $current_user_role, $all_roled ) ) {
+			switch ( $current_user_role ) {
+				case 'administrator':
+					$capabilites = 'manage_options';
+					break;
 
-        if ( is_array( $sz_access ) ) {
-            $sz_roles = ! empty( $sz_access ) ? implode( ',', $sz_access ) : '';
-        }
-        $sz_roled = explode( ',', $sz_roles );
+				case 'editor':
+					$capabilites = 'publish_pages';
+					break;
 
-        if ( ! function_exists( 'wp_get_current_user' ) ) {
-            include( ABSPATH . "wp-includes/pluggable.php" );
-        }
+				case 'author':
+					$capabilites = 'publish_posts';
+					break;
 
-        if ( in_array( $current_user_role, $all_roled ) ) {
-            switch ( $current_user_role ) {
-                case 'administrator':
-                    $capabilites = 'manage_options';
-                    break;
+				case 'contributor':
+					$capabilites = 'edit_posts';
+					break;
 
-                case 'editor':
-                    $capabilites = 'publish_pages';
-                    break;
+				case 'subscriber':
+					$capabilites = 'read';
+					break;
+			}
+		} else {
+			$capabilites = 'manage_options';
+		}
 
-                case 'author':
-                    $capabilites = 'publish_posts';
-                    break;
-
-                case 'contributor':
-                    $capabilites = 'edit_posts';
-                    break;
-
-                case 'subscriber':
-                    $capabilites = 'read';
-                    break;
-            }
-        } else {
-            $capabilites = 'manage_options';
-        }
-
-		if ( class_exists('EZD_EazyDocsPro') ) {
+		if ( class_exists( 'EZD_EazyDocsPro' ) ) {
 			$ezd_menu_title = __( 'EazyDocs Pro', 'eazydocs' );
 		} else {
 			$ezd_menu_title = __( 'EazyDocs', 'eazydocs' );
 		}
 
-		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ],
-			'dashicons-media-document', 10 );
+		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
 		add_submenu_page( 'eazydocs', __( 'Docs Builder', 'eazydocs' ), __( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
 
 		if ( ezd_is_premium() ) {
-			if ( in_array( $current_user_role, $cz_roled ) ) {
-				switch ( $current_user_role ) {
-					case 'administrator':
-						$cz_capabilites = 'manage_options';
-						break;
-
-					case 'editor':
-						$cz_capabilites = 'publish_pages';
-						break;
-
-					case 'author':
-						$cz_capabilites = 'publish_posts';
-						break;
-				}
-			} else {
-				$cz_capabilites = 'manage_options';
-			}
-			if ( $is_customizer == 'enable' ) {
-				add_submenu_page( 'eazydocs', __( 'Customize', 'eazydocs' ), __( 'Customize', 'eazydocs' ), $cz_capabilites,
-					'/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
+			if ( $is_customizer ) {
+				add_submenu_page( 'eazydocs', __( 'Customize', 'eazydocs' ), __( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
 			}
 		}
 
@@ -144,7 +115,8 @@ class Admin {
 			add_submenu_page( 'eazydocs', __( 'Users Feedback', 'eazydocs' ), __( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [ $this, 'ezd_feedback_presents' ] );
 			add_submenu_page( 'eazydocs', __( 'Analytics', 'eazydocs' ), __( 'Analytics', 'eazydocs' ), $capabilites, 'ezd-analytics', [ $this, 'ezd_analytics_presents' ] );
 		}
-		add_submenu_page( 'eazydocs', __( 'Setup Wizard', 'eazydocs' ), __( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ]  );
+
+		add_submenu_page( 'eazydocs', __( 'Setup Wizard', 'eazydocs' ), __( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ] );
 	}
 
 	/**
@@ -182,12 +154,12 @@ class Admin {
 
 		if ( eaz_fs()->is_plan( 'promax' ) == "yes" ) {
 			$classes .= ' ezd-promax';
-        }
-		
+		}
+
 		if ( empty( eaz_fs()->is_plan( 'promax' ) ) ) {
 			$classes .= ' ezd_no_promax';
 		}
-		
+
 		return $classes;
 	}
 
@@ -202,14 +174,14 @@ class Admin {
             <div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-                <img src="<?php echo esc_url(EAZYDOCS_IMG . '/icon/crown.svg'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
+                <img src="<?php echo esc_url( EAZYDOCS_IMG . '/icon/crown.svg' ); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
                 <h3> <?php echo esc_html__( 'Add Your OnePage Doc', 'eazydocs' ); ?> </h3>
                 <p class="big-p"> <?php esc_html_e( 'Onepage documentation format will generate all the pages of a Doc as sections in a single page which is scrollable by sections. Visitors can find the all guides on a single page and they can navigate through the different sections very fast.',
 						'eazydocs' ); ?> </p>
 				<?php // PHPCS - No need to escape a URL. The query arg is sanitized. 
 				?>
                 <div class="button-inline">
-                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url(admin_url( 'admin.php?page=eazydocs-pricing' )); ?>">
+                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-pricing' ) ); ?>">
 						<?php esc_html_e( 'Go Pro', 'eazydocs' ); ?>
                     </a>
                     <a class="button button-secondary ezd-btn btn-lg" target="_blank" href="https://wordpress-theme.spider-themes.net/docy/docy-documentation/"
@@ -228,11 +200,11 @@ class Admin {
             <div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-                <img src="<?php echo esc_url(EAZYDOCS_IMG . '/icon/crown.svg'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
+                <img src="<?php echo esc_url( EAZYDOCS_IMG . '/icon/crown.svg' ); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
                 <h3 class="title"> <?php echo esc_html__( 'Users Feedback', 'eazydocs' ); ?> </h3>
                 <p class="big-p"> <?php esc_html_e( 'You can get the Doc Feedbacks listed in this page to review.', 'eazydocs' ); ?> </p>
                 <div class="button-inline">
-                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url(admin_url( 'admin.php?page=eazydocs-pricing' )); ?>">
+                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-pricing' ) ); ?>">
 						<?php esc_html_e( 'Get Pro Plan', 'eazydocs' ); ?>
                     </a>
                 </div>
@@ -247,11 +219,11 @@ class Admin {
             <div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-                <img src="<?php echo esc_url(EAZYDOCS_IMG . '/icon/crown.svg'); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
+                <img src="<?php echo esc_url( EAZYDOCS_IMG . '/icon/crown.svg' ); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
                 <h3 class="title"> <?php echo esc_html__( 'EazyDocs Analytics', 'eazydocs' ); ?> </h3>
                 <p class="big-p"> <?php esc_html_e( 'Analytics page is available in the EazyDocs Premium Promax Plan', 'eazydocs' ); ?> </p>
                 <div class="button-inline">
-                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url(admin_url( 'admin.php?page=eazydocs-pricing' )); ?>">
+                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-pricing' ) ); ?>">
 						<?php esc_html_e( 'Get Promax Plan', 'eazydocs' ); ?>
                     </a>
                 </div>
@@ -263,7 +235,7 @@ class Admin {
 	public function ezd_setup_wizard() {
 		require_once __DIR__ . '/setup-wizard/setup.php';
 	}
-	
+
 	/**
 	 * @param $link
 	 * @param $post_ID
@@ -299,13 +271,13 @@ class Admin {
 			$ezd_content_right  = str_replace( 'style&equals;', 'style@', $ezd_content_right );
 			$ezd_contents_right = ! empty( $ezd_content_right ) ? '&content_right=' . $ezd_content_right : null;
 
-			$ezd_onepage_nonce	= '&_wpnonce='.wp_create_nonce($post_ID);
-			$link               = $link . $ezd_onepage_nonce . $doc_layout . $content_type . $content_null . $content_type_right . $ezd_contents_right;
+			$ezd_onepage_nonce = '&_wpnonce=' . wp_create_nonce( $post_ID );
+			$link              = $link . $ezd_onepage_nonce . $doc_layout . $content_type . $content_null . $content_type_right . $ezd_contents_right;
 		}
 
 		return $link;
 	}
-	
+
 	/**
 	 ** Nestable Callback function
 	 **/

@@ -82,7 +82,7 @@
     <div class="ezd-tab-content">
 		<?php
 		$is_masonry     		= $settings['masonry'] ?? '';
-		$masonry_layout 		= $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : '';
+		$masonry_layout 		= $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : 'ezd-grid ezd-grid-cols-12 ';
 		$masonry_attr   		= $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 
 		foreach ( $docs as $i => $main_doc ) :
@@ -100,7 +100,7 @@
 			?>
             <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>"
                  id="doc-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr( $doc_id ) ?>">
-                <div class="ezd-grid ezd-grid-cols-12 <?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
+                <div class="<?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
 					<?php
 					if ( ! empty( $main_doc['sections'] ) ) :
 						foreach ( $main_doc['sections'] as $section ) :
@@ -174,37 +174,44 @@
         'use strict';
 
         $(document).ready(function () {
-            function ezd_docs4_masonry() {
-                var masonryCols 	= $('.ezd-masonry').attr('ezd-massonry-col');
-                var masonryColumns 	= parseInt(masonryCols);
+			function ezd_docs4_masonry() {
+				$('.ezd-masonry').each(function () {
+					var $masonry = $(this);
+					var masonryCols = $masonry.attr('ezd-massonry-col');
+					var masonryColumns = parseInt(masonryCols);
 
-                if ($(window).width() <= 1024) {
-                    var masonryColumns = 2;
-                }
+					if ($(window).width() <= 1024) {
+						masonryColumns = 2;
+					}
+					if ($(window).width() <= 768) {
+						masonryColumns = 1;
+					}
 
-                if ($(window).width() <= 768) {
-                    var masonryColumns = 1;
-                }
+					var count = 0;
+					var content = $masonry.children();
 
-                var count 	= 0;
-                var content = $('.ezd-masonry > *');
+					var $columnsContainer = $('<div class="ezd-masonry-columns"></div>');
 
-                $('.ezd-masonry').before('<div class=\'ezd-masonry-columns\'></div>');
+					content.each(function (index) {
+						count = count + 1;
+						$(this).addClass('ezd-masonry-sort-' + count);
 
-                content.each(function (index) {
-                    count = count + 1;
-                    $(this).addClass('ezd-masonry-sort-' + count + '');
+						if (count === masonryColumns) {
+							count = 0;
+						}
+					});
 
-                    if (count == masonryColumns) {
-                        count = 0;
-                    }
-                });
+					for (var i = 1; i <= masonryColumns; i++) {
+						$columnsContainer.append('<div class="ezd-masonry-' + i + '"></div>');
+					}
 
-                for (var i = 0 + 1; i < masonryColumns + 1; i++) {
-                    $('.ezd-masonry-columns').append('<div class=\'ezd-masonry-' + i + '\'></div>');
-                    $('.ezd-masonry-sort-' + i).appendTo('.ezd-masonry-' + i);
-                }
-            }
+					for (var i = 1; i <= masonryColumns; i++) {
+						$masonry.find('.ezd-masonry-sort-' + i).appendTo($columnsContainer.find('.ezd-masonry-' + i));
+					}
+
+					$masonry.empty().append($columnsContainer);
+				});
+			}
             ezd_docs4_masonry();
 
         });

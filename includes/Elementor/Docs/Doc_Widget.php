@@ -414,12 +414,6 @@ class Doc_Widget extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'tab_title_hr', [
-				'type' => \Elementor\Controls_Manager::DIVIDER,
-			]
-		);
-
 		// Tab Title Normal/Active State
 		$this->start_controls_tabs(
 			'style_tab_title_tabs'
@@ -471,6 +465,39 @@ class Doc_Widget extends Widget_Base {
 		);
 
 		$this->end_controls_tab(); //End Normal Tab Title
+
+        //start hover Tab Title
+        $this->start_controls_tab(
+            'style_tab_title_hover', [
+                'label' => esc_html__( 'Hover', 'eazydocs' ),
+            ]
+        );
+
+        $this->add_control(
+            'hover_tab_title_text_color', [
+                'label' => esc_html__( 'Text Color', 'eazydocs' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .ezd_tab_title:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .book-chapter-nav .nav-item a:hover' => 'color: {{VALUE}}',
+                )
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(), [
+                'name' => 'hover_tab_title_bg_colors',
+                'types' => [ 'classic', 'gradient' ],
+                'exclude' => [ 'image'],
+                'selector' => '{{WRAPPER}} .ezd_tab_title:hover',
+                'condition' => [
+                    'doc-widget-skin' => [ '2', '4' ],
+                    'doc-widget-skin!' => [ '5' ]
+                ]
+            ]
+        );
+
+        $this->end_controls_tab(); //End hover Tab Title
 
 
 		//=== Active Tab Title
