@@ -28,12 +28,31 @@ EazyDocs Footnotes
     > div {
       flex: 1 1 25%;
     }
+
   }
 
   /* Adjust for smaller screens (responsive design) */
   @media (max-width: 768px) {
     > div {
       flex: 1 1 100%;
+    }
+
+
+    &[data-column="2"] {
+      > div {
+        flex: 1 1 100%;
+      }
+    }
+
+    &[data-column="3"] {
+      > div {
+        flex: 1 1 100%;
+      }
+    }
+    &[data-column="4"] {
+      > div {
+        flex: 1 1 100%;
+      }
     }
   }
 

@@ -23,6 +23,15 @@ EazyDocs Footnotes
   .ezd-footnote-footer > div {
     flex: 1 1 100%;
   }
+  .ezd-footnote-footer[data-column="2"] > div {
+    flex: 1 1 100%;
+  }
+  .ezd-footnote-footer[data-column="3"] > div {
+    flex: 1 1 100%;
+  }
+  .ezd-footnote-footer[data-column="4"] > div {
+    flex: 1 1 100%;
+  }
 }
 .ezd-footnote-footer div {
   display: flex;

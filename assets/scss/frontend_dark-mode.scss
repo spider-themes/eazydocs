@@ -167,4 +167,8 @@ body.body_dark {
 	span.ezd_mark_text {
 		color:black
 	}
+
+	&.single-docs #post .doc-scrollable.editor-content .ezd-password-wrap p{
+		color:#fff !important;
+	}
 }
