@@ -272,13 +272,13 @@
 	left: 0;
 	right: 0;
 	justify-content: center;
-	z-index: 10012;
+	z-index: 1012;
 	border-top: 2px solid var(--border_on_white);
 	overflow: auto;
 	white-space: nowrap;
 	margin: auto;
 	text-align: center;
-
+    padding: 0 15px;
 	&::after {
 		content: "";
 		position: absolute;
@@ -359,7 +359,7 @@
 
 .docs-box-item {
 	margin-bottom: 25px;
-	
+
 	/** === Docs-5 === **/
 	.docs-5-title {
 		background: #171544;
@@ -536,7 +536,7 @@
 		box-shadow: 0 16px 40px 0 rgba(10, 50, 102, 0.1);
 		border-color: #fff;
 	}
-	
+
 	@media (max-width: 560px) {
 		width: 100%;
 	}
@@ -948,7 +948,7 @@
 		li {
 			margin: 0;
 			list-style: none;
-			
+
 			&:last-child {
 				margin-right: 0;
 			}
