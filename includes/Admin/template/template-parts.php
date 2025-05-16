@@ -40,11 +40,13 @@ function ezd_child_docs_progress_bar( $post_id ) {
      $sum_votes = $positive + $negative;
  
      echo '<span class="progress-text">';
-     if ($positive || $negative) {
+
+     if ( $positive || $negative ) {
          echo '<progress id="file" value="' . esc_attr($positive) . '" max="' . esc_attr($sum_votes) . '" title="' . esc_attr($positive_title . $negative_title) . '"> </progress>';
      } else {
-         esc_html_e('No rates', 'eazydocs');
+         esc_html_e( 'No rates', 'eazydocs' );
      }
+
      echo '</span>';
 } 
  
@@ -57,7 +59,15 @@ function ezd_child_docs_progress_bar( $post_id ) {
      $edit_link     = get_edit_post_link( $doc_item, $item );
      $target        = '_blank';
      $has_child     = eaz_get_nestable_children( $doc_item );
-     $child_count   = count( $has_child );
+
+	 $child_count            = get_pages([
+		 'child_of'          => $doc_item,
+		 'post_type'         => 'docs',
+		 'post_status'       => ['publish', 'draft', 'private']
+	 ]);
+
+     $child_count   = count( $child_count );
+
      $is_premium    = ! ezd_is_premium() && $depth === 3 ? false : ( ezd_is_premium() && $depth === 4 ? false : true);
      ?>
      <div class="left-content left-content-<?php echo esc_attr( $depth ); ?>">
@@ -105,7 +115,7 @@ function ezd_child_docs_progress_bar( $post_id ) {
                     <li class="visibility">
                         <?php do_action( 'eazydocs_doc_visibility_depth_one', $doc_item ); ?>
                     </li>
-                    <?php               
+                    <?php
                  endif;
          
              endif; 
@@ -140,8 +150,7 @@ function ezd_child_docs_title($doc_id, $depth, $parent){
     $is_section_title 	= ! empty ( $is_premium ) && count( $has_child ) > 0 ? 'ez-section-title ' : '';
     ?>
     <div class="dd3-content"> 
-        <div class="accordion-title expand--child <?php echo esc_attr( $is_section_title ); if ( count( $has_child ) > 0 ) { echo esc_attr( $is_premium ); } ?>">
- 
+        <div class="accordion-title expand--child <?php echo esc_attr($is_section_title . (count($has_child) > 0 ? $is_premium : '')); ?>" title="<?php esc_attr_e( 'Click on the title to edit the page', 'eazydocs'); ?>">
             <?php
             $edit_link  = 'javascript:void(0)';
             $target     = '_self';

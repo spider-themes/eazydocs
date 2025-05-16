@@ -10,7 +10,7 @@ $query = new WP_Query([
 $count = $query->found_posts;
 ?>
 
-<div class="dd parent-nestable tab-menu <?php echo esc_html($count > 12 ? '' : 'short'); ?>">
+<div class="dd parent-nestable tab-menu <?php echo esc_attr($count > 12 ? '' : 'short'); ?>">
     <ol class="easydocs-navbar sortabled dd-list">
         <?php
         $i = 0;
@@ -83,7 +83,7 @@ $count = $query->found_posts;
                     <?php 
                      if ( ezd_is_admin_or_editor(get_the_ID(), 'delete') ) :
                         ?>
-                         <a href="<?php echo admin_url('admin.php?Doc_Delete=yes&_wpnonce=' . esc_attr(wp_create_nonce(get_the_ID())) . '&DeleteID=' . esc_attr(get_the_ID())); ?>" class="link delete parent-delete" title="<?php echo esc_attr__('Move to Trash', 'eazydocs'); ?>">
+                         <a href="<?php echo admin_url('admin.php?Doc_Delete=yes&_wpnonce=' . esc_attr(wp_create_nonce(get_the_ID())) . '&DeleteID=' . esc_attr(get_the_ID())); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
                              <span class="dashicons dashicons-trash"></span>
                          </a>
                         <?php 
@@ -120,7 +120,7 @@ $count = $query->found_posts;
                                     </a>
                                     <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-visibility eazydocs-pro-notice" title="<?php esc_attr_e('Docs visibility', 'eazydocs'); ?>">
                                         <span class="dashicons dashicons-visibility"></span>
-                                        <span> <?php esc_html_e('Visibility', 'eazydocs'); ?> </span>
+                                        <span> <?php esc_html_e( 'Visibility', 'eazydocs' ); ?> </span>
                                     </a>
                                     <a href="admin.php?page=eazydocs-pricing" target="_blank" class="docs-sidebar eazydocs-pro-notice" title="<?php esc_attr_e('Docs sidebar', 'eazydocs'); ?>">
                                         <span class="dashicons dashicons-welcome-widgets-menus"></span>

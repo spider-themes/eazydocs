@@ -30,7 +30,7 @@ body.body_dark {
 				&::placeholder{
 					color: black;
 				}
-				&::focus{
+				&:focus {
 					color: black;
 					opacity: 1;
 				}
@@ -100,10 +100,6 @@ body.body_dark {
 		border-color: #272830;
 	}
 
-	.nav-sidebar .nav-item .nav-link {
-		color: #c7c9d3;
-	}
-
 	.doc_menu .nav-link,
 	.doc_rightsidebar .doc_right_link li a {
 		color: #bbb;
@@ -166,9 +162,5 @@ body.body_dark {
 
 	span.ezd_mark_text {
 		color:black
-	}
-
-	&.single-docs #post .doc-scrollable.editor-content .ezd-password-wrap p{
-		color:#fff !important;
 	}
 }

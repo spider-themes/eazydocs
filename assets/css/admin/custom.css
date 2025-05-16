@@ -489,9 +489,11 @@ select#ezd_docs_layout {
 .nestables-child .dd-list .dd-list .dd-item > button {
     margin-left: 46px;
 }
+
 .nestables-child .dd-list .dd-list .dd-item.depth-3 > button {
     margin-left: 65px;
 }
+
 .accordion-title.has-child .left-content.left-content-3 h4 > a {
     padding-left: 0;
 }
@@ -651,6 +653,16 @@ select#ezd_docs_layout {
     border-bottom: 1px solid #edeae9;
 }
 
+.depth-4 {
+    .dd3-content {
+        padding-left: 70px;
+    }
+
+    .dd-handle.dd3-handle {
+        left: 60px;
+    }
+}
+
 .dd-dragel > .dd3-item > .dd3-content {
     margin: 0;
 }
@@ -769,6 +781,7 @@ body.rtl .easydocs-settings {
 .csf-fieldset-content[data-depend-id="private_doc_user_restriction"] [data-controller="private_doc_all_user"] .csf-title {
     width: 18%;
 }
+
 .csf-fieldset-content[data-depend-id="private_doc_user_restriction"] [data-controller="private_doc_all_user"] .csf-fieldset {
     width: 82%;
 }
@@ -785,9 +798,9 @@ select[name="eazydocs_settings[docs-url-structure]"] {
 
 .eazydocs-pro-block-notice.components-radio-control .components-flex,
 .eazydocs-pro-block-notice .components-input-control__container {
-	background: gainsboro;
-	padding: 10px !important;
-	border-radius: 5px;
+    background: gainsboro;
+    padding: 10px !important;
+    border-radius: 5px;
     position: relative;
 }
 

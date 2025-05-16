@@ -369,7 +369,7 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 .nav-sidebar .nav-item.current_page_item > .doc-link a {
   color: var(--ezd_brand_color);
 }
-.nav-sidebar .nav-item.current_page_parent .nav-link {
+.nav-sidebar .nav-item.current_page_ancestor > .doc-link .nav-link, .nav-sidebar .nav-item.current_page_parent > .doc-link .nav-link {
   color: var(--ezd_brand_color);
 }
 .nav-sidebar .nav-item.active > .doc-link .icon {
@@ -512,9 +512,6 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 }
 .nav-sidebar .nav-item .dropdown_nav li.has_child .doc-link:hover {
   background: rgba(208, 215, 222, 0.32);
-}
-.nav-sidebar .nav-item .dropdown_nav li.has_child .doc-link:hover a {
-  color: var(--black_900);
 }
 .nav-sidebar .nav-item span.icon {
   transform: rotate(0deg);
@@ -1209,6 +1206,7 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
   visibility: visible !important;
   width: 100% !important;
   box-shadow: none !important;
+  padding-top: 8px;
 }
 .toc_right ul ul li a:before {
   display: none;
@@ -1767,15 +1765,6 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
 
 .single-docs #post .doc-scrollable.editor-content .anchorjs-link {
   padding-left: 5px;
-}
-.single-docs #post .doc-scrollable.editor-content .ezd-password-wrap p.ezd-password-title {
-  color: #fff;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-.single-docs #post .doc-scrollable.editor-content .ezd-password-wrap p.ezd-password-subtitle {
-  color: #a4abc5;
-  line-height: 1.6;
 }
 
 .ezd-password-wrap {

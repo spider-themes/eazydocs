@@ -204,8 +204,9 @@ body {
 			}
 		}
 
+		&.current_page_ancestor,
 		&.current_page_parent {
-			.nav-link {
+			> .doc-link .nav-link {
 				color: var(--ezd_brand_color);
 			}
 		}
@@ -392,10 +393,6 @@ body {
 
 					&:hover {
 						background: rgba(208, 215, 222, 0.32);
-
-						a {
-							color: var(--black_900);
-						}
 					}
 				}
 			}
@@ -1195,6 +1192,7 @@ body {
 			visibility: visible !important;
 			width: 100% !important;
 			box-shadow: none !important;
+			padding-top: 8px;
 
 			li {
 				a {
@@ -1936,18 +1934,6 @@ body:not(.onepage-doc) .sticky_menu {
 	.doc-scrollable.editor-content {
 		.anchorjs-link {
 			padding-left: 5px;
-		}
-		.ezd-password-wrap {
-			p.ezd-password-title {
-				color: #fff;
-				font-weight: 500;
-				margin-bottom: 5px;
-			}
-
-			p.ezd-password-subtitle {
-				color: #a4abc5;
-				line-height: 1.6;
-			}
 		}
 	}
 }
