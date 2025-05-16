@@ -255,7 +255,7 @@ body:not(.ezd-premium) {
 }
 
 // Case 2: Body NOT valid, show badge only on eazydocs-pro-notice with active-theme-* classes
-body:not(.valid) {
+body:not(.valid):not(.ezd-premium) {
   .eazydocs-pro-notice.csf-field[class*="active-theme"] {
     &::before {
       content: "Pro";
@@ -284,7 +284,6 @@ body:not(.valid) {
     pointer-events: none;
   }
 }
-
 
 body.ezd_no_promax {
   .eazydocs-promax-notice {

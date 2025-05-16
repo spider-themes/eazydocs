@@ -285,7 +285,7 @@ body:not(.ezd-premium) .eazydocs-pro-notice:not([class*=active-theme]) .csf-fiel
   pointer-events: none;
 }
 
-body:not(.valid) .eazydocs-pro-notice.csf-field[class*=active-theme]::before {
+body:not(.valid):not(.ezd-premium) .eazydocs-pro-notice.csf-field[class*=active-theme]::before {
   content: "Pro";
   background-color: #f1bd6c;
   color: #000;
@@ -293,7 +293,7 @@ body:not(.valid) .eazydocs-pro-notice.csf-field[class*=active-theme]::before {
   border-radius: 3px;
   margin-bottom: 10px;
 }
-body:not(.valid) .eazydocs-pro-notice.csf-field[class*=active-theme]::after {
+body:not(.valid):not(.ezd-premium) .eazydocs-pro-notice.csf-field[class*=active-theme]::after {
   position: absolute;
   content: "";
   width: 100%;
@@ -303,8 +303,8 @@ body:not(.valid) .eazydocs-pro-notice.csf-field[class*=active-theme]::after {
   background-color: transparent;
   z-index: 2;
 }
-body:not(.valid) .eazydocs-pro-notice[class*=active-theme] .csf-title,
-body:not(.valid) .eazydocs-pro-notice[class*=active-theme] .csf-fieldset {
+body:not(.valid):not(.ezd-premium) .eazydocs-pro-notice[class*=active-theme] .csf-title,
+body:not(.valid):not(.ezd-premium) .eazydocs-pro-notice[class*=active-theme] .csf-fieldset {
   opacity: 0.5;
   pointer-events: none;
 }

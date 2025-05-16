@@ -70,6 +70,17 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama',
 		),
+
+		array(
+			'id'         => 'is_doc_tag',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Tags', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show the tag on the bottom of the doc content area.', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'text_width' => 70,
+			'default'    => true,
+		),
 		
 		// Meta Information
 		array(

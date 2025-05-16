@@ -15,13 +15,14 @@ $tags                = get_the_terms( get_the_ID(), 'doc_tag' );
 $link_text           = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : __( 'How can we help?', 'eazydocs' );
 $doc_feedback_label  = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : __( 'Was this page helpful?', 'eazydocs' );
 $enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
+$is_doc_tag          = $options['is_doc_tag'] ?? true;
 
 if ( $tags || $docs_feedback == '1' || $enable_next_prev == '1' ) :
     ?>
     <div class="doc-btm">
         <?php
         $has_next_prev = '';
-        if ( $tags ) {
+        if ( $tags && $is_doc_tag ) {
             echo '<ul class="nav card_tagged">';
             echo '<li>' . esc_html__( 'Tagged:', 'eazydocs' ) . '</li>';
             foreach ( $tags as $tag ) {
