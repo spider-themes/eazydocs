@@ -46,8 +46,10 @@ class Ajax {
 			update_post_meta( $post_id, $type, $count + 1 );
 
 			if ( $type == 'positive' ) {
+				update_post_meta( $post_id, 'positive_voter', get_current_user_id() );
 				update_post_meta( $post_id, 'positive_time', $timestamp );
 			} else {
+				update_post_meta( $post_id, 'negative_voter', get_current_user_id() );
 				update_post_meta( $post_id, 'negative_time', $timestamp );
 			}
 
