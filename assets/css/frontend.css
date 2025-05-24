@@ -180,6 +180,8 @@ input[type=search]::-webkit-search-results-decoration {
 }
 .d-items .documentation_item .media-body {
   flex: 1;
+  display: flex;
+  align-items: center;
 }
 .d-items .documentation_item .media-body .title {
   font-weight: 500;

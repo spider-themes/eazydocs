@@ -239,14 +239,38 @@ class Ajax {
 	 * Doc single page
 	 */
 	function docs_single_content() {
-		$postid    = intval( $_POST['postid'] );
-		$the_query = new WP_Query( array( 'post_type' => 'docs', 'p' => $postid ) );
+		$postid 		= intval( $_POST['postid'] );
+		global $post, $wp_query;
+		$wp_query 		= new \WP_Query( array( 'post_type' => 'docs', 'p' => $postid ) );
+		$modified 		= '';
+		$html 			= '';
 
-		while ( $the_query->have_posts() ) : $the_query->the_post();
-			eazydocs_get_template_part( 'single-doc-content' );
-		endwhile;
-		wp_reset_postdata();
-		wp_die(); // this is required to terminate immediately and return a proper response
+		ob_start();
+		
+		if ( $wp_query->have_posts() ) { 
+			while ( $wp_query->have_posts() ) {
+				$wp_query->the_post();
+
+				$modified 			 = get_the_modified_date( get_option( 'date_format' ) );
+				$GLOBALS['wp_query'] = $wp_query;
+				$GLOBALS['post']     = get_post();
+				setup_postdata( $post );
+
+				add_filter( 'is_singular', '__return_true' );
+
+				// Instantiate Frontend from same namespace
+				new Frontend();
+				
+				eazydocs_get_template_part( 'single-doc-content' );
+			}
+			wp_reset_postdata();
+		}
+
+		$html = ob_get_clean();
+
+		return wp_send_json_success( array(
+			'content'         => $html,
+			'modified_date'   => $modified
+		) );
 	}
-
 }

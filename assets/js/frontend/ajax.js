@@ -37,7 +37,8 @@
                         $('#reading-progress-fill').css({
                             display: 'none',
                         });
-                        $('.doc-middle-content').html(response);
+                        $('.doc-middle-content').html(response.data.content);                            
+                        $('.ezd-breadcrumb time span').text(response.data.modified_date);
                         changeurl(title);
                         
                         $('.nav-sidebar .nav-item').removeClass('current_page_item active');
@@ -89,7 +90,8 @@
                         },
                         success: function (response) {
                             $('#reading-progress-fill').css({display: 'none'});
-                            $('.doc-middle-content').html(response);
+                            $('.doc-middle-content').html(response.data.content);                            
+                            $('.ezd-breadcrumb time span').text(response.data.modified_date);
                             changeurl(title);
                             $('.nav-sidebar .nav-item').removeClass('current_page_item active');
                             self.addClass('active');
@@ -106,7 +108,7 @@
                         },
                         error: function () {
                             console.log('Oops! Something wrong, try again!');
-                        },
+                        }
                     });
                 }
             );

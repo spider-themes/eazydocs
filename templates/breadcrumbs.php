@@ -18,7 +18,7 @@ $doc_container    = $doc_container == 'full-width' ? 'ezd-container-fluid px-lg-
                     class="date">
                     <i class="<?php echo is_rtl() ? 'icon_quotations' : 'icon_clock_alt'; ?>"></i>
                     <?php echo esc_html( $update_text ); ?>
-                    <?php the_modified_time( get_option( 'date_format' ) ); ?>
+                    <span><?php the_modified_time( get_option( 'date_format' ) ); ?></span>
                 </time>
             </div>
         </div>
