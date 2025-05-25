@@ -57,6 +57,23 @@
   box-shadow: var(--bs_md) !important;
 }
 
+/** == Spacing == **/
+.ezd-mt-10 {
+  margin-top: 10px;
+}
+
+.ezd-mt-20 {
+  margin-top: 20px;
+}
+
+.ezd-mb-10 {
+  margin-bottom: 10px;
+}
+
+.ezd-mb-20 {
+  margin-bottom: 20px;
+}
+
 .ezd-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
