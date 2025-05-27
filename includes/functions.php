@@ -1864,5 +1864,23 @@ function ezd_private_docs_access() {
     }
 }
 
+/**
+ * Get the sanitized docs slug
+ *
+ * @return string The sanitized docs slug.
+ */
+function ezd_docs_slug() {
+	$docs_url  = ezd_get_opt( 'docs-url-structure', 'custom-slug' );
+	$permalink = get_option( 'permalink_structure' );
 
+    $settings_options = get_option( 'eazydocs_settings' );
+    $custom_slug = $settings_options['docs-type-slug'] ?? '';
 
+    $safe_slug = preg_replace( '/[^a-zA-Z0-9-_]/', '-', $custom_slug );
+
+	if ( $docs_url == 'custom-slug' || $permalink === '' || $permalink === '/archives/%post_id%' ) {
+		return $safe_slug ?: 'docs';
+	}
+
+	return '';
+}
