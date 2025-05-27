@@ -5,6 +5,7 @@
 			<?php
 			$slug_type = $settings['docs_slug_format'] ?? '';
 			$widget_id = $this->get_id();
+
 			if ( $settings['is_custom_order'] == 'yes' && ! empty( $settings['docs'] ) ) {
 				$custom_docs = ! empty( $settings['docs'] ) ? $settings['docs'] : '';
 				$i           = 0;
@@ -123,8 +124,8 @@
 										'post_parent'    => $section->ID,
 										'post_type'      => 'docs',
 										'post_status'    => 'publish',
-										'orderby'        => 'menu_order',
-										'order'          => 'ASC',
+										'orderby'     	 => $order_by ?? 'menu_order',
+										'order'       	 => $child_order,
 										'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
 									) );
 

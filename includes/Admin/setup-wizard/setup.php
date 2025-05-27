@@ -13,7 +13,7 @@ $docs_archive_page     = $opt['docs-slug'] ?? '';
         <div class="ezd-setup-wizard-header">
 
             <div>
-                <img src="<?php echo esc_url( EAZYDOCS_URL . '/src/images/ezd-icon.png' ); ?>" alt="<?php echo esc_attr__( 'Eazydocs icon', 'eazydocs' ); ?>"/>
+                <img src="<?php echo esc_url( EAZYDOCS_IMG . '/eazydocs-favicon.png' ); ?>" alt="<?php echo esc_attr__( 'Eazydocs icon', 'eazydocs' ); ?>"/>
                 <span><?php esc_html_e( 'EazyDocs', 'eazydocs' ); ?></span>
             </div>
 

@@ -1735,6 +1735,7 @@ pre {
   flex: 1;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 .d-items .documentation_item .media-body .title {
   font-weight: 500;

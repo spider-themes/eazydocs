@@ -25,7 +25,7 @@ if ( ezd_is_premium() ) {
 			'post_type'      => 'docs',
 			'posts_per_page' => $doc_number,
 			'post_status'    => array( 'publish', 'private' ),
-			'orderby'        => 'menu_order',
+			'orderby'        => $order_by ?? 'menu_order',
 			'order'          => $doc_order ?? 'ASC',
 			'post_parent'    => 0,
 			'post__not_in'   => $exclude_id,
@@ -39,8 +39,8 @@ if ( ezd_is_premium() ) {
 					'post_type'   => 'docs',
 					'numberposts' => 14,
 					'post_status' => array( 'publish', 'private' ),
-					'orderby'     => 'menu_order',
-					'order'       => 'ASC',
+					'orderby'     => $order_by ?? 'menu_order',
+					'order'       => $child_order,
                     'posts_per_page' => ! empty( $settings['doc_items_articles'] ) ? $settings['doc_items_articles'] : - 1,
 				] );
 

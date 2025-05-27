@@ -331,28 +331,28 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
             // SQL statements to create tables.
 			$sql = "CREATE TABLE {$search_keyword} (
-                id BIGINT(20) NOT NULL AUTO_INCREMENT,
-                keyword VARCHAR(255) NOT NULL,
-                UNIQUE KEY id (id)
-            ) {$charset_collate};";
+				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+				keyword VARCHAR(255) NOT NULL,
+				PRIMARY KEY (id)
+			) {$charset_collate};";
 
-            $sql2 = "CREATE TABLE {$search_logs} (
-                id BIGINT(20) NOT NULL AUTO_INCREMENT,
-                keyword_id BIGINT(20) UNSIGNED NOT NULL,
-                count MEDIUMINT(8) UNSIGNED NOT NULL,
-                not_found_count MEDIUMINT(8) UNSIGNED NOT NULL,
-                created_at DATETIME NOT NULL,
-                UNIQUE KEY id (id),
-                FOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE
-            ) {$charset_collate};";
+			$sql2 = "CREATE TABLE {$search_logs} (
+				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+				keyword_id BIGINT(20) UNSIGNED NOT NULL,
+				count MEDIUMINT(8) UNSIGNED NOT NULL,
+				not_found_count MEDIUMINT(8) UNSIGNED NOT NULL,
+				created_at DATETIME NOT NULL,
+				PRIMARY KEY (id),
+				FOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE
+			) {$charset_collate};";
 
 			$sql3 = "CREATE TABLE {$view_logs} (
-                id BIGINT(20) NOT NULL AUTO_INCREMENT,
-                post_id BIGINT(20) UNSIGNED NOT NULL,
-                count MEDIUMINT(8) UNSIGNED NOT NULL,
-                created_at DATETIME NOT NULL,
-                UNIQUE KEY id (id)
-            ) {$charset_collate};";
+				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+				post_id BIGINT(20) UNSIGNED NOT NULL,
+				count MEDIUMINT(8) UNSIGNED NOT NULL,
+				created_at DATETIME NOT NULL,
+				PRIMARY KEY (id)
+			) {$charset_collate};";
 
             // Load the required upgrade file.
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';

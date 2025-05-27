@@ -105,7 +105,7 @@ class Doc_Widget extends Widget_Base {
 					'5' 	  => esc_html__( '5 Column', 'eazydocs' ),
 					'6' 	  => esc_html__( '6 Column', 'eazydocs' ),
 				],
-				'default'     => 'three',
+				'default'     => '3',
 				'condition'   => [
 					'doc-widget-skin' => [ '1' ]
 				]
@@ -273,22 +273,7 @@ class Doc_Widget extends Widget_Base {
 				]
 			]
 		);
-
-		$this->add_control(
-			'order', [
-				'label'     => esc_html__( 'Order', 'eazydocs' ),
-				'type'      => Controls_Manager::SELECT,
-				'options'   => [
-					'ASC'  => 'ASC',
-					'DESC' => 'DESC'
-				],
-				'default'   => 'ASC',
-				'condition' => [
-					'is_custom_order' => ''
-				]
-			]
-		);
-
+		
 		$this->add_control(
 			'is_custom_order', [
 				'label'        => esc_html__( 'Custom Order', 'eazydocs' ),
@@ -299,6 +284,56 @@ class Doc_Widget extends Widget_Base {
 				'separator'    => 'before',
 				'condition'    => [
 					'doc-widget-skin' => [ '2', '3', '5' ]
+				]
+			]
+		);
+		
+		$this->add_control(
+			'order_by', [
+				'label'     => esc_html__( 'Order By', 'eazydocs' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => [
+					'title'  	 => esc_html__( 'Title', 'eazydocs' ),
+					'author'	 => esc_html__( 'Post Author', 'eazydocs' ),
+					'date'		 => esc_html__( 'Date', 'eazydocs' ),
+					'id'		 => esc_html__( 'Post ID', 'eazydocs' ),
+					'modified'	 => esc_html__( 'Last Modified Date', 'eazydocs' ),
+					'rand'		 => esc_html__( 'Random', 'eazydocs' ),
+					'menu_order' => esc_html__( 'Menu Order', 'eazydocs' ),
+				],
+				'default'   => 'menu_order',
+				'condition' => [
+					'is_custom_order' => ''
+				]
+			]
+		);
+		
+		$this->add_control(
+			'order', [
+				'label'     => esc_html__( 'Parent Docs Order', 'eazydocs' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => [
+					'ASC'  	=> esc_html__( 'Ascending', 'eazydocs' ),
+					'DESC' 	=> esc_html__( 'Descending', 'eazydocs' ),
+				],
+				'default'   => 'ASC',
+				'condition' => [
+					'is_custom_order' => ''
+				]
+			]
+		);
+		
+		$this->add_control(
+			'child_order', [
+				'label'     => esc_html__( 'Child Docs Order', 'eazydocs' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => [
+					'ASC'  	=> esc_html__( 'Ascending', 'eazydocs' ),
+					'DESC' 	=> esc_html__( 'Descending', 'eazydocs' ),
+				],
+				'default'   => 'ASC',
+				'condition' => [
+					'is_custom_order' => ''
 				]
 			]
 		);
@@ -913,33 +948,35 @@ class Doc_Widget extends Widget_Base {
 		$settings       = $this->get_settings();
 		$doc_number     = $settings['ppp_doc_items'] ?? -1;
 		$read_more      = $settings['read_more'] ?? '';
-		$doc_order      = $settings['order'] ?? '';
-		$doc_exclude    = $settings['exclude'] ?? '';
-        
-		/**
-		 * Get the parent docs with query
-		 */
-		if ( !empty( $settings['exclude'] ) ) {
-			$parent_docs = get_pages( array(
-				'post_type'  => 'docs',
-				'parent'     => 0,
-				'sort_order' => $settings['order'],
-				'exclude'    => $settings['exclude']
-			));
-		} else {
-			$parent_docs = get_pages( array(
-				'post_type'  => 'docs',
-				'parent'     => 0,
-				'sort_order' => $settings['order'],
-			) );
+		$doc_order     	= $settings['order'] ?? 'asc'; // 'asc' or 'desc'
+		$child_order   	= $settings['child_order'] ?? 'asc';
+		$order_by      	= $settings['order_by'] ?? 'menu_order'; // e.g., 'post_title', 'menu_order', 'post_date'
+		$doc_exclude 	= $settings['exclude'] ?? '';
+
+		// Map Elementor 'orderby' options to get_pages 'sort_column'
+		$valid_sort_columns = [
+			'ID',
+			'post_title',
+			'menu_order',
+			'post_date',
+			'post_modified',
+		];
+
+		$sort_column = in_array($order_by, $valid_sort_columns) ? $order_by : 'menu_order';
+
+		$args = array(
+			'post_type'   => 'docs',
+			'parent'      => 0,
+			'sort_column' => $sort_column,
+			'sort_order'  => $doc_order,
+		);
+
+		if ( ! empty( $doc_exclude ) ) {
+			$args['exclude'] = $doc_exclude;
 		}
 
-		/**
-		 * Docs re-arrange according to menu order
-		*/
-		usort( $parent_docs, function( $a, $b ) {
-            return $a->menu_order - $b->menu_order;
-        });
+		$parent_docs = get_pages( $args );
+
 
 		/**
 		 * Get the doc sections
@@ -950,8 +987,8 @@ class Doc_Widget extends Widget_Base {
 					'post_parent'    => $root->ID,
 					'post_type'      => 'docs',
 					'post_status'    => 'publish',
-					'orderby'        => 'menu_order',
-					'order'          => 'ASC',
+					'orderby'    	 => $order_by,
+					'order' 		 => $child_order,
 					'posts_per_page' => ! empty( $settings['show_section_count'] ) ? $settings['show_section_count'] : - 1,
 				));
 
