@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.6.5
+Stable tag: 2.6.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -229,6 +229,14 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 6. Share button to share the docs via all possible ways
 
 == Changelog ==
+
+= 2.6.6 (27 May 2025) =
+New: Tags show hide option added in 'EazyDocs > Settings > Docs single'
+Fixed: Child doc count was showing wrong in the Doc builder UI
+Fixed: Child doc title alignment issue fixed in content area
+Tweaked: Parent doc active color applied for all depths
+Tweaked: Improve the left sidebar on mobile device
+Updated: Freemius SDK updated to 2.12.0
 
 = 2.6.5 (11 May 2025) =
 New: Added option to hide "View All" button on Docs archive for docs that have no child items
