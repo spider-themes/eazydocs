@@ -93,7 +93,7 @@ if ( $single_layout == 'default' ) {
 <?php
 if ( $credit_enable == '1' ) : ?>
     <div class="section eazydocs-footer">
-        <div class="ezd-container">
+        <div class="<?php echo ezd_container(); ?>">
             <div class="ezd-grid ezd-grid-cols-12">
                 <div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full"></div>
                 <div class="ezd-grid ezd-lg-col-9 ezd-grid-column-full">
