@@ -26,24 +26,10 @@ class Docs {
 	 * @return void
 	 */
 	public function register_post_type() {
-
-		/**
-		 * Docs slug
-		 * @var string
-		 */
-        $settings_options   = get_option( 'eazydocs_settings' );
-		$custom_slug 		= $settings_options['docs-type-slug'] ?? '';
+		$slug     = ezd_docs_slug();
+		$rewrite  = [];
 		
-		// Validate the slug
-		$pattern 			= '/[^a-zA-Z0-9-_]/';
-		$safe_slug 			= preg_replace( $pattern, '-', $custom_slug );		
-        $slug               = $safe_slug ?? 'docs';
-		
-		// Docs URL structure
-        $docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
-		$rewrite 			= [];
-		
-		if ( $docs_url == 'custom-slug' || get_option('permalink_structure') === '' || get_option('permalink_structure') === '/archives/%post_id%' ) {	 
+		if ( $slug ) {
 			$rewrite = [
 				'slug'       => $slug,
 				'with_front' => true,
