@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 2.6.6 (28 May 2025) =
+New: Tags show hide option added in 'EazyDocs > Settings > Docs single'
+New: Added Order & OrderBy options to MultiDocs widget
+Fixed: Child doc count was showing wrong in the Doc builder UI
+Fixed: Child doc title alignment issue fixed in content area
+Fixed: Resolved update database admin notice
+Tweaked: Parent doc active color applied for all depths
+Tweaked: Improve the left sidebar on mobile device
+Updated: Freemius SDK updated to 2.12.0
+
 = 2.6.5 (10 May 2025) =
 New: Added option to hide "View All" button on Docs archive for docs that have no child items
 New: Added a control for show the Number of articles to show under every sections

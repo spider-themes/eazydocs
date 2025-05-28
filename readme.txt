@@ -230,10 +230,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= 2.6.6 (27 May 2025) =
+= 2.6.6 (28 May 2025) =
 New: Tags show hide option added in 'EazyDocs > Settings > Docs single'
+New: Added Order & OrderBy options to MultiDocs widget
 Fixed: Child doc count was showing wrong in the Doc builder UI
 Fixed: Child doc title alignment issue fixed in content area
+Fixed: Resolved update database admin notice
 Tweaked: Parent doc active color applied for all depths
 Tweaked: Improve the left sidebar on mobile device
 Updated: Freemius SDK updated to 2.12.0
@@ -278,10 +280,5 @@ Tweaked: Padding added before anchor.js icon
 Tweaked: Removed some unnecessary code
 Tweaked: Improved the top spacing of the left sidebar on the OnePage docs
 Updated: Settings page icons changed
-
-= v2.6.1 (27 February 2025) =
-Fixed: Settings page hide issue
-Tweaked: Onepage dark Mode improved
-Tweaked: JS code optimized for better performance
 
 [See changelog for all versions](https://spider-themes.net/eazydocs/changelog/).
