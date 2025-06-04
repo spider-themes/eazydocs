@@ -281,7 +281,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 			display: flex;
 			width: 100%;
 			margin-top: 0;
-			color: #242729;
+			color: var(--black_700);
 		}
 	}
 
@@ -369,7 +369,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		text-transform: capitalize;
 		margin-bottom: 13px;
 		margin-top: 0;
-		color: #4c4c4c;
+		color: var(--black_700);
 
 		&:hover {
 			color: var(--ezd_brand_color);
@@ -385,7 +385,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		padding: 0 22.5px;
 		text-transform: capitalize;
 		margin-bottom: 0;
-		color: #515151;
+		color: var(--black_500);
 	}
 
 	&:hover {
