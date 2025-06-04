@@ -104,15 +104,13 @@ input[type=search]::-webkit-search-results-decoration {
   gap: 6px;
 }
 .article_list li {
-  margin: 5px 0 0 0;
+  margin: 8px 0 0 0;
   padding: 0;
 }
 .article_list li ul.children {
   list-style: none;
-  padding-left: 28px;
   margin: 0;
-  padding-bottom: 0;
-  padding-top: 10px;
+  padding: 5px 28px;
 }
 .article_list li ul.children li a::before {
   content: "=";
@@ -2255,7 +2253,6 @@ body.body_dark .doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar)::-webkit-
 /** === Comments === **/
 .eazydocs-comments-wrap {
   padding-bottom: 100px;
-  padding-top: 60px;
 }
 .eazydocs-comments-wrap .comments-area .comments-title {
   margin-bottom: 20px;
