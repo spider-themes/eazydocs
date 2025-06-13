@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.6.6
+Stable tag: 2.6.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -163,6 +163,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Contributor, Add/Edit doc from Frontend
 - Footnotes
 - Elementor pre-made templates
+- Author profile page 
 
 [Click here](https://spider-themes.net/eazydocs/features) to know more about EazyDocs Premium Plans and Features
 
@@ -230,6 +231,10 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= 2.6.7 (13 June 2025) =
+Tweaked: Improved the Full width container in mobile devices
+Tweaked: Improved doc single page design 
+
 = 2.6.6 (28 May 2025) =
 New: Tags show hide option added in 'EazyDocs > Settings > Docs single'
 New: Added Order & OrderBy options to MultiDocs widget
@@ -269,16 +274,5 @@ Tweaked: Advanced Accordion Gutenberg Block plugin added in the Setup Wizard plu
 Tweaked: Unloaded unnecessary CSS and JS files from the Setup Wizard page
 Tweaked: Setup Wizard code file structure improved to make the maintenance easier
 
-= v2.6.2 (16 March 2025) =
-New: Included required & recommended plugins installation section in setup wizard
-New: Added install/activate button in setup wizard plugin section instead of switcher
-Fixed: Resolved the review notice
-Tweaked: Dashicons used instead of fontawesome icon to optimize performance in the dashboard
-Tweaked: Enable Sticky for Left and Right Sidebars on Mobile Screens
-Tweaked: Getting Started renamed to Setup Wizard
-Tweaked: Padding added before anchor.js icon
-Tweaked: Removed some unnecessary code
-Tweaked: Improved the top spacing of the left sidebar on the OnePage docs
-Updated: Settings page icons changed
 
 [See changelog for all versions](https://spider-themes.net/eazydocs/changelog/).

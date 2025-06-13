@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 2.6.7 (13 June 2025) =
+Tweaked: Improved the Full width container in mobile devices
+Tweaked: Improved doc single page design 
+
 = 2.6.6 (28 May 2025) =
 New: Tags show hide option added in 'EazyDocs > Settings > Docs single'
 New: Added Order & OrderBy options to MultiDocs widget
