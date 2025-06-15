@@ -112,5 +112,16 @@
             });
         });
 
+
+        $('.admin-copy-embed-code').on('click', function(e) {
+            e.preventDefault();
+            var textarea = $(this).siblings('textarea')[0];
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy');
+            $(this).text('Copied!');
+            setTimeout(() => { $(this).text('Copy'); }, 2000);
+        });
+
     });
 })(jQuery);
