@@ -421,6 +421,7 @@ function generate_embed_code_box() {
       <img class="wp-spotlight-chat" src="{$open_icon_url}" alt="Chat Icon">
       <img class="wp-spotlight-hide" src="{$close_icon_url}" alt="Close Icon" style="display: none;">
    </div>
+   <button class="close-chat-sm"><span>Hide</span><span class="icon">❮</span></button>
    <div class="chatbox-iframe-wraper" {$iframe_wrap_style}><iframe src="{$site_url}/iframe-assistant/" style="border: none;" frameborder="0"></iframe></div>
 </div>
 HTML;
