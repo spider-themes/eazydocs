@@ -286,6 +286,7 @@ class Admin {
 		$i           = 0;
 		$c           = 0;
 		$c_of        = 0;
+		$f_of        = 0;
 		foreach ( $nestedArray as $value ) {
 			$i ++;
 			wp_update_post( [
@@ -313,6 +314,21 @@ class Admin {
 								],
 								true
 							);
+
+							if ( is_array( $of_child->children ) ) {
+								foreach ( $of_child->children as $fourth_child ) {
+									$f_of ++;
+									wp_update_post(
+										[
+											'ID'          => $fourth_child->id,
+											'menu_order'  => $f_of,
+											'post_parent' => $of_child->id
+										],
+										true
+									);
+								}
+							}
+
 						}
 					}
 				}

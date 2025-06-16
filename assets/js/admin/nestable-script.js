@@ -115,7 +115,7 @@
 						$secId = $this.data('id');
 					$('#nestable-' + $secId)
 						.nestable({
-							maxDepth: 3,
+							maxDepth: 4,
 							expandBtnHTML:
 								'<button class="nestable--button nestable--expand" data-action="expand" type="button">Expand</button>',
 							collapseBtnHTML:
