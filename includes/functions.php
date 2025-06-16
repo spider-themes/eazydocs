@@ -317,7 +317,7 @@ if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
 	 */
 	function eazydocs_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
 		return '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-            <a itemprop="item" href="' . esc_url( $permalink ) . '">
+            <a itemprop="item" href="' . esc_url( $permalink ) . '" target="_top">
             <span itemprop="name">' . esc_html( $label ) . '</span></a>
             <meta itemprop="position" content="' . esc_attr($position) . '" />
         </li>';
