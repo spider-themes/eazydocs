@@ -155,6 +155,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Single & Multidocs Block
 - Extra Depth Level
 - Cross Domain Embed Option for Docs Assistant
+- Author/Contributor profile page 
 
 ## EazyDocs Promax plan features include:
 - All Pro plan features
@@ -164,7 +165,6 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Contributor, Add/Edit doc from Frontend
 - Footnotes
 - Elementor pre-made templates
-- Author profile page 
 
 [Click here](https://spider-themes.net/eazydocs/features) to know more about EazyDocs Premium Plans and Features
 
