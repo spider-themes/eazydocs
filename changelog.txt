@@ -1,6 +1,7 @@
 == Changelog ==
 
-= 2.6.7 (13 June 2025) =
+= 2.6.7 (18 June 2025) =
+Fixed: Accordion reorder issue at depth-4 resolved
 Tweaked: Improved the Full width container in mobile devices
 Tweaked: Improved doc single page design 
 

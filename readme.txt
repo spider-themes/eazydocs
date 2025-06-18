@@ -154,6 +154,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Users Feedback Database
 - Single & Multidocs Block
 - Extra Depth Level
+- Cross Domain Embed Option for Docs Assistant
 
 ## EazyDocs Promax plan features include:
 - All Pro plan features
@@ -231,7 +232,8 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= 2.6.7 (13 June 2025) =
+= 2.6.7 (18 June 2025) =
+Fixed: Accordion reorder issue at depth-4 resolved
 Tweaked: Improved the Full width container in mobile devices
 Tweaked: Improved doc single page design 
 
