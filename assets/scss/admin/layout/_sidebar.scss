@@ -8,12 +8,9 @@
 .tab-menu {
     background: var(--clr-black-100);
     flex: 0 0 auto;
-    flex-basis: 30%;
+    width: auto;
     &.short {
         height: 100vh
-    }
-    @media (max-width: 1680px) {
-        flex-basis: 33%;
     }
 }
 
@@ -52,8 +49,8 @@
         .link {
             display: flex;
             .dd-handle {
+                display:inline-block;
                 cursor: move;
-                margin: 4px 0 -4px;
             }
             .drag-icon {
                 margin-bottom: -5px;
@@ -62,6 +59,12 @@
                 }
             }
         }
+    }
+    .link-wrapper{
+        display:flex;
+        align-items: center;
+        justify-content: end;
+        width: 160px;
     }
 
     .title {
@@ -81,6 +84,8 @@
         color: var(--clr-white);
         opacity: var(--total-page-opacity, 0.5);
         @include property;
+        position: absolute;
+        right: 32px;
     }
 
     &:hover {
@@ -94,7 +99,8 @@
             display: flex;
             align-items: center;
             .dd-handle {
-                margin: 0px;
+                display:inline-block;
+                cursor: move;
             }
             a {
                 padding-left: 2px;
@@ -139,12 +145,15 @@
         fill-color: #fff;
     }
     .dd-handle {
+        display: none;
         line-height: 12px;
+        margin-top: 4px;
     }
 }
 
 .easydocs-tab-content {
-    flex: 0 0 67%;
+    flex: 1;
+    width: auto;
     padding: 0 30px 30px 30px;
 }
 

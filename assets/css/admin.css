@@ -1433,15 +1433,10 @@ body.rtl a.child-delete {
 .tab-menu {
   background: var(--clr-black-100);
   flex: 0 0 auto;
-  flex-basis: 30%;
+  width: auto;
 }
 .tab-menu.short {
   height: 100vh;
-}
-@media (max-width: 1680px) {
-  .tab-menu {
-    flex-basis: 33%;
-  }
 }
 
 .easydocs-tab {
@@ -1492,14 +1487,20 @@ body.rtl a.child-delete {
   display: flex;
 }
 .easydocs-navitem.is-active .link .dd-handle {
+  display: inline-block;
   cursor: move;
-  margin: 4px 0 -4px;
 }
 .easydocs-navitem.is-active .link .drag-icon {
   margin-bottom: -5px;
 }
 .easydocs-navitem.is-active .link .drag-icon:hover {
   cursor: move;
+}
+.easydocs-navitem .link-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 160px;
 }
 .easydocs-navitem .title {
   display: flex;
@@ -1519,6 +1520,8 @@ body.rtl a.child-delete {
   opacity: var(--total-page-opacity, 0.5);
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
+  position: absolute;
+  right: 32px;
 }
 .easydocs-navitem:hover {
   background: rgba(159, 162, 180, 0.2);
@@ -1533,7 +1536,8 @@ body.rtl a.child-delete {
   align-items: center;
 }
 .easydocs-navitem:hover .link .dd-handle {
-  margin: 0px;
+  display: inline-block;
+  cursor: move;
 }
 .easydocs-navitem:hover .link a {
   padding-left: 2px;
@@ -1575,11 +1579,14 @@ body.rtl a.child-delete {
   fill-color: #fff;
 }
 .link .dd-handle {
+  display: none;
   line-height: 12px;
+  margin-top: 4px;
 }
 
 .easydocs-tab-content {
-  flex: 0 0 67%;
+  flex: 1;
+  width: auto;
   padding: 0 30px 30px 30px;
 }
 

@@ -59,7 +59,7 @@ $count = $query->found_posts;
                         <?php echo count($doc_counter) > 0 ? count($doc_counter) : ''; ?>
                     </span>
                 </div>
-                <div class="link">
+                <div class="link link-wrapper">
                     <?php
                     if ( ezd_is_premium() ) {
                         if ( current_user_can('manage_options') ) {
@@ -91,7 +91,7 @@ $count = $query->found_posts;
 
                     if ( current_user_can('manage_options') ) :
                         ?>  
-                        <span class="ezd-admin-bulk-options" id="bulk-options-<?php echo esc_attr(get_the_ID()); ?>">
+                        <span class="ezd-admin-bulk-options link" id="bulk-options-<?php echo esc_attr(get_the_ID()); ?>">
                             <span class="dashicons dashicons-arrow-down-alt2"></span>
                             <span class="ezd-admin-bulk-actions">
                                 <?php
