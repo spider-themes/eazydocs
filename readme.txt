@@ -165,6 +165,7 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 - Contributor, Add/Edit doc from Frontend
 - Footnotes
 - Elementor pre-made templates
+- Author/Contributor profile page 
 
 [Click here](https://spider-themes.net/eazydocs/features) to know more about EazyDocs Premium Plans and Features
 
