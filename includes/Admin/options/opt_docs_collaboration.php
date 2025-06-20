@@ -68,11 +68,7 @@ CSF::createSection( $prefix, array(
 			'chosen'     => true,
 			'ajax'       => true,
 			'multiple'   => true,
-			'class'      => 'eazydocs-pro-notice',
-			'dependency' => array(
-				array( 'is_doc_contribution', '==', 'true' ),
-				array( 'docs_frontend_login_page', '!=', '' ),
-			)
+			'class'      => 'eazydocs-pro-notice'
 		),
 		
 		array(
