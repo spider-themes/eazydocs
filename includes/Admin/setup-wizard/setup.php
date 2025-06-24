@@ -1,12 +1,11 @@
 <?php
-$opt                   = get_option( 'eazydocs_settings' );
-$slugType              = $opt['docs-url-structure'] ?? '';
-$custom_slug           = $opt['docs-type-slug'] ?? '';
-$brand_color           = $opt['brand_color'] ?? '';
-$docs_single_layout    = $opt['docs_single_layout'] ?? '';
-$docs_page_width       = $opt['docs_page_width'] ?? '';
-$customizer_visibility = $opt['customizer_visibility'] ?? '';
-$docs_archive_page     = $opt['docs-slug'] ?? '';
+$slugType              = ezd_get_opt( 'docs-url-structure' );
+$custom_slug           = ezd_get_opt( 'docs-type-slug' );
+$brand_color           = ezd_get_opt( 'brand_color' );
+$docs_single_layout    = ezd_get_opt( 'docs_single_layout' );
+$docs_page_width       = ezd_get_opt( 'docs_page_width' );
+$customizer_visibility = ezd_get_opt( 'customizer_visibility' );
+$docs_archive_page     = ezd_get_opt( 'docs-slug' );
 ?>
 <div class="wrap">
     <div class="ezd-setup-wizard-wrapper">

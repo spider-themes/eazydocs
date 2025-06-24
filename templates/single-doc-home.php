@@ -1,7 +1,6 @@
 <?php
-$options                 = get_option( 'eazydocs_settings' );
-$is_full_excerpt 		 = $options['is_full_excerpt'] ?? false;
-$sec_excerpt 			 = $options['doc_sec_excerpt_limit'] ?? '8';
+$is_full_excerpt 		 = ezd_get_opt( 'is_full_excerpt', false );
+$sec_excerpt 			 = ezd_get_opt( 'doc_sec_excerpt_limit', '8' );
 
 $sections = get_children( array(
 	'post_parent'    => $post->ID,

@@ -101,6 +101,6 @@ function eazydocs_set_post_view() {
  */
 function eazydocs_get_post_view() {
     $get_views = get_post_meta( get_the_ID(), 'post_views_count', true );
-    $views     = $get_views . esc_html__( ' views', 'eazydocs' );
+    $views     = $get_views . ' ' . esc_html__( 'views', 'eazydocs' );
     return $views;
 }

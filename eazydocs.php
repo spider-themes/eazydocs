@@ -111,7 +111,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			$this->core_includes();
 
 			register_activation_hook( __FILE__, [ $this, 'activate' ] );
-			add_action( 'init', [ $this, 'i18n' ] );
+			add_action( 'plugins_loaded', [ $this, 'i18n' ] );
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 			add_action( 'after_setup_theme', [ $this, 'load_csf_files' ], 20 );
@@ -163,7 +163,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 * @access public
 		 */
 		public function i18n() {
-			load_plugin_textdomain( 'eazydocs', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+			load_plugin_textdomain( 'eazydocs', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 		}
 
 		/**

@@ -1,18 +1,18 @@
 <?php
-$is_social_links        = ezd_get_opt( 'is_social_links' ) ?? '';
-$is_copy_link           = ezd_get_opt( 'is_copy_link' ) ?? '';
-$copy_link_text         = ezd_get_opt( 'copy_link_text' ) ?? __( 'Copy Link', 'eazydocs' );
-$copy_link_text_success = ezd_get_opt( 'copy_link_text_success' ) ?? __( 'Copied!', 'eazydocs' );
-$is_post_share_title    = ezd_get_opt( 'is_post_share_title' ) ?? '';
-$is_social_btns         = ezd_get_opt( 'is_social_btns' ) ?? '';
-$copy_link_label        = ezd_get_opt( 'copy_link_label' ) ?? __( 'Or copy link', 'eazydocs' );
+$is_social_links        = ezd_get_opt( 'is_social_links' );
+$is_copy_link           = ezd_get_opt( 'is_copy_link' );
+$copy_link_text         = ezd_get_opt( 'copy_link_text', __( 'Copy Link', 'eazydocs' ) );
+$copy_link_text_success = ezd_get_opt( 'copy_link_text_success', __( 'Copied!', 'eazydocs' ) );
+$is_post_share_title    = ezd_get_opt( 'is_post_share_title' );
+$is_social_btns         = ezd_get_opt( 'is_social_btns' );
+$copy_link_label        = ezd_get_opt( 'copy_link_label', __( 'Or copy link', 'eazydocs' ) );
 
 if ( $is_social_links ) :
 	if ( $is_copy_link || $is_social_btns ) :
 		?>
         <a href="#" class="ezd-share-btn modal-toggle" data-id="2">
             <i class="social_share_square"></i>
-			<?php echo esc_html( ezd_get_opt( 'share_btn_label', __( 'Share', 'eazydocs' ) ) ) ?>
+			<?php echo esc_html( ezd_get_opt( 'share_btn_label', __( 'Share this Doc', 'eazydocs' ) ) ) ?>
         </a>
 
         <div class="ezd-modal" id='eazydocs_share' data-id="modal2">

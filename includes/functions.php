@@ -11,7 +11,7 @@
 function ezd_get_opt( $option, $default = '' ) {
 	$options = get_option( 'eazydocs_settings' );
 
-	if ( isset( $options[ $option ] ) ) {
+	if ( ! empty( $options[ $option ] ) ) {
 		return $options[ $option ];
 	}
 
@@ -417,8 +417,7 @@ if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
 		$html .= '<ol class="breadcrumb eazydocs-search-wrapper" itemscope itemtype="http://schema.org/BreadcrumbList">';
 		$html .= $args['delimiter'];
 
-		$docs_page_title = ezd_get_opt( 'docs-page-title', 'eazydocs_settings' );
-		$docs_page_title = ! empty( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docs', 'eazydocs' );
+		$docs_page_title = ezd_get_opt( 'docs-page-title', esc_html__( 'Docs', 'eazydocs' ) );
 		$docs_home       = ezd_get_opt( 'docs-slug' );
 
 		if ( $docs_home ) {
@@ -947,15 +946,14 @@ add_image_size( 'ezd_searrch_thumb50x50', '50', '50', true );
 function ezd_password_form($output, $post = 0) {
 
     // Check if post is set and is the desired custom post type
-    if (is_null($post) || (get_post_type($post) !== 'docs')) {
+    if ( is_null( $post ) || (get_post_type( $post ) !== 'docs')) {
         // If it's not the correct post type, return the original output
         return $output;
     }
-
-	$protected_form          = get_option( 'eazydocs_settings' );
-	$protected_form_switcher = $protected_form['protected_doc_form'] ?? '';
-	$protected_form_title    = ! empty( $protected_form['protected_form_title'] ) ? $protected_form['protected_form_title'] : __( 'Enter Password & Read this Doc', 'eazydocs' );
-	$protected_form_subtitle = ! empty( $protected_form['protected_form_subtitle'] ) ? $protected_form['protected_form_subtitle'] : __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
+	
+	$protected_form_switcher = ezd_get_opt( 'protected_doc_form' );
+	$protected_form_title    = ezd_get_opt( 'protected_form_title', __( 'Enter Password & Read this Doc', 'eazydocs' ) );
+	$protected_form_subtitle = ezd_get_opt( 'protected_form_subtitle', __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' ) );
 
 	if ( ! empty( $protected_form_switcher == 'eazydocs-form' ) ) :
 		ob_start();
@@ -1340,7 +1338,7 @@ function ezd_footer_with_block_theme(){
 				display:none;
 			}
 		</style>
-	<?php
+		<?php
 	}
 }
 
@@ -1620,8 +1618,7 @@ function customizer_visibility_callback() {
 
     // Get current user data
     if ( current_user_can( 'manage_options' ) ) {
-        $options  = get_option( 'eazydocs_settings' );
-        $doc_id   = $options[ 'docs-slug' ] ?? '';
+        $doc_id   = ezd_get_opt( 'docs-slug' );
         $doc_page = get_post_field( 'post_name', $doc_id );
 
         $args = array(
@@ -1858,13 +1855,10 @@ function ezd_private_docs_access() {
  * @return string The sanitized docs slug.
  */
 function ezd_docs_slug() {
-	$docs_url  = ezd_get_opt( 'docs-url-structure', 'custom-slug' );
-	$permalink = get_option( 'permalink_structure' );
-
-    $settings_options = get_option( 'eazydocs_settings' );
-    $custom_slug = $settings_options['docs-type-slug'] ?? '';
-
-    $safe_slug = preg_replace( '/[^a-zA-Z0-9-_]/', '-', $custom_slug );
+	$docs_url	  = ezd_get_opt( 'docs-url-structure', 'custom-slug' );
+	$permalink    = get_option( 'permalink_structure' );
+    $custom_slug  = ezd_get_opt( 'docs-type-slug' );
+    $safe_slug 	  = preg_replace( '/[^a-zA-Z0-9-_]/', '-', $custom_slug );
 
 	if ( $docs_url == 'custom-slug' || $permalink === '' || $permalink === '/archives/%post_id%' ) {
 		return $safe_slug ?: 'docs';

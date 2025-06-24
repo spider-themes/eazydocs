@@ -386,9 +386,21 @@ class Doc_Widget extends Widget_Base {
 				'label'       => esc_html__( 'Read More Text', 'eazydocs' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => 'View All',
+				'default'     =>  esc_html__( 'View All', 'eazydocs' ),
 				'condition'   => [
 					'doc-widget-skin' => [ '1', '2', '3' ]
+				]
+			]
+		);
+
+		$this->add_control(
+			'topics_label', [
+				'label'       => esc_html__( 'Topics Label', 'eazydocs' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default'     => esc_html__( 'Topics', 'eazydocs' ),
+				'condition'   => [
+					'doc-widget-skin' => [ '1' ]
 				]
 			]
 		);
@@ -951,7 +963,8 @@ class Doc_Widget extends Widget_Base {
 		$doc_order     	= $settings['order'] ?? 'asc'; // 'asc' or 'desc'
 		$child_order   	= $settings['child_order'] ?? 'asc';
 		$order_by      	= $settings['order_by'] ?? 'menu_order'; // e.g., 'post_title', 'menu_order', 'post_date'
-		$doc_exclude 	= $settings['exclude'] ?? '';
+		$doc_exclude 	= $settings['exclude'] ?? '';               
+		$topics_label 	= ! empty( $settings['topics_label'] ) ? $settings['topics_label'] : __( 'Topics', 'eazydocs' );
 
 		// Map Elementor 'orderby' options to get_pages 'sort_column'
 		$valid_sort_columns = [

@@ -13,23 +13,21 @@
 get_header();
 ezd_header_with_block_theme();
 $theme_data      = wp_get_theme();
-$options         = get_option( 'eazydocs_settings' );
-$single_layout   = $options['search_banner_layout'] ?? 'default';
+$single_layout   = ezd_get_opt( 'search_banner_layout', 'default' );
 $cz_options      = '';
 $doc_container   = 'ezd-container ezd-custom-container';
 $content_wrapper = '';
 $credit_enable   = '1';
 
-$layout          = $options['docs_single_layout'] ?? 'both_sidebar';
-$doc_width       = $options['docs_page_width'] ?? '';
+$layout          = ezd_get_opt( 'docs_single_layout', 'both_sidebar' );
+$doc_width       = ezd_get_opt( 'docs_page_width' );
 $doc_container   = $doc_width == 'full-width' ? 'ezd-container-fluid px-lg-5' : 'ezd-container ezd-custom-container';
 $content_wrapper = $doc_width == 'full-width' ? 'doc_full_width' : '';
 
-$credit_text = $options['eazydocs-credit-text'] ??
-               sprintf( __( "Powered By %s EazyDocs %s", 'eazydocs' ), '<a href="https://wordpress.org/plugins/eazydocs/" target="_blank">', '</a>' );
+$credit_text 	= ezd_get_opt( 'eazydocs-credit-text', sprintf( __( "Powered By %s EazyDocs %s", 'eazydocs' ), '<a href="https://wordpress.org/plugins/eazydocs/" target="_blank">', '</a>' ) );
 
 if ( ezd_is_premium() ) {
-	$credit_enable = $options['eazydocs-enable-credit'] ?? '1';
+	$credit_enable = ezd_get_opt( 'eazydocs-enable-credit', '1' );
 }
 
 switch ( $layout ) {

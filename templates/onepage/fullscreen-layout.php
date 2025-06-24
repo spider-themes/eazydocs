@@ -23,8 +23,7 @@ if ( function_exists( 'wp_body_open' ) ) {
 
 wp_enqueue_script( 'eazydocs-onepage' );
 
-$opt            = get_option( 'eazydocs_settings' );
-$widget_sidebar = $opt['is_widget_sidebar'] ?? '';
+$widget_sidebar = ezd_get_opt( 'is_widget_sidebar' );
 
 global $post;
 $post_slug = $post->post_name;

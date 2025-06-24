@@ -1,6 +1,5 @@
 <?php
-$opt = get_option( 'eazydocs_settings' );
-$is_widget_sidebar = $opt['is_widget_sidebar'] ?? '';
+$is_widget_sidebar = ezd_get_opt( 'is_widget_sidebar' );
 
 // Register Widget areas
 if ( $is_widget_sidebar == '1' ) {

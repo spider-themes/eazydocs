@@ -372,22 +372,20 @@ CSF::createSection( $prefix, array(
 
 // Function to generate dynamic embed code box
 function generate_embed_code_box() {
-    $site_url = site_url(); // Current site URL
-
+    $site_url 		= site_url(); // Current site URL
     // Get assistant icon options using get_option like in Assistant.php
-    $ed_options = get_option('eazydocs_settings');
-    $open_icon = $ed_options['assistant_open_icon'] ?? [];
-    $close_icon = $ed_options['assistant_close_icon'] ?? [];
-    $open_icon_url = isset($open_icon['url']) && $open_icon['url'] ? $open_icon['url'] : "{$site_url}/wp-content/plugins/eazydocs-pro/assets/images/frontend/chat.svg";
+    $open_icon 		= ezd_get_opt( 'assistant_open_icon', [] );
+    $close_icon 	= ezd_get_opt( 'assistant_close_icon', [] );
+    $open_icon_url 	= isset($open_icon['url']) && $open_icon['url'] ? $open_icon['url'] : "{$site_url}/wp-content/plugins/eazydocs-pro/assets/images/frontend/chat.svg";
     $close_icon_url = isset($close_icon['url']) && $close_icon['url'] ? $close_icon['url'] : "{$site_url}/wp-content/plugins/eazydocs-pro/assets/images/frontend/close.svg";
 
     // Get spacing options from assistant_tab_settings
-    $tab_settings = $ed_options['assistant_tab_settings'] ?? [];
-    $spacing_vertical = $tab_settings['assistant_spacing_vertical'] ?? '';
+    $tab_settings 		= ezd_get_opt( 'assistant_tab_settings', [] );
+    $spacing_vertical 	= $tab_settings['assistant_spacing_vertical'] ?? '';
     $spacing_horizontal = $tab_settings['assistant_spacing_horizontal'] ?? '';
-    $vertical_unit = (is_numeric($spacing_vertical) && $spacing_vertical !== '') ? $spacing_vertical . '%' : '';
-    $horizontal_unit = (is_numeric($spacing_horizontal) && $spacing_horizontal !== '') ? $spacing_horizontal . '%' : '';
-    $iframe_bottom = (is_numeric($spacing_vertical) && $spacing_vertical !== '') ? 'calc(' . $spacing_vertical . '% + 76px)' : '';
+    $vertical_unit 		= (is_numeric($spacing_vertical) && $spacing_vertical !== '') ? $spacing_vertical . '%' : '';
+    $horizontal_unit 	= (is_numeric($spacing_horizontal) && $spacing_horizontal !== '') ? $spacing_horizontal . '%' : '';
+    $iframe_bottom 		= (is_numeric($spacing_vertical) && $spacing_vertical !== '') ? 'calc(' . $spacing_vertical . '% + 76px)' : '';
 
     $chat_toggle_style = '';
     $chat_toggle_style_arr = [];

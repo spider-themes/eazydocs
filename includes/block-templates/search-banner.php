@@ -1,8 +1,7 @@
 <?php
-$cz_options     = get_option( 'eazydocs_settings' );
 $cs_banner_wrap = 'no_cs_bg';
 if ( ezd_is_premium() ) {
-	$custom_banner  = $cz_options['doc_banner_bg'] ?? '';
+	$custom_banner  = ezd_get_opt( 'doc_banner_bg' );
 	$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
 }
 $is_keywords = ezd_get_opt('is_keywords') != '1' ? ' no_keywords' : '';

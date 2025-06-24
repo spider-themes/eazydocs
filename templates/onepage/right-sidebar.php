@@ -3,8 +3,7 @@ $ezd_content		= get_the_content( get_the_ID() );
 $ezd_content_none 	= ! empty( $ezd_content ) ? 'mt-5' : '';
 $layout 			= get_post_meta( get_the_ID(), 'ezd_doc_layout', true );
 $sticky_class		= $layout == 'classic-onepage-layout' ? 'ezd-sticky-lg-top' : '';
-$opt				= get_option( 'eazydocs_settings' );
-$widget_sidebar 	= $opt['is_widget_sidebar'] ?? '';
+$widget_sidebar 	= ezd_get_opt( 'is_widget_sidebar' );
 ?>
 
 <div class="ezd-xl-col-2 ezd-lg-col-3 ezd-grid-column-full doc_right_mobile_menu sticky-top <?php echo esc_attr($sticky_class) ?>">

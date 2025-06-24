@@ -1,7 +1,6 @@
 <?php
-$opt                    = get_option( 'eazydocs_settings' );
-$article_print          = $opt['pr-icon-switcher'] ?? '';
-$font_size_switcher     = $opt['font-size-switcher'] ?? '1';
+$article_print          = ezd_get_opt( 'pr-icon-switcher' );
+$font_size_switcher     = ezd_get_opt( 'font-size-switcher', '1' );
 
 if ( $font_size_switcher == 1 || $article_print == '1' ) :
     ?>

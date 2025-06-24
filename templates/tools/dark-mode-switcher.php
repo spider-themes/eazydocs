@@ -1,6 +1,5 @@
 <?php
-$opt = get_option( 'eazydocs_settings' );
-$is_dark_switcher = $opt['is_dark_switcher'] ?? '';
+$is_dark_switcher = ezd_get_opt( 'is_dark_switcher' );
 if ( $is_dark_switcher == '1' ) :
     ?>
 <div class="doc_switch ezd-d-flex ezd-align-items-center">

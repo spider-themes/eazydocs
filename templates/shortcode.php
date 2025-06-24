@@ -1,9 +1,7 @@
 <?php
-$opt                    = get_option( 'eazydocs_settings' );
-$topics                 = $opt['topics_text'] ?? esc_html__( 'Topics', 'eazydocs' );
-$private_doc_mode       = $opt['private_doc_mode'] ?? '';
-$private_doc_login_page = $opt['private_doc_login_page'] ?? '';
-$is_subscription 		= $opt['subscriptions'] ?? false;
+$private_doc_mode       = ezd_get_opt( 'private_doc_mode' );
+$private_doc_login_page = ezd_get_opt( 'private_doc_login_page' );
+$is_subscription 		= ezd_get_opt( 'subscriptions', false );
 $is_btn_show 			= ezd_get_opt('docs-view-all-btn');
 $is_masonry             = '';
 // Check pro plugin class exists

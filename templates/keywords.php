@@ -1,7 +1,6 @@
 <?php
-$opt = get_option( 'eazydocs_settings' );
-$keywords_label = $opt['keywords_label'] ?? '';
-$keywords = $opt['keywords'] ?? '';
+$keywords_label = ezd_get_opt( 'keywords_label' );
+$keywords       = ezd_get_opt( 'keywords' );
 
 if ( ezd_get_opt('is_keywords') == '1' ) : 
     ?>

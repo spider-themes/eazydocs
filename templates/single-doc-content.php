@@ -1,13 +1,12 @@
 <?php
-$options                 = get_option( 'eazydocs_settings' );
-$comment_visibility      = $options['enable-comment'] ?? '1';
-$reading_time_visibility = $options['enable-reading-time'] ?? '1';
-$views_visibility        = $options['enable-views'] ?? '1';
-$sidebar_toggle          = $options['toggle_visibility'] ?? '1';
-$layout                  = $options['docs_single_layout'] ?? 'both_sidebar';
-$is_doc_title			 = $options['is_doc_title'] ?? true;
-$is_doc_contribution	 = $options['is_doc_contribution'] ?? false;
-$is_selected_comment 	 = $options['enable-selected-comment'] ?? false;
+$comment_visibility      = ezd_get_opt( 'enable-comment', '1' );
+$reading_time_visibility = ezd_get_opt( 'enable-reading-time', '1' );
+$views_visibility        = ezd_get_opt( 'enable-views', '1' );
+$sidebar_toggle          = ezd_get_opt( 'toggle_visibility', '1' );
+$layout                  = ezd_get_opt( 'docs_single_layout', 'both_sidebar' );
+$is_doc_title			 = ezd_get_opt( 'is_doc_title', true );
+$is_doc_contribution	 = ezd_get_opt( 'is_doc_contribution', false );
+$is_selected_comment 	 = ezd_get_opt( 'enable-selected-comment', false );
 $selected_comment_active = $is_selected_comment == true ? 'selected-comment-active' : '';
 $current_parent_id  	 = wp_get_post_parent_id( get_the_ID() );
 

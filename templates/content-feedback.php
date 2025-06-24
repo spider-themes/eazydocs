@@ -1,21 +1,20 @@
 <?php
 global $post;
-$options             = get_option( 'eazydocs_settings' );
-$docs_feedback       = $options['docs-feedback'] ?? '1';
-$email_feedback      = $options['message-feedback'] ?? '1';
-$helpful_feedback    = $options['helpful_feedback'] ?? '1';
+$docs_feedback       = ezd_get_opt( 'docs-feedback', '1' );
+$email_feedback      = ezd_get_opt( 'message-feedback', '1' );
+$helpful_feedback    = ezd_get_opt( 'helpful_feedback', '1' );
 $right_alignment     = $email_feedback == '1' ? 'right' : 'left';
-$feedback_count      = $options['feedback_count'] ?? '1';
+$feedback_count      = ezd_get_opt( 'feedback_count', '1' );
 $positive            = (int) get_post_meta( $post->ID, 'positive', true );
 $negative            = (int) get_post_meta( $post->ID, 'negative', true );
 $positive_title      = $positive ? sprintf( _n( '%d person found this useful', '%d persons found this useful', $positive, 'eazydocs' ), number_format_i18n( $positive ) ) : esc_html__( 'No votes yet', 'eazydocs' );
 $negative_title      = $negative ? sprintf( _n( '%d person found this not useful', '%d persons found this not useful', $negative, 'eazydocs' ), number_format_i18n( $negative ) ) : esc_html__( 'No votes yet', 'eazydocs' );
-$still_stuck         = ! empty ( $options['still-stuck'] ) ? $options['still-stuck'] : __( 'Still stuck?', 'eazydocs' );;
+$still_stuck         = ezd_get_opt( 'still-stuck', __( 'Still stuck?', 'eazydocs' ) );
 $tags                = get_the_terms( get_the_ID(), 'doc_tag' );
-$link_text           = ! empty ( $options['feedback-link-text'] ) ? $options['feedback-link-text'] : __( 'How can we help?', 'eazydocs' );
-$doc_feedback_label  = ! empty ( $options['feedback-label'] ) ? $options['feedback-label'] : __( 'Was this page helpful?', 'eazydocs' );
-$enable_next_prev    = ! empty ( $options['enable-next-prev-links'] ) ?? '';
-$is_doc_tag          = $options['is_doc_tag'] ?? true;
+$link_text           = ezd_get_opt( 'feedback-link-text', __( 'How can we help?', 'eazydocs' ) );
+$doc_feedback_label  = ezd_get_opt( 'feedback-label', __( 'Was this page helpful?', 'eazydocs' ) );
+$enable_next_prev    = ezd_get_opt( 'enable-next-prev-links' );
+$is_doc_tag          = ezd_get_opt( 'is_doc_tag', true );
 
 if ( $tags || $docs_feedback == '1' || $enable_next_prev == '1' ) :
     ?>

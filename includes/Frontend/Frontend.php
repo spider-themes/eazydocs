@@ -50,14 +50,13 @@ class Frontend {
 	 * @param $post_id
 	 *
 	 */
-	public function footnotes($post_id){
-		$options 				= get_option( 'eazydocs_settings' );		
-		$default_column 		= $options['footnotes_column'] ?? '4';		
-		$is_notes_title   		= $options['is_footnotes_heading'] ?? '1';
-		$footnotes_layout  	 	= $options['footnotes_layout'] ?? 'collapsed';
+	public function footnotes($post_id){		
+		$default_column 		= ezd_get_opt( 'footnotes_column', '4' );		
+		$is_notes_title   		= ezd_get_opt( 'is_footnotes_heading', '1' );
+		$footnotes_layout  	 	= ezd_get_opt( 'footnotes_layout', 'collapsed' );
 		$is_footnotes_expand 	= $is_notes_title == 1 ? $footnotes_layout : '';
 		$ezd_notes_footer_mt 	= $is_notes_title != '1' ? 'mt-30' : '';
-		$notes_title_text 		= $options['footnotes_heading_text'] ?? __( 'Footnotes', 'eazydocs' );
+		$notes_title_text 		= ezd_get_opt( 'footnotes_heading_text', __( 'Footnotes', 'eazydocs' ) );
 
 		$meta_options			= get_post_meta( $post_id, 'footnotes_colum_opt', true );
 		$col_meta 				= $meta_options['footnotes_column'] ?? '3';
@@ -157,7 +156,6 @@ class Frontend {
 		$ft_cookie_posts = isset( $_COOKIE['eazydocs_recent_posts'] ) ? json_decode( htmlspecialchars( $_COOKIE['eazydocs_recent_posts'], true ) ) : null;
 		$ft_cookie_posts = isset( $ft_cookie_posts ) ? array_diff( $ft_cookie_posts, array( get_the_ID() ) ) : '';
 		if ( is_array( $ft_cookie_posts ) && count( $ft_cookie_posts ) > 0 && isset( $ft_cookie_posts ) ) :
-			$eazydocs_option = get_option( 'eazydocs_settings' );
 
 			global $post;
 			$cats            = get_the_terms( get_the_ID(), 'doc_tag' );
@@ -180,7 +178,7 @@ class Frontend {
 			) );
 
 			$related_docs  = $doc_posts->post_count ?? 0;
-			$viewed_column = $related_docs > 0 ? $eazydocs_option['viewed-doc-column'] : '12';
+			$viewed_column = $related_docs > 0 ?  ezd_get_opt( 'viewed-doc-column' ) : '12';
 			?>
             <div class="ezd-lg-col-<?php echo esc_attr( $viewed_column . ' ' . $visibility ); ?>">
                 <div class="topic_list_item">
@@ -247,9 +245,8 @@ class Frontend {
 		global $post;
 		$cats            = get_the_terms( get_the_ID(), 'doc_tag' );
 		$cat_ids         = ! empty( $cats ) ? wp_list_pluck( $cats, 'term_id' ) : '';
-		$eazydocs_option = get_option( 'eazydocs_settings' );
-		$related_column  = $eazydocs_option['related-doc-column'] ?? '6';
-        $col_visibility = $related_column.' '.$visibility;
+		$related_column  =  ezd_get_opt( 'related-doc-column', '6' );
+        $col_visibility  = $related_column.' '.$visibility;
 		$doc_posts       = new \WP_Query( array(
 			'post_type'           => 'docs',
 			'tax_query'           => array(

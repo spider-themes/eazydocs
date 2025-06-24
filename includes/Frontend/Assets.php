@@ -14,8 +14,7 @@ class Assets {
 	 * Scripts enqueue
 	 */
 	public static function enqueue_scripts() {
-		$opt = get_option( 'eazydocs_settings' );
-
+		
 		wp_enqueue_script( 'jquery' );
 		wp_register_style( 'font-awesome-5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css' );
 
@@ -49,7 +48,7 @@ class Assets {
 			wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array( 'jquery' ), EAZYDOCS_VERSION );
 			wp_register_script( 'eazydocs-onepage', EAZYDOCS_ASSETS . '/js/frontend/onepage.js', array( 'jquery' ), EAZYDOCS_VERSION );
 
-			$is_dark_switcher = $opt['is_dark_switcher'] ?? '';
+			$is_dark_switcher = ezd_get_opt( 'is_dark_switcher' );
 
 			if ( $is_dark_switcher == '1' && is_singular( ['docs', 'onepage-docs'] ) ) {
 				wp_enqueue_style( 'eazydocs-dark-mode', EAZYDOCS_ASSETS . '/css/frontend_dark-mode.css' );
@@ -99,8 +98,8 @@ class Assets {
 
 			// Dynamic CSS
 			$dynamic_css = '';
-			if ( ! empty( $opt['brand_color'] ) ) {
-				$brand_rgb   = ezd_hex2rgba( $opt['brand_color'] );
+			if ( ezd_get_opt( 'brand_color' ) ) {
+				$brand_rgb   = ezd_hex2rgba( ezd_get_opt( 'brand_color' ) );
 				$dynamic_css .= ".doc_switch input[type=checkbox] { border: 1px solid rgba($brand_rgb, 0.3); background: rgba($brand_rgb, 0.25) }";
 				$dynamic_css .= ".categories_guide_item .doc_border_btn { border: 1px solid rgba($brand_rgb, 0.2); background: rgba($brand_rgb, 0.05) }";
 				$dynamic_css .= "#eazydocs_feedback .action_btn{ background: rgba($brand_rgb, .9); }";

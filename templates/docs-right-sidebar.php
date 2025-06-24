@@ -1,10 +1,9 @@
 <?php
-$opt                = get_option( 'eazydocs_settings' );
-$widget_sidebar     = $opt['is_widget_sidebar'] ?? '';
-$toc_switcher       = $opt['toc_switcher'] ?? '';
-$toc_heading        = $opt['toc_heading'] ?? __( 'CONTENTS', 'eazydocs' );
+$widget_sidebar     = ezd_get_opt( 'is_widget_sidebar' );
+$toc_switcher       = ezd_get_opt( 'toc_switcher' );
+$toc_heading        = ezd_get_opt( 'toc_heading', __( 'CONTENTS', 'eazydocs' ) );
 $is_pro_themes      = wp_get_theme();
-$toc_auto_numbering = $opt['toc_auto_numbering'] ?? '';
+$toc_auto_numbering = ezd_get_opt( 'toc_auto_numbering' );
 $toc_auto_numbering = $toc_auto_numbering == '1' ? ' toc_auto_numbering' : '';
 ?>
 <div class="ezd-xl-col-2 ezd-lg-col-3 ezd-grid-column-full doc_right_mobile_menu ezd-sticky-lg-top">
