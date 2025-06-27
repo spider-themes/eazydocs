@@ -294,6 +294,15 @@ CSF::createSection( $prefix, array(
 							'id'          => 'assistant_bg',
 							'type'        => 'color',
 							'title'       => esc_html__( 'Icon Color', 'eazydocs' ),
+							'output'      => '.chat-toggle a',
+							'output_mode' => 'background-color',
+						),
+
+						array(
+							'id'          => 'icon_bg_hover',
+							'type'        => 'color',
+							'title'       => esc_html__( 'Icon Hover Color', 'eazydocs' ),
+							'output'      => '.chat-toggle a:hover',
 							'output_mode' => 'background-color',
 						),
 
@@ -301,6 +310,7 @@ CSF::createSection( $prefix, array(
 							'id'          => 'assistant_header_bg',
 							'type'        => 'color',
 							'title'       => esc_html__( 'Header Background', 'eazydocs' ),
+							'output'      => '.chatbox-header',
 							'output_mode' => 'background-color',
 						),
 
@@ -317,7 +327,7 @@ CSF::createSection( $prefix, array(
 							'type'        => 'color',
 							'title'       => esc_html__( 'Submit Button', 'eazydocs' ),
 							'output'      => '.chatbox-form input[type="submit"]',
-							'output_mode' => 'background-color',
+							'output_mode' => 'background-color'
 						)
 					)
 				),
