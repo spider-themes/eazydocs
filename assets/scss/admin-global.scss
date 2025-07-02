@@ -491,9 +491,17 @@ p.big-p {
 
 .button-inline {
   margin-top: 40px;
+  display: flex;
+  gap: 10px;
 
-  .button + .button {
-    margin-left: 10px;
+  .button:last-child {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+
+    &:hover{
+      background-color: #0056b3;
+    }
   }
 }
 

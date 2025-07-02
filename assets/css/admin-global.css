@@ -503,9 +503,16 @@ p.big-p {
 
 .button-inline {
   margin-top: 40px;
+  display: flex;
+  gap: 10px;
 }
-.button-inline .button + .button {
-  margin-left: 10px;
+.button-inline .button:last-child {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+}
+.button-inline .button:last-child:hover {
+  background-color: #0056b3;
 }
 
 .ezd-shortcodes-wrap {
