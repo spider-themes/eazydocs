@@ -86,37 +86,37 @@ class Admin {
 		}
 
 		if ( class_exists( 'EZD_EazyDocsPro' ) ) {
-			$ezd_menu_title = __( 'EazyDocs Pro', 'eazydocs' );
+			$ezd_menu_title = ezd_get_opt( 'docs_menu_title', esc_html__( 'EazyDocs Pro', 'eazydocs' ) );
 		} else {
-			$ezd_menu_title = __( 'EazyDocs', 'eazydocs' );
+			$ezd_menu_title = ezd_get_opt( 'docs_menu_title', esc_html__( 'EazyDocs', 'eazydocs' ) );
 		}
 
 		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
-		add_submenu_page( 'eazydocs', __( 'Docs Builder', 'eazydocs' ), __( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
+		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
 
 		if ( ezd_is_premium() ) {
 			if ( $is_customizer ) {
-				add_submenu_page( 'eazydocs', __( 'Customize', 'eazydocs' ), __( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
+				add_submenu_page( 'eazydocs', esc_html__( 'Customize', 'eazydocs' ), esc_html__( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
 			}
 		}
 
-		add_submenu_page( 'eazydocs', __( 'Tags', 'eazydocs' ), __( 'Tags', 'eazydocs' ), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
+		add_submenu_page( 'eazydocs', esc_html__( 'Tags', 'eazydocs' ), esc_html__( 'Tags', 'eazydocs' ), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
 
 		$current_theme = get_template();
 		if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
-			add_submenu_page( 'eazydocs', __( 'OnePage Docs', 'eazydocs' ), __( 'OnePage Docs', 'eazydocs' ), 'manage_options', '/edit.php?post_type=onepage-docs' );
+			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Docs', 'eazydocs' ), esc_html__( 'OnePage Docs', 'eazydocs' ), 'manage_options', '/edit.php?post_type=onepage-docs' );
 		} else {
-			add_submenu_page( 'eazydocs', __( 'OnePage Doc', 'eazydocs' ), __( 'OnePage Doc', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [ $this, 'ezd_onepage_presents' ] );
+			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Doc', 'eazydocs' ), esc_html__( 'OnePage Doc', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [ $this, 'ezd_onepage_presents' ] );
 		}
 
 		if ( ezd_is_premium() ) {
 			do_action( 'ezd_pro_admin_menu' );
 		} else {
-			add_submenu_page( 'eazydocs', __( 'Users Feedback', 'eazydocs' ), __( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [ $this, 'ezd_feedback_presents' ] );
-			add_submenu_page( 'eazydocs', __( 'Analytics', 'eazydocs' ), __( 'Analytics', 'eazydocs' ), $capabilites, 'ezd-analytics', [ $this, 'ezd_analytics_presents' ] );
+			add_submenu_page( 'eazydocs', esc_html__( 'Users Feedback', 'eazydocs' ), esc_html__( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [ $this, 'ezd_feedback_presents' ] );
+			add_submenu_page( 'eazydocs', esc_html__( 'Analytics', 'eazydocs' ), esc_html__( 'Analytics', 'eazydocs' ), $capabilites, 'ezd-analytics', [ $this, 'ezd_analytics_presents' ] );
 		}
 
-		add_submenu_page( 'eazydocs', __( 'Setup Wizard', 'eazydocs' ), __( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ] );
+		add_submenu_page( 'eazydocs', esc_html__( 'Setup Wizard', 'eazydocs' ), esc_html__( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ] );
 	}
 
 	/**

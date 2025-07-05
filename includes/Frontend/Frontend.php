@@ -56,7 +56,7 @@ class Frontend {
 		$footnotes_layout  	 	= ezd_get_opt( 'footnotes_layout', 'collapsed' );
 		$is_footnotes_expand 	= $is_notes_title == 1 ? $footnotes_layout : '';
 		$ezd_notes_footer_mt 	= $is_notes_title != '1' ? 'mt-30' : '';
-		$notes_title_text 		= ezd_get_opt( 'footnotes_heading_text', __( 'Footnotes', 'eazydocs' ) );
+		$notes_title_text 		= ezd_get_opt( 'footnotes_heading_text', esc_html__( 'Footnotes', 'eazydocs' ) );
 
 		$meta_options			= get_post_meta( $post_id, 'footnotes_colum_opt', true );
 		$col_meta 				= $meta_options['footnotes_column'] ?? '3';

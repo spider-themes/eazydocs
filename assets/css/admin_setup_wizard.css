@@ -209,6 +209,7 @@
 #ezd-setup-wizard-wrap .tab-content .tab-pane h2 {
   font-size: 22px;
   margin-top: 36px;
+  margin-bottom: 10px;
 }
 #ezd-setup-wizard-wrap .tab-content .tab-pane h2:first-child {
   margin-top: 0;

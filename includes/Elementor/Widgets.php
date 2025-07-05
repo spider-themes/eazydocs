@@ -28,7 +28,7 @@ class Widgets{
     public function ezd_register_category( $elements_manager ) {
         $elements_manager->add_category(
             'eazydocs', [
-                'title' => __( 'EazyDocs', 'eazydocs' ),
+                'title' => esc_html__( 'EazyDocs', 'eazydocs' ),
             ]
         );
     }

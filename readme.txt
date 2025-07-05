@@ -1,4 +1,4 @@
-=== EazyDocs - Most Powerful Knowledge base, wiki, Documentation Builder Plugin ===
+=== EazyDocs - Easy Knowledge Base, Wiki, and Documentation Builder ===
 Contributors: mdjwel, spiderdevs
 Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0

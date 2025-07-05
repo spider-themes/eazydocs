@@ -1,5 +1,5 @@
 <?php
-$update_text      = ezd_get_opt( 'breadcrumb-update-text', __( 'Updated on', 'eazydocs' ) );
+$update_text      = ezd_get_opt( 'breadcrumb-update-text', esc_html__( 'Updated on', 'eazydocs' ) );
 $doc_container    = 'ezd-container ezd-custom-container';
 $doc_container    = ezd_get_opt( 'docs_page_width' );
 $doc_container    = $doc_container == 'full-width' ? 'ezd-container-fluid px-lg-5' : 'ezd-container ezd-custom-container';

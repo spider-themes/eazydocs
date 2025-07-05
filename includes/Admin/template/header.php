@@ -88,8 +88,8 @@
                             ?>
                             <li class="easydocs-notification pro-notification-alert" title="<?php esc_attr_e('Notifications', 'eazydocs'); ?>">
                                 <div class="header-notify-icon">
-                                    <img class="notify-icon" src="<?php echo esc_url(EAZYDOCS_IMG )?>/admin/notification.svg" alt="<?php esc_html_e( 'Notify Icon', 'eazydocs' ); ?>">
-                                    <img class="settings-pro-icon" src="<?php echo esc_url(EAZYDOCS_IMG) ?>/admin/pro-icon.png" alt="<?php esc_html_e( 'Pro Icon', 'eazydocs' ); ?>">
+                                    <img class="notify-icon" src="<?php echo esc_url(EAZYDOCS_IMG )?>/admin/notification.svg" alt="<?php esc_attr_e( 'Notify Icon', 'eazydocs' ); ?>">
+                                    <img class="settings-pro-icon" src="<?php echo esc_url(EAZYDOCS_IMG) ?>/admin/pro-icon.png" alt="<?php esc_attr_e( 'Pro Icon', 'eazydocs' ); ?>">
                                 </div>
                             </li>
                             <?php

@@ -964,7 +964,7 @@ class Doc_Widget extends Widget_Base {
 		$child_order   	= $settings['child_order'] ?? 'asc';
 		$order_by      	= $settings['order_by'] ?? 'menu_order'; // e.g., 'post_title', 'menu_order', 'post_date'
 		$doc_exclude 	= $settings['exclude'] ?? '';               
-		$topics_label 	= ! empty( $settings['topics_label'] ) ? $settings['topics_label'] : __( 'Topics', 'eazydocs' );
+		$topics_label 	= ! empty( $settings['topics_label'] ) ? $settings['topics_label'] : esc_html__( 'Topics', 'eazydocs' );
 
 		// Map Elementor 'orderby' options to get_pages 'sort_column'
 		$valid_sort_columns = [

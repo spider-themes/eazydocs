@@ -6,7 +6,7 @@ if ( ! is_user_logged_in() ) {
 	$email_from = wp_get_current_user()->user_email;
 	$name       = wp_get_current_user()->display_name;
 }
-$title          = ezd_get_opt( 'feedback-form-title', __( 'How can we help?', 'eazydocs' ) );
+$title          = ezd_get_opt( 'feedback-form-title', esc_html__( 'How can we help?', 'eazydocs' ) );
 $desc           = ezd_get_opt( 'feedback-form-desc' );
 ?>
 <div class="ezd-modal" id="eazydocs_feedback" data-id="modal1">

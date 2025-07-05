@@ -851,7 +851,7 @@ function get_reusable_blocks_right() {
 
 function manage_reusable_blocks() {
 	$admin_url = admin_url( 'edit.php?post_type=wp_block' );
-	$message   = sprintf( __( '<p class="ezd-text-support"> <a href="%s" target="_blank">Manage Reusable blocks</a></p>', 'eazydocs' ), $admin_url );
+	$message   = sprintf( esc_html__( '<p class="ezd-text-support"> <a href="%s" target="_blank">Manage Reusable blocks</a></p>', 'eazydocs' ), $admin_url );
 
 	return $message;
 }
@@ -952,8 +952,8 @@ function ezd_password_form($output, $post = 0) {
     }
 	
 	$protected_form_switcher = ezd_get_opt( 'protected_doc_form' );
-	$protected_form_title    = ezd_get_opt( 'protected_form_title', __( 'Enter Password & Read this Doc', 'eazydocs' ) );
-	$protected_form_subtitle = ezd_get_opt( 'protected_form_subtitle', __( 'This content is password protected. To view it please enter your password below:', 'eazydocs' ) );
+	$protected_form_title    = ezd_get_opt( 'protected_form_title', esc_html__( 'Enter Password & Read this Doc', 'eazydocs' ) );
+	$protected_form_subtitle = ezd_get_opt( 'protected_form_subtitle', esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' ) );
 
 	if ( ! empty( $protected_form_switcher == 'eazydocs-form' ) ) :
 		ob_start();
@@ -1161,15 +1161,15 @@ function ezd_arrow() {
  */
 function ezd_el_title_tags() {
 	return [
-		'h1'   => __( 'H1', 'eazydocs' ),
-		'h2'   => __( 'H2', 'eazydocs' ),
-		'h3'   => __( 'H3', 'eazydocs' ),
-		'h4'   => __( 'H4', 'eazydocs' ),
-		'h5'   => __( 'H5', 'eazydocs' ),
-		'h6'   => __( 'H6', 'eazydocs' ),
-		'div'  => __( 'Div', 'eazydocs' ),
-		'span' => __( 'Span', 'eazydocs' ),
-		'p'    => __( 'Paragraph', 'eazydocs' ),
+		'h1'   => 'H1',
+		'h2'   => 'H2',
+		'h3'   => 'H3',
+		'h4'   => 'H4',
+		'h5'   => 'H5',
+		'h6'   => 'H6',
+		'div'  => 'Div',
+		'span' => 'Span',
+		'p'    => 'P'
 	];
 }
 
@@ -1205,17 +1205,17 @@ function ezd_el_image( $settings_key = '', $alt = '', $class = '', $atts = [] ) 
 function ezd_docs_layout_option() {
 	$base_options = [
 		'1' => [
-			'title' => __( 'Docs without tab', 'eazydocs' ),
+			'title' => esc_html__( 'Docs without tab', 'eazydocs' ),
 			'icon'  => 'free-doc-tab'
 		]
 	];
 
 	$pro_options = [
-		'2' => [ 'title' => __( 'Tabbed with doc lists', 'eazydocs' ) ],
-		'3' => [ 'title' => __( 'Flat tabbed docs', 'eazydocs' ) ],
-		'4' => [ 'title' => __( 'Boxed Style', 'eazydocs' ) ],
-		'5' => [ 'title' => __( 'Book Chapters / Tutorials', 'eazydocs' ) ],
-		'6' => [ 'title' => __( 'List Style', 'eazydocs' ) ]
+		'2' => [ 'title' => esc_html__( 'Tabbed with doc lists', 'eazydocs' ) ],
+		'3' => [ 'title' => esc_html__( 'Flat tabbed docs', 'eazydocs' ) ],
+		'4' => [ 'title' => esc_html__( 'Boxed Style', 'eazydocs' ) ],
+		'5' => [ 'title' => esc_html__( 'Book Chapters / Tutorials', 'eazydocs' ) ],
+		'6' => [ 'title' => esc_html__( 'List Style', 'eazydocs' ) ]
 	];
 
 	foreach ( $pro_options as $key => $option ) {

@@ -21,18 +21,18 @@
 				$email = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
 
 				if ( ! $email ) {
-					wp_send_json_error( __( 'Please enter a valid email address.', 'eazydocs' ) );
+					wp_send_json_error( esc_html__( 'Please enter a valid email address.', 'eazydocs' ) );
 				}
 			} else {
 				$email = wp_get_current_user()->user_email;
 			}
 
 			if ( empty ( $subject ) ) {
-				wp_send_json_error( __( 'Please provide a subject line.', 'eazydocs' ) );
+				wp_send_json_error( esc_html__( 'Please provide a subject line.', 'eazydocs' ) );
 			}
 
 			if ( ! isset ( $message ) ) {
-				wp_send_json_error( __( 'Please provide the message details.', 'eazydocs' ) );
+				wp_send_json_error( esc_html__( 'Please provide the message details.', 'eazydocs' ) );
 			}
 
 			$wp_email = 'wordpress@' . preg_replace( '#^www\.#', '', strtolower( $_SERVER[ 'SERVER_NAME' ] ) );
@@ -40,14 +40,14 @@
 			$document = get_post( $doc_id );
 
 			$email_to = $admin_email;
-			$subject  = sprintf( __( '[%1$s] New Doc Feedback: "%2$s"', 'eazydocs' ), $blogname, $subject );
+			$subject  = sprintf( esc_html__( '[%1$s] New Doc Feedback: "%2$s"', 'eazydocs' ), $blogname, $subject );
 
-			$email_body = sprintf( __( 'New feedback on your doc "%s"', 'eazydocs' ), apply_filters( 'eazydocs_translate_text', $document->post_title ) ) . "\r\n";
-			$email_body .= sprintf( __( 'Author: %1$s', 'eazydocs' ), $author ) . "\r\n";
-			$email_body .= sprintf( __( 'Email: %s', 'eazydocs' ), $email ) . "\r\n";
-			$email_body .= sprintf( __( 'Feedback: %s', 'eazydocs' ), "\r\n" . $message ) . "\r\n\r\n";
-			$email_body .= sprintf( __( 'Doc Permalink: %s', 'eazydocs' ), get_permalink( $document ) ) . "\r\n";
-			$email_body .= sprintf( __( 'Edit Doc: %s', 'eazydocs' ), admin_url( 'post.php?action=edit&post=' . $doc_id ) ) . "\r\n";
+			$email_body = sprintf( esc_html__( 'New feedback on your doc "%s"', 'eazydocs' ), apply_filters( 'eazydocs_translate_text', $document->post_title ) ) . "\r\n";
+			$email_body .= sprintf( esc_html__( 'Author: %1$s', 'eazydocs' ), $author ) . "\r\n";
+			$email_body .= sprintf( esc_html__( 'Email: %s', 'eazydocs' ), $email ) . "\r\n";
+			$email_body .= sprintf( esc_html__( 'Feedback: %s', 'eazydocs' ), "\r\n" . $message ) . "\r\n\r\n";
+			$email_body .= sprintf( esc_html__( 'Doc Permalink: %s', 'eazydocs' ), get_permalink( $document ) ) . "\r\n";
+			$email_body .= sprintf( esc_html__( 'Edit Doc: %s', 'eazydocs' ), admin_url( 'post.php?action=edit&post=' . $doc_id ) ) . "\r\n";
 
 			$from     = "From: \"{$author}\" <{$wp_email}>";
 			$reply_to = "Reply-To: \"{$email}\" <{$email}>";

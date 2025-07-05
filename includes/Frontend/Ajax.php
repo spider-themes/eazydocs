@@ -33,7 +33,7 @@ class Ajax {
 
 		// check previous response
 		if ( in_array( $post_id, $previous ) ) {
-			$message = sprintf( $template, 'danger', __( 'Sorry, you\'ve already recorded your feedback!', 'eazydocs' ) );
+			$message = sprintf( $template, 'danger', esc_html__( 'Sorry, you\'ve already recorded your feedback!', 'eazydocs' ) );
 			wp_send_json_error( $message );
 		}
 

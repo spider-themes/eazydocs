@@ -1589,6 +1589,12 @@ body.rtl a.child-delete {
   width: auto;
   padding: 0 30px 30px 30px;
 }
+@media (min-width: 2100px) {
+  .easydocs-tab-content {
+    width: 1500px;
+    flex: none;
+  }
+}
 
 button.nestable--button.nestable--expand {
   display: none;

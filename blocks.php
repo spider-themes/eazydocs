@@ -77,7 +77,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
             array(
                 array(
                     'slug'  => 'eazydocs',
-                    'title' => __( 'EazyDocs', 'eazydocs' ),
+                    'title' => esc_html__( 'EazyDocs', 'eazydocs' ),
                 ),
             ),
             $categories,
