@@ -73,20 +73,20 @@ class Single_Doc extends Widget_Base {
 						'icon'  => 'single-doc1',
 					],
 					'2' => [
-						'title' => esc_html__( ! empty ( $skins_label ) ? 'pro-label' : 'Creative', 'eazydocs' ),
-						'icon'  => 'single-doc2 ' . $support_pro . '',
+						'title' => ! empty ( $skins_label ) ? 'pro-label' : esc_html__( 'Creative', 'eazydocs' ),
+						'icon'  => 'single-doc2 ' . $support_pro,
 					],
 					'3' => [
-						'title' => esc_html__( ! empty ( $skins_label ) ? 'pro-label' : 'Box', 'eazydocs' ),
-						'icon'  => 'single-doc3  ' . $support_pro . '',
+						'title' => ! empty ( $skins_label ) ? 'pro-label' : esc_html__( 'Box', 'eazydocs' ),
+						'icon'  => 'single-doc3  ' . $support_pro,
 					],
 					'4' => [
-						'title' => esc_html__( ! empty ( $skins_label ) ? 'pro-label' : 'Topic Boxes', 'eazydocs' ),
-						'icon'  => 'single-doc4  ' . $support_pro . '',
+						'title' => ! empty ( $skins_label ) ? 'pro-label' : esc_html__( 'Topic Boxes', 'eazydocs' ),
+						'icon'  => 'single-doc4  ' . $support_pro,
 					],
 					'5' => [
-						'title' => esc_html__( ! empty ( $skins_label ) ? 'pro-label' : 'Docs Boxes', 'eazydocs' ),
-						'icon'  => 'single-doc5  ' . $support_pro . '',
+						'title' => ! empty ( $skins_label ) ? 'pro-label' : esc_html__( 'Docs Boxes', 'eazydocs' ),
+						'icon'  => 'single-doc5  ' . $support_pro,
 					],
 				],
 				'toggle'  => false,

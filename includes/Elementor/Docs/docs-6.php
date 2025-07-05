@@ -100,7 +100,7 @@
                             ?>
                     </ul>
                     <div class="text">
-                        <?php echo count( $doc_counter ) ?> <?php esc_html_e('Article in this Docs.'); ?> <br>
+                        <?php echo count( $doc_counter ) ?> <?php esc_html_e('Article in this Docs.', 'eazydocs'); ?> <br>
                         <?php 
                             esc_html_e('Written by ', 'eazydocs');
                             echo esc_html( $doc_author );

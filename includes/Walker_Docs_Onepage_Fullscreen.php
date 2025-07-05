@@ -239,7 +239,7 @@ function ezd_list_pages_onepage_others( $args = '' ) {
 		'date_format'  => get_option( 'date_format' ),
 		'child_of'     => 0,
 		'exclude'      => '',
-		'title_li'     => esc_html__( 'Pages', 'eazyDocs' ),
+ 	'title_li'     => esc_html__( 'Pages', 'eazydocs' ),
 		'echo'         => 1,
 		'authors'      => '',
 		'sort_column'  => 'menu_order, post_title',
@@ -313,8 +313,8 @@ function ezd_list_pages_onepage_others( $args = '' ) {
 	 */
 
 	if ( $r['echo'] ) {
-		echo wp_kses_post(apply_filters( 'ezd_list_pages_onepage_others', $output, $r, $pages ));;
+		echo wp_kses_post(apply_filters( 'ezd_list_pages_onepage_others', $output, $r, $pages ));
 	} else {
-		return wp_kses_post(apply_filters( 'ezd_list_pages_onepage_others', $output, $r, $pages ));;
+		return wp_kses_post(apply_filters( 'ezd_list_pages_onepage_others', $output, $r, $pages ));
 	}
 }

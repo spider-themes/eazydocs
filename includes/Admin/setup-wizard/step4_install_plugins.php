@@ -63,7 +63,7 @@
                         <a href="https://wordpress.org/plugins/<?php echo esc_attr($plugin['slug']); ?>" target="_blank" class="button button-info">
                             <i class="dashicons dashicons-info"></i> <?php esc_html_e('More Info', 'eazydocs'); ?>
                         </a>
-                        <button class="button-install-plugin <?php echo esc_attr($button_class); ?>" <?php echo $button_attr; ?>>
+                        <button class="button-install-plugin <?php echo esc_attr($button_class); ?>" <?php echo esc_attr($button_attr); ?>>
                             <i class="dashicons <?php echo esc_attr($btn_icon) ?>"></i> <?php echo esc_html($button_text); ?>
                         </button>
                     </div>

@@ -40,14 +40,21 @@
 			$document = get_post( $doc_id );
 
 			$email_to = $admin_email;
-			$subject  = sprintf( esc_html__( '[%1$s] New Doc Feedback: "%2$s"', 'eazydocs' ), $blogname, $subject );
-
-			$email_body = sprintf( esc_html__( 'New feedback on your doc "%s"', 'eazydocs' ), apply_filters( 'eazydocs_translate_text', $document->post_title ) ) . "\r\n";
-			$email_body .= sprintf( esc_html__( 'Author: %1$s', 'eazydocs' ), $author ) . "\r\n";
-			$email_body .= sprintf( esc_html__( 'Email: %s', 'eazydocs' ), $email ) . "\r\n";
-			$email_body .= sprintf( esc_html__( 'Feedback: %s', 'eazydocs' ), "\r\n" . $message ) . "\r\n\r\n";
-			$email_body .= sprintf( esc_html__( 'Doc Permalink: %s', 'eazydocs' ), get_permalink( $document ) ) . "\r\n";
-			$email_body .= sprintf( esc_html__( 'Edit Doc: %s', 'eazydocs' ), admin_url( 'post.php?action=edit&post=' . $doc_id ) ) . "\r\n";
+	        /* translators: 1: Site name, 2: Subject line */
+	        $subject = sprintf( esc_html__( '[%1$s] New Doc Feedback: "%2$s"', 'eazydocs' ), $blogname, $subject );
+	        /* translators: %s: Document title */
+	        $email_body = sprintf( esc_html__( 'New feedback on your doc "%s"', 'eazydocs' ),
+			        apply_filters( 'eazydocs_translate_text', $document->post_title ) ) . "\r\n";
+	        /* translators: %s: Author name */
+	        $email_body .= sprintf( esc_html__( 'Author: %s', 'eazydocs' ), $author ) . "\r\n";
+	        /* translators: %s: Email address */
+	        $email_body .= sprintf( esc_html__( 'Email: %s', 'eazydocs' ), $email ) . "\r\n";
+	        /* translators: %s: Feedback message */
+	        $email_body .= sprintf( esc_html__( 'Feedback: %s', 'eazydocs' ), "\r\n" . $message ) . "\r\n\r\n";
+	        /* translators: %s: Document permalink */
+	        $email_body .= sprintf( esc_html__( 'Doc Permalink: %s', 'eazydocs' ), get_permalink( $document ) ) . "\r\n";
+	        /* translators: %s: Edit document URL */
+	        $email_body .= sprintf( esc_html__( 'Edit Doc: %s', 'eazydocs' ), admin_url( 'post.php?action=edit&post=' . $doc_id ) ) . "\r\n";
 
 			$from     = "From: \"{$author}\" <{$wp_email}>";
 			$reply_to = "Reply-To: \"{$email}\" <{$email}>";

@@ -445,7 +445,7 @@ if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
 
 		$html .= ' ' . $args['before'] . get_the_title() . $args['after'];
 		$html .= '</ol>';
-		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
+		echo wp_kses_post( apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ) );
 	}
 }
 
@@ -508,7 +508,7 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 
 		$html .= '</ol>';
 
-		echo apply_filters( 'eazydocs_breadcrumbs_html', $html, $args );
+		echo wp_kses_post( apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ) );
 	}
 }
 
@@ -849,9 +849,14 @@ function get_reusable_blocks_right() {
 	}
 }
 
-function manage_reusable_blocks() {
+function ezd_manage_reusable_blocks() {
 	$admin_url = admin_url( 'edit.php?post_type=wp_block' );
-	$message   = sprintf( esc_html__( '<p class="ezd-text-support"> <a href="%s" target="_blank">Manage Reusable blocks</a></p>', 'eazydocs' ), $admin_url );
+	/* translators: %s: URL for managing reusable blocks */
+	$message = sprintf(
+		'<p class="ezd-text-support"><a href="%s" target="_blank">%s</a></p>',
+		esc_url( $admin_url ),
+		esc_html__( 'Manage Reusable blocks', 'eazydocs')
+	);
 
 	return $message;
 }
@@ -861,7 +866,7 @@ function manage_reusable_blocks() {
  *
  * @return string
  */
-function edit_sidebar_selectbox() {
+function ezd_edit_sidebar_selectbox() {
 	global $wp_registered_sidebars;
 	global $post;
 	$edit_sidebars = '';
@@ -880,34 +885,39 @@ add_action( 'add_meta_boxes', function () {
 global $post;
 function ezd_onepage_docs() {
 	?>
-<p>
-    <b>Doc Layout</b><br />
-    <input type="text" disabled name="ezd_doc_layout"
-        value="<?php echo esc_attr(get_post_meta( get_the_ID(), 'ezd_doc_layout', true )); ?>" class="widefat" />
-</p> <br>
+    <p>
+        <label for="ezd_doc_layout"><?php esc_html_e( 'Doc Layout', 'eazydocs' ); ?></label><br/>
+        <input type="text" disabled name="ezd_doc_layout" id="ezd_doc_layout" value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_layout', true ) ); ?>" class="widefat"/>
+    </p> <br>
 
-<p class="ezd_left_content_heading"> Left Side Content</p>
+    <p class="ezd_left_content_heading"> <?php esc_html_e( 'Left Side Content', 'eazydocs' ); ?></p>
 
-<p><b>Content Type</b><br />
-    <input type="text" disabled name="ezd_doc_content_type"
-        value="<?php echo esc_attr(get_post_meta( get_the_ID(), 'ezd_doc_content_type', true )); ?>" class="widefat" />
-</p>
-<p><b>Content Box</b><br />
-    <textarea name="ezd_doc_left_sidebar" disabled cols="30" rows="3"
-        class="widefat"> <?php echo esc_attr(get_post_meta( get_the_ID(), "ezd_doc_left_sidebar", true )); ?> </textarea>
-</p>
+    <p>
+        <label for="ezd_doc_content_type"><?php esc_html_e( 'Content Type', 'eazydocs' ); ?></label><br/>
+        <input type="text" disabled name="ezd_doc_content_type" id="ezd_doc_content_type"
+               value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_content_type', true ) ); ?>" class="widefat"/>
+    </p>
 
-<p class="ezd_left_content_heading"> Right Side Content</p>
+    <p>
+        <label for="ezd_doc_left_sidebar"><?php esc_html_e( 'Content Box', 'eazydocs' ); ?></label><br/>
+        <textarea name="ezd_doc_left_sidebar" id="ezd_doc_left_sidebar" disabled cols="30" rows="3" class="widefat">
+            <?php echo esc_attr( get_post_meta( get_the_ID(), "ezd_doc_left_sidebar", true ) ); ?>
+        </textarea>
+    </p>
 
-<p><b>Content Type</b><br />
-    <input type="text" disabled name="ezd_doc_content_type_right"
-        value="<?php echo esc_attr(get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true )); ?>" class="widefat" />
-</p>
-<p><b>Content Box</b><br />
-    <textarea disabled name="ezd_doc_content_box_right" id="" cols="30" rows="3"
-        class="widefat"><?php echo esc_attr(get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true )); ?></textarea>
-</p>
-<?php
+    <p class="ezd_left_content_heading"> <?php esc_html_e( 'Right Side Content', 'eazydocs' ); ?></p>
+
+    <p>
+        <label for="ezd_doc_content_type_right"><?php esc_html_e( 'Content Type', 'eazydocs' ); ?></label><br/>
+        <input type="text" disabled name="ezd_doc_content_type_right" id="ezd_doc_content_type_right" value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true ) ); ?>" class="widefat"/>
+    </p>
+    <p>
+        <label for="ezd_doc_content_box_right"><?php esc_html_e( 'Content Box', 'eazydocs' ); ?></label><br/>
+        <textarea disabled name="ezd_doc_content_box_right" id="ezd_doc_content_box_right" cols="30" rows="3" class="widefat">
+            <?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true ) ); ?>
+        </textarea>
+    </p>
+    <?php
 }
 
 add_action( 'save_post', function ( $post_id ) {
@@ -924,19 +934,19 @@ add_action( 'save_post', function ( $post_id ) {
 	if ( ! empty( $std_comment_id ) ) {
 		update_post_meta( $post_id, 'ezd_doc_layout', $std_comment_id );
 	}
-	
+
 	if ( ! empty( $ezd_doc_content_type ) ) {
 		update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
 	}
-	
+
 	if ( ! empty( $ezd_doc_content_type_right ) ) {
 		update_post_meta( $post_id, 'ezd_doc_content_type_right', $ezd_doc_content_type_right );
 	}
-	
+
 	if ( ! empty( $ezd_doc_content_box_right ) ) {
 		update_post_meta( $post_id, 'ezd_doc_content_box_right', $ezd_doc_content_box_right );
 	}	
-	
+
 } );
 
 add_image_size( 'ezd_searrch_thumb16x16', '16', '16', true );
@@ -950,7 +960,7 @@ function ezd_password_form($output, $post = 0) {
         // If it's not the correct post type, return the original output
         return $output;
     }
-	
+
 	$protected_form_switcher = ezd_get_opt( 'protected_doc_form' );
 	$protected_form_title    = ezd_get_opt( 'protected_form_title', esc_html__( 'Enter Password & Read this Doc', 'eazydocs' ) );
 	$protected_form_subtitle = ezd_get_opt( 'protected_form_subtitle', esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' ) );
@@ -1439,11 +1449,17 @@ function ezd_perform_edit_delete_actions( $action = 'delete', $docID = 0 ){
 		if ($current_user_id === $post_author_id || current_user_can('manage_options') ) {
 			return true;
 		} else {
-			echo '<p style="' . esc_attr( $inline_styles ) . '">' . esc_html__( "You don't have permission to " ) . esc_html( $action ) . esc_html__( " this post." ) . '</p>';
+			echo sprintf(
+				'<p style="%1$s">%2$s%3$s%4$s</p>',
+				esc_attr( $inline_styles ),
+				esc_html__( "You don't have permission to ", "eazydocs" ),
+				esc_html( $action ),
+				esc_html__( " this post.", "eazydocs" )
+			);
 		}
 	} else {
 		// User does not have delete_posts capability
-		echo '<p style="' . esc_attr( $inline_styles ) . '">' . esc_html__( 'You don\'t have sufficient permission to perform this action.', 'your-text-domain' ) . '</p>';
+		echo '<p style="' . esc_attr( $inline_styles ) . '">' . esc_html__( 'You don\'t have sufficient permission to perform this action.', 'eazydocs' ) . '</p>';
 
 	}
 }

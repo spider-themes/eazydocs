@@ -17,15 +17,9 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
                   $active = ( $i == 0 ) ? ' active' : '';
                   $post_title_slug = $doc->post_name;
                   $doc_name        = explode( ' ', $doc->post_title );
-
-                  if ( $slug_type == 1 ) {
-                    $atts = "href='#doc-4{$post_title_slug}'";
-                  } else {
-                    $atts = "href='#doc-4{$widget_id}-{$doc->ID}'";
-                  }
                   ?>
                     <li class="nav-item<?php echo esc_attr( $active ) ?>">
-                      <a <?php echo $atts; ?> class="nav-link">
+                        <a href="#doc-4<?php echo esc_attr($slug_type == 1 ? $post_title_slug : "$widget_id-$doc->ID"); ?>" class="nav-link">
                         <?php
                         if ( ! empty( $settings['book_chapter_prefix'] ) ):
                           ?>

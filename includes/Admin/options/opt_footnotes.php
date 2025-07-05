@@ -16,7 +16,7 @@ CSF::createSection( $prefix, array(
 			'default'    => true,
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
-		
+
 		array(
 			'id'         => 'footnotes_heading_text',
 			'type'       => 'text',
@@ -27,17 +27,17 @@ CSF::createSection( $prefix, array(
 			'default'    => esc_html__( 'Footnotes', 'eazydocs' ),
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 		),
-		
+
 		array(
 			'id'         => 'footnotes_layout',
 			'title'      => esc_html__( 'Footnotes Layout', 'eazydocs' ),
-			'type'    	=> 'radio',
-			'options' 	=> [
-				'collapsed'    	=> esc_html__( 'Collapsed', 'eazydocs' ),
-				'expanded' 		=> esc_html__( 'Expanded', 'eazydocs' ),
+			'type'       => 'radio',
+			'options'    => [
+				'collapsed' => esc_html__( 'Collapsed', 'eazydocs' ),
+				'expanded'  => esc_html__( 'Expanded', 'eazydocs' ),
 			],
-			'subtitle'      => esc_html__( 'Select how the footnote will look normally', 'eazydocs' ),
-			'default' => 'collapsed',
+			'subtitle'   => esc_html__( 'Select how the footnote will look normally', 'eazydocs' ),
+			'default'    => 'collapsed',
 			'dependency' => array(
 				array( 'is_footnotes_heading', '==', 'true' ),
 			)
@@ -65,8 +65,11 @@ CSF::createSection( $prefix, array(
 			'id'         => 'ezdocs_footnote_shortcode1',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Footnote Shortcode', 'eazydocs' ),
-			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display footnotes. %s Learn how to create Footnotes %s', 'eazydocs' ), '<a href="https://tinyurl.com/2ewlorze" target="_blank">', '</a>' ),
-			'desc'       => esc_html__( 'See the shortcode example with the available attributes', 'eazydocs' ) . '<br><code>[reference number="1"]Tooltip Content[/reference]</code>',
+			/* translators: %1$s - opening link tag, %2$s - closing link tag */
+			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display footnotes. %1$s Learn how to create Footnotes %2$s', 'eazydocs' ),
+				'<a href="https://tinyurl.com/2ewlorze" target="_blank">', '</a>' ),
+			'desc'       => esc_html__( 'See the shortcode example with the available attributes', 'eazydocs' )
+			                . '<br><code>[reference number="1"]Tooltip Content[/reference]</code>',
 			'default'    => '[reference]',
 			'attributes' => array(
 				'readonly' => 'readonly',
@@ -81,7 +84,7 @@ $meta = 'eazydocs_meta';
 CSF::createMetabox( $meta, array(
 	'title'     => esc_html__( 'Docs :: Options', 'eazydocs' ),
 	'post_type' => 'docs',
-    'data_type' => 'unserialize',
+	'data_type' => 'unserialize',
 	'priority'  => 'default'
 ) );
 
@@ -91,37 +94,38 @@ CSF::createSection( $meta, array(
 	'title'  => esc_html__( 'Footnotes', 'eazydocs' ),
 	'fields' => array(
 		array(
-			'id'       => 'footnotes_colum_opt',
-			'type'     => 'fieldset',
-			'title'    => esc_html__( 'Footnotes Column', 'eazydocs' ),
-			'desc'       => esc_html__( 'Select Default to use the value from the settings, or choose Custom to manually select the column number from the dropdown.', 'eazydocs' ),
-			'fields' => array(				
+			'id'     => 'footnotes_colum_opt',
+			'type'   => 'fieldset',
+			'title'  => esc_html__( 'Footnotes Column', 'eazydocs' ),
+			'desc'   => esc_html__( 'Select Default to use the value from the settings, or choose Custom to manually select the column number from the dropdown.',
+				'eazydocs' ),
+			'fields' => array(
 				array(
 					'id'       => 'footnotes_column_source',
 					'type'     => 'select',
 					'title'    => null,
 					'options'  => [
-						'default' 	=> esc_html__( 'Default', 'eazydocs' ),
-						'custom' 	=> esc_html__( 'Custom', 'eazydocs' ),
+						'default' => esc_html__( 'Default', 'eazydocs' ),
+						'custom'  => esc_html__( 'Custom', 'eazydocs' ),
 					],
 					'multiple' => false,
 					'default'  => 'default',
 					'class'    => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
 				),
 				array(
-					'id'        => 'footnotes_column',
-					'type'      => 'select',
-					'title'     => esc_html__( 'Set Column', 'eazydocs' ),
-					'options' => array(
-						'1'	  => esc_html__( '1 Column', 'eazydocs' ),
-						'2'	  => esc_html__( '2 Columns', 'eazydocs' ),
-						'3'	  => esc_html__( '3 Columns', 'eazydocs' ),
-						'4'	  => esc_html__( '4 Columns', 'eazydocs' ),
-						'5'	  => esc_html__( '5 Columns', 'eazydocs' ),
-						'6'	  => esc_html__( '6 Columns', 'eazydocs' )
+					'id'         => 'footnotes_column',
+					'type'       => 'select',
+					'title'      => esc_html__( 'Set Column', 'eazydocs' ),
+					'options'    => array(
+						'1' => esc_html__( '1 Column', 'eazydocs' ),
+						'2' => esc_html__( '2 Columns', 'eazydocs' ),
+						'3' => esc_html__( '3 Columns', 'eazydocs' ),
+						'4' => esc_html__( '4 Columns', 'eazydocs' ),
+						'5' => esc_html__( '5 Columns', 'eazydocs' ),
+						'6' => esc_html__( '6 Columns', 'eazydocs' )
 					),
-					'default' => ezd_get_opt('footnotes_column', 3),
-					'class'	  => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama layout-inline',
+					'default'    => ezd_get_opt( 'footnotes_column', 3 ),
+					'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama layout-inline',
 					'dependency' => array(
 						array( 'footnotes_column_source', '==', 'custom' ),
 					)
