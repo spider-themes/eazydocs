@@ -6,18 +6,18 @@ if ( ! ezd_is_premium() ) {
 class ezd_remove_docs_base{
 
 	var $ezd_post_selected, $ezd_post_selected_keys;
-
+    
 	function __construct(){
-
+	 
 		// load user settgins from database
 		$this->ezd_post_selected = ['docs' => 1];
 
 		$this->ezd_post_selected_keys = array_keys( $this->ezd_post_selected );
-
-
+		
+		 
 		// remove CPT base slug from URLs
 		add_filter( 'post_type_link', array( $this, 'remove_slug' ), 10, 3 );
-
+		
 		// auto redirect old URLs to non-base versions
 		add_action( 'template_redirect', function(){
 			global $post;
@@ -40,7 +40,7 @@ class ezd_remove_docs_base{
 			if( ! is_admin() && ! isset( $query_vars['post_type'] ) && ( ( isset( $query_vars['error'] ) && $query_vars['error'] == 404 ) || isset( $query_vars['pagename'] ) || isset( $query_vars['attachment'] ) || isset( $query_vars['name'] ) || isset( $query_vars['category_name'] ) ) ){
 				$web_roots = array();
 				$web_roots[] = site_url();
-
+				
                 if( site_url() != home_url() ){
 					$web_roots[] = home_url();
 				}
@@ -66,7 +66,7 @@ class ezd_remove_docs_base{
 							break;
 						}
 					}
-
+                    
 					$path = implode( '/', $path );
 
 					// test for posts
@@ -170,7 +170,7 @@ class ezd_remove_docs_base{
 			return $query_vars;
 		});
 	}
-
+    
 	function remove_slug( $permalink, $post, $leavename ){
 		global $wp_post_types;
 		foreach( $wp_post_types as $type => $custom_post ){
@@ -183,10 +183,9 @@ class ezd_remove_docs_base{
 	}
 
 	function get_current_url(){
-		$REQUEST_URI = isset( $_SERVER['REQUEST_URI'] ) ? strtok( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), '?' ) : '';
+		$REQUEST_URI = strtok( $_SERVER['REQUEST_URI'], '?' );
 		$real_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ? 'https://' : 'http://';
-		$real_url .= isset( $_SERVER['SERVER_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : 'localhost';
-		$real_url .= $REQUEST_URI;
+		$real_url .= $_SERVER['SERVER_NAME'] . $REQUEST_URI;
 		return $real_url;
 	}
 }

@@ -32,9 +32,9 @@ class Ajax {
 		check_ajax_referer( 'eazydocs-ajax' );
 
 		$template = '<div class="eazydocs-alert alert-%s">%s</div>';
-		$previous = isset( $_COOKIE['eazydocs_response'] ) ? explode( ',', sanitize_text_field( wp_unslash( $_COOKIE['eazydocs_response'] ) ) ) : [];
-		$post_id  = isset( $_POST['post_id'] ) ? intval( $_POST['post_id'] ) : 0;
-		$type     = isset( $_POST['type'] ) && in_array( $_POST['type'], [ 'positive', 'negative' ] ) ? sanitize_text_field( wp_unslash( $_POST['type'] ) ) : false;
+		$previous = isset( $_COOKIE['eazydocs_response'] ) ? explode( ',', htmlspecialchars( $_COOKIE['eazydocs_response'] ) ) : [];
+		$post_id  = intval( $_POST['post_id'] );
+		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ] ) ? sanitize_text_field( $_POST['type'] ) : false;
 
 		// check previous response
 		if ( in_array( $post_id, $previous ) ) {
@@ -77,7 +77,7 @@ class Ajax {
 		// Verify nonce for security
 		check_ajax_referer('eazydocs-ajax');
 
-		$keyword = isset($_POST['keyword']) ? sanitize_text_field(wp_unslash($_POST['keyword'])) : '';
+		$keyword = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
 
 		// Search by keyword
 		$args = [
@@ -133,51 +133,39 @@ class Ajax {
 
 		if ( $posts->have_posts() ):
 			// Save keyword in search tables if analytics is enabled
-			if ( function_exists( 'ezd_is_analytics_enabled' ) && ezd_is_analytics_enabled() ) {
+			if (function_exists('ezd_is_analytics_enabled') && ezd_is_analytics_enabled()) {
 				global $wpdb;
 
 				$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
-				$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
+				$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
 
-				// Check if data already exists in transient cache
-				$cache_key   = 'ezd_search_' . md5( $keyword_for_db );
-				$cached_data = wp_cache_get( $cache_key );
+				// Check if tables exist before attempting to insert
+				$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+				$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
 
-				if ( false === $cached_data ) {
-					// Check if tables exist before attempting to insert
-					$keyword_table_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword ) ) === $wp_eazydocs_search_keyword;
-					$log_table_exists     = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_log ) ) === $wp_eazydocs_search_log;
+				if ($keyword_table_exists && $log_table_exists) {
+					// Insert keyword safely
+					$wpdb->insert(
+						$wp_eazydocs_search_keyword,
+						array(
+							'keyword' => $keyword_for_db,
+						),
+						array('%s')
+					);
 
-					if ( $keyword_table_exists && $log_table_exists ) {
-						// Insert keyword safely
+					// Get the inserted ID and insert log entry
+					$keyword_id = $wpdb->insert_id;
+					if ($keyword_id) {
 						$wpdb->insert(
-							$wp_eazydocs_search_keyword,
+							$wp_eazydocs_search_log,
 							array(
-								'keyword' => $keyword_for_db,
-							),
-							array( '%s' )
-						);
-
-						// Get the inserted ID and insert log entry
-						$keyword_id = $wpdb->insert_id;
-						if ( $keyword_id ) {
-							$wpdb->insert(
-								$wp_eazydocs_search_log,
-								array(
-									'keyword_id'      => $keyword_id,
-									'count'           => 1,
-									'not_found_count' => 0,
-									'created_at'      => current_time( 'mysql' ),
-								),
-								array( '%d', '%d', '%d', '%s' )
-							);
-
-							// Cache the results
-							wp_cache_set( $cache_key, array(
 								'keyword_id' => $keyword_id,
-								'keyword'    => $keyword_for_db
-							), '', HOUR_IN_SECONDS );
-						}
+								'count'      => 1,
+								'not_found_count' => 0,
+								'created_at' => current_time('mysql'),
+							),
+							array('%d', '%d', '%d', '%s')
+						);
 					}
 				}
 			}
@@ -212,6 +200,7 @@ class Ajax {
                             <polyline points="9 10 4 15 9 20"></polyline>
                             <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
                         </svg>
+
                     </a>
 					<?php 
 					if ( ezd_get_opt('is_search_result_breadcrumb') ) {
@@ -225,9 +214,6 @@ class Ajax {
 		else:
 			// Save keyword in search tables if analytics is enabled (for not found results)
 			if (function_exists('ezd_is_analytics_enabled') && ezd_is_analytics_enabled()) {
-				// Direct database queries are necessary below as we're working with custom tables
-				// that don't have corresponding WordPress API functions.
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 				global $wpdb;
 
 				$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
@@ -302,7 +288,7 @@ class Ajax {
 		// Verify nonce for security
 		check_ajax_referer('eazydocs-ajax');
 
-		$postid 		= isset($_POST['postid']) ? intval(wp_unslash($_POST['postid'])) : 0;
+		$postid 		= isset($_POST['postid']) ? intval($_POST['postid']) : 0;
 
 		// Validate post ID
 		if ($postid <= 0) {

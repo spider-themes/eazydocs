@@ -200,7 +200,7 @@ function eazydocs_get_template( $template_name, $args = [] ) {
  **/
 function ezd_reading_time() {
 	$content     = get_post_field( 'post_content', get_the_ID() );
-	$word_count  = str_word_count( wp_strip_all_tags( $content ) );
+	$word_count  = str_word_count( strip_tags( $content ) );
 	$readingtime = ceil( $word_count / 200 );
 	if ( $readingtime == 1 ) {
 		$timer = esc_html__( " minute", 'eazydocs' );
@@ -926,15 +926,10 @@ add_action( 'save_post', function ( $post_id ) {
 		return;
 	}
 
-	// Verify nonce
-	if ( !isset( $_POST['ezd_doc_nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ezd_doc_nonce'] ) ), 'ezd_doc_save' ) ) {
-		return;
-	}
-
-	$std_comment_id             = isset( $_POST['ezd_doc_layout'] ) ? sanitize_text_field( wp_unslash( $_POST['ezd_doc_layout'] ) ) : '';
-	$ezd_doc_content_type       = isset( $_POST['ezd_doc_content_type'] ) ? sanitize_text_field( wp_unslash( $_POST['ezd_doc_content_type'] ) ) : '';
-	$ezd_doc_content_type_right = isset( $_POST['ezd_doc_content_type_right'] ) ? sanitize_text_field( wp_unslash( $_POST['ezd_doc_content_type_right'] ) ) : '';
-	$ezd_doc_content_box_right  = isset( $_POST['ezd_doc_content_box_right'] ) ? sanitize_textarea_field( wp_unslash( $_POST['ezd_doc_content_box_right'] ) ) : '';
+	$std_comment_id             = $_POST['ezd_doc_layout'] ?? '';
+	$ezd_doc_content_type       = $_POST['ezd_doc_content_type'] ?? '';
+	$ezd_doc_content_type_right = $_POST['ezd_doc_content_type_right'] ?? '';
+	$ezd_doc_content_box_right  = $_POST['ezd_doc_content_box_right'] ?? '';
 
 	if ( ! empty( $std_comment_id ) ) {
 		update_post_meta( $post_id, 'ezd_doc_layout', $std_comment_id );
@@ -1027,30 +1022,16 @@ function ezd_admin_pages( $pages = [] ) {
         $pages = [ $pages ];
     }
 
-	if ( empty( $pages ) ) {
-		// Default admin pages of EazyDocs
-		if ( ! isset( $_GET['page'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['_wpnonce'] ?? '' ), 'eazydocs_admin_nonce' ) ) {
-			return false;
-		}
-		$admin_pages = ! empty( $_GET['page'] ) ? in_array( sanitize_text_field( wp_unslash( $_GET['page'] ) ), [
-			'eazydocs',
-			'eazydocs-settings',
-			'ezd-user-feedback',
-			'ezd-user-feedback-archived',
-			'ezd-analytics',
-			'ezd-onepage-presents',
-			'onepage-docs',
-			'eazydocs-initial-setup',
-			'eazydocs-account',
-			'ezd-user-feedback'
-		] ) : '';
-	} else {
-		// Selected admin pages of EazyDocs
-		if ( ! isset( $_GET['page'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['_wpnonce'] ?? '' ), 'eazydocs_admin_nonce' ) ) {
-			return false;
-		}
-		$admin_pages = ! empty( $_GET['page'] ) ? in_array( sanitize_text_field( wp_unslash( $_GET['page'] ) ), $pages ) : '';
-	}
+    if ( empty( $pages ) ) {
+        // Default admin pages of EazyDocs
+	    $admin_pages = !empty($_GET['page']) ? in_array( $_GET['page'], [
+		    'eazydocs', 'eazydocs-settings', 'ezd-user-feedback', 'ezd-user-feedback-archived',
+            'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account', 'ezd-user-feedback'
+	    ] ) : '';
+    } else {
+        // Selected admin pages of EazyDocs
+	    $admin_pages = !empty($_GET['page']) ? in_array( $_GET['page'], $pages ) : '';
+    }
 
 	if ( $admin_pages ) {
 		return true;
@@ -1069,20 +1050,44 @@ function ezd_admin_post_types( $post_types = [] ) {
         $post_types = [ $post_types ];
     }
 
-	if ( empty( $post_types ) ) {
-		// Default post types of EazyDocs
-		$admin_post_types = ! empty( $_GET['post_type'] ) && wp_verify_nonce( $_GET['_wpnonce'] ?? '', 'eazydocs_admin_nonce' )
-			? in_array( sanitize_text_field( wp_unslash( $_GET['post_type'] ) ), [
-				'docs',
-				'onepage-docs'
-			] ) : '';
-	} else {
-		// Selected post types of EazyDocs
-		$admin_post_types = ! empty( $_GET['post_type'] ) && wp_verify_nonce( $_GET['_wpnonce'] ?? '', 'eazydocs_admin_nonce' )
-			? in_array( sanitize_text_field( wp_unslash( $_GET['post_type'] ) ), $post_types ) : '';
-	}
+    if ( empty( $post_types ) ) {
+        // Default post types of EazyDocs
+        $admin_post_types = !empty($_GET['post_type']) ? in_array( $_GET['post_type'], [
+            'docs', 'onepage-docs'
+        ] ) : '';
+    } else {
+        // Selected post types of EazyDocs
+        $admin_post_types = !empty($_GET['post_type']) ? in_array( $_GET['post_type'], $post_types ) : '';
+    }
 
     if ( $admin_post_types ) {
+        return true;
+    }
+}
+
+/**
+ * Get EazyDocs taxonomy pages in admin
+ * @param $tax
+ *
+ * @return true|void
+ */
+function ezd_admin_taxonomy( $tax = [] ) {
+    // if $tax is string, convert it to an array
+    if ( is_string( $tax ) ) {
+        $tax = [ $tax ];
+    }
+
+    if ( empty( $tax ) ) {
+        // Default taxonomies of EazyDocs
+        $admin_tax = !empty($_GET['taxonomy']) ? in_array( $_GET['taxonomy'], [
+            'doc_tag', 'doc_category', 'doc_badge'
+        ] ) : '';
+    } else {
+        // Selected taxonomies of EazyDocs
+        $admin_tax = !empty($_GET['taxonomy']) ? in_array( $_GET['taxonomy'], $tax ) : '';
+    }
+
+    if ( $admin_tax ) {
         return true;
     }
 }
@@ -1673,18 +1678,12 @@ function ezd_setup_wizard_save_settings() {
 		wp_send_json_error( 'Unauthorized user' );
 	}
 
-	// Verify nonce
-	if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'ezd_setup_wizard_nonce' ) ) {
-		wp_send_json_error( 'Nonce verification failed' );
-		return;
-	}
-
-	$rootslug        = isset( $_POST['rootslug'] ) ? sanitize_text_field( wp_unslash( $_POST['rootslug'] ) ) : '';
-	$brandColor      = isset( $_POST['brandColor'] ) ? sanitize_text_field( wp_unslash( $_POST['brandColor'] ) ) : '';
-	$slugType        = isset( $_POST['slugType'] ) ? sanitize_text_field( wp_unslash( $_POST['slugType'] ) ) : '';
-	$docSingleLayout = isset( $_POST['docSingleLayout'] ) ? sanitize_text_field( wp_unslash( $_POST['docSingleLayout'] ) ) : '';
-	$docsPageWidth   = isset( $_POST['docsPageWidth'] ) ? sanitize_text_field( wp_unslash( $_POST['docsPageWidth'] ) ) : '';
-	$live_customizer = isset( $_POST['live_customizer'] ) ? sanitize_text_field( wp_unslash( $_POST['live_customizer'] ) ) : '';
+	$rootslug        = isset( $_POST['rootslug'] ) ? sanitize_text_field( $_POST['rootslug'] ) : '';
+	$brandColor      = isset( $_POST['brandColor'] ) ? sanitize_text_field( $_POST['brandColor'] ) : '';
+	$slugType        = isset( $_POST['slugType'] ) ? sanitize_text_field( $_POST['slugType'] ) : '';
+	$docSingleLayout = isset( $_POST['docSingleLayout'] ) ? sanitize_text_field( $_POST['docSingleLayout'] ) : '';
+	$docsPageWidth   = isset( $_POST['docsPageWidth'] ) ? sanitize_text_field( $_POST['docsPageWidth'] ) : '';
+	$live_customizer = isset( $_POST['live_customizer'] ) ? sanitize_text_field( $_POST['live_customizer'] ) : '';
 	// int value
 	$archivePage = isset( $_POST['archivePage'] ) ? intval( $_POST['archivePage'] ) : '';
 	$options     = get_option( 'eazydocs_settings' );
