@@ -55,7 +55,9 @@ function eazydocs_set_post_view() {
 				setcookie( 'eazydocs_viewed_posts', json_encode( $viewed_posts ), time() + 3600 * 24, '/' );
 
 				// Insert view log into the eazydocs_view_log table
-				// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
+				// Direct database query is necessary here as we're working with a custom table
+				// that doesn't have a corresponding WordPress API function.
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 				$wpdb->insert(
 					$wpdb->prefix . 'eazydocs_view_log',
 					array(
@@ -77,7 +79,9 @@ function eazydocs_set_post_view() {
 			update_post_meta( $post_id, 'post_views_count', $count + 1 );
 
 			// Insert view log into the eazydocs_view_log table
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
+			// Direct database query is necessary here as we're working with a custom table
+			// that doesn't have a corresponding WordPress API function.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 			$wpdb->insert(
 				$wpdb->prefix . 'eazydocs_view_log',
 				array(

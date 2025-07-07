@@ -153,7 +153,7 @@ class Frontend {
 	 * @param $see_more
 	 */
 	public function recently_viewed_docs( $title, $visibility, $visible_item, $see_more ) {
-		$ft_cookie_posts = isset( $_COOKIE['eazydocs_recent_posts'] ) ? json_decode( htmlspecialchars( $_COOKIE['eazydocs_recent_posts'], true ) ) : null;
+		$ft_cookie_posts = isset( $_COOKIE['eazydocs_recent_posts'] ) ? json_decode( sanitize_text_field( wp_unslash( $_COOKIE['eazydocs_recent_posts'] ) ), true ) : null;
 		$ft_cookie_posts = isset( $ft_cookie_posts ) ? array_diff( $ft_cookie_posts, array( get_the_ID() ) ) : '';
 		if ( is_array( $ft_cookie_posts ) && count( $ft_cookie_posts ) > 0 && isset( $ft_cookie_posts ) ) :
 
