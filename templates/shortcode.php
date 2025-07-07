@@ -58,7 +58,7 @@ if ( $docs ) :
 						}
 						?>
                         <div class="doc-top ezd-d-flex ezd-align-items-start">
-                            <a class="doc_tag_title" href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>">
+                            <a class="doc_tag_title" href="<?php the_permalink( $main_doc['doc']->ID ); ?>">
 								<?php if ( ! empty( $main_doc['doc']->post_title ) ) : ?>
                                     <h4 class="title">
 										<?php echo wp_kses_post( $main_doc['doc']->post_title ); ?>
@@ -80,7 +80,7 @@ if ( $docs ) :
 								foreach ( $main_doc['sections'] as $item ) :
 									?>
                                     <li>
-                                        <a href="<?php echo get_permalink( $item->ID ); ?>">
+                                        <a href="<?php the_permalink( $item->ID ); ?>">
 											<?php echo esc_html( $item->post_title ); ?>
                                         </a>
                                     </li>
@@ -99,7 +99,7 @@ if ( $docs ) :
 							if ( ( ! $has_children && ! empty( $more ) && ! empty( $is_btn_show ) ) || 
 								( $has_children && ! empty( $more ) ) ) :
 								?>
-								<a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
+								<a href="<?php the_permalink( $main_doc['doc']->ID ); ?>" class="doc_border_btn">
 									<?php echo esc_html( $more ); ?> <i class="arrow_right"></i>
 								</a>
 								<?php 

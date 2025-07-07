@@ -108,7 +108,7 @@ class Search_Widget extends Widget_Base {
 		$this->add_control(
 		    'btn-position',
 		    [
-		        'label' => esc_html__( 'Button Position', '' ),
+		        'label' => esc_html__( 'Button Position', 'eazydocs' ),
 		        'type' => \Elementor\Controls_Manager::CHOOSE,
 		        'options' => [
 			        'left' => [

@@ -13,9 +13,11 @@ CSF::createSection( $prefix, array(
 			'id'         => 'eazydocs_docs_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Docs archive', 'eazydocs' ),
-			'subtitle'   => sprintf(
-				__( 'Use this shortcode to display the Docs. Learn more about the shortcode and the attributes %s here %s.', 'eazydocs' ),
-				'<a href="https://tinyurl.com/24zm4oj3" target="_blank">', '</a>'
+			/* translators: %1$s: opening HTML anchor tag, %2$s: closing HTML anchor tag */
+			'subtitle' => sprintf(
+				__( 'Use this shortcode to display the Docs. Learn more about the shortcode and the attributes %1$s here %2$s.', 'eazydocs' ),
+				'<a href="https://tinyurl.com/24zm4oj3" target="_blank">',
+				'</a>'
 			),
 			'desc'       => esc_html__( 'See the shortcode with the available attributes', 'eazydocs' )
 			                . '<br><code>[eazydocs col="3" include="" exclude="" show_docs="" show_articles="" more="View More"]</code>',
@@ -29,7 +31,8 @@ CSF::createSection( $prefix, array(
 			'id'         => 'conditional_data_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Conditional Dropdown', 'eazydocs' ),
-			'subtitle'   => sprintf( esc_html__( 'Know the usage of this shortcode %s here %s', 'eazydocs' ),
+			// translators: %1$s opening HTML anchor tag, %2$s closing HTML anchor tag
+			'subtitle' => sprintf( esc_html__( 'Know the usage of this shortcode %1$s here %2$s', 'eazydocs' ),
 				'<a href="https://tinyurl.com/24d9rw72" target="_blank">', '</a>' ),
 			'default'    => '[conditional_data dependency=""]Conditional Data[/conditional_data]',
 			'attributes' => array(
@@ -56,7 +59,8 @@ CSF::createSection( $prefix, array(
 			'id'         => 'ezdocs_footnote_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Footnote Shortcode', 'eazydocs' ),
-			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display footnotes. %s Learn how to create Footnotes %s', 'eazydocs' ),
+			/* translators: %1$s opening HTML anchor tag, %2$s closing HTML anchor tag */
+			'subtitle' => sprintf( esc_html__( 'Use this shortcode to display footnotes. %1$s Learn how to create Footnotes %2$s', 'eazydocs' ),
 				'<a href="https://tinyurl.com/2ewlorze" target="_blank">', '</a>' ),
 			'desc'       => esc_html__( 'See the shortcode example with the available attributes', 'eazydocs' )
 			                . '<br><code>[reference number="1"]Tooltip Content[/reference]</code>',
@@ -71,7 +75,8 @@ CSF::createSection( $prefix, array(
 			'id'         => 'ezdocs_embed_post_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Embed Post Shortcode', 'eazydocs' ),
-			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display a doc inside another doc. Know the usage of this shortcode %s here %s',
+			/* translators: %1$s opening HTML anchor tag, %2$s closing HTML anchor tag */
+			'subtitle' => sprintf( esc_html__( 'Use this shortcode to display a doc inside another doc. Know the usage of this shortcode %1$s here %2$s',
 				'eazydocs' ), '<a href="https://tinyurl.com/bde27yn4" target="_blank">', '</a>' ),
 			'desc'       => esc_html__( 'See the shortcode with the available attributes.', 'eazydocs' )
 			                . '<br><code>[embed_post id="POST_ID" limit="no" thumbnail="yes"]</code> <br>',

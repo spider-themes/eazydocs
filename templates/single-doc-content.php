@@ -33,15 +33,15 @@ endif;
 
 <article class="shortcode_info" itemscope itemtype="http://schema.org/Article">
 	<div class="doc-post-content <?php echo esc_attr( $selected_comment_active ); ?>" id="post">
-		
+
 		<?php 
 		if ( $is_parent_doc || $is_meta_visible || $is_doc_title ) :
 			?>
 			<div class="shortcode_title">
 				<?php
 				if ( $is_parent_doc ) : ?>
-					<a class="ezd-doc-badge" href="<?php echo get_the_permalink($current_parent_id) ?>">
-						<?php echo get_the_title($current_parent_id) ?>
+					<a class="ezd-doc-badge" href="<?php the_permalink($current_parent_id) ?>">
+						<?php echo esc_html(get_the_title($current_parent_id)) ?>
 					</a>
 					<?php
 				endif;
@@ -49,7 +49,7 @@ endif;
 				if ( $is_doc_title ) {
 					the_title( '<h1>', '</h1>' );
 				}
-							
+
 				if ( $is_meta_visible ) : ?>
 					<div class="ezd-meta dot-sep">
 						<?php
@@ -109,16 +109,17 @@ endif;
 			<?php			
 			// Footnote
 			do_action( 'eazydocs_footnote', get_the_ID() );
-			
+
 			eazydocs_get_template_part( 'single-doc-home' );
 
-			$children = ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type );
+			global $post;
+			$children = ezd_list_pages( "title_li=&order=menu_order&child_of=" . absint($post->ID) . "&echo=0&post_type=" . esc_attr($post->post_type) );
 
 			if ( ezd_get_opt('is_articles', 1 ) && $children && $post->post_parent != 0 ) {
 				echo '<div class="details_cont ent recently_added" id="content_elements">';
-				echo '<h4 class="c_head">' . esc_html(ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' ) )) . '</h4>';
+				echo '<h4 class="c_head">' . esc_html( ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' )) ) . '</h4>';
 				echo '<ul class="article_list">';
-				echo wp_kses_post(ezd_list_pages( "title_li=&order=menu_order&child_of=" . $post->ID . "&echo=0&post_type=" . $post->post_type ));
+				echo wp_kses_post(ezd_list_pages( "title_li=&order=menu_order&child_of=" . absint($post->ID) . "&echo=0&post_type=" . esc_attr($post->post_type) ));
 				echo '</ul>';
 				echo '</div>';
 			}

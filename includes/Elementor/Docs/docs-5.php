@@ -80,7 +80,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 							<?php 
               if ( ! empty( $section->post_title ) ) : 
                 ?>
-                <a class="doc4-section-title" href="<?php echo get_permalink( $section->ID ); ?>">
+                <a class="doc4-section-title" href="<?php the_permalink( $section->ID ); ?>">
                   <h4> <?php echo wp_kses_post( $section->post_title ); ?> </h4>
                 </a>
                 <?php 
@@ -101,7 +101,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 									$child_count = $child ++
 									?>
                   <li>
-                    <a href="<?php echo get_permalink( $doc_item->ID ) ?>">
+                    <a href="<?php the_permalink( $doc_item->ID ) ?>">
                       <span class="chapter_counter">
                           <?php echo esc_html( $section_count . "." . $child_count . " " ); ?>
                       </span>

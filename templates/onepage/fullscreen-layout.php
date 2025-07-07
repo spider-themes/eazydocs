@@ -16,6 +16,7 @@
 if ( function_exists( 'docy_has_scrollspy' ) ) {
 	docy_has_scrollspy();
 } ?>>
+
 <?php
 if ( function_exists( 'wp_body_open' ) ) {
 	wp_body_open();
@@ -50,14 +51,12 @@ $children = wp_list_pages( array(
                         <i class="arrow_carrot-left"></i>
                     </div>
 
-					<?php
-					echo get_the_post_thumbnail( $post_id->ID ?? 0, 'full' );
-					?>
+					<?php echo wp_kses_post(get_the_post_thumbnail( $post_id->ID ?? 0, 'full' )); ?>
                     <h3 class="doc-title">
-						<?php echo get_post_field( 'post_title', $post_id->ID ?? 0, 'display' ); ?>
+						<?php echo esc_html( get_post_field( 'post_title', $post_id->ID ?? 0 ) ); ?>
                     </h3>
-					<?php
 
+					<?php
 					if ( $children ) :
 						?>
                         <nav class="scroll op-docs-sidebar">
@@ -142,9 +141,9 @@ $children = wp_list_pages( array(
 								<?php
 								if ( did_action( 'elementor/loaded' ) ) {
 									$parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $doc_item->ID );
-									echo ! empty( $parent_content ) ? $parent_content : apply_filters( 'the_content', $doc_item->post_content );
+									echo ! empty( $parent_content ) ? wp_kses_post($parent_content) : wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
 								} else {
-									echo apply_filters( 'the_content', $doc_item->post_content );
+									echo wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
 								}
 								?>
                             </div>
@@ -170,9 +169,9 @@ $children = wp_list_pages( array(
 										<?php
 										if ( did_action( 'elementor/loaded' ) ) {
 											$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $child_section->ID );
-											echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $child_section->post_content );
+											echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
 										} else {
-											echo apply_filters( 'the_content', $child_section->post_content );
+											echo wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
 										}
 										?>
                                     </div>
@@ -207,9 +206,9 @@ $children = wp_list_pages( array(
 											<?php
 											if ( did_action( 'elementor/loaded' ) ) {
 												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-												echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $last_depth_doc->post_content );
+												echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 											} else {
-												echo apply_filters( 'the_content', $last_depth_doc->post_content );
+												echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 											}
 											?>
                                         </div>
@@ -245,17 +244,17 @@ $children = wp_list_pages( array(
 											<?php
 											if ( did_action( 'elementor/loaded' ) ) {
 												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-												echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $last_depth_doc->post_content );
+												echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 											} else {
-												echo apply_filters( 'the_content', $last_depth_doc->post_content );
+												echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 											}
 											?>
                                         </div>
                                     </div>
-								<?php
+								    <?php
 								endforeach;
 							endforeach;
-							
+
 							endforeach;
 							?>
                         </article>

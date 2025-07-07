@@ -685,7 +685,7 @@ function eazydocs_one_page( $doc_id ) {
 		else :
 			foreach ( $one_page_docs as $single_docs ) :
 				?>
-				<a class="button button-info view-page-doc" id="view-page-doc" href="<?php echo get_permalink( $single_docs ); ?>" target="_blank">
+				<a class="button button-info view-page-doc" id="view-page-doc" href="<?php the_permalink( $single_docs ); ?>" target="_blank">
 					<?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
 				</a>
 				<?php

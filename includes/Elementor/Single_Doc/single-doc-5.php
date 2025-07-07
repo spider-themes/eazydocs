@@ -32,7 +32,7 @@
 					}
 					?>
                 <li>
-                    <a href="<?php echo get_permalink( $doc_item->ID ) ?>">
+                    <a href="<?php the_permalink( $doc_item->ID ) ?>">
                         <?php echo wp_kses_post( $doc_item->post_title ) ?>
                     </a>
                 </li>

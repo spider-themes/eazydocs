@@ -56,7 +56,7 @@ if ( $credit_enable == '1' ) {
             if ( ezd_is_premium() && ! empty ( get_post_meta( $parent, 'ezd_doc_secondary_title', true ) ) ) {
                 echo esc_html( get_post_meta( $parent, 'ezd_doc_secondary_title', true ) );
             } else {
-                echo get_post_field( 'post_title', $parent, 'display' );
+                echo esc_html(get_post_field( 'post_title', $parent, 'display' ));
             }
             ?>
         </h2>
@@ -109,7 +109,7 @@ if ( $credit_enable == '1' ) {
                 $is_valid_post_id   	 = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
 
                 if ( $content_type_left  == 'string_data'  && ! empty ( $ezd_shortcode_left ) ) {
-                    echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
+                    echo wp_kses_post(do_shortcode( html_entity_decode( $ezd_shortcode_left ) ));
                 } else {
                     if( $content_type_left == 'widget_data' && ! empty( $is_valid_post_id ) ) {
                         $wp_blocks = new WP_Query([

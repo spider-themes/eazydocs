@@ -56,7 +56,7 @@
 						}
 
 						if ( ! empty( $section->post_title ) ) { ?>
-                            <a href="<?php echo get_permalink( $section->ID ); ?>">
+                            <a href="<?php the_permalink( $section->ID ); ?>">
                                 <h3 class="ct-heading-text"> <?php echo wp_kses_post( $section->post_title ); ?> </h3>
                             </a>
 							<?php
@@ -68,7 +68,7 @@
 								foreach ( $doc_items as $doc_item ) :
 									?>
                                     <li>
-                                        <a class="ct-content-text" href="<?php echo get_permalink( $doc_item->ID ) ?>">
+                                        <a class="ct-content-text" href="<?php the_permalink( $doc_item->ID ) ?>">
 											<?php echo wp_kses_post( $doc_item->post_title ) ?>
                                         </a>
                                     </li>

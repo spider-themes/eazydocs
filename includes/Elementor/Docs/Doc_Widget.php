@@ -147,7 +147,7 @@ class Doc_Widget extends Widget_Base {
 
 		$this->add_control(
 			'masonry', [
-				'label'             => esc_html__( 'Masonry', 'eazydocs-pro' ),
+				'label'             => esc_html__( 'Masonry', 'eazydocs' ),
 				'type'              => \Elementor\Controls_Manager::SWITCHER,
 				'doc-widget-skin'   => [ '4', '5' ]
 			]

@@ -1,4 +1,5 @@
 <?php
+global $post;
 $is_full_excerpt 		 = ezd_get_opt( 'is_full_excerpt', false );
 $sec_excerpt 			 = ezd_get_opt( 'doc_sec_excerpt_limit', '8' );
 
@@ -24,22 +25,22 @@ if ( $sections && $post->post_parent === 0 ) :
                 if ( has_post_thumbnail( $section->ID ) ) {
                     echo get_the_post_thumbnail( $section->ID, 'full' );
                 } else {
-                    $default_icon = EAZYDOCS_IMG . '/icon/folder.png';
+                    $default_icon = esc_url(EAZYDOCS_IMG) . '/icon/folder.png';
 	                echo '<img src="' . esc_url( $default_icon ) . '" alt="' . esc_attr( $section->post_title ) . '">';
 
                 }
                 ?>
             </div>
             <div class="media-body">
-                <a href="<?php echo get_permalink( $section->ID ); ?>" class="doc-sec title">
+                <a href="<?php the_permalink( $section->ID ); ?>" class="doc-sec title">
                     <?php echo esc_html($section->post_title); ?>
                 </a>
                 <p> 
                 <?php 
                 if ( $is_full_excerpt == false ) {
-                    echo has_excerpt( $section->ID ) ? wp_trim_words( get_the_excerpt( $section->ID ), $sec_excerpt, '' ) : '';
+                    echo has_excerpt( $section->ID ) ? wp_kses_post(wp_trim_words( get_the_excerpt( $section->ID ), $sec_excerpt, '' )) : '';
                 } else {
-                    echo has_excerpt( $section->ID ) ? get_the_excerpt( $section->ID ) : '';
+                    echo has_excerpt( $section->ID ) ? wp_kses_post(get_the_excerpt( $section->ID )) : '';
                 }
                 ?>
                 </p>

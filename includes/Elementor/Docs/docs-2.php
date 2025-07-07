@@ -136,7 +136,7 @@
 											foreach ( $doc_items as $doc_item ) :
 												?>
                                                 <li>
-                                                    <a href="<?php echo get_permalink( $doc_item->ID ) ?>" class="ezd_item_list_title">
+                                                    <a href="<?php the_permalink( $doc_item->ID ) ?>" class="ezd_item_list_title">
 														<?php echo wp_kses_post( $doc_item->post_title ) ?>
                                                     </a>
                                                 </li>
@@ -149,7 +149,7 @@
 
 									if ( ! empty( $settings['read_more'] ) ) : 
 										?>
-                                        <a href="<?php echo get_permalink( $section->ID ); ?>" class="learn_btn ezd_btn">
+                                        <a href="<?php the_permalink( $section->ID ); ?>" class="learn_btn ezd_btn">
 											<?php echo esc_html( $settings['read_more'] ) ?>
                                             <i class="<?php ezd_arrow() ?>"></i>
                                         </a>

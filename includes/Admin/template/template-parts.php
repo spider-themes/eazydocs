@@ -28,17 +28,19 @@ function ezd_child_docs_children($parent){
 function ezd_child_docs_progress_bar( $post_id ) {
      $positive = (int) get_post_meta( $post_id, 'positive', true );
      $negative = (int) get_post_meta( $post_id, 'negative', true );
- 
-     $positive_title = $positive 
-         ? sprintf(_n('%d Positive vote, ', '%d Positive votes and ', $positive, 'eazydocs'), number_format_i18n($positive)) 
-         : esc_html__('No Positive votes, ', 'eazydocs');
- 
-     $negative_title = $negative 
-         ? sprintf(_n('%d Negative vote found.', '%d Negative votes found.', $negative, 'eazydocs'), number_format_i18n($negative)) 
-         : esc_html__('No Negative votes.', 'eazydocs');
- 
+
+	// translators: %d: number of positive votes, used to show the singular/plural form based on vote count
+	$positive_title = $positive
+		? sprintf( _n( '%d Positive vote, ', '%d Positive votes and ', $positive, 'eazydocs' ), number_format_i18n( $positive ) )
+		: esc_html__( 'No Positive votes, ', 'eazydocs' );
+
+	// translators: %d: number of negative votes, used to show the singular/plural form based on vote count
+	$negative_title = $negative
+		? sprintf( _n( '%d Negative vote found.', '%d Negative votes found.', $negative, 'eazydocs' ), number_format_i18n( $negative ) )
+		: esc_html__( 'No Negative votes.', 'eazydocs' );
+
      $sum_votes = $positive + $negative;
- 
+
      echo '<span class="progress-text">';
 
      if ( $positive || $negative ) {
@@ -49,13 +51,13 @@ function ezd_child_docs_progress_bar( $post_id ) {
 
      echo '</span>';
 } 
- 
+
  // Displays the left-side content of docs
- function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
+function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
      if ( ! $doc_item ) {
          return;
      }
- 
+
      $edit_link     = get_edit_post_link( $doc_item, $item );
      $target        = '_blank';
      $has_child     = eaz_get_nestable_children( $doc_item );
@@ -72,7 +74,7 @@ function ezd_child_docs_progress_bar( $post_id ) {
      ?>
      <div class="left-content left-content-<?php echo esc_attr( $depth ); ?>">
          <h4>
-             <a href="<?php echo esc_attr($edit_link); ?>" target="<?php echo esc_attr( $target ); ?>">
+             <a href="<?php echo esc_url($edit_link); ?>" target="<?php echo esc_attr( $target ); ?>">
                  <?php echo esc_html( get_the_title( $doc_item ) ); ?>
              </a>
              <?php 
@@ -85,7 +87,7 @@ function ezd_child_docs_progress_bar( $post_id ) {
              endif; 
              ?>
          </h4>
- 
+
          <ul class="actions">
              <?php if (ezd_is_admin_or_editor($doc_item, 'edit')) : ?>
                  <?php if (ezd_is_premium()) : ?>
@@ -99,17 +101,17 @@ function ezd_child_docs_progress_bar( $post_id ) {
                          </a>
                      </li>
                  <?php endif; 
-                 
+
                  if ( $is_premium ) :
                      ?>
                      <li>
-                         <a href="<?php echo admin_url('admin.php'); ?>?Create_Child=yes&childID=<?php echo esc_attr($doc_item); ?>&_wpnonce=<?php echo esc_attr(wp_create_nonce($doc_item)); ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                         <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Create_Child=yes&childID=<?php echo esc_attr($doc_item); ?>&_wpnonce=<?php echo esc_attr(wp_create_nonce($doc_item)); ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
                              <span class="dashicons dashicons-plus-alt2"></span>
                          </a>
                      </li>
                      <?php 
                  endif;
-                 
+
                  if ( ezd_is_premium() && current_user_can( 'manage_options' ) ) :                    
                     ?>
                     <li class="visibility">
@@ -117,21 +119,21 @@ function ezd_child_docs_progress_bar( $post_id ) {
                     </li>
                     <?php
                  endif;
-         
+
              endif; 
              ?>
- 
+
              <li>
-                 <a href="<?php echo get_permalink( $doc_item ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs'); ?>">
+                 <a href="<?php the_permalink( $doc_item ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs'); ?>">
                      <span class="dashicons dashicons-external"></span>
                  </a>
              </li>
- 
+
              <?php 
              if ( ezd_is_admin_or_editor( $doc_item, 'delete' ) ) : 
                 ?>
                  <li class="delete">
-                     <a href="<?php echo admin_url('admin.php'); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce( $doc_item ) ); ?>&ID=<?php echo esc_attr( $doc_item ); ?>" class="section-delete" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
+                     <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce( $doc_item ) ); ?>&ID=<?php echo esc_attr( $doc_item ); ?>" class="section-delete" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
                          <span class="dashicons dashicons-trash"></span>
                      </a>
                  </li>

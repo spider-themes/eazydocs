@@ -119,7 +119,7 @@
                             </p>
 
 
-                            <a href="<?php echo get_permalink( $main_doc['doc']->ID ); ?>" class="learn_btn ezd_btn">
+                            <a href="<?php the_permalink( $main_doc['doc']->ID ); ?>" class="learn_btn ezd_btn">
 								<?php echo esc_html( $settings['read_more'] ); ?> <i class="<?php ezd_arrow() ?>"></i>
                             </a>
                         </div>
@@ -142,7 +142,7 @@
 										?>
                                     </div>
                                     <div class="media-body">
-                                        <a href="<?php echo get_permalink( $section->ID ); ?>">
+                                        <a href="<?php the_permalink( $section->ID ); ?>">
                                             <h5 class="title ezd_item_title">
 												<?php echo wp_kses_post( $section->post_title ); ?>
                                             </h5>

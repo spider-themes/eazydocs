@@ -24,7 +24,7 @@ function ezd_offer_notice() {
                 </div>
             </div>
             <div class="ezd-col">
-                <img src="<?php echo EAZYDOCS_IMG ?>/icon/coupon.svg"
+                <img src="<?php echo esc_url(EAZYDOCS_IMG) ?>/icon/coupon.svg"
                      alt="<?php echo esc_attr_x( 'Coupon', 'coupon', 'eazydocs' ); ?>" class="coupon-icon">
                 <div class="ezd-col-text">
                     <p><strong> Up to 40% Off </strong></p>
@@ -32,7 +32,7 @@ function ezd_offer_notice() {
                 </div>
             </div>
             <div class="ezd-col">
-                <img src="<?php echo EAZYDOCS_IMG ?>/icon/cursor-hand.svg"
+                <img src="<?php echo esc_url(EAZYDOCS_IMG) ?>/icon/cursor-hand.svg"
                      alt="<?php echo esc_attr_x( 'Coupon', 'coupon', 'eazydocs' ); ?>" class="coupon-icon">
                 <div class="ezd-col-text">
                     <p><strong> Grab the deal </strong></p>
@@ -78,7 +78,7 @@ function ezd_offer_notice() {
                 offerWrap.style.display = 'none';
 
                 // Make an AJAX request to save the dismissal for the logged-in user
-                fetch('<?php echo admin_url( 'admin-ajax.php' ); ?>', {
+                fetch('<?php echo esc_url(admin_url( 'admin-ajax.php' )); ?>', {
                     method: 'POST',
                     credentials: 'same-origin',
                     headers: {

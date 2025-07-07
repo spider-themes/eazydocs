@@ -25,7 +25,7 @@ $title_tag = ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
 			<?php
 			if ( ! empty( $section->post_title ) ) :
 				?>
-                <a href="<?php echo get_permalink( $section->ID ); ?>" class="topic-title">
+                <a href="<?php the_permalink( $section->ID ); ?>" class="topic-title">
                     <h4 class="ct-heading-text">
 						<?php echo get_the_post_thumbnail( $section->ID, 'full' ); ?>
 						<?php echo wp_kses_post( $section->post_title ); ?>
@@ -41,7 +41,7 @@ $title_tag = ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
 					foreach ( $doc_items as $doc_item ) :
 						?>
                         <li>
-                            <a class="ct-content-text" href="<?php echo get_permalink( $doc_item->ID ) ?>">
+                            <a class="ct-content-text" href="<?php the_permalink( $doc_item->ID ) ?>">
                                 <i class="icon_document_alt"></i>
 								<?php echo wp_kses_post( $doc_item->post_title ) ?>
                             </a>
@@ -54,7 +54,7 @@ $title_tag = ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
 			endif;
 
 			if ( ! empty( $settings['read_more'] ) ) : ?>
-                <a href="<?php echo get_permalink( $section->ID ); ?>" class="text_btn dark_btn">
+                <a href="<?php the_permalink( $section->ID ); ?>" class="text_btn dark_btn">
 					<?php echo wp_kses_post( $settings['read_more'] ) ?>
                     <i class="<?php ezd_arrow() ?>"></i>
                 </a>

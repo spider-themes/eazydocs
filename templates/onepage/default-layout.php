@@ -28,7 +28,7 @@ $children         = wp_list_pages( array(
 						<i class="arrow_carrot-left"></i>
 					</div>
 					<h3 class="nav_title">
-						<?php echo get_post_field( 'post_title', $child_of_id, 'display' ); ?>
+						<?php echo esc_html(get_post_field( 'post_title', $child_of_id, 'display' )); ?>
 					</h3>
 					<?php
 					if ( $children ) :
@@ -114,9 +114,9 @@ $children         = wp_list_pages( array(
 								<?php
 								if ( did_action( 'elementor/loaded' ) ) {
 									$parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $doc_item->ID );
-									echo ! empty( $parent_content ) ? $parent_content : apply_filters( 'the_content', $doc_item->post_content );
+									echo ! empty( $parent_content ) ? wp_kses_post($parent_content) : wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
 								} else {
-									echo apply_filters( 'the_content', $doc_item->post_content );
+									echo wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
 								}
 								?>
 							</div>
@@ -156,14 +156,14 @@ $children         = wp_list_pages( array(
 										<?php
 										if ( did_action( 'elementor/loaded' ) ) {
 											$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $child_section->ID );
-											echo ! empty( $child_content ) ? $child_content : apply_filters( 'the_content', $child_section->post_content )  ;
+											echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $child_section->post_content ))  ;
 										} else {
-											echo apply_filters( 'the_content', $child_section->post_content );
+											echo wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
 										}
 										?>
 									</div>
 								</div>
-								
+
 								<?php
 								$last_depth = get_children( array(
 									'post_parent'    => $child_section->ID,
@@ -188,10 +188,10 @@ $children         = wp_list_pages( array(
 											<?php
 											if ( did_action( 'elementor/loaded' ) ) {
 												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-												echo ! empty( $child_content ) ? $child_content
-													: apply_filters( 'the_content', $last_depth_doc->post_content );
+												echo ! empty( $child_content ) ? wp_kses_post($child_content)
+													: wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 											} else {
-												echo apply_filters( 'the_content', $last_depth_doc->post_content );
+												echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 											}
 											?>
 										</div>
@@ -221,10 +221,10 @@ $children         = wp_list_pages( array(
 												<?php
 												if ( did_action( 'elementor/loaded' ) ) {
 													$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-													echo ! empty( $child_content ) ? $child_content
-														: apply_filters( 'the_content', $last_depth_doc->post_content );
+													echo ! empty( $child_content ) ? wp_kses_post($child_content)
+														: wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 												} else {
-													echo apply_filters( 'the_content', $last_depth_doc->post_content );
+													echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
 												}
 												?>
 											</div>

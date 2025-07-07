@@ -17,7 +17,7 @@
         <div class="categories_guide_item box-item wow fadeInUp single-doc-layout-one">
             <div class="doc-top ezd-d-flex ezd-align-items-start">
 				<?php echo wp_get_attachment_image( get_post_thumbnail_id( $section->ID ) ); ?>
-                <a class="doc_tag_title" href="<?php echo get_the_permalink( $section->ID ); ?>">
+                <a class="doc_tag_title" href="<?php the_permalink( $section->ID ); ?>">
                     <h4 class="title ct-heading-text"> <?php echo get_the_title( $section->ID ); ?> </h4>
                     <span class="ezd-badge">
                     <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
@@ -29,7 +29,7 @@
 				<?php
 				foreach ( $doc_items as $doc_item ) : ?>
                     <li>
-                        <a class="ct-content-text" href="<?php echo get_permalink( $doc_item->ID ) ?>">
+                        <a class="ct-content-text" href="<?php the_permalink( $doc_item->ID ) ?>">
 							<?php echo wp_kses_post( $doc_item->post_title ) ?>
                         </a>
                     </li>
@@ -39,7 +39,7 @@
             </ul>
 			<?php
 			if ( ! empty( $settings['read_more'] ) ) : ?>
-                <a href="<?php echo get_permalink( $section->ID ); ?>" class="doc_border_btn">
+                <a href="<?php the_permalink( $section->ID ); ?>" class="doc_border_btn">
 					<?php echo wp_kses_post( $settings['read_more'] ) ?>
                     <i class="<?php ezd_arrow() ?>"></i>
                 </a>

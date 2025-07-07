@@ -1,10 +1,15 @@
 <?php
-
 namespace eazyDocs\Frontend;
 
 use JetBrains\PhpStorm\NoReturn;
 use WP_Query;
 
+/**
+ * Class Ajax
+ *
+ * Handles AJAX actions for various features, such as feedback submission,
+ * searching documentation, and loading single page content.
+ */
 class Ajax {
 	public function __construct() {
 		// feedback
@@ -69,8 +74,10 @@ class Ajax {
 	 * @return void
 	 */
 	function eazydocs_search_results() {
- 
-		$keyword = sanitize_text_field($_POST['keyword']);
+		// Verify nonce for security
+		check_ajax_referer('eazydocs-ajax');
+
+		$keyword = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
 
 		// Search by keyword
 		$args = [
@@ -79,9 +86,9 @@ class Ajax {
 			'post_status'     => is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'], 
 			's' 				=> $keyword, // Include keyword search
 		];
-		
+
 		$posts = new WP_Query($args);
-		
+
 		// Search by tag
 		$getTags 	= get_terms([ 'taxonomy' => 'doc_tag', 'hide_empty' => false, 'object_ids' => get_posts([ 'post_type' => 'docs', 'posts_per_page' => -1, 'fields' => 'ids', ]) ]);
 		$checkTags 	= [];
@@ -120,48 +127,55 @@ class Ajax {
 				'orderby'        => 'post__in', // Maintain order
 			]);
 		}
-		
-		// store search keyword data in wp_eazydocs_search_keywords table wordpress
-		$keyword = $_POST['keyword'] ?? '';
-		$keyword = sanitize_text_field( $keyword );
-		$keyword = trim( $keyword );
-		$keyword = strtolower( $keyword );
+
+		// Clean and prepare keyword for database storage
+		$keyword_for_db = trim(strtolower($keyword));
 
 		if ( $posts->have_posts() ):
-			// save $keyword in wp_eazydocs_search_keywords table
-			global $wpdb;
+			// Save keyword in search tables if analytics is enabled
+			if (function_exists('ezd_is_analytics_enabled') && ezd_is_analytics_enabled()) {
+				global $wpdb;
 
-			$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+				$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+				$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
 
-			// Suppress direct query warning for the insert operation
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-			$wpdb->insert(
-				$wp_eazydocs_search_keyword,
-				array(
-					'keyword' => $keyword,
-				)
-			);
+				// Check if tables exist before attempting to insert
+				$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+				$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
 
-			// Save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
-			$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+				if ($keyword_table_exists && $log_table_exists) {
+					// Insert keyword safely
+					$wpdb->insert(
+						$wp_eazydocs_search_keyword,
+						array(
+							'keyword' => $keyword_for_db,
+						),
+						array('%s')
+					);
 
-			// Suppress direct query warning for the insert operation
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-			$wpdb->insert(
-				$wp_eazydocs_search_log,
-				array(
-					'keyword_id' => $wpdb->insert_id,
-					'count'      => 1,
-					'created_at' => current_time( 'mysql' ),
-				)
-			);
+					// Get the inserted ID and insert log entry
+					$keyword_id = $wpdb->insert_id;
+					if ($keyword_id) {
+						$wpdb->insert(
+							$wp_eazydocs_search_log,
+							array(
+								'keyword_id' => $keyword_id,
+								'count'      => 1,
+								'not_found_count' => 0,
+								'created_at' => current_time('mysql'),
+							),
+							array('%d', '%d', '%d', '%s')
+						);
+					}
+				}
+			}
 
 			while ( $posts->have_posts() ) : $posts->the_post();
 				$no_thumbnail 		= ezd_get_opt('is_search_result_thumbnail') == false ? 'no-thumbnail' :  '';
 				?>
-                <div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" onclick="document.location='<?php echo get_the_permalink( get_the_ID() ); ?>'">
-                    <a href="<?php echo esc_url(get_the_permalink( get_the_ID() )) ?>" class="title">
-						
+                <div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" data-url="<?php the_permalink( get_the_ID() ); ?>">
+                    <a href="<?php the_permalink( get_the_ID() ) ?>" class="title">
+
 						<?php						
 						if ( ezd_get_opt('is_search_result_thumbnail') ) :
 							if ( has_post_thumbnail() ) :
@@ -198,33 +212,43 @@ class Ajax {
 			endwhile;
 			wp_reset_postdata();
 		else:
-			// save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
-			global $wpdb;
-			$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+			// Save keyword in search tables if analytics is enabled (for not found results)
+			if (function_exists('ezd_is_analytics_enabled') && ezd_is_analytics_enabled()) {
+				global $wpdb;
 
-			// Suppress direct query warning for the insert operation
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-			$wpdb->insert(
-				$wp_eazydocs_search_keyword,
-				array(
-					'keyword' => $keyword,
-				)
-			);
+				$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+				$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
 
-			// Save eazydocs_search_keyword id in wp_eazydocs_search_log table keyword_id and store count, created_at
-			$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+				// Check if tables exist before attempting to insert
+				$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+				$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
 
-			// Suppress direct query warning for the insert operation
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-			$wpdb->insert(
-				$wp_eazydocs_search_log,
-				array(
-					'keyword_id'      => $wpdb->insert_id,
-					'count'           => 0,
-					'not_found_count' => 1,
-					'created_at'      => current_time( 'mysql' ),
-				)
-			);
+				if ($keyword_table_exists && $log_table_exists) {
+					// Insert keyword safely
+					$wpdb->insert(
+						$wp_eazydocs_search_keyword,
+						array(
+							'keyword' => $keyword_for_db,
+						),
+						array('%s')
+					);
+
+					// Get the inserted ID and insert log entry
+					$keyword_id = $wpdb->insert_id;
+					if ($keyword_id) {
+						$wpdb->insert(
+							$wp_eazydocs_search_log,
+							array(
+								'keyword_id'      => $keyword_id,
+								'count'           => 0,
+								'not_found_count' => 1,
+								'created_at'      => current_time('mysql'),
+							),
+							array('%d', '%d', '%d', '%s')
+						);
+					}
+				}
+			}
 
 			?>
             <div>
@@ -232,6 +256,28 @@ class Ajax {
             </div>
 		<?php
 		endif;
+
+		// Add JavaScript to handle click events on search results
+		?>
+		<script>
+			// Make search result items clickable
+			document.addEventListener('DOMContentLoaded', function() {
+				var searchItems = document.querySelectorAll('.search-result-item');
+				searchItems.forEach(function(item) {
+					item.addEventListener('click', function(e) {
+						// Don't trigger if clicking on a link inside the item
+						if (e.target.tagName === 'A' || e.target.closest('a')) {
+							return;
+						}
+						var url = this.getAttribute('data-url');
+						if (url) {
+							window.location.href = url;
+						}
+					});
+				});
+			});
+		</script>
+		<?php
 		die();
 	}
 
@@ -239,14 +285,24 @@ class Ajax {
 	 * Doc single page
 	 */
 	function docs_single_content() {
-		$postid 		= intval( $_POST['postid'] );
+		// Verify nonce for security
+		check_ajax_referer('eazydocs-ajax');
+
+		$postid 		= isset($_POST['postid']) ? intval($_POST['postid']) : 0;
+
+		// Validate post ID
+		if ($postid <= 0) {
+			wp_send_json_error(array('message' => esc_html__('Invalid document ID', 'eazydocs')));
+			return;
+		}
+
 		global $post, $wp_query;
 		$wp_query 		= new \WP_Query( array( 'post_type' => 'docs', 'p' => $postid ) );
 		$modified 		= '';
 		$html 			= '';
 
 		ob_start();
-		
+
 		if ( $wp_query->have_posts() ) { 
 			while ( $wp_query->have_posts() ) {
 				$wp_query->the_post();
@@ -260,7 +316,7 @@ class Ajax {
 
 				// Instantiate Frontend from same namespace
 				new Frontend();
-				
+
 				eazydocs_get_template_part( 'single-doc-content' );
 			}
 			wp_reset_postdata();
