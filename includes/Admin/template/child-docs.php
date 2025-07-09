@@ -145,10 +145,12 @@ if ( is_array( $depth_one_parents ) ) :
             </div>
 
             <?php 
-            if ( current_user_can( 'edit_posts' ) ) : 
+            if ( current_user_can( 'edit_posts' ) ) :                
+                $parent_id   = absint( $item );
+                $nonce       = wp_create_nonce( $parent_id );
                 ?>
-                <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo admin_url('admin.php'); ?>?Create_Section=yes&_wpnonce=<?php echo wp_create_nonce( $item ); ?>&parentID=<?php echo esc_attr( $item ); ?>&is_section=">
-                    <?php esc_html_e('Add Section', 'eazydocs'); ?>
+                <button class="button button-info section-doc" id="section-doc" name="submit" data-url="<?php echo esc_url( admin_url( 'admin.php' ) . "?Create_Section=yes&_wpnonce={$nonce}&parentID={$parent_id}&is_section=" );; ?>">
+                    <?php esc_html_e( 'Add Section', 'eazydocs' ); ?>
                 </button>
                 <?php
             endif;

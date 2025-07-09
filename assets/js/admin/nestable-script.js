@@ -93,6 +93,7 @@
 			var dataString = {
 				action: 'eaz_nestable_docs',
 				data: window.JSON.stringify(list.nestable('serialize')),
+                security: eazydocs_local_object.nonce
 			};
 			$.ajax({
 				url: eazydocs_local_object.ajaxurl,
@@ -101,7 +102,9 @@
 				async: true,
 				cache: false,
 				dataType: 'json',
-				success: function (res) {},
+				success: function (res) {
+					console.log(window.JSON.stringify(list.nestable('serialize')));
+				},
 				error: function (err) {
 					console.log(err);
 				},

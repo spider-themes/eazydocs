@@ -82,10 +82,12 @@ $count = $query->found_posts;
 
                     <?php 
                      if ( ezd_is_admin_or_editor(get_the_ID(), 'delete') ) :
+                        $delete_id = get_the_ID();
+                        $nonce     = wp_create_nonce( $delete_id );
                         ?>
-                         <a href="<?php echo admin_url('admin.php?Doc_Delete=yes&_wpnonce=' . esc_attr(wp_create_nonce(get_the_ID())) . '&DeleteID=' . esc_attr(get_the_ID())); ?>" class="link delete parent-delete" title="<?php esc_attr_e('Move to Trash', 'eazydocs'); ?>">
-                             <span class="dashicons dashicons-trash"></span>
-                         </a>
+                        <a href="<?php echo esc_url( admin_url( 'admin.php' ) . '?Doc_Delete=yes&_wpnonce=' . $nonce . '&DeleteID=' . $delete_id ); ?>" class="link delete parent-delete" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
+                            <span class="dashicons dashicons-trash"></span>
+                        </a>
                         <?php 
                     endif;
 

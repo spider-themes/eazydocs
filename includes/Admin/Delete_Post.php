@@ -19,99 +19,119 @@ class Delete_Post {
 	 */
 	public function delete_doc() {
 
-		if ( isset($_GET['Doc_Delete']) && $_GET['Doc_Delete'] == 'yes' && isset($_GET['DeleteID']) && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['DeleteID']) ) {
+		// Case 1: Full Doc Delete
+		if (
+			isset( $_GET['Doc_Delete'], $_GET['DeleteID'], $_GET['_wpnonce'] )
+		) {
+			$doc_delete = sanitize_text_field( wp_unslash( $_GET['Doc_Delete'] ) );
+			$delete_id  = sanitize_text_field( wp_unslash( $_GET['DeleteID'] ) );
+			$nonce      = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
 
-			$posts                  = sanitize_text_field( $_GET['DeleteID'] );
-			$parent_id              = $posts . ',';
+			if ( $doc_delete === 'yes' && wp_verify_nonce( $nonce, $delete_id ) ) {
+				$posts     = intval( $delete_id );
+				$parent_id = $posts . ',';
 
-			/**
-			 * Section Docs
-			**/
-			$parent                 = get_children( [
-				'post_parent'       => $posts
-			] );
-			$sec_ids                = '';
-			$child_sec_ids          = '';
-			$child_ids              = '';
-			foreach ( $parent as $section ) {
-				$sec_ids            .= $section->ID . ',';
-				$sec_child           = get_children( [
-					'post_parent' => $section->ID
-				] );
-				foreach ( $sec_child as $child_sec ) {
-					$child_sec_ids    .= $child_sec->ID . ',';
+				$parent        = get_children( [ 'post_parent' => $posts ] );
+				$sec_ids       = '';
+				$child_sec_ids = '';
+				$child_ids     = '';
 
-					$child = get_children( [
-						'post_parent'  => $child_sec->ID
-					] );
-					foreach ( $child as $childs ) {
-						$child_ids     .= $childs->ID . ',';
+				foreach ( $parent as $section ) {
+					$sec_ids .= $section->ID . ',';
+
+					$sec_child = get_children( [ 'post_parent' => $section->ID ] );
+					foreach ( $sec_child as $child_sec ) {
+						$child_sec_ids .= $child_sec->ID . ',';
+
+						$child = get_children( [ 'post_parent' => $child_sec->ID ] );
+						foreach ( $child as $childs ) {
+							$child_ids .= $childs->ID . ',';
+						}
 					}
 				}
-			}
 
-			$delete_ids = $parent_id . $sec_ids . $child_sec_ids . $child_ids;
-			$doc_ids                  = explode( ',', $delete_ids );
-			$doc_ids_int              = array_map( 'intval', $doc_ids );
-			
-			if ( ezd_perform_edit_delete_actions( 'delete', $posts ) == 1 ) {
-				foreach ( $doc_ids_int as $deletes ) {
-					wp_trash_post( $deletes, true );
+				$delete_ids  = $parent_id . $sec_ids . $child_sec_ids . $child_ids;
+				$doc_ids     = explode( ',', $delete_ids );
+				$doc_ids_int = array_filter( array_map( 'intval', $doc_ids ) );
+
+				if ( ezd_perform_edit_delete_actions( 'delete', $posts ) ) {
+					foreach ( $doc_ids_int as $deletes ) {
+						if ( get_post( $deletes ) ) {
+							wp_trash_post( $deletes, true );
+						}
+					}
+					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
+					exit;
 				}
-				header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
 			}
+		}
 
-		} elseif ( isset($_GET['Section_Delete']) && $_GET['Section_Delete'] == 'yes' && isset($_GET['ID']) && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['ID']) ) {
-			
-			$posts                  = sanitize_text_field( $_GET['ID'] );
-			$parent_id              = $posts . ',';
+		// Case 2: Section Delete
+		elseif (
+			isset( $_GET['Section_Delete'], $_GET['ID'], $_GET['_wpnonce'] )
+		) {
+			$section_delete = sanitize_text_field( wp_unslash( $_GET['Section_Delete'] ) );
+			$section_id     = sanitize_text_field( wp_unslash( $_GET['ID'] ) );
+			$nonce          = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );	
 
-			/**
-			 * Section Docs
-			 **/
-			$parent                 = get_children( [
-				'post_parent'       => $posts
-			] );
-			$sec_ids                = '';
-			$child_sec_ids          = '';
-			$child_ids              = '';
-			foreach ( $parent as $section ) {
-				$sec_ids            .= $section->ID . ',';
-				$sec_child           = get_children( [
-					'post_parent' => $section->ID
-				] );
-				foreach ( $sec_child as $child_sec ) {
-					$child_sec_ids    .= $child_sec->ID . ',';
+			if ( $section_delete === 'yes' && wp_verify_nonce( $nonce, $section_id ) ) {
+				$posts     = intval( $section_id );
+				$parent_id = $posts . ',';
 
-					$child = get_children( [
-						'post_parent'  => $child_sec->ID
-					] );
-					foreach ( $child as $childs ) {
-						$child_ids     .= $childs->ID . ',';
+				$parent        = get_children( [ 'post_parent' => $posts ] );
+				$sec_ids       = '';
+				$child_sec_ids = '';
+				$child_ids     = '';
+
+				foreach ( $parent as $section ) {
+					$sec_ids .= $section->ID . ',';
+
+					$sec_child = get_children( [ 'post_parent' => $section->ID ] );
+					foreach ( $sec_child as $child_sec ) {
+						$child_sec_ids .= $child_sec->ID . ',';
+
+						$child = get_children( [ 'post_parent' => $child_sec->ID ] );
+						foreach ( $child as $childs ) {
+							$child_ids .= $childs->ID . ',';
+						}
 					}
 				}
+				
+				$delete_ids  = $parent_id . $sec_ids . $child_sec_ids . $child_ids;
+				$doc_ids     = explode( ',', $delete_ids );
+				$doc_ids_int = array_filter( array_map( 'intval', $doc_ids ) );
+				
+				if ( ezd_perform_edit_delete_actions( 'delete', $posts ) ) { 
+					foreach ( $doc_ids_int as $deletes ) {
+						if ( get_post( $deletes ) ) {
+							wp_trash_post( $deletes, true );
+						}
+					}
+					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
+					exit;
+				}
 			}
+		}
 
-			$delete_ids = $parent_id . $sec_ids . $child_sec_ids . $child_ids;
-			$doc_ids                  = explode( ',', $delete_ids );
-			$doc_ids_int              = array_map( 'intval', $doc_ids );
+		// Case 3: Last Child Delete
+		elseif (
+			isset( $_GET['Last_Child_Delete'], $_GET['ID'], $_GET['_wpnonce'] )
+		) {
+			$last_child_delete = sanitize_text_field( wp_unslash( $_GET['Last_Child_Delete'] ) );
+			$child_id          = sanitize_text_field( wp_unslash( $_GET['ID'] ) );
+			$nonce             = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
 
-			if ( ezd_perform_edit_delete_actions( 'delete', $posts ) == 1 ) {
-				foreach ( $doc_ids_int as $deletes ) {
-					wp_trash_post( $deletes, true );
-				}				
-				header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
+			if ( $last_child_delete === 'yes' && wp_verify_nonce( $nonce, $child_id ) ) {
+				$last_doc_id = intval( $child_id );
+
+				if ( ezd_perform_edit_delete_actions( 'delete', $last_doc_id ) ) {
+					if ( get_post( $last_doc_id ) ) {
+						wp_trash_post( $last_doc_id, true );
+					}
+					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
+					exit;
+				}
 			}
-
-		} elseif ( isset($_GET['Last_Child_Delete']) && $_GET['Last_Child_Delete'] == 'yes' && isset($_GET['ID']) && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], $_GET['ID']) ) {
-
-			$last_doc_id = sanitize_text_field( $_GET['ID'] );
-
-			if ( ezd_perform_edit_delete_actions( 'delete', $last_doc_id ) == 1 ) {
-				wp_trash_post( $last_doc_id, true );
-				header( "Location:" . admin_url( 'admin.php?page=eazydocs' ) );
-			}
-
 		}
 	}
 }

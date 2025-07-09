@@ -323,47 +323,33 @@ class Frontend {
 	 **/
 	public function prev_next_docs( $current_post_id ) {
 		$current_parent_id  = wp_get_post_parent_id( $current_post_id );
-
-		global $post, $wpdb;
-		$next_query = "SELECT ID FROM {$wpdb->posts}
-        WHERE post_parent = {$post->post_parent} and post_type = 'docs' and post_status = 'publish' and menu_order > {$post->menu_order}
-        ORDER BY menu_order ASC
-        LIMIT 0, 1";
-
-		$prev_query = "SELECT ID FROM {$wpdb->posts}
-        WHERE post_parent = {$post->post_parent} and post_type = 'docs' and post_status = 'publish' and menu_order < {$post->menu_order}
-        ORDER BY menu_order DESC
-        LIMIT 0, 1";
-
-		$next_post_id = (int) $wpdb->get_var( $next_query );
-		$prev_post_id = (int) $wpdb->get_var( $prev_query );
-
-        // If the queries return null or empty, ensure these variables are still defined.
-		$next_post_id = $next_post_id ? $next_post_id : 0;
-		$prev_post_id = $prev_post_id ? $prev_post_id : 0;
+		$parent_id 			= eaz_get_nestable_parent_id( $current_post_id ); // your parent post ID
+		$all_descendant_ids = ezd_get_all_descendant_ids( $parent_id, 'docs', 'publish' );
+		$prev_next 			= ezd_get_prev_next_from_array( $all_descendant_ids, $current_post_id );
+		$prev_post_id       = $prev_next['prev'] ?? 0;
+		$next_post_id       = $prev_next['next'] ?? 0;
 		?>
-        <div class="eazydocs-next-prev-wrap">
+		<div class="eazydocs-next-prev-wrap">
 			<?php
 			if ( $prev_post_id != 0 ) :
 				?>
-                <a class="next-prev-pager first" href="<?php the_permalink( $prev_post_id ); ?>">
-                    <span> <?php echo esc_html(get_the_title( $current_parent_id )); esc_html_e( ' - Previous', 'eazydocs' ); ?> </span>
+				<a class="next-prev-pager first" href="<?php the_permalink( $prev_post_id ); ?>">
+					<span> <?php echo esc_html(get_the_title( $current_parent_id )); esc_html_e( ' - Previous', 'eazydocs' ); ?> </span>
 					<?php echo esc_html(get_the_title( $prev_post_id )); ?>
-                </a>
-			    <?php
+				</a>
+				<?php
 			endif;
 
 			if ( $next_post_id != 0 ) :
 				?>
-                <a class="next-prev-pager second" href="<?php echo esc_url(get_permalink( $next_post_id )); ?>">
-                    <span> <?php esc_html_e( 'Next - ', 'eazydocs' ); echo esc_html(get_the_title( $current_parent_id )); ?> </span>
+				<a class="next-prev-pager second" href="<?php echo esc_url(get_permalink( $next_post_id )); ?>">
+					<span> <?php esc_html_e( 'Next - ', 'eazydocs' ); echo esc_html(get_the_title( $current_parent_id )); ?> </span>
 					<?php echo esc_html(get_the_title( $next_post_id )); ?>
-                </a>
-			<?php
+				</a>
+				<?php
 			endif;
 			?>
-        </div>
+		</div>
 		<?php
-
 	}
 }

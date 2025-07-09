@@ -286,53 +286,62 @@ class Admin {
 	 ** Nestable Callback function
 	 **/
 	public function nestable_callback() {
-		$nestedArray = json_decode( stripslashes( $_POST['data'] ) );
-		$i           = 0;
-		$c           = 0;
-		$c_of        = 0;
-		$f_of        = 0;
+		check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
+
+		if ( ! isset( $_POST['data'] ) ) {
+			wp_send_json_error( [ 'message' => 'Missing data parameter.' ] );
+		}
+
+		$raw_data = stripslashes( $_POST['data'] ); // Keep stripslashes since you're using it in JS
+		$nestedArray = json_decode( $raw_data );
+
+		if ( ! is_array( $nestedArray ) ) {
+			wp_send_json_error( [ 'message' => 'Invalid data format.' ] );
+		}
+
+		$nestedArray = ezd_sanitize_nested_objects( $nestedArray ); // ✅ sanitize all IDs
+
+		$i    = 0;
+		$c    = 0;
+		$c_of = 0;
+		$f_of = 0;
+
 		foreach ( $nestedArray as $value ) {
-			$i ++;
+			$i++;
 			wp_update_post( [
 				'ID'          => $value->id,
 				'menu_order'  => $i,
 				'post_parent' => eaz_get_nestable_parent_id( $value->id )
-			], true );
+			] );
 
 			if ( is_array( $value->children ) ) {
 				foreach ( $value->children as $child ) {
-					$c ++;
+					$c++;
 					wp_update_post( [
 						'ID'          => $child->id,
 						'menu_order'  => $c,
 						'post_parent' => $value->id
-					], true );
+					] );
+
 					if ( is_array( $child->children ) ) {
 						foreach ( $child->children as $of_child ) {
-							$c_of ++;
-							wp_update_post(
-								[
-									'ID'          => $of_child->id,
-									'menu_order'  => $c_of,
-									'post_parent' => $child->id
-								],
-								true
-							);
+							$c_of++;
+							wp_update_post( [
+								'ID'          => $of_child->id,
+								'menu_order'  => $c_of,
+								'post_parent' => $child->id
+							] );
 
 							if ( is_array( $of_child->children ) ) {
 								foreach ( $of_child->children as $fourth_child ) {
-									$f_of ++;
-									wp_update_post(
-										[
-											'ID'          => $fourth_child->id,
-											'menu_order'  => $f_of,
-											'post_parent' => $of_child->id
-										],
-										true
-									);
+									$f_of++;
+									wp_update_post( [
+										'ID'          => $fourth_child->id,
+										'menu_order'  => $f_of,
+										'post_parent' => $of_child->id
+									] );
 								}
 							}
-
 						}
 					}
 				}
@@ -341,6 +350,7 @@ class Admin {
 
 		wp_send_json_success( $nestedArray );
 	}
+
 
 	public function parent_nestable_callback() {
 		$nestedArray = json_decode( stripslashes( $_POST['data'] ) );

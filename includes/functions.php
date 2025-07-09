@@ -199,17 +199,20 @@ function eazydocs_get_template( $template_name, $args = [] ) {
  * Estimated reading time
  **/
 function ezd_reading_time() {
-	$content     = get_post_field( 'post_content', get_the_ID() );
-	$word_count  = str_word_count( strip_tags( $content ) );
-	$readingtime = ceil( $word_count / 200 );
-	if ( $readingtime == 1 ) {
-		$timer = esc_html__( " minute", 'eazydocs' );
-	} else {
-		$timer = esc_html__( " minutes", 'eazydocs' );
-	}
-	$totalreadingtime = $readingtime . $timer;
-	echo esc_html( $totalreadingtime );
+    $content     = get_post_field( 'post_content', get_the_ID() );
+    $word_count  = str_word_count( wp_strip_all_tags( $content ) );
+    $readingtime = ceil( $word_count / 200 );
+
+    if ( $readingtime == 1 ) {
+        $timer = esc_html__( " minute", 'eazydocs' );
+    } else {
+        $timer = esc_html__( " minutes", 'eazydocs' );
+    }
+
+    $totalreadingtime = $readingtime . $timer;
+    echo esc_html( $totalreadingtime );
 }
+
 
 /**
  * @param string $args
@@ -1881,4 +1884,89 @@ function ezd_docs_slug() {
 	}
 
 	return '';
+}
+
+/**
+ * Sanitize nested objects for use in the admin panel
+ *
+ * @param array $items Array of items to sanitize.
+ * @return array Sanitized array of items.
+ */
+function ezd_sanitize_nested_objects( $items ) {
+	$sanitized = [];
+
+	foreach ( $items as $item ) {
+		if ( ! isset( $item->id ) ) {
+			continue;
+		}
+
+		$sanitized_item = (object) [
+			'id' => intval( $item->id )
+		];
+
+		if ( isset( $item->children ) && is_array( $item->children ) ) {
+			$sanitized_item->children = ezd_sanitize_nested_objects( $item->children );
+		}
+
+		$sanitized[] = $sanitized_item;
+	}
+
+	return $sanitized;
+}
+
+
+/**
+ * Get all descendant IDs by a parent ID
+ *
+ * @param int    $parent_id   The parent post ID.
+ * @param string $post_type   The post type to query (default: 'docs').
+ * @param string $post_status The post status to query (default: 'publish').
+ *
+ * @return array An array of all descendant post IDs.
+ */
+function ezd_get_all_descendant_ids( $parent_id, $post_type = 'docs', $post_status = 'publish' ) {
+    global $wpdb;
+
+    $all_ids = [];
+
+    // Get immediate children IDs
+    $children = $wpdb->get_col( $wpdb->prepare(
+        "SELECT ID FROM {$wpdb->posts} WHERE post_parent = %d AND post_type = %s AND post_status = %s",
+        $parent_id,
+        $post_type,
+        $post_status
+    ));
+
+    if ( ! empty( $children ) ) {
+        foreach ( $children as $child_id ) {
+            // Add this child ID
+            $all_ids[] = $child_id;
+            // Recursively get grandchildren and deeper descendants
+            $descendants = ezd_get_all_descendant_ids( $child_id, $post_type, $post_status );
+            if ( ! empty( $descendants ) ) {
+                $all_ids = array_merge( $all_ids, $descendants );
+            }
+        }
+    }
+
+    return $all_ids;
+}
+
+/**
+ * Get previous and next IDs from an array of IDs
+ *
+ * @param array $all_ids
+ * @param int $current_id
+ *
+ * @return array
+ */
+function ezd_get_prev_next_from_array( $all_ids, $current_id ) {
+    $index = array_search( $current_id, $all_ids );
+    if ( $index === false ) {
+        return ['prev' => 0, 'next' => 0]; // current id not found
+    }
+    $prev = ( $index > 0 ) ? $all_ids[ $index - 1 ] : 0;
+    $next = ( $index < count( $all_ids ) - 1 ) ? $all_ids[ $index + 1 ] : 0;
+
+    return ['prev' => $prev, 'next' => $next];
 }

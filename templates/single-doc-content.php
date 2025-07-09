@@ -98,7 +98,7 @@ endif;
 					?>
 					<p class="doc-excerpt ezd-alert ezd-alert-info">
 						<strong><?php echo esc_html(ezd_get_opt( 'excerpt_label', 'Summary' ));; ?></strong>
-						<?php echo get_the_excerpt(); ?>
+						<?php echo wp_kses_post( get_the_excerpt() ); ?>
 					</p>
 					<?php
 				}

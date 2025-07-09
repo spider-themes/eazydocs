@@ -6,7 +6,7 @@
  */
 function eazydocs_get_search_count() {
 	$count = get_post_meta( get_the_ID(), 'search_count_count', true );
-	return "$count ".esc_html__( 'search count', 'eazydocs' );
+	return "$count " . __( 'search count', 'eazydocs' );
 }
 
 /**
@@ -31,6 +31,6 @@ add_filter( 'manage_doc_posts_columns', function () {
 
 add_action( 'manage_doc_posts_custom_column', function ( $column ) {
     if ( $column === 'search_count') {
-        echo eazydocs_get_search_count();
+        echo esc_html( eazydocs_get_search_count() );
     }
 });

@@ -84,7 +84,7 @@ function ezd_offer_notice() {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: 'action=ezd_dismiss_offer_notice&nonce=<?php echo wp_create_nonce( "ezd-dismiss-notice" ); ?>'
+                    body: 'action=ezd_dismiss_offer_notice&nonce=<?php echo esc_js( wp_create_nonce( "ezd-dismiss-notice" ) ); ?>'
                 }).then(response => response.json()).then(data => {
                     if (!data.success) {
                         console.error('Error dismissing the notice:', data.message);

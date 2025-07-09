@@ -145,12 +145,12 @@ class Ajax {
 
 				if ($keyword_table_exists && $log_table_exists) {
 					// Insert keyword safely
-					$wpdb->insert(
+					$wpdb->insert( 
 						$wp_eazydocs_search_keyword,
 						array(
 							'keyword' => $keyword_for_db,
 						),
-						array('%s')
+						array('%s') 
 					);
 
 					// Get the inserted ID and insert log entry

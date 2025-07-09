@@ -55,9 +55,9 @@ if ( ezd_is_premium() ) {
                 <div class="ezd-col-width">
                     <div class="categories_guide_item <?php echo esc_attr( $private_bg . $protected_bg ); ?> wow fadeInUp" <?php echo wp_kses_post($private_bg_op); ?>>
 						<?php
-						if ( get_post_status() == 'private' ) {
-							$pd_txt = esc_attr__( 'Private Doc', 'eazydocs' );
-							echo '<div class="private" title="' . $pd_txt . '"><i class="icon_lock"></i></div>';
+						if ( get_post_status() === 'private' ) {
+							$pd_txt = __( 'Private Doc', 'eazydocs' );
+							echo '<div class="private" title="' . esc_attr( $pd_txt ) . '"><i class="icon_lock"></i></div>';
 						}
 
 						if ( ! empty( $post->post_password ) ) :
