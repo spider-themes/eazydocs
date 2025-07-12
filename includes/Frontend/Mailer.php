@@ -12,11 +12,11 @@
 
         if ( isset( $_POST['email'] ) ) {
 			$admin_email    	= ezd_get_opt( 'feedback-admin-email', get_option('admin_email') );
-			$author  			= ! empty ( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
-			$subject 			= ! empty ( $_POST['subject'] ) ? sanitize_text_field( $_POST['subject'] ) : '';
-			$feedback_subject 	= ! empty ( $_POST['subject'] ) ? sanitize_text_field( $_POST['subject'] ) : '';
-			$email   			= ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
-			$message 			= ! empty ( $_POST['message'] ) ? sanitize_text_field( $_POST['message'] ) : '';
+			$author  			= ! empty ( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+			$subject 			= ! empty ( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
+			$feedback_subject 	= ! empty ( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
+			$email   			= ! empty ( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+			$message 			= ! empty ( $_POST['message'] ) ? sanitize_text_field( wp_unslash( $_POST['message'] ) ) : '';
 			$doc_id  			= ! empty ( $_POST['doc_id'] ) ? intval( $_POST['doc_id'] ) : 0;
 
 			if ( ! is_user_logged_in() ) {
@@ -100,6 +100,6 @@
 				}
 				
 			}
-			wp_die();
+			wp_send_json_success( __( 'Your feedback has been submitted successfully.', 'eazydocs' ) );
 		}
 	}
