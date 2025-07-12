@@ -32,6 +32,10 @@ CSF::createOptions( $prefix, array(
 	'menu_capability' 	 => $menu_capability,
 	'menu_parent'        => 'eazydocs',
 	'show_in_customizer' => ezd_get_opt( 'customizer_visibility' ),
+
+	// Disable Font Awesome loading
+	'enqueue_webfont' 	 => false,
+	'async_webfont' 	 => false
 ) );
 
 /**

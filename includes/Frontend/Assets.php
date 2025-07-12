@@ -16,7 +16,6 @@ class Assets {
 	public static function enqueue_scripts() {
 		
 		wp_enqueue_script( 'jquery' );
-		wp_register_style( 'font-awesome-5', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css' );
 
 		// Register
 		wp_register_script( 'mixitup', EAZYDOCS_VEND.'/mixitup/mixitup.min.js', array( 'jquery' ), '2.1.11', true );

@@ -529,6 +529,12 @@
 .accordion-title ul.actions .duplicate {
   order: 1;
 }
+.accordion-title ul.actions .duplicate .duplicate-title {
+  display: none;
+}
+.accordion-title ul.actions .visibility .visibility-title {
+  display: none;
+}
 .accordion-title ul.actions .delete {
   order: 2;
 }
@@ -1700,10 +1706,11 @@ button.nestable--button.nestable--expand {
 .ezd-admin-bulk-options .ezd-admin-bulk-actions {
   position: absolute;
   right: -8px;
+  top: 33px;
   display: none;
   z-index: 5;
   background-color: rgb(42, 43, 70);
-  padding-top: 15px;
+  padding-top: 5px;
   min-width: 35px;
   padding-left: 7px;
   padding-right: 7px;

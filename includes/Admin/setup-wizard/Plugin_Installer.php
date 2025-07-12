@@ -10,8 +10,8 @@ add_action( 'wp_ajax_ezd_plugin_action', function () {
 		wp_send_json_error( [ 'message' => esc_html__( 'Permission denied.', 'eazydocs' ) ] );
 	}
 
-	$plugin_slug = sanitize_text_field( $_POST['plugin'] );
-	$task        = sanitize_text_field( $_POST['task'] );
+	$plugin_slug = isset( $_POST['plugin'] ) ? sanitize_text_field( wp_unslash( $_POST['plugin'] ) ) : '';
+	$task        = isset( $_POST['task'] ) ? sanitize_text_field( wp_unslash( $_POST['task'] ) ) : '';
 
 	if ( ! $plugin_slug || ! $task ) {
 		wp_send_json_error( [ 'message' => esc_html__( 'Invalid request.', 'eazydocs' ) ] );

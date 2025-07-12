@@ -115,8 +115,8 @@ function ezd_notify_give_review() {
  **/
 function ezd_notify_save_review() {
 	if ( isset( $_POST ) ) {
-		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : null;
-		$field = isset( $_POST['field'] ) ? sanitize_text_field( $_POST['field'] ) : null;
+		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : null;
+		$field = isset( $_POST['field'] ) ? sanitize_text_field( wp_unslash( $_POST['field'] ) ) : null;
 
 		if ( ! wp_verify_nonce( $nonce, 'eazydocs-admin-nonce' ) ) {
 			wp_send_json_error( array( 'status' => 'Wrong nonce validate!' ) );

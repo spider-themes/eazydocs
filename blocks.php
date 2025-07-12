@@ -17,6 +17,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
     public function __construct() {
         // block initialization
         add_action( 'init', [ $this, 'blocks_init' ] );
+        add_action( 'current_screen', [ $this, 'register_toolbar_block' ] );
 
         //add_action( 'enqueue_block_assets', [ $this, 'editor_scripts' ] );
 
@@ -50,20 +51,26 @@ final class EAZYDOCS_BLOCKS_CLASS {
      * Blocks Initialization
      */
     public function blocks_init() {
-
-        // register single blocks
+        // Always registered
         $this->register_block( 'shortcode' );
-
-        $post_id = isset( $_GET['post'] ) ? sanitize_text_field( $_GET['post'] ) : 0;        
-        if ( get_post_type( $post_id ) === 'docs' && ezd_unlock_themes() ) {
-            $this->register_block( 'eazydocs-toolbar' );
-        }
 
         $this->register_block( 'search-banner', array(
             'render_callback' => [ $this, 'search_banner_block_render' ]
         ));
     }
 
+    /**
+     * Register Toolbar Block
+     */
+    public function register_toolbar_block( $screen ) {
+        if ( isset( $screen->post_type ) && $screen->post_type === 'docs' && $screen->base === 'post' && ezd_unlock_themes() ) {
+            $this->register_block( 'eazydocs-toolbar' );
+        }
+    }
+
+    /**
+     * Enqueue editor scripts
+     */
     function search_banner_block_render( $attributes ) {
 	    wp_register_style( 'ezd-search-block', EAZYDOCS_URL.'/build/search-banner/style-index.css' );
         return require_once __DIR__ . '/includes/block-templates/search-banner.php';

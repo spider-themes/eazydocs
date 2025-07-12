@@ -194,6 +194,15 @@
 
     .duplicate {
       order: 1;
+      .duplicate-title{
+        display: none;
+      }
+    }
+    
+    .visibility {
+      .visibility-title {
+        display: none;
+      }
     }
 
     .delete {

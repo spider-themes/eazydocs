@@ -1,6 +1,6 @@
 
 <?php
-wp_enqueue_style('font-awesome-5');
+wp_enqueue_style( 'elegant-icon' );
 $args = array(
     'post_type'     => 'docs',
     'post_parent'   => get_the_ID(),
@@ -25,7 +25,7 @@ if ( isset( $_GET['add_new_doc'] ) && $_GET['add_new_doc'] == 'yes' ) {
     <div class="ezd_doc_login_form">
         <div class="ezd-login-head">
             <div class="ezd-login-head-icon">
-                <i class="fa fa-info-circle"></i>
+                <i class="icon_info_alt"></i>
             </div>
             <?php echo esc_html($login_title); ?>
         </div>

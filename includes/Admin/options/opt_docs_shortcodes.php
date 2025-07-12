@@ -13,8 +13,8 @@ CSF::createSection( $prefix, array(
 			'id'         => 'eazydocs_docs_shortcode',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Docs archive', 'eazydocs' ),
-			/* translators: %1$s: opening HTML anchor tag, %2$s: closing HTML anchor tag */
 			'subtitle' => sprintf(
+				// translators: %1$s: opening HTML anchor tag, %2$s: closing HTML anchor tag
 				__( 'Use this shortcode to display the Docs. Learn more about the shortcode and the attributes %1$s here %2$s.', 'eazydocs' ),
 				'<a href="https://tinyurl.com/24zm4oj3" target="_blank">',
 				'</a>'

@@ -98,8 +98,8 @@ $count = $query->found_posts;
                             <span class="ezd-admin-bulk-actions">
                                 <?php
                                 if ( ezd_is_premium() ) :
-                                    do_action('eazydocs_parent_doc_duplicate', get_the_ID());
-                                    do_action('eazydocs_doc_visibility', get_the_ID());
+                                    do_action('eazydocs_duplicate', get_the_ID());
+                                    do_action('eazydocs_visibility', get_the_ID());
 
                                     $left_type      = get_post_meta(get_the_ID(), 'ezd_doc_left_sidebar_type', true);
                                     $left_type      = '&left_type=' . $left_type;

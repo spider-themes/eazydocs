@@ -8,6 +8,8 @@
 	 */
 	function eazydocs_feedback_email() {
 
+		check_ajax_referer( 'eazydocs-ajax', 'security' );
+
         if ( isset( $_POST['email'] ) ) {
 			$admin_email    	= ezd_get_opt( 'feedback-admin-email', get_option('admin_email') );
 			$author  			= ! empty ( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';

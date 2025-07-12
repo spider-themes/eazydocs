@@ -156,6 +156,7 @@
 						subject: subject,
 						doc_id: doc_id,
 						message: message,
+						security: eazydocs_local_object.nonce,
 					},
 					beforeSend: function () {
 						$('.eazydocs-form-result').html(

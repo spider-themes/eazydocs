@@ -29,15 +29,23 @@ function ezd_child_docs_progress_bar( $post_id ) {
      $positive = (int) get_post_meta( $post_id, 'positive', true );
      $negative = (int) get_post_meta( $post_id, 'negative', true );
 
-	// translators: %d: number of positive votes, used to show the singular/plural form based on vote count
-	$positive_title = $positive
-		? sprintf( _n( '%d Positive vote, ', '%d Positive votes and ', $positive, 'eazydocs' ), number_format_i18n( $positive ) )
-		: esc_html__( 'No Positive votes, ', 'eazydocs' );
+	if ( $positive ) {
+        $positive_format = '';
+        // translators: %d is the number of positive votes
+        $positive_format = _n( '%d Positive vote, ', '%d Positive votes and ', $positive, 'eazydocs' );
+        $positive_title = sprintf( $positive_format, number_format_i18n( $positive ) );
+    } else {
+        $positive_title = esc_html__( 'No Positive votes, ', 'eazydocs' );
+    }
 
-	// translators: %d: number of negative votes, used to show the singular/plural form based on vote count
-	$negative_title = $negative
-		? sprintf( _n( '%d Negative vote found.', '%d Negative votes found.', $negative, 'eazydocs' ), number_format_i18n( $negative ) )
-		: esc_html__( 'No Negative votes.', 'eazydocs' );
+    if ( $negative ) {
+        $negative_format = '';
+        // translators: %d is the number of negative votes
+        $negative_format = _n( '%d Negative vote found.', '%d Negative votes found.', $negative, 'eazydocs' );
+        $negative_title = sprintf( $negative_format, number_format_i18n( $negative ) );
+    } else {
+        $negative_title = esc_html__( 'No Negative votes.', 'eazydocs' );
+    }
 
      $sum_votes = $positive + $negative;
 
@@ -92,7 +100,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
              <?php if (ezd_is_admin_or_editor($doc_item, 'edit')) : ?>
                  <?php if (ezd_is_premium()) : ?>
                      <li class="duplicate">
-                         <?php do_action('eazydocs_section_doc_duplicate', $doc_item, $item); ?>
+                         <?php do_action('eazydocs_duplicate', $doc_item, $item); ?>
                      </li>
                  <?php else : ?>
                      <li class="duplicate">
@@ -115,7 +123,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
                  if ( ezd_is_premium() && current_user_can( 'manage_options' ) ) :                    
                     ?>
                     <li class="visibility">
-                        <?php do_action( 'eazydocs_doc_visibility_depth_one', $doc_item ); ?>
+                        <?php do_action( 'eazydocs_visibility', $doc_item ); ?>
                     </li>
                     <?php
                  endif;

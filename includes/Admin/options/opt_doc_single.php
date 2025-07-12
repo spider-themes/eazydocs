@@ -1082,15 +1082,15 @@ CSF::createSection( $prefix, array(
             'default'   => array(
                 array(
                     'title' => esc_html__('Windows', 'eazydocs'),
-                    'icon' => 'fab fa-windows',
+                    'icon' => 'icon_desktop',
                 ),
                 array(
                     'title' => esc_html__('iOs', 'eazydocs'),
-                    'icon' => 'fab fa-apple',
+                    'icon' => 'icon_easel_alt',
                 ),
                 array(
                     'title' => esc_html__('Linux', 'eazydocs'),
-                    'icon' => 'fab fa-linux',
+                    'icon' => 'icon_laptop',
                 ),
             ),
             'button_title'     => esc_html__( 'Add New', 'eazydocs' ),

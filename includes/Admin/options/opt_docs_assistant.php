@@ -422,8 +422,13 @@ function generate_embed_code_box() {
     }
 
     $code  = '<div class="eazydocs-cross-domain-code">' . "\n";
+
+	$code .= '   <!-- Embed Assistant Styles -->' . "\n";
+	// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
 	$code .= '   <link rel="stylesheet" href="' . esc_url( $site_url ) . '/wp-content/plugins/eazydocs-pro/assets/css/embed-assistant.css" media="all">' . "\n";
+	// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
 	$code .= '   <script src="' . esc_url( $site_url ) . '/wp-content/plugins/eazydocs-pro/assets/js/embed-assistant.js"></script>' . "\n";
+
 	$code .= '   <div class="chat-toggle" ' . ( $chat_toggle_style ? 'style="' . esc_attr( $chat_toggle_style ) . '"' : '' ) . '>' . "\n";
 	$code .= '      <img class="wp-spotlight-chat" src="' . esc_url( $open_icon_url ) . '" alt="' . esc_attr__( 'Chat Icon', 'eazydocs' ) . '">' . "\n";
 	$code .= '      <img class="wp-spotlight-hide" src="' . esc_url( $close_icon_url ) . '" alt="' . esc_attr__( 'Close Icon', 'eazydocs' ) . '" style="display: none;">' . "\n";

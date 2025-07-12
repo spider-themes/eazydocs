@@ -102,9 +102,7 @@
 				async: true,
 				cache: false,
 				dataType: 'json',
-				success: function (res) {
-					console.log(window.JSON.stringify(list.nestable('serialize')));
-				},
+				success: function (res) {},
 				error: function (err) {
 					console.log(err);
 				},
