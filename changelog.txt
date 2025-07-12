@@ -1,5 +1,17 @@
 == Changelog ==
 
+= 2.6.8 (12 July 2025) =
+New: Dashboard Menu Title option added in the EazyDocs Settings > General page
+New: Added a new button to see onePage Fullscreen layout demo
+fixed: Docs edit issue resolved
+Fixed: Translation issues
+Fixed: Security issues fixed
+Fixed: Resolved some issues of Assistant fields
+Tweaked: Admin Doc sidebar width flexibility improved
+Tweaked: Make the string translation safe and secure
+Tweaked: Improved View OnePage demo button
+Updated: Language files updated
+
 = 2.6.7 (18 June 2025) =
 Fixed: Accordion reorder issue at depth-4 resolved
 Tweaked: Improved the Full width container in mobile devices
