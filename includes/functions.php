@@ -11,7 +11,7 @@
 function ezd_get_opt( $option, $default = '' ) {
 	$options = get_option( 'eazydocs_settings' );
 
-	if ( ! empty( $options[ $option ] ) ) {
+	if ( isset( $options[ $option ] ) ) {
 		return $options[ $option ];
 	}
 
