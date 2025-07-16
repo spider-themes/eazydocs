@@ -29,7 +29,7 @@ class Ajax {
 	 * @return void
 	 */
 	public function handle_feedback() {
-		check_ajax_referer( 'eazydocs-ajax' );
+		check_ajax_referer( 'eazydocs-ajax', 'security' );
 
 		$template = '<div class="eazydocs-alert alert-%s">%s</div>';
 		$previous = isset( $_COOKIE['eazydocs_response'] ) ? explode( ',', htmlspecialchars( $_COOKIE['eazydocs_response'] ) ) : [];
@@ -75,7 +75,7 @@ class Ajax {
 	 */
 	function eazydocs_search_results() {
 		// Verify nonce for security
-		check_ajax_referer('eazydocs-ajax');
+		check_ajax_referer('eazydocs-ajax', 'security');
 
 		$keyword = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
 
@@ -286,7 +286,7 @@ class Ajax {
 	 */
 	function docs_single_content() {
 		// Verify nonce for security
-		check_ajax_referer('eazydocs-ajax');
+		check_ajax_referer('eazydocs-ajax', 'security');
 
 		$postid 		= isset($_POST['postid']) ? intval($_POST['postid']) : 0;
 

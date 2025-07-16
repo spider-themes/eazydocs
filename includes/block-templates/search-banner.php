@@ -73,7 +73,7 @@ ob_start();
             jQuery.ajax({
                 url: eazydocs_local_object.ajaxurl,
                 type: 'post',
-                data: { action: 'eazydocs_search_results', keyword: keyword },
+                data: { action: 'eazydocs_search_results', keyword: keyword, security: eazydocs_local_object.nonce },
                 beforeSend: function () {
                     jQuery(".spinner-border").show();
                 },
@@ -119,7 +119,7 @@ ob_start();
             jQuery.ajax({
                 url: eazydocs_local_object.ajaxurl,
                 type: 'post',
-                data: {action: 'eazydocs_search_results', keyword: keyword},
+                data: {action: 'eazydocs_search_results', keyword: keyword, security: eazydocs_local_object.nonce },
                 beforeSend: function () {
                     jQuery(".spinner-border").show();
                 },

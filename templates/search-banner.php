@@ -74,7 +74,8 @@ function ezSearchResults() {
             type: 'post',
             data: {
                 action: 'eazydocs_search_results',
-                keyword: keyword
+                keyword: keyword,
+                security: eazydocs_local_object.nonce 
             },
             beforeSend: function() {
                 jQuery(".spinner-border").show();
@@ -123,7 +124,8 @@ jQuery('#ezd_searchInput').keyup(
                 type: 'post',
                 data: {
                     action: 'eazydocs_search_results',
-                    keyword: keyword
+                    keyword: keyword,
+                    security: eazydocs_local_object.nonce 
                 },
                 beforeSend: function() {
                     jQuery(".spinner-border").show();

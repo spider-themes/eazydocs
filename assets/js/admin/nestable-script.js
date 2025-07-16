@@ -135,6 +135,7 @@
 			var dataString = {
 				action: 'eaz_parent_nestable_docs',
 				data: window.JSON.stringify(list.nestable('serialize')),
+				security: eazydocs_local_object.nonce
 			};
 			console.log(dataString);
 			$.ajax({

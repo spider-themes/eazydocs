@@ -25,6 +25,7 @@
                     data: {
                         action: 'docs_single_content',
                         postid: postid,
+                        security: eazydocs_local_object.nonce,
                     },
                     beforeSend: function () {
                         $('#reading-progress-fill').css({

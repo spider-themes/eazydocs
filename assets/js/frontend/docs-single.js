@@ -215,7 +215,7 @@
 					action: 'eazydocs_handle_feedback',
 					post_id: self.data('id'),
 					type: self.data('type'),
-					_wpnonce: eazydocs_local_object.nonce,
+					security: eazydocs_local_object.nonce,
 				},
 				beforeSend: function () {
 					$('.eazydocs-feedback-wrap .vote-link-wrap').html(

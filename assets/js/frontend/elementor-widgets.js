@@ -30,6 +30,7 @@
 						data: {
 							action: 'eazydocs_search_results',
 							keyword: keyword,
+							security: eazydocs_local_object.nonce,
 						},
 						beforeSend: function () {
 							$('.spinner').css('display', 'block');

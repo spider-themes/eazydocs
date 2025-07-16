@@ -13,6 +13,7 @@ CSF::createSection( $prefix, array(
 			'type'     => 'text',
 			'title'    => esc_html__( 'Dashboard Menu Title', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Change the Documentation menu title in WordPress dashboard', 'eazydocs' ),
+			'default'  => esc_html__( 'EazyDocs', 'eazydocs' ),
 		),
 
 		array(
