@@ -66,7 +66,7 @@ if ( $docs ) :
 								<?php endif;
 								if ( $show_topic == true ) : ?>
                                     <span class="ezd-badge">
-                                        <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
+                                        <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : '0'; ?>
                                         <?php echo esc_html( $topic_label ); ?>
                                     </span>
 								<?php endif; ?>
