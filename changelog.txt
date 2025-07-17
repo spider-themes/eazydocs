@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 2.6.9 (17 July 2025) =
+Fixed: Settings issue resolved
+Fixed: Resolved admin menu title for EazyDocs via CSF field
+Updated: EazyDocs shortcode updated
+
 = 2.6.8 (12 July 2025) =
 New: Dashboard Menu Title option added in the EazyDocs Settings > General page
 New: Added a new button to see onePage Fullscreen layout demo

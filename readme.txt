@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.6.8
+Stable tag: 2.6.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -233,6 +233,11 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= 2.6.9 (17 July 2025) =
+Fixed: Settings issue resolved
+Fixed: Resolved admin menu title for EazyDocs via CSF field
+Updated: EazyDocs shortcode updated
+
 = 2.6.8 (12 July 2025) =
 New: Added the function "ezd_get_opt()" for CSF settings where it was missing
 New: Dashboard Menu Title option added in the EazyDocs Settings > General page
@@ -274,14 +279,6 @@ Fixed: Button alignment issue in the EazyDocs Search Elementor widget
 Fixed: Multi Docs widget tabs with masonry issue solved
 Tweaked: Active color added for the Parent doc of the current active Doc item
 Tweaked: Setup wizard design improved
-
-= v2.6.4 (06 April 2025) =
-New: Embed Post shortcode added in EazyDocs Toolbar
-Fixed: Credit text overflown issue
-Tweaked: Disable the enter key for search field
-Tweaked: Multi Docs Elementor widget controls reorganized
-Tweaked: Multi Docs widget
-Tweaked: Removed some unused CSS
 
 
 [See changelog for all versions](https://spider-themes.net/eazydocs/changelog/).
