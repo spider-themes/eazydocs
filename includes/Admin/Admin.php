@@ -84,13 +84,9 @@ class Admin {
 		} else {
 			$capabilites = 'manage_options';
 		}
-
-		if ( class_exists( 'EZD_EazyDocsPro' ) ) {
-			$ezd_menu_title = ezd_get_opt( 'docs_menu_title', esc_html__( 'EazyDocs Pro', 'eazydocs' ) );
-		} else {
-			$ezd_menu_title = ezd_get_opt( 'docs_menu_title', esc_html__( 'EazyDocs', 'eazydocs' ) );
-		}
-
+		
+		$ezd_menu_title = ezd_get_opt( 'docs_menu_title' ) ?: ( class_exists( 'EZD_EazyDocsPro' ) ? esc_html__( 'EazyDocs Pro', 'eazydocs' ) : esc_html__( 'EazyDocs', 'eazydocs' ) );
+		
 		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
 		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
 
