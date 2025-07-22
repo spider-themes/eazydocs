@@ -8,7 +8,6 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
         <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>
         <ul class="nav nav-tabs mb-5 ezd-tab-menu slide_nav_tabs">
 			<?php
-			$slug_type = $settings['docs_slug_format'] ?? '';
 			$widget_id = $this->get_id();
 			if ( $settings['is_custom_order'] == 'yes' && ! empty( $settings['docs'] ) ) {
 				$custom_docs = ! empty( $settings['docs'] ) ? $settings['docs'] : '';
@@ -21,25 +20,17 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 					} else {
 						$active = ( $i == 0 ) ? ' active' : '';
 					}
-					$post_title_slug = get_post_field( 'post_name', $doc_id );
 					$doc_name        = explode( ' ', get_the_title( $doc_id ) );
-
-					if ( $slug_type == 1 ) {
-						$atts = "href='#doc3-{$post_title_slug}'";
-					} else {
-						$atts = "href='#doc3-{$widget_id}-{$doc_id}'";
-					}
 
 					?>
                     <li class="nav-item">
-                        <a data-rel="<?php echo esc_attr($post_title_slug); ?>"
-                           class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
+                        <a data-rel="<?php $this->tab_id_format( $doc_id, 'doc3'); ?>" class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 							<?php
 							echo get_the_post_thumbnail( $doc_id, 'docy_16x16' );
 							if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 								echo wp_kses_post( $doc_name[0] );
 							} else {
-								echo wp_kses_post( $doc_item->post_title );
+								echo wp_kses_post( get_the_title( $doc_id ) );
 							}
 							?>
                         </a>
@@ -57,14 +48,9 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 							$active = ( $i == 0 ) ? ' active' : '';
 						}
 						$doc_name = explode( ' ', $doc->post_title );
-						if ( $slug_type == 1 ) {
-							$href = "href='#doc3-{$doc->post_name}'";
-						} else {
-							$href = "href='#doc3-{$widget_id}-{$doc->ID}'";
-						}
 						?>
                         <li class="nav-item">
-                            <a data-rel="doc3-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr($doc->post_name); ?>"
+                            <a data-rel="<?php $this->tab_id_format( $doc->ID, 'doc3'); ?>"
                                class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 								<?php
 								echo get_the_post_thumbnail( $doc->ID, 'docy_16x16' );
@@ -97,15 +83,9 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 			} else {
 				$active = ( $i == 0 ) ? 'active' : '';
 			}
-
-			if ( $slug_type == 1 ) {
-				$doc_id = $main_doc['doc']->post_name;
-			} else {
-				$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
-			}
 			?>
             <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>"
-                 id="doc3-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr( $doc_id ) ?>">
+                 id="<?php $this->tab_id_format( $main_doc['doc']->ID, 'doc3'); ?>">
                 <div class="<?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
 				<?php
 				if ( ! empty( $main_doc['sections'] ) ) :

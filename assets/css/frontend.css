@@ -2476,6 +2476,12 @@ p .footnotes-link::after {
   gap: 10px;
   padding-bottom: 20px;
 }
+.doc-scrollable ul:not([class]) li,
+.doc-scrollable ul.wp-block-list li,
+.doc-scrollable ol:not([class]) li,
+.doc-scrollable ol.wp-block-list li {
+  margin-bottom: 0;
+}
 .doc-scrollable ul {
   list-style: disc;
 }

@@ -103,7 +103,10 @@ class Walker_Docs extends Walker_Page {
         $has_post_thumb = !has_post_thumbnail($page->ID) ? 'no_icon' : '';
         $has_child = isset( $args['pages_with_children'][ $page->ID ] ) ? 'has_child' : '';
 
-        $css_class = array( 'nav-item', $has_post_thumb, $has_child, ' page_item page-item-' . $page->ID);
+        $css_class = array( 'nav-item', $has_post_thumb, $has_child, 'page-item-' . $page->ID);
+
+        // Add post status class
+        $css_class[] = 'post-status-' . $page->post_status;
 
         if ( !empty( $current_page ) ) {
             $_current_page = get_post( $current_page );

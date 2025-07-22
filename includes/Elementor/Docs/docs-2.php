@@ -3,7 +3,6 @@
         <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>
         <ul class="nav nav-tabs doc_tag ezd-tab-menu slide_nav_tabs ezd-list-unstyled">
 			<?php
-			$slug_type = $settings['docs_slug_format'] ?? '';
 			$widget_id = $this->get_id();
 
 			if ( $settings['is_custom_order'] == 'yes' && ! empty( $settings['docs'] ) ) {
@@ -17,18 +16,10 @@
 					} else {
 						$active = ( $i == 0 ) ? ' active' : '';
 					}
-					$post_title_slug = get_post_field( 'post_name', $doc_id );
 					$doc_name        = explode( ' ', get_the_title( $doc_id ) );
-
-					if ( $slug_type == 1 ) {
-						$atts = "href='#doc-{$post_title_slug}'";
-					} else {
-						$atts = "href='#doc-{$widget_id}-{$doc_id}'";
-					}
 					?>
                     <li class="nav-item">
-                        <a data-rel="doc-<?php echo esc_attr( $post_title_slug ); ?>"
-                           class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
+                        <a data-rel="<?php $this->tab_id_format( $doc_id, 'doc'); ?>" class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
                             <i class="icon_document_alt"></i>
 							<?php
 							if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -51,17 +42,10 @@
 						} else {
 							$active = ( $i == 0 ) ? ' active' : '';
 						}
-						$post_title_slug = $doc->post_name;
 						$doc_name        = explode( ' ', $doc->post_title );
-
-						if ( $slug_type == 1 ) {
-							$atts = "href='#doc-{$post_title_slug}'";
-						} else {
-							$atts = "href='#doc-{$widget_id}-{$doc->ID}'";
-						}
 						?>
                         <li class="nav-item">
-                            <a data-rel="doc-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr( $post_title_slug ); ?>"
+                            <a data-rel="<?php $this->tab_id_format( $doc->ID, 'doc'); ?>"
                                class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 								<?php
 								if ( $settings['is_tab_title_first_word'] == 'yes' ) {
@@ -93,14 +77,8 @@
 			} else {
 				$active = ( $i == 0 ) ? 'active' : '';
 			}
-			if ( $slug_type == 1 ) {
-				$doc_id = $main_doc['doc']->post_name;
-			} else {
-				$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
-			}
 			?>
-            <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>"
-                 id="doc-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr( $doc_id ) ?>">
+            <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>" id="<?php $this->tab_id_format( $main_doc['doc']->ID, 'doc'); ?>">
                 <div class="<?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
 					<?php
 					if ( ! empty( $main_doc['sections'] ) ) :

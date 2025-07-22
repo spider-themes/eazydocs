@@ -16,18 +16,10 @@
 					} else {
 						$active = ( $i == 0 ) ? ' active' : '';
 					}
-					$post_title_slug = get_post_field( 'post_name', $doc_id );
 					$doc_name        = explode( ' ', get_the_title( $doc_id ) );
-
-					if ( $slug_type == 1 ) {
-						$atts = "href='#doc2-{$post_title_slug}'";
-					} else {
-						$atts = "href='#doc2-{$widget_id}-{$doc_id}'";
-					}
 					?>
                     <li class="nav-item">
-                        <a data-rel="<?php echo esc_attr( $post_title_slug ); ?>"
-                           class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
+                        <a data-rel="<?php $this->tab_id_format( $doc_id, 'doc2'); ?>" class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 							<?php
 							if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 								echo wp_kses_post( $doc_name[0] );
@@ -50,17 +42,9 @@
 							$active = ( $i == 0 ) ? ' active' : '';
 						}
 						$doc_name = explode( ' ', $doc->post_title );
-
-						if ( $slug_type == 1 ) {
-							$href = "href='#doc2-{$doc->post_name}'";
-						} else {
-							$href = "href='#doc2-{$widget_id}-{$doc->ID}'";
-						}
-
 						?>
                         <li class="nav-item">
-                            <a data-rel="doc2-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr( $doc->post_name ); ?>"
-                               class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
+                            <a data-rel="<?php $this->tab_id_format( $doc->ID, 'doc2'); ?>" class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 								<?php
 								if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 									echo wp_kses_post( $doc_name[0] );
@@ -88,14 +72,8 @@
 				$active = ( $i == 0 ) ? ' active' : '';
 			}
 
-			if ( $slug_type == 1 ) {
-				$doc_id = $main_doc['doc']->post_name;
-			} else {
-				$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
-			}
 			?>
-            <div class="documentation_tab_pane ezd-tab-box<?php echo esc_attr( $active ); ?>"
-                 id="doc2-<?php echo esc_attr( $this->get_id() ) ?>-<?php echo esc_attr( $doc_id ); ?>">
+            <div class="documentation_tab_pane ezd-tab-box<?php echo esc_attr( $active ); ?>" id="<?php $this->tab_id_format( $main_doc['doc']->ID, 'doc2'); ?>">
                 <div class="ezd-grid ezd-grid-cols-12">
                     <div class="ezd-lg-col-4 ezd-grid-column-full">
                         <div class="documentation_text">
@@ -158,14 +136,14 @@
                                         </p>
                                     </div>
                                 </div>
-							<?php
+							    <?php
 							endforeach;
 							?>
                         </div>
                     </div>
                 </div>
             </div>
-		<?php
+		    <?php
 		endforeach;
 		?>
     </div>
