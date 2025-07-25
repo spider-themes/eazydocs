@@ -113,6 +113,8 @@ class Admin {
 		}
 
 		add_submenu_page( 'eazydocs', esc_html__( 'Setup Wizard', 'eazydocs' ), esc_html__( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ] );
+		
+		add_submenu_page( 'eazydocs', esc_html__( 'Migration', 'eazydocs' ), esc_html__( 'Migration', 'eazydocs' ), 'manage_options', 'eazydocs-migration', [ $this, 'ezd_docs_migration' ] );
 	}
 
 	/**
@@ -346,8 +348,7 @@ class Admin {
 
 		wp_send_json_success( $nestedArray );
 	}
-
-
+	
 	public function parent_nestable_callback() {
 		$nestedArray = json_decode( stripslashes( $_POST['data'] ) );
 		$msg         = [];
@@ -362,5 +363,12 @@ class Admin {
 		}
 
 		wp_send_json_success( $msg );
+	}
+	
+	/**
+	 * Docs page
+	 */
+	public function ezd_docs_migration() {
+		include __DIR__ . '/migration.php';
 	}
 }

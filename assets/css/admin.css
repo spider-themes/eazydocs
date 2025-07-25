@@ -1440,6 +1440,7 @@ body.rtl a.child-delete {
   background: var(--clr-black-100);
   flex: 0 0 auto;
   width: auto;
+  max-width: 450px !important;
 }
 .tab-menu.short {
   height: 100vh;

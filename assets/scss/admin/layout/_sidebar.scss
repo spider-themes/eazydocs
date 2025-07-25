@@ -9,8 +9,9 @@
     background: var(--clr-black-100);
     flex: 0 0 auto;
     width: auto;
+    max-width: 450px !important;
     &.short {
-        height: 100vh
+        height: 100vh;
     }
 }
 

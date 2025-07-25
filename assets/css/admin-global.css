@@ -584,4 +584,109 @@ p.big-p {
   margin: 5px 0 8px;
 }
 
+.ezd-migration-wrapper {
+  margin: auto;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.ezd-migration-wrapper .ezd-migration-inner {
+  padding: 50px;
+  background: #ffffff;
+  text-align: center;
+  box-sizing: border-box;
+}
+.ezd-migration-wrapper .ezd-migration-inner h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 20px 0;
+}
+.ezd-migration-wrapper .ezd-migration-inner p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  margin: 10px 0 20px;
+}
+.ezd-migration-wrapper .ezd-migration-inner button.button-primary {
+  padding: 2px 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.ezd-migration-wrapper .ezd-migration-inner img {
+  max-width: 250px;
+}
+.ezd-migration-wrapper .ezd-migration-inner ul {
+  margin: 20px auto 0;
+  list-style: disc;
+  text-align: left;
+  max-width: 600px;
+  padding-left: 20px;
+  font-size: 15px;
+}
+.ezd-migration-wrapper .ezd-migration-inner ul li {
+  margin-bottom: 5px;
+  line-height: 1.6;
+}
+.ezd-migration-wrapper .ezd-migration-inner span {
+  margin: 20px auto 30px;
+  color: #888;
+  font-size: 14px;
+  display: block;
+}
+.ezd-migration-wrapper .ezd-migration-inner span a {
+  text-decoration: none;
+}
+
+.migration-alert-info p {
+  margin: 0;
+}
+.migration-alert-info label {
+  display: block;
+  text-align: left;
+  margin-top: 30px;
+}
+.migration-alert-info label strong {
+  text-transform: uppercase;
+}
+.migration-alert-info .migration-alert-text {
+  border: 1px solid #c7c7c7;
+  border-radius: 10px;
+  text-align: left;
+  margin: 20px 0 0;
+  background: #fff8e1;
+  border-left: 5px solid #ffc107;
+  padding: 15px;
+  color: #760000;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+.migration-alert-info .migration-field-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  align-items: center;
+  margin: 10px 0 0;
+}
+.migration-alert-info .migration-field-wrap fieldset {
+  border: 1px solid gray;
+  padding: 4px 15px;
+  font-size: 16px;
+  line-height: 28px;
+  border-radius: 4px;
+  font-weight: 500;
+  background: #fdfdfd;
+}
+.migration-alert-info .migration-field-wrap select#ezd_migration_options {
+  padding: 3px 30px 5px 15px;
+  font-size: 16px;
+  line-height: 28px;
+  border-radius: 4px;
+  width: 70%;
+}
+.migration-alert-info .migration-field-wrap select#ezd_migration_options:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /*# sourceMappingURL=admin-global.css.map */

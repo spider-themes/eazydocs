@@ -1029,7 +1029,7 @@ function ezd_admin_pages( $pages = [] ) {
         // Default admin pages of EazyDocs
 	    $admin_pages = !empty($_GET['page']) ? in_array( $_GET['page'], [
 		    'eazydocs', 'eazydocs-settings', 'ezd-user-feedback', 'ezd-user-feedback-archived',
-            'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account', 'ezd-user-feedback'
+            'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account', 'eazydocs-migration'
 	    ] ) : '';
     } else {
         // Selected admin pages of EazyDocs
@@ -1970,3 +1970,157 @@ function ezd_get_prev_next_from_array( $all_ids, $current_id ) {
 
     return ['prev' => $prev, 'next' => $next];
 }
+
+/**
+ * AJAX handler to migrate BetterDocs to EazyDocs
+ * This function will create parent docs for each category and re-parent existing docs.
+ */
+add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
+
+	if ( ! function_exists( 'is_plugin_active' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
+	if ( ! is_plugin_active( 'betterdocs/betterdocs.php' ) ) {
+		wp_send_json_error( ['message' => 'BetterDocs is not active. Please activate it first.'] );
+	}
+
+    $from = isset( $_POST[ 'migrate_from' ] ) ? sanitize_text_field( $_POST[ 'migrate_from' ]) : '';
+
+    if ( $from !== 'betterdocs' ) {
+        wp_send_json_error('Only BetterDocs migration is supported currently.');
+    }
+
+    /**
+     * OPTIONAL CLEANUP:
+     * Remove only previously created CATEGORY PARENT docs from earlier runs.
+     * (They were marked with _ezd_migrated_parent = yes)
+     */
+    $old_parent_docs = get_posts( [
+        'post_type'      => 'docs',
+        'post_status'    => 'any',
+        'numberposts'    => -1,
+        'fields'         => 'ids',
+        'meta_key'       => '_ezd_migrated_parent',
+        'meta_value'     => 'yes',
+    ] );
+    foreach ( $old_parent_docs as $pid ) {
+        wp_delete_post( $pid, true );
+    }
+
+    $created_docs = []; // term_id => parent_doc_id
+
+    /**
+     * PASS 1
+     * Create a parent doc for every category (recursively), but DO NOT create any child posts.
+     */
+    function ezd_create_parent_docs_from_terms( $parent_term_id = 0, &$created_docs ) {
+        $categories = get_categories( [
+            'taxonomy'   => 'doc_category',
+            'hide_empty' => false,
+            'parent'     => $parent_term_id
+        ] );
+
+        foreach ( $categories as $cat ) {
+            $parent_doc_parent_id = ( $cat->parent && isset( $created_docs[ $cat->parent ] ) ) ? $created_docs[ $cat->parent ] : 0;
+
+            // Create the parent Doc for this term
+            $parent_doc_id = wp_insert_post( [
+                'post_type'   => 'docs',
+                'post_title'  => $cat->name,
+                'post_name'   => $cat->slug,
+                'post_status' => 'publish',
+                'post_parent' => $parent_doc_parent_id,
+                'meta_input'  => [
+                    '_ezd_migrated_parent' => 'yes',
+                    '_ezd_parent_term'     => $cat->term_id
+                ]
+            ] );
+
+            if ( is_wp_error( $parent_doc_id ) ) {
+                continue;
+            }
+
+            // (Optional) attach the category to its parent doc, keep taxonomy intact
+            wp_set_post_terms( $parent_doc_id, [ $cat->term_id ], 'doc_category', false );
+
+            $created_docs[ $cat->term_id ] = $parent_doc_id;
+
+            // Recurse
+            ezd_create_parent_docs_from_terms( $cat->term_id, $created_docs );
+        }
+    }
+
+    ezd_create_parent_docs_from_terms( 0, $created_docs );
+
+    /**
+     * PASS 2
+     * Re-parent existing posts (do NOT create new ones).
+     * Each post will be attached under the doc created for its *deepest* category,
+     * BUT ONLY if it doesn't already have a parent (we won't touch existing relations).
+     */
+    if ( ! empty( $created_docs )) {
+
+        // Collect IDs of all parent docs we just created so we don't try to re-parent them
+        $created_parent_doc_ids = array_values( $created_docs );
+
+        // Get all existing docs that have doc_category terms and are NOT the parent docs we created
+        $posts = get_posts( [
+            'post_type'      => 'docs',
+            'post_status'    => 'any',
+            'numberposts'    => -1,
+            'post__not_in'   => $created_parent_doc_ids,
+            'tax_query'      => [
+                [
+                    'taxonomy' => 'doc_category',
+                    'operator' => 'EXISTS'
+                ]
+            ]
+        ] );
+
+        foreach ( $posts as $post ) {
+            // ✅ Do NOT change any already-related child (keep whatever parent it has)
+            if ( (int) $post->post_parent !== 0 ) {
+                continue;
+            }
+
+            $terms = wp_get_post_terms( $post->ID, 'doc_category' );
+
+            if ( empty( $terms ) || is_wp_error( $terms ) ) {
+                continue; // no category, we skip
+            }
+
+            // Find the deepest (most specific) category of the post
+            $deepest_term = null;
+            $max_depth 	  = -1;
+            foreach ($terms as $term) {
+                $depth = count( get_ancestors( $term->term_id, 'doc_category' ) );
+                if ( $depth > $max_depth ) {
+                    $max_depth 	  = $depth;
+                    $deepest_term = $term;
+                }
+            }
+
+            if ( ! $deepest_term || !isset( $created_docs[ $deepest_term->term_id ] ) ) {
+                continue;
+            }
+
+            $parent_doc_id = $created_docs[ $deepest_term->term_id ];
+
+            // Re-parent only if it still has no parent (extra safety)
+            if ( (int) $post->post_parent === 0 ) {
+                wp_update_post( [
+                    'ID'          => $post->ID,
+                    'post_parent' => $parent_doc_id,
+					'menu_order'  => $post->menu_order
+                ] );
+
+                // Optional flags for future cleanups / debugging
+                update_post_meta( $post->ID, '_ezd_migrated', 'yes' );
+                update_post_meta( $post->ID, '_ezd_parent_doc', $parent_doc_id );
+                update_post_meta( $post->ID, '_ezd_parent_term', $deepest_term->term_id );
+            }
+        }
+    }
+
+    wp_send_json_success('Migration completed');
+});
