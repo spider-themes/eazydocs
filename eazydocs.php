@@ -278,6 +278,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new eazyDocs\Frontend\Shortcode();
 			}
 			new eazyDocs\Elementor\Widgets();
+
+			if ( ezd_get_opt( 'is_google_login' ) ) {
+				// Load Google Login functionality
+				new eazyDocs\Google_Login();
+			}
 		}
 
 		public function init_hooked() {

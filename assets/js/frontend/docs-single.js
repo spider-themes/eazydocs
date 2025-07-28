@@ -763,6 +763,38 @@
 
 		// Initialize the sticky sidebar function 
     	ezd_sidebar_enable_sticky();
- 
+
+		// Google Login script
+		$(".ezd-google-login-btn").on("click", function(e) {
+			e.preventDefault();
+			var $btn = $(this);
+			var googleUrl = $btn.data("href");
+
+			// Open popup
+			var width = 600;
+			var height = 600;
+			var left = (screen.width / 2) - (width / 2);
+			var top = (screen.height / 2) - (height / 2);
+			var popup = window.open(googleUrl, "GoogleLogin", "width=" + width + ",height=" + height + ",top=" + top + ",left=" + left);
+
+			// Loading feedback
+			var originalText = $btn.find("span").text();
+			$btn.find("span").text("Connecting...");
+			$btn.css("opacity", "0.7");
+
+			// Reset after 10s
+			setTimeout(function() {
+				$btn.find("span").text(originalText);
+				$btn.css("opacity", "1");
+			}, 10000);
+		});
+
 	});
 })(jQuery);
+
+// Listen for messages from the popup window
+window.addEventListener("message", function(event) {
+    if (event.data.type === "google_login_success" && event.data.redirect) {
+        window.location.href = event.data.redirect;
+    }
+});
