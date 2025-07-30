@@ -322,10 +322,7 @@ class Frontend {
 	 * Single docs Previous & Next Link
 	 **/
 	public function prev_next_docs( $current_post_id ) {
-		$current_parent_id  = wp_get_post_parent_id( $current_post_id );
-		$parent_id 			= eaz_get_nestable_parent_id( $current_post_id ); // your parent post ID
-		$all_descendant_ids = ezd_get_all_descendant_ids( $parent_id, 'docs', 'publish' );
-		$prev_next 			= ezd_get_prev_next_from_array( $all_descendant_ids, $current_post_id );
+		$prev_next 			= ezd_prev_next_docs( $current_post_id );
 		$prev_post_id       = $prev_next['prev'] ?? 0;
 		$next_post_id       = $prev_next['next'] ?? 0;
 		?>
@@ -334,7 +331,7 @@ class Frontend {
 			if ( $prev_post_id != 0 ) :
 				?>
 				<a class="next-prev-pager first" href="<?php the_permalink( $prev_post_id ); ?>">
-					<span> <?php echo esc_html(get_the_title( $current_parent_id )); esc_html_e( ' - Previous', 'eazydocs' ); ?> </span>
+					<span> <?php echo esc_html(get_the_title( $current_post_id )); esc_html_e( ' - Previous', 'eazydocs' ); ?> </span>
 					<?php echo esc_html(get_the_title( $prev_post_id )); ?>
 				</a>
 				<?php
@@ -343,7 +340,7 @@ class Frontend {
 			if ( $next_post_id != 0 ) :
 				?>
 				<a class="next-prev-pager second" href="<?php echo esc_url(get_permalink( $next_post_id )); ?>">
-					<span> <?php esc_html_e( 'Next - ', 'eazydocs' ); echo esc_html(get_the_title( $current_parent_id )); ?> </span>
+					<span> <?php esc_html_e( 'Next - ', 'eazydocs' ); echo esc_html(get_the_title( $current_post_id )); ?> </span>
 					<?php echo esc_html(get_the_title( $next_post_id )); ?>
 				</a>
 				<?php

@@ -1960,15 +1960,61 @@ function ezd_get_all_descendant_ids( $parent_id, $post_type = 'docs', $post_stat
  *
  * @return array
  */
-function ezd_get_prev_next_from_array( $all_ids, $current_id ) {
-    $index = array_search( $current_id, $all_ids );
-    if ( $index === false ) {
-        return ['prev' => 0, 'next' => 0]; // current id not found
-    }
-    $prev = ( $index > 0 ) ? $all_ids[ $index - 1 ] : 0;
-    $next = ( $index < count( $all_ids ) - 1 ) ? $all_ids[ $index + 1 ] : 0;
+function ezd_prev_next_docs( $current_post_id ) {
+	$post_type = get_post_type( $current_post_id );
 
-    return ['prev' => $prev, 'next' => $next];
+	// Step 1: Get the top-level parent (root post)
+	$root_id = $current_post_id;
+	while ( $parent = wp_get_post_parent_id( $root_id ) ) {
+		$root_id = $parent;
+	}
+
+	// Step 2: Get all top-level docs (siblings of root)
+	$top_level_docs = get_posts( array(
+		'post_type'   => $post_type,
+		'post_status' => 'publish',
+		'post_parent' => 0,
+		'orderby'     => 'menu_order',
+		'order'       => 'ASC',
+		'fields'      => 'ids',
+		'numberposts' => -1,
+	) );
+
+	// Step 3: Recursively build a flat ordered list
+	$ordered_ids = [];
+	foreach ( $top_level_docs as $top_id ) {
+		ezd_docs_build_tree_flat( $top_id, $ordered_ids );
+	}
+
+	// Step 4: Find current index and prev/next IDs
+	$current_index = array_search( $current_post_id, $ordered_ids );
+	$prev_id = $ordered_ids[ $current_index - 1 ] ?? null;
+	$next_id = $ordered_ids[ $current_index + 1 ] ?? null;
+
+	return [
+		'prev'    => $prev_id,
+		'current' => $current_post_id,
+		'next'    => $next_id,
+	];
+}
+
+// Helper function to flatten the doc tree in correct order
+function ezd_docs_build_tree_flat( $post_id, &$list ) {
+	$list[] = $post_id;
+
+	$children = get_posts( array(
+		'post_type'   => get_post_type( $post_id ),
+		'post_status' => 'publish',
+		'post_parent' => $post_id,
+		'orderby'     => 'menu_order',
+		'order'       => 'ASC',
+		'fields'      => 'ids',
+		'numberposts' => -1,
+	) );
+
+	foreach ( $children as $child_id ) {
+		ezd_docs_build_tree_flat( $child_id, $list );
+	}
 }
 
 /**
