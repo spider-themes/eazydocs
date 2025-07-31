@@ -324,10 +324,7 @@ p .footnotes-link::after {
   }
 
   h2, h3, h4, h5, h6 {
-    scroll-margin-top: 100px;
-    scroll-padding-top: 100px;
-    margin-top: -50px;
-    padding-top: 50px;
+    scroll-margin: calc(.25rem*28);
   }
 
   h3 {

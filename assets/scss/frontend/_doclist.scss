@@ -1938,10 +1938,9 @@ body:not(.onepage-doc) .sticky_menu {
 	}
 }
 
-.ezd-password-wrap {
-	border: 1px solid #0c213a;
+.doc-content-wrap .ezd-password-wrap {
+	border: 1px solid var(--black_75);
 	border-radius: 5px;
-	padding-bottom: 5px;
 	margin-bottom: 40px;
 
 	.ezd-password-head {
@@ -1972,13 +1971,15 @@ body:not(.onepage-doc) .sticky_menu {
 	}
 
 	.ezd-password-body {
+		background: var(--black_50);
+		padding: 30px;
 		form {
 			margin-bottom: 0;
 			padding-bottom: 0;
 
 			label {
 				margin-bottom: 0.5rem;
-				color: #656d9a;
+				color: var(--black_600);
 				font-weight: 500;
 				font-size: 13px;
 			}
@@ -2001,7 +2002,7 @@ body:not(.onepage-doc) .sticky_menu {
 				border: 1px solid #e3ebf6;
 				box-shadow: none;
 				outline: none;
-				padding: 10px;
+				padding: 10px 15px;
 				font-size: 12px;
 				font-weight: 400;
 				line-height: 1.5;

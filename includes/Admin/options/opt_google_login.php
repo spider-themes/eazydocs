@@ -9,14 +9,15 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'is_google_login_heading',
 			'type'       => 'heading',
-			'title'      => esc_html__( 'Google Login', 'eazydocs' )			
+			'title'      => esc_html__( 'Google Login', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Adds a Google login button to EazyDocs login and sign-up forms, including extension forms.', 'eazydocs' ),
 		),
 		
 		array(
 			'id'         => 'is_google_login',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Enable Google Login', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Enable or disable Google login functionality', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Enable Google login functionality for your users', 'eazydocs' ),
 			'default'    => false
 		),
 

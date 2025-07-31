@@ -1771,61 +1771,64 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   padding-left: 5px;
 }
 
-.ezd-password-wrap {
-  border: 1px solid #0c213a;
+.doc-content-wrap .ezd-password-wrap {
+  border: 1px solid var(--black_75);
   border-radius: 5px;
-  padding-bottom: 5px;
   margin-bottom: 40px;
 }
-.ezd-password-wrap .ezd-password-head {
+.doc-content-wrap .ezd-password-wrap .ezd-password-head {
   background-color: #0c213a;
   flex: 1 1 auto;
   border-radius: 5px 5px 0 0;
   padding: 22px 10px 10px;
 }
-.ezd-password-wrap .ezd-password-head img.pw-logo {
+.doc-content-wrap .ezd-password-wrap .ezd-password-head img.pw-logo {
   display: block;
   margin: 10px auto !important;
   width: 55px;
   height: auto;
 }
-.ezd-password-wrap .ezd-password-head p.ezd-password-title {
+.doc-content-wrap .ezd-password-wrap .ezd-password-head p.ezd-password-title {
   font-size: 18px;
   color: #fff !important;
   font-weight: 500;
 }
-.ezd-password-wrap .ezd-password-head p.ezd-password-subtitle {
+.doc-content-wrap .ezd-password-wrap .ezd-password-head p.ezd-password-subtitle {
   color: #a4abc5;
   line-height: 1.6;
   font-size: 14px;
   font-weight: 400;
 }
-.ezd-password-wrap .ezd-password-body form {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body {
+  background: var(--black_50);
+  padding: 30px;
+}
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form {
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.ezd-password-wrap .ezd-password-body form label {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form label {
   margin-bottom: 0.5rem;
-  color: #656d9a;
+  color: var(--black_600);
   font-weight: 500;
   font-size: 13px;
 }
-.ezd-password-wrap .ezd-password-body form .form-group {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form .form-group {
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;
 }
-.ezd-password-wrap .ezd-password-body form .form-group .col-12 {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form .form-group .col-12 {
   padding: 0;
 }
-.ezd-password-wrap .ezd-password-body form .form-group .input-group {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form .form-group .input-group {
   width: 100%;
 }
-.ezd-password-wrap .ezd-password-body form input {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form input {
   border: 1px solid #e3ebf6;
   box-shadow: none;
   outline: none;
-  padding: 10px;
+  padding: 10px 15px;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
@@ -1835,12 +1838,12 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   margin-bottom: 0px;
   background: #fff;
 }
-.ezd-password-wrap .ezd-password-body form input:focus {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form input:focus {
   color: #303e67;
   background-color: #fff;
   border-color: #8bb0fe;
 }
-.ezd-password-wrap .ezd-password-body form button {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form button {
   font-size: 14px;
   border: none;
   background-color: rgba(8, 102, 25, 0.8);
@@ -1848,24 +1851,24 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   box-shadow: none;
   padding: 0.4em 1em;
 }
-.ezd-password-wrap .ezd-password-body form button:hover {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form button:hover {
   background-color: var(--ezd_brand_color);
 }
-.ezd-password-wrap .ezd-password-body form button:focus {
+.doc-content-wrap .ezd-password-wrap .ezd-password-body form button:focus {
   box-shadow: none;
 }
 @media (max-width: 1199px) {
-  .ezd-password-wrap {
+  .doc-content-wrap .ezd-password-wrap {
     max-width: 100%;
   }
 }
 @media (max-width: 991px) {
-  .ezd-password-wrap {
+  .doc-content-wrap .ezd-password-wrap {
     max-width: 515px;
   }
 }
 @media (max-width: 580px) {
-  .ezd-password-wrap {
+  .doc-content-wrap .ezd-password-wrap {
     max-width: 100%;
   }
 }
@@ -2510,10 +2513,7 @@ p .footnotes-link::after {
   align-items: center;
 }
 .single-docs #post h2, .single-docs #post h3, .single-docs #post h4, .single-docs #post h5, .single-docs #post h6 {
-  scroll-margin-top: 100px;
-  scroll-padding-top: 100px;
-  margin-top: -50px;
-  padding-top: 50px;
+  scroll-margin: 7rem;
 }
 .single-docs #post h3 {
   font-size: 1.5em;
