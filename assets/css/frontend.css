@@ -349,6 +349,9 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 .nav-sidebar {
   margin: 0;
 }
+.nav-sidebar.ezd-list-unstyled {
+  margin-bottom: 40px;
+}
 .nav-sidebar > .nav-item > .doc-link {
   padding: 10px;
   border-radius: 5px;

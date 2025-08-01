@@ -170,7 +170,11 @@ body {
 /** === Left Sidebar / Docs Tree === **/
 .nav-sidebar {
 	margin: 0;
-
+	
+	&.ezd-list-unstyled{
+		margin-bottom: 40px;
+	}
+	
 	> .nav-item {
 		> .doc-link {
 			padding: 10px;

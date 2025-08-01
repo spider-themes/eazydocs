@@ -141,7 +141,7 @@
                         </div>
                         <p class="migration-alert-text">
                             <strong>⚠️ Migration Notice:</strong><br>
-                            All <strong>categories</strong> will be converted to <strong>parent Docs</strong>. Existing Docs will be organized as <strong>child Docs</strong> under their parent Docs based on category structure. The final <strong>Doc URLs</strong> will follow the full parent-child path, like <code>/docs/parent-doc/child-doc/</code>.
+                            Before migrating, we recommend exporting your docs from Tools > Export. After migration, review your content—if anything's off, you can easily re-import the backup.
                         </p>
                     </div>`,
                 icon: 'warning',

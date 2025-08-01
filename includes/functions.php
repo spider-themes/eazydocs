@@ -1973,7 +1973,7 @@ function ezd_prev_next_docs( $current_post_id ) {
 	$top_level_docs = get_posts( array(
 		'post_type'   => $post_type,
 		'post_status' => 'publish',
-		'post_parent' => 0,
+		'post_parent' => $root_id,
 		'orderby'     => 'menu_order',
 		'order'       => 'ASC',
 		'fields'      => 'ids',

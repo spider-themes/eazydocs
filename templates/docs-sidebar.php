@@ -85,7 +85,7 @@ if ( $credit_enable == '1' ) {
                 <?php
                 $args = [
                     'title_li'    => '',
-                    'order'       => 'menu_order',
+                    'sort_column' => 'menu_order',
                     'echo'        => false,
                     'post_type'   => 'docs',
                     'walker'      => $doc_walker,
