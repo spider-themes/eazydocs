@@ -2059,7 +2059,7 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
      * PASS 1
      * Create a parent doc for every category (recursively), but DO NOT create any child posts.
      */
-    function ezd_create_parent_docs_from_terms( $parent_term_id = 0, &$created_docs ) {
+    function ezd_create_parent_docs_from_terms( &$created_docs, $parent_term_id = 0 ) {
         $categories = get_categories( [
             'taxonomy'   => 'doc_category',
             'hide_empty' => false,
@@ -2092,11 +2092,11 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
             $created_docs[ $cat->term_id ] = $parent_doc_id;
 
             // Recurse
-            ezd_create_parent_docs_from_terms( $cat->term_id, $created_docs );
+            ezd_create_parent_docs_from_terms( $created_docs, $cat->term_id, );
         }
     }
 
-    ezd_create_parent_docs_from_terms( 0, $created_docs );
+    ezd_create_parent_docs_from_terms( $created_docs, 0 );
 
     /**
      * PASS 2
