@@ -14,7 +14,7 @@ add_action( 'admin_notices', function () {
 				<?php esc_html_e( 'For EazyDocs to work efficiently, you need to migrate the data and deactivate that plugin to avoid conflict.', 'eazydocs' ); ?>
             </p>
             <p>
-                <a href="?deactivate=wedocs" class="button-primary button-large">
+                <a href="?deactivate=wedocs" class="button-primary button-large red-bg">
 					<?php esc_html_e( 'Deactivate weDocs', 'eazydocs' ); ?>
                 </a>
             </p>
@@ -38,7 +38,10 @@ add_action( 'admin_notices', function () {
 				<?php esc_html_e( 'For EazyDocs to work efficiently, you need to migrate the data and deactivate that plugin to avoid conflict.', 'eazydocs' ); ?>
             </p>
             <p>
-                <a href="?deactivate=betterdocs" class="button-primary button-large">
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-migration' ) ); ?>" class="button-primary button-large">
+					<?php esc_html_e( 'Migrate to EazyDocs', 'eazydocs' ); ?>
+                </a>
+                <a href="?deactivate=betterdocs" class="button-primary button-large red-bg">
 					<?php esc_html_e( 'Deactivate BetterDocs', 'eazydocs' ); ?>
                 </a>
             </p>

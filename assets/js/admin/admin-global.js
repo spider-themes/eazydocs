@@ -141,7 +141,7 @@
                         </div>
                         <p class="migration-alert-text">
                             <strong>⚠️ Migration Notice:</strong><br>
-                            Before migrating, we recommend exporting your docs from Tools > Export. After migration, review your content—if anything's off, you can easily re-import the backup.
+                            Before migrating, we recommend exporting your docs from <b>Tools > Export</b>. After migration, review your content—if anything's off, you can easily re-import the backup.
                         </p>
                     </div>`,
                 icon: 'warning',

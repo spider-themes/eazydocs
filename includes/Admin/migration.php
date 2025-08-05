@@ -20,30 +20,33 @@ $disabled_attr        = $is_betterdocs_active ? '' : 'disabled';
 
             <h1><?php esc_html_e( 'Migrate from BetterDocs to EazyDocs', 'eazydocs' ); ?></h1>
 
-            <p>
-                <?php esc_html_e( 'This tool will help you migrate your existing documentation from', 'eazydocs' ); ?>
-                <strong>BetterDocs</strong>
-                <?php esc_html_e( 'into', 'eazydocs' ); ?>
-                <strong>EazyDocs</strong>.
-                <br>
-                <?php esc_html_e( 'During this migration:', 'eazydocs' ); ?>
-            </p>
+            <div class="ezd-migration-content">
+                <p>
+                    <?php esc_html_e( 'This tool will help you migrate your existing documentation from', 'eazydocs' ); ?>
+                    <strong>BetterDocs</strong>
+                    <?php esc_html_e( 'into', 'eazydocs' ); ?>
+                    <strong>EazyDocs</strong>.
+                    <br>
+                    <?php esc_html_e( 'During this migration:', 'eazydocs' ); ?>
+                </p>
 
-            <ul>
-                <li><?php esc_html_e( 'All', 'eazydocs' ); ?> <strong><?php esc_html_e( 'categories', 'eazydocs' ); ?></strong> <?php esc_html_e( 'will be converted into', 'eazydocs' ); ?> <strong><?php esc_html_e( 'parent Docs', 'eazydocs' ); ?></strong>.</li>
-                <li><?php esc_html_e( 'All existing Docs will be organized as', 'eazydocs' ); ?> <strong><?php esc_html_e( 'child Docs', 'eazydocs' ); ?></strong> <?php esc_html_e( 'under those parent Docs.', 'eazydocs' ); ?></li>
-                <li><?php esc_html_e( 'The URL structure will reflect the parent-child relationship (e.g.', 'eazydocs' ); ?> <code>/docs/parent-doc/child-doc/</code>).</li>
-                <li><?php esc_html_e( 'Your original category will be preserved as taxonomy terms.', 'eazydocs' ); ?></li>
-            </ul>
+                <ul>
+                    <li><?php esc_html_e( 'All', 'eazydocs' ); ?> <strong><?php esc_html_e( 'categories', 'eazydocs' ); ?></strong> <?php esc_html_e( 'will be converted into', 'eazydocs' ); ?> <strong><?php esc_html_e( 'parent Docs', 'eazydocs' ); ?></strong>.</li>
+                    <li><?php esc_html_e( 'All existing Docs will be organized as', 'eazydocs' ); ?> <strong><?php esc_html_e( 'child Docs', 'eazydocs' ); ?></strong> <?php esc_html_e( 'under those parent Docs.', 'eazydocs' ); ?></li>
+                    <li><?php esc_html_e( 'The URL structure will reflect the parent-child relationship (e.g.', 'eazydocs' ); ?> <code>/docs/parent-doc/child-doc/</code>).</li>
+                    <li><?php esc_html_e( 'Your original category will be preserved as taxonomy terms.', 'eazydocs' ); ?></li>
+                </ul>
 
-            <span>
-                <?php esc_html_e( 'Need help?', 'eazydocs' ); ?>
-                <a href="#" target="_blank"><?php esc_html_e( 'Read the full migration guide', 'eazydocs' ); ?></a>
-            </span>
+                <!--<span>
+                    <?php /*esc_html_e( 'Need help?', 'eazydocs' ); */?>
+                    <a href="#" target="_blank"><?php /*esc_html_e( 'Read the full migration guide', 'eazydocs' ); */?></a>
+                </span>-->
+            </div>
 
             <button class="ezd-start-miration-btn button-primary" <?php echo esc_attr( $disabled_attr ); ?>>
                 🚀 <?php esc_html_e( 'Start Migration', 'eazydocs' ); ?>
             </button>
+
         </div>
     </div>
 </div>

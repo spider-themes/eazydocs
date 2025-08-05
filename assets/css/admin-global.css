@@ -69,6 +69,15 @@ code {
   font-weight: bold;
 }
 
+.red-bg {
+  background: #ff3131 !important;
+  border-color: #ff3131 !important;
+}
+.red-bg:hover {
+  background: #dc3232 !important;
+  border-color: #dc3232 !important;
+}
+
 .eazydocs-close-notice {
   display: inline-block;
 }
@@ -596,11 +605,12 @@ p.big-p {
   background: #ffffff;
   text-align: center;
   box-sizing: border-box;
+  border-radius: 20px;
 }
 .ezd-migration-wrapper .ezd-migration-inner h1 {
-  font-size: 22px;
-  font-weight: 500;
-  margin: 20px 0;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 15px 0 30px;
 }
 .ezd-migration-wrapper .ezd-migration-inner p {
   font-size: 16px;
@@ -612,6 +622,8 @@ p.big-p {
   padding: 2px 15px;
   font-size: 16px;
   font-weight: 500;
+  margin-top: 30px;
+  background: var(--clr-blue);
 }
 .ezd-migration-wrapper .ezd-migration-inner img {
   max-width: 250px;
@@ -636,6 +648,9 @@ p.big-p {
 }
 .ezd-migration-wrapper .ezd-migration-inner span a {
   text-decoration: none;
+}
+.ezd-migration-wrapper .ezd-migration-content {
+  text-align: left;
 }
 
 .migration-alert-info p {
@@ -663,7 +678,6 @@ p.big-p {
 }
 .migration-alert-info .migration-field-wrap {
   display: flex;
-  justify-content: center;
   gap: 16px;
   align-items: center;
   margin: 10px 0 0;
@@ -682,7 +696,7 @@ p.big-p {
   font-size: 16px;
   line-height: 28px;
   border-radius: 4px;
-  width: 70%;
+  width: 60%;
 }
 .migration-alert-info .migration-field-wrap select#ezd_migration_options:focus {
   outline: none;
