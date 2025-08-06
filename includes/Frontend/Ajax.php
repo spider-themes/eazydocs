@@ -44,17 +44,30 @@ class Ajax {
 
 		// seems new
 		if ( $type ) {
-			$count = (int) get_post_meta( $post_id, $type, true );
-
-			$timestamp = current_time( 'mysql' );
+			$count 		= (int) get_post_meta( $post_id, $type, true );
+			$timestamp 	= current_time( 'mysql' );
 
 			update_post_meta( $post_id, $type, $count + 1 );
 
 			if ( $type == 'positive' ) {
-				update_post_meta( $post_id, 'positive_voter', get_current_user_id() );
+				$voters = get_post_meta( $post_id, 'positive_voter', true );
+				$voters = is_array( $voters ) ? $voters : [];
+
+				if ( ! in_array( get_current_user_id(), $voters ) ) {
+					$voters[] = get_current_user_id();
+					update_post_meta( $post_id, 'positive_voter', $voters );
+				}
+
 				update_post_meta( $post_id, 'positive_time', $timestamp );
 			} else {
-				update_post_meta( $post_id, 'negative_voter', get_current_user_id() );
+				$voters = get_post_meta( $post_id, 'negative_voter', true );
+				$voters = is_array( $voters ) ? $voters : [];
+
+				if ( ! in_array( get_current_user_id(), $voters ) ) {
+					$voters[] = get_current_user_id();
+					update_post_meta( $post_id, 'negative_voter', $voters );
+				}
+
 				update_post_meta( $post_id, 'negative_time', $timestamp );
 			}
 
