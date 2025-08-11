@@ -2161,8 +2161,3 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
 
     wp_send_json_success('Migration completed');
 });
-
-
-add_action('wp_head', function(){
-	echo ezd_is_premium();
-});
