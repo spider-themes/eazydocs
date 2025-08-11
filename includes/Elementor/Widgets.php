@@ -37,10 +37,8 @@ class Widgets{
     public function ezd_elementor_editor_styles(){   
         wp_enqueue_style( 'ezd-docs-editor', EAZYDOCS_ASSETS . '/css/elementor/ezd-elementor-editor.css' ); 
 
-        if ( ezd_unlock_themes() ) {
+        if ( ezd_unlock_themes('docy','docly') ) {
             wp_enqueue_style( 'ezd-docs-pro-editor', EAZYDOCS_ASSETS . '/css/elementor/ezd-pro-elementor-editor.css' );
         }
-
     }
-   
 }

@@ -1032,7 +1032,7 @@ class Doc_Widget extends Widget_Base {
 			}
 		}
 
-        if ( ezd_unlock_themes() ) {
+        if ( ezd_unlock_themes('docy','docly') ) {
 		    include( "docs-{$settings['doc-widget-skin']}.php" );
         } else {
             include( "docs-1.php" );

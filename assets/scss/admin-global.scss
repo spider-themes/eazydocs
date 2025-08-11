@@ -312,6 +312,19 @@ body.ezd_no_promax {
   }
 }
 
+body.ama {
+  .eazydocs-pro-notice.active-theme-ama {
+    .csf-title,
+    .csf-fieldset {
+      opacity: unset !important;
+      pointer-events: unset !important;
+    }
+    &.csf-field::before, &.csf-field::after {
+      display: none;
+    }
+  }
+}
+
 .upgrade-link {
   background-color: #f1bd6c;
   color: #000;

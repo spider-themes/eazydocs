@@ -119,7 +119,7 @@ class Assets {
 		if ( is_singular('docs') || get_post_type() == 'onepage-docs' || is_page_template( 'page-onepage.php' ) ) {
 			wp_enqueue_style( 'eazydocs-responsive', EAZYDOCS_ASSETS . '/css/frontend/ezd-responsive.css' );
 		}
-		if ( is_singular('docs') && ezd_get_opt( 'is_doc_ajax' ) == '1' && ezd_unlock_themes() ) {
+		if ( is_singular('docs') && ezd_get_opt( 'is_doc_ajax' ) == '1' && ezd_unlock_themes('docy','docly','ama') ) {
 			wp_enqueue_script( 'eazydocs-ajax-loading', EAZYDOCS_ASSETS . '/js/frontend/ajax.js', array( 'jquery' ), EAZYDOCS_VERSION );
 		}
 		// if gutenberg block theme installed and single docs

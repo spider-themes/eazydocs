@@ -50,7 +50,7 @@ function ezd_meta_apply( $option_id, $default = '' ) {
  * @return bool|void
  */
 function ezd_is_premium() {
-	if ( eaz_fs()->can_use_premium_code() ) {
+	if ( eaz_fs()->can_use_premium_code() && class_exists('EZD_EazyDocsPro')) {
 		return true;
 	}
 }
@@ -60,11 +60,11 @@ function ezd_is_premium() {
  *
  * @return bool|void
  */
-function ezd_unlock_themes() {
-	$current_theme = get_template();
-	if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
-		return true;
-	}
+function ezd_unlock_themes( ...$themes ) {
+    // Flatten and normalize
+    $allowed_themes = array_map( 'strtolower', array_map( 'trim', $themes ) );
+    $current_theme = strtolower( get_template() );
+    return in_array( $current_theme, $allowed_themes, true ) || ezd_is_premium();
 }
 
 /**
@@ -1232,7 +1232,7 @@ function ezd_docs_layout_option() {
 	];
 
 	foreach ( $pro_options as $key => $option ) {
-		$icon_suffix          = ezd_unlock_themes() ? '' : ' ezd-pro-docs';
+		$icon_suffix = ezd_unlock_themes('docy','docly') ? '' : ' ezd-pro-docs';
 		$base_options[ $key ] = [
 			'title' => $option['title'],
 			'icon'  => "docs-" . ( $key - 1 ) . $icon_suffix
@@ -1305,22 +1305,13 @@ function ezd_all_shortcodes( $content ) {
 	return $return;
 }
 
-/**
- * Add script in customize_controls_print_footer_scripts hook
- */
-function ezd_customizer_script() {
-    ?>
-    <script type="text/javascript">
-    jQuery(document).ready(function() {
-        // Add .is_ezd_premium class to body
-        if ( eazydocs_local_object.is_ezd_premium == "yes" ) {
-            jQuery("body").addClass("ezd-premium");
-        }
-    });
-    </script>
-    <?php
-}
-add_action( 'customize_controls_print_footer_scripts', 'ezd_customizer_script' );
+add_filter( 'body_class', function( $classes ) {
+    if ( ezd_is_premium() ) {
+        $classes[] = 'ezd-premium';
+    }
+    return $classes;
+});
+
 
 // check if block theme activated
 function ezd_header_with_block_theme() {
@@ -2169,4 +2160,9 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
     }
 
     wp_send_json_success('Migration completed');
+});
+
+
+add_action('wp_head', function(){
+	echo ezd_is_premium();
 });

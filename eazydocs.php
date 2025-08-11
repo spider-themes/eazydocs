@@ -194,10 +194,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 			require_once __DIR__ . '/includes/Admin/setup-wizard/Plugin_Installer.php';
  
-			if ( ezd_unlock_themes() ) {
+			if ( ezd_unlock_themes('docy','docly','ama') ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
-				require_once __DIR__ . '/shortcodes/conditional_data.php';
 			}
+			require_once __DIR__ . '/shortcodes/conditional_data.php';			
 
 			// Include and Register the Shortcode for Displaying Single Docs Content
 			require_once __DIR__ . '/shortcodes/ezd-view-docs.php';

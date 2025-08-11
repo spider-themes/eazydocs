@@ -331,6 +331,15 @@ body.ezd_no_promax .eazydocs-promax-notice .csf-title, body.ezd_no_promax .eazyd
   pointer-events: none;
 }
 
+body.ama .eazydocs-pro-notice.active-theme-ama .csf-title,
+body.ama .eazydocs-pro-notice.active-theme-ama .csf-fieldset {
+  opacity: unset !important;
+  pointer-events: unset !important;
+}
+body.ama .eazydocs-pro-notice.active-theme-ama.csf-field::before, body.ama .eazydocs-pro-notice.active-theme-ama.csf-field::after {
+  display: none;
+}
+
 .upgrade-link {
   background-color: #f1bd6c;
   color: #000;

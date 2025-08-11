@@ -63,7 +63,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
      * Register Toolbar Block
      */
     public function register_toolbar_block( $screen ) {
-        if ( isset( $screen->post_type ) && $screen->post_type === 'docs' && $screen->base === 'post' && ezd_unlock_themes() ) {
+        if ( isset( $screen->post_type ) && $screen->post_type === 'docs' && $screen->base === 'post' && ezd_unlock_themes('docy','docly') ) {
             $this->register_block( 'eazydocs-toolbar' );
         }
     }

@@ -25,6 +25,9 @@
                 })
             } else {
                 $('body:not(.ezd-premium) .eazydocs-pro-notice').on('click', function (e) {
+                    if ($('body').hasClass('ama') && $(this).hasClass('active-theme-ama')) {
+                        return; // skip alert
+                    }
                     e.preventDefault();
                     let href = $(this).attr('href')
                     Swal.fire({
@@ -32,8 +35,7 @@
                         html: 'This is a PRO feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
                         icon: "warning",
                         buttons: [false, "Close"],
-                        dangerMode: true,
-                        //footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
+                        dangerMode: true
                     })
                 })
             }
@@ -111,7 +113,6 @@
                 confirmButtonText: 'Got it'
             });
         });
-
 
         $('.admin-copy-embed-code').on('click', function(e) {
             e.preventDefault();
