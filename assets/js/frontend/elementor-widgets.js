@@ -104,8 +104,10 @@
 		
     	// Prevent form submission when pressing Enter in the search input field
 		$('#ezd_searchInput').on('keypress', function(event) {
-			if (event.key === 'Enter') {
-				event.preventDefault(); // Prevent form submission
+			if ( eazydocs_local_object.ezd_search_submit != 1 ) {
+				if (event.key === 'Enter') {
+					event.preventDefault(); // Prevent form submission
+				}
 			}
 		});
 	});

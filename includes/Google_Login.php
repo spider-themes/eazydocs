@@ -124,7 +124,7 @@ class Google_Login {
         if ( empty( $this->client_id ) || empty( $this->client_secret ) ) {
             return;
         }
-        echo $this->get_google_login_html( 'Sign in with Google', 'ezd-google-login-btn' );
+        echo wp_kses_post( $this->get_google_login_html( 'Sign in with Google', 'ezd-google-login-btn' ) );
     }
     
     /**

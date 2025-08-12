@@ -311,6 +311,18 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'id'         => 'is_search_submit',
+			'type'       => 'switcher',
+			'title'      => esc_html__( 'Search Submit', 'eazydocs' ),
+    		'desc'   	 => esc_html__( 'Eanble or disable pressing Enter or clicking the Search icon will submit the search.', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+			'default'    => true,
+			'dependency' => array( 'search_banner_layout', '==', 'default' ),
+			'text_width' => 85
+		),
+
+		array(
 			'id'         => 'doc_banner_bg',
 			'type'       => 'background',
 			'title'      => esc_html__( 'Background', 'eazydocs' ),
@@ -318,7 +330,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'search_banner_layout', '==', 'default' ),
-			),
+			)
 		),
 
 		array(
