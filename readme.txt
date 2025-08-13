@@ -233,6 +233,21 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= 2.7.0 (14 August 2025) =
+New: Added Migration Tool to move docs from BetterDocs to EazyDocs (Go to EazyDocs > Migration, click “Start Migration,” then review and delete BetterDocs)
+New: Added Google Login functionality with configurable settings
+New: Added setting to enable/disable search form submission via Enter key or search icon
+Fixed: Security issues by properly escaping output
+Fixed: Resolved correct previous/next navigation order in Docs hierarchy
+Fixed: Fixed incorrect child doc ordering in the left sidebar
+Fixed: A PHP deprecation issue fixed on includes/functions.php file
+Fixed: Quote sign wasn't rendering correctly on Feedback email subject and email body
+Fixed: Doc Tab ID Format wasn't working in the MultiDocs Elementor widget. Now it's fixed with optimized code for better performance
+Tweaked: Drafted docs shows on sidebar
+Tweaked: Update pro feature unlock logic with active theme conditions and improve
+Tweaked: Improved search result order in ajax search
+Tweaked: Improved CSS to handle overflow when many docs are present in the sidebar
+
 = 2.6.9 (17 July 2025) =
 Fixed: Settings issue resolved
 Fixed: Resolved admin menu title for EazyDocs via CSF field

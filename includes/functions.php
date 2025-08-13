@@ -2115,7 +2115,7 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
         ] );
 
         foreach ( $posts as $post ) {
-            // ✅ Do NOT change any already-related child (keep whatever parent it has)
+            // Do NOT change any already-related child (keep whatever parent it has)
             if ( (int) $post->post_parent !== 0 ) {
                 continue;
             }

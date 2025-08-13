@@ -37,10 +37,10 @@ $disabled_attr        = $is_betterdocs_active ? '' : 'disabled';
                     <li><?php esc_html_e( 'Your original category will be preserved as taxonomy terms.', 'eazydocs' ); ?></li>
                 </ul>
 
-                <!--<span>
-                    <?php /*esc_html_e( 'Need help?', 'eazydocs' ); */?>
-                    <a href="#" target="_blank"><?php /*esc_html_e( 'Read the full migration guide', 'eazydocs' ); */?></a>
-                </span>-->
+                <span>
+                    <?php esc_html_e( 'Need help?', 'eazydocs' ); ?>
+                    <a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/getting-started/migrate-from-betterdocs-to-eazydocs" target="_blank"><?php esc_html_e( 'Read the full migration guide', 'eazydocs' ); ?></a>
+                </span>
             </div>
 
             <button class="ezd-start-miration-btn button-primary" <?php echo esc_attr( $disabled_attr ); ?>>
