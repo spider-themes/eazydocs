@@ -60,7 +60,13 @@ jQuery(".ezd_search_keywords ul li a").on("click", function(e) {
     var content = jQuery(this).text()
     jQuery("#ezd_searchInput").val(content).focus()
     ezSearchResults()
-})
+});
+
+jQuery("label[for=ezd_searchInput]").on("click", function(e) {
+    if ( eazydocs_local_object.ezd_search_submit == 1 ) {
+        jQuery(".ezd_search_form").submit();
+    }
+});
 
 function ezSearchResults() {
     let keyword = jQuery('#ezd_searchInput').val();

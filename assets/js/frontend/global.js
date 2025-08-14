@@ -145,5 +145,11 @@
 			}
 		});
 		
+		$("label[for=ezd_searchInput]").on("click", function(e) {
+			if ( eazydocs_local_object.ezd_search_submit == 1 ) {
+				$(".ezd_search_form").submit();
+			}
+		});
+		
 	});
 })(jQuery);
