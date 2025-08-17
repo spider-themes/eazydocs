@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.6.9
+Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -233,7 +233,7 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
-= 2.7.0 (14 August 2025) =
+= 2.7.0 (17 August 2025) =
 New: Added Migration Tool to move docs from BetterDocs to EazyDocs (Go to EazyDocs > Migration, click “Start Migration,” then review and delete BetterDocs)
 New: Added Google Login functionality with configurable settings
 New: Added setting to enable/disable search form submission via Enter key or search icon
