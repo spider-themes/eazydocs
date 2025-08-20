@@ -1086,9 +1086,18 @@ body.rtl a.child-delete {
   background: rgba(37, 39, 51, 0.05);
   text-align: center;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #747474;
+  text-decoration: none;
 }
 :is(.easydocs-notification, .easydocs-settings) .header-notify-icon:hover {
   background: #cdcdcd;
+}
+:is(.easydocs-notification, .easydocs-settings) .header-notify-icon a {
+  color: #747474;
+  line-height: 1;
 }
 :is(.easydocs-notification, .easydocs-settings) .header-notify-icon svg {
   position: relative;
@@ -1108,17 +1117,8 @@ body.rtl a.child-delete {
   padding-top: 5px;
   display: inline-block;
 }
-.easydocs-settings .header-notify-icon {
-  cursor: auto;
-}
 .easydocs-settings .header-notify-icon.ezd-trashicon {
   position: relative;
-}
-.easydocs-settings .header-notify-icon.ezd-trashicon a {
-  color: #747474;
-  padding-top: 10px;
-  display: block;
-  text-decoration: none;
 }
 .easydocs-settings .header-notify-icon.ezd-trashicon .easydocs-badge {
   background: #333;
