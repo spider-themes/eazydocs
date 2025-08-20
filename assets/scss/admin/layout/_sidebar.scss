@@ -9,7 +9,7 @@
     background: var(--clr-black-100);
     flex: 0 0 auto;
     width: auto;
-    max-width: 450px !important;
+    max-width: 520px !important;
     &.short {
         height: 100vh;
     }
@@ -78,6 +78,7 @@
         font-weight: 500;
         color: var(--clr-white);
         opacity: var(--title-opacity, 0.7);
+        line-height: 1.4;
     }
 
     .total-page {
@@ -156,10 +157,6 @@
     flex: 1;
     width: auto;
     padding: 0 30px 30px 30px;
-    @media (min-width: 2100px) {
-        width: 1500px;
-        flex: none;
-    }
 }
 
 button.nestable--button.nestable--expand {

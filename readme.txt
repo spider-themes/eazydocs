@@ -8,7 +8,7 @@ Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Build unlimited, professional knowledge bases in WordPress effortlessly. Drag and drop documents with ease. Customizable to match your brand.
+Create unlimited knowledge bases, order and nest documents with drag-and-drop, and customize your docs with ease. Optimized for SEO, responsive, and user-friendly.
 
 == Description ==
 

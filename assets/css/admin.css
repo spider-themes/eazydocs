@@ -1234,15 +1234,13 @@ body.rtl a.child-delete {
 }
 .notification-body .filter-button-group .easydocs-btn {
   --notification-icon: var(--clr-dark);
-  --btn-px: 1rem;
-  --btn-fs: var(--fs-14);
-  --btn-py: 0.4rem;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1px;
-  --btn-bg: #e4e6eb;
-  --btn-clr: var(--clr-dark);
-  --btn-bc: transparent;
+  background: #e4e6eb;
+  color: var(--clr-dark);
   font-size: 12px;
 }
 .notification-body .filter-button-group .easydocs-btn span.dashicons {
@@ -1440,7 +1438,7 @@ body.rtl a.child-delete {
   background: var(--clr-black-100);
   flex: 0 0 auto;
   width: auto;
-  max-width: 450px !important;
+  max-width: 520px !important;
 }
 .tab-menu.short {
   height: 100vh;
@@ -1520,6 +1518,7 @@ body.rtl a.child-delete {
   font-weight: 500;
   color: var(--clr-white);
   opacity: var(--title-opacity, 0.7);
+  line-height: 1.4;
 }
 .easydocs-navitem .total-page {
   font-size: var(--fs-12);
@@ -1595,12 +1594,6 @@ body.rtl a.child-delete {
   flex: 1;
   width: auto;
   padding: 0 30px 30px 30px;
-}
-@media (min-width: 2100px) {
-  .easydocs-tab-content {
-    width: 1500px;
-    flex: none;
-  }
 }
 
 button.nestable--button.nestable--expand {
