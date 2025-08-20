@@ -1008,7 +1008,7 @@ body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
   border-radius: 0 5px 5px 0;
 }
 .ezd_search_form .header_search_form_info .form-group.ezd-left .search_field_wrap {
-  padding-left: 70px !important;
+  padding-left: 70px;
   border-radius: 45px;
 }
 .ezd_search_form .header_search_form_info .form-group.ezd-left .search_submit_btn {
@@ -1194,9 +1194,11 @@ nav .breadcrumb .active {
   width: 100%;
 }
 
-.categories_guide_item.bg-dark a,
-.categories_guide_item.bg-dark .badge {
+.categories_guide_item.bg-dark a, .categories_guide_item.bg-dark .badge {
   color: #fff !important;
+}
+.categories_guide_item.bg-dark a.doc_border_btn {
+  border-color: rgba(var(--brand_color_rgb), 0.6);
 }
 
 .ezd-masonry-columns {

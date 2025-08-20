@@ -92,9 +92,14 @@ nav .breadcrumb {
 	}
 }
 
-.categories_guide_item.bg-dark a,
-.categories_guide_item.bg-dark .badge {
-	color: #fff !important;
+.categories_guide_item.bg-dark {
+	a, .badge {
+		color: #fff !important;
+	}
+
+	a.doc_border_btn {
+		border-color: rgba(var(--brand_color_rgb), 0.6);
+	}
 }
 
 // Masonry [ Doc Archive ]

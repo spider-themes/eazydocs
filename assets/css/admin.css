@@ -1234,13 +1234,15 @@ body.rtl a.child-delete {
 }
 .notification-body .filter-button-group .easydocs-btn {
   --notification-icon: var(--clr-dark);
-  padding: 5px 10px;
+  --btn-px: 1rem;
+  --btn-fs: var(--fs-14);
+  --btn-py: 0.4rem;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 1px;
-  background: #e4e6eb;
-  color: var(--clr-dark);
+  --btn-bg: #e4e6eb;
+  --btn-clr: var(--clr-dark);
+  --btn-bc: transparent;
   font-size: 12px;
 }
 .notification-body .filter-button-group .easydocs-btn span.dashicons {
