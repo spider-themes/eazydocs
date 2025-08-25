@@ -362,6 +362,10 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 .nav-sidebar > .nav-item > .doc-link:hover a {
   color: var(--black_900);
 }
+.nav-sidebar > .nav-item > .doc-link mark {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .nav-sidebar .nav-item {
   padding-right: 0;
   margin: 0 0 5px;
