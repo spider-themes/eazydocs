@@ -12,6 +12,7 @@ CSF::createSection( $prefix, array(
       'type'    => 'switcher',
       'title'   => __( 'Enabled / Disabled', 'eazydocs-pro' ),
       'label'   => __( 'Enable or Disable Email Reporting', 'eazydocs-pro' ),
+	  'class'      => 'eazydocs-promax-notice',
       'default' => false
     ),
 
@@ -27,6 +28,7 @@ CSF::createSection( $prefix, array(
         'weekly'  => __( 'Once Weekly', 'eazydocs-pro' ),
         'monthly' => __( 'Once Monthly', 'eazydocs-pro' ),
       ),
+	  'class'      => 'eazydocs-promax-notice',
       'default' => 'daily',
     ),
 	
@@ -49,6 +51,7 @@ CSF::createSection( $prefix, array(
 			'friday'	=> __( 'Friday', 'eazydocs-pro' ),
 			'saturday'	=> __( 'Saturday', 'eazydocs-pro' ),
 		),
+	    'class'      => 'eazydocs-promax-notice',
 		'default' => array( 'monday' )
 	),
 	
@@ -68,6 +71,7 @@ CSF::createSection( $prefix, array(
 			'reactions'    => __( 'Reactions', 'eazydocs-pro' ),
 			'docs'    => __( 'Docs', 'eazydocs-pro' ),
 		),
+	    'class'      => 'eazydocs-promax-notice',
 		'default' => array( 'views','searches','reactions','docs' )
 	),
 
@@ -79,6 +83,7 @@ CSF::createSection( $prefix, array(
 	  'dependency' => array(
 		 array( 'reporting_enabled', '==', 'true' ),
 	   ),
+	  'class'      => 'eazydocs-promax-notice'
     ),
 
     array(
@@ -89,6 +94,7 @@ CSF::createSection( $prefix, array(
 	  'dependency' => array(
 		 array( 'reporting_enabled', '==', 'true' ),
 	   ),
+	  'class'      => 'eazydocs-promax-notice'
     ),
 
     array(
@@ -102,14 +108,16 @@ CSF::createSection( $prefix, array(
 	   'attributes' => [
 		'rows' 		 => '3',
 		'style' => 'min-height:unset'
-	   ]
+	   ],
+	  'class'      => 'eazydocs-promax-notice',
 	),
 
 	array(
       	'title'   => __( 'Reporting Test', 'eazydocs-pro' ),
 		'id'       => 'reporting_sample',
 		'type'     => 'content',
-		'content' => '<button class="button button-info ezd-sample-report">Test Report</button>',
+		'content' => '<button class="button button-info ezd-analytics-sample-report">Test Report</button>',
+	    'class'      => 'eazydocs-promax-notice'
 	)
 
   )
