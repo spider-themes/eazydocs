@@ -55,6 +55,7 @@ include EZD_SETTINGS_PATH . 'opt_customizer.php';
 include EZD_SETTINGS_PATH . 'opt_footnotes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_shortcodes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_collaboration.php';
+include EZD_SETTINGS_PATH . 'opt_email_reporting.php';
 include EZD_SETTINGS_PATH . 'opt_docs_role_manager.php';
 include EZD_SETTINGS_PATH . 'opt_docs_assistant.php';
 include EZD_SETTINGS_PATH . 'opt_docs_subscription.php';

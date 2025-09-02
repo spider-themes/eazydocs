@@ -810,6 +810,15 @@ p.big-p {
               align-items: center;
               gap: 10px;
               font-size: 16px;
+              a {
+                color: black;
+                text-decoration: none;
+                font-weight: normal;
+                text-transform: capitalize;
+                &:hover {
+                  color: #002fff;
+                }
+              }
             }
             &:last-child {
               flex: 1;

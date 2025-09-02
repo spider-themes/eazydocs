@@ -49,7 +49,7 @@
 			$button_text = $is_active ? esc_html__( 'Activated', 'eazydocs') : ($is_installed ? esc_html__( 'Activate', 'eazydocs') : esc_html__( 'Install', 'eazydocs'));
 			$btn_icon = $is_active ? 'dashicons-yes' : ($is_installed ? 'dashicons-update' : 'dashicons-download');
 			$button_class = $is_active ? 'button-disabled' : 'button-action';
-			$button_attr = $is_active ? 'disabled' : sprintf('data-plugin="%s" data-action="%s"', esc_attr($plugin['slug']), $is_installed ? 'activate' : 'install');
+			$button_attr = $is_active ? 'disabled' : sprintf('data-plugin=%s data-action=%s', esc_attr($plugin['slug']), $is_installed ? 'activate' : 'install');
 			?>
 			<li>
 				<div class="has-light-bg">

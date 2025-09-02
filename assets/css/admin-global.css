@@ -774,6 +774,15 @@ p.big-p {
   gap: 10px;
   font-size: 16px;
 }
+.ezd-collaboration-data .content-wrapper .inner-content .content-row div:first-child a {
+  color: black;
+  text-decoration: none;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+.ezd-collaboration-data .content-wrapper .inner-content .content-row div:first-child a:hover {
+  color: #002fff;
+}
 .ezd-collaboration-data .content-wrapper .inner-content .content-row div:last-child {
   flex: 1;
   display: flex;

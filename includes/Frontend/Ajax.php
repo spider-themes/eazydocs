@@ -146,41 +146,38 @@ class Ajax {
 		$keyword_for_db = trim(strtolower($keyword));
 
 		if ( $posts->have_posts() ):
-			// Save keyword in search tables if analytics is enabled
-			if (function_exists('ezd_is_analytics_enabled') && ezd_is_analytics_enabled()) {
-				global $wpdb;
+			global $wpdb;
 
-				$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
-				$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+			$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+			$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
 
-				// Check if tables exist before attempting to insert
-				$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-				$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+			// Check if tables exist before attempting to insert
+			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+			$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
 
-				if ($keyword_table_exists && $log_table_exists) {
-					// Insert keyword safely
-					$wpdb->insert( 
-						$wp_eazydocs_search_keyword,
+			if ($keyword_table_exists && $log_table_exists) {
+				// Insert keyword safely
+				$wpdb->insert( 
+					$wp_eazydocs_search_keyword,
+					array(
+						'keyword' => $keyword_for_db,
+					),
+					array('%s') 
+				);
+
+				// Get the inserted ID and insert log entry
+				$keyword_id = $wpdb->insert_id;
+				if ($keyword_id) {
+					$wpdb->insert(
+						$wp_eazydocs_search_log,
 						array(
-							'keyword' => $keyword_for_db,
+							'keyword_id' => $keyword_id,
+							'count'      => 1,
+							'not_found_count' => 0,
+							'created_at' => current_time('mysql'),
 						),
-						array('%s') 
+						array('%d', '%d', '%d', '%s')
 					);
-
-					// Get the inserted ID and insert log entry
-					$keyword_id = $wpdb->insert_id;
-					if ($keyword_id) {
-						$wpdb->insert(
-							$wp_eazydocs_search_log,
-							array(
-								'keyword_id' => $keyword_id,
-								'count'      => 1,
-								'not_found_count' => 0,
-								'created_at' => current_time('mysql'),
-							),
-							array('%d', '%d', '%d', '%s')
-						);
-					}
 				}
 			}
 
@@ -227,44 +224,40 @@ class Ajax {
 			endwhile;
 			wp_reset_postdata();
 		else:
-			// Save keyword in search tables if analytics is enabled (for not found results)
-			if (function_exists('ezd_is_analytics_enabled') && ezd_is_analytics_enabled()) {
-				global $wpdb;
+			global $wpdb;
 
-				$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
-				$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+			$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+			$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
 
-				// Check if tables exist before attempting to insert
-				$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-				$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+			// Check if tables exist before attempting to insert
+			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+			$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
 
-				if ($keyword_table_exists && $log_table_exists) {
-					// Insert keyword safely
+			if ($keyword_table_exists && $log_table_exists) {
+				// Insert keyword safely
+				$wpdb->insert(
+					$wp_eazydocs_search_keyword,
+					array(
+						'keyword' => $keyword_for_db,
+					),
+					array('%s')
+				);
+
+				// Get the inserted ID and insert log entry
+				$keyword_id = $wpdb->insert_id;
+				if ($keyword_id) {
 					$wpdb->insert(
-						$wp_eazydocs_search_keyword,
+						$wp_eazydocs_search_log,
 						array(
-							'keyword' => $keyword_for_db,
+							'keyword_id'      => $keyword_id,
+							'count'           => 0,
+							'not_found_count' => 1,
+							'created_at'      => current_time('mysql'),
 						),
-						array('%s')
+						array('%d', '%d', '%d', '%s')
 					);
-
-					// Get the inserted ID and insert log entry
-					$keyword_id = $wpdb->insert_id;
-					if ($keyword_id) {
-						$wpdb->insert(
-							$wp_eazydocs_search_log,
-							array(
-								'keyword_id'      => $keyword_id,
-								'count'           => 0,
-								'not_found_count' => 1,
-								'created_at'      => current_time('mysql'),
-							),
-							array('%d', '%d', '%d', '%s')
-						);
-					}
 				}
 			}
-
 			?>
             <div>
                 <h5 class="error title"> <?php esc_html_e( 'No result found!', 'eazydocs' ); ?> </h5>
