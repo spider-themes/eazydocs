@@ -189,6 +189,21 @@ CSF::createSection( $prefix, array(
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' )
 							)
+						),
+
+						array(
+							'id'         => 'assistant_docs_show',
+							'type'       => 'number',
+							'title'      => esc_html__( 'Number of Docs', 'eazydocs' ),
+							'desc'       => esc_html__( 'Leave this field empty to display all available docs.', 'eazydocs' ),
+							'default'    => 12,
+							'dependency' => array(
+								array( 'kb_visibility', '==', 'true' ),
+							),
+							'attributes' => array(
+								'min'  => 1,
+								'step' => 1
+							)
 						)
 					)
 				),
