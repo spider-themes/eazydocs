@@ -8,7 +8,7 @@ Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create unlimited knowledge bases, order and nest documents with drag-and-drop, and customize your docs with ease. Optimized for SEO, responsive, and user-friendly.
+Create unlimited knowledge bases, organize docs with drag-and-drop, and customize with ease. SEO-friendly, responsive, user-friendly.
 
 == Description ==
 
@@ -145,38 +145,37 @@ Easily move your documentation from BetterDocs to EazyDocs with our one-click mi
 - Doc Root URL
 - Book Chapter Elementor Widget
 - Voting & Comments Notifications
-- Doc Helper Assistant with Contact Form
-- Conditional Content Dropdown
-- Ajax Doc Loading
-- Doc Dark Mode
-- OnePage Documentation
-- User Role Management
-- Docs Archive Masonry Layout
-- Private Doc with Login Page
-- Glossary Docs
+- [Doc Helper Assistant with Contact Form](https://spider-themes.net/eazydocs/features/helper-assistant/)
+- [Conditional Content Dropdown](https://spider-themes.net/eazydocs/features/conditional-dropdown/)
+- [Ajax Doc Loading](https://spider-themes.net/eazydocs/features/ajax-live-search/)
+- [Doc Dark Mode](https://spider-themes.net/eazydocs/features/dark-mode/)
+- [OnePage Documentation](https://spider-themes.net/eazydocs/features/onepage-doc/)
+- [User Role Management](https://spider-themes.net/eazydocs/features/user-role-management/)
+- [Docs Archive Masonry Layout]()
+- [Private Doc with Login Page](https://spider-themes.net/eazydocs/features/bulk-visibility/)
+- [Glossary Docs](https://youtu.be/Mm-lQl5Tre4?si=XJ8r08kpCVUcxZ2y)
 - Extended Doc Layout
-- Doc Badge
-- Suggested Search Keywords
-- Bulk Duplicate Documentation
-- Bulk Doc Visibility (Private/internal, Password Protected, Public)
+- [Doc Badge](https://youtu.be/lXypbPmRFiU?si=SgnpUxT3w-mTTiJq)
+- [Suggested Search Keywords](https://spider-themes.net/eazydocs/features/ajax-live-search/)
+- [Bulk Duplicate Documentation](https://spider-themes.net/eazydocs/features/duplicate-copy-documentation)
+- [Bulk Doc Visibility (Private/internal, Password Protected, Public)](https://spider-themes.net/eazydocs/features/bulk-visibility/)
 - User Restriction, Internal / External Site Support
-- Editable Single Doc Sidebar Area
+- [Editable Single Doc Sidebar Area](https://youtu.be/y3UJXfqhPgk?si=-BqofWmVs0BryqV4)
 - Fully RTL Compatibility
-- Duplicate Bulk/Individual Documentation
+- [Duplicate Bulk/Individual Documentation](https://spider-themes.net/eazydocs/features/duplicate-copy-documentation/)
 - Users Feedback Database
-- Single & Multidocs Block
+- [Single & Multidocs Block](https://spider-themes.net/eazydocs/single-multidocs-block/)
 - Extra Depth Level
 - Cross Domain Embed Option for Docs Assistant
-- Author/Contributor profile page 
 
 ## EazyDocs Promax plan features include:
 - All Pro plan features
-- Subscribe to Docs
-- Feedback on Selected Text
-- Analytics
-- Contributor, Add/Edit doc from Frontend
-- Footnotes
-- Elementor pre-made templates
+- [Subscribe to Docs](https://spider-themes.net/eazydocs/features/subscribe/)
+- [Feedback on Selected Text](https://spider-themes.net/eazydocs/features/feedback-on-selected-text/)
+- [Analytics](https://spider-themes.net/eazydocs/features/analytics/)
+- [Contributor, Add/Edit doc from Frontend](https://youtu.be/l8H8KEdMejA?si=gp6GG_agG1jLPJiE)
+- [Footnotes](https://youtu.be/ytNghaQ0Zko?si=CBl2sLCvNx6HJ8Ri)
+- [Elementor pre-made templates](https://spider-themes.net/eazydocs/pre-made-elementor-template/)
 - Author/Contributor profile page 
 
 [Click here](https://spider-themes.net/eazydocs/features) to know more about EazyDocs Premium Plans and Features
