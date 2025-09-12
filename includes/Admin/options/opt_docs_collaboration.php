@@ -34,7 +34,7 @@ CSF::createSection( $prefix, array(
 			'chosen'      => true,
 			'ajax'        => true,
 			'query_args'  => array(
-				'posts_per_page' => - 1,
+				'posts_per_page' => -1,
 			),
 			'dependency'  => array(
 				array( 'is_doc_contribution', '==', 'true' )

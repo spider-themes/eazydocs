@@ -117,7 +117,10 @@ CSF::createSection( $prefix, array(
 		'id'       => 'reporting_sample',
 		'type'     => 'content',
 		'content' => '<button class="button button-info ezd-analytics-sample-report">Test Report</button>',
-	    'class'      => 'eazydocs-promax-notice'
+	    'class'      => 'eazydocs-promax-notice',
+		'dependency' => array(
+			array( 'reporting_enabled', '==', 'true' )
+		)
 	)
 
   )

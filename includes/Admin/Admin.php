@@ -18,6 +18,7 @@ class Admin {
 
 		add_action( 'wp_ajax_eaz_nestable_docs', [ $this, 'nestable_callback' ] );
 		add_action( 'wp_ajax_eaz_parent_nestable_docs', [ $this, 'parent_nestable_callback' ] );
+		add_filter( 'display_post_states', [ $this, 'ezd_post_states' ], 10, 2 );
 	}
 
 	/**
@@ -367,5 +368,37 @@ class Admin {
 	 */
 	public function ezd_docs_migration() {
 		include __DIR__ . '/migration.php';
+	}
+
+	/**
+	 * Post states added in EazyDocs pages
+	 */
+	public function ezd_post_states( $post_states, $post ) {
+		if ( 'page' !== $post->post_type ) {
+			return $post_states;
+		}
+
+		$docs_slug_page   = ezd_get_opt( 'docs-slug' );
+		$login_page       = ezd_get_opt( 'private_doc_login_page' );
+		$frontend_login   = ezd_get_opt( 'docs_frontend_login_page' );
+		$private_mode     = ezd_get_opt( 'private_doc_mode' );
+		$is_contribution  = ezd_get_opt( 'is_doc_contribution' );
+
+		if ( $post->ID == $docs_slug_page ) {
+			$post_states['docs_archive'] = __( 'Docs Archive', 'textdomain' );
+		}
+
+		if ( $login_page === $frontend_login && $post->ID == $login_page ) {
+			$post_states['docs_login'] = __( 'Docs Access', 'textdomain' );
+		} else {
+			if ( $post->ID == $login_page && $private_mode === 'login' ) {
+				$post_states['docs_login'] = __( 'Private Access', 'textdomain' );
+			}
+			if ( $post->ID == $frontend_login && $is_contribution ) {
+				$post_states['docs_collaborator'] = __( 'Collaborator Access', 'textdomain' );
+			}
+		}
+
+		return $post_states;
 	}
 }
