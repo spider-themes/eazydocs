@@ -623,8 +623,51 @@ p.big-p {
 
 // Admin dashboard review notice
 #ezd_notify_review {
-  h3 {
-    margin: 5px 0 8px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid rgba(195, 196, 199, 0.4117647059);
+  background: white;
+  padding: 20px;
+
+  p, h3 {
+    margin: 0px 0 5px;
+  }
+
+  img {
+    max-height: 120px;
+  } 
+
+  .action_links {
+    margin: 0px 0 5px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    a:first-child{
+      color: white;
+    }
+  }
+
+  .btn {
+    text-decoration: none;
+    font-size: 16px;
+    color: #098f3e;
+    font-weight: 400;
+
+    span {
+      font-weight: 500;
+    }
+
+    &:focus{
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    &.red{
+      color:red;
+    }
   }
 }
 
