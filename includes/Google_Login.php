@@ -11,7 +11,16 @@ class Google_Login {
     private $client_id;
     private $client_secret;
     private $redirect_uri;
-    
+
+    /**
+     * Start a PHP session safely (avoid multiple session_start calls / headers already sent).
+     */
+    private function ensure_session() {
+        if ( ! session_id() && ! headers_sent() ) {
+            session_start();
+        }
+    }
+
     public function __construct() {
         add_action( 'init', array( $this, 'init' ) );
         
@@ -26,7 +35,7 @@ class Google_Login {
         // login page 
         add_action( 'login_enqueue_scripts', function(){
             wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css', EAZYDOCS_VERSION );
-			wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array( 'jquery' ), EAZYDOCS_VERSION );
+            wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array( 'jquery' ), EAZYDOCS_VERSION );
         });
         
         // Get plugin settings
@@ -62,8 +71,8 @@ class Google_Login {
      * @return string
      */
     public function show_login_messages( $message ) {
-        if ( isset( $_GET[ 'google_error' ] ) ) {
-            $error_msg = '<div id="login_error">Google login failed. Please try again or contact support.</div>';
+        if ( isset( $_GET[ 'google_error' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $error_msg = '<div id="login_error">' . esc_html__( 'Google login failed. Please try again or contact support.', 'eazydocs' ) . '</div>';
             return $error_msg . $message;
         }
         return $message;
@@ -73,7 +82,7 @@ class Google_Login {
      *
      * @return int|string
      */    
-    private function get_current_page_id() {
+    private function get_current_page_id() { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
         global $post;
         
         if ( is_home() || is_front_page() ) {
@@ -124,7 +133,7 @@ class Google_Login {
         if ( empty( $this->client_id ) || empty( $this->client_secret ) ) {
             return;
         }
-        echo wp_kses_post( $this->get_google_login_html( 'Sign in with Google', 'ezd-google-login-btn' ) );
+        echo wp_kses_post( $this->get_google_login_html( __( 'Sign in with Google', 'eazydocs' ), 'ezd-google-login-btn' ) );
     }
     
     /**
@@ -135,11 +144,11 @@ class Google_Login {
      */
     public function google_login_shortcode( $atts ) {
         if ( empty( $this->client_id ) || empty( $this->client_secret ) ) {
-            return '<p>Google Login not configured. Please check settings.</p>';
+            return '<p>' . esc_html__( 'Google Login not configured. Please check settings.', 'eazydocs' ) . '</p>';
         }
 
         $atts = shortcode_atts( array(
-            'text'       => 'Sign in with Google',
+            'text'       => __( 'Sign in with Google', 'eazydocs' ),
             'class'      => 'ezd-google-login-btn',
             'redirect'   => '',
             'product_id' => '',
@@ -159,15 +168,15 @@ class Google_Login {
      * @param string $docs_id
      * @return string
      */
-    private function get_google_login_html( $text = 'Sign in with Google', $class = 'ezd-google-login-btn', $redirect = '', $product_id = '', $docs_id = '' ) {
+    private function get_google_login_html( $text = '', $class = 'ezd-google-login-btn', $redirect = '', $product_id = '', $docs_id = '' ) {
         if ( is_user_logged_in() ) {
             return '';
         }
 
-        if ( ! session_id() ) {
-            session_start();
-        }
-        
+        $text = $text ? $text : __( 'Sign in with Google', 'eazydocs' );
+
+        $this->ensure_session();
+
         // Save values in session
         $_SESSION[ 'gcl_redirect_url' ] = ! empty( $redirect ) ? $redirect : ( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : home_url() );
         $_SESSION[ 'gcl_product_id' ] = $product_id;
@@ -176,9 +185,8 @@ class Google_Login {
         $google_url = $this->get_google_auth_url();
 
         $html  = '<div class="ezd-google-login-container">';
-        
-        $html .= '<a href="#" class="' . esc_attr( $class ) . '" data-href="' . esc_url( $google_url ) . '" data-product_id="' . esc_attr( $product_id ) . '" data-docs_id="' . esc_attr( $docs_id ) . '">';        
-        $html .= '<svg width="18" height="18" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="LgbsSe-Bz112c"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg>';
+        $html .= '<a href="#" class="' . esc_attr( $class ) . '" data-href="' . esc_url( $google_url ) . '" data-product_id="' . esc_attr( $product_id ) . '" data-docs_id="' . esc_attr( $docs_id ) . '" aria-label="' . esc_attr__( 'Sign in with Google', 'eazydocs' ) . '">';
+        $html .= '<svg width="18" height="18" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="LgbsSe-Bz112c" role="img" aria-hidden="true"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg>';
         $html .= '<span>' . esc_html( $text ) . '</span>';
         $html .= '</a>';
         $html .= '</div>';
@@ -192,46 +200,48 @@ class Google_Login {
      * @return string
      */
     private function get_google_auth_url() {
+        $this->ensure_session();
         $state = [];
-
-        if ( ! session_id() ) {
-            session_start();
-        }
 
         $state[ 'product_id' ] = $_SESSION[ 'gcl_product_id' ] ?? '';
         $state[ 'docs_id' ]    = $_SESSION[ 'gcl_docs_id' ] ?? '';
+        $state[ 'nonce' ]      = wp_create_nonce( 'ezd_google_login' );
+
         $params = [
-            'client_id'     => $this->client_id,
-            'redirect_uri'  => $this->redirect_uri,
-            'response_type' => 'code',
-            'scope'         => 'openid email profile',
-            'access_type'   => 'offline',
-            'state'         => base64_encode( json_encode( $state ) )
+            'client_id'              => $this->client_id,
+            'redirect_uri'           => $this->redirect_uri,
+            'response_type'          => 'code',
+            'scope'                  => apply_filters( 'eazydocs_google_scopes', 'openid email profile' ),
+            'access_type'            => 'offline',
+            'include_granted_scopes' => 'true',
+            'state'                  => base64_encode( wp_json_encode( $state ) ),
+            // 'prompt' => 'consent' // Optionally force consent each time.
         ];
 
-        return 'https://accounts.google.com/o/oauth2/auth?' . http_build_query( $params );
+        // Use latest OAuth endpoint
+        return 'https://accounts.google.com/o/oauth2/v2/auth?' . http_build_query( $params, '', '&', PHP_QUERY_RFC3986 );
     }
 
     /**
      * Handle Google OAuth callback
      */
     public function handle_google_callback() {
-        $is_callback = get_query_var( 'google_auth_callback' ) || isset( $_GET[ 'code' ] );
+        $is_callback = get_query_var( 'google_auth_callback' ) || isset( $_GET[ 'code' ] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
         if ( ! $is_callback) {
             return;
         }
 
-        if ( isset( $_GET[ 'error' ] ) ) {
-            $error              = sanitize_text_field( $_GET[ 'error' ] );
-            $error_description  = isset( $_GET[ 'error_description' ] ) ? sanitize_text_field( $_GET[ 'error_description' ] ) : '';
-            error_log( 'Google OAuth Error: ' . $error . ' - ' . $error_description );
+        if ( isset( $_GET[ 'error' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $error              = sanitize_text_field( wp_unslash( $_GET[ 'error' ] ) );
+            $error_description  = isset( $_GET[ 'error_description' ] ) ? sanitize_text_field( wp_unslash( $_GET[ 'error_description' ] ) ) : '';
+            error_log( 'Google OAuth Error: ' . $error . ' - ' . $error_description ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
             wp_redirect( wp_login_url() . '?google_error=1' );
             exit;
         }
 
-        if ( isset( $_GET[ 'code' ] ) ) {
-            $code       = sanitize_text_field( $_GET[ 'code' ] );
+        if ( isset( $_GET[ 'code' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $code       = sanitize_text_field( wp_unslash( $_GET[ 'code' ] ) );
             $token_data = $this->exchange_code_for_token( $code );
 
             if ( $token_data && isset( $token_data[ 'access_token' ] ) ) {
@@ -240,9 +250,7 @@ class Google_Login {
                 if ( $user_data ) {
                     $this->login_or_register_user( $user_data );
 
-                    if ( ! session_id() ) {
-                        session_start();
-                    }
+                    $this->ensure_session();
 
                     // Fallback via state param if session fails
                     $product_id = 0;
@@ -257,9 +265,16 @@ class Google_Login {
                     }
 
                     // Try to recover from state param if session empty
-                    if ( isset( $_GET[ 'state' ] ) ) {
-                        $state_data = json_decode( base64_decode( $_GET[ 'state' ] ), true );
+                    if ( isset( $_GET[ 'state' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                        $state_raw  = base64_decode( sanitize_text_field( wp_unslash( $_GET[ 'state' ] ) ) );
+                        $state_data = json_decode( $state_raw, true );
                         if ( is_array( $state_data ) ) {
+                            // Verify nonce for security
+                            if ( empty( $state_data['nonce'] ) || ! wp_verify_nonce( $state_data['nonce'], 'ezd_google_login' ) ) {
+                                wp_logout();
+                                wp_redirect( wp_login_url() . '?google_error=1' );
+                                exit;
+                            }
                             $product_id = ! empty( $state_data[ 'product_id' ] ) ? intval( $state_data[ 'product_id' ] ) : $product_id;
                             $docs_id    = ! empty( $state_data[ 'docs_id' ] ) ? intval( $state_data[ 'docs_id' ] ) : $docs_id;
                         }
@@ -271,7 +286,7 @@ class Google_Login {
                     $redirect = home_url();
 
                     // WooCommerce session fix
-                    if (function_exists( 'WC' ) ) {
+                    if ( function_exists( 'WC' ) ) {
                         if ( ! WC()->session->has_session() ) {
                             WC()->session->set_customer_session_cookie( true );
                         }
@@ -282,7 +297,6 @@ class Google_Login {
                         $already_enrolled = false;
 
                         if ( $docs_id ) {
-
                             $current_user     = wp_get_current_user();
                             $username         = $current_user->user_login;
                             $eazy_course_data = get_post_meta( $docs_id, 'eazy_course_data', true );
@@ -298,23 +312,18 @@ class Google_Login {
 
                         if ( ! $already_enrolled ) {
                             $cart_data = [];
-
                             if ( $docs_id ) {
                                 $cart_data[ 'docs_id' ] = $docs_id;
                             }
-
                             WC()->cart->add_to_cart( $product_id, 1, 0, [], $cart_data );
                             WC()->cart->calculate_totals();
                             $redirect = wc_get_checkout_url();
                         } else {
-                            // Optional: Redirect to course page or dashboard instead of checkout
                             $redirect = get_permalink( $docs_id );
                         }
                     }
-
                     // ✅ Free Course — Enroll directly
                     elseif ( $docs_id && ! $product_id ) {
-
                         $current_user     = wp_get_current_user();
                         $username         = $current_user->user_login;
                         $eazy_course_data = get_post_meta( $docs_id, 'eazy_course_data', true );
@@ -339,16 +348,11 @@ class Google_Login {
                         $redirect = get_permalink( $docs_id );
                     }
 
+                    $redirect = apply_filters( 'eazydocs_google_login_redirect', $redirect, $product_id, $docs_id );
+
                     // ✅ Output redirect and close popup
-                    echo '<!DOCTYPE html><html><head><title>Redirecting…</title></head><body>';
-                    echo '<script>
-                        if ( window.opener) {
-                            window.opener.location.href = "' . esc_url( $redirect ) . '";
-                            window.close();
-                        } else {
-                            window.location.href = "' . esc_url( $redirect ) . '";
-                        }
-                    </script>';
+                    echo '<!DOCTYPE html><html><head><meta charset="' . esc_attr( get_bloginfo( 'charset' ) ) . '"><title>' . esc_html__( 'Redirecting…', 'eazydocs' ) . '</title></head><body>';
+                    echo '<script>\n                        if ( window.opener ) {\n                            window.opener.location.href = ' . wp_json_encode( esc_url_raw( $redirect ) ) . ';\n                            window.close();\n                        } else {\n                            window.location.href = ' . wp_json_encode( esc_url_raw( $redirect ) ) . ';\n                        }\n                    </script>';
                     echo '</body></html>';
                     exit;
                 }
@@ -451,8 +455,8 @@ class Google_Login {
      * @return string
      */
     private function generate_username( $email ) {
-        $username = sanitize_user(current( explode( '@', $email ) ) );
-        
+        $username = sanitize_user( current( explode( '@', $email ) ) );
+
         if ( username_exists( $username ) ) {
             $i = 1;
             while ( username_exists( $username . $i ) ) {
@@ -464,3 +468,4 @@ class Google_Login {
         return $username;
     }
 }
+

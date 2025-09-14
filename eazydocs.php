@@ -22,13 +22,13 @@ if ( function_exists( 'eaz_fs' ) ) {
 } else {
 	// DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
 
-	if ( ! function_exists( 'eaz_fs' ) ) {		
-		
+	if ( ! function_exists( 'eaz_fs' ) ) {
+
 		// Retrieve the Eazydocs settings option
 		$opt 			= get_option('eazydocs_settings', []);
 		// Check if the setup wizard has been completed (defaulting to an empty string if not set)
 		$setup_wizard 	= $opt['setup_wizard_completed'] ?? '';
-		
+
 		// Check if the setup wizard is not completed and ezd_get_setup_wizard option is set
 		if ( get_option( 'ezd_get_setup_wizard' ) && ! empty( $setup_wizard ) ) {
 			// Remove the activation flag if the setup wizard is not completed
@@ -45,25 +45,30 @@ if ( function_exists( 'eaz_fs' ) ) {
 
 				$eaz_fs = fs_dynamic_init(
 					[
-						'id'              => '10290',
-						'slug'            => 'eazydocs',
-						'premium_slug'    => 'eazydocs-pro',
-						'type'            => 'plugin',
-						'public_key'      => 'pk_8474e4208f0893a7b28c04faf5045',
-						'is_premium'      => false,
-						'is_premium_only' => false,
-						'has_addons'      => true,
-						'has_paid_plans'  => true,
-						'trial'           => [
+						'id'                => '10290',
+						'slug'              => 'eazydocs',
+						'premium_slug'      => 'eazydocs-pro',
+						'type'              => 'plugin',
+						'public_key'        => 'pk_8474e4208f0893a7b28c04faf5045',
+                        'wp_org_gatekeeper' => 'OA7#BoRiBNqdf52FvzEf!!074aRLPs8fspif$7K1#4u4Csys1fQlCecVcUTOs2mcpeVHi#C2j9d09fOTvbC0HloPT7fFee5WdS3G',
+						'is_premium'        => false,
+						'is_premium_only'   => false,
+						'has_addons'        => false,
+						'has_paid_plans'    => true,
+						'trial'             => [
 							'days'               => 14,
 							'is_require_payment' => true,
 						],
-						'menu'            => [
-							'slug'       => 'eazydocs',
-							'contact'    => false,
-							'support'    => false,
-							'first-path' => get_option('ezd_get_setup_wizard') ? 'admin.php?page=eazydocs-initial-setup' : 'admin.php?page=eazydocs'
+						'menu'              => [
+							'slug'          => 'eazydocs',
+							'contact'       => false,
+							'support'       => false,
+							'first-path'    => get_option('ezd_get_setup_wizard') ? 'admin.php?page=eazydocs-initial-setup' : 'admin.php?page=eazydocs'
 						],
+                        'parallel_activation' => array(
+                                'enabled'                  => true,
+                                'premium_version_basename' => 'eazydocs-pro/eazydocs.php',
+                        ),
 					]
 				);
 			}
@@ -71,14 +76,14 @@ if ( function_exists( 'eaz_fs' ) ) {
 			return $eaz_fs;
 		}
 
-		// Init Freemius.
-		eaz_fs()->add_filter( 'deactivate_on_activation', '__return_false' );
+		// Add filter to hide the Freemius badge from the plugin page.
 		eaz_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
 
 		// Signal that SDK was initiated.
 		do_action( 'eaz_fs_loaded' );
 	}
 }
+
 
 use eazyDocs\Post_Types;
 
@@ -115,7 +120,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 			add_action( 'after_setup_theme', [ $this, 'load_csf_files' ], 20 );
-			
+
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				add_action( 'admin_notices', [ $this, 'update_database' ] );
 			}
@@ -193,11 +198,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
 			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
 			require_once __DIR__ . '/includes/Admin/setup-wizard/Plugin_Installer.php';
- 
+
 			if ( ezd_unlock_themes('docy','docly','ama') ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
 			}
-			require_once __DIR__ . '/shortcodes/conditional_data.php';			
+			require_once __DIR__ . '/shortcodes/conditional_data.php';
 
 			// Include and Register the Shortcode for Displaying Single Docs Content
 			require_once __DIR__ . '/shortcodes/ezd-view-docs.php';
@@ -217,7 +222,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// Blocks
 			require_once __DIR__ . '/blocks.php';
 		}
-		
+
 		/**
 		 * Include CSF files include
 		 */
@@ -321,7 +326,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			update_option('ezd_get_setup_wizard', true);
 
 		}
-		
+
 		/**
 		 * Create database table if not exists
 		 * Insert search keywords table and search key logs table into the database if not exists
