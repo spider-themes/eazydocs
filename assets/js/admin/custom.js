@@ -356,6 +356,42 @@
 				'arrow-active'
 			);
 		});
+		
+		// Notifications filter buttons
+		$('.easydocs-filters button').on('click', function(e){
+			e.preventDefault();
+
+			var filter = $(this).data('filter'); 
+			var $items = $('.ezd-mix-wrapper .mix');
+
+			// Highlight active button
+			$('.easydocs-filters button').removeClass('mixitup-control-active');
+			$(this).addClass('mixitup-control-active');
+
+			$items.each(function(){
+				var $item = $(this);
+
+				if(filter === '*' || $item.is(filter)){
+					// Match → fade in + add class
+					$item.stop(true, true).fadeIn({
+						duration: 300,
+						start: function(){
+							// Force display flex when fading in
+							$item.css('display', 'flex');
+						},
+						complete: function(){
+							$item.addClass('show_mix');
+						}
+					});
+				} else {
+					// Not match → fade out + remove class
+					$item.stop(true, true).fadeOut(300, function(){
+						$item.removeClass('show_mix');
+					});
+				}
+			});
+		});
+		
 	});
 
 	// glossary doc js ==============

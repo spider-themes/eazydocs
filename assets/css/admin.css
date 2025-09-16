@@ -1267,8 +1267,10 @@ body.rtl a.child-delete {
 .notify-column {
   margin-top: 16px;
   max-height: 20rem;
-  overflow-y: auto;
+  overflow-y: auto !important;
   scrollbar-width: thin;
+  perspective-origin: unset !important;
+  height: 100% !important;
 }
 .notify-column::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -1284,7 +1286,7 @@ body.rtl a.child-delete {
 }
 
 .notification-item {
-  display: flex;
+  display: none;
   align-items: flex-start;
   cursor: pointer;
   gap: var(--gutter-10);
@@ -1294,6 +1296,12 @@ body.rtl a.child-delete {
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   border-radius: 0.3125rem;
+  transition: 0.3s all;
+}
+.notification-item.show_mix {
+  display: flex;
+  opacity: 1 !important;
+  transform: unset !important;
 }
 .notification-item .notification-image {
   width: 2.5rem;
