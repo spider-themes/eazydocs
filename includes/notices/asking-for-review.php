@@ -36,7 +36,7 @@ function ezd_notify_give_review() {
 	?>
     <div class="notice notice-success is-dismissible" id="ezd_notify_review">
 		<div>
-			<img src="<?php echo EAZYDOCS_IMG . '/eazydocs-logo.png' ?>" />
+			<img src="<?php echo esc_url(EAZYDOCS_IMG . '/eazydocs-logo.png') ?>" />
 		</div>
 		<div>
 			<h3><?php esc_html_e( 'Give EazyDocs a review', 'eazydocs' ); ?></h3>

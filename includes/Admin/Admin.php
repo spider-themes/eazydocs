@@ -385,17 +385,17 @@ class Admin {
 		$is_contribution  = ezd_get_opt( 'is_doc_contribution' );
 
 		if ( $post->ID == $docs_slug_page ) {
-			$post_states['docs_archive'] = __( 'Docs Archive', 'textdomain' );
+			$post_states['docs_archive'] = __( 'Docs Archive', 'eazydocs' );
 		}
 
 		if ( $login_page === $frontend_login && $post->ID == $login_page ) {
-			$post_states['docs_login'] = __( 'Docs Access', 'textdomain' );
+			$post_states['docs_login'] = __( 'Docs Access', 'eazydocs' );
 		} else {
 			if ( $post->ID == $login_page && $private_mode === 'login' ) {
-				$post_states['docs_login'] = __( 'Private Access', 'textdomain' );
+				$post_states['docs_login'] = __( 'Private Access', 'eazydocs' );
 			}
 			if ( $post->ID == $frontend_login && $is_contribution ) {
-				$post_states['docs_collaborator'] = __( 'Collaborator Access', 'textdomain' );
+				$post_states['docs_collaborator'] = __( 'Collaborator Access', 'eazydocs' );
 			}
 		}
 

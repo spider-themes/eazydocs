@@ -1,4 +1,9 @@
 == Changelog ==
+= 2.7.1 (18 September 2025) =
+Tweaked: Docs Builder UI improved
+Tweaked: Improved the review notice design
+Tweaked: Removed unnecessary padding from highlighted text in left sidebar
+Updated: Freemius SDK updated to 2.12.2
 
 = 2.7.0 (17 August 2025) =
 New: Added Migration Tool to move docs from BetterDocs to EazyDocs (Go to EazyDocs > Migration, click “Start Migration,” then review and delete BetterDocs)

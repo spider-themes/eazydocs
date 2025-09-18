@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -138,6 +138,9 @@ Keep a record of article drafts and edits, and restore earlier versions if requi
 ## 🔁 Migration ##
 Easily move your documentation from BetterDocs to EazyDocs with our one-click migration tool. Transfer everything seamlessly and keep your site clean by removing BetterDocs after migration.
 
+## ✉️ Email Reporting ##
+Get detailed insights into your documentation performance directly in your inbox. The new Email Reporting feature provides both static and dynamic analytics reports, helping you track user engagement and make data-driven decisions with ease.
+
 ### 🚀 How to Migrate from BetterDocs to EazyDocs ###
 [youtube https://youtu.be/mXUK8rEH7tg?si=py7PQibYn-HNTmLz]
 
@@ -244,6 +247,12 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= 2.7.1 (18 September 2025) =
+Tweaked: Docs Builder UI improved
+Tweaked: Improved the review notice design
+Tweaked: Removed unnecessary padding from highlighted text in left sidebar
+Updated: Freemius SDK updated to 2.12.2
+
 = 2.7.0 (17 August 2025) =
 New: Added Migration Tool to move docs from BetterDocs to EazyDocs (Go to EazyDocs > Migration, click “Start Migration,” then review and delete BetterDocs)
 New: Added Google Login functionality with configurable settings
@@ -280,16 +289,6 @@ Updated: Language files updated
 = 2.6.7 (18 June 2025) =
 Fixed: Accordion reorder issue at depth-4 resolved
 Tweaked: Improved the Full width container in mobile devices
-Tweaked: Improved doc single page design 
-
-= 2.6.6 (28 May 2025) =
-New: Tags show hide option added in 'EazyDocs > Settings > Docs single'
-New: Added Order & OrderBy options to MultiDocs widget
-Fixed: Child doc count was showing wrong in the Doc builder UI
-Fixed: Child doc title alignment issue fixed in content area
-Fixed: Resolved update database admin notice
-Tweaked: Parent doc active color applied for all depths
-Tweaked: Improve the left sidebar on mobile device
-Updated: Freemius SDK updated to 2.12.0
+Tweaked: Improved doc single page design
 
 [See changelog for all versions](https://spider-themes.net/eazydocs/changelog/).
