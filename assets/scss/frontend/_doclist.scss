@@ -170,11 +170,11 @@ body {
 /** === Left Sidebar / Docs Tree === **/
 .nav-sidebar {
 	margin: 0;
-	
+
 	&.ezd-list-unstyled{
 		margin-bottom: 40px;
 	}
-	
+
 	> .nav-item {
 		> .doc-link {
 			padding: 10px;
@@ -218,7 +218,7 @@ body {
 				color: var(--ezd_brand_color);
 			}
 		}
-		
+
 		&.active {
 			> .doc-link .icon {
 				transform: rotate(-180deg);
@@ -249,7 +249,7 @@ body {
 				display: block;
 			}
 		}
-		
+
 		mark {
 			background-color: var(--ezd_brand_color);
 		}
@@ -940,7 +940,7 @@ body {
 		max-height: 100%;
 		width: calc(100% + 35px);
 		padding-right: 10px;
-		
+
 		.ezd-subscription-btn {
 			margin-bottom: 20px;
 		}
@@ -1299,7 +1299,7 @@ body {
 	}
 
 	.doc_right_mobile_menu .doc_rightsidebar,
-	.left-column .doc_left_sidebarlist {		
+	.left-column .doc_left_sidebarlist {
 		&.sticky{
 			position: fixed;
 			top: 55px;
@@ -1311,7 +1311,7 @@ body {
 //  TOC numbering
 @media (max-width: 591px) {
 	.doc_right_mobile_menu .doc_rightsidebar,
-	.left-column .doc_left_sidebarlist {		
+	.left-column .doc_left_sidebarlist {
 		&.sticky{
 			top: 65px;
 		}
@@ -1333,7 +1333,7 @@ body {
 				> .nav-link {
 					padding-left: 16px;
 					letter-spacing: .5px;
-	
+
 					&::before {
 						content: counters(item, ".") ". ";
 						padding-left: 18px;

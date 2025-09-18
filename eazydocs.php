@@ -50,7 +50,6 @@ if ( function_exists( 'eaz_fs' ) ) {
 						'premium_slug'      => 'eazydocs-pro',
 						'type'              => 'plugin',
 						'public_key'        => 'pk_8474e4208f0893a7b28c04faf5045',
-                        'wp_org_gatekeeper' => 'OA7#BoRiBNqdf52FvzEf!!074aRLPs8fspif$7K1#4u4Csys1fQlCecVcUTOs2mcpeVHi#C2j9d09fOTvbC0HloPT7fFee5WdS3G',
 						'is_premium'        => false,
 						'is_premium_only'   => false,
 						'has_addons'        => false,
