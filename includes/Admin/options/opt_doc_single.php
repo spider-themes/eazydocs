@@ -798,6 +798,82 @@ CSF::createSection( $prefix, array(
 			'multiple'   => true,
 			'chosen'     => true
 		),
+		
+		array(
+			'id'         => 'ezd_selected_comment_form',
+			'type'       => 'subheading',
+			'title'      => esc_html__( 'Feedback Form Settings', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+
+		array(
+			'id'         => 'ezd_selected_comment_options_heading',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Predefined Options Heading', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'default'    => esc_html__( 'What is the issue with this selection?', 'eazydocs' ),
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+
+		array(
+			'id'         => 'ezd_selected_comment_options',
+			'type'       => 'repeater',
+			'title'      => esc_html__( 'Predefined Options', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+			'fields' => array(
+				array(
+					'id'    => 'label',
+					'type'  => 'text',
+					'title' => esc_html__( 'Option Label', 'eazydocs' ),
+				),
+			),
+			'default'   => array(
+				array(
+					'label' => "Inaccurate - doesn't match what I see in the product",
+				),
+				array(
+					'label' => 'Hard to understand - unclear or translation is wrong',
+				),
+			)
+		),
+
+		array(
+			'id'         => 'ezd_selected_comment_option_other',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Other Option Label', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'default'    => esc_html__( 'Others', 'eazydocs' ),
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+
+		array(
+			'id'         => 'ezd_selected_comment_form_heading',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Form Title', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'default'    => esc_html__( 'Share additional info or suggestions', 'eazydocs' ),
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+
+		array(
+			'id'         => 'ezd_selected_comment_form_subheading',
+			'type'       => 'text',
+			'title'      => esc_html__( 'Form Subtitle', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'default'    => esc_html__( 'Do not share any personal info', 'eazydocs' ),
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		),
+
+		array(
+			'id'         => 'ezd_selected_comment_form_footer',
+			'type'       => 'textarea',
+			'title'      => esc_html__( 'Form Disclaimer', 'eazydocs' ),
+			'class'      => 'eazydocs-promax-notice',
+			'default'    => esc_html__( 'By continuing, you allow Google to use your answers and account info to improve services, as explained in our Privacy & Terms.', 'eazydocs' ),
+			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
+		)
 	)
 ) );
 
