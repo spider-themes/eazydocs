@@ -955,10 +955,6 @@ body.ezd-search-focused .banner_search_form {
   z-index: 999 !important;
 }
 
-body:not(.ezd-search-focused) #ezd-search-results.ajax-search {
-  display: none;
-}
-
 .focus_overlay {
   position: fixed;
   top: 0;

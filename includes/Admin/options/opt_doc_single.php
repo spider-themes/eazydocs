@@ -779,15 +779,6 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'selected-comment-button-text',
-			'type'       => 'text',
-			'title'      => esc_html__( 'Button Text', 'eazydocs' ),
-			'class'      => 'eazydocs-promax-notice',
-			'default'    => esc_html__( 'Comment', 'eazydocs' ),
-			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
-		),
-
-		array(
 			'id'         => 'selected-comment-roles',
 			'type'       => 'select',
 			'title'      => esc_html__( 'Who can view comments?', 'eazydocs' ),
