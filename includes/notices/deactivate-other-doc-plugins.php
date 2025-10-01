@@ -1,5 +1,12 @@
 <?php
 /**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  * Notice
  * Deactivate the wedocs
  *

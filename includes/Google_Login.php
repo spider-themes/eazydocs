@@ -1,5 +1,12 @@
 <?php
-namespace eazyDocs;
+namespace EazyDocs;
+
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * Class Google_Login

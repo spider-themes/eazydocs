@@ -11,6 +11,13 @@ use Elementor\Group_Control_Text_Shadow;
 use WP_Query;
 use WP_Post;
 
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Search_Widget extends Widget_Base {
     public function get_name() {
 		return 'ezd_search_form';

@@ -1,3 +1,12 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <?php if ( !empty($sections) ) : ?>
 <div class="docs-box-item docs-single-5-wrap">
     <h5 class="docs-5-title">

@@ -1,4 +1,11 @@
 <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 	<?php
 	foreach ( $sections as $section ) :
 		$doc_items = get_children( array(

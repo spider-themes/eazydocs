@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 
 // Footnotes
 CSF::createSection( $prefix, array(

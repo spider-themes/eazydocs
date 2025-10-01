@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 
 //
 // Instant Answer

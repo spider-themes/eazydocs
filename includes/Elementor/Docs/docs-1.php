@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $private_doc_mode       = ezd_get_opt( 'private_doc_mode' );
 $private_doc_login_page = ezd_get_opt( 'private_doc_login_page' );
 $ppp_column             = ! empty( $settings['ppp_column'] ) ? $settings['ppp_column'] : '3';

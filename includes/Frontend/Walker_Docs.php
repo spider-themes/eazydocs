@@ -1,10 +1,17 @@
 <?php
-namespace eazyDocs\Frontend;
+namespace EazyDocs\Frontend;
 
 use Walker_Page;
 
 /**
- * eazyDocs Docs Walker
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * EazyDocs Docs Walker
  */
 class Walker_Docs extends Walker_Page {
     /**

@@ -1,5 +1,12 @@
 <?php
 /**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  * Get the value of a settings field.
  *
  * @param string $option  settings field name
@@ -524,7 +531,7 @@ if ( ! function_exists( 'docs_root_title' ) ) {
  * @param string $context How to sanitize - raw|edit|db|display|attribute|js
  *
  * @return string Field value
- * @since 1.0.1 eazyDocs
+ * @since 1.0.1 EazyDocs
  *
  */
 function eazydocs_get_global_post_field( $field = 'ID', $context = 'edit' ) {

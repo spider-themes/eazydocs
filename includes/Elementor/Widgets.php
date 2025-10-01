@@ -1,6 +1,13 @@
 <?php
 namespace EazyDocs\Elementor;
 
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Widgets{
     public function __construct() {
         // Register Widgets

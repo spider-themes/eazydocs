@@ -405,9 +405,6 @@
   width: 100%;
   margin: 0;
 }
-.easydocs-accordion-item + .easydocs-accordion-item {
-  /*border-top: 1px solid #EDEAE9;*/
-}
 .easydocs-accordion-item.is-accordion-open:last-child .accordion-title {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -447,6 +444,7 @@
   align-items: center;
   justify-content: space-between;
   line-height: 20px;
+  height: 20px;
 }
 .accordion-title.ez-section-title h4 {
   margin: 0;
@@ -547,7 +545,6 @@
 .accordion-title ul.actions li a .dashicons {
   color: var(--black_150);
   font-size: 18px;
-  padding-top: 3px;
 }
 .accordion-title ul.actions li a .dashicons:hover {
   color: var(--black_400);
@@ -563,6 +560,7 @@
 }
 .accordion-title .left-content {
   display: flex;
+  align-items: center;
 }
 .accordion-title .right-content {
   display: flex;

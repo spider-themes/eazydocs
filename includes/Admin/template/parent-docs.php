@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $query = new WP_Query([
     'post_type'      => 'docs',
     'posts_per_page' => -1,

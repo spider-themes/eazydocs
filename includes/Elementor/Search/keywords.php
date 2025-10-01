@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( $settings['is_ezd_search_keywords'] == 'yes' && !empty($settings['ezd_search_keywords_repeater']) ) :
 	?>
     <div class="header_search_keyword justify-content-<?php echo esc_attr($settings['ezd_search_keywords_align']); ?>">

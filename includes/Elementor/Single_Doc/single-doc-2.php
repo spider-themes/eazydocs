@@ -1,3 +1,12 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <section class="recommended_topic_area">
     <div class="recommended_topic_inner">
 		<?php

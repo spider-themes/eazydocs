@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $title_tag = ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
 ?>
 

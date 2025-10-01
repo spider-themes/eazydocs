@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 
 // Displays a drag icon for child docs
 function ezd_child_docs_drag_icon(){

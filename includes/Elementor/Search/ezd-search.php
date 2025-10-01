@@ -1,4 +1,14 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <div class="focus_overlay"></div>
+
 <form action="<?php echo esc_url(home_url('/')) ?>" role="search" method="get" class="ezd_search_form" >
     <div class="header_search_form_info search_form_wrap">
         <div class="form-group ezd-<?php echo esc_attr($settings['btn-position'] ?? ''); ?>">

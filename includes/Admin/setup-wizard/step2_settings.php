@@ -1,3 +1,12 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <div id="step-2" class="tab-pane" role="tabpanel" style="display:none">
 
 	<h2> <?php esc_html_e( 'Docs Archive Page', 'eazydocs' ); ?> </h2>

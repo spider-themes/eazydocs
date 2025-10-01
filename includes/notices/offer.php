@@ -1,5 +1,12 @@
 <?php
 /**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  ** Give Notice
  **/
 function ezd_offer_notice() {

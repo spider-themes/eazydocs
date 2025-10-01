@@ -1,3 +1,12 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <section class="h_doc_documentation_area" id="Arrow_slides-<?php echo esc_attr( $this->get_id() ) ?>">
     <div class="tabs_sliders">
         <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>

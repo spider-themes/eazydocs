@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $depth_one_parents = [];
 $depth_two_parents = [];
 $posts             = get_posts( [ 'post_type' => 'docs',  'post_status' => ['all'] ] );

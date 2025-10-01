@@ -1,4 +1,14 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <header class="easydocs-header-area">
+
     <div class="ezd-container-fluid">
         <div class="row alignment-center justify-content-between ml-0">
             <div class="navbar-left d-flex alignment-center">

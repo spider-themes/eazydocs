@@ -1,4 +1,14 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <div id="step-1" class="tab-pane setup-welcome" role="tabpanel">
+
 	<h2> <?php esc_html_e( 'Welcome to EazyDocs', 'eazydocs' ); ?> </h2>
 
 	<p> <?php esc_html_e( 'Discover EazyDocs by this guide that walks you through creating professional, user-friendly website documentation seamlessly. Then click next to setup initial settings.', 'eazydocs' ) ; ?> </p>

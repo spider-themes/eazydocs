@@ -1,4 +1,14 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <section class="doc6_community_area docs6 bew-topics">
+
     <div class="doc_community_info">
 	    <?php
 	    $delay    = 0.1;

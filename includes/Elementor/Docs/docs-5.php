@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $is_masonry     = $settings['masonry'] ?? '';
 $masonry_layout = $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : 'ezd-grid ezd-grid-cols-12 ';
 $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';

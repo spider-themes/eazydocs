@@ -10,7 +10,7 @@ if ( $post->post_parent ) {
 	$parent     	= $post->ID;
 }
 
-$walker = new eazyDocs\Frontend\Walker_Docs();
+$walker = new EazyDocs\Frontend\Walker_Docs();
 $children = array(
     'title_li'    => '',
     'order'       => 'menu_order',

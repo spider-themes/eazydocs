@@ -1,10 +1,17 @@
 <?php
-namespace eazyDocs\Admin;
+namespace EazyDocs\Admin;
 use ElementorPro\Modules\DynamicTags\Tags\Post_ID;
 
 /**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  * Class Create_Post
- * @package eazyDocs\Admin
+ * @package EazyDocs\Admin
  */
 class Create_Post {
 	/**

@@ -1,5 +1,12 @@
 <?php
 /**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  * Class Docs
  */
 class Docs {

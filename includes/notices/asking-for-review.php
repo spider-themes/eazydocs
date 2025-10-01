@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $optionReview = get_option('ezd_notify_review');
 if ( time() >= (int)$optionReview && $optionReview !== '0' ) {
 	$ezd_installed = get_option('eazyDocs_installed');

@@ -1,8 +1,15 @@
 <?php
-namespace eazyDocs\Frontend;
+namespace EazyDocs\Frontend;
 
 use JetBrains\PhpStorm\NoReturn;
 use WP_Query;
+
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * Class Ajax

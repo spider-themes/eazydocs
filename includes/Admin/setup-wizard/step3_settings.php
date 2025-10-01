@@ -1,4 +1,14 @@
-<div id="step-3" class="tab-pane" role="tabpanel" style="display:none">
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
+<div id="step-3" class="tab-pane" role="tabpanel" style="display:none"
+
 	<h2> <?php esc_html_e( 'Select Page Layout', 'eazydocs' ); ?> </h2>
 
 	<div class="page-layout-wrap">

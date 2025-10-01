@@ -1,6 +1,13 @@
 <?php
 
-namespace eazyDocs\Admin;
+namespace EazyDocs\Admin;
+
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * Class Admin

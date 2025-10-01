@@ -1,4 +1,11 @@
 <?php 
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // Control core classes for avoid errors
 if( class_exists( 'CSF' ) ) {
 

@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 add_action( 'wp_ajax_eazydocs_feedback_email', 'eazydocs_feedback_email' );    //execute when wp logged in
 add_action( 'wp_ajax_nopriv_eazydocs_feedback_email', 'eazydocs_feedback_email' ); //execute when logged out
 

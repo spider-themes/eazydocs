@@ -1,5 +1,12 @@
 <?php
-namespace eazyDocs\Frontend;
+namespace EazyDocs\Frontend;
+
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 class Assets {
 	/**

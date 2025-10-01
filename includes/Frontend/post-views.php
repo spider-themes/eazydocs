@@ -1,5 +1,12 @@
 <?php
 /**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  * Get post views and update view count for the current user/visitor
  */
 function ezd_ensure_eazydocs_view_log_table_exists() {

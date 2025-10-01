@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // add button for create table
 
 if ( isset( $_GET['eazydocs_table_create'] ) ) {

@@ -1,3 +1,12 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?> h_content_items">
     <?php
 	foreach ( $sections as $section ) :

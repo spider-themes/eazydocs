@@ -5,7 +5,7 @@ $widget_sidebar = ezd_get_opt( 'is_widget_sidebar' );
 global $post;
 $post_slug        = $post->post_name;
 $post_id          = get_page_by_path( $post_slug, OBJECT, array( 'docs' ) );
-$walker           = new eazyDocs\Frontend\Walker_Docs();
+$walker           = new EazyDocs\Frontend\Walker_Docs();
 $child_of_id      = $post_id->ID ?? '';
 $children         = wp_list_pages( array(
 	'title_li'  => '',

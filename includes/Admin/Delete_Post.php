@@ -1,9 +1,16 @@
 <?php
-namespace eazyDocs\Admin;
+namespace EazyDocs\Admin;
+
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * Class Delete_Post
- * @package eazyDocs\Admin
+ * @package EazyDocs\Admin
  */
 class Delete_Post {
 

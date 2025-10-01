@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $is_widget_sidebar = ezd_get_opt( 'is_widget_sidebar' );
 
 // Register Widget areas

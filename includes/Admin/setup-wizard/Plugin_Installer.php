@@ -1,5 +1,12 @@
 <?php
 /**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
  * Plugin Installer class - responsible for installing multiple selected plugins.
  */
 add_action( 'wp_ajax_ezd_plugin_action', function () {

@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // Enqueue SweetAlert CSS and JS
 wp_enqueue_style( 'sweetalert' );
 wp_enqueue_script( 'sweetalert' );

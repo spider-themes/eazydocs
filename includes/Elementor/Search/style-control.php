@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /** ============ Content Styling ============ **/
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;

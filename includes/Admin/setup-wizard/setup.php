@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $slugType              = ezd_get_opt( 'docs-url-structure' );
 $custom_slug           = ezd_get_opt( 'docs-type-slug' );
 $brand_color           = ezd_get_opt( 'brand_color' );

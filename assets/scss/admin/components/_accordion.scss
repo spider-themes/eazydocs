@@ -25,17 +25,13 @@
   .ui-state-highlight {
     height: 50px;
     background: #F9F9F9;
-    @include border(by, $color: #AFABAC);
+    @include border(by, $color: #AFABAC)
   }
 }
 
 .easydocs-accordion-item {
   width: 100%;
   margin: 0;
-
-  + .easydocs-accordion-item {
-    /*border-top: 1px solid #EDEAE9;*/
-  }
 
   &.is-accordion-open {
     &:last-child {
@@ -85,12 +81,12 @@
     }
 
     .accordion-title.has-child::before {
-      left: 52px
+      left: 52px;
     }
 
     .nesting-accordion a {
       &.child-last-label {
-        margin: 10px 50px 10px 70px
+        margin: 10px 50px 10px 70px;
       }
     }
   }
@@ -105,6 +101,7 @@
   align-items: center;
   justify-content: space-between;
   line-height: 20px;
+  height: 20px;
 
   &.ez-section-title {
     h4 {
@@ -219,7 +216,6 @@
         .dashicons {
           color: var(--black_150);
           font-size: 18px;
-          padding-top: 3px;
 
           &:hover {
             color: var(--black_400)
@@ -242,6 +238,7 @@
 
   .left-content {
     display: flex;
+    align-items: center;
   }
 
   .right-content {

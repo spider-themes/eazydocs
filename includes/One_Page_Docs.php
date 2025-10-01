@@ -1,6 +1,15 @@
 <?php
+namespace EazyDocs;
+
 /**
- * Class Docs
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Class One_Page_Docs
  */
 class One_Page_Docs {
 
@@ -71,4 +80,6 @@ class One_Page_Docs {
 	}
 
 }
+
+// Initialize the class
 new One_Page_Docs();

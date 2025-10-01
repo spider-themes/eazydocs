@@ -1,3 +1,12 @@
+<?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <div id="step-4" class="tab-pane ezd-install-plugins" role="tabpanel" style="display:none">
 	<?php
 	// Include necessary WordPress functions for plugin management

@@ -84,7 +84,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 }
 
 
-use eazyDocs\Post_Types;
+use EazyDocs\Post_Types;
 
 // Make sure the same class is not loaded.
 if ( ! class_exists( 'EazyDocs' ) ) {
@@ -178,7 +178,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/Ajax.php';
 			require_once __DIR__ . '/includes/Frontend/Mailer.php';
 			require_once __DIR__ . '/includes/Post_Types.php';
-			require_once __DIR__ . '/includes/One_page_doc_type.php';
+			require_once __DIR__ . '/includes/One_Page.php';
 			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
 			require_once __DIR__ . '/includes/Frontend/search-counts.php';
@@ -258,27 +258,27 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		public function init_plugin() {
 			$this->theme_dir_path = apply_filters( 'eazydocs_theme_dir_path', 'eazydocs/' );
 			if ( is_admin() ) {
-				new eazyDocs\Admin\Admin();
-				new eazyDocs\Admin\Create_Post();
-				new eazyDocs\Admin\Delete_Post();
-				new eazyDocs\Admin\Assets();
-				new eazyDocs\One_Page();
-				new eazyDocs\Edit_OnePage();
+				new EazyDocs\Admin\Admin();
+				new EazyDocs\Admin\Create_Post();
+				new EazyDocs\Admin\Delete_Post();
+				new EazyDocs\Admin\Assets();
+				new EazyDocs\One_Page();
+				new EazyDocs\Edit_OnePage();
 			} elseif ( ! is_admin() ) {
-				new eazyDocs\Frontend\Frontend();
-				new eazyDocs\Frontend\Assets();
-				new eazyDocs\Frontend\Shortcode();
+				new EazyDocs\Frontend\Frontend();
+				new EazyDocs\Frontend\Assets();
+				new EazyDocs\Frontend\Shortcode();
 			}
-			new eazyDocs\Elementor\Widgets();
+			new EazyDocs\Elementor\Widgets();
 
 			if ( ezd_get_opt( 'is_google_login' ) ) {
 				// Load Google Login functionality
-				new eazyDocs\Google_Login();
+				new EazyDocs\Google_Login();
 			}
 		}
 
 		public function init_hooked() {
-			new eazyDocs\Frontend\Ajax();
+			new EazyDocs\Frontend\Ajax();
 		}
 
 		/**

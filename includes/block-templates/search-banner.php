@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cannot access directly.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $cs_banner_wrap = 'no_cs_bg';
 if ( ezd_is_premium() ) {
 	$custom_banner  = ezd_get_opt( 'doc_banner_bg' );
