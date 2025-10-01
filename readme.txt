@@ -142,7 +142,7 @@ Easily move your documentation from BetterDocs to EazyDocs with our one-click mi
 Get detailed insights into your documentation performance directly in your inbox. The new Email Reporting feature provides both static and dynamic analytics reports, helping you track user engagement and make data-driven decisions with ease.
 
 ### 🚀 How to Migrate from BetterDocs to EazyDocs ###
-[youtube https://youtu.be/mXUK8rEH7tg?si=py7PQibYn-HNTmLz]
+[youtube https://youtu.be/cOo0o7Hwfwg?si=kAGqBzW4J0k0V4jW]
 
 ## EazyDocs Pro plan features include:
 - Doc Root URL
