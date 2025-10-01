@@ -291,6 +291,10 @@ class Admin {
 	public function nestable_callback() {
 		check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
 
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( [ 'message' => 'Insufficient permissions.' ] );
+		}
+
 		if ( ! isset( $_POST['data'] ) ) {
 			wp_send_json_error( [ 'message' => 'Missing data parameter.' ] );
 		}
@@ -355,6 +359,12 @@ class Admin {
 	}
 	
 	public function parent_nestable_callback() {
+		check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
+
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( [ 'message' => 'Insufficient permissions.' ] );
+		}
+
 		$nestedArray = json_decode( stripslashes( $_POST['data'] ) );
 		$msg         = [];
 		$i           = 0;

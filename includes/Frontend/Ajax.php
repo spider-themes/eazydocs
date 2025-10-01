@@ -311,6 +311,23 @@ class Ajax {
 			return;
 		}
 
+		// Check private doc access
+		if ( get_post_status( $postid ) == 'private' ) {
+			$user_group  = ezd_get_opt('private_doc_user_restriction');
+			$is_all_user = $user_group['private_doc_all_user'] ?? 0;
+			if ( $is_all_user == 0 ) {
+				$current_user_id    = get_current_user_id();
+				$current_user       = new WP_User( $current_user_id );
+				$current_roles      = ( array ) $current_user->roles;
+				$private_doc_roles  = $user_group['private_doc_roles'] ?? [];
+				$matching_roles 	= array_intersect($current_roles, $private_doc_roles);
+				if ( empty( $matching_roles ) ) {
+					wp_send_json_error(array('message' => esc_html__('You don\'t have permission to access this document!', 'eazydocs')));
+					return;
+				}
+			}
+		}
+
 		global $post, $wp_query;
 		$wp_query 		= new \WP_Query( array( 'post_type' => 'docs', 'p' => $postid ) );
 		$modified 		= '';

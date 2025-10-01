@@ -1,4 +1,7 @@
 == Changelog ==
+= 2.7.2 (1 October 2025) =
+Fixed: Broken Access Control vulnerability resolved by adding proper permission checks to AJAX endpoints
+
 = 2.7.1 (18 September 2025) =
 Tweaked: Docs Builder UI improved
 Tweaked: Improved the review notice design

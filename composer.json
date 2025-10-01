@@ -13,7 +13,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "eazyDocs\\": "includes/"
+            "EazyDocs\\": "includes/"
         },
         "files": []
     }
