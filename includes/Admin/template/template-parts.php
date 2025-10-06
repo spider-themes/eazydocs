@@ -21,15 +21,22 @@ function ezd_child_docs_drag_icon(){
 }
 
 // Retrieves child docs by parent id
-function ezd_child_docs_children($parent){
-    return get_children(array(
-         'post_parent'   => $parent,
-         'post_type'     => 'docs',
-         'orderby'       => 'menu_order',
-         'order'         => 'asc',
-         'exclude'       => get_post_thumbnail_id( $parent )
-     ));
- }
+function ezd_child_docs_children($parent) {
+    $children = get_children(array(
+        'post_parent' => $parent,
+        'post_type'   => 'docs',
+        'orderby'     => 'menu_order',
+        'order'       => 'ASC',
+    ));
+
+    // Remove the thumbnail ID manually if needed
+    $thumbnail_id = get_post_thumbnail_id($parent);
+    if ($thumbnail_id && isset($children[$thumbnail_id])) {
+        unset($children[$thumbnail_id]);
+    }
+
+    return $children;
+}
 
 // Displays a progress bar based on positive and negative votes
 function ezd_child_docs_progress_bar( $post_id ) {

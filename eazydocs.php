@@ -178,6 +178,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			require_once __DIR__ . '/includes/Frontend/Ajax.php';
 			require_once __DIR__ . '/includes/Frontend/Mailer.php';
 			require_once __DIR__ . '/includes/Post_Types.php';
+			require_once __DIR__ . '/includes/One_Page_Docs.php';
 			require_once __DIR__ . '/includes/One_Page.php';
 			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
 			require_once __DIR__ . '/includes/Frontend/post-views.php';
@@ -326,7 +327,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			$search_logs       = $wpdb->prefix . 'eazydocs_search_log';
 			$view_logs         = $wpdb->prefix . 'eazydocs_view_log';
 
-            // SQL statements to create tables.
+			// SQL statements to create tables.
 			$sql = "CREATE TABLE {$search_keyword} (
 				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				keyword VARCHAR(255) NOT NULL,
@@ -351,26 +352,30 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				PRIMARY KEY (id)
 			) {$charset_collate};";
 
-            // Load the required upgrade file.
+			// Load the required upgrade file.
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-            // Execute the table creation queries.
+			// Execute the table creation queries.
 			dbDelta( $sql );
 			dbDelta( $sql2 );
 			dbDelta( $sql3 );
 
-            // Check if the tables were created successfully.
-			$tables_created   = true;
-			$tables_to_check  = array( $search_keyword, $search_logs, $view_logs );
+			// Check if the tables were created successfully.
+			$tables_created = true;
+			$tables_sql = array(
+				$search_keyword => $sql,
+				$search_logs    => $sql2,
+				$view_logs      => $sql3
+			);
 
-			foreach ( $tables_to_check as $table ) {
-				if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) ) !== $table ) {
+			foreach ( $tables_sql as $table_name => $create_sql ) {
+				if ( ! maybe_create_table( $table_name, $create_sql ) ) {
 					$tables_created = false;
 					break;
 				}
 			}
 
-            // If any table was not created, send a notification.
+			// If any table was not created, send a notification.
 			if ( ! $tables_created ) {
 				$this->update_database();
 			}

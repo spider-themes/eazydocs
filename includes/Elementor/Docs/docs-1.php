@@ -24,16 +24,28 @@ if ( ezd_is_premium() ) {
     <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column .' '. $masonry_layout ); ?>"  <?php echo wp_kses_post( $masonry_attr ); ?>>
 
 		<?php
-		$exclude_id = $doc_exclude ?? '';
-		$parent_args = new WP_Query( [ 
+		// Ensure $doc_exclude is an array of integers
+		$exclude_ids = array_map( 'intval', (array) $doc_exclude );
+
+		$parent_args = new WP_Query( [
 			'post_type'      => 'docs',
 			'posts_per_page' => $doc_number,
-			'post_status'    => array( 'publish', 'private' ),
+			'post_status'    => ['publish', 'private'],
 			'orderby'        => $order_by ?? 'menu_order',
 			'order'          => $doc_order ?? 'ASC',
 			'post_parent'    => 0,
-			'post__not_in'   => $exclude_id,
-		] );
+		]);
+
+		if ( ! empty( $exclude_ids ) && !empty($parent_args->posts)) {
+			// Filter posts in PHP instead of using post__not_in
+			$parent_args->posts = array_values(array_filter($parent_args->posts, function($post) use ( $exclude_ids ) {
+				return ! in_array( (int) $post->ID, $exclude_ids, true );
+			}));
+		}
+
+		// Update post_count after filtering
+		$parent_args->post_count = count($parent_args->posts);
+
 
 		// arrange the docs
 		if ( $parent_args->have_posts() ) :

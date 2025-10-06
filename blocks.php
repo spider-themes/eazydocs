@@ -72,7 +72,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
      * Enqueue editor scripts
      */
     function search_banner_block_render( $attributes ) {
-	    wp_register_style( 'ezd-search-block', EAZYDOCS_URL.'/build/search-banner/style-index.css' );
+	    wp_register_style( 'ezd-search-block', EAZYDOCS_URL.'/build/search-banner/style-index.css', array(), EAZYDOCS_VERSION );
         return require_once __DIR__ . '/includes/block-templates/search-banner.php';
     }
 

@@ -10,27 +10,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get post views and update view count for the current user/visitor
  */
 function ezd_ensure_eazydocs_view_log_table_exists() {
-	global $wpdb;
+    global $wpdb;
 
-	// Define the table name and check if it exists
-	$table_name = $wpdb->prefix . 'eazydocs_view_log';
+    $table_name = $wpdb->prefix . 'eazydocs_view_log';
+    
+    // Use dbDelta without manually checking the table
+    $charset_collate = $wpdb->get_charset_collate();
 
-	if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) !== $table_name ) {
-		$charset_collate = $wpdb->get_charset_collate();
+    $sql = "CREATE TABLE {$table_name} (
+        id BIGINT(20) NOT NULL AUTO_INCREMENT,
+        post_id BIGINT(20) UNSIGNED NOT NULL,
+        count MEDIUMINT(8) UNSIGNED NOT NULL,
+        created_at DATETIME NOT NULL,
+        UNIQUE KEY id (id)
+    ) {$charset_collate};";
 
-		// SQL statement to create the table
-		$sql = "CREATE TABLE {$table_name} (
-            id BIGINT(20) NOT NULL AUTO_INCREMENT,
-            post_id BIGINT(20) UNSIGNED NOT NULL,
-            count MEDIUMINT(8) UNSIGNED NOT NULL,
-            created_at DATETIME NOT NULL,
-            UNIQUE KEY id (id)
-        ) {$charset_collate};";
-
-		// Load the WordPress dbDelta function
-		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		dbDelta( $sql );
-	}
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+    dbDelta( $sql );
 }
 
 add_action('wp', 'eazydocs_set_post_view');
@@ -47,7 +43,7 @@ function eazydocs_set_post_view() {
 		if ( ezd_get_opt( 'enable-views' ) === '1' && ezd_get_opt( 'enable-unique-views' ) === '1' && ezd_is_premium() ) {
 
 			// Retrieve viewed posts from cookies
-			$viewed_posts = isset( $_COOKIE['eazydocs_viewed_posts'] ) ? json_decode( stripslashes( $_COOKIE['eazydocs_viewed_posts'] ), true ) : array();
+			$viewed_posts = isset( $_COOKIE['eazydocs_viewed_posts'] ) ? json_decode( sanitize_text_field( wp_unslash( $_COOKIE['eazydocs_viewed_posts'] ) ), true ) : array();
 
 			// Increment post views count if post has not been viewed
 			if ( ! in_array( $post_id, $viewed_posts, true ) ) {

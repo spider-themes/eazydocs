@@ -41,8 +41,8 @@ class Google_Login {
 
         // login page 
         add_action( 'login_enqueue_scripts', function(){
-            wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css', EAZYDOCS_VERSION );
-            wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array( 'jquery' ), EAZYDOCS_VERSION );
+            wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css', array(), EAZYDOCS_VERSION );
+            wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
         });
         
         // Get plugin settings
@@ -208,11 +208,11 @@ class Google_Login {
      */
     private function get_google_auth_url() {
         $this->ensure_session();
-        $state = [];
-
-        $state[ 'product_id' ] = $_SESSION[ 'gcl_product_id' ] ?? '';
-        $state[ 'docs_id' ]    = $_SESSION[ 'gcl_docs_id' ] ?? '';
-        $state[ 'nonce' ]      = wp_create_nonce( 'ezd_google_login' );
+        
+        $state               = [];
+        $state['product_id'] = isset( $_SESSION['gcl_product_id'] ) ? sanitize_text_field( wp_unslash( $_SESSION['gcl_product_id'] ) ) : '';        
+        $state['docs_id']    = isset( $_SESSION['gcl_docs_id'] ) ? sanitize_text_field( wp_unslash( $_SESSION['gcl_docs_id'] ) ) : '';
+        $state[ 'nonce' ]    = wp_create_nonce( 'ezd_google_login' );
 
         $params = [
             'client_id'              => $this->client_id,

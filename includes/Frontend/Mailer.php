@@ -27,7 +27,7 @@ function eazydocs_feedback_email() {
 		$doc_id           = ! empty ( $_POST['doc_id'] ) ? intval( $_POST['doc_id'] ) : 0;
 
 		if ( ! is_user_logged_in() ) {
-			$email = ! empty ( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
+			$email = ! empty( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
 
 			if ( ! $email ) {
 				wp_send_json_error( esc_html__( 'Please enter a valid email address.', 'eazydocs' ) );
@@ -43,8 +43,9 @@ function eazydocs_feedback_email() {
 		if ( ! isset ( $message ) ) {
 			wp_send_json_error( esc_html__( 'Please provide the message details.', 'eazydocs' ) );
 		}
+		
+		$wp_email = 'wordpress@' . preg_replace( '#^www\.#', '', strtolower( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ?? '' ) ) ) );
 
-		$wp_email = 'wordpress@' . preg_replace( '#^www\.#', '', strtolower( $_SERVER['SERVER_NAME'] ) );
 		$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 		$document = get_post( $doc_id );
 

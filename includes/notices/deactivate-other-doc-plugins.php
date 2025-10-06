@@ -7,72 +7,72 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Notice
- * Deactivate the wedocs
- *
- * @return void
+ * Show notice if other Knowledge Base plugins are active.
  */
 add_action( 'admin_notices', function () {
-	if ( is_plugin_active( 'wedocs/wedocs.php' ) ) :
-		?>
-        <div class="notice notice-warning eaz-notice">
-            <p>
-				<?php esc_html_e( 'We have detected another Knowledge Base Plugin installed in this site.', 'eazydocs' ); ?> <br>
-				<?php esc_html_e( 'For EazyDocs to work efficiently, you need to migrate the data and deactivate that plugin to avoid conflict.', 'eazydocs' ); ?>
-            </p>
-            <p>
-                <a href="?deactivate=wedocs" class="button-primary button-large red-bg">
-					<?php esc_html_e( 'Deactivate weDocs', 'eazydocs' ); ?>
-                </a>
-            </p>
-        </div>
-	<?php
-	endif;
-} );
+    $conflicting_plugins = [
+        'wedocs/wedocs.php' => [
+            'name'   => 'weDocs',
+            'migrate'=> false
+        ],
+        'betterdocs/betterdocs.php' => [
+            'name'   => 'BetterDocs',
+            'migrate'=> true
+        ]
+    ];
+
+    foreach ( $conflicting_plugins as $plugin_file => $plugin_data ) :
+        if ( is_plugin_active( $plugin_file ) ) :
+            ?>
+            <div class="notice notice-warning eaz-notice">
+                <p>
+                    <?php esc_html_e( 'We have detected another Knowledge Base Plugin installed on this site.', 'eazydocs' ); ?>
+                    <br>
+                    <?php esc_html_e( 'For EazyDocs to work efficiently, please migrate the data (if available) and deactivate that plugin to avoid conflicts.', 'eazydocs' ); ?>
+                </p>
+                <p>
+                    <?php 
+					if ( $plugin_data['migrate'] ) : 
+						?>
+                        <a href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-migration' ) ); ?>" class="button-primary button-large">
+                            <?php esc_html_e( 'Migrate to EazyDocs', 'eazydocs' ); ?>
+                        </a>
+                    	<?php 
+					endif; 
+					?>
+                    <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( [ 'eazydocs_deactivate' => $plugin_file ] ), 'eazydocs_deactivate_plugin' ) ); ?>" class="button-primary button-large red-bg">
+                        <?php 
+						// translators: %s is the name of the plugin being deactivated.
+						printf( esc_html__( 'Deactivate %s', 'eazydocs' ), esc_html( $plugin_data['name'] ) ); 
+						?>
+                    </a>
+                </p>
+            </div>
+            <?php
+        endif;
+    endforeach;
+});
 
 /**
- * Notice
- * Deactivate the BetterDocs
- *
- * @return void
+ * Deactivate other Knowledge Base plugins securely.
  */
-add_action( 'admin_notices', function () {
-	if ( is_plugin_active( 'betterdocs/betterdocs.php' ) ) :
-		?>
-        <div class="notice notice-warning eaz-notice">
-            <p>
-				<?php esc_html_e( 'We have detected another Knowledge Base Plugin installed in this site.', 'eazydocs' ); ?> <br>
-				<?php esc_html_e( 'For EazyDocs to work efficiently, you need to migrate the data and deactivate that plugin to avoid conflict.', 'eazydocs' ); ?>
-            </p>
-            <p>
-                <a href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-migration' ) ); ?>" class="button-primary button-large">
-					<?php esc_html_e( 'Migrate to EazyDocs', 'eazydocs' ); ?>
-                </a>
-                <a href="?deactivate=betterdocs" class="button-primary button-large red-bg">
-					<?php esc_html_e( 'Deactivate BetterDocs', 'eazydocs' ); ?>
-                </a>
-            </p>
-        </div>
-	<?php
-	endif;
-} );
+add_action( 'admin_init', function () {
+    if ( isset( $_GET['eazydocs_deactivate'] ) && check_admin_referer( 'eazydocs_deactivate_plugin' ) ) {
 
-/**
- * Deactivate Other Knowledge-base plugins
- */
-if ( isset( $_GET['deactivate'] ) && ! empty( $_GET['deactivate'] ) ) {	
-	$plugin = sanitize_text_field( $_GET['deactivate'] );
-	add_action( 'admin_init', "eazydocs_deactivate_other_plugin" );
-	function eazydocs_deactivate_other_plugin() {
+        if ( ! current_user_can( 'activate_plugins' ) ) {
+            return;
+        }
 
-		// Check if the current user has the capability to activate plugins
-		if ( ! current_user_can( 'activate_plugins' ) ) {
-			return;
-		}
+        $plugin_file = sanitize_text_field( wp_unslash( $_GET['eazydocs_deactivate'] ) );
 
-		$plugin = ! empty ( $_GET['deactivate'] ) ? sanitize_text_field( $_GET['deactivate'] ) : '';
-		deactivate_plugins( "$plugin/$plugin.php" );
-		$url = admin_url( 'plugins.php' );
-		wp_safe_redirect( $url );
-	}
-}
+        if ( is_plugin_active( $plugin_file ) ) {
+            deactivate_plugins( $plugin_file );
+
+            wp_safe_redirect( add_query_arg( [
+                'deactivated' => 'true',
+                'plugin'      => urlencode( $plugin_file )
+            ], admin_url( 'plugins.php' ) ) );
+            exit;
+        }
+    }
+});

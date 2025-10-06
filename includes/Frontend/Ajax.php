@@ -38,8 +38,17 @@ class Ajax {
 	public function handle_feedback() {
 		check_ajax_referer( 'eazydocs-ajax', 'security' );
 
-		$template = '<div class="eazydocs-alert alert-%s">%s</div>';
-		$previous = isset( $_COOKIE['eazydocs_response'] ) ? explode( ',', htmlspecialchars( $_COOKIE['eazydocs_response'] ) ) : [];
+		$template = '<div class="eazydocs-alert alert-%s">%s</div>';		
+		$previous = [];
+
+		if ( isset( $_COOKIE['eazydocs_response'] ) ) {
+			// Unsplash the cookie value first
+			$cookie_value = wp_unslash( $_COOKIE['eazydocs_response'] );
+
+			// Sanitize and explode
+			$previous = explode( ',', sanitize_text_field( $cookie_value ) );
+		}
+
 		$post_id  = intval( $_POST['post_id'] );
 		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ] ) ? sanitize_text_field( $_POST['type'] ) : false;
 
