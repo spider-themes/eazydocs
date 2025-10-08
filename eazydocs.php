@@ -227,14 +227,30 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 * Define constants
 		 */
 		public function define_constants() {
-			define( 'EAZYDOCS_VERSION', self::version );
-			define( 'EAZYDOCS_FILE', __FILE__ );
-			define( 'EAZYDOCS_PATH', __DIR__ );
-			define( 'EAZYDOCS_URL', plugins_url( '', EAZYDOCS_FILE ) );
-			define( 'EAZYDOCS_ASSETS', EAZYDOCS_URL . '/assets' );
-			define( 'EAZYDOCS_FRONT_CSS', EAZYDOCS_URL . '/assets/css/frontend' );
-			define( 'EAZYDOCS_IMG', EAZYDOCS_URL . '/assets/images' );
-			define( 'EAZYDOCS_VEND', EAZYDOCS_URL . '/assets/vendors' );
+			if ( ! defined( 'EAZYDOCS_VERSION' ) ) {
+				define( 'EAZYDOCS_VERSION', self::version );
+			}
+			if ( ! defined( 'EAZYDOCS_FILE' ) ) {
+				define( 'EAZYDOCS_FILE', __FILE__ );
+			}
+			if ( ! defined( 'EAZYDOCS_PATH' ) ) {
+				define( 'EAZYDOCS_PATH', __DIR__ );
+			}
+			if ( ! defined( 'EAZYDOCS_URL' ) ) {
+				define( 'EAZYDOCS_URL', plugins_url( '', EAZYDOCS_FILE ) );
+			}
+			if ( ! defined( 'EAZYDOCS_ASSETS' ) ) {
+				define( 'EAZYDOCS_ASSETS', EAZYDOCS_URL . '/assets' );
+			}
+			if ( ! defined( 'EAZYDOCS_FRONT_CSS' ) ) {
+				define( 'EAZYDOCS_FRONT_CSS', EAZYDOCS_URL . '/assets/css/frontend' );
+			}
+			if ( ! defined( 'EAZYDOCS_IMG' ) ) {
+				define( 'EAZYDOCS_IMG', EAZYDOCS_URL . '/assets/images' );
+			}
+			if ( ! defined( 'EAZYDOCS_VEND' ) ) {
+				define( 'EAZYDOCS_VEND', EAZYDOCS_URL . '/assets/vendors' );
+			}
 		}
 
 		/**
@@ -296,19 +312,23 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// Insert the documentation page into the database if not exists
 			if ( ! ezd_get_page_by_title( 'Documentation' ) ) {
 				// Create page object
+				$current_user_id = get_current_user_id();
+				if ( ! $current_user_id ) {
+					$current_user_id = 1; // fallback if no user is logged in
+				}
 				$docs_page = [
 					'post_title'   => wp_strip_all_tags( 'Documentation' ),
 					'post_content' => '[eazydocs]',
 					'post_status'  => 'publish',
-					'post_author'  => 1,
+					'post_author'  => $current_user_id,
 					'post_type'    => 'page',
 				];
 				wp_insert_post( $docs_page );
 			}
 
-            if ( eaz_fs()->is_plan( 'promax' ) ) {
-	            $this->create_analytics_db_tables();
-            }
+			if ( eaz_fs()->is_plan( 'promax' ) ) {
+				$this->create_analytics_db_tables();
+			}
 
 			// Update the option when the setup wizard is activated
 			update_option('ezd_get_setup_wizard', true);
@@ -359,26 +379,6 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			dbDelta( $sql );
 			dbDelta( $sql2 );
 			dbDelta( $sql3 );
-
-			// Check if the tables were created successfully.
-			$tables_created = true;
-			$tables_sql = array(
-				$search_keyword => $sql,
-				$search_logs    => $sql2,
-				$view_logs      => $sql3
-			);
-
-			foreach ( $tables_sql as $table_name => $create_sql ) {
-				if ( ! maybe_create_table( $table_name, $create_sql ) ) {
-					$tables_created = false;
-					break;
-				}
-			}
-
-			// If any table was not created, send a notification.
-			if ( ! $tables_created ) {
-				$this->update_database();
-			}
 		}
 
 		/**

@@ -30,6 +30,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <li class="nav-item">
                         <a data-rel="<?php $this->tab_id_format( $doc_id, 'doc2'); ?>" class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 							<?php
+                            // Thumbnail
+                            echo 'th ';
+                            if ( has_post_thumbnail( $doc_id ) ) {
+                                echo get_the_post_thumbnail( $doc_id, 'full', array( 'class' => 'doc-logo' ) );
+                            }
+
 							if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 								echo wp_kses_post( $doc_name[0] );
 							} else {
@@ -55,6 +61,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <li class="nav-item">
                             <a data-rel="<?php $this->tab_id_format( $doc->ID, 'doc2'); ?>" class="nav-link ezd_tab_title<?php echo esc_attr( $active ) ?>">
 								<?php
+                                // Thumbnail
+                                if ( has_post_thumbnail( $doc->ID ) ) {
+                                    echo get_the_post_thumbnail( $doc->ID, 'ezd_searrch_thumb16x16', array( 'class' => 'doc-logo' ) );
+                                }
 								if ( $settings['is_tab_title_first_word'] == 'yes' ) {
 									echo wp_kses_post( $doc_name[0] );
 								} else {

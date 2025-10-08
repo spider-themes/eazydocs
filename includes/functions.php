@@ -1034,13 +1034,13 @@ function ezd_admin_pages( $pages = [] ) {
 
     if ( empty( $pages ) ) {
         // Default admin pages of EazyDocs
-	    $admin_pages = !empty($_GET['page']) ? in_array( $_GET['page'], [
+	    $admin_pages = !empty($_GET['page']) ? in_array( sanitize_text_field( $_GET['page'] ), [
 		    'eazydocs', 'eazydocs-settings', 'ezd-user-feedback', 'ezd-user-feedback-archived',
             'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account', 'eazydocs-migration'
-	    ] ) : '';
+	    ], true ) : '';
     } else {
         // Selected admin pages of EazyDocs
-	    $admin_pages = !empty($_GET['page']) ? in_array( $_GET['page'], $pages ) : '';
+	    $admin_pages = !empty($_GET['page']) ? in_array( sanitize_text_field( $_GET['page'] ), $pages, true ) : '';
     }
 
 	if ( $admin_pages ) {
@@ -1062,12 +1062,12 @@ function ezd_admin_post_types( $post_types = [] ) {
 
     if ( empty( $post_types ) ) {
         // Default post types of EazyDocs
-        $admin_post_types = !empty($_GET['post_type']) ? in_array( $_GET['post_type'], [
+        $admin_post_types = !empty($_GET['post_type']) ? in_array( sanitize_text_field( $_GET['post_type'] ), [
             'docs', 'onepage-docs'
-        ] ) : '';
+        ], true ) : '';
     } else {
         // Selected post types of EazyDocs
-        $admin_post_types = !empty($_GET['post_type']) ? in_array( $_GET['post_type'], $post_types ) : '';
+        $admin_post_types = !empty($_GET['post_type']) ? in_array( sanitize_text_field( $_GET['post_type'] ), $post_types, true ) : '';
     }
 
     if ( $admin_post_types ) {
@@ -1089,12 +1089,12 @@ function ezd_admin_taxonomy( $tax = [] ) {
 
     if ( empty( $tax ) ) {
         // Default taxonomies of EazyDocs
-        $admin_tax = !empty($_GET['taxonomy']) ? in_array( $_GET['taxonomy'], [
+        $admin_tax = !empty($_GET['taxonomy']) ? in_array( sanitize_text_field( $_GET['taxonomy'] ), [
             'doc_tag', 'doc_category', 'doc_badge'
-        ] ) : '';
+        ], true ) : '';
     } else {
         // Selected taxonomies of EazyDocs
-        $admin_tax = !empty($_GET['taxonomy']) ? in_array( $_GET['taxonomy'], $tax ) : '';
+        $admin_tax = !empty($_GET['taxonomy']) ? in_array( sanitize_text_field( $_GET['taxonomy'] ), $tax, true ) : '';
     }
 
     if ( $admin_tax ) {

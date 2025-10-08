@@ -19,16 +19,32 @@ class One_Page {
 
 	function doc_one_page() {
 		
-		if ( isset( $_GET['make_onepage'] ) && $_GET['make_onepage'] == 'yes' && isset( $_GET['parentID'] ) && !empty( $_GET['parentID'] ) ) {
-			
-			$layout               	= sanitize_text_field( $_GET['layout'] ?? '' );
-			$ezd_doc_content_type 	= sanitize_text_field( $_GET['content_type'] ?? '' );
-			$left_side_sidebar    	= sanitize_text_field( $_GET['left_side_sidebar'] ?? '' );
-			$content_type         	= sanitize_text_field( $_GET['shortcode_right'] ?? '' );
-			$page_contents_right 	= esc_textarea( $_GET['shortcode_content_right'] ?? '' );
-			 
+		// Verify nonce for security
+		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'ezd_make_onepage' ) ) {
+			if ( isset( $_GET['make_onepage'] ) ) {
+				wp_die( esc_html__( 'Security check failed. Please try again.', 'eazydocs' ) );
+			}
+			return;
+		}
+
+		// Check user capabilities
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_die( esc_html__( 'You do not have permission to perform this action.', 'eazydocs' ) );
+		}
+
+		$make_onepage = isset( $_GET['make_onepage'] ) ? sanitize_text_field( $_GET['make_onepage'] ) : '';
+		$parent_id = isset( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;
+
+		if ( $make_onepage === 'yes' && $parent_id > 0 ) {
+
+			$layout               	= isset( $_GET['layout'] ) ? sanitize_text_field( $_GET['layout'] ) : '';
+			$ezd_doc_content_type 	= isset( $_GET['content_type'] ) ? sanitize_text_field( $_GET['content_type'] ) : '';
+			$left_side_sidebar    	= isset( $_GET['left_side_sidebar'] ) ? sanitize_text_field( $_GET['left_side_sidebar'] ) : '';
+			$content_type         	= isset( $_GET['shortcode_right'] ) ? sanitize_text_field( $_GET['shortcode_right'] ) : '';
+			$page_contents_right 	= isset( $_GET['shortcode_content_right'] ) ? wp_kses_post( $_GET['shortcode_content_right'] ) : '';
+
 			if ( $content_type == 'widget_data_right' ) {
-				$shortcode_content_right = sanitize_text_field( $_GET['right_side_sidebar'] ?? '' );
+				$shortcode_content_right = isset( $_GET['right_side_sidebar'] ) ? sanitize_text_field( $_GET['right_side_sidebar'] ) : '';
 			} else {
 				$page_content_right      = substr( ezd_chrEncode( $page_contents_right ), 6 );
 				$shortcode_content_right = substr_replace( $page_content_right, "", - 6 );
@@ -37,8 +53,8 @@ class One_Page {
 				$shortcode_content_right = str_replace( 'style&equals;',"style", $shortcode_content_right );
 			}
 
-			$page_title 				 = get_the_title( $_GET['parentID'] ?? '' );		 
-			$page_contents 				 = esc_textarea( $_GET['shortcode_content'] ?? '' );
+			$page_title 				 = get_the_title( $parent_id );
+			$page_contents 				 = isset( $_GET['shortcode_content'] ) ? wp_kses_post( $_GET['shortcode_content'] ) : '';
 
 			if ( $ezd_doc_content_type == 'widget_data' ) {
 				$shortcode_content 	= $left_side_sidebar;
@@ -54,7 +70,7 @@ class One_Page {
 			 *  Current permalink structure
 			 */
 			$current_permalink 	= get_option( 'permalink_structure' );
-			$is_parent_id 		= sanitize_text_field( $_GET['parentID'] ?? '' );
+			$is_parent_id 		= $parent_id;
 
 			if ( ! empty ( $is_parent_id ) ) {
 				$post_slug 	= get_post_field( 'post_name', $is_parent_id);

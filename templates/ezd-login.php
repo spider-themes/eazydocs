@@ -1,4 +1,3 @@
-
 <?php
 wp_enqueue_style( 'elegant-icon' );
 $args = array(
@@ -10,14 +9,19 @@ $args = array(
 $child_posts        = get_children( $args );
 $order              = count($child_posts) + 1;
 
-if ( isset( $_GET['add_new_doc'] ) && $_GET['add_new_doc'] == 'yes' ) {
-    $redirect_to    = admin_url('/post-new.php?post_type=docs&add_new_doc=yes').'&ezd_doc_parent='.$_GET['post_id'].'&ezd_doc_order='. $order;
+// Sanitize and validate $_GET parameters
+$add_new_doc = isset( $_GET['add_new_doc'] ) ? sanitize_text_field( $_GET['add_new_doc'] ) : '';
+$ezd_edit_doc = isset( $_GET['ezd_edit_doc'] ) ? sanitize_text_field( $_GET['ezd_edit_doc'] ) : '';
+$post_id = isset( $_GET['post_id'] ) ? absint( $_GET['post_id'] ) : 0;
+
+if ( $add_new_doc === 'yes' && $post_id > 0 ) {
+    $redirect_to    = admin_url('/post-new.php?post_type=docs&add_new_doc=yes').'&ezd_doc_parent='. $post_id .'&ezd_doc_order='. $order;
     $login_type     = 'add';
-} elseif ( isset( $_GET['ezd_edit_doc'] ) && $_GET['ezd_edit_doc'] == 'yes' ) {
-    $redirect_to    = admin_url('/post.php?post='.$_GET['post_id'].'&action=edit');
+} elseif ( $ezd_edit_doc === 'yes' && $post_id > 0 ) {
+    $redirect_to    = admin_url('/post.php?post='. $post_id .'&action=edit');
     $login_type     = 'edit';
 } else {
-    $redirect_to    = get_permalink($_GET['post_id'] ?? '');
+    $redirect_to    = $post_id > 0 ? get_permalink( $post_id ) : home_url();
     $login_type     = 'view';
 }
 ?>

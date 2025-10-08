@@ -709,8 +709,10 @@
   background: transparent;
   border-radius: 5px 5px 0 0;
   text-decoration: none;
-  display: block;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .documentation_tab .nav-item .nav-link:before {
   content: "";
