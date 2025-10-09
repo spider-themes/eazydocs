@@ -120,7 +120,6 @@
 .documentation_tab {
   border-bottom: 2px solid #e1e9eb;
   margin-left: 0;
-  gap: 25px;
 
   .nav-item {
     margin-bottom: 0;
@@ -131,7 +130,7 @@
       color: var(--p_color);
       font-size: 14px;
       font-weight: 500;
-      padding: 15px 0;
+      padding: 15px 20px;
       position: relative;
       transition: color 0.2s linear;
       background: transparent;
@@ -140,7 +139,7 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
 
       &:before {
         content: "";
@@ -1223,16 +1222,26 @@ a.action_btn {
   span {
     &.scroller-btn {
       position: absolute;
-      left: -24px;
+      left: -32px;
       top: 50%;
       color: var(--brand_color);
       font-size: 20px;
       cursor: pointer;
       transform: translateY(-50%);
+      background: var(--black_50);
+      border-radius: 20px;
+      transition: all 0.2s linear;
+      width: 25px;
+      text-align: center;
+      z-index: 1;
+
+      &:hover {
+        background: var(--black_75);
+      }
     }
 
     &.right {
-      right: -24px;
+      right: -32px;
       left: auto;
     }
 

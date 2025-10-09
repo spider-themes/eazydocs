@@ -435,7 +435,6 @@ class Doc_Widget extends Widget_Base {
 		);
 
 		$this->end_controls_section(); // End Controls Section
-
 	}
 
 
@@ -1141,3 +1140,4 @@ class Doc_Widget extends Widget_Base {
 
 	}
 }
+
