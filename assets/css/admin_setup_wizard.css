@@ -107,6 +107,9 @@
 }
 #ezd-setup-wizard-wrap .tab-content .tab-pane .button-inline {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 #ezd-setup-wizard-wrap .tab-content .tab-pane .button-inline .button {
   padding: 5px 20px;

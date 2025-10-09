@@ -13,16 +13,13 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Footnotes', 'eazydocs' ),
 	'icon'   => 'dashicons dashicons-text-page',
 	'fields' => [
-		array(
+		ezd_csf_switcher_field([
 			'id'         => 'is_footnotes_heading',
-			'type'       => 'switcher',
 			'title'      => esc_html__( 'Footnotes Heading', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
 			'default'    => true,
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
-		),
+		]),
 
 		array(
 			'id'         => 'footnotes_heading_text',

@@ -73,25 +73,7 @@ if ( ezd_is_premium() ) {
 				?>
                 <div class="ezd-col-width">
                     <div class="categories_guide_item <?php echo esc_attr( $private_bg . $protected_bg ); ?> wow fadeInUp" <?php echo wp_kses_post($private_bg_op); ?>>
-						<?php
-						if ( get_post_status() === 'private' ) {
-							$pd_txt = __( 'Private Doc', 'eazydocs' );
-							echo '<div class="private" title="' . esc_attr( $pd_txt ) . '"><i class="icon_lock"></i></div>';
-						}
-
-						if ( ! empty( $post->post_password ) ) :
-							?>
-                            <div class="private" title="Password Protected Doc">
-                                <svg width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#4e5668">
-                                    <g>
-                                        <path fill="none" d="M0 0h24v24H0z"/>
-                                        <path d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zm-2 0V7a4 4 0 1 0-8 0v1h8zm-5 6v2h2v-2h-2zm-4 0v2h2v-2H7zm8 0v2h2v-2h-2z"/>
-                                    </g>
-                                </svg>
-                            </div>
-							<?php
-						endif;
-						?>
+						<?php ezd_render_doc_indicators( get_the_ID() ); ?>
 
                         <div class="doc-top ezd-d-flex ezd-align-items-start">
                             <a class="doc_tag_title" href="<?php the_permalink(); ?>">
@@ -107,26 +89,8 @@ if ( ezd_is_premium() ) {
 
 						<?php
 						if ( $sections ) :
-							?>
-                            <ul class="ezd-list-unstyled article_list">
-								<?php
-								foreach ( $sections as $section ) :
-									?>
-                                    <li>
-                                        <a href="<?php the_permalink( $section ); ?>" class="ezd_item_list_title">
-											<?php echo wp_kses_post( $section->post_title ); ?>
-                                        </a>
-                                    </li>
-								<?php
-								endforeach;
-								?>
-                            </ul>
-
-                            <a href="<?php the_permalink(); ?>" class="doc_border_btn ezd_btn">
-								<?php echo esc_html( $read_more ); ?>
-                                <i class="arrow_right"></i>
-                            </a>
-						    <?php
+							ezd_render_doc_items_list( $sections, 'ezd-list-unstyled article_list' );
+							ezd_render_read_more_btn( get_permalink(), $read_more, 'doc_border_btn ezd_btn', '<i class="arrow_right"></i>' );
 						endif;
 						?>
 						
@@ -140,44 +104,8 @@ if ( ezd_is_premium() ) {
     </div>
 </div>
 
-<script>
-    ;(function ($) {
-        'use strict';
-
-        $(document).ready(function () {
-            function ezd_docs4_masonry() {
-                var masonryCols 	= $('.ezd-masonry').attr('ezd-massonry-col');
-                var masonryColumns 	= parseInt(masonryCols);
-
-                if ($(window).width() <= 1024) {
-                    var masonryColumns = 2;
-                }
-
-                if ($(window).width() <= 768) {
-                    var masonryColumns = 1;
-                }
-
-                var count 	= 0;
-                var content = $('.ezd-masonry > *');
-
-                $('.ezd-masonry').before('<div class=\'ezd-masonry-columns\'></div>');
-
-                content.each(function (index) {
-                    count = count + 1;
-                    $(this).addClass('ezd-masonry-sort-' + count + '');
-
-                    if (count == masonryColumns) {
-                        count = 0;
-                    }
-                });
-
-                for (var i = 0 + 1; i < masonryColumns + 1; i++) {
-                    $('.ezd-masonry-columns').append('<div class=\'ezd-masonry-' + i + '\'></div>');
-                    $('.ezd-masonry-sort-' + i).appendTo('.ezd-masonry-' + i);
-                }
-            }
-            ezd_docs4_masonry();
-
-        });
-    })(jQuery);
-</script>
+<?php
+if ( $is_masonry == 'yes' ) {
+    ezd_render_masonry_script();
+}
+?>

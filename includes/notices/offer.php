@@ -35,7 +35,7 @@ function ezd_offer_notice() {
                      alt="<?php echo esc_attr_x( 'Coupon', 'coupon', 'eazydocs' ); ?>" class="coupon-icon">
                 <div class="ezd-col-text">
                     <p><strong> Up to 40% Off </strong></p>
-                    <p> This is limited time offer! </p>
+                    <p> This is a limited time offer! </p>
                 </div>
             </div>
             <div class="ezd-col">

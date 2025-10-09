@@ -5,10 +5,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-?>
 
-<div id="step-4" class="tab-pane ezd-install-plugins" role="tabpanel" style="display:none">
-	<?php
+ezd_render_setup_step_wrapper(4, esc_html__( 'Install Recommended Plugins', 'eazydocs' ), '', false, 'ezd-install-plugins');
+
 	// Include necessary WordPress functions for plugin management
 	if ( !function_exists('is_plugin_active') ) {
 		include_once ABSPATH . 'wp-admin/includes/plugin.php';

@@ -139,7 +139,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 					remove_all_actions( 'all_admin_notices' );
 
 					// Re-add a specific notice
-                    if ( !ezd_is_premium() && ezd_is_plugin_installed_for_days(12) ) {
+                    if ( !ezd_is_premium() && ezd_is_plugin_installed_for_days(12) && (!isset($_GET['page']) || $_GET['page'] !== 'eazydocs-initial-setup') ) {
 	                    add_action('admin_notices', 'ezd_offer_notice');
                     }
 				}
@@ -215,7 +215,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 * Include CSF files include
 		 */
 		public function load_csf_files(){
-			// Options
+			// Load CSF framework (needed on both frontend and admin)
 			require __DIR__ . '/vendor/csf/classes/setup.class.php';
 			require __DIR__ . '/includes/Admin/options/settings-options.php';
 			if ( ezd_is_premium() ) {

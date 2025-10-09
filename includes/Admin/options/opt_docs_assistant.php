@@ -30,7 +30,7 @@ CSF::createSection( $prefix, array(
 			'text_width' => 92,
 			'default'    => false
 		),
-		
+
 		array(
 			'id'         => 'assistant_visibility_by',
 			'type'       => 'button_set',
@@ -47,7 +47,7 @@ CSF::createSection( $prefix, array(
 				array( 'assistant_visibility', '==', 'true' )
 			),
 		),
-		
+
 		array(
 			'id'         => 'assistant_pages',
 			'type'       => 'select',
@@ -62,7 +62,7 @@ CSF::createSection( $prefix, array(
 				array( 'assistant_visibility', '==', 'true' )
 			)
 		),
-		
+
 		array(
 			'id'         => 'assistant_post_types',
 			'type'       => 'select',
@@ -118,15 +118,12 @@ CSF::createSection( $prefix, array(
 				array(
 					'title'  => esc_html__( 'Knowledge Base', 'eazydocs' ),
 					'fields' => array(
-						array(
+						ezd_csf_switcher_field([
 							'id'         => 'kb_visibility',
-							'type'       => 'switcher',
 							'title'      => esc_html__( 'Knowledge-base Tab', 'eazydocs' ),
-							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
 							'default'    => true
-						),
+						]),
 
 						array(
 							'id'         => 'kb_label',
@@ -138,18 +135,15 @@ CSF::createSection( $prefix, array(
 							)
 						),
 
-						array(
+						ezd_csf_switcher_field([
 							'id'         => 'assistant_search',
-							'type'       => 'switcher',
 							'title'      => esc_html__( 'Search', 'eazydocs' ),
-							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
 							'default'    => true,
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' )
 							)
-						),
+						]),
 
 						array(
 							'id'         => 'kb_search_placeholder',
@@ -162,18 +156,15 @@ CSF::createSection( $prefix, array(
 							)
 						),
 
-						array(
+						ezd_csf_switcher_field([
 							'id'         => 'assistant_breadcrumb',
-							'type'       => 'switcher',
 							'title'      => esc_html__( 'Breadcrumb', 'eazydocs' ),
-							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
 							'default'    => true,
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' )
 							)
-						),
+						]),
 
 						array(
 							'id'         => 'docs_not_found',
@@ -184,7 +175,7 @@ CSF::createSection( $prefix, array(
 								array( 'kb_visibility', '==', 'true' )
 							)
 						),
-						
+
 						array(
 							'id'         => 'docs_instant_answer',
 							'type'       => 'switcher',
@@ -218,15 +209,12 @@ CSF::createSection( $prefix, array(
 				array(
 					'title'  => esc_html__( 'Contact', 'eazydocs' ),
 					'fields' => array(
-						array(
+						ezd_csf_switcher_field([
 							'id'         => 'contact_visibility',
-							'type'       => 'switcher',
 							'title'      => esc_html__( 'Contact Tab', 'eazydocs' ),
-							'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-							'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 							'text_width' => 70,
 							'default'    => true
-						),
+						]),
 
 						array(
 							'id'         => 'contact_label',
@@ -394,7 +382,7 @@ CSF::createSection( $prefix, array(
 			'type'    => 'content',
 			'title'   => esc_html__( 'Cross Domain Embed', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Extend your docs assistant to other websites by embedding it across multiple domains with a simple code snippet.', 'eazydocs' ),
-			'content' => generate_embed_code_box(),
+			'content' => ezd_generate_embed_code_box(),
 			'dependency' => array(
 				array( 'assistant_visibility', '==', 'true' )
 			),
@@ -403,7 +391,7 @@ CSF::createSection( $prefix, array(
 ) );
 
 // Function to generate dynamic embed code box
-function generate_embed_code_box() {
+function ezd_generate_embed_code_box() {
     $site_url 		= site_url(); // Current site URL
     // Get assistant icon options using get_option like in Assistant.php
     $open_icon 		= ezd_get_opt( 'assistant_open_icon', [] );

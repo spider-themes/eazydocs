@@ -22,6 +22,9 @@ class Widgets{
 
     // Register Widgets
     public function register_widgets( $widgets_manager ) {
+        // Include Helper Functions
+        require_once( __DIR__ . '/template-helpers.php' );
+
         // Include Widget files
         require_once( __DIR__ . '/Docs/Doc_Widget.php' ); 
         require_once( __DIR__ . '/Search/Search_Widget.php' ); 

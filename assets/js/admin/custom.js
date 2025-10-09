@@ -36,10 +36,8 @@
 			let target = $(this).attr('data-rel');
 			$('.tab-menu .easydocs-navitem').removeClass('is-active');
 			$(this).addClass('is-active');
-			$('#' + target)
-				.fadeIn('slow')
-				.siblings('.easydocs-tab')
-				.hide();
+			$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active');
+			$('#' + target).addClass('tab-active').fadeIn('slow').siblings('.easydocs-tab').hide();
 
 			let is_active_tab = $('.tab-menu .easydocs-navitem').hasClass(
 				'is-active'

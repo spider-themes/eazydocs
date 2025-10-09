@@ -640,10 +640,10 @@ p.big-p {
   } 
 
   .action_links {
-    margin: 0px 0 5px;
+    margin: 0 0 5px;
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 10px;
     a:first-child{
       color: white;
     }
@@ -651,7 +651,7 @@ p.big-p {
 
   .btn {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
     color: #098f3e;
     font-weight: 400;
 

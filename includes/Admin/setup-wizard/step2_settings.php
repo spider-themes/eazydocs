@@ -5,12 +5,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+ezd_render_setup_step_wrapper(2, esc_html__( 'Docs Archive Page', 'eazydocs' ), esc_html__( 'This page will show on the Doc single page breadcrumb and will be used to show the Docs.', 'eazydocs' ));
 ?>
-
-<div id="step-2" class="tab-pane" role="tabpanel" style="display:none">
-
-	<h2> <?php esc_html_e( 'Docs Archive Page', 'eazydocs' ); ?> </h2>
-	<p> <?php esc_html_e( 'This page will show on the Doc single page breadcrumb and will be used to show the Docs.', 'eazydocs' ); ?> </p>
 
 	<div class="archive-page-selection-wrap">
 		<select name="docs_archive_page" id="docs_archive_page">

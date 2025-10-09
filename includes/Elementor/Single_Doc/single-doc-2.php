@@ -9,27 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <section class="recommended_topic_area">
     <div class="recommended_topic_inner">
-		<?php
-        $settings_key = $settings['bg_shape']; $alt = 'curve shape'; $class = 'doc_shap_one';
-        if ( ! empty( $settings_key['id'] ) ) {
-	        echo wp_get_attachment_image( $settings_key['id'], 'full', '', array( 'class' => $class ) );
-
-        } elseif ( ! empty( $settings_key['url'] ) && empty( $settings_key['id'] ) ) {
-			$class_attr = ! empty( $class ) ? 'class="' . esc_attr( $class ) . '"' : '';
-			$atts_str   = '';
-
-			if ( ! empty( $atts ) && is_array( $atts ) ) {
-				foreach ( $atts as $k => $att ) {
-					$atts_str .= ' ' . esc_attr( $k ) . '="' . esc_attr( $att ) . '"';
-				}
-			}
-
-			$img_url = isset( $settings_key['url'] ) ? esc_url( $settings_key['url'] ) : '';
-			$alt     = isset( $alt ) ? esc_attr( $alt ) : '';
-
-			echo wp_kses_post( '<img src="' . $img_url . '" ' . $class_attr . ' alt="' . $alt . '"' . $atts_str . '>' );
-        }
-        ?>
+		<?php ezd_render_bg_shape( $settings ); ?>
 		<?php if ( $settings['is_bg_objects'] == 'yes' ) : ?>
             <div class="doc_round one" data-parallax='{"x": -80, "y": -100, "rotateY":0}'></div>
             <div class="doc_round two" data-parallax='{"x": -10, "y": 70, "rotateY":0}'></div>
@@ -53,14 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php
 				$delay = 0.2;
 				foreach ( $sections as $section ) :
-					$doc_items = get_children( array(
-						'post_parent'    => $section->ID,
-						'post_type'      => 'docs',
-						'post_status'    => 'publish',
-						'orderby'        => 'menu_order',
-						'order'          => 'ASC',
-						'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-					));
+					$doc_items = ezd_get_doc_items( $section->ID, $settings );
 					?>
                     <div class="recommended_item box-item wow fadeInUp" data-wow-delay="<?php echo esc_attr( $delay ) ?>s">
 						<?php
@@ -75,22 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php
 						}
 
-						if ( ! empty( $doc_items ) ) : ?>
-                            <ul class="ezd-list-unstyled">
-								<?php
-								foreach ( $doc_items as $doc_item ) :
-									?>
-                                    <li>
-                                        <a class="ct-content-text" href="<?php the_permalink( $doc_item->ID ) ?>">
-											<?php echo wp_kses_post( $doc_item->post_title ) ?>
-                                        </a>
-                                    </li>
-								    <?php
-								endforeach;
-								?>
-                            </ul>
-						<?php
-						endif;
+						ezd_render_doc_items_list( $doc_items, 'ezd-list-unstyled', 'ct-content-text' );
 						?>
                     </div>
 					<?php

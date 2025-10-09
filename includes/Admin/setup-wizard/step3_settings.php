@@ -5,11 +5,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+ezd_render_setup_step_wrapper(3, esc_html__( 'Select Page Layout', 'eazydocs' ));
 ?>
-
-<div id="step-3" class="tab-pane" role="tabpanel" style="display:none"
-
-	<h2> <?php esc_html_e( 'Select Page Layout', 'eazydocs' ); ?> </h2>
 
 	<div class="page-layout-wrap">
 		<input type="radio" id="both_sidebar" value="both_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'both_sidebar' ); ?>>

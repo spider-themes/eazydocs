@@ -12,7 +12,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 ?>
 <div class="question_menu docs3" id="Arrow_slides-<?php echo esc_attr( $this->get_id() ) ?>">
     <div class="tabs_sliders">
-        <span class="scroller-btn left"><i class="arrow_carrot-left"></i></span>
+        <?php ezd_render_scroller_btn( 'left' ); ?>
         <ul class="nav nav-tabs mb-5 ezd-tab-menu slide_nav_tabs">
 			<?php
 			$widget_id = $this->get_id();
@@ -75,7 +75,7 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 			}
 			?>
         </ul>
-        <span class="scroller-btn right"><i class="arrow_carrot-right"></i></span>
+        <?php ezd_render_scroller_btn( 'right' ); ?>
     </div>
     <div class="topic_list_inner">
         <div class="ezd-tab-content">
@@ -105,32 +105,13 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 								<?php endif; ?>
                                 <ul class="navbar-nav">
 									<?php
-									$doc_items = get_children( array(
-										'post_parent'    => $section->ID,
-										'post_type'      => 'docs',
-										'post_status'    => 'publish',
-										'orderby'        => 'menu_order',
-										'order'          => 'ASC',
-										'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-									) );
-									foreach ( $doc_items as $doc_item ) :
-										?>
-                                        <li>
-                                            <a href="<?php the_permalink( $doc_item->ID ) ?>" class="ezd_item_list_title">
-												<?php echo wp_kses_post( $doc_item->post_title ) ?>
-                                            </a>
-                                        </li>
-									<?php
-									endforeach;
+									$doc_items = ezd_get_doc_items( $section->ID, $settings );
+									ezd_render_doc_items_list( $doc_items, 'navbar-nav', 'ezd_item_list_title' );
 									?>
                                 </ul>
 								<?php
-								if ( ! empty( $settings['read_more'] ) ) : ?>
-                                    <a href="<?php the_permalink( $section->ID ); ?>" class="text_btn dark_btn ezd_btn">
-										<?php echo esc_html( $settings['read_more'] ) ?>
-                                        <i class="<?php ezd_arrow() ?>"></i>
-                                    </a>
-								    <?php
+								if ( ! empty( $settings['read_more'] ) ) :
+									ezd_render_read_more_btn( get_permalink( $section->ID ), $settings['read_more'], 'text_btn dark_btn ezd_btn', '<i class="' . ezd_arrow() . '"></i>' );
 								endif;
 								?>
                             </div>

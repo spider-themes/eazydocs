@@ -627,17 +627,17 @@ p.big-p {
   max-height: 120px;
 }
 #ezd_notify_review .action_links {
-  margin: 0px 0 5px;
+  margin: 0 0 5px;
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 10px;
 }
 #ezd_notify_review .action_links a:first-child {
   color: white;
 }
 #ezd_notify_review .btn {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   color: #098f3e;
   font-weight: 400;
 }

@@ -10,52 +10,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
 	<?php
 	foreach ( $sections as $section ) :
-		$doc_items = get_children( array(
-			'post_parent'    => $section->ID,
-			'post_type'      => 'docs',
-			'post_status'    => 'publish',
-			'orderby'        => 'menu_order',
-			'order'          => 'ASC',
-			'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-		) );
-		$doc_counter = get_pages( [
-			'child_of'  => $section->ID,
-			'post_type' => 'docs',
-		] );
+		$doc_items = ezd_get_doc_items( $section->ID, $settings );
 		?>
         <div class="categories_guide_item box-item wow fadeInUp single-doc-layout-one">
             <div class="doc-top ezd-d-flex ezd-align-items-start">
 				<?php echo wp_get_attachment_image( get_post_thumbnail_id( $section->ID ) ); ?>
                 <a class="doc_tag_title" href="<?php the_permalink( $section->ID ); ?>">
-					<h4 class="title ct-heading-text"> 
-						<?php echo esc_html( get_the_title( $section->ID ) ); ?> 
-					</h4>
-
-                    <span class="ezd-badge">
-                    <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : ''; ?>
-                    <?php esc_html_e( 'Topics', 'eazydocs' ) ?>
-                </span>
+					<?php ezd_render_section_title( $section, 'title ct-heading-text', 'Topics' ); ?>
                 </a>
             </div>
-            <ul class="ezd-list-unstyled tag_list">
-				<?php
-				foreach ( $doc_items as $doc_item ) : ?>
-                    <li>
-                        <a class="ct-content-text" href="<?php the_permalink( $doc_item->ID ) ?>">
-							<?php echo wp_kses_post( $doc_item->post_title ) ?>
-                        </a>
-                    </li>
-				<?php
-				endforeach;
-				?>
-            </ul>
+			<?php ezd_render_doc_items_list( $doc_items, 'ezd-list-unstyled tag_list', 'ct-content-text' ); ?>
 			<?php
-			if ( ! empty( $settings['read_more'] ) ) : ?>
-                <a href="<?php the_permalink( $section->ID ); ?>" class="doc_border_btn">
-					<?php echo wp_kses_post( $settings['read_more'] ) ?>
-                    <i class="<?php ezd_arrow() ?>"></i>
-                </a>
-			<?php endif; ?>
+			if ( ! empty( $settings['read_more'] ) ) :
+				ezd_render_read_more_btn( get_permalink( $section->ID ), $settings['read_more'], 'doc_border_btn', '<i class="' . ezd_arrow() . '"></i>' );
+			endif; ?>
         </div>
 	<?php
 	endforeach;

@@ -9,6 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// Include admin helper functions
+require_once __DIR__ . '/admin-helpers.php';
+
 /**
  * Class Admin
  *
