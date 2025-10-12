@@ -33,6 +33,7 @@ ezd_render_csf_section( $prefix, 'general_fields', esc_html__( 'Docs General', '
 		'subtitle' => esc_html__( 'This switch controls the visibility of the button in the Docs Archive page.', 'eazydocs' ),
 		'desc' => esc_html__( 'If set to "Hide", the button will not appear for docs that do not have any child posts.', 'eazydocs' ),
 		'default' => false,
+		'text_width' => 80
 	]),
 
 	array(

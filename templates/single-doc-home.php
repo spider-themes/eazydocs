@@ -17,10 +17,11 @@ if ( $sections && $post->post_parent === 0 ) :
     ?>
     <div class="d-items doc-items">
     <?php
-    foreach ( $sections as $section ) : 
+    foreach ( $sections as $section ) :
+        $permalink = get_permalink( $section->ID );
         ?>
-        <div class="media documentation_item">
-            <div class="icon bs-sm">
+        <a href="<?php echo esc_url( $permalink ); ?>" class="media documentation_item">
+            <div class="icon">
                 <?php
                 if ( has_post_thumbnail( $section->ID ) ) {
                     echo get_the_post_thumbnail( $section->ID, 'full' );
@@ -32,12 +33,15 @@ if ( $sections && $post->post_parent === 0 ) :
                 ?>
             </div>
             <div class="media-body">
-                <a href="<?php the_permalink( $section->ID ); ?>" class="doc-sec title">
-                    <?php echo esc_html($section->post_title); ?>
-                </a>
+                <div class="doc-sec-header">
+                    <div class="doc-sec title">
+                        <?php echo esc_html($section->post_title); ?>
+                    </div>
+                    <?php echo function_exists('ezdpro_badge') ? ezdpro_badge( $section->ID ) : ''; ?>
+                </div>
                 <p> 
-                <?php 
-                if ( $is_full_excerpt == false ) {
+                <?php
+                if ( ! $is_full_excerpt ) {
                     echo has_excerpt( $section->ID ) ? wp_kses_post(wp_trim_words( get_the_excerpt( $section->ID ), $sec_excerpt, '' )) : '';
                 } else {
                     echo has_excerpt( $section->ID ) ? wp_kses_post(get_the_excerpt( $section->ID )) : '';
@@ -45,10 +49,11 @@ if ( $sections && $post->post_parent === 0 ) :
                 ?>
                 </p>
             </div>
-        </div>
-        <?php 
+        </a>
+        <?php
     endforeach;
     ?>
     </div>
     <?php
 endif;
+?>

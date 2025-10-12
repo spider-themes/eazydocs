@@ -728,11 +728,20 @@ CSF::createSection( $prefix, array(
 				array( 'helpful_feedback', '==', 'true' ),
 			)
 		),
+	)
+) );
 
-		// Feedback on Selected Text
+//
+// Feedback on Selected Text
+//
+CSF::createSection( $prefix, array(
+	'parent' => 'single_doc',
+	'title'  => esc_html__( 'Feedback on Text', 'eazydocs' ),
+	'icon'   => '',
+	'fields' => array(
 		array(
 			'type'       => 'heading',
-			'content'    => esc_html__( 'Feedback on Selected Text Options', 'eazydocs' ),
+			'content'    => esc_html__( 'Feedback on Selected Text', 'eazydocs' ),
 		),
 
 		array(
@@ -769,9 +778,9 @@ CSF::createSection( $prefix, array(
 			'multiple'   => true,
 			'chosen'     => true
 		),
-		
+
 		array(
-			'id'         => 'ezd_selected_comment_form',
+			'id'         => 'selected_comment_form',
 			'type'       => 'subheading',
 			'title'      => esc_html__( 'Feedback Form Settings', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
@@ -779,7 +788,7 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'ezd_selected_comment_options_heading',
+			'id'         => 'selected_comment_options_heading',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Predefined Options Heading', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
@@ -788,7 +797,7 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'ezd_selected_comment_options',
+			'id'         => 'selected_comment_options',
 			'type'       => 'repeater',
 			'title'      => esc_html__( 'Predefined Options', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
@@ -811,7 +820,7 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'ezd_selected_comment_option_other',
+			'id'         => 'selected_comment_option_other',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Other Option Label', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
@@ -820,7 +829,7 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'ezd_selected_comment_form_heading',
+			'id'         => 'selected_comment_form_heading',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Form Title', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
@@ -829,7 +838,7 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'ezd_selected_comment_form_subheading',
+			'id'         => 'selected_comment_form_subheading',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Form Subtitle', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
@@ -838,7 +847,7 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
-			'id'         => 'ezd_selected_comment_form_footer',
+			'id'         => 'selected_comment_form_footer',
 			'type'       => 'textarea',
 			'title'      => esc_html__( 'Form Disclaimer', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
@@ -846,7 +855,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array( 'enable-selected-comment', '==', 'true' ),
 		)
 	)
-) );
+));
 
 //
 // Doc Left Sidebar Fields

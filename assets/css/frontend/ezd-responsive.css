@@ -42,7 +42,7 @@
 		left: -330px;
 		position: absolute;
 		z-index: 2;
-		padding: 30px 25px;
+		padding: 30px 20px;
 		box-sizing: border-box;
 		&.opened{
 			z-index: 3;
@@ -108,8 +108,7 @@
 	}
 
 	.shortcode_info {
-		padding-left: 0;
-		padding-right: 0;
+		padding: 0 5px;
 	}
 
 	article#post {
@@ -132,7 +131,7 @@
 		top: 40px;
 	}
 	.body_fixed .open_icon {
-		top: 40px;
+		top: 60px;
 	}
 	.doc_rightsidebar {
 		background: var(--black_50);
@@ -187,19 +186,16 @@
 }
 
 @media (max-width: 360px) {
-
 	.left-column .doc_left_sidebarlist {
 		max-width: 280px;
 		width: 280px;
 		left: -280px;
 		padding: 30px 10px;
 	}
-
 }
 
 
 @media (max-width: 1024px) {
-
 	.container.custom_container {
 		max-width: 990px;
 	}

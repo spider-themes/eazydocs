@@ -148,3 +148,4 @@ if ( $comment_visibility == '1' )  :
 	<?php
 	endif;
 endif;
+

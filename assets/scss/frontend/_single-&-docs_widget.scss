@@ -63,8 +63,8 @@
 .d-items {
   display: grid;
   padding-top: 25px;
-  grid-template-columns: auto auto;
-  gap: 40px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 
   @media (max-width: 768px) {
     grid-template-columns: auto;
@@ -72,20 +72,39 @@
 
   .documentation_item {
     display: flex;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    gap: 15px;
+
+    &:hover {
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--black_50);
+      text-decoration: none;
+      cursor: pointer;
+
+      .title {
+        color: var(--ezd_brand_color);
+      }
+    }
 
     .icon {
-      border-radius: 50%;
-      background-color: var(--bs-white);
-      box-shadow: 0 10px 30px 0 rgba(76, 76, 241, 0.12);
+      border-radius: 8px;
+      border: 1px solid var(--black_50);
       text-align: center;
-      margin-right: 22px;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-shrink: 0;
       box-sizing: content-box;
       line-height: 1.4;
-      width: 72px;
-      height: 72px;
+      width: 36px;
+      height: 36px;
+      align-self: flex-start;
+      padding: 5px;
 
       img {
         max-width: 32px !important;
@@ -96,30 +115,52 @@
     .media-body {
       flex: 1;
       display: flex;
-      align-items: center; 
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 8px;
+
+      .doc-sec-header {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+      }
+
       .title {
-        font-weight: 500;
-        margin: 0 0 8px;
+        font-weight: 600;
+        margin: 0;
         transition: color 0.2s linear;
         display: block;
         color: var(--black_900);
         text-decoration: none;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.5;
+      }
 
-        &:hover {
-          text-decoration: underline;
-          text-decoration-color: var(--ezd_brand_color);
-          text-decoration-thickness: 2px;
-          text-underline-offset: 3px;
-          color: var(--ezd_brand_color);
-        }
+      .doc-badges {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .doc-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        background-color: #f3f0ff;
+        color: #7c3aed;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.5;
+        border-radius: 4px;
+        text-transform: capitalize;
+        white-space: nowrap;
       }
 
       p {
         margin-bottom: 0 !important;
-        font-size: 16px;
+        font-size: 14px;
+        color: var(--black_500);
+        line-height: 1.6;
       }
     }
   }
