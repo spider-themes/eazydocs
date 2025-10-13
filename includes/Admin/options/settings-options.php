@@ -79,6 +79,7 @@ function ezd_csf_switcher_field( $config ) {
 	return ezd_get_csf_field_config( 'switcher', array_merge( $config, [
 		'text_on' => esc_html__( 'Show', 'eazydocs' ),
 		'text_off' => esc_html__( 'Hide', 'eazydocs' ),
+		'text_width' => 80,
 	] ) );
 }
 

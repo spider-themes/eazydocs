@@ -48,7 +48,7 @@ $toc_auto_numbering = $toc_auto_numbering == '1' ? ' toc_auto_numbering' : '';
 			if ( ! empty ( $toc_switcher ) ) :
 				?>
                 <div class="table-of-content">
-                    <h6><i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?></h6>
+                    <div class="toc-heading"> <i class="icon_ul"></i> <?php echo esc_html( $toc_heading ); ?> </div>
                     <nav class="ezd-list-unstyled doc_menu toc_right<?php echo esc_attr($toc_auto_numbering) ?>" data-toggle="toc" id="eazydocs-toc"></nav>
                 </div>
 			<?php

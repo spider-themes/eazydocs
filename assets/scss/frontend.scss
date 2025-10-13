@@ -40,11 +40,12 @@ p .footnotes-link::after {
   padding-top: 40px;
 }
 
-.doc_left_sidebarlist h2.doc-title {
+.doc_left_sidebarlist .doc-title {
   font-size: 24px;
   font-weight: 500;
   padding-right: 10px;
-  color: var(--black_800)
+  color: var(--black_800);
+  margin-bottom: 15px;
 }
 
 .page-template-page-onepage #post {

@@ -294,7 +294,7 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 }
 @media (max-width: 767px) {
   .single-docs .ezd-meta {
-    gap: 10px;
+    gap: 5px;
   }
 }
 
@@ -668,6 +668,11 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
   font-size: 2.6em;
   color: var(--black_900);
   line-height: 1.3;
+}
+@media (max-width: 767px) {
+  .single-docs .shortcode_title h1 {
+    font-size: 2em;
+  }
 }
 .single-docs .shortcode_title p span {
   font-weight: 500;
@@ -1065,13 +1070,13 @@ body.single-docs.ezd-theme-docly .ezd-page_breadcrumb:not(.ezd-breadcrumb) {
 .doc_rightsidebar.ezd-scroll .mCSB_inside > .mCSB_container {
   margin-right: 0;
 }
-.doc_rightsidebar h6 {
+.doc_rightsidebar .toc-heading {
   font-size: 12px;
   font-weight: 600;
   color: #9daab6;
   margin-bottom: 15px;
 }
-.doc_rightsidebar h6 i {
+.doc_rightsidebar .toc-heading i {
   margin-right: 6px;
   font-size: 16px;
   position: relative;
@@ -2116,12 +2121,6 @@ body.admin-bar .doc_documentation_area.body_fixed .doc_rightsidebar.one-page-doc
 body.admin-bar .doc_documentation_area.body_fixed .doc_left_sidebarlist.one-page-docs-sidebar-wrap {
   padding-top: 100px;
 }
-@media screen and (max-width: 991px) {
-  body.admin-bar .doc_right_mobile_menu .doc_rightsidebar.sticky,
-  body.admin-bar .left-column .doc_left_sidebarlist.sticky {
-    top: 32px;
-  }
-}
 
 /** === Sidebar === **/
 .ezd-widgets h2 {
@@ -2328,11 +2327,12 @@ p .footnotes-link::after {
   padding-top: 40px;
 }
 
-.doc_left_sidebarlist h2.doc-title {
+.doc_left_sidebarlist .doc-title {
   font-size: 24px;
   font-weight: 500;
   padding-right: 10px;
   color: var(--black_800);
+  margin-bottom: 15px;
 }
 
 .page-template-page-onepage #post {

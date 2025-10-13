@@ -51,7 +51,7 @@ if ( $credit_enable == '1' ) {
             <i class="arrow_carrot-right"></i>
             <i class="arrow_carrot-left"></i>
         </div>
-        <h2 class="doc-title">
+        <div class="doc-title">
             <?php 
             if ( ezd_is_premium() && ! empty ( get_post_meta( $parent, 'ezd_doc_secondary_title', true ) ) ) {
                 echo esc_html( get_post_meta( $parent, 'ezd_doc_secondary_title', true ) );
@@ -59,7 +59,7 @@ if ( $credit_enable == '1' ) {
                 echo esc_html(get_post_field( 'post_title', $parent, 'display' ));
             }
             ?>
-        </h2>
+        </div>
         <?php
         if ( $sidebar_search == 1 ) :
             ?>

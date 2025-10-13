@@ -62,7 +62,6 @@ CSF::createSection( $prefix, array(
 			'subtitle'   => esc_html__( 'Show the Featured Image on the top of the doc content area.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
-			'text_width' => 92,
 			'default'    => false,
 		),
 

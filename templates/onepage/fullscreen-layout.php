@@ -52,9 +52,9 @@ $children = wp_list_pages( array(
                     </div>
 
 					<?php echo wp_kses_post(get_the_post_thumbnail( $post_id->ID ?? 0, 'full' )); ?>
-                    <h3 class="doc-title">
+                    <div class="doc-title">
 						<?php echo esc_html( get_post_field( 'post_title', $post_id->ID ?? 0 ) ); ?>
-                    </h3>
+                    </div>
 
 					<?php
 					if ( $children ) :
