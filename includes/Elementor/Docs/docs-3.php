@@ -117,7 +117,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
                             <a href="<?php the_permalink( $main_doc['doc']->ID ); ?>" class="learn_btn ezd_btn">
-								<?php echo esc_html( $settings['read_more'] ); ?> <i class="<?php ezd_arrow() ?>"></i>
+								<?php echo esc_html( $settings['read_more'] ); ?> <i class="<?php echo ezd_arrow() ?>"></i>
                             </a>
                         </div>
                     </div>

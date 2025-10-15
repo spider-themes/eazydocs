@@ -12,7 +12,7 @@ $ppp_column             = ! empty( $settings['ppp_column'] ) ? $settings['ppp_co
 $is_masonry     		= $settings['masonry'] ?? '';
 $masonry_layout 		= $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : '';
 $masonry_attr   		= $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
-$layout 				= 'grid';
+$layout 				= $is_masonry == 'yes' ? 'masonry' : 'grid';
 
 // Check pro plugin class exists
 if ( ezd_is_premium() ) {
@@ -21,7 +21,7 @@ if ( ezd_is_premium() ) {
 ?>
 
 <div class="eazydocs_shortcode">
-    <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column .' '. $masonry_layout ); ?>"  <?php echo wp_kses_post( $masonry_attr ); ?>>
+    <div class="<?php if ( $layout === 'grid' ) { echo 'ezd-grid'; } ?>  ezd-column-<?php echo esc_attr( $ppp_column .' '. $masonry_layout ); ?>"  <?php echo wp_kses_post( $masonry_attr ); ?>>
 
 		<?php
 		// Ensure $doc_exclude is an array of integers

@@ -1170,9 +1170,10 @@ function ezd_widget_excerpt( $settings_key, $limit = 10 ) {
  * @return void
  */
 function ezd_arrow() {
-	$arrow_icon = is_rtl() ? 'arrow_left' : 'arrow_right';
-	echo esc_attr( $arrow_icon );
+    $arrow_icon = is_rtl() ? 'arrow_left' : 'arrow_right';
+    return esc_attr( $arrow_icon );
 }
+
 
 /**
  * Elementor Title Tag Options

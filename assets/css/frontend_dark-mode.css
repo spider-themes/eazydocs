@@ -134,5 +134,8 @@ body.body_dark body.body_dark textarea#comment {
 body.body_dark span.ezd_mark_text {
   color: black;
 }
+body.body_dark .ezd-subscription-form input {
+  color: black !important;
+}
 
 /*# sourceMappingURL=frontend_dark-mode.css.map */

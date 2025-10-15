@@ -366,8 +366,9 @@ select#ezd_docs_layout {
     font-weight: 400;
     color: black;
     opacity: .8;
-    margin: 10px 0;
+    margin: -2px 4px 0;
     font-style: normal;
+    line-height: 21px;
 }
 
 .ezd-feedback-wrap .ezd-feedback-item p::first-letter {
@@ -819,4 +820,10 @@ select[name="eazydocs_settings[docs-url-structure]"] {
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
+}
+.ezd-nav-tab-wrapper a {
+    font-size: 14px;
+    margin-left: 0;
+    border-radius: 3px 3px 0 0;
+    margin-right: 5px;
 }

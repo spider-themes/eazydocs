@@ -87,6 +87,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$active = ( $i == 0 ) ? 'active' : '';
 			}
 			?>
+			
             <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>" id="<?php $this->tab_id_format( $main_doc['doc']->ID, 'doc'); ?>">
                 <div class="<?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
 					<?php

@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $settings['section_btn'] == 'yes' && ! empty( $settings['section_btn_txt'] ) ) : ?>
     <div class="text-center">
         <a href="<?php echo esc_url( $settings['section_btn_url'] ); ?>" class="action_btn all_doc_btn wow fadeinUp">
-			<?php echo esc_html( $settings['section_btn_txt'] ) ?><i class="<?php ezd_arrow() ?>"></i>
+			<?php echo esc_html( $settings['section_btn_txt'] ) ?><i class="<?php echo ezd_arrow() ?>"></i>
         </a>
     </div>
 <?php endif; ?>
