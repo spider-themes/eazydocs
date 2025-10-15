@@ -10,8 +10,8 @@ $private_doc_mode       = ezd_get_opt( 'private_doc_mode' );
 $private_doc_login_page = ezd_get_opt( 'private_doc_login_page' );
 $ppp_column             = ! empty( $settings['ppp_column'] ) ? $settings['ppp_column'] : '3';
 $is_masonry     		= $settings['masonry'] ?? '';
-$masonry_layout 		= $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : '';
-$masonry_attr   		= $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
+$masonry_layout 		= $is_masonry == 'yes' ? ' ezd-masonry' : '';
+$masonry_attr   		= $is_masonry == 'yes' ? 'ezd-massonry-col="' . esc_attr( $ppp_column ) . '"' : '';
 $layout 				= $is_masonry == 'yes' ? 'masonry' : 'grid';
 
 // Check pro plugin class exists
@@ -22,7 +22,6 @@ if ( ezd_is_premium() ) {
 
 <div class="eazydocs_shortcode">
     <div class="<?php if ( $layout === 'grid' ) { echo 'ezd-grid'; } ?>  ezd-column-<?php echo esc_attr( $ppp_column .' '. $masonry_layout ); ?>"  <?php echo wp_kses_post( $masonry_attr ); ?>>
-
 		<?php
 		// Ensure $doc_exclude is an array of integers
 		$exclude_ids = array_map( 'intval', (array) $doc_exclude );
