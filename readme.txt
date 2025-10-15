@@ -247,6 +247,28 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= 2.7.2 (16 October 2025) =
+Fixed: Grid and masonry layout issues resolved in both single and multi-docs Elementor widgets for consistent display
+Fixed: Broken Access Control vulnerability resolved by adding proper permission checks to AJAX endpoints
+Fixed: Single docs layout collapsed issue with WoodMart theme
+Fixed: Vulnerability issues
+Tweaked: Security and code consistency improved
+Tweaked: Refined constant definitions and removed redundant code
+Tweaked: Improved handling of dynamic content and AJAX endpoints
+Tweaked: Doc single page markup updated to make it more SEO friendly
+Enhanced: Documentation builder refined by reorganizing layout rendering logic across multiple templates for better performance and structure
+Enhanced: Icon/featured image added to Docs widget tab on Style 3
+Enhanced: CSS and UI consistency for better user experience
+Improved: Input sanitization and validation to address potential vulnerabilities
+Improved: Setup wizard made smoother and more user-friendly with efficient wrapper functions (ezd_render_setup_step_wrapper, ezd_render_setup_buttons)
+Improved: Admin panel feedback section styling refined with better CSS alignment and layout adjustments for a cleaner interface.
+Improved: Grammar in notices corrected and SCSS styling improved for consistency and visual appeal
+Improved: Doc Sections design improved in the Single doc page
+Reorganized: Repetitive code replaced with reusable helper functions (ezd_get_doc_items, ezd_render_doc_items_list, etc.) to improve maintainability
+Updated: ezd_arrow() function now returns the icon class instead of echoing it, ensuring correct icon rendering in Elementor widgets
+Updated: CSS optimized to make UI elements cleaner and ensure faster loading performance
+Updated: Language files updated
+
 = 2.7.1 (18 September 2025) =
 Tweaked: Docs Builder UI improved
 Tweaked: Improved the review notice design
@@ -285,10 +307,5 @@ Tweaked: Admin Doc sidebar width flexibility improved
 Tweaked: Make the string translation safe and secure
 Tweaked: Improved View OnePage demo button
 Updated: Language files updated
-
-= 2.6.7 (18 June 2025) =
-Fixed: Accordion reorder issue at depth-4 resolved
-Tweaked: Improved the Full width container in mobile devices
-Tweaked: Improved doc single page design
 
 [See changelog for all versions](https://spider-themes.net/eazydocs/changelog/).
