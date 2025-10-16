@@ -325,7 +325,7 @@ p .footnotes-link::after {
   }
 
   h2, h3, h4, h5, h6 {
-    scroll-margin: calc(.25rem*28);
+    scroll-margin-top: 0px;
   }
 
   h3 {
@@ -348,6 +348,13 @@ p .footnotes-link::after {
     font-weight: 400;
     margin-top: 0;
     line-height: 1.8;
+  }
+}
+body{
+  &.admin-bar {
+    h2, h3, h4, h5, h6 {
+      scroll-margin-top: -32px !important;
+    }
   }
 }
 

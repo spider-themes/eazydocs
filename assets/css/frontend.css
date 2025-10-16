@@ -2558,7 +2558,7 @@ p .footnotes-link::after {
   align-items: center;
 }
 .single-docs #post h2, .single-docs #post h3, .single-docs #post h4, .single-docs #post h5, .single-docs #post h6 {
-  scroll-margin: 7rem;
+  scroll-margin-top: 0px;
 }
 .single-docs #post h3 {
   font-size: 1.5em;
@@ -2576,6 +2576,10 @@ p .footnotes-link::after {
   font-weight: 400;
   margin-top: 0;
   line-height: 1.8;
+}
+
+body.admin-bar h2, body.admin-bar h3, body.admin-bar h4, body.admin-bar h5, body.admin-bar h6 {
+  scroll-margin-top: -32px !important;
 }
 
 .form-control {
