@@ -103,200 +103,155 @@ class Ajax {
 	 * @return void
 	 */
 	function eazydocs_search_results() {
-		// Verify nonce for security
 		check_ajax_referer('eazydocs-ajax', 'security');
+		global $wpdb;
 
-		$keyword = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
+		$keyword     = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
+		$search_mode = ezd_get_opt('search_by', 'title_only');
+		$post_status = is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'];
 
-		// Search by keyword
+		if ( empty($keyword) ) {
+			wp_send_json_error(['message' => 'No keyword provided']);
+		}
+
+		// --- SEARCH LOGIC ---
+
+		// Exact title matches
+		$exact_ids = $wpdb->get_col($wpdb->prepare("
+			SELECT ID FROM {$wpdb->posts}
+			WHERE post_type = 'docs'
+			AND post_status IN ('" . implode("','", $post_status) . "')
+			AND post_title = %s
+		", $keyword));
+
+		// Partial title matches (excluding exact)
+		$partial_ids = $wpdb->get_col($wpdb->prepare("
+			SELECT ID FROM {$wpdb->posts}
+			WHERE post_type = 'docs'
+			AND post_status IN ('" . implode("','", $post_status) . "')
+			AND post_title LIKE %s
+		", '%' . $wpdb->esc_like($keyword) . '%'));
+		$partial_ids = array_diff($partial_ids, $exact_ids);
+
+		//  Content matches (only if mode allows)
+		$content_ids = [];
+		if ( $search_mode === 'title_and_content' ) {
+			$content_ids = $wpdb->get_col($wpdb->prepare("
+				SELECT ID FROM {$wpdb->posts}
+				WHERE post_type = 'docs'
+				AND post_status IN ('" . implode("','", $post_status) . "')
+				AND post_content LIKE %s
+			", '%' . $wpdb->esc_like($keyword) . '%'));
+			$content_ids = array_diff($content_ids, $exact_ids, $partial_ids);
+		}
+
+		// Combine: exact → partial → content
+		$final_ids = array_merge($exact_ids, $partial_ids, $content_ids);
+		if ( empty($final_ids) ) $final_ids = [0];
+
+		// Add tag matches (appended after)
+		$getTags  = get_terms(['taxonomy' => 'doc_tag', 'hide_empty' => false]);
+		$checkTags = wp_list_pluck($getTags, 'name');
+		if ( in_array($keyword, $checkTags, true) ) {
+			$tag_posts = new WP_Query([
+				'post_type'      => 'docs',
+				'posts_per_page' => -1,
+				'post_status'    => $post_status,
+				'tax_query'      => [[
+					'taxonomy' => 'doc_tag',
+					'field'    => 'name',
+					'terms'    => $keyword,
+				]],
+			]);
+			$merged_ids = array_unique(array_merge($final_ids, wp_list_pluck($tag_posts->posts, 'ID')));
+			$final_ids  = $merged_ids;
+		}
+
+		// Maintain order priority: exact → partial → content → tag
 		$args = [
 			'post_type'      => 'docs',
 			'posts_per_page' => -1,
-			'post_status'    => is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'], 
-			's' 			 => $keyword, // Include keyword search
-			'orderby' 		 => [ 'menu_order' => 'ASC', 'title' => 'ASC' ]
+			'post_status'    => $post_status,
+			'post__in'       => $final_ids,
+			'orderby'        => [
+				'post__in'    => 'ASC',
+				'menu_order'  => 'ASC',
+				'date'        => get_option('posts_order') === 'asc' ? 'ASC' : 'DESC',
+				'title'       => 'ASC',
+			],
 		];
 
 		$posts = new WP_Query($args);
 
-		// Search by tag
-		$getTags = get_terms([ 'taxonomy' => 'doc_tag', 'hide_empty' => false, 'object_ids' => get_posts([ 'post_type' => 'docs', 'posts_per_page' => -1, 'fields' => 'ids', ]) ]);
-		$checkTags = [];
-
-		if ( ! empty( $getTags ) && !is_wp_error( $getTags ) ) {
-			foreach ($getTags as $tag) {
-				$checkTags[] =  $tag->name;
-			}
-		}
-
-		$postsByTags = [];
-
-		if ( array_search( $keyword, $checkTags ) !== false ) {
-			$args = [
-				'post_type'      => 'docs',
-				'posts_per_page' => -1,
-				'post_status'     => is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'],
-				'tax_query'      => [
-					[
-						'taxonomy' => 'doc_tag',
-						'field'    => 'name',
-						'terms'    => $keyword,
-					],
-				],
-			];
-
-			$postsByTags 	= new WP_Query($args);
-			$merged_posts 	= array_merge($posts->posts, $postsByTags->posts);
-			$merged_posts 	= array_unique($merged_posts, SORT_REGULAR);
-
-			$posts = new WP_Query([
-				'post_type'      => 'docs',
-				'posts_per_page' => -1,
-				'post_status'    => is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'],
-				'post__in'       => wp_list_pluck($merged_posts, 'ID'),
-				'orderby' 		 => [ 'menu_order' => 'ASC', 'title' => 'ASC' ]
-			]);
-		}
-
-		// Clean and prepare keyword for database storage
+		// --- LOG SEARCH KEYWORD ---
 		$keyword_for_db = trim(strtolower($keyword));
+		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
+		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
 
-		if ( $posts->have_posts() ):
-			global $wpdb;
+		$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+		$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
 
-			$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
-			$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
+		if ( $keyword_table_exists && $log_table_exists ) {
+			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
+			$keyword_id = $wpdb->insert_id;
 
-			// Check if tables exist before attempting to insert
-			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-			$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
-
-			if ($keyword_table_exists && $log_table_exists) {
-				// Insert keyword safely
-				$wpdb->insert( 
-					$wp_eazydocs_search_keyword,
-					array(
-						'keyword' => $keyword_for_db,
-					),
-					array('%s') 
+			if ( $keyword_id ) {
+				$wpdb->insert(
+					$wp_eazydocs_search_log,
+					[
+						'keyword_id'      => $keyword_id,
+						'count'           => $posts->post_count,
+						'not_found_count' => $posts->post_count ? 0 : 1,
+						'created_at'      => current_time('mysql'),
+					],
+					['%d', '%d', '%d', '%s']
 				);
-
-				// Get the inserted ID and insert log entry
-				$keyword_id = $wpdb->insert_id;
-				if ($keyword_id) {
-					$wpdb->insert(
-						$wp_eazydocs_search_log,
-						array(
-							'keyword_id' => $keyword_id,
-							'count'      => 1,
-							'not_found_count' => 0,
-							'created_at' => current_time('mysql'),
-						),
-						array('%d', '%d', '%d', '%s')
-					);
-				}
 			}
+		}
 
+		// --- OUTPUT RESULTS (unchanged) ---
+		if ( $posts->have_posts() ) :
 			while ( $posts->have_posts() ) : $posts->the_post();
-				$no_thumbnail = ezd_get_opt('is_search_result_thumbnail') == false ? 'no-thumbnail' :  '';
+				$no_thumbnail = ezd_get_opt('is_search_result_thumbnail') == false ? 'no-thumbnail' : '';
 				?>
-                <div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" data-url="<?php the_permalink( get_the_ID() ); ?>">
-					
-                    <a href="<?php the_permalink( get_the_ID() ) ?>" class="title">
-
-						<?php						
-						if ( ezd_get_opt('is_search_result_thumbnail') ) :
-							if ( has_post_thumbnail() ) :
-								the_post_thumbnail( 'ezd_searrch_thumb16x16' );
-								else :
-								?>
+				<div class="search-result-item <?php echo esc_attr($no_thumbnail); ?>" data-url="<?php the_permalink(); ?>">
+					<a href="<?php the_permalink(); ?>" class="title">
+						<?php if (ezd_get_opt('is_search_result_thumbnail')) :
+							if (has_post_thumbnail()) {
+								the_post_thumbnail('ezd_searrch_thumb16x16');
+							} else { ?>
 								<svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img">
 									<title id="title">Building Search UI</title>
 									<path d="M14.72,0H2.28A2.28,2.28,0,0,0,0,2.28V14.72A2.28,2.28,0,0,0,2.28,17H14.72A2.28,2.28,0,0,0,17,14.72V2.28A2.28,2.28,0,0,0,14.72,0ZM2.28,1H14.72A1.28,1.28,0,0,1,16,2.28V5.33H1V2.28A1.28,1.28,0,0,1,2.28,1ZM1,14.72V6.33H5.33V16H2.28A1.28,1.28,0,0,1,1,14.72ZM14.72,16H6.33V6.33H16v8.39A1.28,1.28,0,0,1,14.72,16Z"></path>
 								</svg>
-								<?php 
-							endif;
-						endif;						
-						?>
-
-                        <span class="doc-section">
-                            <?php the_title(); ?>
-                        </span>
-
-                        <svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round"
-                             stroke-linejoin="round" class="block h-auto w-16">
-                            <polyline points="9 10 4 15 9 20"></polyline>
-                            <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
-                        </svg>
-
-                    </a>
-					<?php 
-					if ( ezd_get_opt('is_search_result_breadcrumb') ) {
-						eazydocs_search_breadcrumbs(); 
-					}
-					?>
-                </div>
-			    <?php
+							<?php }
+						endif; ?>
+						<span class="doc-section"><?php the_title(); ?></span>
+						<svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round"
+							stroke-linejoin="round" class="block h-auto w-16">
+							<polyline points="9 10 4 15 9 20"></polyline>
+							<path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
+						</svg>
+					</a>
+					<?php if (ezd_get_opt('is_search_result_breadcrumb')) eazydocs_search_breadcrumbs(); ?>
+				</div>
+				<?php
 			endwhile;
-			wp_reset_postdata();
-		else:
-			global $wpdb;
-
-			$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
-			$wp_eazydocs_search_log = $wpdb->prefix . 'eazydocs_search_log';
-
-			// Check if tables exist before attempting to insert
-			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-			$log_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
-
-			if ($keyword_table_exists && $log_table_exists) {
-				// Insert keyword safely
-				$wpdb->insert(
-					$wp_eazydocs_search_keyword,
-					array(
-						'keyword' => $keyword_for_db,
-					),
-					array('%s')
-				);
-
-				// Get the inserted ID and insert log entry
-				$keyword_id = $wpdb->insert_id;
-				if ($keyword_id) {
-					$wpdb->insert(
-						$wp_eazydocs_search_log,
-						array(
-							'keyword_id'      => $keyword_id,
-							'count'           => 0,
-							'not_found_count' => 1,
-							'created_at'      => current_time('mysql'),
-						),
-						array('%d', '%d', '%d', '%s')
-					);
-				}
-			}
+		else :
 			?>
-            <div>
-                <h5 class="error title"> <?php esc_html_e( 'No result found!', 'eazydocs' ); ?> </h5>
-            </div>
-		<?php
+			<div><h5 class="error title"><?php esc_html_e('No result found!', 'eazydocs'); ?></h5></div>
+			<?php
 		endif;
 
-		// Add JavaScript to handle click events on search results
+		wp_reset_postdata();
 		?>
 		<script>
-			// Make search result items clickable
 			document.addEventListener('DOMContentLoaded', function() {
-				var searchItems = document.querySelectorAll('.search-result-item');
-				searchItems.forEach(function(item) {
+				document.querySelectorAll('.search-result-item').forEach(function(item) {
 					item.addEventListener('click', function(e) {
-						// Don't trigger if clicking on a link inside the item
-						if (e.target.tagName === 'A' || e.target.closest('a')) {
-							return;
-						}
-						var url = this.getAttribute('data-url');
-						if (url) {
-							window.location.href = url;
-						}
+						if (e.target.tagName === 'A' || e.target.closest('a')) return;
+						let url = this.getAttribute('data-url');
+						if (url) window.location.href = url;
 					});
 				});
 			});

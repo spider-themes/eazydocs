@@ -312,7 +312,10 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'default'    => true,
-			'dependency' => array( 'search_banner_layout', '==', 'default' ),
+			'dependency' => array(
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' )
+			),
 			'text_width' => 85
 		),
 
@@ -451,7 +454,6 @@ CSF::createSection( $prefix, array(
 			'class'      => 'eazydocs-pro-notice',
 		),
 		
-
 		array(
 			'id'         => 'keywords',
 			'type'       => 'repeater',
@@ -502,7 +504,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'is_search_banner', '==', 'true' ),
 				array( 'search_banner_layout', '==', 'default' ),
-			),
+			)
 		),
 		
 		ezd_csf_switcher_field([
@@ -529,7 +531,35 @@ CSF::createSection( $prefix, array(
 				array( 'search_banner_layout', '==', 'default' ),
 			),
 			'class'      => 'eazydocs-pro-notice'
-		])
+		]),
+		
+		array(
+			'id'         => 'search_by',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Search Mode', 'eazydocs' ),
+			'desc'       => sprintf(
+				esc_html__(
+					'%1$sSelect how you want the search to work.%2$s %3$s
+					• %1$sBy Title Only:%2$s Shows results that match your search keywords in titles. %3$s
+					• %1$sBy Title and Content:%2$s First shows title matches, then includes results that match inside the content.',
+					'eazydocs'
+				),
+				'<b>',
+				'</b>',
+				'<br />'
+			),
+			'options' => array(
+				'title_only'        => esc_html__( 'Search in Titles Only', 'eazydocs' ),
+				'title_and_content' => esc_html__( 'Search in Titles and Content', 'eazydocs' ),
+			),
+
+			'default'    => 'title_only',
+			'dependency' => array(
+				array( 'is_search_banner', '==', 'true' ),
+				array( 'search_banner_layout', '==', 'default' ),
+			),
+			'class'      => 'eazydocs-pro-notice',
+		)
 	)
 ) );
 
