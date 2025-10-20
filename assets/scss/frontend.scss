@@ -290,7 +290,7 @@ p .footnotes-link::after {
     padding-bottom: 20px;
 
     li {
-      margin-bottom: 0;
+      margin-bottom: 0 !important;
     }
   }
 
@@ -347,7 +347,7 @@ p .footnotes-link::after {
   p {
     font-weight: 400;
     margin-top: 0;
-    line-height: 1.8;
+    line-height: 1.9;
   }
 }
 body{

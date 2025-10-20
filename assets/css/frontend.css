@@ -2528,7 +2528,7 @@ p .footnotes-link::after {
 .doc-scrollable ul.wp-block-list li,
 .doc-scrollable ol:not([class]) li,
 .doc-scrollable ol.wp-block-list li {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 .doc-scrollable ul {
   list-style: disc;
@@ -2575,7 +2575,7 @@ p .footnotes-link::after {
 .single-docs #post p {
   font-weight: 400;
   margin-top: 0;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 body.admin-bar h2, body.admin-bar h3, body.admin-bar h4, body.admin-bar h5, body.admin-bar h6 {

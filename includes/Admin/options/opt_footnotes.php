@@ -86,7 +86,7 @@ CSF::createSection( $prefix, array(
 $meta = 'eazydocs_meta';
 // Register a custom meta box for the Docs post type.
 CSF::createMetabox( $meta, array(
-	'title'     => esc_html__( 'Docs :: Options', 'eazydocs' ),
+	'title'     => esc_html__( 'EazyDocs :: Options', 'eazydocs' ),
 	'post_type' => 'docs',
 	'data_type' => 'unserialize',
 	'priority'  => 'default'
@@ -101,8 +101,7 @@ CSF::createSection( $meta, array(
 			'id'     => 'footnotes_colum_opt',
 			'type'   => 'fieldset',
 			'title'  => esc_html__( 'Footnotes Column', 'eazydocs' ),
-			'desc'   => esc_html__( 'Select Default to use the value from the settings, or choose Custom to manually select the column number from the dropdown.',
-				'eazydocs' ),
+			'desc'   => esc_html__( 'Select Default to use the value from the settings, or choose Custom to manually select the column number from the dropdown.', 'eazydocs' ),
 			'fields' => array(
 				array(
 					'id'       => 'footnotes_column_source',

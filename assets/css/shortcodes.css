@@ -102,13 +102,11 @@ EazyDocs Footnotes
 }
 
 .ezd-footnotes-link-item {
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
   transition: all 1s ease;
   position: relative;
   text-decoration: none !important;
   display: inline-block;
+  top: -6px;
 }
 .ezd-footnotes-link-item > i {
   font-style: normal;
