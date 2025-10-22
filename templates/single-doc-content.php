@@ -106,7 +106,110 @@ endif;
 				?>	
 			</div>
 
-			<?php			
+            <div class="ezd-doc-attached-files-accordion">
+                <?php
+                $attached_files = get_post_meta( get_the_ID(), 'ezd_doc_attached_files', true );
+                $allowed_types = ['pdf', 'zip', 'docx', 'txt'];
+                $item_count = 0;
+                if ( !empty($attached_files) && is_array($attached_files) ) {
+                    foreach ( $attached_files as $file ) {
+                        $file_url = $file['ezd_upload_doc_attachment'];
+                        $file_ext = strtolower(pathinfo(basename($file_url), PATHINFO_EXTENSION));
+                        if ( in_array($file_ext, $allowed_types) ) {
+                            $item_count++;
+                        }
+                    }
+                }
+                ?>
+                <div class="accordion__header" role="button" aria-expanded="true" aria-controls="accordion-content" tabindex="0">
+                    <div class="accordion__title">
+                        <?php echo esc_html__('Attached Files', 'eazydocs'); ?>
+                        <span class="accordion__count">
+                            (<?php echo esc_html($item_count); ?>)
+                        </span>
+                    </div>
+                    <button class="accordion__toggle" aria-label="<?php echo esc_attr__('Toggle accordion', 'eazydocs'); ?>">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="accordion__content" id="accordion-content">
+                    <ul class="file-list">
+                        <?php
+                        if ( !empty($attached_files) && is_array($attached_files) ) :
+                            foreach ( $attached_files as $file ) :
+                                $file_url = $file['ezd_upload_doc_attachment'];
+                                $file_name = basename($file_url);
+                                $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                                if ( !in_array($file_ext, $allowed_types) ) continue;
+                                // Try to get file size (if local)
+                                $file_path = ABSPATH . str_replace(site_url() . '/', '', $file_url);
+                                $file_size = '';
+                                if (file_exists($file_path)) {
+                                    $size_bytes = filesize($file_path);
+                                    if ($size_bytes >= 1048576) {
+                                        $file_size = round($size_bytes / 1048576, 2) . ' MB';
+                                    } elseif ($size_bytes >= 1024) {
+                                        $file_size = round($size_bytes / 1024, 2) . ' KB';
+                                    } else {
+                                        $file_size = $size_bytes . ' bytes';
+                                    }
+                                }
+                                // Get upload date from URL (year/month) or fallback to current date
+                                preg_match('/uploads\/(\d{4})\/(\d{2})\//', $file_url, $matches);
+                                $upload_date = '';
+                                if ( !empty($matches) ) {
+                                    $year = $matches[1];
+                                    $month = $matches[2];
+                                    $date_str = $year . '-' . $month . '-01';
+                                    $upload_date = 'Uploaded ' . date( 'M d, Y', strtotime( $date_str ) );
+                                } else {
+                                    $upload_date = 'Uploaded ' . date( 'M d, Y', strtotime( 'now' ) );
+                                }
+                                // Icon and color logic
+                                $icon_class = 'far fa-file';
+                                $color_class = '';
+                                $badge = '';
+                                if ($file_ext === 'pdf') {
+                                    $icon_class = 'far fa-file-pdf';
+                                    $color_class = 'file-list__icon--pdf';
+                                } elseif ($file_ext === 'docx') {
+                                    $icon_class = 'far fa-file-word';
+                                    $color_class = 'file-list__icon--docx';
+                                } elseif ($file_ext === 'txt') {
+                                    $icon_class = 'far fa-file-alt';
+                                    $color_class = 'file-list__icon--txt';
+                                } elseif ($file_ext === 'zip') {
+                                    $icon_class = 'fa fa-file-archive'; // fallback to fa-file if not available
+                                    $color_class = 'file-list__icon--zip';
+                                }
+                                ?>
+                                <li class="file-list__item">
+                                    <div class="file-list__icon <?php echo esc_attr($color_class); ?> file-list__icon--<?php echo esc_attr($file_ext); ?>">
+                                        <i class="<?php echo esc_attr($icon_class); ?>"></i>
+                                    </div>
+                                    <div class="file-list__info">
+                                        <h4 class="file-list__name"><?php echo esc_html($file_name); ?></h4>
+                                        <div class="file-list__meta">
+                                            <span class="file-list__size"><?php echo esc_html($file_size); ?></span>
+                                            <span class="file-list__separator">&bull;</span>
+                                            <span class="file-list__date"><?php echo esc_html($upload_date); ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="file-list__actions">
+                                        <a class="file-list__action file-list__action--download" href="<?php echo esc_url($file_url); ?>" download aria-label="Download file">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <?php
+                            endforeach;
+                        endif;
+                        ?>
+                    </ul>
+                </div>
+            </div>
+
+			<?php
 			// Footnote
 			do_action( 'eazydocs_footnote', get_the_ID() );
 

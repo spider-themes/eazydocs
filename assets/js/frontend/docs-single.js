@@ -788,6 +788,44 @@
 				$btn.css("opacity", "1");
 			}, 10000);
 		});
+
+        /**
+         * EazyDocs Accordion Functionality
+         * Sync with updated markup: .ezd-doc-attached-files-accordion
+         * Maintains ARIA states and toggle icons.
+         */
+        function ezdDocAttachedFile() {
+            const $accordion = $('.ezd-doc-attached-files-accordion');
+
+            // Set initial collapsed state
+            $accordion.find('.accordion__content').addClass('is-collapsed').hide();
+            $accordion.find('.accordion__header').attr('aria-expanded', 'false');
+            $accordion.find('.accordion__toggle i')
+                .removeClass('fa-chevron-up')
+                .addClass('fa-chevron-down');
+
+            // Click on header or toggle button
+            $accordion.on('click', '.accordion__header, .accordion__toggle', function (e) {
+                e.preventDefault();
+                const $wrapper = $(this).closest('.ezd-doc-attached-files-accordion');
+                const $content = $wrapper.find('.accordion__content');
+                const $header = $wrapper.find('.accordion__header');
+                const $icon = $wrapper.find('.accordion__toggle i');
+                const expanded = $header.attr('aria-expanded') === 'true';
+
+                if (expanded) {
+                    $content.slideUp(250).addClass('is-collapsed');
+                    $header.attr('aria-expanded', 'false');
+                    $icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+                } else {
+                    $content.slideDown(250).removeClass('is-collapsed');
+                    $header.attr('aria-expanded', 'true');
+                    $icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+                }
+            });
+        }
+        // Initialize accordion functionality
+        ezdDocAttachedFile();
 	});
 })(jQuery);
 

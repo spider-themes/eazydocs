@@ -1,0 +1,322 @@
+// ============================================
+// File Attachment Accordion Component
+// ============================================
+
+.single-docs #post .ezd-doc-attached-files-accordion,
+.ezd-doc-attached-files-accordion {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 32px;
+
+  // Accordion Header
+  .accordion__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px;
+    border-bottom: 2px solid #3b82f6;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #f9fafb;
+
+    &:hover {
+      background-color: #f3f4f6;
+    }
+
+    &[aria-expanded="false"] {
+      border-bottom: none;
+
+      .accordion__toggle i {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  // Accordion Title
+  .accordion__title {
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #425466;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Accordion Count Badge
+  .accordion__count {
+    font-weight: 400;
+    color: #6b7280;
+  }
+
+  // Accordion Toggle Button
+  .accordion__toggle {
+    border: none;
+    background: transparent;
+    transition: all 0.2s ease;
+
+    i {
+      font-size: 14px;
+      color: #6b7280;
+      transition: all 0.3s ease;
+    }
+  }
+
+  // Accordion Content
+  .accordion__content {
+    opacity: 1;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.3s ease;
+    padding: 16px 0;
+    max-height: 500px; // Large enough for most content
+    overflow: hidden;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    &:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 2px #60a5fa33;
+    }
+
+    &:active {
+      background: #f3f4f6;
+    }
+
+    &.is-collapsed {
+      max-height: 0;
+      opacity: 0;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: none;
+    }
+  }
+
+  .file-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    // File List Item
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 24px;
+      transition: all 0.2s ease;
+      border-radius: 8px;
+      margin: 0 24px;
+
+      &:hover {
+        background-color: #f3f4f6;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+
+    // File Icon
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      flex-shrink: 0;
+
+      i {
+        font-size: 24px;
+      }
+
+      &--pdf {
+        background: #fee2e2;
+        color: #ef4444;
+      }
+
+      &--zip {
+        background: #fff7e0;
+        color: #f59e42;
+        position: relative;
+      }
+
+      &--docx {
+        background: #e3eefd;
+        color: #185abd;
+      }
+
+      &--txt {
+        background: #f3f3f3;
+        color: #333;
+      }
+    }
+
+    // File Info
+    &__info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    // File Name
+    &__name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1f2937;
+      line-height: 1.4;
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+
+    // File Meta Information
+    &__meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    &__size,
+    &__date {
+      font-weight: 400;
+    }
+
+    &__separator {
+      font-size: 12px;
+    }
+
+    // File Action Button
+    &__action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #e5e7eb;
+      background-color: #fff;
+      transition: all 0.2s ease;
+      opacity: 0.7;
+      text-decoration: none;
+
+      &:hover {
+        opacity: 1;
+        border-color: #6b7280;
+        background-color: #f3f4f6;
+      }
+
+      &:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+        opacity: 1;
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      i {
+        font-size: 13px;
+        color: #6b7280;
+      }
+
+      &--download:hover {
+        border-color: #3b82f6;
+        background-color: #e0f2fe;
+
+        i {
+          color: #3b82f6;
+        }
+      }
+    }
+  }
+
+  // Responsive Design
+  @media screen and (max-width: 768px) {
+    .accordion__header {
+      padding: 16px;
+    }
+
+    .accordion__title {
+      font-size: 15px;
+    }
+
+    .file-list__item {
+      padding: 12px 16px;
+      gap: 12px;
+    }
+
+    .file-list__icon {
+      width: 40px;
+      height: 40px;
+
+      i {
+        font-size: 20px;
+      }
+    }
+
+    .file-list__name {
+      font-size: 13px;
+    }
+
+    .file-list__meta {
+      font-size: 12px;
+    }
+
+    .file-list__action {
+      width: 32px;
+      height: 32px;
+
+      i {
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .file-list__item {
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .file-list__info {
+      flex: 1 1 100%;
+      order: 2;
+    }
+
+    .file-list__actions {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      opacity: 1;
+    }
+
+    .file-list__name {
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+
+  // Accessibility
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  // Focus visible for keyboard navigation
+  .accordion__header:focus-visible,
+  .accordion__toggle:focus-visible,
+  .file-list__action:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+}
