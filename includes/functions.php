@@ -676,9 +676,8 @@ function eazydocs_one_page( $doc_id ) {
 	$one_page_title = get_the_title( $doc_id );
 	$docs           = get_post( $doc_id );
 	$post_name      = $docs->post_name;
+	$post_status    = get_post_status( $doc_id );
 
-
-	$post_status   = get_post_status( $doc_id );
 	$one_page_docs = get_posts( [
 		'post_type'   => 'onepage-docs',
 		'post_status' => 'publish',
@@ -687,15 +686,36 @@ function eazydocs_one_page( $doc_id ) {
 
 	if ( $post_status != 'draft' ) :
 		if ( count( $one_page_docs ) < 1 ) :
+
+			// Generate a secure URL with nonce
+			$onepage_url = wp_nonce_url(
+				add_query_arg(
+					[
+						'parentID'         => $doc_id,
+						'single_doc_title' => $one_page_title,
+						'make_onepage'     => 'yes',
+					],
+					admin_url( 'admin.php' )
+				),
+				'ezd_make_onepage' // must match wp_verify_nonce action name
+			);
 			?>
-			<button class="button button-info one-page-doc" id="one-page-doc" name="submit" data-url="<?php echo esc_url(admin_url( 'admin.php' )); ?>?parentID=<?php echo esc_attr($doc_id); ?>&single_doc_title=<?php echo esc_html($one_page_title); ?>&make_onepage=yes">
+			<button
+				class="button button-info one-page-doc"
+				id="one-page-doc"
+				name="submit"
+				data-url="<?php echo esc_url( $onepage_url ); ?>">
 				<?php esc_html_e( 'Make OnePage Doc', 'eazydocs' ); ?>
 			</button>
 			<?php
 		else :
 			foreach ( $one_page_docs as $single_docs ) :
 				?>
-				<a class="button button-info view-page-doc" id="view-page-doc" href="<?php the_permalink( $single_docs ); ?>" target="_blank">
+				<a
+					class="button button-info view-page-doc"
+					id="view-page-doc"
+					href="<?php echo esc_url( get_permalink( $single_docs ) ); ?>"
+					target="_blank">
 					<?php esc_html_e( 'View OnePage Doc', 'eazydocs' ); ?>
 				</a>
 				<?php
@@ -750,50 +770,6 @@ function ezd_hex2rgba( $color, $opacity = false ) {
 
 	//Return rgb(a) color string
 	return $output;
-}
-
-/**
- * Encode special characters
- *
- * @param $data
- *
- * @return array|string|string[]
- */
-function ezd_chrEncode( $data ) {
-	$data = str_replace( 'â€™', '&#39;', $data );
-	$data = str_replace( 'Ã©', 'é', $data );
-	$data = str_replace( 'â€', '-', $data );
-	$data = str_replace( '-œ', '&#34;', $data );
-	$data = str_replace( 'â€œ', '&#34;', $data );
-	$data = str_replace( 'Ãª', 'ê', $data );
-	$data = str_replace( 'Ã¶', 'ö', $data );
-	$data = str_replace( 'â€¦', '...', $data );
-	$data = str_replace( '-¦', '...', $data );
-	$data = str_replace( 'â€“', '–', $data );
-	$data = str_replace( 'â€²s', '’', $data );
-	$data = str_replace( '-²s', '’', $data );
-	$data = str_replace( 'â€˜', '&#39;', $data );
-	$data = str_replace( '-˜', '&#39;', $data );
-	$data = str_replace( '-“', '-', $data );
-	$data = str_replace( 'Ã¨', 'è', $data );
-	$data = str_replace( 'ï¼ˆ', '(', $data );
-	$data = str_replace( 'ï¼‰', ')', $data );
-	$data = str_replace( 'â€¢', '&bull;', $data );
-	$data = str_replace( '-¢', '&bull;', $data );
-	$data = str_replace( 'Â§ï‚§', '&bull;', $data );
-	$data = str_replace( 'Â®', '&reg;', $data );
-	$data = str_replace( 'â„¢', '&trade;', $data );
-	$data = str_replace( 'Ã±', 'ñ', $data );
-	$data = str_replace( 'Å‘s', 'ő', $data );
-	$data = str_replace( '\\\"', '&quot;', $data );
-	$data = str_replace( "\r", '', $data );
-	$data = str_replace( "\\r", '', $data );
-	$data = str_replace( "\n", '', $data );
-	$data = str_replace( "\\n", '', $data );
-	$data = str_replace( "\\\'", '', $data );
-	$data = str_replace( "\\", "", $data );
-
-	return $data;
 }
 
 /**

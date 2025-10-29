@@ -9,125 +9,167 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class Single_Duplicate
- * @package EZD_EazyDocsPro\Duplicator
+ * Class One_Page
+ * Creates a single "onepage" doc from a parent docs post
  */
 class One_Page {
-	public function __construct() {
-		add_action( 'admin_init', [ $this, 'doc_one_page' ] );
-	}
+    public function __construct() {
+        add_action( 'admin_init', [ $this, 'doc_one_page' ] );
+    }
 
-	function doc_one_page() {
-		
-		// Verify nonce for security
-		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'ezd_make_onepage' ) ) {
-			if ( isset( $_GET['make_onepage'] ) ) {
-				wp_die( esc_html__( 'Security check failed. Please try again.', 'eazydocs' ) );
-			}
-			return;
-		}
+    /**
+     * Helper: clean up encoded characters
+     */
+    private function ezd_chrEncode( $data ) {
+        if ( ! is_string( $data ) ) {
+            return $data;
+        }
 
-		// Check user capabilities
-		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You do not have permission to perform this action.', 'eazydocs' ) );
-		}
+        $replacements = [
+            'â€™'   => '&#39;',
+            'Ã©'    => 'é',
+            'â€'    => '-',
+            '-œ'    => '&#34;',
+            'â€œ'   => '&#34;',
+            'Ãª'    => 'ê',
+            'Ã¶'    => 'ö',
+            'â€¦'   => '...',
+            '-¦'    => '...',
+            'â€“'   => '–',
+            'â€²s'  => '’',
+            '-²s'   => '’',
+            'â€˜'   => '&#39;',
+            '-˜'    => '&#39;',
+            '-“'    => '-',
+            'Ã¨'    => 'è',
+            'ï¼ˆ'  => '(',
+            'ï¼‰'  => ')',
+            'â€¢'   => '&bull;',
+            '-¢'    => '&bull;',
+            'Â§ï‚§' => '&bull;',
+            'Â®'    => '&reg;',
+            'â„¢'   => '&trade;',
+            'Ã±'    => 'ñ',
+            'Å‘s'   => 'ő',
+            '\\"'   => '&quot;',
+            "\r"    => '',
+            "\\r"   => '',
+            "\n"    => '',
+            "\\n"   => '',
+            "\\'"   => '',
+            "\\"    => '',
+        ];
 
-		$make_onepage = isset( $_GET['make_onepage'] ) ? sanitize_text_field( $_GET['make_onepage'] ) : '';
-		$parent_id = isset( $_GET['parentID'] ) ? absint( $_GET['parentID'] ) : 0;
+        return strtr( $data, $replacements );
+    }
 
-		if ( $make_onepage === 'yes' && $parent_id > 0 ) {
+    /**
+     * Handle admin init action to create a onepage doc
+     */
+    public function doc_one_page() {
+        // Only run when explicitly requested
+        if ( empty( $_GET['make_onepage'] ) || wp_unslash( $_GET['make_onepage'] ) !== 'yes' ) {
+            return;
+        }
 
-			$layout               	= isset( $_GET['layout'] ) ? sanitize_text_field( $_GET['layout'] ) : '';
-			$ezd_doc_content_type 	= isset( $_GET['content_type'] ) ? sanitize_text_field( $_GET['content_type'] ) : '';
-			$left_side_sidebar    	= isset( $_GET['left_side_sidebar'] ) ? sanitize_text_field( $_GET['left_side_sidebar'] ) : '';
-			$content_type         	= isset( $_GET['shortcode_right'] ) ? sanitize_text_field( $_GET['shortcode_right'] ) : '';
-			$page_contents_right 	= isset( $_GET['shortcode_content_right'] ) ? wp_kses_post( $_GET['shortcode_content_right'] ) : '';
+        // Verify nonce
+        if ( empty( $_GET['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_GET['_wpnonce'] ), 'ezd_make_onepage' ) ) {
+            wp_die( esc_html__( 'Security check failed. Please try again.', 'eazydocs' ) );
+        }
 
-			if ( $content_type == 'widget_data_right' ) {
-				$shortcode_content_right = isset( $_GET['right_side_sidebar'] ) ? sanitize_text_field( $_GET['right_side_sidebar'] ) : '';
-			} else {
-				$page_content_right      = substr( ezd_chrEncode( $page_contents_right ), 6 );
-				$shortcode_content_right = substr_replace( $page_content_right, "", - 6 );
-				$shortcode_content_right = str_replace( 'style@',"style=", $shortcode_content_right );
-				$shortcode_content_right = str_replace( ';hash;',"#", $shortcode_content_right );
-				$shortcode_content_right = str_replace( 'style&equals;',"style", $shortcode_content_right );
-			}
+        // Capability check
+        if ( ! current_user_can( 'edit_posts' ) ) {
+            wp_die( esc_html__( 'You do not have permission to perform this action.', 'eazydocs' ) );
+        }
 
-			$page_title 				 = get_the_title( $parent_id );
-			$page_contents 				 = isset( $_GET['shortcode_content'] ) ? wp_kses_post( $_GET['shortcode_content'] ) : '';
+        // Sanitize basic inputs
+        $parent_id = isset( $_GET['parentID'] ) ? absint( wp_unslash( $_GET['parentID'] ) ) : 0;
+        if ( $parent_id <= 0 ) {
+            wp_die( esc_html__( 'Invalid parent ID.', 'eazydocs' ) );
+        }
 
-			if ( $ezd_doc_content_type == 'widget_data' ) {
-				$shortcode_content 	= $left_side_sidebar;
-			} else {
-				$page_content      	= substr( ezd_chrEncode( $page_contents ), 6 );
-				$shortcode_content 	= substr_replace( $page_content, "", - 6 );
-				$shortcode_content 	= str_replace( 'style@',"style=", $shortcode_content );
-				$shortcode_content 	= str_replace( ';hash;',"#", $shortcode_content );
-				$shortcode_content 	= str_replace( 'style&equals;',"style", $shortcode_content );
-			}
+        $layout                = isset( $_GET['layout'] ) ? sanitize_text_field( $_GET['layout'] ) : '';
+        $ezd_doc_content_type  = isset( $_GET['content_type'] ) ? sanitize_text_field( $_GET['content_type'] ) : '';
+        $content_type_right    = isset( $_GET['shortcode_right'] ) ? sanitize_text_field( $_GET['shortcode_right'] ) : '';
 
-			/**
-			 *  Current permalink structure
-			 */
-			$current_permalink 	= get_option( 'permalink_structure' );
-			$is_parent_id 		= $parent_id;
+        // --- HTML content fields: no sanitize_text_field, keep full HTML/shortcodes ---
+        $left_side_sidebar       = isset( $_GET['left_side_sidebar'] ) ? $this->ezd_chrEncode( $_GET['left_side_sidebar'] ) : '';
+        $page_contents_raw       = isset( $_GET['shortcode_content'] ) ? $this->ezd_chrEncode( $_GET['shortcode_content'] ) : '';
+        $page_contents_right_raw = isset( $_GET['shortcode_content_right'] ) ? $this->ezd_chrEncode( $_GET['shortcode_content_right'] ) : '';
 
-			if ( ! empty ( $is_parent_id ) ) {
-				$post_slug 	= get_post_field( 'post_name', $is_parent_id);
-			} else {
-				$post 		= ezd_get_page_by_title( $page_title, 'docs' );
-				$post_slug 	= $post[0]->post_name ?? '';
-			}
+        // --- Process right-side content ---
+        if ( 'widget_data_right' === $content_type_right ) {
+            $shortcode_content_right = $left_side_sidebar;
+        } else {
+            $clean_right = $page_contents_right_raw;
+            if ( strlen( $clean_right ) > 12 ) {
+                $clean_right = substr( $clean_right, 6, -6 );
+            }
+            $clean_right = str_replace( [ 'style@', ';hash;', 'style&equals;' ], [ 'style=', '#', 'style' ], $clean_right );
+            $shortcode_content_right = $clean_right; // raw HTML/shortcodes
+        }
 
-			if ( empty ( $_GET['self_doc'] ) ) {
-				$redirect 	= 'admin.php?page=eazydocs';
-			} else {
-				$redirect 	= 'edit.php?post_type=onepage-docs';
-			}
-			
-			$one_page_doc = array(
-				'post_title'   => wp_strip_all_tags( $page_title ),
-				'post_status'  => 'publish',
-				'post_author'  => 1,
-				'post_type'    => 'onepage-docs',
-				'post_name'    => $post_slug
-			);
+        // --- Process left-side content ---
+        if ( 'widget_data' === $ezd_doc_content_type ) {
+            $shortcode_content = $left_side_sidebar;
+        } else {
+            $clean_left = $page_contents_raw;
+            if ( strlen( $clean_left ) > 12 ) {
+                $clean_left = substr( $clean_left, 6, -6 );
+            }
+            $clean_left = str_replace( [ 'style@', ';hash;', 'style&equals;' ], [ 'style=', '#', 'style' ], $clean_left );
+            $shortcode_content = $clean_left; // raw HTML/shortcodes
+        }
 
-			$post_id      = wp_insert_post( $one_page_doc, $wp_error = '' );
+        // Titles and slugs
+        $page_title = get_the_title( $parent_id );
+        $post_slug  = get_post_field( 'post_name', $parent_id ) ?: sanitize_title( $page_title );
 
-			if ( $post_id != 0 ) {
+        // Decide redirect target
+        $redirect = empty( $_GET['self_doc'] ) ? 'admin.php?page=eazydocs' : 'edit.php?post_type=onepage-docs';
 
-				if ( 'onepage-docs' != get_post_type( $post_id ) ) {
-					return;
-				}
-				
-				if ( ! empty( $layout ) ) {
-					update_post_meta( $post_id, 'ezd_doc_layout', $layout );
-				}
+        // Create post array
+        $one_page_doc = [
+            'post_title'  => wp_strip_all_tags( $page_title ),
+            'post_status' => 'publish',
+            'post_author' => get_current_user_id() ?: 1,
+            'post_type'   => 'onepage-docs',
+            'post_name'   => $post_slug,
+        ];
 
-				if ( ! empty( $ezd_doc_content_type ) ) {
-					update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
-				}
-				
-				if ( ! empty( $shortcode_content ) ) {
-					update_post_meta( $post_id, 'ezd_doc_left_sidebar', $shortcode_content );
-				}
-				
-				if ( ! empty( $content_type ) ) {
-					update_post_meta( $post_id, 'ezd_doc_content_type_right', $content_type );
-				}
+        // Insert post
+        $post_id = wp_insert_post( $one_page_doc );
+        if ( is_wp_error( $post_id ) || $post_id === 0 ) {
+            wp_die( esc_html__( 'Failed to create OnePage document.', 'eazydocs' ) );
+        }
 
-				if ( ! empty( $shortcode_content_right ) ) {
-					update_post_meta( $post_id, 'ezd_doc_content_box_right', $shortcode_content_right );
-				}
-				
-			}
+        // Ensure correct post type
+        if ( 'onepage-docs' !== get_post_type( $post_id ) ) {
+            return;
+        }
 
-			global $wp_rewrite;
-			$wp_rewrite->set_permalink_structure( $current_permalink );
-			$wp_rewrite->flush_rules();
-			
-			wp_safe_redirect( admin_url( $redirect ) );
-		}
-	}
+        // Save metadata with full HTML/shortcodes
+        if ( $layout ) {
+            update_post_meta( $post_id, 'ezd_doc_layout', $layout );
+        }
+        if ( $ezd_doc_content_type ) {
+            update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
+        }
+        if ( $shortcode_content ) {
+            update_post_meta( $post_id, 'ezd_doc_left_sidebar', $shortcode_content );
+        }
+        if ( $content_type_right ) {
+            update_post_meta( $post_id, 'ezd_doc_content_type_right', $content_type_right );
+        }
+        if ( $shortcode_content_right ) {
+            update_post_meta( $post_id, 'ezd_doc_content_box_right', $shortcode_content_right );
+        }
+
+        // Store relation to original parent
+        update_post_meta( $post_id, 'ezd_onepage_parent_id', $parent_id );
+
+        // Redirect back to admin page
+        wp_safe_redirect( admin_url( $redirect ) );
+        exit;
+    }
 }
