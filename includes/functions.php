@@ -647,7 +647,7 @@ add_action( 'admin_footer', function () {
  * @return string
  */
 function eazydocs_pro_doc_list() {
-	$args      = array(
+	$args = array(
 		'posts_per_page' => - 1,
 		'post_type'      => array( 'docs' ),
 		'post_parent'    => 0
@@ -659,7 +659,7 @@ function eazydocs_pro_doc_list() {
 	foreach ( $docs as $doc ) {
 		if ( ! get_page_by_path( $doc->post_name, OBJECT, 'onepage-docs' ) ) {
 			$doc_item_count ++;
-			$doc_items .= '<option _wpnonce="'.wp_create_nonce($doc->ID).'" value="' . $doc->ID . '">' . $doc->post_title . '</option>';
+			$doc_items .= '<option _wpnonce="'.wp_create_nonce('ezd_make_onepage').'" value="' . $doc->ID . '">' . $doc->post_title . '</option>';
 		}
 	}
 	if ( $doc_item_count === 0 ) {

@@ -16,17 +16,15 @@
                         <select class="widefat" id="ezd_docs_select" required>
                             ${eazydocs_local_object.one_page_prompt_docs}
                         </select>
-                    `;
+                        <input type="hidden" id="ezd_onepage_nonce">`;
                 }
                 
 				Swal.fire({
 					title: 'Want to make OnePage?',
 					html:
 						'<div class="create_onepage_doc_area">' +
-                        '<input type="hidden" id="admin_url" value="'+eazydocs_local_object.onepage_doc_admin_url+'">'+
-                        
+                        '<input type="hidden" id="admin_url" value="'+eazydocs_local_object.onepage_doc_admin_url+'">'+                        
                          selectFieldHtml +
-
 						'<label for="ezd_docs_sidebar">Content Layout</label>' +
 						'<select required class="widefat" id="ezd_docs_layout" name="ezd_docs_layout">' +
 						'<option value="">Select Layout</option>' +
@@ -80,8 +78,8 @@
 					confirmButtonText: 'Publish',
 					showCancelButton: true,
                     preConfirm: () => {
-                        let layout = document.getElementById('ezd_docs_layout')?.value.trim();
-                        let selectedDoc = document.getElementById('ezd_docs_select')?.value.trim();
+                        let layout          = document.getElementById('ezd_docs_layout')?.value.trim();
+                        let selectedDoc     = document.getElementById('ezd_docs_select')?.value.trim();
                        
                         // Validate document selection
                         if (window.location.search.includes('post_type=onepage-docs')) {
@@ -102,12 +100,8 @@
                     
 				}).then((result) => {
 					if (result.isConfirmed) {
-						let left_content = document.getElementById(
-							'ezd-shortcode-content'
-						).value;
-						let right_content = document.getElementById(
-							'ezd-shortcode-content-right'
-						).value;
+						let left_content  = document.getElementById( 'ezd-shortcode-content' ).value;
+						let right_content = document.getElementById( 'ezd-shortcode-content-right' ).value;
 
 						let get_left_content = left_content.replace(
 							/<!--(.*?)-->/gm,
@@ -150,9 +144,10 @@
                         let href        = $(this).attr('data-url');
 
                         if (window.location.search.includes('post_type=onepage-docs')) {
-                            let docId       = document.getElementById('ezd_docs_select').value;
-                            let admin_url   = document.getElementById('admin_url').value;
-                            href            = admin_url+'?parentID='+docId+'&make_onepage=yes&self_doc=yes';
+                            let docId           = document.getElementById('ezd_docs_select').value;
+                            let admin_url       = document.getElementById('admin_url').value;
+                            let selectedNonce   = document.getElementById('ezd_onepage_nonce')?.value.trim();
+                            href                = admin_url+'?parentID='+docId+'&make_onepage=yes&self_doc=yes&_wpnonce='+selectedNonce+'&';
                         }
 
 						window.location.href =
@@ -177,6 +172,18 @@
 							document.getElementById('right_side_sidebar').value;
 					}
 				});
+
+                // Set nonce on doc selection change
+                $('#ezd_docs_select').on('change', function () {
+                    // Get the selected option
+                    const selectedOption = $(this).find('option:selected');
+                    
+                    // Get the _wpnonce attribute from that option
+                    const nonce = selectedOption.attr('_wpnonce') || '';
+
+                    // Set it into the input field
+                    $('#ezd_onepage_nonce').val(nonce);
+                });
 
 				$('.ezd_content_btn_wrap .left_btn_link').addClass(
 					'ezd_left_active'
@@ -226,9 +233,7 @@
 				});
 
 				// RIGHT TAB
-				$(
-					'.ezd_widget_content_wrap_right,.ezd-doc-sidebar-intro'
-				).hide();
+				$('.ezd_widget_content_wrap_right,.ezd-doc-sidebar-intro').hide();
 
 				$('input[type=radio]#string_data_right').click(function () {
 					if ($(this).prop('checked')) {
