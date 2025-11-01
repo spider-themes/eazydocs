@@ -91,7 +91,8 @@ class Assets {
 				'nonce'              => wp_create_nonce( 'eazydocs-ajax' ),
 				'is_doc_ajax'        => ezd_get_opt( 'is_doc_ajax' ),
 				'ezd_layout_container' => ezd_container(),
-				'ezd_search_submit'	 => ezd_get_opt('is_search_submit', true)
+				'ezd_search_submit'	 => ezd_get_opt('is_search_submit', true),
+				'ezd_dark_switcher'	 => ezd_get_opt('is_dark_switcher', true)
 			)
 		);
 

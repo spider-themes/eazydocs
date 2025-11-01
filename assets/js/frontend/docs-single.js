@@ -630,6 +630,10 @@
 			$('#ezd_dark_switch').prop('checked', false);
 		}
 		function applyNight() {
+
+			// Check if dark mode switcher is enabled
+			if ( eazydocs_local_object.ezd_dark_switcher !== '1' ) return;
+			
 			$('body.single-docs, body.single-onepage-docs').addClass('body_dark');
 			$('body.single-onepage-docs').addClass('body_dark');
 			$('.light-mode').removeClass('active');
