@@ -63,6 +63,7 @@ CSF::createSection( $prefix, array(
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'default'    => false,
+			'text_width' => 72,
 		),
 
 		array(
@@ -72,7 +73,7 @@ CSF::createSection( $prefix, array(
 			'type'       => 'switcher',
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
-			'text_width' => 90,
+			'text_width' => 94,
 			'default'    => false,
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama',
 		),
@@ -955,7 +956,6 @@ CSF::createSection( $prefix, array(
 			'title'      => esc_html__( 'Featured Image', 'eazydocs' ),
 			'subtitle'   => esc_html__( 'Enable this switcher to use featured image for the Doc sections icon.', 'eazydocs' ),
 			'default'    => false,
-			'text_width' => 72,
 		]),
 
 		array(

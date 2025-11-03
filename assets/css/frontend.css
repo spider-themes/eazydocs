@@ -191,6 +191,7 @@ input[type=search]::-webkit-search-results-decoration {
   height: 36px;
   align-self: flex-start;
   padding: 5px;
+  margin: 0;
 }
 .d-items .documentation_item .icon img {
   max-width: 32px !important;
@@ -2641,6 +2642,7 @@ p .footnotes-link::after {
   padding-right: 10px;
   color: var(--black_800);
   margin-bottom: 15px;
+  line-height: 1.4;
 }
 
 .page-template-page-onepage #post {

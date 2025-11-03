@@ -1755,6 +1755,7 @@ pre {
   height: 36px;
   align-self: flex-start;
   padding: 5px;
+  margin: 0;
 }
 .d-items .documentation_item .icon img {
   max-width: 32px !important;
