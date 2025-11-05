@@ -153,6 +153,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'protected_form_title',
 			'type'       => 'text',
 			'title'      => esc_html__( 'Title', 'eazydocs' ),
+			'default'    => esc_html__( 'This document is password protected', 'eazydocs' ),
 			'dependency' => array(
 				array( 'protected_doc_form', '==', 'eazydocs-form' ),
 			)
@@ -172,7 +173,8 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'protected_form_subtitle',
 			'type'       => 'text',
-			'title'      => esc_html__( 'Sub Title', 'eazydocs' ),
+			'title'      => esc_html__( 'Subtitle', 'eazydocs' ),
+			'default'    => esc_html__( 'Please enter the password to view this document.', 'eazydocs' ),
 			'dependency' => array(
 				array( 'protected_doc_form', '==', 'eazydocs-form' ),
 			)

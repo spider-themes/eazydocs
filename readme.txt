@@ -25,12 +25,12 @@ Simplify the process of creating and managing documentation with EazyDocs, makin
 [youtube https://youtu.be/VpW0pkYcfCY?si=J_BrJI0YPhD1l-NM]
 
 ### Explore More Success Stories ###
-- [Bit Apps](https://spider-themes.net/eazydocs/bit-apps/)
-- [Glamsy Designs](https://spider-themes.net/eazydocs/glamsydesigns/)
+- [Bit Apps](https://eazydocs.spider-themes.net/bit-apps/)
+- [Glamsy Designs](https://eazydocs.spider-themes.net/glamsydesigns/)
 
 ## 🔗 USEFUL LINKS ##
 
-- [Get EazyDocs Premium](https://spider-themes.net/eazydocs/)
+- [Get EazyDocs Premium](https://eazydocs.spider-themes.net/)
 - [Frontend Demo (Premium version)](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
 - [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 - [Documentation (Made by EazyDocs)](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
@@ -148,40 +148,40 @@ Get detailed insights into your documentation performance directly in your inbox
 - Doc Root URL
 - Book Chapter Elementor Widget
 - Voting & Comments Notifications
-- [Doc Helper Assistant with Contact Form](https://spider-themes.net/eazydocs/features/helper-assistant/)
-- [Conditional Content Dropdown](https://spider-themes.net/eazydocs/features/conditional-dropdown/)
-- [Ajax Doc Loading](https://spider-themes.net/eazydocs/features/ajax-live-search/)
-- [Doc Dark Mode](https://spider-themes.net/eazydocs/features/dark-mode/)
-- [OnePage Documentation](https://spider-themes.net/eazydocs/features/onepage-doc/)
-- [User Role Management](https://spider-themes.net/eazydocs/features/user-role-management/)
+- [Doc Helper Assistant with Contact Form](https://eazydocs.spider-themes.net/features/helper-assistant/)
+- [Conditional Content Dropdown](https://eazydocs.spider-themes.net/features/conditional-dropdown/)
+- [Ajax Doc Loading](https://eazydocs.spider-themes.net/features/ajax-live-search/)
+- [Doc Dark Mode](https://eazydocs.spider-themes.net/features/dark-mode/)
+- [OnePage Documentation](https://eazydocs.spider-themes.net/features/onepage-doc/)
+- [User Role Management](https://eazydocs.spider-themes.net/features/user-role-management/)
 - [Docs Archive Masonry Layout]()
-- [Private Doc with Login Page](https://spider-themes.net/eazydocs/features/bulk-visibility/)
+- [Private Doc with Login Page](https://eazydocs.spider-themes.net/features/bulk-visibility/)
 - [Glossary Docs](https://youtu.be/Mm-lQl5Tre4?si=XJ8r08kpCVUcxZ2y)
 - Extended Doc Layout
 - [Doc Badge](https://youtu.be/lXypbPmRFiU?si=SgnpUxT3w-mTTiJq)
-- [Suggested Search Keywords](https://spider-themes.net/eazydocs/features/ajax-live-search/)
-- [Bulk Duplicate Documentation](https://spider-themes.net/eazydocs/features/duplicate-copy-documentation)
-- [Bulk Doc Visibility (Private/internal, Password Protected, Public)](https://spider-themes.net/eazydocs/features/bulk-visibility/)
+- [Suggested Search Keywords](https://eazydocs.spider-themes.net/features/ajax-live-search/)
+- [Bulk Duplicate Documentation](https://eazydocs.spider-themes.net/features/duplicate-copy-documentation)
+- [Bulk Doc Visibility (Private/internal, Password Protected, Public)](https://eazydocs.spider-themes.net/features/bulk-visibility/)
 - User Restriction, Internal / External Site Support
 - [Editable Single Doc Sidebar Area](https://youtu.be/y3UJXfqhPgk?si=-BqofWmVs0BryqV4)
 - Fully RTL Compatibility
-- [Duplicate Bulk/Individual Documentation](https://spider-themes.net/eazydocs/features/duplicate-copy-documentation/)
+- [Duplicate Bulk/Individual Documentation](https://eazydocs.spider-themes.net/features/duplicate-copy-documentation/)
 - Users Feedback Database
-- [Single & Multidocs Block](https://spider-themes.net/eazydocs/single-multidocs-block/)
+- [Single & Multidocs Block](https://eazydocs.spider-themes.net/single-multidocs-block/)
 - Extra Depth Level
 - Cross Domain Embed Option for Docs Assistant
 
 ## EazyDocs Promax plan features include:
 - All Pro plan features
-- [Subscribe to Docs](https://spider-themes.net/eazydocs/features/subscribe/)
-- [Feedback on Selected Text](https://spider-themes.net/eazydocs/features/feedback-on-selected-text/)
-- [Analytics](https://spider-themes.net/eazydocs/features/analytics/)
+- [Subscribe to Docs](https://eazydocs.spider-themes.net/features/subscribe/)
+- [Feedback on Selected Text](https://eazydocs.spider-themes.net/features/feedback-on-selected-text/)
+- [Analytics](https://eazydocs.spider-themes.net/features/analytics/)
 - [Contributor, Add/Edit doc from Frontend](https://youtu.be/l8H8KEdMejA?si=gp6GG_agG1jLPJiE)
 - [Footnotes](https://youtu.be/ytNghaQ0Zko?si=CBl2sLCvNx6HJ8Ri)
-- [Elementor pre-made templates](https://spider-themes.net/eazydocs/pre-made-elementor-template/)
+- [Elementor pre-made templates](https://eazydocs.spider-themes.net/pre-made-elementor-template/)
 - Author/Contributor profile page 
 
-[Click here](https://spider-themes.net/eazydocs/features) to know more about EazyDocs Premium Plans and Features
+[Click here](https://eazydocs.spider-themes.net/features) to know more about EazyDocs Premium Plans and Features
 
 ### Author ###
 Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
@@ -308,4 +308,4 @@ Tweaked: Make the string translation safe and secure
 Tweaked: Improved View OnePage demo button
 Updated: Language files updated
 
-[See changelog for all versions](https://spider-themes.net/eazydocs/changelog/).
+[See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).

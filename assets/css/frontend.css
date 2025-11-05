@@ -1843,6 +1843,7 @@ body:not(.onepage-doc) .sticky_menu .doc_documentation_area.body_fixed .doc_righ
   font-size: 18px;
   color: #fff !important;
   font-weight: 500;
+  margin: 0;
 }
 .doc-content-wrap .ezd-password-wrap .ezd-password-head p.ezd-password-subtitle {
   color: #a4abc5;

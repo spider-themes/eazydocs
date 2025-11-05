@@ -2,9 +2,9 @@
 /**
  * Plugin Name: EazyDocs
  * Description: Powerful & beautiful documentation, knowledge base builder plugin.
- * Plugin URI: https://spider-themes.net/eazydocs
+ * Plugin URI: https://eazydocs.spider-themes.net
  * Author: spider-themes
- * Author URI: https://spider-themes.net/eazydocs
+ * Author URI: https://eazydocs.spider-themes.net
  * Version: 2.7.2
  * Requires at least: 5.0
  * Requires PHP: 7.4
