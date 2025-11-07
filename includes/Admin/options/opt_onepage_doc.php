@@ -28,6 +28,7 @@ CSF::createSection( $prefix, array(
             'default'     => '#fff',
             'output'      => '.single-onepage-docs .documentation_area_sticky .doc-title',
             'output_mode' => 'color',
+            'class'       => 'eazydocs-pro-notice'
         ),
 
         array(
@@ -37,6 +38,7 @@ CSF::createSection( $prefix, array(
             'default'     => '#fff',
             'output'      => '.single-onepage-docs .documentation_area_sticky .nav-sidebar.one-page-doc-nav-wrap .nav-item:not(.active) a',
             'output_mode' => 'color',
+            'class'       => 'eazydocs-pro-notice'
         ),
 
         array(
@@ -46,6 +48,7 @@ CSF::createSection( $prefix, array(
             'default'     => '#2A3D4B',
             'output'      => '.fullscreen-layout.onepage_doc_area .nav-sidebar.one-page-doc-nav-wrap .nav-item.active',
             'output_mode' => 'background-color',
+            'class'       => 'eazydocs-pro-notice'
         ),
 
         array(
@@ -55,6 +58,7 @@ CSF::createSection( $prefix, array(
             'default'     => '#0866ff',
             'output'      => '.documentation_area_sticky .one-page-docs-sidebar-wrap',
             'output_mode' => 'background-color',
+            'class'       => 'eazydocs-pro-notice'
         )
 
     )

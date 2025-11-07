@@ -799,7 +799,7 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   display: flex;
   color: var(--black_700);
 }
-#ezd-search-results .search-result-item:last-child {
+#ezd-search-results .search-result-item:last-of-type {
   border-bottom: none;
 }
 #ezd-search-results .search-result-item:hover svg.block.h-auto.w-16 {
