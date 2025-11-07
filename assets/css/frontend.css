@@ -2606,6 +2606,25 @@ body.body_dark .doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar)::-webkit-
   outline-offset: 2px;
 }
 
+body.body_dark .ezd-doc-attached-files-accordion .accordion__header {
+  background-color: #2e2d2d !important;
+}
+body.body_dark .ezd-doc-attached-files-accordion .accordion__header .accordion__title {
+  color: #ffffff !important;
+}
+body.body_dark .ezd-doc-attached-files-accordion .accordion__header .accordion__title .accordion__count {
+  color: #ffffff !important;
+}
+body.body_dark .ezd-doc-attached-files-accordion .accordion__content {
+  background: #1e1f26 !important;
+}
+body.body_dark .ezd-doc-attached-files-accordion .file-list__item .file-list__name {
+  color: #ffffff !important;
+}
+body.body_dark .ezd-doc-attached-files-accordion .file-list__item:hover {
+  background-color: #2c303a !important;
+}
+
 .modal-content .shortcode_info .row {
   margin-top: 20px;
 }

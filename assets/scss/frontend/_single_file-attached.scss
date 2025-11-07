@@ -318,5 +318,31 @@
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
-
+}
+// Dark Mode Styles
+body{
+  &.body_dark {
+    .ezd-doc-attached-files-accordion {
+      .accordion__header {
+        background-color: #2e2d2d !important;
+          .accordion__title {
+            color: #ffffff !important;
+            .accordion__count {
+              color: #ffffff !important;
+          }
+        }
+      }
+    .accordion__content {
+      background: #1e1f26 !important;
+    }
+    .file-list__item{
+      .file-list__name{
+        color: #ffffff !important;
+      }
+      &:hover {
+        background-color: #2c303a !important;
+      }
+    }
+  }
+}
 }
