@@ -805,8 +805,8 @@
             $accordion.find('.accordion__content').addClass('is-collapsed').hide();
             $accordion.find('.accordion__header').attr('aria-expanded', 'false');
             $accordion.find('.accordion__toggle i')
-                .removeClass('fa-chevron-up')
-                .addClass('fa-chevron-down');
+                .removeClass('arrow_carrot-up')
+                .addClass('arrow_carrot-down');
 
             // Click on header or toggle button
             $accordion.on('click', '.accordion__header, .accordion__toggle', function (e) {
@@ -820,11 +820,11 @@
                 if (expanded) {
                     $content.slideUp(250).addClass('is-collapsed');
                     $header.attr('aria-expanded', 'false');
-                    $icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+                    $icon.removeClass('arrow_carrot-up').addClass('arrow_carrot-down'); 
                 } else {
                     $content.slideDown(250).removeClass('is-collapsed');
                     $header.attr('aria-expanded', 'true');
-                    $icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+                    $icon.removeClass('arrow_carrot-down').addClass('arrow_carrot-up');
                 }
             });
         }
