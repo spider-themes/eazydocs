@@ -1,4 +1,11 @@
 == Changelog ==
+= 2.7.3 (08 November 2025) =
+Tweaked: Minor CSS and style improvements for visual consistency
+Tweaked: Removed the border-bottom from the last search result item for a cleaner visual appearance
+Improved: Heading scroll offset adjusted for accurate anchor positioning
+Improved: Doc single page typography refined for better readability
+Updated: Attached files feature updated using WordPress hooks for better extensibility
+
 = 2.7.2 (16 October 2025) =
 Fixed: Grid and masonry layout issues resolved in both single and multi-docs Elementor widgets for consistent display
 Fixed: Broken Access Control vulnerability resolved by adding proper permission checks to AJAX endpoints

@@ -4,7 +4,7 @@ Tags: knowledge base, kb, faq, wiki, documentation
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.7.2
+Stable tag: 2.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -247,6 +247,13 @@ You can install the EazyDocs from your WordPress Dashboard or manually upload it
 
 == Changelog ==
 
+= 2.7.3 (08 November 2025) =
+Tweaked: Minor CSS and style improvements for visual consistency
+Tweaked: Removed the border-bottom from the last search result item for a cleaner visual appearance
+Improved: Heading scroll offset adjusted for accurate anchor positioning
+Improved: Doc single page typography refined for better readability
+Updated: Attached files feature updated using WordPress hooks for better extensibility
+
 = 2.7.2 (16 October 2025) =
 Fixed: Grid and masonry layout issues resolved in both single and multi-docs Elementor widgets for consistent display
 Fixed: Broken Access Control vulnerability resolved by adding proper permission checks to AJAX endpoints
@@ -294,18 +301,5 @@ Tweaked: Improved CSS to handle overflow when many docs are present in the sideb
 Fixed: Settings issue resolved
 Fixed: Resolved admin menu title for EazyDocs via CSF field
 Updated: EazyDocs shortcode updated
-
-= 2.6.8 (12 July 2025) =
-New: Added the function "ezd_get_opt()" for CSF settings where it was missing
-New: Dashboard Menu Title option added in the EazyDocs Settings > General page
-New: Added a new button to see onePage Fullscreen layout demo
-fixed: Docs edit issue resolved
-Fixed: Translation issues
-Fixed: Security issues fixed
-Fixed: Resolved some issues of Assistant fields
-Tweaked: Admin Doc sidebar width flexibility improved
-Tweaked: Make the string translation safe and secure
-Tweaked: Improved View OnePage demo button
-Updated: Language files updated
 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).

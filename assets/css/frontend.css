@@ -2387,7 +2387,7 @@ body.body_dark .doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar)::-webkit-
 .ezd-doc-attached-files-accordion .file-list {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
+  margin: 0;
   padding-left: 0;
 }
 .single-docs #post .ezd-doc-attached-files-accordion .file-list__item,
