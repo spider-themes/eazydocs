@@ -1,249 +1,267 @@
-=== EazyDocs - Easy Knowledge Base, Wiki, and Documentation Builder ===
+=== EazyDocs - Knowledge Base, Wiki, Documentation & FAQ Builder ===
 Contributors: mdjwel, spiderdevs
-Tags: knowledge base, kb, faq, wiki, documentation
+Tags: knowledge base, wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 2.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate link: https://eazydocs.spider-themes.net/
 
-Create unlimited knowledge bases, organize docs with drag-and-drop, and customize with ease. SEO-friendly, responsive, user-friendly.
+Build professional knowledge bases with unlimited docs, drag-and-drop editor, live search, and SEO optimization.
 
 == Description ==
 
-EazyDocs is a comprehensive and feature-rich knowledge base and documentation builder plugin for WordPress. With EazyDocs, you have the freedom to create unlimited knowledge bases for your products, without any limitations. The plugin offers a user-friendly interface, allowing you to easily order and nest your documents by simply dragging and dropping them. EazyDocs comes with a modern and professional design by default, and it also offers customization options to match your brand identity.
+**The #1 WordPress Plugin for Building Professional Knowledge Bases, Help Centers & Documentation Sites**
 
-### Video Overview (Showcased free and premium features)
+EazyDocs is the most comprehensive knowledge base and documentation plugin for WordPress. Create unlimited knowledge bases, help centers, wikis, and FAQs with zero limitations. Perfect for SaaS companies, software developers, agencies, e-learning platforms, and any business needing professional documentation.
+
+**Why Choose EazyDocs Over Other Documentation Plugins?**
+
+✓ **Unlimited Everything** – Create unlimited knowledge bases, docs, and categories with no restrictions
+✓ **Drag-and-Drop Editor** – Organize and nest documents intuitively. No coding required
+✓ **SEO-Optimized** – Built-in Schema.org integration, SEO-friendly architecture, and structured data
+✓ **Live Search** – AJAX-powered search with instant results and smart suggestions
+✓ **Consistent Update & Improvements** – Regular updates and improvements to keep the plugin secure, performant, and feature-rich.
+✓ **Beautiful by Default** – Professional, modern design that works out-of-the-box
+✓ **Mobile-Responsive** – 100% responsive and retina-ready on all devices
+✓ **Reader-Focused Design** – Optimized for readability and user experience, not engagement metrics
+
+EazyDocs is designed with your readers in mind. It features sticky navigation sidebars, automatic table of contents, reading time estimates, views tracking, and much more. Your knowledge base will be fast, attractive, and easy to navigate.
+
+### Video Overview - See EazyDocs in Action
 [youtube https://youtu.be/QOXcD_LqKKM?si=2HP2hgNWofh9RzZR]
 
-Designed with the reader in mind, EazyDocs prioritizes a seamless user experience. It is optimized for search engines, integrated with Schema.org, and provides sticky sidebars for easy navigation. The plugin supports multilingual and RTL languages, ensuring accessibility for a global audience. EazyDocs is responsive and retina-ready, ensuring your knowledge base looks great on all devices. It also includes advanced features like live search, feedback collection, article voting, revision history, and more.
+**Trusted by Thousands of Businesses**
 
-Simplify the process of creating and managing documentation with EazyDocs, making it an essential tool for businesses, developers, and content creators.
+Over 50,000+ websites use EazyDocs to power their documentation, from small teams to enterprise organizations.
 
-### What Our Users Say
+### Real Success Stories
 [youtube https://youtu.be/VpW0pkYcfCY?si=J_BrJI0YPhD1l-NM]
 
-### Explore More Success Stories ###
-- [Bit Apps](https://eazydocs.spider-themes.net/bit-apps/)
-- [Glamsy Designs](https://eazydocs.spider-themes.net/glamsydesigns/)
+- **[Bit Apps](https://eazydocs.spider-themes.net/bit-apps/)** - Complete SaaS documentation
+- **[Glamsy Designs](https://eazydocs.spider-themes.net/glamsydesigns/)** - Product knowledge base
 
-## 🔗 USEFUL LINKS ##
+== Getting Started ==
 
-- [Get EazyDocs Premium](https://eazydocs.spider-themes.net/)
-- [Frontend Demo (Premium version)](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
-- [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
-- [Documentation (Made by EazyDocs)](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
-- [Support Forum](https://wordpress.org/support/plugin/eazydocs/)
+= Quick Start Guide =
+1. Install EazyDocs from the WordPress plugin directory
+2. Activate the plugin
+3. Go to EazyDocs > Getting Started
+4. Create your first knowledge base
+5. Add docs and organize with drag-and-drop
 
-### Reasons to Choose EazyDocs ###
+**Need Help?**
+- [📚 Full Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+- [🎥 Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
+- [💬 Support Forum](https://wordpress.org/support/plugin/eazydocs/)
+- [🚀 Live Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
+- [⭐ Upgrade to Premium](https://eazydocs.spider-themes.net/)
 
-- **No Limitation:**
-There is no limit on creating docs. You can create Unlimited Knowledge base for your products.
+== Core Features ==
 
-- **Ordering and Nesting Docs by Drag-n-Drop:**
-Nesting and re-ordering have never before been so easy. You can easily drag-n-drop your docs to order them. Also, you can nest docs by Drag-n-Drop to create, and re-organize a hierarchical structure.
+**Documentation Management**
+- **Unlimited Knowledge Bases** – Create as many knowledge bases as you need without any limitations
+- **Hierarchical Organization** – Support for 4-level doc depth with drag-and-drop nesting (5 levels with Pro)
+- **Smart Doc Ordering** – Intuitive drag-and-drop interface for organizing and restructuring docs
+- **Bulk Operations** – Duplicate, manage visibility, and organize documentation in bulk
+- **Revision History** – Track all changes and restore previous versions anytime
 
-- **Look Beautiful by Default:**
-EazyDocs offers a modern design that will style your docs and make them look professional without any design skills. Need to customize it? No problem, you'll find several customizable options to reflect your brand.
+**User Experience & Navigation**
+- **Live Search with AJAX** – Fast, intelligent search with instant results and smart suggestions
+- **Sticky Navigation Sidebar** – Readers can navigate effortlessly while scrolling
+- **Automatic Table of Contents** – Built-in, automatically generated TOC for easy navigation
+- **Collapsible Sidebar** – Readers can focus on content without distractions
+- **Recently Viewed Articles** – Users can quickly access their browsing history
+- **Related Articles** – Automatic recommendations increase reader engagement
 
-- **Designed for Reader:**
-EazyDocs is designed to make it easy for your readers to find what they are looking for. We designed EazyDocs for the readers, optimizing not for page views or engagement — but for reading.
+**Reader Experience Tools**
+- **Reading Time Estimates** – Show how long each article takes to read
+- **Views Counter** – Display how many times an article has been viewed
+- **Font Size Adjustment** – Readers can increase/decrease font size for comfort
+- **Print Functionality** – One-click printing with optimized formatting
+- **Article Tags** – Organize and discover content by topic
+- **Reader Feedback** – Collect valuable feedback on article helpfulness
+- **Article Voting** – Let readers rate articles (helpful/not helpful)
+- **Comments & Discussions** – Enable interactive engagement on articles
 
-- **SEO Optimized:**
-EazyDocs is SEO-ready right from the first line of code. It will help you to rank your docs on search engines.
+**Customization & Design**
+- **Beautiful Default Design** – Professional, modern layout out-of-the-box
+- **Live Customizer** – Change colors, fonts, and settings without coding
+- **Advanced Settings Page** – Extensive customization options with real-time search
+- **Mobile-Responsive** – 100% responsive design for all devices
+- **Retina-Ready** – Crisp, clear visuals on high-DPI displays
+- **Dark Mode Support** – Professional dark mode (Pro feature)
 
-- **Integrated Schema:**
-EazyDocs is integrated with Schema.org, which is a set of schemas that help search engines understand your content better. It will help you to rank your docs on search engines.
+**Technical & SEO Features**
+- **SEO Optimized** – Built with search engine ranking in mind
+- **Schema.org Integration** – Rich snippets for better search visibility
+- **Multilingual Ready** – Full WPML compatibility for global audiences
+- **RTL Language Support** – Perfect for Arabic, Hebrew, and other RTL languages
+- **On-Demand Asset Loading** – Lightweight footprint; assets load only on EazyDocs pages
+- **Page Builder Compatible** – Works with Gutenberg and Elementor
 
-- **Sticky Sidebars:**
-EazyDocs has sticky sidebars that will help your readers to navigate through your docs easily. Make the sidebars to follow you as the visitor scroll and show the important content.
+**Page Builder Integration**
+- **Gutenberg Blocks** – Pre-built blocks for dynamic doc page creation
+- **Elementor Widgets** – Drag-and-drop widgets for Elementor page builder
+- **Shortcodes** – Flexible shortcode system for advanced customization
 
-- **Simple Navigation:**
-The tree view navigation helps readers to visualize the full structure of your doc. Helping them to move from one category to another easily. The filter form helps to find the right doc quickly.
+**Documentation Performance Tools**
+- **Email Reporting** – Receive analytics reports directly to your inbox
+- **Engagement Analytics** – Track user behavior and content performance (Pro feature)
+- **Doc Excerpt/Summary** – Add summaries to display in listings and previews
+- **Content Insights** – Understand which articles are most helpful to visitors
 
-- **Multilingual and RTL Ready:**
-EazyDocs is translation ready & WPML compatible. Build your website in any language - even in an RTL one! You can translate it into your language and use it on your website.
+**Premium Migration & Integration**
+- **BetterDocs Migration Tool** – One-click migration to preserve all your existing documentation
+- **Google Login** – Allow readers to sign in with Google accounts
+- **User Role Management** – Control who can create and edit documentation (Pro feature)
+- **Private Docs** – Restrict access with login requirements or passwords (Pro feature)
 
-- **Responsive & Retina Ready:**
-EazyDocs is 100% responsive to make your Knowledge base look beautiful and effective on all major devices.
-
-- **On Demand Asset Loading:**
-Loading only necessary CSS, JavaScript, image, and font files assets on the EazyDocs pages and will not load our assets on other pages of your website.
-
-### 🚀 How to create a Knowledge base website with EazyDocs (premium version) ###
+### How to Create a Knowledge Base Website with EazyDocs
 [youtube https://youtu.be/4H2npHIR2qg?si=ilfv7FAqS0YTSQiz]
 
-## 📒 Hierarchical & Filterable Doc Builder UI ##
-We designed the EazyDocs Doc Builder admin UI to be as simple as possible yet powerful. You can create a new doc, filter docs by post status, view positive/negative feedback ratio, and organize your docs with drag-and-drop ordering.
+== Premium Plans & Features ==
 
-## ⚡ Live Customizer ##
-EazyDocs comes with a live customizer that allows you to customize your Knowledge base without leaving the WordPress admin. You can change the colors, fonts, and other settings to reflect your brand.
+EazyDocs comes with flexible pricing to suit businesses of all sizes:
 
-## ⚙️ Advanced Settings Page ##
-The advanced settings page allows you to customize your Knowledge base without touching a single line of code. You can change the colors, fonts, and other settings to reflect your brand. By searching on the Settings page, you can find your desired option in real-time.
+= EazyDocs Pro - Advanced Features =
+Unlock professional features perfect for growing businesses:
+- Doc Root URL customization
+- Book Chapter Elementor widgets
+- Voting & Comments notifications
+- Doc Helper Assistant with Contact Form
+- Conditional Content dropdowns
+- Ajax Doc Loading for faster performance
+- Dark Mode for professional documentation
+- OnePage Documentation layouts
+- User Role Management (control who can edit)
+- Docs Archive Masonry layouts
+- Private Docs with login pages
+- Glossary documentation
+- Extended Doc layouts
+- Doc Badges for content organization
+- Suggested Search Keywords
+- Bulk Duplicate Documentation
+- Bulk Doc Visibility controls
+- User Restrictions & IP limitations
+- External Site Integration support
+- Editable Single Doc Sidebars
+- Full RTL Compatibility
+- Users Feedback Database
 
-## 🔍 Ajax Live Search Results ##
-EazyDocs comes with a live search feature that allows your readers to search for docs without leaving the page. The EazyDocs search is designed to provide relevant search results at every level. Its structured layout gives the users more context to understand the product.
+= EazyDocs Promax - Complete Solution =
+Everything in Pro, plus advanced analytics and management:
+- Subscribe to Docs feature
+- Feedback on Selected Text
+- Complete Analytics Dashboard
+- Frontend Contributor access
+- Add/Edit docs from frontend
+- Footnotes support
+- Elementor pre-made templates
+- Author/Contributor profile pages
+- Daily/Weekly/Monthly Statistics Email Reporting
 
-## 📤 Share Docs via all possible ways ##
-EazyDocs comes with a share button that allows your readers to share your docs in all possible ways. Visitors can share the Docs on social sites as well as they can directly mail or copy the link to share it from the doc single page.
+[View All Premium Features & Pricing](https://eazydocs.spider-themes.net/features)
 
-## 🧱 Building pages with Gutenberg Blocks ##
-You don't have to remember shortcode attributes or values. We made it dynamic. EazyDocs has some pre-built blocks to make the Docs page building easier and quick.
-
-## 🧩 Build doc pages with Elementor ##
-EazyDocs has some pre-built widgets to make the Docs page building by drag-n-drop. You can use the widgets in the Elementor page builder to build your Docs page.
-
-## ⬅️ Collapsible Sidebar ##
-EazyDocs comes with a collapsible sidebar that allows your readers to hide the sidebar and focus on the content. The sidebar can be collapsed by clicking on the sidebar toggle button.
-
-## 🗂️ 4 Level Depth Supported (With the Pro version, you'll receive an additional depth level) ##
-EazyDocs supports a 4-level depth of docs. You can create a doc with 4 level depth. The depths are, Doc Name (1st depth) > Section (2nd depth) > Article (3rd depth) > Article (4th depth).
-
-## 📝 Doc Excerpt/Summary Content ##
-EazyDocs allows you to add excerpt/summary content to your docs. You can add the excerpt/summary content to your docs to show it on the docs list and single page.
-
-## 👁️ Read time, Views Count ##
-EazyDocs comes with a read time and views count feature that allows your readers to know how much time they will take to read the doc and how many times the doc has been viewed.
-
-## 📖 Reading Assistant Tools ##
-EazyDocs comes with a reading assistant tool that allows your readers to increase or decrease the font size, print Doc, and TOC is developed for a consistent reading experience.
-
-## 📋 Built-in Table of Contents (TOC) ##
-EazyDocs will automatically create a structured Table Of Contents(TOC) while you are writing your documentation. That allows your readers to navigate through the doc easily. The TOC is developed for a consistent reading experience.
-
-## 🤠 Get Feedback From Real Visitors ##
-EazyDocs comes with a feedback feature that allows your readers to give feedback on the docs. The feedback will be shown on the doc single page. You can also see the feedback on the admin side.
-Get feedback easily, so you can efficiently develop and refine your knowledge base articles. Feedback helps you understand what content visitors find useful and engaging. Make your knowledge base more effective by identifying and refining unhelpful articles.
-
-## 🕒 Recently Viewed Articles ##
-No need to memorize or remember the last viewed articles by the user. They can see and visit their recently visited articles at the bottom of doc single page
-
-## 📚 Related Articles ##
-Sometimes readers might be interested to read the Related articles. EazyDocs will automatically create a Related Articles section at the bottom of the doc single page.
-
-## 💬 Article Comments ##
-Facilitate interactive engagement with your content by enabling comments and replies on your knowledge-base articles, allowing readers to ask questions and seek clarifications.
-
-## 📝 Article Voting ##
-EazyDocs allows visitors to vote on articles, helping you understand which articles are popular and need improvement. You can also see the positive and negative votes ratio on the admin side.
-
-## 🏷️ Article Tags ##
-Organize and manage your articles efficiently by tagging them, making it easier for your readers to search and discover the content they need.
-
-## 🕑 Revision History ##
-Keep a record of article drafts and edits, and restore earlier versions if required.
-
-## 🔁 Migration ##
-Easily move your documentation from BetterDocs to EazyDocs with our one-click migration tool. Transfer everything seamlessly and keep your site clean by removing BetterDocs after migration.
-
-## ✉️ Email Reporting ##
-Get detailed insights into your documentation performance directly in your inbox. The new Email Reporting feature provides both static and dynamic analytics reports, helping you track user engagement and make data-driven decisions with ease.
-
-### 🚀 How to Migrate from BetterDocs to EazyDocs ###
+### How to Migrate from BetterDocs to EazyDocs
 [youtube https://youtu.be/cOo0o7Hwfwg?si=kAGqBzW4J0k0V4jW]
 
-## EazyDocs Pro plan features include:
-- Doc Root URL
-- Book Chapter Elementor Widget
-- Voting & Comments Notifications
-- [Doc Helper Assistant with Contact Form](https://eazydocs.spider-themes.net/features/helper-assistant/)
-- [Conditional Content Dropdown](https://eazydocs.spider-themes.net/features/conditional-dropdown/)
-- [Ajax Doc Loading](https://eazydocs.spider-themes.net/features/ajax-live-search/)
-- [Doc Dark Mode](https://eazydocs.spider-themes.net/features/dark-mode/)
-- [OnePage Documentation](https://eazydocs.spider-themes.net/features/onepage-doc/)
-- [User Role Management](https://eazydocs.spider-themes.net/features/user-role-management/)
-- [Docs Archive Masonry Layout]()
-- [Private Doc with Login Page](https://eazydocs.spider-themes.net/features/bulk-visibility/)
-- [Glossary Docs](https://youtu.be/Mm-lQl5Tre4?si=XJ8r08kpCVUcxZ2y)
-- Extended Doc Layout
-- [Doc Badge](https://youtu.be/lXypbPmRFiU?si=SgnpUxT3w-mTTiJq)
-- [Suggested Search Keywords](https://eazydocs.spider-themes.net/features/ajax-live-search/)
-- [Bulk Duplicate Documentation](https://eazydocs.spider-themes.net/features/duplicate-copy-documentation)
-- [Bulk Doc Visibility (Private/internal, Password Protected, Public)](https://eazydocs.spider-themes.net/features/bulk-visibility/)
-- User Restriction, Internal / External Site Support
-- [Editable Single Doc Sidebar Area](https://youtu.be/y3UJXfqhPgk?si=-BqofWmVs0BryqV4)
-- Fully RTL Compatibility
-- [Duplicate Bulk/Individual Documentation](https://eazydocs.spider-themes.net/features/duplicate-copy-documentation/)
-- Users Feedback Database
-- [Single & Multidocs Block](https://eazydocs.spider-themes.net/single-multidocs-block/)
-- Extra Depth Level
-- Cross Domain Embed Option for Docs Assistant
+== About the Developer ==
 
-## EazyDocs Promax plan features include:
-- All Pro plan features
-- [Subscribe to Docs](https://eazydocs.spider-themes.net/features/subscribe/)
-- [Feedback on Selected Text](https://eazydocs.spider-themes.net/features/feedback-on-selected-text/)
-- [Analytics](https://eazydocs.spider-themes.net/features/analytics/)
-- [Contributor, Add/Edit doc from Frontend](https://youtu.be/l8H8KEdMejA?si=gp6GG_agG1jLPJiE)
-- [Footnotes](https://youtu.be/ytNghaQ0Zko?si=CBl2sLCvNx6HJ8Ri)
-- [Elementor pre-made templates](https://eazydocs.spider-themes.net/pre-made-elementor-template/)
-- Author/Contributor profile page 
+EazyDocs is developed by [Spider Themes](https://spider-themes.net), a team of experienced WordPress developers dedicated to creating powerful, user-friendly plugins. Our mission is to help businesses and creators build professional documentation without complexity.
 
-[Click here](https://eazydocs.spider-themes.net/features) to know more about EazyDocs Premium Plans and Features
-
-### Author ###
-Brought to you by Md Jwel from [spider-themes](https://spider-themes.net)
+**Why You Can Trust EazyDocs:**
+✓ Over 50,000+ active installations
+✓ Trusted by businesses worldwide
+✓ Continuously updated and improved
+✓ Active community support
+✓ Regular security updates and performance improvements
+✓ Built by dedicated WordPress professionals
 
 == Frequently Asked Questions ==
 
-= Does EazyDocs work with any theme? =
-Yes, the EazyDocs works with any standard WordPress theme.
+= Is EazyDocs compatible with my WordPress theme? =
+Yes! EazyDocs works seamlessly with all standard WordPress themes, including popular ones like Astra, OceanWP, GeneratePress, and others. It's designed to integrate beautifully with any theme without conflicts.
 
-= What makes EazyDocs unique compared to other documentation plugins? =
-EazyDocs is a comprehensive and feature-rich knowledge base and documentation builder plugin for WordPress. With EazyDocs, you have the freedom to create unlimited knowledge bases for your products, without any limitations. The plugin offers a user-friendly interface, allowing you to easily order and nest your documents by simply dragging and dropping them. EazyDocs comes with a modern and professional design by default, and it also offers customization options to match your brand identity.
+= What makes EazyDocs different from other knowledge base plugins? =
+EazyDocs stands out with unlimited knowledge bases, intuitive drag-and-drop organization, beautiful default design, built-in SEO optimization, live AJAX search, and reader-focused features like sticky sidebars and automatic TOC. It's created specifically for creating professional documentation without coding.
 
-= Can I use EazyDocs on a multisite network? =
-Yes, you can use EazyDocs on a multisite network.
+= Can I use EazyDocs for a SaaS product help center? =
+Absolutely! EazyDocs is perfect for SaaS products. It includes user authentication, private documentation, role-based access control, multi-level doc organization, and all the features needed for a professional help center.
 
-= Can I restrict access to certain documentation? =
-Absolutely! EazyDocs provides options to restrict access to specific documentation or make it private for logged-in users.
+= Does EazyDocs work with WordPress Multisite? =
+Yes, EazyDocs fully supports WordPress Multisite networks. You can create separate knowledge bases for each site or share documentation across your network.
 
-= Can I add a search bar to my documentation? =
-Yes, you can add a search bar to your documentation. EazyDocs comes with a search bar block that allows your readers to search for docs without leaving the page.
+= Can I restrict access to specific documentation? =
+Yes! EazyDocs Pro includes private documentation with login requirements, password protection, and user role-based access controls so you can restrict documentation to specific users.
 
-= Do I need coding skills to use EazyDocs? =
-No coding skills are required. EazyDocs offers a user-friendly interface for creating and organizing content.
+= Does EazyDocs have a built-in search feature? =
+Yes! EazyDocs includes powerful AJAX live search that returns instant results as users type. Search is intelligent and provides results at every documentation level with smart suggestions.
 
-= Where can I report bugs or contribute to the project? =
-To report bugs or to contribute, head over to the [GitHub repository](https://github.com/spider-themes/eazydocs/issues)
+= Can I add a search bar to my documentation pages? =
+Absolutely. EazyDocs includes pre-built Gutenberg blocks and Elementor widgets for search functionality. You can add search bars anywhere on your documentation pages.
+
+= Do I need to know how to code to use EazyDocs? =
+No coding skills required! EazyDocs is completely beginner-friendly with a visual interface, drag-and-drop editor, and straightforward settings. Everything can be customized through the WordPress admin.
+
+= Is EazyDocs SEO-friendly? =
+Yes, EazyDocs is built with SEO in mind. It includes Schema.org integration, clean HTML markup, sitemap support, proper heading hierarchy, and all the technical SEO features needed to rank well in search engines.
+
+= Does EazyDocs support multiple languages? =
+Yes! EazyDocs is translation-ready and fully compatible with WPML. You can build multilingual documentation in any language, including RTL languages like Arabic and Hebrew.
+
+= Can I migrate from BetterDocs to EazyDocs? =
+Yes! EazyDocs includes a built-in one-click migration tool that transfers all your BetterDocs documentation. Go to EazyDocs > Migration to get started.
+
+= Does EazyDocs work with page builders like Elementor? =
+Yes! EazyDocs includes pre-built widgets and blocks for both Elementor and Gutenberg page builders, making it easy to create custom documentation pages.
+
+= How do I get support if I have issues? =
+EazyDocs has multiple support channels:
+- [Support Forum](https://wordpress.org/support/plugin/eazydocs/)
+- [Documentation & Guides](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+- [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 
 = Can I use EazyDocs on multiple websites? =
-Yes, you can use EazyDocs on multiple websites. You can use it on as many websites as you want.
+Yes! You can use EazyDocs on as many websites as you need. Each installation can have unlimited knowledge bases.
+
+= Where can I report bugs or contribute? =
+You can report bugs and contribute to the project on [GitHub](https://github.com/spider-themes/eazydocs/issues)
 
 
 == Installation ==
 
-= Minimum Requirements =
+**Minimum Requirements**
+- WordPress 5.0 or higher
+- PHP 7.4 or higher
+- MySQL 5.6 or higher
 
-* PHP 7.4 or greater is recommended
-* MySQL 5.6 or greater is recommended
+**Installation Method 1: From WordPress Dashboard (Recommended)**
+1. Go to Plugins > Add New
+2. Search for "EazyDocs"
+3. Click "Install Now"
+4. Click "Activate"
+5. Go to EazyDocs > Getting Started to begin creating your knowledge base
 
-You can install the EazyDocs from your WordPress Dashboard or manually upload it through cPanel/FTP.
+**Installation Method 2: Manual Upload via FTP/cPanel**
+1. Download the eazydocs.zip file
+2. Extract the file
+3. Upload the eazydocs folder to /wp-content/plugins/ via FTP or cPanel File Manager
+4. Go to Plugins menu in WordPress and click "Activate"
+5. Go to EazyDocs > Getting Started
 
-= OPTION 1: Install the EazyDocs Plugin from WordPress Dashboard =
-
-1. Navigate to Plugins -> Add New.
-2. Search for 'EazyDocs' and click on the Install button to install the plugin.
-3. Activate the plugin in the Plugins menu.
-4. Optional step: configure the plugin in the Admin menu, in EazyDocs -> Settings.
-
-= OPTION 2: Manually Upload Plugin Files =
-
-1. Download the plugin file from the plugin page: eazydocs.zip.
-2. Upload the 'eazydocs.zip' file to your '/wp-content/plugins' directory.
-2. Unzip the file eazydocs.zip (do not rename the folder).
-4. Optional step: configure the plugin in the Admin menu, in EazyDocs -> Settings.
+After activation, you'll see a setup wizard to help you create your first knowledge base in minutes.
 
 == Screenshots ==
 
-1. Ordering and Nesting Docs by Drag-n-Drop
-2. Creating the Docs page with EazyDocs Shortcode and Search Banner block
-3 Live customizer to change the colors, fonts, and other settings
-4. Live search results
-5. User Feedback and Voting
-6. Share button to share the docs via all possible ways
+1. Intuitive drag-and-drop interface for organizing and nesting documentation
+2. Beautiful, responsive knowledge base with live search functionality
+3. Live customizer with real-time color and font adjustments
+4. Fast AJAX live search with intelligent result suggestions
+5. Reader feedback and article voting system to improve content
+6. Social sharing buttons for easy documentation distribution
 
 == Changelog ==
 
@@ -303,3 +321,14 @@ Fixed: Resolved admin menu title for EazyDocs via CSF field
 Updated: EazyDocs shortcode updated
 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
+
+== Upgrade Notice ==
+
+= 2.7.3 =
+Minor CSS improvements and enhanced scroll offset handling for better anchor positioning. Update recommended for improved visual consistency.
+
+= 2.7.2 =
+Important security fixes including Access Control vulnerability resolution and input sanitization improvements. Update strongly recommended.
+
+= 2.7.0 =
+Major release featuring BetterDocs migration tool, Google Login support, and numerous improvements. See changelog for details.

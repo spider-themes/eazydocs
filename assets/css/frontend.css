@@ -190,7 +190,7 @@ input[type=search]::-webkit-search-results-decoration {
   width: 36px;
   height: 36px;
   align-self: flex-start;
-  padding: 5px;
+  padding: 10px;
   margin: 0;
 }
 .d-items .documentation_item .icon img {
