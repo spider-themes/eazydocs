@@ -4,7 +4,7 @@ Tags: knowledge base, wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.7.3
+Stable tag: 2.7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/

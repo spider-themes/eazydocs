@@ -156,9 +156,19 @@ function ezd_get_page_by_title( $title, $post_type = 'page' ) {
  * @param $template
  */
 function eazydocs_get_template_part( $template ) {
+	// Sanitize template name to prevent directory traversal attacks
+	// Remove any directory traversal sequences and null bytes
+	$template = str_replace( array( '..', "\0" ), '', $template );
+	$template = basename( $template );
+	
 	// Get the slug
 	$template_slug = rtrim( $template, '.php' );
 	$template      = $template_slug . '.php';
+
+	// Validate that template name only contains safe characters
+	if ( ! preg_match( '/^[a-zA-Z0-9_\-\/]+\.php$/', $template ) ) {
+		return;
+	}
 
 	// Check if a custom template exists in the theme folder, if not, load the plugin template file
 	if ( $theme_file = locate_template( array( 'eazydocs/' . $template ) ) ) {
@@ -167,10 +177,20 @@ function eazydocs_get_template_part( $template ) {
 		//here path to '/single-paper.php'
 		$file = EAZYDOCS_PATH . "/templates/" . $template;
 	}
-	//create a new filter so the devs can filter this
 
-	if ( $file ) {
-		load_template( $file, false );
+	// Verify the file exists and is within the expected directory
+	if ( $file && file_exists( $file ) ) {
+		$real_file = realpath( $file );
+		$real_templates_dir = realpath( EAZYDOCS_PATH . '/templates' );
+		
+		// Ensure the resolved file path is within the templates directory or theme directory
+		if ( $real_file && ( 
+			strpos( $real_file, $real_templates_dir ) === 0 || 
+			strpos( $real_file, get_template_directory() ) === 0 ||
+			strpos( $real_file, get_stylesheet_directory() ) === 0
+		) ) {
+			load_template( $file, false );
+		}
 	}
 }
 
@@ -183,6 +203,14 @@ function eazydocs_get_template_part( $template ) {
  */
 function eazydocs_get_template( $template_name, $args = [] ) {
 	$ezd_obj = EazyDocs::init();
+
+	// Sanitize template name to prevent directory traversal attacks
+	$template_name = str_replace( array( '..', "\0" ), '', $template_name );
+	
+	// Validate that template name only contains safe characters
+	if ( ! preg_match( '/^[a-zA-Z0-9_\-\/]+\.php$/', $template_name ) ) {
+		return;
+	}
 
 	if ( $args && is_array( $args ) ) {
 		extract( $args );
@@ -197,8 +225,19 @@ function eazydocs_get_template( $template_name, $args = [] ) {
 		$template = $ezd_obj->template_path() . $template_name;
 	}
 
+	// Verify the file exists and is within the expected directory
 	if ( file_exists( $template ) ) {
-		include $template;
+		$real_template = realpath( $template );
+		$real_templates_dir = realpath( $ezd_obj->template_path() );
+		
+		// Ensure the resolved file path is within the templates directory or theme directory
+		if ( $real_template && ( 
+			strpos( $real_template, $real_templates_dir ) === 0 || 
+			strpos( $real_template, get_template_directory() ) === 0 ||
+			strpos( $real_template, get_stylesheet_directory() ) === 0
+		) ) {
+			include $template;
+		}
 	}
 }
 

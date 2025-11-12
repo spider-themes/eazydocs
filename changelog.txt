@@ -1,4 +1,9 @@
 == Changelog ==
+= 2.7.4 (13 November 2025) =
+Fixed: Local File Inclusion (LFI) vulnerability patched in template loading functions
+Security: Added input validation and path traversal protection to eazydocs_get_template_part() and eazydocs_get_template() functions
+Security: Implemented whitelist validation for template file paths to prevent arbitrary file inclusion
+
 = 2.7.3 (08 November 2025) =
 Tweaked: Minor CSS and style improvements for visual consistency
 Tweaked: Removed the border-bottom from the last search result item for a cleaner visual appearance
