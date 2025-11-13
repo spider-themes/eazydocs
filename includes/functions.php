@@ -159,13 +159,12 @@ function eazydocs_get_template_part( $template ) {
 	// Sanitize template name to prevent directory traversal attacks
 	// Remove any directory traversal sequences and null bytes
 	$template = str_replace( array( '..', "\0" ), '', $template );
-	$template = basename( $template );
 	
 	// Get the slug
 	$template_slug = rtrim( $template, '.php' );
 	$template      = $template_slug . '.php';
 
-	// Validate that template name only contains safe characters
+	// Validate that template name only contains safe characters (alphanumeric, hyphens, underscores, and forward slashes for subdirectories)
 	if ( ! preg_match( '/^[a-zA-Z0-9_\-\/]+\.php$/', $template ) ) {
 		return;
 	}
@@ -2189,8 +2188,8 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
 /**
  * AJAX handler to install and activate Advanced Accordion Block plugin
  */
-add_action('wp_ajax_ezd_install_advanced_accordion', 'install_advanced_accordion');
-function install_advanced_accordion() {
+add_action('wp_ajax_ezd_install_advanced_accordion', 'ezd_install_advanced_accordion');
+function ezd_install_advanced_accordion() {
     check_ajax_referer( 'ezd_install_accordion_nonce', 'nonce' );
 
     if ( ! current_user_can( 'install_plugins' ) ) {
