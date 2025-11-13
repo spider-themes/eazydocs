@@ -23,25 +23,25 @@ if ( isset( $_GET['eazydocs_table_create'] ) ) {
 		$view_logs       = $wpdb->prefix . 'eazydocs_view_log';
 
 		$sql = "CREATE TABLE $search_keyword (
-        id bigint(9) NOT NULL AUTO_INCREMENT,
-        keyword varchar(255) NOT NULL,
+        id bigint(9) not null auto_increment,
+        keyword varchar(255) not null,
         UNIQUE KEY id (id)
         ) $charset_collate;";
 
 		$sql2 = "CREATE TABLE $search_logs (
-        id bigint(9) NOT NULL AUTO_INCREMENT,
-        keyword_id bigint(255) NOT NULL references $search_keyword(id), 
-        count mediumint(255) NOT NULL,
-        not_found_count mediumint(9) NOT NULL,
-        created_at datetime NOT NULL,
+        id bigint(9) not null auto_increment,
+        keyword_id bigint(255) not null references $search_keyword(id), 
+        count mediumint(255) not null,
+        not_found_count mediumint(9) not null,
+        created_at datetime not null,
         UNIQUE KEY id (id)
         ) $charset_collate;";
 
 		$sql3 = "CREATE TABLE $view_logs (
-        id bigint(9) NOT NULL AUTO_INCREMENT,
-        post_id bigint(255) NOT NULL,
-        count mediumint(255) NOT NULL,
-        created_at datetime NOT NULL,
+        id bigint(9) not null auto_increment,
+        post_id bigint(255) not null,
+        count mediumint(255) not null,
+        created_at datetime not null,
         UNIQUE KEY id (id)
         ) $charset_collate;";
 
