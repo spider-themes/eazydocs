@@ -93,6 +93,23 @@
 			// 'data-bs-spy': 'scroll',
 			'data-bs-target': '#eazydocs-toc',
 		});
+		
+		// Sanitize URL hash on page load
+		if ( window.location.hash ) {
+			try {
+				// Decode the percent-encoded hash
+				const decoded = decodeURIComponent(window.location.hash.substring(1));
+				const safe 	  = decoded.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w\-]/g, '');
+
+				// If sanitized differs, rewrite it before any plugin runs
+				if (safe && safe !== window.location.hash.substring(1)) {
+					// Update the URL fragment instantly (no reload)
+					history.replaceState(null, '', '#' + safe);
+				}
+			} catch (e) {
+				console.warn('Invalid hash encoding:', e);
+			}
+		}
 
 		/**
 		 * Make the Titles clickable with anchor js
@@ -112,7 +129,7 @@
 				scrollTop: $('#' + urlHash).offset().top
 			}, 30);
 		}
-
+		
 		/**
 		 * Feedback Contact Form Ajax Handler
 		 */
