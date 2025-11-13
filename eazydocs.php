@@ -347,32 +347,32 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			$search_logs       = $wpdb->prefix . 'eazydocs_search_log';
 			$view_logs         = $wpdb->prefix . 'eazydocs_view_log';
 
-			// SQL statements to create tables.
-			$sql = "CREATE TABLE {$search_keyword} (
-				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-				keyword VARCHAR(255) NOT NULL,
-				PRIMARY KEY (id)
-			) {$charset_collate};";
+		// SQL statements to create tables.
+		$sql = "CREATE TABLE {$search_keyword} (
+			id bigint(20) unsigned not null auto_increment,
+			keyword varchar(255) not null,
+			PRIMARY KEY (id)
+		) {$charset_collate};";
 
-			$sql2 = "CREATE TABLE {$search_logs} (
-				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-				keyword_id BIGINT(20) UNSIGNED NOT NULL,
-				count MEDIUMINT(8) UNSIGNED NOT NULL,
-				not_found_count MEDIUMINT(8) UNSIGNED NOT NULL,
-				created_at DATETIME NOT NULL,
-				PRIMARY KEY (id),
-				FOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE
-			) {$charset_collate};";
+		$sql2 = "CREATE TABLE {$search_logs} (
+			id bigint(20) unsigned not null auto_increment,
+			keyword_id bigint(20) unsigned not null,
+			count mediumint(8) unsigned not null,
+			not_found_count mediumint(8) unsigned not null,
+			created_at datetime not null,
+			PRIMARY KEY (id),
+			FOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE
+		) {$charset_collate};";
 
-			$sql3 = "CREATE TABLE {$view_logs} (
-				id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-				post_id BIGINT(20) UNSIGNED NOT NULL,
-				count MEDIUMINT(8) UNSIGNED NOT NULL,
-				created_at DATETIME NOT NULL,
-				PRIMARY KEY (id)
-			) {$charset_collate};";
+		$sql3 = "CREATE TABLE {$view_logs} (
+			id bigint(20) unsigned not null auto_increment,
+			post_id bigint(20) unsigned not null,
+			count mediumint(8) unsigned not null,
+			created_at datetime not null,
+			PRIMARY KEY (id)
+		) {$charset_collate};";
 
-			// Load the required upgrade file.
+		// Load the required upgrade file.
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 			// Execute the table creation queries.

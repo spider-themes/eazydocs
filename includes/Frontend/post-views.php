@@ -18,10 +18,10 @@ function ezd_ensure_eazydocs_view_log_table_exists() {
     $charset_collate = $wpdb->get_charset_collate();
 
     $sql = "CREATE TABLE {$table_name} (
-        id BIGINT(20) NOT NULL AUTO_INCREMENT,
-        post_id BIGINT(20) UNSIGNED NOT NULL,
-        count MEDIUMINT(8) UNSIGNED NOT NULL,
-        created_at DATETIME NOT NULL,
+        id bigint(20) not null auto_increment,
+        post_id bigint(20) unsigned not null,
+        count mediumint(8) unsigned not null,
+        created_at datetime not null,
         UNIQUE KEY id (id)
     ) {$charset_collate};";
 
