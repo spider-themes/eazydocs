@@ -123,7 +123,12 @@ class Admin {
 			add_submenu_page( 'eazydocs', esc_html__( 'Analytics', 'eazydocs' ), esc_html__( 'Analytics', 'eazydocs' ), $capabilites, 'ezd-analytics', [ $this, 'ezd_analytics_presents' ] );
 		}
 
-		if ( ! is_plugin_active( 'advanced-accordion-block/advanced-accordion-block.php' ) || ! is_plugin_active( 'advanced-accordion-block-pro/advanced-accordion-block.php' ) ) {
+		// Only show FAQ Builder menu if neither the free nor pro version of Advanced Accordion Block is active
+		if ( ! function_exists( 'is_plugin_active' ) ) {
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		
+		if ( ! is_plugin_active( 'advanced-accordion-block/advanced-accordion-block.php' ) && ! is_plugin_active( 'advanced-accordion-block-pro/advanced-accordion-block.php' ) ) {
 			add_submenu_page( 'eazydocs', esc_html__( 'FAQ Builder', 'eazydocs' ), esc_html__( 'FAQ Builder', 'eazydocs' ), $capabilites, 'ezd-faq-builder', [ $this, 'ezd_faq_builder' ] );
 		}
 
