@@ -35,20 +35,26 @@ $is_active = is_plugin_active( 'advanced-accordion-block/advanced-accordion-bloc
 	</div>
 
     <!-- CTA Section -->
-	<div class="ezd-cta-section">
-		<h2><?php esc_html_e( 'Ready to Elevate Your Documentation?', 'eazydocs' ); ?></h2>
-		<p><?php esc_html_e( 'Install the Advanced Accordion Block now and start creating professional, interactive accordions in minutes. It\'s completely free and takes just one click.', 'eazydocs' ); ?></p>
-		<div class="ezd-cta-buttons">
-			<button id="ezd-install-accordion-plugin" class="ezd-btn-installer">
-				<span class="button-text"><?php esc_html_e( '🚀 Install for Free', 'eazydocs' ); ?></span>
-				<span class="spinner" style="display: none;"></span>
-			</button>
-			<a href="https://wordpress.org/plugins/advanced-accordion-block/" target="_blank" rel="noopener noreferrer" class="ezd-btn-secondary">
-				<?php esc_html_e( '📖 View on WordPress.org', 'eazydocs' ); ?>
-			</a>
+	<?php
+	if ( ! $is_active ) :
+		?>
+		<div class="ezd-cta-section">
+			<h2><?php esc_html_e( 'Ready to Elevate Your Documentation?', 'eazydocs' ); ?></h2>
+			<p><?php esc_html_e( 'Install the Advanced Accordion Block now and start creating professional, interactive accordions in minutes. It\'s completely free and takes just one click.', 'eazydocs' ); ?></p>
+			<div class="ezd-cta-buttons">
+				<button id="ezd-install-accordion-plugin" class="ezd-btn-installer">
+					<span class="button-text"><?php esc_html_e( '🚀 Install for Free', 'eazydocs' ); ?></span>
+					<span class="spinner" style="display: none;"></span>
+				</button>
+				<a href="https://wordpress.org/plugins/advanced-accordion-block/" target="_blank" rel="noopener noreferrer" class="ezd-btn-secondary">
+					<?php esc_html_e( '📖 View on WordPress.org', 'eazydocs' ); ?>
+				</a>
+			</div>
+			<div class="ezd-installer-response"></div>
 		</div>
-		<div class="ezd-installer-response"></div>
-	</div>
+		<?php
+	endif;
+	?>
 
 	<!-- Key Features Section -->
 	<div class="ezd-section">

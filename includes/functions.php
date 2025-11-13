@@ -2184,3 +2184,36 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
 
     wp_send_json_success('Migration completed');
 });
+
+
+/**
+ * AJAX handler to install and activate Advanced Accordion Block plugin
+ */
+add_action('wp_ajax_ezd_install_advanced_accordion', 'install_advanced_accordion');
+function install_advanced_accordion() {
+    check_ajax_referer( 'ezd_install_accordion_nonce', 'nonce' );
+
+    if ( ! current_user_can( 'install_plugins' ) ) {
+        return;
+    }
+
+    $plugin_basename = 'advanced-accordion-block' . '/' . 'advanced-accordion-block.php';
+    include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+    include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+    include_once ABSPATH . 'wp-admin/includes/plugin.php';
+    include_once ABSPATH . 'wp-admin/includes/file.php';
+    if (!function_exists('WP_Filesystem')) { require_once ABSPATH . 'wp-admin/includes/file.php'; }
+    WP_Filesystem();
+
+    if ( ! file_exists( WP_PLUGIN_DIR . '/' . $plugin_basename ) ) {
+        $api = plugins_api( 'plugin_information', [ 'slug' => 'advanced-accordion-block', 'fields' => [ 'sections' => false ] ] );
+        if ( ! is_wp_error( $api ) ) {
+            $upgrader = new Plugin_Upgrader( new Automatic_Upgrader_Skin() );
+            $upgrader->install( $api->download_link );
+        }
+    }
+
+    if ( ! is_plugin_active( $plugin_basename ) ) {
+        activate_plugin( $plugin_basename );
+    }
+}
