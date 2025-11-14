@@ -265,6 +265,16 @@ After activation, you'll see a setup wizard to help you create your first knowle
 
 == Changelog ==
 
+= 2.7.4 (14 November 2025) =
+Fixed: Database deadlock issue caused by uppercase SQL column types in CREATE TABLE statements triggering unnecessary dbDelta operations on every request
+Fixed: Local File Inclusion (LFI) vulnerability patched in template loading functions
+Fixed: Resolved Advanced Accordion Block plugin installation issue in FAQ Builder
+Security: Added input validation and path traversal protection to eazydocs_get_template_part() and eazydocs_get_template() functions
+Security: Implemented whitelist validation for template file paths to prevent arbitrary file inclusion
+Improved: Normalized all SQL DDL statements to lowercase to ensure compatibility with WordPress dbDelta function
+Improved: Replaced hardcoded color values with CSS variables for the attached file accordion
+Improved: Sanitized URL hash on docs page load for enhanced security
+
 = 2.7.3 (08 November 2025) =
 Tweaked: Minor CSS and style improvements for visual consistency
 Tweaked: Removed the border-bottom from the last search result item for a cleaner visual appearance
@@ -314,11 +324,6 @@ Tweaked: Drafted docs shows on sidebar
 Tweaked: Update pro feature unlock logic with active theme conditions and improve
 Tweaked: Improved search result order in ajax search
 Tweaked: Improved CSS to handle overflow when many docs are present in the sidebar
-
-= 2.6.9 (17 July 2025) =
-Fixed: Settings issue resolved
-Fixed: Resolved admin menu title for EazyDocs via CSF field
-Updated: EazyDocs shortcode updated
 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 
