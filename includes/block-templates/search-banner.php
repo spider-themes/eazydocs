@@ -60,6 +60,17 @@ ob_start();
         jQuery('form.ezd_search_form').css('z-index','unset');
     })
 
+    // Prevent empty search submissions
+    jQuery('.ezd_search_form').on('submit', function(e) {
+        let keyword = jQuery('#ezd_searchInput').val().trim();
+
+        // If empty or only sp  aces, stop search submit
+        if ( keyword.trim() === "" ) {
+            e.preventDefault(); // Stop submit
+            return false;
+        }
+    });
+
     /**
      * Search Form Keywords
      */
@@ -74,7 +85,7 @@ ob_start();
         let keyword = jQuery('#ezd_searchInput').val();
         let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
-        if ( keyword == "" ) {
+        if ( keyword.trim() === "" ) {
             jQuery('#ezd-search-results').removeClass('ajax-search').html("")
         } else {
             jQuery.ajax({
@@ -120,7 +131,7 @@ ob_start();
         let keyword = jQuery('#ezd_searchInput').val();
         let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
-        if ( keyword == "" ) {
+        if (keyword.trim() === "") {
             jQuery('#ezd-search-results').removeClass('ajax-search').html("")
         } else {
             jQuery.ajax({
@@ -160,7 +171,6 @@ if (document.getElementById('ezd_searchInput')) {
 }
 
 </script>
-
 <?php
 $html = ob_get_clean();
 return $html;

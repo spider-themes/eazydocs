@@ -72,7 +72,7 @@ function ezSearchResults() {
     let keyword = jQuery('#ezd_searchInput').val();
     let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
-    if (keyword == "") {
+    if (keyword.trim() === "") {
         jQuery('#ezd-search-results').removeClass('ajax-search').html("")
     } else {
         jQuery.ajax({
@@ -122,7 +122,7 @@ jQuery('#ezd_searchInput').keyup(
         let keyword = jQuery('#ezd_searchInput').val();
         let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
-        if (keyword == "") {
+        if (keyword.trim() === "") {
             jQuery('#ezd-search-results').removeClass('ajax-search').html("")
         } else {
             jQuery.ajax({
@@ -165,4 +165,16 @@ if (document.getElementById('ezd_searchInput')) {
             jQuery('#ezd-search-results').empty().removeClass('ajax-search');
         });
 }
+
+// Prevent empty search submit
+jQuery('.ezd_search_form').on('submit', function(e) {
+    let keyword = jQuery('#ezd_searchInput').val().trim();
+
+    // If empty or only spaces, stop search submit
+    if (keyword === "") {
+        e.preventDefault(); // Stop submit
+        return false;
+    }
+});
+
 </script>

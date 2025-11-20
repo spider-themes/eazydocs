@@ -58,7 +58,7 @@ add_action('wp_footer', function() {
                 let keyword = jQuery('#ezd_searchInput').val();
                 let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
-                if (keyword == "") {
+                if (keyword.trim() === "") {
                     jQuery('#ezd-search-results').removeClass('ajax-search').html("")
                 } else {
                     jQuery.ajax({
@@ -108,7 +108,7 @@ add_action('wp_footer', function() {
                     let keyword = jQuery('#ezd_searchInput').val();
                     let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
-                    if (keyword == "") {
+                    if (keyword.trim() === "") {
                         jQuery('#ezd-search-results').removeClass('ajax-search').html("")
                     } else {
                         jQuery.ajax({
@@ -173,6 +173,16 @@ add_action('wp_footer', function() {
             jQuery(".ezd_search_form").submit();
         });
 
+        // Prevent empty search submit
+        jQuery('.ezd_search_form').on('submit', function(e) {
+            let keyword = jQuery('#ezd_searchInput').val().trim();
+
+            // If empty or only sp  aces, stop search submit
+            if (keyword === "") {
+                e.preventDefault(); // Stop submit
+                return false;
+            }
+        });
 
     </script>
     <?php
