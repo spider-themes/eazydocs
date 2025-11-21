@@ -329,29 +329,25 @@ class Frontend {
 	 * Single docs Previous & Next Link
 	 **/
 	public function prev_next_docs( $current_post_id ) {
-		$prev_next 			= ezd_prev_next_docs( $current_post_id );
-		$prev_post_id       = $prev_next['prev'] ?? 0;
-		$next_post_id       = $prev_next['next'] ?? 0;
+		$current_post_id = (int)$current_post_id;
+		$prev_next 		 = ezd_prev_next_docs( $current_post_id );
+		$get_title 		 = fn($id) => esc_html( ezd_is_premium() && ( $secondary = get_post_meta( $id, 'ezd_doc_secondary_title', true ) ) ? sanitize_text_field( $secondary ) : get_the_title((int)$id ) );
+		$current_title 	 = $get_title( $current_post_id );
 		?>
 		<div class="eazydocs-next-prev-wrap">
 			<?php
-			if ( $prev_post_id != 0 ) :
-				?>
-				<a class="next-prev-pager first" href="<?php the_permalink( $prev_post_id ); ?>">
-					<span> <?php echo esc_html(get_the_title( $current_post_id )); esc_html_e( ' - Previous', 'eazydocs' ); ?> </span>
-					<?php echo esc_html(get_the_title( $prev_post_id )); ?>
-				</a>
-				<?php
-			endif;
+			foreach ( ['prev', 'next'] as $type ) {
+				$post_id = isset( $prev_next[ $type ] ) ? (int) $prev_next[ $type ] : 0;
+				if ( ! $post_id ) continue;
 
-			if ( $next_post_id != 0 ) :
-				?>
-				<a class="next-prev-pager second" href="<?php echo esc_url(get_permalink( $next_post_id )); ?>">
-					<span> <?php esc_html_e( 'Next - ', 'eazydocs' ); echo esc_html(get_the_title( $current_post_id )); ?> </span>
-					<?php echo esc_html(get_the_title( $next_post_id )); ?>
-				</a>
-				<?php
-			endif;
+				$title = $get_title( $post_id );
+				$link  = esc_url( get_permalink( $post_id ) );
+				$class = esc_attr( $type === 'prev' ? 'first' : 'second' );
+				$label = $type === 'prev'
+					? sprintf( '%s - %s', $current_title, esc_html__( 'Previous', 'eazydocs' ) )
+					: sprintf( '%s - %s', esc_html__( 'Next', 'eazydocs' ), $current_title );
+				printf( '<a class="next-prev-pager %s" href="%s"><span>%s</span>%s</a>', $class, $link, $label, $title );
+			}
 			?>
 		</div>
 		<?php
