@@ -28,8 +28,10 @@
 			createCookie(name, '', -1);
 		}
 
-			// Filter Select
-		$('select').niceSelect();
+		// Filter Select
+		if ($('select').length > 0) {
+			$('select').niceSelect();
+		}
 
 		// Sidebar Tabs [COOKIE]
 		$(document).on('click', '.tab-menu .easydocs-navitem', function () {
@@ -522,7 +524,7 @@ var config = {
 	},
 };
 
-if (docContainer.length) {
+if ( docContainer.length > 0 ) {
 	for (let i = 0; i < docContainer.length; i++) {
 		var mixer1 = mixitup(docContainer[i], config);
 	}

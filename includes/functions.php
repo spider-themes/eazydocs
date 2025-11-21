@@ -1050,7 +1050,7 @@ function ezd_admin_pages( $pages = [] ) {
         // Default admin pages of EazyDocs
 	    $admin_pages = !empty($_GET['page']) ? in_array( sanitize_text_field( $_GET['page'] ), [
 		    'eazydocs', 'eazydocs-settings', 'ezd-user-feedback', 'ezd-user-feedback-archived',
-            'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account', 'eazydocs-migration', 'ezd-faq-builder'
+            'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account', 'eazydocs-migration', 'ezd-faq-builder', 'eazydocs-dashboard'
 	    ], true ) : '';
     } else {
         // Selected admin pages of EazyDocs

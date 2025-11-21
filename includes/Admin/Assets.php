@@ -38,12 +38,12 @@ class Assets {
 
 		if ( ezd_admin_pages( ['eazydocs', 'ezd-analytics'] )) {
 			wp_enqueue_script( 'mixitup', EAZYDOCS_VEND . '/mixitup/mixitup.min.js', array( 'jquery' ), '2.1.11', true );
-			wp_enqueue_script( 'mixitup-multifilter', EAZYDOCS_ASSETS . '/js/admin/mixitup-multifilter.js', array( 'jquery' ), '2.1.11', true );
-		}
-
-		if ( ezd_admin_pages( ['eazydocs', 'ezd-analytics'] ) ) {
+			wp_enqueue_script( 'mixitup-multifilter', EAZYDOCS_ASSETS . '/js/admin/mixitup-multifilter.js', array( 'jquery' ), '2.1.11', true );			
 			wp_enqueue_script( 'modernizr', EAZYDOCS_ASSETS . '/js/admin/modernizr-3.11.2.min.js', array( 'jquery' ), '3.11.2', true );
 			wp_enqueue_script( 'tabby-polyfills', EAZYDOCS_ASSETS . '/js/admin/tabby.polyfills.min.js', array( 'jquery' ), '12.0.3', true );
+		}
+
+		if ( ezd_admin_pages( ['eazydocs', 'ezd-analytics', 'eazydocs-dashboard'] ) ) {
 			wp_enqueue_script( 'ezd-admin-custom', EAZYDOCS_ASSETS . '/js/admin/custom.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
 		}
 
@@ -55,7 +55,7 @@ class Assets {
 		wp_register_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css', array(), EAZYDOCS_VERSION );
 		wp_register_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
 
-		if ( ezd_admin_pages( ['eazydocs', 'eazydocs-settings', 'eazydocs-initial-setup', 'ezd-analytics', 'ezd-user-feedback'] ) || ezd_admin_post_types('onepage-docs') ) {			
+		if ( ezd_admin_pages( ['eazydocs', 'eazydocs-settings', 'eazydocs-dashboard', 'eazydocs-initial-setup', 'ezd-analytics', 'ezd-user-feedback'] ) || ezd_admin_post_types('onepage-docs') ) {			
 			wp_enqueue_style( 'sweetalert' );
 			wp_enqueue_script( 'sweetalert' );
 		}
@@ -63,6 +63,7 @@ class Assets {
 		if ( ezd_admin_pages() ) {
 			wp_deregister_style('csf-fa5');
 			wp_deregister_style('csf-fa5-v4-shims');
+        	wp_enqueue_script( 'apexchart', EAZYDOCS_ASSETS . '/js/apexchart.js', array( 'jquery' ), EAZYDOCS_VERSION, false );
 		}
 
 		if ( ezd_admin_pages( ['eazydocs'] ) || ezd_admin_post_types('onepage-docs') ) {

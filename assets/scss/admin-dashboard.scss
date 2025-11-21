@@ -1,0 +1,262 @@
+/* Dashboard Wrapper */
+.ezd-dashboard-container {
+    padding: 1.5rem;
+    position: relative;
+
+    /* Header Section */
+    .ezd-header {
+        background: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 23px;
+        border-radius: 4px;
+        position: sticky;
+        top: 32px;
+        left: 0;
+        right: 0;
+        z-index: 11;
+        border-radius: 4px;
+        .ezd-logo-container {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            img {
+                max-width: 35px;
+                max-height: 35px;
+                margin-left: -5px;
+            }
+            .ezd-logo-text {
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+        .ezd-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            .ezd-action-item {
+                position: relative;
+                button {
+                    padding: 5px 15px;
+                }
+                .ezd-icon-button,
+                .ezd-user-avatar-button {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .ezd-badge-counter {
+                        position: absolute;
+                        top: -4px;
+                        right: -4px;
+                        background: #0073e6;
+                        color: #fff;
+                        padding: 2px 6px;
+                        font-size: 10px;
+                        border-radius: 4px;
+                    }
+                }
+                .ezd-user-avatar {
+                    width: 34px;
+                    height: 34px;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    /* Main Content */
+    .ezd-main-content {
+        margin-top: 1.5rem;
+
+        /* Stat Cards Grid */
+        .ezd-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            .ezd-stat-card {
+                background: #fff;
+                padding: 1rem;
+                border-radius: 4px;
+                border: 1px solid #e5e7eb;
+                .ezd-stat-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .ezd-stat-label {
+                        color: black;
+                        font-size: 14px;
+                        margin: 0;
+                        font-weight: 500;
+                    }
+                    .ezd-stat-icon,
+                    .ezd-stat-icon-positive,
+                    .ezd-stat-icon-negative {
+                        font-size: 24px;
+                    }
+                    .ezd-stat-icon-positive {
+                        color: #10b981;
+                    }
+                    .ezd-stat-icon-negative {
+                        color: #ef4444;
+                    }
+                }
+                .ezd-stat-value {
+                    font-size: 28px;
+                    font-weight: 600;
+                    margin-top: .5rem;
+                    margin-bottom: 0;
+
+                    &.ezd-stat-value-positive {
+                        color: #10b981;
+                    }
+                    &.ezd-stat-value-negative {
+                        color: #ef4444;
+                    }
+                }
+            }
+        }
+
+        /* Reusable Grid */
+        .ezd-grid {
+            display: grid;
+            gap: 1.25rem;
+            &.ezd-grid-cols-lg-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .ezd-grid-col-lg-2 {
+                grid-column: span 2;
+            }
+        }
+
+        /* Card */
+        .ezd-card {
+            background: #fff;
+            padding: 0;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            .ezd-card-title {
+                font-size: 18px;
+                font-weight: 600;
+                margin: 0;
+                padding: 1.25rem 1.25rem 0 1.25rem
+            }
+            .ezd-card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .ezd-filter-button {
+                    padding: .5rem .75rem;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    background: #fff;
+                    cursor: pointer;
+                }
+            }
+            .ezd-chart-footer {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 1rem;
+                .ezd-chart-legend {
+                    font-size: 14px;
+                    color: #4b5563;
+                }
+            }
+
+            /* Search Chart */
+            .ezd-search-chart-container {
+                .apexcharts-canvas{
+                    margin: auto;
+                }
+            }
+
+            /* Activity List */
+            .ezd-activity-list {
+                list-style: none;
+                padding: 0;
+                margin: 10px 0 0;
+                .ezd-activity-item {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: .75rem;
+                    padding: 10px 20px;
+                    background: #fbfbfb82;
+                    margin: 0;
+                    border-bottom: 1px solid #f1f1f1;
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                    &:nth-child(odd) {
+                        background: #24446505;
+                    }
+                    .ezd-activity-icon-wrapper {
+                        width: 33px;
+                        height: 33px;
+                        border-radius: 4px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #fff;
+                        &.ezd-icon-bg-blue { background: #0073e6; }
+                        &.ezd-icon-bg-green { background: #10b981; }
+                        &.ezd-icon-bg-yellow { background: #f59e0b; }
+                        &.ezd-icon-bg-red { background: #ef4444; }
+                        .dashicons {
+                            font-size: 17px;
+                            color: white;
+                            text-decoration: none;
+                        }
+                    }
+                    .ezd-activity-text {
+                        margin: 0;
+                        font-size: 15px;
+                        line-height: 21px;
+                        a {
+                            color: #0073e6;
+                            text-decoration: none;
+                        }
+                    }
+                    .ezd-activity-time {
+                        font-size: 12px;
+                        color: #4b5563;
+                        margin: 4px 0 0;
+                    }
+                }
+            }
+            .not-found-text{
+                margin: 18px 22px;
+                color: black;
+                font-size: 16px;
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+.ezd-filter-container{
+    margin: 12px 20px -12px;
+    ul {
+        margin: 0;
+        li{
+            display: inline-block;
+            background: #e4e4e4;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 13px;
+            box-shadow: none;
+            cursor: pointer;
+            &:hover {
+                background: blue;
+                color: #fff;
+            }
+        }
+    }
+}

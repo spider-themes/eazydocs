@@ -100,6 +100,7 @@ class Admin {
 		
 		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
 		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
+		add_submenu_page( 'eazydocs', esc_html__( 'Dashboard', 'eazydocs' ), esc_html__( 'Dashboard', 'eazydocs' ), 'manage_options', 'eazydocs-dashboard', [ $this, 'eazydocs_dashboard' ] );
 
 		if ( ezd_is_premium() ) {
 			if ( $is_customizer ) {
@@ -445,5 +446,12 @@ class Admin {
 		}
 
 		return $post_states;
+	}
+	
+	/**
+	 * Dashboard page
+	 */
+	public function eazydocs_dashboard() {
+		include __DIR__ . '/admin-dashboard.php';
 	}
 }
