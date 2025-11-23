@@ -77,6 +77,38 @@ class Doc_Widget extends Widget_Base {
 		$this->elementor_style_control();
 	}
 
+    /**
+     * Docs Layout Options based on license for Elementor Widget
+     *
+     * @return array[]
+     */
+    protected function docs_layout_option() {
+        $base_options = [
+                '1' => [
+                        'title' => esc_html__( 'Docs without tab', 'eazydocs' ),
+                        'icon'  => 'free-doc-tab'
+                ]
+        ];
+
+        $pro_options = [
+                '2' => [ 'title' => esc_html__( 'Tabbed with doc lists', 'eazydocs' ) ],
+                '3' => [ 'title' => esc_html__( 'Flat tabbed docs', 'eazydocs' ) ],
+                '4' => [ 'title' => esc_html__( 'Boxed Style', 'eazydocs' ) ],
+                '5' => [ 'title' => esc_html__( 'Book Chapters / Tutorials', 'eazydocs' ) ],
+                '6' => [ 'title' => esc_html__( 'List Style', 'eazydocs' ) ]
+        ];
+
+        foreach ( $pro_options as $key => $option ) {
+            $icon_suffix = ezd_unlock_themes('docy','docly') ? '' : ' ezd-pro-docs';
+            $base_options[ $key ] = [
+                    'title' => $option['title'],
+                    'icon'  => "docs-" . ( $key - 1 ) . $icon_suffix
+            ];
+        }
+
+        return $base_options;
+    }
+
 	/**
 	 * Name: elementor_content_control()
 	 * Desc: Register the Content Tab output on the Elementor editor.
@@ -96,7 +128,7 @@ class Doc_Widget extends Widget_Base {
 			'doc-widget-skin', [
 				'label'   => esc_html__( 'Skins', 'eazydocs' ),
 				'type'    => Controls_Manager::CHOOSE,
-				'options' => ezd_docs_layout_option(),
+				'options' => $this->docs_layout_option(),
 				'toggle'  => false,
 				'default' => '1',
 			]
@@ -167,8 +199,11 @@ class Doc_Widget extends Widget_Base {
 		$this->add_control(
 			'masonry', [
 				'label'             => esc_html__( 'Masonry', 'eazydocs' ),
+                'description'       => esc_html__( 'Enable masonry layout for docs (responsive grid with dynamic column heights).', 'eazydocs' ),
 				'type'              => \Elementor\Controls_Manager::SWITCHER,
-				'doc-widget-skin'   => [ '4', '5' ]
+                'condition' => [
+                    'doc-widget-skin' => [ '2', '4', '5' ]
+                ],
 			]
 		);
 

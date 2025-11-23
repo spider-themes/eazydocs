@@ -302,7 +302,6 @@
 .ezd-custom-container.ezd-container {
   width: 100%;
   box-sizing: border-box;
-  display: block;
 }
 @media (min-width: 1300px) {
   .ezd-custom-container.ezd-container {

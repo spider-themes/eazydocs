@@ -71,6 +71,10 @@
     @include btn-outline(#4141E6);
   }
 
+  &-ai-gold {
+    @include btn-color(linear-gradient(to right, #FFC800, #FF964B), $color: #7D4100, $border-color: transparent, $h-bg: linear-gradient(to right, #FF964B, #FFC800), $h-color: #7D4100, $h-border-color: transparent, $f-color: #FFC800);
+  }
+
   &-white {
     @include btn-color(var(--clr-white), $f-color: #fff);
   }
@@ -82,56 +86,4 @@
   &-gray {
     @include btn-color(rgba(#252733, 0.1), $color: var(--clr-dark), $h-bg: var(--clr-blue), $border-color: transparent, $h-color: var(--clr-white), $h-border-color: transparent, $f-width: 0);
   }
-
-  // &-gray-2 {
-  //   @include btn-color(#EFEFEF, $color: var(--clr-black-6), $h-bg: linear-gradient(to left, #46C8D2, #5A64DC), $h-color: var(--clr-white), $h-border-color: transparent, $f-color: #EFEFEF);
-  // }
-
-  // &-orange-yellow {
-  //   @include btn-color(linear-gradient(to right, #FF964B, #FFC800), $color: #7D4100, $border-color: transparent, $h-bg: linear-gradient(to right, #FFC800, #FF964B), $h-color: 7D4100, $h-border-color: transparent, $f-color: #FF964B);
-  // }
-
-  // &-outline-gray {
-  //   @include btn-outline(var(--clr-black-2));
-  // }
-
-  // &-hover-pink {
-  //   @include btn-hover(var(--clr-white), linear-gradient(to right, #645FF5, #FF64A0), transparent, $f-color: #645FF5);
-  // }
-
-  // &-outline-blue {
-  //   @include btn-outline(#6450EB);
-  // }
-
-  // &-info {
-  //   @include btn-color(#3b82f6, var(--clr-white), $f-color: #3b82f6);
-  // }
-
-  // &-outline-info {
-  //   @include btn-outline(#3b82f6);
-  // }
-
-  // &-success {
-  //   @include btn-color(#46C86E, var(--clr-white), $f-color: #46C86E);
-  // }
-
-  // &-outline-success {
-  //   @include btn-outline(#46C86E);
-  // }
-
-  // &-warning {
-  //   @include btn-color(#f59e0b, var(--clr-white), $f-color: #f59e0b);
-  // }
-
-  // &-outline-warning {
-  //   @include btn-outline(#f59e0b);
-  // }
-
-  // &-danger {
-  //   @include btn-color(#ef4444, var(--clr-white), $f-color: #ef4444);
-  // }
-
-  // &-outline-danger {
-  //   @include btn-outline(#ef4444);
-  // }
 }

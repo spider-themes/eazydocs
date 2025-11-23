@@ -1233,38 +1233,6 @@ function ezd_el_image( $settings_key = '', $alt = '', $class = '', $atts = [] ) 
 }
 
 /**
- * Docs Layout Options based on license for Elementor Widget
- *
- * @return array[]
- */
-function ezd_docs_layout_option() {
-	$base_options = [
-		'1' => [
-			'title' => esc_html__( 'Docs without tab', 'eazydocs' ),
-			'icon'  => 'free-doc-tab'
-		]
-	];
-
-	$pro_options = [
-		'2' => [ 'title' => esc_html__( 'Tabbed with doc lists', 'eazydocs' ) ],
-		'3' => [ 'title' => esc_html__( 'Flat tabbed docs', 'eazydocs' ) ],
-		'4' => [ 'title' => esc_html__( 'Boxed Style', 'eazydocs' ) ],
-		'5' => [ 'title' => esc_html__( 'Book Chapters / Tutorials', 'eazydocs' ) ],
-		'6' => [ 'title' => esc_html__( 'List Style', 'eazydocs' ) ]
-	];
-
-	foreach ( $pro_options as $key => $option ) {
-		$icon_suffix = ezd_unlock_themes('docy','docly') ? '' : ' ezd-pro-docs';
-		$base_options[ $key ] = [
-			'title' => $option['title'],
-			'icon'  => "docs-" . ( $key - 1 ) . $icon_suffix
-		];
-	}
-
-	return $base_options;
-}
-
-/**
  * Get Nestable Parent ID
  *
  * @param $page_id

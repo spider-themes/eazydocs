@@ -202,5 +202,64 @@
             });
         });
         
+
+
+        // Create Doc with AI Popup
+        // Create Doc with AI Popup
+        $(document).on('click', '#ezd-create-doc-with-ai', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '',
+                html: `
+                    <div class="ezd-ai-popup-content">
+                        <div class="ezd-ai-header">
+                            <h2>Create Docs Smarter with AI</h2>
+                            <p class="ezd-ai-desc">Transform documentation with structured, accurate, and professional docs in minutes.</p>
+                        </div>
+                        
+                        <div class="ezd-ai-video-wrapper">
+                            <video autoplay muted loop playsinline>
+                                <source src="https://wpeazyai.spider-themes.net/wp-content/uploads/2025/08/AI-Doc-generate.mp4" type="video/mp4">
+                            </video>
+                        </div>
+
+                        <div class="ezd-ai-feature-grid">
+                            <div class="ezd-ai-feature-item">
+                                <span class="ezd-ai-feature-icon">📊</span>
+                                <h3>Bulk Generation</h3>
+                                <p>Instantly generate comprehensive documentation structures and content. Easily review and refine the outline before generation.</p>
+                            </div>
+                            <div class="ezd-ai-feature-item">
+                                <span class="ezd-ai-feature-icon">📄</span>
+                                <h3>Docs from Files</h3>
+                                <p>Generate complete, context-aware documentation directly from your uploaded Knowledge Files (.txt, .md, .pdf).</p>
+                            </div>
+                        </div>
+
+                        <div class="ezd-ai-popup-footer">
+                            <a href="https://wpeazyai.spider-themes.net/ai-doc-generator/" target="_blank" class="ezd-ai-btn ezd-ai-btn-primary">
+                                Explore Feature
+                                <span class="dashicons dashicons-external"></span>
+                            </a>
+                            <a href="https://wpeazyai.spider-themes.net/pricing/" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
+                                Get WpEazy AI
+                                <span class="dashicons dashicons-download"></span>
+                            </a>
+                        </div>
+                    </div>
+                `,
+                showConfirmButton: false,
+                showCloseButton: true,
+                width: '800px',
+                padding: '0',
+                customClass: {
+                    container: 'ezd-ai-popup-container',
+                    popup: 'ezd-ai-popup-wrapper',
+                    content: 'ezd-ai-popup-body-content',
+                    closeButton: 'ezd-ai-popup-close'
+                }
+            });
+        });
+        
     });
 })(jQuery);

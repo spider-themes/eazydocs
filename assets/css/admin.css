@@ -149,13 +149,6 @@
   --black_900: #0c0d0e;
 }
 
-.ezd_doc_builder {
-  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-  /* A elements that don't have a class get default styles */
-  /* Make images easier to work with */
-  /* Inherit fonts for inputs and buttons */
-  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-}
 .ezd_doc_builder * {
   box-sizing: border-box;
 }
@@ -173,6 +166,9 @@
 .ezd_doc_builder a {
   text-decoration: none;
 }
+.ezd_doc_builder {
+  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+}
 @media (prefers-reduced-motion: reduce) {
   .ezd_doc_builder html:focus-within {
     scroll-behavior: auto;
@@ -189,13 +185,22 @@
 .ezd_doc_builder .fill-current {
   fill: currentColor;
 }
+.ezd_doc_builder {
+  /* A elements that don't have a class get default styles */
+}
 .ezd_doc_builder a:not([class]) {
   text-decoration-skip-ink: auto;
+}
+.ezd_doc_builder {
+  /* Make images easier to work with */
 }
 .ezd_doc_builder img,
 .ezd_doc_builder picture {
   max-width: 100%;
   display: block;
+}
+.ezd_doc_builder {
+  /* Inherit fonts for inputs and buttons */
 }
 .ezd_doc_builder input,
 .ezd_doc_builder button,
@@ -212,6 +217,9 @@
   border: none;
   border-radius: 0;
   opacity: 1;
+}
+.ezd_doc_builder {
+  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 }
 @media (prefers-reduced-motion: reduce) {
   .ezd_doc_builder html:focus-within {
@@ -806,6 +814,20 @@ body.rtl a.child-delete {
   outline: 0;
   box-shadow: 0 0 0 0.4rem rgba(65, 65, 230, 0.5);
 }
+.easydocs-btn-ai-gold {
+  --btn-bg: linear-gradient(to right, #FFC800, #FF964B);
+  --btn-clr: #7D4100;
+  --btn-bc: transparent;
+}
+.easydocs-btn-ai-gold:hover {
+  --btn-clr: #7D4100;
+  --btn-bg: linear-gradient(to right, #FF964B, #FFC800);
+  --btn-bc: transparent;
+}
+.easydocs-btn-ai-gold:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.4rem rgba(255, 200, 0, 0.5);
+}
 .easydocs-btn-white {
   --btn-bg: var(--clr-white);
   --btn-clr: var(--clr-white);
@@ -1033,6 +1055,142 @@ body.rtl a.child-delete {
   display: inline-table;
 }
 
+.ezd-ai-popup-wrapper {
+  border-radius: 16px !important;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+}
+.ezd-ai-popup-wrapper .swal2-html-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+.ezd-ai-popup-wrapper .ezd-ai-popup-close {
+  z-index: 10;
+  color: #666;
+  transition: color 0.3s ease;
+}
+.ezd-ai-popup-wrapper .ezd-ai-popup-close:hover {
+  color: #000;
+}
+
+.ezd-ai-popup-content {
+  text-align: center;
+  color: #333;
+}
+
+.ezd-ai-header {
+  padding: 40px 40px 20px;
+  background: linear-gradient(to bottom, #fff, #f9f9f9);
+}
+.ezd-ai-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 10px 0;
+  color: #1a1a1a;
+}
+.ezd-ai-header .ezd-ai-desc {
+  font-size: 16px;
+  color: #666;
+  margin: 0 0 25px;
+  line-height: 1.5;
+}
+
+.ezd-ai-video-wrapper {
+  margin: 0 40px 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #000;
+  line-height: 0;
+}
+.ezd-ai-video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ezd-ai-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 0 40px 30px;
+  text-align: left;
+}
+.ezd-ai-feature-grid .ezd-ai-feature-item {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ezd-ai-feature-grid .ezd-ai-feature-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-color: #e0e0e0;
+}
+.ezd-ai-feature-grid .ezd-ai-feature-item .ezd-ai-feature-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: block;
+}
+.ezd-ai-feature-grid .ezd-ai-feature-item h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #333;
+}
+.ezd-ai-feature-grid .ezd-ai-feature-item p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ezd-ai-popup-footer {
+  padding: 20px 40px 40px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+.ezd-ai-popup-footer .ezd-ai-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.ezd-ai-popup-footer .ezd-ai-btn .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 1.2;
+}
+.ezd-ai-popup-footer .ezd-ai-btn-primary {
+  background: linear-gradient(to right, #FFC800, #FF964B);
+  color: #7D4100;
+  border: none;
+}
+.ezd-ai-popup-footer .ezd-ai-btn-primary:hover {
+  background: linear-gradient(to right, #FF964B, #FFC800);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 200, 0, 0.3);
+}
+.ezd-ai-popup-footer .ezd-ai-btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+}
+.ezd-ai-popup-footer .ezd-ai-btn-secondary:hover {
+  background: #e0e0e0;
+  color: #000;
+}
+
 /*----------------------------------------*/
 /*  02. Header Area
 /*----------------------------------------*/
@@ -1067,6 +1225,14 @@ body.rtl a.child-delete {
 }
 .navbar-left .easydocs-btn:hover {
   --btn-icon: var(--clr-white);
+}
+.navbar-left .easydocs-btn.filled {
+  --btn-bg: var(--clr-blue);
+  --btn-clr: var(--clr-white);
+  --btn-bc: var(--clr-blue);
+}
+.navbar-left .easydocs-btn.filled:hover {
+  --btn-bg: #1818AAFF;
 }
 
 .easydocs-logo-area a {

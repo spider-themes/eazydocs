@@ -2167,11 +2167,11 @@ body.admin-bar .doc_documentation_area.body_fixed .doc_left_sidebarlist.one-page
   font-weight: 400;
   margin-bottom: 6px;
 }
-.eazydocs-next-prev-wrap .next-prev-pager:hover {
+.eazydocs-next-prev-wrap .next-prev-pager:hover::before {
   border-color: var(--ezd_brand_color);
   color: var(--ezd_brand_color);
 }
-.eazydocs-next-prev-wrap .next-prev-pager:hover::before {
+.eazydocs-next-prev-wrap .next-prev-pager:hover {
   border-color: var(--ezd_brand_color);
   color: var(--ezd_brand_color);
 }
@@ -2816,7 +2816,7 @@ p .footnotes-link::after {
   background: -webkit-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
   background: -o-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
   background: -ms-linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#03ffffff", endColorstr="#ffffff", GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#03ffffff', endColorstr='#ffffff', GradientType=0 );
   background: linear-gradient(bottom, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 100%);
   display: block;
 }

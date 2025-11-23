@@ -33,6 +33,7 @@
 	.doc_documentation_area {
 		position: relative;
 		overflow: hidden !important;
+        z-index: 99;
 	}
 
 	.left-column .doc_left_sidebarlist {

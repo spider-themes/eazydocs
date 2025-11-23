@@ -62,7 +62,6 @@
   padding: 1.5rem;
   position: relative;
   /* Header Section */
-  /* Main Content */
 }
 .ezd-dashboard-container .ezd-header {
   background: #fff;
@@ -129,11 +128,12 @@
   height: 34px;
   border-radius: 50%;
 }
+.ezd-dashboard-container {
+  /* Main Content */
+}
 .ezd-dashboard-container .ezd-main-content {
   margin-top: 1.5rem;
   /* Stat Cards Grid */
-  /* Reusable Grid */
-  /* Card */
 }
 .ezd-dashboard-container .ezd-main-content .ezd-stat-grid {
   display: grid;
@@ -180,6 +180,9 @@
 .ezd-dashboard-container .ezd-main-content .ezd-stat-grid .ezd-stat-card .ezd-stat-value.ezd-stat-value-negative {
   color: #ef4444;
 }
+.ezd-dashboard-container .ezd-main-content {
+  /* Reusable Grid */
+}
 .ezd-dashboard-container .ezd-main-content .ezd-grid {
   display: grid;
   gap: 1.25rem;
@@ -190,13 +193,14 @@
 .ezd-dashboard-container .ezd-main-content .ezd-grid .ezd-grid-col-lg-2 {
   grid-column: span 2;
 }
+.ezd-dashboard-container .ezd-main-content {
+  /* Card */
+}
 .ezd-dashboard-container .ezd-main-content .ezd-card {
   background: #fff;
   padding: 0;
   border-radius: 4px;
   border: 1px solid #e5e7eb;
-  /* Search Chart */
-  /* Activity List */
 }
 .ezd-dashboard-container .ezd-main-content .ezd-card .ezd-card-title {
   font-size: 18px;
@@ -228,8 +232,14 @@
   font-size: 14px;
   color: #4b5563;
 }
+.ezd-dashboard-container .ezd-main-content .ezd-card {
+  /* Search Chart */
+}
 .ezd-dashboard-container .ezd-main-content .ezd-card .ezd-search-chart-container .apexcharts-canvas {
   margin: auto;
+}
+.ezd-dashboard-container .ezd-main-content .ezd-card {
+  /* Activity List */
 }
 .ezd-dashboard-container .ezd-main-content .ezd-card .ezd-activity-list {
   list-style: none;
