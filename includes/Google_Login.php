@@ -84,53 +84,22 @@ class Google_Login {
         }
         return $message;
     }
-    /**
-     * Get current page ID
-     *
-     * @return int|string
-     */    
-    private function get_current_page_id() { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
-        global $post;
-        
+    private function get_current_page_id() {
         if ( is_home() || is_front_page() ) {
             return get_option( 'page_on_front', 0 );
         }
-        
+
         if ( is_page() || is_single() ) {
             return get_the_ID();
         }
-        
-        if ( is_category() ) {
-            return 'category_' . get_queried_object_id();
+
+        $type = is_category() ? 'category_' : ( is_tag() ? 'tag_' : ( is_author() ? 'author_' : ( is_archive() ? 'archive_' : '' ) ) );
+        if ( $type ) {
+            return $type . get_queried_object_id();
         }
-        
-        if ( is_tag() ) {
-            return 'tag_' . get_queried_object_id();
-        }
-        
-        if ( is_author() ) {
-            return 'author_' . get_queried_object_id();
-        }
-        
-        if ( is_archive() ) {
-            return 'archive_' . get_queried_object_id();
-        }
-        
-        // Fallback to post ID if available
-        if ( isset( $post->ID ) ) {
-            return $post->ID;
-        }
-        
-        return 0;
-    }
-    
-    /**
-     * Get site URL
-     *
-     * @return string
-     */
-    private function get_site_url() {
-        return site_url();
+
+        global $post;
+        return isset( $post->ID ) ? $post->ID : 0;
     }
     
     /**
@@ -301,27 +270,8 @@ class Google_Login {
 
                     // ✅ Pro Course — Add to cart and redirect to checkout
                     if ( $product_id && function_exists( 'WC' ) ) {
-                        $already_enrolled = false;
-
-                        if ( $docs_id ) {
-                            $current_user     = wp_get_current_user();
-                            $username         = $current_user->user_login;
-                            $eazy_course_data = get_post_meta( $docs_id, 'eazy_course_data', true );
-                            $existing_data    = ! empty( $eazy_course_data ) ? maybe_unserialize( $eazy_course_data ) : [];
-
-                            foreach ( $existing_data as $data ) {
-                                if ( isset( $data[ 'username' ] ) && $data[ 'username' ] === $username ) {
-                                    $already_enrolled = true;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if ( ! $already_enrolled ) {
-                            $cart_data = [];
-                            if ( $docs_id ) {
-                                $cart_data[ 'docs_id' ] = $docs_id;
-                            }
+                        if ( ! $this->is_user_enrolled( $docs_id, wp_get_current_user()->user_login ) ) {
+                            $cart_data = $docs_id ? [ 'docs_id' => $docs_id ] : [];
                             WC()->cart->add_to_cart( $product_id, 1, 0, [], $cart_data );
                             WC()->cart->calculate_totals();
                             $redirect = wc_get_checkout_url();
@@ -331,27 +281,7 @@ class Google_Login {
                     }
                     // ✅ Free Course — Enroll directly
                     elseif ( $docs_id && ! $product_id ) {
-                        $current_user     = wp_get_current_user();
-                        $username         = $current_user->user_login;
-                        $eazy_course_data = get_post_meta( $docs_id, 'eazy_course_data', true );
-                        $existing_data    = ! empty( $eazy_course_data ) ? maybe_unserialize( $eazy_course_data ) : [];
-                        $already_enrolled = false;
-
-                        foreach ( $existing_data as $data ) {
-                            if ( isset( $data[ 'username' ] ) && $data[ 'username' ] === $username ) {
-                                $already_enrolled = true;
-                                break;
-                            }
-                        }
-
-                        if ( ! $already_enrolled ) {
-                            $existing_data[] = [
-                                'enrolled' => 1,
-                                'username' => $username,
-                            ];
-                            update_post_meta( $docs_id, 'eazy_course_data', maybe_serialize( $existing_data ) );
-                        }
-
+                        $this->enroll_user( $docs_id, wp_get_current_user()->user_login );
                         $redirect = get_permalink( $docs_id );
                     }
 
@@ -372,6 +302,46 @@ class Google_Login {
 
         wp_redirect( home_url() );
         exit;
+    }
+    
+    /**
+     * Check if user is already enrolled in docs
+     *
+     * @param int $docs_id
+     * @param string $username
+     * @return bool
+     */
+    private function is_user_enrolled( $docs_id, $username ) {
+        if ( ! $docs_id ) {
+            return false;
+        }
+        
+        $eazy_course_data = get_post_meta( $docs_id, 'eazy_course_data', true );
+        $existing_data    = ! empty( $eazy_course_data ) ? maybe_unserialize( $eazy_course_data ) : [];
+
+        foreach ( $existing_data as $data ) {
+            if ( isset( $data['username'] ) && $data['username'] === $username ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Enroll user in free docs
+     *
+     * @param int $docs_id
+     * @param string $username
+     */
+    private function enroll_user( $docs_id, $username ) {
+        if ( ! $docs_id || $this->is_user_enrolled( $docs_id, $username ) ) {
+            return;
+        }
+
+        $eazy_course_data = get_post_meta( $docs_id, 'eazy_course_data', true );
+        $existing_data    = ! empty( $eazy_course_data ) ? maybe_unserialize( $eazy_course_data ) : [];
+        $existing_data[]  = [ 'enrolled' => 1, 'username' => $username ];
+        update_post_meta( $docs_id, 'eazy_course_data', maybe_serialize( $existing_data ) );
     }
     
     /**

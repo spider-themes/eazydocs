@@ -1,6 +1,5 @@
 <?php
 namespace EazyDocs\Admin;
-use ElementorPro\Modules\DynamicTags\Tags\Post_ID;
 
 /**
  * Cannot access directly.
@@ -14,172 +13,108 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package EazyDocs\Admin
  */
 class Create_Post {
+	private static $replacements = ['ezd_ampersand' => '&', 'ezd_hash' => '#', 'ezd_plus' => '+'];
+
 	/**
 	 * Create_Post constructor.
 	 */
 	public function __construct() {
-		add_action( 'admin_init', [ $this, 'create_parent_doc' ] );
-		add_action( 'admin_init', [ $this, 'create_new_doc' ] );
-		add_action( 'admin_init', [ $this, 'create_section_doc' ] );
-		add_action( 'admin_init', [ $this, 'create_child_doc' ] );
-	}
-
-    /**
- * Create parent Doc post
- */
-	public function create_parent_doc() {
-		if (
-			isset( $_GET['parent_title'], $_GET['Create_doc'], $_GET['_wpnonce'] )
-			&& sanitize_text_field( wp_unslash( $_GET['Create_doc'] ) ) === 'yes'
-			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'parent_doc_nonce' )
-		) {
-			$title_raw  = sanitize_text_field( wp_unslash( $_GET['parent_title'] ) );
-			$title      = htmlspecialchars( $title_raw );
-			$str        = ['ezd_ampersand', 'ezd_hash', 'ezd_plus'];
-			$rplc       = ['&', '#', '+'];
-			$title_text = str_replace( $str, $rplc, $title );
-
-			$query = new \WP_Query([
-				'post_type'   => 'docs',
-				'post_parent' => 0
-			]);
-			$order = $query->found_posts + 2;
-
-			$parent_doc = [
-				'post_title'   => $title_text,
-				'post_parent'  => 0,
-				'post_content' => '',
-				'post_type'    => 'docs',
-				'post_status'  => 'publish',
-				'post_author'  => get_current_user_id(),
-				'menu_order'   => $order,
-			];
-
-			wp_insert_post( $parent_doc );
-			wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
-			exit;
-		}
+		add_action( 'admin_init', [ $this, 'handle_doc_creation' ] );
 	}
 
 	/**
-	 * Create new Doc post
+	 * Unified handler for all doc creation actions
 	 */
-	public function create_new_doc() {
-		if (
-			isset( $_GET['new_doc'], $_GET['Create_doc'], $_GET['_wpnonce'] )
-			&& sanitize_text_field( wp_unslash( $_GET['Create_doc'] ) ) === 'yes'
-			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'create_new_doc_nonce' )
-		) {
-			$doc_title_raw = sanitize_text_field( wp_unslash( $_GET['new_doc'] ) );
-			$doc_title     = htmlspecialchars( $doc_title_raw );
-			$str           = ['ezd_ampersand', 'ezd_hash', 'ezd_plus'];
-			$rplc          = ['&', '#', '+'];
-			$doc_title_text = str_replace( $str, $rplc, $doc_title );
+	public function handle_doc_creation() {
+		// Check permissions first
+		if ( ! current_user_can( 'publish_posts' ) ) {
+			return;
+		}
 
-			$new_doc = [
-				'post_title'   => $doc_title_text,
-				'post_parent'  => 0,
-				'post_content' => '',
-				'post_type'    => 'docs',
-				'post_status'  => 'publish',
-				'menu_order'   => 1,
-			];
+		// Handle parent doc creation
+		if ( $this->verify_action( 'Create_doc', 'parent_doc_nonce', 'parent_title' ) ) {
+			$title = $this->sanitize_title( $_GET['parent_title'] );
+			$query = new \WP_Query( [ 'post_type' => 'docs', 'post_parent' => 0 ] );
+			$this->create_post( $title, 0, $query->found_posts + 2 );
+		}
 
-			wp_insert_post( $new_doc );
-			wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
-			exit;
+		// Handle new doc creation
+		if ( $this->verify_action( 'Create_doc', 'create_new_doc_nonce', 'new_doc' ) ) {
+			$title = $this->sanitize_title( $_GET['new_doc'] );
+			$this->create_post( $title, 0, 1 );
+		}
+
+		// Handle section creation
+		if ( isset( $_GET['Create_Section'], $_GET['parentID'], $_GET['_wpnonce'], $_GET['is_section'] ) && 
+			 sanitize_text_field( wp_unslash( $_GET['Create_Section'] ) ) === 'yes' &&
+			 wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), sanitize_text_field( wp_unslash( $_GET['parentID'] ) ) ) ) {
+			
+			$parent_id = absint( wp_unslash( $_GET['parentID'] ) );
+			$title = $this->sanitize_title( $_GET['is_section'] );
+			$children = get_children( [ 'post_parent' => $parent_id, 'post_type' => 'docs' ] );
+			$status = ezd_is_premium() ? get_post_status( $parent_id ) : 'publish';
+			$this->create_post( $title, $parent_id, count( $children ) + 2, $status, sanitize_title( $title ) );
+		}
+
+		// Handle child creation
+		if ( isset( $_GET['Create_Child'], $_GET['childID'], $_GET['_wpnonce'], $_GET['child'] ) && 
+			 sanitize_text_field( wp_unslash( $_GET['Create_Child'] ) ) === 'yes' &&
+			 wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), sanitize_text_field( wp_unslash( $_GET['childID'] ) ) ) ) {
+			
+			$child_id = absint( wp_unslash( $_GET['childID'] ) );
+			$title = $this->sanitize_title( $_GET['child'] );
+			$children = get_children( [ 'post_parent' => $child_id, 'post_type' => 'docs' ] );
+			$status = ezd_is_premium() ? get_post_status( $child_id ) : 'publish';
+			$this->create_post( $title, $child_id, count( $children ) + 2, $status, sanitize_title( $title ) );
 		}
 	}
 
 	/**
-	 * Create section doc post
-	*/
-	public function create_section_doc() {
-		if (
-			isset( $_GET['is_section'], $_GET['Create_Section'], $_GET['parentID'], $_GET['_wpnonce'] )
-			&& sanitize_text_field( wp_unslash( $_GET['Create_Section'] ) ) === 'yes'
-			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), sanitize_text_field( wp_unslash( $_GET['parentID'] ) ) )
-		) {
-			$parentID       = absint( wp_unslash( $_GET['parentID'] ) );
-			$section_title  = sanitize_text_field( wp_unslash( $_GET['is_section'] ) );
-			$section_title  = htmlspecialchars( $section_title );
-			$section_slug   = sanitize_title( $section_title );
-
-			$str              = ['ezd_ampersand', 'ezd_hash', 'ezd_plus'];
-			$rplc             = ['&', '#', '+'];
-			$section_title_text = str_replace( $str, $rplc, $section_title );
-
-			$parent_items = get_children([
-				'post_parent' => $parentID,
-				'post_type'   => 'docs'
-			]);
-
-			$order = count( $parent_items ) + 2;
-			$post_status = ezd_is_premium() ? get_post_status( $parentID ) : 'publish';
-
-			$section_doc = [
-				'post_title'   => $section_title_text,
-				'post_name'    => $section_slug,
-				'post_parent'  => $parentID,
-				'post_content' => '',
-				'post_type'    => 'docs',
-				'post_status'  => $post_status,
-				'menu_order'   => $order,
-			];
-
-			$section_doc_id = wp_insert_post( $section_doc );
-			if ( $section_doc_id && ! is_wp_error( $section_doc_id ) ) {
-				wp_update_post([ 'ID' => $section_doc_id ]);
-			}
-
-			wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
-			exit;
-		}
-	}
-
-	/**
-	 * Create child doc post
+	 * Verify action is valid
 	 */
-	public function create_child_doc() {
-		if (
-			isset( $_GET['child'], $_GET['Create_Child'], $_GET['childID'], $_GET['_wpnonce'] )
-			&& sanitize_text_field( wp_unslash( $_GET['Create_Child'] ) ) === 'yes'
-			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), sanitize_text_field( wp_unslash( $_GET['childID'] ) ) )
-		) {
-			$child_id        = absint( wp_unslash( $_GET['childID'] ) );
-			$child_title     = sanitize_text_field( wp_unslash( $_GET['child'] ) );
-			$child_title     = htmlspecialchars( $child_title );
-			$child_slug      = sanitize_title( $child_title );
+	private function verify_action( $action_param, $nonce_action, $title_param ) {
+		return isset( $_GET[ $action_param ], $_GET['_wpnonce'], $_GET[ $title_param ] ) &&
+			   sanitize_text_field( wp_unslash( $_GET[ $action_param ] ) ) === 'yes' &&
+			   wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), $nonce_action );
+	}
 
-			$str               = ['ezd_ampersand', 'ezd_hash', 'ezd_plus'];
-			$rplc              = ['&', '#', '+'];
-			$child_title_text  = str_replace( $str, $rplc, $child_title );
+	/**
+	 * Sanitize and decode title
+	 */
+	private function sanitize_title( $title ) {
+		$title = sanitize_text_field( wp_unslash( $title ) );
+		$title = htmlspecialchars( $title );
+		return str_replace( array_keys( self::$replacements ), array_values( self::$replacements ), $title );
+	}
 
-			$child_items = get_children([
-				'post_parent' => $child_id,
-				'post_type'   => 'docs',
-			]);
+	/**
+	 * Create a doc post
+	 */
+	private function create_post( $title, $parent_id = 0, $menu_order = 1, $status = 'publish', $slug = '' ) {
+		$post_data = [
+			'post_title'   => $title,
+			'post_parent'  => $parent_id,
+			'post_content' => '',
+			'post_type'    => 'docs',
+			'post_status'  => $status,
+			'menu_order'   => $menu_order,
+		];
 
-			$order = count( $child_items ) + 2;
-			$post_status = ezd_is_premium() ? get_post_status( $child_id ) : 'publish';
-
-			$child_doc = [
-				'post_title'   => $child_title_text,
-				'post_name'    => $child_slug,
-				'post_parent'  => $child_id,
-				'post_content' => '',
-				'post_type'    => 'docs',
-				'post_status'  => $post_status,
-				'menu_order'   => $order,
-			];
-
-			$child_doc_id = wp_insert_post( $child_doc );
-			if ( $child_doc_id && ! is_wp_error( $child_doc_id ) ) {
-				wp_update_post([ 'ID' => $child_doc_id ]);
-			}
-
-			wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
-			exit;
+		if ( $parent_id === 0 ) {
+			$post_data['post_author'] = get_current_user_id();
 		}
+
+		if ( ! empty( $slug ) ) {
+			$post_data['post_name'] = $slug;
+		}
+
+		$post_id = wp_insert_post( $post_data );
+
+		if ( ! is_wp_error( $post_id ) ) {
+			wp_update_post( [ 'ID' => $post_id ] );
+		}
+
+		wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
+		exit;
 	}
 }

@@ -148,6 +148,11 @@ function ezd_notify_save_review() {
 			exit();
 		}
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => 'Unauthorized user' ) );
+			exit();
+		}
+
 		if ( $field == 'later' ) {
 			update_option( 'ezd_notify_review', time() + 3 * 60 * 60 * 24 ); //After 3 days show
 		} else if ( $field == 'alreadyDid' ) {

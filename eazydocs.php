@@ -20,98 +20,63 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( function_exists( 'eaz_fs' ) ) {
 	eaz_fs()->set_basename( false, __FILE__ );
 } else {
-	// DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
-
-	if ( ! function_exists( 'eaz_fs' ) ) {
-
-		// Retrieve the Eazydocs settings option
-		$opt 			= get_option('eazydocs_settings', []);
-		// Check if the setup wizard has been completed (defaulting to an empty string if not set)
-		$setup_wizard 	= $opt['setup_wizard_completed'] ?? '';
-
-		// Check if the setup wizard is not completed and ezd_get_setup_wizard option is set
-		if ( get_option( 'ezd_get_setup_wizard' ) && ! empty( $setup_wizard ) ) {
-			// Remove the activation flag if the setup wizard is not completed
-			delete_option( 'ezd_get_setup_wizard' );
-		}
-
-		// Create a helper function for easy SDK access.
-		function eaz_fs() {
-			global $eaz_fs;
-
-			if ( ! isset( $eaz_fs ) ) {
-				// Include Freemius SDK.
-				require_once dirname( __FILE__ ) . '/vendor/fs/start.php';
-
-				$eaz_fs = fs_dynamic_init(
-					[
-						'id'                => '10290',
-						'slug'              => 'eazydocs',
-						'premium_slug'      => 'eazydocs-pro',
-						'type'              => 'plugin',
-						'public_key'        => 'pk_8474e4208f0893a7b28c04faf5045',
-						'is_premium'        => false,
-						'is_premium_only'   => false,
-						'has_addons'        => false,
-						'has_paid_plans'    => true,
-						'trial'             => [
-							'days'               => 14,
-							'is_require_payment' => true,
-						],
-						'menu'              => [
-							'slug'          => 'eazydocs',
-							'contact'       => false,
-							'support'       => false,
-							'first-path'    => get_option('ezd_get_setup_wizard') ? 'admin.php?page=eazydocs-initial-setup' : 'admin.php?page=eazydocs'
-						],
-                        'parallel_activation' => array(
-                                'enabled'                  => true,
-                                'premium_version_basename' => 'eazydocs-pro/eazydocs.php',
-                        ),
-					]
-				);
-			}
-
-			return $eaz_fs;
-		}
-
-		// Add filter to hide the Freemius badge from the plugin page.
-		eaz_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
-
-		// Signal that SDK was initiated.
-		do_action( 'eaz_fs_loaded' );
+	// Check setup wizard completion
+	$opt = get_option( 'eazydocs_settings', [] );
+	if ( get_option( 'ezd_get_setup_wizard' ) && ! empty( $opt['setup_wizard_completed'] ) ) {
+		delete_option( 'ezd_get_setup_wizard' );
 	}
+
+	// Create SDK helper function
+	function eaz_fs() {
+		global $eaz_fs;
+
+		if ( ! isset( $eaz_fs ) ) {
+			require_once dirname( __FILE__ ) . '/vendor/fs/start.php';
+
+			$eaz_fs = fs_dynamic_init( [
+				'id'                      => '10290',
+				'slug'                    => 'eazydocs',
+				'premium_slug'            => 'eazydocs-pro',
+				'type'                    => 'plugin',
+				'public_key'              => 'pk_8474e4208f0893a7b28c04faf5045',
+				'is_premium'              => false,
+				'is_premium_only'         => false,
+				'has_addons'              => false,
+				'has_paid_plans'          => true,
+				'trial'                   => [ 'days' => 14, 'is_require_payment' => true ],
+				'menu'                    => [
+					'slug'       => 'eazydocs',
+					'contact'    => false,
+					'support'    => false,
+					'first-path' => get_option( 'ezd_get_setup_wizard' ) ? 'admin.php?page=eazydocs-initial-setup' : 'admin.php?page=eazydocs',
+				],
+				'parallel_activation'     => [
+					'enabled'                  => true,
+					'premium_version_basename' => 'eazydocs-pro/eazydocs.php',
+				],
+			] );
+		}
+
+		return $eaz_fs;
+	}
+
+	eaz_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
+	do_action( 'eaz_fs_loaded' );
 }
 
 
-use EazyDocs\Post_Types;
-
-// Make sure the same class is not loaded.
 if ( ! class_exists( 'EazyDocs' ) ) {
-
 	require_once __DIR__ . '/vendor/autoload.php';
 
-	/**
-	 * Class EazyDocs
-	 */
 	class EazyDocs {
 
 		// Default constants
 		const version = '2.7.4';
 		public $plugin_path;
 		public $theme_dir_path;
-		public static $dir = '';
 
-		/**
-		 * Constructor.
-		 *
-		 * Initialize the EazyDocs plugin
-		 *
-		 * @access public
-		 */
 		public function __construct() {
 			$this->define_constants();
-			// Include core files in action hook.
 			$this->core_includes();
 
 			register_activation_hook( __FILE__, [ $this, 'activate' ] );
@@ -123,91 +88,68 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				add_action( 'admin_notices', [ $this, 'update_database' ] );
 			}
 
-			// Added Documentation links to plugin row meta
-			add_filter('plugin_row_meta',[ $this,  'eazydocs_row_meta' ], 10, 2);
+			add_filter( 'plugin_row_meta', [ $this, 'eazydocs_row_meta' ], 10, 2 );
 
-			/**
-			 * Removes admin notices on the EazyDocs pages.
-			 *
-			 * @return void
-			 */
 			add_action( 'admin_head', function () {
-				// Check if the current screen is for your plugin page
 				if ( ezd_admin_pages() ) {
-					// Remove admin notices
 					remove_all_actions( 'admin_notices' );
 					remove_all_actions( 'all_admin_notices' );
 
-					// Re-add a specific notice
-                    if ( !ezd_is_premium() && ezd_is_plugin_installed_for_days(12) && (!isset($_GET['page']) || $_GET['page'] !== 'eazydocs-initial-setup') ) {
-	                    add_action('admin_notices', 'ezd_offer_notice');
-                    }
+					if ( ! ezd_is_premium() && ezd_is_plugin_installed_for_days( 12 ) && ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'eazydocs-initial-setup' ) ) {
+						add_action( 'admin_notices', 'ezd_offer_notice' );
+					}
 				}
-			});
-
+			} );
 		}
 
-		// get the instance of the EazyDocs class
 		public static function get_instance() {
 			static $instance = null;
-
-			if ( null === $instance ) {
-				$instance = new EazyDocs();
-			}
-
-			return $instance;
+			return $instance ?: ( $instance = new self() );
 		}
 
-		/**
-		 * Include Files
-		 *
-		 * Load core files required to run the plugin.
-		 *
-		 * @access public
-		 */
 		public function core_includes() {
 			require_once __DIR__ . '/includes/functions.php';
-			// Notices
 			require_once __DIR__ . '/includes/notices/_notices.php';
 
 			if ( eaz_fs()->is_plan( 'promax' ) ) {
 				require_once __DIR__ . '/includes/notices/update-database.php';
 			}
 
-			require_once __DIR__ . '/includes/sidebars.php';
-			require_once __DIR__ . '/includes/Frontend/Ajax.php';
-			require_once __DIR__ . '/includes/Frontend/Mailer.php';
-			require_once __DIR__ . '/includes/Post_Types.php';
-			require_once __DIR__ . '/includes/One_Page_Docs.php';
-			require_once __DIR__ . '/includes/One_Page.php';
-			require_once __DIR__ . '/includes/Frontend/Shortcode.php';
-			require_once __DIR__ . '/includes/Frontend/post-views.php';
-			require_once __DIR__ . '/includes/Frontend/search-counts.php';
-			require_once __DIR__ . '/includes/Walker_Docs_Onepage.php';
-			require_once __DIR__ . '/includes/Walker_Docs_Onepage_Fullscreen.php';
-			require_once __DIR__ . '/includes/Admin/setup-wizard/Plugin_Installer.php';
+			$core_files = [
+				'/includes/sidebars.php',
+				'/includes/Frontend/Ajax.php',
+				'/includes/Frontend/Mailer.php',
+				'/includes/Post_Types.php',
+				'/includes/One_Page_Docs.php',
+				'/includes/One_Page.php',
+				'/includes/Frontend/Shortcode.php',
+				'/includes/Frontend/post-views.php',
+				'/includes/Frontend/search-counts.php',
+				'/includes/Walker_Docs_Onepage.php',
+				'/includes/Walker_Docs_Onepage_Fullscreen.php',
+				'/includes/Admin/setup-wizard/Plugin_Installer.php',
+			];
 
-			if ( ezd_unlock_themes('docy','docly','ama') ) {
+			foreach ( $core_files as $file ) {
+				require_once __DIR__ . $file;
+			}
+
+			if ( ezd_unlock_themes( 'docy', 'docly', 'ama' ) ) {
 				require_once __DIR__ . '/shortcodes/reference.php';
 			}
-			require_once __DIR__ . '/shortcodes/conditional_data.php';
 
-			// Include and Register the Shortcode for Displaying Single Docs Content
+			require_once __DIR__ . '/shortcodes/conditional_data.php';
 			require_once __DIR__ . '/shortcodes/ezd-view-docs.php';
 
 			if ( ezd_is_premium() ) {
-				// Remove docs slug from URLs
-				$docs_url 			= ezd_get_opt('docs-url-structure', 'custom-slug');
-				$permalink 			= get_option('permalink_structure');
+				$docs_url   = ezd_get_opt( 'docs-url-structure', 'custom-slug' );
+				$permalink  = get_option( 'permalink_structure' );
 
-				if ( $docs_url == 'post-name' ) {
-					if ( empty ( $permalink == '' || $permalink == '/archives/%post_id%' ) ) {
-						require_once __DIR__ . '/includes/Root_Conversion.php';
-					}
+				if ( $docs_url === 'post-name' && ! empty( $permalink ) && $permalink !== '/archives/%post_id%' ) {
+					require_once __DIR__ . '/includes/Root_Conversion.php';
 				}
 			}
 
-			// Blocks
 			require_once __DIR__ . '/blocks.php';
 		}
 
@@ -253,25 +195,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			}
 		}
 
-		/**
-		 * Initializes a singleton instances
-		 *
-		 * @return void
-		 */
 		public static function init() {
 			static $instance = false;
-			if ( ! $instance ) {
-				$instance = new self();
-			}
-
-			return $instance;
+			return $instance ?: ( $instance = new self() );
 		}
 
-		/**
-		 * Initializes the plugin based on the locations
-		 *
-		 * @return void
-		 */
 		public function init_plugin() {
 			$this->theme_dir_path = apply_filters( 'eazydocs_theme_dir_path', 'eazydocs/' );
 			if ( is_admin() ) {
@@ -411,37 +339,14 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			}
 		}
 
-		/**
-		 * Get the plugin url.
-		 *
-		 * @return string
-		 */
 		public function plugin_url() {
-			if ( $this->plugin_url ) {
-				return $this->plugin_url;
-			}
-
-			return $this->plugin_url = untrailingslashit( plugins_url( '/', __FILE__ ) );
+			return $this->plugin_url ?: ( $this->plugin_url = untrailingslashit( plugins_url( '/', __FILE__ ) ) );
 		}
 
-		/**
-		 * Get the plugin path.
-		 *
-		 * @return string
-		 */
 		public function plugin_path() {
-			if ( $this->plugin_path ) {
-				return $this->plugin_path;
-			}
-
-			return $this->plugin_path = untrailingslashit( plugin_dir_path( __FILE__ ) );
+			return $this->plugin_path ?: ( $this->plugin_path = untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		}
 
-		/**
-		 * Get the template path.
-		 *
-		 * @return string
-		 */
 		public function template_path() {
 			return $this->plugin_path() . '/templates/';
 		}
@@ -449,38 +354,19 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		/**
 		 * Documentation links to plugin row meta
 		 */
-		public function eazydocs_row_meta($links, $file) {
-			// Check if this is your plugin
-			if (plugin_basename(__FILE__) === $file) {
-				// Add your custom links
-				$plugin_links = array(
-					'<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank">Documentation</a>'
-				);
-				// Merge the custom links with the existing links
-				$links = array_merge($links, $plugin_links);
+		public function eazydocs_row_meta( $links, $file ) {
+			if ( plugin_basename( __FILE__ ) === $file ) {
+				$links[] = '<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank">Documentation</a>';
 			}
 			return $links;
 		}
-		// end
 	}
 }
 
-/**
- * @return EazyDocs|false
- */
 if ( ! function_exists( 'eazydocs' ) ) {
-	/**
-	 * Load eazydocs
-	 *
-	 * Main instance of eazydocs
-	 *
-	 */
 	function eazydocs() {
 		return EazyDocs::init();
 	}
 
-	/**
-	 * Kick of the plugin
-	 */
 	eazydocs();
 }

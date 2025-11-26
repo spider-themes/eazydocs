@@ -1658,6 +1658,8 @@ function customizer_visibility_callback() {
  */
 function ezd_setup_wizard_save_settings() {
 
+	check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
+
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_send_json_error( 'Unauthorized user' );
 	}
@@ -2003,6 +2005,12 @@ function ezd_docs_build_tree_flat( $post_id, &$list ) {
  * This function will create parent docs for each category and re-parent existing docs.
  */
 add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
+
+	check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( ['message' => 'Unauthorized user'] );
+	}
 
 	if ( ! function_exists( 'is_plugin_active' ) ) {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';

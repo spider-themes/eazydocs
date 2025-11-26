@@ -72,7 +72,8 @@ class Edit_OnePage {
             $_GET['edit_onepage'] === 'yes' &&
             ! empty($_GET['doc_id']) &&
             ! empty($_GET['_wpnonce']) &&
-            wp_verify_nonce( wp_unslash($_GET['_wpnonce']), absint($_GET['doc_id']) )
+            wp_verify_nonce( wp_unslash($_GET['_wpnonce']), absint($_GET['doc_id']) ) &&
+            current_user_can( 'edit_posts' )
         ) {
 
             $page_id            = absint( $_GET['doc_id'] );

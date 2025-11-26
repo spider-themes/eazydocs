@@ -68,6 +68,10 @@ if ( ! function_exists( 'csf_export' ) ) {
       die( esc_html__( 'Error: Invalid nonce verification.', 'eazydocs' ) );
     }
 
+    if ( ! current_user_can( 'manage_options' ) ) {
+      die( esc_html__( 'Error: You do not have permission to do that.', 'eazydocs' ) );
+    }
+
     if ( empty( $unique ) ) {
       die( esc_html__( 'Error: Invalid key.', 'eazydocs' ) );
     }
@@ -106,6 +110,10 @@ if ( ! function_exists( 'csf_import_ajax' ) ) {
       wp_send_json_error( array( 'error' => esc_html__( 'Error: Invalid nonce verification.', 'eazydocs' ) ) );
     }
 
+    if ( ! current_user_can( 'manage_options' ) ) {
+      wp_send_json_error( array( 'error' => esc_html__( 'Error: You do not have permission to do that.', 'eazydocs' ) ) );
+    }
+
     if ( empty( $unique ) ) {
       wp_send_json_error( array( 'error' => esc_html__( 'Error: Invalid key.', 'eazydocs' ) ) );
     }
@@ -139,6 +147,10 @@ if ( ! function_exists( 'csf_reset_ajax' ) ) {
 
     if ( ! wp_verify_nonce( $nonce, 'csf_backup_nonce' ) ) {
       wp_send_json_error( array( 'error' => esc_html__( 'Error: Invalid nonce verification.', 'eazydocs' ) ) );
+    }
+
+    if ( ! current_user_can( 'manage_options' ) ) {
+      wp_send_json_error( array( 'error' => esc_html__( 'Error: You do not have permission to do that.', 'eazydocs' ) ) );
     }
 
     // Success
