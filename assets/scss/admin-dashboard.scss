@@ -17,6 +17,7 @@
         right: 0;
         z-index: 11;
         border-radius: 4px;
+        border-bottom: 1px solid #adadad61;
         .ezd-logo-container {
             display: flex;
             align-items: center;
@@ -87,16 +88,36 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    position: relative;
                     .ezd-stat-label {
                         color: black;
                         font-size: 14px;
                         margin: 0;
                         font-weight: 500;
                     }
-                    .ezd-stat-icon,
-                    .ezd-stat-icon-positive,
-                    .ezd-stat-icon-negative {
-                        font-size: 24px;
+                    .ezd-stat-card-icons{
+                        position: absolute;
+                        top: 0px;
+                        right: 0px;
+                        a{
+                            text-decoration: none;
+                            display: block;
+                            margin-top: 15px;
+                            img {
+                                margin-top: 2px;
+                                margin-left: 2px;
+                            }
+                        }
+                        span{
+                            display: block;
+                            font-size: 24px;
+                            &:last-child {
+                                font-size: 20px;
+                                margin-bottom: 0;
+                                color: #004eff;
+                                margin-top: 17px;
+                            }
+                        }
                     }
                     .ezd-stat-icon-positive {
                         color: #10b981;
@@ -182,6 +203,31 @@
                 list-style: none;
                 padding: 0;
                 margin: 10px 0 0;
+                .t-success{
+                    color: #27AE60
+                }
+                .t-danger{
+                    color: #E74C3C
+                }
+                .ezd-activity-meta {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    margin: 10px 0 5px;
+                    .ezd-votes {
+                        display: flex;
+                        gap: 10px;
+                        margin-right: 5px;
+                    }
+                    .ezd-progress{
+                        progress{
+                            margin: 0;
+                            padding: 8px;
+                            width: 80px;
+                            filter: hue-rotate(45deg);
+                        }
+                    }
+                }
                 .ezd-activity-item {
                     display: flex;
                     align-items: flex-start;
@@ -226,7 +272,12 @@
                     .ezd-activity-time {
                         font-size: 12px;
                         color: #4b5563;
-                        margin: 4px 0 0;
+                        margin: 6px 0 0;
+                        .ezd-state-view-icon{
+                            font-size: 16px;
+                            line-height: 19px;
+                            color: black;
+                        }
                     }
                 }
             }
@@ -240,7 +291,7 @@
     }
 }
 
-.ezd-filter-container{
+.ezd-stat-filter-container{
     margin: 12px 20px -12px;
     ul {
         margin: 0;
@@ -253,6 +304,7 @@
             line-height: 13px;
             box-shadow: none;
             cursor: pointer;
+            &.is-active,
             &:hover {
                 background: blue;
                 color: #fff;

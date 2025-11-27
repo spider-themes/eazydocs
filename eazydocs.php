@@ -83,11 +83,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_action( 'init', [ $this, 'init_hooked' ] );
 			add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 			add_action( 'after_setup_theme', [ $this, 'load_csf_files' ], 20 );
-
-			if ( eaz_fs()->is_plan( 'promax' ) ) {
-				add_action( 'admin_notices', [ $this, 'update_database' ] );
-			}
-
+			add_action( 'admin_notices', [ $this, 'update_database' ] );
 			add_filter( 'plugin_row_meta', [ $this, 'eazydocs_row_meta' ], 10, 2 );
 
 			add_action( 'admin_head', function () {
@@ -110,11 +106,8 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		public function core_includes() {
 			require_once __DIR__ . '/includes/functions.php';
 			require_once __DIR__ . '/includes/notices/_notices.php';
-
-			if ( eaz_fs()->is_plan( 'promax' ) ) {
-				require_once __DIR__ . '/includes/notices/update-database.php';
-			}
-
+			require_once __DIR__ . '/includes/notices/update-database.php';
+			
 			$core_files = [
 				'/includes/sidebars.php',
 				'/includes/Frontend/Ajax.php',
@@ -253,14 +246,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				];
 				wp_insert_post( $docs_page );
 			}
-
-			if ( eaz_fs()->is_plan( 'promax' ) ) {
-				$this->create_analytics_db_tables();
-			}
-
+			
+			$this->create_analytics_db_tables();
+			
 			// Update the option when the setup wizard is activated
 			update_option('ezd_get_setup_wizard', true);
-
 		}
 
 		/**

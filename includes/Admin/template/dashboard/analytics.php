@@ -1,9 +1,9 @@
 <div class="ezd-card ezd-grid-col-lg-2">
     <div class="ezd-card-header">
         <h2 class="ezd-card-title"><?php esc_html_e( 'Performance Overview', 'eazydocs' ); ?></h2>
-        <div class="ezd-filter-container">
+        <div class="ezd-stat-filter-container">
             <ul>
-                <li data-filter="weekly" onclick="OverviewWeekly()">
+                <li class="is-active" data-filter="weekly" onclick="OverviewWeekly()">
                     <?php esc_html_e( 'This Week', 'eazydocs' ); ?>
                 </li>
                 <li data-filter=".lastmonth" onclick="OverviewLastmonth()">

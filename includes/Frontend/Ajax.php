@@ -281,7 +281,7 @@ class Ajax {
 			$is_all_user = $user_group['private_doc_all_user'] ?? 0;
 			if ( $is_all_user == 0 ) {
 				$current_user_id    = get_current_user_id();
-				$current_user       = new WP_User( $current_user_id );
+				$current_user       = new \WP_User( $current_user_id );
 				$current_roles      = ( array ) $current_user->roles;
 				$private_doc_roles  = $user_group['private_doc_roles'] ?? [];
 				$matching_roles 	= array_intersect($current_roles, $private_doc_roles);

@@ -1,5 +1,5 @@
 <div class="ezd-card">
-    <h2 class="ezd-card-title"><?php esc_html_e( 'Top Products', 'eazydocs' ); ?></h2>
+    <h2 class="ezd-card-title"><?php esc_html_e( 'Top Viewed Docs', 'eazydocs' ); ?></h2>
     <?php
     $args = array(
         'post_type'      => 'docs',
@@ -18,7 +18,7 @@
                 <li class="ezd-activity-item">                
                     <div class="ezd-activity-icon-wrapper ezd-icon-bg-blue" bis_skin_checked="1">
                         <a target="_blank" href="<?php the_permalink(); ?>" class="ezd-quick-links-link">
-                            <span class="dashicons dashicons-admin-links"></span>
+                            <img src="<?php echo EAZYDOCS_IMG . '/icon/external-white.svg'; ?>" />
                         </a>
                     </div>
                     <div>
@@ -26,7 +26,11 @@
                             <a target="_blank" href="<?php the_permalink(); ?>" ><?php the_title(); ?></a>
                         </p>
                         <p class="ezd-activity-time"> 
-                            <?php echo esc_html( human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ago' ); ?>
+                            <span class="dashicons dashicons-visibility ezd-state-view-icon"></span>
+                            <?php 
+                            echo get_post_meta( get_the_ID(), 'post_views_count', true );
+                            esc_html_e( ' Views', 'eazydocs' ); 
+                            ?>
                         </p>
                     </div>
                 </li>
@@ -35,7 +39,7 @@
             wp_reset_postdata(); 
         else :
             ?>
-            <li class="ezd-activity-item"><?php esc_html_e( 'No product found.', 'eazydocs' ); ?></li>
+            <li class="ezd-activity-item"><?php esc_html_e( 'No viewed docs found.', 'eazydocs' ); ?></li>
             <?php
         endif;
         ?>

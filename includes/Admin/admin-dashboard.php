@@ -171,8 +171,10 @@ $total_disliked = $total ? round(($disliked / $total) * 100) : 0;
             <?php 
             // Include recent-activity.php
             include __DIR__ . '/template/dashboard/recent-activity.php';
-            // Include top-products.php
-            include __DIR__ . '/template/dashboard/top-products.php'; 
+            // Include top-ranked-docs.php
+            include __DIR__ . '/template/dashboard/top-ranked-docs.php'; 
+            // Include top-viewed-docs.php
+            include __DIR__ . '/template/dashboard/top-viewed-docs.php'; 
             ?>            
         </div>
     </main>

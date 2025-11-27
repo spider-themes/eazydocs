@@ -35,25 +35,29 @@
 
 		// Sidebar Tabs [COOKIE]
 		$(document).on('click', '.tab-menu .easydocs-navitem', function () {
+
+			// REMOVE ?tab=something ONLY AFTER CLICK
+			const url = new URL(window.location.href);
+			if (url.searchParams.has('more_state')) {
+				url.searchParams.delete('more_state');
+				window.history.replaceState({}, document.title, url.toString());
+			}
+
 			let target = $(this).attr('data-rel');
 			$('.tab-menu .easydocs-navitem').removeClass('is-active');
 			$(this).addClass('is-active');
 			$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active');
 			$('#' + target).addClass('tab-active').fadeIn('slow').siblings('.easydocs-tab').hide();
 
-			let is_active_tab = $('.tab-menu .easydocs-navitem').hasClass(
-				'is-active'
-			);
+			let is_active_tab = $('.tab-menu .easydocs-navitem').hasClass('is-active');
 			if (is_active_tab === true) {
-				let active_tab_id = $('.easydocs-navitem.is-active').attr(
-					'data-rel'
-				);
+				let active_tab_id = $('.easydocs-navitem.is-active').attr('data-rel');
 				createCookie('eazydocs_doc_current_tab', active_tab_id, 999);
 			}
 
 			return true;
 		});
-
+		
 		// Remain the last active doc tab
 		function keep_last_active_doc_tab() {
 			let doc_last_current_tab = readCookie('eazydocs_doc_current_tab');
@@ -73,14 +77,38 @@
 			}
 		}
 
-		keep_last_active_doc_tab();
+		// Check URL parameter tab
+		function ezd_check_url_more_state() {
+			const urlParams  = new URLSearchParams(window.location.search);
+			const more_state = urlParams.get('more_state');
 
-		$('.tab-menu .easydocs-navitem .parent-delete').on(
-			'click',
-			function () {
-				return false;
+			if (more_state) {
+				// Remove previous active
+				$('.tab-menu .easydocs-navitem').removeClass('is-active');
+				$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active');
+
+				// Activate target tab
+				$('.tab-menu .easydocs-navitem[data-rel="' + more_state + '"]').addClass('is-active');
+				$('#' + more_state).addClass('tab-active').show();
+
+				// Save to cookie
+				createCookie('eazydocs_doc_current_tab', more_state, 999);
+
+				return true;
 			}
-		);
+
+			return false;
+		}
+
+		// First check URL parameter tab
+		if ( ! ezd_check_url_more_state() ) {
+			// If no tab in URL, use cookie
+			keep_last_active_doc_tab();
+		}
+
+		$('.tab-menu .easydocs-navitem .parent-delete').on( 'click', function () {
+			return false;
+		} );
 
 		$(document).ready(function (e) {
 			function t(t) {
@@ -506,6 +534,16 @@
 			}
 		});
 	}
+
+	// Analytics Stats Filter Active Class Toggle
+	$(".ezd-stat-filter-container ul li").on("click", function() {
+        // Remove active class from all
+        $(".ezd-stat-filter-container ul li").removeClass("is-active");
+		
+        // Add active class to the clicked one
+        $(this).addClass("is-active");
+    });
+
 })(jQuery);
 
 function menuToggle() {

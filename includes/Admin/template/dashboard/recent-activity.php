@@ -1,4 +1,4 @@
-<div class="ezd-card ezd-grid-col-lg-2">
+<div class="ezd-card">
     <?php
     /** 
      * Combined Recent Activity for 'docs' post type.
