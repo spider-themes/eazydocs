@@ -126,7 +126,7 @@ class One_Page {
         $post_slug  = get_post_field( 'post_name', $parent_id ) ?: sanitize_title( $page_title );
 
         // Decide redirect target
-        $redirect = empty( $_GET['self_doc'] ) ? 'admin.php?page=eazydocs' : 'edit.php?post_type=onepage-docs';
+        $redirect = empty( $_GET['self_doc'] ) ? 'admin.php?page=eazydocs-builder' : 'edit.php?post_type=onepage-docs';
 
         // Create post array
         $one_page_doc = [

@@ -97,10 +97,9 @@ class Admin {
 		}
 		
 		$ezd_menu_title = ezd_get_opt( 'docs_menu_title' ) ?: ( class_exists( 'EZD_EazyDocsPro' ) ? esc_html__( 'EazyDocs Pro', 'eazydocs' ) : esc_html__( 'EazyDocs', 'eazydocs' ) );
-		
-		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_page' ], 'dashicons-media-document', 10 );
-		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs' );
-		add_submenu_page( 'eazydocs', esc_html__( 'Dashboard', 'eazydocs' ), esc_html__( 'Dashboard', 'eazydocs' ), 'manage_options', 'eazydocs-dashboard', [ $this, 'eazydocs_dashboard' ] );
+		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_dashboard' ], 'dashicons-media-document', 10 );
+		add_submenu_page( 'eazydocs', esc_html__( 'Dashboard', 'eazydocs' ), esc_html__( 'Dashboard', 'eazydocs' ), 'manage_options', 'eazydocs' );
+		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs-builder', [ $this, 'eazydocs_builder' ] );
 
 		if ( ezd_is_premium() ) {
 			if ( $is_customizer ) {
@@ -141,7 +140,7 @@ class Admin {
 	/**
 	 * Docs page
 	 */
-	public function eazydocs_page() {
+	public function eazydocs_builder() {
 		include __DIR__ . '/admin-template.php';
 	}
 

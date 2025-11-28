@@ -114,7 +114,7 @@ class Create_Post {
 			wp_update_post( [ 'ID' => $post_id ] );
 		}
 
-		wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
+		wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' ) );
 		exit;
 	}
 }

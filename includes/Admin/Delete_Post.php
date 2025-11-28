@@ -67,7 +67,7 @@ class Delete_Post {
 							wp_trash_post( $deletes, true );
 						}
 					}
-					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
+					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' ) );
 					exit;
 				}
 			}
@@ -114,7 +114,7 @@ class Delete_Post {
 							wp_trash_post( $deletes, true );
 						}
 					}
-					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
+					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' ) );
 					exit;
 				}
 			}
@@ -135,7 +135,7 @@ class Delete_Post {
 					if ( get_post( $last_doc_id ) ) {
 						wp_trash_post( $last_doc_id, true );
 					}
-					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs' ) );
+					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' ) );
 					exit;
 				}
 			}
