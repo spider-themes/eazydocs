@@ -806,7 +806,12 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 }
 #ezd-search-results .search-result-item:hover {
   background: var(--ezd_brand_color);
-  border-radius: 10px;
+}
+#ezd-search-results .search-result-item:hover:nth-child(2) {
+    border-radius: 8px 8px 0px 0px;
+}
+#ezd-search-results .search-result-item:hover:last-child {
+    border-radius: 0px 0px 8px 8px;
 }
 .body_dark .elementor-widget-ezd_search_form input#ezd_searchInput {
     color: var(--black_90);

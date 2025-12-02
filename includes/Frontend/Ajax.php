@@ -208,7 +208,19 @@ class Ajax {
 				);
 			}
 		}
-
+		?>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				document.querySelectorAll('.search-result-item').forEach(function(item) {
+					item.addEventListener('click', function(e) {
+						if (e.target.tagName === 'A' || e.target.closest('a')) return;
+						let url = this.getAttribute('data-url');
+						if (url) window.location.href = url;
+					});
+				});
+			});
+		</script>
+		<?php
 		// --- OUTPUT RESULTS (unchanged) ---
 		if ( $posts->have_posts() ) :
 			while ( $posts->have_posts() ) : $posts->the_post();
@@ -237,26 +249,14 @@ class Ajax {
 				</div>
 				<?php
 			endwhile;
-		else :
-			?>
-			<div><h5 class="error title"><?php esc_html_e('No result found!', 'eazydocs'); ?></h5></div>
-			<?php
+			else :
+				?>
+				<div><h5 class="error title"><?php esc_html_e('No result found!', 'eazydocs'); ?></h5></div>
+				<?php
 		endif;
 
 		wp_reset_postdata();
-		?>
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				document.querySelectorAll('.search-result-item').forEach(function(item) {
-					item.addEventListener('click', function(e) {
-						if (e.target.tagName === 'A' || e.target.closest('a')) return;
-						let url = this.getAttribute('data-url');
-						if (url) window.location.href = url;
-					});
-				});
-			});
-		</script>
-		<?php
+		
 		die();
 	}
 
