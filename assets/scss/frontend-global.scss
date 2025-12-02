@@ -83,6 +83,13 @@ nav .breadcrumb {
 .eazydocs_shortcode {
 	.ezd-d-flex {
 		flex-wrap: wrap;
+		gap: 12px;
+
+		img {
+			margin: 0;
+			max-height: 45px;
+			margin-top: 5px;
+		}
 
 		&.ezd-masonry {
 			.ezd-col-width {
