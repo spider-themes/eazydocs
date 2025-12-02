@@ -3,7 +3,7 @@
     <?php
     $args = array(
         'post_type'      => 'docs',
-        'posts_per_page' => 5,
+        'posts_per_page' => 10,
         'meta_key'       => 'post_views_count',
         'orderby'        => 'meta_value_num',
         'order'          => 'DESC',

@@ -7,7 +7,7 @@
      * - Merges, sorts by date desc and limits result.
      */
 
-    $limit = 5; // number of activity items to show
+    $limit = 10; // number of activity items to show
 
     // 1) Get recent comments for docs (fetch more than $limit to allow dedupe)
     $recent_comments = get_comments([

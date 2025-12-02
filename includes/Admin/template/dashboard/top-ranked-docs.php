@@ -7,7 +7,7 @@
     // Fetch all docs
     $posts = get_posts([
         'post_type'      => 'docs',
-        'posts_per_page' => 5,
+        'posts_per_page' => 10,
     ]);
 
     // Build ranking data
