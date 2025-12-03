@@ -173,7 +173,7 @@ Everything in Pro, plus advanced analytics and management:
 EazyDocs is developed by [Spider Themes](https://spider-themes.net), a team of experienced WordPress developers dedicated to creating powerful, user-friendly plugins. Our mission is to help businesses and creators build professional documentation without complexity.
 
 **Why You Can Trust EazyDocs:**
-✓ Over 50,000+ active installations
+✓ Over 2,000+ active installations
 ✓ Trusted by businesses worldwide
 ✓ Continuously updated and improved
 ✓ Active community support
