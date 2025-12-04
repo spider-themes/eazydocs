@@ -219,7 +219,7 @@
                         
                         <div class="ezd-ai-video-wrapper">
                             <video autoplay muted loop playsinline>
-                                <source src="https://wpeazyai.spider-themes.net/wp-content/uploads/2025/08/AI-Doc-generate.mp4" type="video/mp4">
+                                    <source src="https://antimanual.spider-themes.net/wp-content/uploads/2025/08/AI-Doc-generate.mp4" type="video/mp4">
                             </video>
                         </div>
 
@@ -237,12 +237,12 @@
                         </div>
 
                         <div class="ezd-ai-popup-footer">
-                            <a href="https://wpeazyai.spider-themes.net/ai-doc-generator/" target="_blank" class="ezd-ai-btn ezd-ai-btn-primary">
+                            <a href="https://antimanual.spider-themes.net/ai-doc-generator/" target="_blank" class="ezd-ai-btn ezd-ai-btn-primary">
                                 Explore Feature
                                 <span class="dashicons dashicons-external"></span>
                             </a>
-                            <a href="https://wpeazyai.spider-themes.net/pricing/" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
-                                Get WpEazy AI
+                            <a href="https://antimanual.spider-themes.net/pricing/" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
+                                Get Antimanual
                                 <span class="dashicons dashicons-download"></span>
                             </a>
                         </div>

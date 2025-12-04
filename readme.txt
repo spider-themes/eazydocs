@@ -4,7 +4,7 @@ Tags: knowledge base, wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.7.4
+Stable tag: 2.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -150,6 +150,7 @@ Unlock professional features perfect for growing businesses:
 - Editable Single Doc Sidebars
 - Full RTL Compatibility
 - Users Feedback Database
+- Attach documents to any page
 
 = EazyDocs Promax - Complete Solution =
 Everything in Pro, plus advanced analytics and management:
@@ -265,6 +266,23 @@ After activation, you'll see a setup wizard to help you create your first knowle
 
 == Changelog ==
 
+= 2.8.0 (03 December 2025) =
+New: Added dedicated EazyDocs Admin Dashboard page
+New: Added featured image support for the EazyDocs shortcode
+Fixed: Prevented empty search submissions in all EazyDocs search forms
+Fixed: Improved Previous/Next docs navigation markup and resolved structural inconsistencies
+Improved: Major dashboard UI and analytics enhancements
+    – Added “View More” analytics link inside dashboard cards
+    – Fixed active-state issue on the Performance tab
+    – Updated search analytics chart with grey fallback when data is missing
+    – Added Top Ranked Docs section for engagement insights
+Improved: WpEazy AI presentation added inside the Doc Builder
+Improved: Enhanced security with added nonce verification and capability checks across AJAX/admin actions
+Improved: Refactored doc creation logic to unify handlers and simplify Create_Post workflow
+Improved: Strengthened permission checks across review notices, CSF import/export/reset, and one-page edit actions
+Improved: Refactored Google_Login enrollment logic for clarity and maintainability
+Improved: Refreshed search banner and breadcrumb colors for a cleaner look
+
 = 2.7.4 (14 November 2025) =
 Fixed: Database deadlock issue caused by uppercase SQL column types in CREATE TABLE statements triggering unnecessary dbDelta operations on every request
 Fixed: Local File Inclusion (LFI) vulnerability patched in template loading functions
@@ -309,21 +327,6 @@ Tweaked: Docs Builder UI improved
 Tweaked: Improved the review notice design
 Tweaked: Removed unnecessary padding from highlighted text in left sidebar
 Updated: Freemius SDK updated to 2.12.2
-
-= 2.7.0 (17 August 2025) =
-New: Added Migration Tool to move docs from BetterDocs to EazyDocs (Go to EazyDocs > Migration, click “Start Migration,” then review and delete BetterDocs)
-New: Added Google Login functionality with configurable settings
-New: Added setting to enable/disable search form submission via Enter key or search icon
-Fixed: Security issues by properly escaping output
-Fixed: Resolved correct previous/next navigation order in Docs hierarchy
-Fixed: Fixed incorrect child doc ordering in the left sidebar
-Fixed: A PHP deprecation issue fixed on includes/functions.php file
-Fixed: Quote sign wasn't rendering correctly on Feedback email subject and email body
-Fixed: Doc Tab ID Format wasn't working in the MultiDocs Elementor widget. Now it's fixed with optimized code for better performance
-Tweaked: Drafted docs shows on sidebar
-Tweaked: Update pro feature unlock logic with active theme conditions and improve
-Tweaked: Improved search result order in ajax search
-Tweaked: Improved CSS to handle overflow when many docs are present in the sidebar
 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 
