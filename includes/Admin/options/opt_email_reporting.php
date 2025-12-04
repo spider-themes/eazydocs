@@ -1,6 +1,7 @@
 <?php
 /**
- * Cannot access directly.
+ * Analytics Email Reports
+ * Configure automated email reports for documentation performance.
  */
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -10,15 +11,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Create a section
 CSF::createSection( $prefix, array(
   'id'     => 'reporting_opt',
-  'title'  => __( 'Email Reporting', 'eazydocs' ),
+  'title'  => __( 'Email Reports', 'eazydocs' ),
   'icon'   => 'dashicons dashicons-email-alt',
   'fields' => array(
 
     array(
       'id'      => 'reporting_enabled',
       'type'    => 'switcher',
-      'title'   => __( 'Enabled / Disabled', 'eazydocs' ),
-      'label'   => __( 'Enable or Disable Email Reporting', 'eazydocs' ),
+      'title'   => __( 'Automated Reports', 'eazydocs' ),
+      'subtitle'   => __( 'Receive periodic email summaries of your documentation analytics and performance metrics.', 'eazydocs' ),
 	  'class'      => 'eazydocs-promax-notice',
       'default' => false
     ),
@@ -26,14 +27,15 @@ CSF::createSection( $prefix, array(
     array(
       'id'      => 'reporting_frequency',
       'type'    => 'select',
-      'title'   => __( 'Reporting Frequency', 'eazydocs' ),
+      'title'   => __( 'Report Frequency', 'eazydocs' ),
+      'subtitle'   => __( 'Choose how often you want to receive analytics reports.', 'eazydocs' ),
 	  'dependency' => array(
 			array( 'reporting_enabled', '==', 'true' ),
 	   ),
       'options' => array(
-        'daily'   => __( 'Once Daily', 'eazydocs' ),
-        'weekly'  => __( 'Once Weekly', 'eazydocs' ),
-        'monthly' => __( 'Once Monthly', 'eazydocs' ),
+        'daily'   => __( 'Daily', 'eazydocs' ),
+        'weekly'  => __( 'Weekly', 'eazydocs' ),
+        'monthly' => __( 'Monthly', 'eazydocs' ),
       ),
 	  'class'      => 'eazydocs-promax-notice',
       'default' => 'daily',
@@ -42,8 +44,8 @@ CSF::createSection( $prefix, array(
 	array(
 		'id'		  => 'reporting_day',
 		'type'        => 'select',
-		'title'       => __( 'Reporting Day', 'eazydocs' ),
-		'desc'	  => __( 'This is only applicable for the "Weekly" report', 'eazydocs' ),
+		'title'       => __( 'Weekly Report Day', 'eazydocs' ),
+		'subtitle'	  => __( 'Select which day of the week to send weekly reports.', 'eazydocs' ),
 		'multiple'    => false,
 		'dependency' => array(
 				array( 'reporting_enabled', '==', 'true' ),
@@ -65,18 +67,19 @@ CSF::createSection( $prefix, array(
 	array(
 		'id'          => 'reporting_data',
 		'type'        => 'select',
-		'title'       => __( 'Select Reporting Data', 'eazydocs' ),
+		'title'       => __( 'Report Contents', 'eazydocs' ),
+		'subtitle'    => __( 'Select which metrics to include in your reports.', 'eazydocs' ),
 		'chosen'      => true,
 		'multiple'    => true,
-		'placeholder' => __( 'Select an option', 'eazydocs' ),
+		'placeholder' => __( 'Select metrics...', 'eazydocs' ),
 	    'dependency' => array(
 			array( 'reporting_enabled', '==', 'true' ),
 	     ),
 		'options' => array(
-			'views'    => __( 'Views', 'eazydocs' ),
-			'searches'  => __( 'Searches', 'eazydocs' ),
-			'reactions'    => __( 'Reactions', 'eazydocs' ),
-			'docs'    => __( 'Docs', 'eazydocs' ),
+			'views'    => __( 'Page Views', 'eazydocs' ),
+			'searches'  => __( 'Search Queries', 'eazydocs' ),
+			'reactions'    => __( 'User Reactions', 'eazydocs' ),
+			'docs'    => __( 'Documentation Stats', 'eazydocs' ),
 		),
 	    'class'      => 'eazydocs-promax-notice',
 		'default' => array( 'views','searches','reactions','docs' )
@@ -85,8 +88,9 @@ CSF::createSection( $prefix, array(
     array(
       'id'      => 'reporting_email',
       'type'    => 'text',
-      'title'   => __( 'Reporting Email', 'eazydocs' ),
-      'default' => 'delweratjk@gmail.com',
+      'title'   => __( 'Recipient Email', 'eazydocs' ),
+      'subtitle'   => __( 'Enter the email address where reports should be sent.', 'eazydocs' ),
+      'default' => get_option( 'admin_email' ),
 	  'dependency' => array(
 		 array( 'reporting_enabled', '==', 'true' ),
 	   ),
@@ -96,7 +100,8 @@ CSF::createSection( $prefix, array(
     array(
       'id'      => 'reporting_heading',
       'type'    => 'text',
-      'title'   => __( 'Reporting Email Subject', 'eazydocs' ),
+      'title'   => __( 'Email Subject Line', 'eazydocs' ),
+      'subtitle'   => __( 'Customize the subject line for report emails.', 'eazydocs' ),
       'default' => __( 'Documentation Analytics Summary', 'eazydocs' ),
 	  'dependency' => array(
 		 array( 'reporting_enabled', '==', 'true' ),
@@ -107,7 +112,8 @@ CSF::createSection( $prefix, array(
     array(
       'id'      => 'reporting_description',
       'type'    => 'textarea',
-      'title'   => __( 'Reporting Email Description', 'eazydocs' ),
+      'title'   => __( 'Email Introduction', 'eazydocs' ),
+      'subtitle'   => __( 'Add a brief introduction message at the top of report emails.', 'eazydocs' ),
       'default' => __( 'Comprehensive analytics for your website documentation', 'eazydocs' ),
 	  'dependency' => array(
 		 array( 'reporting_enabled', '==', 'true' ),
@@ -120,10 +126,11 @@ CSF::createSection( $prefix, array(
 	),
 
 	array(
-      	'title'   => __( 'Reporting Test', 'eazydocs' ),
+      	'title'   => __( 'Send Test Report', 'eazydocs' ),
+      	'subtitle'   => __( 'Send a sample report to verify your email settings are working correctly.', 'eazydocs' ),
 		'id'       => 'reporting_sample',
 		'type'     => 'content',
-		'content' => '<button class="button button-info ezd-analytics-sample-report">Test Report</button>',
+		'content' => '<button class="button button-info ezd-analytics-sample-report">Send Test Email</button>',
 	    'class'      => 'eazydocs-promax-notice',
 		'dependency' => array(
 			array( 'reporting_enabled', '==', 'true' )

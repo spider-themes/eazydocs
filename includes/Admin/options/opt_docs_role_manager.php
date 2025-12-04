@@ -1,6 +1,7 @@
 <?php
 /**
- * Cannot access directly.
+ * User Permissions & Role Management
+ * Control who can create, edit, and manage documentation.
  */
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -11,14 +12,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 //
 CSF::createSection( $prefix, array(
 	'id'     => 'role_manager_fields',
-	'title'  => esc_html__( 'Docs Role Manager', 'eazydocs' ),
+	'title'  => esc_html__( 'User Permissions', 'eazydocs' ),
 	'icon'   => 'dashicons dashicons-businessman',
 	'fields' => [
 		array(
 			'id'       => 'docs-write-access',
 			'type'     => 'select',
-			'title'    => esc_html__( 'Who Can Create Docs?', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Allow users to view & create Docs from the Doc Builder UI in the admin dashboard.', 'eazydocs' ),
+			'title'    => esc_html__( 'Documentation Authors', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Select which user roles can create and manage documentation from the Doc Builder interface.', 'eazydocs' ),
 			'options'  => [
 				'administrator' => esc_html__( 'Administrator', 'eazydocs' ),
 				'editor'        => esc_html__( 'Editor', 'eazydocs' ),
@@ -35,12 +36,12 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'       => 'settings-edit-access',
 			'type'     => 'select',
-			'title'    => esc_html__( 'Who Can Edit Settings?', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Allow users to update options from settings.', 'eazydocs' ),
+			'title'    => esc_html__( 'Settings Managers', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Define which user roles have access to modify EazyDocs settings.', 'eazydocs' ),
 			'options'  => [
-				'manage_options' 	=> esc_html__( 'Administrator', 'eazydocs' ),
-				'publish_pages'     => esc_html__( 'Administrator + Editor', 'eazydocs' ),
-				'publish_posts'     => esc_html__( 'Administrator + Editor + Author', 'eazydocs' ),
+				'manage_options' 	=> esc_html__( 'Administrator Only', 'eazydocs' ),
+				'publish_pages'     => esc_html__( 'Administrator & Editor', 'eazydocs' ),
+				'publish_posts'     => esc_html__( 'Administrator, Editor & Author', 'eazydocs' ),
 			],
 			'chosen'   => true,
 			'default'  => 'manage_options',
@@ -51,8 +52,8 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'       => 'analytics-access',
 			'type'     => 'select',
-			'title'    => esc_html__( 'Who Can Check Analytics?', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Allow users to view and analyze site statistics and performance data.', 'eazydocs' ),
+			'title'    => esc_html__( 'Analytics Viewers', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Choose which user roles can view documentation analytics and performance metrics.', 'eazydocs' ),
 			'options'  => [
 				'administrator' => esc_html__( 'Administrator', 'eazydocs' ),
 				'editor'        => esc_html__( 'Editor', 'eazydocs' ),

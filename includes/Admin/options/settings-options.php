@@ -149,24 +149,60 @@ define( 'EZD_SETTINGS_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
  * Include Files [ SECTIONS ].
-*/
+ *
+ * Organized by functional groups:
+ * 1. Core Settings - Essential configuration options
+ * 2. Appearance - Visual customization options
+ * 3. Content Features - Documentation-specific features
+ * 4. User Access - Authentication and permissions
+ * 5. Integrations - Third-party connections
+ * 6. Advanced - Technical and utility settings
+ */
 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CORE SETTINGS
+// Essential configuration for your documentation
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 include EZD_SETTINGS_PATH . 'opt_docs_general.php';
-include EZD_SETTINGS_PATH . 'opt_dark_mode.php';
 include EZD_SETTINGS_PATH . 'opt_doc_single.php';
-include EZD_SETTINGS_PATH . 'opt_restricted_docs.php';
+include EZD_SETTINGS_PATH . 'opt_onepage_doc.php';
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// APPEARANCE
+// Visual customization and theming options
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+include EZD_SETTINGS_PATH . 'opt_dark_mode.php';
 include EZD_SETTINGS_PATH . 'opt_customizer.php';
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CONTENT FEATURES
+// Documentation-specific functionality
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 include EZD_SETTINGS_PATH . 'opt_footnotes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_shortcodes.php';
-include EZD_SETTINGS_PATH . 'opt_docs_collaboration.php';
-include EZD_SETTINGS_PATH . 'opt_email_reporting.php';
-include EZD_SETTINGS_PATH . 'opt_docs_role_manager.php';
 include EZD_SETTINGS_PATH . 'opt_docs_assistant.php';
 include EZD_SETTINGS_PATH . 'opt_docs_subscription.php';
-include EZD_SETTINGS_PATH . 'opt_onepage_doc.php';
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// USER ACCESS & PERMISSIONS
+// Authentication and role management
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+include EZD_SETTINGS_PATH . 'opt_restricted_docs.php';
+include EZD_SETTINGS_PATH . 'opt_docs_role_manager.php';
+include EZD_SETTINGS_PATH . 'opt_docs_collaboration.php';
 include EZD_SETTINGS_PATH . 'opt_google_login.php';
 
-// Additoinal fields
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// INTEGRATIONS & ANALYTICS
+// Third-party services and reporting
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+include EZD_SETTINGS_PATH . 'opt_email_reporting.php';
+
+// Additional fields from extensions
 do_action('eazydocs_additoinal_csf_fields', $prefix);
 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// UTILITIES
+// Backup, import/export and maintenance
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 include EZD_SETTINGS_PATH . 'opt_backup.php';

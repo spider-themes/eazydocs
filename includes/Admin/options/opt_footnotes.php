@@ -1,6 +1,7 @@
 <?php
 /**
- * Cannot access directly.
+ * Footnotes & References Settings
+ * Configure how footnotes appear in your documentation.
  */
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -15,7 +16,8 @@ CSF::createSection( $prefix, array(
 	'fields' => [
 		ezd_csf_switcher_field([
 			'id'         => 'is_footnotes_heading',
-			'title'      => esc_html__( 'Footnotes Heading', 'eazydocs' ),
+			'title'      => esc_html__( 'Footnotes Section', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Display a dedicated footnotes section at the bottom of documentation pages.', 'eazydocs' ),
 			'text_width' => 72,
 			'default'    => true,
 			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
@@ -24,7 +26,8 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'footnotes_heading_text',
 			'type'       => 'text',
-			'title'      => esc_html__( 'Footnotes Heading Text', 'eazydocs' ),
+			'title'      => esc_html__( 'Section Title', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Heading text displayed above the footnotes list.', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_footnotes_heading', '==', 'true' ),
 			),
@@ -34,13 +37,13 @@ CSF::createSection( $prefix, array(
 
 		array(
 			'id'         => 'footnotes_layout',
-			'title'      => esc_html__( 'Footnotes Layout', 'eazydocs' ),
+			'title'      => esc_html__( 'Default Display', 'eazydocs' ),
 			'type'       => 'radio',
 			'options'    => [
-				'collapsed' => esc_html__( 'Collapsed', 'eazydocs' ),
-				'expanded'  => esc_html__( 'Expanded', 'eazydocs' ),
+				'collapsed' => esc_html__( 'Collapsed (Click to expand)', 'eazydocs' ),
+				'expanded'  => esc_html__( 'Expanded (Always visible)', 'eazydocs' ),
 			],
-			'subtitle'   => esc_html__( 'Select how the footnote will look normally', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Choose how footnotes appear when the page loads.', 'eazydocs' ),
 			'default'    => 'collapsed',
 			'dependency' => array(
 				array( 'is_footnotes_heading', '==', 'true' ),
@@ -50,14 +53,15 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'       => 'footnotes_column',
 			'type'     => 'select',
-			'title'    => esc_html__( 'Footnotes Column', 'eazydocs' ),
+			'title'    => esc_html__( 'Column Layout', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Display footnotes in multiple columns for better readability.', 'eazydocs' ),
 			'options'  => [
 				'1' => esc_html__( '1 Column', 'eazydocs' ),
-				'2' => esc_html__( '2 Column', 'eazydocs' ),
-				'3' => esc_html__( '3 Column', 'eazydocs' ),
-				'4' => esc_html__( '4 Column', 'eazydocs' ),
-				'5' => esc_html__( '5 Column', 'eazydocs' ),
-				'6' => esc_html__( '6 Column', 'eazydocs' ),
+				'2' => esc_html__( '2 Columns', 'eazydocs' ),
+				'3' => esc_html__( '3 Columns', 'eazydocs' ),
+				'4' => esc_html__( '4 Columns', 'eazydocs' ),
+				'5' => esc_html__( '5 Columns', 'eazydocs' ),
+				'6' => esc_html__( '6 Columns', 'eazydocs' ),
 			],
 			'chosen'   => true,
 			'multiple' => false,
@@ -70,10 +74,10 @@ CSF::createSection( $prefix, array(
 			'type'       => 'text',
 			'title'      => esc_html__( 'Footnote Shortcode', 'eazydocs' ),
 			/* translators: %1$s - opening link tag, %2$s - closing link tag */
-			'subtitle'   => sprintf( esc_html__( 'Use this shortcode to display footnotes. %1$s Learn how to create Footnotes %2$s', 'eazydocs' ),
+			'subtitle'   => sprintf( esc_html__( 'Add clickable footnote references in your content. %1$sView documentation%2$s', 'eazydocs' ),
 				'<a href="https://tinyurl.com/2ewlorze" target="_blank">', '</a>' ),
-			'desc'       => esc_html__( 'See the shortcode example with the available attributes', 'eazydocs' )
-			                . '<br><code>[reference number="1"]Tooltip Content[/reference]</code>',
+			'desc'       => esc_html__( 'Usage example:', 'eazydocs' )
+			                . '<br><code>[reference number="1"]Your footnote text here[/reference]</code>',
 			'default'    => '[reference]',
 			'attributes' => array(
 				'readonly' => 'readonly',
