@@ -115,12 +115,21 @@
 		 * Make the Titles clickable with anchor js
 		 * If no selector is provided, it falls back to a default selector of:
 		 * 'h2, h3, h4, h5, h6'
-		 */
-		if ( $('.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4').length ) {
-			anchors.add(
-					'.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4'
-			);
-		}
+		*/
+		var selector = '.doc-scrollable h2, .doc-scrollable h3, .doc-scrollable h4';
+		$(selector).each(function () {
+			var text = $(this).text();
+			var clean = text
+				.toLowerCase()
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '') // remove accents
+				.replace(/[^a-z0-9\s-]/g, '') // remove special chars
+				.trim()
+				.replace(/\s+/g, '-') // replace spaces
+				.replace(/-+/g, '-'); // collapse dashes
+			$(this).attr('id', clean);
+		});
+		anchors.add(selector);
 
 		// Anchor JS scroll
 		var urlHash = window.location.href.split('#')[1];
