@@ -37,6 +37,7 @@
                         $('#reading-progress-fill').css({ display: 'none' });
                         $('.doc-middle-content').html(response.data.content);
                         $('.ezd-breadcrumb time span').text(response.data.modified_date);
+                        $('nav .breadcrumb .breadcrumb-item:last-child').text(title);
                         changeurl(title);
 
                         // Remove 'active' classes from all links and items
