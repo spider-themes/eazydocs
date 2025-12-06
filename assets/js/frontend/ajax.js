@@ -7,11 +7,16 @@
          * Load Doc single page via ajax
          */
         if ( eazydocs_local_object.is_doc_ajax == '1' ) {
+            const elementorDocs = eazydocs_local_object.elementor_docs || [];
             $('.single-docs .nav-sidebar .nav-item .nav-link, .single-docs .nav-sidebar .nav-item .dropdown_nav li a').on('click', function (e) {
-                e.preventDefault();
                 let self    = $(this);
+                const postid = parseInt( self.attr('data-postid'), 10 );
+                if ( isNaN( postid ) || elementorDocs.indexOf( postid ) !== -1 ) {
+                    return;
+                }
+
+                e.preventDefault();
                 let title   = self.text();
-                let postid  = $(this).attr('data-postid');
 
                 function changeurl(page_title) {
                     let new_url = self.attr('href');

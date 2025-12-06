@@ -84,6 +84,20 @@ class Assets {
 			$ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
 		}
 
+		$elementor_docs = [];
+		if ( class_exists( '\Elementor\Plugin' ) ) {
+			$elementor_docs = get_posts(
+				[
+					'post_type'   => 'docs',
+					'post_status' => 'publish',
+					'numberposts' => -1,
+					'fields'      => 'ids',
+					'meta_key'    => '_elementor_edit_mode',
+					'meta_value'  => 'builder',
+				]
+			);
+		}
+
 		wp_localize_script( 'jquery', 'eazydocs_local_object',
 			array(
 				'ajaxurl'            => $ajax_url,
@@ -91,8 +105,9 @@ class Assets {
 				'nonce'              => wp_create_nonce( 'eazydocs-ajax' ),
 				'is_doc_ajax'        => ezd_get_opt( 'is_doc_ajax' ),
 				'ezd_layout_container' => ezd_container(),
-				'ezd_search_submit'	 => ezd_get_opt('is_search_submit', true),
-				'ezd_dark_switcher'	 => ezd_get_opt('is_dark_switcher', true)
+				'ezd_search_submit'   => ezd_get_opt('is_search_submit', true),
+				'ezd_dark_switcher'   => ezd_get_opt('is_dark_switcher', true),
+				'elementor_docs'     => $elementor_docs,
 			)
 		);
 
