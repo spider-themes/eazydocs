@@ -88,7 +88,7 @@ class Docs {
 			];
 		}
 		
-		if ( current_user_can('edit_doc') ) {
+		if ( current_user_can('edit_docs') ) {
 			$args['capability_type'] = [ 'doc', 'docs' ];
 			$args['capabilities'] = [
 				'edit_post'             => 'edit_doc',
