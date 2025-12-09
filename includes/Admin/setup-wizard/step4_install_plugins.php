@@ -45,8 +45,6 @@ ezd_render_setup_step_wrapper(4, esc_html__( 'Install Recommended Plugins', 'eaz
 	];
 	?>
 
-	<h2><?php esc_html_e('Install Recommended Plugins', 'eazydocs'); ?></h2>
-
 	<ul class="ezd-plugins-wrap">
 		<?php
 		foreach ($plugins as $plugin) :
