@@ -637,9 +637,12 @@ class Single_Doc extends Widget_Base {
 			// get theme name
 			$theme = wp_get_theme();
 			if ( ezd_is_premium() || $theme == 'docy' || $theme == 'Docy' || $theme == 'docy-child' || $theme == 'Docy Child' ) {
-				include( "single-doc-{$settings['doc-widget-single-search']}.php" );
+				// Whitelist valid skin values to prevent Local File Inclusion
+				$allowed_skins = array( '1', '2', '3', '4', '5' );
+				$skin = isset( $settings['doc-widget-single-search'] ) && in_array( $settings['doc-widget-single-search'], $allowed_skins, true ) ? $settings['doc-widget-single-search'] : '1';
+				include( __DIR__ . "/single-doc-{$skin}.php" );
 			} else {
-				include( "single-doc-1.php" );
+				include( __DIR__ . "/single-doc-1.php" );
 			}
 
 		endif;

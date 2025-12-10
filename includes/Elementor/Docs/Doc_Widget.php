@@ -1067,9 +1067,12 @@ class Doc_Widget extends Widget_Base {
 		}
 
         if ( ezd_unlock_themes('docy','docly') ) {
-		    include( "docs-{$settings['doc-widget-skin']}.php" );
+            // Whitelist valid skin values to prevent Local File Inclusion
+            $allowed_skins = array( '1', '2', '3', '4', '5', '6' );
+            $skin = isset( $settings['doc-widget-skin'] ) && in_array( $settings['doc-widget-skin'], $allowed_skins, true ) ? $settings['doc-widget-skin'] : '1';
+		    include( __DIR__ . "/docs-{$skin}.php" );
         } else {
-            include( "docs-1.php" );
+            include( __DIR__ . "/docs-1.php" );
         }
 
         ?>

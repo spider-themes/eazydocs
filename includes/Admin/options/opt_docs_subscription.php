@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-
 // Subscriptions
 CSF::createSection( $prefix, array(
 	'id'     => 'subscriptions_opt',

@@ -931,8 +931,8 @@ CSF::createSection($prefix, array(
 			'title' => esc_html__('Docs to view', 'eazydocs'),
 			'subtitle' => esc_html__('Select All Docs to display all the top label docs or choose Self Docs to show child docs of the current doc.', 'eazydocs'),
 			'options' => [
-				'all_docs' => esc_html__('All Docs', 'eazydocs'),
-				'self_docs' => esc_html__('Self Docs', 'eazydocs'),
+				'all_docs' => esc_html__('All Docs (Archive)', 'eazydocs'),
+				'self_docs' => esc_html__('Single (Self) Doc', 'eazydocs'),
 			],
 			'default' => 'self_docs',
 			'class' => 'eazydocs-pro-notice',
