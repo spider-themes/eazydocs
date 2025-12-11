@@ -13,8 +13,10 @@
     // Build ranking data
     $post_data = [];
     foreach ( $posts as $post ) {
-        $positive = array_sum( get_post_meta( $post->ID, 'positive', false ) );
-        $negative = array_sum( get_post_meta( $post->ID, 'negative', false ) );
+        $positive_meta = get_post_meta( $post->ID, 'positive', false );
+        $negative_meta = get_post_meta( $post->ID, 'negative', false );
+        $positive = array_sum( is_array( $positive_meta ) ? $positive_meta : [] );
+        $negative = array_sum( is_array( $negative_meta ) ? $negative_meta : [] );
         $total_votes = $positive + $negative;
 
         // Skip docs with NO ranking at all
@@ -28,8 +30,8 @@
             'post_title'     => $post->post_title,
             'post_permalink' => get_permalink( $post->ID ),
             'post_edit_link' => get_edit_post_link( $post->ID ),
-            'positive_time'  => array_sum( get_post_meta( $post->ID, 'positive', false ) ),
-            'negative_time'  => array_sum( get_post_meta( $post->ID, 'negative', false ) ),
+            'positive_time'  => $positive,
+            'negative_time'  => $negative,
             'created_at'     => get_the_time( 'U', $post->ID ),
         ];
     }
