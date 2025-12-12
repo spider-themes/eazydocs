@@ -7,7 +7,7 @@
     // Fetch all docs
     $posts = get_posts([
         'post_type'      => 'docs',
-        'posts_per_page' => 10,
+        'posts_per_page' => -1,
     ]);
 
     // Build ranking data
@@ -44,7 +44,10 @@
     <ul class="ezd-activity-list">
         <?php 
         if ( ! empty( $post_data ) ) :
-            foreach ( $post_data as $post ) :
+            
+            // Limit to top 10 posts
+            $top_posts = array_slice( $post_data, 0, 10 );
+            foreach ( $top_posts as $post ) :
                 $positive = (int) $post['positive_time'];
                 $negative = (int) $post['negative_time'];
                 $total_votes = $positive + $negative;

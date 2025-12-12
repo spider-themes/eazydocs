@@ -9,7 +9,7 @@ $total_docs = (int) $wpdb->get_var(" SELECT COUNT(*) FROM {$wpdb->posts} WHERE p
             <p class="ezd-stat-label"><?php esc_html_e( 'Total Docs', 'eazydocs' ); ?></p>
             <div class="ezd-stat-card-icons">
                 <span class="dashicons dashicons-media-document ezd-stat-icon"></span>
-                <a href="<?php echo admin_url('admin.php?page=eazydocs'); ?>" title="<?php esc_html_e( 'View More', 'eazydocs' ); ?>">
+                <a href="<?php echo admin_url('admin.php?page=eazydocs-builder'); ?>" title="<?php esc_html_e( 'View More', 'eazydocs' ); ?>">
                     <img src="<?php echo EAZYDOCS_IMG . '/icon/external.svg'; ?>" />
                 </a>
             </div>
