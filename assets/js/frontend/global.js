@@ -90,11 +90,23 @@
 			});
 		}
 
-		if ($('#eazydocs-toc a,.book-chapter-nav a').length > 0) {
-			let spy = new Gumshoe('#eazydocs-toc a,.book-chapter-nav a', {
+		if ($('#eazydocs-toc a,.book-chapter-nav a').length > 0 && typeof Gumshoe !== 'undefined') {
+			window.ezd_scrollspy = new Gumshoe('#eazydocs-toc a,.book-chapter-nav a', {
 				nested: true,
 			});
 		}
+
+		// Allow ajax-loaded docs to refresh the scrollspy targets later
+		window.ezd_refresh_scrollspy = function () {
+			if (typeof window.ezd_scrollspy !== 'undefined') {
+				window.ezd_scrollspy.setup();
+				window.ezd_scrollspy.detect();
+			} else if ($('#eazydocs-toc a,.book-chapter-nav a').length > 0 && typeof Gumshoe !== 'undefined') {
+				window.ezd_scrollspy = new Gumshoe('#eazydocs-toc a,.book-chapter-nav a', {
+					nested: true,
+				});
+			}
+		};
 		
 		// Masonry [ Doc Archive ]
 		function ezd_masonry_column() {

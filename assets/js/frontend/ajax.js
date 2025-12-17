@@ -45,6 +45,10 @@
                         $('nav .breadcrumb .breadcrumb-item:last-child').text(title);
                         changeurl(title);
 
+                        if (typeof window.ezd_heading_anchors === 'function') {
+                            window.ezd_heading_anchors();
+                        }
+
                         // Remove 'active' classes from all links and items
                         $('.nav-sidebar .nav-item').removeClass('current_page_item active');
                         $('.nav-sidebar .menu-link').removeClass('active');
@@ -73,6 +77,11 @@
                             $nav: $('#eazydocs-toc'),
                             $scope: $('.doc-scrollable'),
                         });
+
+                        if (typeof window.ezd_refresh_scrollspy === 'function') {
+                            window.ezd_refresh_scrollspy();
+                        }
+                        
                     },
                     error: function () {
                         console.log('Oops! Something wrong, try again!');
