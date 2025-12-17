@@ -1,0 +1,830 @@
+/**
+ * EazyDocs Integrated Themes Showcase
+ * Professional theme showcase page styling
+ *
+ * @package EazyDocs\Admin
+ */
+
+/* ========================================
+   WRAPPER & LAYOUT
+   ======================================== */
+
+.ezd-themes-showcase-wrapper {
+	max-width: 1100px;
+	margin: 30px auto;
+	padding: 0 20px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.ezd-themes-header {
+	background: linear-gradient(135deg, #4C4CF1 0%, #6B5BFF 50%, #3A3AF0 100%);
+	color: white;
+	padding: 60px 50px;
+	border-radius: 16px;
+	margin-bottom: 50px;
+	box-shadow: 0 20px 60px rgba(76, 76, 241, 0.3);
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.ezd-themes-header::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	right: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+	animation: pulse 15s ease-in-out infinite;
+}
+
+@keyframes pulse {
+	0%, 100% { transform: scale(1); }
+	50% { transform: scale(1.1); }
+}
+
+.ezd-header-content {
+	max-width: 800px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 1;
+}
+
+.ezd-themes-header h1 {
+	font-size: 44px;
+	margin: 0 0 18px 0;
+	color: white;
+	font-weight: 700;
+	letter-spacing: -0.5px;
+	line-height: 1.2;
+}
+
+.ezd-header-subtitle {
+	font-size: 19px;
+	margin: 0;
+	opacity: 0.95;
+	line-height: 1.6;
+	font-weight: 400;
+}
+
+/* ========================================
+   GRID LAYOUT
+   ======================================== */
+
+.ezd-themes-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	gap: 28px;
+	margin-bottom: 50px;
+}
+
+/* ========================================
+   THEME CARDS
+   ======================================== */
+
+.ezd-theme-card {
+	background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+	border-radius: 14px;
+	overflow: hidden;
+	border: 1px solid #e5e7eb;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	position: relative;
+}
+
+.ezd-theme-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background: linear-gradient(90deg, #4C4CF1 0%, #6B5BFF 100%);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ezd-theme-card:hover::before {
+	transform: scaleX(1);
+}
+
+.ezd-theme-card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 16px 40px rgba(76, 76, 241, 0.15);
+	border-color: #4C4CF1;
+}
+
+/* Theme Preview */
+.ezd-theme-preview {
+	position: relative;
+	background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+	overflow: hidden;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+}
+
+.ezd-theme-preview img {
+	max-width: 100%;
+	height: auto;
+	object-fit: cover;
+	object-position: center center;
+	-webkit-object-fit: cover;
+	-moz-object-fit: cover;
+	-ms-object-fit: cover;
+	-o-object-fit: cover;
+	-webkit-object-position: center center;
+	-moz-object-position: center center;
+	-ms-object-position: center center;
+	-o-object-position: center center;
+	transition: -webkit-transform 0.3s ease;
+	transition: -moz-transform 0.3s ease;
+	transition: -ms-transform 0.3s ease;
+	transition: -o-transform 0.3s ease;
+	transition: transform 0.3s ease;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	display: block;
+}
+
+.ezd-theme-card:hover .ezd-theme-preview img {
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	-o-transform: scale(1.05);
+	transform: scale(1.05);
+}
+
+/* Theme Info */
+.ezd-theme-info {
+	padding: 25px;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.ezd-theme-info h3 {
+	margin: 0 0 12px 0;
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: #1a1a1a;
+}
+
+.ezd-theme-info p {
+	margin: 0 0 20px 0;
+	font-size: 0.95rem;
+	color: #666;
+	line-height: 1.5;
+	flex-grow: 1;
+}
+
+/* Theme Buttons Container */
+.ezd-theme-buttons {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	gap: 12px;
+	-webkit-gap: 12px;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.ezd-btn,
+.ezd-btn-demo,
+.ezd-btn-purchase,
+.ezd-btn-primary,
+.ezd-btn-secondary,
+.ezd-btn-cta-primary,
+.ezd-btn-cta-secondary {
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: -o-inline-flex;
+	display: inline-flex;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+	padding: 12px 24px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+	border: none;
+	-webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	-moz-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	-o-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	-webkit-flex: 1;
+	-moz-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	min-width: 140px;
+}
+
+/* View Demo Button - Primary */
+.ezd-btn-demo,
+.ezd-btn.ezd-btn-demo,
+.ezd-btn-primary,
+.ezd-btn-cta-primary {
+	background: linear-gradient(135deg, #4C4CF1 0%, #3A3AF0 100%);
+	color: white;
+	box-shadow: 0 4px 12px rgba(76, 76, 241, 0.3);
+}
+
+.ezd-btn-demo:hover,
+.ezd-btn.ezd-btn-demo:hover,
+.ezd-btn-primary:hover,
+.ezd-btn-cta-primary:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(76, 76, 241, 0.4);
+	text-decoration: none;
+}
+
+/* Purchase Button - Secondary */
+.ezd-btn-purchase,
+.ezd-btn.ezd-btn-purchase,
+.ezd-btn-secondary,
+.ezd-btn-cta-secondary {
+	background: rgba(76, 76, 241, 0.1);
+	color: #4C4CF1;
+	border: 2px solid #4C4CF1;
+}
+
+.ezd-btn-purchase:hover,
+.ezd-btn.ezd-btn-purchase:hover,
+.ezd-btn-secondary:hover,
+.ezd-btn-cta-secondary:hover {
+	background: #4C4CF1;
+	color: white;
+	transform: translateY(-2px);
+	text-decoration: none;
+}
+
+.ezd-btn-cta-primary {
+	background: white;
+	color: #4C4CF1;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ezd-btn-cta-primary:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   SECTIONS
+   ======================================== */
+
+.ezd-section {
+	background: white;
+	padding: 45px;
+	margin-bottom: 35px;
+	border-radius: 16px;
+	border: 1px solid #e5e7eb;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+	transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ezd-section:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.ezd-section h2 {
+	margin: 0 0 28px 0;
+	font-size: 30px;
+	font-weight: 700;
+	color: #1f2937;
+	display: flex;
+	align-items: center;
+}
+
+.ezd-section-icon {
+	font-size: 34px;
+	margin-right: 15px;
+}
+
+.ezd-section > p {
+	margin: 10px 0 30px 0;
+	font-size: 16px;
+	color: #4b5563;
+	line-height: 1.75;
+}
+
+/* ========================================
+   BENEFITS GRID
+   ======================================== */
+
+.ezd-benefits-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 28px;
+	margin-top: 30px;
+}
+
+.ezd-benefit-card {
+	background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+	padding: 32px;
+	border-radius: 14px;
+	border: 1px solid #e5e7eb;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	text-align: center;
+}
+
+.ezd-benefit-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background: linear-gradient(90deg, #4C4CF1 0%, #6B5BFF 100%);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ezd-benefit-card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 16px 40px rgba(76, 76, 241, 0.15);
+	border-color: #4C4CF1;
+}
+
+.ezd-benefit-card:hover::before {
+	transform: scaleX(1);
+}
+
+.ezd-benefit-icon {
+	font-size: 48px;
+	margin-bottom: 16px;
+	display: block;
+	line-height: 1;
+}
+
+.ezd-benefit-card h3 {
+	margin: 16px 0 12px 0;
+	color: #1f2937;
+	font-size: 18px;
+	font-weight: 700;
+	position: relative;
+	z-index: 1;
+}
+
+.ezd-benefit-card p {
+	color: #6b7280;
+	font-size: 15px;
+	margin-bottom: 0;
+	line-height: 1.6;
+	position: relative;
+	z-index: 1;
+}
+
+/* ========================================
+   FEATURES COMPARISON TABLE
+   ======================================== */
+
+.ezd-features-comparison {
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	overflow: hidden;
+	margin-top: 20px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ezd-feature-row {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	border-bottom: 1px solid #e5e7eb;
+	background: white;
+	transition: background 0.3s;
+}
+
+.ezd-feature-row:hover {
+	background: #f9fafb;
+}
+
+.ezd-feature-row:last-child {
+	border-bottom: none;
+}
+
+.ezd-feature-col {
+	padding: 16px 20px;
+	display: flex;
+	align-items: center;
+	color: #4b5563;
+	font-size: 15px;
+}
+
+.ezd-feature-col-title {
+	font-weight: 600;
+	color: #1f2937;
+	background: #f9fafb;
+}
+
+.ezd-feature-row:first-child .ezd-feature-col-title {
+	font-weight: 700;
+	color: #000;
+}
+
+.ezd-check {
+	background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+	color: white;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+/* ========================================
+   STEPS CONTAINER
+   ======================================== */
+
+.ezd-steps-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 28px;
+	margin-top: 30px;
+}
+
+.ezd-step {
+	display: flex;
+	gap: 20px;
+	padding: 24px;
+	background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+	border-radius: 12px;
+	border: 1px solid #e5e7eb;
+	transition: all 0.3s;
+	position: relative;
+	overflow: hidden;
+}
+
+.ezd-step::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+	background: linear-gradient(90deg, #4C4CF1 0%, #6B5BFF 100%);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.4s ease;
+}
+
+.ezd-step:hover::before {
+	transform: scaleX(1);
+}
+
+.ezd-step:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 30px rgba(76, 76, 241, 0.1);
+	border-color: #4C4CF1;
+}
+
+.ezd-step-number {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	min-width: 48px;
+	background: linear-gradient(135deg, #4C4CF1 0%, #3A3AF0 100%);
+	color: white;
+	border-radius: 50%;
+	font-weight: 700;
+	font-size: 20px;
+	box-shadow: 0 4px 12px rgba(76, 76, 241, 0.3);
+}
+
+.ezd-step-content h3 {
+	margin: 0 0 8px 0;
+	color: #1f2937;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.ezd-step-content p {
+	margin: 0;
+	color: #6b7280;
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+
+.ezd-cta-themes-section {
+	background: linear-gradient(135deg, #4C4CF1 0%, #6B5BFF 50%, #3A3AF0 100%);
+	color: white;
+	padding: 60px 50px;
+	border-radius: 16px;
+	text-align: center;
+	margin: 35px 0;
+	box-shadow: 0 20px 60px rgba(76, 76, 241, 0.3);
+	position: relative;
+	overflow: hidden;
+}
+
+.ezd-cta-themes-section::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	right: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+}
+
+.ezd-cta-themes-section h2 {
+	color: white;
+	margin: 0 0 15px 0;
+	font-size: 32px;
+	font-weight: 700;
+	position: relative;
+	z-index: 1;
+	letter-spacing: -0.5px;
+}
+
+.ezd-cta-themes-section p {
+	color: rgba(255, 255, 255, 0.95);
+	font-size: 17px;
+	max-width: 600px;
+	margin: 0 auto 35px;
+	line-height: 1.7;
+	position: relative;
+	z-index: 1;
+}
+
+.ezd-cta-buttons {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	position: relative;
+	z-index: 1;
+}
+
+/* ========================================
+   ACCORDION
+   ======================================== */
+
+.ezd-accordion {
+	margin-top: 30px;
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid #e5e7eb;
+}
+
+.ezd-accordion-item {
+	background: white;
+	border-bottom: 1px solid #e5e7eb;
+	transition: all 0.3s;
+}
+
+.ezd-accordion-item:last-child {
+	border-bottom: none;
+}
+
+.ezd-accordion-header {
+	width: 100%;
+	padding: 20px;
+	background: white;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+	font-weight: 600;
+	color: #1f2937;
+	transition: all 0.3s;
+	text-align: left;
+}
+
+.ezd-accordion-header:hover {
+	background: #f9fafb;
+	padding-left: 24px;
+}
+
+.ezd-accordion-item.active .ezd-accordion-header {
+	background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+	color: #4C4CF1;
+}
+
+.ezd-accordion-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	font-weight: 700;
+	color: #4C4CF1;
+	transition: transform 0.3s;
+	width: 24px;
+	height: 24px;
+}
+
+.ezd-accordion-item.active .ezd-accordion-icon {
+	transform: rotate(45deg);
+}
+
+.ezd-accordion-content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease;
+	background: #f9fafb;
+}
+
+.ezd-accordion-item.active .ezd-accordion-content {
+	max-height: 500px;
+}
+
+.ezd-accordion-content p {
+	padding: 20px;
+	margin: 0;
+	color: #4b5563;
+	font-size: 15px;
+	line-height: 1.8;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1100px) {
+	.ezd-themes-grid {
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 25px;
+	}
+
+	.ezd-section {
+		padding: 30px;
+	}
+}
+
+@media (max-width: 768px) {
+	.ezd-themes-showcase-wrapper {
+		padding: 20px 15px;
+	}
+
+	.ezd-themes-header {
+		padding: 25px 15px;
+		margin-bottom: 30px;
+	}
+
+	.ezd-themes-header h1 {
+		font-size: 1.8rem;
+	}
+
+	.ezd-themes-header p {
+		font-size: 1rem;
+	}
+
+	.ezd-themes-grid {
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		gap: 20px;
+	}
+
+	.ezd-theme-buttons {
+		gap: 10px;
+	}
+
+	.ezd-btn,
+	.ezd-btn-demo,
+	.ezd-btn-purchase {
+		flex: 1;
+		min-width: 100px;
+	}
+
+	.ezd-section {
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	.ezd-section h2 {
+		font-size: 1.5rem;
+	}
+
+	.ezd-benefits-grid {
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 15px;
+	}
+
+	.ezd-steps-container {
+		grid-template-columns: 1fr;
+		gap: 15px;
+	}
+
+	.ezd-cta-themes-section {
+		padding: 30px 20px;
+		margin-bottom: 30px;
+	}
+
+	.ezd-cta-themes-section h2 {
+		font-size: 1.5rem;
+	}
+
+	.ezd-cta-buttons {
+		flex-direction: column;
+	}
+
+	.ezd-cta-buttons a {
+		width: 100%;
+	}
+}
+
+@media (max-width: 480px) {
+	.ezd-themes-header h1 {
+		font-size: 1.5rem;
+	}
+
+	.ezd-themes-grid {
+		grid-template-columns: 1fr;
+		gap: 15px;
+	}
+
+	.ezd-theme-card {
+		border-radius: 6px;
+	}
+
+	.ezd-benefit-card {
+		padding: 15px;
+	}
+
+	.ezd-feature-row {
+		grid-template-columns: 1fr;
+	}
+
+	.ezd-feature-col-title {
+		font-weight: 600;
+		margin-bottom: 5px;
+	}
+
+	.ezd-step {
+		padding: 20px 15px;
+	}
+
+	.ezd-btn-demo,
+	.ezd-btn-purchase,
+	.ezd-btn-primary,
+	.ezd-btn-secondary {
+		padding: 10px 16px;
+		font-size: 0.9rem;
+		width: 100%;
+	}
+
+	.ezd-theme-buttons {
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.ezd-theme-buttons .ezd-btn {
+		min-width: 100%;
+	}
+
+	.ezd-accordion-header {
+		padding: 15px;
+		font-size: 0.95rem;
+	}
+}

@@ -132,6 +132,8 @@ class Admin {
 			add_submenu_page( 'eazydocs', esc_html__( 'FAQ Builder', 'eazydocs' ), esc_html__( 'FAQ Builder', 'eazydocs' ), $capabilites, 'ezd-faq-builder', [ $this, 'ezd_faq_builder' ] );
 		}
 
+		add_submenu_page( 'eazydocs', esc_html__( 'Integrated Themes', 'eazydocs' ), esc_html__( 'Integrated Themes', 'eazydocs' ), 'manage_options', 'ezd-integrated-themes', [ $this, 'ezd_integrated_themes' ] );
+
 		add_submenu_page( 'eazydocs', esc_html__( 'Setup Wizard', 'eazydocs' ), esc_html__( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ] );
 		
 		add_submenu_page( 'eazydocs', esc_html__( 'Migration', 'eazydocs' ), esc_html__( 'Migration', 'eazydocs' ), 'manage_options', 'eazydocs-migration', [ $this, 'ezd_docs_migration' ] );
@@ -269,6 +271,14 @@ class Admin {
 		] );
 		
 		require_once __DIR__ . '/template/faq-builder.php';
+	}
+
+	/**
+	 * Integrated Themes Showcase Page
+	 */
+	public function ezd_integrated_themes() {
+		wp_enqueue_style( 'ezd-integrated-themes', EAZYDOCS_ASSETS . '/css/admin/integrated-themes.css', [], EAZYDOCS_VERSION );
+		require_once __DIR__ . '/template/integrated-themes.php';
 	}
 
 	/**
