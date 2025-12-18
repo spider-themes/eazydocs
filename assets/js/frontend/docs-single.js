@@ -121,14 +121,7 @@
 			const $headings = $(ezdHeadingSelector);
 			$headings.each(function () {
 				const text = $(this).text();
-				const clean = text
-					.toLowerCase()
-					.normalize('NFD')
-					.replace(/[\u0300-\u036f]/g, '') // remove accents
-					.replace(/[^a-z0-9\s-]/g, '') // remove special chars
-					.trim()
-					.replace(/\s+/g, '-') // replace spaces
-					.replace(/-+/g, '-'); // collapse dashes
+				const clean = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
 				if (clean) {
 					$(this).attr('id', clean);
 				}
