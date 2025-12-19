@@ -4,7 +4,7 @@ Tags: knowledge base, wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.8.0
+Stable tag: 2.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -266,6 +266,13 @@ After activation, you'll see a setup wizard to help you create your first knowle
 
 == Changelog ==
 
+= 2.8.1 (19 December 2025) =
+Tweaked: Settings page reorganized for easier navigation
+Improved: AJAX breadcrumb updated and Russian translations refreshed for accuracy and consistency.
+Improved: Minor tweaks and performance enhancements for smoother usage
+Updated: Dashboard links improved and top docs limited to 10 posts for better overview
+Updated: Freemius SDK updated to 2.13.0
+
 = 2.8.0 (03 December 2025) =
 New: Added dedicated EazyDocs Admin Dashboard page
 New: Added featured image support for the EazyDocs shortcode
@@ -322,11 +329,6 @@ Updated: ezd_arrow() function now returns the icon class instead of echoing it, 
 Updated: CSS optimized to make UI elements cleaner and ensure faster loading performance
 Updated: Language files updated
 
-= 2.7.1 (18 September 2025) =
-Tweaked: Docs Builder UI improved
-Tweaked: Improved the review notice design
-Tweaked: Removed unnecessary padding from highlighted text in left sidebar
-Updated: Freemius SDK updated to 2.12.2
 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 

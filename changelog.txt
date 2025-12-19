@@ -1,4 +1,12 @@
 == Changelog ==
+
+= 2.8.1 (19 December 2025) =
+Tweaked: Settings page reorganized for easier navigation
+Improved: AJAX breadcrumb updated and Russian translations refreshed for accuracy and consistency.
+Improved: Minor tweaks and performance enhancements for smoother usage
+Updated: Dashboard links improved and top docs limited to 10 posts for better overview
+Updated: Freemius SDK updated to 2.13.0
+
 = 2.8.0 (03 December 2025) =
 New: Added dedicated EazyDocs Admin Dashboard page
 New: Added featured image support for the EazyDocs shortcode

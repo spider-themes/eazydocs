@@ -1000,6 +1000,7 @@
   box-shadow: 0 50px 120px 0 rgba(4, 73, 89, 0.08);
   background: var(--bs-white);
   display: grid;
+  transition: all 300ms linear 0s;
 }
 .topic_list_item > .navbar-nav {
   margin-left: 0;
@@ -1013,9 +1014,6 @@
 }
 .topic_list_item .doc4-section-title {
   width: 100%;
-}
-.topic_list_item {
-  transition: all 300ms linear 0s;
 }
 .topic_list_item img {
   padding-right: 15px;
@@ -1039,13 +1037,13 @@
   margin-left: 0;
   list-style: none;
 }
-.topic_list_item ul li a i {
-  padding-right: 12px;
-}
 .topic_list_item ul li a {
   color: var(--p_color);
   font-size: 16px;
   transition: all 300ms linear 0s;
+}
+.topic_list_item ul li a i {
+  padding-right: 12px;
 }
 .topic_list_item ul li a:hover {
   color: var(--ezd_brand_color);
@@ -1230,6 +1228,7 @@
 }
 .doc_community_item .doc_entry_info .author_avatar li img {
   max-width: 30px;
+  height: auto;
   border-radius: 50%;
 }
 .doc_community_item .doc_entry_info .author_avatar li + li {
@@ -2062,12 +2061,12 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 .topic_list_item ul li {
   margin-bottom: 10px;
 }
-.topic_list_item ul li a i {
-  padding-right: 12px;
-}
 .topic_list_item ul li a {
   color: var(--p_color);
   font-size: 16px;
+}
+.topic_list_item ul li a i {
+  padding-right: 12px;
 }
 .topic_list_item ul li a:hover {
   color: var(--ezd_brand_color);
