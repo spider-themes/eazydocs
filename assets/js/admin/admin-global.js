@@ -202,9 +202,6 @@
             });
         });
         
-
-
-        // Create Doc with AI Popup
         // Create Doc with AI Popup
         $(document).on('click', '#ezd-create-doc-with-ai', function(e) {
             e.preventDefault();

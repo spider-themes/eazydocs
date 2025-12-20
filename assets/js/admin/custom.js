@@ -149,6 +149,33 @@
 						'active'
 					);
 			});
+
+			// Active new created doc tab				
+			const urlParams  = new URLSearchParams(window.location.search);
+			const newDocId 	 = urlParams.get('new_doc_id');
+
+			if (newDocId) {
+				const tabId = 'tab-' + newDocId;
+
+				// Active menu item
+				$('.tab-menu .easydocs-navitem').removeClass('is-active');
+				$('.tab-menu .easydocs-navitem[data-rel="' + tabId + '"]').addClass('is-active');
+
+				// Active tab content
+				$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active').hide();
+				$('#' + tabId).addClass('tab-active').fadeIn('slow');
+
+				// Save to cookie for persistence
+				createCookie('eazydocs_doc_current_tab', tabId, 999);
+
+				// Clean URL
+				const url = new URL(window.location.href);
+				url.searchParams.delete('new_doc_id');
+				window.history.replaceState({}, document.title, url.toString());
+			} else {
+				// Fallback to previously active tab
+				keep_last_active_doc_tab();
+			}
 		});
 
 		// NEW DOC
