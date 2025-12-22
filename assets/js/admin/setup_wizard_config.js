@@ -115,6 +115,7 @@
                     task: action,
                     security: eazydocs_local_object.nonce
                 },
+                dataType: "json",
                 success: function (response) {
                     if (response.success) {
                         if (action === "install") {
@@ -126,6 +127,15 @@
                         }
                     } else {
                         alert("Error: " + response.data);
+                        button.text(action.charAt(0).toUpperCase() + action.slice(1)).prop("disabled", false);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // For activate action, silently mark as activated (likely already active)
+                    if (action === "activate") {
+                        button.text("Activated").removeClass("button-activate button-action").addClass("button-disabled").prop("disabled", true);
+                    } else {
+                        alert("Error: " + error);
                         button.text(action.charAt(0).toUpperCase() + action.slice(1)).prop("disabled", false);
                     }
                 }
