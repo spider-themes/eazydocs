@@ -24,6 +24,7 @@ class Admin {
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'eazyDocs_menu' ] );
 		add_filter( 'admin_body_class', [ $this, 'body_class' ] );
+		add_action( 'customize_controls_print_footer_scripts', [ $this, 'body_class' ], 999 );
 		add_filter( 'get_edit_post_link', [ $this, 'one_page_docs_edit_content' ], 10, 3 );
 
 		add_action( 'wp_ajax_eaz_nestable_docs', [ $this, 'nestable_callback' ] );
@@ -175,6 +176,18 @@ class Admin {
 
 		if ( empty( eaz_fs()->is_plan( 'promax' ) ) ) {
 			$classes .= ' ezd_no_promax';
+		}
+
+		// If current screen is Customizer;
+		if ( doing_action( 'customize_controls_print_footer_scripts' ) ) {
+			?>
+			<script type="text/javascript">
+				document.addEventListener('DOMContentLoaded', function () {
+					document.body.className += ' <?php echo esc_js( trim( $classes ) ); ?>';
+				});
+			</script>
+			<?php
+			return;
 		}
 
 		return $classes;
