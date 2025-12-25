@@ -26,8 +26,6 @@ if ( ! function_exists( 'ezd_fetch_remote_html_notice_content' ) ) {
 	function ezd_fetch_remote_html_notice_content() {
 		$api_url = 'https://spider-themes.net/wp-json/html-notice-widget/v1/content/eazydocs';
 
-		ezd_log_cron_activity( 'Starting fetch from API: ' . $api_url );
-
 		$response = wp_remote_get(
 			$api_url,
 			array(
@@ -35,7 +33,6 @@ if ( ! function_exists( 'ezd_fetch_remote_html_notice_content' ) ) {
 				'sslverify' => false,
 			)
 		);
-
 		if ( is_wp_error( $response ) ) {
 			$error_message = $response->get_error_message();
 			ezd_log_cron_activity( 'API Request Error: ' . $error_message, 'error' );
@@ -50,7 +47,6 @@ if ( ! function_exists( 'ezd_fetch_remote_html_notice_content' ) ) {
 		}
 
 		$body = wp_remote_retrieve_body( $response );
-
 		$data = json_decode( $body, true );
 
 		if ( ! is_array( $data ) ) {
@@ -64,20 +60,22 @@ if ( ! function_exists( 'ezd_fetch_remote_html_notice_content' ) ) {
 			return;
 		}
 
-		$html_content = isset( $data['content'] ) ? $data['content'] : '';
+		// Handle new API structure with contents array
+		$contents = isset( $data['contents'] ) ? $data['contents'] : array();
 		$site_info = isset( $data['site'] ) ? $data['site'] : array();
 
-		if ( empty( $html_content ) ) {
-			ezd_log_cron_activity( 'No content returned from API', 'warning' );
+		if ( empty( $contents ) ) {
+			ezd_log_cron_activity( 'No contents returned from API', 'warning' );
 			return;
 		}
 
 		$site_id = isset( $site_info['id'] ) ? $site_info['id'] : 'unknown';
 		$product = isset( $site_info['product'] ) ? $site_info['product'] : 'unknown';
 
-		ezd_store_remote_html_notice_content( $product, $html_content, $site_id );
+		// Store all contents individually
+		ezd_store_remote_html_notice_contents( $product, $contents, $site_id );
 
-		ezd_log_cron_activity( 'Successfully fetched content for product: ' . $product );
+		ezd_log_cron_activity( 'Successfully fetched ' . count( $contents ) . ' contents for product: ' . $product );
 	}
 }
 
@@ -101,6 +99,36 @@ if ( ! function_exists( 'ezd_store_remote_html_notice_content' ) ) {
 
 		if ( ! get_option( $dismiss_key ) ) {
 			update_option( $dismiss_key, 0 );
+		}
+	}
+}
+
+if ( ! function_exists( 'ezd_store_remote_html_notice_contents' ) ) {
+	function ezd_store_remote_html_notice_contents( $product, $contents, $site_id ) {
+		$contents_key = sanitize_key( $product ) . '_offer_html_contents';
+		$site_id_key = sanitize_key( $product ) . '_offer_site_id';
+		$switcher_key = sanitize_key( $product ) . '_offer_html_switcher';
+		$fetched_time_key = sanitize_key( $product ) . '_offer_fetched_time';
+
+		// Store the full contents array
+		update_option( $contents_key, $contents );
+
+		update_option( $site_id_key, sanitize_text_field( $site_id ) );
+
+		if ( ! get_option( $switcher_key ) ) {
+			update_option( $switcher_key, 1 );
+		}
+
+		update_option( $fetched_time_key, current_time( 'mysql' ) );
+
+		// Initialize dismiss status for each content if not exists
+		foreach ( $contents as $content ) {
+			if ( isset( $content['id'] ) ) {
+				$content_dismiss_key = sanitize_key( $product ) . '_content_' . sanitize_key( $content['id'] ) . '_dismissed';
+				if ( ! get_option( $content_dismiss_key ) ) {
+					update_option( $content_dismiss_key, 0 );
+				}
+			}
 		}
 	}
 }
@@ -135,16 +163,51 @@ if ( ! function_exists( 'ezd_get_cron_logs' ) ) {
 }
 
 if ( ! function_exists( 'ezd_trigger_manual_fetch' ) ) {
-	function ezd_trigger_manual_fetch() {
+	function ezd_trigger_manual_fetch(): string {
 		do_action( 'ezd_fetch_remote_html_notice_content' );
 		return 'Fetch triggered successfully';
 	}
 }
-
 if ( ! function_exists( 'ezd_get_html_notice_content' ) ) {
 	function ezd_get_html_notice_content( $product ) {
 		$content_key = sanitize_key( $product ) . '_offer_html_notice';
 		return get_option( $content_key, '' );
+	}
+}
+
+if ( ! function_exists( 'ezd_get_html_notice_contents' ) ) {
+	function ezd_get_html_notice_contents( $product ) {
+		$contents_key = sanitize_key( $product ) . '_offer_html_contents';
+		return get_option( $contents_key, array() );
+	}
+}
+
+if ( ! function_exists( 'ezd_get_non_dismissed_contents' ) ) {
+	function ezd_get_non_dismissed_contents( $product ) {
+		$contents = ezd_get_html_notice_contents( $product );
+		$non_dismissed = array();
+
+		foreach ( $contents as $content ) {
+			if ( isset( $content['id'] ) && ! ezd_is_content_dismissed( $product, $content['id'] ) ) {
+				$non_dismissed[] = $content;
+			}
+		}
+
+		return $non_dismissed;
+	}
+}
+
+if ( ! function_exists( 'ezd_is_content_dismissed' ) ) {
+	function ezd_is_content_dismissed( $product, $content_id ) {
+		$content_dismiss_key = sanitize_key( $product ) . '_content_' . sanitize_key( $content_id ) . '_dismissed';
+		return (bool) get_option( $content_dismiss_key, 0 );
+	}
+}
+
+if ( ! function_exists( 'ezd_dismiss_content' ) ) {
+	function ezd_dismiss_content( $product, $content_id ) {
+		$content_dismiss_key = sanitize_key( $product ) . '_content_' . sanitize_key( $content_id ) . '_dismissed';
+		update_option( $content_dismiss_key, 1 );
 	}
 }
 
