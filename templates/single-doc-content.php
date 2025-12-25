@@ -54,7 +54,7 @@ endif;
 					<div class="ezd-meta dot-sep">
 						<?php
 						if ( $reading_time_visibility == '1' ) : ?>
-							<span class="read-time">
+							<span class="read-time ezd-sep">
 								<?php esc_html_e( 'Estimated reading: ', 'eazydocs' );
 								ezd_reading_time(); ?>
 							</span>
@@ -62,7 +62,7 @@ endif;
 						endif;
 
 						if ( $views_visibility == '1' ) : ?>
-							<span class="views sep">
+							<span class="views ezd-sep">
 								<?php echo esc_html(eazydocs_get_post_view()); ?>
 							</span>
 							<?php

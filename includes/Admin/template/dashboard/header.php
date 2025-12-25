@@ -11,7 +11,7 @@
                 ?>
                 <button type="button"
                     data-url="<?php echo esc_url(admin_url('admin.php') . "?Create_doc=yes&_wpnonce={$nonce}&parent_title="); ?>"
-                    id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue easydocs-btn-sm easydocs-btn-round">
+                    id="parent-doc" class="easydocs-btn easydocs-btn-outline-blue">
                     <span class="dashicons dashicons-plus-alt2"></span>
                     <?php esc_html_e('Add Doc', 'eazydocs'); ?>
                 </button>
@@ -19,8 +19,8 @@
             endif;
             ?>
             <button type="button" id="ezd-create-doc-with-ai"
-                class="easydocs-btn easydocs-btn-ai-gold easydocs-btn-sm easydocs-btn-round" style="margin-left: 10px;">
-                🪄 <?php esc_html_e('Create Doc with AI', 'eazydocs'); ?>
+                class="easydocs-btn easydocs-btn-ai-gold">
+                <span>🪄</span> <?php esc_html_e('Create Doc with AI', 'eazydocs'); ?>
             </button>
         </div>
     </div>

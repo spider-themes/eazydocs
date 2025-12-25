@@ -18,10 +18,10 @@
                 <li class="ezd-activity-item">                
                     <div class="ezd-activity-icon-wrapper ezd-icon-bg-blue" bis_skin_checked="1">
                         <a target="_blank" href="<?php the_permalink(); ?>" class="ezd-quick-links-link">
-                            <img src="<?php echo EAZYDOCS_IMG . '/icon/external-white.svg'; ?>" />
+                            <img src="<?php echo EAZYDOCS_IMG . '/icon/external.svg'; ?>" />
                         </a>
                     </div>
-                    <div>
+                    <div class="ezd-activity-content">
                         <p class="ezd-activity-text">
                             <a target="_blank" href="<?php the_permalink(); ?>" ><?php the_title(); ?></a>
                         </p>

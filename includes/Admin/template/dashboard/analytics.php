@@ -24,10 +24,15 @@
         chart: {
             height: 350,
             type: 'area',
+            fontFamily: 'inherit',
             toolbar: {
                 show: false
+            },
+            zoom: {
+                enabled: false
             }
         },
+        colors: ['#3b82f6', '#10b981', '#f59e0b'],
         dataLabels: {
             enabled: false
         },
@@ -49,19 +54,52 @@
             type: "gradient",
             gradient: {
                 shadeIntensity: 1,
-                opacityFrom: 0.7,
-                opacityTo: 0.9,
-                stops: [0, 90, 100]
+                opacityFrom: 0.45,
+                opacityTo: 0.05,
+                stops: [0, 100]
             }
         },
         stroke: {
-            curve: 'smooth'
+            curve: 'smooth',
+            width: 3
         },
         xaxis: {
             categories: <?php echo json_encode( $labels ); ?>,
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            }
         },
-        tooltip: {},
+        yaxis: {
+            labels: {
+                style: {
+                    colors: '#64748b'
+                }
+            }
+        },
+        grid: {
+            borderColor: '#f1f5f9',
+            strokeDashArray: 4
+        },
+        legend: {
+            position: 'top',
+            horizontalAlign: 'right',
+            fontSize: '14px',
+            fontWeight: 500,
+            markers: {
+                radius: 12
+            }
+        },
+        tooltip: {
+            theme: 'light',
+            x: {
+                show: true
+            }
+        },
     };
+
 
     var Overviewchart = new ApexCharts(document.querySelector("#OvervIewChart"), options);
     Overviewchart.render();
@@ -117,10 +155,10 @@
 		$date_range = strtotime( '-29 day' );
 
 		//  get views from wp eazy docs views table and post type docs and sum count
-		$posts = $wpdb->get_results( "SELECT post_id, SUM(count) AS totalcount, created_at FROM {$wpdb->prefix}eazydocs_view_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY post_id" );
+		$posts = $wpdb->get_results( "SELECT post_id, SUM(count) AS totalcount, created_at FROM {$wpdb->prefix}eazydocs_view_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY post_id" );
 
 		// get data from wp_eazydocs_search_log base on $date_range with prefix
-		$search_keyword = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}eazydocs_search_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)" );
+		$search_keyword = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}eazydocs_search_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)" );
 		$labels         = [];
 		$Liked          = [];
 		$Disliked       = [];

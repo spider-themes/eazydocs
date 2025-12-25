@@ -57,12 +57,12 @@
                     <!-- Icon wrapper -->
                     <div class="ezd-activity-icon-wrapper ezd-icon-bg-blue">
                         <a target="_blank" href="<?php echo esc_url( $post['post_permalink'] ); ?>" class="ezd-quick-links-link">
-                            <img src="<?php echo EAZYDOCS_IMG . '/icon/external-white.svg'; ?>" />
+                            <img src="<?php echo EAZYDOCS_IMG . '/icon/external.svg'; ?>" />
                         </a>
                     </div>
 
                     <!-- Content -->
-                    <div>
+                    <div class="ezd-activity-content">
                         <!-- Rank number + title -->
                         <p class="ezd-activity-text">
                             <a target="_blank" href="<?php echo esc_url( $post['post_permalink'] ); ?>">
@@ -101,6 +101,7 @@
                         </div>
                     </div>
                 </li>
+
                 <?php
             endforeach;
         else : 

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 /**
  * Convert font-size from px to rem with px fallback
  *
@@ -10,12 +12,12 @@
 
 // Function for converting a px based font-size to rem.
 @function rem($size) {
-  @return $size / 16px * 1rem;
+  @return math.div($size, 16px) * 1rem;
 }
 
 // Font Responsive
 @function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
+  @return math.div($value, ($value * 0 + 1));
 }
 
 // Minimum breakpoint width. Null for the smallest (first) breakpoint.

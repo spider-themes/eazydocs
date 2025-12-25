@@ -98,7 +98,7 @@
                             <span class="dashicons <?php echo esc_attr( $icon ); ?>"></span>
                         </div>
 
-                        <div>
+                        <div class="ezd-activity-content">
                             <p class="ezd-activity-text">
                                 <strong><?php echo esc_html( $act['author'] ); ?></strong>
                                 <?php esc_html_e( 'commented on', 'eazydocs' ); ?>
@@ -137,7 +137,7 @@
                         <div class="ezd-activity-icon-wrapper <?php echo esc_attr( $bg ); ?>">
                             <span class="dashicons <?php echo esc_attr( $icon ); ?>"></span>
                         </div>
-                        <div>
+                        <div class="ezd-activity-content">
                             <p class="ezd-activity-text">
                                 <?php echo esc_html( $text ); ?> 
                                 <a href="<?php echo esc_url( get_permalink( $act['post_id'] ) ); ?>" target="_blank"><?php echo esc_html( $act['post_title'] ); ?></a>

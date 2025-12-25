@@ -34,13 +34,16 @@ $is_empty_data = ( $total_search == 0 && $total_failed_search == 0 );
         options = {
             series: [1], // single slice
             chart: {
-                width: 450,
+                width: '100%',
+                height: 300,
                 type: 'donut',
+                fontFamily: 'inherit',
             },
             labels: ['No Search Data'],
-            colors: ['#d0d0d0'], // gray color
+            colors: ['#f1f5f9'], // gray color
             dataLabels: { enabled: false },
-            legend: { show: false }
+            legend: { show: false },
+            stroke: { show: false }
         };
     } else {
         // Show NORMAL chart
@@ -51,21 +54,46 @@ $is_empty_data = ( $total_search == 0 && $total_failed_search == 0 );
                 <?php echo esc_js( $total_failed_search ); ?>
             ],
             chart: {
-                width: 450,
+                width: '100%',
+                height: 300,
                 type: 'donut',
+                fontFamily: 'inherit',
             },
             labels: ['Total Search', 'Successful', 'Failed'],
-            colors: ['#ff66b3', '#00cc66', '#ff0000'],
+            colors: ['#6366f1', '#10b981', '#ef4444'],
             dataLabels: { enabled: false },
             legend: {
                 position: 'bottom',
                 horizontalAlign: 'center',
-                markers: { width: 10, height: 10, offsetX: -2 },
-                itemMargin: { horizontal: 5, vertical: 0 }
+                fontSize: '14px',
+                markers: { width: 10, height: 10, radius: 12 },
+                itemMargin: { horizontal: 10, vertical: 5 }
             },
-            fill: { type: 'gradient' }
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['#fff']
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '75%',
+                        labels: {
+                            show: true,
+                            total: {
+                                show: true,
+                                label: 'Total',
+                                fontSize: '16px',
+                                fontWeight: 600,
+                                color: '#64748b'
+                            }
+                        }
+                    }
+                }
+            }
         };
     }
+
 
     var search_chart = new ApexCharts(document.querySelector("#ezd-search-chart"), options);
     search_chart.render();
