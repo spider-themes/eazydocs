@@ -393,21 +393,35 @@
 				e.stopPropagation();
 			});
 			
-			// Handle expand/collapse all functionality
-			$(document).on('click', '.ezd-expand-all', function (e) {
+			// Handle expand/collapse all toggle functionality
+			$(document).on('click', '.ezd-toggle-expand-btn', function (e) {
 				e.preventDefault();
-				const tabId = $(this).closest('.easydocs-tab').attr('id');
-				$('#' + tabId + ' .nestables-child').nestable('expandAll');
-				$('.nestable--collapse').show();
-				$('.nestable--expand').hide();
-			});
-			
-			$(document).on('click', '.ezd-collapse-all', function (e) {
-				e.preventDefault();
-				const tabId = $(this).closest('.easydocs-tab').attr('id');
-				$('#' + tabId + ' .nestables-child').nestable('collapseAll');
-				$('.nestable--collapse').hide();
-				$('.nestable--expand').show();
+				const $btn = $(this);
+				const $tab = $btn.closest('.easydocs-tab');
+				const tabId = $tab.attr('id');
+				const currentState = $btn.data('state');
+				const $icon = $btn.find('.dashicons');
+				const $text = $btn.find('.btn-text');
+				
+				if (currentState === 'collapsed') {
+					// Expand all
+					$('#' + tabId + ' .nestables-child').nestable('expandAll');
+					$btn.data('state', 'expanded');
+					$icon.removeClass('dashicons-arrow-down-alt2').addClass('dashicons-arrow-up-alt2');
+					$text.text(eazydocs_local_object.i18n?.collapse_all || 'Collapse All');
+					$btn.attr('title', eazydocs_local_object.i18n?.collapse_all_title || 'Collapse all sections');
+					$('.nestable--collapse').show();
+					$('.nestable--expand').hide();
+				} else {
+					// Collapse all
+					$('#' + tabId + ' .nestables-child').nestable('collapseAll');
+					$btn.data('state', 'collapsed');
+					$icon.removeClass('dashicons-arrow-up-alt2').addClass('dashicons-arrow-down-alt2');
+					$text.text(eazydocs_local_object.i18n?.expand_all || 'Expand All');
+					$btn.attr('title', eazydocs_local_object.i18n?.expand_all_title || 'Expand all sections');
+					$('.nestable--collapse').hide();
+					$('.nestable--expand').show();
+				}
 			});
 			
 			// Keyboard accessibility for drag handles

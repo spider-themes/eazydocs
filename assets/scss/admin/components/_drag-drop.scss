@@ -269,7 +269,6 @@
     }
 }
 
-// ===== RTL Support =====
 body.rtl {
     .nestables-child .dd3-content::before {
         left: auto;
@@ -285,5 +284,96 @@ body.rtl {
     .ezd-save-indicator {
         right: auto;
         left: 20px;
+    }
+}
+
+// ===== Filter Container with Toolbar =====
+.easydocs-filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #edeae9;
+    margin-bottom: 10px;
+}
+
+// ===== Toolbar Actions =====
+.ezd-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+// ===== Toggle Expand/Collapse Button =====
+.ezd-toggle-expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    color: #495057;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    .dashicons {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s ease;
+    }
+    
+    .btn-text {
+        line-height: 1;
+    }
+    
+    &:hover {
+        background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        border-color: #adb5bd;
+        color: #212529;
+        
+        .dashicons {
+            color: var(--clr-blue, #4c4cf1);
+        }
+    }
+    
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(76, 76, 241, 0.15);
+        border-color: var(--clr-blue, #4c4cf1);
+    }
+    
+    &:active {
+        transform: scale(0.98);
+    }
+    
+    // Expanded state styling
+    &[data-state="expanded"] {
+        background: linear-gradient(135deg, #e7f3ff 0%, #d2e6f9 100%);
+        border-color: #90c2f0;
+        color: #1877f2;
+        
+        .dashicons {
+            color: #1877f2;
+        }
+        
+        &:hover {
+            background: linear-gradient(135deg, #d2e6f9 0%, #bbd8f0 100%);
+            border-color: #6eb1eb;
+        }
+    }
+}
+
+// ===== RTL Support for Toolbar =====
+body.rtl {
+    .ezd-toolbar-actions {
+        margin-left: 0;
+        margin-right: auto;
     }
 }

@@ -46,6 +46,13 @@ if ( is_array( $depth_one_parents ) ) :
                         <?php esc_html_e('Draft', 'eazydocs'); ?>
                     </li>
                 </ul>
+                
+                <div class="ezd-toolbar-actions">
+                    <button type="button" class="ezd-toggle-expand-btn" data-state="collapsed" title="<?php esc_attr_e( 'Toggle expand/collapse all sections', 'eazydocs' ); ?>">
+                        <span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></span>
+                        <span class="btn-text"><?php esc_html_e( 'Expand All', 'eazydocs' ); ?></span>
+                    </button>
+                </div>
             </div>
             <div class="easydocs-accordion sortabled dd accordionjs nestables-child" id="nestable-<?php echo esc_attr( $item ); ?>">
                 
