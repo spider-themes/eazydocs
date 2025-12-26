@@ -650,14 +650,12 @@ select#ezd_docs_layout {
     border-bottom: 1px solid #edeae9;
 }
 
-.depth-4 {
-    .dd3-content {
-        padding-left: 70px;
-    }
+.depth-4 .dd3-content {
+    padding-left: 70px;
+}
 
-    .dd-handle.dd3-handle {
-        left: 60px;
-    }
+.depth-4 .dd-handle.dd3-handle {
+    left: 60px;
 }
 
 .dd-dragel > .dd3-item > .dd3-content {

@@ -32,8 +32,8 @@ class Assets {
 		// Doc Builder Assets
 		if ( ezd_admin_pages('eazydocs-builder') ) {
 			wp_enqueue_script( 'ezd-accordion', EAZYDOCS_ASSETS . '/js/admin/accordion.min.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
-			wp_enqueue_script( 'ezd-nestable', EAZYDOCS_ASSETS . '/js/admin/jquery.nestable.js', array('jquery'), true, true );
-			wp_enqueue_script( 'ezd-nestable-script', EAZYDOCS_ASSETS . '/js/admin/nestable-script.js', array('jquery'), true, true );
+			wp_enqueue_script( 'ezd-nestable', EAZYDOCS_ASSETS . '/js/admin/jquery.nestable.js', array('jquery'), EAZYDOCS_VERSION, true );
+			wp_enqueue_script( 'ezd-drag-drop-enhanced', EAZYDOCS_ASSETS . '/js/admin/drag-drop-enhanced.js', array('jquery', 'ezd-nestable'), EAZYDOCS_VERSION, true );
 		}
 
 		if ( ezd_admin_pages( ['eazydocs-builder', 'ezd-analytics'] )) {
