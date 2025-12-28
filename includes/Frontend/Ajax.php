@@ -107,7 +107,7 @@ class Ajax {
 		global $wpdb;
 
 		$keyword     = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
-		$search_mode = ezd_get_opt('search_by', 'title_only');
+		$search_mode = ezd_is_premium() ? ezd_get_opt( 'search_by', 'title_and_content' ) : 'title_and_content';
 		$post_status = is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'];
 
 		if ( empty($keyword) ) {
@@ -229,7 +229,7 @@ class Ajax {
 				<div class="search-result-item <?php echo esc_attr($no_thumbnail); ?>" data-url="<?php the_permalink(); ?>">
 					<a href="<?php the_permalink(); ?>" class="title">
 						<?php if (ezd_get_opt('is_search_result_thumbnail')) :
-							if (has_post_thumbnail()) {
+							if (has_post_thumbnail() && ezd_is_premium() ) {
 								the_post_thumbnail('ezd_searrch_thumb16x16');
 							} else { ?>
 								<svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img">
@@ -245,7 +245,11 @@ class Ajax {
 							<path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
 						</svg>
 					</a>
-					<?php if (ezd_get_opt('is_search_result_breadcrumb')) eazydocs_search_breadcrumbs(); ?>
+					<?php 
+					if (ezd_get_opt('is_search_result_breadcrumb') && ezd_is_premium() ){
+						eazydocs_search_breadcrumbs();
+					}
+					?>
 				</div>
 				<?php
 			endwhile;
@@ -276,7 +280,7 @@ class Ajax {
 		}
 
 		// Check private doc access
-		if ( get_post_status( $postid ) == 'private' ) {
+		if ( get_post_status( $postid ) == 'private' && ezd_is_premium() ) {
 			$user_group  = ezd_get_opt('private_doc_user_restriction');
 			$is_all_user = $user_group['private_doc_all_user'] ?? 0;
 			if ( $is_all_user == 0 ) {

@@ -58,6 +58,9 @@ class Frontend {
 	 *
 	 */
 	public function footnotes($post_id){		
+		if ( ! ezd_is_premium() ) {
+			return;
+		}
 		$default_column 		= ezd_get_opt( 'footnotes_column', '4' );		
 		$is_notes_title   		= ezd_get_opt( 'is_footnotes_heading', '1' );
 		$footnotes_layout  	 	= ezd_get_opt( 'footnotes_layout', 'collapsed' );

@@ -1,6 +1,6 @@
 <?php
-$is_conditional_dropdown = ezd_get_opt( 'is_conditional_dropdown' );
-$condition_options       = ezd_get_opt( 'condition_options' );
+$is_conditional_dropdown = ezd_is_promax() ? ezd_get_opt( 'is_conditional_dropdown' ) : '';
+$condition_options       = ezd_is_promax() ? ezd_get_opt( 'condition_options' ) : array();
 
 if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
   wp_enqueue_style( 'elegant-icon' );

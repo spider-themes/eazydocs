@@ -1,8 +1,8 @@
 <?php
-$is_constribution              = ezd_get_opt('is_doc_contribution') ?? '';
-$is_add_doc                    = ezd_get_opt('frontend_add_switcher') ?? '';
-$is_edit_doc                   = ezd_get_opt('frontend_edit_switcher') ?? '';
-$user_login_page_id            = ezd_get_opt('docs_frontend_login_page') ?? '';
+$is_constribution              = ( ezd_is_promax() ? ezd_get_opt('is_doc_contribution') : '' ) ?? '';
+$is_add_doc                    = ( ezd_is_promax() ? ezd_get_opt('frontend_add_switcher') : '' ) ?? '';
+$is_edit_doc                   = ( ezd_is_promax() ? ezd_get_opt('frontend_edit_switcher') : '' ) ?? '';
+$user_login_page_id            = ( ezd_is_promax() ? ezd_get_opt('docs_frontend_login_page') : '' ) ?? '';
 
 if ( eaz_fs()->is_plan('promax') ) :
     if ( $is_constribution ) :

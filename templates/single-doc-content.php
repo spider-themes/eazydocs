@@ -5,7 +5,7 @@ $views_visibility        = ezd_get_opt( 'enable-views', '1' );
 $sidebar_toggle          = ezd_get_opt( 'toggle_visibility', '1' );
 $layout                  = ezd_get_opt( 'docs_single_layout', 'both_sidebar' );
 $is_doc_title			 = ezd_get_opt( 'is_doc_title', true );
-$is_doc_contribution	 = ezd_get_opt( 'is_doc_contribution', false );
+$is_doc_contribution	 = ezd_is_promax() ? ezd_get_opt( 'is_doc_contribution', false ) : false;
 $is_selected_comment 	 = ezd_get_opt( 'enable-selected-comment', false );
 $selected_comment_active = $is_selected_comment == true ? 'selected-comment-active' : '';
 $current_parent_id  	 = wp_get_post_parent_id( get_the_ID() );

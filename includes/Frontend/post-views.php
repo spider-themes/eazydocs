@@ -40,7 +40,7 @@ function eazydocs_set_post_view() {
 		$post_id = get_the_ID();
 
 		// Check if views tracking is enabled, unique views are enabled, and the user has premium access.
-		if ( ezd_get_opt( 'enable-views' ) === '1' && ezd_get_opt( 'enable-unique-views' ) === '1' && ezd_is_premium() ) {
+		if ( ezd_get_opt( 'enable-views' ) === '1' && ( ezd_is_premium() ? ezd_get_opt( 'enable-unique-views' ) === '1' : false ) ) {
 
 			// Retrieve viewed posts from cookies
 			$viewed_posts = isset( $_COOKIE['eazydocs_viewed_posts'] ) ? json_decode( sanitize_text_field( wp_unslash( $_COOKIE['eazydocs_viewed_posts'] ) ), true ) : array();

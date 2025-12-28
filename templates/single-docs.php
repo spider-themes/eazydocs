@@ -19,7 +19,7 @@ $doc_container   = 'ezd-container ezd-custom-container';
 $content_wrapper = '';
 $credit_enable   = '1';
 
-$layout          = ezd_get_opt( 'docs_single_layout', 'both_sidebar' );
+$layout          = ezd_is_premium() ? ezd_get_opt( 'docs_single_layout', 'both_sidebar' ) : 'both_sidebar';
 $doc_width       = ezd_get_opt( 'docs_page_width' );
 $doc_container   = $doc_width == 'full-width' ? 'ezd-container-fluid px-lg-5' : 'ezd-container ezd-custom-container';
 $content_wrapper = $doc_width == 'full-width' ? 'doc_full_width' : '';

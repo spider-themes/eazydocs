@@ -6,10 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$slugType              = ezd_get_opt( 'docs-url-structure' );
-$custom_slug           = ezd_get_opt( 'docs-type-slug' );
+$slugType              = ezd_is_premium() ? ezd_get_opt( 'docs-url-structure' ) : 'custom-slug';
+$custom_slug           = ezd_is_premium() ? ezd_get_opt( 'docs-type-slug' ) : 'docs';
 $brand_color           = ezd_get_opt( 'brand_color' );
-$docs_single_layout    = ezd_get_opt( 'docs_single_layout' );
+$docs_single_layout    = ezd_is_premium() ? ezd_get_opt( 'docs_single_layout' ) : 'both_sidebar';
 $docs_page_width       = ezd_get_opt( 'docs_page_width' );
 $customizer_visibility = ezd_get_opt( 'customizer_visibility' );
 $docs_archive_page     = ezd_get_opt( 'docs-slug' );

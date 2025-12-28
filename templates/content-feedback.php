@@ -20,7 +20,7 @@ $still_stuck        = ezd_get_opt( 'still-stuck', esc_html__( 'Still stuck?', 'e
 $tags               = get_the_terms( get_the_ID(), 'doc_tag' );
 $link_text          = ezd_get_opt( 'feedback-link-text', esc_html__( 'How can we help?', 'eazydocs' ) );
 $doc_feedback_label = ezd_get_opt( 'feedback-label', esc_html__( 'Was this page helpful?', 'eazydocs' ) );
-$enable_next_prev   = ezd_get_opt( 'enable-next-prev-links' );
+$enable_next_prev   = ezd_is_premium() ? ezd_get_opt( 'enable-next-prev-links' ) : false;
 $is_doc_tag         = ezd_get_opt( 'is_doc_tag', true );
 
 if ( $tags || $docs_feedback == '1' || $enable_next_prev == '1' ) :
@@ -40,7 +40,7 @@ if ( $tags || $docs_feedback == '1' || $enable_next_prev == '1' ) :
 			$has_next_prev = 'has_tags_next_prev';
 		}
 		// Next & Previous Link
-		if ( $enable_next_prev == '1' ) {
+		if ( $enable_next_prev == '1' && ezd_is_premium() ) {
 			do_action( 'eazydocs_prev_next_docs', get_the_ID() );
 		}
 

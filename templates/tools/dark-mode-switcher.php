@@ -1,5 +1,5 @@
 <?php
-if ( ezd_get_opt( 'is_dark_switcher' ) == '1' && ezd_unlock_themes( 'docy', 'docly' ) ) :
+if ( ezd_is_premium() && ( ezd_get_opt( 'is_dark_switcher' ) == '1' ) && ezd_unlock_themes( 'docy', 'docly' ) ) :
     ?>
     <div class="doc_switch ezd-d-flex ezd-align-items-center">
         <label for="ezd_dark_switch" class="tab-btn tab-btns light-mode">

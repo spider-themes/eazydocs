@@ -985,9 +985,9 @@ function ezd_password_form($output, $post = 0) {
         return $output;
     }
 
-	$protected_form_switcher = ezd_get_opt( 'protected_doc_form' );
-	$protected_form_title    = ezd_get_opt( 'protected_form_title', esc_html__( 'Enter Password & Read this Doc', 'eazydocs' ) );
-	$protected_form_subtitle = ezd_get_opt( 'protected_form_subtitle', esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' ) );
+	$protected_form_switcher = ezd_is_premium() ? ezd_get_opt( 'protected_doc_form' ) : 'default';
+	$protected_form_title    = ezd_is_premium() ? ezd_get_opt( 'protected_form_title', esc_html__( 'Enter Password & Read this Doc', 'eazydocs' ) ) : esc_html__( 'Enter Password & Read this Doc', 'eazydocs' );
+	$protected_form_subtitle = ezd_is_premium() ? ezd_get_opt( 'protected_form_subtitle', esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' ) ) : esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
 
 	if ( ! empty( $protected_form_switcher == 'eazydocs-form' ) ) :
 		ob_start();
@@ -1467,6 +1467,9 @@ function ezd_get_doc_parent_id( $doc_id = 0 ) {
  * Get all conditional items
  */
  function ezd_get_conditional_items() {
+	if ( ! ezd_is_promax() ) {
+		return array();
+	}
 	$conditional_items 	= ezd_get_opt('condition_options');
 	$conditional_array 	= [];
 
@@ -1857,11 +1860,15 @@ function ezd_private_docs_access() {
  * @return string The sanitized docs slug.
  */
 function ezd_docs_slug() {
+	if ( ! ezd_is_premium() ) {
+		return '';
+	}
+
 	$docs_url	  = ezd_get_opt( 'docs-url-structure', 'custom-slug' );
 	$permalink    = get_option( 'permalink_structure' );
     $custom_slug  = ezd_get_opt( 'docs-type-slug' );
     $safe_slug 	  = preg_replace( '/[^a-zA-Z0-9-_]/', '-', $custom_slug );
-
+	
 	if ( $docs_url == 'custom-slug' || $permalink === '' || $permalink === '/archives/%post_id%' ) {
 		return $safe_slug ?: 'docs';
 	}

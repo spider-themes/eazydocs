@@ -21,7 +21,7 @@ $children = array(
 );
 
 // If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
-$sidebar_source = ezd_get_opt('docs_to_view', 'self_docs');
+$sidebar_source = ezd_is_premium() ? ezd_get_opt('docs_to_view', 'self_docs') : 'self_docs';
 if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
     $children['child_of'] = $parent;
 }
