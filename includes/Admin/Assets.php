@@ -128,6 +128,10 @@ class Assets {
 		if ( ! empty( $wpml_current_language ) ) {
 			$ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
 		}
+		
+		// Check if Antimanual is active
+		$antimanual_active = is_plugin_active( 'antimanual/antimanual.php' );
+		
 		wp_localize_script(
 			'jquery',
 			'eazydocs_local_object',
@@ -135,6 +139,7 @@ class Assets {
 				'ajaxurl'                   => $ajax_url,
 				'EAZYDOCS_FRONT_CSS'        => EAZYDOCS_FRONT_CSS,
 				'EAZYDOCS_ASSETS'           => EAZYDOCS_ASSETS,
+				'antimanualActive'          => $antimanual_active,
 				'create_prompt_title'       => esc_html__( 'Enter Doc Title', 'eazydocs' ),
 				'delete_prompt_title'       => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
 				'no_revert_title'           => esc_html__( "This doc will be trashed with the child docs and you will be able to restore it later from the trash!", "eazydocs" ),

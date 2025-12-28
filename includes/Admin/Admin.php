@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Include admin helper functions
 require_once __DIR__ . '/admin-helpers.php';
 
+// Include Antimanual integration notice
+require_once __DIR__ . '/AntimanualNotice.php';
+
 /**
  * Class Admin
  *
@@ -30,6 +33,9 @@ class Admin {
 		add_action( 'wp_ajax_eaz_nestable_docs', [ $this, 'nestable_callback' ] );
 		add_action( 'wp_ajax_eaz_parent_nestable_docs', [ $this, 'parent_nestable_callback' ] );
 		add_filter( 'display_post_states', [ $this, 'ezd_post_states' ], 10, 2 );
+		
+		// Initialize Antimanual notice
+		new AntimanualNotice();
 	}
 
 	/**

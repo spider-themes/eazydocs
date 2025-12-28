@@ -205,46 +205,114 @@
         // Create Doc with AI Popup
         $(document).on('click', '#ezd-create-doc-with-ai', function(e) {
             e.preventDefault();
-            Swal.fire({
-                title: '',
-                html: `
-                    <div class="ezd-ai-popup-content">
-                        <div class="ezd-ai-header">
-                            <h2>Create Docs Smarter with AI</h2>
-                            <p class="ezd-ai-desc">Transform documentation with structured, accurate, and professional docs in minutes.</p>
-                        </div>
-                        
-                        <div class="ezd-ai-video-wrapper">
-                            <video autoplay muted loop playsinline>
-                                    <source src="https://antimanual.spider-themes.net/wp-content/uploads/2025/08/AI-Doc-generate.mp4" type="video/mp4">
-                            </video>
-                        </div>
+            
+            // Check if Antimanual is active
+            const isAntimanualActive = typeof eazydocs_local_object !== 'undefined' && eazydocs_local_object.antimanualActive;
+            
+            let popupContent = `
+                <div class="ezd-ai-popup-content">
+                    <div class="ezd-ai-header">
+                        <div class="ezd-ai-badge">🤖 Powered by Antimanual AI</div>
+                        <h2>Create Docs Smarter with AI</h2>
+                        <p class="ezd-ai-desc">Transform documentation with structured, accurate, and professional docs in minutes using enterprise-grade AI.</p>
+                    </div>
+                    
+                    <div class="ezd-ai-video-wrapper">
+                        <video autoplay muted loop playsinline>
+                                <source src="https://antimanual.spider-themes.net/wp-content/uploads/2025/08/AI-Doc-generate.mp4" type="video/mp4">
+                        </video>
+                    </div>
 
-                        <div class="ezd-ai-feature-grid">
-                            <div class="ezd-ai-feature-item">
-                                <span class="ezd-ai-feature-icon">📊</span>
-                                <h3>Bulk Generation</h3>
-                                <p>Instantly generate comprehensive documentation structures and content. Easily review and refine the outline before generation.</p>
-                            </div>
-                            <div class="ezd-ai-feature-item">
-                                <span class="ezd-ai-feature-icon">📄</span>
-                                <h3>Docs from Files</h3>
-                                <p>Generate complete, context-aware documentation directly from your uploaded Knowledge Files (.txt, .md, .pdf).</p>
-                            </div>
+                    <div class="ezd-ai-feature-grid">
+                        <div class="ezd-ai-feature-item">
+                            <span class="ezd-ai-feature-icon">🤖</span>
+                            <h3>AI Documentation Generator</h3>
+                            <p>Generate comprehensive, SEO-optimized docs with custom tone and language. Choose professional, friendly, or technical styles.</p>
                         </div>
-
-                        <div class="ezd-ai-popup-footer">
-                            <a href="https://antimanual.spider-themes.net/ai-doc-generator/" target="_blank" class="ezd-ai-btn ezd-ai-btn-primary">
-                                Explore Feature
-                                <span class="dashicons dashicons-external"></span>
-                            </a>
-                            <a href="https://antimanual.spider-themes.net/pricing/" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
-                                Get Antimanual
-                                <span class="dashicons dashicons-download"></span>
-                            </a>
+                        <div class="ezd-ai-feature-item">
+                            <span class="ezd-ai-feature-icon">💬</span>
+                            <h3>24/7 AI Chatbot</h3>
+                            <p>Reduce support tickets by 70%+ with an intelligent chatbot trained on your EazyDocs knowledge base. Instant, accurate answers.</p>
+                        </div>
+                        <div class="ezd-ai-feature-item">
+                            <span class="ezd-ai-feature-icon">📊</span>
+                            <h3>Bulk Generation</h3>
+                            <p>Generate multiple docs at once with comprehensive structures. Review and refine outlines before generation.</p>
+                        </div>
+                        <div class="ezd-ai-feature-item">
+                            <span class="ezd-ai-feature-icon">📄</span>
+                            <h3>Docs from Files</h3>
+                            <p>Upload PDFs, URLs, and custom text to generate context-aware documentation automatically.</p>
+                        </div>
+                        <div class="ezd-ai-feature-item">
+                            <span class="ezd-ai-feature-icon">🔍</span>
+                            <h3>Semantic AI Search</h3>
+                            <p>Beyond keywords - understand user intent with natural language processing and smart suggestions.</p>
+                        </div>
+                        <div class="ezd-ai-feature-item">
+                            <span class="ezd-ai-feature-icon">🚀</span>
+                            <h3>GPT-5 & Gemini Support</h3>
+                            <p>Powered by latest AI models including GPT-4, GPT-5, and Google Gemini for superior accuracy.</p>
                         </div>
                     </div>
-                `,
+
+                    <div class="ezd-ai-benefits">
+                        <h3>Why Choose Antimanual for EazyDocs?</h3>
+                        <ul>
+                            <li><strong>Enterprise-Grade AI:</strong> GPT-4, GPT-5, and Gemini support (not just GPT-3.5)</li>
+                            <li><strong>Multi-Source Training:</strong> Train on Docs, PDFs, URLs, and custom text</li>
+                            <li><strong>Full Context Retention:</strong> Conversation history for smarter, personalized answers</li>
+                            <li><strong>Cross-Domain Embed:</strong> Deploy chatbot on external sites easily</li>
+                            <li><strong>bbPress Integration:</strong> Convert forum discussions into permanent knowledge base articles</li>
+                        </ul>
+                    </div>
+            `;
+            
+            if (isAntimanualActive) {
+                popupContent += `
+                    <div class="ezd-ai-popup-footer ezd-ai-active">
+                        <div class="ezd-ai-active-badge">
+                            <span class="dashicons dashicons-yes-alt"></span>
+                            <span>Antimanual is Active!</span>
+                        </div>
+                        <a href="${window.location.origin}/wp-admin/admin.php?page=antimanual" class="ezd-ai-btn ezd-ai-btn-primary">
+                            Manage AI Settings
+                            <span class="dashicons dashicons-admin-generic"></span>
+                        </a>
+                        <a href="https://helpdesk.spider-themes.net/docs/antimanual" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
+                            View Documentation
+                            <span class="dashicons dashicons-external"></span>
+                        </a>
+                    </div>
+                `;
+            } else {
+                popupContent += `
+                    <div class="ezd-ai-popup-footer">
+                        <div class="ezd-ai-cta-text">
+                            <span class="dashicons dashicons-info"></span>
+                            <p>Get started with Antimanual to unlock all AI features for your EazyDocs knowledge base!</p>
+                        </div>
+                        <a href="${window.location.origin}/wp-admin/plugin-install.php?s=antimanual&tab=search&type=term" class="ezd-ai-btn ezd-ai-btn-primary">
+                            <span class="dashicons dashicons-download"></span>
+                            Install Antimanual Free
+                        </a>
+                        <a href="https://antimanual.spider-themes.net" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
+                            Learn More
+                            <span class="dashicons dashicons-external"></span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=X9HMPBkzDeM" target="_blank" class="ezd-ai-btn ezd-ai-btn-link">
+                            <span class="dashicons dashicons-video-alt3"></span>
+                            Watch Demo
+                        </a>
+                    </div>
+                `;
+            }
+            
+            popupContent += `</div>`;
+            
+            Swal.fire({
+                title: '',
+                html: popupContent,
                 showConfirmButton: false,
                 showCloseButton: true,
                 width: '800px',
