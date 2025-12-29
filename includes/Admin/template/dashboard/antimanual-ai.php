@@ -7,12 +7,18 @@
 // Check if Antimanual plugin is installed
 $antimanual_installed = false;
 $antimanual_active = false;
+$antimanual_pro_active = false;
 
 if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
     $antimanual_installed = true;
     if ( is_plugin_active( 'antimanual/antimanual.php' ) ) {
         $antimanual_active = true;
     }
+}
+
+// Check if Antimanual Pro is active
+if ( is_plugin_active( 'antimanual-pro/antimanual.php' ) ) {
+    $antimanual_pro_active = true;
 }
 ?>
 
@@ -31,36 +37,41 @@ if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
 
     <div class="ezd-ai-card-body">
         <?php if ( $antimanual_active ) : ?>
-            <!-- Antimanual is Active -->
+            <!-- Antimanual is Active - Show Menu Items -->
             <p class="ezd-ai-description">
                 <?php esc_html_e( 'Antimanual AI is enhancing your documentation experience!', 'eazydocs' ); ?>
             </p>
             
-            <div class="ezd-ai-features-active">
-                <div class="ezd-ai-feature-item">
-                    <span class="dashicons dashicons-yes-alt"></span>
-                    <span><?php esc_html_e( 'AI Chatbot - 24/7 Support', 'eazydocs' ); ?></span>
-                </div>
-                <div class="ezd-ai-feature-item">
-                    <span class="dashicons dashicons-yes-alt"></span>
-                    <span><?php esc_html_e( 'Auto Documentation Generator', 'eazydocs' ); ?></span>
-                </div>
-                <div class="ezd-ai-feature-item">
-                    <span class="dashicons dashicons-yes-alt"></span>
-                    <span><?php esc_html_e( 'Semantic AI Search', 'eazydocs' ); ?></span>
-                </div>
-                <div class="ezd-ai-feature-item">
-                    <span class="dashicons dashicons-yes-alt"></span>
-                    <span><?php esc_html_e( 'GPT-4, GPT-5 & Gemini Support', 'eazydocs' ); ?></span>
-                </div>
-            </div>
-
-            <div class="ezd-ai-actions">
-                <a href="<?php echo admin_url( 'admin.php?page=antimanual' ); ?>" class="ezd-ai-btn ezd-ai-btn-primary">
-                    <?php esc_html_e( 'Manage AI Settings', 'eazydocs' ); ?>
+            <div class="ezd-ai-menu-items">
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=antimanual' ) ); ?>" class="ezd-ai-menu-item">
+                    <span class="ezd-ai-menu-icon dashicons dashicons-admin-network"></span>
+                    <span class="ezd-ai-menu-text"><?php esc_html_e( 'API Configuration', 'eazydocs' ); ?></span>
+                    <span class="dashicons dashicons-arrow-right-alt2"></span>
                 </a>
-                <a href="https://helpdesk.spider-themes.net/docs/antimanual" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
-                    <?php esc_html_e( 'View Documentation', 'eazydocs' ); ?>
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=atml-knowledge-base' ) ); ?>" class="ezd-ai-menu-item">
+                    <span class="ezd-ai-menu-icon dashicons dashicons-book"></span>
+                    <span class="ezd-ai-menu-text"><?php esc_html_e( 'Knowledge Base', 'eazydocs' ); ?></span>
+                    <span class="dashicons dashicons-arrow-right-alt2"></span>
+                </a>
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=atml-chatbot' ) ); ?>" class="ezd-ai-menu-item">
+                    <span class="ezd-ai-menu-icon dashicons dashicons-format-chat"></span>
+                    <span class="ezd-ai-menu-text"><?php esc_html_e( 'Chatbot', 'eazydocs' ); ?></span>
+                    <span class="dashicons dashicons-arrow-right-alt2"></span>
+                </a>
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=atml-docs' ) ); ?>" class="ezd-ai-menu-item">
+                    <span class="ezd-ai-menu-icon dashicons dashicons-edit-large"></span>
+                    <span class="ezd-ai-menu-text"><?php esc_html_e( 'Generate Docs', 'eazydocs' ); ?></span>
+                    <span class="dashicons dashicons-arrow-right-alt2"></span>
+                </a>
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=atml-auto-posting' ) ); ?>" class="ezd-ai-menu-item">
+                    <span class="ezd-ai-menu-icon dashicons dashicons-schedule"></span>
+                    <span class="ezd-ai-menu-text"><?php esc_html_e( 'Auto Posting', 'eazydocs' ); ?></span>
+                    <span class="dashicons dashicons-arrow-right-alt2"></span>
+                </a>
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=atml-bulk-rewrite' ) ); ?>" class="ezd-ai-menu-item">
+                    <span class="ezd-ai-menu-icon dashicons dashicons-update-alt"></span>
+                    <span class="ezd-ai-menu-text"><?php esc_html_e( 'Bulk Rewrite', 'eazydocs' ); ?></span>
+                    <span class="dashicons dashicons-arrow-right-alt2"></span>
                 </a>
             </div>
 
@@ -163,24 +174,45 @@ if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
         <?php endif; ?>
     </div>
 
-    <?php if ( ! $antimanual_active ) : ?>
     <div class="ezd-ai-card-footer">
-        <p class="ezd-ai-footer-text">
-            <span class="dashicons dashicons-info"></span>
-            <?php esc_html_e( 'Free version available. Upgrade to Premium for higher limits and priority support.', 'eazydocs' ); ?>
-        </p>
+        <?php if ( $antimanual_active ) : ?>
+            <div class="ezd-ai-actions">
+                <a href="<?php echo esc_url( admin_url( 'admin.php?page=antimanual-settings' ) ); ?>" class="ezd-ai-btn ezd-ai-btn-secondary">
+                    <span class="dashicons dashicons-book"></span>
+                    <?php esc_html_e( 'Documentation', 'eazydocs' ); ?>
+                </a>
+                
+                <?php if ( $antimanual_pro_active ) : ?>
+                    <a href="https://www.youtube.com/watch?v=X9HMPBkzDeM&list=PLeCjxMdg411WBCZC-v-DDKZCMYoCzQpCB" target="_blank" class="ezd-ai-btn ezd-ai-btn-youtube">
+                        <span class="dashicons dashicons-video-alt3"></span>
+                        <?php esc_html_e( 'Video Tutorials', 'eazydocs' ); ?>
+                    </a>
+                <?php else : ?>
+                    <a href="https://antimanual.spider-themes.net/pricing" target="_blank" class="ezd-ai-btn ezd-ai-btn-upgrade">
+                        <span class="dashicons dashicons-star-filled"></span>
+                        <?php esc_html_e( 'Upgrade to Pro', 'eazydocs' ); ?>
+                    </a>
+                <?php endif; ?>
+            </div>
+        <?php elseif ( ! $antimanual_installed ) : ?>
+            <p class="ezd-ai-footer-text">
+                <span class="dashicons dashicons-info"></span>
+                <?php esc_html_e( 'Free version available. Upgrade to Premium for higher limits and priority support.', 'eazydocs' ); ?>
+            </p>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
 </div>
 
 <style>
 .ezd-ai-integration-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--clr-blue) 0%, #667eea 100%);
     border-radius: 12px;
     padding: 0;
-    margin-bottom: 24px;
     box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .ezd-ai-card-header {
@@ -232,6 +264,8 @@ if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
 .ezd-ai-card-body {
     padding: 24px;
     background: #ffffff;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .ezd-ai-description {
@@ -325,6 +359,56 @@ if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
     height: 18px;
 }
 
+/* Antimanual Menu Items */
+.ezd-ai-menu-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.ezd-ai-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 12px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.ezd-ai-menu-item:hover {
+    background: #f3f4f6;
+    border-color: #4c4cf1;
+    transform: translateY(-2px);
+}
+
+.ezd-ai-menu-item .ezd-ai-menu-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #4c4cf1 0%, #667eea 100%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.ezd-ai-menu-item .ezd-ai-menu-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.3;
+}
+
+.ezd-ai-menu-item .dashicons-arrow-right-alt2 {
+    display: none;
+}
+
 .ezd-ai-benefits-list {
     margin: 0 0 20px;
     padding-left: 0;
@@ -347,7 +431,7 @@ if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    justify-content: space-between;
 }
 
 .ezd-ai-btn {
@@ -384,6 +468,32 @@ if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
 
 .ezd-ai-btn-secondary:hover {
     background: #4c4cf1;
+    color: #ffffff;
+}
+
+.ezd-ai-btn-upgrade {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #ffffff;
+    border: none;
+}
+
+.ezd-ai-btn-upgrade:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+    color: #ffffff;
+}
+
+.ezd-ai-btn-youtube {
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.ezd-ai-btn-youtube:hover {
+    background: linear-gradient(135deg, #CC0000 0%, #990000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 0, 0, 0.5);
     color: #ffffff;
 }
 
@@ -435,6 +545,12 @@ if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
     padding: 16px 24px;
     background: #f9fafb;
     border-top: 1px solid #e5e7eb;
+    margin-top: auto;
+}
+
+.ezd-ai-card-footer .ezd-ai-actions {
+    margin: 0;
+    margin-top: 0;
 }
 
 .ezd-ai-footer-text {
@@ -467,6 +583,20 @@ if ( file_exists( WP_PLUGIN_DIR . '/antimanual/antimanual.php' ) ) {
     .ezd-ai-btn {
         width: 100%;
         justify-content: center;
+    }
+    
+    .ezd-ai-menu-items {
+        grid-template-columns: 1fr;
+    }
+    
+    .ezd-ai-menu-item {
+        padding: 12px 14px;
+    }
+    
+    .ezd-ai-menu-item .ezd-ai-menu-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
     }
 }
 </style>

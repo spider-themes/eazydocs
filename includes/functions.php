@@ -2193,3 +2193,184 @@ function ezd_install_advanced_accordion() {
         activate_plugin( $plugin_basename );
     }
 }
+
+/**
+ * AJAX handler to import sample data from demo.xml
+ *
+ * This function imports the sample documentation data from the
+ * sample-data/demo.xml file using WordPress Importer.
+ *
+ * @since 2.8.3
+ */
+add_action( 'wp_ajax_ezd_import_sample_data', 'ezd_import_sample_data' );
+
+/**
+ * Import sample data from demo.xml.
+ *
+ * @return void
+ */
+function ezd_import_sample_data() {
+	// Verify nonce for security.
+	check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
+
+	// Check user capabilities.
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( array( 'message' => esc_html__( 'You do not have permission to import data.', 'eazydocs' ) ) );
+	}
+
+	// Path to the sample data XML file.
+	$sample_data_file = EAZYDOCS_PATH . '/sample-data/demo.xml';
+
+	// Check if the file exists.
+	if ( ! file_exists( $sample_data_file ) ) {
+		wp_send_json_error( array( 'message' => esc_html__( 'Sample data file not found.', 'eazydocs' ) ) );
+	}
+
+	// Include WordPress importer files.
+	if ( ! defined( 'WP_LOAD_IMPORTERS' ) ) {
+		define( 'WP_LOAD_IMPORTERS', true );
+	}
+
+	// Load WordPress Importer class.
+	require_once ABSPATH . 'wp-admin/includes/import.php';
+
+	// Check if the WordPress Importer class exists.
+	if ( ! class_exists( 'WP_Import' ) ) {
+		// Try to load the importer plugin.
+		$importer_plugin = ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php';
+
+		if ( file_exists( $importer_plugin ) ) {
+			require_once $importer_plugin;
+		} else {
+			// Importer not available, use manual import.
+			$result = ezd_manual_import_sample_data( $sample_data_file );
+			if ( is_wp_error( $result ) ) {
+				wp_send_json_error( array( 'message' => $result->get_error_message() ) );
+			}
+			wp_send_json_success( array( 'message' => esc_html__( 'Sample data imported successfully!', 'eazydocs' ) ) );
+		}
+	}
+
+	// If WP_Import class exists, use it.
+	if ( class_exists( 'WP_Import' ) ) {
+		$wp_import                    = new WP_Import();
+		$wp_import->fetch_attachments = false;
+
+		ob_start();
+		$wp_import->import( $sample_data_file );
+		ob_end_clean();
+
+		wp_send_json_success( array( 'message' => esc_html__( 'Sample data imported successfully!', 'eazydocs' ) ) );
+	} else {
+		// Fallback to manual import.
+		$result = ezd_manual_import_sample_data( $sample_data_file );
+		if ( is_wp_error( $result ) ) {
+			wp_send_json_error( array( 'message' => $result->get_error_message() ) );
+		}
+		wp_send_json_success( array( 'message' => esc_html__( 'Sample data imported successfully!', 'eazydocs' ) ) );
+	}
+}
+
+/**
+ * Manual import of sample data by parsing XML.
+ *
+ * @param string $file Path to the XML file.
+ * @return bool|WP_Error True on success, WP_Error on failure.
+ */
+function ezd_manual_import_sample_data( $file ) {
+	// Load the XML file.
+	$xml_content = file_get_contents( $file );
+
+	if ( empty( $xml_content ) ) {
+		return new WP_Error( 'empty_file', esc_html__( 'The sample data file is empty.', 'eazydocs' ) );
+	}
+
+	// Parse XML.
+	libxml_use_internal_errors( true );
+	$xml = simplexml_load_string( $xml_content );
+
+	if ( ! $xml ) {
+		return new WP_Error( 'xml_parse_error', esc_html__( 'Failed to parse the sample data file.', 'eazydocs' ) );
+	}
+
+	// Get namespaces.
+	$namespaces = $xml->getNamespaces( true );
+	$wp         = $xml->channel->children( isset( $namespaces['wp'] ) ? $namespaces['wp'] : '' );
+	$content_ns = isset( $namespaces['content'] ) ? $namespaces['content'] : '';
+
+	// Track old ID to new ID mapping for parent relationships.
+	$id_mapping = array();
+
+	// First pass: Create all docs without parent relationships.
+	foreach ( $xml->channel->item as $item ) {
+		$wp_data = $item->children( isset( $namespaces['wp'] ) ? $namespaces['wp'] : '' );
+
+		// Only import 'docs' post type.
+		if ( (string) $wp_data->post_type !== 'docs' ) {
+			continue;
+		}
+
+		$old_id = (int) $wp_data->post_id;
+		$title  = (string) $item->title;
+
+		// Check if a doc with the same title already exists.
+		$existing = get_posts(
+			array(
+				'post_type'   => 'docs',
+				'title'       => $title,
+				'post_status' => 'any',
+				'numberposts' => 1,
+			)
+		);
+
+		if ( ! empty( $existing ) ) {
+			$id_mapping[ $old_id ] = $existing[0]->ID;
+			continue;
+		}
+
+		// Get content.
+		$content_data = $item->children( $content_ns );
+		$post_content = isset( $content_data->encoded ) ? (string) $content_data->encoded : '';
+
+		// Create the doc post.
+		$post_data = array(
+			'post_title'   => sanitize_text_field( $title ),
+			'post_content' => wp_kses_post( $post_content ),
+			'post_status'  => ( (string) $wp_data->status === 'private' ) ? 'publish' : sanitize_text_field( (string) $wp_data->status ),
+			'post_type'    => 'docs',
+			'menu_order'   => (int) $wp_data->menu_order,
+			'post_parent'  => 0, // Will be updated in second pass.
+		);
+
+		$new_id = wp_insert_post( $post_data );
+
+		if ( ! is_wp_error( $new_id ) ) {
+			$id_mapping[ $old_id ] = $new_id;
+
+			// Store the original parent ID for later.
+			$original_parent = (int) $wp_data->post_parent;
+			if ( $original_parent > 0 ) {
+				update_post_meta( $new_id, '_ezd_temp_parent', $original_parent );
+			}
+		}
+	}
+
+	// Second pass: Update parent relationships.
+	foreach ( $id_mapping as $old_id => $new_id ) {
+		$temp_parent = get_post_meta( $new_id, '_ezd_temp_parent', true );
+
+		if ( ! empty( $temp_parent ) && isset( $id_mapping[ $temp_parent ] ) ) {
+			wp_update_post(
+				array(
+					'ID'          => $new_id,
+					'post_parent' => $id_mapping[ $temp_parent ],
+				)
+			);
+		}
+
+		// Clean up temp meta.
+		delete_post_meta( $new_id, '_ezd_temp_parent' );
+	}
+
+	return true;
+}

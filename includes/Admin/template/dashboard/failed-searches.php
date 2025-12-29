@@ -73,7 +73,7 @@ $has_failed_searches = ! empty( $failed_searches );
 					<div class="ezd-failed-search-actions">
 						<?php
 						$nonce      = wp_create_nonce( 'parent_doc_nonce' );
-						$create_url = admin_url( 'admin.php' ) . '?Create_doc=child&_wpnonce=' . $nonce . '&parent_title=' . rawurlencode( $search->keyword );
+						$create_url = admin_url( 'admin.php' ) . '?Create_doc=yes&_wpnonce=' . $nonce . '&parent_title=' . rawurlencode( $search->keyword );
 						?>
 						<a href="<?php echo esc_url( $create_url ); ?>"
 						   class="ezd-btn-create-doc"

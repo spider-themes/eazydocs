@@ -256,6 +256,7 @@
 
 					const formData = {
 						action: 'ezd_setup_wizard_save_settings',
+						security: eazydocs_local_object.nonce,
 						rootslug: customSlug,
 						brandColor: $('.brand-color-picker').val(),
 						slugType: $('.root-slug-wrap input[name="slug"]:checked').val(),

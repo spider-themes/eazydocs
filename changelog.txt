@@ -3,10 +3,15 @@
 = 2.8.2 (29 December 2025) =
 New: Redesigned Setup Wizard with a compact, modern UI and improved progress tracking.
 New: Added floating Quick Tips panel in the Setup Wizard for contextual guidance (visible on desktop).
+New: Added "Import Sample Data" feature to quickly populate documentation with demo content.
+New: Added "Close All/Collapse All" button in the EazyDocs > Docs Builder page to expand/collapse the docs at a single click.
 Improved: Setup Wizard navigation now supports clicking on completed steps to go back.
 Improved: Replaced BBP Core with Antimanual in the plugin recommendation step.
+Improved: Redesigned "Create Doc with AI" popup with a modern, feature-rich UI and video preview.
+Improved: Enhanced Antimanual AI integration card on the dashboard with a cleaner layout.
 Improved: Streamlined Setup Wizard steps by removing redundant text and improving layout consistency.
 Fixed: UI alignment and progress indicator issues in the Setup Wizard.
+Added: Sample data import from demo.xml using WordPress Importer with fallback manual import support.
 
 = 2.8.1 (19 December 2025) =
 Tweaked: Settings page reorganized for easier navigation
