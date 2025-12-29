@@ -35,7 +35,7 @@ class Admin {
 		add_filter( 'display_post_states', [ $this, 'ezd_post_states' ], 10, 2 );
 		
 		// Initialize Antimanual notice
-		new AntimanualNotice();
+		AntimanualNotice::init();
 	}
 
 	/**
@@ -273,7 +273,10 @@ class Admin {
 	}
 
 	public function ezd_setup_wizard() {
-		require_once __DIR__ . '/setup-wizard/setup.php';
+		$setup_file = __DIR__ . '/setup-wizard/setup.php';
+		if ( file_exists( $setup_file ) ) {
+			require_once $setup_file;
+		}
 	}
 
 	/**

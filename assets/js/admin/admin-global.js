@@ -20,7 +20,6 @@
                         icon: "warning",
                         buttons: [false, "Close"],
                         dangerMode: true,
-                        //footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
                     })
                 })
             } else {
@@ -50,7 +49,6 @@
                     icon: "warning",
                     buttons: [false, "Close"],
                     dangerMode: true,
-                    //footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
                 })
             })
         }
@@ -70,7 +68,7 @@
                 showCloseButton: true,
                 confirmButtonText:
                     '<a href="admin.php?page=eazydocs-pricing">Upgrade to Premium</a>',
-                footer: '<a href="https://spider-themes.net/eazydocs/" target="_blank"> Learn More </a>',
+                footer: '<a href="https://eazydocs.spider-themes.net/" target="_blank"> Learn More </a>',
 
                 customClass: {
                     title: 'upgrade-premium-heading',

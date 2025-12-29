@@ -4,7 +4,7 @@ Tags: knowledge base, wiki, faq, documentation, help desk, ai chatbot, documenta
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.8.1
+Stable tag: 2.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -312,6 +312,14 @@ After activation, you'll see a setup wizard to help you create your first knowle
 6. Social sharing buttons for easy documentation distribution.
 
 == Changelog ==
+
+= 2.8.2 (29 December 2025) =
+*   New: Redesigned Setup Wizard with a compact, modern UI and improved progress tracking.
+*   New: Added floating Quick Tips panel in the Setup Wizard for contextual guidance (visible on desktop).
+*   Improved: Setup Wizard navigation now supports clicking on completed steps to go back.
+*   Improved: Replaced BBP Core with Antimanual in the plugin recommendation step.
+*   Improved: Streamlined Setup Wizard steps by removing redundant text and improving layout consistency.
+*   Fixed: UI alignment and progress indicator issues in the Setup Wizard.
 
 = 2.8.1 (19 December 2025) =
 *   Tweaked: Settings page reorganized for easier navigation.

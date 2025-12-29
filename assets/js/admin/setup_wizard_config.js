@@ -1,156 +1,470 @@
+/**
+ * EazyDocs Setup Wizard JavaScript
+ * Enhanced functionality with progress tracking, animations, and improved UX
+ *
+ * @package EazyDocs
+ */
+
 (function ($) {
-    'use sticky'
-    $(document).ready(function () {
+	'use strict';
 
-        // Setup wizard scripts start
-        if (typeof $.fn.wpColorPicker !== 'undefined') {
-            $('.brand-color-picker').wpColorPicker({
-                change: function(event, ui) {
-                    var color = ui.color.toString();
-                    $('.brand-color-picker').val(color);
-                }
-            });
-        }
+	$(document).ready(function () {
+		// Setup Wizard initialization
+		const setupWizard = {
+			currentStep: 1,
+			totalSteps: 5,
 
-        $('.root-slug-wrap input[type="radio"]').on('change', function() {
-            var name = $(this).attr('value');
-            $('.root-slug-wrap label[for="'+name+'"]').addClass('active').siblings().removeClass('active');
+			init: function () {
+				this.initColorPicker();
+				this.initSlugOptions();
+				this.initLayoutOptions();
+				this.initWidthOptions();
+				this.initSmartWizard();
+				this.initFinishButton();
+				this.initPluginActions();
+				this.initTips();
+				this.updateProgress();
+			},
 
-            var root_slug = $(this).val();
-            if (root_slug == 'custom-slug') {
-                $('.custom-slug-field').show();
-            } else {
-                $('.custom-slug-field').hide();
-            }
-        });
+			/**
+			 * Initialize color picker
+			 */
+			initColorPicker: function () {
+				if (typeof $.fn.wpColorPicker !== 'undefined') {
+					$('.brand-color-picker').wpColorPicker({
+						change: function (event, ui) {
+							const color = ui.color.toString();
+							$('.brand-color-picker').val(color);
+							$('.ezd-color-preview').css('--preview-color', color);
+						},
+						clear: function () {
+							$('.ezd-color-preview').css('--preview-color', '#007FFF');
+						}
+					});
+				}
+			},
 
-        $('.page-width-wrap input[type="radio"]').on('change', function() {
-            var name = $(this).attr('value');
-            $('.page-width-wrap label[for="'+name+'"]').addClass('active').siblings().removeClass('active');
-        });
-        $('.page-layout-wrap input[type="radio"]').on('change', function() {
-            var name = $(this).attr('value');
-            $('.page-layout-wrap label[for="'+name+'"]').addClass('active').siblings().removeClass('active');
-        });
+			/**
+			 * Initialize slug options
+			 */
+			initSlugOptions: function () {
+				const $slugWrap = $('.root-slug-wrap');
+				const $customInput = $('.ezd-custom-slug-input');
 
-        // Smart Wizard
-        if (typeof $.fn.smartWizard !== 'undefined') {
+				$slugWrap.on('change', 'input[type="radio"]', function () {
+					const value = $(this).val();
 
-            $('#ezd-setup-wizard-wrap').smartWizard({
-                keyboard: {
-                    keyNavigation: true, // Enable/Disable keyboard navigation(left and right keys are used if enabled)
-                    keyLeft: [37], // Left key code
-                    keyRight: [39] // Right key code
-                },
-                lang: { // Language variables for button
-                    next: ' Next →',
-                    previous: '← Previous',
-                }
-            });
-        }
+					// Update active state
+					$slugWrap.find('.ezd-slug-option').removeClass('active');
+					$(this).closest('.ezd-slug-option').addClass('active');
 
-        $('#finish-btn').on('click', function () {
-            var customSlug = $('.custom-slug-field').val();
-            var customSlug = customSlug.replace(/[^a-zA-Z0-9-_]/g, '-');
-            customSlug = customSlug.toLowerCase();
+					// Toggle custom slug input
+					if (value === 'custom-slug') {
+						$customInput.addClass('active').find('input').focus();
+					} else {
+						$customInput.removeClass('active');
+					}
+				});
+			},
 
-            var brandColor = $('.brand-color-picker').val();
-            var slugType = $('.root-slug-wrap input[name="slug"]:checked').val();
-            var live_customizer = $('input[name="customizer_visibility"]:checked').val();
+			/**
+			 * Initialize layout options
+			 */
+			initLayoutOptions: function () {
+				$('.page-layout-wrap').on('change', 'input[type="radio"]', function () {
+					const name = $(this).attr('value');
+					$('.page-layout-wrap .ezd-layout-option').removeClass('active');
+					$('.page-layout-wrap label[for="' + name + '"]').addClass('active');
+				});
+			},
 
-            // select field .archive-page-selection-wrap > select
-            var archivePage = $('.archive-page-selection-wrap select').val();
+			/**
+			 * Initialize width options
+			 */
+			initWidthOptions: function () {
+				$('.page-width-wrap').on('change', 'input[type="radio"]', function () {
+					const name = $(this).attr('value');
+					$('.page-width-wrap .ezd-width-option').removeClass('active');
+					$('.page-width-wrap label[for="' + name + '"]').addClass('active');
+				});
+			},
 
-            // doc single layout
-            var docSingleLayout = $('.page-layout-wrap input[name="docs_single_layout"]:checked').val();
-            var docsPageWidth = $('.page-width-wrap input[name="docsPageWidth"]:checked').val();
+			/**
+			 * Initialize Smart Wizard
+			 */
+			initSmartWizard: function () {
+				const self = this;
+				const $wizard = $('#ezd-setup-wizard-wrap');
 
-            // make hypen to underscore
-            $.ajax({
-                url: eazydocs_local_object.ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'ezd_setup_wizard_save_settings',
-                    rootslug: customSlug,
-                    brandColor: brandColor,
-                    slugType: slugType,
-                    docSingleLayout: docSingleLayout,
-                    docsPageWidth: docsPageWidth,
-                    live_customizer: live_customizer,
-                    archivePage: archivePage,
-                },
-                beforeSend: function () {
-                    $('div#ezd-setup-wizard-wrap .tab-content #step-4 h2').html('Submitting...');
-                },
-                success: function (response) {
-                    if (response.success) {
-                        $('.swal2-icon .swal2-icon-content').html('<img src="' + eazydocs_local_object.EAZYDOCS_ASSETS + '/images/wizard-success.png"  />');
-                        $('div#ezd-setup-wizard-wrap .tab-content #step-4 h2').text('Thank you');
-                        $('div#ezd-setup-wizard-wrap .tab-content #step-4 p').text('You have setup everything successfully');
-                        // redirect
-                        setTimeout(function () {
-                            window.location.href = 'admin.php?page=eazydocs';
-                        }, 100);
 
-                    } else {
-                        alert('Error saving settings');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    alert('AJAX error: ' + status + ' - ' + error);
-                }
-            });
-        });
+				if (typeof $.fn.smartWizard !== 'undefined' && $wizard.length) {
 
-        // Plugin activation in setup wizard
-        function ezdHandlePluginAction(button, plugin, action) {
-            button.text(action === "install" ? "Installing.." : "Activating..").prop("disabled", true);
+					// Initialize Smart Wizard
+					$wizard.smartWizard({
+						autoAdjustHeight: false,
+						keyboard: {
+							keyNavigation: true,
+							keyLeft: [37],
+							keyRight: [39]
+						},
+						lang: {
+							next: 'Next',
+							previous: 'Previous'
+						}
+					});
 
-            $.ajax({
-                url: eazydocs_local_object.ajaxurl,
-                type: "POST",
-                data: {
-                    action: "ezd_plugin_action",
-                    plugin: plugin,
-                    task: action,
-                    security: eazydocs_local_object.nonce
-                },
-                dataType: "json",
-                success: function (response) {
-                    if (response.success) {
-                        if (action === "install") {
-                            // Automatically trigger activation after install
-                            button.text("Activating...").attr("data-action", "activate").removeClass("button-action").addClass("button-activate");
-                            ezdHandlePluginAction(button, plugin, "activate"); // Call activation immediately
-                        } else {
-                            button.text("Activated").removeClass("button-activate button-action").addClass("button-disabled").prop("disabled", true);
-                        }
-                    } else {
-                        alert("Error: " + response.data);
-                        button.text(action.charAt(0).toUpperCase() + action.slice(1)).prop("disabled", false);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    // For activate action, silently mark as activated (likely already active)
-                    if (action === "activate") {
-                        button.text("Activated").removeClass("button-activate button-action").addClass("button-disabled").prop("disabled", true);
-                    } else {
-                        alert("Error: " + error);
-                        button.text(action.charAt(0).toUpperCase() + action.slice(1)).prop("disabled", false);
-                    }
-                }
-            });
-        }
+					// Listen for Smart Wizard showStep event
+					$wizard.on('showStep', function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+						// stepNumber is 0-indexed, so add 1
+						self.currentStep = stepNumber + 1;
+						self.updateProgress();
+						self.updateNavigation(stepPosition);
+						self.updateTip(self.currentStep);
 
-        $(document).on("click", ".button-action, .button-activate", function () {
-            let button = $(this);
-            let plugin = button.data("plugin");
-            let action = button.data("action");
+						// Show confetti on finish step
+						if (self.currentStep === 5) {
+							self.showConfetti();
+						}
+					});
 
-            if (plugin && action) {
-                ezdHandlePluginAction(button, plugin, action);
-            }
-        });
-        // Setup wizard scripts end
-    });
+					// Listen for URL hash changes as a backup
+					$(window).on('hashchange', function () {
+						self.syncStepFromHash();
+					});
+
+					// Bind to step anchor clicks
+					$wizard.on('click', '.nav-link', function () {
+						setTimeout(function () {
+							self.syncStepFromHash();
+						}, 100);
+					});
+
+					// Handle clicks on completed progress steps
+					$(document).on('click', '.ezd-progress-step.completed', function () {
+						const stepNum = parseInt($(this).data('step'));
+						if (stepNum && stepNum >= 1 && stepNum <= self.totalSteps) {
+							// Use Smart Wizard's goToStep method (0-indexed)
+							$wizard.smartWizard("goToStep", stepNum - 1);
+						}
+					});
+
+					// Sync on initial load if there's a hash
+					self.syncStepFromHash();
+				}
+			},
+
+			/**
+			 * Sync current step from URL hash
+			 */
+			syncStepFromHash: function () {
+				const hash = window.location.hash;
+
+				if (hash) {
+					const match = hash.match(/step-(\d+)/);
+					if (match) {
+						const stepNum = parseInt(match[1]);
+
+						if (stepNum !== this.currentStep && stepNum >= 1 && stepNum <= this.totalSteps) {
+							this.currentStep = stepNum;
+							this.updateProgress();
+							this.updateTip(stepNum);
+
+							// Show confetti on finish step
+							if (stepNum === 5) {
+								this.showConfetti();
+							}
+						}
+					}
+				}
+			},
+
+			/**
+			 * Update progress bar and step indicators
+			 */
+			updateProgress: function () {
+				const self = this;
+				const progress = ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
+
+				// Update progress bar
+				$('.ezd-progress-fill').css('width', progress + '%');
+
+				// Update step indicators - use self to maintain context
+				$('.ezd-progress-step').each(function () {
+					const $step = $(this);
+					const stepNum = parseInt($step.data('step'));
+
+					$step.removeClass('active completed');
+
+					if (stepNum < self.currentStep) {
+						$step.addClass('completed');
+					} else if (stepNum === self.currentStep) {
+						$step.addClass('active');
+					}
+				});
+
+				// Update footer counter
+				$('.ezd-step-counter .current-step').text(this.currentStep);
+			},
+
+			/**
+			 * Update navigation buttons
+			 */
+			updateNavigation: function (position) {
+				const $prevBtn = $('.sw-btn-prev');
+				const $nextBtn = $('.sw-btn-next');
+
+				// Handle previous button
+				if (position === 'first') {
+					$prevBtn.addClass('disabled');
+				} else {
+					$prevBtn.removeClass('disabled');
+				}
+
+				// Handle next button visibility on last step
+				if (position === 'last') {
+					$nextBtn.hide();
+				} else {
+					$nextBtn.show();
+				}
+			},
+
+			/**
+			 * Update tips based on current step
+			 */
+			initTips: function () {
+				// Show first tip on load
+				this.updateTip(1);
+			},
+
+			updateTip: function (step) {
+				$('.ezd-tips-list li').removeClass('active');
+				$('.ezd-tips-list li[data-step="' + step + '"]').addClass('active');
+			},
+
+			/**
+			 * Initialize finish button
+			 */
+			initFinishButton: function () {
+				const self = this;
+
+				$('#finish-btn').on('click', function () {
+					const $btn = $(this);
+
+					// Get form values
+					let customSlug = $('.custom-slug-field').val();
+					customSlug = customSlug.replace(/[^a-zA-Z0-9-_]/g, '-').toLowerCase();
+
+					const formData = {
+						action: 'ezd_setup_wizard_save_settings',
+						rootslug: customSlug,
+						brandColor: $('.brand-color-picker').val(),
+						slugType: $('.root-slug-wrap input[name="slug"]:checked').val(),
+						docSingleLayout: $('.page-layout-wrap input[name="docs_single_layout"]:checked').val(),
+						docsPageWidth: $('.page-width-wrap input[name="docsPageWidth"]:checked').val(),
+						live_customizer: $('input[name="customizer_visibility"]:checked').val(),
+						archivePage: $('.archive-page-selection-wrap select').val()
+					};
+
+					// Show loading state
+					$btn.prop('disabled', true).html(
+						'<span class="dashicons dashicons-update-alt spin"></span> Saving...'
+					);
+
+					$.ajax({
+						url: eazydocs_local_object.ajaxurl,
+						type: 'POST',
+						data: formData,
+						success: function (response) {
+							if (response.success) {
+								self.showSuccessState();
+							} else {
+								self.showErrorState($btn, 'Error saving settings');
+							}
+						},
+						error: function (xhr, status, error) {
+							self.showErrorState($btn, 'AJAX error: ' + error);
+						}
+					});
+				});
+			},
+
+			/**
+			 * Show success state after saving
+			 */
+			showSuccessState: function () {
+				$('.ezd-success-circle').html(
+					'<span class="dashicons dashicons-yes"></span>'
+				);
+				$('.ezd-finish-content h2').text('All Done!');
+				$('.ezd-finish-subtitle').text('Your documentation site is ready to use.');
+
+				// Show confetti
+				this.showConfetti();
+
+				// Redirect after delay
+				setTimeout(function () {
+					window.location.href = 'admin.php?page=eazydocs';
+				}, 1500);
+			},
+
+			/**
+			 * Show error state
+			 */
+			showErrorState: function ($btn, message) {
+				alert(message);
+				$btn.prop('disabled', false).html(
+					'<span class="dashicons dashicons-yes"></span> Finish & Go to Dashboard'
+				);
+			},
+
+			/**
+			 * Show confetti animation
+			 */
+			showConfetti: function () {
+				const container = document.getElementById('confetti-container');
+				if (!container) return;
+
+				const colors = ['#007FFF', '#00B16E', '#F5A623', '#9B59B6', '#E74C3C'];
+
+				for (let i = 0; i < 50; i++) {
+					const confetti = document.createElement('div');
+					confetti.className = 'confetti-piece';
+					confetti.style.cssText = `
+						position: absolute;
+						width: ${Math.random() * 10 + 5}px;
+						height: ${Math.random() * 10 + 5}px;
+						background: ${colors[Math.floor(Math.random() * colors.length)]};
+						left: ${Math.random() * 100 - 50}px;
+						opacity: 0;
+						border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+						animation: confettiFall ${Math.random() * 2 + 1.5}s ease-out forwards;
+						animation-delay: ${Math.random() * 0.5}s;
+					`;
+					container.appendChild(confetti);
+				}
+
+				// Clean up confetti after animation
+				setTimeout(function () {
+					container.innerHTML = '';
+				}, 3000);
+			},
+
+			/**
+			 * Initialize plugin actions
+			 */
+			initPluginActions: function () {
+				const self = this;
+
+				$(document).on('click', '.button-action', function () {
+					const $btn = $(this);
+					const plugin = $btn.data('plugin');
+					const action = $btn.data('action');
+
+					if (plugin && action) {
+						self.handlePluginAction($btn, plugin, action);
+					}
+				});
+			},
+
+			/**
+			 * Handle plugin install/activate
+			 */
+			handlePluginAction: function ($btn, plugin, action) {
+				const self = this;
+				const originalText = $btn.find('.button-text').text();
+
+				// Update button state
+				$btn.prop('disabled', true)
+					.find('.dashicons').removeClass('dashicons-download dashicons-update').addClass('dashicons-update-alt spin');
+				$btn.find('.button-text').text(action === 'install' ? 'Installing...' : 'Activating...');
+
+				$.ajax({
+					url: eazydocs_local_object.ajaxurl,
+					type: 'POST',
+					data: {
+						action: 'ezd_plugin_action',
+						plugin: plugin,
+						task: action,
+						security: eazydocs_local_object.nonce
+					},
+					dataType: 'json',
+					success: function (response) {
+						if (response.success) {
+							if (action === 'install') {
+								// Trigger activation after install
+								$btn.data('action', 'activate');
+								self.handlePluginAction($btn, plugin, 'activate');
+							} else {
+								// Mark as activated
+								self.markPluginActivated($btn);
+							}
+						} else {
+							self.resetPluginButton($btn, originalText, action);
+							alert('Error: ' + response.data);
+						}
+					},
+					error: function (xhr, status, error) {
+						if (action === 'activate') {
+							// Likely already active
+							self.markPluginActivated($btn);
+						} else {
+							self.resetPluginButton($btn, originalText, action);
+							alert('Error: ' + error);
+						}
+					}
+				});
+			},
+
+			/**
+			 * Mark plugin as activated
+			 */
+			markPluginActivated: function ($btn) {
+				$btn.removeClass('button-action')
+					.addClass('button-disabled')
+					.prop('disabled', true)
+					.find('.dashicons').removeClass('dashicons-update-alt spin').addClass('dashicons-yes');
+				$btn.find('.button-text').text('Activated');
+
+				// Update card state
+				$btn.closest('.ezd-plugin-card').addClass('is-active');
+			},
+
+			/**
+			 * Reset plugin button on error
+			 */
+			resetPluginButton: function ($btn, text, action) {
+				$btn.prop('disabled', false)
+					.find('.dashicons').removeClass('dashicons-update-alt spin')
+					.addClass(action === 'install' ? 'dashicons-download' : 'dashicons-update');
+				$btn.find('.button-text').text(text);
+			}
+		};
+
+		// Initialize setup wizard
+		setupWizard.init();
+
+		// Add CSS for spinning animation
+		$('<style>')
+			.prop('type', 'text/css')
+			.html(`
+				.dashicons.spin {
+					animation: dashiconsSpin 1s linear infinite;
+				}
+				@keyframes dashiconsSpin {
+					0% { transform: rotate(0deg); }
+					100% { transform: rotate(360deg); }
+				}
+				@keyframes confettiFall {
+					0% {
+						opacity: 1;
+						transform: translateY(0) rotate(0deg);
+					}
+					100% {
+						opacity: 0;
+						transform: translateY(200px) rotate(720deg);
+					}
+				}
+			`)
+			.appendTo('head');
+	});
 })(jQuery);

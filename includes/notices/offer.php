@@ -57,7 +57,7 @@ function ezd_offer_notice() {
                 </div>
             </div>
             <div class="ezd-col">
-                <a href="https://spider-themes.net/eazydocs/pricing/" class="buy-btn" target="_blank"> Claim Discount </a>
+                <a href="https://eazydocs.spider-themes.net/pricing/" class="buy-btn" target="_blank"> Claim Discount </a>
             </div>
         </div>
     </div>

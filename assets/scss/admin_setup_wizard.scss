@@ -1,497 +1,1753 @@
-/** === setup wizard === **/
+/**
+ * EazyDocs Setup Wizard Styles
+ * Modern, beautiful UI with smooth animations and premium feel
+ *
+ * @package EazyDocs
+ */
+
+// Variables
+$primary-color: #007fff;
+$primary-dark: #0066cc;
+$primary-light: #e6f2ff;
+$success-color: #00b16e;
+$success-light: #e6f9f1;
+$warning-color: #f5a623;
+$danger-color: #e74c3c;
+$pro-color: #9b59b6;
+
+$text-primary: #1e1e1e;
+$text-secondary: #6b7280;
+$text-muted: #9ca3af;
+
+$border-color: #e5e7eb;
+$border-light: #f3f4f6;
+$bg-light: #f9fafb;
+$bg-white: #ffffff;
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md:
+	0 4px 6px -1px rgba(0, 0, 0, 0.1),
+	0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+	0 10px 15px -3px rgba(0, 0, 0, 0.1),
+	0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl:
+	0 20px 25px -5px rgba(0, 0, 0, 0.1),
+	0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+$radius-full: 9999px;
+
+$transition-fast: 0.15s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Reset and Base - Full Screen Mode
+.ezd-setup-page {
+	background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+}
+
+// Hide WordPress admin UI when setup wizard is active
+// Note: Body class may be 'eazydocs_page_eazydocs-initial-setup' or 'documentation_page_eazydocs-initial-setup'
+body.eazydocs_page_eazydocs-initial-setup,
+body.documentation_page_eazydocs-initial-setup {
+	overflow: hidden;
+
+	#wpcontent,
+	#wpfooter {
+		margin-left: 0 !important;
+		padding-left: 0 !important;
+	}
+
+	#adminmenumain,
+	#adminmenuback,
+	#adminmenuwrap,
+	#wpadminbar {
+		display: none !important;
+	}
+
+	// Reset the content area
+	.wrap {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+// Modern Header
 .ezd-setup-wizard-wrapper {
-  background: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, .03);
-  display: flex;
-  height: 50px;
-  justify-content: space-between;
-  padding: 0px 16px 0;
-  margin: -10px -20px 0 -22px;
-  align-items: center;
+	background: $bg-white;
+	box-shadow: $shadow-md;
+	display: flex;
+	height: 64px;
+	justify-content: space-between;
+	padding: 0 24px;
+	align-items: center;
+	position: sticky;
+	top: 0;
+	z-index: 100;
 
-  .ezd-setup-wizard-header {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
+	.ezd-setup-wizard-header {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		align-items: center;
+	}
 
-    span {
-      font-size: 17px;
-      font-weight: 500;
-      margin: 0;
-    }
+	.ezd-setup-logo {
+		display: flex;
+		align-items: center;
+		gap: 12px;
 
-    img {
-      max-width: 27px;
-    }
+		img {
+			width: 36px;
+			height: 36px;
+		}
 
-    div {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+		.ezd-logo-text {
+			font-size: 20px;
+			font-weight: 600;
+			color: $text-primary;
+		}
 
-      span {
-        a {
-          text-decoration: none;
-          font-size: 14px;
-          font-weight: 500;
-          letter-spacing: .5px;
-          outline: none;
+		.ezd-setup-badge {
+			background: linear-gradient(
+				135deg,
+				$primary-color 0%,
+				$primary-dark 100%
+			);
+			color: white;
+			font-size: 11px;
+			font-weight: 600;
+			padding: 4px 10px;
+			border-radius: $radius-full;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+	}
 
-          &:focus {
-            outline: none;
-            box-shadow: none;
-          }
-        }
-      }
-    }
-  }
+	.ezd-setup-header-actions {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+
+		.ezd-header-link {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			color: $text-secondary;
+			text-decoration: none;
+			font-size: 14px;
+			font-weight: 500;
+			padding: 8px 12px;
+			border-radius: $radius-sm;
+			transition: all $transition-fast;
+
+			.dashicons {
+				font-size: 16px;
+				width: 16px;
+				height: 16px;
+			}
+
+			&:hover {
+				color: $primary-color;
+				background: $primary-light;
+			}
+		}
+
+		.ezd-skip-btn {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			color: $text-secondary;
+			text-decoration: none;
+			font-size: 14px;
+			font-weight: 500;
+			padding: 8px 16px;
+			border: 1px solid $border-color;
+			border-radius: $radius-sm;
+			transition: all $transition-fast;
+
+			.dashicons {
+				font-size: 14px;
+				width: 14px;
+				height: 14px;
+			}
+
+			&:hover {
+				border-color: $primary-color;
+				color: $primary-color;
+			}
+		}
+	}
 }
 
+// Main Wizard Container
 #ezd-setup-wizard-wrap {
-  width: 60%;
-  margin: 60px auto 0;
-  padding: 0 0 50px;
-  box-sizing: border-box;
-  border-radius: 2px;
-  text-align: center;
-  position: relative;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 1px 1px rgb(170 170 170 / 4%);
-  background: #fff;
-  overflow: hidden;
+	width: 100%;
+	max-width: 900px;
+	margin: 24px auto 0;
+	background: $bg-white;
+	border-radius: $radius-lg;
+	box-shadow: $shadow-xl;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid $border-light;
 
-  .notice, .fs-notice,
-  .sw-toolbar {
-    display: none !important;
-  }
+	// Hide WordPress notices and smart wizard toolbar
+	.notice,
+	.fs-notice,
+	.sw-toolbar {
+		display: none !important;
+	}
 
-  .ezd-wizard-head {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 8px rgba(0, 0, 0, .1);
-
-    .ezd-wizard-head-left {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 15px;
-      padding: 8px 0;
-
-      span {
-        font-size: 14px;
-        margin: 0;
-      }
-
-      img {
-        max-width: 27px;
-      }
-    }
-
-    .ezd-wizard-head-right {
-      border-inline-start: 1px solid #eee;
-      font-size: 16px;
-      color: inherit;
-      padding: 15px;
-      box-sizing: border-box;
-
-      a {
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: 1px;
-        outline: none;
-
-        &:focus {
-          outline: none;
-          box-shadow: none;
-        }
-      }
-    }
-  }
-
-  .tab-content {
-    min-height: 610px;
-    margin: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .tab-pane {
-
-      .button-inline {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-
-        .button {
-          padding: 5px 20px;
-          display: inline-flex;
-          gap: 5px;
-          align-items: center;
-        }
-      }
-
-      &#step-4 {
-        padding: 20px;
-        h2 {
-          margin-bottom: 30px;
-        }
-
-        p {
-          margin-top: 20px;
-        }
-
-        ul {
-          &.ezd-plugins-wrap {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            @media screen and (max-width: 991px) {
-              display: flow;
-            }
-
-            li {
-              flex: 1;
-              border: 1px solid #c7c7c7;
-              border-radius: 5px;
-              display: flex;
-              justify-content: center;
-              flex-wrap: wrap;
-              align-items: end;
-              padding: 25px 0 0;
-
-              img {
-                max-width: 50px;
-                height: auto;
-                margin: 0;
-                border-radius: 3px;
-              }
-
-              h2 {
-                margin: 10px 0 5px;
-                display: block;
-                font-size: 20px;
-                font-weight: 500;
-              }
-
-              p {
-                font-size: 14px;
-                display: block;
-                min-height: 60px;
-              }
-
-              .has-light-bg {
-                background: linear-gradient(179deg, #ffffff, rgba(207, 207, 207, 0.5294117647));
-                margin: 0;
-                padding: 0 15px;
-                width: 100%;
-
-                &.action-btn-wrap {
-                  display: flex;
-                  justify-content: space-between;
-                  padding: 10px;
-                  font-size: 14px;
-                  align-items: center;
-
-                  .right-btns {
-                    display: flex;
-                    gap: 10px;
-                    justify-content: right;
-
-                    a.button-info {
-                      display: flex;
-                      align-items: center;
-                      gap: 3px;
-                      color: #007FFF;
-                      border-color: #d0d0d0;
-                    }
-                  }
-
-                  button {
-                    background: transparent;
-                    cursor: pointer;
-                    color: black;
-                    border: 1px solid;
-                    padding: 6px 12px;
-                    border-radius: 3px;
-
-                    &.button-action {
-                      background: #007FFF;
-                      color: white !important;
-                      border: none;
-                      transition: all 0.3s;
-
-                      &:hover {
-                        background: #002D62 !important;
-                      }
-                    }
-
-                    &:disabled {
-                      color: #787878 !important;
-                      cursor: not-allowed;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      h2 {
-        font-size: 22px;
-        margin-top: 36px;
-        margin-bottom: 10px;
-
-        &:first-child {
-          margin-top: 0;
-        }
-      }
-
-      &#step-1 {
-        h2 {
-          font-size: 2em;
-          margin-top: -10px;
-        }
-
-        iframe {
-          box-shadow: 10px 10px 20px rgba(0, 0, 0, .15);
-        }
-      }
-
-      p {
-        font-size: 15px;
-        margin-bottom: 25px;
-      }
-
-      button#finish-btn {
-        position: absolute;
-        bottom: 10px;
-        z-index: 99999;
-        right: 10px;
-        padding: 10px 20px;
-        background: #005ccb;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 16px;
-        font-weight: bold;
-        color: white;
-        border: none;
-        margin: 0 10px;
-      }
-    }
-
-    .archive-page-selection-wrap {
-      text-align: center;
-
-      select {
-        display: block;
-        text-align: center;
-        margin: 0 auto 12px;
-        border: 1px solid black;
-        border-radius: 4px;
-        padding: 3px 15px;
-        outline: none;
-
-        &:focus {
-          outline: none;
-          box-shadow: none;
-        }
-      }
-
-      span {
-        font-size: 13px;
-        display: block;
-        margin-bottom: 10px;
-        color: brown;
-      }
-    }
-
-    .root-slug-wrap {
-      // input checkbox style
-      > input[type="radio"] {
-        visibility: hidden;
-      }
-
-      > label {
-        padding: 10px 20px;
-        background: #c0c0c0;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s;
-        display: inline-flex;
-        align-items: center;
-        box-sizing: border-box;
-        font-size: 16px;
-        font-weight: bold;
-        color: white;
-
-        &:hover {
-          background: #00b16e;
-        }
-
-        &.active {
-          background: #00b16e;
-        }
-      }
-
-      > input.custom-slug-field {
-        border-radius: 5px;
-        display: none;
-        margin-left: 15px;
-        height: 36px;
-        outline: 1px solid #00b16e;
-        border-color: #00b16e;
-
-        &.active {
-          display: inline-block;
-        }
-      }
-    }
-
-    .page-width-wrap {
-      // input checkbox style
-      > input[type="radio"] {
-        visibility: hidden;
-      }
-
-      > label {
-        padding: 10px 20px;
-        background: #c0c0c0;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s;
-        display: inline-flex;
-        align-items: center;
-        box-sizing: border-box;
-        font-size: 16px;
-        font-weight: bold;
-        color: white;
-
-        &:hover {
-          background: #00b16e;
-        }
-
-        &.active {
-          background: #00b16e;
-        }
-      }
-    }
-
-    .page-layout-wrap {
-      > input {
-        visibility: hidden;
-      }
-
-      > label {
-        cursor: pointer;
-        transition: all 0.3s;
-        display: inline-flex;
-        align-items: center;
-        opacity: 0.3;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        &.active {
-          opacity: 1;
-        }
-
-        > img {
-          max-width: 120px;
-        }
-      }
-    }
-  }
-
-  .toolbar-bottom {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 5px rgb(0 0 0 / 10%);
-    padding: 10px;
-    background: #fbfbfb;
-
-    @media screen and (max-width: 767px) {
-      position: unset;
-      display: block;
-    }
-
-    button {
-      background: #005ccb;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-size: 16px;
-      font-weight: bold;
-      color: white;
-      border: none;
-      margin: 0 10px;
-      line-height: normal;
-      padding: 10px;
-      box-sizing: border-box;
-
-      &.sw-btn-prev {
-        background: transparent;
-        color: #005ccb;
-        border: 1px solid #005ccb;
-
-        &:hover {
-          background: #005ccb;
-          color: white;
-        }
-      }
-
-      &:hover {
-        background: #00326e;
-      }
-
-      &.disabled {
-        display: none;
-      }
-    }
-  }
+	// Hide ALL SmartWizard generated buttons - we use our custom footer buttons
+	.sw-btn {
+		&:not(.ezd-btn) {
+			display: none !important;
+		}
+	}
 }
 
-button#ezd-install-selected-plugins {
-  position: absolute;
-  display: none;
-  bottom: 10px;
-  right: 20px;
-  z-index: 1;
-  height: auto;
-  padding: 9px;
-  background: #005ccb;
-  min-width: 150px;
-  color: white;
-  font-size: 17px;
-  font-weight: 500;
-  line-height: normal;
-  box-sizing: border-box;
-  margin: 0;
+// Progress Steps - Compact Design
+.ezd-wizard-progress {
+	background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+	padding: 20px 40px;
+	border-bottom: 1px solid $border-light;
+	position: relative;
 
-  &:hover {
-    background: #00326e;
-  }
+	.ezd-progress-bar {
+		position: absolute;
+		top: 50%;
+		left: 80px;
+		right: 80px;
+		height: 4px;
+		background: $border-color;
+		border-radius: 2px;
+		transform: translateY(-12px);
+		z-index: 1;
 
-  @media screen and (max-width: 767px) {
-    left: 0;
-    right: 0;
-    min-width: auto;
-    max-width: max-content;
-    margin: auto;
-  }
+		.ezd-progress-fill {
+			height: 100%;
+			background: linear-gradient(
+				90deg,
+				$success-color 0%,
+				$primary-color 100%
+			);
+			border-radius: 2px;
+			width: 0%;
+			transition: width $transition-slow;
+		}
+	}
+
+	.ezd-progress-steps {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		z-index: 2;
+	}
+
+	.ezd-progress-step {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+		flex: 1;
+		cursor: default;
+
+		.ezd-step-indicator {
+			width: 36px;
+			height: 36px;
+			background: $bg-white;
+			border: 2px solid $border-color;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all $transition-base;
+			position: relative;
+
+			.ezd-step-number {
+				font-size: 14px;
+				font-weight: 600;
+				color: $text-muted;
+				transition: all $transition-base;
+			}
+
+			.ezd-step-check {
+				display: none;
+				color: white;
+				font-size: 18px;
+			}
+		}
+
+		.ezd-step-title {
+			font-size: 13px;
+			font-weight: 500;
+			color: $text-muted;
+			text-align: center;
+			transition: all $transition-base;
+		}
+
+		// Active State
+		&.active {
+			.ezd-step-indicator {
+				border-color: $primary-color;
+				background: $primary-color;
+				box-shadow: 0 0 0 4px rgba($primary-color, 0.2);
+
+				.ezd-step-number {
+					color: white;
+				}
+			}
+
+			.ezd-step-title {
+				color: $primary-color;
+				font-weight: 600;
+			}
+		}
+
+		// Completed State - Clickable
+		&.completed {
+			cursor: pointer;
+
+			.ezd-step-indicator {
+				border-color: $success-color;
+				background: $success-color;
+				transition: all $transition-fast;
+
+				.ezd-step-number {
+					display: none;
+				}
+
+				.ezd-step-check {
+					display: block;
+				}
+			}
+
+			.ezd-step-title {
+				color: $success-color;
+				transition: color $transition-fast;
+			}
+
+			// Hover effect for completed steps
+			&:hover {
+				.ezd-step-indicator {
+					transform: scale(1.1);
+					box-shadow: 0 0 0 4px rgba($success-color, 0.2);
+				}
+
+				.ezd-step-title {
+					color: darken($success-color, 10%);
+				}
+			}
+		}
+	}
+}
+
+// Tab Content Area - Compact
+.tab-content {
+	min-height: auto;
+	padding: 24px 40px;
+	position: relative;
+
+	.tab-pane {
+		animation: fadeInUp 0.4s ease;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Step Header - Compact
+.ezd-step-header {
+	text-align: center;
+	margin-bottom: 20px;
+
+	.ezd-welcome-icon,
+	.ezd-step-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 56px;
+		height: 56px;
+		background: linear-gradient(
+			135deg,
+			$primary-light 0%,
+			rgba($primary-color, 0.15) 100%
+		);
+		border-radius: 50%;
+		margin-bottom: 12px;
+
+		img {
+			width: 32px;
+			height: 32px;
+		}
+
+		.dashicons {
+			font-size: 26px;
+			width: 26px;
+			height: 26px;
+			color: $primary-color;
+		}
+	}
+
+	h2 {
+		font-size: 22px;
+		font-weight: 700;
+		color: $text-primary;
+		margin: 0 0 8px;
+		line-height: 1.3;
+	}
+
+	.ezd-step-description {
+		font-size: 14px;
+		color: $text-secondary;
+		max-width: 500px;
+		margin: 0 auto;
+		line-height: 1.5;
+	}
+}
+
+// ========================================
+// STEP 1: Welcome - Compact
+// ========================================
+.ezd-welcome-step {
+	.ezd-welcome-content {
+		max-width: 100%;
+	}
+
+	.ezd-welcome-video {
+		margin-bottom: 20px;
+
+		.ezd-video-wrapper {
+			border-radius: $radius-md;
+			overflow: hidden;
+			box-shadow: $shadow-lg;
+			background: #000;
+
+			iframe {
+				display: block;
+				border: none;
+			}
+		}
+
+		.ezd-video-caption {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			margin-top: 8px;
+			font-size: 13px;
+			color: $text-secondary;
+
+			.dashicons {
+				color: $danger-color;
+			}
+		}
+	}
+
+	.ezd-features-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 12px;
+		margin-bottom: 20px;
+
+		@media (max-width: 768px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.ezd-feature-card {
+		background: $bg-light;
+		border: 1px solid $border-light;
+		border-radius: $radius-sm;
+		padding: 14px;
+		text-align: center;
+		transition: all $transition-base;
+
+		&:hover {
+			background: $bg-white;
+			border-color: $primary-color;
+			box-shadow: $shadow-md;
+			transform: translateY(-2px);
+		}
+
+		.ezd-feature-icon {
+			width: 36px;
+			height: 36px;
+			background: $primary-light;
+			border-radius: $radius-sm;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 8px;
+
+			.dashicons {
+				font-size: 18px;
+				width: 18px;
+				height: 18px;
+				color: $primary-color;
+			}
+		}
+
+		h4 {
+			font-size: 13px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 4px;
+		}
+
+		p {
+			font-size: 12px;
+			color: $text-secondary;
+			margin: 0;
+			line-height: 1.4;
+		}
+	}
+
+	.ezd-quick-links {
+		display: flex;
+		justify-content: center;
+		gap: 16px;
+		flex-wrap: wrap;
+
+		.ezd-quick-link {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 12px 20px;
+			background: $bg-white;
+			border: 1px solid $border-color;
+			border-radius: $radius-full;
+			color: $text-secondary;
+			text-decoration: none;
+			font-size: 14px;
+			font-weight: 500;
+			transition: all $transition-fast;
+
+			.dashicons {
+				font-size: 16px;
+				width: 16px;
+				height: 16px;
+			}
+
+			&:hover {
+				background: $primary-color;
+				border-color: $primary-color;
+				color: white;
+				transform: translateY(-2px);
+				box-shadow: $shadow-md;
+			}
+		}
+	}
+}
+
+// ========================================
+// STEP 2 & 3: Settings - Compact
+// ========================================
+.ezd-settings-step,
+.ezd-layout-step {
+	.ezd-settings-content,
+	.ezd-layout-content {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+}
+
+.ezd-setting-card {
+	background: $bg-white;
+	border: 1px solid $border-color;
+	border-radius: $radius-sm;
+	margin-bottom: 12px;
+	overflow: hidden;
+	transition: all $transition-base;
+
+	&:hover {
+		border-color: rgba($primary-color, 0.3);
+		box-shadow: $shadow-sm;
+	}
+
+	.ezd-setting-header {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 12px 16px;
+		background: $bg-light;
+		border-bottom: 1px solid $border-light;
+	}
+
+	.ezd-setting-icon {
+		width: 36px;
+		height: 36px;
+		background: $primary-light;
+		border-radius: $radius-sm;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+
+		.dashicons {
+			font-size: 18px;
+			width: 18px;
+			height: 18px;
+			color: $primary-color;
+		}
+	}
+
+	.ezd-setting-title {
+		flex: 1;
+
+		h3 {
+			font-size: 14px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 2px;
+		}
+
+		p {
+			font-size: 13px;
+			color: $text-secondary;
+			margin: 0;
+			line-height: 1.4;
+		}
+	}
+
+	.ezd-setting-body {
+		padding: 16px;
+	}
+
+	// Toggle Card
+	&.ezd-toggle-card {
+		.ezd-setting-header {
+			border-bottom: none;
+		}
+	}
+}
+
+// Select Styling
+.archive-page-selection-wrap {
+	.ezd-select,
+	select {
+		width: 100%;
+		padding: 12px 16px;
+		font-size: 15px;
+		border: 2px solid $border-color;
+		border-radius: $radius-sm;
+		background: $bg-white;
+		color: $text-primary;
+		cursor: pointer;
+		transition: all $transition-fast;
+		appearance: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 16px center;
+
+		&:focus {
+			outline: none;
+			border-color: $primary-color;
+			box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+		}
+	}
+
+	.ezd-setting-hint {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+		margin-top: 12px;
+		padding: 12px;
+		background: rgba($warning-color, 0.1);
+		border-radius: $radius-sm;
+		font-size: 13px;
+		color: darken($warning-color, 15%);
+		line-height: 1.5;
+
+		.dashicons {
+			flex-shrink: 0;
+			margin-top: 2px;
+		}
+	}
+}
+
+// Brand Color Picker
+.brand-color-picker-wrap {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+
+	.wp-picker-container {
+		display: flex !important;
+		align-items: center;
+
+		.wp-color-result {
+			border-radius: $radius-sm !important;
+			border: 2px solid $border-color !important;
+			box-shadow: none !important;
+		}
+	}
+
+	.ezd-color-preview {
+		padding: 12px 24px;
+		background: var(--preview-color, $primary-color);
+		color: white;
+		border-radius: $radius-sm;
+		font-size: 14px;
+		font-weight: 500;
+		box-shadow: $shadow-sm;
+	}
+}
+
+// Slug Options
+.root-slug-wrap {
+	.ezd-slug-options {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-bottom: 16px;
+	}
+
+	.ezd-slug-option {
+		display: flex;
+		align-items: center;
+		padding: 12px;
+		background: $bg-white;
+		border: 1px solid $border-color;
+		border-radius: $radius-sm;
+		cursor: pointer;
+		transition: all $transition-fast;
+		position: relative;
+
+		// Custom Radio Input
+		input[type='radio'] {
+			appearance: none;
+			width: 18px;
+			height: 18px;
+			border: 2px solid $text-muted;
+			border-radius: 50%;
+			margin: 0 12px 0 0;
+			position: relative;
+			transition: all $transition-fast;
+			flex-shrink: 0;
+
+			&:checked {
+				border-color: $primary-color;
+				background: $primary-color;
+				box-shadow: inset 0 0 0 3px white;
+			}
+		}
+
+		.ezd-option-label {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.ezd-option-title {
+			font-size: 14px;
+			font-weight: 600;
+			color: $text-primary;
+		}
+
+		.ezd-option-example {
+			font-size: 12px;
+			color: $text-secondary;
+			font-family: monospace;
+		}
+
+		&:hover {
+			border-color: $primary-color;
+			background: $bg-light;
+		}
+
+		&.active {
+			border-color: $primary-color;
+			background: $primary-light;
+
+			input[type='radio'] {
+				border-color: $primary-color;
+				background: $primary-color;
+				box-shadow: inset 0 0 0 3px white;
+			}
+		}
+	}
+
+	.ezd-custom-slug-input {
+		display: none;
+		align-items: center;
+		padding: 12px 16px;
+		background: $bg-light;
+		border: 2px solid $success-color;
+		border-radius: $radius-sm;
+
+		&.active {
+			display: flex;
+		}
+
+		.ezd-slug-prefix,
+		.ezd-slug-suffix {
+			font-size: 14px;
+			color: $text-muted;
+			font-family: monospace;
+		}
+
+		.custom-slug-field {
+			flex: 1;
+			border: none;
+			background: transparent;
+			font-size: 14px;
+			font-family: monospace;
+			color: $text-primary;
+			padding: 4px 8px;
+
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+}
+
+// ========================================
+// STEP 3: Layout Options - Compact
+// ========================================
+.ezd-layout-options {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 12px;
+
+	@media (max-width: 600px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.ezd-layout-option {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 12px;
+	background: $bg-white;
+	border: 1px solid $border-color;
+	border-radius: $radius-sm;
+	cursor: pointer;
+	transition: all $transition-base;
+	position: relative;
+	text-align: center;
+
+	input[type='radio'] {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.ezd-layout-preview {
+		width: 100%;
+		margin-bottom: 8px;
+		border-radius: $radius-sm;
+		overflow: hidden;
+		box-shadow: $shadow-sm;
+
+		img {
+			max-width: 100%;
+			height: 100px;
+			display: block;
+			transition: transform 0.3s ease;
+			margin: 0 auto;
+			padding: 10px;
+			border-radius: 20px;
+		}
+	}
+
+	.ezd-layout-name {
+		font-size: 13px;
+		font-weight: 600;
+		color: $text-primary;
+		margin-bottom: 2px;
+	}
+
+	.ezd-layout-desc {
+		font-size: 11px;
+		color: $text-muted;
+	}
+
+	.ezd-check-icon {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		width: 20px;
+		height: 20px;
+		background: $primary-color;
+		border-radius: 50%;
+		display: none;
+		align-items: center;
+		justify-content: center;
+
+		.dashicons {
+			font-size: 14px;
+			width: 14px;
+			height: 14px;
+			color: white;
+		}
+	}
+
+	&:hover {
+		border-color: $primary-color;
+		background: $bg-light;
+
+		.ezd-layout-preview img {
+			transform: scale(1.02);
+		}
+	}
+
+	&.active {
+		border-color: $primary-color;
+		background: $primary-light;
+		box-shadow: inset 0 0 0 1px $primary-color;
+
+		.ezd-check-icon {
+			display: flex;
+		}
+	}
+}
+
+// Width Options
+.ezd-width-options {
+	display: flex;
+	gap: 16px;
+
+	.ezd-width-option {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 15px;
+		background: $bg-light;
+		border: 2px solid $border-color;
+		border-radius: $radius-md;
+		cursor: pointer;
+		transition: all $transition-base;
+
+		input[type='radio'] {
+			position: absolute;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.ezd-width-icon {
+			margin-bottom: 12px;
+		}
+
+		.ezd-width-preview {
+			display: block;
+			width: 80px;
+			height: 50px;
+			border: 2px solid $border-color;
+			border-radius: 4px;
+			position: relative;
+			background: white;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 8px;
+				bottom: 8px;
+				background: $primary-light;
+				border-radius: 2px;
+			}
+
+			&.boxed::before {
+				left: 16px;
+				right: 16px;
+			}
+
+			&.full-width::before {
+				left: 4px;
+				right: 4px;
+			}
+		}
+
+		.ezd-width-label {
+			font-size: 14px;
+			font-weight: 600;
+			color: $text-primary;
+		}
+
+		&:hover,
+		&.active {
+			border-color: $primary-color;
+			background: $primary-light;
+		}
+
+		&.active {
+			border-color: $success-color;
+			background: $success-light;
+		}
+	}
+}
+
+// Toggle Switch
+.ezd-toggle-switch {
+	input[type='checkbox'] {
+		display: none;
+
+		& + .ezd-toggle-label {
+			width: 52px;
+			height: 28px;
+			background: $border-color;
+			border-radius: $radius-full;
+			position: relative;
+			cursor: pointer;
+			transition: all $transition-fast;
+			display: block;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 4px;
+				left: 4px;
+				width: 20px;
+				height: 20px;
+				background: white;
+				border-radius: 50%;
+				transition: all $transition-fast;
+				box-shadow: $shadow-sm;
+			}
+		}
+
+		&:checked + .ezd-toggle-label {
+			background: $success-color;
+
+			&::after {
+				left: 28px;
+			}
+		}
+	}
+}
+
+// Pro Teaser
+.ezd-pro-teaser {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 20px 24px;
+	background: linear-gradient(
+		135deg,
+		rgba($pro-color, 0.08) 0%,
+		rgba($pro-color, 0.15) 100%
+	);
+	border: 1px solid rgba($pro-color, 0.2);
+	border-radius: $radius-md;
+	margin-top: 24px;
+
+	.ezd-pro-badge {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		background: $pro-color;
+		color: white;
+		padding: 8px 14px;
+		border-radius: $radius-full;
+		font-size: 12px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+
+		.dashicons {
+			font-size: 14px;
+			width: 14px;
+			height: 14px;
+		}
+	}
+
+	.ezd-pro-content {
+		flex: 1;
+
+		h4 {
+			font-size: 15px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 4px;
+		}
+
+		p {
+			font-size: 14px;
+			color: $text-secondary;
+			margin: 0;
+		}
+	}
+}
+
+// ========================================
+// STEP 4: Plugins
+// ========================================
+.ezd-plugins-step {
+	.ezd-plugins-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+		margin-bottom: 24px;
+
+		@media (max-width: 700px) {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+.ezd-plugin-card {
+	background: $bg-white;
+	border: 1px solid $border-color;
+	border-radius: $radius-md;
+	padding: 24px;
+	position: relative;
+	transition: all $transition-base;
+
+	&:hover {
+		border-color: $primary-color;
+		box-shadow: $shadow-md;
+		transform: translateY(-2px);
+	}
+
+	&.is-active {
+		border-color: $success-color;
+		background: $success-light;
+	}
+
+	.ezd-plugin-status {
+		position: absolute;
+		top: 12px;
+		left: 12px;
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		padding: 4px 10px;
+		border-radius: $radius-full;
+
+		&.ezd-status-required {
+			background: rgba($danger-color, 0.1);
+			color: $danger-color;
+		}
+
+		&.ezd-status-recommended {
+			background: rgba($primary-color, 0.1);
+			color: $primary-color;
+		}
+
+		&.ezd-status-optional {
+			background: rgba($text-muted, 0.1);
+			color: $text-muted;
+		}
+	}
+
+	.ezd-plugin-active-badge {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+
+		.dashicons {
+			font-size: 24px;
+			width: 24px;
+			height: 24px;
+			color: $success-color;
+		}
+	}
+
+	.ezd-plugin-header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 16px;
+		margin-bottom: 16px;
+	}
+
+	.ezd-plugin-icon {
+		width: 50px;
+		height: 50px;
+		margin-bottom: 10px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			border-radius: $radius-sm;
+		}
+	}
+
+	.ezd-plugin-title {
+		font-size: 16px;
+		font-weight: 600;
+		color: $text-primary;
+		text-align: center;
+		margin: 0;
+	}
+
+	.ezd-plugin-description {
+		font-size: 14px;
+		color: $text-secondary;
+		text-align: center;
+		line-height: 1.6;
+		margin: 0 0 20px;
+		min-height: 50px;
+	}
+
+	.ezd-plugin-actions {
+		display: flex;
+		justify-content: center;
+		gap: 12px;
+	}
+}
+
+// ========================================
+// STEP 5: Finish
+// ========================================
+.ezd-finish-step {
+	.ezd-finish-content {
+		text-align: center;
+	}
+
+	.ezd-success-animation {
+		position: relative;
+		margin-bottom: 24px;
+	}
+
+	.ezd-success-circle {
+		width: 100px;
+		height: 100px;
+		background: linear-gradient(
+			135deg,
+			$success-color 0%,
+			darken($success-color, 10%) 100%
+		);
+		border-radius: 50%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		animation: successPulse 2s ease-in-out infinite;
+
+		.dashicons {
+			font-size: 48px;
+			width: 48px;
+			height: 48px;
+			color: white;
+		}
+	}
+
+	@keyframes successPulse {
+		0%,
+		100% {
+			box-shadow: 0 0 0 0 rgba($success-color, 0.4);
+		}
+		50% {
+			box-shadow: 0 0 0 20px rgba($success-color, 0);
+		}
+	}
+
+	.ezd-finish-subtitle {
+		font-size: 16px;
+		color: $text-secondary;
+		margin-bottom: 32px;
+	}
+
+	.ezd-next-steps-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+		margin-bottom: 32px;
+		text-align: left;
+
+		@media (max-width: 600px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.ezd-next-step-card {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		padding: 20px;
+		background: $bg-light;
+		border: 1px solid $border-color;
+		border-radius: $radius-md;
+		text-decoration: none;
+		transition: all $transition-base;
+
+		.ezd-card-icon {
+			width: 48px;
+			height: 48px;
+			background: $primary-light;
+			border-radius: $radius-sm;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+
+			.dashicons {
+				font-size: 24px;
+				width: 24px;
+				height: 24px;
+				color: $primary-color;
+			}
+		}
+
+		.ezd-card-content {
+			flex: 1;
+
+			h4 {
+				font-size: 15px;
+				font-weight: 600;
+				color: $text-primary;
+				margin: 0 0 4px;
+			}
+
+			p {
+				font-size: 13px;
+				color: $text-secondary;
+				margin: 0;
+			}
+		}
+
+		> .dashicons {
+			color: $text-muted;
+			transition: all $transition-fast;
+		}
+
+		&:hover {
+			border-color: $primary-color;
+			background: $bg-white;
+			box-shadow: $shadow-md;
+			transform: translateY(-2px);
+
+			> .dashicons {
+				color: $primary-color;
+				transform: translateX(4px);
+			}
+		}
+
+		&.ezd-primary-action {
+			background: linear-gradient(
+				135deg,
+				$primary-color 0%,
+				$primary-dark 100%
+			);
+			border-color: $primary-color;
+
+			.ezd-card-icon {
+				background: rgba(white, 0.2);
+
+				.dashicons {
+					color: white;
+				}
+			}
+
+			.ezd-card-content h4,
+			.ezd-card-content p {
+				color: white;
+			}
+
+			> .dashicons {
+				color: rgba(white, 0.7);
+			}
+
+			&:hover {
+				transform: translateY(-4px);
+				box-shadow: $shadow-lg;
+
+				> .dashicons {
+					color: white;
+				}
+			}
+		}
+
+		&.ezd-pro-card {
+			background: linear-gradient(
+				135deg,
+				rgba($pro-color, 0.08) 0%,
+				rgba($pro-color, 0.15) 100%
+			);
+			border-color: rgba($pro-color, 0.3);
+
+			.ezd-card-icon {
+				background: rgba($pro-color, 0.15);
+
+				.dashicons {
+					color: $pro-color;
+				}
+			}
+
+			&:hover {
+				border-color: $pro-color;
+			}
+		}
+	}
+
+	.ezd-finish-actions {
+		button {
+			margin: 0 auto;
+		}
+	}
+}
+
+// ========================================
+// Footer Navigation - Compact
+// ========================================
+.ezd-wizard-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 14px 24px;
+	background: $bg-light;
+	border-top: 1px solid $border-light;
+
+	.ezd-footer-left,
+	.ezd-footer-right {
+		flex: 1;
+	}
+
+	.ezd-footer-right {
+		text-align: right;
+	}
+
+	.ezd-footer-center {
+		text-align: center;
+	}
+
+	.ezd-step-counter {
+		font-size: 13px;
+		color: $text-muted;
+		font-weight: 500;
+
+		.current-step {
+			color: $primary-color;
+			font-weight: 600;
+		}
+	}
+}
+
+// ========================================
+// Buttons - Compact
+// ========================================
+.ezd-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 10px 18px;
+	font-size: 14px;
+	font-weight: 600;
+	border-radius: $radius-sm;
+	border: none;
+	cursor: pointer;
+	transition: all $transition-fast;
+	text-decoration: none;
+	line-height: 1.4;
+
+	.dashicons {
+		font-size: 16px;
+		width: 16px;
+		height: 16px;
+	}
+
+	&.ezd-btn-primary {
+		background: linear-gradient(
+			135deg,
+			$primary-color 0%,
+			$primary-dark 100%
+		);
+		color: white;
+		box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+
+		&:hover {
+			background: linear-gradient(
+				135deg,
+				$primary-dark 0%,
+				darken($primary-dark, 5%) 100%
+			);
+			transform: translateY(-2px);
+			box-shadow: 0 6px 16px rgba($primary-color, 0.4);
+			color: white;
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+	}
+
+	&.ezd-btn-outline {
+		background: transparent;
+		border: 2px solid $border-color;
+		color: $text-secondary;
+
+		&:hover {
+			border-color: $primary-color;
+			color: $primary-color;
+			background: $primary-light;
+		}
+
+		&.disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+			pointer-events: none;
+		}
+	}
+
+	&.ezd-btn-link {
+		background: transparent;
+		color: $text-secondary;
+		padding: 8px 12px;
+
+		&:hover {
+			color: $primary-color;
+			background: $primary-light;
+		}
+	}
+
+	&.ezd-btn-pro {
+		background: linear-gradient(
+			135deg,
+			$pro-color 0%,
+			darken($pro-color, 10%) 100%
+		);
+		color: white;
+
+		&:hover {
+			background: linear-gradient(
+				135deg,
+				darken($pro-color, 5%) 0%,
+				darken($pro-color, 15%) 100%
+			);
+			color: white;
+		}
+	}
+
+	&.ezd-btn-lg {
+		padding: 14px 32px;
+		font-size: 16px;
+	}
+
+	// Plugin action buttons
+	&.button-action {
+		background: $primary-color;
+		color: white !important;
+
+		&:hover {
+			background: $primary-dark;
+		}
+	}
+
+	&.button-disabled {
+		background: $success-light !important;
+		color: $success-color !important;
+		cursor: default;
+		pointer-events: none;
+	}
+}
+
+// ========================================
+// Quick Tips Panel
+// ========================================
+.ezd-setup-tips {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	width: 320px;
+	background: $bg-white;
+	border-radius: $radius-md;
+	box-shadow: $shadow-xl;
+	overflow: hidden;
+	z-index: 90;
+	animation: slideInUp 0.5s ease;
+
+	@media (max-width: 1200px) {
+		display: none;
+	}
+
+	.ezd-tips-header {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 16px 20px;
+		background: linear-gradient(
+			135deg,
+			$warning-color 0%,
+			darken($warning-color, 10%) 100%
+		);
+		color: white;
+
+		.dashicons {
+			font-size: 20px;
+			width: 20px;
+			height: 20px;
+		}
+
+		h4 {
+			font-size: 15px;
+			font-weight: 600;
+			margin: 0;
+		}
+	}
+
+	.ezd-tips-list {
+		list-style: none;
+		margin: 0;
+		padding: 16px 20px;
+
+		li {
+			display: none;
+			align-items: flex-start;
+			gap: 10px;
+			font-size: 14px;
+			color: $text-secondary;
+			line-height: 1.6;
+
+			&.active {
+				display: flex;
+			}
+
+			.dashicons {
+				flex-shrink: 0;
+				color: $primary-color;
+				margin-top: 2px;
+			}
+		}
+	}
+}
+
+@keyframes slideInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// ========================================
+// Confetti Animation (for finish step)
+// ========================================
+.ezd-confetti-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	pointer-events: none;
+}
+
+// ========================================
+// Responsive Styles
+// ========================================
+@media screen and (max-width: 782px) {
+	.ezd-setup-wizard-wrapper {
+		top: 0; // Always at top in full-screen mode
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.ezd-setup-page {
+		padding: 0; // Full screen, no margins needed
+	}
+
+	.ezd-setup-wizard-wrapper {
+		padding: 0 16px;
+
+		.ezd-setup-logo {
+			.ezd-logo-text,
+			.ezd-setup-badge {
+				display: none;
+			}
+		}
+	}
+
+	#ezd-setup-wizard-wrap {
+		margin: 20px 16px 40px;
+		border-radius: $radius-md;
+	}
+
+	.ezd-wizard-progress {
+		padding: 24px 20px;
+
+		.ezd-progress-bar {
+			display: none;
+		}
+
+		.ezd-progress-steps {
+			flex-wrap: wrap;
+			gap: 12px;
+		}
+
+		.ezd-progress-step {
+			flex: 0 0 auto;
+
+			.ezd-step-title {
+				display: none;
+			}
+
+			.ezd-step-indicator {
+				width: 36px;
+				height: 36px;
+
+				.ezd-step-number {
+					font-size: 14px;
+				}
+			}
+		}
+	}
+
+	.tab-content {
+		padding: 24px 20px;
+	}
+
+	.ezd-step-header h2 {
+		font-size: 22px;
+	}
+
+	.ezd-wizard-footer {
+		padding: 16px 20px;
+		flex-wrap: wrap;
+		gap: 12px;
+
+		.ezd-footer-center {
+			order: -1;
+			flex-basis: 100%;
+		}
+	}
+}
+
+// Hide button text in footer to avoid button issues
+.toolbar-bottom {
+	.sw-btn-prev,
+	.sw-btn-next {
+		&:not(.ezd-btn) {
+			display: none;
+		}
+	}
 }

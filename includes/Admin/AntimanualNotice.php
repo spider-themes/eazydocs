@@ -10,10 +10,41 @@ namespace EazyDocs\Admin;
 class AntimanualNotice {
 
     /**
+     * Singleton instance.
+     *
+     * @var self|null
+     */
+    private static $instance = null;
+
+    /**
+     * Bootstrap (safe to call multiple times).
+     */
+    public static function init() {
+        if ( null === self::$instance ) {
+            self::$instance = new self();
+        }
+
+        // Always re-register hooks (EazyDocs wipes admin_notices on its pages).
+        self::$instance->register_hooks();
+
+        return self::$instance;
+    }
+
+    /**
      * Initialize the class
      */
     public function __construct() {
+        $this->register_hooks();
+    }
+
+    /**
+     * Register hooks (idempotent).
+     */
+    public function register_hooks() {
+        remove_action( 'admin_notices', [ $this, 'display_antimanual_notice' ] );
         add_action( 'admin_notices', [ $this, 'display_antimanual_notice' ] );
+
+        remove_action( 'wp_ajax_ezd_dismiss_antimanual_notice', [ $this, 'dismiss_notice' ] );
         add_action( 'wp_ajax_ezd_dismiss_antimanual_notice', [ $this, 'dismiss_notice' ] );
     }
 
@@ -260,4 +291,4 @@ class AntimanualNotice {
     }
 }
 
-new AntimanualNotice();
+AntimanualNotice::init();

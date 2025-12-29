@@ -5,7 +5,7 @@
  * Plugin URI: https://eazydocs.spider-themes.net
  * Author: spider-themes
  * Author URI: https://eazydocs.spider-themes.net
- * Version: 2.8.1
+ * Version: 2.8.2
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -71,7 +71,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 	class EazyDocs {
 
 		// Default constants
-		const version = '2.8.1';
+		const version = '2.8.2';
 		public $plugin_path;
 		public $theme_dir_path;
 
@@ -90,6 +90,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				if ( ezd_admin_pages() ) {
 					remove_all_actions( 'admin_notices' );
 					remove_all_actions( 'all_admin_notices' );
+
+					// Allow the Antimanual integration notice on EazyDocs pages.
+					if ( class_exists( '\EazyDocs\Admin\AntimanualNotice' ) ) {
+						\EazyDocs\Admin\AntimanualNotice::init();
+					}
 
 					if ( ! ezd_is_premium() && ezd_is_plugin_installed_for_days( 12 ) && ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'eazydocs-initial-setup' ) ) {
 						add_action( 'admin_notices', 'ezd_offer_notice' );

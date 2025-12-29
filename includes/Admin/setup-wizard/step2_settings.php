@@ -1,49 +1,114 @@
 <?php
 /**
- * Cannot access directly.
+ * Step 2: Basic Settings
+ *
+ * @package EazyDocs
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
-
-ezd_render_setup_step_wrapper(2, esc_html__( 'Docs Archive Page', 'eazydocs' ), esc_html__( 'This page will show on the Doc single page breadcrumb and will be used to show the Docs.', 'eazydocs' ));
 ?>
-
-	<div class="archive-page-selection-wrap">
-		<select name="docs_archive_page" id="docs_archive_page">
-			<option value=""><?php esc_html_e( 'Select a page', 'eazydocs' ); ?></option>
-			<?php
-			$pages = get_pages();
-			foreach ( $pages as $page ) {
-				$selected = ( $page->ID == $docs_archive_page ) ? 'selected' : '';
-				echo '<option value="' . esc_attr( $page->ID ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $page->post_title ) . '</option>';
-			}
-			?>
-		</select>
-		<span> <?php esc_html_e( 'You can create this page with using [eazydocs] shortcode or available EazyDocs blocks or Elementor widgets.', 'eazydocs' ); ?> </span>
+<div id="step-2" class="tab-pane ezd-settings-step" role="tabpanel" style="display:none">
+	<div class="ezd-step-header">
+		<div class="ezd-step-icon">
+			<span class="dashicons dashicons-admin-settings"></span>
+		</div>
+		<h2><?php esc_html_e( 'Basic Configuration', 'eazydocs' ); ?></h2>
+		<p class="ezd-step-description"><?php esc_html_e( 'Configure the essential settings for your documentation. Don\'t worry, you can change these later.', 'eazydocs' ); ?></p>
 	</div>
 
-	<h2> <?php esc_html_e( 'Brand Color', 'eazydocs' ); ?> </h2>
-	<p> <?php esc_html_e( 'Select the Brand Color for your knowledge base.', 'eazydocs' ); ?> </p>
+	<div class="ezd-settings-content">
+		<!-- Archive Page Selection -->
+		<div class="ezd-setting-card">
+			<div class="ezd-setting-header">
+				<div class="ezd-setting-icon">
+					<span class="dashicons dashicons-admin-page"></span>
+				</div>
+				<div class="ezd-setting-title">
+					<h3><?php esc_html_e( 'Docs Archive Page', 'eazydocs' ); ?></h3>
+					<p><?php esc_html_e( 'Select the page that will display all your documentation.', 'eazydocs' ); ?></p>
+				</div>
+			</div>
+			<div class="ezd-setting-body">
+				<div class="archive-page-selection-wrap">
+					<select name="docs_archive_page" id="docs_archive_page" class="ezd-select">
+						<option value=""><?php esc_html_e( '— Select a page —', 'eazydocs' ); ?></option>
+						<?php
+						$pages = get_pages();
+						foreach ( $pages as $page ) {
+							$selected = ( $page->ID == $docs_archive_page ) ? 'selected' : '';
+							echo '<option value="' . esc_attr( $page->ID ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $page->post_title ) . '</option>';
+						}
+						?>
+					</select>
+					<span class="ezd-setting-hint">
+						<span class="dashicons dashicons-info"></span>
+						<?php esc_html_e( 'Use [eazydocs] shortcode, Gutenberg blocks, or Elementor widgets on this page.', 'eazydocs' ); ?>
+					</span>
+				</div>
+			</div>
+		</div>
 
-	<div class="brand-color-picker-wrap">
-		<input type="text" class="brand-color-picker" placeholder="Color Picker" value="<?php echo esc_attr( $brand_color ); ?>">
-	</div>
+		<!-- Brand Color -->
+		<div class="ezd-setting-card">
+			<div class="ezd-setting-header">
+				<div class="ezd-setting-icon">
+					<span class="dashicons dashicons-color-picker"></span>
+				</div>
+				<div class="ezd-setting-title">
+					<h3><?php esc_html_e( 'Brand Color', 'eazydocs' ); ?></h3>
+					<p><?php esc_html_e( 'Choose your primary brand color for buttons, links, and accents.', 'eazydocs' ); ?></p>
+				</div>
+			</div>
+			<div class="ezd-setting-body">
+				<div class="brand-color-picker-wrap">
+					<input type="text" class="brand-color-picker" placeholder="#007FFF" value="<?php echo esc_attr( $brand_color ); ?>">
+					<div class="ezd-color-preview" style="--preview-color: <?php echo esc_attr( $brand_color ? $brand_color : '#007FFF' ); ?>">
+						<span><?php esc_html_e( 'Preview', 'eazydocs' ); ?></span>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<h2> <?php esc_html_e( 'Doc Root URL Slug', 'eazydocs' ); ?> </h2>
-	<p> <?php esc_html_e( 'Select the Docs URL Structure. This will be used to generate the Docs URL.', 'eazydocs' ); ?> </p>
+		<!-- URL Slug -->
+		<div class="ezd-setting-card">
+			<div class="ezd-setting-header">
+				<div class="ezd-setting-icon">
+					<span class="dashicons dashicons-admin-links"></span>
+				</div>
+				<div class="ezd-setting-title">
+					<h3><?php esc_html_e( 'Doc Root URL Slug', 'eazydocs' ); ?></h3>
+					<p><?php esc_html_e( 'Set the URL structure for your documentation pages.', 'eazydocs' ); ?></p>
+				</div>
+			</div>
+			<div class="ezd-setting-body">
+				<div class="root-slug-wrap">
+					<div class="ezd-slug-options">
+						<label for="post-name" class="ezd-slug-option <?php echo 'post-name' === $slugType ? 'active' : ''; ?>">
+							<input type="radio" id="post-name" name="slug" value="post-name" <?php checked( $slugType, 'post-name' ); ?>>
+							<span class="ezd-option-label">
+								<span class="ezd-option-title"><?php esc_html_e( 'Default Slug', 'eazydocs' ); ?></span>
+								<span class="ezd-option-example"><?php echo esc_html( home_url( '/docs/your-doc-title/' ) ); ?></span>
+							</span>
+						</label>
 
-	<div class="root-slug-wrap">
-		<input type="radio" id="post-name" name="slug" value="post-name" <?php checked( $slugType, 'post-name' ); ?>>
-		<label for="post-name" class="<?php if ( $slugType == 'post-name' ) { echo esc_attr( 'active' ); } ?>">
-			<?php esc_html_e( 'Default Slug', 'eazydocs' ); ?>
-		</label>
+						<label for="custom-slug" class="ezd-slug-option <?php echo 'custom-slug' === $slugType ? 'active' : ''; ?>">
+							<input type="radio" id="custom-slug" name="slug" value="custom-slug" <?php checked( $slugType, 'custom-slug' ); ?>>
+							<span class="ezd-option-label">
+								<span class="ezd-option-title"><?php esc_html_e( 'Custom Slug', 'eazydocs' ); ?></span>
+								<span class="ezd-option-example"><?php esc_html_e( 'Define your own URL structure', 'eazydocs' ); ?></span>
+							</span>
+						</label>
+					</div>
 
-		<input type="radio" id="custom-slug" name="slug" value="custom-slug" <?php checked( $slugType, 'custom-slug' ); ?>>
-		<label for="custom-slug" class="<?php if ( $slugType == 'custom-slug' ) { echo esc_attr( 'active' ); } ?>">
-			<?php esc_html_e( 'Custom Slug', 'eazydocs' ); ?>
-		</label>
-
-		<input type="text" class="custom-slug-field <?php if ( $slugType == 'custom-slug' ) { echo esc_attr( 'active' ); } ?>" placeholder="Basic Setting" value="<?php echo esc_attr( $custom_slug ); ?>">
+					<div class="ezd-custom-slug-input <?php echo 'custom-slug' === $slugType ? 'active' : ''; ?>">
+						<span class="ezd-slug-prefix"><?php echo esc_html( home_url( '/' ) ); ?></span>
+						<input type="text" class="custom-slug-field" placeholder="docs" value="<?php echo esc_attr( $custom_slug ); ?>">
+						<span class="ezd-slug-suffix">/</span>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

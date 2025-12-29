@@ -84,9 +84,11 @@ class Assets {
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'wp-color-picker' );
 			wp_enqueue_script( 'smartwizard', EAZYDOCS_ASSETS . '/js/admin/jquery.smartWizard.min.js', array('jquery'), true, true );
-			// Custom styles and scripts
-			wp_enqueue_style( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/css/admin_setup_wizard.css', array(), EAZYDOCS_VERSION );
-			wp_enqueue_script( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/js/admin/setup_wizard_config.js', array( 'jquery', 'smartwizard' ), EAZYDOCS_VERSION, true );
+			// Custom styles and scripts (use filemtime for cache busting during development)
+			$setup_wizard_css_ver = filemtime( EAZYDOCS_PATH . '/assets/css/admin_setup_wizard.css' );
+			$setup_wizard_js_ver  = filemtime( EAZYDOCS_PATH . '/assets/js/admin/setup_wizard_config.js' );
+			wp_enqueue_style( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/css/admin_setup_wizard.css', array(), $setup_wizard_css_ver );
+			wp_enqueue_script( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/js/admin/setup_wizard_config.js', array( 'jquery', 'smartwizard' ), $setup_wizard_js_ver, true );
 		}
 	}
 
