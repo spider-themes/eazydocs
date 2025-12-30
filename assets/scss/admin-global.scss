@@ -1152,3 +1152,31 @@ p.big-p {
     }
   }
 }
+
+/** === Admin Menu Separators === **/
+// Only target the EazyDocs separators we register (ezd-menu-sep-*).
+#adminmenu .wp-submenu a[href*="page=ezd-menu-sep-"] {
+  pointer-events: none;
+  cursor: default;
+  padding: 0 !important;
+  margin: 8px 0 !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  background: transparent !important;
+
+  &:hover {
+    background: transparent !important;
+  }
+}
+
+#adminmenu .wp-submenu a[href*="page=ezd-menu-sep-"] .ezd-menu-separator {
+  display: block;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  margin: 0 12px;
+}

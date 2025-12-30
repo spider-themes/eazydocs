@@ -313,7 +313,7 @@ After activation, you'll see a setup wizard to help you create your first knowle
 
 == Changelog ==
 
-= 2.8.2 (29 December 2025) =
+= 3.9.0 (31 December 2025) =
 *   New: Redesigned Setup Wizard with a compact, modern UI and improved progress tracking.
 *   New: Added floating Quick Tips panel in the Setup Wizard for contextual guidance (visible on desktop).
 *   New: Added "Import Sample Data" feature to quickly populate documentation with demo content.

@@ -182,6 +182,7 @@ include EZD_SETTINGS_PATH . 'opt_footnotes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_shortcodes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_assistant.php';
 include EZD_SETTINGS_PATH . 'opt_docs_subscription.php';
+include EZD_SETTINGS_PATH . 'opt_feedback.php';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // USER ACCESS & PERMISSIONS

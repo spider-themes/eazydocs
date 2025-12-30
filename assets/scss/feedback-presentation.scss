@@ -1,0 +1,1074 @@
+/**
+ * Feedback Presentation Page Styles
+ *
+ * Modern, visually stunning presentation for the Users Feedback premium feature
+ * when EazyDocs Pro is not active. Designed to educate users and encourage upgrades.
+ *
+ * @package EazyDocs\Assets\SCSS
+ * @since 1.0.0
+ */
+
+// ============================================
+// Variables - Using CSS Custom Properties
+// ============================================
+// Brand color - uses --clr-blue from root.scss
+$brand-color: var(--clr-blue, #4C4CF1);
+$brand-color-hex: #4C4CF1; // Fallback for gradients and rgba calculations
+
+$success-color: #22c55e;
+$warning-color: #f59e0b;
+$danger-color: #ef4444;
+$info-color: #3b82f6;
+$teal-color: #14b8a6;
+
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$text-muted: #9ca3af;
+$white: #ffffff;
+$border-color: #e5e7eb;
+$background-light: #f9fafb;
+$background-lighter: #f3f4f6;
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 15px 30px -5px rgba(0, 0, 0, 0.25);
+
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+
+$transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ============================================
+// Container
+// ============================================
+.ezd-feedback-presentation {
+	max-width: 1200px;
+	margin: 20px auto 60px;
+	padding: 0 20px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+// ============================================
+// Hero Section
+// ============================================
+.ezd-fprp-hero {
+	position: relative;
+	padding: 60px 40px;
+	border-radius: $radius-xl;
+	background: linear-gradient(135deg, #4C4CF1 0%, #6366f1 50%, #818cf8 100%);
+	background: linear-gradient(135deg, var(--clr-blue, #4C4CF1) 0%, #6366f1 50%, #818cf8 100%);
+	overflow: hidden;
+	margin-bottom: 40px;
+}
+
+.ezd-fprp-hero-bg {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+.ezd-fprp-hero-glow {
+	position: absolute;
+	top: -100%;
+	right: -50%;
+	width: 200%;
+	height: 300%;
+	background: radial-gradient(ellipse at center, rgba($white, 0.15) 0%, transparent 60%);
+	animation: heroGlow 15s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+	100% {
+		transform: translate(-20%, 20%) rotate(10deg);
+	}
+}
+
+.ezd-fprp-hero-content {
+	position: relative;
+	text-align: center;
+	z-index: 2;
+}
+
+.ezd-fprp-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 18px;
+	background: rgba($white, 0.2);
+	border-radius: 50px;
+	font-size: 13px;
+	font-weight: 600;
+	color: $white;
+	backdrop-filter: blur(10px);
+	margin-bottom: 20px;
+
+	.dashicons {
+		width: 16px;
+		height: 16px;
+		font-size: 16px;
+		color: #fbbf24;
+	}
+}
+
+.ezd-fprp-title {
+	font-size: 42px;
+	font-weight: 800;
+	color: $white;
+	margin: 0 0 16px;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+}
+
+.ezd-fprp-subtitle {
+	font-size: 18px;
+	color: rgba($white, 0.9);
+	margin: 0 auto 32px;
+	max-width: 700px;
+	line-height: 1.6;
+}
+
+.ezd-fprp-hero-actions {
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+
+// ============================================
+// Buttons
+// ============================================
+.ezd-fprp-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 14px 28px;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1;
+	border-radius: $radius-md;
+	border: none;
+	cursor: pointer;
+	transition: $transition-fast;
+	text-decoration: none;
+	white-space: nowrap;
+
+	.dashicons {
+		width: 18px;
+		height: 18px;
+		font-size: 18px;
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 4px rgba($white, 0.3);
+	}
+}
+
+.ezd-fprp-btn-primary {
+	background: $white;
+	color: $brand-color;
+	box-shadow: $shadow-lg;
+
+	&:hover {
+		transform: translateY(-3px);
+		box-shadow: $shadow-xl;
+		color: $brand-color;
+	}
+}
+
+.ezd-fprp-btn-secondary {
+	background: rgba($white, 0.15);
+	color: $white;
+	border: 1.5px solid rgba($white, 0.3);
+	backdrop-filter: blur(10px);
+
+	&:hover {
+		background: rgba($white, 0.25);
+		border-color: rgba($white, 0.5);
+		transform: translateY(-2px);
+		color: $white;
+	}
+}
+
+.ezd-fprp-btn-cta {
+	background: linear-gradient(135deg, #1a1aae 0%, #6366f1 100%);
+	color: $white;
+	padding: 16px 32px;
+	font-size: 16px;
+	box-shadow: 0 8px 20px -4px rgba($brand-color-hex, 0.4);
+
+	&:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 12px 28px -4px rgba($brand-color-hex, 0.5);
+		color: $white;
+	}
+}
+
+// ============================================
+// Section Styles
+// ============================================
+.ezd-fprp-section {
+	margin-bottom: 48px;
+}
+
+.ezd-fprp-section-title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	font-size: 28px;
+	font-weight: 700;
+	color: $text-primary;
+	margin: 0 0 12px;
+	text-align: center;
+
+	.dashicons {
+		width: 28px;
+		height: 28px;
+		font-size: 28px;
+		color: $brand-color;
+	}
+}
+
+.ezd-fprp-section-desc {
+	font-size: 16px;
+	color: $text-secondary;
+	text-align: center;
+	margin: 0 auto 32px;
+	max-width: 600px;
+}
+
+// ============================================
+// Demo Stats
+// ============================================
+.ezd-fprp-demo-stats {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 20px;
+}
+
+.ezd-fprp-stat {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 20px 24px;
+	background: $white;
+	border-radius: $radius-md;
+	box-shadow: $shadow-md;
+	border: 1px solid $border-color;
+	transition: $transition-fast;
+	overflow: hidden;
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: $shadow-lg;
+	}
+}
+
+.ezd-fprp-stat-total {
+	border-left: 4px solid $brand-color;
+	background: linear-gradient(135deg, rgba($brand-color-hex, 0.08) 0%, $white 100%);
+
+	.ezd-fprp-stat-icon {
+		background: rgba($brand-color-hex, 0.12);
+		color: $brand-color;
+	}
+}
+
+.ezd-fprp-stat-open {
+	border-left: 4px solid $success-color;
+	background: linear-gradient(135deg, rgba($success-color, 0.08) 0%, $white 100%);
+
+	.ezd-fprp-stat-icon {
+		background: rgba($success-color, 0.12);
+		color: $success-color;
+	}
+}
+
+.ezd-fprp-stat-archived {
+	border-left: 4px solid $text-secondary;
+	background: linear-gradient(135deg, rgba($text-secondary, 0.08) 0%, $white 100%);
+
+	.ezd-fprp-stat-icon {
+		background: rgba($text-secondary, 0.12);
+		color: $text-secondary;
+	}
+}
+
+.ezd-fprp-stat-rate {
+	border-left: 4px solid $warning-color;
+	background: linear-gradient(135deg, rgba($warning-color, 0.08) 0%, $white 100%);
+
+	.ezd-fprp-stat-icon {
+		background: rgba($warning-color, 0.12);
+		color: $warning-color;
+	}
+
+	.ezd-fprp-stat-content {
+		width: 100%;
+	}
+}
+
+.ezd-fprp-stat-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	border-radius: $radius-md;
+	flex-shrink: 0;
+
+	.dashicons {
+		width: 24px;
+		height: 24px;
+		font-size: 24px;
+	}
+}
+
+.ezd-fprp-stat-content {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ezd-fprp-stat-value {
+	font-size: 28px;
+	font-weight: 800;
+	color: $text-primary;
+	line-height: 1;
+}
+
+.ezd-fprp-stat-label {
+	font-size: 14px;
+	color: $text-secondary;
+	font-weight: 500;
+}
+
+.ezd-fprp-stat-progress {
+	width: 100%;
+	height: 6px;
+	background: rgba($warning-color, 0.15);
+	border-radius: 3px;
+	margin-top: 8px;
+	overflow: hidden;
+}
+
+.ezd-fprp-stat-progress-bar {
+	height: 100%;
+	background: linear-gradient(90deg, $warning-color 0%, #d97706 100%);
+	border-radius: 3px;
+	animation: progressGrow 1.5s ease-out forwards;
+}
+
+@keyframes progressGrow {
+	from {
+		width: 0;
+	}
+}
+
+.ezd-fprp-demo-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba($white, 0.4);
+	backdrop-filter: blur(2px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: $radius-md;
+	opacity: 0;
+	transition: $transition-fast;
+	pointer-events: none;
+
+	.dashicons {
+		width: 48px;
+		height: 48px;
+		font-size: 48px;
+		color: $brand-color;
+		opacity: 0.6;
+	}
+}
+
+.ezd-fprp-demo-stats:hover .ezd-fprp-demo-overlay {
+	opacity: 1;
+}
+
+// ============================================
+// Features Grid
+// ============================================
+.ezd-fprp-features {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 24px;
+}
+
+.ezd-fprp-feature {
+	padding: 28px;
+	background: $white;
+	border-radius: $radius-lg;
+	border: 1px solid $border-color;
+	box-shadow: $shadow-sm;
+	transition: $transition-fast;
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: $shadow-lg;
+		border-color: transparent;
+
+		.ezd-fprp-feature-icon {
+			transform: scale(1.1);
+		}
+	}
+
+	h3 {
+		font-size: 18px;
+		font-weight: 700;
+		color: $text-primary;
+		margin: 16px 0 10px;
+	}
+
+	p {
+		font-size: 14px;
+		color: $text-secondary;
+		line-height: 1.6;
+		margin: 0;
+	}
+}
+
+.ezd-fprp-feature-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 56px;
+	height: 56px;
+	border-radius: 14px;
+	transition: $transition-fast;
+
+	.dashicons {
+		width: 28px;
+		height: 28px;
+		font-size: 28px;
+	}
+}
+
+.ezd-fprp-icon-blue {
+	background: linear-gradient(135deg, rgba($brand-color-hex, 0.15) 0%, rgba($brand-color-hex, 0.05) 100%);
+	color: $brand-color;
+}
+
+.ezd-fprp-icon-green {
+	background: linear-gradient(135deg, rgba($success-color, 0.15) 0%, rgba($success-color, 0.05) 100%);
+	color: $success-color;
+}
+
+.ezd-fprp-icon-purple {
+	background: linear-gradient(135deg, rgba(#8b5cf6, 0.15) 0%, rgba(#8b5cf6, 0.05) 100%);
+	color: #8b5cf6;
+}
+
+.ezd-fprp-icon-orange {
+	background: linear-gradient(135deg, rgba($warning-color, 0.15) 0%, rgba($warning-color, 0.05) 100%);
+	color: $warning-color;
+}
+
+.ezd-fprp-icon-red {
+	background: linear-gradient(135deg, rgba($danger-color, 0.15) 0%, rgba($danger-color, 0.05) 100%);
+	color: $danger-color;
+}
+
+.ezd-fprp-icon-teal {
+	background: linear-gradient(135deg, rgba($teal-color, 0.15) 0%, rgba($teal-color, 0.05) 100%);
+	color: $teal-color;
+}
+
+// ============================================
+// Demo Card (Interface Preview)
+// ============================================
+.ezd-fprp-demo-card {
+	position: relative;
+	background: $white;
+	border-radius: $radius-xl;
+	border: 1px solid $border-color;
+	box-shadow: $shadow-lg;
+	overflow: hidden;
+}
+
+.ezd-fprp-demo-tabs {
+	display: flex;
+	gap: 0;
+	background: linear-gradient(135deg, #fafbfc 0%, $background-lighter 100%);
+	border-bottom: 1px solid $border-color;
+	padding: 0 24px;
+}
+
+.ezd-fprp-demo-tab {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 18px 24px;
+	font-size: 14px;
+	font-weight: 500;
+	color: $text-secondary;
+	border-bottom: 3px solid transparent;
+	margin-bottom: -1px;
+	cursor: pointer;
+	transition: $transition-fast;
+
+	.dashicons {
+		width: 18px;
+		height: 18px;
+		font-size: 18px;
+	}
+
+	&:hover {
+		color: $text-primary;
+		background: rgba(0, 0, 0, 0.02);
+	}
+
+	&.is-active {
+		color: $brand-color;
+		border-bottom-color: $brand-color;
+		background: rgba($brand-color-hex, 0.03);
+
+		.ezd-fprp-tab-count {
+			background: $brand-color;
+			color: $white;
+		}
+	}
+}
+
+.ezd-fprp-tab-count {
+	padding: 3px 10px;
+	font-size: 12px;
+	font-weight: 600;
+	background: rgba(0, 0, 0, 0.08);
+	color: $text-secondary;
+	border-radius: $radius-md;
+	min-width: 28px;
+	text-align: center;
+}
+
+.ezd-fprp-demo-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 16px 24px;
+	border-bottom: 1px solid $border-color;
+	flex-wrap: wrap;
+}
+
+.ezd-fprp-demo-filters {
+	display: flex;
+	gap: 10px;
+}
+
+.ezd-fprp-filter-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 16px;
+	font-size: 13px;
+	font-weight: 500;
+	color: $text-secondary;
+	background: $background-light;
+	border: 1px solid transparent;
+	border-radius: $radius-xl;
+	cursor: pointer;
+	transition: $transition-fast;
+
+	&:hover {
+		background: #f0f1f3;
+		color: $text-primary;
+	}
+
+	&.is-active {
+		background: rgba($brand-color-hex, 0.1);
+		color: $brand-color;
+		border-color: rgba($brand-color-hex, 0.3);
+	}
+}
+
+.ezd-fprp-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+}
+
+.ezd-fprp-dot-green {
+	background: $success-color;
+}
+
+.ezd-fprp-dot-gray {
+	background: $text-muted;
+}
+
+.ezd-fprp-demo-search {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 16px;
+	background: $white;
+	border: 1px solid $border-color;
+	border-radius: $radius-sm;
+	color: $text-muted;
+	font-size: 13px;
+
+	.dashicons {
+		width: 16px;
+		height: 16px;
+		font-size: 16px;
+	}
+}
+
+.ezd-fprp-demo-list {
+	padding: 0;
+}
+
+.ezd-fprp-demo-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+	padding: 24px;
+	border-bottom: 1px solid $border-color;
+	transition: $transition-fast;
+
+	&:hover {
+		background: rgba($brand-color-hex, 0.02);
+	}
+
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.ezd-fprp-demo-avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+	border-radius: 50%;
+	flex-shrink: 0;
+
+	.dashicons {
+		width: 24px;
+		height: 24px;
+		font-size: 24px;
+		color: $brand-color;
+	}
+
+	&.ezd-fprp-avatar-green {
+		background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+
+		.dashicons {
+			color: $success-color;
+		}
+	}
+
+	&.ezd-fprp-avatar-purple {
+		background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+
+		.dashicons {
+			color: #8b5cf6;
+		}
+	}
+}
+
+.ezd-fprp-demo-content {
+	flex: 1;
+	min-width: 0;
+}
+
+.ezd-fprp-demo-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+	margin-bottom: 10px;
+}
+
+.ezd-fprp-demo-title {
+	font-size: 15px;
+	font-weight: 600;
+	color: $text-primary;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.ezd-fprp-demo-badge {
+	display: inline-flex;
+	padding: 4px 10px;
+	font-size: 11px;
+	font-weight: 600;
+	color: $brand-color;
+	background: rgba($brand-color-hex, 0.1);
+	border-radius: $radius-sm;
+
+	&.ezd-fprp-badge-green {
+		color: $success-color;
+		background: rgba($success-color, 0.1);
+	}
+
+	&.ezd-fprp-badge-orange {
+		color: $warning-color;
+		background: rgba($warning-color, 0.1);
+	}
+}
+
+.ezd-fprp-demo-time {
+	font-size: 12px;
+	color: $text-muted;
+	white-space: nowrap;
+}
+
+.ezd-fprp-demo-meta {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	margin-bottom: 12px;
+	flex-wrap: wrap;
+
+	span {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 13px;
+		color: $text-secondary;
+
+		.dashicons {
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+		}
+	}
+}
+
+.ezd-fprp-demo-text {
+	font-size: 14px;
+	color: $text-secondary;
+	line-height: 1.6;
+	margin-bottom: 16px;
+}
+
+.ezd-fprp-demo-actions {
+	display: flex;
+	gap: 10px;
+}
+
+.ezd-fprp-demo-action-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	font-size: 12px;
+	font-weight: 500;
+	color: $text-secondary;
+	background: $background-light;
+	border: 1px solid $border-color;
+	border-radius: $radius-sm;
+	cursor: pointer;
+	transition: $transition-fast;
+
+	.dashicons {
+		width: 14px;
+		height: 14px;
+		font-size: 14px;
+	}
+
+	&:hover {
+		background: $white;
+		border-color: $brand-color;
+		color: $brand-color;
+	}
+}
+
+.ezd-fprp-demo-full-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba($white, 0) 0%, rgba($white, 0.8) 50%, rgba($white, 0.95) 100%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	padding-bottom: 60px;
+	pointer-events: none;
+}
+
+.ezd-fprp-demo-lock-content {
+	text-align: center;
+
+	.dashicons {
+		width: 48px;
+		height: 48px;
+		font-size: 48px;
+		color: $brand-color;
+		margin-bottom: 8px;
+	}
+
+	p {
+		font-size: 14px;
+		font-weight: 600;
+		color: $text-secondary;
+		margin: 0;
+	}
+}
+
+// ============================================
+// Benefits Section
+// ============================================
+.ezd-fprp-benefits-section {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	gap: 48px;
+	align-items: center;
+	padding: 48px;
+	background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+	border-radius: $radius-xl;
+	border: 1px solid $border-color;
+
+	@media (max-width: 900px) {
+		grid-template-columns: 1fr;
+		gap: 32px;
+	}
+}
+
+.ezd-fprp-benefits-content {
+	h2 {
+		font-size: 28px;
+		font-weight: 700;
+		color: $text-primary;
+		margin: 0 0 24px;
+	}
+}
+
+.ezd-fprp-benefits-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		padding: 12px 0;
+		font-size: 15px;
+		color: $text-secondary;
+		line-height: 1.5;
+
+		.dashicons {
+			width: 22px;
+			height: 22px;
+			font-size: 22px;
+			color: $success-color;
+			flex-shrink: 0;
+			margin-top: 1px;
+		}
+	}
+}
+
+.ezd-fprp-benefits-visual {
+	display: flex;
+	justify-content: center;
+}
+
+.ezd-fprp-benefits-card {
+	text-align: center;
+	padding: 40px;
+	background: $white;
+	border-radius: $radius-xl;
+	box-shadow: $shadow-lg;
+	border: 1px solid $border-color;
+}
+
+.ezd-fprp-benefits-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 72px;
+	height: 72px;
+	background: linear-gradient(135deg, rgba($success-color, 0.15) 0%, rgba($success-color, 0.05) 100%);
+	border-radius: 20px;
+	margin-bottom: 20px;
+
+	.dashicons {
+		width: 36px;
+		height: 36px;
+		font-size: 36px;
+		color: $success-color;
+	}
+}
+
+.ezd-fprp-benefits-stat {
+	font-size: 56px;
+	font-weight: 800;
+	color: $text-primary;
+	line-height: 1;
+	margin-bottom: 8px;
+}
+
+.ezd-fprp-benefits-label {
+	font-size: 14px;
+	color: $text-secondary;
+	line-height: 1.5;
+}
+
+// ============================================
+// CTA Section
+// ============================================
+.ezd-fprp-cta {
+	position: relative;
+	padding: 60px 48px;
+	background: linear-gradient(135deg, #4C4CF1 0%, #6366f1 100%);
+	background: linear-gradient(135deg, var(--clr-blue, #4C4CF1) 0%, #6366f1 100%);
+	border-radius: $radius-xl;
+	overflow: hidden;
+	text-align: center;
+}
+
+.ezd-fprp-cta-content {
+	position: relative;
+	z-index: 2;
+
+	h2 {
+		font-size: 32px;
+		font-weight: 800;
+		color: $white;
+		margin: 0 0 20px;
+	}
+
+	p {
+		font-size: 16px;
+		color: rgba($white, 0.9);
+		margin: 0 0 32px;
+	}
+}
+
+.ezd-fprp-cta-actions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.ezd-fprp-cta-features {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 24px;
+	flex-wrap: wrap;
+
+	span {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 14px;
+		color: rgba($white, 0.9);
+		font-weight: 500;
+
+		.dashicons {
+			width: 18px;
+			height: 18px;
+			font-size: 18px;
+			color: #fbbf24;
+		}
+	}
+}
+
+.ezd-fprp-cta-decoration {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.ezd-fprp-cta-circles {
+	position: absolute;
+	inset: 0;
+}
+
+.ezd-fprp-circle {
+	position: absolute;
+	border-radius: 50%;
+	background: rgba($white, 0.1);
+}
+
+.ezd-fprp-circle-1 {
+	width: 300px;
+	height: 300px;
+	top: -100px;
+	right: -50px;
+}
+
+.ezd-fprp-circle-2 {
+	width: 200px;
+	height: 200px;
+	bottom: -50px;
+	left: 10%;
+}
+
+.ezd-fprp-circle-3 {
+	width: 150px;
+	height: 150px;
+	top: 50%;
+	left: -30px;
+}
+
+// ============================================
+// Responsive Styles
+// ============================================
+@media (max-width: 768px) {
+	.ezd-fprp-hero {
+		padding: 40px 24px;
+	}
+
+	.ezd-fprp-title {
+		font-size: 28px;
+	}
+
+	.ezd-fprp-subtitle {
+		font-size: 15px;
+	}
+
+	.ezd-fprp-section-title {
+		font-size: 22px;
+	}
+
+	.ezd-fprp-features {
+		grid-template-columns: 1fr;
+	}
+
+	.ezd-fprp-benefits-section {
+		padding: 32px 24px;
+	}
+
+	.ezd-fprp-cta {
+		padding: 40px 24px;
+	}
+
+	.ezd-fprp-cta-content h2 {
+		font-size: 24px;
+	}
+
+	.ezd-fprp-demo-toolbar {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.ezd-fprp-demo-item {
+		flex-direction: column;
+		gap: 16px;
+	}
+}

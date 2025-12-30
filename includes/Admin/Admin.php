@@ -26,6 +26,7 @@ class Admin {
 	 */
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'eazyDocs_menu' ] );
+		add_action( 'admin_menu', [ $this, 'reorder_eazydocs_admin_submenu' ], 999 );
 		add_filter( 'admin_body_class', [ $this, 'body_class' ] );
 		add_action( 'customize_controls_print_footer_scripts', [ $this, 'body_class' ], 999 );
 		add_filter( 'get_edit_post_link', [ $this, 'one_page_docs_edit_content' ], 10, 3 );
@@ -105,16 +106,9 @@ class Admin {
 		
 		$ezd_menu_title = ezd_get_opt( 'docs_menu_title' ) ?: ( class_exists( 'EZD_EazyDocsPro' ) ? esc_html__( 'EazyDocs Pro', 'eazydocs' ) : esc_html__( 'EazyDocs', 'eazydocs' ) );
 		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_dashboard' ], 'dashicons-media-document', 10 );
+
 		add_submenu_page( 'eazydocs', esc_html__( 'Dashboard', 'eazydocs' ), esc_html__( 'Dashboard', 'eazydocs' ), 'manage_options', 'eazydocs' );
 		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs-builder', [ $this, 'eazydocs_builder' ] );
-
-		if ( ezd_is_premium() ) {
-			if ( $is_customizer ) {
-				add_submenu_page( 'eazydocs', esc_html__( 'Customize', 'eazydocs' ), esc_html__( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
-			}
-		}
-
-		add_submenu_page( 'eazydocs', esc_html__( 'Tags', 'eazydocs' ), esc_html__( 'Tags', 'eazydocs' ), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
 
 		$current_theme = get_template();
 		if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
@@ -123,13 +117,21 @@ class Admin {
 			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Doc', 'eazydocs' ), esc_html__( 'OnePage Doc', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [ $this, 'ezd_onepage_presents' ] );
 		}
 
+		add_submenu_page( 'eazydocs', esc_html__( 'Tags', 'eazydocs' ), esc_html__( 'Tags', 'eazydocs' ), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
+
+		if ( ezd_is_premium() ) {
+			if ( $is_customizer ) {
+				add_submenu_page( 'eazydocs', esc_html__( 'Customize', 'eazydocs' ), esc_html__( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
+			}
+		}
+
 		if ( ezd_is_premium() ) {
 			do_action( 'ezd_pro_admin_menu' );
 		} else {
 			add_submenu_page( 'eazydocs', esc_html__( 'Users Feedback', 'eazydocs' ), esc_html__( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [ $this, 'ezd_feedback_presents' ] );
 			add_submenu_page( 'eazydocs', esc_html__( 'Analytics', 'eazydocs' ), esc_html__( 'Analytics', 'eazydocs' ), $capabilites, 'ezd-analytics', [ $this, 'ezd_analytics_presents' ] );
 		}
-
+		
 		// Only show FAQ Builder menu if neither the free nor pro version of Advanced Accordion Block is active
 		if ( ! function_exists( 'is_plugin_active' ) ) {
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -140,10 +142,150 @@ class Admin {
 		}
 
 		add_submenu_page( 'eazydocs', esc_html__( 'Integrated Themes', 'eazydocs' ), esc_html__( 'Integrated Themes', 'eazydocs' ), 'manage_options', 'ezd-integrated-themes', [ $this, 'ezd_integrated_themes' ] );
-
+		
 		add_submenu_page( 'eazydocs', esc_html__( 'Setup Wizard', 'eazydocs' ), esc_html__( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ] );
 		
 		add_submenu_page( 'eazydocs', esc_html__( 'Migration', 'eazydocs' ), esc_html__( 'Migration', 'eazydocs' ), 'manage_options', 'eazydocs-migration', [ $this, 'ezd_docs_migration' ] );
+	}
+
+	/**
+	 * Reorder EazyDocs submenu items into requested groups and insert separators.
+	 *
+	 * Groups:
+	 * 1) Dashboard, Docs Builder, OnePage Docs
+	 * 2) Tags, Badges
+	 * 3) Users Feedback, Analytics
+	 * 4) Settings, Customize, Setup Wizard
+	 * 5) Migration, FAQ Builder, Integrated Themes
+	 * 6) Rest
+	 */
+	public function reorder_eazydocs_admin_submenu() {
+		global $submenu;
+
+		if ( empty( $submenu['eazydocs'] ) || ! is_array( $submenu['eazydocs'] ) ) {
+			return;
+		}
+
+		// Remove legacy/bad separators that used '#' and any previously registered separator slugs.
+		$original = [];
+		foreach ( $submenu['eazydocs'] as $item ) {
+			$slug = isset( $item[2] ) ? (string) $item[2] : '';
+			$normalized_slug = ltrim( $slug, '/' );
+
+			if ( '#' === $slug || 0 === strpos( $normalized_slug, 'ezd-menu-sep-' ) ) {
+				continue;
+			}
+
+			$original[] = $item;
+		}
+		$submenu['eazydocs'] = $original;
+
+		$remaining = $submenu['eazydocs'];
+
+		$take = function ( array $slugs ) use ( &$remaining ) {
+			$normalized_targets = array_map(
+				function ( $s ) {
+					return ltrim( (string) $s, '/' );
+				},
+				$slugs
+			);
+
+			foreach ( $remaining as $key => $item ) {
+				$slug = isset( $item[2] ) ? (string) $item[2] : '';
+				$normalized_slug = ltrim( $slug, '/' );
+
+				if ( in_array( $normalized_slug, $normalized_targets, true ) ) {
+					unset( $remaining[ $key ] );
+					return $item;
+				}
+			}
+
+			return null;
+		};
+
+		$group_1 = [];
+		if ( $item = $take( [ 'eazydocs' ] ) ) { $group_1[] = $item; }
+		if ( $item = $take( [ 'eazydocs-builder' ] ) ) { $group_1[] = $item; }
+		if ( $item = $take( [ '/edit.php?post_type=onepage-docs', 'edit.php?post_type=onepage-docs', 'ezd-onepage-presents' ] ) ) { $group_1[] = $item; }
+
+		$group_2 = [];
+		if ( $item = $take( [ '/edit-tags.php?taxonomy=doc_tag&post_type=docs', 'edit-tags.php?taxonomy=doc_tag&post_type=docs' ] ) ) { $group_2[] = $item; }
+		if ( $item = $take( [ '/edit-tags.php?taxonomy=doc_badge&post_type=docs', 'edit-tags.php?taxonomy=doc_badge&post_type=docs' ] ) ) { $group_2[] = $item; }
+
+		$group_3 = [];
+		if ( $item = $take( [ 'ezd-user-feedback' ] ) ) { $group_3[] = $item; }
+		if ( $item = $take( [ 'ezd-analytics' ] ) ) { $group_3[] = $item; }
+
+		$group_4 = [];
+		if ( $item = $take( [ 'eazydocs-settings' ] ) ) { $group_4[] = $item; }
+		if ( $item = $take( [
+			'/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page',
+			'customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page',
+		] ) ) { $group_4[] = $item; }
+		if ( $item = $take( [ 'eazydocs-initial-setup' ] ) ) { $group_4[] = $item; }
+
+		$group_5 = [];
+		if ( $item = $take( [ 'eazydocs-migration' ] ) ) { $group_5[] = $item; }
+		if ( $item = $take( [ 'ezd-faq-builder' ] ) ) { $group_5[] = $item; }
+		if ( $item = $take( [ 'ezd-integrated-themes' ] ) ) { $group_5[] = $item; }
+
+		// Group 6: preserve original order for any remaining items.
+		$group_6 = [];
+		foreach ( $submenu['eazydocs'] as $key => $item ) {
+			if ( isset( $remaining[ $key ] ) ) {
+				$group_6[] = $remaining[ $key ];
+			}
+		}
+
+		$groups = [ $group_1, $group_2, $group_3, $group_4, $group_5, $group_6 ];
+		$new = [];
+		$sep_index = 1;
+
+		for ( $i = 0; $i < count( $groups ); $i++ ) {
+			if ( empty( $groups[ $i ] ) ) {
+				continue;
+			}
+
+			foreach ( $groups[ $i ] as $item ) {
+				$new[] = $item;
+			}
+
+			$has_next = false;
+			for ( $j = $i + 1; $j < count( $groups ); $j++ ) {
+				if ( ! empty( $groups[ $j ] ) ) {
+					$has_next = true;
+					break;
+				}
+			}
+
+			if ( $has_next ) {
+				$sep_slug = 'ezd-menu-sep-' . $sep_index;
+				$sep_index++;
+
+				add_submenu_page(
+					'eazydocs',
+					'',
+					'<span class="ezd-menu-separator" aria-hidden="true"></span>',
+					'read',
+					$sep_slug,
+					'__return_null'
+				);
+
+				$sep_item = null;
+				foreach ( $submenu['eazydocs'] as $candidate ) {
+					if ( isset( $candidate[2] ) && $candidate[2] === $sep_slug ) {
+						$sep_item = $candidate;
+						break;
+					}
+				}
+
+				if ( ! empty( $sep_item ) ) {
+					$new[] = $sep_item;
+				}
+			}
+		}
+
+		$submenu['eazydocs'] = $new;
 	}
 
 	/**
@@ -235,22 +377,16 @@ class Admin {
 	}
 
 	public function ezd_feedback_presents() {
-		?>
-        <div class="wrap">
-            <div class="ezd-blank_state">
-				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
-				?>
-                <img src="<?php echo esc_url( EAZYDOCS_IMG . '/icon/crown.svg' ); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
-                <h3 class="title"> <?php echo esc_html__( 'Users Feedback', 'eazydocs' ); ?> </h3>
-                <p class="big-p"> <?php esc_html_e( 'You can get the Doc Feedbacks listed in this page to review.', 'eazydocs' ); ?> </p>
-                <div class="button-inline">
-                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-pricing' ) ); ?>">
-						<?php esc_html_e( 'Get Pro Plan', 'eazydocs' ); ?>
-                    </a>
-                </div>
-            </div>
-        </div><!-- /.wrap -->
-		<?php
+		// Enqueue the feedback presentation CSS.
+		wp_enqueue_style(
+			'ezd-feedback-presentation',
+			EAZYDOCS_ASSETS . '/css/feedback-presentation.css',
+			[],
+			EAZYDOCS_VERSION
+		);
+
+		// Include the template file.
+		require_once __DIR__ . '/template/feedback-presentation.php';
 	}
 
 	public function ezd_analytics_presents() {
