@@ -100,7 +100,7 @@ $theme = wp_get_theme();
 				<span class="dashicons dashicons-book"></span>
 				<?php esc_html_e( 'Documentation', 'eazydocs' ); ?>
 			</a>
-			<a href="https://spider-themes.net/support/" target="_blank" class="ezd-system-link">
+			<a href="https://wordpress.org/support/plugin/eazydocs//" target="_blank" class="ezd-system-link">
 				<span class="dashicons dashicons-sos"></span>
 				<?php esc_html_e( 'Support', 'eazydocs' ); ?>
 			</a>

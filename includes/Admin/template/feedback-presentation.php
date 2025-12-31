@@ -293,7 +293,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="ezd-fprp-demo-full-overlay">
 					<div class="ezd-fprp-demo-lock-content">
 						<span class="dashicons dashicons-lock"></span>
-						<p><?php esc_html_e( 'Unlock to Access', 'eazydocs' ); ?></p>
+						<p><?php esc_html_e( 'Unlock Pro to Access', 'eazydocs' ); ?></p>
 					</div>
 				</div>
 			</div>

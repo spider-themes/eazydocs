@@ -1,0 +1,1037 @@
+/**
+ * Analytics Presentation Page Styles
+ *
+ * Modern, visually stunning presentation for the Analytics premium feature
+ * when EazyDocs Promax is not active. Designed to educate users and encourage upgrades.
+ *
+ * @package EazyDocs\Assets\SCSS
+ * @since 1.0.0
+ */
+
+// ============================================
+// Variables - Using CSS Custom Properties
+// ============================================
+$brand-color: var(--clr-blue, #4C4CF1);
+$brand-color-hex: #4C4CF1;
+
+$success-color: #22c55e;
+$warning-color: #f59e0b;
+$danger-color: #ef4444;
+$info-color: #3b82f6;
+$teal-color: #14b8a6;
+$purple-color: #8b5cf6;
+$orange-color: #f97316;
+
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$text-muted: #9ca3af;
+$white: #ffffff;
+$border-color: #e5e7eb;
+$background-light: #f9fafb;
+$background-lighter: #f3f4f6;
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 15px 30px -5px rgba(0, 0, 0, 0.25);
+
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+
+$transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ============================================
+// Container
+// ============================================
+.ezd-analytics-presentation {
+	max-width: 1200px;
+	margin: 20px auto 60px;
+	padding: 0 20px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+// ============================================
+// Hero Section
+// ============================================
+.ezd-anp-hero {
+	position: relative;
+	padding: 60px 40px;
+	border-radius: $radius-xl;
+	background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+	overflow: hidden;
+	margin-bottom: 40px;
+}
+
+.ezd-anp-hero-bg {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+.ezd-anp-hero-pattern {
+	position: absolute;
+	inset: 0;
+	background-image: 
+		radial-gradient(circle at 25% 25%, rgba($brand-color-hex, 0.15) 0%, transparent 50%),
+		radial-gradient(circle at 75% 75%, rgba($info-color, 0.1) 0%, transparent 50%);
+}
+
+.ezd-anp-hero-glow {
+	position: absolute;
+	top: -50%;
+	right: -25%;
+	width: 150%;
+	height: 200%;
+	background: radial-gradient(ellipse at center, rgba($brand-color-hex, 0.2) 0%, transparent 60%);
+	animation: anpHeroGlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes anpHeroGlow {
+	0% {
+		transform: translate(0, 0) scale(1);
+	}
+	100% {
+		transform: translate(-10%, 10%) scale(1.1);
+	}
+}
+
+.ezd-anp-hero-content {
+	position: relative;
+	text-align: center;
+	z-index: 2;
+}
+
+.ezd-anp-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 18px;
+	background: linear-gradient(135deg, rgba($brand-color-hex, 0.3) 0%, rgba($purple-color, 0.2) 100%);
+	border: 1px solid rgba($brand-color-hex, 0.3);
+	border-radius: 50px;
+	font-size: 13px;
+	font-weight: 600;
+	color: $white;
+	backdrop-filter: blur(10px);
+	margin-bottom: 20px;
+
+	.dashicons {
+		width: 16px;
+		height: 16px;
+		font-size: 16px;
+		color: #fbbf24;
+	}
+}
+
+.ezd-anp-title {
+	font-size: 44px;
+	font-weight: 800;
+	color: $white;
+	margin: 0 0 16px;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	
+	background: linear-gradient(135deg, $white 0%, rgba($white, 0.8) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.ezd-anp-subtitle {
+	font-size: 18px;
+	color: rgba($white, 0.8);
+	margin: 0 auto 32px;
+	max-width: 750px;
+	line-height: 1.6;
+}
+
+.ezd-anp-hero-actions {
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+
+// ============================================
+// Buttons
+// ============================================
+.ezd-anp-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 14px 28px;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1;
+	border-radius: $radius-md;
+	border: none;
+	cursor: pointer;
+	transition: $transition-fast;
+	text-decoration: none;
+	white-space: nowrap;
+
+	.dashicons {
+		width: 18px;
+		height: 18px;
+		font-size: 18px;
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 4px rgba($brand-color-hex, 0.3);
+	}
+}
+
+.ezd-anp-btn-primary {
+	background: linear-gradient(135deg, $brand-color-hex 0%, #6366f1 100%);
+	color: $white;
+	box-shadow: 0 8px 20px -4px rgba($brand-color-hex, 0.5);
+
+	&:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 12px 28px -4px rgba($brand-color-hex, 0.6);
+		color: $white;
+	}
+}
+
+.ezd-anp-btn-secondary {
+	background: rgba($white, 0.1);
+	color: $white;
+	border: 1.5px solid rgba($white, 0.25);
+	backdrop-filter: blur(10px);
+
+	&:hover {
+		background: rgba($white, 0.2);
+		border-color: rgba($white, 0.4);
+		transform: translateY(-2px);
+		color: $white;
+	}
+}
+
+.ezd-anp-btn-cta {
+	background: linear-gradient(135deg, $brand-color-hex 0%, #6366f1 100%);
+	color: $white;
+	padding: 18px 36px;
+	font-size: 16px;
+	box-shadow: 0 8px 20px -4px rgba($brand-color-hex, 0.4);
+
+	&:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 12px 28px -4px rgba($brand-color-hex, 0.5);
+		color: $white;
+	}
+}
+
+// ============================================
+// Section Styles
+// ============================================
+.ezd-anp-section {
+	margin-bottom: 48px;
+}
+
+.ezd-anp-section-title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	font-size: 28px;
+	font-weight: 700;
+	color: $text-primary;
+	margin: 0 0 12px;
+	text-align: center;
+
+	.dashicons {
+		width: 28px;
+		height: 28px;
+		font-size: 28px;
+		color: $brand-color;
+	}
+}
+
+.ezd-anp-section-desc {
+	font-size: 16px;
+	color: $text-secondary;
+	text-align: center;
+	margin: 0 auto 32px;
+	max-width: 650px;
+}
+
+// ============================================
+// Demo Stats
+// ============================================
+.ezd-anp-demo-stats {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	margin-bottom: 32px;
+	
+	@media (max-width: 900px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+	@media (max-width: 500px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.ezd-anp-stat {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 24px;
+	background: $white;
+	border-radius: $radius-lg;
+	box-shadow: $shadow-md;
+	border: 1px solid $border-color;
+	transition: $transition-fast;
+	overflow: hidden;
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: $shadow-lg;
+	}
+}
+
+.ezd-anp-stat-views {
+	border-top: 4px solid $brand-color;
+	
+	.ezd-anp-stat-icon {
+		background: linear-gradient(135deg, rgba($brand-color-hex, 0.15) 0%, rgba($brand-color-hex, 0.05) 100%);
+		color: $brand-color;
+	}
+}
+
+.ezd-anp-stat-satisfaction {
+	border-top: 4px solid $success-color;
+	
+	.ezd-anp-stat-icon {
+		background: linear-gradient(135deg, rgba($success-color, 0.15) 0%, rgba($success-color, 0.05) 100%);
+		color: $success-color;
+	}
+}
+
+.ezd-anp-stat-search {
+	border-top: 4px solid $info-color;
+	
+	.ezd-anp-stat-icon {
+		background: linear-gradient(135deg, rgba($info-color, 0.15) 0%, rgba($info-color, 0.05) 100%);
+		color: $info-color;
+	}
+}
+
+.ezd-anp-stat-docs {
+	border-top: 4px solid $warning-color;
+	
+	.ezd-anp-stat-icon {
+		background: linear-gradient(135deg, rgba($warning-color, 0.15) 0%, rgba($warning-color, 0.05) 100%);
+		color: $warning-color;
+	}
+}
+
+.ezd-anp-stat-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 52px;
+	height: 52px;
+	border-radius: $radius-md;
+	flex-shrink: 0;
+
+	.dashicons {
+		width: 26px;
+		height: 26px;
+		font-size: 26px;
+	}
+}
+
+.ezd-anp-stat-content {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	flex: 1;
+}
+
+.ezd-anp-stat-value {
+	font-size: 28px;
+	font-weight: 800;
+	color: $text-primary;
+	line-height: 1;
+}
+
+.ezd-anp-stat-label {
+	font-size: 14px;
+	color: $text-secondary;
+	font-weight: 500;
+}
+
+.ezd-anp-stat-trend {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	margin-top: 4px;
+	
+	.dashicons {
+		width: 14px;
+		height: 14px;
+		font-size: 14px;
+	}
+}
+
+.ezd-anp-trend-up {
+	color: $success-color;
+}
+
+.ezd-anp-trend-down {
+	color: $danger-color;
+}
+
+.ezd-anp-trend-neutral {
+	color: $text-muted;
+}
+
+.ezd-anp-demo-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba($white, 0.5);
+	backdrop-filter: blur(3px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: $radius-lg;
+	opacity: 0;
+	transition: $transition-fast;
+	pointer-events: none;
+
+	.dashicons {
+		width: 48px;
+		height: 48px;
+		font-size: 48px;
+		color: $brand-color;
+		opacity: 0.7;
+	}
+}
+
+.ezd-anp-demo-stats:hover .ezd-anp-demo-overlay {
+	opacity: 1;
+}
+
+// ============================================
+// Demo Chart
+// ============================================
+.ezd-anp-demo-chart {
+	position: relative;
+	background: $white;
+	border-radius: $radius-xl;
+	border: 1px solid $border-color;
+	box-shadow: $shadow-md;
+	overflow: hidden;
+}
+
+.ezd-anp-chart-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 20px 24px;
+	border-bottom: 1px solid $border-color;
+	flex-wrap: wrap;
+}
+
+.ezd-anp-chart-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	
+	.dashicons {
+		width: 22px;
+		height: 22px;
+		font-size: 22px;
+		color: $brand-color;
+	}
+	
+	h4 {
+		margin: 0;
+		font-size: 16px;
+		font-weight: 600;
+		color: $text-primary;
+	}
+}
+
+.ezd-anp-chart-legend {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.ezd-anp-legend-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	font-weight: 500;
+	color: $text-secondary;
+}
+
+.ezd-anp-legend-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+
+.ezd-anp-legend-views .ezd-anp-legend-dot {
+	background: $brand-color-hex;
+}
+
+.ezd-anp-legend-feedback .ezd-anp-legend-dot {
+	background: $success-color;
+}
+
+.ezd-anp-legend-search .ezd-anp-legend-dot {
+	background: $warning-color;
+}
+
+.ezd-anp-chart-visual {
+	padding: 24px;
+	min-height: 220px;
+}
+
+.ezd-anp-svg-chart {
+	width: 100%;
+	height: 180px;
+}
+
+.ezd-anp-grid line {
+	stroke: $border-color;
+	stroke-width: 1;
+	stroke-dasharray: 4;
+}
+
+.ezd-anp-area {
+	opacity: 0.15;
+}
+
+.ezd-anp-area-views {
+	fill: $brand-color-hex;
+}
+
+.ezd-anp-area-feedback {
+	fill: $success-color;
+}
+
+.ezd-anp-area-search {
+	fill: $warning-color;
+}
+
+.ezd-anp-line {
+	fill: none;
+	stroke-width: 3;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.ezd-anp-line-views {
+	stroke: $brand-color-hex;
+}
+
+.ezd-anp-line-feedback {
+	stroke: $success-color;
+}
+
+.ezd-anp-line-search {
+	stroke: $warning-color;
+}
+
+.ezd-anp-point-views {
+	fill: $white;
+	stroke: $brand-color-hex;
+	stroke-width: 2;
+}
+
+.ezd-anp-chart-labels {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 16px;
+	padding: 0 10px;
+	
+	span {
+		font-size: 12px;
+		color: $text-muted;
+		font-weight: 500;
+	}
+}
+
+.ezd-anp-chart-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba($white, 0) 0%, rgba($white, 0.7) 40%, rgba($white, 0.95) 100%);
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	padding-bottom: 40px;
+}
+
+.ezd-anp-chart-lock {
+	text-align: center;
+	
+	.dashicons {
+		width: 40px;
+		height: 40px;
+		font-size: 40px;
+		color: $brand-color;
+		margin-bottom: 8px;
+	}
+	
+	p {
+		font-size: 14px;
+		font-weight: 600;
+		color: $text-secondary;
+		margin: 0;
+	}
+}
+
+// ============================================
+// Analytics Modules
+// ============================================
+.ezd-anp-modules {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 24px;
+	
+	@media (max-width: 800px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.ezd-anp-module {
+	display: flex;
+	gap: 20px;
+	padding: 28px;
+	background: $white;
+	border-radius: $radius-lg;
+	border: 1px solid $border-color;
+	box-shadow: $shadow-sm;
+	transition: $transition-fast;
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: $shadow-lg;
+		border-color: transparent;
+
+		.ezd-anp-module-icon {
+			transform: scale(1.1);
+		}
+	}
+}
+
+.ezd-anp-module-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	border-radius: $radius-lg;
+	flex-shrink: 0;
+	transition: $transition-fast;
+
+	.dashicons {
+		width: 30px;
+		height: 30px;
+		font-size: 30px;
+	}
+}
+
+.ezd-anp-icon-primary {
+	background: linear-gradient(135deg, rgba($brand-color-hex, 0.15) 0%, rgba($brand-color-hex, 0.05) 100%);
+	color: $brand-color;
+}
+
+.ezd-anp-icon-blue {
+	background: linear-gradient(135deg, rgba($info-color, 0.15) 0%, rgba($info-color, 0.05) 100%);
+	color: $info-color;
+}
+
+.ezd-anp-icon-green {
+	background: linear-gradient(135deg, rgba($success-color, 0.15) 0%, rgba($success-color, 0.05) 100%);
+	color: $success-color;
+}
+
+.ezd-anp-icon-purple {
+	background: linear-gradient(135deg, rgba($purple-color, 0.15) 0%, rgba($purple-color, 0.05) 100%);
+	color: $purple-color;
+}
+
+.ezd-anp-icon-orange {
+	background: linear-gradient(135deg, rgba($orange-color, 0.15) 0%, rgba($orange-color, 0.05) 100%);
+	color: $orange-color;
+}
+
+.ezd-anp-icon-teal {
+	background: linear-gradient(135deg, rgba($teal-color, 0.15) 0%, rgba($teal-color, 0.05) 100%);
+	color: $teal-color;
+}
+
+.ezd-anp-module-content {
+	flex: 1;
+	
+	h3 {
+		font-size: 18px;
+		font-weight: 700;
+		color: $text-primary;
+		margin: 0 0 10px;
+	}
+	
+	p {
+		font-size: 14px;
+		color: $text-secondary;
+		line-height: 1.6;
+		margin: 0 0 16px;
+	}
+}
+
+.ezd-anp-module-features {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	
+	li {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 13px;
+		color: $text-secondary;
+		padding: 4px 0;
+		
+		.dashicons {
+			width: 16px;
+			height: 16px;
+			font-size: 16px;
+			color: $success-color;
+		}
+	}
+}
+
+// ============================================
+// Additional Features Grid
+// ============================================
+.ezd-anp-features {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	
+	@media (max-width: 900px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+	@media (max-width: 500px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.ezd-anp-feature {
+	padding: 24px;
+	background: $white;
+	border-radius: $radius-lg;
+	border: 1px solid $border-color;
+	text-align: center;
+	transition: $transition-fast;
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: $shadow-md;
+		border-color: rgba($brand-color-hex, 0.2);
+	}
+	
+	h4 {
+		font-size: 16px;
+		font-weight: 700;
+		color: $text-primary;
+		margin: 16px 0 8px;
+	}
+	
+	p {
+		font-size: 13px;
+		color: $text-secondary;
+		line-height: 1.5;
+		margin: 0;
+	}
+}
+
+.ezd-anp-feature-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 52px;
+	height: 52px;
+	background: linear-gradient(135deg, rgba($brand-color-hex, 0.12) 0%, rgba($brand-color-hex, 0.04) 100%);
+	border-radius: $radius-md;
+	
+	.dashicons {
+		width: 26px;
+		height: 26px;
+		font-size: 26px;
+		color: $brand-color;
+	}
+}
+
+// ============================================
+// Benefits Section
+// ============================================
+.ezd-anp-benefits-section {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	gap: 48px;
+	align-items: center;
+	padding: 48px;
+	background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+	border-radius: $radius-xl;
+	border: 1px solid $border-color;
+
+	@media (max-width: 900px) {
+		grid-template-columns: 1fr;
+		gap: 32px;
+	}
+}
+
+.ezd-anp-benefits-content {
+	h2 {
+		font-size: 28px;
+		font-weight: 700;
+		color: $text-primary;
+		margin: 0 0 24px;
+	}
+}
+
+.ezd-anp-benefits-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		padding: 12px 0;
+		font-size: 15px;
+		color: $text-secondary;
+		line-height: 1.5;
+
+		.dashicons {
+			width: 22px;
+			height: 22px;
+			font-size: 22px;
+			color: $success-color;
+			flex-shrink: 0;
+			margin-top: 1px;
+		}
+	}
+}
+
+.ezd-anp-benefits-visual {
+	display: flex;
+	justify-content: center;
+}
+
+.ezd-anp-benefits-card {
+	text-align: center;
+	padding: 40px;
+	background: $white;
+	border-radius: $radius-xl;
+	box-shadow: $shadow-lg;
+	border: 1px solid $border-color;
+}
+
+.ezd-anp-benefits-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 72px;
+	height: 72px;
+	background: linear-gradient(135deg, rgba($brand-color-hex, 0.15) 0%, rgba($brand-color-hex, 0.05) 100%);
+	border-radius: 20px;
+	margin-bottom: 20px;
+
+	.dashicons {
+		width: 36px;
+		height: 36px;
+		font-size: 36px;
+		color: $brand-color;
+	}
+}
+
+.ezd-anp-benefits-stat {
+	font-size: 64px;
+	font-weight: 800;
+	color: $text-primary;
+	line-height: 1;
+	margin-bottom: 8px;
+}
+
+.ezd-anp-benefits-label {
+	font-size: 14px;
+	color: $text-secondary;
+	line-height: 1.5;
+}
+
+// ============================================
+// CTA Section
+// ============================================
+.ezd-anp-cta {
+	position: relative;
+	padding: 60px 48px;
+	background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+	border-radius: $radius-xl;
+	overflow: hidden;
+	text-align: center;
+}
+
+.ezd-anp-cta-content {
+	position: relative;
+	z-index: 2;
+
+	h2 {
+		font-size: 32px;
+		font-weight: 800;
+		color: $white;
+		margin: 0 0 12px;
+	}
+
+	p {
+		font-size: 16px;
+		color: rgba($white, 0.8);
+		margin: 0 0 32px;
+	}
+}
+
+.ezd-anp-cta-actions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.ezd-anp-cta-features {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 24px;
+	flex-wrap: wrap;
+
+	span {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 14px;
+		color: rgba($white, 0.8);
+		font-weight: 500;
+
+		.dashicons {
+			width: 18px;
+			height: 18px;
+			font-size: 18px;
+			color: #fbbf24;
+		}
+	}
+}
+
+.ezd-anp-cta-decoration {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.ezd-anp-cta-circles {
+	position: absolute;
+	inset: 0;
+}
+
+.ezd-anp-circle {
+	position: absolute;
+	border-radius: 50%;
+	background: linear-gradient(135deg, rgba($brand-color-hex, 0.2) 0%, rgba($purple-color, 0.1) 100%);
+}
+
+.ezd-anp-circle-1 {
+	width: 350px;
+	height: 350px;
+	top: -150px;
+	right: -100px;
+}
+
+.ezd-anp-circle-2 {
+	width: 200px;
+	height: 200px;
+	bottom: -80px;
+	left: 5%;
+}
+
+.ezd-anp-circle-3 {
+	width: 150px;
+	height: 150px;
+	top: 40%;
+	left: -50px;
+}
+
+// ============================================
+// Responsive Styles
+// ============================================
+@media (max-width: 768px) {
+	.ezd-anp-hero {
+		padding: 40px 24px;
+	}
+
+	.ezd-anp-title {
+		font-size: 28px;
+	}
+
+	.ezd-anp-subtitle {
+		font-size: 15px;
+	}
+
+	.ezd-anp-section-title {
+		font-size: 22px;
+	}
+
+	.ezd-anp-module {
+		flex-direction: column;
+		text-align: center;
+		
+		.ezd-anp-module-icon {
+			margin: 0 auto;
+		}
+	}
+
+	.ezd-anp-module-features li {
+		justify-content: center;
+	}
+
+	.ezd-anp-benefits-section {
+		padding: 32px 24px;
+	}
+
+	.ezd-anp-cta {
+		padding: 40px 24px;
+	}
+
+	.ezd-anp-cta-content h2 {
+		font-size: 24px;
+	}
+	
+	.ezd-anp-chart-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	
+	.ezd-anp-chart-legend {
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+}

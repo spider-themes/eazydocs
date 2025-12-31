@@ -390,22 +390,16 @@ class Admin {
 	}
 
 	public function ezd_analytics_presents() {
-		?>
-        <div class="wrap">
-            <div class="ezd-blank_state">
-				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
-				?>
-                <img src="<?php echo esc_url( EAZYDOCS_IMG . '/icon/crown.svg' ); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
-                <h3 class="title"> <?php echo esc_html__( 'EazyDocs Analytics', 'eazydocs' ); ?> </h3>
-                <p class="big-p"> <?php esc_html_e( 'Analytics page is available in the EazyDocs Premium Promax Plan', 'eazydocs' ); ?> </p>
-                <div class="button-inline">
-                    <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-pricing' ) ); ?>">
-						<?php esc_html_e( 'Get Promax Plan', 'eazydocs' ); ?>
-                    </a>
-                </div>
-            </div>
-        </div><!-- /.wrap -->
-		<?php
+		// Enqueue the analytics presentation CSS.
+		wp_enqueue_style(
+			'ezd-analytics-presentation',
+			EAZYDOCS_ASSETS . '/css/analytics-presentation.css',
+			[],
+			EAZYDOCS_VERSION
+		);
+
+		// Include the template file.
+		require_once __DIR__ . '/template/analytics-presentation.php';
 	}
 
 	public function ezd_setup_wizard() {
