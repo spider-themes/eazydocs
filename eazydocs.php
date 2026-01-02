@@ -244,7 +244,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				}
 				$docs_page = [
 					'post_title'   => wp_strip_all_tags( 'Documentation' ),
-					'post_content' => '[eazydocs]',
+					'post_content' => '<!-- wp:eazydocs-pro/eazy-docs {"docTypes":"multi-doc","docPreset":"box","docSinglePreset":"box","docId":"2484"} /-->',
 					'post_status'  => 'publish',
 					'post_author'  => $current_user_id,
 					'post_type'    => 'page',

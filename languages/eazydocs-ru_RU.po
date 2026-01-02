@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EazyDocs\n"
-"POT-Creation-Date: 2025-12-05 08:18+0600\n"
-"PO-Revision-Date: 2025-12-05 08:18+0600\n"
+"POT-Creation-Date: 2026-01-02 20:22+0600\n"
+"PO-Revision-Date: 2026-01-02 20:22+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -11,24 +11,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: eazydocs.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
 #. Plugin Name of the plugin/theme
-#: blocks.php:87 includes/Admin/Admin.php:99
+#: blocks.php:87 includes/Admin/Admin.php:107
 #: includes/Admin/options/opt_docs_general.php:19
 #: includes/Admin/options/settings-options.php:131
-#: includes/Admin/setup-wizard/setup.php:23 includes/Elementor/Widgets.php:41
-#: includes/Post_Types.php:51
+#: includes/Admin/setup-wizard/setup.php:49
+#: includes/Admin/setup-wizard/step1_welcome.php:15
+#: includes/Elementor/Widgets.php:41 includes/Post_Types.php:51
 msgid "EazyDocs"
 msgstr "EazyDocs"
 
@@ -62,7 +64,7 @@ msgstr "Синий"
 msgid "Yellow"
 msgstr "Желтый"
 
-#: eazydocs.php:322
+#: eazydocs.php:327
 #, fuzzy
 #| msgid ""
 #| "EazyDocs database need an update. Please click Update button to update "
@@ -74,70 +76,75 @@ msgstr ""
 "База данных EazyDocs нуждается в обновлении. Пожалуйста, нажмите кнопку "
 "«Обновить», чтобы обновить базу данных."
 
-#: eazydocs.php:325
+#: eazydocs.php:330
 msgid "Update Database"
 msgstr "Обновить базу данных"
 
-#: includes/Admin/Admin.php:99
+#: includes/Admin/Admin.php:107
 msgid "EazyDocs Pro"
 msgstr "EazyDocs Pro"
 
-#: includes/Admin/Admin.php:101 includes/Admin/template/dashboard/header.php:4
+#: includes/Admin/Admin.php:110 includes/Admin/template/dashboard/header.php:37
 msgid "Dashboard"
 msgstr ""
 
-#: includes/Admin/Admin.php:102
+#: includes/Admin/Admin.php:111 includes/Admin/template/dashboard/header.php:51
 msgid "Docs Builder"
 msgstr "Конструктор документов"
 
-#: includes/Admin/Admin.php:106
-msgid "Customize"
-msgstr "Настроить"
-
-#: includes/Admin/Admin.php:110 includes/Post_Types.php:115
-msgid "Tags"
-msgstr "Теги"
-
-#: includes/Admin/Admin.php:114
+#: includes/Admin/Admin.php:115
 msgid "OnePage Docs"
 msgstr "Одностраничная документация"
 
-#: includes/Admin/Admin.php:116
+#: includes/Admin/Admin.php:117
 msgid "OnePage Doc"
 msgstr "Одностраничный документ"
 
-#: includes/Admin/Admin.php:122 includes/Admin/Admin.php:223
+#: includes/Admin/Admin.php:120 includes/Post_Types.php:115
+msgid "Tags"
+msgstr "Теги"
+
+#: includes/Admin/Admin.php:124
+msgid "Customize"
+msgstr "Настроить"
+
+#: includes/Admin/Admin.php:131
 msgid "Users Feedback"
 msgstr "Отзывы пользователей"
 
-#: includes/Admin/Admin.php:123
+#: includes/Admin/Admin.php:132
+#: includes/Admin/setup-wizard/step1_welcome.php:63
+#: includes/Admin/template/dashboard/header.php:55
 msgid "Analytics"
 msgstr "Аналитика"
 
-#: includes/Admin/Admin.php:132
+#: includes/Admin/Admin.php:141
 #, fuzzy
 #| msgid "Docs Builder"
 msgid "FAQ Builder"
 msgstr "Конструктор документов"
 
-#: includes/Admin/Admin.php:135
+#: includes/Admin/Admin.php:144
+msgid "Integrated Themes"
+msgstr ""
+
+#: includes/Admin/Admin.php:146 includes/Admin/setup-wizard/setup.php:50
 msgid "Setup Wizard"
 msgstr "Мастер установки"
 
-#: includes/Admin/Admin.php:137
+#: includes/Admin/Admin.php:148
 msgid "Migration"
 msgstr ""
 
-#: includes/Admin/Admin.php:192 includes/Admin/Admin.php:222
-#: includes/Admin/Admin.php:241 includes/Admin/setup-wizard/setup.php:41
+#: includes/Admin/Admin.php:355
 msgid "crown icon"
 msgstr "Значок короны"
 
-#: includes/Admin/Admin.php:193
+#: includes/Admin/Admin.php:356
 msgid "Add Your OnePage Doc"
 msgstr "Добавьте свой одностраничный документ"
 
-#: includes/Admin/Admin.php:194
+#: includes/Admin/Admin.php:357
 msgid ""
 "Onepage documentation format will generate all the pages of a Doc as "
 "sections in a single page which is scrollable by sections. Visitors can find "
@@ -149,87 +156,158 @@ msgstr ""
 "могут найти все руководства на одной странице, и они могут очень быстро "
 "перемещаться по различным разделам."
 
-#: includes/Admin/Admin.php:200
+#: includes/Admin/Admin.php:363
 msgid "Go Pro"
 msgstr "Перейти в Pro"
 
-#: includes/Admin/Admin.php:203
+#: includes/Admin/Admin.php:366
 #, fuzzy
 #| msgid "View Frontend Demo"
 msgid "View Classic Frontend Demo"
 msgstr "Посмотреть демо-версию фронтенда"
 
-#: includes/Admin/Admin.php:204
+#: includes/Admin/Admin.php:367
 #, fuzzy
 #| msgid "Classic OnePage Doc"
 msgid "Classic Layout Demo"
 msgstr "Классический одностраничный документ"
 
-#: includes/Admin/Admin.php:207
+#: includes/Admin/Admin.php:370
 #, fuzzy
 #| msgid "View Frontend Demo"
 msgid "View Fullscreen Frontend Demo"
 msgstr "Посмотреть демо-версию фронтенда"
 
-#: includes/Admin/Admin.php:208
+#: includes/Admin/Admin.php:371
 #, fuzzy
 #| msgid "Fullscreen OnePage Doc"
 msgid "Fullscreen Layout Demo"
 msgstr "Полноэкранный одностраничный документ"
 
-#: includes/Admin/Admin.php:224
-msgid "You can get the Doc Feedbacks listed in this page to review."
-msgstr ""
-"Вы можете ознакомиться с отзывами о документах, перечисленными на этой "
-"странице."
-
-#: includes/Admin/Admin.php:227
-msgid "Get Pro Plan"
-msgstr "Получить профессиональный план"
-
-#: includes/Admin/Admin.php:242
-msgid "EazyDocs Analytics"
-msgstr "Аналитика EazyDocs"
-
-#: includes/Admin/Admin.php:243
-msgid "Analytics page is available in the EazyDocs Premium Promax Plan"
-msgstr "Страница аналитики доступна в плане EazyDocs Premium Promax"
-
-#: includes/Admin/Admin.php:246
-msgid "Get Promax Plan"
-msgstr "Получить план Promax"
-
-#: includes/Admin/Admin.php:433 includes/functions.php:1648
+#: includes/Admin/Admin.php:595 includes/functions.php:1651
 msgid "Docs Archive"
 msgstr "Архив документов"
 
-#: includes/Admin/Admin.php:437
+#: includes/Admin/Admin.php:599
 #, fuzzy
 #| msgid "Docs Archive"
 msgid "Docs Access"
 msgstr "Архив документов"
 
-#: includes/Admin/Admin.php:440
+#: includes/Admin/Admin.php:602
 #, fuzzy
 #| msgid "Private Doc"
 msgid "Private Access"
 msgstr "Приватный документ"
 
-#: includes/Admin/Admin.php:443
+#: includes/Admin/Admin.php:605
 #, fuzzy
 #| msgid "Contribution Feature"
 msgid "Collaborator Access"
 msgstr "Функция вклада"
 
-#: includes/Admin/Assets.php:138
+#: includes/Admin/AntimanualNotice.php:81
+msgid "Supercharge Your EazyDocs with AI!"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:85
+msgid ""
+"Activate Antimanual to unlock powerful AI features for your documentation:"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:88
+msgid "AI Chatbot trained on your docs - Reduce support tickets by 70%+"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:89
+msgid "Auto-generate professional documentation with GPT-5 & Gemini"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:90
+msgid "Semantic AI search that understands user intent"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:91
+msgid "Auto-posting and content automation for fresh content"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:96
+msgid "Activate Antimanual Now"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:100
+#: includes/Admin/AntimanualNotice.php:130
+#: includes/Admin/template/dashboard/antimanual-ai.php:100
+#: includes/Admin/template/dashboard/antimanual-ai.php:159
+#: includes/Admin/template/partials/ai-create-doc-popup.php:123
+#, fuzzy
+#| msgid "Search Doc"
+msgid "Watch Demo"
+msgstr "Поиск документа"
+
+#: includes/Admin/AntimanualNotice.php:105
+msgid ""
+"Integrate EazyDocs with Antimanual - the ultimate AI copilot for WordPress. "
+"Transform your knowledge base into an intelligent support hub!"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:108
+msgid "Intelligent AI Chatbot - 24/7 support trained on your documentation"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:109
+msgid "AI Doc Generator - Create comprehensive docs in seconds"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:110
+msgid "Semantic Search - Understand user intent, not just keywords"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:111
+msgid "Auto-Posting - Schedule AI-generated content automatically"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:112
+msgid "GPT-5 & Gemini Support - Latest AI models for superior accuracy"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:115
+msgid "70%+ Reduction in Support Tickets"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:116
+msgid "Enterprise-Grade AI"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:117
+msgid "Free Version Available"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:123
+#: includes/Admin/template/dashboard/antimanual-ai.php:152
+#: includes/Admin/template/partials/ai-create-doc-popup.php:115
+msgid "Install Antimanual Free"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:126
+#: includes/Admin/template/analytics-presentation.php:42
+#: includes/Admin/template/dashboard/antimanual-ai.php:155
+#: includes/Admin/template/feedback-presentation.php:41
+#: includes/Admin/template/partials/ai-create-doc-popup.php:118
+#, fuzzy
+#| msgid "See More"
+msgid "Learn More"
+msgstr "Узнать больше"
+
+#: includes/Admin/Assets.php:170
 msgid "Enter Doc Title"
 msgstr "Введите заголовок документа"
 
-#: includes/Admin/Assets.php:139
+#: includes/Admin/Assets.php:171
 msgid "Are you sure to delete?"
 msgstr "Вы уверены, что хотите удалить?"
 
-#: includes/Admin/Assets.php:140
+#: includes/Admin/Assets.php:172
 msgid ""
 "This doc will be trashed with the child docs and you will be able to restore "
 "it later from the trash!"
@@ -237,9 +315,28 @@ msgstr ""
 "Этот документ будет удален вместе с дочерними документами, и вы сможете "
 "восстановить его позже из корзины!"
 
-#: includes/Admin/Assets.php:141
+#: includes/Admin/Assets.php:173
 msgid "Are you sure to Duplicate this doc?"
 msgstr "Вы уверены, что продублируете этот документ?"
+
+#. translators: %s: EazyDocs link
+#: includes/Admin/admin-dashboard.php:213
+#, php-format
+msgid "Thank you for using %s!"
+msgstr ""
+
+#: includes/Admin/admin-dashboard.php:221
+#, fuzzy
+#| msgid "Rate now"
+msgid "Rate Us"
+msgstr "Оценить сейчас"
+
+#: includes/Admin/admin-dashboard.php:226
+#: includes/Admin/setup-wizard/step1_welcome.php:88
+#, fuzzy
+#| msgid "Support"
+msgid "Get Support"
+msgstr "Поддержка"
 
 #: includes/Admin/admin-helpers.php:21
 #: includes/Admin/template/parent-docs.php:40
@@ -267,18 +364,18 @@ msgstr "Защищенный документ"
 
 #: includes/Admin/admin-helpers.php:115
 #: includes/Admin/template/parent-docs.php:126
-#: includes/Admin/template/template-parts.php:121
+#: includes/Admin/template/template-parts.php:131
 msgid "Duplicate this doc with the child docs."
 msgstr "Продублируйте этот документ вместе с дочерними документами."
 
 #: includes/Admin/admin-helpers.php:128
-#: includes/Admin/template/template-parts.php:130
+#: includes/Admin/template/template-parts.php:140
 msgid "Add new doc under this doc"
 msgstr "Добавить новый документ под этим документом"
 
 #: includes/Admin/admin-helpers.php:145
 #: includes/Admin/template/parent-docs.php:86
-#: includes/Admin/template/template-parts.php:149
+#: includes/Admin/template/template-parts.php:159
 msgid "View this doc item in new tab"
 msgstr "Просмотр этого элемента документа в новой вкладке"
 
@@ -307,19 +404,83 @@ msgstr "Защищено"
 msgid "Draft"
 msgstr "Черновик"
 
-#: includes/Admin/admin-template.php:33
+#: includes/Admin/admin-template.php:35
 msgid "Folder Open"
 msgstr "Папка открыта"
 
-#: includes/Admin/admin-template.php:34
-msgid "No docs has been found. Perhaps"
-msgstr "Документы не найдены. Может быть"
-
 #: includes/Admin/admin-template.php:37
-msgid "Create a Doc"
+msgid "Ready to Start Your Knowledge Base?"
+msgstr ""
+
+#: includes/Admin/admin-template.php:38
+msgid ""
+"It looks like you haven't created any documentation yet. Get started by "
+"creating your first doc or import our sample data to see how it works."
+msgstr ""
+
+#: includes/Admin/admin-template.php:43
+#, fuzzy
+#| msgid "Create a Doc"
+msgid "Create First Doc"
 msgstr "Создание документа"
 
-#: includes/Admin/migration.php:26 includes/Admin/setup-wizard/setup.php:22
+#: includes/Admin/admin-template.php:48
+msgid "Import Sample Data"
+msgstr ""
+
+#: includes/Admin/admin-template.php:64
+msgid "Import Sample Data?"
+msgstr ""
+
+#: includes/Admin/admin-template.php:65
+msgid ""
+"This will populate your knowledge base with a complete set of demo "
+"documentation items."
+msgstr ""
+
+#: includes/Admin/admin-template.php:70
+msgid "Yes, Import Demo"
+msgstr ""
+
+#: includes/Admin/admin-template.php:71
+#: includes/Admin/options/opt_docs_subscription.php:98
+#: includes/Admin/options/opt_docs_subscription.php:175
+msgid "Cancel"
+msgstr "Отмена"
+
+#: includes/Admin/admin-template.php:82
+msgid ""
+"This will import demo documentation to help you get started. Do you want to "
+"continue?"
+msgstr ""
+
+#: includes/Admin/admin-template.php:91
+#, fuzzy
+#| msgid "Loading..."
+msgid "Importing..."
+msgstr "Загрузка..."
+
+#: includes/Admin/admin-template.php:104
+#, fuzzy
+#| msgid "Success"
+msgid "Success!"
+msgstr "Успех"
+
+#: includes/Admin/admin-template.php:116
+msgid "Failed to import sample data."
+msgstr ""
+
+#: includes/Admin/admin-template.php:121
+msgid "An error occurred while importing. Please try again."
+msgstr ""
+
+#: includes/Admin/admin-template.php:130
+#, fuzzy
+#| msgid "404 Error"
+msgid "Error"
+msgstr "Ошибка 404"
+
+#: includes/Admin/migration.php:26
 #, fuzzy
 #| msgid "EazyDocs Pro"
 msgid "Eazydocs icon"
@@ -433,13 +594,13 @@ msgstr ""
 #: includes/Admin/options/opt_doc_single.php:78
 #: includes/Admin/options/opt_doc_single.php:240
 #: includes/Admin/options/opt_doc_single.php:380
-#: includes/Admin/options/opt_doc_single.php:801
-#: includes/Admin/options/opt_doc_single.php:1039
-#: includes/Admin/options/opt_doc_single.php:1113
-#: includes/Admin/options/opt_doc_single.php:1161
+#: includes/Admin/options/opt_doc_single.php:770
+#: includes/Admin/options/opt_doc_single.php:844
+#: includes/Admin/options/opt_doc_single.php:892
 #: includes/Admin/options/opt_docs_assistant.php:27
 #: includes/Admin/options/opt_docs_collaboration.php:25
-#: includes/Admin/options/opt_docs_subscription.php:28
+#: includes/Admin/options/opt_docs_subscription.php:27
+#: includes/Admin/options/opt_feedback.php:179
 msgid "Enabled"
 msgstr "Включено"
 
@@ -448,13 +609,13 @@ msgstr "Включено"
 #: includes/Admin/options/opt_doc_single.php:241
 #: includes/Admin/options/opt_doc_single.php:330
 #: includes/Admin/options/opt_doc_single.php:381
-#: includes/Admin/options/opt_doc_single.php:802
-#: includes/Admin/options/opt_doc_single.php:1040
-#: includes/Admin/options/opt_doc_single.php:1114
-#: includes/Admin/options/opt_doc_single.php:1162
+#: includes/Admin/options/opt_doc_single.php:771
+#: includes/Admin/options/opt_doc_single.php:845
+#: includes/Admin/options/opt_doc_single.php:893
 #: includes/Admin/options/opt_docs_assistant.php:28
 #: includes/Admin/options/opt_docs_collaboration.php:26
-#: includes/Admin/options/opt_docs_subscription.php:29
+#: includes/Admin/options/opt_docs_subscription.php:28
+#: includes/Admin/options/opt_feedback.php:180
 msgid "Disabled"
 msgstr "Отключено"
 
@@ -474,8 +635,8 @@ msgstr ""
 
 #: includes/Admin/options/opt_dark_mode.php:22
 #: includes/Admin/options/opt_doc_single.php:67
-#: includes/Admin/options/opt_doc_single.php:946
-#: includes/Admin/options/opt_doc_single.php:1102
+#: includes/Admin/options/opt_doc_single.php:677
+#: includes/Admin/options/opt_doc_single.php:833
 #: includes/Admin/options/opt_docs_collaboration.php:95
 #: includes/Admin/options/opt_docs_collaboration.php:133
 #: includes/Admin/options/opt_docs_collaboration.php:171
@@ -488,8 +649,8 @@ msgstr "Показать"
 
 #: includes/Admin/options/opt_dark_mode.php:23
 #: includes/Admin/options/opt_doc_single.php:68
-#: includes/Admin/options/opt_doc_single.php:947
-#: includes/Admin/options/opt_doc_single.php:1103
+#: includes/Admin/options/opt_doc_single.php:678
+#: includes/Admin/options/opt_doc_single.php:834
 #: includes/Admin/options/opt_docs_assistant.php:446
 #: includes/Admin/options/opt_docs_collaboration.php:96
 #: includes/Admin/options/opt_docs_collaboration.php:134
@@ -514,7 +675,7 @@ msgstr ""
 #: includes/Admin/options/opt_dark_mode.php:34
 #: includes/Admin/options/opt_doc_single.php:185
 #: includes/Admin/options/opt_doc_single.php:463
-#: includes/Admin/options/opt_docs_subscription.php:159
+#: includes/Admin/options/opt_docs_subscription.php:158
 #: includes/Admin/options/opt_restricted_docs.php:76
 #: templates/content-feedback.php:80
 msgid "Yes"
@@ -523,7 +684,7 @@ msgstr "Да"
 #: includes/Admin/options/opt_dark_mode.php:35
 #: includes/Admin/options/opt_doc_single.php:186
 #: includes/Admin/options/opt_doc_single.php:464
-#: includes/Admin/options/opt_docs_subscription.php:160
+#: includes/Admin/options/opt_docs_subscription.php:159
 #: includes/Admin/options/opt_restricted_docs.php:77
 #: templates/content-feedback.php:92
 msgid "No"
@@ -579,7 +740,7 @@ msgid "Boxed (Centered)"
 msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:48
-#: includes/Admin/setup-wizard/step3_settings.php:37
+#: includes/Admin/setup-wizard/step3_settings.php:100
 msgid "Full Width"
 msgstr "Полная ширина"
 
@@ -597,7 +758,7 @@ msgstr ""
 "Покажите избранное изображение в верхней части области содержимого документа."
 
 #: includes/Admin/options/opt_doc_single.php:65
-#: includes/Admin/options/opt_doc_single.php:974
+#: includes/Admin/options/opt_doc_single.php:705
 msgid "Featured Image"
 msgstr "Популярные изображения"
 
@@ -805,7 +966,7 @@ msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:225
 #: includes/Elementor/Docs/Doc_Widget.php:297
-#: includes/Elementor/Single_Doc/Single_Doc.php:218
+#: includes/Elementor/Single_Doc/Single_Doc.php:217
 #: templates/onepage/default-layout.php:126
 #: templates/single-doc-content.php:126
 msgid "Articles"
@@ -903,8 +1064,8 @@ msgid ""
 "Select a saved Elementor template. <a target=\"_blank\" href=\"https://"
 "shorturl.at/filGI\">Learn how to create templates</a>"
 msgstr ""
-"Как создать шаблон Elementor <a target=\"__blank\" href=\"https://"
-"shorturl.at/filGI\">Смотрите руководство</a>"
+"Как создать шаблон Elementor <a target=\"__blank\" href=\"https://shorturl."
+"at/filGI\">Смотрите руководство</a>"
 
 #: includes/Admin/options/opt_doc_single.php:317
 #, fuzzy
@@ -928,7 +1089,7 @@ msgid ""
 msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:329
-#: includes/Admin/options/opt_doc_single.php:965
+#: includes/Admin/options/opt_doc_single.php:696
 msgid "Enable"
 msgstr "Включить"
 
@@ -1048,7 +1209,7 @@ msgid "Keyword #2"
 msgstr "Ключевое слово #2"
 
 #: includes/Admin/options/opt_doc_single.php:502
-#: includes/Admin/options/opt_doc_single.php:1200 includes/One_Page_Docs.php:51
+#: includes/Admin/options/opt_doc_single.php:931 includes/One_Page_Docs.php:51
 #: includes/Post_Types.php:56
 msgid "Add New"
 msgstr "Добавить новый"
@@ -1149,261 +1310,87 @@ msgid "Updated on"
 msgstr "Обновлено"
 
 #: includes/Admin/options/opt_doc_single.php:644
-#, fuzzy
-#| msgid "Feedback Count"
-msgid "Feedback Options"
-msgstr "Количество обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:649
-msgid "Feedback Area"
-msgstr "Зона обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:656
-#, fuzzy
-#| msgid "Feedback Area"
-msgid "Feedback Area Options"
-msgstr "Зона обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:666
-msgid "Message Feedback"
-msgstr "Обратная связь"
-
-#: includes/Admin/options/opt_doc_single.php:679
-msgid "Still Stuck"
-msgstr "Все еще застрял"
-
-#: includes/Admin/options/opt_doc_single.php:680
-#: templates/content-feedback.php:19
-msgid "Still stuck?"
-msgstr "Все еще застряли?"
-
-#: includes/Admin/options/opt_doc_single.php:690
-msgid "Help form link text"
-msgstr "Текст ссылки на форму справки"
-
-#: includes/Admin/options/opt_doc_single.php:691
-#: includes/Admin/options/opt_doc_single.php:722
-#: templates/content-feedback.php:21 templates/content-modal.php:9
-msgid "How can we help?"
-msgstr "Как мы можем помочь?"
-
-#: includes/Admin/options/opt_doc_single.php:701
-msgid "Email Address"
-msgstr "Адрес электронной почты"
-
-#: includes/Admin/options/opt_doc_single.php:711
-msgid "Feedback Modal"
-msgstr "Обратная связь Modal"
-
-#: includes/Admin/options/opt_doc_single.php:721
-#: includes/Admin/options/opt_doc_single.php:882
-msgid "Form Title"
-msgstr "Название формы"
-
-#: includes/Admin/options/opt_doc_single.php:732
-#: includes/Admin/options/opt_doc_single.php:891
-msgid "Form Subtitle"
-msgstr "Форма подзаголовок"
-
-#: includes/Admin/options/opt_doc_single.php:741
-msgid "Voting Feedback"
-msgstr "Отзывы о голосовании"
-
-#: includes/Admin/options/opt_doc_single.php:750
-msgid "Helpful feedback"
-msgstr "Полезный отзыв"
-
-#: includes/Admin/options/opt_doc_single.php:762
-msgid "Feedback Label"
-msgstr "Метка обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:763
-#: templates/content-feedback.php:22
-msgid "Was this page helpful?"
-msgstr "Была ли эта страница полезной?"
-
-#: includes/Admin/options/opt_doc_single.php:772
-msgid "Feedback Count"
-msgstr "Количество обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:787
-#, fuzzy
-#| msgid "Feedback Count"
-msgid "Feedback on Text"
-msgstr "Количество обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:792
-#: includes/Admin/options/opt_doc_single.php:798
-#, fuzzy
-#| msgid "Feedback Count"
-msgid "Feedback on Selected Text"
-msgstr "Количество обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:799
-msgid "Enable the feature to allow users to comment on selected text."
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:800
-msgid ""
-"Note: if enabled, a switcher will appear in the doc meta area to allow "
-"visitors to turn On/Off the feature."
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:811
-#, fuzzy
-#| msgid "Font Size Switcher"
-msgid "Frontend Switcher Level"
-msgstr "Переключатель размера шрифта"
-
-#: includes/Admin/options/opt_doc_single.php:812
-msgid "This title will be shown on the frontend to On/Off the feature."
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:813
-msgid "Feedback"
-msgstr "Обратная связь"
-
-#: includes/Admin/options/opt_doc_single.php:821
-#, fuzzy
-#| msgid "Who Can View Docs?"
-msgid "Who can view comments?"
-msgstr "Кто может просматривать документы?"
-
-#: includes/Admin/options/opt_doc_single.php:833
-#, fuzzy
-#| msgid "Feedback Area"
-msgid "Feedback Form Settings"
-msgstr "Зона обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:841
-msgid "Predefined Options Heading"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:843
-msgid "What is the issue with this selection?"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:850
-#, fuzzy
-#| msgid "Feedback Count"
-msgid "Predefined Options"
-msgstr "Количество обратной связи"
-
-#: includes/Admin/options/opt_doc_single.php:857
-#, fuzzy
-#| msgid "Copy Link Label"
-msgid "Option Label"
-msgstr "Копировать метку ссылки"
-
-#: includes/Admin/options/opt_doc_single.php:873
-#, fuzzy
-#| msgid "Share Button Label"
-msgid "Other Option Label"
-msgstr "Ярлык Кнопки \"Поделиться\""
-
-#: includes/Admin/options/opt_doc_single.php:875
-msgid "Others"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:884
-msgid "Share additional info or suggestions"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:893
-msgid "Do not share any personal info"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:900
-#, fuzzy
-#| msgid "Form Title"
-msgid "Form Disclaimer"
-msgstr "Название формы"
-
-#: includes/Admin/options/opt_doc_single.php:902
-msgid ""
-"By continuing, you allow Google to use your answers and account info to "
-"improve services, as explained in our Privacy & Terms."
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:913
+#: includes/Admin/setup-wizard/step3_settings.php:50
+#: includes/Admin/setup-wizard/step3_settings.php:52
 msgid "Left Sidebar"
 msgstr "Левая боковая панель"
 
-#: includes/Admin/options/opt_doc_single.php:919
+#: includes/Admin/options/opt_doc_single.php:650
 msgid "Docs Navigation Layout"
 msgstr "Макет навигации Docs"
 
-#: includes/Admin/options/opt_doc_single.php:921
+#: includes/Admin/options/opt_doc_single.php:652
 msgid "Collapsed with Icons"
 msgstr "Свернут с иконками"
 
-#: includes/Admin/options/opt_doc_single.php:922
+#: includes/Admin/options/opt_doc_single.php:653
 msgid "Extended Docs"
 msgstr "Расширенная документация"
 
-#: includes/Admin/options/opt_doc_single.php:931
+#: includes/Admin/options/opt_doc_single.php:662
 #, fuzzy
 #| msgid "Docs to Show"
 msgid "Docs to view"
 msgstr "Документы для показа"
 
-#: includes/Admin/options/opt_doc_single.php:932
+#: includes/Admin/options/opt_doc_single.php:663
 msgid ""
 "Select All Docs to display all the top label docs or choose Self Docs to "
 "show child docs of the current doc."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:934 includes/One_Page_Docs.php:48
-#: includes/Post_Types.php:53
-msgid "All Docs"
-msgstr "Все документы"
-
-#: includes/Admin/options/opt_doc_single.php:935
+#: includes/Admin/options/opt_doc_single.php:665
 #, fuzzy
-#| msgid "All Docs"
-msgid "Self Docs"
-msgstr "Все документы"
+#| msgid "Docs Archive"
+msgid "All Docs (Archive)"
+msgstr "Архив документов"
 
-#: includes/Admin/options/opt_doc_single.php:944
+#: includes/Admin/options/opt_doc_single.php:666
+#, fuzzy
+#| msgid "Single Doc"
+msgid "Single (Self) Doc"
+msgstr "Страница статьи"
+
+#: includes/Admin/options/opt_doc_single.php:675
 msgid "Sidebar Toggle"
 msgstr "Переключатель Боковой панели"
 
-#: includes/Admin/options/opt_doc_single.php:945
+#: includes/Admin/options/opt_doc_single.php:676
 msgid "Collapse and Expand the left Sidebar with a Toggle button."
 msgstr ""
 "Сверните и разверните левую боковую панель с помощью кнопки переключения."
 
-#: includes/Admin/options/opt_doc_single.php:954
+#: includes/Admin/options/opt_doc_single.php:685
 msgid "Filter Form"
 msgstr "Фильтр"
 
-#: includes/Admin/options/opt_doc_single.php:955
+#: includes/Admin/options/opt_doc_single.php:686
 msgid "Filter the left sidebar doc items by typing latter."
 msgstr ""
 "Отфильтруйте элементы документа на левой боковой панели, введя последний."
 
-#: includes/Admin/options/opt_doc_single.php:963
+#: includes/Admin/options/opt_doc_single.php:694
 msgid "Mark Words"
 msgstr "Отметить слова"
 
-#: includes/Admin/options/opt_doc_single.php:964
+#: includes/Admin/options/opt_doc_single.php:695
 msgid "Highlight the typed keyword in the docs."
 msgstr "Выделите набранное ключевое слово в документации."
 
-#: includes/Admin/options/opt_doc_single.php:966
+#: includes/Admin/options/opt_doc_single.php:697
 #: includes/Admin/options/opt_docs_assistant.php:184
 msgid "Disable"
 msgstr "Отключить"
 
-#: includes/Admin/options/opt_doc_single.php:975
+#: includes/Admin/options/opt_doc_single.php:706
 msgid "Enable this switcher to use featured image for the Doc sections icon."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:980
+#: includes/Admin/options/opt_doc_single.php:711
 msgid "Doc Section Icon"
 msgstr "Значок раздела «Документ»"
 
-#: includes/Admin/options/opt_doc_single.php:982
+#: includes/Admin/options/opt_doc_single.php:713
 msgid ""
 "This is the Doc's default icon. If you don't use icon for the article "
 "section individually, this icon will be shown."
@@ -1411,11 +1398,11 @@ msgstr ""
 "Это значок документа по умолчанию. Если вы не используете иконку для раздела "
 "статьи отдельно, эта иконка будет показана."
 
-#: includes/Admin/options/opt_doc_single.php:993
+#: includes/Admin/options/opt_doc_single.php:724
 msgid "Doc Section Icon Open"
 msgstr "Открыть значок раздела Doc"
 
-#: includes/Admin/options/opt_doc_single.php:995
+#: includes/Admin/options/opt_doc_single.php:726
 msgid ""
 "This is the Doc's default icon. If you don't use icon for the article "
 "section individually, this icon will be shown on open states of the Doc "
@@ -1424,11 +1411,11 @@ msgstr ""
 "Это значок документа по умолчанию. Если вы не используете иконку для раздела "
 "статьи отдельно, она будет отображаться в открытых состояниях разделов Doc."
 
-#: includes/Admin/options/opt_doc_single.php:1008
+#: includes/Admin/options/opt_doc_single.php:739
 msgid "Doc Title Typography"
 msgstr "Типографика заголовка документа"
 
-#: includes/Admin/options/opt_doc_single.php:1015
+#: includes/Admin/options/opt_doc_single.php:746
 #: includes/Elementor/Search/style-control.php:34
 #: includes/Elementor/Search/style-control.php:168
 #: includes/Elementor/Search/style-control.php:245
@@ -1436,66 +1423,68 @@ msgstr "Типографика заголовка документа"
 msgid "Background Color"
 msgstr "Цвет фона"
 
-#: includes/Admin/options/opt_doc_single.php:1027
+#: includes/Admin/options/opt_doc_single.php:758
+#: includes/Admin/setup-wizard/step3_settings.php:62
+#: includes/Admin/setup-wizard/step3_settings.php:64
 msgid "Right Sidebar"
 msgstr "Правая боковая панель"
 
-#: includes/Admin/options/opt_doc_single.php:1032
+#: includes/Admin/options/opt_doc_single.php:763
 msgid "Sharing Doc"
 msgstr "Общий доступ к документу"
 
-#: includes/Admin/options/opt_doc_single.php:1038
+#: includes/Admin/options/opt_doc_single.php:769
 msgid "Share Button"
 msgstr "Кнопка Поделиться"
 
-#: includes/Admin/options/opt_doc_single.php:1048
+#: includes/Admin/options/opt_doc_single.php:779
 msgid "Share Button Label"
 msgstr "Ярлык Кнопки \"Поделиться\""
 
-#: includes/Admin/options/opt_doc_single.php:1049
+#: includes/Admin/options/opt_doc_single.php:780
 #: templates/tools/share-btns.php:15
 msgid "Share this Doc"
 msgstr "Поделиться документом"
 
-#: includes/Admin/options/opt_doc_single.php:1058
+#: includes/Admin/options/opt_doc_single.php:789
 msgid "Copy Link Button"
 msgstr "Кнопка «Копировать ссылку»"
 
-#: includes/Admin/options/opt_doc_single.php:1067
+#: includes/Admin/options/opt_doc_single.php:798
 msgid "Copy Link Label"
 msgstr "Копировать метку ссылки"
 
-#: includes/Admin/options/opt_doc_single.php:1068
+#: includes/Admin/options/opt_doc_single.php:799
 #: templates/tools/share-btns.php:8
 msgid "Or copy link"
 msgstr "Или скопировать ссылку"
 
-#: includes/Admin/options/opt_doc_single.php:1078
-#: includes/Admin/options/opt_docs_subscription.php:106
+#: includes/Admin/options/opt_doc_single.php:809
+#: includes/Admin/options/opt_docs_subscription.php:105
 msgid "Success Message"
 msgstr "Сообщение об успехе"
 
-#: includes/Admin/options/opt_doc_single.php:1079
+#: includes/Admin/options/opt_doc_single.php:810
 msgid "URL copied to clipboard"
 msgstr "Ссылка скопирована в буфер обмена"
 
-#: includes/Admin/options/opt_doc_single.php:1088
+#: includes/Admin/options/opt_doc_single.php:819
 msgid "Tools"
 msgstr "Инструменты"
 
-#: includes/Admin/options/opt_doc_single.php:1093
+#: includes/Admin/options/opt_doc_single.php:824
 msgid "Font Size Switcher"
 msgstr "Переключатель размера шрифта"
 
-#: includes/Admin/options/opt_doc_single.php:1101
+#: includes/Admin/options/opt_doc_single.php:832
 msgid "Print Article"
 msgstr "Распечатать новость"
 
-#: includes/Admin/options/opt_doc_single.php:1109
+#: includes/Admin/options/opt_doc_single.php:840
 msgid "Widgets Area"
 msgstr "Область виджетов"
 
-#: includes/Admin/options/opt_doc_single.php:1110
+#: includes/Admin/options/opt_doc_single.php:841
 msgid ""
 "Enable to register a Sidebar Widgets area named 'Doc Right Sidebar' in "
 "Appearance > Widgets."
@@ -1503,17 +1492,17 @@ msgstr ""
 "Включите, чтобы зарегистрировать область виджетов боковой панели с именем "
 "«Правая боковая панель документа» в виджетах «Внешний вид» >."
 
-#: includes/Admin/options/opt_doc_single.php:1123
+#: includes/Admin/options/opt_doc_single.php:854
 msgid "Table on Contents (TOC)"
 msgstr "Содержание (TOC)"
 
-#: includes/Admin/options/opt_doc_single.php:1129
+#: includes/Admin/options/opt_doc_single.php:860
 #, fuzzy
 #| msgid "Enable"
 msgid "Enable TOC"
 msgstr "Включить"
 
-#: includes/Admin/options/opt_doc_single.php:1130
+#: includes/Admin/options/opt_doc_single.php:861
 msgid ""
 "EazyDocs will automatically create a structured Table Of Contents(TOC) while "
 "you are writing your documentation."
@@ -1521,30 +1510,30 @@ msgstr ""
 "EazyDocs автоматически создаст структурированное оглавление (TOC), пока вы "
 "пишете документацию."
 
-#: includes/Admin/options/opt_doc_single.php:1137
+#: includes/Admin/options/opt_doc_single.php:868
 msgid "TOC Heading"
 msgstr "Заголовок оглавления"
 
-#: includes/Admin/options/opt_doc_single.php:1138
+#: includes/Admin/options/opt_doc_single.php:869
 #: templates/docs-right-sidebar.php:4
 msgid "CONTENTS"
 msgstr "СОДЕРЖАНИЕ"
 
-#: includes/Admin/options/opt_doc_single.php:1144
+#: includes/Admin/options/opt_doc_single.php:875
 msgid "Enable to add numbers before each table of content item."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1145
+#: includes/Admin/options/opt_doc_single.php:876
 msgid "Auto Numbering"
 msgstr "Нумерация"
 
-#: includes/Admin/options/opt_doc_single.php:1152
-#: includes/Admin/options/opt_doc_single.php:1157
+#: includes/Admin/options/opt_doc_single.php:883
+#: includes/Admin/options/opt_doc_single.php:888
 #: src/eazydocs-toolbar/index.js:74
 msgid "Conditional Dropdown"
 msgstr "Условный выпадающий список"
 
-#: includes/Admin/options/opt_doc_single.php:1158
+#: includes/Admin/options/opt_doc_single.php:889
 msgid ""
 "You can display conditional contents using the [conditional_data] shortcode "
 "in documentation based on the dropdown value. See the shortcode usage "
@@ -1555,83 +1544,83 @@ msgstr ""
 "Руководство по использованию шорткода см. <a href=\"https://tinyurl.com/"
 "yd46mfax\" target=\"_blank\">здесь</a>."
 
-#: includes/Admin/options/opt_doc_single.php:1169
+#: includes/Admin/options/opt_doc_single.php:900
 msgid "Dropdown Options"
 msgstr "Настройки выпадания"
 
-#: includes/Admin/options/opt_doc_single.php:1174
-#: includes/Admin/options/opt_doc_single.php:1226
-#: includes/Admin/options/opt_doc_single.php:1299
+#: includes/Admin/options/opt_doc_single.php:905
+#: includes/Admin/options/opt_doc_single.php:957
+#: includes/Admin/options/opt_doc_single.php:1030
 #: includes/Admin/options/opt_docs_collaboration.php:185
 #: includes/Admin/options/opt_restricted_docs.php:155
 #: includes/Elementor/Docs/Doc_Widget.php:350
 #: includes/Elementor/Search/Search_Widget.php:210
-#: includes/Elementor/Single_Doc/Single_Doc.php:104
-#: includes/Elementor/Single_Doc/Single_Doc.php:378
-#: includes/Elementor/Single_Doc/Single_Doc.php:467 src/shortcode/edit.js:61
+#: includes/Elementor/Single_Doc/Single_Doc.php:103
+#: includes/Elementor/Single_Doc/Single_Doc.php:377
+#: includes/Elementor/Single_Doc/Single_Doc.php:466 src/shortcode/edit.js:61
 msgid "Title"
 msgstr "Заголовок"
 
-#: includes/Admin/options/opt_doc_single.php:1179
+#: includes/Admin/options/opt_doc_single.php:910
 msgid "Icon"
 msgstr "Иконка"
 
-#: includes/Admin/options/opt_doc_single.php:1188
+#: includes/Admin/options/opt_doc_single.php:919
 msgid "Windows"
 msgstr "Windows"
 
-#: includes/Admin/options/opt_doc_single.php:1192
+#: includes/Admin/options/opt_doc_single.php:923
 msgid "iOs"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1196
+#: includes/Admin/options/opt_doc_single.php:927
 msgid "Linux"
 msgstr "Linux"
 
-#: includes/Admin/options/opt_doc_single.php:1208
+#: includes/Admin/options/opt_doc_single.php:939
 #: templates/content-related.php:7
 msgid "Related Articles"
 msgstr "Похожие статьи"
 
-#: includes/Admin/options/opt_doc_single.php:1213
+#: includes/Admin/options/opt_doc_single.php:944
 msgid "Related Docs Settings"
 msgstr "Настройки связанных документов"
 
-#: includes/Admin/options/opt_doc_single.php:1218
+#: includes/Admin/options/opt_doc_single.php:949
 msgid "Related Docs"
 msgstr "Связанные документы"
 
-#: includes/Admin/options/opt_doc_single.php:1227
+#: includes/Admin/options/opt_doc_single.php:958
 msgid "Related articles"
 msgstr "Похожие статьи"
 
-#: includes/Admin/options/opt_doc_single.php:1238
-#: includes/Admin/options/opt_doc_single.php:1311
+#: includes/Admin/options/opt_doc_single.php:969
+#: includes/Admin/options/opt_doc_single.php:1042
 msgid "Docs Number"
 msgstr "Номер документов"
 
-#: includes/Admin/options/opt_doc_single.php:1239
-#: includes/Admin/options/opt_doc_single.php:1312
+#: includes/Admin/options/opt_doc_single.php:970
+#: includes/Admin/options/opt_doc_single.php:1043
 msgid "4"
 msgstr "4"
 
-#: includes/Admin/options/opt_doc_single.php:1250
-#: includes/Admin/options/opt_doc_single.php:1323
+#: includes/Admin/options/opt_doc_single.php:981
+#: includes/Admin/options/opt_doc_single.php:1054
 msgid "Column Width"
 msgstr "Ширина колонки"
 
-#: includes/Admin/options/opt_doc_single.php:1252
-#: includes/Admin/options/opt_doc_single.php:1325
+#: includes/Admin/options/opt_doc_single.php:983
+#: includes/Admin/options/opt_doc_single.php:1056
 msgid "Half"
 msgstr "Половина"
 
-#: includes/Admin/options/opt_doc_single.php:1253
-#: includes/Admin/options/opt_doc_single.php:1326
+#: includes/Admin/options/opt_doc_single.php:984
+#: includes/Admin/options/opt_doc_single.php:1057
 msgid "Fullwidth"
 msgstr "Полная ширина"
 
-#: includes/Admin/options/opt_doc_single.php:1266
-#: includes/Admin/options/opt_doc_single.php:1339
+#: includes/Admin/options/opt_doc_single.php:997
+#: includes/Admin/options/opt_doc_single.php:1070
 #: includes/Admin/options/opt_docs_collaboration.php:109
 #: includes/Admin/options/opt_docs_collaboration.php:147
 #: includes/Admin/options/opt_restricted_docs.php:197
@@ -1640,25 +1629,25 @@ msgstr "Полная ширина"
 msgid "Button"
 msgstr "Кнопка"
 
-#: includes/Admin/options/opt_doc_single.php:1267
-#: includes/Admin/options/opt_doc_single.php:1340
+#: includes/Admin/options/opt_doc_single.php:998
+#: includes/Admin/options/opt_doc_single.php:1071
 #: templates/content-related.php:9 templates/content-related.php:13
 msgid "See More"
 msgstr "Узнать больше"
 
-#: includes/Admin/options/opt_doc_single.php:1281
+#: includes/Admin/options/opt_doc_single.php:1012
 msgid "Viewed Articles"
 msgstr "Просмотренные статьи"
 
-#: includes/Admin/options/opt_doc_single.php:1286
+#: includes/Admin/options/opt_doc_single.php:1017
 msgid "Recently Viewed Docs Options"
 msgstr "Параметры недавно просмотренных документов"
 
-#: includes/Admin/options/opt_doc_single.php:1291
+#: includes/Admin/options/opt_doc_single.php:1022
 msgid "Recently Viewed Docs"
 msgstr "Недавно просмотренные документы"
 
-#: includes/Admin/options/opt_doc_single.php:1300
+#: includes/Admin/options/opt_doc_single.php:1031
 msgid "Recently Viewed articles"
 msgstr "Недавно просмотренные статьи"
 
@@ -1724,6 +1713,7 @@ msgstr "Настройки вкладки"
 
 #: includes/Admin/options/opt_docs_assistant.php:119
 #: includes/Admin/options/opt_docs_assistant.php:132
+#: includes/Admin/template/dashboard/antimanual-ai.php:53
 msgid "Knowledge Base"
 msgstr "База знаний"
 
@@ -1793,7 +1783,7 @@ msgid "Full name"
 msgstr "Полное имя"
 
 #: includes/Admin/options/opt_docs_assistant.php:261
-#: includes/Admin/options/opt_docs_subscription.php:79
+#: includes/Admin/options/opt_docs_subscription.php:78
 #: templates/content-modal.php:31
 msgid "Email"
 msgstr "Email"
@@ -1819,7 +1809,7 @@ msgstr "Напишите свое сообщение"
 
 #: includes/Admin/options/opt_docs_assistant.php:291
 #: includes/Admin/options/opt_docs_assistant.php:338
-#: includes/Admin/options/opt_docs_subscription.php:91
+#: includes/Admin/options/opt_docs_subscription.php:90
 #: includes/Elementor/Search/style-control.php:115
 msgid "Submit Button"
 msgstr "Кнопка отправить"
@@ -1829,8 +1819,8 @@ msgid "Send Message"
 msgstr "Отправить сообщение"
 
 #: includes/Admin/options/opt_docs_assistant.php:301
-#: includes/Elementor/Single_Doc/Single_Doc.php:473
-#: includes/Elementor/Single_Doc/Single_Doc.php:505
+#: includes/Elementor/Single_Doc/Single_Doc.php:472
+#: includes/Elementor/Single_Doc/Single_Doc.php:504
 msgid "Color"
 msgstr "Цвет"
 
@@ -1847,7 +1837,7 @@ msgid "Header Background"
 msgstr "Фон заголовка"
 
 #: includes/Admin/options/opt_docs_assistant.php:330
-#: includes/Elementor/Single_Doc/Single_Doc.php:343
+#: includes/Elementor/Single_Doc/Single_Doc.php:342
 msgid "Background"
 msgstr "Фон"
 
@@ -1984,7 +1974,7 @@ msgstr "Подписчик"
 
 #: includes/Admin/options/opt_docs_collaboration.php:84
 #: includes/Admin/options/opt_docs_collaboration.php:110
-#: includes/Admin/template/dashboard/header.php:16
+#: includes/Admin/template/dashboard/header.php:74
 #: includes/Admin/template/header.php:29 includes/One_Page_Docs.php:50
 #: includes/Post_Types.php:55
 msgid "Add Doc"
@@ -2325,213 +2315,208 @@ msgid ""
 "more%2$s"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:14
+#: includes/Admin/options/opt_docs_subscription.php:13
 #, fuzzy
 #| msgid "Notifications"
 msgid "Update Notifications"
 msgstr "Уведомления"
 
-#: includes/Admin/options/opt_docs_subscription.php:19
+#: includes/Admin/options/opt_docs_subscription.php:18
 #, fuzzy
 #| msgid "Dropdown Options"
 msgid "Subscription Settings"
 msgstr "Настройки выпадания"
 
-#: includes/Admin/options/opt_docs_subscription.php:20
+#: includes/Admin/options/opt_docs_subscription.php:19
 msgid ""
 "Let readers subscribe to receive email notifications when documentation is "
 "updated."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:26
+#: includes/Admin/options/opt_docs_subscription.php:25
 #, fuzzy
 #| msgid "Docs Contribution"
 msgid "Enable Subscriptions"
 msgstr "Вклад Docs"
 
-#: includes/Admin/options/opt_docs_subscription.php:27
+#: includes/Admin/options/opt_docs_subscription.php:26
 msgid ""
 "Show a subscribe button that allows users to opt-in for update notifications."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:38
+#: includes/Admin/options/opt_docs_subscription.php:37
 msgid "Form Customization"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:39
+#: includes/Admin/options/opt_docs_subscription.php:38
 #, fuzzy
 #| msgid "Customize the feedback modal form here."
 msgid "Customize the subscribe and unsubscribe form text and messages."
 msgstr "Настройте модальную форму обратной связи здесь."
 
-#: includes/Admin/options/opt_docs_subscription.php:44
+#: includes/Admin/options/opt_docs_subscription.php:43
 #, fuzzy
 #| msgid "Subscriber"
 msgid "Subscribe Form"
 msgstr "Подписчик"
 
-#: includes/Admin/options/opt_docs_subscription.php:49
+#: includes/Admin/options/opt_docs_subscription.php:48
 #, fuzzy
 #| msgid "Submit Button"
 msgid "Subscribe Button"
 msgstr "Кнопка отправить"
 
-#: includes/Admin/options/opt_docs_subscription.php:50
+#: includes/Admin/options/opt_docs_subscription.php:49
 msgid "Text displayed on the subscription trigger button."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:51
+#: includes/Admin/options/opt_docs_subscription.php:50
 msgid "Subscribe for updates"
 msgstr "Подписаться на обновления"
 
-#: includes/Admin/options/opt_docs_subscription.php:57
-#: includes/Admin/options/opt_docs_subscription.php:143
+#: includes/Admin/options/opt_docs_subscription.php:56
+#: includes/Admin/options/opt_docs_subscription.php:142
 #, fuzzy
 #| msgid "Heading"
 msgid "Form Heading"
 msgstr "Заголовок"
 
-#: includes/Admin/options/opt_docs_subscription.php:58
+#: includes/Admin/options/opt_docs_subscription.php:57
 #, fuzzy
 #| msgid "Customize the feedback modal form here."
 msgid "Title shown at the top of the subscription form."
 msgstr "Настройте модальную форму обратной связи здесь."
 
-#: includes/Admin/options/opt_docs_subscription.php:59
-#: includes/Admin/options/opt_docs_subscription.php:92
+#: includes/Admin/options/opt_docs_subscription.php:58
+#: includes/Admin/options/opt_docs_subscription.php:91
 msgid "Subscribe"
 msgstr "Подписаться"
 
-#: includes/Admin/options/opt_docs_subscription.php:65
+#: includes/Admin/options/opt_docs_subscription.php:64
 #, fuzzy
 #| msgid "Feedback Label"
 msgid "Name Field Label"
 msgstr "Метка обратной связи"
 
-#: includes/Admin/options/opt_docs_subscription.php:66
+#: includes/Admin/options/opt_docs_subscription.php:65
 #: templates/content-modal.php:27
 msgid "Name"
 msgstr "Имя"
 
-#: includes/Admin/options/opt_docs_subscription.php:71
+#: includes/Admin/options/opt_docs_subscription.php:70
 #, fuzzy
 #| msgid "Placeholder"
 msgid "Name Placeholder"
 msgstr "Заполнитель"
 
-#: includes/Admin/options/opt_docs_subscription.php:72
+#: includes/Admin/options/opt_docs_subscription.php:71
 msgid "Enter your name"
 msgstr "Введите ваше имя"
 
-#: includes/Admin/options/opt_docs_subscription.php:78
+#: includes/Admin/options/opt_docs_subscription.php:77
 msgid "Email Field Label"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:84
+#: includes/Admin/options/opt_docs_subscription.php:83
 #, fuzzy
 #| msgid "Placeholder"
 msgid "Email Placeholder"
 msgstr "Заполнитель"
 
-#: includes/Admin/options/opt_docs_subscription.php:85
+#: includes/Admin/options/opt_docs_subscription.php:84
 msgid "Enter your email"
 msgstr "Введите адрес электронной почты"
 
-#: includes/Admin/options/opt_docs_subscription.php:98
-#: includes/Admin/options/opt_docs_subscription.php:175
+#: includes/Admin/options/opt_docs_subscription.php:97
+#: includes/Admin/options/opt_docs_subscription.php:174
 msgid "Cancel Button"
 msgstr "Кнопка отмены"
 
-#: includes/Admin/options/opt_docs_subscription.php:99
-#: includes/Admin/options/opt_docs_subscription.php:176
-msgid "Cancel"
-msgstr "Отмена"
-
-#: includes/Admin/options/opt_docs_subscription.php:107
+#: includes/Admin/options/opt_docs_subscription.php:106
 msgid "Message shown after successful subscription."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:108
+#: includes/Admin/options/opt_docs_subscription.php:107
 msgid "Confirmation email sent successfully!"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:114
+#: includes/Admin/options/opt_docs_subscription.php:113
 msgid "Duplicate Email Message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:115
+#: includes/Admin/options/opt_docs_subscription.php:114
 msgid "Message shown when email is already subscribed."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:116
+#: includes/Admin/options/opt_docs_subscription.php:115
 msgid "Already email exists."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:122
+#: includes/Admin/options/opt_docs_subscription.php:121
 msgid "Invalid Characters Message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:123
+#: includes/Admin/options/opt_docs_subscription.php:122
 msgid "Message shown when invalid characters are detected."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:124
+#: includes/Admin/options/opt_docs_subscription.php:123
 msgid "Special characters not allowed!"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:130
+#: includes/Admin/options/opt_docs_subscription.php:129
 #, fuzzy
 #| msgid "Subscriber"
 msgid "Unsubscribe Form"
 msgstr "Подписчик"
 
-#: includes/Admin/options/opt_docs_subscription.php:136
+#: includes/Admin/options/opt_docs_subscription.php:135
 #, fuzzy
 #| msgid "Subscriber"
 msgid "Unsubscribe Button"
 msgstr "Подписчик"
 
-#: includes/Admin/options/opt_docs_subscription.php:137
-#: includes/Admin/options/opt_docs_subscription.php:144
+#: includes/Admin/options/opt_docs_subscription.php:136
+#: includes/Admin/options/opt_docs_subscription.php:143
 #, fuzzy
 #| msgid "Subscriber"
 msgid "Unsubscribe"
 msgstr "Подписчик"
 
-#: includes/Admin/options/opt_docs_subscription.php:150
+#: includes/Admin/options/opt_docs_subscription.php:149
 msgid "Confirmation Message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:151
+#: includes/Admin/options/opt_docs_subscription.php:150
 msgid "Message asking user to confirm unsubscription."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:152
+#: includes/Admin/options/opt_docs_subscription.php:151
 msgid "Are you sure you'd like to stop receiving updates"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:158
+#: includes/Admin/options/opt_docs_subscription.php:157
 #, fuzzy
 #| msgid "Show Doc Item"
 msgid "Show Document Title"
 msgstr "Показать элемент документа"
 
-#: includes/Admin/options/opt_docs_subscription.php:161
+#: includes/Admin/options/opt_docs_subscription.php:160
 msgid "Include the document title in the confirmation message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:168
+#: includes/Admin/options/opt_docs_subscription.php:167
 #, fuzzy
 #| msgid "Copy Link Button"
 msgid "Confirm Button"
 msgstr "Кнопка «Копировать ссылку»"
 
-#: includes/Admin/options/opt_docs_subscription.php:169
-#: includes/Admin/setup-wizard/setup.php:79
+#: includes/Admin/options/opt_docs_subscription.php:168
 msgid "Confirm"
 msgstr "Подтвердить"
 
 #: includes/Admin/options/opt_email_reporting.php:14
+#: includes/Admin/template/analytics-presentation.php:325
 #, fuzzy
 #| msgid "Email: %s"
 msgid "Email Reports"
@@ -2696,10 +2681,191 @@ msgid ""
 "Send a sample report to verify your email settings are working correctly."
 msgstr ""
 
+#: includes/Admin/options/opt_feedback.php:13
+#: includes/Admin/options/opt_feedback.php:191
+#: includes/Admin/template/analytics-presentation.php:127
+#: includes/Admin/template/dashboard/analytics.php:53
+#: includes/Admin/template/dashboard/analytics.php:192
+#: includes/Admin/template/dashboard/analytics.php:254
+msgid "Feedback"
+msgstr "Обратная связь"
+
+#: includes/Admin/options/opt_feedback.php:22
+#, fuzzy
+#| msgid "Feedback Count"
+msgid "Feedback Options"
+msgstr "Количество обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:27
+msgid "Feedback Area"
+msgstr "Зона обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:34
+#, fuzzy
+#| msgid "Feedback Area"
+msgid "Feedback Area Options"
+msgstr "Зона обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:44
+msgid "Message Feedback"
+msgstr "Обратная связь"
+
+#: includes/Admin/options/opt_feedback.php:57
+msgid "Still Stuck"
+msgstr "Все еще застрял"
+
+#: includes/Admin/options/opt_feedback.php:58 templates/content-feedback.php:19
+msgid "Still stuck?"
+msgstr "Все еще застряли?"
+
+#: includes/Admin/options/opt_feedback.php:68
+msgid "Help form link text"
+msgstr "Текст ссылки на форму справки"
+
+#: includes/Admin/options/opt_feedback.php:69
+#: includes/Admin/options/opt_feedback.php:100
+#: templates/content-feedback.php:21 templates/content-modal.php:9
+msgid "How can we help?"
+msgstr "Как мы можем помочь?"
+
+#: includes/Admin/options/opt_feedback.php:79
+msgid "Email Address"
+msgstr "Адрес электронной почты"
+
+#: includes/Admin/options/opt_feedback.php:89
+msgid "Feedback Modal"
+msgstr "Обратная связь Modal"
+
+#: includes/Admin/options/opt_feedback.php:99
+#: includes/Admin/options/opt_feedback.php:260
+msgid "Form Title"
+msgstr "Название формы"
+
+#: includes/Admin/options/opt_feedback.php:110
+#: includes/Admin/options/opt_feedback.php:269
+msgid "Form Subtitle"
+msgstr "Форма подзаголовок"
+
+#: includes/Admin/options/opt_feedback.php:119
+msgid "Voting Feedback"
+msgstr "Отзывы о голосовании"
+
+#: includes/Admin/options/opt_feedback.php:128
+msgid "Helpful feedback"
+msgstr "Полезный отзыв"
+
+#: includes/Admin/options/opt_feedback.php:140
+msgid "Feedback Label"
+msgstr "Метка обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:141
+#: templates/content-feedback.php:22
+msgid "Was this page helpful?"
+msgstr "Была ли эта страница полезной?"
+
+#: includes/Admin/options/opt_feedback.php:150
+msgid "Feedback Count"
+msgstr "Количество обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:165
+#, fuzzy
+#| msgid "Feedback Count"
+msgid "Feedback on Text"
+msgstr "Количество обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:170
+#: includes/Admin/options/opt_feedback.php:176
+#, fuzzy
+#| msgid "Feedback Count"
+msgid "Feedback on Selected Text"
+msgstr "Количество обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:177
+msgid "Enable the feature to allow users to comment on selected text."
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:178
+msgid ""
+"Note: if enabled, a switcher will appear in the doc meta area to allow "
+"visitors to turn On/Off the feature."
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:189
+#, fuzzy
+#| msgid "Font Size Switcher"
+msgid "Frontend Switcher Level"
+msgstr "Переключатель размера шрифта"
+
+#: includes/Admin/options/opt_feedback.php:190
+msgid "This title will be shown on the frontend to On/Off the feature."
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:199
+#, fuzzy
+#| msgid "Who Can View Docs?"
+msgid "Who can view comments?"
+msgstr "Кто может просматривать документы?"
+
+#: includes/Admin/options/opt_feedback.php:211
+#, fuzzy
+#| msgid "Feedback Area"
+msgid "Feedback Form Settings"
+msgstr "Зона обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:219
+msgid "Predefined Options Heading"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:221
+msgid "What is the issue with this selection?"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:228
+#, fuzzy
+#| msgid "Feedback Count"
+msgid "Predefined Options"
+msgstr "Количество обратной связи"
+
+#: includes/Admin/options/opt_feedback.php:235
+#, fuzzy
+#| msgid "Copy Link Label"
+msgid "Option Label"
+msgstr "Копировать метку ссылки"
+
+#: includes/Admin/options/opt_feedback.php:251
+#, fuzzy
+#| msgid "Share Button Label"
+msgid "Other Option Label"
+msgstr "Ярлык Кнопки \"Поделиться\""
+
+#: includes/Admin/options/opt_feedback.php:253
+msgid "Others"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:262
+msgid "Share additional info or suggestions"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:271
+msgid "Do not share any personal info"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:278
+#, fuzzy
+#| msgid "Form Title"
+msgid "Form Disclaimer"
+msgstr "Название формы"
+
+#: includes/Admin/options/opt_feedback.php:280
+msgid ""
+"By continuing, you allow Google to use your answers and account info to "
+"improve services, as explained in our Privacy & Terms."
+msgstr ""
+
 #: includes/Admin/options/opt_footnotes.php:14
 #: includes/Admin/options/opt_footnotes.php:34
 #: includes/Admin/options/opt_footnotes.php:102
-#: includes/Frontend/Frontend.php:66 src/eazydocs-toolbar/index.js:73
+#: includes/Frontend/Frontend.php:69 src/eazydocs-toolbar/index.js:73
 msgid "Footnotes"
 msgstr "Примечания к рецепту"
 
@@ -2755,7 +2921,7 @@ msgstr ""
 #: includes/Admin/options/opt_footnotes.php:59
 #: includes/Admin/options/opt_footnotes.php:127
 #: includes/Elementor/Docs/Doc_Widget.php:152
-#: includes/Elementor/Single_Doc/Single_Doc.php:165
+#: includes/Elementor/Single_Doc/Single_Doc.php:164
 msgid "1 Column"
 msgstr "1 колонка"
 
@@ -3097,7 +3263,7 @@ msgid "This document is password protected"
 msgstr ""
 
 #: includes/Admin/options/opt_restricted_docs.php:176
-#: includes/Elementor/Single_Doc/Single_Doc.php:416
+#: includes/Elementor/Single_Doc/Single_Doc.php:415
 msgid "Subtitle"
 msgstr "Подзаголовок"
 
@@ -3118,6 +3284,7 @@ msgid "Button Background Color"
 msgstr "Цвет фона кнопки"
 
 #: includes/Admin/options/settings-options.php:132
+#: includes/Admin/template/dashboard/header.php:59
 msgid "Settings"
 msgstr "Настройки"
 
@@ -3149,326 +3316,1382 @@ msgstr ""
 msgid "Unknown action."
 msgstr "Неизвестное действие"
 
-#: includes/Admin/setup-wizard/setup.php:30
-msgid "What's New!"
-msgstr "Новинки"
+#: includes/Admin/setup-wizard/setup.php:22
+msgid "Welcome"
+msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:43
-msgid "GETTING STARTED"
+#: includes/Admin/setup-wizard/setup.php:26
+msgid "Basic Setup"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:30
+msgid "Layout"
+msgstr "Макет"
+
+#: includes/Admin/setup-wizard/setup.php:34
+msgid "Plugins"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:38
+msgid "Finish"
 msgstr ""
 
 #: includes/Admin/setup-wizard/setup.php:48
-msgid "Skip"
-msgstr "Пропустить"
+#, fuzzy
+#| msgid "EazyDocs Pro"
+msgid "EazyDocs icon"
+msgstr "EazyDocs Pro"
 
-#: includes/Admin/setup-wizard/setup.php:74
-msgid "Review and Confirm"
+#: includes/Admin/setup-wizard/setup.php:56
+#, fuzzy
+#| msgid "What's New!"
+msgid "What's New"
+msgstr "Новинки"
+
+#: includes/Admin/setup-wizard/setup.php:59
+msgid "Skip Setup"
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:76
-msgid ""
-"Take a moment to review all your settings thoroughly before confirming your "
-"choices to ensure everything is set up correctly."
+#: includes/Admin/setup-wizard/setup.php:116
+msgid "Setup Complete!"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step1_welcome.php:9
-msgid "Welcome to EazyDocs"
+#: includes/Admin/setup-wizard/setup.php:117
+msgid "Your documentation site is ready. Here's what you can do next:"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step1_welcome.php:9
-msgid ""
-"Discover EazyDocs by this guide that walks you through creating "
-"professional, user-friendly website documentation seamlessly. Then click "
-"next to setup initial settings."
+#: includes/Admin/setup-wizard/setup.php:125
+#, fuzzy
+#| msgid "Create a Doc"
+msgid "Create Your First Doc"
+msgstr "Создание документа"
+
+#: includes/Admin/setup-wizard/setup.php:126
+msgid "Start building your documentation now"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:136
+#, fuzzy
+#| msgid "Features"
+msgid "Advanced Settings"
+msgstr "Функции"
+
+#: includes/Admin/setup-wizard/setup.php:137
+#, fuzzy
+#| msgid "Customizer"
+msgid "Customize more options"
+msgstr "Настройщик"
+
+#: includes/Admin/setup-wizard/setup.php:147
+#: includes/Admin/template/partials/ai-create-doc-popup.php:101
+#, fuzzy
+#| msgid "Documentation"
+msgid "View Documentation"
+msgstr "Документация"
+
+#: includes/Admin/setup-wizard/setup.php:148
+msgid "Learn how to use EazyDocs"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:159
+#: includes/Admin/template/dashboard/antimanual-ai.php:193
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:160
+msgid "Unlock all premium features"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:170
+msgid "Finish & Go to Dashboard"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:182 includes/Frontend/Frontend.php:350
+#, fuzzy
+#| msgid " - Previous"
+msgid "Previous"
+msgstr " -Предыдущий"
+
+#. translators: %1$d: current step, %2$d: total steps
+#: includes/Admin/setup-wizard/setup.php:193 includes/Frontend/Frontend.php:351
+#, fuzzy
+#| msgid "Next - "
+msgid "Next"
+msgstr "Вперед - "
+
+#: includes/Admin/setup-wizard/setup.php:204
+msgid "Quick Tips"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:209
+msgid "Watch the video tutorial to get started quickly with EazyDocs."
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:213
+msgid "Choose a brand color that matches your website theme for consistency."
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:217
+msgid "The layout can be changed later in the settings page."
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:221
+msgid "You can skip plugin installation now and install them later."
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:225
+msgid "All settings can be modified from the EazyDocs settings page."
 msgstr ""
 
 #: includes/Admin/setup-wizard/step1_welcome.php:17
+msgid "Welcome to EazyDocs!"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:18
+msgid ""
+"Thank you for choosing EazyDocs - the best documentation plugin for "
+"WordPress. Let's set up your knowledge base in just a few minutes."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:29
+#, fuzzy
+#| msgid "EazyDocs Form"
+msgid "EazyDocs Tutorial"
+msgstr "Форма EazyDocs"
+
+#: includes/Admin/setup-wizard/step1_welcome.php:37
+msgid ""
+"Watch this 3-minute video to learn how to create your first documentation"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:47
+#, fuzzy
+#| msgid "Docs Builder"
+msgid "Drag & Drop Builder"
+msgstr "Конструктор документов"
+
+#: includes/Admin/setup-wizard/step1_welcome.php:48
+msgid ""
+"Easily organize your documentation with our intuitive drag and drop "
+"interface."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:55
+#, fuzzy
+#| msgid "Search"
+msgid "Live Search"
+msgstr "Поиск"
+
+#: includes/Admin/setup-wizard/step1_welcome.php:56
+msgid "Help users find answers quickly with instant AJAX-powered search."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:64
+msgid "Track what users search for and improve your documentation."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:71
+#, fuzzy
+#| msgid "Customize"
+msgid "Customizable"
+msgstr "Настроить"
+
+#: includes/Admin/setup-wizard/step1_welcome.php:72
+msgid "Match your brand with extensive styling and layout options."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:80
+#: includes/Admin/template/dashboard/antimanual-ai.php:182
+#: includes/Admin/template/dashboard/system-status.php:101
+#: includes/Admin/template/feedback-presentation.php:215
 msgid "Documentation"
 msgstr "Документация"
 
-#: includes/Admin/setup-wizard/step1_welcome.php:23
+#: includes/Admin/setup-wizard/step1_welcome.php:84
+#: includes/Admin/template/dashboard/antimanual-ai.php:188
 msgid "Video Tutorials"
 msgstr "Видеоуроки"
 
-#: includes/Admin/setup-wizard/step1_welcome.php:30
-msgid "Support"
-msgstr "Поддержка"
+#: includes/Admin/setup-wizard/step2_settings.php:17
+#, fuzzy
+#| msgid "Search Banner layout"
+msgid "Basic Configuration"
+msgstr "Макет поискового баннера"
 
-#: includes/Admin/setup-wizard/step2_settings.php:9
+#: includes/Admin/setup-wizard/step2_settings.php:18
+msgid ""
+"Configure the essential settings for your documentation. Don't worry, you "
+"can change these later."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step2_settings.php:29
 #, fuzzy
 #| msgid "Docs Archive Page Title"
 msgid "Docs Archive Page"
 msgstr "Заголовок страницы архива документов"
 
-#: includes/Admin/setup-wizard/step2_settings.php:9
-msgid ""
-"This page will show on the Doc single page breadcrumb and will be used to "
-"show the Docs."
+#: includes/Admin/setup-wizard/step2_settings.php:30
+msgid "Select the page that will display all your documentation."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:14
-msgid "Select a page"
+#: includes/Admin/setup-wizard/step2_settings.php:36
+#, fuzzy
+#| msgid "Select a page"
+msgid "— Select a page —"
 msgstr "Выберите страницу"
 
-#: includes/Admin/setup-wizard/step2_settings.php:23
+#: includes/Admin/setup-wizard/step2_settings.php:47
 msgid ""
-"You can create this page with using [eazydocs] shortcode or available "
-"EazyDocs blocks or Elementor widgets."
+"Use [eazydocs] shortcode, Gutenberg blocks, or Elementor widgets on this "
+"page."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:26
+#: includes/Admin/setup-wizard/step2_settings.php:60
 msgid "Brand Color"
 msgstr "Фирменный цвет"
 
-#: includes/Admin/setup-wizard/step2_settings.php:27
-msgid "Select the Brand Color for your knowledge base."
+#: includes/Admin/setup-wizard/step2_settings.php:61
+msgid "Choose your primary brand color for buttons, links, and accents."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:33
+#: includes/Admin/setup-wizard/step2_settings.php:68
+#, fuzzy
+#| msgid " - Previous"
+msgid "Preview"
+msgstr " -Предыдущий"
+
+#: includes/Admin/setup-wizard/step2_settings.php:81
 #, fuzzy
 #| msgid "Docs Slug"
 msgid "Doc Root URL Slug"
 msgstr "Docs Slug"
 
-#: includes/Admin/setup-wizard/step2_settings.php:34
-msgid ""
-"Select the Docs URL Structure. This will be used to generate the Docs URL."
+#: includes/Admin/setup-wizard/step2_settings.php:82
+msgid "Set the URL structure for your documentation pages."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:39
+#: includes/Admin/setup-wizard/step2_settings.php:91
 #, fuzzy
 #| msgid "Default"
 msgid "Default Slug"
 msgstr "По умолчанию"
 
-#: includes/Admin/setup-wizard/step2_settings.php:44
+#: includes/Admin/setup-wizard/step2_settings.php:99
 msgid "Custom Slug"
 msgstr "Пользовательский слаг"
 
-#: includes/Admin/setup-wizard/step3_settings.php:9
-msgid "Select Page Layout"
-msgstr "Выберите макет (стиль) страницы"
-
-#: includes/Admin/setup-wizard/step3_settings.php:15
-msgid "Both sidebar layout"
+#: includes/Admin/setup-wizard/step2_settings.php:100
+msgid "Define your own URL structure"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step3_settings.php:20
+#: includes/Admin/setup-wizard/step3_settings.php:17
 #, fuzzy
-#| msgid "Left Sidebar"
-msgid "Left sidebar layout"
-msgstr "Левая боковая панель"
+#| msgid "Docs Layout"
+msgid "Choose Your Layout"
+msgstr "Макет документов"
 
-#: includes/Admin/setup-wizard/step3_settings.php:25
-#, fuzzy
-#| msgid "Right Sidebar"
-msgid "Right sidebar layout"
-msgstr "Правая боковая панель"
+#: includes/Admin/setup-wizard/step3_settings.php:18
+msgid ""
+"Select how your documentation pages will look. Pick a layout that suits your "
+"content best."
+msgstr ""
 
 #: includes/Admin/setup-wizard/step3_settings.php:29
+#, fuzzy
+#| msgid "Left Sidebar"
+msgid "Sidebar Layout"
+msgstr "Левая боковая панель"
+
+#: includes/Admin/setup-wizard/step3_settings.php:30
+#, fuzzy
+#| msgid "Show the Featured Image on the top of the doc content area."
+msgid "Choose the sidebar configuration for documentation pages."
+msgstr ""
+"Покажите избранное изображение в верхней части области содержимого документа."
+
+#: includes/Admin/setup-wizard/step3_settings.php:38
+#: includes/Admin/setup-wizard/step3_settings.php:40
+#, fuzzy
+#| msgid "Left Sidebar"
+msgid "Both Sidebars"
+msgstr "Левая боковая панель"
+
+#: includes/Admin/setup-wizard/step3_settings.php:41
+msgid "Left: Navigation | Right: TOC"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:53
+#, fuzzy
+#| msgid "Right Sidebar"
+msgid "Navigation on left side"
+msgstr "Правая боковая панель"
+
+#: includes/Admin/setup-wizard/step3_settings.php:65
+#, fuzzy
+#| msgid "Right Sidebar"
+msgid "Navigation on right side"
+msgstr "Правая боковая панель"
+
+#: includes/Admin/setup-wizard/step3_settings.php:81
 msgid "Page Width"
 msgstr "Ширина страницы"
 
-#: includes/Admin/setup-wizard/step3_settings.php:33
-msgid "Boxed Width"
-msgstr "Ширина блока"
+#: includes/Admin/setup-wizard/step3_settings.php:82
+msgid "Choose between boxed or full-width content area."
+msgstr ""
 
-#: includes/Admin/setup-wizard/step3_settings.php:41
+#: includes/Admin/setup-wizard/step3_settings.php:92
+msgid "Boxed"
+msgstr "Фиксированный"
+
+#: includes/Admin/setup-wizard/step3_settings.php:113
 #, fuzzy
 #| msgid "Customizer"
 msgid "Live Customizer"
 msgstr "Настройщик"
 
-#: includes/Admin/setup-wizard/step3_settings.php:44
+#: includes/Admin/setup-wizard/step3_settings.php:114
+msgid "Enable the frontend customizer for real-time styling adjustments."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:128
 #, fuzzy
-#| msgid "Customizer"
-msgid "Enable Live Customizer"
-msgstr "Настройщик"
+#| msgid "Go Pro"
+msgid "Pro"
+msgstr "Перейти в Pro"
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:9
-#: includes/Admin/setup-wizard/step4_install_plugins.php:48
-msgid "Install Recommended Plugins"
-msgstr "Установка Рекомендуемых Плагинов"
+#: includes/Admin/setup-wizard/step3_settings.php:131
+msgid "Unlock More Layouts with Pro"
+msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:20
+#: includes/Admin/setup-wizard/step3_settings.php:132
+msgid ""
+"Get access to advanced layout options, floating TOC, print mode, and more."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:135
+msgid "Upgrade Now"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:21
 msgid "Elementor"
 msgstr "Elementor"
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:21
+#: includes/Admin/setup-wizard/step4_install_plugins.php:22
 msgid ""
-"Required for Elementor widget. Install this plugin if you want to use the "
-"Elementor widgets of EazyDocs."
+"Required for EazyDocs Elementor widgets. Perfect for building custom "
+"documentation layouts."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:22
+#: includes/Admin/setup-wizard/step4_install_plugins.php:24
 msgid "Required"
 msgstr "Обязательно"
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:27
-msgid "Advanced Accordion Gutenberg Block"
-msgstr ""
-
-#: includes/Admin/setup-wizard/step4_install_plugins.php:28
-msgid ""
-"A highly advanced and lightweight accordion plugin, perfect for creating "
-"FAQs and accordions in the block editor."
-msgstr ""
-
 #: includes/Admin/setup-wizard/step4_install_plugins.php:29
-#: includes/Admin/setup-wizard/step4_install_plugins.php:36
-#: includes/Admin/setup-wizard/step4_install_plugins.php:43
+msgid "Advanced Accordion Block"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:30
+msgid "Create beautiful FAQs and accordion content in the block editor."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:32
 msgid "Recommended"
 msgstr "Рекомендуемые"
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:33
-msgid "BBP Core"
+#: includes/Admin/setup-wizard/step4_install_plugins.php:36
+msgid "Antimanual"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:35
-msgid ""
-"Enhance your bbPress forum with powerful features. This plugin is designed "
-"exclusively for bbPress users."
+#: includes/Admin/setup-wizard/step4_install_plugins.php:38
+msgid "Create comprehensive user guides and documentation with Antimanual."
 msgstr ""
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:40
+#: includes/Admin/setup-wizard/step4_install_plugins.php:48
+#, fuzzy
+#| msgid "Copy Link Label"
+msgid "Optional"
+msgstr "Копировать метку ссылки"
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:44
 msgid "Changeloger"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:42
-msgid ""
-"Ideal for publishing software changelogs, this plugin converts plain text "
-"into visually rich formats in the WordPress block editor."
+#: includes/Admin/setup-wizard/step4_install_plugins.php:46
+msgid "Publish beautiful changelogs directly in your documentation."
 msgstr ""
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:57
+#, fuzzy
+#| msgid "Install Recommended Plugins"
+msgid "Recommended Plugins"
+msgstr "Установка Рекомендуемых Плагинов"
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:58
+msgid ""
+"These plugins enhance your documentation experience. Choose the ones that "
+"fit your needs."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:69
 msgid "Activated"
 msgstr "Активировано"
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:57
+#: includes/Admin/setup-wizard/step4_install_plugins.php:69
 msgid "Activate"
 msgstr "Активировать"
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:57
+#: includes/Admin/setup-wizard/step4_install_plugins.php:69
 msgid "Install"
 msgstr "Установить"
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:72
-msgid "More Info"
-msgstr "Больше информации"
-
-#: includes/Admin/setup-wizard/step4_install_plugins.php:84
-msgid ""
-"Install the plugins you need. Each one has a short description to help you "
-"choose the right ones for better functionality."
-msgstr ""
-
-#: includes/Admin/template/child-docs.php:160
-msgid "Add Section"
-msgstr "Добавить секцию"
-
-#: includes/Admin/template/dashboard/analytics.php:3
-msgid "Performance Overview"
-msgstr ""
-
-#: includes/Admin/template/dashboard/analytics.php:7
-msgid "This Week"
-msgstr ""
-
-#: includes/Admin/template/dashboard/analytics.php:10
-msgid "Last Month"
-msgstr ""
-
-#: includes/Admin/template/dashboard/card-info.php:9
+#: includes/Admin/setup-wizard/step4_install_plugins.php:98
 #, fuzzy
-#| msgid "All Docs"
-msgid "Total Docs"
-msgstr "Все документы"
+#| msgid "View Details"
+msgid "Details"
+msgstr "Подробнее"
 
-#: includes/Admin/template/dashboard/card-info.php:12
-#: includes/Admin/template/dashboard/card-info.php:25
-#: includes/Admin/template/dashboard/card-info.php:44
-#: includes/Admin/template/dashboard/card-info.php:59
-msgid "View More"
-msgstr "Просмотреть больше"
+#: includes/Admin/template/analytics-presentation.php:29
+msgid "Promax Feature"
+msgstr ""
 
-#: includes/Admin/template/dashboard/card-info.php:22
+#: includes/Admin/template/analytics-presentation.php:31
+#, fuzzy
+#| msgid "Documentations"
+msgid "Powerful Documentation Analytics"
+msgstr "Документация"
+
+#: includes/Admin/template/analytics-presentation.php:33
+msgid ""
+"Get deep insights into how users interact with your documentation. Track "
+"views, understand search behavior, measure satisfaction, and make data-"
+"driven improvements."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:38
+msgid "Get Promax Plan"
+msgstr "Получить план Promax"
+
+#: includes/Admin/template/analytics-presentation.php:52
+msgid "Analytics Dashboard Overview"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:55
+msgid ""
+"A comprehensive dashboard showing all key metrics at a glance with "
+"interactive charts."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:66
+#: includes/Admin/template/dashboard/card-info.php:42
 #, fuzzy
 #| msgid "Views"
 msgid "Total Views"
 msgstr "Просмотры"
 
-#: includes/Admin/template/dashboard/card-info.php:41
+#: includes/Admin/template/analytics-presentation.php:78
+#: includes/Admin/template/feedback-presentation.php:90
+#, fuzzy
+#| msgid "Section Button"
+msgid "Satisfaction Rate"
+msgstr "Кнопка раздела"
+
+#: includes/Admin/template/analytics-presentation.php:90
+#, fuzzy
+#| msgid "Search"
+msgid "Search Success"
+msgstr "Поиск"
+
+#: includes/Admin/template/analytics-presentation.php:102
+#, fuzzy
+#| msgid "Public Doc"
+msgid "Published Docs"
+msgstr "Публичный документ"
+
+#: includes/Admin/template/analytics-presentation.php:118
+msgid "Performance Trends (Last 7 Days)"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:123
+#: includes/Admin/template/dashboard/analytics.php:49
+#: includes/Admin/template/dashboard/analytics.php:188
+#: includes/Admin/template/dashboard/analytics.php:250
+#, fuzzy
+#| msgid "Views"
+msgid "Views"
+msgstr "Просмотры"
+
+#: includes/Admin/template/analytics-presentation.php:131
+#: includes/Admin/template/dashboard/analytics.php:57
+#: includes/Admin/template/dashboard/analytics.php:196
+#: includes/Admin/template/dashboard/analytics.php:258
+#, fuzzy
+#| msgid "Search"
+msgid "Searches"
+msgstr "Поиск"
+
+#: includes/Admin/template/analytics-presentation.php:169
+#, fuzzy
+#| msgid "Masonry"
+msgid "Mon"
+msgstr "Кирпичная кладка"
+
+#: includes/Admin/template/analytics-presentation.php:170
+msgid "Tue"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:171
+#, fuzzy
+#| msgid "Red"
+msgid "Wed"
+msgstr "Красный"
+
+#: includes/Admin/template/analytics-presentation.php:172
+msgid "Thu"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:173
+msgid "Fri"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:174
+#, fuzzy
+#| msgid "Static"
+msgid "Sat"
+msgstr "Статический"
+
+#: includes/Admin/template/analytics-presentation.php:175
+msgid "Sun"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:181
+msgid "Interactive charts available in Promax"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:191
+msgid "Six Powerful Analytics Modules"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:194
+msgid ""
+"Each module provides deep insights into different aspects of your "
+"documentation performance."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:204
+msgid "Overview Dashboard"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:205
+msgid ""
+"Get a bird's eye view of all key metrics including total views, satisfaction "
+"rate, search success, and published docs count with trend indicators."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:207
+msgid "Key performance indicators"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:208
+msgid "Interactive trend charts"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:209
+msgid "Quick insights & summaries"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:220
+#, fuzzy
+#| msgid "Views"
+msgid "Page Views Analytics"
+msgstr "Просмотры"
+
+#: includes/Admin/template/analytics-presentation.php:221
+msgid ""
+"Track detailed page view statistics for every documentation page. Identify "
+"your most popular content and engagement patterns."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:223
+msgid "Daily/weekly/monthly views"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:224
+msgid "Top performing docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:225
+#, fuzzy
+#| msgid "Viewed Articles"
+msgid "View trends over time"
+msgstr "Просмотренные статьи"
+
+#: includes/Admin/template/analytics-presentation.php:236
+#, fuzzy
+#| msgid "Feedback Area"
+msgid "Feedback Analytics"
+msgstr "Зона обратной связи"
+
+#: includes/Admin/template/analytics-presentation.php:237
+msgid ""
+"Monitor user satisfaction with helpful/not helpful vote tracking. Identify "
+"which docs need improvement based on real user feedback."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:239
+msgid "Satisfaction rate tracking"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:240
+msgid "Positive/negative breakdown"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:241
+msgid "Docs needing attention"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:252
+#, fuzzy
+#| msgid "Analytics"
+msgid "Search Analytics"
+msgstr "Аналитика"
+
+#: includes/Admin/template/analytics-presentation.php:253
+msgid ""
+"Understand what users are searching for in your documentation. Discover "
+"content gaps and optimize for commonly searched terms."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:255
+#, fuzzy
+#| msgid "Popular Searches"
+msgid "Popular search keywords"
+msgstr "Популярные запросы"
+
+#: includes/Admin/template/analytics-presentation.php:256
+msgid "Failed search tracking"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:257
+#, fuzzy
+#| msgid "Search here"
+msgid "Search success rate"
+msgstr "Искать здесь"
+
+#: includes/Admin/template/analytics-presentation.php:268
+#, fuzzy
+#| msgid "Doc Single"
+msgid "Doc Rankings"
+msgstr "Док Сингл"
+
+#: includes/Admin/template/analytics-presentation.php:269
+msgid ""
+"See which documentation pages are performing best and which need "
+"improvement. Rankings based on views and user feedback combined."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:271
+msgid "Most helpful docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:272
+msgid "Least helpful docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:273
+msgid "Performance scores"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:284
+#, fuzzy
+#| msgid "Contribution Feature"
+msgid "Collaboration Metrics"
+msgstr "Функция вклада"
+
+#: includes/Admin/template/analytics-presentation.php:285
+msgid ""
+"Track team collaboration and contribution metrics. See who is actively "
+"contributing to your documentation and measure team productivity."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:287
+#, fuzzy
+#| msgid "Contributors"
+msgid "Contributor statistics"
+msgstr "Авторы"
+
+#: includes/Admin/template/analytics-presentation.php:288
+msgid "Edit activity tracking"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:289
+msgid "Team performance"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:300
+#: includes/Admin/template/faq-builder.php:116
+#, fuzzy
+#| msgid "Features"
+msgid "Advanced Features"
+msgstr "Функции"
+
+#: includes/Admin/template/analytics-presentation.php:303
+msgid "Tools and features that help you take action on your analytics data."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:311
+msgid "Custom Date Ranges"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:312
+msgid "Analyze data for any time period with flexible date range selection."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:318
+msgid "Export to CSV"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:319
+msgid "Download analytics data for external analysis or reporting."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:326
+msgid "Receive scheduled analytics reports directly in your inbox."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:332
+#: includes/Admin/template/feedback-presentation.php:137
+#, fuzzy
+#| msgid "Features"
+msgid "Advanced Filtering"
+msgstr "Функции"
+
+#: includes/Admin/template/analytics-presentation.php:333
+msgid "Filter and sort data by various criteria to find exactly what you need."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:339
+msgid "Visual Charts"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:340
+msgid "Beautiful, interactive charts powered by ApexCharts library."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:346
+msgid "Actionable Insights"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:347
+msgid "Get smart recommendations based on your analytics data."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:356
+#, fuzzy
+#| msgid "Analytics"
+msgid "Why Analytics Matters"
+msgstr "Аналитика"
+
+#: includes/Admin/template/analytics-presentation.php:360
+msgid "Identify top-performing documentation and replicate success"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:364
+msgid "Discover content gaps through failed search analysis"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:368
+msgid "Reduce support tickets by improving low-rated docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:372
+msgid "Make data-driven decisions for content strategy"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:376
+msgid "Track team productivity and collaboration"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:380
+msgid "Demonstrate documentation ROI to stakeholders"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:391
+msgid ""
+"faster identification of documentation issues through analytics-driven "
+"insights"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:409
+msgid "Unlock the Full Power of Analytics"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:410
+msgid ""
+"Get the Promax plan and start making data-driven improvements to your "
+"documentation today."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:414
+#, fuzzy
+#| msgid "EazyDocs Pro"
+msgid "Get EazyDocs Promax"
+msgstr "EazyDocs Pro"
+
+#: includes/Admin/template/analytics-presentation.php:419
+#, fuzzy
+#| msgid "All articles"
+msgid "All 6 analytics modules"
+msgstr "Все статьи"
+
+#: includes/Admin/template/analytics-presentation.php:423
+msgid "Priority support"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:427
+msgid "Lifetime updates"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:51
+msgid "Toggle expand/collapse all sections"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:53
+#, fuzzy
+#| msgid "Expanded"
+msgid "Expand All"
+msgstr "Расширенный"
+
+#: includes/Admin/template/child-docs.php:167
+msgid "Add Section"
+msgstr "Добавить секцию"
+
+#: includes/Admin/template/dashboard/analytics.php:5
+msgid "Performance Overview"
+msgstr ""
+
+#: includes/Admin/template/dashboard/analytics.php:10
+msgid "This Week"
+msgstr ""
+
+#: includes/Admin/template/dashboard/analytics.php:13
+msgid "Last Month"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:29
+msgid "Supercharge with AI"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:32
+#: includes/Elementor/Docs/Doc_Widget.php:606
+msgid "Active"
+msgstr "Активный"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:34
+#, fuzzy
+#| msgid "Disable"
+msgid "Available"
+msgstr "Отключить"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:42
+msgid "Antimanual AI is enhancing your documentation experience!"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:48
+#, fuzzy
+#| msgid "Search Banner layout"
+msgid "API Configuration"
+msgstr "Макет поискового баннера"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:58
+#, fuzzy
+#| msgid "Close Icon"
+msgid "Chatbot"
+msgstr "Иконка Закрыть"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:63
+#, fuzzy
+#| msgid "OnePage Docs"
+msgid "Generate Docs"
+msgstr "Одностраничная документация"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:68
+#, fuzzy
+#| msgid "Button Position"
+msgid "Auto Posting"
+msgstr "Положение кнопки"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:73
+msgid "Bulk Rewrite"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:81
+msgid ""
+"Activate Antimanual to unlock powerful AI features for your documentation!"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:86
+msgid "70%+ reduction"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:86
+msgid "in support tickets"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:87
+msgid "Instant answers"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:87
+msgid "with AI chatbot trained on your docs"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:88
+msgid "Auto-generate"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:88
+#, fuzzy
+#| msgid "Documentation"
+msgid "professional documentation"
+msgstr "Документация"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:89
+msgid "Semantic search"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:89
+msgid "that understands user intent"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:96
+msgid "Activate Antimanual"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:107
+msgid ""
+"Transform your EazyDocs knowledge base into an intelligent support hub with "
+"Antimanual AI!"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:113
+msgid "Reduced Support Tickets"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:117
+msgid "AI Chatbot Support"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:121
+msgid "Latest AI Models"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:128
+msgid "Intelligent Chatbot"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:129
+msgid "Auto-trained on your docs, PDFs & URLs"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:133
+#, fuzzy
+#| msgid "Docs General"
+msgid "Doc Generator"
+msgstr "Общие сведения о документах"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:134
+msgid "Create comprehensive docs in seconds"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:138
+#, fuzzy
+#| msgid "Search"
+msgid "AI Search"
+msgstr "Поиск"
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:139
+msgid "Semantic search with intent recognition"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:143
+msgid "Auto-Posting"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:144
+msgid "Schedule AI-generated content"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:165
+msgid "Why Antimanual is Superior:"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:168
+msgid "GPT-4, GPT-5, Gemini support (not just GPT-3.5)"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:169
+msgid "Train on Docs, PDFs, URLs & Custom Text"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:170
+msgid "Full conversation history & context retention"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:171
+msgid "Cross-domain embed & bbPress integration"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:200
+msgid ""
+"Free version available. Upgrade to Premium for higher limits and priority "
+"support."
+msgstr ""
+
+#: includes/Admin/template/dashboard/card-info.php:28
+#, fuzzy
+#| msgid "All Docs"
+msgid "Total Docs"
+msgstr "Все документы"
+
+#: includes/Admin/template/dashboard/card-info.php:56
 #, fuzzy
 #| msgid "No Positive votes, "
 msgid "Positive Votes"
 msgstr "Нет положительных голосов, "
 
-#: includes/Admin/template/dashboard/card-info.php:56
+#: includes/Admin/template/dashboard/card-info.php:70
 #, fuzzy
 #| msgid "No Negative votes."
 msgid "Negative Votes"
 msgstr "Нет отрицательных голосов."
 
-#: includes/Admin/template/dashboard/header.php:23
+#. translators: %d: number of stale docs
+#: includes/Admin/template/dashboard/doc-health.php:53
+#, php-format
+msgid "%d articles haven't been updated in 90+ days"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:57
+#, fuzzy
+#| msgid "views"
+msgid "Review"
+msgstr "просмотров"
+
+#. translators: %d: number of docs with no views
+#: includes/Admin/template/dashboard/doc-health.php:72
+#, php-format
+msgid "%d articles have no views yet"
+msgstr ""
+
+#. translators: %d: percentage of failed searches
+#: includes/Admin/template/dashboard/doc-health.php:91
+#, php-format
+msgid "%d%% of searches aren't finding results"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:95
+msgid "View Insights"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:113
+#, fuzzy
+#| msgid "Excerpt"
+msgid "Excellent"
+msgstr "Отрывок"
+
+#: includes/Admin/template/dashboard/doc-health.php:117
+msgid "Good"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:121
+msgid "Fair"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:125
+msgid "Needs Work"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:134
+#, fuzzy
+#| msgid "Documentations"
+msgid "Documentation Health"
+msgstr "Документация"
+
+#: includes/Admin/template/dashboard/doc-health.php:164
+#, fuzzy
+#| msgid "Viewed Articles"
+msgid "Published Articles"
+msgstr "Просмотренные статьи"
+
+#: includes/Admin/template/dashboard/doc-health.php:174
+#, fuzzy
+#| msgid "Feedback"
+msgid "With Feedback"
+msgstr "Обратная связь"
+
+#: includes/Admin/template/dashboard/doc-health.php:184
+msgid "Need Review"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:192
+#, fuzzy
+#| msgid "Recommended"
+msgid "Recommendations"
+msgstr "Рекомендуемые"
+
+#: includes/Admin/template/dashboard/doc-health.php:208
+msgid "Great job! Your documentation is in excellent shape."
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:49
+#, fuzzy
+#| msgid "Search"
+msgid "Failed Searches"
+msgstr "Поиск"
+
+#. translators: %d: number of failed search attempts
+#: includes/Admin/template/dashboard/failed-searches.php:67
+#, php-format
+msgid "%d attempts"
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:80
+msgid "Create doc for this keyword"
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:82
+#, fuzzy
+#| msgid "Create a Doc"
+msgid "Create"
+msgstr "Создание документа"
+
+#: includes/Admin/template/dashboard/failed-searches.php:91
+msgid "View all search analytics"
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:100
+msgid "Great! No failed searches recorded."
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:101
+msgid "Your documentation is covering user needs well."
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:22
+msgid "Good morning"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:24
+msgid "Good afternoon"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:26
+msgid "Good evening"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:28
+msgid "Good night"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:47
+#, fuzzy
+#| msgid "Search here"
+msgid "Overview"
+msgstr "Искать здесь"
+
+#: includes/Admin/template/dashboard/header.php:81
 #: includes/Admin/template/header.php:37
 #, fuzzy
 #| msgid "Create a Doc"
 msgid "Create Doc with AI"
 msgstr "Создание документа"
 
-#: includes/Admin/template/dashboard/recent-activity.php:81
+#: includes/Admin/template/dashboard/recent-activity.php:5
 msgid "Recent Activity"
 msgstr ""
 
-#: includes/Admin/template/dashboard/recent-activity.php:86
+#: includes/Admin/template/dashboard/recent-activity.php:102
 msgid "No recent activity found."
 msgstr ""
 
-#: includes/Admin/template/dashboard/recent-activity.php:104
+#: includes/Admin/template/dashboard/recent-activity.php:108
+#, fuzzy
+#| msgctxt "Taxonomy Singular Name"
+#| msgid "Tag"
+msgid "ago"
+msgstr "Тег"
+
+#: includes/Admin/template/dashboard/recent-activity.php:123
 #, fuzzy
 #| msgid "Comment Count"
 msgid "commented on"
 msgstr "Количество комментариев"
 
-#: includes/Admin/template/dashboard/search-data.php:21
+#: includes/Admin/template/dashboard/recent-activity.php:139
+#, fuzzy
+#| msgid "All articles"
+msgid "New article"
+msgstr "Все статьи"
+
+#: includes/Admin/template/dashboard/recent-activity.php:144
+#, fuzzy
+#| msgid "Badge updated"
+msgid "Draft updated"
+msgstr "Эмблема обновлена"
+
+#: includes/Admin/template/dashboard/recent-activity.php:149
+#, fuzzy
+#| msgid "Articles Title"
+msgid "Article deleted"
+msgstr "Articles Title"
+
+#: includes/Admin/template/dashboard/recent-activity.php:154
+#, fuzzy
+#| msgid "Activate"
+msgid "Activity"
+msgstr "Активировать"
+
+#: includes/Admin/template/dashboard/search-data.php:35
 #, fuzzy
 #| msgid "Search here"
 msgid "Search Overview"
 msgstr "Искать здесь"
 
-#: includes/Admin/template/dashboard/top-ranked-docs.php:3
+#: includes/Admin/template/dashboard/search-data.php:39
+#, fuzzy
+#| msgid "Success"
+msgid "success"
+msgstr "Успех"
+
+#: includes/Admin/template/dashboard/search-data.php:51
+#: includes/Admin/template/dashboard/search-data.php:187
+#, fuzzy
+#| msgid "All Docs"
+msgid "Total"
+msgstr "Все документы"
+
+#: includes/Admin/template/dashboard/search-data.php:56
+#: includes/Admin/template/dashboard/search-data.php:155
+#, fuzzy
+#| msgid "Success"
+msgid "Successful"
+msgstr "Успех"
+
+#: includes/Admin/template/dashboard/search-data.php:61
+#: includes/Admin/template/dashboard/search-data.php:155
+msgid "Failed"
+msgstr ""
+
+#: includes/Admin/template/dashboard/search-data.php:130
+#, fuzzy
+#| msgid "Search Doc"
+msgid "No Search Data"
+msgstr "Поиск документа"
+
+#: includes/Admin/template/dashboard/search-data.php:203
+#, fuzzy
+#| msgid "Search"
+msgid "searches"
+msgstr "Поиск"
+
+#: includes/Admin/template/dashboard/system-status.php:35
+msgid "System Status"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:42
+#, fuzzy
+#| msgid "EazyDocs Pro"
+msgid "EazyDocs Version"
+msgstr "EazyDocs Pro"
+
+#: includes/Admin/template/dashboard/system-status.php:50
+#: includes/Admin/template/dashboard/system-status.php:57
+#, fuzzy
+#| msgid "Pro Icon"
+msgid "Pro Version"
+msgstr "Профессиональный значок"
+
+#: includes/Admin/template/dashboard/system-status.php:61
+msgid "Upgrade"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:68
+msgid "WordPress"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:73
+msgid "PHP Version"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:78
+#, fuzzy
+#| msgid "Active"
+msgid "Active Theme"
+msgstr "Активный"
+
+#: includes/Admin/template/dashboard/system-status.php:84
+msgid "Docs Page"
+msgstr "Страница «Документы»"
+
+#: includes/Admin/template/dashboard/system-status.php:88
+#, fuzzy
+#| msgid "Views"
+msgid "View"
+msgstr "Просмотры"
+
+#: includes/Admin/template/dashboard/system-status.php:97
+msgid "Resources"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:105
+msgid "Support"
+msgstr "Поддержка"
+
+#: includes/Admin/template/dashboard/system-status.php:109
+msgid "Changelog"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:113
+#, fuzzy
+#| msgid "Features"
+msgid "Features"
+msgstr "Функции"
+
+#: includes/Admin/template/dashboard/top-ranked-docs.php:5
 #, fuzzy
 #| msgid "Related Docs"
 msgid "Top Ranked Docs"
 msgstr "Связанные документы"
 
-#: includes/Admin/template/dashboard/top-ranked-docs.php:91
-#: includes/Admin/template/template-parts.php:71
+#: includes/Admin/template/dashboard/top-ranked-docs.php:103
+#: includes/Admin/template/template-parts.php:81
 msgid "No rates"
 msgstr "Нет тарифов"
 
-#: includes/Admin/template/dashboard/top-ranked-docs.php:104
+#: includes/Admin/template/dashboard/top-ranked-docs.php:117
 #, fuzzy
 #| msgid "No result found!"
-msgid "No ranked docs found."
+msgid "No ranked docs found yet."
 msgstr "Результатов не найдено!"
 
-#: includes/Admin/template/dashboard/top-viewed-docs.php:2
+#: includes/Admin/template/dashboard/top-viewed-docs.php:5
 #, fuzzy
 #| msgid "View Doc"
 msgid "Top Viewed Docs"
 msgstr "Предпросмотр документа"
 
-#: includes/Admin/template/dashboard/top-viewed-docs.php:32
+#: includes/Admin/template/dashboard/top-viewed-docs.php:39
 #, fuzzy
-#| msgid "Views"
-msgid " Views"
-msgstr "Просмотры"
+#| msgid "views"
+msgid " views"
+msgstr "просмотров"
 
-#: includes/Admin/template/dashboard/top-viewed-docs.php:42
+#: includes/Admin/template/dashboard/top-viewed-docs.php:53
 #, fuzzy
 #| msgid "Not Doc found"
-msgid "No viewed docs found."
+msgid "No viewed docs found yet."
 msgstr "Не найден Doc"
 
 #: includes/Admin/template/faq-builder.php:23
@@ -3597,14 +4820,308 @@ msgstr ""
 msgid "Pre-built Patterns"
 msgstr ""
 
-#: includes/Admin/template/faq-builder.php:116
-#, fuzzy
-#| msgid "Features"
-msgid "Advanced Features"
-msgstr "Функции"
-
 #: includes/Admin/template/faq-builder.php:122
 msgid "Engaging Layouts"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:28
+#, fuzzy
+#| msgid "Subscriber"
+msgid "Premium Feature"
+msgstr "Подписчик"
+
+#: includes/Admin/template/feedback-presentation.php:30
+#, fuzzy
+#| msgid "Users Feedback"
+msgid "Users Feedback Management"
+msgstr "Отзывы пользователей"
+
+#: includes/Admin/template/feedback-presentation.php:32
+msgid ""
+"Collect, manage, and analyze user feedback to improve your documentation. "
+"Understand what users find helpful and what needs improvement."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:37
+msgid "Unlock This Feature"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:51
+msgid "Feedback Analytics at a Glance"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:54
+msgid ""
+"Get real-time insights into user satisfaction with powerful analytics "
+"dashboards."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:63
+#, fuzzy
+#| msgid "Voting Feedback"
+msgid "Total Feedback"
+msgstr "Отзывы о голосовании"
+
+#: includes/Admin/template/feedback-presentation.php:72
+msgid "New This Week"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:81
+msgid "Resolved"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:106
+msgid "Powerful Features"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:109
+msgid ""
+"Everything you need to understand and improve your documentation based on "
+"real user feedback."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:116
+#: includes/Admin/template/feedback-presentation.php:171
+#, fuzzy
+#| msgid "Feedback"
+msgid "Doc Feedback"
+msgstr "Обратная связь"
+
+#: includes/Admin/template/feedback-presentation.php:117
+msgid ""
+"Collect helpful/unhelpful votes on each documentation page. See which docs "
+"are performing well and which need attention."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:123
+#: includes/Admin/template/feedback-presentation.php:176
+#: includes/Admin/template/feedback-presentation.php:269
+#, fuzzy
+#| msgid "Feedback"
+msgid "Text Feedback"
+msgstr "Обратная связь"
+
+#: includes/Admin/template/feedback-presentation.php:124
+msgid ""
+"Allow users to submit detailed text feedback with email contact. Understand "
+"specific pain points and suggestions."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:130
+#, fuzzy
+#| msgid "Sections"
+msgid "Email Integration"
+msgstr "Секции"
+
+#: includes/Admin/template/feedback-presentation.php:131
+msgid ""
+"Reply directly to user feedback via email. Build a relationship with your "
+"users and show them you care."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:138
+msgid ""
+"Filter feedback by status, date, doc type, and more. Quickly find what you "
+"need with powerful search."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:144
+msgid "CSV Export"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:145
+msgid ""
+"Export all feedback data to CSV for analysis in Excel or Google Sheets. "
+"Create reports and track trends."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:151
+#, fuzzy
+#| msgid "Docs Archive Page Title"
+msgid "Archive Management"
+msgstr "Заголовок страницы архива документов"
+
+#: includes/Admin/template/feedback-presentation.php:152
+msgid ""
+"Archive resolved feedback to keep your workspace clean. Bulk actions make "
+"managing hundreds of items easy."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:161
+msgid "Interface Preview"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:164
+msgid ""
+"A beautiful, intuitive interface to manage all your user feedback in one "
+"place."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:186
+#, fuzzy
+#| msgid "Open Icon"
+msgid "Open"
+msgstr "Значок при открытии"
+
+#: includes/Admin/template/feedback-presentation.php:190
+#, fuzzy
+#| msgid "Docs Archive"
+msgid "Archived"
+msgstr "Архив документов"
+
+#: includes/Admin/template/feedback-presentation.php:195
+#, fuzzy
+#| msgid "Search..."
+msgid "Search feedback..."
+msgstr "Поиск..."
+
+#: includes/Admin/template/feedback-presentation.php:208
+msgid "Getting Started Guide"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:209
+#, fuzzy
+#| msgid "Helpful feedback"
+msgid "Helpful"
+msgstr "Полезный отзыв"
+
+#: includes/Admin/template/feedback-presentation.php:211
+msgid "2 hours ago"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:217
+msgid ""
+"This documentation was incredibly helpful! The step-by-step instructions "
+"made it easy to set up everything correctly."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:221
+#: includes/Admin/template/feedback-presentation.php:251
+#: includes/Admin/template/feedback-presentation.php:281
+msgid "Reply"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:225
+#: includes/Admin/template/feedback-presentation.php:255
+#: includes/Admin/template/feedback-presentation.php:285
+#, fuzzy
+#| msgid "Docs Archive"
+msgid "Archive"
+msgstr "Архив документов"
+
+#: includes/Admin/template/feedback-presentation.php:238
+#, fuzzy
+#| msgid "Footnote Shortcode"
+msgid "API Reference"
+msgstr "Шорткод сноски"
+
+#: includes/Admin/template/feedback-presentation.php:239
+msgid "Needs Review"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:241
+msgid "5 hours ago"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:245
+#, fuzzy
+#| msgid "All Docs"
+msgid "API Docs"
+msgstr "Все документы"
+
+#: includes/Admin/template/feedback-presentation.php:247
+msgid ""
+"Could you add more code examples for the authentication section? The current "
+"examples are good but more use cases would help."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:268
+msgid "Troubleshooting Tips"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:271
+msgid "Yesterday"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:275
+#, fuzzy
+#| msgid "Center"
+msgid "Help Center"
+msgstr "Центр"
+
+#: includes/Admin/template/feedback-presentation.php:277
+msgid ""
+"The troubleshooting section saved me hours of debugging! Found the solution "
+"to my caching issue right away."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:296
+#, fuzzy
+#| msgid "Contribution Feature"
+msgid "Unlock Pro to Access"
+msgstr "Функция вклада"
+
+#: includes/Admin/template/feedback-presentation.php:306
+#, fuzzy
+#| msgid "Users Feedback"
+msgid "Why User Feedback Matters"
+msgstr "Отзывы пользователей"
+
+#: includes/Admin/template/feedback-presentation.php:310
+msgid "Identify documentation gaps and areas that need improvement"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:314
+msgid "Reduce support tickets by improving self-service documentation"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:318
+msgid "Understand what content resonates with your users"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:322
+msgid "Build direct relationships with users through email replies"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:326
+msgid "Track satisfaction trends over time with analytics"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:330
+msgid "Prioritize content updates based on real user input"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:341
+msgid ""
+"of users find docs more helpful after implementing feedback-driven "
+"improvements"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:359
+msgid "Ready to Collect User Feedback?"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:360
+msgid ""
+"Upgrade to EazyDocs Pro and start understanding your users better today."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:364
+#, fuzzy
+#| msgid "EazyDocs Pro"
+msgid "Get EazyDocs Pro Now"
+msgstr "EazyDocs Pro"
+
+#: includes/Admin/template/feedback-presentation.php:369
+msgid "14-day money-back guarantee"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:373
+msgid "Priority email or chat support included"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:377
+msgid "Free updates till the license expires"
 msgstr ""
 
 #: includes/Admin/template/header.php:17
@@ -3647,6 +5164,121 @@ msgstr "Значок «Уведомить»"
 msgid "Pro Icon"
 msgstr "Профессиональный значок"
 
+#: includes/Admin/template/integrated-themes.php:18
+msgid "Docy"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:19
+msgid ""
+"Professional documentation and forum theme with advanced features for "
+"creating knowledge bases, community forums, and comprehensive support "
+"resources."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:26
+msgid "Docly"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:27
+msgid ""
+"Comprehensive documentation and knowledge base theme with powerful built-in "
+"features for creating extensive documentation, forums, and support systems."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:34
+msgid "Saasland"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:35
+msgid ""
+"Specialized SaaS and startup theme for software companies with modern "
+"design, pricing tables, feature showcases, and marketing-focused layouts "
+"perfect for tech products."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:42
+msgid "Banca"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:43
+msgid ""
+"Banking and business finance theme for financial institutions, loan "
+"services, and corporate documentation with professional layouts and trust-"
+"building features."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:50
+msgid "Ama"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:51
+msgid ""
+"Social Q&A and forum WordPress theme for building community-driven question "
+"and answer platforms with discussion forums and user engagement features."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:58
+msgid "Landpagy"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:59
+msgid ""
+"Multipurpose landing page theme ideal for creating high-converting product "
+"pages, promotional campaigns, and corporate websites with modern design "
+"elements."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:66
+msgid "Deski"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:67
+msgid ""
+"Modern event ticketing and landing page WordPress theme designed for "
+"creating professional event pages, ticket sales, and promotional campaigns."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:74
+msgid "Rogan"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:75
+msgid ""
+"Creative multipurpose WordPress theme perfect for businesses, portfolios, "
+"and customer support platforms with elegant design and powerful "
+"customization options."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:82
+msgid "Zoomy"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:83
+msgid ""
+"Learning management system theme for online courses and educational "
+"platforms featuring course management, instructor profiles, and student "
+"engagement tools."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:95
+msgid "Compatible Themes for EazyDocs"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:98
+msgid ""
+"Discover professionally designed WordPress themes optimized for "
+"documentation. Each theme is tested and verified to work seamlessly with "
+"EazyDocs for the best user experience."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:120
+msgid "View Demo"
+msgstr "Посмотреть демо"
+
+#: includes/Admin/template/integrated-themes.php:124
+msgid "Get Theme"
+msgstr ""
+
 #: includes/Admin/template/parent-docs.php:56
 #: includes/Elementor/template-helpers.php:93
 msgid "Password Protected Doc"
@@ -3657,7 +5289,7 @@ msgid "Edit this doc"
 msgstr "Редактировать этот документ"
 
 #: includes/Admin/template/parent-docs.php:95
-#: includes/Admin/template/template-parts.php:158
+#: includes/Admin/template/template-parts.php:168
 msgid "Move to Trash"
 msgstr "Переместить в корзину"
 
@@ -3681,12 +5313,113 @@ msgstr "Боковая панель Документов"
 msgid "Sidebar"
 msgstr "Боковая панель"
 
-#: includes/Admin/template/template-parts.php:15
-msgid "Hold the mouse and drag to move this doc."
-msgstr "Удерживайте мышь и перетащите, чтобы переместить этот документ."
+#: includes/Admin/template/partials/ai-create-doc-popup.php:25
+msgid "Powered by Antimanual AI"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:27
+#, fuzzy
+#| msgid "Create a Doc"
+msgid "Create Docs Smarter with AI"
+msgstr "Создание документа"
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:28
+msgid ""
+"Transform documentation with structured, accurate, and professional docs in "
+"minutes using enterprise-grade AI."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:42
+#, fuzzy
+#| msgid "Documentation"
+msgid "Documentation Generator"
+msgstr "Документация"
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:44
+msgid ""
+"Generate comprehensive, SEO-optimized docs with custom tone and language. "
+"Choose professional, friendly, or technical styles."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:50
+msgid "24/7 AI Chatbot"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:52
+msgid ""
+"Reduce support tickets by 70%+ with an intelligent chatbot trained on your "
+"EazyDocs knowledge base. Instant, accurate answers."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:58
+msgid "Bulk Generation"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:60
+msgid ""
+"Generate multiple docs at once with comprehensive structures. Review and "
+"refine outlines before generation."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:66
+#, fuzzy
+#| msgid "Docs to Show"
+msgid "Docs from Files"
+msgstr "Документы для показа"
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:68
+msgid ""
+"Upload PDFs, URLs, and custom text to generate context-aware documentation "
+"automatically."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:74
+msgid "Semantic AI Search"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:76
+msgid ""
+"Beyond keywords - understand user intent with natural language processing "
+"and smart suggestions."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:82
+msgid "GPT-5 & Gemini Support"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:84
+msgid ""
+"Powered by latest AI models including GPT-4, GPT-5, and Google Gemini for "
+"superior accuracy."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:93
+msgid "Antimanual is Active!"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:97
+#, fuzzy
+#| msgid "Tab Settings"
+msgid "Manage AI Settings"
+msgstr "Настройки вкладки"
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:110
+msgid ""
+"Get started with Antimanual to unlock all AI features for your EazyDocs "
+"knowledge base!"
+msgstr ""
+
+#: includes/Admin/template/template-parts.php:16
+msgid "Drag to reorder this documentation item"
+msgstr ""
+
+#: includes/Admin/template/template-parts.php:18
+#: includes/Admin/template/template-parts.php:27
+msgid "Drag to reorder"
+msgstr ""
 
 #. translators: %d is the number of positive votes
-#: includes/Admin/template/template-parts.php:49
+#: includes/Admin/template/template-parts.php:59
 #, php-format
 msgid "%d Positive vote, "
 msgid_plural "%d Positive votes and "
@@ -3694,12 +5427,12 @@ msgstr[0] "%d Голос «за», "
 msgstr[1] ""
 msgstr[2] ""
 
-#: includes/Admin/template/template-parts.php:52
+#: includes/Admin/template/template-parts.php:62
 msgid "No Positive votes, "
 msgstr "Нет положительных голосов, "
 
 #. translators: %d is the number of negative votes
-#: includes/Admin/template/template-parts.php:58
+#: includes/Admin/template/template-parts.php:68
 #, php-format
 msgid "%d Negative vote found."
 msgid_plural "%d Negative votes found."
@@ -3707,11 +5440,11 @@ msgstr[0] "%d Найдено отрицательное голосование."
 msgstr[1] ""
 msgstr[2] ""
 
-#: includes/Admin/template/template-parts.php:61
+#: includes/Admin/template/template-parts.php:71
 msgid "No Negative votes."
 msgstr "Нет отрицательных голосов."
 
-#: includes/Admin/template/template-parts.php:177
+#: includes/Admin/template/template-parts.php:187
 msgid "Click on the title to edit the page"
 msgstr ""
 
@@ -3746,12 +5479,12 @@ msgid "List Style"
 msgstr "Стиль списка"
 
 #: includes/Elementor/Docs/Doc_Widget.php:123
-#: includes/Elementor/Single_Doc/Single_Doc.php:62
+#: includes/Elementor/Single_Doc/Single_Doc.php:61
 msgid "Preset Skin"
 msgstr "Предустановленный скин"
 
 #: includes/Elementor/Docs/Doc_Widget.php:129
-#: includes/Elementor/Single_Doc/Single_Doc.php:68
+#: includes/Elementor/Single_Doc/Single_Doc.php:67
 msgid "Skins"
 msgstr "Скины"
 
@@ -3760,37 +5493,37 @@ msgid "Layout Settings"
 msgstr "Настройки макета"
 
 #: includes/Elementor/Docs/Doc_Widget.php:148
-#: includes/Elementor/Single_Doc/Single_Doc.php:161
+#: includes/Elementor/Single_Doc/Single_Doc.php:160
 msgid "Column"
 msgstr "Колонка"
 
 #: includes/Elementor/Docs/Doc_Widget.php:149
-#: includes/Elementor/Single_Doc/Single_Doc.php:162
+#: includes/Elementor/Single_Doc/Single_Doc.php:161
 msgid "Number of column to show"
 msgstr "Количество отображаемых столбцов"
 
 #: includes/Elementor/Docs/Doc_Widget.php:153
-#: includes/Elementor/Single_Doc/Single_Doc.php:166
+#: includes/Elementor/Single_Doc/Single_Doc.php:165
 msgid "2 Column"
 msgstr "2 колонки"
 
 #: includes/Elementor/Docs/Doc_Widget.php:154
-#: includes/Elementor/Single_Doc/Single_Doc.php:167
+#: includes/Elementor/Single_Doc/Single_Doc.php:166
 msgid "3 Column"
 msgstr "3 колонки"
 
 #: includes/Elementor/Docs/Doc_Widget.php:155
-#: includes/Elementor/Single_Doc/Single_Doc.php:168
+#: includes/Elementor/Single_Doc/Single_Doc.php:167
 msgid "4 Column"
 msgstr "4 Колонки"
 
 #: includes/Elementor/Docs/Doc_Widget.php:156
-#: includes/Elementor/Single_Doc/Single_Doc.php:169
+#: includes/Elementor/Single_Doc/Single_Doc.php:168
 msgid "5 Column"
 msgstr "5 Колонок"
 
 #: includes/Elementor/Docs/Doc_Widget.php:157
-#: includes/Elementor/Single_Doc/Single_Doc.php:170
+#: includes/Elementor/Single_Doc/Single_Doc.php:169
 msgid "6 Column"
 msgstr "6 колонок"
 
@@ -3906,7 +5639,7 @@ msgstr ""
 "или присвойте значение -1, чтобы отобразить все разделы."
 
 #: includes/Elementor/Docs/Doc_Widget.php:298
-#: includes/Elementor/Single_Doc/Single_Doc.php:219
+#: includes/Elementor/Single_Doc/Single_Doc.php:218
 msgid "Number of articles to show under every sections"
 msgstr "Количество статей, отображаемых в каждом разделе"
 
@@ -3927,7 +5660,7 @@ msgid "Doc Section Excerpt"
 msgstr "Выдержка из раздела Doc"
 
 #: includes/Elementor/Docs/Doc_Widget.php:322
-#: includes/Elementor/Single_Doc/Single_Doc.php:205
+#: includes/Elementor/Single_Doc/Single_Doc.php:204
 msgid ""
 "Excerpt word limit of the documentation sections. If the excerpt got empty, "
 "this will get from the post content."
@@ -3992,8 +5725,8 @@ msgid "Child Docs Order"
 msgstr "Заказ документов для детей"
 
 #: includes/Elementor/Docs/Doc_Widget.php:399
-#: includes/Elementor/Single_Doc/Single_Doc.php:146
-#: includes/Elementor/Single_Doc/Single_Doc.php:152
+#: includes/Elementor/Single_Doc/Single_Doc.php:145
+#: includes/Elementor/Single_Doc/Single_Doc.php:151
 msgid "Doc"
 msgstr "Документ"
 
@@ -4045,7 +5778,7 @@ msgstr "Заголовок вкладки"
 #: includes/Elementor/Docs/Doc_Widget.php:976
 #: includes/Elementor/Search/style-control.php:22
 #: includes/Elementor/Search/style-control.php:297
-#: includes/Elementor/Single_Doc/Single_Doc.php:361
+#: includes/Elementor/Single_Doc/Single_Doc.php:360
 msgid "Padding"
 msgstr "Отступ"
 
@@ -4066,8 +5799,8 @@ msgstr "Нормальный"
 #: includes/Elementor/Docs/Doc_Widget.php:906
 #: includes/Elementor/Docs/Doc_Widget.php:937
 #: includes/Elementor/Search/style-control.php:73
-#: includes/Elementor/Single_Doc/Single_Doc.php:388
-#: includes/Elementor/Single_Doc/Single_Doc.php:426
+#: includes/Elementor/Single_Doc/Single_Doc.php:387
+#: includes/Elementor/Single_Doc/Single_Doc.php:425
 msgid "Text Color"
 msgstr "Цвет текста"
 
@@ -4082,10 +5815,6 @@ msgstr "Цвет границы"
 #: includes/Elementor/Search/style-control.php:259
 msgid "Hover"
 msgstr "Наведение"
-
-#: includes/Elementor/Docs/Doc_Widget.php:606
-msgid "Active"
-msgstr "Активный"
 
 #: includes/Elementor/Docs/Doc_Widget.php:658
 msgid "Contents"
@@ -4181,7 +5910,7 @@ msgid "Typography"
 msgstr "Типографика"
 
 #: includes/Elementor/Search/style-control.php:85
-#: includes/Elementor/Single_Doc/Single_Doc.php:353
+#: includes/Elementor/Single_Doc/Single_Doc.php:352
 msgid "Border"
 msgstr "Рамка"
 
@@ -4217,128 +5946,128 @@ msgstr "Типографика Метки"
 msgid "Keyword Color"
 msgstr "Цвет ключевого слова"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:30
+#: includes/Elementor/Single_Doc/Single_Doc.php:29
 #, fuzzy
 #| msgid "EazyDocs Single Doc"
 msgid "(EazyDocs) Single Doc"
 msgstr "EazyDocs Single Doc"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:72
+#: includes/Elementor/Single_Doc/Single_Doc.php:71
 msgid "Light"
 msgstr "Светлый"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:76
+#: includes/Elementor/Single_Doc/Single_Doc.php:75
 #, fuzzy
 #| msgid "Create a Doc"
 msgid "Creative"
 msgstr "Создание документа"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:80
-#: includes/Elementor/Single_Doc/Single_Doc.php:331
+#: includes/Elementor/Single_Doc/Single_Doc.php:79
+#: includes/Elementor/Single_Doc/Single_Doc.php:330
 msgid "Box"
 msgstr "Коробка"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:84
+#: includes/Elementor/Single_Doc/Single_Doc.php:83
 #, fuzzy
 #| msgid "Topics"
 msgid "Topic Boxes"
 msgstr "Темы"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:88
+#: includes/Elementor/Single_Doc/Single_Doc.php:87
 #, fuzzy
 #| msgid "Docs Shortcodes"
 msgid "Docs Boxes"
 msgstr "Документы Шорткоды"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:114
+#: includes/Elementor/Single_Doc/Single_Doc.php:113
 msgid "Title Text"
 msgstr "Текст заголовка"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:123
+#: includes/Elementor/Single_Doc/Single_Doc.php:122
 msgid "Title Tag"
 msgstr "Заголовок тега"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:134
+#: includes/Elementor/Single_Doc/Single_Doc.php:133
 msgid "Subtitle Text"
 msgstr "Текст подзаголовка"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:181
-#: includes/Elementor/Single_Doc/Single_Doc.php:191
+#: includes/Elementor/Single_Doc/Single_Doc.php:180
+#: includes/Elementor/Single_Doc/Single_Doc.php:190
 msgid "Sections"
 msgstr "Секции"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:182
-#: includes/Elementor/Single_Doc/Single_Doc.php:192
+#: includes/Elementor/Single_Doc/Single_Doc.php:181
+#: includes/Elementor/Single_Doc/Single_Doc.php:191
 msgid "Number of section to show"
 msgstr "Количество отображаемых разделов"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:204
+#: includes/Elementor/Single_Doc/Single_Doc.php:203
 msgid "Excerpt"
 msgstr "Отрывок"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:229
+#: includes/Elementor/Single_Doc/Single_Doc.php:228
 msgid "Order"
 msgstr "Заказ"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:245
+#: includes/Elementor/Single_Doc/Single_Doc.php:244
 msgid "Buttons"
 msgstr "Кнопки"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:254
+#: includes/Elementor/Single_Doc/Single_Doc.php:253
 msgid "Read More Button"
 msgstr "Кнопка Читать далее"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:263
+#: includes/Elementor/Single_Doc/Single_Doc.php:262
 msgid "Section Button"
 msgstr "Кнопка раздела"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:275
+#: includes/Elementor/Single_Doc/Single_Doc.php:274
 msgid "Button Text"
 msgstr "Текст кнопки"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:288
+#: includes/Elementor/Single_Doc/Single_Doc.php:287
 msgid "Button URL"
 msgstr "URL кнопки"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:300
+#: includes/Elementor/Single_Doc/Single_Doc.php:299
 msgid "Show More Button"
 msgstr "Показать кнопку Узнать больше"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:312
+#: includes/Elementor/Single_Doc/Single_Doc.php:311
 msgid "Show Less Text"
 msgstr "Показать меньше текста"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:457
-#: includes/Elementor/Single_Doc/Single_Doc.php:498
+#: includes/Elementor/Single_Doc/Single_Doc.php:456
+#: includes/Elementor/Single_Doc/Single_Doc.php:497
 msgid "Content"
 msgstr "Содержание"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:536
-#: includes/Elementor/Single_Doc/Single_Doc.php:546
+#: includes/Elementor/Single_Doc/Single_Doc.php:535
+#: includes/Elementor/Single_Doc/Single_Doc.php:545
 msgid "Background Objects"
 msgstr "Фоновые объекты"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:555
+#: includes/Elementor/Single_Doc/Single_Doc.php:554
 msgid "Shape"
 msgstr "Форма"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:556
+#: includes/Elementor/Single_Doc/Single_Doc.php:555
 msgid "The background shape should be transparent png or svg image."
 msgstr "Форма фона должна быть прозрачным изображением png или svg."
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:569
+#: includes/Elementor/Single_Doc/Single_Doc.php:568
 msgid "Round Objects 01"
 msgstr "Круглые объекты 01"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:579
+#: includes/Elementor/Single_Doc/Single_Doc.php:578
 msgid "Round 01 Color"
 msgstr "Раунд 01 Цвет"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:593
+#: includes/Elementor/Single_Doc/Single_Doc.php:592
 msgid "Round Objects 02"
 msgstr "Круглые объекты 02"
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:603
+#: includes/Elementor/Single_Doc/Single_Doc.php:602
 msgid "Round 02 Color"
 msgstr "Раунд 02 Цвет"
 
@@ -4350,31 +6079,19 @@ msgstr "К сожалению, вы уже оставили свой отзыв!
 msgid "Thanks for your feedback!"
 msgstr "Спасибо за ваши отзывы!"
 
-#: includes/Frontend/Ajax.php:254
+#: includes/Frontend/Ajax.php:258
 msgid "No result found!"
 msgstr "Результатов не найдено!"
 
-#: includes/Frontend/Ajax.php:274
+#: includes/Frontend/Ajax.php:278
 #, fuzzy
 #| msgid "Invalid request."
 msgid "Invalid document ID"
 msgstr "Неверный запрос."
 
-#: includes/Frontend/Ajax.php:289 includes/functions.php:1409
+#: includes/Frontend/Ajax.php:293 includes/functions.php:1409
 msgid "You don't have permission to access this document!"
 msgstr ""
-
-#: includes/Frontend/Frontend.php:347
-#, fuzzy
-#| msgid " - Previous"
-msgid "Previous"
-msgstr " -Предыдущий"
-
-#: includes/Frontend/Frontend.php:348
-#, fuzzy
-#| msgid "Next - "
-msgid "Next"
-msgstr "Вперед - "
 
 #: includes/Frontend/Mailer.php:33
 msgid "Please enter a valid email address."
@@ -4520,6 +6237,10 @@ msgstr "EazyDocs OnePage"
 #: includes/One_Page_Docs.php:47 includes/Post_Types.php:52
 msgid "Parent Doc"
 msgstr "Родительский документ"
+
+#: includes/One_Page_Docs.php:48 includes/Post_Types.php:53
+msgid "All Docs"
+msgstr "Все документы"
 
 #: includes/One_Page_Docs.php:49 includes/Post_Types.php:54
 msgid "View Doc"
@@ -4800,14 +6521,40 @@ msgstr ""
 msgid "You don't have sufficient permission to perform this action."
 msgstr ""
 
-#: includes/functions.php:1496
+#: includes/functions.php:1499
 msgid ""
 "Please avoid using special characters other than hyphens and underscores!"
 msgstr ""
 
-#: includes/functions.php:1651
+#: includes/functions.php:1654
 msgid "Single Doc"
 msgstr "Страница статьи"
+
+#: includes/functions.php:2218
+msgid "You do not have permission to import data."
+msgstr ""
+
+#: includes/functions.php:2226
+#, fuzzy
+#| msgid "%d Negative vote found."
+#| msgid_plural "%d Negative votes found."
+msgid "Sample data file not found."
+msgstr "%d Найдено отрицательное голосование."
+
+#: includes/functions.php:2250 includes/functions.php:2263
+#: includes/functions.php:2270
+#, fuzzy
+#| msgid "EazyDocs database updated successfully."
+msgid "Sample data imported successfully!"
+msgstr "База данных EazyDocs успешно обновлена."
+
+#: includes/functions.php:2285
+msgid "The sample data file is empty."
+msgstr ""
+
+#: includes/functions.php:2293
+msgid "Failed to parse the sample data file."
+msgstr ""
 
 #: includes/notices/asking-for-review.php:49
 msgid "Give EazyDocs a review"
@@ -5136,6 +6883,56 @@ msgstr "Мощный и красивый плагин для создания д
 msgid "spider-themes"
 msgstr "Темы-пауки"
 
+#~ msgid "You can get the Doc Feedbacks listed in this page to review."
+#~ msgstr ""
+#~ "Вы можете ознакомиться с отзывами о документах, перечисленными на этой "
+#~ "странице."
+
+#~ msgid "Get Pro Plan"
+#~ msgstr "Получить профессиональный план"
+
+#~ msgid "EazyDocs Analytics"
+#~ msgstr "Аналитика EazyDocs"
+
+#~ msgid "Analytics page is available in the EazyDocs Premium Promax Plan"
+#~ msgstr "Страница аналитики доступна в плане EazyDocs Premium Promax"
+
+#~ msgid "No docs has been found. Perhaps"
+#~ msgstr "Документы не найдены. Может быть"
+
+#, fuzzy
+#~| msgid "All Docs"
+#~ msgid "Self Docs"
+#~ msgstr "Все документы"
+
+#~ msgid "Skip"
+#~ msgstr "Пропустить"
+
+#~ msgid "Select Page Layout"
+#~ msgstr "Выберите макет (стиль) страницы"
+
+#, fuzzy
+#~| msgid "Right Sidebar"
+#~ msgid "Right sidebar layout"
+#~ msgstr "Правая боковая панель"
+
+#~ msgid "Boxed Width"
+#~ msgstr "Ширина блока"
+
+#, fuzzy
+#~| msgid "Customizer"
+#~ msgid "Enable Live Customizer"
+#~ msgstr "Настройщик"
+
+#~ msgid "More Info"
+#~ msgstr "Больше информации"
+
+#~ msgid "View More"
+#~ msgstr "Просмотреть больше"
+
+#~ msgid "Hold the mouse and drag to move this doc."
+#~ msgstr "Удерживайте мышь и перетащите, чтобы переместить этот документ."
+
 #~ msgid "Backup"
 #~ msgstr "Резервное копирование"
 
@@ -5148,17 +6945,11 @@ msgstr "Темы-пауки"
 #~ msgid "Accent color"
 #~ msgstr "Цвет акцента"
 
-#~ msgid "Doc Single"
-#~ msgstr "Док Сингл"
-
 #~ msgid "General"
 #~ msgstr "Общие"
 
 #~ msgid "Select Layout"
 #~ msgstr "Выберите Макет"
-
-#~ msgid "Boxed"
-#~ msgstr "Фиксированный"
 
 #, fuzzy
 #~| msgid "Parent Doc"
@@ -5205,9 +6996,6 @@ msgstr "Темы-пауки"
 #~ msgid "Show Articles"
 #~ msgstr "Показать Статьи"
 
-#~ msgid "Articles Title"
-#~ msgstr "Articles Title"
-
 #~ msgid "Comment"
 #~ msgstr "Комментарии"
 
@@ -5225,9 +7013,6 @@ msgstr "Темы-пауки"
 #~| msgid "Search Count"
 #~ msgid "Search Submit"
 #~ msgstr "Количество поиска"
-
-#~ msgid "Docs General"
-#~ msgstr "Общие сведения о документах"
 
 #, fuzzy
 #~| msgid "Read More Button"
@@ -5323,14 +7108,6 @@ msgstr "Темы-пауки"
 #~ msgstr "Смотрите шорткод с доступными атрибутами."
 
 #, fuzzy
-#~| msgid "Subscriber"
-#~ msgid "Subscribe Feature"
-#~ msgstr "Подписчик"
-
-#~ msgid "Success"
-#~ msgstr "Успех"
-
-#, fuzzy
 #~| msgid "Email: %s"
 #~ msgid "Email exist"
 #~ msgstr "Email: %s"
@@ -5354,11 +7131,6 @@ msgstr "Темы-пауки"
 #~ msgstr "Включить/ Выключить"
 
 #, fuzzy
-#~| msgid "Search"
-#~ msgid "Searches"
-#~ msgstr "Поиск"
-
-#, fuzzy
 #~| msgid "Receiver Email"
 #~ msgid "Reporting Email"
 #~ msgstr "Получатель почты"
@@ -5378,9 +7150,6 @@ msgstr "Темы-пауки"
 
 #~ msgid "Collapsed"
 #~ msgstr "Свернуто"
-
-#~ msgid "Expanded"
-#~ msgstr "Расширенный"
 
 #~ msgid "Heading Color"
 #~ msgstr "Цвет заголовка"
@@ -5405,9 +7174,6 @@ msgstr "Темы-пауки"
 #~ "<p class=\"ezd-text-support\"><a href=\"%s\" target=\"_blank\">Управление "
 #~ "многоразовыми блоками</a></p>"
 
-#~ msgid "Rate now"
-#~ msgstr "Оценить сейчас"
-
 #~ msgid "Later"
 #~ msgstr "Позже"
 
@@ -5417,14 +7183,8 @@ msgstr "Темы-пауки"
 #~ msgid "Deactivate BetterDocs"
 #~ msgstr "Деактивировать BetterDocs"
 
-#~ msgid "View Demo"
-#~ msgstr "Посмотреть демо"
-
 #~ msgid "Repeater List"
 #~ msgstr "Список повторителей"
-
-#~ msgid "Docs Page"
-#~ msgstr "Страница «Документы»"
 
 #~ msgid ""
 #~ "The Docs Archive page. Preferably use <code>[eazydocs]</code> shortcode "
@@ -5447,9 +7207,6 @@ msgstr "Темы-пауки"
 
 #~ msgid "None"
 #~ msgstr "Нет"
-
-#~ msgid "Layout"
-#~ msgstr "Макет"
 
 #~ msgid "Who Can Edit Customizer?"
 #~ msgstr "Кто может редактировать настройщик?"
@@ -5506,9 +7263,6 @@ msgstr "Темы-пауки"
 
 #~ msgid "Search By Email"
 #~ msgstr "Поиск по электронной почте"
-
-#~ msgid "Loading..."
-#~ msgstr "Загрузка..."
 
 #~ msgid "Edit"
 #~ msgstr "Редактировать"

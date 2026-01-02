@@ -133,6 +133,30 @@ class Assets {
 		
 		// Check if Antimanual is active
 		$antimanual_active = is_plugin_active( 'antimanual/antimanual.php' );
+
+		// Shared "Create Doc with AI" popup HTML (single source)
+		$ai_popup_html = '';
+		$ai_popup_template = EAZYDOCS_PATH . '/includes/Admin/template/partials/ai-create-doc-popup.php';
+		if ( file_exists( $ai_popup_template ) ) {
+			$antimanual_settings_url = admin_url( 'admin.php?page=antimanual' );
+			$antimanual_docs_url     = 'https://helpdesk.spider-themes.net/docs/antimanual';
+			$antimanual_install_url  = add_query_arg(
+				array(
+					's'    => 'antimanual',
+					'tab'  => 'search',
+					'type' => 'term',
+				),
+				admin_url( 'plugin-install.php' )
+			);
+			$antimanual_learn_more    = 'https://antimanual.spider-themes.net';
+			$antimanual_demo_url      = 'https://www.youtube.com/watch?v=X9HMPBkzDeM';
+			$antimanual_video_mp4_url = 'https://antimanual.spider-themes.net/wp-content/uploads/2025/08/AI-Doc-generate.mp4';
+
+			ob_start();
+			$is_antimanual_active = $antimanual_active;
+			require $ai_popup_template;
+			$ai_popup_html = (string) ob_get_clean();
+		}
 		
 		wp_localize_script(
 			'jquery',
@@ -142,6 +166,7 @@ class Assets {
 				'EAZYDOCS_FRONT_CSS'        => EAZYDOCS_FRONT_CSS,
 				'EAZYDOCS_ASSETS'           => EAZYDOCS_ASSETS,
 				'antimanualActive'          => $antimanual_active,
+				'aiPopupHtml'               => $ai_popup_html,
 				'create_prompt_title'       => esc_html__( 'Enter Doc Title', 'eazydocs' ),
 				'delete_prompt_title'       => esc_html__( 'Are you sure to delete?', 'eazydocs' ),
 				'no_revert_title'           => esc_html__( "This doc will be trashed with the child docs and you will be able to restore it later from the trash!", "eazydocs" ),

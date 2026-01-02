@@ -1,5 +1,4 @@
 <?php
-
 namespace EazyDocs\Elementor\Single_Doc;
 
 use Elementor\Widget_Base;

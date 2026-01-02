@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EazyDocs\n"
-"POT-Creation-Date: 2025-12-05 08:17+0600\n"
+"POT-Creation-Date: 2026-01-02 20:22+0600\n"
 "PO-Revision-Date: 2023-07-31 23:20+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,24 +10,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: eazydocs.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
 #. Plugin Name of the plugin/theme
-#: blocks.php:87 includes/Admin/Admin.php:99
+#: blocks.php:87 includes/Admin/Admin.php:107
 #: includes/Admin/options/opt_docs_general.php:19
 #: includes/Admin/options/settings-options.php:131
-#: includes/Admin/setup-wizard/setup.php:23 includes/Elementor/Widgets.php:41
-#: includes/Post_Types.php:51
+#: includes/Admin/setup-wizard/setup.php:49
+#: includes/Admin/setup-wizard/step1_welcome.php:15
+#: includes/Elementor/Widgets.php:41 includes/Post_Types.php:51
 msgid "EazyDocs"
 msgstr ""
 
@@ -61,74 +63,79 @@ msgstr ""
 msgid "Yellow"
 msgstr ""
 
-#: eazydocs.php:322
+#: eazydocs.php:327
 msgid ""
 "EazyDocs database needs an update. Please click the Update button to update "
 "your database."
 msgstr ""
 
-#: eazydocs.php:325
+#: eazydocs.php:330
 msgid "Update Database"
 msgstr ""
 
-#: includes/Admin/Admin.php:99
+#: includes/Admin/Admin.php:107
 msgid "EazyDocs Pro"
 msgstr ""
 
-#: includes/Admin/Admin.php:101 includes/Admin/template/dashboard/header.php:4
+#: includes/Admin/Admin.php:110 includes/Admin/template/dashboard/header.php:37
 msgid "Dashboard"
 msgstr ""
 
-#: includes/Admin/Admin.php:102
+#: includes/Admin/Admin.php:111 includes/Admin/template/dashboard/header.php:51
 msgid "Docs Builder"
 msgstr ""
 
-#: includes/Admin/Admin.php:106
-msgid "Customize"
-msgstr ""
-
-#: includes/Admin/Admin.php:110 includes/Post_Types.php:115
-msgid "Tags"
-msgstr ""
-
-#: includes/Admin/Admin.php:114
+#: includes/Admin/Admin.php:115
 msgid "OnePage Docs"
 msgstr ""
 
-#: includes/Admin/Admin.php:116
+#: includes/Admin/Admin.php:117
 msgid "OnePage Doc"
 msgstr ""
 
-#: includes/Admin/Admin.php:122 includes/Admin/Admin.php:223
+#: includes/Admin/Admin.php:120 includes/Post_Types.php:115
+msgid "Tags"
+msgstr ""
+
+#: includes/Admin/Admin.php:124
+msgid "Customize"
+msgstr ""
+
+#: includes/Admin/Admin.php:131
 msgid "Users Feedback"
 msgstr ""
 
-#: includes/Admin/Admin.php:123
+#: includes/Admin/Admin.php:132
+#: includes/Admin/setup-wizard/step1_welcome.php:63
+#: includes/Admin/template/dashboard/header.php:55
 msgid "Analytics"
 msgstr ""
 
-#: includes/Admin/Admin.php:132
+#: includes/Admin/Admin.php:141
 msgid "FAQ Builder"
 msgstr ""
 
-#: includes/Admin/Admin.php:135
+#: includes/Admin/Admin.php:144
+msgid "Integrated Themes"
+msgstr ""
+
+#: includes/Admin/Admin.php:146 includes/Admin/setup-wizard/setup.php:50
 msgid "Setup Wizard"
 msgstr ""
 
-#: includes/Admin/Admin.php:137
+#: includes/Admin/Admin.php:148
 msgid "Migration"
 msgstr ""
 
-#: includes/Admin/Admin.php:192 includes/Admin/Admin.php:222
-#: includes/Admin/Admin.php:241 includes/Admin/setup-wizard/setup.php:41
+#: includes/Admin/Admin.php:355
 msgid "crown icon"
 msgstr ""
 
-#: includes/Admin/Admin.php:193
+#: includes/Admin/Admin.php:356
 msgid "Add Your OnePage Doc"
 msgstr ""
 
-#: includes/Admin/Admin.php:194
+#: includes/Admin/Admin.php:357
 msgid ""
 "Onepage documentation format will generate all the pages of a Doc as "
 "sections in a single page which is scrollable by sections. Visitors can find "
@@ -136,78 +143,162 @@ msgid ""
 "sections very fast."
 msgstr ""
 
-#: includes/Admin/Admin.php:200
+#: includes/Admin/Admin.php:363
 msgid "Go Pro"
 msgstr ""
 
-#: includes/Admin/Admin.php:203
+#: includes/Admin/Admin.php:366
 msgid "View Classic Frontend Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:204
+#: includes/Admin/Admin.php:367
 msgid "Classic Layout Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:207
+#: includes/Admin/Admin.php:370
 msgid "View Fullscreen Frontend Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:208
+#: includes/Admin/Admin.php:371
 msgid "Fullscreen Layout Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:224
-msgid "You can get the Doc Feedbacks listed in this page to review."
-msgstr ""
-
-#: includes/Admin/Admin.php:227
-msgid "Get Pro Plan"
-msgstr ""
-
-#: includes/Admin/Admin.php:242
-msgid "EazyDocs Analytics"
-msgstr ""
-
-#: includes/Admin/Admin.php:243
-msgid "Analytics page is available in the EazyDocs Premium Promax Plan"
-msgstr ""
-
-#: includes/Admin/Admin.php:246
-msgid "Get Promax Plan"
-msgstr ""
-
-#: includes/Admin/Admin.php:433 includes/functions.php:1648
+#: includes/Admin/Admin.php:595 includes/functions.php:1651
 msgid "Docs Archive"
 msgstr ""
 
-#: includes/Admin/Admin.php:437
+#: includes/Admin/Admin.php:599
 msgid "Docs Access"
 msgstr ""
 
-#: includes/Admin/Admin.php:440
+#: includes/Admin/Admin.php:602
 msgid "Private Access"
 msgstr ""
 
-#: includes/Admin/Admin.php:443
+#: includes/Admin/Admin.php:605
 msgid "Collaborator Access"
 msgstr ""
 
-#: includes/Admin/Assets.php:138
+#: includes/Admin/AntimanualNotice.php:81
+msgid "Supercharge Your EazyDocs with AI!"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:85
+msgid ""
+"Activate Antimanual to unlock powerful AI features for your documentation:"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:88
+msgid "AI Chatbot trained on your docs - Reduce support tickets by 70%+"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:89
+msgid "Auto-generate professional documentation with GPT-5 & Gemini"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:90
+msgid "Semantic AI search that understands user intent"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:91
+msgid "Auto-posting and content automation for fresh content"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:96
+msgid "Activate Antimanual Now"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:100
+#: includes/Admin/AntimanualNotice.php:130
+#: includes/Admin/template/dashboard/antimanual-ai.php:100
+#: includes/Admin/template/dashboard/antimanual-ai.php:159
+#: includes/Admin/template/partials/ai-create-doc-popup.php:123
+msgid "Watch Demo"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:105
+msgid ""
+"Integrate EazyDocs with Antimanual - the ultimate AI copilot for WordPress. "
+"Transform your knowledge base into an intelligent support hub!"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:108
+msgid "Intelligent AI Chatbot - 24/7 support trained on your documentation"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:109
+msgid "AI Doc Generator - Create comprehensive docs in seconds"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:110
+msgid "Semantic Search - Understand user intent, not just keywords"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:111
+msgid "Auto-Posting - Schedule AI-generated content automatically"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:112
+msgid "GPT-5 & Gemini Support - Latest AI models for superior accuracy"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:115
+msgid "70%+ Reduction in Support Tickets"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:116
+msgid "Enterprise-Grade AI"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:117
+msgid "Free Version Available"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:123
+#: includes/Admin/template/dashboard/antimanual-ai.php:152
+#: includes/Admin/template/partials/ai-create-doc-popup.php:115
+msgid "Install Antimanual Free"
+msgstr ""
+
+#: includes/Admin/AntimanualNotice.php:126
+#: includes/Admin/template/analytics-presentation.php:42
+#: includes/Admin/template/dashboard/antimanual-ai.php:155
+#: includes/Admin/template/feedback-presentation.php:41
+#: includes/Admin/template/partials/ai-create-doc-popup.php:118
+msgid "Learn More"
+msgstr ""
+
+#: includes/Admin/Assets.php:170
 msgid "Enter Doc Title"
 msgstr ""
 
-#: includes/Admin/Assets.php:139
+#: includes/Admin/Assets.php:171
 msgid "Are you sure to delete?"
 msgstr ""
 
-#: includes/Admin/Assets.php:140
+#: includes/Admin/Assets.php:172
 msgid ""
 "This doc will be trashed with the child docs and you will be able to restore "
 "it later from the trash!"
 msgstr ""
 
-#: includes/Admin/Assets.php:141
+#: includes/Admin/Assets.php:173
 msgid "Are you sure to Duplicate this doc?"
+msgstr ""
+
+#. translators: %s: EazyDocs link
+#: includes/Admin/admin-dashboard.php:213
+#, php-format
+msgid "Thank you for using %s!"
+msgstr ""
+
+#: includes/Admin/admin-dashboard.php:221
+msgid "Rate Us"
+msgstr ""
+
+#: includes/Admin/admin-dashboard.php:226
+#: includes/Admin/setup-wizard/step1_welcome.php:88
+msgid "Get Support"
 msgstr ""
 
 #: includes/Admin/admin-helpers.php:21
@@ -236,18 +327,18 @@ msgstr ""
 
 #: includes/Admin/admin-helpers.php:115
 #: includes/Admin/template/parent-docs.php:126
-#: includes/Admin/template/template-parts.php:121
+#: includes/Admin/template/template-parts.php:131
 msgid "Duplicate this doc with the child docs."
 msgstr ""
 
 #: includes/Admin/admin-helpers.php:128
-#: includes/Admin/template/template-parts.php:130
+#: includes/Admin/template/template-parts.php:140
 msgid "Add new doc under this doc"
 msgstr ""
 
 #: includes/Admin/admin-helpers.php:145
 #: includes/Admin/template/parent-docs.php:86
-#: includes/Admin/template/template-parts.php:149
+#: includes/Admin/template/template-parts.php:159
 msgid "View this doc item in new tab"
 msgstr ""
 
@@ -276,19 +367,75 @@ msgstr ""
 msgid "Draft"
 msgstr ""
 
-#: includes/Admin/admin-template.php:33
+#: includes/Admin/admin-template.php:35
 msgid "Folder Open"
 msgstr ""
 
-#: includes/Admin/admin-template.php:34
-msgid "No docs has been found. Perhaps"
-msgstr ""
-
 #: includes/Admin/admin-template.php:37
-msgid "Create a Doc"
+msgid "Ready to Start Your Knowledge Base?"
 msgstr ""
 
-#: includes/Admin/migration.php:26 includes/Admin/setup-wizard/setup.php:22
+#: includes/Admin/admin-template.php:38
+msgid ""
+"It looks like you haven't created any documentation yet. Get started by "
+"creating your first doc or import our sample data to see how it works."
+msgstr ""
+
+#: includes/Admin/admin-template.php:43
+msgid "Create First Doc"
+msgstr ""
+
+#: includes/Admin/admin-template.php:48
+msgid "Import Sample Data"
+msgstr ""
+
+#: includes/Admin/admin-template.php:64
+msgid "Import Sample Data?"
+msgstr ""
+
+#: includes/Admin/admin-template.php:65
+msgid ""
+"This will populate your knowledge base with a complete set of demo "
+"documentation items."
+msgstr ""
+
+#: includes/Admin/admin-template.php:70
+msgid "Yes, Import Demo"
+msgstr ""
+
+#: includes/Admin/admin-template.php:71
+#: includes/Admin/options/opt_docs_subscription.php:98
+#: includes/Admin/options/opt_docs_subscription.php:175
+msgid "Cancel"
+msgstr ""
+
+#: includes/Admin/admin-template.php:82
+msgid ""
+"This will import demo documentation to help you get started. Do you want to "
+"continue?"
+msgstr ""
+
+#: includes/Admin/admin-template.php:91
+msgid "Importing..."
+msgstr ""
+
+#: includes/Admin/admin-template.php:104
+msgid "Success!"
+msgstr ""
+
+#: includes/Admin/admin-template.php:116
+msgid "Failed to import sample data."
+msgstr ""
+
+#: includes/Admin/admin-template.php:121
+msgid "An error occurred while importing. Please try again."
+msgstr ""
+
+#: includes/Admin/admin-template.php:130
+msgid "Error"
+msgstr ""
+
+#: includes/Admin/migration.php:26
 msgid "Eazydocs icon"
 msgstr ""
 
@@ -388,13 +535,13 @@ msgstr ""
 #: includes/Admin/options/opt_doc_single.php:78
 #: includes/Admin/options/opt_doc_single.php:240
 #: includes/Admin/options/opt_doc_single.php:380
-#: includes/Admin/options/opt_doc_single.php:801
-#: includes/Admin/options/opt_doc_single.php:1039
-#: includes/Admin/options/opt_doc_single.php:1113
-#: includes/Admin/options/opt_doc_single.php:1161
+#: includes/Admin/options/opt_doc_single.php:770
+#: includes/Admin/options/opt_doc_single.php:844
+#: includes/Admin/options/opt_doc_single.php:892
 #: includes/Admin/options/opt_docs_assistant.php:27
 #: includes/Admin/options/opt_docs_collaboration.php:25
-#: includes/Admin/options/opt_docs_subscription.php:28
+#: includes/Admin/options/opt_docs_subscription.php:27
+#: includes/Admin/options/opt_feedback.php:179
 msgid "Enabled"
 msgstr ""
 
@@ -403,13 +550,13 @@ msgstr ""
 #: includes/Admin/options/opt_doc_single.php:241
 #: includes/Admin/options/opt_doc_single.php:330
 #: includes/Admin/options/opt_doc_single.php:381
-#: includes/Admin/options/opt_doc_single.php:802
-#: includes/Admin/options/opt_doc_single.php:1040
-#: includes/Admin/options/opt_doc_single.php:1114
-#: includes/Admin/options/opt_doc_single.php:1162
+#: includes/Admin/options/opt_doc_single.php:771
+#: includes/Admin/options/opt_doc_single.php:845
+#: includes/Admin/options/opt_doc_single.php:893
 #: includes/Admin/options/opt_docs_assistant.php:28
 #: includes/Admin/options/opt_docs_collaboration.php:26
-#: includes/Admin/options/opt_docs_subscription.php:29
+#: includes/Admin/options/opt_docs_subscription.php:28
+#: includes/Admin/options/opt_feedback.php:180
 msgid "Disabled"
 msgstr ""
 
@@ -429,8 +576,8 @@ msgstr ""
 
 #: includes/Admin/options/opt_dark_mode.php:22
 #: includes/Admin/options/opt_doc_single.php:67
-#: includes/Admin/options/opt_doc_single.php:946
-#: includes/Admin/options/opt_doc_single.php:1102
+#: includes/Admin/options/opt_doc_single.php:677
+#: includes/Admin/options/opt_doc_single.php:833
 #: includes/Admin/options/opt_docs_collaboration.php:95
 #: includes/Admin/options/opt_docs_collaboration.php:133
 #: includes/Admin/options/opt_docs_collaboration.php:171
@@ -443,8 +590,8 @@ msgstr ""
 
 #: includes/Admin/options/opt_dark_mode.php:23
 #: includes/Admin/options/opt_doc_single.php:68
-#: includes/Admin/options/opt_doc_single.php:947
-#: includes/Admin/options/opt_doc_single.php:1103
+#: includes/Admin/options/opt_doc_single.php:678
+#: includes/Admin/options/opt_doc_single.php:834
 #: includes/Admin/options/opt_docs_assistant.php:446
 #: includes/Admin/options/opt_docs_collaboration.php:96
 #: includes/Admin/options/opt_docs_collaboration.php:134
@@ -469,7 +616,7 @@ msgstr ""
 #: includes/Admin/options/opt_dark_mode.php:34
 #: includes/Admin/options/opt_doc_single.php:185
 #: includes/Admin/options/opt_doc_single.php:463
-#: includes/Admin/options/opt_docs_subscription.php:159
+#: includes/Admin/options/opt_docs_subscription.php:158
 #: includes/Admin/options/opt_restricted_docs.php:76
 #: templates/content-feedback.php:80
 msgid "Yes"
@@ -478,7 +625,7 @@ msgstr ""
 #: includes/Admin/options/opt_dark_mode.php:35
 #: includes/Admin/options/opt_doc_single.php:186
 #: includes/Admin/options/opt_doc_single.php:464
-#: includes/Admin/options/opt_docs_subscription.php:160
+#: includes/Admin/options/opt_docs_subscription.php:159
 #: includes/Admin/options/opt_restricted_docs.php:77
 #: templates/content-feedback.php:92
 msgid "No"
@@ -523,7 +670,7 @@ msgid "Boxed (Centered)"
 msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:48
-#: includes/Admin/setup-wizard/step3_settings.php:37
+#: includes/Admin/setup-wizard/step3_settings.php:100
 msgid "Full Width"
 msgstr ""
 
@@ -536,7 +683,7 @@ msgid "Background color for the documentation content area."
 msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:65
-#: includes/Admin/options/opt_doc_single.php:974
+#: includes/Admin/options/opt_doc_single.php:705
 msgid "Featured Image"
 msgstr ""
 
@@ -695,7 +842,7 @@ msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:225
 #: includes/Elementor/Docs/Doc_Widget.php:297
-#: includes/Elementor/Single_Doc/Single_Doc.php:218
+#: includes/Elementor/Single_Doc/Single_Doc.php:217
 #: templates/onepage/default-layout.php:126
 #: templates/single-doc-content.php:126
 msgid "Articles"
@@ -794,7 +941,7 @@ msgid ""
 msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:329
-#: includes/Admin/options/opt_doc_single.php:965
+#: includes/Admin/options/opt_doc_single.php:696
 msgid "Enable"
 msgstr ""
 
@@ -902,7 +1049,7 @@ msgid "Keyword #2"
 msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:502
-#: includes/Admin/options/opt_doc_single.php:1200 includes/One_Page_Docs.php:51
+#: includes/Admin/options/opt_doc_single.php:931 includes/One_Page_Docs.php:51
 #: includes/Post_Types.php:56
 msgid "Add New"
 msgstr ""
@@ -999,254 +1146,100 @@ msgid "Updated on"
 msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:644
-msgid "Feedback Options"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:649
-msgid "Feedback Area"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:656
-msgid "Feedback Area Options"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:666
-msgid "Message Feedback"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:679
-msgid "Still Stuck"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:680
-#: templates/content-feedback.php:19
-msgid "Still stuck?"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:690
-msgid "Help form link text"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:691
-#: includes/Admin/options/opt_doc_single.php:722
-#: templates/content-feedback.php:21 templates/content-modal.php:9
-msgid "How can we help?"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:701
-msgid "Email Address"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:711
-msgid "Feedback Modal"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:721
-#: includes/Admin/options/opt_doc_single.php:882
-msgid "Form Title"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:732
-#: includes/Admin/options/opt_doc_single.php:891
-msgid "Form Subtitle"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:741
-msgid "Voting Feedback"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:750
-msgid "Helpful feedback"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:762
-msgid "Feedback Label"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:763
-#: templates/content-feedback.php:22
-msgid "Was this page helpful?"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:772
-msgid "Feedback Count"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:787
-msgid "Feedback on Text"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:792
-#: includes/Admin/options/opt_doc_single.php:798
-msgid "Feedback on Selected Text"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:799
-msgid "Enable the feature to allow users to comment on selected text."
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:800
-msgid ""
-"Note: if enabled, a switcher will appear in the doc meta area to allow "
-"visitors to turn On/Off the feature."
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:811
-msgid "Frontend Switcher Level"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:812
-msgid "This title will be shown on the frontend to On/Off the feature."
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:813
-msgid "Feedback"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:821
-msgid "Who can view comments?"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:833
-msgid "Feedback Form Settings"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:841
-msgid "Predefined Options Heading"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:843
-msgid "What is the issue with this selection?"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:850
-msgid "Predefined Options"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:857
-msgid "Option Label"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:873
-msgid "Other Option Label"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:875
-msgid "Others"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:884
-msgid "Share additional info or suggestions"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:893
-msgid "Do not share any personal info"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:900
-msgid "Form Disclaimer"
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:902
-msgid ""
-"By continuing, you allow Google to use your answers and account info to "
-"improve services, as explained in our Privacy & Terms."
-msgstr ""
-
-#: includes/Admin/options/opt_doc_single.php:913
+#: includes/Admin/setup-wizard/step3_settings.php:50
+#: includes/Admin/setup-wizard/step3_settings.php:52
 msgid "Left Sidebar"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:919
+#: includes/Admin/options/opt_doc_single.php:650
 msgid "Docs Navigation Layout"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:921
+#: includes/Admin/options/opt_doc_single.php:652
 msgid "Collapsed with Icons"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:922
+#: includes/Admin/options/opt_doc_single.php:653
 msgid "Extended Docs"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:931
+#: includes/Admin/options/opt_doc_single.php:662
 msgid "Docs to view"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:932
+#: includes/Admin/options/opt_doc_single.php:663
 msgid ""
 "Select All Docs to display all the top label docs or choose Self Docs to "
 "show child docs of the current doc."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:934 includes/One_Page_Docs.php:48
-#: includes/Post_Types.php:53
-msgid "All Docs"
+#: includes/Admin/options/opt_doc_single.php:665
+msgid "All Docs (Archive)"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:935
-msgid "Self Docs"
+#: includes/Admin/options/opt_doc_single.php:666
+msgid "Single (Self) Doc"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:944
+#: includes/Admin/options/opt_doc_single.php:675
 msgid "Sidebar Toggle"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:945
+#: includes/Admin/options/opt_doc_single.php:676
 msgid "Collapse and Expand the left Sidebar with a Toggle button."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:954
+#: includes/Admin/options/opt_doc_single.php:685
 msgid "Filter Form"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:955
+#: includes/Admin/options/opt_doc_single.php:686
 msgid "Filter the left sidebar doc items by typing latter."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:963
+#: includes/Admin/options/opt_doc_single.php:694
 msgid "Mark Words"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:964
+#: includes/Admin/options/opt_doc_single.php:695
 msgid "Highlight the typed keyword in the docs."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:966
+#: includes/Admin/options/opt_doc_single.php:697
 #: includes/Admin/options/opt_docs_assistant.php:184
 msgid "Disable"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:975
+#: includes/Admin/options/opt_doc_single.php:706
 msgid "Enable this switcher to use featured image for the Doc sections icon."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:980
+#: includes/Admin/options/opt_doc_single.php:711
 msgid "Doc Section Icon"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:982
+#: includes/Admin/options/opt_doc_single.php:713
 msgid ""
 "This is the Doc's default icon. If you don't use icon for the article "
 "section individually, this icon will be shown."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:993
+#: includes/Admin/options/opt_doc_single.php:724
 msgid "Doc Section Icon Open"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:995
+#: includes/Admin/options/opt_doc_single.php:726
 msgid ""
 "This is the Doc's default icon. If you don't use icon for the article "
 "section individually, this icon will be shown on open states of the Doc "
 "sections."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1008
+#: includes/Admin/options/opt_doc_single.php:739
 msgid "Doc Title Typography"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1015
+#: includes/Admin/options/opt_doc_single.php:746
 #: includes/Elementor/Search/style-control.php:34
 #: includes/Elementor/Search/style-control.php:168
 #: includes/Elementor/Search/style-control.php:245
@@ -1254,192 +1247,194 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1027
+#: includes/Admin/options/opt_doc_single.php:758
+#: includes/Admin/setup-wizard/step3_settings.php:62
+#: includes/Admin/setup-wizard/step3_settings.php:64
 msgid "Right Sidebar"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1032
+#: includes/Admin/options/opt_doc_single.php:763
 msgid "Sharing Doc"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1038
+#: includes/Admin/options/opt_doc_single.php:769
 msgid "Share Button"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1048
+#: includes/Admin/options/opt_doc_single.php:779
 msgid "Share Button Label"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1049
+#: includes/Admin/options/opt_doc_single.php:780
 #: templates/tools/share-btns.php:15
 msgid "Share this Doc"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1058
+#: includes/Admin/options/opt_doc_single.php:789
 msgid "Copy Link Button"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1067
+#: includes/Admin/options/opt_doc_single.php:798
 msgid "Copy Link Label"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1068
+#: includes/Admin/options/opt_doc_single.php:799
 #: templates/tools/share-btns.php:8
 msgid "Or copy link"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1078
-#: includes/Admin/options/opt_docs_subscription.php:106
+#: includes/Admin/options/opt_doc_single.php:809
+#: includes/Admin/options/opt_docs_subscription.php:105
 msgid "Success Message"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1079
+#: includes/Admin/options/opt_doc_single.php:810
 msgid "URL copied to clipboard"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1088
+#: includes/Admin/options/opt_doc_single.php:819
 msgid "Tools"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1093
+#: includes/Admin/options/opt_doc_single.php:824
 msgid "Font Size Switcher"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1101
+#: includes/Admin/options/opt_doc_single.php:832
 msgid "Print Article"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1109
+#: includes/Admin/options/opt_doc_single.php:840
 msgid "Widgets Area"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1110
+#: includes/Admin/options/opt_doc_single.php:841
 msgid ""
 "Enable to register a Sidebar Widgets area named 'Doc Right Sidebar' in "
 "Appearance > Widgets."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1123
+#: includes/Admin/options/opt_doc_single.php:854
 msgid "Table on Contents (TOC)"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1129
+#: includes/Admin/options/opt_doc_single.php:860
 msgid "Enable TOC"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1130
+#: includes/Admin/options/opt_doc_single.php:861
 msgid ""
 "EazyDocs will automatically create a structured Table Of Contents(TOC) while "
 "you are writing your documentation."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1137
+#: includes/Admin/options/opt_doc_single.php:868
 msgid "TOC Heading"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1138
+#: includes/Admin/options/opt_doc_single.php:869
 #: templates/docs-right-sidebar.php:4
 msgid "CONTENTS"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1144
+#: includes/Admin/options/opt_doc_single.php:875
 msgid "Enable to add numbers before each table of content item."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1145
+#: includes/Admin/options/opt_doc_single.php:876
 msgid "Auto Numbering"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1152
-#: includes/Admin/options/opt_doc_single.php:1157
+#: includes/Admin/options/opt_doc_single.php:883
+#: includes/Admin/options/opt_doc_single.php:888
 #: src/eazydocs-toolbar/index.js:74
 msgid "Conditional Dropdown"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1158
+#: includes/Admin/options/opt_doc_single.php:889
 msgid ""
 "You can display conditional contents using the [conditional_data] shortcode "
 "in documentation based on the dropdown value. See the shortcode usage "
 "tutorial <a href=\"https://tinyurl.com/yd46mfax\" target=\"_blank\">here</a>."
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1169
+#: includes/Admin/options/opt_doc_single.php:900
 msgid "Dropdown Options"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1174
-#: includes/Admin/options/opt_doc_single.php:1226
-#: includes/Admin/options/opt_doc_single.php:1299
+#: includes/Admin/options/opt_doc_single.php:905
+#: includes/Admin/options/opt_doc_single.php:957
+#: includes/Admin/options/opt_doc_single.php:1030
 #: includes/Admin/options/opt_docs_collaboration.php:185
 #: includes/Admin/options/opt_restricted_docs.php:155
 #: includes/Elementor/Docs/Doc_Widget.php:350
 #: includes/Elementor/Search/Search_Widget.php:210
-#: includes/Elementor/Single_Doc/Single_Doc.php:104
-#: includes/Elementor/Single_Doc/Single_Doc.php:378
-#: includes/Elementor/Single_Doc/Single_Doc.php:467 src/shortcode/edit.js:61
+#: includes/Elementor/Single_Doc/Single_Doc.php:103
+#: includes/Elementor/Single_Doc/Single_Doc.php:377
+#: includes/Elementor/Single_Doc/Single_Doc.php:466 src/shortcode/edit.js:61
 msgid "Title"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1179
+#: includes/Admin/options/opt_doc_single.php:910
 msgid "Icon"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1188
+#: includes/Admin/options/opt_doc_single.php:919
 msgid "Windows"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1192
+#: includes/Admin/options/opt_doc_single.php:923
 msgid "iOs"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1196
+#: includes/Admin/options/opt_doc_single.php:927
 msgid "Linux"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1208
+#: includes/Admin/options/opt_doc_single.php:939
 #: templates/content-related.php:7
 msgid "Related Articles"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1213
+#: includes/Admin/options/opt_doc_single.php:944
 msgid "Related Docs Settings"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1218
+#: includes/Admin/options/opt_doc_single.php:949
 msgid "Related Docs"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1227
+#: includes/Admin/options/opt_doc_single.php:958
 msgid "Related articles"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1238
-#: includes/Admin/options/opt_doc_single.php:1311
+#: includes/Admin/options/opt_doc_single.php:969
+#: includes/Admin/options/opt_doc_single.php:1042
 msgid "Docs Number"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1239
-#: includes/Admin/options/opt_doc_single.php:1312
+#: includes/Admin/options/opt_doc_single.php:970
+#: includes/Admin/options/opt_doc_single.php:1043
 msgid "4"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1250
-#: includes/Admin/options/opt_doc_single.php:1323
+#: includes/Admin/options/opt_doc_single.php:981
+#: includes/Admin/options/opt_doc_single.php:1054
 msgid "Column Width"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1252
-#: includes/Admin/options/opt_doc_single.php:1325
+#: includes/Admin/options/opt_doc_single.php:983
+#: includes/Admin/options/opt_doc_single.php:1056
 msgid "Half"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1253
-#: includes/Admin/options/opt_doc_single.php:1326
+#: includes/Admin/options/opt_doc_single.php:984
+#: includes/Admin/options/opt_doc_single.php:1057
 msgid "Fullwidth"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1266
-#: includes/Admin/options/opt_doc_single.php:1339
+#: includes/Admin/options/opt_doc_single.php:997
+#: includes/Admin/options/opt_doc_single.php:1070
 #: includes/Admin/options/opt_docs_collaboration.php:109
 #: includes/Admin/options/opt_docs_collaboration.php:147
 #: includes/Admin/options/opt_restricted_docs.php:197
@@ -1448,25 +1443,25 @@ msgstr ""
 msgid "Button"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1267
-#: includes/Admin/options/opt_doc_single.php:1340
+#: includes/Admin/options/opt_doc_single.php:998
+#: includes/Admin/options/opt_doc_single.php:1071
 #: templates/content-related.php:9 templates/content-related.php:13
 msgid "See More"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1281
+#: includes/Admin/options/opt_doc_single.php:1012
 msgid "Viewed Articles"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1286
+#: includes/Admin/options/opt_doc_single.php:1017
 msgid "Recently Viewed Docs Options"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1291
+#: includes/Admin/options/opt_doc_single.php:1022
 msgid "Recently Viewed Docs"
 msgstr ""
 
-#: includes/Admin/options/opt_doc_single.php:1300
+#: includes/Admin/options/opt_doc_single.php:1031
 msgid "Recently Viewed articles"
 msgstr ""
 
@@ -1532,6 +1527,7 @@ msgstr ""
 
 #: includes/Admin/options/opt_docs_assistant.php:119
 #: includes/Admin/options/opt_docs_assistant.php:132
+#: includes/Admin/template/dashboard/antimanual-ai.php:53
 msgid "Knowledge Base"
 msgstr ""
 
@@ -1601,7 +1597,7 @@ msgid "Full name"
 msgstr ""
 
 #: includes/Admin/options/opt_docs_assistant.php:261
-#: includes/Admin/options/opt_docs_subscription.php:79
+#: includes/Admin/options/opt_docs_subscription.php:78
 #: templates/content-modal.php:31
 msgid "Email"
 msgstr ""
@@ -1627,7 +1623,7 @@ msgstr ""
 
 #: includes/Admin/options/opt_docs_assistant.php:291
 #: includes/Admin/options/opt_docs_assistant.php:338
-#: includes/Admin/options/opt_docs_subscription.php:91
+#: includes/Admin/options/opt_docs_subscription.php:90
 #: includes/Elementor/Search/style-control.php:115
 msgid "Submit Button"
 msgstr ""
@@ -1637,8 +1633,8 @@ msgid "Send Message"
 msgstr ""
 
 #: includes/Admin/options/opt_docs_assistant.php:301
-#: includes/Elementor/Single_Doc/Single_Doc.php:473
-#: includes/Elementor/Single_Doc/Single_Doc.php:505
+#: includes/Elementor/Single_Doc/Single_Doc.php:472
+#: includes/Elementor/Single_Doc/Single_Doc.php:504
 msgid "Color"
 msgstr ""
 
@@ -1655,7 +1651,7 @@ msgid "Header Background"
 msgstr ""
 
 #: includes/Admin/options/opt_docs_assistant.php:330
-#: includes/Elementor/Single_Doc/Single_Doc.php:343
+#: includes/Elementor/Single_Doc/Single_Doc.php:342
 msgid "Background"
 msgstr ""
 
@@ -1775,7 +1771,7 @@ msgstr ""
 
 #: includes/Admin/options/opt_docs_collaboration.php:84
 #: includes/Admin/options/opt_docs_collaboration.php:110
-#: includes/Admin/template/dashboard/header.php:16
+#: includes/Admin/template/dashboard/header.php:74
 #: includes/Admin/template/header.php:29 includes/One_Page_Docs.php:50
 #: includes/Post_Types.php:55
 msgid "Add Doc"
@@ -2066,181 +2062,176 @@ msgid ""
 "more%2$s"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:14
+#: includes/Admin/options/opt_docs_subscription.php:13
 msgid "Update Notifications"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:19
+#: includes/Admin/options/opt_docs_subscription.php:18
 msgid "Subscription Settings"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:20
+#: includes/Admin/options/opt_docs_subscription.php:19
 msgid ""
 "Let readers subscribe to receive email notifications when documentation is "
 "updated."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:26
+#: includes/Admin/options/opt_docs_subscription.php:25
 msgid "Enable Subscriptions"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:27
+#: includes/Admin/options/opt_docs_subscription.php:26
 msgid ""
 "Show a subscribe button that allows users to opt-in for update notifications."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:38
+#: includes/Admin/options/opt_docs_subscription.php:37
 msgid "Form Customization"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:39
+#: includes/Admin/options/opt_docs_subscription.php:38
 msgid "Customize the subscribe and unsubscribe form text and messages."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:44
+#: includes/Admin/options/opt_docs_subscription.php:43
 msgid "Subscribe Form"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:49
+#: includes/Admin/options/opt_docs_subscription.php:48
 msgid "Subscribe Button"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:50
+#: includes/Admin/options/opt_docs_subscription.php:49
 msgid "Text displayed on the subscription trigger button."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:51
+#: includes/Admin/options/opt_docs_subscription.php:50
 msgid "Subscribe for updates"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:57
-#: includes/Admin/options/opt_docs_subscription.php:143
+#: includes/Admin/options/opt_docs_subscription.php:56
+#: includes/Admin/options/opt_docs_subscription.php:142
 msgid "Form Heading"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:58
+#: includes/Admin/options/opt_docs_subscription.php:57
 msgid "Title shown at the top of the subscription form."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:59
-#: includes/Admin/options/opt_docs_subscription.php:92
+#: includes/Admin/options/opt_docs_subscription.php:58
+#: includes/Admin/options/opt_docs_subscription.php:91
 msgid "Subscribe"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:65
+#: includes/Admin/options/opt_docs_subscription.php:64
 msgid "Name Field Label"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:66
+#: includes/Admin/options/opt_docs_subscription.php:65
 #: templates/content-modal.php:27
 msgid "Name"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:71
+#: includes/Admin/options/opt_docs_subscription.php:70
 msgid "Name Placeholder"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:72
+#: includes/Admin/options/opt_docs_subscription.php:71
 msgid "Enter your name"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:78
+#: includes/Admin/options/opt_docs_subscription.php:77
 msgid "Email Field Label"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:84
+#: includes/Admin/options/opt_docs_subscription.php:83
 msgid "Email Placeholder"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:85
+#: includes/Admin/options/opt_docs_subscription.php:84
 msgid "Enter your email"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:98
-#: includes/Admin/options/opt_docs_subscription.php:175
+#: includes/Admin/options/opt_docs_subscription.php:97
+#: includes/Admin/options/opt_docs_subscription.php:174
 msgid "Cancel Button"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:99
-#: includes/Admin/options/opt_docs_subscription.php:176
-msgid "Cancel"
-msgstr ""
-
-#: includes/Admin/options/opt_docs_subscription.php:107
+#: includes/Admin/options/opt_docs_subscription.php:106
 msgid "Message shown after successful subscription."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:108
+#: includes/Admin/options/opt_docs_subscription.php:107
 msgid "Confirmation email sent successfully!"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:114
+#: includes/Admin/options/opt_docs_subscription.php:113
 msgid "Duplicate Email Message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:115
+#: includes/Admin/options/opt_docs_subscription.php:114
 msgid "Message shown when email is already subscribed."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:116
+#: includes/Admin/options/opt_docs_subscription.php:115
 msgid "Already email exists."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:122
+#: includes/Admin/options/opt_docs_subscription.php:121
 msgid "Invalid Characters Message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:123
+#: includes/Admin/options/opt_docs_subscription.php:122
 msgid "Message shown when invalid characters are detected."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:124
+#: includes/Admin/options/opt_docs_subscription.php:123
 msgid "Special characters not allowed!"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:130
+#: includes/Admin/options/opt_docs_subscription.php:129
 msgid "Unsubscribe Form"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:136
+#: includes/Admin/options/opt_docs_subscription.php:135
 msgid "Unsubscribe Button"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:137
-#: includes/Admin/options/opt_docs_subscription.php:144
+#: includes/Admin/options/opt_docs_subscription.php:136
+#: includes/Admin/options/opt_docs_subscription.php:143
 msgid "Unsubscribe"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:150
+#: includes/Admin/options/opt_docs_subscription.php:149
 msgid "Confirmation Message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:151
+#: includes/Admin/options/opt_docs_subscription.php:150
 msgid "Message asking user to confirm unsubscription."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:152
+#: includes/Admin/options/opt_docs_subscription.php:151
 msgid "Are you sure you'd like to stop receiving updates"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:158
+#: includes/Admin/options/opt_docs_subscription.php:157
 msgid "Show Document Title"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:161
+#: includes/Admin/options/opt_docs_subscription.php:160
 msgid "Include the document title in the confirmation message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:168
+#: includes/Admin/options/opt_docs_subscription.php:167
 msgid "Confirm Button"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:169
-#: includes/Admin/setup-wizard/setup.php:79
+#: includes/Admin/options/opt_docs_subscription.php:168
 msgid "Confirm"
 msgstr ""
 
 #: includes/Admin/options/opt_email_reporting.php:14
+#: includes/Admin/template/analytics-presentation.php:325
 msgid "Email Reports"
 msgstr ""
 
@@ -2379,10 +2370,169 @@ msgid ""
 "Send a sample report to verify your email settings are working correctly."
 msgstr ""
 
+#: includes/Admin/options/opt_feedback.php:13
+#: includes/Admin/options/opt_feedback.php:191
+#: includes/Admin/template/analytics-presentation.php:127
+#: includes/Admin/template/dashboard/analytics.php:53
+#: includes/Admin/template/dashboard/analytics.php:192
+#: includes/Admin/template/dashboard/analytics.php:254
+msgid "Feedback"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:22
+msgid "Feedback Options"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:27
+msgid "Feedback Area"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:34
+msgid "Feedback Area Options"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:44
+msgid "Message Feedback"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:57
+msgid "Still Stuck"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:58 templates/content-feedback.php:19
+msgid "Still stuck?"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:68
+msgid "Help form link text"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:69
+#: includes/Admin/options/opt_feedback.php:100
+#: templates/content-feedback.php:21 templates/content-modal.php:9
+msgid "How can we help?"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:79
+msgid "Email Address"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:89
+msgid "Feedback Modal"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:99
+#: includes/Admin/options/opt_feedback.php:260
+msgid "Form Title"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:110
+#: includes/Admin/options/opt_feedback.php:269
+msgid "Form Subtitle"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:119
+msgid "Voting Feedback"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:128
+msgid "Helpful feedback"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:140
+msgid "Feedback Label"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:141
+#: templates/content-feedback.php:22
+msgid "Was this page helpful?"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:150
+msgid "Feedback Count"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:165
+msgid "Feedback on Text"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:170
+#: includes/Admin/options/opt_feedback.php:176
+msgid "Feedback on Selected Text"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:177
+msgid "Enable the feature to allow users to comment on selected text."
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:178
+msgid ""
+"Note: if enabled, a switcher will appear in the doc meta area to allow "
+"visitors to turn On/Off the feature."
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:189
+msgid "Frontend Switcher Level"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:190
+msgid "This title will be shown on the frontend to On/Off the feature."
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:199
+msgid "Who can view comments?"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:211
+msgid "Feedback Form Settings"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:219
+msgid "Predefined Options Heading"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:221
+msgid "What is the issue with this selection?"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:228
+msgid "Predefined Options"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:235
+msgid "Option Label"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:251
+msgid "Other Option Label"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:253
+msgid "Others"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:262
+msgid "Share additional info or suggestions"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:271
+msgid "Do not share any personal info"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:278
+msgid "Form Disclaimer"
+msgstr ""
+
+#: includes/Admin/options/opt_feedback.php:280
+msgid ""
+"By continuing, you allow Google to use your answers and account info to "
+"improve services, as explained in our Privacy & Terms."
+msgstr ""
+
 #: includes/Admin/options/opt_footnotes.php:14
 #: includes/Admin/options/opt_footnotes.php:34
 #: includes/Admin/options/opt_footnotes.php:102
-#: includes/Frontend/Frontend.php:66 src/eazydocs-toolbar/index.js:73
+#: includes/Frontend/Frontend.php:69 src/eazydocs-toolbar/index.js:73
 msgid "Footnotes"
 msgstr ""
 
@@ -2430,7 +2580,7 @@ msgstr ""
 #: includes/Admin/options/opt_footnotes.php:59
 #: includes/Admin/options/opt_footnotes.php:127
 #: includes/Elementor/Docs/Doc_Widget.php:152
-#: includes/Elementor/Single_Doc/Single_Doc.php:165
+#: includes/Elementor/Single_Doc/Single_Doc.php:164
 msgid "1 Column"
 msgstr ""
 
@@ -2748,7 +2898,7 @@ msgid "This document is password protected"
 msgstr ""
 
 #: includes/Admin/options/opt_restricted_docs.php:176
-#: includes/Elementor/Single_Doc/Single_Doc.php:416
+#: includes/Elementor/Single_Doc/Single_Doc.php:415
 msgid "Subtitle"
 msgstr ""
 
@@ -2769,6 +2919,7 @@ msgid "Button Background Color"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:132
+#: includes/Admin/template/dashboard/header.php:59
 msgid "Settings"
 msgstr ""
 
@@ -2800,288 +2951,1186 @@ msgstr ""
 msgid "Unknown action."
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:30
-msgid "What's New!"
+#: includes/Admin/setup-wizard/setup.php:22
+msgid "Welcome"
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:43
-msgid "GETTING STARTED"
+#: includes/Admin/setup-wizard/setup.php:26
+msgid "Basic Setup"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:30
+msgid "Layout"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:34
+msgid "Plugins"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:38
+msgid "Finish"
 msgstr ""
 
 #: includes/Admin/setup-wizard/setup.php:48
-msgid "Skip"
+msgid "EazyDocs icon"
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:74
-msgid "Review and Confirm"
+#: includes/Admin/setup-wizard/setup.php:56
+msgid "What's New"
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:76
-msgid ""
-"Take a moment to review all your settings thoroughly before confirming your "
-"choices to ensure everything is set up correctly."
+#: includes/Admin/setup-wizard/setup.php:59
+msgid "Skip Setup"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step1_welcome.php:9
-msgid "Welcome to EazyDocs"
+#: includes/Admin/setup-wizard/setup.php:116
+msgid "Setup Complete!"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step1_welcome.php:9
-msgid ""
-"Discover EazyDocs by this guide that walks you through creating "
-"professional, user-friendly website documentation seamlessly. Then click "
-"next to setup initial settings."
+#: includes/Admin/setup-wizard/setup.php:117
+msgid "Your documentation site is ready. Here's what you can do next:"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:125
+msgid "Create Your First Doc"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:126
+msgid "Start building your documentation now"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:136
+msgid "Advanced Settings"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:137
+msgid "Customize more options"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:147
+#: includes/Admin/template/partials/ai-create-doc-popup.php:101
+msgid "View Documentation"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:148
+msgid "Learn how to use EazyDocs"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:159
+#: includes/Admin/template/dashboard/antimanual-ai.php:193
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:160
+msgid "Unlock all premium features"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:170
+msgid "Finish & Go to Dashboard"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:182 includes/Frontend/Frontend.php:350
+msgid "Previous"
+msgstr ""
+
+#. translators: %1$d: current step, %2$d: total steps
+#: includes/Admin/setup-wizard/setup.php:193 includes/Frontend/Frontend.php:351
+msgid "Next"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:204
+msgid "Quick Tips"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:209
+msgid "Watch the video tutorial to get started quickly with EazyDocs."
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:213
+msgid "Choose a brand color that matches your website theme for consistency."
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:217
+msgid "The layout can be changed later in the settings page."
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:221
+msgid "You can skip plugin installation now and install them later."
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:225
+msgid "All settings can be modified from the EazyDocs settings page."
 msgstr ""
 
 #: includes/Admin/setup-wizard/step1_welcome.php:17
+msgid "Welcome to EazyDocs!"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:18
+msgid ""
+"Thank you for choosing EazyDocs - the best documentation plugin for "
+"WordPress. Let's set up your knowledge base in just a few minutes."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:29
+msgid "EazyDocs Tutorial"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:37
+msgid ""
+"Watch this 3-minute video to learn how to create your first documentation"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:47
+msgid "Drag & Drop Builder"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:48
+msgid ""
+"Easily organize your documentation with our intuitive drag and drop "
+"interface."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:55
+msgid "Live Search"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:56
+msgid "Help users find answers quickly with instant AJAX-powered search."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:64
+msgid "Track what users search for and improve your documentation."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:71
+msgid "Customizable"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:72
+msgid "Match your brand with extensive styling and layout options."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step1_welcome.php:80
+#: includes/Admin/template/dashboard/antimanual-ai.php:182
+#: includes/Admin/template/dashboard/system-status.php:101
+#: includes/Admin/template/feedback-presentation.php:215
 msgid "Documentation"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step1_welcome.php:23
+#: includes/Admin/setup-wizard/step1_welcome.php:84
+#: includes/Admin/template/dashboard/antimanual-ai.php:188
 msgid "Video Tutorials"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step1_welcome.php:30
-msgid "Support"
+#: includes/Admin/setup-wizard/step2_settings.php:17
+msgid "Basic Configuration"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:9
+#: includes/Admin/setup-wizard/step2_settings.php:18
+msgid ""
+"Configure the essential settings for your documentation. Don't worry, you "
+"can change these later."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step2_settings.php:29
 msgid "Docs Archive Page"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:9
+#: includes/Admin/setup-wizard/step2_settings.php:30
+msgid "Select the page that will display all your documentation."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step2_settings.php:36
+msgid "— Select a page —"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step2_settings.php:47
 msgid ""
-"This page will show on the Doc single page breadcrumb and will be used to "
-"show the Docs."
+"Use [eazydocs] shortcode, Gutenberg blocks, or Elementor widgets on this "
+"page."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:14
-msgid "Select a page"
-msgstr ""
-
-#: includes/Admin/setup-wizard/step2_settings.php:23
-msgid ""
-"You can create this page with using [eazydocs] shortcode or available "
-"EazyDocs blocks or Elementor widgets."
-msgstr ""
-
-#: includes/Admin/setup-wizard/step2_settings.php:26
+#: includes/Admin/setup-wizard/step2_settings.php:60
 msgid "Brand Color"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:27
-msgid "Select the Brand Color for your knowledge base."
+#: includes/Admin/setup-wizard/step2_settings.php:61
+msgid "Choose your primary brand color for buttons, links, and accents."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:33
+#: includes/Admin/setup-wizard/step2_settings.php:68
+msgid "Preview"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step2_settings.php:81
 msgid "Doc Root URL Slug"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:34
-msgid ""
-"Select the Docs URL Structure. This will be used to generate the Docs URL."
+#: includes/Admin/setup-wizard/step2_settings.php:82
+msgid "Set the URL structure for your documentation pages."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:39
+#: includes/Admin/setup-wizard/step2_settings.php:91
 msgid "Default Slug"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step2_settings.php:44
+#: includes/Admin/setup-wizard/step2_settings.php:99
 msgid "Custom Slug"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step3_settings.php:9
-msgid "Select Page Layout"
+#: includes/Admin/setup-wizard/step2_settings.php:100
+msgid "Define your own URL structure"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step3_settings.php:15
-msgid "Both sidebar layout"
+#: includes/Admin/setup-wizard/step3_settings.php:17
+msgid "Choose Your Layout"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step3_settings.php:20
-msgid "Left sidebar layout"
-msgstr ""
-
-#: includes/Admin/setup-wizard/step3_settings.php:25
-msgid "Right sidebar layout"
+#: includes/Admin/setup-wizard/step3_settings.php:18
+msgid ""
+"Select how your documentation pages will look. Pick a layout that suits your "
+"content best."
 msgstr ""
 
 #: includes/Admin/setup-wizard/step3_settings.php:29
-msgid "Page Width"
+msgid "Sidebar Layout"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step3_settings.php:33
-msgid "Boxed Width"
+#: includes/Admin/setup-wizard/step3_settings.php:30
+msgid "Choose the sidebar configuration for documentation pages."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:38
+#: includes/Admin/setup-wizard/step3_settings.php:40
+msgid "Both Sidebars"
 msgstr ""
 
 #: includes/Admin/setup-wizard/step3_settings.php:41
+msgid "Left: Navigation | Right: TOC"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:53
+msgid "Navigation on left side"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:65
+msgid "Navigation on right side"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:81
+msgid "Page Width"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:82
+msgid "Choose between boxed or full-width content area."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:92
+msgid "Boxed"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:113
 msgid "Live Customizer"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step3_settings.php:44
-msgid "Enable Live Customizer"
+#: includes/Admin/setup-wizard/step3_settings.php:114
+msgid "Enable the frontend customizer for real-time styling adjustments."
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:9
-#: includes/Admin/setup-wizard/step4_install_plugins.php:48
-msgid "Install Recommended Plugins"
+#: includes/Admin/setup-wizard/step3_settings.php:128
+msgid "Pro"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:20
-msgid "Elementor"
+#: includes/Admin/setup-wizard/step3_settings.php:131
+msgid "Unlock More Layouts with Pro"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:132
+msgid ""
+"Get access to advanced layout options, floating TOC, print mode, and more."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step3_settings.php:135
+msgid "Upgrade Now"
 msgstr ""
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:21
-msgid ""
-"Required for Elementor widget. Install this plugin if you want to use the "
-"Elementor widgets of EazyDocs."
+msgid "Elementor"
 msgstr ""
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:22
+msgid ""
+"Required for EazyDocs Elementor widgets. Perfect for building custom "
+"documentation layouts."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:24
 msgid "Required"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:27
-msgid "Advanced Accordion Gutenberg Block"
-msgstr ""
-
-#: includes/Admin/setup-wizard/step4_install_plugins.php:28
-msgid ""
-"A highly advanced and lightweight accordion plugin, perfect for creating "
-"FAQs and accordions in the block editor."
-msgstr ""
-
 #: includes/Admin/setup-wizard/step4_install_plugins.php:29
-#: includes/Admin/setup-wizard/step4_install_plugins.php:36
-#: includes/Admin/setup-wizard/step4_install_plugins.php:43
+msgid "Advanced Accordion Block"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:30
+msgid "Create beautiful FAQs and accordion content in the block editor."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:32
 msgid "Recommended"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:33
-msgid "BBP Core"
+#: includes/Admin/setup-wizard/step4_install_plugins.php:36
+msgid "Antimanual"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:35
-msgid ""
-"Enhance your bbPress forum with powerful features. This plugin is designed "
-"exclusively for bbPress users."
+#: includes/Admin/setup-wizard/step4_install_plugins.php:38
+msgid "Create comprehensive user guides and documentation with Antimanual."
 msgstr ""
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:40
+#: includes/Admin/setup-wizard/step4_install_plugins.php:48
+msgid "Optional"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:44
 msgid "Changeloger"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:42
-msgid ""
-"Ideal for publishing software changelogs, this plugin converts plain text "
-"into visually rich formats in the WordPress block editor."
+#: includes/Admin/setup-wizard/step4_install_plugins.php:46
+msgid "Publish beautiful changelogs directly in your documentation."
 msgstr ""
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:57
+msgid "Recommended Plugins"
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:58
+msgid ""
+"These plugins enhance your documentation experience. Choose the ones that "
+"fit your needs."
+msgstr ""
+
+#: includes/Admin/setup-wizard/step4_install_plugins.php:69
 msgid "Activated"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:57
+#: includes/Admin/setup-wizard/step4_install_plugins.php:69
 msgid "Activate"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:57
+#: includes/Admin/setup-wizard/step4_install_plugins.php:69
 msgid "Install"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:72
-msgid "More Info"
+#: includes/Admin/setup-wizard/step4_install_plugins.php:98
+msgid "Details"
 msgstr ""
 
-#: includes/Admin/setup-wizard/step4_install_plugins.php:84
+#: includes/Admin/template/analytics-presentation.php:29
+msgid "Promax Feature"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:31
+msgid "Powerful Documentation Analytics"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:33
 msgid ""
-"Install the plugins you need. Each one has a short description to help you "
-"choose the right ones for better functionality."
+"Get deep insights into how users interact with your documentation. Track "
+"views, understand search behavior, measure satisfaction, and make data-"
+"driven improvements."
 msgstr ""
 
-#: includes/Admin/template/child-docs.php:160
-msgid "Add Section"
+#: includes/Admin/template/analytics-presentation.php:38
+msgid "Get Promax Plan"
 msgstr ""
 
-#: includes/Admin/template/dashboard/analytics.php:3
-msgid "Performance Overview"
+#: includes/Admin/template/analytics-presentation.php:52
+msgid "Analytics Dashboard Overview"
 msgstr ""
 
-#: includes/Admin/template/dashboard/analytics.php:7
-msgid "This Week"
+#: includes/Admin/template/analytics-presentation.php:55
+msgid ""
+"A comprehensive dashboard showing all key metrics at a glance with "
+"interactive charts."
 msgstr ""
 
-#: includes/Admin/template/dashboard/analytics.php:10
-msgid "Last Month"
-msgstr ""
-
-#: includes/Admin/template/dashboard/card-info.php:9
-msgid "Total Docs"
-msgstr ""
-
-#: includes/Admin/template/dashboard/card-info.php:12
-#: includes/Admin/template/dashboard/card-info.php:25
-#: includes/Admin/template/dashboard/card-info.php:44
-#: includes/Admin/template/dashboard/card-info.php:59
-msgid "View More"
-msgstr ""
-
-#: includes/Admin/template/dashboard/card-info.php:22
+#: includes/Admin/template/analytics-presentation.php:66
+#: includes/Admin/template/dashboard/card-info.php:42
 msgid "Total Views"
 msgstr ""
 
-#: includes/Admin/template/dashboard/card-info.php:41
-msgid "Positive Votes"
+#: includes/Admin/template/analytics-presentation.php:78
+#: includes/Admin/template/feedback-presentation.php:90
+msgid "Satisfaction Rate"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:90
+msgid "Search Success"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:102
+msgid "Published Docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:118
+msgid "Performance Trends (Last 7 Days)"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:123
+#: includes/Admin/template/dashboard/analytics.php:49
+#: includes/Admin/template/dashboard/analytics.php:188
+#: includes/Admin/template/dashboard/analytics.php:250
+msgid "Views"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:131
+#: includes/Admin/template/dashboard/analytics.php:57
+#: includes/Admin/template/dashboard/analytics.php:196
+#: includes/Admin/template/dashboard/analytics.php:258
+msgid "Searches"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:169
+msgid "Mon"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:170
+msgid "Tue"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:171
+msgid "Wed"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:172
+msgid "Thu"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:173
+msgid "Fri"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:174
+msgid "Sat"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:175
+msgid "Sun"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:181
+msgid "Interactive charts available in Promax"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:191
+msgid "Six Powerful Analytics Modules"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:194
+msgid ""
+"Each module provides deep insights into different aspects of your "
+"documentation performance."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:204
+msgid "Overview Dashboard"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:205
+msgid ""
+"Get a bird's eye view of all key metrics including total views, satisfaction "
+"rate, search success, and published docs count with trend indicators."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:207
+msgid "Key performance indicators"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:208
+msgid "Interactive trend charts"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:209
+msgid "Quick insights & summaries"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:220
+msgid "Page Views Analytics"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:221
+msgid ""
+"Track detailed page view statistics for every documentation page. Identify "
+"your most popular content and engagement patterns."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:223
+msgid "Daily/weekly/monthly views"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:224
+msgid "Top performing docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:225
+msgid "View trends over time"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:236
+msgid "Feedback Analytics"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:237
+msgid ""
+"Monitor user satisfaction with helpful/not helpful vote tracking. Identify "
+"which docs need improvement based on real user feedback."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:239
+msgid "Satisfaction rate tracking"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:240
+msgid "Positive/negative breakdown"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:241
+msgid "Docs needing attention"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:252
+msgid "Search Analytics"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:253
+msgid ""
+"Understand what users are searching for in your documentation. Discover "
+"content gaps and optimize for commonly searched terms."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:255
+msgid "Popular search keywords"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:256
+msgid "Failed search tracking"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:257
+msgid "Search success rate"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:268
+msgid "Doc Rankings"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:269
+msgid ""
+"See which documentation pages are performing best and which need "
+"improvement. Rankings based on views and user feedback combined."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:271
+msgid "Most helpful docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:272
+msgid "Least helpful docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:273
+msgid "Performance scores"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:284
+msgid "Collaboration Metrics"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:285
+msgid ""
+"Track team collaboration and contribution metrics. See who is actively "
+"contributing to your documentation and measure team productivity."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:287
+msgid "Contributor statistics"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:288
+msgid "Edit activity tracking"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:289
+msgid "Team performance"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:300
+#: includes/Admin/template/faq-builder.php:116
+msgid "Advanced Features"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:303
+msgid "Tools and features that help you take action on your analytics data."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:311
+msgid "Custom Date Ranges"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:312
+msgid "Analyze data for any time period with flexible date range selection."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:318
+msgid "Export to CSV"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:319
+msgid "Download analytics data for external analysis or reporting."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:326
+msgid "Receive scheduled analytics reports directly in your inbox."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:332
+#: includes/Admin/template/feedback-presentation.php:137
+msgid "Advanced Filtering"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:333
+msgid "Filter and sort data by various criteria to find exactly what you need."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:339
+msgid "Visual Charts"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:340
+msgid "Beautiful, interactive charts powered by ApexCharts library."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:346
+msgid "Actionable Insights"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:347
+msgid "Get smart recommendations based on your analytics data."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:356
+msgid "Why Analytics Matters"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:360
+msgid "Identify top-performing documentation and replicate success"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:364
+msgid "Discover content gaps through failed search analysis"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:368
+msgid "Reduce support tickets by improving low-rated docs"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:372
+msgid "Make data-driven decisions for content strategy"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:376
+msgid "Track team productivity and collaboration"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:380
+msgid "Demonstrate documentation ROI to stakeholders"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:391
+msgid ""
+"faster identification of documentation issues through analytics-driven "
+"insights"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:409
+msgid "Unlock the Full Power of Analytics"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:410
+msgid ""
+"Get the Promax plan and start making data-driven improvements to your "
+"documentation today."
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:414
+msgid "Get EazyDocs Promax"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:419
+msgid "All 6 analytics modules"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:423
+msgid "Priority support"
+msgstr ""
+
+#: includes/Admin/template/analytics-presentation.php:427
+msgid "Lifetime updates"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:51
+msgid "Toggle expand/collapse all sections"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:53
+msgid "Expand All"
+msgstr ""
+
+#: includes/Admin/template/child-docs.php:167
+msgid "Add Section"
+msgstr ""
+
+#: includes/Admin/template/dashboard/analytics.php:5
+msgid "Performance Overview"
+msgstr ""
+
+#: includes/Admin/template/dashboard/analytics.php:10
+msgid "This Week"
+msgstr ""
+
+#: includes/Admin/template/dashboard/analytics.php:13
+msgid "Last Month"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:29
+msgid "Supercharge with AI"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:32
+#: includes/Elementor/Docs/Doc_Widget.php:606
+msgid "Active"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:34
+msgid "Available"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:42
+msgid "Antimanual AI is enhancing your documentation experience!"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:48
+msgid "API Configuration"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:58
+msgid "Chatbot"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:63
+msgid "Generate Docs"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:68
+msgid "Auto Posting"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:73
+msgid "Bulk Rewrite"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:81
+msgid ""
+"Activate Antimanual to unlock powerful AI features for your documentation!"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:86
+msgid "70%+ reduction"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:86
+msgid "in support tickets"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:87
+msgid "Instant answers"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:87
+msgid "with AI chatbot trained on your docs"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:88
+msgid "Auto-generate"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:88
+msgid "professional documentation"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:89
+msgid "Semantic search"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:89
+msgid "that understands user intent"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:96
+msgid "Activate Antimanual"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:107
+msgid ""
+"Transform your EazyDocs knowledge base into an intelligent support hub with "
+"Antimanual AI!"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:113
+msgid "Reduced Support Tickets"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:117
+msgid "AI Chatbot Support"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:121
+msgid "Latest AI Models"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:128
+msgid "Intelligent Chatbot"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:129
+msgid "Auto-trained on your docs, PDFs & URLs"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:133
+msgid "Doc Generator"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:134
+msgid "Create comprehensive docs in seconds"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:138
+msgid "AI Search"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:139
+msgid "Semantic search with intent recognition"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:143
+msgid "Auto-Posting"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:144
+msgid "Schedule AI-generated content"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:165
+msgid "Why Antimanual is Superior:"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:168
+msgid "GPT-4, GPT-5, Gemini support (not just GPT-3.5)"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:169
+msgid "Train on Docs, PDFs, URLs & Custom Text"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:170
+msgid "Full conversation history & context retention"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:171
+msgid "Cross-domain embed & bbPress integration"
+msgstr ""
+
+#: includes/Admin/template/dashboard/antimanual-ai.php:200
+msgid ""
+"Free version available. Upgrade to Premium for higher limits and priority "
+"support."
+msgstr ""
+
+#: includes/Admin/template/dashboard/card-info.php:28
+msgid "Total Docs"
 msgstr ""
 
 #: includes/Admin/template/dashboard/card-info.php:56
+msgid "Positive Votes"
+msgstr ""
+
+#: includes/Admin/template/dashboard/card-info.php:70
 msgid "Negative Votes"
 msgstr ""
 
-#: includes/Admin/template/dashboard/header.php:23
+#. translators: %d: number of stale docs
+#: includes/Admin/template/dashboard/doc-health.php:53
+#, php-format
+msgid "%d articles haven't been updated in 90+ days"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:57
+msgid "Review"
+msgstr ""
+
+#. translators: %d: number of docs with no views
+#: includes/Admin/template/dashboard/doc-health.php:72
+#, php-format
+msgid "%d articles have no views yet"
+msgstr ""
+
+#. translators: %d: percentage of failed searches
+#: includes/Admin/template/dashboard/doc-health.php:91
+#, php-format
+msgid "%d%% of searches aren't finding results"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:95
+msgid "View Insights"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:113
+msgid "Excellent"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:117
+msgid "Good"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:121
+msgid "Fair"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:125
+msgid "Needs Work"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:134
+msgid "Documentation Health"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:164
+msgid "Published Articles"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:174
+msgid "With Feedback"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:184
+msgid "Need Review"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:192
+msgid "Recommendations"
+msgstr ""
+
+#: includes/Admin/template/dashboard/doc-health.php:208
+msgid "Great job! Your documentation is in excellent shape."
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:49
+msgid "Failed Searches"
+msgstr ""
+
+#. translators: %d: number of failed search attempts
+#: includes/Admin/template/dashboard/failed-searches.php:67
+#, php-format
+msgid "%d attempts"
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:80
+msgid "Create doc for this keyword"
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:82
+msgid "Create"
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:91
+msgid "View all search analytics"
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:100
+msgid "Great! No failed searches recorded."
+msgstr ""
+
+#: includes/Admin/template/dashboard/failed-searches.php:101
+msgid "Your documentation is covering user needs well."
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:22
+msgid "Good morning"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:24
+msgid "Good afternoon"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:26
+msgid "Good evening"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:28
+msgid "Good night"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:47
+msgid "Overview"
+msgstr ""
+
+#: includes/Admin/template/dashboard/header.php:81
 #: includes/Admin/template/header.php:37
 msgid "Create Doc with AI"
 msgstr ""
 
-#: includes/Admin/template/dashboard/recent-activity.php:81
+#: includes/Admin/template/dashboard/recent-activity.php:5
 msgid "Recent Activity"
 msgstr ""
 
-#: includes/Admin/template/dashboard/recent-activity.php:86
+#: includes/Admin/template/dashboard/recent-activity.php:102
 msgid "No recent activity found."
 msgstr ""
 
-#: includes/Admin/template/dashboard/recent-activity.php:104
+#: includes/Admin/template/dashboard/recent-activity.php:108
+msgid "ago"
+msgstr ""
+
+#: includes/Admin/template/dashboard/recent-activity.php:123
 msgid "commented on"
 msgstr ""
 
-#: includes/Admin/template/dashboard/search-data.php:21
+#: includes/Admin/template/dashboard/recent-activity.php:139
+msgid "New article"
+msgstr ""
+
+#: includes/Admin/template/dashboard/recent-activity.php:144
+msgid "Draft updated"
+msgstr ""
+
+#: includes/Admin/template/dashboard/recent-activity.php:149
+msgid "Article deleted"
+msgstr ""
+
+#: includes/Admin/template/dashboard/recent-activity.php:154
+msgid "Activity"
+msgstr ""
+
+#: includes/Admin/template/dashboard/search-data.php:35
 msgid "Search Overview"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-ranked-docs.php:3
+#: includes/Admin/template/dashboard/search-data.php:39
+msgid "success"
+msgstr ""
+
+#: includes/Admin/template/dashboard/search-data.php:51
+#: includes/Admin/template/dashboard/search-data.php:187
+msgid "Total"
+msgstr ""
+
+#: includes/Admin/template/dashboard/search-data.php:56
+#: includes/Admin/template/dashboard/search-data.php:155
+msgid "Successful"
+msgstr ""
+
+#: includes/Admin/template/dashboard/search-data.php:61
+#: includes/Admin/template/dashboard/search-data.php:155
+msgid "Failed"
+msgstr ""
+
+#: includes/Admin/template/dashboard/search-data.php:130
+msgid "No Search Data"
+msgstr ""
+
+#: includes/Admin/template/dashboard/search-data.php:203
+msgid "searches"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:35
+msgid "System Status"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:42
+msgid "EazyDocs Version"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:50
+#: includes/Admin/template/dashboard/system-status.php:57
+msgid "Pro Version"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:61
+msgid "Upgrade"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:68
+msgid "WordPress"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:73
+msgid "PHP Version"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:78
+msgid "Active Theme"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:84
+msgid "Docs Page"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:88
+msgid "View"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:97
+msgid "Resources"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:105
+msgid "Support"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:109
+msgid "Changelog"
+msgstr ""
+
+#: includes/Admin/template/dashboard/system-status.php:113
+msgid "Features"
+msgstr ""
+
+#: includes/Admin/template/dashboard/top-ranked-docs.php:5
 msgid "Top Ranked Docs"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-ranked-docs.php:91
-#: includes/Admin/template/template-parts.php:71
+#: includes/Admin/template/dashboard/top-ranked-docs.php:103
+#: includes/Admin/template/template-parts.php:81
 msgid "No rates"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-ranked-docs.php:104
-msgid "No ranked docs found."
+#: includes/Admin/template/dashboard/top-ranked-docs.php:117
+msgid "No ranked docs found yet."
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-viewed-docs.php:2
+#: includes/Admin/template/dashboard/top-viewed-docs.php:5
 msgid "Top Viewed Docs"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-viewed-docs.php:32
-msgid " Views"
+#: includes/Admin/template/dashboard/top-viewed-docs.php:39
+msgid " views"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-viewed-docs.php:42
-msgid "No viewed docs found."
+#: includes/Admin/template/dashboard/top-viewed-docs.php:53
+msgid "No viewed docs found yet."
 msgstr ""
 
 #: includes/Admin/template/faq-builder.php:23
@@ -3208,12 +4257,272 @@ msgstr ""
 msgid "Pre-built Patterns"
 msgstr ""
 
-#: includes/Admin/template/faq-builder.php:116
-msgid "Advanced Features"
-msgstr ""
-
 #: includes/Admin/template/faq-builder.php:122
 msgid "Engaging Layouts"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:28
+msgid "Premium Feature"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:30
+msgid "Users Feedback Management"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:32
+msgid ""
+"Collect, manage, and analyze user feedback to improve your documentation. "
+"Understand what users find helpful and what needs improvement."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:37
+msgid "Unlock This Feature"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:51
+msgid "Feedback Analytics at a Glance"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:54
+msgid ""
+"Get real-time insights into user satisfaction with powerful analytics "
+"dashboards."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:63
+msgid "Total Feedback"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:72
+msgid "New This Week"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:81
+msgid "Resolved"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:106
+msgid "Powerful Features"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:109
+msgid ""
+"Everything you need to understand and improve your documentation based on "
+"real user feedback."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:116
+#: includes/Admin/template/feedback-presentation.php:171
+msgid "Doc Feedback"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:117
+msgid ""
+"Collect helpful/unhelpful votes on each documentation page. See which docs "
+"are performing well and which need attention."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:123
+#: includes/Admin/template/feedback-presentation.php:176
+#: includes/Admin/template/feedback-presentation.php:269
+msgid "Text Feedback"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:124
+msgid ""
+"Allow users to submit detailed text feedback with email contact. Understand "
+"specific pain points and suggestions."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:130
+msgid "Email Integration"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:131
+msgid ""
+"Reply directly to user feedback via email. Build a relationship with your "
+"users and show them you care."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:138
+msgid ""
+"Filter feedback by status, date, doc type, and more. Quickly find what you "
+"need with powerful search."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:144
+msgid "CSV Export"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:145
+msgid ""
+"Export all feedback data to CSV for analysis in Excel or Google Sheets. "
+"Create reports and track trends."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:151
+msgid "Archive Management"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:152
+msgid ""
+"Archive resolved feedback to keep your workspace clean. Bulk actions make "
+"managing hundreds of items easy."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:161
+msgid "Interface Preview"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:164
+msgid ""
+"A beautiful, intuitive interface to manage all your user feedback in one "
+"place."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:186
+msgid "Open"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:190
+msgid "Archived"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:195
+msgid "Search feedback..."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:208
+msgid "Getting Started Guide"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:209
+msgid "Helpful"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:211
+msgid "2 hours ago"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:217
+msgid ""
+"This documentation was incredibly helpful! The step-by-step instructions "
+"made it easy to set up everything correctly."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:221
+#: includes/Admin/template/feedback-presentation.php:251
+#: includes/Admin/template/feedback-presentation.php:281
+msgid "Reply"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:225
+#: includes/Admin/template/feedback-presentation.php:255
+#: includes/Admin/template/feedback-presentation.php:285
+msgid "Archive"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:238
+msgid "API Reference"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:239
+msgid "Needs Review"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:241
+msgid "5 hours ago"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:245
+msgid "API Docs"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:247
+msgid ""
+"Could you add more code examples for the authentication section? The current "
+"examples are good but more use cases would help."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:268
+msgid "Troubleshooting Tips"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:271
+msgid "Yesterday"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:275
+msgid "Help Center"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:277
+msgid ""
+"The troubleshooting section saved me hours of debugging! Found the solution "
+"to my caching issue right away."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:296
+msgid "Unlock Pro to Access"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:306
+msgid "Why User Feedback Matters"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:310
+msgid "Identify documentation gaps and areas that need improvement"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:314
+msgid "Reduce support tickets by improving self-service documentation"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:318
+msgid "Understand what content resonates with your users"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:322
+msgid "Build direct relationships with users through email replies"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:326
+msgid "Track satisfaction trends over time with analytics"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:330
+msgid "Prioritize content updates based on real user input"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:341
+msgid ""
+"of users find docs more helpful after implementing feedback-driven "
+"improvements"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:359
+msgid "Ready to Collect User Feedback?"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:360
+msgid ""
+"Upgrade to EazyDocs Pro and start understanding your users better today."
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:364
+msgid "Get EazyDocs Pro Now"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:369
+msgid "14-day money-back guarantee"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:373
+msgid "Priority email or chat support included"
+msgstr ""
+
+#: includes/Admin/template/feedback-presentation.php:377
+msgid "Free updates till the license expires"
 msgstr ""
 
 #: includes/Admin/template/header.php:17
@@ -3256,6 +4565,121 @@ msgstr ""
 msgid "Pro Icon"
 msgstr ""
 
+#: includes/Admin/template/integrated-themes.php:18
+msgid "Docy"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:19
+msgid ""
+"Professional documentation and forum theme with advanced features for "
+"creating knowledge bases, community forums, and comprehensive support "
+"resources."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:26
+msgid "Docly"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:27
+msgid ""
+"Comprehensive documentation and knowledge base theme with powerful built-in "
+"features for creating extensive documentation, forums, and support systems."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:34
+msgid "Saasland"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:35
+msgid ""
+"Specialized SaaS and startup theme for software companies with modern "
+"design, pricing tables, feature showcases, and marketing-focused layouts "
+"perfect for tech products."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:42
+msgid "Banca"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:43
+msgid ""
+"Banking and business finance theme for financial institutions, loan "
+"services, and corporate documentation with professional layouts and trust-"
+"building features."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:50
+msgid "Ama"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:51
+msgid ""
+"Social Q&A and forum WordPress theme for building community-driven question "
+"and answer platforms with discussion forums and user engagement features."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:58
+msgid "Landpagy"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:59
+msgid ""
+"Multipurpose landing page theme ideal for creating high-converting product "
+"pages, promotional campaigns, and corporate websites with modern design "
+"elements."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:66
+msgid "Deski"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:67
+msgid ""
+"Modern event ticketing and landing page WordPress theme designed for "
+"creating professional event pages, ticket sales, and promotional campaigns."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:74
+msgid "Rogan"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:75
+msgid ""
+"Creative multipurpose WordPress theme perfect for businesses, portfolios, "
+"and customer support platforms with elegant design and powerful "
+"customization options."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:82
+msgid "Zoomy"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:83
+msgid ""
+"Learning management system theme for online courses and educational "
+"platforms featuring course management, instructor profiles, and student "
+"engagement tools."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:95
+msgid "Compatible Themes for EazyDocs"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:98
+msgid ""
+"Discover professionally designed WordPress themes optimized for "
+"documentation. Each theme is tested and verified to work seamlessly with "
+"EazyDocs for the best user experience."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:120
+msgid "View Demo"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:124
+msgid "Get Theme"
+msgstr ""
+
 #: includes/Admin/template/parent-docs.php:56
 #: includes/Elementor/template-helpers.php:93
 msgid "Password Protected Doc"
@@ -3266,7 +4690,7 @@ msgid "Edit this doc"
 msgstr ""
 
 #: includes/Admin/template/parent-docs.php:95
-#: includes/Admin/template/template-parts.php:158
+#: includes/Admin/template/template-parts.php:168
 msgid "Move to Trash"
 msgstr ""
 
@@ -3290,35 +4714,128 @@ msgstr ""
 msgid "Sidebar"
 msgstr ""
 
-#: includes/Admin/template/template-parts.php:15
-msgid "Hold the mouse and drag to move this doc."
+#: includes/Admin/template/partials/ai-create-doc-popup.php:25
+msgid "Powered by Antimanual AI"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:27
+msgid "Create Docs Smarter with AI"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:28
+msgid ""
+"Transform documentation with structured, accurate, and professional docs in "
+"minutes using enterprise-grade AI."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:42
+msgid "Documentation Generator"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:44
+msgid ""
+"Generate comprehensive, SEO-optimized docs with custom tone and language. "
+"Choose professional, friendly, or technical styles."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:50
+msgid "24/7 AI Chatbot"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:52
+msgid ""
+"Reduce support tickets by 70%+ with an intelligent chatbot trained on your "
+"EazyDocs knowledge base. Instant, accurate answers."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:58
+msgid "Bulk Generation"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:60
+msgid ""
+"Generate multiple docs at once with comprehensive structures. Review and "
+"refine outlines before generation."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:66
+msgid "Docs from Files"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:68
+msgid ""
+"Upload PDFs, URLs, and custom text to generate context-aware documentation "
+"automatically."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:74
+msgid "Semantic AI Search"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:76
+msgid ""
+"Beyond keywords - understand user intent with natural language processing "
+"and smart suggestions."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:82
+msgid "GPT-5 & Gemini Support"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:84
+msgid ""
+"Powered by latest AI models including GPT-4, GPT-5, and Google Gemini for "
+"superior accuracy."
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:93
+msgid "Antimanual is Active!"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:97
+msgid "Manage AI Settings"
+msgstr ""
+
+#: includes/Admin/template/partials/ai-create-doc-popup.php:110
+msgid ""
+"Get started with Antimanual to unlock all AI features for your EazyDocs "
+"knowledge base!"
+msgstr ""
+
+#: includes/Admin/template/template-parts.php:16
+msgid "Drag to reorder this documentation item"
+msgstr ""
+
+#: includes/Admin/template/template-parts.php:18
+#: includes/Admin/template/template-parts.php:27
+msgid "Drag to reorder"
 msgstr ""
 
 #. translators: %d is the number of positive votes
-#: includes/Admin/template/template-parts.php:49
+#: includes/Admin/template/template-parts.php:59
 #, php-format
 msgid "%d Positive vote, "
 msgid_plural "%d Positive votes and "
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Admin/template/template-parts.php:52
+#: includes/Admin/template/template-parts.php:62
 msgid "No Positive votes, "
 msgstr ""
 
 #. translators: %d is the number of negative votes
-#: includes/Admin/template/template-parts.php:58
+#: includes/Admin/template/template-parts.php:68
 #, php-format
 msgid "%d Negative vote found."
 msgid_plural "%d Negative votes found."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/Admin/template/template-parts.php:61
+#: includes/Admin/template/template-parts.php:71
 msgid "No Negative votes."
 msgstr ""
 
-#: includes/Admin/template/template-parts.php:177
+#: includes/Admin/template/template-parts.php:187
 msgid "Click on the title to edit the page"
 msgstr ""
 
@@ -3351,12 +4868,12 @@ msgid "List Style"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:123
-#: includes/Elementor/Single_Doc/Single_Doc.php:62
+#: includes/Elementor/Single_Doc/Single_Doc.php:61
 msgid "Preset Skin"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:129
-#: includes/Elementor/Single_Doc/Single_Doc.php:68
+#: includes/Elementor/Single_Doc/Single_Doc.php:67
 msgid "Skins"
 msgstr ""
 
@@ -3365,37 +4882,37 @@ msgid "Layout Settings"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:148
-#: includes/Elementor/Single_Doc/Single_Doc.php:161
+#: includes/Elementor/Single_Doc/Single_Doc.php:160
 msgid "Column"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:149
-#: includes/Elementor/Single_Doc/Single_Doc.php:162
+#: includes/Elementor/Single_Doc/Single_Doc.php:161
 msgid "Number of column to show"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:153
-#: includes/Elementor/Single_Doc/Single_Doc.php:166
+#: includes/Elementor/Single_Doc/Single_Doc.php:165
 msgid "2 Column"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:154
-#: includes/Elementor/Single_Doc/Single_Doc.php:167
+#: includes/Elementor/Single_Doc/Single_Doc.php:166
 msgid "3 Column"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:155
-#: includes/Elementor/Single_Doc/Single_Doc.php:168
+#: includes/Elementor/Single_Doc/Single_Doc.php:167
 msgid "4 Column"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:156
-#: includes/Elementor/Single_Doc/Single_Doc.php:169
+#: includes/Elementor/Single_Doc/Single_Doc.php:168
 msgid "5 Column"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:157
-#: includes/Elementor/Single_Doc/Single_Doc.php:170
+#: includes/Elementor/Single_Doc/Single_Doc.php:169
 msgid "6 Column"
 msgstr ""
 
@@ -3495,7 +5012,7 @@ msgid ""
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:298
-#: includes/Elementor/Single_Doc/Single_Doc.php:219
+#: includes/Elementor/Single_Doc/Single_Doc.php:218
 msgid "Number of articles to show under every sections"
 msgstr ""
 
@@ -3514,7 +5031,7 @@ msgid "Doc Section Excerpt"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:322
-#: includes/Elementor/Single_Doc/Single_Doc.php:205
+#: includes/Elementor/Single_Doc/Single_Doc.php:204
 msgid ""
 "Excerpt word limit of the documentation sections. If the excerpt got empty, "
 "this will get from the post content."
@@ -3575,8 +5092,8 @@ msgid "Child Docs Order"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:399
-#: includes/Elementor/Single_Doc/Single_Doc.php:146
-#: includes/Elementor/Single_Doc/Single_Doc.php:152
+#: includes/Elementor/Single_Doc/Single_Doc.php:145
+#: includes/Elementor/Single_Doc/Single_Doc.php:151
 msgid "Doc"
 msgstr ""
 
@@ -3626,7 +5143,7 @@ msgstr ""
 #: includes/Elementor/Docs/Doc_Widget.php:976
 #: includes/Elementor/Search/style-control.php:22
 #: includes/Elementor/Search/style-control.php:297
-#: includes/Elementor/Single_Doc/Single_Doc.php:361
+#: includes/Elementor/Single_Doc/Single_Doc.php:360
 msgid "Padding"
 msgstr ""
 
@@ -3647,8 +5164,8 @@ msgstr ""
 #: includes/Elementor/Docs/Doc_Widget.php:906
 #: includes/Elementor/Docs/Doc_Widget.php:937
 #: includes/Elementor/Search/style-control.php:73
-#: includes/Elementor/Single_Doc/Single_Doc.php:388
-#: includes/Elementor/Single_Doc/Single_Doc.php:426
+#: includes/Elementor/Single_Doc/Single_Doc.php:387
+#: includes/Elementor/Single_Doc/Single_Doc.php:425
 msgid "Text Color"
 msgstr ""
 
@@ -3662,10 +5179,6 @@ msgstr ""
 #: includes/Elementor/Docs/Doc_Widget.php:931
 #: includes/Elementor/Search/style-control.php:259
 msgid "Hover"
-msgstr ""
-
-#: includes/Elementor/Docs/Doc_Widget.php:606
-msgid "Active"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:658
@@ -3758,7 +5271,7 @@ msgid "Typography"
 msgstr ""
 
 #: includes/Elementor/Search/style-control.php:85
-#: includes/Elementor/Single_Doc/Single_Doc.php:353
+#: includes/Elementor/Single_Doc/Single_Doc.php:352
 msgid "Border"
 msgstr ""
 
@@ -3793,120 +5306,120 @@ msgstr ""
 msgid "Keyword Color"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:30
+#: includes/Elementor/Single_Doc/Single_Doc.php:29
 msgid "(EazyDocs) Single Doc"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:72
+#: includes/Elementor/Single_Doc/Single_Doc.php:71
 msgid "Light"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:76
+#: includes/Elementor/Single_Doc/Single_Doc.php:75
 msgid "Creative"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:80
-#: includes/Elementor/Single_Doc/Single_Doc.php:331
+#: includes/Elementor/Single_Doc/Single_Doc.php:79
+#: includes/Elementor/Single_Doc/Single_Doc.php:330
 msgid "Box"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:84
+#: includes/Elementor/Single_Doc/Single_Doc.php:83
 msgid "Topic Boxes"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:88
+#: includes/Elementor/Single_Doc/Single_Doc.php:87
 msgid "Docs Boxes"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:114
+#: includes/Elementor/Single_Doc/Single_Doc.php:113
 msgid "Title Text"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:123
+#: includes/Elementor/Single_Doc/Single_Doc.php:122
 msgid "Title Tag"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:134
+#: includes/Elementor/Single_Doc/Single_Doc.php:133
 msgid "Subtitle Text"
+msgstr ""
+
+#: includes/Elementor/Single_Doc/Single_Doc.php:180
+#: includes/Elementor/Single_Doc/Single_Doc.php:190
+msgid "Sections"
 msgstr ""
 
 #: includes/Elementor/Single_Doc/Single_Doc.php:181
 #: includes/Elementor/Single_Doc/Single_Doc.php:191
-msgid "Sections"
-msgstr ""
-
-#: includes/Elementor/Single_Doc/Single_Doc.php:182
-#: includes/Elementor/Single_Doc/Single_Doc.php:192
 msgid "Number of section to show"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:204
+#: includes/Elementor/Single_Doc/Single_Doc.php:203
 msgid "Excerpt"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:229
+#: includes/Elementor/Single_Doc/Single_Doc.php:228
 msgid "Order"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:245
+#: includes/Elementor/Single_Doc/Single_Doc.php:244
 msgid "Buttons"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:254
+#: includes/Elementor/Single_Doc/Single_Doc.php:253
 msgid "Read More Button"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:263
+#: includes/Elementor/Single_Doc/Single_Doc.php:262
 msgid "Section Button"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:275
+#: includes/Elementor/Single_Doc/Single_Doc.php:274
 msgid "Button Text"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:288
+#: includes/Elementor/Single_Doc/Single_Doc.php:287
 msgid "Button URL"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:300
+#: includes/Elementor/Single_Doc/Single_Doc.php:299
 msgid "Show More Button"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:312
+#: includes/Elementor/Single_Doc/Single_Doc.php:311
 msgid "Show Less Text"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:457
-#: includes/Elementor/Single_Doc/Single_Doc.php:498
+#: includes/Elementor/Single_Doc/Single_Doc.php:456
+#: includes/Elementor/Single_Doc/Single_Doc.php:497
 msgid "Content"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:536
-#: includes/Elementor/Single_Doc/Single_Doc.php:546
+#: includes/Elementor/Single_Doc/Single_Doc.php:535
+#: includes/Elementor/Single_Doc/Single_Doc.php:545
 msgid "Background Objects"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:555
+#: includes/Elementor/Single_Doc/Single_Doc.php:554
 msgid "Shape"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:556
+#: includes/Elementor/Single_Doc/Single_Doc.php:555
 msgid "The background shape should be transparent png or svg image."
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:569
+#: includes/Elementor/Single_Doc/Single_Doc.php:568
 msgid "Round Objects 01"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:579
+#: includes/Elementor/Single_Doc/Single_Doc.php:578
 msgid "Round 01 Color"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:593
+#: includes/Elementor/Single_Doc/Single_Doc.php:592
 msgid "Round Objects 02"
 msgstr ""
 
-#: includes/Elementor/Single_Doc/Single_Doc.php:603
+#: includes/Elementor/Single_Doc/Single_Doc.php:602
 msgid "Round 02 Color"
 msgstr ""
 
@@ -3918,24 +5431,16 @@ msgstr ""
 msgid "Thanks for your feedback!"
 msgstr ""
 
-#: includes/Frontend/Ajax.php:254
+#: includes/Frontend/Ajax.php:258
 msgid "No result found!"
 msgstr ""
 
-#: includes/Frontend/Ajax.php:274
+#: includes/Frontend/Ajax.php:278
 msgid "Invalid document ID"
 msgstr ""
 
-#: includes/Frontend/Ajax.php:289 includes/functions.php:1409
+#: includes/Frontend/Ajax.php:293 includes/functions.php:1409
 msgid "You don't have permission to access this document!"
-msgstr ""
-
-#: includes/Frontend/Frontend.php:347
-msgid "Previous"
-msgstr ""
-
-#: includes/Frontend/Frontend.php:348
-msgid "Next"
 msgstr ""
 
 #: includes/Frontend/Mailer.php:33
@@ -4076,6 +5581,10 @@ msgstr ""
 
 #: includes/One_Page_Docs.php:47 includes/Post_Types.php:52
 msgid "Parent Doc"
+msgstr ""
+
+#: includes/One_Page_Docs.php:48 includes/Post_Types.php:53
+msgid "All Docs"
 msgstr ""
 
 #: includes/One_Page_Docs.php:49 includes/Post_Types.php:54
@@ -4346,13 +5855,34 @@ msgstr ""
 msgid "You don't have sufficient permission to perform this action."
 msgstr ""
 
-#: includes/functions.php:1496
+#: includes/functions.php:1499
 msgid ""
 "Please avoid using special characters other than hyphens and underscores!"
 msgstr ""
 
-#: includes/functions.php:1651
+#: includes/functions.php:1654
 msgid "Single Doc"
+msgstr ""
+
+#: includes/functions.php:2218
+msgid "You do not have permission to import data."
+msgstr ""
+
+#: includes/functions.php:2226
+msgid "Sample data file not found."
+msgstr ""
+
+#: includes/functions.php:2250 includes/functions.php:2263
+#: includes/functions.php:2270
+msgid "Sample data imported successfully!"
+msgstr ""
+
+#: includes/functions.php:2285
+msgid "The sample data file is empty."
+msgstr ""
+
+#: includes/functions.php:2293
+msgid "Failed to parse the sample data file."
 msgstr ""
 
 #: includes/notices/asking-for-review.php:49
