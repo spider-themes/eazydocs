@@ -4,7 +4,7 @@ Tags: knowledge base, wiki, faq, documentation, help desk, ai chatbot, documenta
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.8.2
+Stable tag: 2.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -313,18 +313,19 @@ After activation, you'll see a setup wizard to help you create your first knowle
 
 == Changelog ==
 
-= 3.9.0 (31 December 2025) =
+= 2.9.0 (03 January 2026) =
 *   New: Redesigned Setup Wizard with a compact, modern UI and improved progress tracking.
 *   New: Added floating Quick Tips panel in the Setup Wizard for contextual guidance (visible on desktop).
 *   New: Added "Import Sample Data" feature to quickly populate documentation with demo content.
 *   New: Added "Close All/Collapse All" button in the EazyDocs > Docs Builder page to expand/collapse the docs at a single click.
+*   Fixed: UI alignment and progress indicator issues in the Setup Wizard.
 *   Improved: Setup Wizard navigation now supports clicking on completed steps to go back.
-*   Improved: Replaced BBP Core with Antimanual in the plugin recommendation step.
+*   Improved: Replaced Forumax with Antimanual in the plugin recommendation step.
 *   Improved: Redesigned "Create Doc with AI" popup with a modern, feature-rich UI and video preview.
 *   Improved: Enhanced Antimanual AI integration card on the dashboard with a cleaner layout.
 *   Improved: Streamlined Setup Wizard steps by removing redundant text and improving layout consistency.
-*   Fixed: UI alignment and progress indicator issues in the Setup Wizard.
 *   Added: Sample data import from demo.xml using WordPress Importer with fallback manual import support.
+*   [Read the full v2.9.0 release article ](https://eazydocs.spider-themes.net/eazydocs-v2-9-0-a-deep-dive-into-the-transformation/).
 
 = 2.8.1 (19 December 2025) =
 *   Tweaked: Settings page reorganized for easier navigation.
@@ -362,28 +363,6 @@ After activation, you'll see a setup wizard to help you create your first knowle
 *   Improved: Heading scroll offset adjusted for accurate anchor positioning.
 *   Improved: Doc single page typography refined for better readability.
 *   Updated: Attached files feature updated using WordPress hooks for better extensibility.
-
-= 2.7.2 (16 October 2025) =
-*   Fixed: Grid and masonry layout issues resolved in both single and multi-docs Elementor widgets for consistent display.
-*   Fixed: Broken Access Control vulnerability resolved by adding proper permission checks to AJAX endpoints.
-*   Fixed: Single docs layout collapsed issue with WoodMart theme.
-*   Fixed: Vulnerability issues.
-*   Tweaked: Security and code consistency improved.
-*   Tweaked: Refined constant definitions and removed redundant code.
-*   Tweaked: Improved handling of dynamic content and AJAX endpoints.
-*   Tweaked: Doc single page markup updated to make it more SEO friendly.
-*   Enhanced: Documentation builder refined by reorganizing layout rendering logic across multiple templates for better performance and structure.
-*   Enhanced: Icon/featured image added to Docs widget tab on Style 3.
-*   Enhanced: CSS and UI consistency for better user experience.
-*   Improved: Input sanitization and validation to address potential vulnerabilities.
-*   Improved: Setup wizard made smoother and more user-friendly with efficient wrapper functions.
-*   Improved: Admin panel feedback section styling refined with better CSS alignment and layout adjustments.
-*   Improved: Grammar in notices corrected and SCSS styling improved for consistency and visual appeal.
-*   Improved: Doc Sections design improved in the Single doc page.
-*   Reorganized: Repetitive code replaced with reusable helper functions to improve maintainability.
-*   Updated: ezd_arrow() function now returns the icon class instead of echoing it.
-*   Updated: CSS optimized to make UI elements cleaner and ensure faster loading performance.
-*   Updated: Language files updated.
 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 
