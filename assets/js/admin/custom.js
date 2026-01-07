@@ -83,12 +83,12 @@
 			const more_state = urlParams.get('more_state');
 
 			if (more_state) {
-				// Remove previous active
-				$('.tab-menu .easydocs-navitem').removeClass('is-active');
+				// Remove previous active (include both 'is-active' and 'active' classes for Analytics page compatibility)
+				$('.tab-menu .easydocs-navitem').removeClass('is-active active');
 				$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active');
 
 				// Activate target tab
-				$('.tab-menu .easydocs-navitem[data-rel="' + more_state + '"]').addClass('is-active');
+				$('.tab-menu .easydocs-navitem[data-rel="' + more_state + '"]').addClass('is-active active');
 				$('#' + more_state).addClass('tab-active').show();
 
 				// Save to cookie

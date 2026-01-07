@@ -47,7 +47,7 @@ $transition-slow: 0.5s ease;
 // Reset and Base - Full Screen Mode
 .ezd-setup-page {
 	background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
-	min-height: 100vh;
+	height: 100vh;
 	margin: 0;
 	padding: 0;
 	position: fixed;
@@ -56,8 +56,9 @@ $transition-slow: 0.5s ease;
 	right: 0;
 	bottom: 0;
 	z-index: 99999;
-	overflow-y: auto;
-	overflow-x: hidden;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 
 	*,
 	*::before,
@@ -97,12 +98,12 @@ body.documentation_page_eazydocs-initial-setup {
 	background: $bg-white;
 	box-shadow: $shadow-md;
 	display: flex;
-	height: 64px;
+	height: 56px;
+	min-height: 56px;
+	flex-shrink: 0;
 	justify-content: space-between;
 	padding: 0 24px;
 	align-items: center;
-	position: sticky;
-	top: 0;
 	z-index: 100;
 
 	.ezd-setup-wizard-header {
@@ -204,13 +205,16 @@ body.documentation_page_eazydocs-initial-setup {
 #ezd-setup-wizard-wrap {
 	width: 100%;
 	max-width: 900px;
-	margin: 24px auto 0;
+	margin: 16px auto;
 	background: $bg-white;
 	border-radius: $radius-lg;
 	box-shadow: $shadow-xl;
 	overflow: hidden;
 	position: relative;
 	border: 1px solid $border-light;
+	display: flex;
+	flex-direction: column;
+	max-height: calc(100vh - 88px); // 56px header + 16px margin top/bottom
 
 	// Hide WordPress notices and smart wizard toolbar
 	.notice,
@@ -230,9 +234,10 @@ body.documentation_page_eazydocs-initial-setup {
 // Progress Steps - Compact Design
 .ezd-wizard-progress {
 	background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-	padding: 20px 40px;
+	padding: 12px 40px;
 	border-bottom: 1px solid $border-light;
 	position: relative;
+	flex-shrink: 0;
 
 	.ezd-progress-bar {
 		position: absolute;
@@ -369,12 +374,18 @@ body.documentation_page_eazydocs-initial-setup {
 
 // Tab Content Area - Compact
 .tab-content {
-	min-height: auto;
-	padding: 24px 40px;
+	min-height: 0;
+	flex: 1;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 16px 32px 20px;
 	position: relative;
 
 	.tab-pane {
 		animation: fadeInUp 0.4s ease;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 }
 
@@ -392,50 +403,51 @@ body.documentation_page_eazydocs-initial-setup {
 // Step Header - Compact
 .ezd-step-header {
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 12px;
+	flex-shrink: 0;
 
 	.ezd-welcome-icon,
 	.ezd-step-icon {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 56px;
-		height: 56px;
+		width: 44px;
+		height: 44px;
 		background: linear-gradient(
 			135deg,
 			$primary-light 0%,
 			rgba($primary-color, 0.15) 100%
 		);
 		border-radius: 50%;
-		margin-bottom: 12px;
+		margin-bottom: 8px;
 
 		img {
-			width: 32px;
-			height: 32px;
+			width: 26px;
+			height: 26px;
 		}
 
 		.dashicons {
-			font-size: 26px;
-			width: 26px;
-			height: 26px;
+			font-size: 22px;
+			width: 22px;
+			height: 22px;
 			color: $primary-color;
 		}
 	}
 
 	h2 {
-		font-size: 22px;
+		font-size: 18px;
 		font-weight: 700;
 		color: $text-primary;
-		margin: 0 0 8px;
+		margin: 0 0 4px;
 		line-height: 1.3;
 	}
 
 	.ezd-step-description {
-		font-size: 14px;
+		font-size: 13px;
 		color: $text-secondary;
 		max-width: 500px;
 		margin: 0 auto;
-		line-height: 1.5;
+		line-height: 1.4;
 	}
 }
 
@@ -445,20 +457,27 @@ body.documentation_page_eazydocs-initial-setup {
 .ezd-welcome-step {
 	.ezd-welcome-content {
 		max-width: 100%;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
 	}
 
 	.ezd-welcome-video {
-		margin-bottom: 20px;
+		margin-bottom: 12px;
+		flex-shrink: 0;
 
 		.ezd-video-wrapper {
 			border-radius: $radius-md;
 			overflow: hidden;
 			box-shadow: $shadow-lg;
 			background: #000;
+			max-height: 200px;
 
 			iframe {
 				display: block;
 				border: none;
+				height: 200px;
 			}
 		}
 
@@ -466,13 +485,16 @@ body.documentation_page_eazydocs-initial-setup {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			gap: 8px;
-			margin-top: 8px;
-			font-size: 13px;
+			gap: 6px;
+			margin-top: 6px;
+			font-size: 12px;
 			color: $text-secondary;
 
 			.dashicons {
 				color: $danger-color;
+				font-size: 14px;
+				width: 14px;
+				height: 14px;
 			}
 		}
 	}
@@ -480,8 +502,9 @@ body.documentation_page_eazydocs-initial-setup {
 	.ezd-features-grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		gap: 12px;
-		margin-bottom: 20px;
+		gap: 10px;
+		margin-bottom: 12px;
+		flex-shrink: 0;
 
 		@media (max-width: 768px) {
 			grid-template-columns: repeat(2, 1fr);
@@ -492,7 +515,7 @@ body.documentation_page_eazydocs-initial-setup {
 		background: $bg-light;
 		border: 1px solid $border-light;
 		border-radius: $radius-sm;
-		padding: 14px;
+		padding: 10px 8px;
 		text-align: center;
 		transition: all $transition-base;
 
@@ -504,55 +527,56 @@ body.documentation_page_eazydocs-initial-setup {
 		}
 
 		.ezd-feature-icon {
-			width: 36px;
-			height: 36px;
+			width: 30px;
+			height: 30px;
 			background: $primary-light;
 			border-radius: $radius-sm;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			margin-bottom: 8px;
+			margin-bottom: 6px;
 
 			.dashicons {
-				font-size: 18px;
-				width: 18px;
-				height: 18px;
+				font-size: 15px;
+				width: 15px;
+				height: 15px;
 				color: $primary-color;
 			}
 		}
 
 		h4 {
-			font-size: 13px;
+			font-size: 12px;
 			font-weight: 600;
 			color: $text-primary;
 			margin: 0 0 4px;
 		}
 
 		p {
-			font-size: 12px;
+			font-size: 11px;
 			color: $text-secondary;
 			margin: 0;
-			line-height: 1.4;
+			line-height: 1.3;
 		}
 	}
 
 	.ezd-quick-links {
 		display: flex;
 		justify-content: center;
-		gap: 16px;
+		gap: 10px;
 		flex-wrap: wrap;
+		flex-shrink: 0;
 
 		.ezd-quick-link {
 			display: inline-flex;
 			align-items: center;
-			gap: 8px;
-			padding: 12px 20px;
+			gap: 6px;
+			padding: 8px 14px;
 			background: $bg-white;
 			border: 1px solid $border-color;
 			border-radius: $radius-full;
 			color: $text-secondary;
 			text-decoration: none;
-			font-size: 14px;
+			font-size: 13px;
 			font-weight: 500;
 			transition: all $transition-fast;
 
@@ -589,7 +613,7 @@ body.documentation_page_eazydocs-initial-setup {
 	background: $bg-white;
 	border: 1px solid $border-color;
 	border-radius: $radius-sm;
-	margin-bottom: 12px;
+	margin-bottom: 8px;
 	overflow: hidden;
 	transition: all $transition-base;
 
@@ -601,15 +625,15 @@ body.documentation_page_eazydocs-initial-setup {
 	.ezd-setting-header {
 		display: flex;
 		align-items: center;
-		gap: 12px;
-		padding: 12px 16px;
+		gap: 10px;
+		padding: 10px 14px;
 		background: $bg-light;
 		border-bottom: 1px solid $border-light;
 	}
 
 	.ezd-setting-icon {
-		width: 36px;
-		height: 36px;
+		width: 32px;
+		height: 32px;
 		background: $primary-light;
 		border-radius: $radius-sm;
 		display: flex;
@@ -618,9 +642,9 @@ body.documentation_page_eazydocs-initial-setup {
 		flex-shrink: 0;
 
 		.dashicons {
-			font-size: 18px;
-			width: 18px;
-			height: 18px;
+			font-size: 16px;
+			width: 16px;
+			height: 16px;
 			color: $primary-color;
 		}
 	}
@@ -629,7 +653,7 @@ body.documentation_page_eazydocs-initial-setup {
 		flex: 1;
 
 		h3 {
-			font-size: 14px;
+			font-size: 13px;
 			font-weight: 600;
 			color: $text-primary;
 			margin: 0 0 2px;
@@ -644,7 +668,7 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	.ezd-setting-body {
-		padding: 16px;
+		padding: 12px 14px;
 	}
 
 	// Toggle Card
@@ -681,16 +705,16 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	.ezd-setting-hint {
-		    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    padding: 5px 10px;
-    background: rgba(245,166,35,.1);
-    border-radius: 6px;
-    font-size: 12px;
-    color: #c37d09;
-    line-height: 1.5;
-    align-items: center;
+		display: flex;
+		gap: 8px;
+		margin-top: 12px;
+		padding: 5px 10px;
+		background: rgba(245, 166, 35, 0.1);
+		border-radius: 6px;
+		font-size: 12px;
+		color: #c37d09;
+		line-height: 1.5;
+		align-items: center;
 
 		.dashicons {
 			flex-shrink: 0;
@@ -748,7 +772,7 @@ body.documentation_page_eazydocs-initial-setup {
 		position: relative;
 
 		// Custom Radio Input
-		input[type='radio'] {
+		input[type="radio"] {
 			appearance: none;
 			width: 18px;
 			height: 18px;
@@ -793,7 +817,7 @@ body.documentation_page_eazydocs-initial-setup {
 			border-color: $primary-color;
 			background: $primary-light;
 
-			input[type='radio'] {
+			input[type="radio"] {
 				border-color: $primary-color;
 				background: $primary-color;
 				box-shadow: inset 0 0 0 3px white;
@@ -842,7 +866,7 @@ body.documentation_page_eazydocs-initial-setup {
 .ezd-layout-options {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 12px;
+	gap: 10px;
 
 	@media (max-width: 600px) {
 		grid-template-columns: 1fr;
@@ -853,7 +877,7 @@ body.documentation_page_eazydocs-initial-setup {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 12px;
+	padding: 10px 8px;
 	background: $bg-white;
 	border: 1px solid $border-color;
 	border-radius: $radius-sm;
@@ -862,7 +886,7 @@ body.documentation_page_eazydocs-initial-setup {
 	position: relative;
 	text-align: center;
 
-	input[type='radio'] {
+	input[type="radio"] {
 		position: absolute;
 		opacity: 0;
 		pointer-events: none;
@@ -870,24 +894,24 @@ body.documentation_page_eazydocs-initial-setup {
 
 	.ezd-layout-preview {
 		width: 100%;
-		margin-bottom: 8px;
+		margin-bottom: 6px;
 		border-radius: $radius-sm;
 		overflow: hidden;
 		box-shadow: $shadow-sm;
 
 		img {
 			max-width: 100%;
-			height: 100px;
+			height: 80px;
 			display: block;
 			transition: transform 0.3s ease;
 			margin: 0 auto;
-			padding: 10px;
-			border-radius: 20px;
+			padding: 6px;
+			border-radius: 12px;
 		}
 	}
 
 	.ezd-layout-name {
-		font-size: 13px;
+		font-size: 12px;
 		font-weight: 600;
 		color: $text-primary;
 		margin-bottom: 2px;
@@ -955,7 +979,7 @@ body.documentation_page_eazydocs-initial-setup {
 		cursor: pointer;
 		transition: all $transition-base;
 
-		input[type='radio'] {
+		input[type="radio"] {
 			position: absolute;
 			opacity: 0;
 			pointer-events: none;
@@ -975,7 +999,7 @@ body.documentation_page_eazydocs-initial-setup {
 			background: white;
 
 			&::before {
-				content: '';
+				content: "";
 				position: absolute;
 				top: 8px;
 				bottom: 8px;
@@ -1015,7 +1039,7 @@ body.documentation_page_eazydocs-initial-setup {
 
 // Toggle Switch
 .ezd-toggle-switch {
-	input[type='checkbox'] {
+	input[type="checkbox"] {
 		display: none;
 
 		& + .ezd-toggle-label {
@@ -1029,7 +1053,7 @@ body.documentation_page_eazydocs-initial-setup {
 			display: block;
 
 			&::after {
-				content: '';
+				content: "";
 				position: absolute;
 				top: 4px;
 				left: 4px;
@@ -1056,8 +1080,8 @@ body.documentation_page_eazydocs-initial-setup {
 .ezd-pro-teaser {
 	display: flex;
 	align-items: center;
-	gap: 20px;
-	padding: 20px 24px;
+	gap: 14px;
+	padding: 12px 16px;
 	background: linear-gradient(
 		135deg,
 		rgba($pro-color, 0.08) 0%,
@@ -1065,7 +1089,7 @@ body.documentation_page_eazydocs-initial-setup {
 	);
 	border: 1px solid rgba($pro-color, 0.2);
 	border-radius: $radius-md;
-	margin-top: 24px;
+	margin-top: 12px;
 
 	.ezd-pro-badge {
 		display: flex;
@@ -1112,8 +1136,8 @@ body.documentation_page_eazydocs-initial-setup {
 	.ezd-plugins-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 15px;
-		margin-bottom: 24px;
+		gap: 10px;
+		margin-bottom: 0;
 
 		@media (max-width: 700px) {
 			grid-template-columns: 1fr;
@@ -1125,7 +1149,7 @@ body.documentation_page_eazydocs-initial-setup {
 	background: $bg-white;
 	border: 1px solid $border-color;
 	border-radius: $radius-md;
-	padding: 24px;
+	padding: 14px;
 	position: relative;
 	transition: all $transition-base;
 
@@ -1142,13 +1166,13 @@ body.documentation_page_eazydocs-initial-setup {
 
 	.ezd-plugin-status {
 		position: absolute;
-		top: 12px;
-		left: 12px;
-		font-size: 11px;
+		top: 8px;
+		left: 8px;
+		font-size: 10px;
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		padding: 4px 10px;
+		padding: 3px 8px;
 		border-radius: $radius-full;
 
 		&.ezd-status-required {
@@ -1169,13 +1193,13 @@ body.documentation_page_eazydocs-initial-setup {
 
 	.ezd-plugin-active-badge {
 		position: absolute;
-		top: 12px;
-		right: 12px;
+		top: 8px;
+		right: 8px;
 
 		.dashicons {
-			font-size: 24px;
-			width: 24px;
-			height: 24px;
+			font-size: 20px;
+			width: 20px;
+			height: 20px;
 			color: $success-color;
 		}
 	}
@@ -1184,14 +1208,14 @@ body.documentation_page_eazydocs-initial-setup {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-top: 16px;
-		margin-bottom: 16px;
+		margin-top: 10px;
+		margin-bottom: 8px;
 	}
 
 	.ezd-plugin-icon {
-		width: 50px;
-		height: 50px;
-		margin-bottom: 10px;
+		width: 40px;
+		height: 40px;
+		margin-bottom: 6px;
 
 		img {
 			width: 100%;
@@ -1202,7 +1226,7 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	.ezd-plugin-title {
-		font-size: 16px;
+		font-size: 14px;
 		font-weight: 600;
 		color: $text-primary;
 		text-align: center;
@@ -1210,18 +1234,18 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	.ezd-plugin-description {
-		font-size: 14px;
+		font-size: 12px;
 		color: $text-secondary;
 		text-align: center;
-		line-height: 1.6;
-		margin: 0 0 20px;
-		min-height: 50px;
+		line-height: 1.4;
+		margin: 0 0 10px;
+		min-height: 36px;
 	}
 
 	.ezd-plugin-actions {
 		display: flex;
 		justify-content: center;
-		gap: 12px;
+		gap: 8px;
 	}
 }
 
@@ -1235,12 +1259,12 @@ body.documentation_page_eazydocs-initial-setup {
 
 	.ezd-success-animation {
 		position: relative;
-		margin-bottom: 24px;
+		margin-bottom: 16px;
 	}
 
 	.ezd-success-circle {
-		width: 100px;
-		height: 100px;
+		width: 70px;
+		height: 70px;
 		background: linear-gradient(
 			135deg,
 			$success-color 0%,
@@ -1253,9 +1277,9 @@ body.documentation_page_eazydocs-initial-setup {
 		animation: successPulse 2s ease-in-out infinite;
 
 		.dashicons {
-			font-size: 48px;
-			width: 48px;
-			height: 48px;
+			font-size: 36px;
+			width: 36px;
+			height: 36px;
 			color: white;
 		}
 	}
@@ -1271,16 +1295,16 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	.ezd-finish-subtitle {
-		font-size: 16px;
+		font-size: 14px;
 		color: $text-secondary;
-		margin-bottom: 32px;
+		margin-bottom: 16px;
 	}
 
 	.ezd-next-steps-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 16px;
-		margin-bottom: 32px;
+		gap: 10px;
+		margin-bottom: 16px;
 		text-align: left;
 
 		@media (max-width: 600px) {
@@ -1291,8 +1315,8 @@ body.documentation_page_eazydocs-initial-setup {
 	.ezd-next-step-card {
 		display: flex;
 		align-items: center;
-		gap: 16px;
-		padding: 20px;
+		gap: 12px;
+		padding: 12px 14px;
 		background: $bg-light;
 		border: 1px solid $border-color;
 		border-radius: $radius-md;
@@ -1300,8 +1324,8 @@ body.documentation_page_eazydocs-initial-setup {
 		transition: all $transition-base;
 
 		.ezd-card-icon {
-			width: 48px;
-			height: 48px;
+			width: 36px;
+			height: 36px;
 			background: $primary-light;
 			border-radius: $radius-sm;
 			display: flex;
@@ -1310,9 +1334,9 @@ body.documentation_page_eazydocs-initial-setup {
 			flex-shrink: 0;
 
 			.dashicons {
-				font-size: 24px;
-				width: 24px;
-				height: 24px;
+				font-size: 18px;
+				width: 18px;
+				height: 18px;
 				color: $primary-color;
 			}
 		}
@@ -1422,9 +1446,10 @@ body.documentation_page_eazydocs-initial-setup {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 14px 24px;
+	padding: 10px 20px;
 	background: $bg-light;
 	border-top: 1px solid $border-light;
+	flex-shrink: 0;
 
 	.ezd-footer-left,
 	.ezd-footer-right {
@@ -1589,6 +1614,34 @@ body.documentation_page_eazydocs-initial-setup {
 		display: none;
 	}
 
+	// Collapsed state - show only icon
+	&.is-collapsed {
+		width: auto;
+		border-radius: $radius-full;
+
+		.ezd-tips-header {
+			padding: 14px;
+			border-radius: $radius-full;
+
+			// Hide title and toggle button
+			h4,
+			.ezd-tips-toggle {
+				display: none;
+			}
+
+			// Make the lightbulb icon larger and centered
+			> .dashicons-lightbulb {
+				font-size: 24px;
+				width: 24px;
+				height: 24px;
+			}
+		}
+
+		.ezd-tips-list {
+			display: none;
+		}
+	}
+
 	.ezd-tips-header {
 		display: flex;
 		align-items: center;
@@ -1600,6 +1653,16 @@ body.documentation_page_eazydocs-initial-setup {
 			darken($warning-color, 10%) 100%
 		);
 		color: white;
+		cursor: pointer;
+		transition: background $transition-fast;
+
+		&:hover {
+			background: linear-gradient(
+				135deg,
+				darken($warning-color, 3%) 0%,
+				darken($warning-color, 13%) 100%
+			);
+		}
 
 		.dashicons {
 			font-size: 20px;
@@ -1611,6 +1674,40 @@ body.documentation_page_eazydocs-initial-setup {
 			font-size: 15px;
 			font-weight: 600;
 			margin: 0;
+			flex: 1;
+		}
+	}
+
+	// Toggle button
+	.ezd-tips-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 28px;
+		height: 28px;
+		padding: 0;
+		background: rgba(255, 255, 255, 0.2);
+		border: none;
+		border-radius: $radius-full;
+		color: white;
+		cursor: pointer;
+		transition: all $transition-fast;
+		margin-left: auto;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.3);
+		}
+
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+		}
+
+		.dashicons {
+			font-size: 16px;
+			width: 16px;
+			height: 16px;
+			transition: transform $transition-base;
 		}
 	}
 
@@ -1742,12 +1839,47 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 }
 
-// Hide button text in footer to avoid button issues
-.toolbar-bottom {
+// SmartWizard buttons in footer - ensure proper styling
+.toolbar-bottom,
+.ezd-wizard-footer {
 	.sw-btn-prev,
 	.sw-btn-next {
 		&:not(.ezd-btn) {
-			display: none;
+			display: none !important;
+		}
+	}
+
+	// Ensure footer nav buttons are properly styled
+	.sw-btn-next.ezd-btn-primary,
+	a.sw-btn-next.ezd-btn-primary,
+	button.sw-btn-next.ezd-btn-primary {
+		background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%) !important;
+		color: white !important;
+		box-shadow: 0 4px 12px rgba($primary-color, 0.3) !important;
+		display: inline-flex !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+
+		&:hover {
+			background: linear-gradient(135deg, $primary-dark 0%, darken($primary-dark, 5%) 100%) !important;
+			transform: translateY(-2px);
+		}
+	}
+
+	.sw-btn-prev.ezd-btn-outline,
+	a.sw-btn-prev.ezd-btn-outline,
+	button.sw-btn-prev.ezd-btn-outline {
+		background: transparent !important;
+		border: 2px solid $border-color !important;
+		color: $text-secondary !important;
+		display: inline-flex !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+
+		&:hover {
+			border-color: $primary-color !important;
+			color: $primary-color !important;
+			background: $primary-light !important;
 		}
 	}
 }

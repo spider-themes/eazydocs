@@ -228,12 +228,58 @@
 				}
 			},
 
-			/**
-			 * Update tips based on current step
+				/**
+			 * Update tips based on current step and handle toggle functionality
 			 */
 			initTips: function () {
+				const self = this;
+				const $tipsPanel = $('.ezd-setup-tips');
+				const $toggleBtn = $('.ezd-tips-toggle');
+				const $tipsHeader = $('.ezd-tips-header');
+				const storageKey = 'ezd_quick_tips_collapsed';
+
+				// Check localStorage for collapsed state
+				const isCollapsed = localStorage.getItem(storageKey) === 'true';
+				if (isCollapsed) {
+					$tipsPanel.addClass('is-collapsed');
+					$toggleBtn.attr('aria-expanded', 'false');
+				}
+
+				// Toggle button click handler
+				$toggleBtn.on('click', function (e) {
+					e.stopPropagation();
+					self.toggleTipsPanel($tipsPanel, $toggleBtn, storageKey);
+				});
+
+				// Also allow clicking on header to toggle
+				$tipsHeader.on('click', function (e) {
+					// Only toggle if click was on header, not on the button itself
+					if (!$(e.target).closest('.ezd-tips-toggle').length) {
+						self.toggleTipsPanel($tipsPanel, $toggleBtn, storageKey);
+					}
+				});
+
 				// Show first tip on load
 				this.updateTip(1);
+			},
+
+			/**
+			 * Toggle Quick Tips panel visibility
+			 */
+			toggleTipsPanel: function ($panel, $btn, storageKey) {
+				const isCollapsed = $panel.hasClass('is-collapsed');
+
+				if (isCollapsed) {
+					// Expand
+					$panel.removeClass('is-collapsed');
+					$btn.attr('aria-expanded', 'true');
+					localStorage.setItem(storageKey, 'false');
+				} else {
+					// Collapse
+					$panel.addClass('is-collapsed');
+					$btn.attr('aria-expanded', 'false');
+					localStorage.setItem(storageKey, 'true');
+				}
 			},
 
 			updateTip: function (step) {

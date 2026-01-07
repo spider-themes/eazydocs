@@ -202,6 +202,9 @@ $wizard_steps = array(
 		<div class="ezd-tips-header">
 			<span class="dashicons dashicons-lightbulb"></span>
 			<h4><?php esc_html_e( 'Quick Tips', 'eazydocs' ); ?></h4>
+			<button type="button" class="ezd-tips-toggle" aria-expanded="true" aria-label="<?php esc_attr_e( 'Toggle Quick Tips', 'eazydocs' ); ?>">
+				<span class="dashicons dashicons-arrow-down-alt2"></span>
+			</button>
 		</div>
 		<ul class="ezd-tips-list">
 			<li data-step="1">
