@@ -69,6 +69,14 @@ $integrated_themes = [
 		'demo_url'        => 'https://creativegigs.spider-themes.net/deski/',
 		'marketplace_url' => 'https://themeforest.net/item/deski-multipurpose-landing-page-wordpress-theme/34094683',
 	],
+    [
+            'id'              => 'ddoc',
+            'name'            => __( 'Ddoc', 'eazydocs' ),
+            'description'     => __( 'Documentation and knowledge base WordPress theme for building comprehensive documentation sites, user guides, and support resources with clean, responsive designs and easy customization.', 'eazydocs' ),
+            'preview_url'     => EAZYDOCS_ASSETS . '/images/admin/themes/ddoc.png',
+            'demo_url'        => 'https://dlddoc.droitlab.com/',
+            'marketplace_url' => 'https://themeforest.net/item/ddoc-documentation-wordpress-theme/25558076',
+    ],
 	[
 		'id'              => 'rogan',
 		'name'            => __( 'Rogan', 'eazydocs' ),
@@ -87,6 +95,8 @@ $integrated_themes = [
 	],
 ];
 ?>
+
+
 
 <div class="wrap ezd-themes-showcase-wrapper">
     <!-- Header -->
