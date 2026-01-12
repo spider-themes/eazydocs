@@ -2,7 +2,7 @@
 Contributors: mdjwel, spiderdevs
 Tags: knowledge base, wiki, faq, documentation, help desk, ai chatbot, documentation generator, documentation plugin, wordpress wiki, help center
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 2.9.0
 License: GPLv2 or later
@@ -301,6 +301,22 @@ You can report bugs and contribute to the project on [GitHub](https://github.com
 5. Go to **EazyDocs > Getting Started**.
 
 After activation, you'll see a setup wizard to help you create your first knowledge base in minutes.
+
+## WHAT’S NEXT? 
+
+If you like EazyDocs, then consider checking out our other WordPress Plugins: 
+
+[Antimanual](https://wordpress.org/plugins/antimanual) – AI-powered assistant that automates content creation, documentation, and support, transforming static sites into dynamic experiences.
+
+[Advanced Accordion Block](https://wordpress.org/plugins/advanced-accordion-block) – Lightweight Gutenberg block for creating visually appealing, organized accordion sections with extensive styling options.
+
+[Changeloger](https://wordpress.org/plugins/changeloger) – Transform plain text changelogs into visually stunning, organized representations with pagination and version links.
+
+[Forumax](https://wordpress.org/plugins/bbp-core) – Standalone, feature-rich community forum plugin with voting, private replies, and Elementor integration.
+
+[Jobus](https://wordpress.org/plugins/jobus) – Comprehensive job board solution transforming your site into a recruitment platform with dashboards and ATS.
+
+[Spider Elements](https://wordpress.org/plugins/spider-elements) – Versatile library of 20+ creative widgets to enhance Elementor and build professional websites.
 
 == Screenshots ==
 
