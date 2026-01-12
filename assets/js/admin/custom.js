@@ -28,6 +28,40 @@
 			createCookie(name, '', -1);
 		}
 
+		/**
+		 * Activate a Docs Builder left sidebar item + its tab panel.
+		 *
+		 * @param {string} tabId Example: "tab-123"
+		 * @param {boolean} saveCookie Whether to persist as the last active tab
+		 */
+		function ezd_activate_doc_tab(tabId, saveCookie) {
+			if (!tabId) {
+				return false;
+			}
+
+			var $nav = $('.tab-menu .easydocs-navitem[data-rel="' + tabId + '"]');
+			var $tab = $('#' + tabId);
+
+			// If the target tab doesn't exist (e.g. doc deleted), bail.
+			if (!$nav.length || !$tab.length) {
+				return false;
+			}
+
+			// Menu item
+			$('.tab-menu .easydocs-navitem').removeClass('is-active');
+			$nav.addClass('is-active');
+
+			// Tab content
+			$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active').hide();
+			$tab.addClass('tab-active').fadeIn('slow');
+
+			if (saveCookie) {
+				createCookie('eazydocs_doc_current_tab', tabId, 999);
+			}
+
+			return true;
+		}
+
 		// Filter Select
 		if ($('select').length > 0) {
 			$('select').niceSelect();
@@ -44,16 +78,7 @@
 			}
 
 			let target = $(this).attr('data-rel');
-			$('.tab-menu .easydocs-navitem').removeClass('is-active');
-			$(this).addClass('is-active');
-			$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active');
-			$('#' + target).addClass('tab-active').fadeIn('slow').siblings('.easydocs-tab').hide();
-
-			let is_active_tab = $('.tab-menu .easydocs-navitem').hasClass('is-active');
-			if (is_active_tab === true) {
-				let active_tab_id = $('.easydocs-navitem.is-active').attr('data-rel');
-				createCookie('eazydocs_doc_current_tab', active_tab_id, 999);
-			}
+			ezd_activate_doc_tab(target, true);
 
 			return true;
 		});
@@ -61,20 +86,14 @@
 		// Remain the last active doc tab
 		function keep_last_active_doc_tab() {
 			let doc_last_current_tab = readCookie('eazydocs_doc_current_tab');
-			if (doc_last_current_tab) {
-				// Tab item
-				$('.tab-menu .easydocs-navitem').removeClass('is-active');
-				$(
-					'.tab-menu .easydocs-navitem[data-rel=' +
-						doc_last_current_tab +
-						']'
-				).addClass('is-active');
-				// Tab content
-				$('.easydocs-tab-content .easydocs-tab').removeClass(
-					'tab-active'
-				);
-				$('#' + doc_last_current_tab).addClass('tab-active');
+			if (doc_last_current_tab && ezd_activate_doc_tab(doc_last_current_tab, false)) {
+				return;
 			}
+
+			// Fallback: activate first available tab
+			var $first = $('.tab-menu .easydocs-navitem:first');
+			var firstTabId = $first.attr('data-rel');
+			ezd_activate_doc_tab(firstTabId, true);
 		}
 
 		// Check URL parameter tab
@@ -83,16 +102,8 @@
 			const more_state = urlParams.get('more_state');
 
 			if (more_state) {
-				// Remove previous active (include both 'is-active' and 'active' classes for Analytics page compatibility)
-				$('.tab-menu .easydocs-navitem').removeClass('is-active active');
-				$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active');
-
-				// Activate target tab
-				$('.tab-menu .easydocs-navitem[data-rel="' + more_state + '"]').addClass('is-active active');
-				$('#' + more_state).addClass('tab-active').show();
-
-				// Save to cookie
-				createCookie('eazydocs_doc_current_tab', more_state, 999);
+				// Activate target tab + save
+				ezd_activate_doc_tab(more_state, true);
 
 				return true;
 			}
@@ -156,17 +167,7 @@
 
 			if (newDocId) {
 				const tabId = 'tab-' + newDocId;
-
-				// Active menu item
-				$('.tab-menu .easydocs-navitem').removeClass('is-active');
-				$('.tab-menu .easydocs-navitem[data-rel="' + tabId + '"]').addClass('is-active');
-
-				// Active tab content
-				$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active').hide();
-				$('#' + tabId).addClass('tab-active').fadeIn('slow');
-
-				// Save to cookie for persistence
-				createCookie('eazydocs_doc_current_tab', tabId, 999);
+				ezd_activate_doc_tab(tabId, true);
 
 				// Clean URL
 				const url = new URL(window.location.href);
@@ -398,10 +399,10 @@
 				});
 		}
 
-		// If nav item is active with cookie / else
+		// Ensure the left sidebar has an active item on first load.
+		// (This also fixes cases where cookie points to a deleted/non-existent doc.)
 		if (!$('.easydocs-navitem').hasClass('is-active')) {
-			$('.easydocs-navitem:first-child').addClass('is-active');
-			$('.easydocs-tab:first-child').css('display', 'block');
+			keep_last_active_doc_tab();
 		}
 
 		// BULK OPTIONS
