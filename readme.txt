@@ -1,4 +1,4 @@
-=== EazyDocs - Knowledge Base, Wiki, Documentation & FAQ Builder ===
+=== EazyDocs - AI Powered Knowledge Base, Wiki, Documentation & FAQ Builder ===
 Contributors: mdjwel, spiderdevs
 Tags: knowledge base, wiki, faq, documentation, help desk, ai chatbot, documentation generator, documentation plugin, wordpress wiki, help center
 Requires at least: 5.0
