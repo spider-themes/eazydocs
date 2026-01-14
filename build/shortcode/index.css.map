@@ -1,0 +1,1 @@
+{"version":3,"file":"shortcode/index.css","mappings":";;;AAAA;;CAAA;AAIA;EACC;AAAD,C","sources":["webpack://eazydocs/./src/shortcode/editor.scss"],"sourcesContent":["/*\n* Style Works for Editor Only\n*/\n\n.wp-block-create-block-boilerplate {\n\tborder: 1px dotted rgb(1, 1, 1);\n}"],"names":[],"sourceRoot":""}

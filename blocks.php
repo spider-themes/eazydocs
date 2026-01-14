@@ -57,6 +57,51 @@ final class EAZYDOCS_BLOCKS_CLASS {
         $this->register_block( 'search-banner', array(
             'render_callback' => [ $this, 'search_banner_block_render' ]
         ));
+
+        // Register Tabbed Docs block (freemium - advanced features locked for free users)
+        $this->register_block( 'tabbed-docs', array(
+            'render_callback' => [ $this, 'tabbed_docs_block_render' ]
+        ));
+    }
+
+    /**
+     * Render callback for Tabbed Docs block.
+     *
+     * @param array $attributes Block attributes.
+     * @return string Rendered block content.
+     */
+    public function tabbed_docs_block_render( $attributes ) {
+        // Enqueue required styles
+        wp_enqueue_style( 'elegant-icon' );
+        wp_enqueue_style( 'ezd-docs-widgets' );
+
+        // Enqueue Tabbed Docs specific styles
+        wp_enqueue_style(
+            'ezd-tabbed-docs',
+            EAZYDOCS_URL . '/assets/css/tabbed-docs.css',
+            array(),
+            EAZYDOCS_VERSION
+        );
+
+        ob_start();
+
+        // Whitelist valid presets to prevent Local File Inclusion
+        $allowed_presets = array( 'flat_tabbed', 'tabbed_doc_list' );
+        $preset = isset( $attributes['preset'] ) && in_array( $attributes['preset'], $allowed_presets, true )
+            ? $attributes['preset']
+            : 'flat_tabbed';
+
+        $file_path = sprintf(
+            '%s/includes/block-templates/tabbed-docs/%s.php',
+            EAZYDOCS_PATH,
+            $preset
+        );
+
+        if ( is_readable( $file_path ) ) {
+            require_once $file_path;
+        }
+
+        return ob_get_clean();
     }
 
     /**

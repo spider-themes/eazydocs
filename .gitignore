@@ -3,3 +3,4 @@ node_modules/
 .github/
 /src/css
 /vendor/csf/assets/css
+/.agent

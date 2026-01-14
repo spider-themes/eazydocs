@@ -132,7 +132,10 @@ class Assets {
 		}
 		
 		// Check if Antimanual is active
-		$antimanual_active = is_plugin_active( 'antimanual/antimanual.php' );
+		if ( ! \function_exists( 'is_plugin_active' ) ) {
+			include_once \ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$antimanual_active = \function_exists( 'is_plugin_active' ) && \is_plugin_active( 'antimanual/antimanual.php' );
 
 		// Shared "Create Doc with AI" popup HTML (single source)
 		$ai_popup_html = '';
@@ -182,7 +185,8 @@ class Assets {
 				'manage_reusable_blocks'    => ezd_manage_reusable_blocks(),
 				'is_ezd_premium'            => eaz_fs()->is_paying_or_trial() ? 'yes' : '',
 				'is_ezd_pro_block'          => ezd_is_premium() ? 'yes' : '',
-				'ezd_get_conditional_items' => ezd_get_conditional_items()
+				'ezd_get_conditional_items' => ezd_get_conditional_items(),
+				'ezd_pricing_url'           => admin_url( 'admin.php?page=eazydocs-pricing' ),
 			)
 		);
 	}

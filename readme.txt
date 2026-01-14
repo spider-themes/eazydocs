@@ -62,7 +62,7 @@ From small teams to enterprise organizations, EazyDocs is the go-to solution for
 *   **AI Documentation Generator** – Create comprehensive docs automatically with custom tone and language.
 *   **AI-Powered Search** – Semantic search that understands user intent, not just keywords.
 *   **Auto-Posting & Content Automation** – Schedule and publish AI-generated documentation.
-*   **bbPress Forum Integration** – Convert forum discussions into permanent knowledge base articles.
+*   **Forum Integration** – Convert forum discussions into permanent knowledge base articles.
 
 ### 📂 Documentation Management
 *   **Unlimited Knowledge Bases** – Create as many as you need without limitations.
@@ -264,7 +264,11 @@ Yes! EazyDocs includes a built-in one-click migration tool that transfers all yo
 Yes! EazyDocs includes pre-built widgets and blocks for both Elementor and Gutenberg page builders, making it easy to create custom documentation pages.
 
 = Does EazyDocs have AI capabilities? =
-Yes! EazyDocs seamlessly integrates with Antimanual, our advanced AI plugin. This integration provides intelligent chatbot support, AI-powered documentation generation, semantic search, and automated content creation. Unlike basic AI features in other documentation plugins, Antimanual offers enterprise-grade capabilities including GPT-5 support, multi-source training, conversation history, and bbPress forum automation. See the "AI Integration" section above for complete details.
+Yes! EazyDocs seamlessly integrates with Antimanual, our advanced AI plugin. This integration provides intelligent chatbot support, AI-powered documentation generation, semantic search, and automated content creation. Unlike basic AI features in other documentation plugins, Antimanual offers enterprise-grade capabilities including GPT-5 support, multi-source training, conversation history, and forum automation. See the "AI Integration" section above for complete details.
+
+= Why is the AI functionality a separate plugin (Antimanual)? =
+If you want to use the AI features, you can install the Antimanual plugin alongside EazyDocs. However, it is not mandatory.
+We created Antimanual as a standalone plugin to enable AI features throughout your entire website, rather than integrating them only with EazyDocs content. For instance, you can use the Bulk Rewrite tools, Chatbot, Knowledge Base, AI Search, and Auto Posting features of Antimanual with any post type, not just Docs. This unified approach helps you consolidate AI functionalities and avoid the need for multiple AI tools on your website.
 
 = How do I get support if I have issues? =
 EazyDocs has multiple support channels:

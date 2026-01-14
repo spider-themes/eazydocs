@@ -200,8 +200,19 @@
             });
         });
         
-        // Create Doc with AI Popup
+        // Create Doc with AI Popup (only when Antimanual isn't active)
         $(document).on('click', '#ezd-create-doc-with-ai', function(e) {
+			const antimanualActive = !!(
+				typeof eazydocs_local_object !== 'undefined' &&
+				eazydocs_local_object.antimanualActive
+			);
+
+			// When Antimanual is active, the control becomes a normal link to atml-docs.
+			// Do not prevent navigation.
+			if (antimanualActive) {
+				return;
+			}
+
             e.preventDefault();
 
 			const popupContent = (typeof eazydocs_local_object !== 'undefined' && eazydocs_local_object.aiPopupHtml)
