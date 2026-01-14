@@ -1,0 +1,172 @@
+/**
+ * Tabbed Docs Block - Frontend Styles
+ * Enhanced UI/UX with ezd- prefixed classes for style isolation
+ * Ensures no conflicts with other themes and plugins
+ *
+ * @package EazyDocsPro
+ */
+
+@import "../../assets/scss/frontend/variables.scss";
+@import "common";
+
+// Main Container - CSS Variables are scoped here for proper cascade
+// Inline styles on the element can override these defaults
+.ezd-tabbed-docs {
+	// Primary color and derived values
+	--ezd-primary: var(--ezd_brand_color, #6366f1);
+	--ezd-primary-light: color-mix(
+		in srgb,
+		var(--ezd-primary) 15%,
+		transparent
+	);
+	--ezd-primary-dark: color-mix(in srgb, var(--ezd-primary) 80%, #000);
+	--ezd-gradient-start: var(--ezd-primary);
+	--ezd-gradient-end: #8b5cf6;
+	
+	// Spacing - These can be overridden by inline styles
+	--ezd-card-padding: 32px;
+	--ezd-grid-gap: 24px;
+	--ezd-card-radius: 16px;
+
+	// Shadows
+	--ezd-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--ezd-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+	--ezd-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+	--ezd-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+	
+	// Border radius presets
+	--ezd-radius-sm: 6px;
+	--ezd-radius-md: 10px;
+	--ezd-radius-lg: 16px;
+	--ezd-radius-xl: 24px;
+	
+	// Transitions
+	--ezd-transition-fast: 150ms ease;
+	--ezd-transition-normal: 250ms ease;
+	--ezd-transition-slow: 400ms ease;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: inherit;
+	}
+
+	// Reset any inherited theme styles that could conflict
+	&.ezd-tabbed-docs-block {
+		padding: 0;
+		margin: 0;
+		background: transparent;
+		border: none;
+		box-shadow: none;
+	}
+
+	// Animation Speed Modifiers
+	&.ezd-animation-slow * {
+		transition-duration: 0.5s !important;
+	}
+
+	&.ezd-animation-normal * {
+		transition-duration: 0.3s !important;
+	}
+
+	&.ezd-animation-fast * {
+		transition-duration: 0.15s !important;
+	}
+
+	// Shadow Intensity Overrides
+	&.ezd-shadow-none {
+		--ezd-shadow-sm: none;
+		--ezd-shadow-md: none;
+		--ezd-shadow-lg: none;
+		--ezd-shadow-xl: none;
+	}
+
+	&.ezd-shadow-light {
+		--ezd-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
+		--ezd-shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+		--ezd-shadow-lg: 0 4px 6px -2px rgba(0, 0, 0, 0.08);
+	}
+
+	&.ezd-shadow-strong {
+		--ezd-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+		--ezd-shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.2);
+		--ezd-shadow-lg: 0 12px 20px -5px rgba(0, 0, 0, 0.25);
+		--ezd-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+	}
+
+	// No Title Line
+	&.ezd-no-title-line {
+		.ezd-doc-tag-title .ezd-line {
+			display: none;
+		}
+	}
+
+	// Icon Style
+	&.ezd-icon-circle {
+		.ezd-tab-icon {
+			border-radius: 50% !important;
+
+			img {
+				border-radius: 50% !important;
+			}
+		}
+	}
+
+	&.ezd-icon-square {
+		.ezd-tab-icon {
+			border-radius: 4px !important;
+
+			img {
+				border-radius: 4px !important;
+			}
+		}
+	}
+
+	// Button Style Overrides
+	&.ezd-button-outlined {
+		.ezd-text-btn {
+			background: transparent !important;
+			border: 1px solid var(--ezd-primary);
+			
+			&:hover {
+				background: var(--ezd-primary) !important;
+				color: #fff !important;
+			}
+		}
+	}
+
+	&.ezd-button-text {
+		.ezd-text-btn {
+			background: transparent !important;
+			padding-left: 0;
+			padding-right: 0;
+			
+			&:hover {
+				background: transparent !important;
+				color: var(--ezd-primary-dark) !important;
+				box-shadow: none;
+			}
+		}
+	}
+
+	// Compact Mode
+	&.ezd-compact {
+		.ezd-tabs-sliders {
+			margin-bottom: 16px;
+		}
+
+		.ezd-doc-tag-item {
+			padding: 16px !important; // Override custom padding for compact mode
+			margin-bottom: 16px;
+		}
+
+		.ezd-tag-list li a {
+			padding: 8px 12px;
+		}
+	}
+}
+
+// Frontend-specific: Add margin-bottom to section cards in grid layout
+.ezd-section-card .ezd-doc-tag-item {
+	margin-bottom: var(--ezd-grid-gap);
+}

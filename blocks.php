@@ -78,7 +78,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
         // Enqueue Tabbed Docs specific styles
         wp_enqueue_style(
             'ezd-tabbed-docs',
-            EAZYDOCS_URL . '/assets/css/tabbed-docs.css',
+            EAZYDOCS_URL . '/build/tabbed-docs/frontend.css',
             array(),
             EAZYDOCS_VERSION
         );
