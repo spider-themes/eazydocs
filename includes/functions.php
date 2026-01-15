@@ -763,13 +763,17 @@ function eazydocs_one_page( $doc_id ) {
 }
 
 /**
- * Convert hexdec color string to rgb(a) string
+ * Convert hexdec color string to rgb(a) string.
  *
- * @param       $color
- * @param false $opacity
- * Convert hexdec color string to rgb(a) string
+ * @deprecated 2.9.0 Use CSS custom properties instead: var(--ezd_brand_color_XX) where XX is the opacity percentage.
+ *                   CSS color-mix() function is now used in SCSS to generate dynamic RGBA colors
+ *                   that automatically inherit from the --ezd_brand_color CSS variable.
+ *                   This function is kept for backward compatibility only.
  *
- * @return string
+ * @param string $color   The hex color value (with or without #).
+ * @param float  $opacity Optional. The opacity value (0-1). Default false.
+ *
+ * @return string RGB or RGBA color string.
  */
 function ezd_hex2rgba( $color, $opacity = false ) {
 	$default = 'rgb(0,0,0)';

@@ -63,7 +63,10 @@ EazyDocs is the most comprehensive knowledge base and documentation plugin for W
 - **Schema.org Integration** – Rich snippets for better search visibility
 - **WPML Compatible** – Full multilingual support for global audiences
 - **Performance Optimized** – Fast loading and smooth user experience
-- **Elementor Compatible** – Easy integration with popular page builder
+- **Gutenberg Blocks** – Comprehensive blocks for WordPress native editor (no page builder needed!)
+- **Elementor Compatible (Optional)** – Optional widgets if you prefer Elementor
+
+> **Note:** EazyDocs works perfectly with WordPress's native Gutenberg editor. You do NOT need Elementor or any other third-party page builder to create beautiful documentation and helpdesk landing pages.
 
 ## Installation
 

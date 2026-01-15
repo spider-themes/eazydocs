@@ -98,9 +98,11 @@ From small teams to enterprise organizations, EazyDocs is the go-to solution for
 *   **On-Demand Asset Loading** – Lightweight footprint for fast performance.
 
 ### Page Builder Integration
-*   **Gutenberg Blocks** – Pre-built blocks for dynamic doc page creation.
-*   **Elementor Widgets** – Drag-and-drop widgets for Elementor page builder.
+*   **Gutenberg Blocks** – Comprehensive pre-built blocks for dynamic doc page creation. **No third-party page builder required!**
+*   **Elementor Widgets (Optional)** – Optional drag-and-drop widgets if you prefer Elementor.
 *   **Shortcodes** – Flexible shortcode system for advanced customization.
+
+**Note:** EazyDocs works perfectly with WordPress's native Gutenberg editor. You do NOT need Elementor or any other third-party page builder to create beautiful documentation and helpdesk landing pages.
 
 ### Documentation Performance Tools
 *   **Email Reporting** – Receive analytics reports directly to your inbox.

@@ -16,7 +16,7 @@
       font-size: 14px;
       font-weight: 400;
       color: var(--ezd_brand_color);
-      border: 1px solid brand_color_rgba(0.2);
+      border: 1px solid var(--ezd_brand_color_20);
       border-radius: 4px;
       background-color: rgba(16, 179, 214, 0.031);
       padding: 0 20px;
@@ -27,7 +27,7 @@
       cursor: pointer;
 
       &:not(.active):hover {
-        background: brand_color_rgba(0.2);
+        background: var(--ezd_brand_color_20);
       }
 
       &.active {
@@ -906,7 +906,7 @@
 
       a {
         border: none;
-        background: brand_color_rgba(0.07);
+        background: var(--ezd_brand_color_07);
         font-size: 14px;
         font-weight: 400;
         line-height: 40px;
@@ -930,7 +930,7 @@
   }
 
   .ques_item {
-    background: brand_color_rgba(0.07);
+    background: var(--ezd_brand_color_07);
     padding: 35px 25px 35px 35px;
     border-radius: 5px;
 
@@ -992,7 +992,7 @@
 
         &:hover {
           color: var(--ezd_brand_color);
-          background: brand_color_rgba(0.2);
+          background: var(--ezd_brand_color_20);
 
           ion-icon {
             color: var(--ezd_brand_color);
@@ -1133,8 +1133,8 @@
   }
 
   .doc_border_btn {
-    border: 1px solid rgba(76, 76, 241, 0.2);
-    background: rgba(76, 76, 241, 0.05);
+    border: 1px solid var(--ezd_brand_color_20);
+    background: var(--ezd_brand_color_05);
     border-radius: 4px;
     color: var(--ezd_brand_color);
     font-size: 14px;

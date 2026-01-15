@@ -99,6 +99,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 					if ( ! ezd_is_premium() && ezd_is_plugin_installed_for_days( 12 ) && ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'eazydocs-initial-setup' ) ) {
 						add_action( 'admin_notices', 'ezd_offer_notice' );
 					}
+
+					if ( function_exists( 'ezd_gutenberg_info_notice' ) ) {
+						add_action( 'admin_notices', 'ezd_gutenberg_info_notice' );
+					}
 				}
 			} );
 		}

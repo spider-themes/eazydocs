@@ -105,7 +105,14 @@ class Admin {
 		}
 		
 		$ezd_menu_title = ezd_get_opt( 'docs_menu_title' ) ?: ( class_exists( 'EZD_EazyDocsPro' ) ? esc_html__( 'EazyDocs Pro', 'eazydocs' ) : esc_html__( 'EazyDocs', 'eazydocs' ) );
-		add_menu_page( $ezd_menu_title, $ezd_menu_title, $capabilites, 'eazydocs', [ $this, 'eazydocs_dashboard' ], 'dashicons-media-document', 10 );
+		
+		// Add Pro badge indicator for menu title
+		$menu_title_with_badge = $ezd_menu_title;
+		if ( class_exists( 'EZD_EazyDocsPro' ) || ezd_is_premium() ) {
+			$menu_title_with_badge = $ezd_menu_title . ' <span class="update-plugins" style="background-color: #00a32a; margin-left: 5px;"><span class="plugin-count" style="background-color: #00a32a;">PRO</span></span>';
+		}
+		
+		add_menu_page( $ezd_menu_title, $menu_title_with_badge, $capabilites, 'eazydocs', [ $this, 'eazydocs_dashboard' ], 'dashicons-media-document', 10 );
 
 		add_submenu_page( 'eazydocs', esc_html__( 'Dashboard', 'eazydocs' ), esc_html__( 'Dashboard', 'eazydocs' ), 'manage_options', 'eazydocs' );
 		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs-builder', [ $this, 'eazydocs_builder' ] );

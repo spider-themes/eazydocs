@@ -349,10 +349,10 @@ body {
         border-radius: 5px;
 
         &.current_page_item {
-          background: brand_color_rgba(0.1);
+          background: var(--ezd_brand_color_10);
 
           &:hover {
-            background: brand_color_rgba(0.2);
+            background: var(--ezd_brand_color_20);
 
             a {
               color: var(--ezd_brand_color);
@@ -525,7 +525,7 @@ body {
     display: inline-table;
     padding: 5px 12px;
     text-decoration: none !important;
-    background: brand_color_rgba(.6);
+    background: var(--ezd_brand_color_60);
     text-transform: uppercase;
     font-size: 12px;
     margin: 0 0 10px;
@@ -533,7 +533,7 @@ body {
     color: #fff;
 
     &:hover {
-      background: brand_color_rgba(.7);
+      background: var(--ezd_brand_color_70);
       color: #fff;
     }
 
@@ -751,7 +751,7 @@ body {
     padding: 15px 40px;
     box-shadow: none;
     font-weight: 500;
-    background: brand_color_rgba(0.9);
+    background: var(--ezd_brand_color_90);
     color: #fff;
     border-radius: 5px;
 
@@ -1654,7 +1654,7 @@ body:not(.onepage-doc) .sticky_menu {
 
         &:hover {
           color: var(--ezd_brand_color);
-          background: brand_color_rgba(0.15);
+          background: var(--ezd_brand_color_15);
         }
       }
     }
@@ -1697,8 +1697,8 @@ body:not(.onepage-doc) .sticky_menu {
   input[type="checkbox"] {
     width: 50px;
     height: 22px;
-    border: 1px solid brand_color_rgba(0.3);
-    background: brand_color_rgba(0.25);
+    border: 1px solid var(--ezd_brand_color_30);
+    background: var(--ezd_brand_color_25);
     display: block;
     border-radius: 25px;
     margin: 0 10px 0 12px;
@@ -2062,7 +2062,7 @@ body:not(.onepage-doc) .sticky_menu {
       button {
         font-size: 14px;
         border: none;
-        background-color: brand_color_rgba(0.8);
+        background-color: var(--ezd_brand_color_80);
         color: #fff;
         box-shadow: none;
         padding: 0.4em 1em;

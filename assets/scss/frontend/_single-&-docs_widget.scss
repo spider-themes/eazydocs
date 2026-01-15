@@ -136,6 +136,10 @@
         font-size: 16px;
         line-height: 1.5;
         padding: 0;
+
+        &:hover {
+          text-decoration-color: var(--ezd_brand_color_25);
+        }
       }
 
       .doc-badges {

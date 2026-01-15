@@ -155,7 +155,7 @@ function ezd_notify_save_review() {
 
 		if ( $field == 'later' ) {
 			update_option( 'ezd_notify_review', time() + 3 * 60 * 60 * 24 ); //After 3 days show
-		} else if ( $field == 'alreadyDid' ) {
+		} else if ( $field == 'alreadyDid' || $field == 'rateNow' ) {
 			update_option( 'ezd_notify_review', 0 );
 		}
 		wp_send_json_success();

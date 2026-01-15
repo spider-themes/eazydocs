@@ -34,6 +34,22 @@
   --bs_sm: 0 1px 2px rgba(0, 0, 0, 0.05),0 1px 4px rgba(0, 0, 0, 0.05),0 2px 8px rgba(0, 0, 0, 0.05);
   --bs_md: 0 1px 3px rgba(0, 0, 0, 0.06),0 2px 6px rgba(0, 0, 0, 0.06),0 3px 8px rgba(0, 0, 0, 0.09);
   --bs_lg: 0 1px 4px rgba(0, 0, 0, 0.09),0 3px 8px rgba(0, 0, 0, 0.09),0 4px 13px rgba(0, 0, 0, 0.13);
+
+  // Dynamic brand color RGBA variants using CSS color-mix()
+  // These replace the static SCSS brand_color_rgba() function for dynamic color support
+  --ezd_brand_color_05: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 5%, transparent);
+  --ezd_brand_color_07: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 7%, transparent);
+  --ezd_brand_color_10: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 10%, transparent);
+  --ezd_brand_color_15: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 15%, transparent);
+  --ezd_brand_color_20: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 20%, transparent);
+  --ezd_brand_color_25: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 25%, transparent);
+  --ezd_brand_color_30: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 30%, transparent);
+  --ezd_brand_color_40: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 40%, transparent);
+  --ezd_brand_color_50: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 50%, transparent);
+  --ezd_brand_color_60: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 60%, transparent);
+  --ezd_brand_color_70: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 70%, transparent);
+  --ezd_brand_color_80: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 80%, transparent);
+  --ezd_brand_color_90: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 90%, transparent);
 }
 
 /*font Variables*/
@@ -50,8 +66,18 @@ $rob: "Roboto", sans-serif;
 }
 
 /**=== Functions ===**/
+/**
+ * @deprecated Use CSS custom properties instead: var(--ezd_brand_color_XX) where XX is the opacity percentage (05, 10, 20, etc.)
+ * This function uses a hardcoded color and is kept for backward compatibility only.
+ * The new CSS color-mix() based variables dynamically inherit from --ezd_brand_color.
+ * 
+ * Migration guide:
+ * - brand_color_rgba(0.1)  -> var(--ezd_brand_color_10)
+ * - brand_color_rgba(0.2)  -> var(--ezd_brand_color_20)
+ * - brand_color_rgba(0.8)  -> var(--ezd_brand_color_80)
+ */
 @function brand_color_rgba($alpha) {
-  @return rgba(8, 102, 25, $alpha);
+  @return rgba(8, 112, 255, $alpha);
 }
 
 // Placeholder Mixins

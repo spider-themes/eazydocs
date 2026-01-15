@@ -70,7 +70,7 @@
           background: var(--ezd_brand_color);
           color: #fff;
           &.has-bg:hover {
-            background: brand_color_rgba(0.8);
+            background: var(--ezd_brand_color_80);
           }
         }
       }

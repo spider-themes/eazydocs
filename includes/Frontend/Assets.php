@@ -120,27 +120,10 @@ class Assets {
 			wp_enqueue_style( 'elegant-icon' );
 			wp_enqueue_style( 'ezd-frontend-global' );
 
-			// Dynamic CSS
-			$dynamic_css = '';
-			if ( ezd_get_opt( 'brand_color' ) ) {
-				$brand_rgb   = ezd_hex2rgba( ezd_get_opt( 'brand_color' ) );
-				// Border and background color
-				$dynamic_css .= ".categories_guide_item .doc_border_btn { border: 1px solid rgba($brand_rgb, 0.2); background: rgba($brand_rgb, 0.05) }";
-				$dynamic_css .= ".doc_switch input[type=checkbox] { border: 1px solid rgba($brand_rgb, 0.3); background: rgba($brand_rgb, 0.25) }";
-				// background 0.1
-				$dynamic_css .= ".nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item, .nav-sidebar .nav-item.current_page_item > .doc-link, .doc-btm ul.card_tagged li a:hover, .categories_guide_item a.doc_tag_title span.badge { background: rgba($brand_rgb, .1) }";
-				// background 0.2
-				$dynamic_css .= ".nav-sidebar .nav-item .dropdown_nav li:not(.has_child).current_page_item:hover { background: rgba($brand_rgb, .2) }";
-				// background 0.6
-				$dynamic_css .= ".single-docs .shortcode_title .ezd-doc-badge, .categories_guide_item.bg-dark a.doc_border_btn { background: rgba($brand_rgb, .6) }";
-				// background 0.7
-				$dynamic_css .= ".single-docs .shortcode_title .ezd-doc-badge:hover { background: rgba($brand_rgb, .7) }";
-				// background 0.9
-				$dynamic_css .= "#eazydocs_feedback .action_btn { background: rgba($brand_rgb, .9); }";
-				$dynamic_css .= ".documentation_item .media-body .title:hover { text-decoration-color: rgba($brand_rgb, 0.25)}";
-			}
+			// Note: Dynamic RGBA brand colors are now handled via CSS custom properties in SCSS
+			// Using color-mix() function with --ezd_brand_color variable (see _variables.scss)
+			// No inline PHP-generated CSS needed anymore
 
-			wp_add_inline_style( 'ezd-frontend-global', $dynamic_css );
 			wp_enqueue_script( 'eazydocs-global', EAZYDOCS_ASSETS . '/js/frontend/global.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
 		}
 	}
