@@ -1048,15 +1048,33 @@ class Doc_Widget extends Widget_Base {
 		 * Get the doc sections
 		 */
 		if ( $parent_docs ) {
-			foreach ( $parent_docs as $root ) {
-				$sections = get_children( array(
-					'post_parent'    => $root->ID,
+			// Optimized approach: Fetch all children in one query
+			$parent_ids = wp_list_pluck( $parent_docs, 'ID' );
+			$sections_by_parent = array();
+
+			if ( ! empty( $parent_ids ) ) {
+				$all_sections = get_posts( array(
+					'post_parent__in' => $parent_ids,
 					'post_type'      => 'docs',
 					'post_status'    => 'publish',
 					'orderby'    	 => $order_by,
 					'order' 		 => $child_order,
-					'posts_per_page' => ! empty( $settings['show_section_count'] ) ? $settings['show_section_count'] : - 1,
+					'posts_per_page' => -1, // Fetch all relevant children to group them in PHP
 				));
+
+				foreach ( $all_sections as $section ) {
+					$sections_by_parent[ $section->post_parent ][ $section->ID ] = $section;
+				}
+			}
+
+			$limit = ! empty( $settings['show_section_count'] ) ? $settings['show_section_count'] : - 1;
+
+			foreach ( $parent_docs as $root ) {
+				$sections = isset( $sections_by_parent[ $root->ID ] ) ? $sections_by_parent[ $root->ID ] : array();
+
+				if ( $limit != -1 && count( $sections ) > $limit ) {
+					$sections = array_slice( $sections, 0, $limit, true );
+				}
 
 				$docs[]   = array(
 					'doc'      => $root,
