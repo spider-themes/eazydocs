@@ -2,26 +2,59 @@
 	'use strict';
 
 	$(document).ready(function () {
-		/**
-		 * Match Fade gradient Shadow color
-		 * Used it for the fade gradient shadow on the Read More button
-		 * @type {string}
-		 */
-		let bgColor = window
+		const applyFadeGradient = () => {
+			/**
+			 * Match Fade gradient Shadow color
+			 * Used it for the fade gradient shadow on the Read More button
+			 * @type {string}
+			 */
+			let bgColor = window
 				.getComputedStyle(document.body, null)
 				.getPropertyValue('background-color'),
-			bgColorRGBA = bgColor.replace(')', ', 0)').replace('rgb', 'rgba');
+				bgColorRGBA = bgColor.replace(')', ', 0)').replace('rgb', 'rgba');
 
-		if (bgColor) {
-			$('.fadeGradient').css(
-				'background',
-				'-webkit-linear-gradient(bottom, ' +
+			if (bgColor) {
+				$('.fadeGradient').css(
+					'background',
+					'-webkit-linear-gradient(bottom, ' +
 					bgColor +
 					' 15%, ' +
 					bgColorRGBA +
 					' 100%)'
-			);
+				);
+			}
 		}
+
+		// Apply fade gradient initially
+		applyFadeGradient();
+
+		/**
+		 * Watch for body background-color changes and reapply fade gradient
+		 * This handles dark/light mode switches and any other background color changes
+		 */
+		(function () {
+			let lastBgColor = window.getComputedStyle(document.body, null).getPropertyValue('background-color');
+
+			// Create a MutationObserver to watch for changes on the body element
+			const observer = new MutationObserver(function (mutations) {
+				// Get the current background color
+				const currentBgColor = window.getComputedStyle(document.body, null).getPropertyValue('background-color');
+
+				// Only call applyFadeGradient if the background color actually changed
+				if (currentBgColor !== lastBgColor) {
+					lastBgColor = currentBgColor;
+					applyFadeGradient();
+				}
+			});
+
+			// Start observing the body element for attribute and style changes
+			observer.observe(document.body, {
+				attributes: true,        // Watch for attribute changes (like class changes)
+				attributeFilter: ['class', 'style'], // Only watch class and style attributes
+				childList: false,        // Don't watch for child additions/removals
+				subtree: false          // Don't watch descendants
+			});
+		})();
 
 		/**
 		 * Social Share options
@@ -70,9 +103,9 @@
 
 			// Set title and open popup with focus on it
 			var strTitle =
-					typeof this.attr('title') !== 'undefined'
-						? this.attr('title')
-						: 'Social Share',
+				typeof this.attr('title') !== 'undefined'
+					? this.attr('title')
+					: 'Social Share',
 				strParam =
 					'width=' +
 					intWidth +
@@ -93,13 +126,13 @@
 			// 'data-bs-spy': 'scroll',
 			'data-bs-target': '#eazydocs-toc',
 		});
-		
+
 		// Sanitize URL hash on page load
-		if ( window.location.hash ) {
+		if (window.location.hash) {
 			try {
 				// Decode the percent-encoded hash
 				const decoded = decodeURIComponent(window.location.hash.substring(1));
-				const safe 	  = decoded.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w\-]/g, '');
+				const safe = decoded.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w\-]/g, '');
 
 				// If sanitized differs, rewrite it before any plugin runs
 				if (safe && safe !== window.location.hash.substring(1)) {
@@ -140,7 +173,7 @@
 				scrollTop: $('#' + urlHash).offset().top
 			}, 30);
 		}
-		
+
 		/**
 		 * Feedback Contact Form Ajax Handler
 		 */
@@ -154,20 +187,20 @@
 			let subject = $('#subject').val();
 			let doc_id = $('#doc_id').val();
 			let message = $('#massage').val();
-			
-			if ( nameDisallowedCharacters(name) ) {
+
+			if (nameDisallowedCharacters(name)) {
 				$('.form-name-field').append('<span class="ezd-input-warning-text">Special characters not allowed</span>');
 				$('.ezd-input-warning-text:not(:last)').remove();
 				// remove the error message after 3 seconds
-				setTimeout(function() {
+				setTimeout(function () {
 					$('.ezd-input-warning-text').remove();
 				}, 3000);
 
-		 	} else if ( emailDisallowedCharacters(email) ) {
+			} else if (emailDisallowedCharacters(email)) {
 				$('.form-email-field').append('<span class="ezd-input-warning-text">Invalid email format.</span>');
 				$('.ezd-input-warning-text:not(:last)').remove();
 				// remove the error message after 3 seconds
-				setTimeout(function() {
+				setTimeout(function () {
 					$('.ezd-input-warning-text').remove();
 				}, 3000);
 
@@ -189,8 +222,8 @@
 					beforeSend: function () {
 						$('.eazydocs-form-result').html(
 							'<div class="spinner-border spinner-border-sm" role="status">\n' +
-								'<span class="visually-hidden">Loading...</span>\n' +
-								'</div>'
+							'<span class="visually-hidden">Loading...</span>\n' +
+							'</div>'
 						);
 					},
 					success: function (response) {
@@ -223,9 +256,9 @@
 			// Check for disallowed characters in the email field
 			function emailDisallowedCharacters(email) {
 				// Regular expression to check for disallowed characters
-				var mailPattern = /[#$%^&*()+={}\[\];:'",<>\/?]/;	
+				var mailPattern = /[#$%^&*()+={}\[\];:'",<>\/?]/;
 				// Check if there is more than one "@" symbol
-				var atSymbolCount = (email.match(/@/g) || []).length;				
+				var atSymbolCount = (email.match(/@/g) || []).length;
 				return atSymbolCount !== 1 || mailPattern.test(email);
 			}
 		});
@@ -248,8 +281,8 @@
 				beforeSend: function () {
 					$('.eazydocs-feedback-wrap .vote-link-wrap').html(
 						'<div class="spinner-border spinner-border-sm" role="status">\n' +
-							'  <span class="visually-hidden">Loading...</span>\n' +
-							'</div>'
+						'  <span class="visually-hidden">Loading...</span>\n' +
+						'</div>'
 					);
 				},
 				success: function (response) {
@@ -269,7 +302,7 @@
 		}
 
 		// Handle click event for all .icon elements inside .nav-sidebar
-		$('.nav-sidebar').on('click', '.doc-link .icon', function(e) {
+		$('.nav-sidebar').on('click', '.doc-link .icon', function (e) {
 			// Prevent default action
 			e.preventDefault();
 
@@ -382,7 +415,7 @@
 		 * End of Navbar Show / Hide Script
 		 * ============================
 		 */
-		
+
 		// Ensure sidebars are sticky and toggle logic works properly
 		if ($('.doc_documentation_area').length > 0) {
 			var leftOpen = false;
@@ -446,7 +479,7 @@
 				rightOpen = false;
 			}
 		}
-	
+
 		// Mobile menu on the Doc single page
 		$(document).on('click', '.single-docs .mobile_menu_btn', function () {
 			$('body').removeClass('menu-is-closed').addClass('menu-is-opened');
@@ -552,7 +585,7 @@
 		function bodyFixed() {
 			let windowWidth = $(window).width();
 			let middle_column = $('.doc-middle-content');
-			
+
 			if ($('#sticky_doc').length) {
 				if (windowWidth > 576) {
 					let tops = $('#sticky_doc');
@@ -611,14 +644,14 @@
 
 		function tocSidebarScrollHeight() {
 			var leftSidebarScrollElement = $('.doc_left_sidebarlist  .ezd-scroll');
-			if(leftSidebarScrollElement.length){
+			if (leftSidebarScrollElement.length) {
 				var leftSidebarScrollOffset = leftSidebarScrollElement.position().top;
-				var maxHeightLeftSidebar = `calc(100vh - ${leftSidebarScrollOffset }px)`;
-				leftSidebarScrollElement.css('max-height', maxHeightLeftSidebar );
+				var maxHeightLeftSidebar = `calc(100vh - ${leftSidebarScrollOffset}px)`;
+				leftSidebarScrollElement.css('max-height', maxHeightLeftSidebar);
 			}
 
 			var rightSidebarScrollElement = $('.single-docs .doc_rightsidebar .toc_right');
-			if(rightSidebarScrollElement.length){
+			if (rightSidebarScrollElement.length) {
 				var rightSidebarScrollOffset = rightSidebarScrollElement.position().top;
 				var maxHeightRightSidebar = `calc(100vh - ${rightSidebarScrollOffset + 70}px)`;
 				rightSidebarScrollElement.css('max-height', maxHeightRightSidebar);
@@ -660,7 +693,7 @@
 
 		function eraseCookie(name) {
 			createCookie(name, '', -1);
-		} 
+		}
 
 		/**
 		 * Dark mode switcher
@@ -684,8 +717,8 @@
 		function applyNight() {
 
 			// Check if dark mode switcher is enabled
-			if ( eazydocs_local_object.ezd_dark_switcher !== '1' ) return;
-			
+			if (eazydocs_local_object.ezd_dark_switcher !== '1') return;
+
 			$('body.single-docs, body.single-onepage-docs').addClass('body_dark');
 			$('body.single-onepage-docs').addClass('body_dark');
 			$('.light-mode').removeClass('active');
@@ -713,20 +746,20 @@
 		// CONTRIBUTOR SEARCH
 		$('#ezd-contributor-search').on('input', function () {
 			let value = $(this).val().toLowerCase();
-		  
+
 			if (value === '') {
-			  // Show all users when input is cleared
-			  $('.users_wrap_item').show();
+				// Show all users when input is cleared
+				$('.users_wrap_item').show();
 			} else {
-			  // Filter the users based on input
-			  $('.users_wrap_item').filter(function () {
-				$(this).toggle(
-				  $(this).text().toLowerCase().indexOf(value) > -1
-				);
-			  });
+				// Filter the users based on input
+				$('.users_wrap_item').filter(function () {
+					$(this).toggle(
+						$(this).text().toLowerCase().indexOf(value) > -1
+					);
+				});
 			}
-		  });			
-		
+		});
+
 		/*
 		* Font size switcher
 		* Check if there are buttons for font size switcher
@@ -735,7 +768,7 @@
 		if ($('#rvfs-controllers button').length) {
 			var $speech = $('#post p, #post ul li:not(.process_tab_shortcode ul li), #post h1, #post h2, #post h3, #post h4, #post h5, #post h6, #post ol li, #post table:not(.basic_table_info,.table-dark), #post table tr td, #post .tab-content');
 			var originalSizes = {};
-		
+
 			// Function to check if cookie exists and apply font size
 			function checkFontSize() {
 				var cookieFontSize = readCookie("fontSize");
@@ -747,7 +780,7 @@
 						$(this).css('fontSize', originalSize * sizeFactor + 'px');
 					});
 				}
-			}		
+			}
 			// Store the original font sizes
 			$speech.each(function () {
 				var tagName = $(this).prop('tagName').toLowerCase();
@@ -755,15 +788,15 @@
 					originalSizes[tagName] = parseFloat($(this).css('fontSize'));
 				}
 			});
-		
+
 			// Apply font size when page loads
 			checkFontSize();
-		
+
 			// Event handler for font size buttons
 			$(document).on('click', '#rvfs-controllers button', function () {
 				var sizeFactor;
 				var currentFactor = parseFloat(readCookie("fontSize")) || 1;
-		
+
 				switch (this.id) {
 					case 'switcher-large':
 						sizeFactor = currentFactor * 1.1;
@@ -777,7 +810,7 @@
 					default:
 						sizeFactor = 1;
 				}
-		
+
 				if (sizeFactor === 1) {
 					$speech.each(function () {
 						var tagName = $(this).prop('tagName').toLowerCase();
@@ -794,7 +827,7 @@
 				}
 			});
 		}
-		
+
 		/**
 		 * Enables sticky behavior for the sidebar when it reaches the top of the viewport.
 		 * This applies to both the left sidebar and mobile right sidebar in smaller screens.
@@ -802,11 +835,11 @@
 		function ezd_sidebar_enable_sticky() {
 			var $stickyElements = $('.left-column .doc_left_sidebarlist, .doc_right_mobile_menu .doc_rightsidebar'); // Select sidebar elements
 
-			if ( $stickyElements.length === 0 ) return; // Exit if no target elements found
+			if ($stickyElements.length === 0) return; // Exit if no target elements found
 
 			var stickyOffset = $stickyElements.offset().top; // Get initial top position
 
-			$(window).on('scroll', function() {
+			$(window).on('scroll', function () {
 				var scrollTop = $(window).scrollTop(); // Current scroll position
 
 				if (scrollTop >= stickyOffset) {
@@ -818,10 +851,10 @@
 		}
 
 		// Initialize the sticky sidebar function 
-    	ezd_sidebar_enable_sticky();
+		ezd_sidebar_enable_sticky();
 
 		// Google Login script
-		$(".ezd-google-login-btn").on("click", function(e) {
+		$(".ezd-google-login-btn").on("click", function (e) {
 			e.preventDefault();
 			var $btn = $(this);
 			var googleUrl = $btn.data("href");
@@ -839,55 +872,55 @@
 			$btn.css("opacity", "0.7");
 
 			// Reset after 10s
-			setTimeout(function() {
+			setTimeout(function () {
 				$btn.find("span").text(originalText);
 				$btn.css("opacity", "1");
 			}, 10000);
 		});
 
-        /**
-         * EazyDocs Accordion Functionality
-         * Sync with updated markup: .ezd-doc-attached-files-accordion
-         * Maintains ARIA states and toggle icons.
-         */
-        function ezdDocAttachedFile() {
-            const $accordion = $('.ezd-doc-attached-files-accordion');
+		/**
+		 * EazyDocs Accordion Functionality
+		 * Sync with updated markup: .ezd-doc-attached-files-accordion
+		 * Maintains ARIA states and toggle icons.
+		 */
+		function ezdDocAttachedFile() {
+			const $accordion = $('.ezd-doc-attached-files-accordion');
 
-            // Set initial collapsed state
-            $accordion.find('.accordion__content').addClass('is-collapsed').hide();
-            $accordion.find('.accordion__header').attr('aria-expanded', 'false');
-            $accordion.find('.accordion__toggle i')
-                .removeClass('arrow_carrot-up')
-                .addClass('arrow_carrot-down');
+			// Set initial collapsed state
+			$accordion.find('.accordion__content').addClass('is-collapsed').hide();
+			$accordion.find('.accordion__header').attr('aria-expanded', 'false');
+			$accordion.find('.accordion__toggle i')
+				.removeClass('arrow_carrot-up')
+				.addClass('arrow_carrot-down');
 
-            // Click on header or toggle button
-            $accordion.on('click', '.accordion__header, .accordion__toggle', function (e) {
-                e.preventDefault();
-                const $wrapper = $(this).closest('.ezd-doc-attached-files-accordion');
-                const $content = $wrapper.find('.accordion__content');
-                const $header = $wrapper.find('.accordion__header');
-                const $icon = $wrapper.find('.accordion__toggle i');
-                const expanded = $header.attr('aria-expanded') === 'true';
+			// Click on header or toggle button
+			$accordion.on('click', '.accordion__header, .accordion__toggle', function (e) {
+				e.preventDefault();
+				const $wrapper = $(this).closest('.ezd-doc-attached-files-accordion');
+				const $content = $wrapper.find('.accordion__content');
+				const $header = $wrapper.find('.accordion__header');
+				const $icon = $wrapper.find('.accordion__toggle i');
+				const expanded = $header.attr('aria-expanded') === 'true';
 
-                if (expanded) {
-                    $content.slideUp(250).addClass('is-collapsed');
-                    $header.attr('aria-expanded', 'false');
-                    $icon.removeClass('arrow_carrot-up').addClass('arrow_carrot-down'); 
-                } else {
-                    $content.slideDown(250).removeClass('is-collapsed');
-                    $header.attr('aria-expanded', 'true');
-                    $icon.removeClass('arrow_carrot-down').addClass('arrow_carrot-up');
-                }
-            });
-        }
-        // Initialize accordion functionality
-        ezdDocAttachedFile();
+				if (expanded) {
+					$content.slideUp(250).addClass('is-collapsed');
+					$header.attr('aria-expanded', 'false');
+					$icon.removeClass('arrow_carrot-up').addClass('arrow_carrot-down');
+				} else {
+					$content.slideDown(250).removeClass('is-collapsed');
+					$header.attr('aria-expanded', 'true');
+					$icon.removeClass('arrow_carrot-down').addClass('arrow_carrot-up');
+				}
+			});
+		}
+		// Initialize accordion functionality
+		ezdDocAttachedFile();
 	});
 })(jQuery);
 
 // Listen for messages from the popup window
-window.addEventListener("message", function(event) {
-    if (event.data.type === "google_login_success" && event.data.redirect) {
-        window.location.href = event.data.redirect;
-    }
+window.addEventListener("message", function (event) {
+	if (event.data.type === "google_login_success" && event.data.redirect) {
+		window.location.href = event.data.redirect;
+	}
 });
