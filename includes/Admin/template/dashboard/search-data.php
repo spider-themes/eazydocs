@@ -7,7 +7,8 @@
  */
 
 global $wpdb;
-$search_log_table    = $wpdb->get_var( "SHOW TABLES LIKE '%_eazydocs_search_log'" );
+// Sentinel Fix: Use deterministic table name with $wpdb->prefix instead of relying on SHOW TABLES output.
+$search_log_table    = $wpdb->prefix . 'eazydocs_search_log';
 $total_failed_search = $wpdb->get_var( "SELECT count(id) FROM {$search_log_table} WHERE not_found_count > 0" );
 
 if ( empty( $total_failed_search ) ) {
