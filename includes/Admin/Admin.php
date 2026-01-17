@@ -510,40 +510,34 @@ class Admin {
 		$c_of = 0;
 		$f_of = 0;
 
+		$update_doc = function ( $id, $menu_order, $parent_id ) {
+			if ( current_user_can( 'edit_post', $id ) && 'docs' === get_post_type( $id ) ) {
+				wp_update_post( [
+					'ID'          => $id,
+					'menu_order'  => $menu_order,
+					'post_parent' => $parent_id
+				] );
+			}
+		};
+
 		foreach ( $nestedArray as $value ) {
 			$i++;
-			wp_update_post( [
-				'ID'          => $value->id,
-				'menu_order'  => $i,
-				'post_parent' => eaz_get_nestable_parent_id( $value->id )
-			] );
+			$update_doc( $value->id, $i, eaz_get_nestable_parent_id( $value->id ) );
 
 			if ( is_array( $value->children ) ) {
 				foreach ( $value->children as $child ) {
 					$c++;
-					wp_update_post( [
-						'ID'          => $child->id,
-						'menu_order'  => $c,
-						'post_parent' => $value->id
-					] );
+					$update_doc( $child->id, $c, $value->id );
 
 					if ( is_array( $child->children ) ) {
 						foreach ( $child->children as $of_child ) {
 							$c_of++;
-							wp_update_post( [
-								'ID'          => $of_child->id,
-								'menu_order'  => $c_of,
-								'post_parent' => $child->id
-							] );
+							$update_doc( $of_child->id, $c_of, $child->id );
 
 							if ( is_array( $of_child->children ) ) {
 								foreach ( $of_child->children as $fourth_child ) {
 									$f_of++;
-									wp_update_post( [
-										'ID'          => $fourth_child->id,
-										'menu_order'  => $f_of,
-										'post_parent' => $of_child->id
-									] );
+									$update_doc( $fourth_child->id, $f_of, $of_child->id );
 								}
 							}
 						}
@@ -566,12 +560,14 @@ class Admin {
 		$msg         = [];
 		$i           = 0;
 		foreach ( $nestedArray as $value ) {
-			$i ++;
-			$msg = $value->id;
-			wp_update_post( [
-				'ID'         => $value->id,
-				'menu_order' => $i,
-			], true );
+			if ( current_user_can( 'edit_post', $value->id ) && 'docs' === get_post_type( $value->id ) ) {
+				$i ++;
+				$msg = $value->id;
+				wp_update_post( [
+					'ID'         => $value->id,
+					'menu_order' => $i,
+				], true );
+			}
 		}
 
 		wp_send_json_success( $msg );
