@@ -1,0 +1,3 @@
+## 2024-05-22 - [Accessible Documentation Actions]
+**Learning:** EazyDocs uses icon-only buttons extensively in the admin dashboard for documentation management (Edit, View, Delete, Duplicate). While some elements like the drag handle have excellent accessibility attributes (ARIA labels, keyboard support), standard action buttons rely solely on `title` attributes, making them less accessible to screen reader users and creating inconsistent focus management.
+**Action:** When working with admin tables or lists in WordPress plugins, always ensure icon-only action buttons have explicit `aria-label` attributes describing the action and the specific item being acted upon (e.g., "Delete [Doc Name]" instead of just "Delete").

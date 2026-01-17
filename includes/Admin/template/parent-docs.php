@@ -55,11 +55,12 @@ $count = $query->found_posts;
                 $post_format = 'lock';
                 $doc_status = esc_html__('Password Protected Doc', 'eazydocs');
             }
+            $doc_title_text = get_the_title();
             ?>
             <li class="easydocs-navitem dd-item dd3-item <?php echo esc_attr($is_active); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
                 <div class="title">
                     <span title="<?php echo esc_attr($doc_status); ?>" class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
-                    <?php the_title(); ?>
+                    <?php echo esc_html( $doc_title_text ); ?>
                 </div>
                 <div class="total-page">
                     <span>
@@ -76,14 +77,14 @@ $count = $query->found_posts;
                     
                      if ( ezd_is_admin_or_editor(get_the_ID(), 'edit') ) :
                         ?>
-                        <a href="<?php echo esc_url(get_edit_post_link(get_the_ID())); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
+                        <a href="<?php echo esc_url(get_edit_post_link(get_the_ID())); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Edit %s', 'eazydocs' ), $doc_title_text ) ); ?>">
                             <span class="dashicons dashicons-edit"></span>
                         </a>
                         <?php
                     endif;
                     ?>
 
-                    <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
+                    <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>" aria-label="<?php echo esc_attr( sprintf( __( 'View %s', 'eazydocs' ), $doc_title_text ) ); ?>">
                         <span class="dashicons dashicons-external"></span>
                     </a>
 
@@ -92,7 +93,7 @@ $count = $query->found_posts;
                         $delete_id = get_the_ID();
                         $nonce     = wp_create_nonce( $delete_id );
                         ?>
-                        <a href="<?php echo esc_url( admin_url( 'admin.php' ) . '?Doc_Delete=yes&_wpnonce=' . $nonce . '&DeleteID=' . $delete_id ); ?>" class="link delete parent-delete" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
+                        <a href="<?php echo esc_url( admin_url( 'admin.php' ) . '?Doc_Delete=yes&_wpnonce=' . $nonce . '&DeleteID=' . $delete_id ); ?>" class="link delete parent-delete" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Delete %s', 'eazydocs' ), $doc_title_text ) ); ?>">
                             <span class="dashicons dashicons-trash"></span>
                         </a>
                         <?php 
@@ -100,7 +101,7 @@ $count = $query->found_posts;
 
                     if ( current_user_can('manage_options') ) :
                         ?>  
-                        <span class="ezd-admin-bulk-options link" id="bulk-options-<?php echo esc_attr(get_the_ID()); ?>">
+                        <span class="ezd-admin-bulk-options link" id="bulk-options-<?php echo esc_attr(get_the_ID()); ?>" role="button" tabindex="0" aria-label="<?php echo esc_attr( sprintf( __( 'Options for %s', 'eazydocs' ), $doc_title_text ) ); ?>">
                             <span class="dashicons dashicons-arrow-down-alt2"></span>
                             <span class="ezd-admin-bulk-actions">
                                 <?php

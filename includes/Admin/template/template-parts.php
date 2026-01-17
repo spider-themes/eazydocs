@@ -103,11 +103,12 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
      $child_count   = count( $child_count );
 
      $is_premium    = ! ezd_is_premium() && $depth === 3 ? false : ( ezd_is_premium() && $depth === 4 ? false : true);
+     $doc_title     = get_the_title( $doc_item );
      ?>
      <div class="left-content left-content-<?php echo esc_attr( $depth ); ?>">
          <h4>
              <a href="<?php echo esc_url($edit_link); ?>" target="<?php echo esc_attr( $target ); ?>">
-                 <?php echo esc_html( get_the_title( $doc_item ) ); ?>
+                 <?php echo esc_html( $doc_title ); ?>
              </a>
              <?php 
              if ( $child_count > 0 ) : 
@@ -128,7 +129,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
                      </li>
                  <?php else : ?>
                      <li class="duplicate">
-                         <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>">
+                         <a href="javascript:void(0);" class="eazydocs-pro-notice" title="<?php esc_attr_e('Duplicate this doc with the child docs.', 'eazydocs'); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Duplicate %s', 'eazydocs' ), $doc_title ) ); ?>">
                              <span class="dashicons dashicons-admin-page"></span>
                          </a>
                      </li>
@@ -137,7 +138,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
                  if ( $is_premium ) :
                      ?>
                      <li>
-                         <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Create_Child=yes&childID=<?php echo esc_attr($doc_item); ?>&_wpnonce=<?php echo esc_attr(wp_create_nonce($doc_item)); ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                         <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Create_Child=yes&childID=<?php echo esc_attr($doc_item); ?>&_wpnonce=<?php echo esc_attr(wp_create_nonce($doc_item)); ?>&child=" class="child-doc" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Add child doc to %s', 'eazydocs' ), $doc_title ) ); ?>">
                              <span class="dashicons dashicons-plus-alt2"></span>
                          </a>
                      </li>
@@ -156,7 +157,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
              ?>
 
              <li>
-                 <a href="<?php the_permalink( $doc_item ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs'); ?>">
+                 <a href="<?php the_permalink( $doc_item ); ?>" target="_blank" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs'); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'View %s', 'eazydocs' ), $doc_title ) ); ?>">
                      <span class="dashicons dashicons-external"></span>
                  </a>
              </li>
@@ -165,7 +166,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
              if ( ezd_is_admin_or_editor( $doc_item, 'delete' ) ) : 
                 ?>
                  <li class="delete">
-                     <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce( $doc_item ) ); ?>&ID=<?php echo esc_attr( $doc_item ); ?>" class="section-delete" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
+                     <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce( $doc_item ) ); ?>&ID=<?php echo esc_attr( $doc_item ); ?>" class="section-delete" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Delete %s', 'eazydocs' ), $doc_title ) ); ?>">
                          <span class="dashicons dashicons-trash"></span>
                      </a>
                  </li>
