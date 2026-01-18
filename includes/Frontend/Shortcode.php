@@ -119,7 +119,7 @@ class Shortcode {
             $sections = $children_by_parent[ $root->ID ] ?? [];
 
             // Slice if show_articles is set (and not -1)
-            if ( $args['show_articles'] != -1 && count( $sections ) > $args['show_articles'] ) {
+            if ( $args['show_articles'] !== -1 && count( $sections ) > $args['show_articles'] ) {
                 $sections = array_slice( $sections, 0, $args['show_articles'] );
             }
 
