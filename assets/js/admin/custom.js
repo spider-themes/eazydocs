@@ -406,7 +406,15 @@
 		}
 
 		// BULK OPTIONS
-		$('.ezd-admin-bulk-options').click(function () {
+		$('.ezd-admin-bulk-options').on('click keydown', function (e) {
+			// Trigger on click or Enter/Space keys
+			if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') {
+				return;
+			}
+			if (e.type === 'keydown') {
+				e.preventDefault(); // Prevent scrolling for Space
+			}
+
 			$(this).toggleClass('active');
 			$('.ezd-admin-bulk-options.active > .dashicons').addClass(
 				'arrow-active'
