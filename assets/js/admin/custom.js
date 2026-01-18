@@ -412,6 +412,14 @@
 				'arrow-active'
 			);
 		});
+
+		// Keyboard accessibility for bulk options button
+		$('.ezd-admin-bulk-options').keydown(function (e) {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				$(this).click();
+			}
+		});
 		
 		// Notifications filter buttons
 		$('.easydocs-filters button').on('click', function(e){
