@@ -415,7 +415,7 @@
 
 		// Keyboard accessibility for bulk options button
 		$('.ezd-admin-bulk-options').keydown(function (e) {
-			if (e.key === 'Enter' || e.key === ' ') {
+			if (e.key === 'Enter' || e.key === ' ' || e.key === 'Space') {
 				e.preventDefault();
 				$(this).click();
 			}
