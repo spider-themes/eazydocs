@@ -72,11 +72,15 @@ class Edit_OnePage {
             $_GET['edit_onepage'] === 'yes' &&
             ! empty($_GET['doc_id']) &&
             ! empty($_GET['_wpnonce']) &&
-            wp_verify_nonce( wp_unslash($_GET['_wpnonce']), absint($_GET['doc_id']) ) &&
-            current_user_can( 'edit_posts' )
+            wp_verify_nonce( wp_unslash($_GET['_wpnonce']), absint($_GET['doc_id']) )
         ) {
+            $page_id = absint( $_GET['doc_id'] );
 
-            $page_id            = absint( $_GET['doc_id'] );
+            // Security: Check if user can edit this specific post
+            if ( ! current_user_can( 'edit_post', $page_id ) ) {
+                return;
+            }
+
             $layout             = sanitize_text_field( $_GET['layout'] ?? '' );
             $content_type       = sanitize_text_field( $_GET['content_type'] ?? '' );
             $content_type_right = sanitize_text_field( $_GET['shortcode_right'] ?? '' );
@@ -108,7 +112,7 @@ class Edit_OnePage {
                 return;
             }
 
-            // Save metadata: store HTML & shortcodes as-is
+            // Security: Sanitize HTML content before saving to prevent Stored XSS
             if ( ! empty( $layout ) ) {
                 update_post_meta( $page_id, 'ezd_doc_layout', $layout );
             }
@@ -116,10 +120,10 @@ class Edit_OnePage {
                 update_post_meta( $page_id, 'ezd_doc_content_type', $content_type );
             }
             if ( ! empty( $page_content ) ) {
-                update_post_meta( $page_id, 'ezd_doc_left_sidebar', $page_content );
+                update_post_meta( $page_id, 'ezd_doc_left_sidebar', wp_kses_post( $page_content ) );
             }
             if ( ! empty( $shortcode_content_right ) ) {
-                update_post_meta( $page_id, 'ezd_doc_content_box_right', $shortcode_content_right );
+                update_post_meta( $page_id, 'ezd_doc_content_box_right', wp_kses_post( $shortcode_content_right ) );
             }
             if ( ! empty( $content_type_right ) ) {
                 update_post_meta( $page_id, 'ezd_doc_content_type_right', $content_type_right );
