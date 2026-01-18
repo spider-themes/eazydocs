@@ -76,14 +76,14 @@ $count = $query->found_posts;
                     
                      if ( ezd_is_admin_or_editor(get_the_ID(), 'edit') ) :
                         ?>
-                        <a href="<?php echo esc_url(get_edit_post_link(get_the_ID())); ?>" class="link edit" target="_blank" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
+                        <a href="<?php echo esc_url(get_edit_post_link(get_the_ID())); ?>" class="link edit" target="_blank" aria-label="<?php echo esc_attr(sprintf(__('Edit %s', 'eazydocs'), get_the_title())); ?>" title="<?php esc_attr_e('Edit this doc', 'eazydocs'); ?>">
                             <span class="dashicons dashicons-edit"></span>
                         </a>
                         <?php
                     endif;
                     ?>
 
-                    <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
+                    <a href="<?php the_permalink(); ?>" class="link external-link" target="_blank" data-id="tab-<?php the_ID(); ?>" aria-label="<?php echo esc_attr(sprintf(__('View %s', 'eazydocs'), get_the_title())); ?>" title="<?php esc_attr_e('View this doc item in new tab', 'eazydocs') ?>">
                         <span class="dashicons dashicons-external"></span>
                     </a>
 
@@ -92,7 +92,7 @@ $count = $query->found_posts;
                         $delete_id = get_the_ID();
                         $nonce     = wp_create_nonce( $delete_id );
                         ?>
-                        <a href="<?php echo esc_url( admin_url( 'admin.php' ) . '?Doc_Delete=yes&_wpnonce=' . $nonce . '&DeleteID=' . $delete_id ); ?>" class="link delete parent-delete" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
+                        <a href="<?php echo esc_url( admin_url( 'admin.php' ) . '?Doc_Delete=yes&_wpnonce=' . $nonce . '&DeleteID=' . $delete_id ); ?>" class="link delete parent-delete" aria-label="<?php echo esc_attr(sprintf(__('Delete %s', 'eazydocs'), get_the_title())); ?>" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
                             <span class="dashicons dashicons-trash"></span>
                         </a>
                         <?php 
@@ -100,7 +100,7 @@ $count = $query->found_posts;
 
                     if ( current_user_can('manage_options') ) :
                         ?>  
-                        <span class="ezd-admin-bulk-options link" id="bulk-options-<?php echo esc_attr(get_the_ID()); ?>">
+                        <span class="ezd-admin-bulk-options link" id="bulk-options-<?php echo esc_attr(get_the_ID()); ?>" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="<?php echo esc_attr(sprintf(__('More options for %s', 'eazydocs'), get_the_title())); ?>">
                             <span class="dashicons dashicons-arrow-down-alt2"></span>
                             <span class="ezd-admin-bulk-actions">
                                 <?php
