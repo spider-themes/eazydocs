@@ -407,6 +407,9 @@
 
 		// BULK OPTIONS
 		$('.ezd-admin-bulk-options').on('click keydown', function (e) {
+			if ($(e.target).closest('.ezd-admin-bulk-actions').length) {
+				return;
+			}
 			if (e.type === 'keydown' && e.which !== 13 && e.which !== 32) {
 				return;
 			}
@@ -414,12 +417,13 @@
 				e.preventDefault();
 			}
 
-			$(this).toggleClass('active');
-			$(this).attr('aria-expanded', $(this).hasClass('active'));
-
-			$('.ezd-admin-bulk-options.active > .dashicons').addClass(
-				'arrow-active'
-			);
+			var $trigger = $(this);
+			$trigger.toggleClass('active');
+			var isExpanded = $trigger.hasClass('active');
+			$trigger.attr('aria-expanded', isExpanded);
+			$trigger
+				.find('> .dashicons')
+				.toggleClass('arrow-active', isExpanded);
 		});
 		
 		// Notifications filter buttons

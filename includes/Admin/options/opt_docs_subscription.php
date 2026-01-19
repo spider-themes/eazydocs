@@ -10,8 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Subscriptions
 CSF::createSection( $prefix, array(
 	'id'     => 'subscriptions_opt',
+	'parent' => 'email_settings',
 	'title'  => esc_html__( 'Update Notifications', 'eazydocs' ),
-	'icon'   => 'dashicons dashicons-email',
+	'icon'   => '',
 	'fields' => array(
 		array(
 			'type'  => 'heading',
@@ -123,6 +124,89 @@ CSF::createSection( $prefix, array(
 						'default'    => esc_html__( 'Special characters not allowed!', 'eazydocs' ),
 					),
 					
+				)
+			  ),
+			  array(
+				'title'     =>  esc_html__( 'Email Design', 'eazydocs' ),
+				'icon'      =>  'dashicons dashicons-email-alt',
+				'fields'    => array(
+					array(
+						'type'    => 'subheading',
+						'content' => esc_html__( 'Email Branding', 'eazydocs' ),
+					),
+					array(
+						'id'         => 'email_logo_url',
+						'type'       => 'upload',
+						'title'      => esc_html__( 'Email Logo', 'eazydocs' ),
+						'subtitle'   => esc_html__( 'Logo displayed in email header. Recommended size: 200x50px.', 'eazydocs' ),
+						'library'    => 'image',
+						'preview'    => true,
+					),
+					array(
+						'id'         => 'email_footer_text',
+						'type'       => 'textarea',
+						'title'      => esc_html__( 'Footer Message', 'eazydocs' ),
+						'subtitle'   => esc_html__( 'Custom message shown at the bottom of emails.', 'eazydocs' ),
+						'default'    => esc_html__( 'Thank you for being a valued subscriber.', 'eazydocs' ),
+					),
+					
+					array(
+						'type'    => 'subheading',
+						'content' => esc_html__( 'Email Content Options', 'eazydocs' ),
+					),
+					array(
+						'id'         => 'email_show_excerpt',
+						'type'       => 'switcher',
+						'title'      => esc_html__( 'Show Article Excerpt', 'eazydocs' ),
+						'subtitle'   => esc_html__( 'Display a preview of the article content in the email.', 'eazydocs' ),
+						'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+						'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+						'default'    => true,
+						'text_width' => 80
+					),
+					array(
+						'id'         => 'email_show_featured_image',
+						'type'       => 'switcher',
+						'title'      => esc_html__( 'Show Featured Image', 'eazydocs' ),
+						'subtitle'   => esc_html__( 'Include the article\'s featured image in the email.', 'eazydocs' ),
+						'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+						'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+						'default'    => true,
+						'text_width' => 80
+					),
+					array(
+						'id'         => 'email_show_related',
+						'type'       => 'switcher',
+						'title'      => esc_html__( 'Show Related Articles', 'eazydocs' ),
+						'subtitle'   => esc_html__( 'Suggest other articles from the same documentation.', 'eazydocs' ),
+						'text_on'    => esc_html__( 'Show', 'eazydocs' ),
+						'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+						'default'    => true,
+						'text_width' => 80
+					),
+					
+					array(
+						'type'    => 'subheading',
+						'content' => esc_html__( 'Social Links (Optional)', 'eazydocs' ),
+					),
+					array(
+						'id'         => 'social_twitter',
+						'type'       => 'text',
+						'title'      => esc_html__( 'Twitter/X URL', 'eazydocs' ),
+						'placeholder'=> 'https://twitter.com/yourhandle',
+					),
+					array(
+						'id'         => 'social_facebook',
+						'type'       => 'text',
+						'title'      => esc_html__( 'Facebook URL', 'eazydocs' ),
+						'placeholder'=> 'https://facebook.com/yourpage',
+					),
+					array(
+						'id'         => 'social_linkedin',
+						'type'       => 'text',
+						'title'      => esc_html__( 'LinkedIn URL', 'eazydocs' ),
+						'placeholder'=> 'https://linkedin.com/company/yourcompany',
+					),
 				)
 			  ),
 			  array(

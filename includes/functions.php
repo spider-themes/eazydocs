@@ -922,8 +922,7 @@ function ezd_onepage_docs() {
 
     <p>
         <label for="ezd_doc_content_type"><?php esc_html_e( 'Content Type', 'eazydocs' ); ?></label><br/>
-        <input type="text" disabled name="ezd_doc_content_type" id="ezd_doc_content_type"
-               value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_content_type', true ) ); ?>" class="widefat"/>
+        <input type="text" disabled name="ezd_doc_content_type" id="ezd_doc_content_type" value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_content_type', true ) ); ?>" class="widefat"/>
     </p>
 
     <p>
