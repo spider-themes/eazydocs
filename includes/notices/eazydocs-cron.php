@@ -61,24 +61,25 @@ if ( ! function_exists( 'ezd_fetch_remote_html_notice_content' ) ) {
 		}
 
 		// Handle new API structure with contents array
-		$contents = isset( $data['contents'] ) ? $data['contents'] : array();
+		$contents  = isset( $data['contents'] ) ? $data['contents'] : array();
 		$site_info = isset( $data['site'] ) ? $data['site'] : array();
 
+		$site_id = isset( $site_info['id'] ) ? $site_info['id'] : 'unknown';
+		$product = isset( $site_info['product'] ) ? $site_info['product'] : 'eazydocs';
+
+		// If no contents returned from API, clear the stored data
 		if ( empty( $contents ) ) {
-			ezd_log_cron_activity( 'No contents returned from API', 'warning' );
+			ezd_log_cron_activity( 'No contents returned from API - clearing stored notices', 'warning' );
+			ezd_clear_remote_html_notice_contents( $product );
 			return;
 		}
 
-		$site_id = isset( $site_info['id'] ) ? $site_info['id'] : 'unknown';
-		$product = isset( $site_info['product'] ) ? $site_info['product'] : 'unknown';
-
-		// Store all contents individually
+		// Store all contents and clean up stale dismiss keys
 		ezd_store_remote_html_notice_contents( $product, $contents, $site_id );
 
 		ezd_log_cron_activity( 'Successfully fetched ' . count( $contents ) . ' contents for product: ' . $product );
 	}
 }
-
 if ( ! function_exists( 'ezd_store_remote_html_notice_content' ) ) {
 	function ezd_store_remote_html_notice_content( $product, $html_content, $site_id ) {
 		$content_key = sanitize_key( $product ) . '_offer_html_notice';
@@ -104,18 +105,51 @@ if ( ! function_exists( 'ezd_store_remote_html_notice_content' ) ) {
 }
 
 if ( ! function_exists( 'ezd_store_remote_html_notice_contents' ) ) {
+	/**
+	 * Store remote HTML notice contents.
+	 *
+	 * @param string $product  Product identifier.
+	 * @param array  $contents Array of content items from API.
+	 * @param string $site_id  Site identifier.
+	 */
 	function ezd_store_remote_html_notice_contents( $product, $contents, $site_id ) {
-		$contents_key = sanitize_key( $product ) . '_offer_html_contents';
-		$site_id_key = sanitize_key( $product ) . '_offer_site_id';
-		$switcher_key = sanitize_key( $product ) . '_offer_html_switcher';
-		$fetched_time_key = sanitize_key( $product ) . '_offer_fetched_time';
+		$product          = sanitize_key( $product );
+		$contents_key     = $product . '_offer_html_contents';
+		$site_id_key      = $product . '_offer_site_id';
+		$switcher_key     = $product . '_offer_html_switcher';
+		$fetched_time_key = $product . '_offer_fetched_time';
+
+		// Get old contents to clean up stale dismiss keys
+		$old_contents    = get_option( $contents_key, array() );
+		$old_content_ids = array();
+		if ( is_array( $old_contents ) ) {
+			foreach ( $old_contents as $old_content ) {
+				if ( isset( $old_content['id'] ) ) {
+					$old_content_ids[] = sanitize_key( $old_content['id'] );
+				}
+			}
+		}
+
+		// Get new content IDs
+		$new_content_ids = array();
+		foreach ( $contents as $content ) {
+			if ( isset( $content['id'] ) ) {
+				$new_content_ids[] = sanitize_key( $content['id'] );
+			}
+		}
+
+		// Remove dismiss keys for contents that no longer exist in API
+		$stale_ids = array_diff( $old_content_ids, $new_content_ids );
+		foreach ( $stale_ids as $stale_id ) {
+			$stale_dismiss_key = $product . '_content_' . $stale_id . '_dismissed';
+			delete_option( $stale_dismiss_key );
+		}
 
 		// Store the full contents array
 		update_option( $contents_key, $contents );
-
 		update_option( $site_id_key, sanitize_text_field( $site_id ) );
 
-		if ( ! get_option( $switcher_key ) ) {
+		if ( false === get_option( $switcher_key ) ) {
 			update_option( $switcher_key, 1 );
 		}
 
@@ -124,12 +158,47 @@ if ( ! function_exists( 'ezd_store_remote_html_notice_contents' ) ) {
 		// Initialize dismiss status for each content if not exists
 		foreach ( $contents as $content ) {
 			if ( isset( $content['id'] ) ) {
-				$content_dismiss_key = sanitize_key( $product ) . '_content_' . sanitize_key( $content['id'] ) . '_dismissed';
-				if ( ! get_option( $content_dismiss_key ) ) {
+				$content_dismiss_key = $product . '_content_' . sanitize_key( $content['id'] ) . '_dismissed';
+				if ( false === get_option( $content_dismiss_key ) ) {
 					update_option( $content_dismiss_key, 0 );
 				}
 			}
 		}
+	}
+}
+
+if ( ! function_exists( 'ezd_clear_remote_html_notice_contents' ) ) {
+	/**
+	 * Clear all stored remote HTML notice contents and related options.
+	 *
+	 * This function is called when the API returns empty results,
+	 * ensuring that old/stale notices are removed from display.
+	 *
+	 * @param string $product Product identifier.
+	 */
+	function ezd_clear_remote_html_notice_contents( $product ) {
+		$product          = sanitize_key( $product );
+		$contents_key     = $product . '_offer_html_contents';
+		$fetched_time_key = $product . '_offer_fetched_time';
+
+		// Get existing contents to clean up their dismiss keys
+		$existing_contents = get_option( $contents_key, array() );
+		if ( is_array( $existing_contents ) ) {
+			foreach ( $existing_contents as $content ) {
+				if ( isset( $content['id'] ) ) {
+					$content_dismiss_key = $product . '_content_' . sanitize_key( $content['id'] ) . '_dismissed';
+					delete_option( $content_dismiss_key );
+				}
+			}
+		}
+
+		// Clear the contents - set to empty array
+		update_option( $contents_key, array() );
+
+		// Update fetched time to indicate last check
+		update_option( $fetched_time_key, current_time( 'mysql' ) );
+
+		ezd_log_cron_activity( 'Cleared all stored notices for product: ' . $product );
 	}
 }
 

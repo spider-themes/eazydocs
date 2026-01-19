@@ -22,6 +22,11 @@ if ( ! function_exists( 'ezd_display_html_notice' ) ) {
             return;
         }
 
+        // Check if notices are temporarily dismissed (1-week period)
+        if ( function_exists( 'ezd_is_html_notice_temporarily_dismissed' ) && ezd_is_html_notice_temporarily_dismissed( $product ) ) {
+            return;
+        }
+
         // Get all non-dismissed contents
         $contents = ezd_get_non_dismissed_contents( $product );
 
