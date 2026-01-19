@@ -43,8 +43,9 @@ CSF::createSection(
 	$prefix,
 	array(
 		'id'     => 'reporting_opt',
+		'parent' => 'email_settings',
 		'title'  => esc_html__( 'Email Reports', 'eazydocs' ),
-		'icon'   => 'dashicons dashicons-email-alt',
+		'icon'   => '',
 		'fields' => array(
 
 			// Section Header with Feature Overview
