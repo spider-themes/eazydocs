@@ -108,6 +108,11 @@ class Edit_OnePage {
                 return;
             }
 
+            // Sentinel: Fix IDOR & Stored XSS via capability check & sanitization
+            if ( ! current_user_can( 'edit_post', $page_id ) ) {
+                return;
+            }
+
             // Save metadata: store HTML & shortcodes as-is
             if ( ! empty( $layout ) ) {
                 update_post_meta( $page_id, 'ezd_doc_layout', $layout );
@@ -116,10 +121,10 @@ class Edit_OnePage {
                 update_post_meta( $page_id, 'ezd_doc_content_type', $content_type );
             }
             if ( ! empty( $page_content ) ) {
-                update_post_meta( $page_id, 'ezd_doc_left_sidebar', $page_content );
+                update_post_meta( $page_id, 'ezd_doc_left_sidebar', wp_kses_post( $page_content ) );
             }
             if ( ! empty( $shortcode_content_right ) ) {
-                update_post_meta( $page_id, 'ezd_doc_content_box_right', $shortcode_content_right );
+                update_post_meta( $page_id, 'ezd_doc_content_box_right', wp_kses_post( $shortcode_content_right ) );
             }
             if ( ! empty( $content_type_right ) ) {
                 update_post_meta( $page_id, 'ezd_doc_content_type_right', $content_type_right );
