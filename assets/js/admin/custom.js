@@ -406,8 +406,17 @@
 		}
 
 		// BULK OPTIONS
-		$('.ezd-admin-bulk-options').click(function () {
+		$('.ezd-admin-bulk-options').on('click keydown', function (e) {
+			if (e.type === 'keydown' && e.which !== 13 && e.which !== 32) {
+				return;
+			}
+			if (e.type === 'keydown') {
+				e.preventDefault();
+			}
+
 			$(this).toggleClass('active');
+			$(this).attr('aria-expanded', $(this).hasClass('active'));
+
 			$('.ezd-admin-bulk-options.active > .dashicons').addClass(
 				'arrow-active'
 			);
