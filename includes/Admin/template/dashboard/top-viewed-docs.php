@@ -4,11 +4,15 @@
 			<span class="dashicons dashicons-visibility"></span>
 			<?php esc_html_e( 'Top Viewed Docs', 'eazydocs' ); ?>
 		</h2>
+		<a href="<?php echo esc_url( admin_url( 'admin.php?page=ezd-analytics#analytics-helpful' ) ); ?>" class="ezd-view-all-link">
+			<?php esc_html_e( 'View All', 'eazydocs' ); ?>
+			<span class="dashicons dashicons-arrow-right-alt"></span>
+		</a>
 	</div>
 	<?php
 	$args = array(
 		'post_type'      => 'docs',
-		'posts_per_page' => 8,
+		'posts_per_page' => 5,
 		'meta_key'       => 'post_views_count',
 		'orderby'        => 'meta_value_num',
 		'order'          => 'DESC',

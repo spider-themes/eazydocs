@@ -4,6 +4,10 @@
 			<span class="dashicons dashicons-star-filled"></span>
 			<?php esc_html_e( 'Top Ranked Docs', 'eazydocs' ); ?>
 		</h2>
+		<a href="<?php echo esc_url( admin_url( 'admin.php?page=ezd-analytics#analytics-helpful' ) ); ?>" class="ezd-view-all-link">
+			<?php esc_html_e( 'View All', 'eazydocs' ); ?>
+			<span class="dashicons dashicons-arrow-right-alt"></span>
+		</a>
 	</div>
 
 	<?php
@@ -52,8 +56,8 @@
 	<ul class="ezd-activity-list">
 		<?php
 		if ( ! empty( $post_data ) ) :
-			// Limit to top 8 posts.
-			$top_posts = array_slice( $post_data, 0, 8 );
+			// Limit to top 5 posts.
+			$top_posts = array_slice( $post_data, 0, 5 );
 			$rank      = 1;
 
 			foreach ( $top_posts as $post ) :
