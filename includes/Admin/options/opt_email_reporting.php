@@ -44,7 +44,7 @@ CSF::createSection(
 	array(
 		'id'     => 'reporting_opt',
 		'parent' => 'email_settings',
-		'title'  => esc_html__( 'Email Reports', 'eazydocs' ),
+		'title'  => esc_html__( 'Automatic Email Reports', 'eazydocs' ),
 		'icon'   => '',
 		'fields' => array(
 
@@ -401,10 +401,6 @@ CSF::createSection(
 								<li>' . esc_html__( 'Ensure your WordPress cron is running properly', 'eazydocs' ) . '</li>
 								<li>' . esc_html__( 'Use the "Send Test Email" button above to verify your email setup', 'eazydocs' ) . '</li>
 							</ul>
-							<a href="https://developer.developer.developer/" target="_blank" class="ezd-help-link">
-								<span class="dashicons dashicons-external"></span>
-								' . esc_html__( 'View Documentation', 'eazydocs' ) . '
-							</a>
 						</div>
 					</div>
 				</div>',

@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 CSF::createSection( $prefix, array(
 	'id'     => 'subscriptions_opt',
 	'parent' => 'email_settings',
-	'title'  => esc_html__( 'Update Notifications', 'eazydocs' ),
+	'title'  => esc_html__( 'Doc Update Notifications', 'eazydocs' ),
 	'icon'   => '',
 	'fields' => array(
 		array(

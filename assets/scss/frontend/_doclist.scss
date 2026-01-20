@@ -204,7 +204,7 @@ body {
     &.current_page_item {
       > .doc-link {
         color: var(--ezd_brand_color);
-        background: #fff;
+        background: var(--bs-white);
         border: 1px solid var(--black_50);
 
         a {
@@ -349,7 +349,7 @@ body {
         border-radius: 5px;
 
         &.current_page_item {
-          background: var(--ezd_brand_color_10);
+          background: var(--bs-white);
 
           &:hover {
             background: var(--ezd_brand_color_20);
