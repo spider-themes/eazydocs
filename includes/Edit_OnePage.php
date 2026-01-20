@@ -73,7 +73,7 @@ class Edit_OnePage {
             ! empty($_GET['doc_id']) &&
             ! empty($_GET['_wpnonce']) &&
             wp_verify_nonce( wp_unslash($_GET['_wpnonce']), absint($_GET['doc_id']) ) &&
-            current_user_can( 'edit_posts' )
+            current_user_can( 'edit_post', absint( $_GET['doc_id'] ) )
         ) {
 
             $page_id            = absint( $_GET['doc_id'] );
@@ -116,10 +116,12 @@ class Edit_OnePage {
                 update_post_meta( $page_id, 'ezd_doc_content_type', $content_type );
             }
             if ( ! empty( $page_content ) ) {
-                update_post_meta( $page_id, 'ezd_doc_left_sidebar', $page_content );
+                // Sentinel: Sanitize content to prevent Stored XSS
+                update_post_meta( $page_id, 'ezd_doc_left_sidebar', wp_kses_post( $page_content ) );
             }
             if ( ! empty( $shortcode_content_right ) ) {
-                update_post_meta( $page_id, 'ezd_doc_content_box_right', $shortcode_content_right );
+                // Sentinel: Sanitize content to prevent Stored XSS
+                update_post_meta( $page_id, 'ezd_doc_content_box_right', wp_kses_post( $shortcode_content_right ) );
             }
             if ( ! empty( $content_type_right ) ) {
                 update_post_meta( $page_id, 'ezd_doc_content_type_right', $content_type_right );
