@@ -18,7 +18,7 @@ $count = $query->found_posts;
 ?>
 
 <div class="dd parent-nestable tab-menu <?php echo esc_attr($count > 12 ? '' : 'short'); ?>">
-    <ol class="easydocs-navbar sortabled dd-list">
+    <ol class="easydocs-navbar sortabled dd-list" role="tablist">
         <?php
         $i = 0;
         while ( $query->have_posts() ) : $query->the_post();
@@ -56,7 +56,7 @@ $count = $query->found_posts;
                 $doc_status = esc_html__('Password Protected Doc', 'eazydocs');
             }
             ?>
-            <li class="easydocs-navitem dd-item dd3-item <?php echo esc_attr($is_active); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
+            <li class="easydocs-navitem dd-item dd3-item <?php echo esc_attr($is_active); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>" role="tab" tabindex="0" aria-selected="<?php echo $is_active ? 'true' : 'false'; ?>" aria-controls="tab-<?php the_ID(); ?>">
                 <div class="title">
                     <span title="<?php echo esc_attr($doc_status); ?>" class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
                     <?php the_title(); ?>

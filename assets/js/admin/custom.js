@@ -48,8 +48,8 @@
 			}
 
 			// Menu item
-			$('.tab-menu .easydocs-navitem').removeClass('is-active');
-			$nav.addClass('is-active');
+			$('.tab-menu .easydocs-navitem').removeClass('is-active').attr('aria-selected', 'false');
+			$nav.addClass('is-active').attr('aria-selected', 'true');
 
 			// Tab content
 			$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active').hide();
@@ -68,7 +68,19 @@
 		}
 
 		// Sidebar Tabs [COOKIE]
-		$(document).on('click', '.tab-menu .easydocs-navitem', function () {
+		$(document).on('click keydown', '.tab-menu .easydocs-navitem', function (e) {
+
+			// Ignore if clicking/typing on interactive children like "Edit" or "Delete" links
+			if ($(e.target).closest('a, button, input, .ezd-admin-bulk-options').length) {
+				return;
+			}
+
+			if (e.type === 'keydown') {
+				if (e.which !== 13 && e.which !== 32) {
+					return; // Ignore other keys
+				}
+				e.preventDefault(); // Prevent scrolling for Space
+			}
 
 			// REMOVE ?tab=something ONLY AFTER CLICK
 			const url = new URL(window.location.href);
@@ -79,8 +91,6 @@
 
 			let target = $(this).attr('data-rel');
 			ezd_activate_doc_tab(target, true);
-
-			return true;
 		});
 		
 		// Remain the last active doc tab
