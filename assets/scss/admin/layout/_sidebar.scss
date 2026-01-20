@@ -36,7 +36,7 @@
 		padding: 13px 25px 13px 20px;
 	}
 
-	&.is-active {
+	&.active {
 		border-left-color: var(--clr-blue);
 		background: rgba(#9fa2b4, 0.2);
 		--title-opacity: 1;
@@ -259,7 +259,7 @@ button.nestable--button.nestable--expand {
 		}
 	}
 
-	.is-active {
+	.active {
 		background: rgba(37, 39, 51, 0.05);
 		--grid-icon: var(--clr-blue);
 	}
