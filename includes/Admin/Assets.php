@@ -111,6 +111,12 @@ class Assets {
 			EAZYDOCS_VERSION,
 			true
 		);
+
+		// Enqueue SweetAlert for ProMax notices in toolbar
+		if ( get_post_type() === 'docs' ) {
+			wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css', array(), EAZYDOCS_VERSION );
+			wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
+		}
 	
 		wp_localize_script('ezd-block-insert-handler', 'ezdAssets', [
 			'styles' => [
@@ -197,6 +203,7 @@ class Assets {
 				'is_ezd_pro_block'          => ezd_is_premium() ? 'yes' : '',
 				'ezd_get_conditional_items' => ezd_get_conditional_items(),
 				'ezd_pricing_url'           => admin_url( 'admin.php?page=eazydocs-pricing' ),
+				'is_footnotes_unlocked' 	=> ezd_is_footnotes_unlocked() ?'yes':'no'
 			)
 		);
 	}

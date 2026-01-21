@@ -23,8 +23,21 @@ const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
         });
     }, []);
 
+    const isFootnotesUnlocked = eazydocs_local_object?.is_footnotes_unlocked === 'yes';
+
     // Footnotes Shortcode
     const reference = () => {
+        if (!isFootnotesUnlocked) {
+            Swal.fire({
+                title: 'Opps...',
+                html: 'This is a Promax feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
+                icon: "warning",
+                buttons: [false, "Close"],
+                dangerMode: true,
+            });
+            return;
+        }
+
         if (isActive) {
             onChange(removeFormat(value, name));
             return;
@@ -66,18 +79,26 @@ const EazyDocs_Toolbar = ({ isActive, value, onChange }) => {
             <BlockControls>
                 <ToolbarGroup>
                     <DropdownMenu
-                        className='eazydocs-toolbar__dropdown'                     
+                        className='eazydocs-toolbar__dropdown'
                         icon='ezd-icon'
                         label={__('Insert EazyDocs Shortcode', 'eazydocs')}
                         controls={[
-                            { title: __('Footnotes', 'eazydocs'), onClick: reference },
+                            {
+                                title: (
+                                    <span className={`ezd-menu-item-label ${!isFootnotesUnlocked ? 'ezd-item-locked' : ''}`}>
+                                        {__('Footnotes', 'eazydocs')}
+                                        {!isFootnotesUnlocked && <span className="ezd-badge-promax">Pro Max</span>}
+                                    </span>
+                                ),
+                                onClick: reference
+                            },
                             { title: __('Conditional Dropdown', 'eazydocs'), onClick: conditional_data },
                             ...(is_ezd_pro_block ? [{ title: __('Embed Post', 'eazydocs'), onClick: embedPost }] : [])
                         ]}
                     />
                 </ToolbarGroup>
             </BlockControls>
-            
+
             {/* Conditional Dropdown Popover */}
             {showPopover && (
                 <Popover className='ezd-conditional-dropdown-tool' position="bottom center" onClose={() => setShowPopover(false)}>
