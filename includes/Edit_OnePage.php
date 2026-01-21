@@ -71,19 +71,22 @@ class Edit_OnePage {
             ! empty($_GET['edit_onepage']) &&
             $_GET['edit_onepage'] === 'yes' &&
             ! empty($_GET['doc_id']) &&
-            ! empty($_GET['_wpnonce']) &&
-            wp_verify_nonce( wp_unslash($_GET['_wpnonce']), absint($_GET['doc_id']) ) &&
-            current_user_can( 'edit_posts' )
+            ! empty($_GET['_wpnonce'])
         ) {
+            $page_id = absint( $_GET['doc_id'] );
 
-            $page_id            = absint( $_GET['doc_id'] );
+            // Security: Verify nonce and ensure user can edit THIS specific post
+            if ( ! wp_verify_nonce( wp_unslash($_GET['_wpnonce']), $page_id ) || ! current_user_can( 'edit_post', $page_id ) ) {
+                return;
+            }
+
             $layout             = sanitize_text_field( $_GET['layout'] ?? '' );
             $content_type       = sanitize_text_field( $_GET['content_type'] ?? '' );
             $content_type_right = sanitize_text_field( $_GET['shortcode_right'] ?? '' );
 
             // --- Right-side content ---
             if ( $content_type_right === 'widget_data_right' ) {
-                $shortcode_content_right = $_GET['right_side_sidebar'] ?? '';
+                $shortcode_content_right = wp_kses_post( wp_unslash( $_GET['right_side_sidebar'] ?? '' ) );
             } elseif ( $content_type_right === 'shortcode_right' ) {
                 $shortcode_content_right = 'doc_sidebar';
             } else {
@@ -91,16 +94,20 @@ class Edit_OnePage {
                 $page_content_right      = substr( $this->ezd_chrEncode( $page_content_rights ), 6 );
                 $shortcode_content_right = substr_replace( $page_content_right, "", -6 );
                 $shortcode_content_right = str_replace( ['style@',';hash;'], ['style=','#'], $shortcode_content_right );
+                // Security: Sanitize HTML content
+                $shortcode_content_right = wp_kses_post( $shortcode_content_right );
             }
 
             // --- Left-side content ---
             if ( $content_type === 'widget_data' ) {
-                $page_content = $_GET['left_side_sidebar'] ?? '';
+                $page_content = wp_kses_post( wp_unslash( $_GET['left_side_sidebar'] ?? '' ) );
             } else {
                 $page_contents = $_GET['edit_content'] ?? '';
                 $page_content  = substr( $this->ezd_chrEncode( $page_contents ), 6 );
                 $page_content  = substr_replace( $page_content, "", -6 );
                 $page_content  = str_replace( ['style@',';hash;'], ['style=','#'], $page_content );
+                // Security: Sanitize HTML content
+                $page_content  = wp_kses_post( $page_content );
             }
 
             // Only edit onepage-docs type
