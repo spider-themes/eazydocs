@@ -76,7 +76,7 @@ function ezd_child_docs_progress_bar( $post_id ) {
      echo '<span class="progress-text">';
 
      if ( $positive || $negative ) {
-         echo '<progress id="file" value="' . esc_attr($positive) . '" max="' . esc_attr($sum_votes) . '" title="' . esc_attr($positive_title . $negative_title) . '"> </progress>';
+         echo '<progress value="' . esc_attr($positive) . '" max="' . esc_attr($sum_votes) . '" title="' . esc_attr($positive_title . $negative_title) . '" aria-label="' . esc_attr($positive_title . $negative_title) . '"> </progress>';
      } else {
          esc_html_e( 'No rates', 'eazydocs' );
      }
