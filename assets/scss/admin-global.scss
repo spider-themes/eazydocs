@@ -112,6 +112,10 @@ a.eazydocs-close-notice:active {
   font-size: 12px;
 }
 
+.csf-subtitle-text {
+  line-height: 1.2;
+}
+
 /** Cross icon **/
 .csf-field .chosen-container-single .chosen-single abbr:before,
 .csf-field .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:before {
@@ -175,12 +179,12 @@ a.eazydocs-close-notice:active {
   }
 
   &.csf-field-heading .csf-title {
-    width: 100%;
+    width: 100% !important;
   }
 }
 
 .csf-field-heading .csf-title {
-  width: 100%;
+  width: 100% !important;
 }
 
 body.ezd_no_promax .eazydocs-promax-notice.csf-field,

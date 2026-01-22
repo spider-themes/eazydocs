@@ -7,8 +7,8 @@
  */
 
 // Import shared variables and common styles
+@use "common";
 @import "../../assets/scss/frontend/variables.scss";
-@import "common";
 
 // ============================================
 // CSS VARIABLES - Scoped to the block editor
@@ -16,11 +16,9 @@
 
 :root {
 	--ezd-primary: var(--ezd_brand_color, #6366f1);
-	--ezd-primary-light: color-mix(
-		in srgb,
-		var(--ezd-primary) 15%,
-		transparent
-	);
+	--ezd-primary-light: color-mix(in srgb,
+			var(--ezd-primary) 15%,
+			transparent);
 	--ezd-primary-dark: color-mix(in srgb, var(--ezd-primary) 80%, #000);
 	--ezd-gradient-start: var(--ezd-primary);
 	--ezd-gradient-end: #8b5cf6;
@@ -55,12 +53,12 @@
 	border-radius: 12px;
 	margin-left: 8px;
 	letter-spacing: 0.02em;
-	
+
 	svg {
 		width: 10px;
 		height: 10px;
 	}
-	
+
 	// Inline variant for labels
 	&.ezd-pro-badge-inline {
 		margin-left: 6px;
@@ -80,7 +78,7 @@
 	border: 1px solid rgba(245, 158, 11, 0.2);
 	border-radius: var(--ezd-radius-md);
 	margin-bottom: 16px;
-	
+
 	// Transparent variant for overlay
 	&.ezd-upgrade-notice-transparent {
 		background: rgba(255, 255, 255, 0.85);
@@ -88,7 +86,7 @@
 		border: 1px solid rgba(245, 158, 11, 0.3);
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 	}
-	
+
 	.ezd-upgrade-icon {
 		flex-shrink: 0;
 		width: 28px;
@@ -99,16 +97,16 @@
 		background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
 		border-radius: 50%;
 		color: #fff;
-		
+
 		svg {
 			width: 14px;
 			height: 14px;
 		}
 	}
-	
+
 	.ezd-upgrade-content {
 		flex: 1;
-		
+
 		strong {
 			display: block;
 			font-size: 12px;
@@ -116,7 +114,7 @@
 			color: #92400e;
 			margin-bottom: 2px;
 		}
-		
+
 		p {
 			margin: 0 0 6px;
 			font-size: 11px;
@@ -124,7 +122,7 @@
 			line-height: 1.4;
 		}
 	}
-	
+
 	.ezd-upgrade-link {
 		display: inline-flex;
 		align-items: center;
@@ -137,7 +135,7 @@
 		border-radius: 5px;
 		text-decoration: none !important;
 		transition: all 0.2s ease;
-		
+
 		&:hover {
 			transform: translateX(2px);
 			box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
@@ -148,19 +146,19 @@
 // Pro Demo Notice - Warning notice in inspector
 .ezd-pro-demo-notice {
 	margin-bottom: 12px;
-	
+
 	.ezd-pro-demo-notice-content {
 		strong {
 			display: block;
 			margin-bottom: 4px;
 		}
-		
+
 		p {
 			margin: 0 0 8px;
 			font-size: 12px;
 			line-height: 1.4;
 		}
-		
+
 		.ezd-upgrade-link {
 			display: inline-flex;
 			align-items: center;
@@ -185,7 +183,7 @@
 	width: 100%;
 	height: 100%;
 	gap: 8px;
-	
+
 	.ezd-pro-watermark-text {
 		font-size: 24px;
 		font-weight: 800;
@@ -195,7 +193,7 @@
 		text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 		user-select: none;
 	}
-	
+
 	.ezd-pro-watermark-btn {
 		display: inline-flex;
 		align-items: center;
@@ -208,7 +206,7 @@
 		text-decoration: none !important;
 		transition: all 0.2s ease;
 		box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
-		
+
 		&:hover {
 			transform: translateY(-1px);
 			box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
@@ -227,7 +225,7 @@
 .ezd-locked-control {
 	position: relative;
 	margin-bottom: 16px;
-	
+
 	.ezd-locked-overlay {
 		position: absolute;
 		top: -5px;
@@ -241,7 +239,7 @@
 		background: rgba(95, 95, 95, 0.3);
 		border-radius: var(--ezd-radius-md);
 	}
-	
+
 	.ezd-locked-content {
 		opacity: 0.4;
 		pointer-events: none;
@@ -260,7 +258,7 @@
 	border: 1px solid #f59e0b;
 	border-radius: var(--ezd-radius-md);
 	box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
-	
+
 	.ezd-pro-demo-banner-icon {
 		display: flex;
 		align-items: center;
@@ -270,30 +268,30 @@
 		background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
 		border-radius: 50%;
 		flex-shrink: 0;
-		
+
 		svg {
 			color: #fff;
 		}
 	}
-	
+
 	.ezd-pro-demo-banner-content {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
-		
+
 		strong {
 			font-size: 13px;
 			font-weight: 600;
 			color: #92400e;
 		}
-		
+
 		span {
 			font-size: 11px;
 			color: #b45309;
 		}
 	}
-	
+
 	.ezd-pro-demo-banner-btn {
 		display: inline-flex;
 		align-items: center;
@@ -306,7 +304,7 @@
 		text-decoration: none !important;
 		transition: all 0.2s ease;
 		box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
-		
+
 		&:hover {
 			transform: translateY(-1px);
 			box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);

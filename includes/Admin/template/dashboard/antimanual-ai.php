@@ -183,7 +183,7 @@ if ( is_plugin_active( 'antimanual-pro/antimanual.php' ) ) {
                 </a>
                 
                 <?php if ( $antimanual_pro_active ) : ?>
-                    <a href="https://www.youtube.com/watch?v=X9HMPBkzDeM&list=PLeCjxMdg411WBCZC-v-DDKZCMYoCzQpCB" target="_blank" class="ezd-ai-btn ezd-ai-btn-youtube">
+                    <a href="https://www.youtube.com/playlist?list=PLeCjxMdg411WBCZC-v-DDKZCMYoCzQpCB" target="_blank" class="ezd-ai-btn ezd-ai-btn-youtube">
                         <span class="dashicons dashicons-video-alt3"></span>
                         <?php esc_html_e( 'Video Tutorials', 'eazydocs' ); ?>
                     </a>
@@ -423,9 +423,9 @@ if ( is_plugin_active( 'antimanual-pro/antimanual.php' ) ) {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s;
@@ -472,13 +472,10 @@ if ( is_plugin_active( 'antimanual-pro/antimanual.php' ) ) {
     background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
     color: #ffffff;
     border: none;
-    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
 }
 
 .ezd-ai-btn-youtube:hover {
     background: linear-gradient(135deg, #CC0000 0%, #990000 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 0, 0, 0.5);
     color: #ffffff;
 }
 
@@ -494,9 +491,9 @@ if ( is_plugin_active( 'antimanual-pro/antimanual.php' ) ) {
 }
 
 .ezd-ai-btn .dashicons {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
 }
 
 .ezd-ai-comparison {

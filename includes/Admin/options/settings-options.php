@@ -181,8 +181,15 @@ include EZD_SETTINGS_PATH . 'opt_customizer.php';
 include EZD_SETTINGS_PATH . 'opt_footnotes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_shortcodes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_assistant.php';
-include EZD_SETTINGS_PATH . 'opt_docs_subscription.php';
 include EZD_SETTINGS_PATH . 'opt_feedback.php';
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// EMAIL SETTINGS
+// Email notifications and automated reports
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+include EZD_SETTINGS_PATH . 'opt_email_settings.php';     // Parent section
+include EZD_SETTINGS_PATH . 'opt_docs_subscription.php';  // Update Notifications
+include EZD_SETTINGS_PATH . 'opt_email_reporting.php';    // Email Reports
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // USER ACCESS & PERMISSIONS
@@ -192,12 +199,6 @@ include EZD_SETTINGS_PATH . 'opt_restricted_docs.php';
 include EZD_SETTINGS_PATH . 'opt_docs_role_manager.php';
 include EZD_SETTINGS_PATH . 'opt_docs_collaboration.php';
 include EZD_SETTINGS_PATH . 'opt_google_login.php';
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// INTEGRATIONS & ANALYTICS
-// Third-party services and reporting
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-include EZD_SETTINGS_PATH . 'opt_email_reporting.php';
 
 // Additional fields from extensions
 do_action('eazydocs_additoinal_csf_fields', $prefix);

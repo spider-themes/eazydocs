@@ -1,4 +1,9 @@
-## 2024-05-24 – Unauthenticated User Registration Bypass via Google Login
-**Vulnerability:** The Google Login feature in `includes/Google_Login.php` allowed new user accounts to be created even when WordPress user registration (`users_can_register`) was disabled. This happened because the `login_or_register_user` method created a new user if one didn't exist, without checking the global site setting.
-**Learning:** Third-party authentication integrations must always respect the core platform's registration policies. Just because a user authenticates via Google/SSO doesn't mean they are authorized to create an account on the local system.
-**Prevention:** Always check `get_option('users_can_register')` before programmatically creating users in authentication flows. If registration is disabled, either reject the login attempt or fail gracefully (e.g., redirect to login with error).
+## 2026-01-16 – Insecure Direct Object Reference in Nestable Callbacks
+**Vulnerability:** `nestable_callback` and `parent_nestable_callback` in `includes/Admin/Admin.php` allowed any user with `edit_posts` capability to modify the hierarchy and order of any post on the site by supplying arbitrary IDs.
+**Learning:** Checking a generic capability like `edit_posts` at the start of a bulk action is insufficient when the action modifies specific objects. The permission must be verified for *each* object being modified.
+**Prevention:** Always use `current_user_can('edit_post', $post_id)` inside loops that process user-supplied IDs for modification.
+
+## 2026-01-20 – Stored XSS in OnePage Docs
+**Vulnerability:** `Edit_OnePage::edit_doc_one_page` in `includes/Edit_OnePage.php` allowed authenticated users to update post meta via `$_GET` with unsanitized content, leading to Stored XSS.
+**Learning:** Accepting rich text content via GET parameters and custom encoding (`ezd_chrEncode`) can mask the need for proper output sanitization or input sanitization.
+**Prevention:** Always use `wp_kses_post()` or similar sanitization functions before saving rich text content to post meta, regardless of how it is received (GET/POST).
