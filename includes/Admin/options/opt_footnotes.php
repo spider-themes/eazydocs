@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-
 // Footnotes
 CSF::createSection( $prefix, array(
 	'id'     => 'ezd_footnotes',
@@ -20,7 +19,7 @@ CSF::createSection( $prefix, array(
 			'subtitle'   => esc_html__( 'Display a dedicated footnotes section at the bottom of documentation pages.', 'eazydocs' ),
 			'text_width' => 72,
 			'default'    => true,
-			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
+			'class'      => 'eazydocs-promax-notice active-theme-docy active-theme-docly'
 		]),
 
 		array(
@@ -32,7 +31,7 @@ CSF::createSection( $prefix, array(
 				array( 'is_footnotes_heading', '==', 'true' ),
 			),
 			'default'    => esc_html__( 'Footnotes', 'eazydocs' ),
-			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
+			'class'      => 'eazydocs-promax-notice active-theme-docy active-theme-docly'
 		),
 
 		array(
@@ -45,6 +44,7 @@ CSF::createSection( $prefix, array(
 			],
 			'subtitle'   => esc_html__( 'Choose how footnotes appear when the page loads.', 'eazydocs' ),
 			'default'    => 'collapsed',
+			'class'      => 'eazydocs-promax-notice active-theme-docy active-theme-docly',
 			'dependency' => array(
 				array( 'is_footnotes_heading', '==', 'true' ),
 			)
@@ -66,7 +66,7 @@ CSF::createSection( $prefix, array(
 			'chosen'   => true,
 			'multiple' => false,
 			'default'  => '1',
-			'class'    => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
+			'class'    => 'eazydocs-promax-notice active-theme-docy active-theme-docly'
 		),
 
 		array(
@@ -82,7 +82,7 @@ CSF::createSection( $prefix, array(
 			'attributes' => array(
 				'readonly' => 'readonly',
 			),
-			'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
+			'class'      => 'eazydocs-promax-notice active-theme-docy active-theme-docly'
 		),
 	]
 ) );
@@ -117,7 +117,7 @@ CSF::createSection( $meta, array(
 					],
 					'multiple' => false,
 					'default'  => 'default',
-					'class'    => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama'
+					'class'    => 'eazydocs-promax-notice active-theme-docy active-theme-docly'
 				),
 				array(
 					'id'         => 'footnotes_column',
@@ -132,7 +132,7 @@ CSF::createSection( $meta, array(
 						'6' => esc_html__( '6 Columns', 'eazydocs' )
 					),
 					'default'    => ezd_get_opt( 'footnotes_column', 3 ),
-					'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama layout-inline',
+					'class'      => 'eazydocs-promax-notice active-theme-docy active-theme-docly layout-inline',
 					'dependency' => array(
 						array( 'footnotes_column_source', '==', 'custom' ),
 					)

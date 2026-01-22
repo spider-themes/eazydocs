@@ -75,6 +75,17 @@ function ezd_unlock_themes( ...$themes ) {
 }
 
 /**
+ * Check if footnotes are unlocked
+ * Condition: Promax Active OR (Docy Theme OR Docly Theme)
+ *
+ * @return bool
+ */
+function ezd_is_footnotes_unlocked() {
+	$current_theme = strtolower( get_template() );
+	return ezd_is_promax() || in_array( $current_theme, array( 'docy', 'docly' ), true );
+}
+
+/**
  * Check if the pro plugin and plan is active
  *
  * @return bool|void
@@ -83,6 +94,17 @@ function ezd_is_promax() {
 	if ( class_exists( 'EZD_EazyDocsPro' ) && eaz_fs()->can_use_premium_code() && eaz_fs()->is_plan( 'promax' ) ) {
 		return true;
 	}
+}
+
+/**
+ * Check if footnotes are unlocked
+ * Condition: Promax Active OR (Docy Theme OR Docly Theme)
+ *
+ * @return bool
+ */
+function eazydocs_is_footnotes_unlocked() {
+	$current_theme = strtolower( get_template() );
+	return ezd_is_promax() || in_array( $current_theme, array( 'docy', 'docly' ), true );
 }
 
 /**

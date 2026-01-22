@@ -8,72 +8,6 @@
  *
  * @package EazyDocs
  */
-/* Colors */
-:root {
-  --ezd-color-10: rgba(171, 198, 245, 0.22);
-  --ezd-color-25: #cee0ff;
-  --ezd-color-50: #b5d1ff;
-  --ezd-color-100: #9cc2ff;
-  --ezd-color-200: #84b2ff;
-  --ezd-color-300: #6ba3ff;
-  --ezd-color-400: #5294ff;
-  --ezd-color-500: #3985ff;
-  --secondary_color: #1d2746;
-  --green_color: #27ae60;
-  --p_color: #425466;
-  --body_bg: #fff;
-  --bs-white: #fff;
-  --black_25: #f9f9f9;
-  --black_50: #f2f2f2;
-  --black_75: #eeeeee;
-  --black_100: #d6d9dc;
-  --black_150: #c8ccd0;
-  --black_200: #bbc0c4;
-  --black_300: #9fa6ad;
-  --black_350: #9199a1;
-  --black_400: #848d95;
-  --black_500: #6a737c;
-  --black_600: #535a60;
-  --black_700: #3c4146;
-  --black_750: #2f3337;
-  --black_800: #242729;
-  --black_900: #0c0d0e;
-  --border_on_white: #e6edf0;
-  --bs_sm: 0 1px 2px rgba(0, 0, 0, 0.05),0 1px 4px rgba(0, 0, 0, 0.05),0 2px 8px rgba(0, 0, 0, 0.05);
-  --bs_md: 0 1px 3px rgba(0, 0, 0, 0.06),0 2px 6px rgba(0, 0, 0, 0.06),0 3px 8px rgba(0, 0, 0, 0.09);
-  --bs_lg: 0 1px 4px rgba(0, 0, 0, 0.09),0 3px 8px rgba(0, 0, 0, 0.09),0 4px 13px rgba(0, 0, 0, 0.13);
-  --ezd_brand_color_05: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 5%, transparent);
-  --ezd_brand_color_07: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 7%, transparent);
-  --ezd_brand_color_10: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 10%, transparent);
-  --ezd_brand_color_15: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 15%, transparent);
-  --ezd_brand_color_20: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 20%, transparent);
-  --ezd_brand_color_25: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 25%, transparent);
-  --ezd_brand_color_30: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 30%, transparent);
-  --ezd_brand_color_40: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 40%, transparent);
-  --ezd_brand_color_50: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 50%, transparent);
-  --ezd_brand_color_60: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 60%, transparent);
-  --ezd_brand_color_70: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 70%, transparent);
-  --ezd_brand_color_80: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 80%, transparent);
-  --ezd_brand_color_90: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 90%, transparent);
-}
-/*font Variables*/
-/**=== Functions ===**/
-.bs-sm {
-  box-shadow: var(--bs_sm) !important;
-}
-.bs-md {
-  box-shadow: var(--bs_md) !important;
-}
-.bs-lg {
-  box-shadow: var(--bs_lg) !important;
-}
-/** Hover Classes **/
-.h\:bs-md:hover {
-  box-shadow: var(--bs_md) !important;
-}
-.h\:bs-lg:hover {
-  box-shadow: var(--bs_md) !important;
-}
 /**
  * Tabbed Docs Block - Common Styles
  * Shared styles between editor and frontend
@@ -715,13 +649,87 @@
     border: 1px solid #ddd !important;
   }
 }
+/* Colors */
+:root {
+  --ezd-color-10: rgba(171, 198, 245, 0.22);
+  --ezd-color-25: #cee0ff;
+  --ezd-color-50: #b5d1ff;
+  --ezd-color-100: #9cc2ff;
+  --ezd-color-200: #84b2ff;
+  --ezd-color-300: #6ba3ff;
+  --ezd-color-400: #5294ff;
+  --ezd-color-500: #3985ff;
+  --secondary_color: #1d2746;
+  --green_color: #27ae60;
+  --p_color: #425466;
+  --body_bg: #fff;
+  --bs-white: #fff;
+  --black_25: #f9f9f9;
+  --black_50: #f2f2f2;
+  --black_75: #eeeeee;
+  --black_100: #d6d9dc;
+  --black_150: #c8ccd0;
+  --black_200: #bbc0c4;
+  --black_300: #9fa6ad;
+  --black_350: #9199a1;
+  --black_400: #848d95;
+  --black_500: #6a737c;
+  --black_600: #535a60;
+  --black_700: #3c4146;
+  --black_750: #2f3337;
+  --black_800: #242729;
+  --black_900: #0c0d0e;
+  --border_on_white: #e6edf0;
+  --bs_sm: 0 1px 2px rgba(0, 0, 0, 0.05),0 1px 4px rgba(0, 0, 0, 0.05),0 2px 8px rgba(0, 0, 0, 0.05);
+  --bs_md: 0 1px 3px rgba(0, 0, 0, 0.06),0 2px 6px rgba(0, 0, 0, 0.06),0 3px 8px rgba(0, 0, 0, 0.09);
+  --bs_lg: 0 1px 4px rgba(0, 0, 0, 0.09),0 3px 8px rgba(0, 0, 0, 0.09),0 4px 13px rgba(0, 0, 0, 0.13);
+  --ezd_brand_color_05: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 5%, transparent);
+  --ezd_brand_color_07: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 7%, transparent);
+  --ezd_brand_color_10: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 10%, transparent);
+  --ezd_brand_color_15: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 15%, transparent);
+  --ezd_brand_color_20: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 20%, transparent);
+  --ezd_brand_color_25: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 25%, transparent);
+  --ezd_brand_color_30: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 30%, transparent);
+  --ezd_brand_color_40: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 40%, transparent);
+  --ezd_brand_color_50: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 50%, transparent);
+  --ezd_brand_color_60: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 60%, transparent);
+  --ezd_brand_color_70: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 70%, transparent);
+  --ezd_brand_color_80: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 80%, transparent);
+  --ezd_brand_color_90: color-mix(in srgb, var(--ezd_brand_color, #0870ff) 90%, transparent);
+}
+/*font Variables*/
+/**=== Functions ===**/
+/**
+ * @deprecated Use CSS custom properties instead: var(--ezd_brand_color_XX) where XX is the opacity percentage (05, 10, 20, etc.)
+ * This function uses a hardcoded color and is kept for backward compatibility only.
+ * The new CSS color-mix() based variables dynamically inherit from --ezd_brand_color.
+ * 
+ * Migration guide:
+ * - brand_color_rgba(0.1)  -> var(--ezd_brand_color_10)
+ * - brand_color_rgba(0.2)  -> var(--ezd_brand_color_20)
+ * - brand_color_rgba(0.8)  -> var(--ezd_brand_color_80)
+ */
+.bs-sm {
+  box-shadow: var(--bs_sm) !important;
+}
+.bs-md {
+  box-shadow: var(--bs_md) !important;
+}
+.bs-lg {
+  box-shadow: var(--bs_lg) !important;
+}
+/** Hover Classes **/
+.h\:bs-md:hover {
+  box-shadow: var(--bs_md) !important;
+}
+.h\:bs-lg:hover {
+  box-shadow: var(--bs_md) !important;
+}
 :root {
   --ezd-primary: var(--ezd_brand_color, #6366f1);
-  --ezd-primary-light: color-mix(
-  	in srgb,
-  	var(--ezd-primary) 15%,
-  	transparent
-  );
+  --ezd-primary-light: color-mix(in srgb,
+  		var(--ezd-primary) 15%,
+  		transparent);
   --ezd-primary-dark: color-mix(in srgb, var(--ezd-primary) 80%, #000);
   --ezd-gradient-start: var(--ezd-primary);
   --ezd-gradient-end: #8b5cf6;

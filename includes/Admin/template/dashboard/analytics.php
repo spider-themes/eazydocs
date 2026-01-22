@@ -228,6 +228,10 @@
 			$searchCountNotFound[] = 0;
 		}
 
+		// Pre-fetch metadata for all posts
+		$post_ids = wp_list_pluck( $posts, 'post_id' );
+		update_post_meta_cache( $post_ids );
+
 		foreach ( $posts as $key => $item ) {
 			$dates = gmdate( 'd M, Y', strtotime( $item->created_at ) );
 			foreach ( $labels as $datekey => $weekdays ) {
