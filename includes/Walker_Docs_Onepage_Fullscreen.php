@@ -28,12 +28,18 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 	 * @var array
 	 *
 	 * @see Walker::$db_fields
-	 * @todo Decouple this.
 	 */
-	public $db_fields = array(
-		'parent' => 'post_parent',
-		'id'     => 'ID',
-	);
+	public $db_fields;
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		$this->db_fields = apply_filters( 'ezd_walker_onepage_fullscreen_db_fields', array(
+			'parent' => 'post_parent',
+			'id'     => 'ID',
+		) );
+	}
 
 	public static $parent_item = false;
 	public static $parent_item_class = '';

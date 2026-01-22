@@ -95,15 +95,33 @@ class Shortcode {
         }
 
         // Fetch Child Docs (Articles)
-        foreach ( $parent_docs as $root ) {
-            $sections = get_children( [
-                'post_parent'    => $root->ID,
-                'post_type'      => 'docs',
-                'numberposts'    => $args['show_articles'],
-                'post_status'    => [ 'publish', 'private' ],
-                'orderby'        => $args['parent_docs_order'],
-                'order'          => strtoupper( $args['child_docs_order'] ),
+        $parent_ids = wp_list_pluck( $parent_docs, 'ID' );
+        $all_children = [];
+
+        if ( ! empty( $parent_ids ) ) {
+            $all_children = get_children( [
+                'post_parent__in' => $parent_ids,
+                'post_type'       => 'docs',
+                'numberposts'     => - 1,
+                'post_status'     => [ 'publish', 'private' ],
+                'orderby'         => $args['parent_docs_order'],
+                'order'           => strtoupper( $args['child_docs_order'] ),
             ] );
+        }
+
+        // Group children by parent
+        $children_by_parent = [];
+        foreach ( $all_children as $child ) {
+            $children_by_parent[ $child->post_parent ][] = $child;
+        }
+
+        foreach ( $parent_docs as $root ) {
+            $sections = $children_by_parent[ $root->ID ] ?? [];
+
+            // Slice if show_articles is set (and not -1)
+            if ( $args['show_articles'] !== -1 && count( $sections ) > $args['show_articles'] ) {
+                $sections = array_slice( $sections, 0, $args['show_articles'] );
+            }
 
             $arranged[] = [
                 'doc'      => $root,

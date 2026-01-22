@@ -78,7 +78,6 @@ class One_Page_Docs {
 
 		register_post_type( $this->post_type, apply_filters( 'eazydocs_onepage_post_type', $args ) );
 	}
-
 }
 
 // Initialize the class

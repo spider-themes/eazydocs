@@ -356,6 +356,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		public function eazydocs_row_meta( $links, $file ) {
 			if ( plugin_basename( __FILE__ ) === $file ) {
 				$links[] = '<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank">Documentation</a>';
+				$links[] = '<a href="' . admin_url( 'admin.php?page=eazydocs' ) . '">Dashboard</a>';
 			}
 			return $links;
 		}

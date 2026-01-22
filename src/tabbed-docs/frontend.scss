@@ -6,23 +6,21 @@
  * @package EazyDocsPro
  */
 
+@use "common";
 @import "../../assets/scss/frontend/variables.scss";
-@import "common";
 
 // Main Container - CSS Variables are scoped here for proper cascade
 // Inline styles on the element can override these defaults
 .ezd-tabbed-docs {
 	// Primary color and derived values
 	--ezd-primary: var(--ezd_brand_color, #6366f1);
-	--ezd-primary-light: color-mix(
-		in srgb,
-		var(--ezd-primary) 15%,
-		transparent
-	);
+	--ezd-primary-light: color-mix(in srgb,
+			var(--ezd-primary) 15%,
+			transparent);
 	--ezd-primary-dark: color-mix(in srgb, var(--ezd-primary) 80%, #000);
 	--ezd-gradient-start: var(--ezd-primary);
 	--ezd-gradient-end: #8b5cf6;
-	
+
 	// Spacing - These can be overridden by inline styles
 	--ezd-card-padding: 32px;
 	--ezd-grid-gap: 24px;
@@ -33,13 +31,13 @@
 	--ezd-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 	--ezd-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 	--ezd-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-	
+
 	// Border radius presets
 	--ezd-radius-sm: 6px;
 	--ezd-radius-md: 10px;
 	--ezd-radius-lg: 16px;
 	--ezd-radius-xl: 24px;
-	
+
 	// Transitions
 	--ezd-transition-fast: 150ms ease;
 	--ezd-transition-normal: 250ms ease;
@@ -127,7 +125,7 @@
 		.ezd-text-btn {
 			background: transparent !important;
 			border: 1px solid var(--ezd-primary);
-			
+
 			&:hover {
 				background: var(--ezd-primary) !important;
 				color: #fff !important;
@@ -140,7 +138,7 @@
 			background: transparent !important;
 			padding-left: 0;
 			padding-right: 0;
-			
+
 			&:hover {
 				background: transparent !important;
 				color: var(--ezd-primary-dark) !important;

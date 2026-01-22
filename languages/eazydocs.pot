@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EazyDocs\n"
-"POT-Creation-Date: 2026-01-02 20:22+0600\n"
+"POT-Creation-Date: 2026-01-20 18:40+0600\n"
 "PO-Revision-Date: 2023-07-31 23:20+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
 #. Plugin Name of the plugin/theme
-#: blocks.php:87 includes/Admin/Admin.php:107
+#: blocks.php:132 includes/Admin/Admin.php:107
 #: includes/Admin/options/opt_docs_general.php:19
 #: includes/Admin/options/settings-options.php:131
 #: includes/Admin/setup-wizard/setup.php:49
@@ -63,13 +63,13 @@ msgstr ""
 msgid "Yellow"
 msgstr ""
 
-#: eazydocs.php:327
+#: eazydocs.php:331
 msgid ""
 "EazyDocs database needs an update. Please click the Update button to update "
 "your database."
 msgstr ""
 
-#: eazydocs.php:330
+#: eazydocs.php:334
 msgid "Update Database"
 msgstr ""
 
@@ -77,65 +77,65 @@ msgstr ""
 msgid "EazyDocs Pro"
 msgstr ""
 
-#: includes/Admin/Admin.php:110 includes/Admin/template/dashboard/header.php:37
+#: includes/Admin/Admin.php:117 includes/Admin/template/dashboard/header.php:43
 msgid "Dashboard"
 msgstr ""
 
-#: includes/Admin/Admin.php:111 includes/Admin/template/dashboard/header.php:51
+#: includes/Admin/Admin.php:118 includes/Admin/template/dashboard/header.php:57
 msgid "Docs Builder"
 msgstr ""
 
-#: includes/Admin/Admin.php:115
+#: includes/Admin/Admin.php:122
 msgid "OnePage Docs"
 msgstr ""
 
-#: includes/Admin/Admin.php:117
+#: includes/Admin/Admin.php:124
 msgid "OnePage Doc"
 msgstr ""
 
-#: includes/Admin/Admin.php:120 includes/Post_Types.php:115
+#: includes/Admin/Admin.php:127 includes/Post_Types.php:115
 msgid "Tags"
 msgstr ""
 
-#: includes/Admin/Admin.php:124
+#: includes/Admin/Admin.php:131
 msgid "Customize"
 msgstr ""
 
-#: includes/Admin/Admin.php:131
+#: includes/Admin/Admin.php:138
 msgid "Users Feedback"
 msgstr ""
 
-#: includes/Admin/Admin.php:132
+#: includes/Admin/Admin.php:139
 #: includes/Admin/setup-wizard/step1_welcome.php:63
-#: includes/Admin/template/dashboard/header.php:55
+#: includes/Admin/template/dashboard/header.php:61
 msgid "Analytics"
 msgstr ""
 
-#: includes/Admin/Admin.php:141
+#: includes/Admin/Admin.php:148
 msgid "FAQ Builder"
 msgstr ""
 
-#: includes/Admin/Admin.php:144
+#: includes/Admin/Admin.php:151
 msgid "Integrated Themes"
 msgstr ""
 
-#: includes/Admin/Admin.php:146 includes/Admin/setup-wizard/setup.php:50
+#: includes/Admin/Admin.php:153 includes/Admin/setup-wizard/setup.php:50
 msgid "Setup Wizard"
 msgstr ""
 
-#: includes/Admin/Admin.php:148
+#: includes/Admin/Admin.php:155
 msgid "Migration"
 msgstr ""
 
-#: includes/Admin/Admin.php:355
+#: includes/Admin/Admin.php:362
 msgid "crown icon"
 msgstr ""
 
-#: includes/Admin/Admin.php:356
+#: includes/Admin/Admin.php:363
 msgid "Add Your OnePage Doc"
 msgstr ""
 
-#: includes/Admin/Admin.php:357
+#: includes/Admin/Admin.php:364
 msgid ""
 "Onepage documentation format will generate all the pages of a Doc as "
 "sections in a single page which is scrollable by sections. Visitors can find "
@@ -143,39 +143,39 @@ msgid ""
 "sections very fast."
 msgstr ""
 
-#: includes/Admin/Admin.php:363
+#: includes/Admin/Admin.php:370
 msgid "Go Pro"
 msgstr ""
 
-#: includes/Admin/Admin.php:366
+#: includes/Admin/Admin.php:373
 msgid "View Classic Frontend Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:367
+#: includes/Admin/Admin.php:374
 msgid "Classic Layout Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:370
+#: includes/Admin/Admin.php:377
 msgid "View Fullscreen Frontend Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:371
+#: includes/Admin/Admin.php:378
 msgid "Fullscreen Layout Demo"
 msgstr ""
 
-#: includes/Admin/Admin.php:595 includes/functions.php:1651
+#: includes/Admin/Admin.php:598 includes/functions.php:1654
 msgid "Docs Archive"
 msgstr ""
 
-#: includes/Admin/Admin.php:599
+#: includes/Admin/Admin.php:602
 msgid "Docs Access"
 msgstr ""
 
-#: includes/Admin/Admin.php:602
+#: includes/Admin/Admin.php:605
 msgid "Private Access"
 msgstr ""
 
-#: includes/Admin/Admin.php:605
+#: includes/Admin/Admin.php:608
 msgid "Collaborator Access"
 msgstr ""
 
@@ -268,21 +268,21 @@ msgstr ""
 msgid "Learn More"
 msgstr ""
 
-#: includes/Admin/Assets.php:170
+#: includes/Admin/Assets.php:183
 msgid "Enter Doc Title"
 msgstr ""
 
-#: includes/Admin/Assets.php:171
+#: includes/Admin/Assets.php:184
 msgid "Are you sure to delete?"
 msgstr ""
 
-#: includes/Admin/Assets.php:172
+#: includes/Admin/Assets.php:185
 msgid ""
 "This doc will be trashed with the child docs and you will be able to restore "
 "it later from the trash!"
 msgstr ""
 
-#: includes/Admin/Assets.php:173
+#: includes/Admin/Assets.php:186
 msgid "Are you sure to Duplicate this doc?"
 msgstr ""
 
@@ -404,8 +404,8 @@ msgid "Yes, Import Demo"
 msgstr ""
 
 #: includes/Admin/admin-template.php:71
-#: includes/Admin/options/opt_docs_subscription.php:98
-#: includes/Admin/options/opt_docs_subscription.php:175
+#: includes/Admin/options/opt_docs_subscription.php:99
+#: includes/Admin/options/opt_docs_subscription.php:259
 msgid "Cancel"
 msgstr ""
 
@@ -540,7 +540,7 @@ msgstr ""
 #: includes/Admin/options/opt_doc_single.php:892
 #: includes/Admin/options/opt_docs_assistant.php:27
 #: includes/Admin/options/opt_docs_collaboration.php:25
-#: includes/Admin/options/opt_docs_subscription.php:27
+#: includes/Admin/options/opt_docs_subscription.php:28
 #: includes/Admin/options/opt_feedback.php:179
 msgid "Enabled"
 msgstr ""
@@ -555,7 +555,7 @@ msgstr ""
 #: includes/Admin/options/opt_doc_single.php:893
 #: includes/Admin/options/opt_docs_assistant.php:28
 #: includes/Admin/options/opt_docs_collaboration.php:26
-#: includes/Admin/options/opt_docs_subscription.php:28
+#: includes/Admin/options/opt_docs_subscription.php:29
 #: includes/Admin/options/opt_feedback.php:180
 msgid "Disabled"
 msgstr ""
@@ -583,6 +583,9 @@ msgstr ""
 #: includes/Admin/options/opt_docs_collaboration.php:171
 #: includes/Admin/options/opt_docs_collaboration.php:213
 #: includes/Admin/options/opt_docs_collaboration.php:230
+#: includes/Admin/options/opt_docs_subscription.php:162
+#: includes/Admin/options/opt_docs_subscription.php:172
+#: includes/Admin/options/opt_docs_subscription.php:182
 #: includes/Admin/options/settings-options.php:55
 #: includes/Admin/options/settings-options.php:80
 msgid "Show"
@@ -598,6 +601,9 @@ msgstr ""
 #: includes/Admin/options/opt_docs_collaboration.php:172
 #: includes/Admin/options/opt_docs_collaboration.php:214
 #: includes/Admin/options/opt_docs_collaboration.php:231
+#: includes/Admin/options/opt_docs_subscription.php:163
+#: includes/Admin/options/opt_docs_subscription.php:173
+#: includes/Admin/options/opt_docs_subscription.php:183
 #: includes/Admin/options/settings-options.php:56
 #: includes/Admin/options/settings-options.php:81
 msgid "Hide"
@@ -616,7 +622,7 @@ msgstr ""
 #: includes/Admin/options/opt_dark_mode.php:34
 #: includes/Admin/options/opt_doc_single.php:185
 #: includes/Admin/options/opt_doc_single.php:463
-#: includes/Admin/options/opt_docs_subscription.php:158
+#: includes/Admin/options/opt_docs_subscription.php:242
 #: includes/Admin/options/opt_restricted_docs.php:76
 #: templates/content-feedback.php:80
 msgid "Yes"
@@ -625,7 +631,7 @@ msgstr ""
 #: includes/Admin/options/opt_dark_mode.php:35
 #: includes/Admin/options/opt_doc_single.php:186
 #: includes/Admin/options/opt_doc_single.php:464
-#: includes/Admin/options/opt_docs_subscription.php:159
+#: includes/Admin/options/opt_docs_subscription.php:243
 #: includes/Admin/options/opt_restricted_docs.php:77
 #: templates/content-feedback.php:92
 msgid "No"
@@ -1284,7 +1290,7 @@ msgid "Or copy link"
 msgstr ""
 
 #: includes/Admin/options/opt_doc_single.php:809
-#: includes/Admin/options/opt_docs_subscription.php:105
+#: includes/Admin/options/opt_docs_subscription.php:106
 msgid "Success Message"
 msgstr ""
 
@@ -1488,7 +1494,7 @@ msgstr ""
 
 #: includes/Admin/options/opt_docs_assistant.php:42
 #: includes/Walker_Docs_Onepage.php:258
-#: includes/Walker_Docs_Onepage_Fullscreen.php:249 includes/functions.php:274
+#: includes/Walker_Docs_Onepage_Fullscreen.php:255 includes/functions.php:274
 msgid "Pages"
 msgstr ""
 
@@ -1597,7 +1603,7 @@ msgid "Full name"
 msgstr ""
 
 #: includes/Admin/options/opt_docs_assistant.php:261
-#: includes/Admin/options/opt_docs_subscription.php:78
+#: includes/Admin/options/opt_docs_subscription.php:79
 #: templates/content-modal.php:31
 msgid "Email"
 msgstr ""
@@ -1623,7 +1629,7 @@ msgstr ""
 
 #: includes/Admin/options/opt_docs_assistant.php:291
 #: includes/Admin/options/opt_docs_assistant.php:338
-#: includes/Admin/options/opt_docs_subscription.php:90
+#: includes/Admin/options/opt_docs_subscription.php:91
 #: includes/Elementor/Search/style-control.php:115
 msgid "Submit Button"
 msgstr ""
@@ -1771,8 +1777,8 @@ msgstr ""
 
 #: includes/Admin/options/opt_docs_collaboration.php:84
 #: includes/Admin/options/opt_docs_collaboration.php:110
-#: includes/Admin/template/dashboard/header.php:74
-#: includes/Admin/template/header.php:29 includes/One_Page_Docs.php:50
+#: includes/Admin/template/dashboard/header.php:80
+#: includes/Admin/template/header.php:35 includes/One_Page_Docs.php:50
 #: includes/Post_Types.php:55
 msgid "Add Doc"
 msgstr ""
@@ -2062,312 +2068,655 @@ msgid ""
 "more%2$s"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:13
-msgid "Update Notifications"
-msgstr ""
-
-#: includes/Admin/options/opt_docs_subscription.php:18
-msgid "Subscription Settings"
+#: includes/Admin/options/opt_docs_subscription.php:14
+msgid "Doc Update Notifications"
 msgstr ""
 
 #: includes/Admin/options/opt_docs_subscription.php:19
+msgid "Subscription Settings"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:20
 msgid ""
 "Let readers subscribe to receive email notifications when documentation is "
 "updated."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:25
+#: includes/Admin/options/opt_docs_subscription.php:26
 msgid "Enable Subscriptions"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:26
+#: includes/Admin/options/opt_docs_subscription.php:27
 msgid ""
 "Show a subscribe button that allows users to opt-in for update notifications."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:37
+#: includes/Admin/options/opt_docs_subscription.php:38
 msgid "Form Customization"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:38
+#: includes/Admin/options/opt_docs_subscription.php:39
 msgid "Customize the subscribe and unsubscribe form text and messages."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:43
+#: includes/Admin/options/opt_docs_subscription.php:44
 msgid "Subscribe Form"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:48
+#: includes/Admin/options/opt_docs_subscription.php:49
 msgid "Subscribe Button"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:49
+#: includes/Admin/options/opt_docs_subscription.php:50
 msgid "Text displayed on the subscription trigger button."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:50
+#: includes/Admin/options/opt_docs_subscription.php:51
 msgid "Subscribe for updates"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:56
-#: includes/Admin/options/opt_docs_subscription.php:142
+#: includes/Admin/options/opt_docs_subscription.php:57
+#: includes/Admin/options/opt_docs_subscription.php:226
 msgid "Form Heading"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:57
+#: includes/Admin/options/opt_docs_subscription.php:58
 msgid "Title shown at the top of the subscription form."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:58
-#: includes/Admin/options/opt_docs_subscription.php:91
+#: includes/Admin/options/opt_docs_subscription.php:59
+#: includes/Admin/options/opt_docs_subscription.php:92
 msgid "Subscribe"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:64
+#: includes/Admin/options/opt_docs_subscription.php:65
 msgid "Name Field Label"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:65
+#: includes/Admin/options/opt_docs_subscription.php:66
 #: templates/content-modal.php:27
 msgid "Name"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:70
+#: includes/Admin/options/opt_docs_subscription.php:71
 msgid "Name Placeholder"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:71
+#: includes/Admin/options/opt_docs_subscription.php:72
 msgid "Enter your name"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:77
+#: includes/Admin/options/opt_docs_subscription.php:78
 msgid "Email Field Label"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:83
+#: includes/Admin/options/opt_docs_subscription.php:84
 msgid "Email Placeholder"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:84
+#: includes/Admin/options/opt_docs_subscription.php:85
 msgid "Enter your email"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:97
-#: includes/Admin/options/opt_docs_subscription.php:174
+#: includes/Admin/options/opt_docs_subscription.php:98
+#: includes/Admin/options/opt_docs_subscription.php:258
 msgid "Cancel Button"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:106
+#: includes/Admin/options/opt_docs_subscription.php:107
 msgid "Message shown after successful subscription."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:107
+#: includes/Admin/options/opt_docs_subscription.php:108
 msgid "Confirmation email sent successfully!"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:113
+#: includes/Admin/options/opt_docs_subscription.php:114
 msgid "Duplicate Email Message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:114
+#: includes/Admin/options/opt_docs_subscription.php:115
 msgid "Message shown when email is already subscribed."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:115
+#: includes/Admin/options/opt_docs_subscription.php:116
 msgid "Already email exists."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:121
+#: includes/Admin/options/opt_docs_subscription.php:122
 msgid "Invalid Characters Message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:122
+#: includes/Admin/options/opt_docs_subscription.php:123
 msgid "Message shown when invalid characters are detected."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:123
+#: includes/Admin/options/opt_docs_subscription.php:124
 msgid "Special characters not allowed!"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:129
-msgid "Unsubscribe Form"
+#: includes/Admin/options/opt_docs_subscription.php:130
+msgid "Email Design"
 msgstr ""
 
 #: includes/Admin/options/opt_docs_subscription.php:135
-msgid "Unsubscribe Button"
+msgid "Email Branding"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:136
-#: includes/Admin/options/opt_docs_subscription.php:143
-msgid "Unsubscribe"
+#: includes/Admin/options/opt_docs_subscription.php:140
+msgid "Email Logo"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:141
+msgid "Logo displayed in email header. Recommended size: 200x50px."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:148
+msgid "Footer Message"
 msgstr ""
 
 #: includes/Admin/options/opt_docs_subscription.php:149
-msgid "Confirmation Message"
+msgid "Custom message shown at the bottom of emails."
 msgstr ""
 
 #: includes/Admin/options/opt_docs_subscription.php:150
-msgid "Message asking user to confirm unsubscription."
+msgid "Thank you for being a valued subscriber."
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:151
-msgid "Are you sure you'd like to stop receiving updates"
-msgstr ""
-
-#: includes/Admin/options/opt_docs_subscription.php:157
-msgid "Show Document Title"
+#: includes/Admin/options/opt_docs_subscription.php:155
+msgid "Email Content Options"
 msgstr ""
 
 #: includes/Admin/options/opt_docs_subscription.php:160
+msgid "Show Article Excerpt"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:161
+msgid "Display a preview of the article content in the email."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:170
+msgid "Show Featured Image"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:171
+msgid "Include the article's featured image in the email."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:180
+msgid "Show Related Articles"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:181
+msgid "Suggest other articles from the same documentation."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:190
+msgid "Social Links (Optional)"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:195
+msgid "Twitter/X URL"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:201
+msgid "Facebook URL"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:207
+msgid "LinkedIn URL"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:213
+msgid "Unsubscribe Form"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:219
+msgid "Unsubscribe Button"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:220
+#: includes/Admin/options/opt_docs_subscription.php:227
+msgid "Unsubscribe"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:233
+msgid "Confirmation Message"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:234
+msgid "Message asking user to confirm unsubscription."
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:235
+msgid "Are you sure you'd like to stop receiving updates"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:241
+msgid "Show Document Title"
+msgstr ""
+
+#: includes/Admin/options/opt_docs_subscription.php:244
 msgid "Include the document title in the confirmation message"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:167
+#: includes/Admin/options/opt_docs_subscription.php:251
 msgid "Confirm Button"
 msgstr ""
 
-#: includes/Admin/options/opt_docs_subscription.php:168
+#: includes/Admin/options/opt_docs_subscription.php:252
 msgid "Confirm"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:14
-#: includes/Admin/template/analytics-presentation.php:325
-msgid "Email Reports"
+#: includes/Admin/options/opt_email_reporting.php:15
+msgid "Not scheduled"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:21
-msgid "Automated Reports"
+#: includes/Admin/options/opt_email_reporting.php:16
+msgid "Never sent"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:22
-msgid ""
-"Receive periodic email summaries of your documentation analytics and "
-"performance metrics."
+#: includes/Admin/options/opt_email_reporting.php:26
+msgid "Last Report Sent"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:30
-msgid "Report Frequency"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:31
-msgid "Choose how often you want to receive analytics reports."
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:36
-msgid "Daily"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:37
-msgid "Weekly"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:38
-msgid "Monthly"
+#: includes/Admin/options/opt_email_reporting.php:35
+msgid "Next Scheduled"
 msgstr ""
 
 #: includes/Admin/options/opt_email_reporting.php:47
-msgid "Weekly Report Day"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:48
-msgid "Select which day of the week to send weekly reports."
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:55
-msgid "Sunday"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:56
-msgid "Monday"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:57
-msgid "Tuesday"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:58
-msgid "Wednesday"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:59
-msgid "Thursday"
+msgid "Automatic Email Reports"
 msgstr ""
 
 #: includes/Admin/options/opt_email_reporting.php:60
-msgid "Friday"
+msgid "Automated Periodic Reports"
 msgstr ""
 
 #: includes/Admin/options/opt_email_reporting.php:61
-msgid "Saturday"
+msgid ""
+"Receive comprehensive analytics summaries directly in your inbox. Track page "
+"views, search queries, user reactions, and documentation statistics without "
+"logging in to your dashboard."
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:70
-msgid "Report Contents"
+#: includes/Admin/options/opt_email_reporting.php:63
+msgid "Customizable frequency"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:71
-msgid "Select which metrics to include in your reports."
+#: includes/Admin/options/opt_email_reporting.php:64
+msgid "Visual charts included"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:74
-msgid "Select metrics..."
+#: includes/Admin/options/opt_email_reporting.php:65
+msgid "Performance comparisons"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:79
-msgid "Page Views"
+#: includes/Admin/options/opt_email_reporting.php:66
+msgid "Multiple recipients"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:80
-msgid "Search Queries"
+#: includes/Admin/options/opt_email_reporting.php:85
+msgid "Enable Email Reports"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:81
-msgid "User Reactions"
+#: includes/Admin/options/opt_email_reporting.php:86
+msgid ""
+"Toggle this option to activate automated email reports. When enabled, you'll "
+"receive periodic summaries of your documentation analytics based on the "
+"schedule you configure below."
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:82
-msgid "Documentation Stats"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:91
-msgid "Recipient Email"
-msgstr ""
-
-#: includes/Admin/options/opt_email_reporting.php:92
-msgid "Enter the email address where reports should be sent."
+#: includes/Admin/options/opt_email_reporting.php:94
+msgid "Schedule Settings"
 msgstr ""
 
 #: includes/Admin/options/opt_email_reporting.php:103
-msgid "Email Subject Line"
+msgid "Report Frequency"
 msgstr ""
 
 #: includes/Admin/options/opt_email_reporting.php:104
-msgid "Customize the subject line for report emails."
+msgid ""
+"Select how often you want to receive analytics reports. Daily reports are "
+"ideal for active documentation sites, while weekly or monthly reports work "
+"better for smaller sites."
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:105
-msgid "Documentation Analytics Summary"
+#: includes/Admin/options/opt_email_reporting.php:109
+msgid "📅 Daily — Perfect for high-traffic documentation"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:115
-msgid "Email Introduction"
+#: includes/Admin/options/opt_email_reporting.php:110
+msgid "📆 Weekly — Balanced overview of performance"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:116
-msgid "Add a brief introduction message at the top of report emails."
+#: includes/Admin/options/opt_email_reporting.php:111
+msgid "🗓️ Monthly — Comprehensive monthly summary"
 msgstr ""
 
-#: includes/Admin/options/opt_email_reporting.php:117
-msgid "Comprehensive analytics for your website documentation"
+#: includes/Admin/options/opt_email_reporting.php:120
+msgid "Weekly Report Day"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:121
+msgid ""
+"Choose which day of the week you'd like to receive your weekly reports. Many "
+"users prefer Monday to review the previous week's activity."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:128
+msgid "Sunday"
 msgstr ""
 
 #: includes/Admin/options/opt_email_reporting.php:129
-msgid "Send Test Report"
+msgid "Monday (Recommended)"
 msgstr ""
 
 #: includes/Admin/options/opt_email_reporting.php:130
+msgid "Tuesday"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:131
+msgid "Wednesday"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:132
+msgid "Thursday"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:133
+msgid "Friday"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:134
+msgid "Saturday"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:143
+msgid "Monthly Report Day"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:144
 msgid ""
-"Send a sample report to verify your email settings are working correctly."
+"Select which day of the month to receive your monthly report. Choose \"Last "
+"Day\" for end-of-month summaries."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:150
+msgid "1st of the month"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:151
+msgid "15th of the month"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:152
+msgid "Last day of the month"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:161
+msgid "Preferred Time"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:162
+msgid ""
+"Select the time of day when you'd like to receive your email reports. "
+"Reports will be sent in your site's timezone."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:167
+msgid "12:00 AM (Midnight)"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:168
+msgid "6:00 AM"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:169
+msgid "8:00 AM"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:170
+msgid "9:00 AM (Recommended)"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:171
+msgid "12:00 PM (Noon)"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:172
+msgid "3:00 PM"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:173
+msgid "6:00 PM"
+msgstr ""
+
+#. translators: %s: Site timezone
+#: includes/Admin/options/opt_email_reporting.php:179
+#, php-format
+msgid "Current site timezone: %s"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:187
+msgid "Report Content"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:196
+msgid "Report Metrics"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:197
+msgid ""
+"Choose which analytics metrics to include in your email reports. Select "
+"multiple metrics for a comprehensive overview. Each metric includes trend "
+"comparisons with the previous period."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:200
+msgid "Select metrics to include..."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:205
+msgid "👁️ Page Views — Track how many times your documentation is read"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:206
+msgid "🔍 Search Queries — Monitor what users are searching for"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:207
+msgid "👍 User Reactions — See helpful/unhelpful feedback on docs"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:208
+msgid "📄 Documentation Stats — Track new and updated documents"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:217
+msgid "Email Configuration"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:226
+msgid "Primary Recipient"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:227
+msgid ""
+"Enter the primary email address where reports should be sent. This is "
+"required. Leave empty to use the site administrator email."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:242
+msgid "CC Recipients"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:243
+msgid ""
+"Add additional email addresses to receive copies of the report. Separate "
+"multiple emails with commas."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:256
+msgid "Email Customization"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:265
+msgid "Site Name in Email"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:266
+msgid ""
+"Customize how your site name appears in the email header. Leave empty to use "
+"your WordPress site title."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:280
+msgid "Email Subject Line"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:281
+msgid ""
+"Customize the subject line for report emails. Use clear, descriptive text so "
+"your reports are easy to find in your inbox."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:282
+msgid "Your Documentation Analytics Summary"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:287
+msgid "Weekly Documentation Report"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:290
+msgid "Tip: Include your site name in the subject for easier inbox filtering."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:296
+msgid "Email Introduction"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:297
+msgid ""
+"Add a personalized introduction message that appears at the top of each "
+"report email. This helps provide context for team members receiving the "
+"reports."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:298
+msgid ""
+"Here's your comprehensive analytics summary for the documentation on your "
+"website. This report includes key metrics and performance trends to help you "
+"understand how users interact with your documentation."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:305
+msgid "Write a brief introduction for your reports..."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:313
+msgid "Test & Preview"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:320
+msgid "Send Test Report"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:321
+msgid ""
+"Send a sample report email to verify your settings are configured correctly. "
+"The test report uses sample data to show how your actual reports will look."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:328
+msgid "Send Test Email"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:331
+msgid "Sending..."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:336
+msgid ""
+"A sample report will be sent to the primary recipient email address "
+"configured above."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:354
+msgid "📧 SMTP Configuration Recommended"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:355
+msgid ""
+"For reliable email delivery, we strongly recommend configuring SMTP (Simple "
+"Mail Transfer Protocol) on your WordPress site. By default, WordPress uses "
+"PHP's mail() function which often fails or emails end up in spam folders."
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:356
+msgid "Benefits of using SMTP:"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:358
+msgid "Higher email deliverability rates"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:359
+msgid "Emails won't end up in spam folders"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:360
+msgid "Email logging and debugging capabilities"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:361
+msgid ""
+"Works with popular services like Gmail, SendGrid, Mailgun, and Amazon SES"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:363
+msgid "Recommended SMTP Plugins:"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:368
+msgid "Popular"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:373
+msgid "Free"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:395
+#: includes/Admin/template/feedback-presentation.php:268
+msgid "Troubleshooting Tips"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:396
+msgid "If you're not receiving reports, check the following:"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:398
+msgid "Verify the recipient email address is correct"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:399
+msgid "Check your spam/junk folder for the reports"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:400
+msgid "Ensure an SMTP plugin is installed and configured properly"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:401
+msgid "Ensure your WordPress cron is running properly"
+msgstr ""
+
+#: includes/Admin/options/opt_email_reporting.php:402
+msgid "Use the \"Send Test Email\" button above to verify your email setup"
+msgstr ""
+
+#: includes/Admin/options/opt_email_settings.php:16
+msgid "Email Settings"
 msgstr ""
 
 #: includes/Admin/options/opt_feedback.php:13
@@ -2919,7 +3268,7 @@ msgid "Button Background Color"
 msgstr ""
 
 #: includes/Admin/options/settings-options.php:132
-#: includes/Admin/template/dashboard/header.php:59
+#: includes/Admin/template/dashboard/header.php:65
 msgid "Settings"
 msgstr ""
 
@@ -3042,23 +3391,27 @@ msgstr ""
 msgid "Quick Tips"
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:209
+#: includes/Admin/setup-wizard/setup.php:205
+msgid "Toggle Quick Tips"
+msgstr ""
+
+#: includes/Admin/setup-wizard/setup.php:212
 msgid "Watch the video tutorial to get started quickly with EazyDocs."
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:213
+#: includes/Admin/setup-wizard/setup.php:216
 msgid "Choose a brand color that matches your website theme for consistency."
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:217
+#: includes/Admin/setup-wizard/setup.php:220
 msgid "The layout can be changed later in the settings page."
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:221
+#: includes/Admin/setup-wizard/setup.php:224
 msgid "You can skip plugin installation now and install them later."
 msgstr ""
 
-#: includes/Admin/setup-wizard/setup.php:225
+#: includes/Admin/setup-wizard/setup.php:228
 msgid "All settings can be modified from the EazyDocs settings page."
 msgstr ""
 
@@ -3592,6 +3945,10 @@ msgstr ""
 msgid "Download analytics data for external analysis or reporting."
 msgstr ""
 
+#: includes/Admin/template/analytics-presentation.php:325
+msgid "Email Reports"
+msgstr ""
+
 #: includes/Admin/template/analytics-presentation.php:326
 msgid "Receive scheduled analytics reports directly in your inbox."
 msgstr ""
@@ -3691,6 +4048,66 @@ msgstr ""
 
 #: includes/Admin/template/child-docs.php:167
 msgid "Add Section"
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:35
+msgid "Failed Searches"
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:46
+msgid ""
+"These keywords yielded no results. Consider creating content to address "
+"these searches."
+msgstr ""
+
+#. translators: %d: number of failed search attempts
+#: includes/Admin/template/components/failed-searches-list.php:61
+#, php-format
+msgid "%d attempts"
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:74
+msgid "Create doc for this keyword"
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:76
+msgid "Create"
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:82
+msgid "Mark as resolved"
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:84
+msgid "Resolve"
+msgstr ""
+
+#. translators: %d: total number of failed search keywords
+#: includes/Admin/template/components/failed-searches-list.php:97
+#, php-format
+msgid "View all %d Keywords"
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:110
+#: includes/Admin/template/components/failed-searches-list.php:215
+msgid "Great! No failed searches recorded."
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:111
+#: includes/Admin/template/components/failed-searches-list.php:216
+msgid "Your documentation is covering user needs well."
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:192
+msgid "Keyword resolved successfully."
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:222
+msgid "Failed to resolve keyword."
+msgstr ""
+
+#: includes/Admin/template/components/failed-searches-list.php:227
+msgid "An error occurred. Please try again."
 msgstr ""
 
 #: includes/Admin/template/dashboard/analytics.php:5
@@ -3937,58 +4354,29 @@ msgstr ""
 msgid "Great job! Your documentation is in excellent shape."
 msgstr ""
 
-#: includes/Admin/template/dashboard/failed-searches.php:49
-msgid "Failed Searches"
-msgstr ""
-
-#. translators: %d: number of failed search attempts
-#: includes/Admin/template/dashboard/failed-searches.php:67
-#, php-format
-msgid "%d attempts"
-msgstr ""
-
-#: includes/Admin/template/dashboard/failed-searches.php:80
-msgid "Create doc for this keyword"
-msgstr ""
-
-#: includes/Admin/template/dashboard/failed-searches.php:82
-msgid "Create"
-msgstr ""
-
-#: includes/Admin/template/dashboard/failed-searches.php:91
-msgid "View all search analytics"
-msgstr ""
-
-#: includes/Admin/template/dashboard/failed-searches.php:100
-msgid "Great! No failed searches recorded."
-msgstr ""
-
-#: includes/Admin/template/dashboard/failed-searches.php:101
-msgid "Your documentation is covering user needs well."
-msgstr ""
-
-#: includes/Admin/template/dashboard/header.php:22
+#: includes/Admin/template/dashboard/header.php:28
 msgid "Good morning"
 msgstr ""
 
-#: includes/Admin/template/dashboard/header.php:24
+#: includes/Admin/template/dashboard/header.php:30
 msgid "Good afternoon"
 msgstr ""
 
-#: includes/Admin/template/dashboard/header.php:26
+#: includes/Admin/template/dashboard/header.php:32
 msgid "Good evening"
 msgstr ""
 
-#: includes/Admin/template/dashboard/header.php:28
+#: includes/Admin/template/dashboard/header.php:34
 msgid "Good night"
 msgstr ""
 
-#: includes/Admin/template/dashboard/header.php:47
+#: includes/Admin/template/dashboard/header.php:53
 msgid "Overview"
 msgstr ""
 
-#: includes/Admin/template/dashboard/header.php:81
-#: includes/Admin/template/header.php:37
+#: includes/Admin/template/dashboard/header.php:89
+#: includes/Admin/template/dashboard/header.php:94
+#: includes/Admin/template/header.php:45 includes/Admin/template/header.php:51
 msgid "Create Doc with AI"
 msgstr ""
 
@@ -4001,6 +4389,8 @@ msgid "No recent activity found."
 msgstr ""
 
 #: includes/Admin/template/dashboard/recent-activity.php:108
+#: includes/block-templates/tabbed-docs/flat_tabbed.php:278
+#: includes/block-templates/tabbed-docs/tabbed_doc_list.php:278
 msgid "ago"
 msgstr ""
 
@@ -4024,34 +4414,34 @@ msgstr ""
 msgid "Activity"
 msgstr ""
 
-#: includes/Admin/template/dashboard/search-data.php:35
+#: includes/Admin/template/dashboard/search-data.php:36
 msgid "Search Overview"
 msgstr ""
 
-#: includes/Admin/template/dashboard/search-data.php:39
+#: includes/Admin/template/dashboard/search-data.php:40
 msgid "success"
 msgstr ""
 
-#: includes/Admin/template/dashboard/search-data.php:51
-#: includes/Admin/template/dashboard/search-data.php:187
+#: includes/Admin/template/dashboard/search-data.php:52
+#: includes/Admin/template/dashboard/search-data.php:188
 msgid "Total"
 msgstr ""
 
-#: includes/Admin/template/dashboard/search-data.php:56
-#: includes/Admin/template/dashboard/search-data.php:155
+#: includes/Admin/template/dashboard/search-data.php:57
+#: includes/Admin/template/dashboard/search-data.php:156
 msgid "Successful"
 msgstr ""
 
-#: includes/Admin/template/dashboard/search-data.php:61
-#: includes/Admin/template/dashboard/search-data.php:155
+#: includes/Admin/template/dashboard/search-data.php:62
+#: includes/Admin/template/dashboard/search-data.php:156
 msgid "Failed"
 msgstr ""
 
-#: includes/Admin/template/dashboard/search-data.php:130
+#: includes/Admin/template/dashboard/search-data.php:131
 msgid "No Search Data"
 msgstr ""
 
-#: includes/Admin/template/dashboard/search-data.php:203
+#: includes/Admin/template/dashboard/search-data.php:204
 msgid "searches"
 msgstr ""
 
@@ -4112,12 +4502,20 @@ msgstr ""
 msgid "Top Ranked Docs"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-ranked-docs.php:103
+#: includes/Admin/template/dashboard/top-ranked-docs.php:8
+#: includes/Admin/template/dashboard/top-viewed-docs.php:8
+#: includes/Elementor/Docs/Doc_Widget.php:443
+#: includes/block-templates/tabbed-docs/flat_tabbed.php:292
+#: includes/block-templates/tabbed-docs/tabbed_doc_list.php:292
+msgid "View All"
+msgstr ""
+
+#: includes/Admin/template/dashboard/top-ranked-docs.php:107
 #: includes/Admin/template/template-parts.php:81
 msgid "No rates"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-ranked-docs.php:117
+#: includes/Admin/template/dashboard/top-ranked-docs.php:121
 msgid "No ranked docs found yet."
 msgstr ""
 
@@ -4125,11 +4523,11 @@ msgstr ""
 msgid "Top Viewed Docs"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-viewed-docs.php:39
+#: includes/Admin/template/dashboard/top-viewed-docs.php:43
 msgid " views"
 msgstr ""
 
-#: includes/Admin/template/dashboard/top-viewed-docs.php:53
+#: includes/Admin/template/dashboard/top-viewed-docs.php:57
 msgid "No viewed docs found yet."
 msgstr ""
 
@@ -4444,10 +4842,6 @@ msgid ""
 "examples are good but more use cases would help."
 msgstr ""
 
-#: includes/Admin/template/feedback-presentation.php:268
-msgid "Troubleshooting Tips"
-msgstr ""
-
 #: includes/Admin/template/feedback-presentation.php:271
 msgid "Yesterday"
 msgstr ""
@@ -4525,43 +4919,43 @@ msgstr ""
 msgid "Free updates till the license expires"
 msgstr ""
 
-#: includes/Admin/template/header.php:17
+#: includes/Admin/template/header.php:23
 msgid "Documentations"
 msgstr ""
 
-#: includes/Admin/template/header.php:47
+#: includes/Admin/template/header.php:62
 msgid "Search for"
 msgstr ""
 
-#: includes/Admin/template/header.php:64
+#: includes/Admin/template/header.php:79
 msgid "Go to Classic UI"
 msgstr ""
 
-#: includes/Admin/template/header.php:65
+#: includes/Admin/template/header.php:80
 msgid "Classic UI"
 msgstr ""
 
-#: includes/Admin/template/header.php:84
+#: includes/Admin/template/header.php:99
 msgid "Central settings page"
 msgstr ""
 
-#: includes/Admin/template/header.php:87
+#: includes/Admin/template/header.php:102
 msgid "Settings Icon"
 msgstr ""
 
-#: includes/Admin/template/header.php:96
+#: includes/Admin/template/header.php:111
 msgid "View, manage, restore the trashed docs"
 msgstr ""
 
-#: includes/Admin/template/header.php:116
+#: includes/Admin/template/header.php:131
 msgid "Notifications"
 msgstr ""
 
-#: includes/Admin/template/header.php:119
+#: includes/Admin/template/header.php:134
 msgid "Notify Icon"
 msgstr ""
 
-#: includes/Admin/template/header.php:121
+#: includes/Admin/template/header.php:136
 msgid "Pro Icon"
 msgstr ""
 
@@ -4640,43 +5034,54 @@ msgid ""
 msgstr ""
 
 #: includes/Admin/template/integrated-themes.php:74
-msgid "Rogan"
+msgid "Ddoc"
 msgstr ""
 
 #: includes/Admin/template/integrated-themes.php:75
+msgid ""
+"Documentation and knowledge base WordPress theme for building comprehensive "
+"documentation sites, user guides, and support resources with clean, "
+"responsive designs and easy customization."
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:82
+msgid "Rogan"
+msgstr ""
+
+#: includes/Admin/template/integrated-themes.php:83
 msgid ""
 "Creative multipurpose WordPress theme perfect for businesses, portfolios, "
 "and customer support platforms with elegant design and powerful "
 "customization options."
 msgstr ""
 
-#: includes/Admin/template/integrated-themes.php:82
+#: includes/Admin/template/integrated-themes.php:90
 msgid "Zoomy"
 msgstr ""
 
-#: includes/Admin/template/integrated-themes.php:83
+#: includes/Admin/template/integrated-themes.php:91
 msgid ""
 "Learning management system theme for online courses and educational "
 "platforms featuring course management, instructor profiles, and student "
 "engagement tools."
 msgstr ""
 
-#: includes/Admin/template/integrated-themes.php:95
+#: includes/Admin/template/integrated-themes.php:105
 msgid "Compatible Themes for EazyDocs"
 msgstr ""
 
-#: includes/Admin/template/integrated-themes.php:98
+#: includes/Admin/template/integrated-themes.php:108
 msgid ""
 "Discover professionally designed WordPress themes optimized for "
 "documentation. Each theme is tested and verified to work seamlessly with "
 "EazyDocs for the best user experience."
 msgstr ""
 
-#: includes/Admin/template/integrated-themes.php:120
+#: includes/Admin/template/integrated-themes.php:130
 msgid "View Demo"
 msgstr ""
 
-#: includes/Admin/template/integrated-themes.php:124
+#: includes/Admin/template/integrated-themes.php:134
 msgid "Get Theme"
 msgstr ""
 
@@ -4692,6 +5097,10 @@ msgstr ""
 #: includes/Admin/template/parent-docs.php:95
 #: includes/Admin/template/template-parts.php:168
 msgid "Move to Trash"
+msgstr ""
+
+#: includes/Admin/template/parent-docs.php:103
+msgid "More options"
 msgstr ""
 
 #: includes/Admin/template/parent-docs.php:128
@@ -5117,17 +5526,13 @@ msgstr ""
 msgid "Read More Text"
 msgstr ""
 
-#: includes/Elementor/Docs/Doc_Widget.php:443
-msgid "View All"
-msgstr ""
-
 #: includes/Elementor/Docs/Doc_Widget.php:452
 msgid "Topics Label"
 msgstr ""
 
 #: includes/Elementor/Docs/Doc_Widget.php:455
-#: includes/Elementor/Docs/Doc_Widget.php:1020
-#: includes/Frontend/Shortcode.php:120
+#: includes/Elementor/Docs/Doc_Widget.php:1018
+#: includes/Frontend/Shortcode.php:138
 msgid "Topics"
 msgstr ""
 
@@ -5439,7 +5844,7 @@ msgstr ""
 msgid "Invalid document ID"
 msgstr ""
 
-#: includes/Frontend/Ajax.php:293 includes/functions.php:1409
+#: includes/Frontend/Ajax.php:293 includes/functions.php:1412
 msgid "You don't have permission to access this document!"
 msgstr ""
 
@@ -5501,13 +5906,13 @@ msgstr ""
 msgid "Your feedback has been submitted successfully."
 msgstr ""
 
-#: includes/Frontend/Shortcode.php:118
+#: includes/Frontend/Shortcode.php:136
 msgid "View Details"
 msgstr ""
 
 #. translators: %d: ID of a post
 #: includes/Frontend/Walker_Docs.php:142 includes/Walker_Docs_Onepage.php:129
-#: includes/Walker_Docs_Onepage_Fullscreen.php:136
+#: includes/Walker_Docs_Onepage_Fullscreen.php:142
 #, php-format
 msgid "#%d (no title)"
 msgstr ""
@@ -5785,6 +6190,24 @@ msgstr ""
 msgid "Search here"
 msgstr ""
 
+#: includes/block-templates/tabbed-docs/flat_tabbed.php:224
+#: includes/block-templates/tabbed-docs/tabbed_doc_list.php:224
+msgid "No sections found in this documentation."
+msgstr ""
+
+#: includes/block-templates/tabbed-docs/flat_tabbed.php:253
+#: includes/block-templates/tabbed-docs/tabbed_doc_list.php:253
+#, php-format
+msgid "%d article"
+msgid_plural "%d articles"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/block-templates/tabbed-docs/flat_tabbed.php:287
+#: includes/block-templates/tabbed-docs/tabbed_doc_list.php:287
+msgid "No articles in this section yet."
+msgstr ""
+
 #: includes/functions.php:252
 msgid " minute"
 msgstr ""
@@ -5801,87 +6224,87 @@ msgstr ""
 msgid "View OnePage Doc"
 msgstr ""
 
-#: includes/functions.php:882
+#: includes/functions.php:886
 msgid "Manage Reusable blocks"
 msgstr ""
 
-#: includes/functions.php:913
+#: includes/functions.php:917
 msgid "Doc Layout"
 msgstr ""
 
-#: includes/functions.php:917
+#: includes/functions.php:921
 msgid "Left Side Content"
 msgstr ""
 
-#: includes/functions.php:920 includes/functions.php:935
+#: includes/functions.php:924 includes/functions.php:938
 msgid "Content Type"
 msgstr ""
 
-#: includes/functions.php:926 includes/functions.php:939
+#: includes/functions.php:929 includes/functions.php:942
 msgid "Content Box"
 msgstr ""
 
-#: includes/functions.php:932
+#: includes/functions.php:935
 msgid "Right Side Content"
 msgstr ""
 
-#: includes/functions.php:989
+#: includes/functions.php:992
 msgid "Enter Password & Read this Doc"
 msgstr ""
 
-#: includes/functions.php:990
+#: includes/functions.php:993
 msgid ""
 "This content is password protected. To view it please enter your password "
 "below:"
 msgstr ""
 
-#: includes/functions.php:1016 templates/ezd-login.php:41
+#: includes/functions.php:1019 templates/ezd-login.php:41
 msgid "Password"
 msgstr ""
 
-#: includes/functions.php:1023
+#: includes/functions.php:1026
 msgid "Unlock"
 msgstr ""
 
-#: includes/functions.php:1439
+#: includes/functions.php:1442
 msgid "You don't have permission to "
 msgstr ""
 
-#: includes/functions.php:1441
+#: includes/functions.php:1444
 msgid " this post."
 msgstr ""
 
-#: includes/functions.php:1446
+#: includes/functions.php:1449
 msgid "You don't have sufficient permission to perform this action."
 msgstr ""
 
-#: includes/functions.php:1499
+#: includes/functions.php:1502
 msgid ""
 "Please avoid using special characters other than hyphens and underscores!"
 msgstr ""
 
-#: includes/functions.php:1654
+#: includes/functions.php:1657
 msgid "Single Doc"
 msgstr ""
 
-#: includes/functions.php:2218
+#: includes/functions.php:2221
 msgid "You do not have permission to import data."
 msgstr ""
 
-#: includes/functions.php:2226
+#: includes/functions.php:2229
 msgid "Sample data file not found."
 msgstr ""
 
-#: includes/functions.php:2250 includes/functions.php:2263
-#: includes/functions.php:2270
+#: includes/functions.php:2253 includes/functions.php:2266
+#: includes/functions.php:2273
 msgid "Sample data imported successfully!"
 msgstr ""
 
-#: includes/functions.php:2285
+#: includes/functions.php:2288
 msgid "The sample data file is empty."
 msgstr ""
 
-#: includes/functions.php:2293
+#: includes/functions.php:2296
 msgid "Failed to parse the sample data file."
 msgstr ""
 
@@ -5938,6 +6361,22 @@ msgstr ""
 #: includes/notices/deactivate-other-doc-plugins.php:46
 #, php-format
 msgid "Deactivate %s"
+msgstr ""
+
+#: includes/notices/gutenberg-info.php:47
+msgid "Build Stunning Docs with Gutenberg!"
+msgstr ""
+
+#: includes/notices/gutenberg-info.php:50
+msgid ""
+"EazyDocs is fully optimized for the WordPress Block Editor. You have "
+"everything you need to create professional help centers and documentation "
+"landing pages right out of the box—no third-party page builders like "
+"Elementor required."
+msgstr ""
+
+#: includes/notices/gutenberg-info.php:54
+msgid "See Gutenberg Blocks in Action"
 msgstr ""
 
 #: includes/notices/offer.php:35 includes/notices/offer.php:43
