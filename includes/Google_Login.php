@@ -407,6 +407,12 @@ class Google_Login {
             wp_set_auth_cookie( $user->ID );
             wp_set_current_user( $user->ID );
         } else {
+            // Security: Check if user registration is enabled in WordPress settings
+            if ( ! get_option( 'users_can_register' ) ) {
+                wp_redirect( wp_login_url() . '?google_error=1' );
+                exit;
+            }
+
             // Create new user
             $username = $this->generate_username( $email );
             $password = wp_generate_password();
