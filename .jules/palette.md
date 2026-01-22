@@ -1,3 +1,7 @@
 ## 2024-03-24 - Accessibility of Bulk Actions
 **Learning:** Legacy WordPress plugins often use `<span>` elements for dropdown triggers to preserve specific CSS hierarchies, making accessibility retrofits challenging. Converting these to `<button>` can break layout.
 **Action:** In these cases, use `role="button"`, `tabindex="0"`, and explicitly handle `keydown` (Enter/Space) and `aria-expanded` states via JavaScript to ensure keyboard accessibility without refactoring CSS.
+
+## 2024-05-21 - Accessible Progress Bars in Lists
+**Learning:** Native `<progress>` elements are great but often lack accessible context when used in lists or tables (like voting results). The `title` attribute is insufficient for screen readers. Also, duplicate IDs (like `id="file"` in a loop) are common in legacy loops.
+**Action:** Always add `aria-label` with the full context (e.g., "5 Positive votes, 2 Negative votes") to `<progress>` elements. Ensure IDs are unique or removed if not needed by JS/CSS.
