@@ -108,7 +108,10 @@ class Ajax {
 
 		$keyword     = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
 		$search_mode = ezd_is_premium() ? ezd_get_opt( 'search_by', 'title_and_content' ) : 'title_and_content';
-		$post_status = is_user_logged_in() ? ['publish', 'private', 'protected'] : ['publish', 'protected'];
+
+		// Sentinel: Prevent unauthorized access to private docs
+		$can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
+		$post_status      = $can_read_private ? [ 'publish', 'private', 'protected' ] : [ 'publish', 'protected' ];
 
 		if ( empty($keyword) ) {
 			wp_send_json_error(['message' => 'No keyword provided']);
