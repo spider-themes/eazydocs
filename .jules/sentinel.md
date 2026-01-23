@@ -12,3 +12,8 @@
 **Vulnerability:** `eazydocs_search_results` in `includes/Frontend/Ajax.php` explicitly allowed `private` posts to be searched by any logged-in user (Subscribers), leaking titles and existence of admin-only content.
 **Learning:** Developers often confuse `is_user_logged_in()` with specific permission checks. Relying on "logged in" for access control exposes private data to low-privileged users.
 **Prevention:** Always check specific capabilities (`read_private_posts` or custom caps) before including privileged content types in queries.
+
+## 2024-05-23 – Rate Limiting Missing on Public Form
+**Vulnerability:** The feedback form handler `eazydocs_feedback_email` allowed unlimited email submissions from unauthenticated users, leading to potential email spam and database flooding.
+**Learning:** Publicly accessible AJAX actions (`nopriv`) that trigger resource-intensive operations (sending emails, DB writes) must have rate limiting or CAPTCHA.
+**Prevention:** Implement IP-based transient rate limiting for all public-facing form handlers.
