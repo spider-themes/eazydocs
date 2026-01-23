@@ -77,28 +77,25 @@ class Docs {
 			'publicly_queryable'  => true,
 			'show_in_rest'        => true,
 			'rewrite'             => $rewrite,
+			'capability_type'     => [ 'doc', 'docs' ],
 			'map_meta_cap'        => true,
-			'taxonomies'          => [ 'doc_tag' ]
-		];
-
-		if ( current_user_can( 'read_private_docs' ) ) {
-			$args['capability_type'] = 'doc';
-			$args['capabilities'] = [
-				'read_private_posts' => 'read_private_docs'
-			];
-		}
-		
-		if ( current_user_can('edit_docs') ) {
-			$args['capability_type'] = [ 'doc', 'docs' ];
-			$args['capabilities'] = [
+			'capabilities'        => [
 				'edit_post'             => 'edit_doc',
+				'read_post'             => 'read_doc',
+				'delete_post'           => 'delete_doc',
 				'edit_posts'            => 'edit_docs',
 				'edit_others_posts'     => 'edit_others_docs',
 				'edit_private_posts'    => 'edit_private_docs',
 				'edit_published_posts'  => 'edit_published_docs',
 				'publish_posts'         => 'publish_docs',
-			];
-		}
+				'read_private_posts'    => 'read_private_docs',
+				'delete_posts'          => 'delete_docs',
+				'delete_others_posts'   => 'delete_others_docs',
+				'delete_private_posts'  => 'delete_private_docs',
+				'delete_published_posts' => 'delete_published_docs',
+			],
+			'taxonomies'          => [ 'doc_tag' ]
+		];
 		
 		register_post_type( $this->post_type, apply_filters( 'eazydocs_post_type', $args ) );
 	}

@@ -284,18 +284,51 @@ class Ajax {
 
 		// Check private doc access
 		if ( get_post_status( $postid ) == 'private' && ezd_is_premium() ) {
-			$user_group  = ezd_get_opt('private_doc_user_restriction');
-			$is_all_user = $user_group['private_doc_all_user'] ?? 0;
-			if ( $is_all_user == 0 ) {
-				$current_user_id    = get_current_user_id();
-				$current_user       = new \WP_User( $current_user_id );
-				$current_roles      = ( array ) $current_user->roles;
-				$private_doc_roles  = $user_group['private_doc_roles'] ?? [];
-				$matching_roles 	= array_intersect($current_roles, $private_doc_roles);
-				if ( empty( $matching_roles ) ) {
-					wp_send_json_error(array('message' => esc_html__('You don\'t have permission to access this document!', 'eazydocs')));
-					return;
+			// Try new settings first
+			$access_type = ezd_get_opt( 'private_doc_access_type', '' );
+			$has_access  = false;
+			
+			if ( ! empty( $access_type ) ) {
+				// Using new settings
+				if ( $access_type === 'all_users' ) {
+					// All logged-in users can access
+					$has_access = is_user_logged_in();
+				} else {
+					// Specific roles only
+					$allowed_roles   = ezd_get_opt( 'private_doc_allowed_roles', array( 'administrator', 'editor' ) );
+					if ( ! is_array( $allowed_roles ) ) {
+						$allowed_roles = array( $allowed_roles );
+					}
+					
+					$current_user_id = get_current_user_id();
+					$current_user    = new \WP_User( $current_user_id );
+					$current_roles   = (array) $current_user->roles;
+					$matching_roles  = array_intersect( $current_roles, $allowed_roles );
+					
+					$has_access = ! empty( $matching_roles ) || current_user_can( 'manage_options' );
 				}
+			} else {
+				// Fallback to legacy settings
+				$user_group  = ezd_get_opt( 'private_doc_user_restriction' );
+				$is_all_user = $user_group['private_doc_all_user'] ?? 0;
+				
+				if ( $is_all_user === '1' || $is_all_user === 1 || $is_all_user === true ) {
+					$has_access = is_user_logged_in();
+				} else {
+					$current_user_id   = get_current_user_id();
+					$current_user      = new \WP_User( $current_user_id );
+					$current_roles     = (array) $current_user->roles;
+					$private_doc_roles = $user_group['private_doc_roles'] ?? array();
+					$matching_roles    = array_intersect( $current_roles, $private_doc_roles );
+					
+					$has_access = ! empty( $matching_roles ) || current_user_can( 'manage_options' );
+				}
+			}
+			
+			if ( ! $has_access ) {
+				$denied_message = ezd_get_opt( 'role_visibility_denied_message', esc_html__( 'You don\'t have permission to access this document!', 'eazydocs' ) );
+				wp_send_json_error( array( 'message' => esc_html( $denied_message ) ) );
+				return;
 			}
 		}
 

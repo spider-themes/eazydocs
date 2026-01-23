@@ -100,6 +100,11 @@ class Assets {
 			wp_enqueue_style( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/css/admin_setup_wizard.css', array(), $setup_wizard_css_ver );
 			wp_enqueue_script( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/js/admin/setup_wizard_config.js', array( 'jquery', 'smartwizard' ), $setup_wizard_js_ver, true );
 		}
+
+		// Settings page specific styles
+		if ( ezd_admin_pages( 'eazydocs-settings' ) ) {
+			wp_enqueue_style( 'ezd-admin-settings', EAZYDOCS_ASSETS . '/css/admin-settings.css', array(), EAZYDOCS_VERSION );
+		}
 	}
 
 	public function enqueue_block_editor_assets() {

@@ -28,7 +28,6 @@ if ( $sections && $post->post_parent === 0 ) :
                 } else {
                     $default_icon = esc_url(EAZYDOCS_IMG) . '/icon/folder.png';
 	                echo '<img src="' . esc_url( $default_icon ) . '" alt="' . esc_attr( $section->post_title ) . '">';
-
                 }
                 ?>
             </div>
@@ -37,7 +36,11 @@ if ( $sections && $post->post_parent === 0 ) :
                     <div class="doc-sec title">
                         <?php echo esc_html($section->post_title); ?>
                     </div>
-                    <?php echo function_exists('ezdpro_badge') ? ezdpro_badge( $section->ID ) : ''; ?>
+                    <?php 
+                    echo function_exists('ezdpro_badge') ? ezdpro_badge( $section->ID ) : '';
+                    $walker_docs = new EazyDocs\Frontend\Walker_Docs();
+                    echo $walker_docs->get_visibility_lock_icon( $section )
+                    ?>
                 </div>
                 <p> 
                 <?php

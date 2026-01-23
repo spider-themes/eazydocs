@@ -1320,6 +1320,68 @@ function ezd_all_shortcodes( $content ) {
 	return $return;
 }
 
+/**
+ * Allowed HTML for docs navigation markup.
+ *
+ * We generate the docs sidebar tree markup ourselves (via wp_list_pages + custom Walker).
+ * Some templates were using wp_kses_post(), which strips <svg> tags and causes our
+ * visibility lock icons to disappear.
+ *
+ * @return array
+ */
+function ezd_kses_allowed_docs_nav_html() {
+	$allowed = wp_kses_allowed_html( 'post' );
+
+	// Allow inline SVG icons used by docs navigation.
+	$allowed['svg'] = array(
+		'class'            => true,
+		'xmlns'            => true,
+		'width'            => true,
+		'height'           => true,
+		'viewbox'          => true,
+		'viewBox'          => true,
+		'fill'             => true,
+		'stroke'           => true,
+		'stroke-width'     => true,
+		'stroke-linecap'   => true,
+		'stroke-linejoin'  => true,
+		'role'             => true,
+		'aria-hidden'      => true,
+		'focusable'        => true,
+	);
+	$allowed['path'] = array(
+		'd'               => true,
+		'fill'            => true,
+		'stroke'          => true,
+		'stroke-width'    => true,
+		'stroke-linecap'  => true,
+		'stroke-linejoin' => true,
+	);
+	$allowed['rect'] = array(
+		'x'      => true,
+		'y'      => true,
+		'width'  => true,
+		'height' => true,
+		'rx'     => true,
+		'ry'     => true,
+		'fill'   => true,
+		'stroke' => true,
+	);
+	$allowed['circle'] = array(
+		'cx'    => true,
+		'cy'    => true,
+		'r'     => true,
+		'fill'  => true,
+		'stroke'=> true,
+	);
+	$allowed['g'] = array(
+		'fill'   => true,
+		'stroke' => true,
+	);
+
+	return apply_filters( 'ezd_kses_allowed_docs_nav_html', $allowed );
+}
+
 add_filter( 'body_class', function( $classes ) {
     if ( ezd_is_premium() ) {
         $classes[] = 'ezd-premium';
@@ -1410,34 +1472,78 @@ function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
 
 /**
  * Internal doc secured by user role
+ * 
+ * Uses new settings: private_doc_access_type, private_doc_allowed_roles
+ * Falls back to legacy settings: private_doc_user_restriction for backward compatibility
+ * 
  * @param int $doc_id
  */
-function ezd_internal_doc_security( $doc_id =  0 ) {
+function ezd_internal_doc_security( $doc_id = 0 ) {
 	// Private doc restriction
 	if ( get_post_status( $doc_id ) == 'private' ) {
-
-		$user_group  = ezd_get_opt('private_doc_user_restriction');
-		$is_all_user = $user_group['private_doc_all_user'] ?? 0;
-		if ( $is_all_user == 0 ) {
-
-			// current user role
-			$current_user_id    = get_current_user_id();
-			$current_user       = new WP_User( $current_user_id );
-			$current_roles      = ( array ) $current_user->roles;
-
-			// All selected roles
-			$private_doc_roles  = $user_group['private_doc_roles'] ?? [];
-			$matching_roles 	= array_intersect($current_roles, $private_doc_roles);
-
-			if ( empty( $matching_roles )) {
-				if ( is_singular( 'docs' ) ) {
-					$message = esc_html__("You don't have permission to access this document!", 'eazydocs');
-					$output = sprintf('<div class="ezd-lg-col-9"><span class="ezd-doc-warning-wrap"><i class="icon_lock"></i><span>%s</span></span></div>', $message);
-					echo wp_kses_post($output);
+		
+		// Try new settings first
+		$access_type = ezd_get_opt( 'private_doc_access_type', '' );
+		
+		if ( ! empty( $access_type ) ) {
+			// Using new settings
+			if ( $access_type === 'all_users' ) {
+				// All logged-in users can access - just check if logged in
+				if ( is_user_logged_in() ) {
+					return true;
 				}
-				return null;
+			} else {
+				// Specific roles only
+				$allowed_roles = ezd_get_opt( 'private_doc_allowed_roles', array( 'administrator', 'editor' ) );
+				if ( ! is_array( $allowed_roles ) ) {
+					$allowed_roles = array( $allowed_roles );
+				}
+				
+				// Current user roles
+				$current_user_id = get_current_user_id();
+				$current_user    = new WP_User( $current_user_id );
+				$current_roles   = (array) $current_user->roles;
+				
+				// Check if user has any allowed role
+				$matching_roles = array_intersect( $current_roles, $allowed_roles );
+				
+				if ( ! empty( $matching_roles ) || current_user_can( 'manage_options' ) ) {
+					return true;
+				}
+			}
+		} else {
+			// Fallback to legacy settings
+			$user_group  = ezd_get_opt( 'private_doc_user_restriction' );
+			$is_all_user = $user_group['private_doc_all_user'] ?? 0;
+			
+			if ( $is_all_user === '1' || $is_all_user === 1 || $is_all_user === true ) {
+				// All logged-in users can access
+				if ( is_user_logged_in() ) {
+					return true;
+				}
+			} else {
+				// Current user role
+				$current_user_id = get_current_user_id();
+				$current_user    = new WP_User( $current_user_id );
+				$current_roles   = (array) $current_user->roles;
+
+				// All selected roles
+				$private_doc_roles = $user_group['private_doc_roles'] ?? array();
+				$matching_roles    = array_intersect( $current_roles, $private_doc_roles );
+
+				if ( ! empty( $matching_roles ) || current_user_can( 'manage_options' ) ) {
+					return true;
+				}
 			}
 		}
+		
+		// Access denied - show message
+		if ( is_singular( 'docs' ) ) {
+			$denied_message = ezd_get_opt( 'role_visibility_denied_message', esc_html__( "You don't have permission to access this document!", 'eazydocs' ) );
+			$output = sprintf( '<div class="ezd-lg-col-9"><span class="ezd-doc-warning-wrap"><i class="icon_lock"></i><span>%s</span></span></div>', esc_html( $denied_message ) );
+			echo wp_kses_post( $output );
+		}
+		return null;
 	}
 	return true;
 }
@@ -1755,18 +1861,39 @@ function has_ezd_mark_text_class() {
 
 /**
  * Assigns or removes the 'read_private_docs' capability to user roles
- * based on the EazyDocs 'private_doc_user_restriction' settings.
+ * based on the EazyDocs private doc settings.
+ * 
+ * Uses new settings: private_doc_access_type, private_doc_allowed_roles
+ * Falls back to legacy settings: private_doc_user_restriction for backward compatibility
  */
 function ezd_read_private_docs_cap_to_user() {
-    $user_group  = ezd_get_opt('private_doc_user_restriction');
-    $is_all_user = $user_group['private_doc_all_user'] ?? 0;
-
-    if ( $is_all_user === '1' ) {
-        $get_users_role = array_values(array_keys(eazydocs_user_role_names()));
+    // Try new settings first
+    $access_type = ezd_get_opt( 'private_doc_access_type', '' );
+    
+    if ( ! empty( $access_type ) ) {
+        // Using new settings
+        if ( $access_type === 'all_users' ) {
+            // All logged-in users can access
+            $get_users_role = array_values( array_keys( eazydocs_user_role_names() ) );
+        } else {
+            // Specific roles only
+            $get_users_role = ezd_get_opt( 'private_doc_allowed_roles', array( 'administrator', 'editor' ) );
+            if ( ! is_array( $get_users_role ) ) {
+                $get_users_role = array( $get_users_role );
+            }
+        }
     } else {
-        $get_users_role = $user_group['private_doc_roles'] ?? [];
-        if ( ! is_array($get_users_role) ) {
-            $get_users_role = [$get_users_role]; // Cast to array if not already
+        // Fallback to legacy settings for backward compatibility
+        $user_group  = ezd_get_opt( 'private_doc_user_restriction' );
+        $is_all_user = $user_group['private_doc_all_user'] ?? 0;
+
+        if ( $is_all_user === '1' || $is_all_user === 1 || $is_all_user === true ) {
+            $get_users_role = array_values( array_keys( eazydocs_user_role_names() ) );
+        } else {
+            $get_users_role = $user_group['private_doc_roles'] ?? array();
+            if ( ! is_array( $get_users_role ) ) {
+                $get_users_role = array( $get_users_role );
+            }
         }
     }
 
@@ -1852,7 +1979,8 @@ add_filter('show_admin_bar', function( $show ) {
 
 
 /**
- * 404 should return if the user has not private docs readability
+ * Handle private docs access based on settings.
+ * Respects private_doc_mode setting: 'login' redirects to login page, 'none' shows 404.
  */
 add_action( 'template_redirect', 'ezd_private_docs_access' );
 
@@ -1865,8 +1993,34 @@ function ezd_private_docs_access() {
 
             // If user does not have permission to read private docs
             if ( ! current_user_can( 'read_private_docs' ) ) {
+                
+                // Get the private doc mode setting (only for pro users)
+                $private_doc_mode = ezd_is_premium() ? ezd_get_opt( 'private_doc_mode', 'none' ) : 'none';
+                
+                // If mode is 'login', redirect to login page instead of showing 404
+                if ( $private_doc_mode === 'login' ) {
+                    $login_page_id = ezd_get_opt( 'private_doc_login_page', '' );
+                    
+                    if ( ! empty( $login_page_id ) ) {
+                        $login_page_url = get_permalink( $login_page_id );
+                        
+                        if ( $login_page_url ) {
+                            // Add redirect parameters
+                            $permalink_structure = get_option( 'permalink_structure' );
+                            $separator = empty( $permalink_structure ) ? '&' : '?';
+                            $redirect_url = $login_page_url . $separator . 'post_id=' . $post->ID . '&private_doc=yes';
+                            
+                            wp_safe_redirect( $redirect_url );
+                            exit;
+                        }
+                    }
+                    
+                    // Fallback to WordPress login if no custom login page set
+                    wp_safe_redirect( wp_login_url( get_permalink( $post->ID ) ) );
+                    exit;
+                }
 
-                // Show 404
+                // Default behavior: Show 404
                 global $wp_query;
                 $wp_query->set_404();
                 status_header( 404 );

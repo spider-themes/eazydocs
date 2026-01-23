@@ -110,6 +110,56 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
                  <?php echo esc_html( get_the_title( $doc_item ) ); ?>
              </a>
              <?php 
+             // Get the post status to determine visibility
+             $post_status = get_post_status( $doc_item );
+             
+             // Check for role-based visibility (PRO MAX feature)
+             $has_role_visibility = false;
+             $role_visibility_roles = [];
+             if ( function_exists( 'ezd_is_promax' ) && ezd_is_promax() ) {
+                 $role_visibility_roles = get_post_meta( $doc_item, 'ezd_role_visibility', true );
+                 if ( ! empty( $role_visibility_roles ) && is_array( $role_visibility_roles ) ) {
+                     $has_role_visibility = true;
+                 }
+             }
+             
+             // Show visibility badges
+             if ( $post_status === 'private' ) :
+                 ?>
+                 <span class="ezd-visibility-badge ezd-visibility-private" title="<?php esc_attr_e( 'Private Doc - Visible to logged-in users only', 'eazydocs' ); ?>">
+                     <span class="dashicons dashicons-lock"></span>
+                 </span>
+                 <?php 
+                 if ( $has_role_visibility ) : 
+                     $roles_count = count( $role_visibility_roles );
+                     $roles_list = implode( ', ', array_slice( $role_visibility_roles, 0, 3 ) );
+                     if ( $roles_count > 3 ) {
+                         $roles_list .= '...';
+                     }
+                     ?>
+                     <span class="ezd-visibility-badge ezd-visibility-role" title="<?php echo esc_attr( sprintf( __( 'Role-Based Access: %s', 'eazydocs' ), $roles_list ) ); ?>">
+                         <span class="dashicons dashicons-groups"></span>
+                     </span>
+                     <?php 
+                 endif;
+             elseif ( $post_status === 'draft' ) :
+                 ?>
+                 <span class="ezd-visibility-badge ezd-visibility-draft" title="<?php esc_attr_e( 'Draft', 'eazydocs' ); ?>">
+                     <span class="dashicons dashicons-edit"></span>
+                 </span>
+                 <?php
+             endif;
+             
+             // Check if password protected
+             $post = get_post( $doc_item );
+             if ( ! empty( $post->post_password ) ) :
+                 ?>
+                 <span class="ezd-visibility-badge ezd-visibility-protected" title="<?php esc_attr_e( 'Password Protected', 'eazydocs' ); ?>">
+                     <span class="dashicons dashicons-admin-network"></span>
+                 </span>
+                 <?php
+             endif;
+             
              if ( $child_count > 0 ) : 
                 ?>
                  <span class="count ezd-badge">

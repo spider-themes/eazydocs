@@ -9,7 +9,7 @@
 			 * @type {string}
 			 */
 			let bgColor = window
-				.getComputedStyle(document.body, null)
+				.getComputedStyle(document.querySelector('.doc_documentation_area'), null)
 				.getPropertyValue('background-color'),
 				bgColorRGBA = bgColor.replace(')', ', 0)').replace('rgb', 'rgba');
 

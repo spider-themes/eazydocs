@@ -1,0 +1,904 @@
+/**
+ * EazyDocs Settings Page Styles
+ * 
+ * This file contains all styles specific to the Settings page (CSF Framework).
+ * Loaded only on eazydocs-settings page for better performance.
+ * 
+ * @package EazyDocs
+ */
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CODESTAR FRAMEWORK BASE STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Container
+.csf-options {
+	max-width: 1400px;
+}
+
+// Navigation
+.csf-nav .csf-tab-icon {
+	font-size: 15px !important;
+}
+
+.csf-nav ul li .csf-arrow:after {
+	content: "\f347";
+	font-family: dashicons;
+	font-size: 12px;
+}
+
+// Subtitle text
+.csf-subtitle-text {
+	line-height: 1.2;
+}
+
+// Field layout
+.csf-field {
+	.csf-title {
+		width: 30% !important;
+	}
+
+	.csf-fieldset {
+		width: calc(70% - 20px) !important;
+	}
+
+	&.csf-field-heading .csf-title {
+		width: 100% !important;
+	}
+}
+
+.csf-field-heading .csf-title {
+	width: 100% !important;
+}
+
+.csf-field-text input {
+	width: 70%;
+}
+
+// Image select
+.csf-field-image_select {
+	figure {
+		width: 100px;
+
+		&:before {
+			content: "\f147";
+			font-family: dashicons;
+			font-size: 14px;
+		}
+	}
+
+	img {
+		opacity: 0.6;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	.csf--active img {
+		opacity: 1;
+	}
+}
+
+// Chosen dropdown icons
+.csf-field .chosen-container-single .chosen-single {
+	div b:before {
+		content: "\f347";
+		font-family: dashicons;
+		font-size: 12px;
+	}
+
+	abbr:before {
+		content: "\f335" !important;
+		font-family: dashicons;
+	}
+}
+
+.csf-field .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:before {
+	content: "\f335" !important;
+	font-family: dashicons;
+}
+
+.csf-field .chosen-container-active.chosen-with-drop .chosen-single div b:before {
+	content: "\f343";
+	font-family: dashicons;
+}
+
+// Repeater
+.csf-field-repeater .csf-repeater-content {
+	background-color: #f7f7f78f;
+}
+
+// Fieldset custom layout
+.csf-fieldset {
+	.csf-fieldset-content {
+		&[data-depend-id="footnotes_colum_opt"] {
+			border: none !important;
+			box-shadow: none;
+			outline: none;
+
+			.csf-field {
+				float: left;
+				border: none;
+				padding: 0;
+
+				&:last-child {
+					min-width: 240px;
+					margin-left: 25px;
+
+					.csf-title {
+						margin-top: 4px;
+					}
+				}
+			}
+		}
+	}
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PRO/PROMAX BADGES & RESTRICTIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Base styles for pro notice fields
+body.ezd_no_promax .eazydocs-promax-notice.csf-field,
+.eazydocs-pro-notice.csf-field {
+	position: relative;
+	cursor: pointer;
+}
+
+// Theme-specific overrides
+body.valid.docy .active-theme-docy .csf-title,
+body.valid.docy .active-theme-docy .csf-fieldset,
+body.valid.docly .active-theme-docly .csf-title,
+body.valid.docly .active-theme-docly .csf-fieldset,
+body.valid .active-theme .csf-title,
+body.valid .active-theme .csf-fieldset {
+	pointer-events: inherit;
+	opacity: 1;
+}
+
+body.valid.docy .active-theme-docy.csf-field::before,
+body.valid.docy .active-theme-docy.csf-field::after,
+body.valid.docly .active-theme-docly.csf-field::before,
+body.valid.docly .active-theme-docly.csf-field::after,
+body.valid .active-theme.csf-field::before,
+body.valid .active-theme.csf-field::after {
+	display: none;
+}
+
+// Case 1: Body NOT ezd-premium - show Pro badge
+body:not(.ezd-premium) {
+	.eazydocs-pro-notice.csf-field:not([class*="active-theme"]) {
+		&::before {
+			content: "Pro";
+			background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+			color: #fff;
+			padding: 4px 12px;
+			border-radius: 4px;
+			font-size: 11px;
+			font-weight: 600;
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+
+		&::after {
+			position: absolute;
+			content: "";
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: transparent;
+			z-index: 2;
+		}
+	}
+
+	.eazydocs-pro-notice:not([class*="active-theme"]) .csf-title,
+	.eazydocs-pro-notice:not([class*="active-theme"]) .csf-fieldset {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}
+
+// Case 2: Body NOT valid - show Pro badge on theme-specific fields
+body:not(.valid):not(.ezd-premium) {
+	.eazydocs-pro-notice.csf-field[class*="active-theme"] {
+		&::before {
+			content: "Pro";
+			background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+			color: #fff;
+			padding: 4px 12px;
+			border-radius: 4px;
+			font-size: 11px;
+			font-weight: 600;
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+
+		&::after {
+			position: absolute;
+			content: "";
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: transparent;
+			z-index: 2;
+		}
+	}
+
+	.eazydocs-pro-notice[class*="active-theme"] .csf-title,
+	.eazydocs-pro-notice[class*="active-theme"] .csf-fieldset {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}
+
+// Pro Max badge
+body.ezd_no_promax {
+	.eazydocs-promax-notice {
+		&.csf-field::before {
+			content: "Pro Max";
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: #fff;
+			padding: 4px 12px;
+			border-radius: 4px;
+			font-size: 11px;
+			font-weight: 600;
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+
+		.csf-title,
+		.csf-fieldset {
+			opacity: 0.5;
+			pointer-events: none;
+		}
+	}
+}
+
+// AMA theme override
+body.ama {
+	.eazydocs-pro-notice.active-theme-ama {
+		.csf-title,
+		.csf-fieldset {
+			opacity: unset !important;
+			pointer-events: unset !important;
+		}
+
+		&.csf-field::before,
+		&.csf-field::after {
+			display: none;
+		}
+	}
+}
+
+// Upgrade link button
+.upgrade-link {
+	background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+	color: #fff;
+	padding: 4px 10px;
+	border-radius: 4px;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 12px;
+
+	&:hover {
+		opacity: 0.9;
+		color: #fff;
+	}
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SETTINGS PAGE CUSTOM COMPONENTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Feature Introduction Cards
+.ezd-settings-intro {
+	background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+	color: #fff;
+	padding: 25px 30px;
+	border-radius: 12px;
+	margin-bottom: 25px;
+
+	&__inner {
+		display: flex;
+		align-items: flex-start;
+		gap: 20px;
+	}
+
+	&__icon {
+		background: rgba(255, 255, 255, 0.15);
+		padding: 15px;
+		border-radius: 10px;
+		flex-shrink: 0;
+
+		.dashicons {
+			font-size: 32px;
+			width: 32px;
+			height: 32px;
+			color: #ffd700;
+		}
+	}
+
+	&__content {
+		h2 {
+			margin: 0 0 10px;
+			font-size: 22px;
+			font-weight: 600;
+			color: #fff;
+		}
+
+		p {
+			margin: 0 0 15px;
+			font-size: 14px;
+			line-height: 1.6;
+			opacity: 0.9;
+		}
+	}
+
+	&__features {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 15px;
+		font-size: 13px;
+
+		span {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+
+			.dashicons {
+				color: #48bb78;
+			}
+		}
+	}
+
+	// Password protected variant
+	&--green {
+		background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+
+		.ezd-settings-intro__icon .dashicons {
+			color: #a7f3d0;
+		}
+	}
+}
+
+// Quick Start Guide
+.ezd-settings-quickstart {
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 10px;
+	padding: 20px;
+	margin-bottom: 20px;
+
+	&__title {
+		margin: 0 0 15px;
+		font-size: 16px;
+		font-weight: 600;
+		color: #1a202c;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+
+		.dashicons {
+			color: #ecc94b;
+		}
+	}
+
+	&__steps {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 15px;
+	}
+
+	&__step {
+		background: #fff;
+		border-radius: 8px;
+		padding: 15px;
+		border-left: 4px solid #5b86e5;
+
+		&--step-2 {
+			border-left-color: #38a169;
+		}
+
+		&--step-3 {
+			border-left-color: #805ad5;
+		}
+	}
+
+	&__step-label {
+		font-weight: 600;
+		font-size: 12px;
+		margin-bottom: 5px;
+		color: #5b86e5;
+
+		.ezd-settings-quickstart__step--step-2 & {
+			color: #38a169;
+		}
+
+		.ezd-settings-quickstart__step--step-3 & {
+			color: #805ad5;
+		}
+	}
+
+	&__step-text {
+		font-size: 13px;
+		color: #4a5568;
+		line-height: 1.5;
+	}
+}
+
+// Info/Warning Boxes
+.ezd-settings-info {
+	border-radius: 8px;
+	padding: 15px;
+	margin-bottom: 15px;
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+
+	&--warning {
+		background: #fffbeb;
+		border: 1px solid #fcd34d;
+
+		.dashicons {
+			color: #d97706;
+			flex-shrink: 0;
+			margin-top: 2px;
+		}
+
+		strong {
+			color: #92400e;
+		}
+
+		p {
+			margin: 5px 0 0;
+			font-size: 13px;
+			color: #78350f;
+		}
+	}
+
+	&--pro {
+		background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+		border: 1px solid #c4b5fd;
+		flex-direction: column;
+		gap: 0;
+
+		h4 {
+			margin: 0 0 10px;
+			font-size: 15px;
+			font-weight: 600;
+			color: #5b21b6;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+
+			.dashicons {
+				color: #7c3aed;
+			}
+		}
+
+		p {
+			margin: 0 0 12px;
+			font-size: 13px;
+			color: #4c1d95;
+			line-height: 1.6;
+		}
+	}
+
+	&__example {
+		background: #fff;
+		border-radius: 6px;
+		padding: 12px;
+		font-size: 12px;
+		color: #6b21a8;
+
+		strong {
+			color: #5b21b6;
+		}
+	}
+}
+
+// How It Works Box
+.ezd-settings-howto {
+	background: rgba(255, 255, 255, 0.8);
+	padding: 10px;
+	border-radius: 4px;
+	font-size: 13px;
+	border: 1px dashed #c3c4c7;
+	margin-top: 10px;
+
+	strong {
+		color: #1d2327;
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	ul {
+		margin: 5px 0 0 20px;
+		padding: 0;
+		color: #50575e;
+
+		li {
+			margin-bottom: 3px;
+		}
+	}
+}
+
+// Badges
+.ezd-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 4px;
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-left: 8px;
+
+	&--pro {
+		background: linear-gradient(135deg, #5b86e5 0%, #36d1dc 100%);
+		color: #fff;
+	}
+
+	&--promax {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: #fff;
+	}
+
+	&--new {
+		background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+		color: #fff;
+	}
+}
+
+// SMTP Configuration Notice
+.ezd-smtp-notice {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 12px;
+  border: 1px solid #f59e0b;
+  margin-top: 10px;
+
+  .ezd-smtp-notice-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+
+    .dashicons {
+      font-size: 26px;
+      width: 26px;
+      height: 26px;
+      color: #fff;
+    }
+  }
+
+  .ezd-smtp-notice-content {
+    flex-grow: 1;
+
+    h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #78350f;
+      margin: 0 0 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #92400e;
+      margin: 0 0 12px;
+      line-height: 1.6;
+    }
+
+    .ezd-smtp-benefits-title,
+    .ezd-smtp-plugins-title {
+      font-weight: 600;
+      color: #78350f;
+      margin: 16px 0 8px;
+    }
+
+    .ezd-smtp-benefits {
+      margin: 0 0 16px;
+      padding-left: 0;
+      list-style: none;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #92400e;
+        margin-bottom: 6px;
+        line-height: 1.5;
+
+        .dashicons {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          color: #16a34a;
+        }
+      }
+    }
+
+    .ezd-smtp-plugins {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      .ezd-smtp-plugin {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: #fff;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #78350f;
+        text-decoration: none;
+        border: 1px solid #fcd34d;
+        transition: all 0.2s;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+        .dashicons {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          color: #22c55e;
+        }
+
+        .ezd-plugin-name {
+          color: #0f172a;
+        }
+
+        .ezd-plugin-badge {
+          padding: 2px 8px;
+          background: #3b82f6;
+          color: #fff;
+          font-size: 10px;
+          font-weight: 700;
+          border-radius: 10px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+
+          &.ezd-badge-free {
+            background: #22c55e;
+          }
+        }
+
+        &:hover {
+          background: #fffbeb;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          border-color: #f59e0b;
+        }
+      }
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CUSTOMIZER OVERRIDES
+// ═══════════════════════════════════════════════════════════════════════════
+
+#customize-controls .csf-field-image_select img {
+	width: 85px;
+	height: auto;
+}
+
+.customize-pane-parent {
+	li#accordion-section-shortcode_fields,
+	li#accordion-section-role_manager_fields,
+	li#accordion-section-design_fields {
+		display: none !important;
+	}
+}
+
+/** === Email Reports Settings Enhanced Styles === **/
+.ezd-email-reports-header {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 12px;
+  border: 1px solid #bae6fd;
+  margin-bottom: 10px;
+
+  .ezd-header-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+
+    .dashicons {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      color: #fff;
+    }
+  }
+
+  .ezd-header-content {
+    flex-grow: 1;
+
+    h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-size: 14px;
+      color: #475569;
+      margin: 0 0 16px;
+      line-height: 1.6;
+    }
+  }
+
+  .ezd-feature-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    .ezd-highlight-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #fff;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      transition: all 0.2s;
+
+      .dashicons {
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+        color: #22c55e;
+      }
+
+      &:hover {
+        background: #f0f9ff;
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+// Report Status Cards
+.ezd-email-report-status-wrapper {
+  display: flex;
+  gap: 16px;
+  padding: 0;
+  margin-bottom: 10px;
+
+  .ezd-report-status-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .ezd-status-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fef3c7;
+      border-radius: 12px;
+
+      .dashicons {
+        font-size: 22px;
+        width: 22px;
+        height: 22px;
+        color: #f59e0b;
+      }
+
+      &.ezd-status-icon-next {
+        background: #dcfce7;
+
+        .dashicons {
+          color: #22c55e;
+        }
+      }
+    }
+
+    .ezd-status-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .ezd-status-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .ezd-status-value {
+        font-size: 15px;
+        font-weight: 600;
+        color: #0f172a;
+      }
+    }
+  }
+}
+
+// Responsive adjustments for Email Reports
+@media (max-width: 768px) {
+  .ezd-email-reports-header {
+    flex-direction: column;
+    text-align: center;
+
+    .ezd-header-icon {
+      margin: 0 auto;
+    }
+
+    .ezd-feature-highlights {
+      justify-content: center;
+    }
+  }
+
+  .ezd-email-report-status-wrapper {
+    flex-direction: column;
+  }
+
+  .ezd-email-reports-help .ezd-help-card {
+    flex-direction: column;
+    text-align: center;
+
+    .ezd-help-icon {
+      margin: 0 auto;
+    }
+  }
+
+  .ezd-smtp-notice {
+    flex-direction: column;
+
+    .ezd-smtp-notice-icon {
+      margin: 0 auto;
+    }
+
+    .ezd-smtp-notice-content {
+      text-align: center;
+
+      .ezd-smtp-benefits li {
+        justify-content: center;
+      }
+
+      .ezd-smtp-plugins {
+        justify-content: center;
+      }
+    }
+  }
+}

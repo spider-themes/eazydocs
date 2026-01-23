@@ -323,33 +323,3 @@ button.nestable--button.nestable--expand {
 		}
 	}
 }
-
-/* Doc visibility */
-.docs_visibility_wrapper p {
-	margin: 0 0 30px;
-	font-size: 14px;
-}
-
-.docs_visibility_field_wrap {
-	text-align: left;
-}
-
-.docs_visibility_field_wrap label {
-	margin-right: 10px;
-	margin-top: -5px;
-	display: inline-block;
-}
-
-.docs_visibility_field_wrap input#ezd_password_input {
-	width: -webkit-fill-available;
-	border: 1px solid gray;
-	margin-top: 10px;
-	padding: 0px 10px;
-	font-size: 15px;
-	color: black;
-}
-
-.docs_visibility_field_wrap input#ezd_password_input:focus {
-	outline: none;
-	box-shadow: none;
-}

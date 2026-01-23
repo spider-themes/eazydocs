@@ -1,5 +1,4 @@
 <?php
-
 namespace EazyDocs\Frontend;
 
 use Walker_Page;
@@ -33,21 +32,20 @@ class Walker_Docs extends Walker_Page {
 	 *
 	 * @see   Walker::$db_fields
 	 */
-	public $db_fields
-		= array(
-			'parent' => 'post_parent',
-			'id'     => 'ID',
-		);
+	public $db_fields = array(
+		'parent' => 'post_parent',
+		'id'     => 'ID',
+	);
 
-	public static $parent_item = false;
+	public static $parent_item       = false;
 	public static $parent_item_class = '';
 
 	private function get_item_spacing( $args ) {
-		return isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ? [ "\t", "\n" ] : [ "", "" ];
+		return isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ? array( "\t", "\n" ) : array( '', '' );
 	}
 
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat( "\t", $depth );
+		$indent  = str_repeat( "\t", $depth );
 		$output .= '<span class="icon"><i class="arrow_carrot-down"></i></span> </div>' . "\n$indent<ul class='dropdown_nav'>\n";
 
 		if ( $args['has_children'] && $depth == 0 ) {
@@ -70,12 +68,11 @@ class Walker_Docs extends Walker_Page {
 	 * @see   Walker::end_lvl()
 	 *
 	 * @since 2.1.0
-	 *
 	 */
 	public function end_lvl( &$output, $depth = 0, $args = array() ) {
 		list( $t, $n ) = $this->get_item_spacing( $args );
-		$indent = str_repeat( $t, $depth );
-		$output .= "{$indent}</ul>{$n}";
+		$indent        = str_repeat( $t, $depth );
+		$output       .= "{$indent}</ul>{$n}";
 	}
 
 	/**
@@ -96,7 +93,7 @@ class Walker_Docs extends Walker_Page {
 		$icon_type = ezd_get_opt( 'doc_sec_icon_type', false );
 
 		list( $t, $n ) = $this->get_item_spacing( $args );
-		$indent = $depth ? str_repeat( $t, $depth ) : '';
+		$indent        = $depth ? str_repeat( $t, $depth ) : '';
 
 		$has_post_thumb = ! has_post_thumbnail( $page->ID ) ? 'no_icon' : '';
 		$has_child      = isset( $args['pages_with_children'][ $page->ID ] ) ? 'has_child' : '';
@@ -132,7 +129,6 @@ class Walker_Docs extends Walker_Page {
 		 * @see   wp_list_pages()
 		 *
 		 * @since 2.8.0
-		 *
 		 */
 		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
 		$css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . '"' : '';
@@ -153,14 +149,21 @@ class Walker_Docs extends Walker_Page {
 			$folder_closed = is_array( $doc_sec_icon ) && ! empty( $doc_sec_icon['url'] ) ? $doc_sec_icon['url'] : EAZYDOCS_IMG . '/icon/folder-closed.png';
 
 			$folder = "<img class='closed' src='$folder_closed' alt='" . esc_attr__( 'Folder icon closed', 'eazydocs' )
-			          . "'> <img class='open' src='$folder_open' alt='" . esc_attr__( 'Folder open icon', 'eazydocs' ) . "'>";
+						. "'> <img class='open' src='$folder_open' alt='" . esc_attr__( 'Folder open icon', 'eazydocs' ) . "'>";
 			$thumb  = $icon_type && has_post_thumbnail( $page->ID ) ? get_the_post_thumbnail( $page->ID ) : $folder;
 		}
 
 		$args['link_before'] = empty( $args['link_before'] ) ? $thumb : $args['link_before'];
-		$args['link_after']  = function_exists( 'ezdpro_badge' ) ? ezdpro_badge( $page->ID ) : '';
 
-		$atts                = [];
+		// Build link_after with badge and visibility lock
+		$link_after = function_exists( 'ezdpro_badge' ) ? ezdpro_badge( $page->ID ) : '';
+
+		// Add visibility lock icon for private/role-restricted docs
+		$link_after .= $this->get_visibility_lock_icon( $page );
+
+		$args['link_after'] = $link_after;
+
+		$atts                = array();
 		$atts['href']        = get_permalink( $page->ID );
 		$atts['data-postid'] = $page->ID;
 		if ( $page->ID == $current_page ) {
@@ -189,14 +192,13 @@ class Walker_Docs extends Walker_Page {
 		 * @param int     $current_page ID of the current page.
 		 *
 		 * @since 4.8.0
-		 *
 		 */
 		$atts = apply_filters( 'page_menu_link_attributes', $atts, $page, $depth, $args, $current_page );
 
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {
 			if ( ! empty( $value ) ) {
-				$value      = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
 				$attributes .= ' ' . $attr . '="' . $value . '"';
 			}
 		}
@@ -205,15 +207,14 @@ class Walker_Docs extends Walker_Page {
 			: apply_filters( 'the_title', $page->post_title, $page->ID );
 
 		$output .= $indent . sprintf(
-				'<li%s> %s <a%s>%s%s%s</a>',
-				$css_classes,
-				$doc_link,
-				$attributes,
-				$args['link_before'],
-				$post_title,
-				$args['link_after']
-			);
-
+			'<li%s> %s <a%s>%s%s%s</a>',
+			$css_classes,
+			$doc_link,
+			$attributes,
+			$args['link_before'],
+			$post_title,
+			$args['link_after']
+		);
 	}
 
 	/**
@@ -227,10 +228,64 @@ class Walker_Docs extends Walker_Page {
 	 * @since 2.1.0
 	 *
 	 * @see   Walker::end_el()
-	 *
 	 */
 	public function end_el( &$output, $page, $depth = 0, $args = array() ) {
 		list( $t, $n ) = $this->get_item_spacing( $args );
-		$output .= "</li>{$n}";
+		$output       .= "</li>{$n}";
+	}
+
+	/**
+	 * Get visibility lock icon HTML for a page.
+	 *
+	 * @param WP_Post|int $page The page/doc object or post ID.
+	 * @return string HTML for the lock icon or empty string.
+	 */
+	public function get_visibility_lock_icon( $page ) {
+		// Convert ID to post object if needed
+		if ( is_int( $page ) ) {
+			$page = \get_post( $page );
+		}
+
+		// Check if lock icon should be shown (from settings)
+		$show_lock_icon = ezd_get_opt( 'role_visibility_show_lock_icon', true );
+		if ( ! $show_lock_icon ) {
+			return '';
+		}
+
+		$output       = '';
+		$is_private   = $page->post_status == 'private';
+		$has_password = ! empty( $page->post_password );
+
+		// Check for role-based visibility
+		$has_role_visibility = false;
+		if ( function_exists( 'ezd_is_promax' ) && ezd_is_promax() ) {
+			$role_visibility = get_post_meta( $page->ID, 'ezd_role_visibility', true );
+			if ( ! empty( $role_visibility ) && is_array( $role_visibility ) ) {
+				$has_role_visibility = true;
+			}
+		}
+
+		// Add lock icon for private docs
+		if ( $is_private ) {
+			$output .= '<span class="ezd-doc-lock ezd-lock-private" title="' . esc_attr__( 'Private Doc', 'eazydocs' ) . '">';
+			$output .= '<i class="icon_lock"></i>';
+			$output .= '</span>';
+		}
+
+		// Add role icon for role-restricted docs
+		if ( $has_role_visibility ) {
+			$output .= '<span class="ezd-doc-lock ezd-lock-role" title="' . esc_attr__( 'Role Restricted', 'eazydocs' ) . '">';
+			$output .= '<i class="icon_group"></i>';
+			$output .= '</span>';
+		}
+
+		// Add lock icon for password-protected docs
+		if ( $has_password ) {
+			$output .= '<span class="ezd-doc-lock ezd-lock-protected" title="' . esc_attr__( 'Password Protected', 'eazydocs' ) . '">';
+			$output .= '<i class="icon_key"></i>';
+			$output .= '</span>';
+		}
+
+		return $output;
 	}
 }

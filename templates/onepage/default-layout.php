@@ -36,7 +36,7 @@ $children         = wp_list_pages( array(
 						<nav class="scroll op-docs-sidebar">
 							<ul class="ezd-list-unstyled nav-sidebar default-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
 								<?php
-								echo wp_kses_post(wp_list_pages( array(
+								$nav_html = wp_list_pages( array(
 									'title_li'  => '',
 									'order'     => 'menu_order',
 									'child_of'  => $child_of_id,
@@ -44,7 +44,8 @@ $children         = wp_list_pages( array(
 									'post_type' => 'docs',
 									'walker'    => new EazyDocs_Walker_Onepage(),
 									'depth'     => 4
-								) ));
+									) );
+								echo wp_kses( $nav_html, ezd_kses_allowed_docs_nav_html() );
 								?>
 							</ul>
 						</nav>

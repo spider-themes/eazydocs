@@ -356,3 +356,88 @@ body.rtl {
     padding-right: 0px !important;
   }
 }
+
+// Visibility Badges - For identifying doc visibility status in admin
+.ezd-visibility-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin-left: 6px;
+  cursor: help;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  .dashicons {
+    font-size: 13px;
+    width: 13px;
+    height: 13px;
+    line-height: 13px;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+// Private badge - Yellow/Orange
+.ezd-visibility-private {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.2) 100%);
+  border: 1px solid rgba(255, 152, 0, 0.3);
+
+  .dashicons {
+    color: #e65100;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.25) 0%, rgba(255, 152, 0, 0.3) 100%);
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.25);
+  }
+}
+
+// Role-based access badge - Purple
+.ezd-visibility-role {
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.15) 0%, rgba(103, 58, 183, 0.2) 100%);
+  border: 1px solid rgba(103, 58, 183, 0.3);
+
+  .dashicons {
+    color: #7b1fa2;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.25) 0%, rgba(103, 58, 183, 0.3) 100%);
+    box-shadow: 0 2px 8px rgba(103, 58, 183, 0.25);
+  }
+}
+
+// Draft badge - Gray
+.ezd-visibility-draft {
+  background: linear-gradient(135deg, rgba(158, 158, 158, 0.15) 0%, rgba(97, 97, 97, 0.2) 100%);
+  border: 1px solid rgba(97, 97, 97, 0.3);
+
+  .dashicons {
+    color: #616161;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(158, 158, 158, 0.25) 0%, rgba(97, 97, 97, 0.3) 100%);
+    box-shadow: 0 2px 8px rgba(97, 97, 97, 0.25);
+  }
+}
+
+// Password protected badge - Blue
+.ezd-visibility-protected {
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(25, 118, 210, 0.2) 100%);
+  border: 1px solid rgba(25, 118, 210, 0.3);
+
+  .dashicons {
+    color: #1565c0;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.25) 0%, rgba(25, 118, 210, 0.3) 100%);
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.25);
+  }
+}

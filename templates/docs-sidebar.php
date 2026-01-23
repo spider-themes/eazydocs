@@ -45,6 +45,7 @@ if ( $credit_enable == '1' ) {
 	$credit_text_wrap = 'credit-text-container';
 }
 ?>
+
 <div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu left-column ezd-sticky-lg-top">
     <aside class="doc_left_sidebarlist <?php echo esc_attr( $credit_text_wrap .' '. $nav_sidebar_active ); ?>">
         <div class="open_icon" id="mobile-left-toggle">
@@ -89,14 +90,15 @@ if ( $credit_enable == '1' ) {
                     'echo'        => false,
                     'post_type'   => 'docs',
                     'walker'      => $doc_walker,
-                    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private', 'draft' ] : ['publish'],
+                    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private', 'draft' ] : ['publish', 'private'],
                 ];
 
                 // If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
                 if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
                     $args['child_of'] = $parent;
                 }
-                echo wp_kses_post(wp_list_pages($args));
+                $nav_html = wp_list_pages( $args );
+                echo wp_kses( $nav_html, ezd_kses_allowed_docs_nav_html() );
                 ?>
             </ul>
             <?php
