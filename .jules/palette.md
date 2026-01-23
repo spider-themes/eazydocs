@@ -5,3 +5,7 @@
 ## 2024-05-21 - Accessible Progress Bars in Lists
 **Learning:** Native `<progress>` elements are great but often lack accessible context when used in lists or tables (like voting results). The `title` attribute is insufficient for screen readers. Also, duplicate IDs (like `id="file"` in a loop) are common in legacy loops.
 **Action:** Always add `aria-label` with the full context (e.g., "5 Positive votes, 2 Negative votes") to `<progress>` elements. Ensure IDs are unique or removed if not needed by JS/CSS.
+
+## 2024-05-22 - Keyboard Access for Semantic-less Filters
+**Learning:** Admin dashboards often use `<ul>`/`<li>` for filter tabs with inline `onclick` handlers, rendering them inaccessible to keyboard users.
+**Action:** Retrofit these with `role="button"`, `tabindex="0"`, and inline `onkeydown` handlers (for Enter/Space) to enable keyboard access without altering the markup structure or breaking existing styles.
