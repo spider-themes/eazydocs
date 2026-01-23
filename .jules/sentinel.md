@@ -7,3 +7,8 @@
 **Vulnerability:** `edit_doc_one_page` in `includes/Edit_OnePage.php` checked generic `edit_posts` capability but allowed modifying any `onepage-docs` post. It also stored content from `$_GET` without sanitization.
 **Learning:** Legacy or custom edit handlers often miss the standard `edit_post` capability check found in core handlers. `$_GET` parameters can be vector for Stored XSS if not sanitized.
 **Prevention:** Enforce `current_user_can('edit_post', $id)` for all specific post updates. Sanitize all content with `wp_kses_post` or similar before saving to post meta.
+
+## 2026-02-28 – Unauthorized Private Doc Access in AJAX Search
+**Vulnerability:** `eazydocs_search_results` in `includes/Frontend/Ajax.php` explicitly allowed `private` posts to be searched by any logged-in user (Subscribers), leaking titles and existence of admin-only content.
+**Learning:** Developers often confuse `is_user_logged_in()` with specific permission checks. Relying on "logged in" for access control exposes private data to low-privileged users.
+**Prevention:** Always check specific capabilities (`read_private_posts` or custom caps) before including privileged content types in queries.
