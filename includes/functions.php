@@ -1460,14 +1460,15 @@ add_filter('body_class', 'ezd_single_banner');
  * Editor & Administrator access
  */
 function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
-	if ( $action == 'delete' && get_current_user_id() == get_post_field( 'post_author', $post_id ) ) {
-		return true;
-	} elseif ( $action == 'edit' && current_user_can( 'edit_docs' ) ) {
-		return true;
-	} elseif ( current_user_can('manage_options') ) {
-		return true;
+	if ( empty( $post_id ) ) {
+		return current_user_can( 'edit_docs' ) || current_user_can( 'manage_options' );
 	}
-	return false;
+
+	if ( $action == 'delete' ) {
+		return current_user_can( 'delete_doc', $post_id ) || current_user_can( 'manage_options' );
+	}
+
+	return current_user_can( 'edit_doc', $post_id ) || current_user_can( 'manage_options' );
 }
 
 /**
@@ -1556,8 +1557,8 @@ function ezd_perform_edit_delete_actions( $action = 'delete', $docID = 0 ){
 	$current_user_id = get_current_user_id();
 	$inline_styles   = "margin: 50px auto; background: #f5f3f3;padding: 10px 80px;	width: max-content;	font-size: 16px;font-weight: 500;font-family: system-ui;border-radius: 3px;	color: #363636;";
 
-	// Check if the current user has the 'delete_posts' capability
-	if ( current_user_can($action.'_posts') && $docID ) {
+	// Check if the current user has the documentation specific capability
+	if ( current_user_can( $action . '_doc', $docID ) && $docID ) {
 		// Check if the current user is the author of the post
 		$post_author_id = (int) get_post_field('post_author', $docID);
 
@@ -1919,7 +1920,7 @@ add_action( 'init', 'ezd_read_private_docs_cap_to_user' );
  */
 function ezd_docs_cap_to_user() {
 	$collaboration_roles = ezd_get_opt( 'ezd_add_editable_roles' );
-	$write_access_roles   = ezd_get_opt( 'docs-write-access' );
+	$write_access_roles  = ezd_get_opt( 'docs-write-access' );
 	$default_roles       = array( 'administrator', 'editor', 'author' );
 
 	if ( ! is_array( $collaboration_roles ) ) {
@@ -1933,18 +1934,22 @@ function ezd_docs_cap_to_user() {
 	$active_roles = array_unique( array_merge( $collaboration_roles, $write_access_roles ) );
 	$active_roles = ! empty( $active_roles ) ? $active_roles : $default_roles;
 
-	$doc_caps = array(
+	$author_caps = array(
 		'edit_doc',
 		'edit_docs',
-		'edit_others_docs',
-		'edit_private_docs',
 		'publish_docs',
-		'edit_published_docs',
 		'delete_doc',
 		'delete_docs',
-		'delete_others_docs',
-		'delete_private_docs',
+		'edit_published_docs',
 		'delete_published_docs'
+	);
+
+	$manager_caps = array(
+		'edit_others_docs',
+		'delete_others_docs',
+		'edit_private_docs',
+		'read_private_docs',
+		'delete_private_docs',
 	);
 
 	// Get all roles
@@ -1959,15 +1964,26 @@ function ezd_docs_cap_to_user() {
 			continue;
 		}
 
-		// Assign or remove caps based on role
 		if ( in_array( $role_key, $active_roles, true ) ) {
-			// Add capabilities to active roles
-			foreach ( $doc_caps as $cap ) {
+			// Grant Author capabilities to all active roles
+			foreach ( $author_caps as $cap ) {
 				$role->add_cap( $cap );
 			}
+
+			// Grant Manager capabilities only to roles that can normally edit others' posts
+			if ( $role->has_cap( 'edit_others_posts' ) ) {
+				foreach ( $manager_caps as $cap ) {
+					$role->add_cap( $cap );
+				}
+			} else {
+				foreach ( $manager_caps as $cap ) {
+					$role->remove_cap( $cap );
+				}
+			}
 		} else {
-			// Remove capabilities from inactive roles
-			foreach ( $doc_caps as $cap ) {
+			// Remove all documentation capabilities from inactive roles
+			$all_caps = array_merge( $author_caps, $manager_caps );
+			foreach ( $all_caps as $cap ) {
 				$role->remove_cap( $cap );
 			}
 		}
