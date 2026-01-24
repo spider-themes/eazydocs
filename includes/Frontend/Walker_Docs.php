@@ -266,21 +266,21 @@ class Walker_Docs extends Walker_Page {
 		}
 
 		// Add lock icon for private docs
-		if ( $is_private ) {
+		if ( $is_private && !is_user_logged_in() ) {
 			$output .= '<span class="ezd-doc-lock ezd-lock-private" title="' . esc_attr__( 'Private Doc', 'eazydocs' ) . '">';
 			$output .= '<i class="icon_lock"></i>';
 			$output .= '</span>';
 		}
 
 		// Add role icon for role-restricted docs
-		if ( $has_role_visibility ) {
+		if ( $has_role_visibility && !is_user_logged_in() ) {
 			$output .= '<span class="ezd-doc-lock ezd-lock-role" title="' . esc_attr__( 'Role Restricted', 'eazydocs' ) . '">';
 			$output .= '<i class="icon_group"></i>';
 			$output .= '</span>';
 		}
 
 		// Add lock icon for password-protected docs
-		if ( $has_password ) {
+		if ( $has_password && !is_user_logged_in() ) {
 			$output .= '<span class="ezd-doc-lock ezd-lock-protected" title="' . esc_attr__( 'Password Protected', 'eazydocs' ) . '">';
 			$output .= '<i class="icon_key"></i>';
 			$output .= '</span>';
