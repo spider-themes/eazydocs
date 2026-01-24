@@ -1,15 +1,14 @@
 /**
  * Custom Functions
  */
-export function doc_ids( arr ) {
-    var doc_ids = '';
-    if ( arr ) {
-        for ( let i = 0; i < arr.length; i++ ) {
-            let doc_split = arr[i].split('|')
-            let doc_id = doc_split[0].trim()
-            let comma = i === arr.length-1 ? '' : ','
-            doc_ids += doc_id + comma
-        }
-    }
-    return doc_ids
+export function doc_ids(arr) {
+	if (!arr) {
+		return '';
+	}
+	return arr
+		.map((item) => {
+			const index = item.indexOf('|');
+			return (index === -1 ? item : item.substring(0, index)).trim();
+		})
+		.join(',');
 }
