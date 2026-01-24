@@ -17,9 +17,18 @@ function eazydocs_feedback_email() {
 
 	check_ajax_referer( 'eazydocs-ajax', 'security' );
 
+	// Sentinel: Rate limit check (10 minutes)
+	$user_ip       = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+	$transient_key = 'ezd_feedback_limit_' . md5( $user_ip );
+	if ( get_transient( $transient_key ) ) {
+		wp_send_json_error( esc_html__( 'Please wait before sending another feedback.', 'eazydocs' ) );
+	}
+	set_transient( $transient_key, true, 10 * MINUTE_IN_SECONDS );
+
 	if ( isset( $_POST['email'] ) ) {
 		$admin_email      = ezd_get_opt( 'feedback-admin-email', get_option( 'admin_email' ) );
 		$author           = ! empty ( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+		$author           = str_replace( [ "\r", "\n" ], '', $author ); // Prevent header injection
 		$subject          = ! empty ( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
 		$feedback_subject = ! empty ( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
 		$email            = ! empty ( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
