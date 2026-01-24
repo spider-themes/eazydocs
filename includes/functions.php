@@ -1462,7 +1462,7 @@ add_filter('body_class', 'ezd_single_banner');
 function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
 	if ( $action == 'delete' && get_current_user_id() == get_post_field( 'post_author', $post_id ) ) {
 		return true;
-	} elseif ( $action == 'edit' && current_user_can('edit_posts') ) {
+	} elseif ( $action == 'edit' && current_user_can( 'edit_docs' ) ) {
 		return true;
 	} elseif ( current_user_can('manage_options') ) {
 		return true;
@@ -1918,49 +1918,60 @@ add_action( 'init', 'ezd_read_private_docs_cap_to_user' );
  * Assigns or removes the 'add or edit_docs' capability to user roles
  */
 function ezd_docs_cap_to_user() {
-    $users_role 	= ezd_get_opt( 'ezd_add_editable_roles' );
-	$default_roles 	= ['administrator', 'editor', 'author'];
-	$active_roles 	= is_array( $users_role ) && ! empty( $users_role ) ? $users_role : $default_roles;
+	$collaboration_roles = ezd_get_opt( 'ezd_add_editable_roles' );
+	$write_access_roles   = ezd_get_opt( 'docs-write-access' );
+	$default_roles       = array( 'administrator', 'editor', 'author' );
 
-    $doc_caps = [
-        'edit_doc',
-        'edit_docs',
-        'edit_others_docs',
-        'edit_private_docs',
-        'publish_docs',
-        'edit_published_docs',
-        'delete_doc',
-        'delete_docs',
-        'delete_others_docs',
-        'delete_private_docs',
-        'delete_published_docs'
-    ];
+	if ( ! is_array( $collaboration_roles ) ) {
+		$collaboration_roles = array_filter( array( $collaboration_roles ) );
+	}
 
-    // Get all roles
-    global $wp_roles;
-    if ( ! isset( $wp_roles ) ) {
-        $wp_roles = new WP_Roles();
-    }
+	if ( ! is_array( $write_access_roles ) ) {
+		$write_access_roles = array_filter( array( $write_access_roles ) );
+	}
 
-    foreach ( $wp_roles->roles as $role_key => $role_data ) {
-        $role = get_role( $role_key );
-        if ( ! $role ) {
-            continue;
-        }
+	$active_roles = array_unique( array_merge( $collaboration_roles, $write_access_roles ) );
+	$active_roles = ! empty( $active_roles ) ? $active_roles : $default_roles;
 
-        // Assign or remove caps based on role
-        if ( in_array( $role_key, $active_roles, true ) ) {
-            // Add capabilities to active roles
-            foreach ( $doc_caps as $cap ) {
-                $role->add_cap( $cap );
-            }
-        } else {
-            // Remove capabilities from inactive roles
-            foreach ( $doc_caps as $cap ) {
-                $role->remove_cap( $cap );
-            }
-        }
-    }
+	$doc_caps = array(
+		'edit_doc',
+		'edit_docs',
+		'edit_others_docs',
+		'edit_private_docs',
+		'publish_docs',
+		'edit_published_docs',
+		'delete_doc',
+		'delete_docs',
+		'delete_others_docs',
+		'delete_private_docs',
+		'delete_published_docs'
+	);
+
+	// Get all roles
+	global $wp_roles;
+	if ( ! isset( $wp_roles ) ) {
+		$wp_roles = new WP_Roles();
+	}
+
+	foreach ( $wp_roles->roles as $role_key => $role_data ) {
+		$role = get_role( $role_key );
+		if ( ! $role ) {
+			continue;
+		}
+
+		// Assign or remove caps based on role
+		if ( in_array( $role_key, $active_roles, true ) ) {
+			// Add capabilities to active roles
+			foreach ( $doc_caps as $cap ) {
+				$role->add_cap( $cap );
+			}
+		} else {
+			// Remove capabilities from inactive roles
+			foreach ( $doc_caps as $cap ) {
+				$role->remove_cap( $cap );
+			}
+		}
+	}
 }
 add_action( 'init', 'ezd_docs_cap_to_user' );
 

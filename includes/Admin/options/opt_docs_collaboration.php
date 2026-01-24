@@ -56,7 +56,7 @@ CSF::createSection( $prefix, array(
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 				array( 'docs_frontend_login_page', '!=', '' ),
-			),
+			)
 		),
 		
 		array(

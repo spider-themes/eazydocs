@@ -43,117 +43,96 @@ class Admin {
 	 * Register Menu
 	 */
 	public function eazyDocs_menu() {
-		$capabilites    	= 'manage_options';
-		$cz_capabilites 	= 'manage_options';
-		$sz_capabilites 	= 'manage_options';
-		$is_customizer 		= ezd_get_opt('customizer_visibility');
+		$is_customizer = ezd_get_opt( 'customizer_visibility' );
 
-		$user_id           	= get_current_user_id(); // get the current user's ID
-		$user              	= get_userdata( $user_id );
-		$current_user_role 	= '';
-		$default_roles     	= [ 'administrator', 'editor', 'author', 'contributor', 'subscriber' ];
+		$user_id           = get_current_user_id();
+		$user              = get_userdata( $user_id );
+		$current_user_roles = (array) $user->roles;
 
-		$current_rols 		= $user->caps;
-		$current_rols 		= array_keys( $current_rols );
-		$matched_roles     	= array_intersect( $default_roles, $current_rols );
-		$current_user_role 	= reset( $matched_roles );
+		// Documentation Authors Capabilities
+		$docs_write_access = ezd_get_opt( 'docs-write-access', array( 'administrator' ) );
+		$docs_write_access = is_array( $docs_write_access ) ? $docs_write_access : array( $docs_write_access );
 
-		$access    = ezd_get_opt( 'docs-write-access', 'administrator' );
-		$sz_access = ezd_get_opt( 'settings-edit-access', 'manage_options' );
-
-		$all_roles = '';
-		$sz_roles  = '';
-
-		if ( is_array( $access ) ) {
-			$all_roles = ! empty( $access ) ? implode( ',', $access ) : '';
+		$docs_capability = 'manage_options';
+		foreach ( $current_user_roles as $role ) {
+			if ( in_array( $role, $docs_write_access, true ) ) {
+				$docs_capability = 'edit_docs';
+				break;
+			}
 		}
-		$all_roled = explode( ',', $all_roles );
 
-		if ( is_array( $sz_access ) ) {
-			$sz_roles = ! empty( $sz_access ) ? implode( ',', $sz_access ) : '';
+		// Settings Managers Capabilities
+		$settings_capability = ezd_get_opt( 'settings-edit-access', 'manage_options' );
+		if ( ! in_array( $settings_capability, array( 'manage_options', 'publish_pages', 'publish_posts' ), true ) ) {
+			$settings_capability = 'manage_options';
 		}
-		$sz_roled = explode( ',', $sz_roles );
+
+		// Analytics Viewers Capabilities
+		$analytics_access = ezd_get_opt( 'analytics-access', array( 'administrator' ) );
+		$analytics_access = is_array( $analytics_access ) ? $analytics_access : array( $analytics_access );
+
+		$analytics_capability = 'manage_options';
+		$analytics_capability = 'manage_options';
+		foreach ( $current_user_roles as $role ) {
+			if ( in_array( $role, $analytics_access, true ) ) {
+				$analytics_capability = 'publish_pages';
+				break;
+			}
+		}
 
 		if ( ! function_exists( 'wp_get_current_user' ) ) {
-			include( ABSPATH . "wp-includes/pluggable.php" );
+			include ABSPATH . 'wp-includes/pluggable.php';
 		}
 
-		if ( in_array( $current_user_role, $all_roled ) ) {
-			switch ( $current_user_role ) {
-				case 'administrator':
-					$capabilites = 'manage_options';
-					break;
-
-				case 'editor':
-					$capabilites = 'publish_pages';
-					break;
-
-				case 'author':
-					$capabilites = 'publish_posts';
-					break;
-
-				case 'contributor':
-					$capabilites = 'edit_posts';
-					break;
-
-				case 'subscriber':
-					$capabilites = 'read';
-					break;
-			}
-		} else {
-			$capabilites = 'manage_options';
-		}
-		
 		$ezd_menu_title = ezd_get_opt( 'docs_menu_title' ) ?: ( class_exists( 'EZD_EazyDocsPro' ) ? esc_html__( 'EazyDocs Pro', 'eazydocs' ) : esc_html__( 'EazyDocs', 'eazydocs' ) );
-		
-		// Add Pro badge indicator for menu title
+
+		// Add Pro banner indicator for menu title
 		$menu_title_with_badge = $ezd_menu_title;
 		if ( class_exists( 'EZD_EazyDocsPro' ) || ezd_is_premium() ) {
 			$menu_title_with_badge = $ezd_menu_title . ' <span class="update-plugins" style="background-color: #00a32a; margin-left: 5px;"><span class="plugin-count" style="background-color: #00a32a;">PRO</span></span>';
 		}
-		
-		add_menu_page( $ezd_menu_title, $menu_title_with_badge, $capabilites, 'eazydocs', [ $this, 'eazydocs_dashboard' ], 'dashicons-media-document', 10 );
 
-		add_submenu_page( 'eazydocs', esc_html__( 'Dashboard', 'eazydocs' ), esc_html__( 'Dashboard', 'eazydocs' ), 'manage_options', 'eazydocs' );
-		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $capabilites, 'eazydocs-builder', [ $this, 'eazydocs_builder' ] );
+		add_menu_page( $ezd_menu_title, $menu_title_with_badge, $docs_capability, 'eazydocs', array( $this, 'eazydocs_dashboard' ), 'dashicons-media-document', 10 );
+
+		add_submenu_page( 'eazydocs', esc_html__( 'Dashboard', 'eazydocs' ), esc_html__( 'Dashboard', 'eazydocs' ), $docs_capability, 'eazydocs', array( $this, 'eazydocs_dashboard' ) );
+		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $docs_capability, 'eazydocs-builder', array( $this, 'eazydocs_builder' ) );
 
 		$current_theme = get_template();
 		if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
-			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Docs', 'eazydocs' ), esc_html__( 'OnePage Docs', 'eazydocs' ), 'manage_options', '/edit.php?post_type=onepage-docs' );
+			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Docs', 'eazydocs' ), esc_html__( 'OnePage Docs', 'eazydocs' ), $settings_capability, '/edit.php?post_type=onepage-docs' );
 		} else {
-			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Doc', 'eazydocs' ), esc_html__( 'OnePage Doc', 'eazydocs' ), 'manage_options', 'ezd-onepage-presents', [ $this, 'ezd_onepage_presents' ] );
+			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Doc', 'eazydocs' ), esc_html__( 'OnePage Doc', 'eazydocs' ), $settings_capability, 'ezd-onepage-presents', array( $this, 'ezd_onepage_presents' ) );
 		}
 
-		add_submenu_page( 'eazydocs', esc_html__( 'Tags', 'eazydocs' ), esc_html__( 'Tags', 'eazydocs' ), 'manage_options', '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
+		add_submenu_page( 'eazydocs', esc_html__( 'Tags', 'eazydocs' ), esc_html__( 'Tags', 'eazydocs' ), $docs_capability, '/edit-tags.php?taxonomy=doc_tag&post_type=docs' );
 
 		if ( ezd_is_premium() ) {
 			if ( $is_customizer ) {
-				add_submenu_page( 'eazydocs', esc_html__( 'Customize', 'eazydocs' ), esc_html__( 'Customize', 'eazydocs' ), 'manage_options', '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
+				add_submenu_page( 'eazydocs', esc_html__( 'Customize', 'eazydocs' ), esc_html__( 'Customize', 'eazydocs' ), $settings_capability, '/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page' );
 			}
 		}
 
 		if ( ezd_is_premium() ) {
 			do_action( 'ezd_pro_admin_menu' );
 		} else {
-			add_submenu_page( 'eazydocs', esc_html__( 'Users Feedback', 'eazydocs' ), esc_html__( 'Users Feedback', 'eazydocs' ), $capabilites, 'ezd-user-feedback', [ $this, 'ezd_feedback_presents' ] );
-			add_submenu_page( 'eazydocs', esc_html__( 'Analytics', 'eazydocs' ), esc_html__( 'Analytics', 'eazydocs' ), $capabilites, 'ezd-analytics', [ $this, 'ezd_analytics_presents' ] );
+			add_submenu_page( 'eazydocs', esc_html__( 'Users Feedback', 'eazydocs' ), esc_html__( 'Users Feedback', 'eazydocs' ), $analytics_capability, 'ezd-user-feedback', array( $this, 'ezd_feedback_presents' ) );
+			add_submenu_page( 'eazydocs', esc_html__( 'Analytics', 'eazydocs' ), esc_html__( 'Analytics', 'eazydocs' ), $analytics_capability, 'ezd-analytics', array( $this, 'ezd_analytics_presents' ) );
 		}
-		
+
 		// Only show FAQ Builder menu if neither the free nor pro version of Advanced Accordion Block is active
 		if ( ! function_exists( 'is_plugin_active' ) ) {
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-		
+
 		if ( ! is_plugin_active( 'advanced-accordion-block/advanced-accordion-block.php' ) && ! is_plugin_active( 'advanced-accordion-block-pro/advanced-accordion-block.php' ) ) {
-			add_submenu_page( 'eazydocs', esc_html__( 'FAQ Builder', 'eazydocs' ), esc_html__( 'FAQ Builder', 'eazydocs' ), $capabilites, 'ezd-faq-builder', [ $this, 'ezd_faq_builder' ] );
+			add_submenu_page( 'eazydocs', esc_html__( 'FAQ Builder', 'eazydocs' ), esc_html__( 'FAQ Builder', 'eazydocs' ), $docs_capability, 'ezd-faq-builder', array( $this, 'ezd_faq_builder' ) );
 		}
 
-		add_submenu_page( 'eazydocs', esc_html__( 'Integrated Themes', 'eazydocs' ), esc_html__( 'Integrated Themes', 'eazydocs' ), 'manage_options', 'ezd-integrated-themes', [ $this, 'ezd_integrated_themes' ] );
-		
-		add_submenu_page( 'eazydocs', esc_html__( 'Setup Wizard', 'eazydocs' ), esc_html__( 'Setup Wizard', 'eazydocs' ), 'manage_options', 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ] );
-		
-		add_submenu_page( 'eazydocs', esc_html__( 'Migration', 'eazydocs' ), esc_html__( 'Migration', 'eazydocs' ), 'manage_options', 'eazydocs-migration', [ $this, 'ezd_docs_migration' ] );
+		add_submenu_page( 'eazydocs', esc_html__( 'Integrated Themes', 'eazydocs' ), esc_html__( 'Integrated Themes', 'eazydocs' ), $settings_capability, 'ezd-integrated-themes', array( $this, 'ezd_integrated_themes' ) );
+		add_submenu_page( 'eazydocs', esc_html__( 'Setup Wizard', 'eazydocs' ), esc_html__( 'Setup Wizard', 'eazydocs' ), $settings_capability, 'eazydocs-initial-setup', array( $this, 'ezd_setup_wizard' ) );
+		add_submenu_page( 'eazydocs', esc_html__( 'Migration', 'eazydocs' ), esc_html__( 'Migration', 'eazydocs' ), $settings_capability, 'eazydocs-migration', array( $this, 'ezd_docs_migration' ) );
 	}
+
 
 	/**
 	 * Reorder EazyDocs submenu items into requested groups and insert separators.
@@ -308,6 +287,11 @@ class Admin {
 	 * @return string
 	 */
 	public function body_class( $classes ) {
+
+		if ( ! class_exists( 'EZD_EazyDocsPro' ) ) {
+			return $classes;
+		}
+
 		$current_theme = get_template();
 		$classes       .= ' ' . $current_theme;
 		switch ( $current_theme ) {
@@ -488,7 +472,7 @@ class Admin {
 	public function nestable_callback() {
 		check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
 
-		if ( ! current_user_can( 'edit_posts' ) ) {
+		if ( ! current_user_can( 'edit_docs' ) ) {
 			wp_send_json_error( [ 'message' => 'Insufficient permissions.' ] );
 		}
 
@@ -552,7 +536,7 @@ class Admin {
 	public function parent_nestable_callback() {
 		check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
 
-		if ( ! current_user_can( 'edit_posts' ) ) {
+		if ( ! current_user_can( 'edit_docs' ) ) {
 			wp_send_json_error( [ 'message' => 'Insufficient permissions.' ] );
 		}
 

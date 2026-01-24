@@ -159,7 +159,7 @@ if ( is_array( $depth_one_parents ) ) :
             </div>
 
             <?php 
-            if ( current_user_can( 'edit_posts' ) ) :                
+            if ( current_user_can( 'publish_docs' ) ) :                
                 $parent_id   = absint( $item );
                 $nonce       = wp_create_nonce( $parent_id );
                 ?>

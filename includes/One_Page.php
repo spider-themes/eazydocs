@@ -78,7 +78,7 @@ class One_Page {
         }
 
         // Capability check
-        if ( ! current_user_can( 'edit_posts' ) ) {
+        if ( ! current_user_can( 'edit_docs' ) ) {
             wp_die( esc_html__( 'You do not have permission to perform this action.', 'eazydocs' ) );
         }
 

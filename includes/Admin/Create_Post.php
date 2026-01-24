@@ -27,7 +27,7 @@ class Create_Post {
 	 */
 	public function handle_doc_creation() {
 		// Check permissions first
-		if ( ! current_user_can( 'publish_posts' ) ) {
+		if ( ! current_user_can( 'publish_docs' ) ) {
 			return;
 		}
 
