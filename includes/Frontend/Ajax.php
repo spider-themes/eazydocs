@@ -153,9 +153,7 @@ class Ajax {
 		if ( empty($final_ids) ) $final_ids = [0];
 
 		// Add tag matches (appended after)
-		$getTags  = get_terms(['taxonomy' => 'doc_tag', 'hide_empty' => false]);
-		$checkTags = wp_list_pluck($getTags, 'name');
-		if ( in_array($keyword, $checkTags, true) ) {
+		if ( get_term_by( 'name', $keyword, 'doc_tag' ) ) {
 			$tag_posts = new WP_Query([
 				'post_type'      => 'docs',
 				'posts_per_page' => -1,
