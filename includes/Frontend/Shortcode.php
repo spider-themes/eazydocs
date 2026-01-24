@@ -60,13 +60,17 @@ class Shortcode {
         $args       = wp_parse_args( $args, $defaults );
         $arranged   = [];
 
+        // Sentinel: Prevent unauthorized access to private docs
+        $can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
+        $post_status      = $can_read_private ? [ 'publish', 'private' ] : [ 'publish' ];
+
         // Parent Docs Query Args
         $parent_args = [
             'post_type'     => 'docs',
             'post_parent'   => 0,
             'orderby'       => $args['parent_docs_order'],
             'order'         => strtoupper( $args['parent_docs_order_by'] ),
-            'post_status'   => [ 'publish', 'private' ],
+            'post_status'   => $post_status,
             'numberposts'   => $args['show_docs']
         ];
 
@@ -103,7 +107,7 @@ class Shortcode {
                 'post_parent__in' => $parent_ids,
                 'post_type'       => 'docs',
                 'numberposts'     => - 1,
-                'post_status'     => [ 'publish', 'private' ],
+                'post_status'     => $post_status,
                 'orderby'         => $args['parent_docs_order'],
                 'order'           => strtoupper( $args['child_docs_order'] ),
             ] );
