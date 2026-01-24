@@ -20,6 +20,6 @@ add_action( 'admin_init', function() {
     }
     
     Remote_Notice_Client::init( 'Eazydocs', [
-        'api_url' => 'https://spider-themes.net/wp-json/html-notice-widget/v1/content/eazydocs',
+        'api_url' => 'https://manage.spider-themes.net/wp-json/html-notice-widget/v1/content/eazydocs',
     ]);
 });
