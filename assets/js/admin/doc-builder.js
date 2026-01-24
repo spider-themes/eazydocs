@@ -243,7 +243,7 @@
 
 		// SECTION DOC
 		function create_section_doc() {
-			$(document).on('click', '#section-doc', function (e) {
+			$(document).on('click', '.section-doc', function (e) {
 				e.preventDefault();
 				let href = $(this).attr('data-url');
 				Swal.fire({

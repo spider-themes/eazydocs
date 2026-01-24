@@ -9,3 +9,7 @@
 ## 2024-05-22 - Keyboard Access for Semantic-less Filters
 **Learning:** Admin dashboards often use `<ul>`/`<li>` for filter tabs with inline `onclick` handlers, rendering them inaccessible to keyboard users.
 **Action:** Retrofit these with `role="button"`, `tabindex="0"`, and inline `onkeydown` handlers (for Enter/Space) to enable keyboard access without altering the markup structure or breaking existing styles.
+
+## 2024-05-22 - Context for Repeated Actions
+**Learning:** In EazyDocs admin templates (like `child-docs.php`), action buttons inside loops often use generic text ("Add Section") and sometimes duplicate IDs, confusing screen readers and breaking JS event delegation.
+**Action:** When refactoring repeated actions, replace duplicate IDs with classes, update JS delegates, and add `aria-label` including the parent item's name (e.g., "Add Section to [Doc Name]") to provide necessary context.
