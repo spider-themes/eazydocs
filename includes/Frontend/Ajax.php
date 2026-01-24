@@ -65,7 +65,7 @@ class Ajax {
 
 			update_post_meta( $post_id, $type, $count + 1 );
 
-			if ( $type == 'positive' ) {
+			if ( 'positive' === $type ) {
 				$voters = get_post_meta( $post_id, 'positive_voter', true );
 				$voters = is_array( $voters ) ? $voters : [];
 
@@ -113,8 +113,8 @@ class Ajax {
 		$can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
 		$post_status      = $can_read_private ? [ 'publish', 'private', 'protected' ] : [ 'publish', 'protected' ];
 
-		if ( empty($keyword) ) {
-			wp_send_json_error(['message' => 'No keyword provided']);
+		if ( empty( $keyword ) ) {
+			wp_send_json_error( [ 'message' => 'No keyword provided' ] );
 		}
 
 		// --- SEARCH LOGIC ---
@@ -149,8 +149,10 @@ class Ajax {
 		}
 
 		// Combine: exact → partial → content
-		$final_ids = array_merge($exact_ids, $partial_ids, $content_ids);
-		if ( empty($final_ids) ) $final_ids = [0];
+		$final_ids = array_merge( $exact_ids, $partial_ids, $content_ids );
+		if ( empty( $final_ids ) ) {
+			$final_ids = [ 0 ];
+		}
 
 		// Add tag matches (appended after)
 		$getTags  = get_terms(['taxonomy' => 'doc_tag', 'hide_empty' => false]);
@@ -283,7 +285,7 @@ class Ajax {
 		}
 
 		// Check private doc access
-		if ( get_post_status( $postid ) == 'private' && ezd_is_premium() ) {
+		if ( 'private' === get_post_status( $postid ) && ezd_is_premium() ) {
 			// Try new settings first
 			$access_type = ezd_get_opt( 'private_doc_access_type', '' );
 			$has_access  = false;

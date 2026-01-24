@@ -42,8 +42,8 @@ function ezd_meta_apply( $option_id, $default = '' ) {
 	$option_value = ezd_get_opt($option_id, $default);
 
 	// Check if meta value is an array and empty
-	$is_meta_arr_empty = is_array($meta_value) && empty(array_filter($meta_value));
-	if ( $meta_value == 'default' || $meta_value == '' || $meta_value == null || $is_meta_arr_empty ) {
+	$is_meta_arr_empty = is_array( $meta_value ) && empty( array_filter( $meta_value ) );
+	if ( 'default' === $meta_value || '' === $meta_value || null === $meta_value || $is_meta_arr_empty ) {
 		return $option_value;
 	}
 
@@ -270,7 +270,7 @@ function ezd_reading_time() {
     $word_count  = str_word_count( wp_strip_all_tags( $content ) );
     $readingtime = ceil( $word_count / 200 );
 
-    if ( $readingtime == 1 ) {
+    if ( 1 === (int) $readingtime ) {
         $timer = esc_html__( " minute", 'eazydocs' );
     } else {
         $timer = esc_html__( " minutes", 'eazydocs' );
@@ -436,7 +436,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 			$html .= $args['delimiter'];
 		}
 
-		if ( 'docs' == $post->post_type && $post->post_parent ) {
+		if ( 'docs' === $post->post_type && $post->post_parent ) {
 			$parent_id   = $post->post_parent;
 			$breadcrumbs = [];
 
@@ -541,8 +541,8 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 		$breadcrumb_position = 1;
 
 		$is_parents = get_ancestors( $post->ID, 'docs' );
-		$is_parent  = $is_parents[0];
-		if ( $is_parent == 0 ) {
+		$is_parent  = $is_parents[0] ?? 0;
+		if ( 0 === $is_parent ) {
 			$parent_id = $post->ID;
 		} else {
 			$parent_id = $is_parent;
@@ -555,7 +555,7 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 		$docs_page_title = ezd_get_opt( 'docs-page-title' );
 		$docs_page_title = ! empty( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docs', 'eazydocs' );
 
-		if ( 'docs' == $post->post_type && $post->post_parent ) {
+		if ( 'docs' === $post->post_type && $post->post_parent ) {
 			$parent_id   = $post->post_parent;
 			$breadcrumbs = [];
 
@@ -744,7 +744,7 @@ function eazydocs_one_page( $doc_id ) {
 		'name'        => $post_name,
 	] );
 
-	if ( $post_status != 'draft' ) :
+	if ( 'draft' !== $post_status ) :
 		if ( count( $one_page_docs ) < 1 ) :
 
 			// Generate a secure URL with nonce
@@ -806,14 +806,14 @@ function ezd_hex2rgba( $color, $opacity = false ) {
 	}
 
 	//Sanitize $color if "#" is provided
-	if ( $color[0] == '#' ) {
+	if ( '#' === $color[0] ) {
 		$color = substr( $color, 1 );
 	}
 
 	//Check if color has 6 or 3 characters and get values
-	if ( strlen( $color ) == 6 ) {
+	if ( 6 === strlen( $color ) ) {
 		$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-	} elseif ( strlen( $color ) == 3 ) {
+	} elseif ( 3 === strlen( $color ) ) {
 		$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
 	} else {
 		return $default;
@@ -1277,7 +1277,7 @@ function eaz_get_nestable_parent_id( $page_id ) {
 	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 	$parent = $wpdb->get_var( $query );
 
-	if ( $parent == 0 ) {
+	if ( 0 === (int) $parent ) {
 		return $page_id;
 	} else {
 		return eaz_get_nestable_parent_id( $parent );
@@ -1460,11 +1460,11 @@ add_filter('body_class', 'ezd_single_banner');
  * Editor & Administrator access
  */
 function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
-	if ( $action == 'delete' && get_current_user_id() == get_post_field( 'post_author', $post_id ) ) {
+	if ( 'delete' === $action && get_current_user_id() === (int) get_post_field( 'post_author', $post_id ) ) {
 		return true;
-	} elseif ( $action == 'edit' && current_user_can('edit_posts') ) {
+	} elseif ( 'edit' === $action && current_user_can( 'edit_posts' ) ) {
 		return true;
-	} elseif ( current_user_can('manage_options') ) {
+	} elseif ( current_user_can( 'manage_options' ) ) {
 		return true;
 	}
 	return false;
@@ -1480,7 +1480,7 @@ function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
  */
 function ezd_internal_doc_security( $doc_id = 0 ) {
 	// Private doc restriction
-	if ( get_post_status( $doc_id ) == 'private' ) {
+	if ( 'private' === get_post_status( $doc_id ) ) {
 		
 		// Try new settings first
 		$access_type = ezd_get_opt( 'private_doc_access_type', '' );
@@ -2048,7 +2048,7 @@ function ezd_docs_slug() {
     $custom_slug  = ezd_get_opt( 'docs-type-slug' );
     $safe_slug 	  = preg_replace( '/[^a-zA-Z0-9-_]/', '-', $custom_slug );
 	
-	if ( $docs_url == 'custom-slug' || $permalink === '' || $permalink === '/archives/%post_id%' ) {
+	if ( 'custom-slug' === $docs_url || '' === $permalink || '/archives/%post_id%' === $permalink ) {
 		return $safe_slug ?: 'docs';
 	}
 
