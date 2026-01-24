@@ -25,7 +25,7 @@ $ezd_antimanual_active = function_exists( 'is_plugin_active' ) && ( is_plugin_ac
                 </div>
 
                 <?php
-                if ( current_user_can( 'edit_posts' ) ):
+                if ( current_user_can( 'publish_docs' ) ):
                     $nonce = wp_create_nonce( 'parent_doc_nonce' );
                     ?>
                     <button type="button"
@@ -66,13 +66,13 @@ $ezd_antimanual_active = function_exists( 'is_plugin_active' ) && ( is_plugin_ac
                 <ul class="d-flex justify-content-end">
 
                     <?php
-                    if ( current_user_can( 'manage_options' ) || current_user_can( 'edit_posts' ) ):
+                    if ( current_user_can( 'manage_options' ) || current_user_can( 'edit_docs' ) ):
                     ?>
                     <li>
                         <div class="easydocs-settings">
 
                             <?php
-                            if ( current_user_can( 'edit_posts' ) ):
+                            if ( current_user_can( 'edit_docs' ) ):
                                 ?>
                                 <div class="header-notify-icons">
                                     <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=docs' ) ); ?>"

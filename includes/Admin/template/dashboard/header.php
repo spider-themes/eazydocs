@@ -70,7 +70,7 @@ function ezd_get_greeting() {
 	<div class="ezd-header-actions">
 		<div class="ezd-action-item">
 			<?php
-			if ( current_user_can( 'edit_posts' ) ) :
+			if ( current_user_can( 'publish_docs' ) ) :
 				$nonce = wp_create_nonce( 'parent_doc_nonce' );
 				?>
 				<button type="button"
