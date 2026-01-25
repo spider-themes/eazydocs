@@ -287,6 +287,13 @@ function ezd_reading_time() {
  * @return mixed|void
  */
 function ezd_list_pages( $args = '' ) {
+
+	// Sentinel: Restrict private docs to authorized users only
+	$post_status = [ 'publish' ];
+	if ( current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' ) ) {
+		$post_status[] = 'private';
+	}
+
 	$defaults = array(
 		'depth'        => 0,
 		'show_date'    => '',
@@ -301,7 +308,7 @@ function ezd_list_pages( $args = '' ) {
 		'link_after'   => '',
 		'item_spacing' => 'preserve',
 		'walker'       => '',
-		'post_status'  => ['publish', 'private']
+		'post_status'  => $post_status
 	);
 
 	$r = wp_parse_args( $args, $defaults );

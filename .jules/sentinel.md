@@ -17,3 +17,8 @@
 **Vulnerability:** The feedback form handler `eazydocs_feedback_email` allowed unlimited email submissions from unauthenticated users, leading to potential email spam and database flooding.
 **Learning:** Publicly accessible AJAX actions (`nopriv`) that trigger resource-intensive operations (sending emails, DB writes) must have rate limiting or CAPTCHA.
 **Prevention:** Implement IP-based transient rate limiting for all public-facing form handlers.
+
+## 2026-10-27 – Hardcoded Post Status Leaks Private Titles
+**Vulnerability:** Explicitly setting `post_status => ['publish', 'private']` in `WP_Query` arguments forces the retrieval of private posts regardless of user authentication.
+**Learning:** `WP_Query` only automatically protects private posts when the `post_status` argument is omitted or default. Explicitly requesting 'private' status bypasses these internal checks.
+**Prevention:** Never hardcode 'private' in `post_status` arrays. Construct the array conditionally based on `current_user_can('read_private_posts')`.
