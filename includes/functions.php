@@ -268,9 +268,9 @@ function eazydocs_get_template( $template_name, $args = [] ) {
 function ezd_reading_time() {
     $content     = get_post_field( 'post_content', get_the_ID() );
     $word_count  = str_word_count( wp_strip_all_tags( $content ) );
-    $readingtime = ceil( $word_count / 200 );
+    $readingtime = (int) ceil( $word_count / 200 );
 
-    if ( $readingtime == 1 ) {
+    if ( 1 === $readingtime ) {
         $timer = esc_html__( " minute", 'eazydocs' );
     } else {
         $timer = esc_html__( " minutes", 'eazydocs' );
@@ -541,8 +541,8 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 		$breadcrumb_position = 1;
 
 		$is_parents = get_ancestors( $post->ID, 'docs' );
-		$is_parent  = $is_parents[0];
-		if ( $is_parent == 0 ) {
+		$is_parent  = ! empty( $is_parents ) ? $is_parents[0] : 0;
+		if ( 0 === $is_parent ) {
 			$parent_id = $post->ID;
 		} else {
 			$parent_id = $is_parent;
@@ -744,7 +744,7 @@ function eazydocs_one_page( $doc_id ) {
 		'name'        => $post_name,
 	] );
 
-	if ( $post_status != 'draft' ) :
+	if ( 'draft' !== $post_status ) :
 		if ( count( $one_page_docs ) < 1 ) :
 
 			// Generate a secure URL with nonce
@@ -806,14 +806,14 @@ function ezd_hex2rgba( $color, $opacity = false ) {
 	}
 
 	//Sanitize $color if "#" is provided
-	if ( $color[0] == '#' ) {
+	if ( '#' === $color[0] ) {
 		$color = substr( $color, 1 );
 	}
 
 	//Check if color has 6 or 3 characters and get values
-	if ( strlen( $color ) == 6 ) {
+	if ( 6 === strlen( $color ) ) {
 		$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-	} elseif ( strlen( $color ) == 3 ) {
+	} elseif ( 3 === strlen( $color ) ) {
 		$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
 	} else {
 		return $default;
@@ -1275,9 +1275,9 @@ function eaz_get_nestable_parent_id( $page_id ) {
 
 	// Execute the query
 	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-	$parent = $wpdb->get_var( $query );
+	$parent = (int) $wpdb->get_var( $query );
 
-	if ( $parent == 0 ) {
+	if ( 0 === $parent ) {
 		return $page_id;
 	} else {
 		return eaz_get_nestable_parent_id( $parent );
@@ -2075,7 +2075,7 @@ function ezd_docs_slug() {
     $custom_slug  = ezd_get_opt( 'docs-type-slug' );
     $safe_slug 	  = preg_replace( '/[^a-zA-Z0-9-_]/', '-', $custom_slug );
 	
-	if ( $docs_url == 'custom-slug' || $permalink === '' || $permalink === '/archives/%post_id%' ) {
+	if ( 'custom-slug' === $docs_url || $permalink === '' || $permalink === '/archives/%post_id%' ) {
 		return $safe_slug ?: 'docs';
 	}
 
