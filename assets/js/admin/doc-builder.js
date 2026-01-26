@@ -464,6 +464,20 @@
 				}
 			});
 		});
+
+		// Accessibility: Handle keyboard interaction for filters
+		$('.single-item-filter li').on('keydown', function(e) {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				$(this).trigger('click');
+			}
+		});
+
+		// Accessibility: Update aria-pressed on click
+		$('.single-item-filter li').on('click', function() {
+			$(this).closest('ul').find('li').attr('aria-pressed', 'false');
+			$(this).attr('aria-pressed', 'true');
+		});
 		
 	});
 
