@@ -52,12 +52,10 @@ class Walker_Docs extends Walker_Page {
 	 * @return string The content.
 	 */
 	public function walk( $elements, $max_depth, ...$args ) {
-		$ids = wp_list_pluck( $elements, 'ID' );
+		$ids = \wp_list_pluck( $elements, 'ID' );
 
-		update_post_meta_cache( $ids );
-
-		if ( function_exists( 'update_post_thumbnail_cache' ) ) {
-			update_post_thumbnail_cache( $elements );
+		if ( \function_exists( '_prime_post_caches' ) ) {
+			\_prime_post_caches( $ids );
 		}
 
 		return parent::walk( $elements, $max_depth, ...$args );

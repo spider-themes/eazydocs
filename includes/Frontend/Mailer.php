@@ -18,7 +18,7 @@ function eazydocs_feedback_email() {
 	check_ajax_referer( 'eazydocs-ajax', 'security' );
 
 	// Sentinel: Rate limit check (10 minutes)
-	$user_ip       = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+	$user_ip       = ! empty( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '127.0.0.1';
 	$transient_key = 'ezd_feedback_limit_' . md5( $user_ip );
 	if ( get_transient( $transient_key ) ) {
 		wp_send_json_error( esc_html__( 'Please wait before sending another feedback.', 'eazydocs' ) );
