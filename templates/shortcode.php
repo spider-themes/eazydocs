@@ -24,7 +24,7 @@ if ( $docs ) :
 					'post_type'   => 'docs',
 					'orderby'     => 'menu_order',
 					'order'       => 'asc',
-					'post_status' => array( 'publish', 'private' )
+					'post_status' => $post_status ?? array( 'publish' )
 				] );
 
 				global $post;
