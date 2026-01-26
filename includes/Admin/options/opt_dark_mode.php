@@ -23,7 +23,7 @@ CSF::createSection($prefix, array(
             'text_off' => esc_html__('Hide', 'eazydocs'),
             'text_width' => 72,
             'default' => false,
-            'class' => 'eazydocs-pro-notice active-theme-docly'
+            'class' => 'eazydocs-pro-notice active-theme-docly active-theme-docy'
         ),
 
         array(
@@ -35,7 +35,7 @@ CSF::createSection($prefix, array(
             'text_off' => esc_html__('No', 'eazydocs'),
             'text_width' => 70,
             'default' => false,
-            'class' => 'eazydocs-pro-notice active-theme-docly',
+            'class' => 'eazydocs-pro-notice active-theme-docly active-theme-docy',
             'dependency' => array('is_dark_switcher', '==', '1'),
         ),
 
@@ -46,6 +46,7 @@ CSF::createSection($prefix, array(
             'subtitle' => esc_html__('Choose an accent color optimized for dark backgrounds. Lighter colors typically work better.', 'eazydocs'),
             'output' => ':root',
             'output_mode' => '--ezd_brand_color_dark',
+            'class' => 'eazydocs-pro-notice active-theme-docly active-theme-docy',
             'dependency' => array(
                 'is_dark_switcher',
                 '==',
