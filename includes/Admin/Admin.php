@@ -98,7 +98,7 @@ class Admin {
 		add_submenu_page( 'eazydocs', esc_html__( 'Docs Builder', 'eazydocs' ), esc_html__( 'Docs Builder', 'eazydocs' ), $docs_capability, 'eazydocs-builder', array( $this, 'eazydocs_builder' ) );
 
 		$current_theme = get_template();
-		if ( $current_theme == 'docy' || $current_theme == 'docly' || ezd_is_premium() ) {
+		if ( 'docy' === $current_theme || 'docly' === $current_theme || ezd_is_premium() ) {
 			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Docs', 'eazydocs' ), esc_html__( 'OnePage Docs', 'eazydocs' ), $settings_capability, '/edit.php?post_type=onepage-docs' );
 		} else {
 			add_submenu_page( 'eazydocs', esc_html__( 'OnePage Doc', 'eazydocs' ), esc_html__( 'OnePage Doc', 'eazydocs' ), $settings_capability, 'ezd-onepage-presents', array( $this, 'ezd_onepage_presents' ) );
@@ -309,7 +309,7 @@ class Admin {
 			$classes .= ' ezd-premium';
 		}
 
-		if ( eaz_fs()->is_plan( 'promax' ) == "yes" ) {
+		if ( 'yes' === eaz_fs()->is_plan( 'promax' ) ) {
 			$classes .= ' ezd-promax';
 		}
 
@@ -432,7 +432,7 @@ class Admin {
 	 * @return mixed|string
 	 */
 	public function one_page_docs_edit_content( $link, $post_ID ) {
-		if ( 'onepage-docs' == get_post_type( $post_ID ) ) {
+		if ( 'onepage-docs' === get_post_type( $post_ID ) ) {
 			$is_content = get_post_meta( $post_ID, 'ezd_doc_left_sidebar', true );
 
 			$ezd_doc_layout = get_post_meta( $post_ID, 'ezd_doc_layout', true );
@@ -449,7 +449,7 @@ class Admin {
 			$content_type_right     = ! empty( $ezd_content_type_right ) ? '&content_type_right=' . $ezd_content_type_right : null;
 
 			$ezd_content_right = '';
-			if ( $ezd_content_type_right == 'widget_data_right' ) {
+			if ( 'widget_data_right' === $ezd_content_type_right ) {
 				$ezd_content_right = get_post_meta( $post_ID, 'ezd_doc_content_box_right', true );
 			} else {
 				$ezd_content_right = get_post_meta( $post_ID, 'ezd_doc_content_box_right', true );
@@ -578,17 +578,17 @@ class Admin {
 		$private_mode     = ezd_is_premium() ? ezd_get_opt( 'private_doc_mode' ) : 'none';
 		$is_contribution  = ezd_is_promax() ? ezd_get_opt( 'is_doc_contribution' ) : false;
 
-		if ( $post->ID == $docs_slug_page ) {
+		if ( (int) $post->ID === (int) $docs_slug_page ) {
 			$post_states['docs_archive'] = __( 'Docs Archive', 'eazydocs' );
 		}
 
-		if ( $login_page === $frontend_login && $post->ID == $login_page ) {
+		if ( $login_page === $frontend_login && (int) $post->ID === (int) $login_page ) {
 			$post_states['docs_login'] = __( 'Docs Access', 'eazydocs' );
 		} else {
-			if ( $post->ID == $login_page && $private_mode === 'login' ) {
+			if ( (int) $post->ID === (int) $login_page && 'login' === $private_mode ) {
 				$post_states['docs_login'] = __( 'Private Access', 'eazydocs' );
 			}
-			if ( $post->ID == $frontend_login && $is_contribution ) {
+			if ( (int) $post->ID === (int) $frontend_login && $is_contribution ) {
 				$post_states['docs_collaborator'] = __( 'Collaborator Access', 'eazydocs' );
 			}
 		}

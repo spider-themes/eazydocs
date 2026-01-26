@@ -274,14 +274,14 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			$search_logs       = $wpdb->prefix . 'eazydocs_search_log';
 			$view_logs         = $wpdb->prefix . 'eazydocs_view_log';
 
-		// SQL statements to create tables.
-		$sql = "CREATE TABLE {$search_keyword} (
+			// SQL statements to create tables.
+			$sql = "CREATE TABLE {$search_keyword} (
 			id bigint(20) unsigned not null auto_increment,
 			keyword varchar(255) not null,
 			PRIMARY KEY (id)
 		) {$charset_collate};";
 
-		$sql2 = "CREATE TABLE {$search_logs} (
+			$sql2 = "CREATE TABLE {$search_logs} (
 			id bigint(20) unsigned not null auto_increment,
 			keyword_id bigint(20) unsigned not null,
 			count mediumint(8) unsigned not null,
@@ -291,7 +291,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			FOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE
 		) {$charset_collate};";
 
-		$sql3 = "CREATE TABLE {$view_logs} (
+			$sql3 = "CREATE TABLE {$view_logs} (
 			id bigint(20) unsigned not null auto_increment,
 			post_id bigint(20) unsigned not null,
 			count mediumint(8) unsigned not null,
@@ -299,7 +299,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			PRIMARY KEY (id)
 		) {$charset_collate};";
 
-		// Load the required upgrade file.
+			// Load the required upgrade file.
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 			// Execute the table creation queries.
@@ -325,7 +325,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$view_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name3 ) );
 
-			if ( $keyword_exists != $table_name || $logs_exists != $table_name2 || $view_exists != $table_name3 ) {
+			if ( $keyword_exists !== $table_name || $logs_exists !== $table_name2 || $view_exists !== $table_name3 ) {
 				?>
                 <div class="notice notice-error is-dismissible eazydocs_table_error">
                     <p><?php esc_html_e( 'EazyDocs database needs an update. Please click the Update button to update your database.', 'eazydocs' ); ?></p>

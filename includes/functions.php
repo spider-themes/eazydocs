@@ -43,7 +43,7 @@ function ezd_meta_apply( $option_id, $default = '' ) {
 
 	// Check if meta value is an array and empty
 	$is_meta_arr_empty = is_array($meta_value) && empty(array_filter($meta_value));
-	if ( $meta_value == 'default' || $meta_value == '' || $meta_value == null || $is_meta_arr_empty ) {
+	if ( 'default' === $meta_value || '' === $meta_value || null === $meta_value || $is_meta_arr_empty ) {
 		return $option_value;
 	}
 
@@ -138,7 +138,7 @@ function ezd_is_plugin_installed_for_days( $days, $plugin_slug='eazydocs' ) {
  * @return string
  */
 function ezd_container() {
-	return ezd_get_opt('docs_page_width') == 'full-width' ? 'ezd-container-fluid' : 'ezd-container ezd-custom-container';
+	return 'full-width' === ezd_get_opt('docs_page_width') ? 'ezd-container-fluid' : 'ezd-container ezd-custom-container';
 }
 
 /**
@@ -270,7 +270,7 @@ function ezd_reading_time() {
     $word_count  = str_word_count( wp_strip_all_tags( $content ) );
     $readingtime = ceil( $word_count / 200 );
 
-    if ( $readingtime == 1 ) {
+    if ( 1 === (int) $readingtime ) {
         $timer = esc_html__( " minute", 'eazydocs' );
     } else {
         $timer = esc_html__( " minutes", 'eazydocs' );
@@ -436,7 +436,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 			$html .= $args['delimiter'];
 		}
 
-		if ( 'docs' == $post->post_type && $post->post_parent ) {
+		if ( 'docs' === $post->post_type && $post->post_parent ) {
 			$parent_id   = $post->post_parent;
 			$breadcrumbs = [];
 
@@ -495,7 +495,7 @@ if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
 			$html .= $args['delimiter'];
 		}
 
-		if ( 'docs' == $post->post_type && $post->post_parent ) {
+		if ( 'docs' === $post->post_type && $post->post_parent ) {
 			$parent_id   = $post->post_parent;
 			$breadcrumbs = [];
 
@@ -542,7 +542,7 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 
 		$is_parents = get_ancestors( $post->ID, 'docs' );
 		$is_parent  = $is_parents[0];
-		if ( $is_parent == 0 ) {
+		if ( 0 === $is_parent ) {
 			$parent_id = $post->ID;
 		} else {
 			$parent_id = $is_parent;
@@ -555,7 +555,7 @@ if ( ! function_exists( 'docs_root_title' ) ) {
 		$docs_page_title = ezd_get_opt( 'docs-page-title' );
 		$docs_page_title = ! empty( $docs_page_title ) ? esc_html( $docs_page_title ) : esc_html__( 'Docs', 'eazydocs' );
 
-		if ( 'docs' == $post->post_type && $post->post_parent ) {
+		if ( 'docs' === $post->post_type && $post->post_parent ) {
 			$parent_id   = $post->post_parent;
 			$breadcrumbs = [];
 
@@ -806,14 +806,14 @@ function ezd_hex2rgba( $color, $opacity = false ) {
 	}
 
 	//Sanitize $color if "#" is provided
-	if ( $color[0] == '#' ) {
+	if ( '#' === $color[0] ) {
 		$color = substr( $color, 1 );
 	}
 
 	//Check if color has 6 or 3 characters and get values
-	if ( strlen( $color ) == 6 ) {
+	if ( 6 === strlen( $color ) ) {
 		$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-	} elseif ( strlen( $color ) == 3 ) {
+	} elseif ( 3 === strlen( $color ) ) {
 		$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
 	} else {
 		return $default;
@@ -971,7 +971,7 @@ function ezd_onepage_docs() {
 
 add_action( 'save_post', function ( $post_id ) {
 	// Doc Options
-	if ( 'onepage-docs' != get_post_type( $post_id ) ) {
+	if ( 'onepage-docs' !== get_post_type( $post_id ) ) {
 		return;
 	}
 
@@ -1014,7 +1014,7 @@ function ezd_password_form($output, $post = 0) {
 	$protected_form_title    = ezd_is_premium() ? ezd_get_opt( 'protected_form_title', esc_html__( 'Enter Password & Read this Doc', 'eazydocs' ) ) : esc_html__( 'Enter Password & Read this Doc', 'eazydocs' );
 	$protected_form_subtitle = ezd_is_premium() ? ezd_get_opt( 'protected_form_subtitle', esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' ) ) : esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
 
-	if ( ! empty( $protected_form_switcher == 'eazydocs-form' ) ) :
+	if ( 'eazydocs-form' === $protected_form_switcher ) :
 		ob_start();
 		?>
 		<div class="card ezd-password-wrap">
@@ -1277,7 +1277,7 @@ function eaz_get_nestable_parent_id( $page_id ) {
 	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 	$parent = $wpdb->get_var( $query );
 
-	if ( $parent == 0 ) {
+	if ( 0 === (int) $parent ) {
 		return $page_id;
 	} else {
 		return eaz_get_nestable_parent_id( $parent );
@@ -1449,10 +1449,10 @@ function ezd_get_elementor_templates() {
  */
 function ezd_single_banner($classes) {
 	$current_theme = get_template();
-	if ( is_single() && get_post_type() == 'docs' && ! empty( ezd_get_opt('single_doc_layout') == 'el-template' ) &&  ! empty( ezd_get_opt('single_layout_id') ) && $current_theme == 'docly' ) {
+	if ( is_single() && 'docs' === get_post_type() && 'el-template' === ezd_get_opt( 'single_doc_layout' ) && ! empty( ezd_get_opt( 'single_layout_id' ) ) && 'docly' === $current_theme ) {
 		$classes[] = 'disable-docly-header';
-    }
-    return $classes;
+	}
+	return $classes;
 }
 add_filter('body_class', 'ezd_single_banner');
 
@@ -1464,7 +1464,7 @@ function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
 		return current_user_can( 'edit_docs' ) || current_user_can( 'manage_options' );
 	}
 
-	if ( $action == 'delete' ) {
+	if ( 'delete' === $action ) {
 		return current_user_can( 'delete_doc', $post_id ) || current_user_can( 'manage_options' );
 	}
 
@@ -1481,14 +1481,14 @@ function ezd_is_admin_or_editor( $post_id = '', $action = '' ) {
  */
 function ezd_internal_doc_security( $doc_id = 0 ) {
 	// Private doc restriction
-	if ( get_post_status( $doc_id ) == 'private' ) {
-		
+	if ( 'private' === get_post_status( $doc_id ) ) {
+
 		// Try new settings first
 		$access_type = ezd_get_opt( 'private_doc_access_type', '' );
-		
+
 		if ( ! empty( $access_type ) ) {
 			// Using new settings
-			if ( $access_type === 'all_users' ) {
+			if ( 'all_users' === $access_type ) {
 				// All logged-in users can access - just check if logged in
 				if ( is_user_logged_in() ) {
 					return true;
@@ -1516,8 +1516,8 @@ function ezd_internal_doc_security( $doc_id = 0 ) {
 			// Fallback to legacy settings
 			$user_group  = ezd_get_opt( 'private_doc_user_restriction' );
 			$is_all_user = $user_group['private_doc_all_user'] ?? 0;
-			
-			if ( $is_all_user === '1' || $is_all_user === 1 || $is_all_user === true ) {
+
+			if ( in_array( $is_all_user, [ '1', 1, true ], true ) ) {
 				// All logged-in users can access
 				if ( is_user_logged_in() ) {
 					return true;
@@ -1888,7 +1888,7 @@ function ezd_read_private_docs_cap_to_user() {
         $user_group  = ezd_get_opt( 'private_doc_user_restriction' );
         $is_all_user = $user_group['private_doc_all_user'] ?? 0;
 
-        if ( $is_all_user === '1' || $is_all_user === 1 || $is_all_user === true ) {
+        if ( in_array( $is_all_user, [ '1', 1, true ], true ) ) {
             $get_users_role = array_values( array_keys( eazydocs_user_role_names() ) );
         } else {
             $get_users_role = $user_group['private_doc_roles'] ?? array();
@@ -2023,9 +2023,9 @@ function ezd_private_docs_access() {
                 
                 // Get the private doc mode setting (only for pro users)
                 $private_doc_mode = ezd_is_premium() ? ezd_get_opt( 'private_doc_mode', 'none' ) : 'none';
-                
+
                 // If mode is 'login', redirect to login page instead of showing 404
-                if ( $private_doc_mode === 'login' ) {
+                if ( 'login' === $private_doc_mode ) {
                     $login_page_id = ezd_get_opt( 'private_doc_login_page', '' );
                     
                     if ( ! empty( $login_page_id ) ) {
@@ -2074,8 +2074,8 @@ function ezd_docs_slug() {
 	$permalink    = get_option( 'permalink_structure' );
     $custom_slug  = ezd_get_opt( 'docs-type-slug' );
     $safe_slug 	  = preg_replace( '/[^a-zA-Z0-9-_]/', '-', $custom_slug );
-	
-	if ( $docs_url == 'custom-slug' || $permalink === '' || $permalink === '/archives/%post_id%' ) {
+
+	if ( 'custom-slug' === $docs_url || '' === $permalink || '/archives/%post_id%' === $permalink ) {
 		return $safe_slug ?: 'docs';
 	}
 
@@ -2228,7 +2228,7 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
 
     $from = isset( $_POST[ 'migrate_from' ] ) ? sanitize_text_field( $_POST[ 'migrate_from' ]) : '';
 
-    if ( $from !== 'betterdocs' ) {
+    if ( 'betterdocs' !== $from ) {
         wp_send_json_error('Only BetterDocs migration is supported currently.');
     }
 
@@ -2542,7 +2542,7 @@ function ezd_manual_import_sample_data( $file ) {
 		$post_data = array(
 			'post_title'   => sanitize_text_field( $title ),
 			'post_content' => wp_kses_post( $post_content ),
-			'post_status'  => ( (string) $wp_data->status === 'private' ) ? 'publish' : sanitize_text_field( (string) $wp_data->status ),
+			'post_status'  => ( 'private' === (string) $wp_data->status ) ? 'publish' : sanitize_text_field( (string) $wp_data->status ),
 			'post_type'    => 'docs',
 			'menu_order'   => (int) $wp_data->menu_order,
 			'post_parent'  => 0, // Will be updated in second pass.
