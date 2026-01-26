@@ -1875,7 +1875,7 @@ function ezd_read_private_docs_cap_to_user() {
         // Using new settings
         if ( $access_type === 'all_users' ) {
             // All logged-in users can access
-            $get_users_role = array_values( array_keys( eazydocs_user_role_names() ) );
+			$get_users_role = function_exists( 'eazydocs_user_role_names' ) ? array_values( array_keys( eazydocs_user_role_names() ) ) : array();
         } else {
             // Specific roles only
             $get_users_role = ezd_get_opt( 'private_doc_allowed_roles', array( 'administrator', 'editor' ) );
@@ -1889,7 +1889,7 @@ function ezd_read_private_docs_cap_to_user() {
         $is_all_user = $user_group['private_doc_all_user'] ?? 0;
 
         if ( $is_all_user === '1' || $is_all_user === 1 || $is_all_user === true ) {
-            $get_users_role = array_values( array_keys( eazydocs_user_role_names() ) );
+			$get_users_role = function_exists( 'eazydocs_user_role_names' ) ? array_values( array_keys( eazydocs_user_role_names() ) ) : array();
         } else {
             $get_users_role = $user_group['private_doc_roles'] ?? array();
             if ( ! is_array( $get_users_role ) ) {
