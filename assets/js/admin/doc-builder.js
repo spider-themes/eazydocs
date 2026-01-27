@@ -430,6 +430,12 @@
 				.toggleClass('arrow-active', isExpanded);
 		});
 		
+		// Accessibility: Toggle aria-pressed for single-item-filter buttons
+		$('.single-item-filter .easydocs-btn').on('click', function() {
+			$(this).siblings().attr('aria-pressed', 'false');
+			$(this).attr('aria-pressed', 'true');
+		});
+
 		// Notifications filter buttons (Doc Builder page)
 		$('.easydocs-filters button').on('click', function(e){
 			e.preventDefault();

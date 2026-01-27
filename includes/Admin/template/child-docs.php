@@ -20,28 +20,29 @@ if ( is_array( $depth_one_parents ) ) :
     foreach ( $depth_one_parents as $item ) :
         $ids++;
         $container++;
-        $active = $ids == 1 ? ' tab-active' : '';
+        $active       = $ids == 1 ? ' tab-active' : '';
+        $parent_title = get_the_title( $item );
         ?>
         <div class="easydocs-tab<?php echo esc_attr( $active ); ?>" id="tab-<?php echo esc_attr( $item ); ?>">
             <div class="easydocs-filter-container">
-                <ul class="single-item-filter">
-                    <li class="easydocs-btn easydocs-btn-black-light easydocs-btn-rounded easydocs-btn-sm is-active" data-filter="all">
+                <ul class="single-item-filter" role="group" aria-label="<?php esc_attr_e( 'Filter docs by status', 'eazydocs' ); ?>">
+                    <li class="easydocs-btn easydocs-btn-black-light easydocs-btn-rounded easydocs-btn-sm is-active" data-filter="all" role="button" tabindex="0" aria-pressed="true" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}">
                         <span class="dashicons dashicons-media-document"></span>
                         <?php esc_html_e('All articles', 'eazydocs'); ?>
                     </li>
-                    <li class="easydocs-btn easydocs-btn-green-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".publish">
+                    <li class="easydocs-btn easydocs-btn-green-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".publish" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}">
                         <span class="dashicons dashicons-admin-site-alt3"></span>
                         <?php esc_html_e('Public', 'eazydocs'); ?>
                     </li>
-                    <li class="easydocs-btn easydocs-btn-blue-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".private">
+                    <li class="easydocs-btn easydocs-btn-blue-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".private" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}">
                         <span class="dashicons dashicons-privacy"></span>
                         <?php esc_html_e('Private', 'eazydocs'); ?>
                     </li>
-                    <li class="easydocs-btn easydocs-btn-orange-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".protected">
+                    <li class="easydocs-btn easydocs-btn-orange-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".protected" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}">
                         <span class="dashicons dashicons-lock"></span>
                         <?php esc_html_e('Protected', 'eazydocs'); ?>
                     </li>
-                    <li class="easydocs-btn easydocs-btn-gray-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".draft">
+                    <li class="easydocs-btn easydocs-btn-gray-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".draft" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}">
                         <span class="dashicons dashicons-edit-page"></span>
                         <?php esc_html_e('Draft', 'eazydocs'); ?>
                     </li>

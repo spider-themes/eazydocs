@@ -13,3 +13,7 @@
 ## 2024-05-22 - Context for Repeated Actions
 **Learning:** In EazyDocs admin templates (like `child-docs.php`), action buttons inside loops often use generic text ("Add Section") and sometimes duplicate IDs, confusing screen readers and breaking JS event delegation.
 **Action:** When refactoring repeated actions, replace duplicate IDs with classes, update JS delegates, and add `aria-label` including the parent item's name (e.g., "Add Section to [Doc Name]") to provide necessary context.
+
+## 2024-10-24 - State Management for Retrofitted Toggles
+**Learning:** When retrofitting semantic-less elements (like `<li>`) into buttons, purely adding attributes isn't enough; you must manually manage state (like `aria-pressed`).
+**Action:** Use a lightweight jQuery listener (e.g., `$(this).siblings().attr('aria-pressed', 'false')`) to toggle state without rewriting the underlying library (e.g., MixItUp) logic.
