@@ -17,3 +17,8 @@
 **Vulnerability:** The feedback form handler `eazydocs_feedback_email` allowed unlimited email submissions from unauthenticated users, leading to potential email spam and database flooding.
 **Learning:** Publicly accessible AJAX actions (`nopriv`) that trigger resource-intensive operations (sending emails, DB writes) must have rate limiting or CAPTCHA.
 **Prevention:** Implement IP-based transient rate limiting for all public-facing form handlers.
+
+## 2026-01-28 – Information Disclosure via Default Post Status
+**Vulnerability:** Helper functions `ezd_list_pages` and `ezd_get_posts` hardcoded `post_status` to include `private` posts, exposing private document titles to unauthorized users on the frontend.
+**Learning:** Functions wrapping `get_pages` or `WP_Query` should not default to including privileged statuses (`private`, `protected`) without checking user capabilities.
+**Prevention:** Dynamically construct `post_status` arrays based on `current_user_can('read_private_docs')`.

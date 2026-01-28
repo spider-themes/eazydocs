@@ -287,6 +287,12 @@ function ezd_reading_time() {
  * @return mixed|void
  */
 function ezd_list_pages( $args = '' ) {
+	// Sentinel: Prevent unauthorized access to private docs
+	$post_status = [ 'publish' ];
+	if ( current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' ) ) {
+		$post_status[] = 'private';
+	}
+
 	$defaults = array(
 		'depth'        => 0,
 		'show_date'    => '',
@@ -301,7 +307,7 @@ function ezd_list_pages( $args = '' ) {
 		'link_after'   => '',
 		'item_spacing' => 'preserve',
 		'walker'       => '',
-		'post_status'  => ['publish', 'private']
+		'post_status'  => $post_status
 	);
 
 	$r = wp_parse_args( $args, $defaults );
@@ -1181,11 +1187,17 @@ function ezd_has_shortcode( $shortcodes = [] ) {
  * @return array
  */
 function ezd_get_posts( $post_type = 'docs' ) {
+	// Sentinel: Prevent unauthorized access to private docs
+	$post_status = [ 'publish' ];
+	if ( current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' ) ) {
+		$post_status[] = 'private';
+	}
+
 	$docs       = get_pages(
 		array(
 			'post_type'   => $post_type,
 			'numberposts' => - 1,
-			'post_status' => [ 'publish', 'private' ],
+			'post_status' => $post_status,
 			'parent'      => 0,
 		)
 	);
