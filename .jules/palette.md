@@ -13,3 +13,7 @@
 ## 2024-05-22 - Context for Repeated Actions
 **Learning:** In EazyDocs admin templates (like `child-docs.php`), action buttons inside loops often use generic text ("Add Section") and sometimes duplicate IDs, confusing screen readers and breaking JS event delegation.
 **Action:** When refactoring repeated actions, replace duplicate IDs with classes, update JS delegates, and add `aria-label` including the parent item's name (e.g., "Add Section to [Doc Name]") to provide necessary context.
+
+## 2024-10-24 - Sidebar Tabs Accessibility
+**Learning:** EazyDocs uses `<li>` elements in a sidebar for tab navigation (`.easydocs-navitem`), which are not focusable by default. Changing markup to `<button>` might break complex CSS selectors.
+**Action:** Enhance accessibility by adding `role="tab"`, `tabindex="0"`, `aria-selected` (managed by JS), and `aria-controls` to the list items. Implement `keydown` (Enter/Space) handlers to mimic click behavior for keyboard users.

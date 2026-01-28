@@ -58,8 +58,8 @@
 			}
 
 			// Menu item
-			$('.tab-menu .easydocs-navitem').removeClass('active');
-			$nav.addClass('active');
+			$('.tab-menu .easydocs-navitem').removeClass('active').attr('aria-selected', 'false');
+			$nav.addClass('active').attr('aria-selected', 'true');
 
 			// Tab content
 			$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active').hide();
@@ -73,7 +73,15 @@
 		}
 
 		// Sidebar Tabs [COOKIE]
-		$(document).on('click', '.tab-menu .easydocs-navitem', function () {
+		$(document).on('click keydown', '.tab-menu .easydocs-navitem', function (e) {
+			// Handle keyboard activation (Enter or Space)
+			if (e.type === 'keydown' && e.which !== 13 && e.which !== 32) {
+				return;
+			}
+			if (e.type === 'keydown') {
+				e.preventDefault();
+			}
+
 			// REMOVE ?tab=something ONLY AFTER CLICK
 			const url = new URL(window.location.href);
 			if (url.searchParams.has('more_state')) {
