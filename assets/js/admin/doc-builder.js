@@ -79,6 +79,12 @@
 				return;
 			}
 			if (e.type === 'keydown') {
+				// If the keydown originated from an interactive descendant
+				// (e.g. Edit/View/Delete links or form controls), do not
+				// intercept Enter/Space so their default behavior works.
+				if (e.target !== this && $(e.target).is('a, button, [role="button"], input, select, textarea')) {
+					return;
+				}
 				e.preventDefault();
 			}
 
