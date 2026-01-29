@@ -26,7 +26,8 @@
       "type": "number"
     },
     "show_articles": {
-      "type": "number"
+      "type": "number",
+      "default": 5
     },
     "more": {
       "type": "string",
@@ -55,6 +56,10 @@
     "docs_layout": {
       "type": "string",
       "default": "grid"
+    },
+    "img_size": {
+      "type": "string",
+      "default": "ezd_searrch_thumb50x50"
     }
   },
   "textdomain": "eazydocs",

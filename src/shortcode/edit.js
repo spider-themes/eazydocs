@@ -21,7 +21,7 @@ import {doc_ids} from "../custom-functions";
 import colors from '../colors-palette';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { col, include, exclude, show_docs, show_articles, more, list, show_topic, topic_label, child_docs_order, parent_docs_order, parent_docs_order_by, docs_layout } = attributes;
+	const { col, include, exclude, show_docs, show_articles, more, list, show_topic, topic_label, child_docs_order, parent_docs_order, parent_docs_order_by, docs_layout, img_size } = attributes;
 	const blockProps = useBlockProps();
 
 	const docs = useSelect( (select) => {
@@ -52,6 +52,11 @@ export default function Edit( { attributes, setAttributes } ) {
 	const layoutOptions = [
 		{ label: __('Masonry', 'eazydocs'), value: 'masonry' },
 		{ label: __('Grid', 'eazydocs'), value: 'grid' },
+	];
+	
+	const imageSizeOptions = [
+		{ label: __('Thumbnail (50x50)', 'eazydocs'), value: 'ezd_searrch_thumb50x50' },
+		{ label: __('Full Size', 'eazydocs'), value: 'full' },
 	];
 	
 	const parentOrderOptions = [
@@ -175,6 +180,14 @@ export default function Edit( { attributes, setAttributes } ) {
 						options={layoutOptions}
 						className={eazydocs_local_object.is_ezd_pro_block == 'yes' ? '' : 'eazydocs-pro-block-notice'}
 						onChange={(value) => setAttributes({ docs_layout: value })}						
+					/>
+
+					<SelectControl
+						label={__('Feature Image Size', 'eazydocs')}
+						value={img_size || 'ezd_searrch_thumb50x50'}
+						options={imageSizeOptions}
+						onChange={(value) => setAttributes({ img_size: value })}
+						help={__('Select the size for document feature images.', 'eazydocs')}
 					/>
 
 					<FormTokenField

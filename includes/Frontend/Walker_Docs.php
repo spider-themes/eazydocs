@@ -40,6 +40,27 @@ class Walker_Docs extends Walker_Page {
 	public static $parent_item       = false;
 	public static $parent_item_class = '';
 
+	/**
+	 * Display the element.
+	 *
+	 * @see Walker::walk()
+	 *
+	 * @param array $elements  An array of elements.
+	 * @param int   $max_depth The maximum depth to traverse.
+	 * @param mixed ...$args   Additional arguments.
+	 *
+	 * @return string The content.
+	 */
+	public function walk( $elements, $max_depth, ...$args ) {
+		$ids = \wp_list_pluck( $elements, 'ID' );
+
+		if ( \function_exists( '_prime_post_caches' ) ) {
+			\_prime_post_caches( $ids );
+		}
+
+		return parent::walk( $elements, $max_depth, ...$args );
+	}
+
 	private function get_item_spacing( $args ) {
 		return isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ? array( "\t", "\n" ) : array( '', '' );
 	}

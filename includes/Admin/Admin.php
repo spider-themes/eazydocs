@@ -288,10 +288,6 @@ class Admin {
 	 */
 	public function body_class( $classes ) {
 
-		if ( ! class_exists( 'EZD_EazyDocsPro' ) ) {
-			return $classes;
-		}
-
 		$current_theme = get_template();
 		$classes       .= ' ' . $current_theme;
 		switch ( $current_theme ) {
