@@ -18,7 +18,7 @@ $count = $query->found_posts;
 ?>
 
 <div class="dd parent-nestable tab-menu <?php echo esc_attr($count > 12 ? '' : 'short'); ?>">
-    <ol class="easydocs-navbar sortabled dd-list" role="tablist">
+    <ol class="easydocs-navbar sortabled dd-list">
         <?php
         $i = 0;
         while ( $query->have_posts() ) : $query->the_post();
