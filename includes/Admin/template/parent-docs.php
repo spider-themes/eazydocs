@@ -25,6 +25,7 @@ $count = $query->found_posts;
             $i++;
             $depth_one_parents[]    = get_the_ID();
             $is_active              = $i == 1 ? 'is-active' : '';
+            $aria_selected          = $i == 1 ? 'true' : 'false';
             $doc_counter            = get_pages([
                 'child_of'          => get_the_ID(),
                 'post_type'         => 'docs',
@@ -56,7 +57,7 @@ $count = $query->found_posts;
                 $doc_status = esc_html__('Password Protected Doc', 'eazydocs');
             }
             ?>
-            <li class="easydocs-navitem dd-item dd3-item <?php echo esc_attr($is_active); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
+            <li class="easydocs-navitem dd-item dd3-item <?php echo esc_attr($is_active); ?>" data-rel="tab-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>" role="tab" tabindex="0" aria-selected="<?php echo esc_attr($aria_selected); ?>" aria-controls="tab-<?php the_ID(); ?>">
                 <div class="title">
                     <span title="<?php echo esc_attr($doc_status); ?>" class="dashicons dashicons-<?php echo esc_attr($post_format); ?>"></span>
                     <?php the_title(); ?>
