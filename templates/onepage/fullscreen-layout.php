@@ -30,7 +30,7 @@ global $post;
 $post_slug = $post->post_name;
 $post_id   = get_page_by_path( $post_slug, OBJECT, array( 'docs' ) );
 
-$children = wp_list_pages( array(
+$children = ezd_list_pages_onepage_others( array(
 	'title_li'  => '',
 	'order'     => 'menu_order',
 	'child_of'  => $post_id->ID ?? 0,
@@ -62,16 +62,8 @@ $children = wp_list_pages( array(
                         <nav class="scroll op-docs-sidebar">
                             <ul class="ezd-list-unstyled nav-sidebar fullscreen-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
 								<?php
-								$nav_html = wp_list_pages( array(
-									'title_li'  => '',
-									'order'     => 'menu_order',
-									'child_of'  => $post_id->ID ?? 0,
-									'echo'      => false,
-									'post_type' => 'docs',
-									'walker'    => new Walker_Onepage_Fullscren(),
-									'depth'     => 4
-									) );
-								echo wp_kses( $nav_html, ezd_kses_allowed_docs_nav_html() );
+								// Optimization: Reuse the $children variable instead of calling wp_list_pages again
+								echo wp_kses( $children, ezd_kses_allowed_docs_nav_html() );
 								?>
                             </ul>
                         </nav>
