@@ -430,6 +430,20 @@
 				.toggleClass('arrow-active', isExpanded);
 		});
 		
+		// Accessibility for Filter Tabs (Child Docs)
+		$('.single-item-filter li[role="button"]').on('keydown', function(e) {
+			if (e.which === 13 || e.which === 32) { // Enter or Space
+				e.preventDefault();
+				$(this).click();
+			}
+		});
+
+		$('.single-item-filter li[role="button"]').on('click', function() {
+			var $parent = $(this).closest('.single-item-filter');
+			$parent.find('li[role="button"]').attr('aria-pressed', 'false');
+			$(this).attr('aria-pressed', 'true');
+		});
+
 		// Notifications filter buttons (Doc Builder page)
 		$('.easydocs-filters button').on('click', function(e){
 			e.preventDefault();
