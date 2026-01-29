@@ -32,133 +32,492 @@
   display: initial;
 }
 
-/** === Offer Notice design === **/
-.ezd-offer-wrap {
-  background-color: #7474FC;
-  color: #fff;
-  width: 100%; /* Set full width */
-  position: relative;
-  border-radius: 10px;
+/** === EazyDocs Pro Upgrade Offer Notice === **/
+
+// Variables - Premium Dark Theme with Vibrant Accents
+$ezd-offer-primary: #1e1b4b;      // Deep indigo
+$ezd-offer-secondary: #312e81;    // Rich purple
+$ezd-offer-tertiary: #4338ca;     // Bright indigo
+$ezd-offer-accent: #fbbf24;       // Golden yellow
+$ezd-offer-accent-hover: #f59e0b;
+$ezd-offer-success: #34d399;      // Emerald
+$ezd-offer-text: #ffffff;
+$ezd-offer-text-muted: rgba(255, 255, 255, 0.75);
+
+// Keyframe Animations
+@keyframes ezd-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
-.ezd-offer {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  width: 80%;
-  align-items: center; /* Align items vertically center */
-  justify-items: center; /* Align items horizontally center */
-  box-sizing: border-box; /* Ensure padding doesn't exceed 100% width */
+@keyframes ezd-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
 
-  .dismiss-btn {
-    position: absolute;
-    top: 50%;
-    right: 25px;
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-size: 30px;
-    cursor: pointer;
-    transform: translate(-50%, -25px);
-    font-weight: 400;
-    z-index: 1;
+@keyframes ezd-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes ezd-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes ezd-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes ezd-morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+// Main Notice Container
+.ezd-offer-notice {
+  position: relative;
+  background: linear-gradient(135deg, $ezd-offer-primary 0%, $ezd-offer-secondary 40%, $ezd-offer-tertiary 100%);
+  border-radius: 16px;
+  padding: 28px 36px;
+  margin: 20px 20px 20px 0;
+  color: $ezd-offer-text;
+  box-shadow: 
+    0 4px 6px -1px rgba(30, 27, 75, 0.4),
+    0 10px 15px -3px rgba(30, 27, 75, 0.3),
+    0 20px 25px -5px rgba(67, 56, 202, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  &.ezd-offer-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .ezd-col {
-    padding: 20px;
-    position: relative;
-    display: flex;
-    gap: 10px;
-    width: 280px;
+  // Geometric Background Pattern
+  .ezd-offer-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      // Subtle grid pattern
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      // Radial glows
+      radial-gradient(ellipse at 10% 90%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 10%, rgba(99, 102, 241, 0.2) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 50%, rgba(67, 56, 202, 0.1) 0%, transparent 60%);
+    background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%;
+    pointer-events: none;
+  }
 
-    .ezd-col-box label {
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    &:not(:last-child)::after {
+  // Animated Glow Orbs
+  .ezd-offer-glow {
+    position: absolute;
+    pointer-events: none;
+    
+    // Main golden glow (top right)
+    &::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 100%;
-      transform: translate(-50%, -50%);
-      height: 65px;
-      width: 1px;
-      background-color: rgb(255 255 255 / 20%);
+      top: -80px;
+      right: -40px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.35) 0%, rgba(251, 191, 36, 0.1) 40%, transparent 70%);
+      animation: ezd-glow 4s ease-in-out infinite;
+      border-radius: 50%;
+    }
+    
+    // Secondary purple orb (bottom left)
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(99, 102, 241, 0.1) 50%, transparent 70%);
+      animation: ezd-glow 5s ease-in-out infinite reverse;
+      animation-delay: 1s;
+      border-radius: 50%;
+    }
+  }
+
+  // Action Buttons (Dismiss & Snooze)
+  .ezd-offer-actions {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .ezd-offer-snooze,
+  .ezd-offer-dismiss {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: $ezd-offer-text;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+
+    .dashicons {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
     }
 
-    img {
-      width: 30px;
-      height: 30px;
-      filter: invert(1);
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.4);
     }
+  }
 
-    .ezd-col-text {
-      p {
-        margin-top: 0;
-        margin-bottom: 8px;
+  .ezd-offer-dismiss {
+    padding: 6px 8px;
+  }
 
-        strong {
-          font-size: 1.2em;
-        }
+  // Container Layout
+  .ezd-offer-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr auto;
+    gap: 32px;
+    align-items: center;
+    z-index: 5;
+  }
+
+  // Header Section
+  .ezd-offer-header {
+    .ezd-offer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      animation: ezd-pulse 2s ease-in-out infinite;
+
+      .ezd-offer-badge-icon {
+        font-size: 14px;
       }
     }
 
-    .buy-btn {
-      display: inline-block;
-      padding: 12px 25px;
-      background-color: #FFC107;
-      text-decoration: none;
-      font-weight: bold;
-      text-align: center;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
+    .ezd-offer-headline {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      line-height: 1.3;
+      color: $ezd-offer-text;
     }
 
-    .buy-btn:hover {
-      background-color: #FFA000;
+    .ezd-offer-subheadline {
+      font-size: 14px;
+      color: $ezd-offer-text-muted;
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+
+  // Features Grid
+  .ezd-offer-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .ezd-offer-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .dashicons {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      color: $ezd-offer-accent;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .ezd-offer-feature-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      strong {
+        font-size: 13px;
+        font-weight: 600;
+        color: $ezd-offer-text;
+      }
+
+      span {
+        font-size: 11px;
+        color: $ezd-offer-text-muted;
+      }
+    }
+  }
+
+  // CTA Section
+  .ezd-offer-cta-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-left: 24px;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  // Discount Badge
+  .ezd-offer-discount {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    animation: ezd-float 3s ease-in-out infinite;
+
+    .ezd-offer-discount-value {
+      font-size: 42px;
+      font-weight: 800;
+      color: $ezd-offer-accent;
+      text-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+      line-height: 1;
+    }
+
+    .ezd-offer-discount-label {
+      font-size: 18px;
+      font-weight: 700;
+      color: $ezd-offer-accent;
+    }
+  }
+
+  // Coupon Box
+  .ezd-offer-coupon {
+    text-align: center;
+
+    .ezd-offer-coupon-label {
+      display: block;
+      font-size: 11px;
+      color: $ezd-offer-text-muted;
+      margin-bottom: 6px;
+    }
+
+    .ezd-offer-coupon-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px dashed rgba(255, 255, 255, 0.4);
+      border-radius: 8px;
+      padding: 6px 10px;
+      position: relative;
+    }
+
+    .ezd-offer-coupon-code {
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: $ezd-offer-text;
+      letter-spacing: 1px;
+      background: transparent;
+      padding: 0;
+    }
+
+    .ezd-offer-copy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 4px;
+      padding: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      .dashicons {
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+        color: $ezd-offer-text;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      &.copied {
+        background: $ezd-offer-success;
+      }
+    }
+
+    .ezd-offer-copy-success {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: $ezd-offer-success;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-top: 6px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+
+      .dashicons {
+        font-size: 12px;
+        width: 12px;
+        height: 12px;
+      }
+
+      &.show {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  // CTA Button
+  .ezd-offer-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, $ezd-offer-accent 0%, darken($ezd-offer-accent, 10%) 100%);
+    color: #1f2937;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 
+      0 4px 6px -1px rgba(245, 158, 11, 0.3),
+      0 2px 4px -1px rgba(245, 158, 11, 0.2);
+    transition: all 0.3s ease;
+    background-size: 200% 200%;
+    animation: ezd-shimmer 3s ease-in-out infinite;
+
+    .dashicons {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 6px 10px -1px rgba(245, 158, 11, 0.4),
+        0 4px 6px -1px rgba(245, 158, 11, 0.3);
+      color: #1f2937;
+
+      .dashicons {
+        transform: translateX(3px);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Guarantee Text
+  .ezd-offer-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: $ezd-offer-text-muted;
+    margin: 0;
+
+    .dashicons {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+      color: $ezd-offer-success;
     }
   }
 }
 
-.coupon-container {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+// Responsive Design
+@media (max-width: 1200px) {
+  .ezd-offer-notice {
+    .ezd-offer-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
 
-  #coupon {
-    border: 1px solid #fff;
-    background-color: #fff;
-    color: #333;
-    font-weight: bold;
-    border-radius: 5px;
-    width: auto;
+    .ezd-offer-cta-section {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      justify-content: center;
+      border-left: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-left: 0;
+      padding-top: 20px;
+    }
   }
+}
 
-  .copy-btn {
-    padding: 7px 10px;
-    background-color: transparent;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #fff;
-    font-weight: 500;
-  }
+@media (max-width: 782px) {
+  .ezd-offer-notice {
+    padding: 20px;
+    margin: 15px 10px 15px 0;
 
-  .copy-btn:hover {
-    background-color: #FFA000;
-    border-color: #FFA000;
-  }
+    .ezd-offer-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
 
-  .copy-message {
-    display: none;
-    color: #028c02;
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-left: 10px;
-    position: absolute;
-    background: #fff;
+    .ezd-offer-header {
+      .ezd-offer-badge {
+        justify-content: center;
+      }
+    }
+
+    .ezd-offer-features {
+      grid-template-columns: 1fr;
+    }
+
+    .ezd-offer-cta-section {
+      flex-direction: column;
+      padding-top: 16px;
+    }
+
+    .ezd-offer-snooze-text {
+      display: none;
+    }
   }
 }
 

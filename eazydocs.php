@@ -87,7 +87,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			add_filter( 'plugin_row_meta', [ $this, 'eazydocs_row_meta' ], 10, 2 );
 
 			add_action( 'admin_head', function () {
-				if ( ezd_admin_pages() ) {
+				// Check if we're on any EazyDocs admin page, taxonomy page, or post type page
+				$is_ezd_page = ezd_admin_pages() || ezd_admin_taxonomy() || ezd_admin_post_types();
+
+				if ( $is_ezd_page ) {
 					remove_all_actions( 'admin_notices' );
 					remove_all_actions( 'all_admin_notices' );
 
@@ -96,7 +99,8 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 						\EazyDocs\Admin\AntimanualNotice::init();
 					}
 
-					if ( ! ezd_is_premium() && ezd_is_plugin_installed_for_days( 12 ) && ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'eazydocs-initial-setup' ) ) {
+					$is_dev_mode = defined( 'DEVELOPER_MODE' ) && DEVELOPER_MODE;
+					if ( $is_dev_mode || ( ! ezd_is_premium() && ezd_is_plugin_installed_for_days( 12 ) && ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'eazydocs-initial-setup' ) ) ) {
 						add_action( 'admin_notices', 'ezd_offer_notice' );
 					}
 
@@ -104,7 +108,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 						add_action( 'admin_notices', 'ezd_gutenberg_info_notice' );
 					}
 				}
-			} );
+			});
 		}
 
 		public static function get_instance() {
