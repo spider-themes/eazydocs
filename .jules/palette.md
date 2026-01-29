@@ -17,3 +17,7 @@
 ## 2024-10-24 - Sidebar Tabs Accessibility
 **Learning:** EazyDocs uses `<li>` elements in a sidebar for tab navigation (`.easydocs-navitem`), which are not focusable by default. Changing markup to `<button>` might break complex CSS selectors.
 **Action:** Enhance accessibility by adding `role="tab"`, `tabindex="0"`, `aria-selected` (managed by JS), and `aria-controls` to the list items. Implement `keydown` (Enter/Space) handlers to mimic click behavior for keyboard users.
+
+## 2024-05-23 - Avoiding Roving Tabindex Complexity
+**Learning:** When retrofitting filters, attempting a full "Roving Tabindex" pattern (arrow key navigation) on non-standard elements is error-prone and complex to maintain. Simple implementations (tabindex="-1" on inactive items) create keyboard traps if arrow keys aren't handled.
+**Action:** Prefer the simpler "Toolbar" or "Group" pattern where all items are focusable (`tabindex="0"`) with `role="button"` and `aria-pressed`. It's safer, easier to implement, and sufficiently accessible for small filter sets.

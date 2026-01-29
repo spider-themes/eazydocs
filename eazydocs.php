@@ -147,7 +147,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				$docs_url   = ezd_get_opt( 'docs-url-structure', 'custom-slug' );
 				$permalink  = get_option( 'permalink_structure' );
 
-				if ( $docs_url === 'post-name' && ! empty( $permalink ) && $permalink !== '/archives/%post_id%' ) {
+				if ( 'post-name' === $docs_url && ! empty( $permalink ) && $permalink !== '/archives/%post_id%' ) {
 					require_once __DIR__ . '/includes/Root_Conversion.php';
 				}
 			}
@@ -202,6 +202,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			return $instance ?: ( $instance = new self() );
 		}
 
+		/**
+		 * Initialize the plugin
+		 */
 		public function init_plugin() {
 			$this->theme_dir_path = apply_filters( 'eazydocs_theme_dir_path', 'eazydocs/' );
 			if ( is_admin() ) {
@@ -224,6 +227,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			}
 		}
 
+		/**
+		 * Initialize hooked classes
+		 */
 		public function init_hooked() {
 			new EazyDocs\Frontend\Ajax();
 		}
@@ -325,7 +331,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$view_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name3 ) );
 
-			if ( $keyword_exists != $table_name || $logs_exists != $table_name2 || $view_exists != $table_name3 ) {
+			if ( $keyword_exists !== $table_name || $logs_exists !== $table_name2 || $view_exists !== $table_name3 ) {
 				?>
                 <div class="notice notice-error is-dismissible eazydocs_table_error">
                     <p><?php esc_html_e( 'EazyDocs database needs an update. Please click the Update button to update your database.', 'eazydocs' ); ?></p>

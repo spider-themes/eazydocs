@@ -65,7 +65,7 @@ class Ajax {
 
 			update_post_meta( $post_id, $type, $count + 1 );
 
-			if ( $type == 'positive' ) {
+			if ( 'positive' === $type ) {
 				$voters = get_post_meta( $post_id, 'positive_voter', true );
 				$voters = is_array( $voters ) ? $voters : [];
 
@@ -281,14 +281,14 @@ class Ajax {
 		}
 
 		// Check private doc access
-		if ( get_post_status( $postid ) == 'private' && ezd_is_premium() ) {
+		if ( 'private' === get_post_status( $postid ) && ezd_is_premium() ) {
 			// Try new settings first
 			$access_type = ezd_get_opt( 'private_doc_access_type', '' );
 			$has_access  = false;
 			
 			if ( ! empty( $access_type ) ) {
 				// Using new settings
-				if ( $access_type === 'all_users' ) {
+				if ( 'all_users' === $access_type ) {
 					// All logged-in users can access
 					$has_access = is_user_logged_in();
 				} else {
@@ -310,7 +310,7 @@ class Ajax {
 				$user_group  = ezd_get_opt( 'private_doc_user_restriction' );
 				$is_all_user = $user_group['private_doc_all_user'] ?? 0;
 				
-				if ( $is_all_user === '1' || $is_all_user === 1 || $is_all_user === true ) {
+				if ( '1' === $is_all_user || 1 === $is_all_user || true === $is_all_user ) {
 					$has_access = is_user_logged_in();
 				} else {
 					$current_user_id   = get_current_user_id();
