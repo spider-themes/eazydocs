@@ -58,8 +58,8 @@
 			}
 
 			// Menu item
-			$('.tab-menu .easydocs-navitem').removeClass('active').attr('aria-selected', 'false');
-			$nav.addClass('active').attr('aria-selected', 'true');
+			$('.tab-menu .easydocs-navitem').removeClass('active is-active').attr('aria-selected', 'false');
+			$nav.addClass('active is-active').attr('aria-selected', 'true');
 
 			// Tab content
 			$('.easydocs-tab-content .easydocs-tab').removeClass('tab-active').hide();
