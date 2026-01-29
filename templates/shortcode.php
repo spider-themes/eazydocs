@@ -89,6 +89,7 @@ if ( $docs ) :
                                     <li>
                                         <a href="<?php the_permalink( $item->ID ); ?>">
 											<?php echo esc_html( $item->post_title ); ?>
+											<?php if ( function_exists('ezdpro_badge') && ezd_is_premium() ) echo ezdpro_badge( $item->ID ); ?>
                                         </a>
                                     </li>
 								    <?php

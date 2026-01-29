@@ -125,7 +125,17 @@ endif;
 				echo '<div class="details_cont ent recently_added" id="content_elements">';
 				echo '<h4 class="c_head">' . esc_html( ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' )) ) . '</h4>';
 				echo '<ul class="article_list">';
-				echo wp_kses_post(ezd_list_pages( "title_li=&order=menu_order&child_of=" . absint($post->ID) . "&echo=0&post_type=" . esc_attr($post->post_type) ));
+                $args = array(
+                    'title_li' => '',
+                    'order' => 'menu_order',
+                    'child_of' => absint($post->ID),
+                    'echo' => 0,
+                    'post_type' => esc_attr($post->post_type),
+                );
+                if ( class_exists( 'EazyDocs_Article_Walker' ) ) {
+                    $args['walker'] = new EazyDocs_Article_Walker();
+                }
+				echo wp_kses_post(ezd_list_pages( $args ));
 				echo '</ul>';
 				echo '</div>';
 			}

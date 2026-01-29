@@ -25,6 +25,9 @@ function ezd_render_doc_items_list( $doc_items, $class = 'ezd-list-unstyled tag_
         echo '<li>';
         echo '<a href="' . esc_url( get_permalink( $doc_item->ID ) ) . '" class="' . esc_attr( $link_class ) . '">';
         echo esc_html( $doc_item->post_title );
+        if ( function_exists( 'ezdpro_badge' ) && ezd_is_premium() ) {
+            echo ezdpro_badge( $doc_item->ID );
+        }
         echo '</a>';
         echo '</li>';
     }

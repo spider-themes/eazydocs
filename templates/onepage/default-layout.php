@@ -132,7 +132,12 @@ $children         = wp_list_pages( array(
 											<li>
 												<a href="#<?php echo esc_attr(sanitize_title( $child_section->post_title )) ?>">
 													<i class="icon_document_alt"></i>
-													<?php echo esc_html($child_section->post_title); ?>
+													<?php 
+													echo esc_html($child_section->post_title); 
+													if ( function_exists( 'ezdpro_badge' ) && ezd_is_premium() ) {
+														echo ezdpro_badge( $child_section->ID );
+													}
+													?>
 												</a>
 											</li>
 										<?php
