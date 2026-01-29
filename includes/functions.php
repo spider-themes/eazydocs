@@ -26,6 +26,45 @@ function ezd_get_opt( $option, $default = '' ) {
 }
 
 /**
+ * Prime the post meta cache with backward compatibility.
+ *
+ * @param array|int|WP_Post $post_ids Post IDs or post objects.
+ * @return void
+ */
+function ezd_update_post_meta_cache( $post_ids ) {
+	if ( empty( $post_ids ) ) {
+		return;
+	}
+
+	if ( is_object( $post_ids ) && isset( $post_ids->ID ) ) {
+		$post_ids = array( $post_ids->ID );
+	} elseif ( is_array( $post_ids ) ) {
+		$first = reset( $post_ids );
+		if ( is_object( $first ) && isset( $first->ID ) ) {
+			$post_ids = wp_list_pluck( $post_ids, 'ID' );
+		}
+	}
+
+	if ( empty( $post_ids ) ) {
+		return;
+	}
+
+	if ( function_exists( 'update_post_meta_cache' ) ) {
+		update_post_meta_cache( $post_ids );
+		return;
+	}
+
+	if ( function_exists( 'update_postmeta_cache' ) ) {
+		update_postmeta_cache( $post_ids );
+		return;
+	}
+
+	if ( function_exists( 'update_meta_cache' ) ) {
+		update_meta_cache( 'post', $post_ids );
+	}
+}
+
+/**
  * Get post-meta value or theme option value.
  *
  * This function first attempts to retrieve a post-meta value. If the post meta

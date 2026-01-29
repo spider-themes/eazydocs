@@ -293,7 +293,7 @@ function ezd_list_pages_onepage_others( $args = '' ) {
 
 	if ( ! empty( $pages ) ) {
 		// Optimization: Prime the meta cache to avoid N+1 queries in the walker
-		update_post_meta_cache( wp_list_pluck( $pages, 'ID' ) );
+		ezd_update_post_meta_cache( $pages );
 
 		if ( $r['title_li'] ) {
 			$output .= '<li class="pagenav">' . $r['title_li'] . '<ul>';

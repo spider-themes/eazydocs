@@ -295,7 +295,7 @@ function ezd_list_pages_onepage( $args = '' ) {
     $pages             = get_pages( $r );
 
     if ( ! empty( $pages ) ) {
-        update_post_meta_cache( $pages );
+        ezd_update_post_meta_cache( $pages );
         if ( function_exists( 'update_post_thumbnail_cache' ) ) {
             update_post_thumbnail_cache( $pages );
         }
