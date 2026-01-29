@@ -25,23 +25,23 @@ if ( is_array( $depth_one_parents ) ) :
         <div class="easydocs-tab<?php echo esc_attr( $active ); ?>" id="tab-<?php echo esc_attr( $item ); ?>">
             <div class="easydocs-filter-container">
                 <ul class="single-item-filter">
-                    <li class="easydocs-btn easydocs-btn-black-light easydocs-btn-rounded easydocs-btn-sm is-active" data-filter="all">
+                    <li class="easydocs-btn easydocs-btn-black-light easydocs-btn-rounded easydocs-btn-sm is-active" data-filter="all" role="button" tabindex="0" aria-pressed="true">
                         <span class="dashicons dashicons-media-document"></span>
                         <?php esc_html_e('All articles', 'eazydocs'); ?>
                     </li>
-                    <li class="easydocs-btn easydocs-btn-green-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".publish">
+                    <li class="easydocs-btn easydocs-btn-green-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".publish" role="button" tabindex="0" aria-pressed="false">
                         <span class="dashicons dashicons-admin-site-alt3"></span>
                         <?php esc_html_e('Public', 'eazydocs'); ?>
                     </li>
-                    <li class="easydocs-btn easydocs-btn-blue-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".private">
+                    <li class="easydocs-btn easydocs-btn-blue-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".private" role="button" tabindex="0" aria-pressed="false">
                         <span class="dashicons dashicons-privacy"></span>
                         <?php esc_html_e('Private', 'eazydocs'); ?>
                     </li>
-                    <li class="easydocs-btn easydocs-btn-orange-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".protected">
+                    <li class="easydocs-btn easydocs-btn-orange-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".protected" role="button" tabindex="0" aria-pressed="false">
                         <span class="dashicons dashicons-lock"></span>
                         <?php esc_html_e('Protected', 'eazydocs'); ?>
                     </li>
-                    <li class="easydocs-btn easydocs-btn-gray-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".draft">
+                    <li class="easydocs-btn easydocs-btn-gray-light easydocs-btn-rounded easydocs-btn-sm" data-filter=".draft" role="button" tabindex="0" aria-pressed="false">
                         <span class="dashicons dashicons-edit-page"></span>
                         <?php esc_html_e('Draft', 'eazydocs'); ?>
                     </li>

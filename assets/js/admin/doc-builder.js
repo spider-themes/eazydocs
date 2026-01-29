@@ -465,6 +465,25 @@
 			});
 		});
 		
+		/**
+		 * Accessibility: Keyboard support for doc filters
+		 * Allows Enter/Space to trigger click on filter items
+		 */
+		$('.single-item-filter .easydocs-btn').on('keydown', function(e) {
+			if (e.which === 13 || e.which === 32) {
+				e.preventDefault();
+				$(this).trigger('click');
+			}
+		});
+
+		/**
+		 * Accessibility: Update aria-pressed state on filter click
+		 */
+		$('.single-item-filter .easydocs-btn').on('click', function() {
+			$(this).siblings().attr('aria-pressed', 'false');
+			$(this).attr('aria-pressed', 'true');
+		});
+
 	});
 
 	// Glossary doc JS ==============
