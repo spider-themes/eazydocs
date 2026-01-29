@@ -287,10 +287,6 @@ function ezd_reading_time() {
  * @return mixed|void
  */
 function ezd_list_pages( $args = '' ) {
-	// Sentinel: Prevent unauthorized access to private docs
-	$can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
-	$post_status      = $can_read_private ? [ 'publish', 'private' ] : [ 'publish' ];
-
 	$defaults = array(
 		'depth'        => 0,
 		'show_date'    => '',
@@ -305,10 +301,30 @@ function ezd_list_pages( $args = '' ) {
 		'link_after'   => '',
 		'item_spacing' => 'preserve',
 		'walker'       => '',
-		'post_status'  => $post_status
+		'post_status'  => ['publish', 'private']
 	);
 
 	$r = wp_parse_args( $args, $defaults );
+
+	// Sentinel: Enforce unauthorized access prevention to private docs
+	// Ensure that even if 'private' is passed in args, it is removed if user lacks capability
+	if ( ! current_user_can( 'read_private_docs' ) && ! current_user_can( 'read_private_posts' ) ) {
+		$statuses = $r['post_status'];
+		if ( ! is_array( $statuses ) ) {
+			$statuses = explode( ',', $statuses );
+		}
+		$statuses = array_map( 'trim', $statuses );
+
+		// Remove 'private' from the allowed statuses
+		$statuses = array_diff( $statuses, ['private'] );
+
+		// Ensure 'publish' is present if array becomes empty, or just rely on what remains
+		if ( empty( $statuses ) ) {
+			$statuses = ['publish'];
+		}
+
+		$r['post_status'] = array_values( $statuses );
+	}
 
 	if ( ! in_array( $r['item_spacing'], array( 'preserve', 'discard' ), true ) ) {
 		// invalid value, fall back to default.
