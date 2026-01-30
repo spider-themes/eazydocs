@@ -2240,8 +2240,8 @@ div#eazydocs_share {
 						}
 
 						&:nth-child(4) {
-							> i {
-								color: rgb(29, 161, 242);
+							> svg {
+								vertical-align: baseline;
 							}
 						}
 					}

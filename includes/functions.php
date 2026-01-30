@@ -1789,46 +1789,38 @@ add_filter('the_content', 'ezd_update_footnotes_content');
  * Used in the settings page
  */
 function customizer_visibility_callback() {
-    $archive_url  = 'javascript:void(0)';
-    $single_url   = 'javascript:void(0)';
-    $target       = '_self';
-    $no_access    = 'no-customizer-access';
+	$archive_url = 'javascript:void(0)';
+	$single_url  = 'javascript:void(0)';
+	$target      = '_self';
+	$no_access   = 'no-customizer-access';
 
-    // Get current user data
-    if ( current_user_can( 'manage_options' ) ) {
-        $doc_id   = ezd_get_opt( 'docs-slug' );
-        $doc_page = get_post_field( 'post_name', $doc_id );
+	if ( current_user_can( 'manage_options' ) ) {
+		$archive_id = ezd_get_opt( 'docs-slug' );
 
-        $args = array(
-            'post_type'      => 'docs',
-            'posts_per_page' => -1,
-            'orderby'        => 'menu_order',
-            'order'          => 'asc'
-        );
+		$first_doc = get_posts( array(
+			'post_type'      => 'docs',
+			'posts_per_page' => 1,
+			'orderby'        => 'menu_order',
+			'order'          => 'ASC',
+			'post_status'    => 'publish',
+		) );
 
-        $recent_posts = get_posts( $args );
-        $post_url     = '';
-        $post_count   = 0;
+		$doc_id = ! empty( $first_doc ) ? $first_doc[0]->ID : $archive_id;
 
-        foreach ( $recent_posts as $recent ) {
-            $post_url  = $recent->ID;
-            $post_count++;
-        }
-
-        $no_access  = '';
-        $docs_url   = ( $post_count > 0 ) ? $post_url : $doc_id;
-        $archive_url = admin_url('customize.php?url=') . site_url('/') . '?p=' . $doc_id . '&autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
-        $single_url  = admin_url('customize.php?url=') . site_url('/') . '?p=' . $docs_url . '&autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
-        $target      = '_blank';
-    }
-    ?>
-    <a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">
-        <?php echo esc_html__( 'Docs Archive', 'eazydocs' ); ?>
-    </a>
-    <a href="<?php echo esc_attr( $single_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_single">
-        <?php echo esc_html__( 'Single Doc', 'eazydocs' ); ?>
-    </a>
-    <?php
+		$customize_base = admin_url( 'customize.php?url=' ) . site_url( '/' );
+		$archive_url    = $customize_base . '?p=' . $archive_id . '&autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
+		$single_url     = $customize_base . '?p=' . $doc_id . '&autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
+		$no_access      = '';
+		$target         = '_blank';
+	}
+	?>
+	<a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">
+		<?php echo esc_html__( 'Docs Archive', 'eazydocs' ); ?>
+	</a>
+	<a href="<?php echo esc_attr( $single_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_single">
+		<?php echo esc_html__( 'Single Doc', 'eazydocs' ); ?>
+	</a>
+	<?php
 }
 
 /**
