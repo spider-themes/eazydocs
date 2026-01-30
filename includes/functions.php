@@ -1896,6 +1896,20 @@ function has_ezd_mark_text_class() {
 }
 
 /**
+ * Render comments template for docs pages
+ */
+function ezd_get_comments_template() {
+	
+	// Block theme → render comments block (loads correct styles)
+	if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+		echo do_blocks( '<!-- wp:comments /--><!-- wp:post-comments-form /-->' );
+	} else {
+		// Classic theme → native comments.php
+		comments_template();
+	}
+}
+
+/**
  * Assigns or removes the 'read_private_docs' capability to user roles
  * based on the EazyDocs private doc settings.
  * 

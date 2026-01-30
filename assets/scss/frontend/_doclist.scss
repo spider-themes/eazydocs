@@ -1908,6 +1908,11 @@ body:not(.onepage-doc) .sticky_menu {
 		margin-left: unset;
 		margin-right: unset;
 	}
+	form {
+		input[type="submit"] {
+			height: auto;
+		}
+	}
 }
 
 #comments {

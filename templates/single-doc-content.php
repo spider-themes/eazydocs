@@ -159,7 +159,7 @@ if ( $comment_visibility == '1' )  :
 	if ( comments_open() || get_comments_number() )  :
 		?>
         <div class="eazydocs-comments-wrap">
-			<?php comments_template(); ?>
+			<?php ezd_get_comments_template(); ?>
         </div>
 	<?php
 	endif;
