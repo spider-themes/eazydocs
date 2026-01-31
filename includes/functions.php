@@ -37,7 +37,7 @@ function ezd_update_post_meta_cache( $post_ids ) {
 	}
 
 	if ( is_object( $post_ids ) && isset( $post_ids->ID ) ) {
-		$post_ids = array( $post_ids->ID );
+		$post_ids = [ $post_ids->ID ];
 	} elseif ( is_array( $post_ids ) ) {
 		$first = reset( $post_ids );
 		if ( is_object( $first ) && isset( $first->ID ) ) {
@@ -77,12 +77,12 @@ function ezd_update_post_meta_cache( $post_ids ) {
 
 function ezd_meta_apply( $option_id, $default = '' ) {
 	// Get post meta and theme option values
-	$meta_value	  = get_post_meta( get_the_ID(), $option_id, true );
-	$option_value = ezd_get_opt($option_id, $default);
+	$meta_value   = get_post_meta( get_the_ID(), $option_id, true );
+	$option_value = ezd_get_opt( $option_id, $default );
 
 	// Check if meta value is an array and empty
-	$is_meta_arr_empty = is_array($meta_value) && empty(array_filter($meta_value));
-	if ( $meta_value == 'default' || $meta_value == '' || $meta_value == null || $is_meta_arr_empty ) {
+	$is_meta_arr_empty = is_array( $meta_value ) && empty( array_filter( $meta_value ) );
+	if ( 'default' === $meta_value || '' === $meta_value || null === $meta_value || $is_meta_arr_empty ) {
 		return $option_value;
 	}
 
