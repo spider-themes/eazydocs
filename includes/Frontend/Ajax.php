@@ -117,6 +117,16 @@ class Ajax {
 			wp_send_json_error(['message' => 'No keyword provided']);
 		}
 
+		// Cache check (uses $can_read_private and $search_mode defined above)
+		$cache_key = 'ezd_search_' . md5( $keyword . '_' . ( $can_read_private ? '1' : '0' ) . '_' . $search_mode );
+		$cached_output = get_transient( $cache_key );
+		if ( false !== $cached_output ) {
+			echo $cached_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			die();
+		}
+
+		ob_start();
+
 		// --- SEARCH LOGIC ---
 
 		// Exact title matches
@@ -261,6 +271,10 @@ class Ajax {
 		endif;
 
 		wp_reset_postdata();
+
+		$output = ob_get_clean();
+		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
 		die();
 	}
