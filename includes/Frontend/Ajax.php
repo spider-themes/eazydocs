@@ -106,16 +106,26 @@ class Ajax {
 		check_ajax_referer('eazydocs-ajax', 'security');
 		global $wpdb;
 
-		$keyword     = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
+		$keyword = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
+		if ( empty($keyword) ) {
+			wp_send_json_error(['message' => 'No keyword provided']);
+		}
+
 		$search_mode = ezd_is_premium() ? ezd_get_opt( 'search_by', 'title_and_content' ) : 'title_and_content';
 
 		// Sentinel: Prevent unauthorized access to private docs
 		$can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
-		$post_status      = $can_read_private ? [ 'publish', 'private', 'protected' ] : [ 'publish', 'protected' ];
 
-		if ( empty($keyword) ) {
-			wp_send_json_error(['message' => 'No keyword provided']);
+		// Bolt: Cache search results (60s TTL)
+		$cache_key = 'ezd_search_' . md5( $keyword . '_' . (int) $can_read_private . '_' . $search_mode );
+		if ( false !== ( $output = get_transient( $cache_key ) ) ) {
+			echo $output;
+			die();
 		}
+
+		ob_start();
+
+		$post_status = $can_read_private ? [ 'publish', 'private', 'protected' ] : [ 'publish', 'protected' ];
 
 		// --- SEARCH LOGIC ---
 
@@ -261,6 +271,10 @@ class Ajax {
 		endif;
 
 		wp_reset_postdata();
+
+		$output = ob_get_clean();
+		set_transient( $cache_key, $output, 60 );
+		echo $output;
 		
 		die();
 	}
