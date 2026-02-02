@@ -215,7 +215,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
              if ( ezd_is_admin_or_editor( $doc_item, 'delete' ) ) : 
                 ?>
                  <li class="delete">
-                     <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce( $doc_item ) ); ?>&ID=<?php echo esc_attr( $doc_item ); ?>" class="section-delete" aria-label="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
+                     <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce( 'ezd_delete_doc_' . $doc_item ) ); ?>&ID=<?php echo esc_attr( $doc_item ); ?>" class="section-delete" aria-label="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
                          <span class="dashicons dashicons-trash"></span>
                      </a>
                  </li>
