@@ -117,6 +117,15 @@ class Ajax {
 			wp_send_json_error(['message' => 'No keyword provided']);
 		}
 
+		// Bolt ⚡ Optimization: Cache search results
+		$cache_key = 'ezd_srch_' . md5( $keyword . $search_mode . serialize( $post_status ) );
+		$cached    = get_transient( $cache_key );
+
+		if ( false !== $cached ) {
+			echo $cached; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			die();
+		}
+
 		// --- SEARCH LOGIC ---
 
 		// Exact title matches
@@ -184,15 +193,24 @@ class Ajax {
 
 		$posts = new WP_Query($args);
 
+		ob_start();
+
 		// --- LOG SEARCH KEYWORD ---
 		$keyword_for_db = trim(strtolower($keyword));
 		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
 		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
 
-		$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-		$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+		// Bolt ⚡ Optimization: Cache table existence check
+		$tables_exist = get_transient( 'ezd_search_tables_exist' );
 
-		if ( $keyword_table_exists && $log_table_exists ) {
+		if ( false === $tables_exist ) {
+			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+			$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+			$tables_exist         = ( $keyword_table_exists && $log_table_exists ) ? 'yes' : 'no';
+			set_transient( 'ezd_search_tables_exist', $tables_exist, DAY_IN_SECONDS );
+		}
+
+		if ( 'yes' === $tables_exist ) {
 			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
 			$keyword_id = $wpdb->insert_id;
 
@@ -262,6 +280,10 @@ class Ajax {
 
 		wp_reset_postdata();
 		
+		$output = ob_get_clean();
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		set_transient( $cache_key, $output, 60 );
+
 		die();
 	}
 
