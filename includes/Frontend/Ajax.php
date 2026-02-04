@@ -117,6 +117,13 @@ class Ajax {
 			wp_send_json_error(['message' => 'No keyword provided']);
 		}
 
+		// Optimization: Check for cached results (60s TTL)
+		$cache_key = 'ezd_search_' . md5( $keyword . serialize( $post_status ) . $search_mode );
+		if ( false !== ( $cached_output = get_transient( $cache_key ) ) ) {
+			echo $cached_output;
+			die();
+		}
+
 		// --- SEARCH LOGIC ---
 
 		// Exact title matches
@@ -209,6 +216,9 @@ class Ajax {
 				);
 			}
 		}
+
+		// Optimization: Start buffering output for cache
+		ob_start();
 		?>
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
@@ -261,6 +271,11 @@ class Ajax {
 		endif;
 
 		wp_reset_postdata();
+
+		// Optimization: Cache output and display
+		$output = ob_get_clean();
+		set_transient( $cache_key, $output, 60 );
+		echo $output;
 		
 		die();
 	}
