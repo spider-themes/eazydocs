@@ -50,9 +50,10 @@ class Ajax {
 		}
 
 		$post_id  = intval( $_POST['post_id'] );
-		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ] ) ? sanitize_text_field( $_POST['type'] ) : false;
+		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ], true ) ? sanitize_text_field( $_POST['type'] ) : false;
 
 		// check previous response
+		// Loose check allowed here as $previous contains strings from cookie
 		if ( in_array( $post_id, $previous ) ) {
 			$message = sprintf( $template, 'danger', esc_html__( 'Sorry, you\'ve already recorded your feedback!', 'eazydocs' ) );
 			wp_send_json_error( $message );
@@ -103,68 +104,68 @@ class Ajax {
 	 * @return void
 	 */
 	function eazydocs_search_results() {
-		check_ajax_referer('eazydocs-ajax', 'security');
+		check_ajax_referer( 'eazydocs-ajax', 'security' );
 		global $wpdb;
 
-		$keyword     = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
+		$keyword     = isset( $_POST['keyword'] ) ? sanitize_text_field( $_POST['keyword'] ) : '';
 		$search_mode = ezd_is_premium() ? ezd_get_opt( 'search_by', 'title_and_content' ) : 'title_and_content';
 
 		// Sentinel: Prevent unauthorized access to private docs
 		$can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
 		$post_status      = $can_read_private ? [ 'publish', 'private', 'protected' ] : [ 'publish', 'protected' ];
 
-		if ( empty($keyword) ) {
-			wp_send_json_error(['message' => 'No keyword provided']);
+		if ( empty( $keyword ) ) {
+			wp_send_json_error( [ 'message' => 'No keyword provided' ] );
 		}
 
 		// --- SEARCH LOGIC ---
 
 		// Exact title matches
-		$exact_ids = $wpdb->get_col($wpdb->prepare("
+		$exact_ids = $wpdb->get_col( $wpdb->prepare( "
 			SELECT ID FROM {$wpdb->posts}
 			WHERE post_type = 'docs'
-			AND post_status IN ('" . implode("','", $post_status) . "')
+			AND post_status IN ('" . implode( "','", $post_status ) . "')
 			AND post_title = %s
-		", $keyword));
+		", $keyword ) );
 
 		// Partial title matches (excluding exact)
-		$partial_ids = $wpdb->get_col($wpdb->prepare("
+		$partial_ids = $wpdb->get_col( $wpdb->prepare( "
 			SELECT ID FROM {$wpdb->posts}
 			WHERE post_type = 'docs'
-			AND post_status IN ('" . implode("','", $post_status) . "')
+			AND post_status IN ('" . implode( "','", $post_status ) . "')
 			AND post_title LIKE %s
-		", '%' . $wpdb->esc_like($keyword) . '%'));
-		$partial_ids = array_diff($partial_ids, $exact_ids);
+		", '%' . $wpdb->esc_like( $keyword ) . '%' ) );
+		$partial_ids = array_diff( $partial_ids, $exact_ids );
 
 		//  Content matches (only if mode allows)
 		$content_ids = [];
-		if ( $search_mode === 'title_and_content' ) {
-			$content_ids = $wpdb->get_col($wpdb->prepare("
+		if ( 'title_and_content' === $search_mode ) {
+			$content_ids = $wpdb->get_col( $wpdb->prepare( "
 				SELECT ID FROM {$wpdb->posts}
 				WHERE post_type = 'docs'
-				AND post_status IN ('" . implode("','", $post_status) . "')
+				AND post_status IN ('" . implode( "','", $post_status ) . "')
 				AND post_content LIKE %s
-			", '%' . $wpdb->esc_like($keyword) . '%'));
-			$content_ids = array_diff($content_ids, $exact_ids, $partial_ids);
+			", '%' . $wpdb->esc_like( $keyword ) . '%' ) );
+			$content_ids = array_diff( $content_ids, $exact_ids, $partial_ids );
 		}
 
 		// Combine: exact → partial → content
-		$final_ids = array_merge($exact_ids, $partial_ids, $content_ids);
-		if ( empty($final_ids) ) $final_ids = [0];
+		$final_ids = array_merge( $exact_ids, $partial_ids, $content_ids );
+		if ( empty( $final_ids ) ) $final_ids = [ 0 ];
 
 		// Add tag matches (appended after)
 		if ( get_term_by( 'name', $keyword, 'doc_tag' ) ) {
-			$tag_posts = new WP_Query([
+			$tag_posts = new WP_Query( [
 				'post_type'      => 'docs',
 				'posts_per_page' => -1,
 				'post_status'    => $post_status,
-				'tax_query'      => [[
+				'tax_query'      => [ [
 					'taxonomy' => 'doc_tag',
 					'field'    => 'name',
 					'terms'    => $keyword,
-				]],
-			]);
-			$merged_ids = array_unique(array_merge($final_ids, wp_list_pluck($tag_posts->posts, 'ID')));
+				] ],
+			] );
+			$merged_ids = array_unique( array_merge( $final_ids, wp_list_pluck( $tag_posts->posts, 'ID' ) ) );
 			$final_ids  = $merged_ids;
 		}
 
@@ -177,20 +178,20 @@ class Ajax {
 			'orderby'        => [
 				'post__in'    => 'ASC',
 				'menu_order'  => 'ASC',
-				'date'        => get_option('posts_order') === 'asc' ? 'ASC' : 'DESC',
+				'date'        => get_option( 'posts_order' ) === 'asc' ? 'ASC' : 'DESC',
 				'title'       => 'ASC',
 			],
 		];
 
-		$posts = new WP_Query($args);
+		$posts = new WP_Query( $args );
 
 		// --- LOG SEARCH KEYWORD ---
-		$keyword_for_db = trim(strtolower($keyword));
+		$keyword_for_db = trim( strtolower( $keyword ) );
 		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
 		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
 
-		$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-		$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+		$keyword_table_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword ) ) === $wp_eazydocs_search_keyword;
+		$log_table_exists     = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_log ) ) === $wp_eazydocs_search_log;
 
 		if ( $keyword_table_exists && $log_table_exists ) {
 			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
@@ -203,9 +204,9 @@ class Ajax {
 						'keyword_id'      => $keyword_id,
 						'count'           => $posts->post_count,
 						'not_found_count' => $posts->post_count ? 0 : 1,
-						'created_at'      => current_time('mysql'),
+						'created_at'      => current_time( 'mysql' ),
 					],
-					['%d', '%d', '%d', '%s']
+					[ '%d', '%d', '%d', '%s' ]
 				);
 			}
 		}
@@ -225,13 +226,13 @@ class Ajax {
 		// --- OUTPUT RESULTS (unchanged) ---
 		if ( $posts->have_posts() ) :
 			while ( $posts->have_posts() ) : $posts->the_post();
-				$no_thumbnail = ezd_get_opt('is_search_result_thumbnail') == false ? 'no-thumbnail' : '';
+				$no_thumbnail = false == ezd_get_opt( 'is_search_result_thumbnail' ) ? 'no-thumbnail' : '';
 				?>
-				<div class="search-result-item <?php echo esc_attr($no_thumbnail); ?>" data-url="<?php the_permalink(); ?>">
+				<div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" data-url="<?php the_permalink(); ?>">
 					<a href="<?php the_permalink(); ?>" class="title">
-						<?php if (ezd_get_opt('is_search_result_thumbnail')) :
-							if (has_post_thumbnail() && ezd_is_premium() ) {
-								the_post_thumbnail('ezd_searrch_thumb16x16');
+						<?php if ( ezd_get_opt( 'is_search_result_thumbnail' ) ) :
+							if ( has_post_thumbnail() && ezd_is_premium() ) {
+								the_post_thumbnail( 'ezd_searrch_thumb16x16' );
 							} else { ?>
 								<svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img">
 									<title id="title">Building Search UI</title>
@@ -247,7 +248,7 @@ class Ajax {
 						</svg>
 					</a>
 					<?php 
-					if (ezd_get_opt('is_search_result_breadcrumb') && ezd_is_premium() ){
+					if ( ezd_get_opt( 'is_search_result_breadcrumb' ) && ezd_is_premium() ){
 						eazydocs_search_breadcrumbs();
 					}
 					?>
@@ -256,7 +257,7 @@ class Ajax {
 			endwhile;
 			else :
 				?>
-				<div><h5 class="error title"><?php esc_html_e('No result found!', 'eazydocs'); ?></h5></div>
+				<div><h5 class="error title"><?php esc_html_e( 'No result found!', 'eazydocs' ); ?></h5></div>
 				<?php
 		endif;
 
@@ -270,13 +271,13 @@ class Ajax {
 	 */
 	function docs_single_content() {
 		// Verify nonce for security
-		check_ajax_referer('eazydocs-ajax', 'security');
+		check_ajax_referer( 'eazydocs-ajax', 'security' );
 
-		$postid 		= isset($_POST['postid']) ? intval($_POST['postid']) : 0;
+		$postid 		= isset( $_POST['postid'] ) ? intval( $_POST['postid'] ) : 0;
 
 		// Validate post ID
-		if ($postid <= 0) {
-			wp_send_json_error(array('message' => esc_html__('Invalid document ID', 'eazydocs')));
+		if ( $postid <= 0 ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'Invalid document ID', 'eazydocs' ) ] );
 			return;
 		}
 
@@ -293,9 +294,9 @@ class Ajax {
 					$has_access = is_user_logged_in();
 				} else {
 					// Specific roles only
-					$allowed_roles   = ezd_get_opt( 'private_doc_allowed_roles', array( 'administrator', 'editor' ) );
+					$allowed_roles   = ezd_get_opt( 'private_doc_allowed_roles', [ 'administrator', 'editor' ] );
 					if ( ! is_array( $allowed_roles ) ) {
-						$allowed_roles = array( $allowed_roles );
+						$allowed_roles = [ $allowed_roles ];
 					}
 					
 					$current_user_id = get_current_user_id();
@@ -310,13 +311,13 @@ class Ajax {
 				$user_group  = ezd_get_opt( 'private_doc_user_restriction' );
 				$is_all_user = $user_group['private_doc_all_user'] ?? 0;
 				
-				if ( '1' === $is_all_user || 1 === $is_all_user || true === $is_all_user ) {
+				if ( '1' === (string) $is_all_user || 1 === (int) $is_all_user || true === $is_all_user ) {
 					$has_access = is_user_logged_in();
 				} else {
 					$current_user_id   = get_current_user_id();
 					$current_user      = new \WP_User( $current_user_id );
 					$current_roles     = (array) $current_user->roles;
-					$private_doc_roles = $user_group['private_doc_roles'] ?? array();
+					$private_doc_roles = $user_group['private_doc_roles'] ?? [];
 					$matching_roles    = array_intersect( $current_roles, $private_doc_roles );
 					
 					$has_access = ! empty( $matching_roles ) || current_user_can( 'manage_options' );
@@ -325,13 +326,13 @@ class Ajax {
 			
 			if ( ! $has_access ) {
 				$denied_message = ezd_get_opt( 'role_visibility_denied_message', esc_html__( 'You don\'t have permission to access this document!', 'eazydocs' ) );
-				wp_send_json_error( array( 'message' => esc_html( $denied_message ) ) );
+				wp_send_json_error( [ 'message' => esc_html( $denied_message ) ] );
 				return;
 			}
 		}
 
 		global $post, $wp_query;
-		$wp_query 		= new \WP_Query( array( 'post_type' => 'docs', 'p' => $postid ) );
+		$wp_query 		= new \WP_Query( [ 'post_type' => 'docs', 'p' => $postid ] );
 		$modified 		= '';
 		$html 			= '';
 
@@ -358,9 +359,9 @@ class Ajax {
 
 		$html = ob_get_clean();
 
-		return wp_send_json_success( array(
+		return wp_send_json_success( [
 			'content'         => $html,
 			'modified_date'   => $modified
-		) );
+		] );
 	}
 }

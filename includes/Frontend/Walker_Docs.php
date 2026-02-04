@@ -32,10 +32,10 @@ class Walker_Docs extends Walker_Page {
 	 *
 	 * @see   Walker::$db_fields
 	 */
-	public $db_fields = array(
+	public $db_fields = [
 		'parent' => 'post_parent',
 		'id'     => 'ID',
-	);
+	];
 
 	public static $parent_item       = false;
 	public static $parent_item_class = '';
@@ -61,16 +61,33 @@ class Walker_Docs extends Walker_Page {
 		return parent::walk( $elements, $max_depth, ...$args );
 	}
 
+	/**
+	 * Get the item spacing.
+	 *
+	 * @param array $args The arguments.
+	 *
+	 * @return array The item spacing.
+	 */
 	private function get_item_spacing( $args ) {
-		return isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ? array( "\t", "\n" ) : array( '', '' );
+		return isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ? [ "\t", "\n" ] : [ '', '' ];
 	}
 
-	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+	/**
+	 * Outputs the beginning of the current level in the tree before elements are output.
+	 *
+	 * @param string $output Used to append additional content (passed by reference).
+	 * @param int    $depth  Optional. Depth of page. Used for padding. Default 0.
+	 * @param array  $args   Optional. Arguments for outputting the beginning of the current level.
+	 *                       Default empty array.
+	 *
+	 * @see Walker::start_lvl()
+	 */
+	public function start_lvl( &$output, $depth = 0, $args = [] ) {
 		$indent  = str_repeat( "\t", $depth );
 		$output .= '<span class="icon"><i class="arrow_carrot-down"></i></span> </div>' . "\n$indent<ul class='dropdown_nav'>\n";
 
-		if ( $args['has_children'] && $depth == 0 ) {
-			$classes = isset( self::$parent_item->ID ) ? array( 'page_item', 'extra-class', 'page-item-' . self::$parent_item->ID ) : '';
+		if ( $args['has_children'] && 0 === $depth ) {
+			$classes = isset( self::$parent_item->ID ) ? [ 'page_item', 'extra-class', 'page-item-' . self::$parent_item->ID ] : '';
 
 			if ( self::$parent_item_class ) {
 				$classes[] = self::$parent_item_class;
@@ -90,7 +107,7 @@ class Walker_Docs extends Walker_Page {
 	 *
 	 * @since 2.1.0
 	 */
-	public function end_lvl( &$output, $depth = 0, $args = array() ) {
+	public function end_lvl( &$output, $depth = 0, $args = [] ) {
 		list( $t, $n ) = $this->get_item_spacing( $args );
 		$indent        = str_repeat( $t, $depth );
 		$output       .= "{$indent}</ul>{$n}";
@@ -109,7 +126,7 @@ class Walker_Docs extends Walker_Page {
 	 *
 	 * @see   Walker::start_el()
 	 */
-	public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+	public function start_el( &$output, $page, $depth = 0, $args = [], $current_page = 0 ) {
 
 		$icon_type = ezd_get_opt( 'doc_sec_icon_type', false );
 
@@ -119,22 +136,22 @@ class Walker_Docs extends Walker_Page {
 		$has_post_thumb = ! has_post_thumbnail( $page->ID ) ? 'no_icon' : '';
 		$has_child      = isset( $args['pages_with_children'][ $page->ID ] ) ? 'has_child' : '';
 
-		$css_class = array( 'nav-item', $has_post_thumb, $has_child, 'page-item-' . $page->ID );
+		$css_class = [ 'nav-item', $has_post_thumb, $has_child, 'page-item-' . $page->ID ];
 
 		// Add post status class
 		$css_class[] = 'post-status-' . $page->post_status;
 
 		if ( ! empty( $current_page ) ) {
 			$_current_page = get_post( $current_page );
-			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
+			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors, true ) ) {
 				$css_class[] = 'current_page_ancestor active';
 			}
-			if ( $page->ID == $current_page ) {
+			if ( (int) $page->ID === (int) $current_page ) {
 				$css_class[] = 'current_page_item active';
-			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
+			} elseif ( $_current_page && (int) $page->ID === (int) $_current_page->post_parent ) {
 				$css_class[] = 'current_page_parent';
 			}
-		} elseif ( $page->ID == get_option( 'page_for_posts' ) ) {
+		} elseif ( (int) $page->ID === (int) get_option( 'page_for_posts' ) ) {
 			$css_class[] = 'current_page_parent';
 		}
 
@@ -160,7 +177,7 @@ class Walker_Docs extends Walker_Page {
 		}
 
 		$thumb = '';
-		if ( $depth == 0 ) {
+		if ( 0 === $depth ) {
 			$doc_sec_icon_open = ezd_get_opt( 'doc_sec_icon_open' );
 			$folder_open       = is_array( $doc_sec_icon_open ) && ! empty( $doc_sec_icon_open['url'] )
 				? $doc_sec_icon_open['url']
@@ -169,8 +186,8 @@ class Walker_Docs extends Walker_Page {
 			$doc_sec_icon  = ezd_get_opt( 'doc_sec_icon' );
 			$folder_closed = is_array( $doc_sec_icon ) && ! empty( $doc_sec_icon['url'] ) ? $doc_sec_icon['url'] : EAZYDOCS_IMG . '/icon/folder-closed.png';
 
-			$folder = "<img class='closed' src='$folder_closed' alt='" . esc_attr__( 'Folder icon closed', 'eazydocs' )
-						. "'> <img class='open' src='$folder_open' alt='" . esc_attr__( 'Folder open icon', 'eazydocs' ) . "'>";
+			$folder = "<img class='closed' src='" . esc_url( $folder_closed ) . "' alt='" . esc_attr__( 'Folder icon closed', 'eazydocs' )
+						. "'> <img class='open' src='" . esc_url( $folder_open ) . "' alt='" . esc_attr__( 'Folder open icon', 'eazydocs' ) . "'>";
 			$thumb  = $icon_type && has_post_thumbnail( $page->ID ) ? get_the_post_thumbnail( $page->ID ) : $folder;
 		}
 
@@ -184,18 +201,18 @@ class Walker_Docs extends Walker_Page {
 
 		$args['link_after'] = $link_after;
 
-		$atts                = array();
+		$atts                = [];
 		$atts['href']        = get_permalink( $page->ID );
 		$atts['data-postid'] = $page->ID;
-		if ( $page->ID == $current_page ) {
+		if ( (int) $page->ID === (int) $current_page ) {
 			$atts['class'] = 'active';
 		}
 		$doc_link = '';
-		if ( isset( $args['pages_with_children'][ $page->ID ] ) || $depth == 0 ) {
+		if ( isset( $args['pages_with_children'][ $page->ID ] ) || 0 === $depth ) {
 			$atts['class'] = 'nav-link';
 			$doc_link      = '<div class="doc-link">';
 		}
-		$atts['aria-current'] = ( $page->ID == $current_page ) ? 'page' : '';
+		$atts['aria-current'] = ( (int) $page->ID === (int) $current_page ) ? 'page' : '';
 
 		/**
 		 * Filters the HTML attributes applied to a page menu item's anchor element.
@@ -250,7 +267,7 @@ class Walker_Docs extends Walker_Page {
 	 *
 	 * @see   Walker::end_el()
 	 */
-	public function end_el( &$output, $page, $depth = 0, $args = array() ) {
+	public function end_el( &$output, $page, $depth = 0, $args = [] ) {
 		list( $t, $n ) = $this->get_item_spacing( $args );
 		$output       .= "</li>{$n}";
 	}
@@ -274,7 +291,7 @@ class Walker_Docs extends Walker_Page {
 		}
 
 		$output       = '';
-		$is_private   = $page->post_status == 'private';
+		$is_private   = 'private' === $page->post_status;
 		$has_password = ! empty( $page->post_password );
 
 		// Check for role-based visibility
@@ -287,21 +304,21 @@ class Walker_Docs extends Walker_Page {
 		}
 
 		// Add lock icon for private docs
-		if ( $is_private && !is_user_logged_in() ) {
+		if ( $is_private && ! is_user_logged_in() ) {
 			$output .= '<span class="ezd-doc-lock ezd-lock-private" title="' . esc_attr__( 'Private Doc', 'eazydocs' ) . '">';
 			$output .= '<i class="icon_lock"></i>';
 			$output .= '</span>';
 		}
 
 		// Add role icon for role-restricted docs
-		if ( $has_role_visibility && !is_user_logged_in() ) {
+		if ( $has_role_visibility && ! is_user_logged_in() ) {
 			$output .= '<span class="ezd-doc-lock ezd-lock-role" title="' . esc_attr__( 'Role Restricted', 'eazydocs' ) . '">';
 			$output .= '<i class="icon_group"></i>';
 			$output .= '</span>';
 		}
 
 		// Add lock icon for password-protected docs
-		if ( $has_password && !is_user_logged_in() ) {
+		if ( $has_password && ! is_user_logged_in() ) {
 			$output .= '<span class="ezd-doc-lock ezd-lock-protected" title="' . esc_attr__( 'Password Protected', 'eazydocs' ) . '">';
 			$output .= '<i class="icon_key"></i>';
 			$output .= '</span>';
