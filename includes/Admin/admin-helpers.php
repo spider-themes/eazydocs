@@ -38,7 +38,7 @@ function ezd_get_post_status_info( $status ) {
         ]
     ];
 
-    return $status_info[$status] ?? $status_info['publish'];
+    return $status_info[ $status ] ?? $status_info['publish'];
 }
 
 /**
@@ -64,12 +64,12 @@ function ezd_render_post_status_badge( $post_id, $class = '' ) {
  * @param array $statuses Post statuses to include
  * @return int Count of child docs
  */
-function ezd_get_child_docs_count( $parent_id, $statuses = ['publish', 'draft', 'private'] ) {
-    $child_docs = get_pages([
+function ezd_get_child_docs_count( $parent_id, $statuses = [ 'publish', 'draft', 'private' ] ) {
+    $child_docs = get_pages( [
         'child_of' => $parent_id,
         'post_type' => 'docs',
         'post_status' => $statuses
-    ]);
+    ] );
 
     return count( $child_docs );
 }
@@ -81,7 +81,7 @@ function ezd_get_child_docs_count( $parent_id, $statuses = ['publish', 'draft', 
  * @param string $class Additional CSS class
  * @param array $statuses Post statuses to include
  */
-function ezd_render_child_count_badge( $parent_id, $class = 'ezd-badge', $statuses = ['publish', 'draft', 'private'] ) {
+function ezd_render_child_count_badge( $parent_id, $class = 'ezd-badge', $statuses = [ 'publish', 'draft', 'private' ] ) {
     $count = ezd_get_child_docs_count( $parent_id, $statuses );
 
     if ( $count > 0 ) {
@@ -96,7 +96,7 @@ function ezd_render_child_count_badge( $parent_id, $class = 'ezd-badge', $status
  * @param array $actions Array of actions to include
  * @param array $item Additional item data
  */
-function ezd_render_doc_actions( $doc_id, $actions = ['duplicate', 'add_child', 'visibility', 'view'], $item = [] ) {
+function ezd_render_doc_actions( $doc_id, $actions = [ 'duplicate', 'add_child', 'visibility', 'view' ], $item = [] ) {
     if ( ! ezd_is_admin_or_editor( $doc_id, 'edit' ) ) {
         return;
     }
@@ -121,7 +121,7 @@ function ezd_render_doc_actions( $doc_id, $actions = ['duplicate', 'add_child', 
 
             case 'add_child':
                 $depth = isset( $item['depth'] ) ? $item['depth'] : 1;
-                $is_premium = ! ezd_is_premium() && $depth === 3 ? false : ( ezd_is_premium() && $depth === 4 ? false : true );
+                $is_premium = ! ezd_is_premium() && 3 === $depth ? false : ( ezd_is_premium() && 4 === $depth ? false : true );
 
                 if ( $is_premium ) {
                     echo '<li>';
@@ -158,7 +158,7 @@ function ezd_render_doc_actions( $doc_id, $actions = ['duplicate', 'add_child', 
  *
  * @param array $filters Array of filters to include
  */
-function ezd_render_doc_filters( $filters = ['all', 'publish', 'private', 'protected', 'draft'] ) {
+function ezd_render_doc_filters( $filters = [ 'all', 'publish', 'private', 'protected', 'draft' ] ) {
     $filter_config = [
         'all' => [
             'label' => esc_html__( 'All articles', 'eazydocs' ),
@@ -190,9 +190,9 @@ function ezd_render_doc_filters( $filters = ['all', 'publish', 'private', 'prote
     echo '<ul class="single-item-filter">';
 
     foreach ( $filters as $filter ) {
-        if ( isset( $filter_config[$filter] ) ) {
-            $config = $filter_config[$filter];
-            echo '<li class="easydocs-btn easydocs-btn-rounded easydocs-btn-sm ' . esc_attr( $config['class'] ) . '" data-filter="' . ( $filter === 'all' ? 'all' : '.' . $filter ) . '">';
+        if ( isset( $filter_config[ $filter ] ) ) {
+            $config = $filter_config[ $filter ];
+            echo '<li class="easydocs-btn easydocs-btn-rounded easydocs-btn-sm ' . esc_attr( $config['class'] ) . '" data-filter="' . ( 'all' === $filter ? 'all' : '.' . $filter ) . '">';
             echo '<span class="dashicons dashicons-' . esc_attr( $config['icon'] ) . '"></span>';
             echo esc_html( $config['label'] );
             echo '</li>';
