@@ -17,3 +17,8 @@
 **Vulnerability:** The feedback form handler `eazydocs_feedback_email` allowed unlimited email submissions from unauthenticated users, leading to potential email spam and database flooding.
 **Learning:** Publicly accessible AJAX actions (`nopriv`) that trigger resource-intensive operations (sending emails, DB writes) must have rate limiting or CAPTCHA.
 **Prevention:** Implement IP-based transient rate limiting for all public-facing form handlers.
+
+## 2024-05-24 – Weak Nonce Action Usage (ID as Action)
+**Vulnerability:** `Create_Post.php` and `Delete_Post.php` used the raw Post ID (e.g., `$_GET['childID']`) as the nonce action. This increases the risk of nonce replay or collision if another component uses the ID as a nonce action for a less sensitive operation.
+**Learning:** Using variable IDs as nonce actions without namespacing is a recurring anti-pattern in this codebase. Additionally, `Last_Child_Delete` could not be patched because its generator source is hidden, forcing a "wontfix" decision to preserve compatibility.
+**Prevention:** Always prefix dynamic nonce actions with a context-specific string (e.g., `ezd_delete_doc_nonce_` . $id).

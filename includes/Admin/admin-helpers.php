@@ -125,7 +125,7 @@ function ezd_render_doc_actions( $doc_id, $actions = ['duplicate', 'add_child', 
 
                 if ( $is_premium ) {
                     echo '<li>';
-                    echo '<a href="' . esc_url( admin_url( 'admin.php' ) ) . '?Create_Child=yes&childID=' . esc_attr( $doc_id ) . '&_wpnonce=' . esc_attr( wp_create_nonce( $doc_id ) ) . '&child=" class="child-doc" title="' . esc_attr__( 'Add new doc under this doc', 'eazydocs' ) . '">';
+                    echo '<a href="' . esc_url( admin_url( 'admin.php' ) ) . '?Create_Child=yes&childID=' . esc_attr( $doc_id ) . '&_wpnonce=' . esc_attr( wp_create_nonce( 'ezd_create_child_nonce_' . $doc_id ) ) . '&child=" class="child-doc" title="' . esc_attr__( 'Add new doc under this doc', 'eazydocs' ) . '">';
                     echo '<span class="dashicons dashicons-plus-alt2"></span>';
                     echo '</a>';
                     echo '</li>';
