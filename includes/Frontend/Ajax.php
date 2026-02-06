@@ -50,7 +50,7 @@ class Ajax {
 		}
 
 		$post_id  = intval( $_POST['post_id'] );
-		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ] ) ? sanitize_text_field( $_POST['type'] ) : false;
+		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ], true ) ? sanitize_text_field( $_POST['type'] ) : false;
 
 		// check previous response
 		if ( in_array( $post_id, $previous ) ) {
@@ -138,7 +138,7 @@ class Ajax {
 
 		//  Content matches (only if mode allows)
 		$content_ids = [];
-		if ( $search_mode === 'title_and_content' ) {
+		if ( 'title_and_content' === $search_mode ) {
 			$content_ids = $wpdb->get_col($wpdb->prepare("
 				SELECT ID FROM {$wpdb->posts}
 				WHERE post_type = 'docs'
@@ -177,7 +177,7 @@ class Ajax {
 			'orderby'        => [
 				'post__in'    => 'ASC',
 				'menu_order'  => 'ASC',
-				'date'        => get_option('posts_order') === 'asc' ? 'ASC' : 'DESC',
+				'date'        => 'asc' === get_option('posts_order') ? 'ASC' : 'DESC',
 				'title'       => 'ASC',
 			],
 		];
@@ -225,7 +225,7 @@ class Ajax {
 		// --- OUTPUT RESULTS (unchanged) ---
 		if ( $posts->have_posts() ) :
 			while ( $posts->have_posts() ) : $posts->the_post();
-				$no_thumbnail = ezd_get_opt('is_search_result_thumbnail') == false ? 'no-thumbnail' : '';
+				$no_thumbnail = ! ezd_get_opt('is_search_result_thumbnail') ? 'no-thumbnail' : '';
 				?>
 				<div class="search-result-item <?php echo esc_attr($no_thumbnail); ?>" data-url="<?php the_permalink(); ?>">
 					<a href="<?php the_permalink(); ?>" class="title">
@@ -276,7 +276,7 @@ class Ajax {
 
 		// Validate post ID
 		if ($postid <= 0) {
-			wp_send_json_error(array('message' => esc_html__('Invalid document ID', 'eazydocs')));
+			wp_send_json_error(['message' => esc_html__('Invalid document ID', 'eazydocs')]);
 			return;
 		}
 
@@ -293,9 +293,9 @@ class Ajax {
 					$has_access = is_user_logged_in();
 				} else {
 					// Specific roles only
-					$allowed_roles   = ezd_get_opt( 'private_doc_allowed_roles', array( 'administrator', 'editor' ) );
+					$allowed_roles   = ezd_get_opt( 'private_doc_allowed_roles', [ 'administrator', 'editor' ] );
 					if ( ! is_array( $allowed_roles ) ) {
-						$allowed_roles = array( $allowed_roles );
+						$allowed_roles = [ $allowed_roles ];
 					}
 					
 					$current_user_id = get_current_user_id();
@@ -316,7 +316,7 @@ class Ajax {
 					$current_user_id   = get_current_user_id();
 					$current_user      = new \WP_User( $current_user_id );
 					$current_roles     = (array) $current_user->roles;
-					$private_doc_roles = $user_group['private_doc_roles'] ?? array();
+					$private_doc_roles = $user_group['private_doc_roles'] ?? [];
 					$matching_roles    = array_intersect( $current_roles, $private_doc_roles );
 					
 					$has_access = ! empty( $matching_roles ) || current_user_can( 'manage_options' );
@@ -325,13 +325,13 @@ class Ajax {
 			
 			if ( ! $has_access ) {
 				$denied_message = ezd_get_opt( 'role_visibility_denied_message', esc_html__( 'You don\'t have permission to access this document!', 'eazydocs' ) );
-				wp_send_json_error( array( 'message' => esc_html( $denied_message ) ) );
+				wp_send_json_error( [ 'message' => esc_html( $denied_message ) ] );
 				return;
 			}
 		}
 
 		global $post, $wp_query;
-		$wp_query 		= new \WP_Query( array( 'post_type' => 'docs', 'p' => $postid ) );
+		$wp_query 		= new \WP_Query( [ 'post_type' => 'docs', 'p' => $postid ] );
 		$modified 		= '';
 		$html 			= '';
 
@@ -358,9 +358,9 @@ class Ajax {
 
 		$html = ob_get_clean();
 
-		return wp_send_json_success( array(
+		return wp_send_json_success( [
 			'content'         => $html,
 			'modified_date'   => $modified
-		) );
+		] );
 	}
 }
