@@ -47,7 +47,7 @@ class Create_Post {
 		// Handle section creation
 		if ( isset( $_GET['Create_Section'], $_GET['parentID'], $_GET['_wpnonce'], $_GET['is_section'] ) && 
 			 sanitize_text_field( wp_unslash( $_GET['Create_Section'] ) ) === 'yes' &&
-			 wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), sanitize_text_field( wp_unslash( $_GET['parentID'] ) ) ) ) {
+			 wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'ezd_create_section_nonce_' . sanitize_text_field( wp_unslash( $_GET['parentID'] ) ) ) ) {
 			
 			$parent_id = absint( wp_unslash( $_GET['parentID'] ) );
 			$title = $this->sanitize_title( $_GET['is_section'] );
@@ -59,7 +59,7 @@ class Create_Post {
 		// Handle child creation
 		if ( isset( $_GET['Create_Child'], $_GET['childID'], $_GET['_wpnonce'], $_GET['child'] ) && 
 			 sanitize_text_field( wp_unslash( $_GET['Create_Child'] ) ) === 'yes' &&
-			 wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), sanitize_text_field( wp_unslash( $_GET['childID'] ) ) ) ) {
+			 wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'ezd_create_child_nonce_' . sanitize_text_field( wp_unslash( $_GET['childID'] ) ) ) ) {
 			
 			$child_id = absint( wp_unslash( $_GET['childID'] ) );
 			$title = $this->sanitize_title( $_GET['child'] );

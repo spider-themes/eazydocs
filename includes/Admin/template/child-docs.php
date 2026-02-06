@@ -161,7 +161,7 @@ if ( is_array( $depth_one_parents ) ) :
             <?php 
             if ( current_user_can( 'publish_docs' ) ) :                
                 $parent_id   = absint( $item );
-                $nonce       = wp_create_nonce( $parent_id );
+                $nonce       = wp_create_nonce( 'ezd_create_section_nonce_' . $parent_id );
                 ?>
                 <button class="button button-info section-doc" name="submit" data-url="<?php echo esc_url( admin_url( 'admin.php' ) . "?Create_Section=yes&_wpnonce={$nonce}&parentID={$parent_id}&is_section=" );; ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Add Section to %s', 'eazydocs' ), $parent_title ) ); ?>">
                     <?php esc_html_e( 'Add Section', 'eazydocs' ); ?>
