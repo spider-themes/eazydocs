@@ -119,59 +119,67 @@ class Ajax {
 
 		// --- SEARCH LOGIC ---
 
-		// Exact title matches
-		$exact_ids = $wpdb->get_col($wpdb->prepare("
-			SELECT ID FROM {$wpdb->posts}
-			WHERE post_type = 'docs'
-			AND post_status IN ('" . implode("','", $post_status) . "')
-			AND post_title = %s
-		", $keyword));
+		// Cache check for search IDs
+		$cache_key = 'ezd_search_ids_' . md5( $keyword . $search_mode . (int) $can_read_private . get_locale() );
+		$final_ids = get_transient( $cache_key );
 
-		// Partial title matches (excluding exact)
-		$partial_ids = $wpdb->get_col($wpdb->prepare("
-			SELECT ID FROM {$wpdb->posts}
-			WHERE post_type = 'docs'
-			AND post_status IN ('" . implode("','", $post_status) . "')
-			AND post_title LIKE %s
-		", '%' . $wpdb->esc_like($keyword) . '%'));
-		$partial_ids = array_diff($partial_ids, $exact_ids);
-
-		//  Content matches (only if mode allows)
-		$content_ids = [];
-		if ( $search_mode === 'title_and_content' ) {
-			$content_ids = $wpdb->get_col($wpdb->prepare("
+		if ( false === $final_ids ) {
+			// Exact title matches
+			$exact_ids = $wpdb->get_col($wpdb->prepare("
 				SELECT ID FROM {$wpdb->posts}
 				WHERE post_type = 'docs'
 				AND post_status IN ('" . implode("','", $post_status) . "')
-				AND post_content LIKE %s
+				AND post_title = %s
+			", $keyword));
+
+			// Partial title matches (excluding exact)
+			$partial_ids = $wpdb->get_col($wpdb->prepare("
+				SELECT ID FROM {$wpdb->posts}
+				WHERE post_type = 'docs'
+				AND post_status IN ('" . implode("','", $post_status) . "')
+				AND post_title LIKE %s
 			", '%' . $wpdb->esc_like($keyword) . '%'));
-			$content_ids = array_diff($content_ids, $exact_ids, $partial_ids);
-		}
+			$partial_ids = array_diff($partial_ids, $exact_ids);
 
-		// Combine: exact → partial → content
-		$final_ids = array_merge($exact_ids, $partial_ids, $content_ids);
-		if ( empty($final_ids) ) $final_ids = [0];
+			//  Content matches (only if mode allows)
+			$content_ids = [];
+			if ( $search_mode === 'title_and_content' ) {
+				$content_ids = $wpdb->get_col($wpdb->prepare("
+					SELECT ID FROM {$wpdb->posts}
+					WHERE post_type = 'docs'
+					AND post_status IN ('" . implode("','", $post_status) . "')
+					AND post_content LIKE %s
+				", '%' . $wpdb->esc_like($keyword) . '%'));
+				$content_ids = array_diff($content_ids, $exact_ids, $partial_ids);
+			}
 
-		// Add tag matches (appended after)
-		if ( get_term_by( 'name', $keyword, 'doc_tag' ) ) {
-			$tag_posts = new WP_Query([
-				'post_type'      => 'docs',
-				'posts_per_page' => -1,
-				'post_status'    => $post_status,
-				'tax_query'      => [[
-					'taxonomy' => 'doc_tag',
-					'field'    => 'name',
-					'terms'    => $keyword,
-				]],
-			]);
-			$merged_ids = array_unique(array_merge($final_ids, wp_list_pluck($tag_posts->posts, 'ID')));
-			$final_ids  = $merged_ids;
+			// Combine: exact → partial → content
+			$final_ids = array_merge($exact_ids, $partial_ids, $content_ids);
+			if ( empty($final_ids) ) $final_ids = [0];
+
+			// Add tag matches (appended after)
+			if ( get_term_by( 'name', $keyword, 'doc_tag' ) ) {
+				$tag_posts = new WP_Query([
+					'post_type'      => 'docs',
+					'posts_per_page' => -1,
+					'post_status'    => $post_status,
+					'tax_query'      => [[
+						'taxonomy' => 'doc_tag',
+						'field'    => 'name',
+						'terms'    => $keyword,
+					]],
+				]);
+				$merged_ids = array_unique(array_merge($final_ids, wp_list_pluck($tag_posts->posts, 'ID')));
+				$final_ids  = $merged_ids;
+			}
+
+			set_transient( $cache_key, $final_ids, MINUTE_IN_SECONDS );
 		}
 
 		// Maintain order priority: exact → partial → content → tag
 		$args = [
 			'post_type'      => 'docs',
-			'posts_per_page' => -1,
+			'posts_per_page' => 20,
 			'post_status'    => $post_status,
 			'post__in'       => $final_ids,
 			'orderby'        => [
@@ -189,10 +197,15 @@ class Ajax {
 		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
 		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
 
-		$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-		$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+		// Optimize table check with transient (check once per day)
+		if ( false === ( $tables_exist = get_transient( 'ezd_search_tables_check' ) ) ) {
+			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+			$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+			$tables_exist         = ( $keyword_table_exists && $log_table_exists ) ? 1 : 0;
+			set_transient( 'ezd_search_tables_check', $tables_exist, DAY_IN_SECONDS );
+		}
 
-		if ( $keyword_table_exists && $log_table_exists ) {
+		if ( 1 === (int) $tables_exist ) {
 			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
 			$keyword_id = $wpdb->insert_id;
 
@@ -262,7 +275,7 @@ class Ajax {
 
 		wp_reset_postdata();
 		
-		die();
+		wp_die();
 	}
 
 	/**
