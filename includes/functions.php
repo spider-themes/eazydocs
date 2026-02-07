@@ -1018,10 +1018,10 @@ add_action( 'save_post', function ( $post_id ) {
 		return;
 	}
 
-	$std_comment_id             = $_POST['ezd_doc_layout'] ?? '';
-	$ezd_doc_content_type       = $_POST['ezd_doc_content_type'] ?? '';
-	$ezd_doc_content_type_right = $_POST['ezd_doc_content_type_right'] ?? '';
-	$ezd_doc_content_box_right  = $_POST['ezd_doc_content_box_right'] ?? '';
+	$std_comment_id             = sanitize_text_field( $_POST['ezd_doc_layout'] ?? '' );
+	$ezd_doc_content_type       = sanitize_text_field( $_POST['ezd_doc_content_type'] ?? '' );
+	$ezd_doc_content_type_right = sanitize_text_field( $_POST['ezd_doc_content_type_right'] ?? '' );
+	$ezd_doc_content_box_right  = wp_kses_post( $_POST['ezd_doc_content_box_right'] ?? '' );
 
 	if ( ! empty( $std_comment_id ) ) {
 		update_post_meta( $post_id, 'ezd_doc_layout', $std_comment_id );
@@ -1036,6 +1036,7 @@ add_action( 'save_post', function ( $post_id ) {
 	}
 
 	if ( ! empty( $ezd_doc_content_box_right ) ) {
+        // Sentinel: Sanitize content to prevent Stored XSS
 		update_post_meta( $post_id, 'ezd_doc_content_box_right', $ezd_doc_content_box_right );
 	}	
 
