@@ -1,10 +1,35 @@
 == Changelog ==
 
-= 2.9.1 (16 January 2026) =
+= 2.10.0 (08 February 2026) =
 New: Added Pro badge indicator in admin menu when EazyDocs Pro is active for better visibility.
 New: Added informational notice clarifying that EazyDocs works with Gutenberg blocks and doesn't require Elementor.
+New: Added 'Tabbed Docs' block for organizing documentation content in a tab-based layout.
+New: Added EazyDocs Shortcode block option to display featured images as 50x50 thumbnails or full size.
+New: Added Ddoc theme to the integrated themes list.
+Improved: Setup Wizard page redesigned and optimized to be fully responsive on all desktop screen sizes.
+Improved: Docs Builder now remembers the last active documentation item in the sidebar on page reload.
+Improved: Email settings reorganized under a new “Email Settings” parent section for better clarity.
+Improved: Dashboard page UI and overall user experience refined.
+Improved: Private docs are now visible in the frontend sidebar navigation.
+Improved: Pro and ProMax badges and notices fixed in both Admin Settings and Customizer.
+Improved: Accessibility enhanced across admin actions, bulk options, doc builder filters, analytics filters, and sidebar tabs with proper ARIA roles, keyboard navigation, and focus indicators.
+Improved: Doc Builder UI now fully support keyboard interaction (Enter/Space).
+Improved: Asset loading optimized to load scripts only where needed, reducing unnecessary overhead.
+Improved: Doc IDs processing optimized using map/join logic, reducing memory usage and improving speed.
+Improved: Core files standardized with strict comparisons, Yoda conditions, and improved type safety.
+Improved: Updated documentation to clarify that no third-party page builder is required.
 Fixed: Review reminder now properly hides after user clicks "Ok, you deserve" and rates the plugin.
-Improved: Updated documentation (README.md and readme.txt) to clarify that no third-party page builder is required.
+Fixed: Search form spinner alignment issue.
+Fixed: IDOR vulnerability in nestable callback functions by enforcing proper permission checks.
+Fixed: Information disclosure issue by restricting private docs visibility based on user capabilities.
+Fixed: Prevented unauthorized user creation via Google Login when registration is disabled.
+Fixed: Accessibility issue with duplicate IDs and missing ARIA labels in child docs list.
+Fixed: Undefined function errors related to update_post_meta_cache.
+Fixed: Dark mode compatibility issue with Docly theme.
+Performance: Optimized AJAX tag search by replacing get_terms with direct database lookup.
+Performance: Optimized doc builder queries for faster load times.
+Updated: Added admin-settings.css and limited settings styling to the Settings page only.
+Updated: Twitter logo replaced with the X logo in admin UI.
 
 = 2.9.0 (03 January 2026) =
 New: Redesigned Setup Wizard with a compact, modern UI and improved progress tracking.
