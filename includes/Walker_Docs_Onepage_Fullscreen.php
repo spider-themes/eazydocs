@@ -3,14 +3,17 @@
  * Cannot access directly.
  */
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 
 /**
  * EazyDocs Docs Walker
+ *
+ * @todo Fix class name typo 'Fullscren' -> 'Fullscreen' in a future major version.
  */
 class Walker_Onepage_Fullscren extends Walker_Page {
+
 	/**
 	 * What the class handles.
 	 *
@@ -35,21 +38,44 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->db_fields = apply_filters( 'ezd_walker_onepage_fullscreen_db_fields', array(
+		$this->db_fields = apply_filters( 'ezd_walker_onepage_fullscreen_db_fields', [
 			'parent' => 'post_parent',
 			'id'     => 'ID',
-		) );
+		] );
 	}
 
+	/**
+	 * Parent item ID.
+	 *
+	 * @var bool|int
+	 */
 	public static $parent_item = false;
+
+	/**
+	 * Parent item class.
+	 *
+	 * @var string
+	 */
 	public static $parent_item_class = '';
 
-	public function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
+	/**
+	 * Starts the list before the elements are added.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @see Walker::start_lvl()
+	 *
+	 * @param string $output Used to append additional content (passed by reference).
+	 * @param int    $depth  Optional. Depth of page. Used for padding. Default 0.
+	 * @param array  $args   Optional. Arguments for outputting the next level.
+	 *                       Default empty array.
+	 */
+	public function start_lvl( &$output, $depth = 0, $args = [] ) {
+		$indent  = str_repeat( "\t", $depth );
 		$output .= "$indent<ul class='ezd-list-unstyled dropdown_nav'>\n";
 
-		if ( $args['has_children'] && $depth == 0 ) {
-			$classes = isset($parent_item->ID) ? array( 'page_item', 'extra-class', 'page-item-' . self::$parent_item->ID ) : '';
+		if ( $args['has_children'] && 0 === $depth ) {
+			$classes = isset( self::$parent_item->ID ) ? [ 'page_item', 'extra-class', 'page-item-' . self::$parent_item->ID ] : '';
 
 			if ( self::$parent_item_class ) {
 				$classes[] = self::$parent_item_class;
@@ -69,7 +95,7 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 	 * @param array  $args   Optional. Arguments for outputting the end of the current level.
 	 *                       Default empty array.
 	 */
-	public function end_lvl( &$output, $depth = 0, $args = array() ) {
+	public function end_lvl( &$output, $depth = 0, $args = [] ) {
 		if ( isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ) {
 			$t = "\t";
 			$n = "\n";
@@ -79,17 +105,18 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 		}
 		$indent  = str_repeat( $t, $depth );
 		$output .= "{$indent}</ul>{$n}";
-		$output .= $indent.'<span class="icon">
+		$output .= $indent . '<span class="icon">
                         <i class="arrow_carrot-left icon_plus "></i>
                         <i class=" arrow_carrot-right icon_minus-06"></i>
-                    </span>'."\n";
+                    </span>' . "\n";
 	}
 
 	/**
 	 * Outputs the beginning of the current element in the tree.
 	 *
-	 * @see Walker::start_el()
 	 * @since 2.1.0
+	 *
+	 * @see Walker::start_el()
 	 *
 	 * @param string  $output       Used to append additional content. Passed by reference.
 	 * @param WP_Post $page         Page data object.
@@ -97,10 +124,7 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 	 * @param array   $args         Optional. Array of arguments. Default empty array.
 	 * @param int     $current_page Optional. Page ID. Default 0.
 	 */
-
-	public $isfds = 0;
-
-	public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+	public function start_el( &$output, $page, $depth = 0, $args = [], $current_page = 0 ) {
 		if ( isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ) {
 			$t = "\t";
 			$n = "\n";
@@ -114,12 +138,9 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 			$indent = '';
 		}
 
-		$css_class = array();
-
-		$has_post_thumb = !has_post_thumbnail($page->ID) ? 'no_icon' : '';
-
-		$css_class = array( 'nav-item', $has_post_thumb, 'page-item-' . $page->ID);
-
+		$css_class      = [];
+		$has_post_thumb = ! has_post_thumbnail( $page->ID ) ? 'no_icon' : '';
+		$css_class      = [ 'nav-item', $has_post_thumb, 'page-item-' . $page->ID ];
 
 		/**
 		 * Filters the list of CSS classes to include with each page item in the list.
@@ -145,21 +166,21 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 		$args['link_before'] = '';
 		$args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
 
-		$atts                = array();
+		$atts = [];
 
-		$get_title = sanitize_title(get_the_title($page->ID));
+		$get_title = sanitize_title( get_the_title( $page->ID ) );
 
-        if (preg_match('#[0-9]#',$get_title)){
-            $get_title = 'ezd-'.sanitize_title(get_the_title($page->ID)); 
-        }	
+		if ( preg_match( '#[0-9]#', $get_title ) ) {
+			$get_title = 'ezd-' . sanitize_title( get_the_title( $page->ID ) );
+		}
 
-		$atts['href']        = "#".$get_title;
-		if ( $page->ID == $current_page ) {
+		$atts['href'] = '#' . $get_title;
+		if ( (int) $page->ID === (int) $current_page ) {
 			$atts['class'] = 'active';
 		}
 		$atts['class'] = 'nav-link';
 
-		$atts['aria-current'] = ( $page->ID == $current_page ) ? 'page' : '';
+		$atts['aria-current'] = ( (int) $page->ID === (int) $current_page ) ? 'page' : '';
 
 		/**
 		 * Filters the HTML attributes applied to a page menu item's anchor element.
@@ -179,34 +200,27 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 		 */
 		$atts = apply_filters( 'page_menu_link_attributes', $atts, $page, $depth, $args, $current_page );
 
-
 		$attributes = '';
 
 		foreach ( $atts as $attr => $value ) {
 			if ( ! empty( $value ) ) {
-				$value      = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
 				$attributes .= ' ' . $attr . '="' . $value . '"';
 			}
-			/*if ( isset( $args['pages_with_children'][ $page->ID ] ) || $depth == 0 ) {
-				$has_child_class = isset( $args['pages_with_children'][ $page->ID ] ) ? 'cat-item' : '';
-				$attributes .= "class='nav-link'";
-			}*/
 		}
 
 		$output .= $indent . sprintf(
-				'<li%s><a%s>%s%s%s</a>',
-				// '<li%s><a%s>%s%s%s</a>',
-				$css_classes,
-				$attributes,
-				$args['link_before'],
-				/** This filter is documented in wp-includes/post-template.php */
-				apply_filters( 'the_title', $page->post_title, $page->ID ),
-
-				$args['link_after']
-			);
+			'<li%s><a%s>%s%s%s</a>',
+			$css_classes,
+			$attributes,
+			$args['link_before'],
+			/** This filter is documented in wp-includes/post-template.php */
+			apply_filters( 'the_title', $page->post_title, $page->ID ),
+			$args['link_after']
+		);
 
 		if ( ! empty( $args['show_date'] ) ) {
-			if ( 'modified' == $args['show_date'] ) {
+			if ( 'modified' === $args['show_date'] ) {
 				$time = $page->post_modified;
 			} else {
 				$time = $page->post_date;
@@ -229,7 +243,7 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 	 * @param int     $depth  Optional. Depth of page. Default 0 (unused).
 	 * @param array   $args   Optional. Array of arguments. Default empty array.
 	 */
-	public function end_el( &$output, $page, $depth = 0, $args = array() ) {
+	public function end_el( &$output, $page, $depth = 0, $args = [] ) {
 		if ( isset( $args['item_spacing'] ) && 'preserve' === $args['item_spacing'] ) {
 			$t = "\t";
 			$n = "\n";
@@ -242,17 +256,24 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 }
 
 
-// end sidebar Function
-// Start Theme Content Function
+// end sidebar Function.
+// Start Theme Content Function.
 
+/**
+ * Retrieves the pages for the one-page layout (fullscreen).
+ *
+ * @param array|string $args Optional. Array or string of arguments to retrieve pages.
+ *                           Default empty.
+ * @return string|void HTML content or void if echo is true.
+ */
 function ezd_list_pages_onepage_others( $args = '' ) {
-	$defaults = array(
+	$defaults = [
 		'depth'        => 3,
 		'show_date'    => '',
 		'date_format'  => get_option( 'date_format' ),
 		'child_of'     => 0,
 		'exclude'      => '',
- 	'title_li'     => esc_html__( 'Pages', 'eazydocs' ),
+		'title_li'     => esc_html__( 'Pages', 'eazydocs' ),
 		'echo'         => 1,
 		'authors'      => '',
 		'sort_column'  => 'menu_order, post_title',
@@ -260,11 +281,11 @@ function ezd_list_pages_onepage_others( $args = '' ) {
 		'link_after'   => '',
 		'item_spacing' => 'preserve',
 		'walker'       => '',
-	);
+	];
 
 	$r = wp_parse_args( $args, $defaults );
 
-	if ( ! in_array( $r['item_spacing'], array( 'preserve', 'discard' ), true ) ) {
+	if ( ! in_array( $r['item_spacing'], [ 'preserve', 'discard' ], true ) ) {
 		// invalid value, fall back to default.
 		$r['item_spacing'] = $defaults['item_spacing'];
 	}
@@ -272,11 +293,11 @@ function ezd_list_pages_onepage_others( $args = '' ) {
 	$output       = '';
 	$current_page = 0;
 
-	// sanitize, mostly to keep spaces out
+	// sanitize, mostly to keep spaces out.
 	$r['exclude'] = preg_replace( '/[^0-9,]/', '', $r['exclude'] );
 
-	// Allow plugins to filter an array of excluded pages (but don't put a nullstring into the array)
-	$exclude_array = ( $r['exclude'] ) ? explode( ',', $r['exclude'] ) : array();
+	// Allow plugins to filter an array of excluded pages (but don't put a nullstring into the array).
+	$exclude_array = ( $r['exclude'] ) ? explode( ',', $r['exclude'] ) : [];
 
 	/**
 	 * Filters the array of pages to exclude from the pages list.
@@ -292,7 +313,7 @@ function ezd_list_pages_onepage_others( $args = '' ) {
 	$pages             = get_pages( $r );
 
 	if ( ! empty( $pages ) ) {
-		// Optimization: Prime the meta cache to avoid N+1 queries in the walker
+		// Optimization: Prime the meta cache to avoid N+1 queries in the walker.
 		ezd_update_post_meta_cache( $pages );
 
 		if ( $r['title_li'] ) {
@@ -328,7 +349,7 @@ function ezd_list_pages_onepage_others( $args = '' ) {
 	 * @param array  $pages  List of WP_Post objects returned by `get_pages()`
 	 */
 
-	// Allow more tags (SVGs) for docs nav
+	// Allow more tags (SVGs) for docs nav.
 	$allowed_html = function_exists( 'ezd_kses_allowed_docs_nav_html' ) ? ezd_kses_allowed_docs_nav_html() : wp_kses_allowed_html( 'post' );
 
 	if ( $r['echo'] ) {
