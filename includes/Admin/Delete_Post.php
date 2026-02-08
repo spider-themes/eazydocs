@@ -34,7 +34,7 @@ class Delete_Post {
 			$delete_id  = sanitize_text_field( wp_unslash( $_GET['DeleteID'] ) );
 			$nonce      = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
 
-			if ( $doc_delete === 'yes' && wp_verify_nonce( $nonce, $delete_id ) ) {
+			if ( $doc_delete === 'yes' && wp_verify_nonce( $nonce, 'ezd_delete_doc_nonce_' . $delete_id ) ) {
 				$posts     = intval( $delete_id );
 				$parent_id = $posts . ',';
 
@@ -81,7 +81,7 @@ class Delete_Post {
 			$section_id     = sanitize_text_field( wp_unslash( $_GET['ID'] ) );
 			$nonce          = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );	
 
-			if ( $section_delete === 'yes' && wp_verify_nonce( $nonce, $section_id ) ) {
+			if ( $section_delete === 'yes' && wp_verify_nonce( $nonce, 'ezd_delete_section_nonce_' . $section_id ) ) {
 				$posts     = intval( $section_id );
 				$parent_id = $posts . ',';
 
