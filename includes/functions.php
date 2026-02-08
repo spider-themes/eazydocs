@@ -2198,37 +2198,70 @@ function ezd_get_all_descendant_ids( $parent_id, $post_type = 'docs', $post_stat
 }
 
 /**
+ * Get cached flat document tree (array of IDs in order)
+ *
+ * @param string $post_type
+ * @return array
+ */
+function ezd_get_docs_tree_flat_cached( $post_type ) {
+	$cache_key   = 'ezd_docs_tree_flat_' . $post_type;
+	$ordered_ids = get_transient( $cache_key );
+
+	if ( false === $ordered_ids ) {
+		// Step 1: Get all top-level docs
+		$top_level_docs = get_posts( array(
+			'post_type'   => $post_type,
+			'post_status' => 'publish',
+			'post_parent' => 0,
+			'orderby'     => 'menu_order title',
+			'order'       => 'ASC',
+			'fields'      => 'ids',
+			'numberposts' => -1,
+		) );
+
+		// Step 2: Recursively build a flat ordered list
+		$ordered_ids = [];
+		foreach ( $top_level_docs as $top_id ) {
+			ezd_docs_build_tree_flat( $top_id, $ordered_ids );
+		}
+
+		set_transient( $cache_key, $ordered_ids, 12 * HOUR_IN_SECONDS );
+	}
+
+	return $ordered_ids;
+}
+
+/**
+ * Clear the docs tree cache on post update/delete
+ *
+ * @param int $post_id
+ * @param WP_Post $post
+ */
+function ezd_clear_docs_tree_cache( $post_id, $post ) {
+	if ( in_array( $post->post_type, [ 'docs', 'onepage-docs' ] ) ) {
+		delete_transient( 'ezd_docs_tree_flat_' . $post->post_type );
+	}
+}
+add_action( 'save_post', 'ezd_clear_docs_tree_cache', 10, 2 );
+add_action( 'delete_post', 'ezd_clear_docs_tree_cache', 10, 2 );
+
+/**
  * Get previous and next IDs from an array of IDs
  *
- * @param array $all_ids
- * @param int $current_id
+ * @param int $current_post_id
  *
  * @return array
  */
 function ezd_prev_next_docs( $current_post_id ) {
 	$post_type = get_post_type( $current_post_id );
 
-	// Step 1: Get all top-level docs
-	$top_level_docs = get_posts( array(
-		'post_type'   => $post_type,
-		'post_status' => 'publish',
-		'post_parent' => 0,
-		'orderby'     => 'menu_order title',
-		'order'       => 'ASC',
-		'fields'      => 'ids',
-		'numberposts' => -1,
-	) );
+	// Get cached flat tree
+	$ordered_ids = ezd_get_docs_tree_flat_cached( $post_type );
 
-	// Step 2: Recursively build a flat ordered list
-	$ordered_ids = [];
-	foreach ( $top_level_docs as $top_id ) {
-		ezd_docs_build_tree_flat( $top_id, $ordered_ids );
-	}
-
-	// Step 3: Find current index and prev/next IDs
+	// Find current index and prev/next IDs
 	$current_index = array_search( $current_post_id, $ordered_ids );
-	$prev_id = $ordered_ids[ $current_index - 1 ] ?? null;
-	$next_id = $ordered_ids[ $current_index + 1 ] ?? null;
+	$prev_id       = $ordered_ids[ $current_index - 1 ] ?? null;
+	$next_id       = $ordered_ids[ $current_index + 1 ] ?? null;
 
 	return [
 		'prev'    => $prev_id,
