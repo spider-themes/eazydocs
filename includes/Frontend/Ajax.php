@@ -273,6 +273,10 @@ class Ajax {
 		endif;
 
 		wp_reset_postdata();
+
+		$output = ob_get_clean();
+		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
 		$output = ob_get_clean();
 		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
