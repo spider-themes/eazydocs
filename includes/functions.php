@@ -1492,7 +1492,7 @@ function ezd_get_elementor_templates() {
  */
 function ezd_single_banner($classes) {
 	$current_theme = get_template();
-	if ( is_single() && 'docs' === get_post_type() && ! empty( 'el-template' === ezd_get_opt('single_doc_layout') ) &&  ! empty( ezd_get_opt('single_layout_id') ) && 'docly' === $current_theme ) {
+	if ( is_single() && 'docs' === get_post_type() && 'el-template' === ezd_get_opt( 'single_doc_layout' ) && ! empty( ezd_get_opt( 'single_layout_id' ) ) && 'docly' === $current_theme ) {
 		$classes[] = 'disable-docly-header';
     }
     return $classes;
