@@ -1036,7 +1036,7 @@ add_action( 'save_post', function ( $post_id ) {
 	}
 
 	if ( ! empty( $ezd_doc_content_box_right ) ) {
-		update_post_meta( $post_id, 'ezd_doc_content_box_right', $ezd_doc_content_box_right );
+		update_post_meta( $post_id, 'ezd_doc_content_box_right', wp_kses_post( $ezd_doc_content_box_right ) );
 	}	
 
 } );
