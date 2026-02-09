@@ -17,3 +17,8 @@
 **Vulnerability:** The feedback form handler `eazydocs_feedback_email` allowed unlimited email submissions from unauthenticated users, leading to potential email spam and database flooding.
 **Learning:** Publicly accessible AJAX actions (`nopriv`) that trigger resource-intensive operations (sending emails, DB writes) must have rate limiting or CAPTCHA.
 **Prevention:** Implement IP-based transient rate limiting for all public-facing form handlers.
+
+## 2026-03-01 – Missing Authorization in Section Creation
+**Vulnerability:** `handle_doc_creation` in `includes/Admin/Create_Post.php` allowed users with `publish_docs` capability to attach new sections or children to *any* document ID via `$_GET` parameters, bypassing ownership checks.
+**Learning:** Unified handlers for creation/deletion often check global capabilities (like `publish_docs`) but miss granular object-level permission checks (`edit_post`) when modifying existing hierarchies.
+**Prevention:** When processing IDs from user input that modify an existing object's structure (like adding a child), always verify `current_user_can('edit_post', $target_id)`.
