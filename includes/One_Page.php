@@ -156,13 +156,13 @@ class One_Page {
             update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
         }
         if ( $shortcode_content ) {
-            update_post_meta( $post_id, 'ezd_doc_left_sidebar', $shortcode_content );
+            update_post_meta( $post_id, 'ezd_doc_left_sidebar', wp_kses_post( $shortcode_content ) );
         }
         if ( $content_type_right ) {
             update_post_meta( $post_id, 'ezd_doc_content_type_right', $content_type_right );
         }
         if ( $shortcode_content_right ) {
-            update_post_meta( $post_id, 'ezd_doc_content_box_right', $shortcode_content_right );
+            update_post_meta( $post_id, 'ezd_doc_content_box_right', wp_kses_post( $shortcode_content_right ) );
         }
 
         // Store relation to original parent

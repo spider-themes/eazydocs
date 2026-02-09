@@ -117,11 +117,13 @@ class Ajax {
 			wp_send_json_error(['message' => 'No keyword provided']);
 		}
 
-		// Cache check (uses $can_read_private and $search_mode defined above)
-		$cache_key = 'ezd_search_' . md5( $keyword . '_' . ( $can_read_private ? '1' : '0' ) . '_' . $search_mode );
-		$cached_output = get_transient( $cache_key );
-		if ( false !== $cached_output ) {
-			echo $cached_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// Bolt ⚡ Optimization: Check for cached search results
+		// Cache key includes keyword, user capability (for private docs), and search mode
+		$cache_key = 'ezd_search_' . md5( $keyword . '_' . (int)$can_read_private . '_' . $search_mode );
+		$cached_results = get_transient( $cache_key );
+
+		if ( false !== $cached_results ) {
+			echo $cached_results; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Content is already sanitized/escaped before caching
 			die();
 		}
 
@@ -276,6 +278,10 @@ class Ajax {
 		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
 		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
+		$output = ob_get_clean();
+		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 		die();
 	}
 
