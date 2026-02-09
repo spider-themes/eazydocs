@@ -127,6 +127,13 @@ class Ajax {
 			die();
 		}
 
+		// Cache check
+		$cache_key = 'ezd_search_' . md5( $keyword . serialize( $post_status ) . $search_mode . get_current_user_id() );
+		if ( $cached_html = get_transient( $cache_key ) ) {
+			echo $cached_html;
+			die();
+		}
+
 		ob_start();
 
 		// --- SEARCH LOGIC ---
