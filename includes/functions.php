@@ -1012,6 +1012,34 @@ function ezd_onepage_docs() {
     <?php
 }
 
+add_action( 'save_post', function ( $post_id ) {
+	// Doc Options
+	if ( 'onepage-docs' != get_post_type( $post_id ) ) {
+		return;
+	}
+
+	$std_comment_id             = $_POST['ezd_doc_layout'] ?? '';
+	$ezd_doc_content_type       = $_POST['ezd_doc_content_type'] ?? '';
+	$ezd_doc_content_type_right = $_POST['ezd_doc_content_type_right'] ?? '';
+	$ezd_doc_content_box_right  = $_POST['ezd_doc_content_box_right'] ?? '';
+
+	if ( ! empty( $std_comment_id ) ) {
+		update_post_meta( $post_id, 'ezd_doc_layout', $std_comment_id );
+	}
+
+	if ( ! empty( $ezd_doc_content_type ) ) {
+		update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
+	}
+
+	if ( ! empty( $ezd_doc_content_type_right ) ) {
+		update_post_meta( $post_id, 'ezd_doc_content_type_right', $ezd_doc_content_type_right );
+	}
+
+	if ( ! empty( $ezd_doc_content_box_right ) ) {
+		update_post_meta( $post_id, 'ezd_doc_content_box_right', wp_kses_post( $ezd_doc_content_box_right ) );
+	}	
+
+} );
 
 add_image_size( 'ezd_searrch_thumb16x16', '16', '16', true );
 add_image_size( 'ezd_searrch_thumb50x50', '50', '50', true );
@@ -1761,46 +1789,38 @@ add_filter('the_content', 'ezd_update_footnotes_content');
  * Used in the settings page
  */
 function customizer_visibility_callback() {
-    $archive_url  = 'javascript:void(0)';
-    $single_url   = 'javascript:void(0)';
-    $target       = '_self';
-    $no_access    = 'no-customizer-access';
+	$archive_url = 'javascript:void(0)';
+	$single_url  = 'javascript:void(0)';
+	$target      = '_self';
+	$no_access   = 'no-customizer-access';
 
-    // Get current user data
-    if ( current_user_can( 'manage_options' ) ) {
-        $doc_id   = ezd_get_opt( 'docs-slug' );
-        $doc_page = get_post_field( 'post_name', $doc_id );
+	if ( current_user_can( 'manage_options' ) ) {
+		$archive_id = ezd_get_opt( 'docs-slug' );
 
-        $args = array(
-            'post_type'      => 'docs',
-            'posts_per_page' => -1,
-            'orderby'        => 'menu_order',
-            'order'          => 'asc'
-        );
+		$first_doc = get_posts( array(
+			'post_type'      => 'docs',
+			'posts_per_page' => 1,
+			'orderby'        => 'menu_order',
+			'order'          => 'ASC',
+			'post_status'    => 'publish',
+		) );
 
-        $recent_posts = get_posts( $args );
-        $post_url     = '';
-        $post_count   = 0;
+		$doc_id = ! empty( $first_doc ) ? $first_doc[0]->ID : $archive_id;
 
-        foreach ( $recent_posts as $recent ) {
-            $post_url  = $recent->ID;
-            $post_count++;
-        }
-
-        $no_access  = '';
-        $docs_url   = ( $post_count > 0 ) ? $post_url : $doc_id;
-        $archive_url = admin_url('customize.php?url=') . site_url('/') . '?p=' . $doc_id . '&autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
-        $single_url  = admin_url('customize.php?url=') . site_url('/') . '?p=' . $docs_url . '&autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
-        $target      = '_blank';
-    }
-    ?>
-    <a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">
-        <?php echo esc_html__( 'Docs Archive', 'eazydocs' ); ?>
-    </a>
-    <a href="<?php echo esc_attr( $single_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_single">
-        <?php echo esc_html__( 'Single Doc', 'eazydocs' ); ?>
-    </a>
-    <?php
+		$customize_base = admin_url( 'customize.php?url=' ) . site_url( '/' );
+		$archive_url    = $customize_base . '?p=' . $archive_id . '&autofocus[panel]=docs-page&autofocus[section]=docs-archive-page';
+		$single_url     = $customize_base . '?p=' . $doc_id . '&autofocus[panel]=docs-page&autofocus[section]=docs-single-page';
+		$no_access      = '';
+		$target         = '_blank';
+	}
+	?>
+	<a href="<?php echo esc_attr( $archive_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_archive">
+		<?php echo esc_html__( 'Docs Archive', 'eazydocs' ); ?>
+	</a>
+	<a href="<?php echo esc_attr( $single_url ); ?>" class="<?php echo esc_attr( $no_access ); ?>" target="<?php echo esc_attr( $target ); ?>" id="get_docs_single">
+		<?php echo esc_html__( 'Single Doc', 'eazydocs' ); ?>
+	</a>
+	<?php
 }
 
 /**
@@ -1873,6 +1893,20 @@ function has_ezd_mark_text_class() {
     }
 
     return false;
+}
+
+/**
+ * Render comments template for docs pages
+ */
+function ezd_get_comments_template() {
+	
+	// Block theme → render comments block (loads correct styles)
+	if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+		echo do_blocks( '<!-- wp:comments /--><!-- wp:post-comments-form /-->' );
+	} else {
+		// Classic theme → native comments.php
+		comments_template();
+	}
 }
 
 /**
@@ -2595,68 +2629,67 @@ function ezd_manual_import_sample_data( $file ) {
 
 	return true;
 }
-if ( ! class_exists( 'EazyDocs_Article_Walker' ) ) {
-	class EazyDocs_Article_Walker extends Walker_Page {
-		public function start_el( &$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0 ) {
-			$page = $data_object;
-			$css_class = array( 'page_item', 'page-item-' . $page->ID );
 
-			if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
-				$css_class[] = 'page_item_has_children';
+class EazyDocs_Article_Walker extends Walker_Page {
+	public function start_el( &$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0 ) {
+		$page = $data_object;
+		$css_class = array( 'page_item', 'page-item-' . $page->ID );
+
+		if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
+			$css_class[] = 'page_item_has_children';
+		}
+
+		if ( ! empty( $current_object_id ) ) {
+			$_current_page = get_post( $current_object_id );
+			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
+				$css_class[] = 'current_page_ancestor';
 			}
-
-			if ( ! empty( $current_object_id ) ) {
-				$_current_page = get_post( $current_object_id );
-				if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
-					$css_class[] = 'current_page_ancestor';
-				}
-				if ( $page->ID == $current_object_id ) {
-					$css_class[] = 'current_page_item';
-				} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
-					$css_class[] = 'current_page_parent';
-				}
-			} elseif ( get_option( 'page_for_posts' ) == $page->ID ) {
+			if ( $page->ID == $current_object_id ) {
+				$css_class[] = 'current_page_item';
+			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
 				$css_class[] = 'current_page_parent';
 			}
-
-			$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_object_id ) );
-			$css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . '"' : '';
-
-			if ( '' === $page->post_title ) {
-				$page->post_title = sprintf( __( '#%d (no title)', 'eazydocs' ), $page->ID );
-			}
-
-			$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
-			$args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
-
-			$badge_html = '';
-			if ( function_exists( 'ezdpro_badge' ) && ezd_is_premium() ) {
-				$badge_html = ezdpro_badge( $page->ID );
-			}
-
-			$atts                 = array();
-			$atts['href']         = get_permalink( $page->ID );
-			$atts['aria-current'] = ( $page->ID == $current_object_id ) ? 'page' : '';
-
-			$atts = apply_filters( 'page_menu_link_attributes', $atts, $page, $depth, $args, $current_object_id );
-
-			$attributes = '';
-			foreach ( $atts as $attr => $value ) {
-				if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
-					$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-					$attributes .= ' ' . $attr . '="' . $value . '"';
-				}
-			}
-
-			$output .= sprintf(
-				'<li%s><a%s>%s%s%s%s</a>',
-				$css_classes,
-				$attributes,
-				$args['link_before'],
-				apply_filters( 'the_title', $page->post_title, $page->ID ),
-				$args['link_after'],
-				$badge_html
-			);
+		} elseif ( get_option( 'page_for_posts' ) == $page->ID ) {
+			$css_class[] = 'current_page_parent';
 		}
+
+		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_object_id ) );
+		$css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . '"' : '';
+
+		if ( '' === $page->post_title ) {
+			$page->post_title = sprintf( __( '#%d (no title)', 'eazydocs' ), $page->ID );
+		}
+
+		$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
+		$args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
+
+		$badge_html = '';
+		if ( function_exists( 'ezdpro_badge' ) && ezd_is_premium() ) {
+			$badge_html = ezdpro_badge( $page->ID );
+		}
+
+		$atts                 = array();
+		$atts['href']         = get_permalink( $page->ID );
+		$atts['aria-current'] = ( $page->ID == $current_object_id ) ? 'page' : '';
+
+		$atts = apply_filters( 'page_menu_link_attributes', $atts, $page, $depth, $args, $current_object_id );
+
+		$attributes = '';
+		foreach ( $atts as $attr => $value ) {
+			if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
+				$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				$attributes .= ' ' . $attr . '="' . $value . '"';
+			}
+		}
+
+		$output .= sprintf(
+			'<li%s><a%s>%s%s%s%s</a>',
+			$css_classes,
+			$attributes,
+			$args['link_before'],
+			apply_filters( 'the_title', $page->post_title, $page->ID ),
+			$args['link_after'],
+			$badge_html
+		);
 	}
 }

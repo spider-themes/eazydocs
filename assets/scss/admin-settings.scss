@@ -902,3 +902,56 @@ body.ama {
     }
   }
 }
+
+body{
+	&.wp-customizer{
+		.ezd-help-card,
+		.ezd-smtp-notice,
+		.ezd-email-reports-header{
+			display: block;
+			padding: 10px;
+			.ezd-help-icon,
+			.ezd-smtp-notice-icon,
+			.ezd-header-icon{
+				margin-bottom: 10px;
+			}
+		}
+		.ezd-email-report-status-wrapper{
+			display: block;
+			.ezd-report-status-card{
+				margin-bottom: 10px;
+			}
+		}
+		.csf-field{
+			&.ezd-field-primary{
+				border: none !important;
+			}
+			.csf-title, .csf-fieldset {
+				width: 100% !important;
+			}
+		}
+		.ezd-settings-intro {
+			padding: 10px;
+			margin-bottom: 5px;
+			.ezd-settings-intro__inner{
+				display: block;
+				.ezd-settings-intro__icon {
+					width: max-content;
+					margin-bottom: 10px;
+				}
+				.ezd-settings-intro__content h2 {
+					font-size: 18px;
+				}
+			}
+		}
+		.ezd-settings-quickstart {
+			padding: 10px;
+			margin-bottom: 5px;
+		}
+		.csf-field-image_select {
+			img {
+				width: max-content !important;
+			}
+		}
+	}
+}

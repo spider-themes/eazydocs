@@ -1,10 +1,12 @@
 <?php
-$is_conditional_dropdown = ezd_is_promax() ? ezd_get_opt( 'is_conditional_dropdown' ) : '';
-$condition_options       = ezd_is_promax() ? ezd_get_opt( 'condition_options' ) : array();
+if ( ezd_is_premium() || ezd_unlock_themes('docy','docly') ) :
 
-if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
-  wp_enqueue_style( 'elegant-icon' );
-	?>
+  $is_conditional_dropdown = ezd_get_opt( 'is_conditional_dropdown' );
+  $condition_options       = ezd_get_opt( 'condition_options' );
+
+  if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
+    wp_enqueue_style( 'elegant-icon' );
+	  ?>
     <select id="condition_options" name="condition_options" class="vodiapicker ezd-d-none">
 		<?php
 		foreach ( $condition_options as $option ) {
@@ -121,4 +123,5 @@ if ( $is_conditional_dropdown == '1' && ! empty( $condition_options ) ) :
       })(jQuery);
     </script>
   <?php
+  endif;
 endif;
