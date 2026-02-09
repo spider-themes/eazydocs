@@ -117,24 +117,12 @@ class Ajax {
 			wp_send_json_error( [ 'message' => 'No keyword provided' ] );
 		}
 
-		// Bolt ⚡ Optimization: Check for cached search results
-		// Cache key includes keyword, user capability (for private docs), and search mode
-		$cache_key = 'ezd_search_' . md5( $keyword . '_' . (int)$can_read_private . '_' . $search_mode );
-		$cached_results = get_transient( $cache_key );
-
-		if ( false !== $cached_results ) {
-			echo $cached_results; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Content is already sanitized/escaped before caching
+		// Optimization: Check for cached results (60s TTL)
+		$cache_key = 'ezd_search_' . md5( $keyword . serialize( $post_status ) . $search_mode );
+		if ( false !== ( $cached_output = get_transient( $cache_key ) ) ) {
+			echo $cached_output;
 			die();
 		}
-
-		// Cache check
-		$cache_key = 'ezd_search_' . md5( $keyword . serialize( $post_status ) . $search_mode . get_current_user_id() );
-		if ( $cached_html = get_transient( $cache_key ) ) {
-			echo $cached_html;
-			die();
-		}
-
-		ob_start();
 
 		// --- SEARCH LOGIC ---
 
@@ -230,6 +218,9 @@ class Ajax {
 				);
 			}
 		}
+
+		// Optimization: Start buffering output for cache
+		ob_start();
 		?>
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
@@ -283,9 +274,10 @@ class Ajax {
 
 		wp_reset_postdata();
 
+		// Optimization: Cache output and display
 		$output = ob_get_clean();
-		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
-		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		set_transient( $cache_key, $output, 60 );
+		echo $output;
 		
 		$output = ob_get_clean();
 		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
