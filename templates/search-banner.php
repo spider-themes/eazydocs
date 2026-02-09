@@ -52,6 +52,13 @@ jQuery(".focus_overlay").click(function() {
     jQuery('form.ezd_search_form').css('z-index', 'unset');
 })
 
+// Hide search results by pressing Escape button
+jQuery(document).keyup(function(e) {
+    if (e.key === "Escape") { // escape key maps to keycode `27`
+        jQuery('#ezd-search-results').removeClass('ajax-search').html("")
+    }
+});
+
 /**
  * Search Form Keywords
  */
@@ -88,12 +95,6 @@ function ezSearchResults() {
             },
             success: function(data) {
                 jQuery(".spinner-border").hide();
-                // hide search results by pressing Escape button
-                jQuery(document).keyup(function(e) {
-                    if (e.key === "Escape") { // escape key maps to keycode `27`
-                        jQuery('#ezd-search-results').removeClass('ajax-search').html("")
-                    }
-                });
                 if (data.length > 0) {
                     jQuery('#ezd-search-results').addClass('ajax-search').html(data);
                 } else {
@@ -138,13 +139,6 @@ jQuery('#ezd_searchInput').keyup(
                 },
                 success: function(data) {
                     jQuery(".spinner-border").hide();
-                    // hide search results by pressing Escape button
-                    jQuery(document).keyup(function(e) {
-                        if (e.key === "Escape") { // escape key maps to keycode `27`
-                            jQuery('#ezd-search-results').removeClass('ajax-search').html(
-                                "")
-                        }
-                    });
                     if (data.length > 0) {
                         jQuery('#ezd-search-results').addClass('ajax-search').html(data);
                     } else {
