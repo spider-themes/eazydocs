@@ -117,6 +117,18 @@ class Ajax {
 			wp_send_json_error(['message' => 'No keyword provided']);
 		}
 
+		// Bolt ⚡ Optimization: Check for cached search results
+		// Cache key includes keyword, user capability (for private docs), and search mode
+		$cache_key = 'ezd_search_' . md5( $keyword . '_' . (int)$can_read_private . '_' . $search_mode );
+		$cached_results = get_transient( $cache_key );
+
+		if ( false !== $cached_results ) {
+			echo $cached_results; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Content is already sanitized/escaped before caching
+			die();
+		}
+
+		ob_start();
+
 		// --- SEARCH LOGIC ---
 
 		// Exact title matches
@@ -261,7 +273,15 @@ class Ajax {
 		endif;
 
 		wp_reset_postdata();
+
+		$output = ob_get_clean();
+		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
+		$output = ob_get_clean();
+		set_transient( $cache_key, $output, 60 ); // Cache for 60 seconds
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 		die();
 	}
 

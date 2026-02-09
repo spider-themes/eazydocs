@@ -156,14 +156,12 @@ class One_Page {
             update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
         }
         if ( $shortcode_content ) {
-            // Sentinel: Sanitize content to prevent Stored XSS
             update_post_meta( $post_id, 'ezd_doc_left_sidebar', wp_kses_post( $shortcode_content ) );
         }
         if ( $content_type_right ) {
             update_post_meta( $post_id, 'ezd_doc_content_type_right', $content_type_right );
         }
         if ( $shortcode_content_right ) {
-            // Sentinel: Sanitize content to prevent Stored XSS
             update_post_meta( $post_id, 'ezd_doc_content_box_right', wp_kses_post( $shortcode_content_right ) );
         }
 
