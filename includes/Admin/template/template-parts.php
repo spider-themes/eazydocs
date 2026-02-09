@@ -187,7 +187,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
                  if ( $is_premium ) :
                      ?>
                      <li>
-                         <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Create_Child=yes&childID=<?php echo esc_attr($doc_item); ?>&_wpnonce=<?php echo esc_attr(wp_create_nonce($doc_item)); ?>&child=" class="child-doc" aria-label="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
+                         <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Create_Child=yes&childID=<?php echo esc_attr($doc_item); ?>&_wpnonce=<?php echo esc_attr(wp_create_nonce('ezd_create_child_' . $doc_item)); ?>&child=" class="child-doc" aria-label="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>" title="<?php esc_attr_e('Add new doc under this doc', 'eazydocs'); ?>">
                              <span class="dashicons dashicons-plus-alt2"></span>
                          </a>
                      </li>
@@ -215,7 +215,7 @@ function ezd_child_docs_left_content( $doc_item, $depth = 1, $item = []) {
              if ( ezd_is_admin_or_editor( $doc_item, 'delete' ) ) : 
                 ?>
                  <li class="delete">
-                     <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce( $doc_item ) ); ?>&ID=<?php echo esc_attr( $doc_item ); ?>" class="section-delete" aria-label="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
+                     <a href="<?php echo esc_url(admin_url('admin.php')); ?>?Section_Delete=yes&_wpnonce=<?php echo esc_attr( wp_create_nonce( 'ezd_delete_doc_' . $doc_item ) ); ?>&ID=<?php echo esc_attr( $doc_item ); ?>" class="section-delete" aria-label="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>" title="<?php esc_attr_e( 'Move to Trash', 'eazydocs' ); ?>">
                          <span class="dashicons dashicons-trash"></span>
                      </a>
                  </li>

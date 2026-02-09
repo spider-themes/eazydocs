@@ -45,10 +45,8 @@ $desc           = ezd_get_opt( 'feedback-form-desc' );
                             <?php esc_html_e( 'Send', 'eazydocs' ); ?>
                         </button>
                     </div>
-                    <div class="form-group ezd-grid-column-full">
-                        <div class="eazydocs-form-result"></div>
-                    </div>
                 </div>
+                <div class="eazydocs-form-result"></div>
             </form>
         </div>
     </div>
