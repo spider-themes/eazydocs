@@ -66,15 +66,20 @@ class Create_Post {
 			 sanitize_text_field( wp_unslash( $_GET['Create_Child'] ) ) === 'yes' &&
 			 wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), sanitize_text_field( wp_unslash( $_GET['childID'] ) ) ) ) {
 			
-			$child_id = absint( wp_unslash( $_GET['childID'] ) );
+			$child_id   = absint( wp_unslash( $_GET['childID'] ) );
+			$child_post = $child_id > 0 ? get_post( $child_id ) : null;
+
+			if ( ! $child_post || 'docs' !== $child_post->post_type ) {
+				wp_die( esc_html__( 'The specified document does not exist.', 'eazydocs' ) );
+			}
 
 			if ( ! current_user_can( 'edit_post', $child_id ) ) {
 				wp_die( esc_html__( 'You do not have permission to edit this document.', 'eazydocs' ) );
 			}
 
-			$title = $this->sanitize_title( $_GET['child'] );
+			$title    = $this->sanitize_title( $_GET['child'] );
 			$children = get_children( [ 'post_parent' => $child_id, 'post_type' => 'docs' ] );
-			$status = ezd_is_premium() ? get_post_status( $child_id ) : 'publish';
+			$status   = ezd_is_premium() ? get_post_status( $child_id ) : 'publish';
 			$this->create_post( $title, $child_id, count( $children ) + 2, $status, sanitize_title( $title ) );
 		}
 	}
