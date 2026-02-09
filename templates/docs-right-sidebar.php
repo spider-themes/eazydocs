@@ -73,17 +73,10 @@ $toc_auto_numbering = $toc_auto_numbering == '1' ? ' toc_auto_numbering' : '';
 							dynamic_sidebar( 'doc_sidebar' );
 						}
 					} else {
-						if ( $content_type == 'widget_data_right' && ! empty( $is_valid_post_id ) ) {
-							$wp_blocks = new WP_Query( [
-								'post_type' => 'wp_block',
-								'p'         => $ezd_shortcode
-							] );
-
-							if ( $wp_blocks->have_posts() ) {
-								while ( $wp_blocks->have_posts() ) : $wp_blocks->the_post();
-									the_content();
-								endwhile;
-								wp_reset_postdata();
+						if ( 'widget_data_right' === $content_type && ! empty( $is_valid_post_id ) ) {
+							$wp_block = get_post( $ezd_shortcode );
+							if ( $wp_block && 'wp_block' === $wp_block->post_type && 'publish' === $wp_block->post_status ) {
+								echo apply_filters( 'the_content', $wp_block->post_content );
 							}
 						}
 					}
