@@ -177,7 +177,7 @@ function ezd_is_plugin_installed_for_days( $days, $plugin_slug='eazydocs' ) {
  * @return string
  */
 function ezd_container() {
-	return 'full-width' === ezd_get_opt('docs_page_width') ? 'ezd-container-fluid' : 'ezd-container ezd-custom-container';
+	return 'full-width' === ezd_get_opt( 'docs_page_width' ) ? 'ezd-container-fluid' : 'ezd-container ezd-custom-container';
 }
 
 /**
@@ -246,8 +246,8 @@ function eazydocs_get_template_part( $template ) {
 		// Ensure the resolved file path is within the templates directory or theme directory
 		if ( $real_file && ( 
 			0 === strpos( $real_file, $real_templates_dir ) ||
-			strpos( $real_file, get_template_directory() ) === 0 ||
-			strpos( $real_file, get_stylesheet_directory() ) === 0
+			0 === strpos( $real_file, get_template_directory() ) ||
+			0 === strpos( $real_file, get_stylesheet_directory() )
 		) ) {
 			load_template( $file, false );
 		}
@@ -293,8 +293,8 @@ function eazydocs_get_template( $template_name, $args = [] ) {
 		// Ensure the resolved file path is within the templates directory or theme directory
 		if ( $real_template && ( 
 			0 === strpos( $real_template, $real_templates_dir ) ||
-			strpos( $real_template, get_template_directory() ) === 0 ||
-			strpos( $real_template, get_stylesheet_directory() ) === 0
+			0 === strpos( $real_template, get_template_directory() ) ||
+			0 === strpos( $real_template, get_stylesheet_directory() )
 		) ) {
 			include $template;
 		}
@@ -1048,7 +1048,7 @@ add_image_size( 'ezd_searrch_thumb50x50', '50', '50', true );
 function ezd_password_form($output, $post = 0) {
 
     // Check if post is set and is the desired custom post type
-    if ( is_null( $post ) || ('docs' !== get_post_type( $post ))) {
+    if ( is_null( $post ) || ( 'docs' !== get_post_type( $post ) ) ) {
         // If it's not the correct post type, return the original output
         return $output;
     }
@@ -1057,7 +1057,7 @@ function ezd_password_form($output, $post = 0) {
 	$protected_form_title    = ezd_is_premium() ? ezd_get_opt( 'protected_form_title', esc_html__( 'Enter Password & Read this Doc', 'eazydocs' ) ) : esc_html__( 'Enter Password & Read this Doc', 'eazydocs' );
 	$protected_form_subtitle = ezd_is_premium() ? ezd_get_opt( 'protected_form_subtitle', esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' ) ) : esc_html__( 'This content is password protected. To view it please enter your password below:', 'eazydocs' );
 
-	if ( ! empty( 'eazydocs-form' === $protected_form_switcher ) ) :
+	if ( 'eazydocs-form' === $protected_form_switcher ) :
 		ob_start();
 		?>
 		<div class="card ezd-password-wrap">
@@ -1411,11 +1411,11 @@ function ezd_kses_allowed_docs_nav_html() {
 		'stroke' => true,
 	];
 	$allowed['circle'] = [
-		'cx'    => true,
-		'cy'    => true,
-		'r'     => true,
-		'fill'  => true,
-		'stroke'=> true,
+		'cx'     => true,
+		'cy'     => true,
+		'r'      => true,
+		'fill'   => true,
+		'stroke' => true,
 	];
 	$allowed['g'] = [
 		'fill'   => true,
