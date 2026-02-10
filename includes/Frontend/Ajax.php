@@ -53,7 +53,8 @@ class Ajax {
 		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ], true ) ? sanitize_text_field( $_POST['type'] ) : false;
 
 		// check previous response
-		if ( in_array( $post_id, $previous ) ) {
+		// $previous is array of strings (from explode), $post_id is int. Cast to string for strict check.
+		if ( in_array( (string) $post_id, $previous, true ) ) {
 			$message = sprintf( $template, 'danger', esc_html__( 'Sorry, you\'ve already recorded your feedback!', 'eazydocs' ) );
 			wp_send_json_error( $message );
 		}
@@ -247,11 +248,11 @@ class Ajax {
 		// --- OUTPUT RESULTS (unchanged) ---
 		if ( $posts->have_posts() ) :
 			while ( $posts->have_posts() ) : $posts->the_post();
-				$no_thumbnail = ezd_get_opt('is_search_result_thumbnail') == false ? 'no-thumbnail' : '';
+				$no_thumbnail = ! ezd_get_opt( 'is_search_result_thumbnail' ) ? 'no-thumbnail' : '';
 				?>
 				<div class="search-result-item <?php echo esc_attr($no_thumbnail); ?>" data-url="<?php the_permalink(); ?>">
 					<a href="<?php the_permalink(); ?>" class="title">
-						<?php if (ezd_get_opt('is_search_result_thumbnail')) :
+						<?php if ( ezd_get_opt( 'is_search_result_thumbnail' ) ) :
 							if (has_post_thumbnail() && ezd_is_premium() ) {
 								the_post_thumbnail('ezd_searrch_thumb16x16');
 							} else { ?>
