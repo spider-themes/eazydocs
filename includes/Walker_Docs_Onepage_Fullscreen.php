@@ -47,7 +47,7 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 	/**
 	 * Parent item ID.
 	 *
-	 * @var bool|int
+	 * @var bool|\WP_Post
 	 */
 	public static $parent_item = false;
 
