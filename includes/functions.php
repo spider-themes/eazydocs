@@ -302,8 +302,12 @@ function eazydocs_get_template( $template_name, $args = [] ) {
 }
 
 /**
- * Estimated reading time
- **/
+ * Estimated reading time.
+ *
+ * Calculates and outputs the estimated reading time based on word count.
+ *
+ * @return void
+ */
 function ezd_reading_time() {
     $content     = get_post_field( 'post_content', get_the_ID() );
     $word_count  = str_word_count( wp_strip_all_tags( $content ) );
@@ -920,6 +924,11 @@ function get_reusable_blocks() {
 }
 
 
+/**
+ * Get all registered reusable blocks for the right sidebar.
+ *
+ * @return string HTML option tags for the select box.
+ */
 function get_reusable_blocks_right() {
 	$wp_registered_blocks = get_posts( [
 		'post_type' => 'wp_block'
@@ -942,6 +951,11 @@ function get_reusable_blocks_right() {
 	}
 }
 
+/**
+ * Get the link to manage reusable blocks.
+ *
+ * @return string HTML link to the reusable blocks admin page.
+ */
 function ezd_manage_reusable_blocks() {
 	$admin_url = admin_url( 'edit.php?post_type=wp_block' );
 	/* translators: %s: URL for managing reusable blocks */
@@ -2711,15 +2725,15 @@ class EazyDocs_Article_Walker extends Walker_Page {
 
 		if ( ! empty( $current_object_id ) ) {
 			$_current_page = get_post( $current_object_id );
-			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
+			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors, true ) ) {
 				$css_class[] = 'current_page_ancestor';
 			}
-			if ( $page->ID == $current_object_id ) {
+			if ( (int) $page->ID === (int) $current_object_id ) {
 				$css_class[] = 'current_page_item';
-			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
+			} elseif ( $_current_page && (int) $page->ID === (int) $_current_page->post_parent ) {
 				$css_class[] = 'current_page_parent';
 			}
-		} elseif ( get_option( 'page_for_posts' ) == $page->ID ) {
+		} elseif ( (int) get_option( 'page_for_posts' ) === (int) $page->ID ) {
 			$css_class[] = 'current_page_parent';
 		}
 
@@ -2740,7 +2754,7 @@ class EazyDocs_Article_Walker extends Walker_Page {
 
 		$atts                 = array();
 		$atts['href']         = get_permalink( $page->ID );
-		$atts['aria-current'] = ( $page->ID == $current_object_id ) ? 'page' : '';
+		$atts['aria-current'] = ( (int) $page->ID === (int) $current_object_id ) ? 'page' : '';
 
 		$atts = apply_filters( 'page_menu_link_attributes', $atts, $page, $depth, $args, $current_object_id );
 
