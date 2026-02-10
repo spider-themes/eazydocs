@@ -12,9 +12,12 @@ if ( $post->post_parent ) {
 
 $walker = new EazyDocs\Frontend\Walker_Docs();
 $children = array(
+    'title_li'    => '',
+    'order'       => 'menu_order',
+    'echo'        => false,
     'post_type'   => 'docs',
+    'walker'      => $walker,
     'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private', 'draft' ] : ['publish'],
-    'number'      => 1,
 );
 
 // If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
@@ -23,7 +26,7 @@ if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
     $children['child_of'] = $parent;
 }
 
-$children           = get_pages( $children );
+$children           = wp_list_pages($children);
 $sidebar_search 	= ezd_get_opt( 'search_visibility', '1' );
 $content_layout 	= ezd_get_opt( 'docs_content_layout', '1' );
 $nav_sidebar_active = '';
