@@ -175,10 +175,10 @@ class Walker_Onepage_Fullscren extends Walker_Page {
 		}
 
 		$atts['href'] = '#' . $get_title;
-		if ( (int) $page->ID === (int) $current_page ) {
-			$atts['class'] = 'active';
-		}
 		$atts['class'] = 'nav-link';
+		if ( (int) $page->ID === (int) $current_page ) {
+			$atts['class'] .= ' active';
+		}
 
 		$atts['aria-current'] = ( (int) $page->ID === (int) $current_page ) ? 'page' : '';
 
