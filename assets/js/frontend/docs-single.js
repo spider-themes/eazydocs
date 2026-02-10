@@ -625,16 +625,24 @@
 						}
 					});
 
-					$('a[href="#hackers"]').click(function () {
-						$('#hackers').css('padding-top', '100px');
+					var $hackers = $('#hackers');
+					var hackersPaddingActive = false;
 
-						$(window).on('scroll', function () {
-							var hackersOffset = $('#hackers').offset().top;
-							var scrolls = $(window).scrollTop();
-							if (scrolls < hackersOffset) {
-								$('#hackers').css('padding-top', '0px');
-							}
-						});
+					$('a[href="#hackers"]').click(function () {
+						$hackers.css('padding-top', '100px');
+						hackersPaddingActive = true;
+					});
+
+					$(window).on('scroll', function () {
+						if (!hackersPaddingActive) {
+							return;
+						}
+						var hackersOffset = $hackers.offset().top;
+						var scrolls = $(window).scrollTop();
+						if (scrolls < hackersOffset) {
+							$hackers.css('padding-top', '0px');
+							hackersPaddingActive = false;
+						}
 					});
 				}
 			}
