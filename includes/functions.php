@@ -77,8 +77,8 @@ function ezd_update_post_meta_cache( $post_ids ) {
 
 function ezd_meta_apply( $option_id, $default = '' ) {
 	// Get post meta and theme option values
-	$meta_value	  = get_post_meta( get_the_ID(), $option_id, true );
-	$option_value = ezd_get_opt($option_id, $default);
+	$meta_value   = get_post_meta( get_the_ID(), $option_id, true );
+	$option_value = ezd_get_opt( $option_id, $default );
 
 	// Check if meta value is an array and empty
 	$is_meta_arr_empty = is_array($meta_value) && empty(array_filter($meta_value));
@@ -177,7 +177,7 @@ function ezd_is_plugin_installed_for_days( $days, $plugin_slug='eazydocs' ) {
  * @return string
  */
 function ezd_container() {
-	return 'full-width' === ezd_get_opt('docs_page_width') ? 'ezd-container-fluid' : 'ezd-container ezd-custom-container';
+	return 'full-width' === ezd_get_opt( 'docs_page_width' ) ? 'ezd-container-fluid' : 'ezd-container ezd-custom-container';
 }
 
 /**
@@ -245,9 +245,9 @@ function eazydocs_get_template_part( $template ) {
 		
 		// Ensure the resolved file path is within the templates directory or theme directory
 		if ( $real_file && ( 
-			strpos( $real_file, $real_templates_dir ) === 0 || 
-			strpos( $real_file, get_template_directory() ) === 0 ||
-			strpos( $real_file, get_stylesheet_directory() ) === 0
+			0 === strpos( $real_file, $real_templates_dir ) ||
+			0 === strpos( $real_file, get_template_directory() ) ||
+			0 === strpos( $real_file, get_stylesheet_directory() )
 		) ) {
 			load_template( $file, false );
 		}
@@ -292,9 +292,9 @@ function eazydocs_get_template( $template_name, $args = [] ) {
 		
 		// Ensure the resolved file path is within the templates directory or theme directory
 		if ( $real_template && ( 
-			strpos( $real_template, $real_templates_dir ) === 0 || 
-			strpos( $real_template, get_template_directory() ) === 0 ||
-			strpos( $real_template, get_stylesheet_directory() ) === 0
+			0 === strpos( $real_template, $real_templates_dir ) ||
+			0 === strpos( $real_template, get_template_directory() ) ||
+			0 === strpos( $real_template, get_stylesheet_directory() )
 		) ) {
 			include $template;
 		}
@@ -765,7 +765,7 @@ function eazydocs_pro_doc_list() {
 			$doc_items .= '<option _wpnonce="'.wp_create_nonce('ezd_make_onepage').'" value="' . $doc->ID . '">' . $doc->post_title . '</option>';
 		}
 	}
-	if ( $doc_item_count === 0 ) {
+	if ( 0 === $doc_item_count ) {
 		$doc_items = '<option id="no-more-doc-available" value="no-more-doc-available">No doc available!</option>';
 	}
 
@@ -1036,7 +1036,7 @@ add_action( 'save_post', function ( $post_id ) {
 	}
 
 	if ( ! empty( $ezd_doc_content_box_right ) ) {
-		update_post_meta( $post_id, 'ezd_doc_content_box_right', $ezd_doc_content_box_right );
+		update_post_meta( $post_id, 'ezd_doc_content_box_right', wp_kses_post( $ezd_doc_content_box_right ) );
 	}	
 
 } );
@@ -1048,7 +1048,7 @@ add_image_size( 'ezd_searrch_thumb50x50', '50', '50', true );
 function ezd_password_form($output, $post = 0) {
 
     // Check if post is set and is the desired custom post type
-    if ( is_null( $post ) || ('docs' !== get_post_type( $post ) )) {
+    if ( is_null( $post ) || ( 'docs' !== get_post_type( $post ) ) ) {
         // If it's not the correct post type, return the original output
         return $output;
     }
@@ -1411,11 +1411,11 @@ function ezd_kses_allowed_docs_nav_html() {
 		'stroke' => true,
 	];
 	$allowed['circle'] = [
-		'cx'    => true,
-		'cy'    => true,
-		'r'     => true,
-		'fill'  => true,
-		'stroke'=> true,
+		'cx'     => true,
+		'cy'     => true,
+		'r'      => true,
+		'fill'   => true,
+		'stroke' => true,
 	];
 	$allowed['g'] = [
 		'fill'   => true,
@@ -1425,7 +1425,7 @@ function ezd_kses_allowed_docs_nav_html() {
 	return apply_filters( 'ezd_kses_allowed_docs_nav_html', $allowed );
 }
 
-add_filter( 'body_class', function( $classes ) {
+add_filter( 'body_class', function ( $classes ) {
     if ( ezd_is_premium() ) {
         $classes[] = 'ezd-premium';
     }
@@ -1492,7 +1492,7 @@ function ezd_get_elementor_templates() {
  */
 function ezd_single_banner($classes) {
 	$current_theme = get_template();
-	if ( is_single() && 'docs' === get_post_type() && ! empty( ezd_get_opt('single_doc_layout') == 'el-template' ) &&  ! empty( ezd_get_opt('single_layout_id') ) && 'docly' === $current_theme ) {
+	if ( is_single() && 'docs' === get_post_type() && 'el-template' === ezd_get_opt( 'single_doc_layout' ) && ! empty( ezd_get_opt( 'single_layout_id' ) ) && 'docly' === $current_theme ) {
 		$classes[] = 'disable-docly-header';
     }
     return $classes;
@@ -1560,7 +1560,7 @@ function ezd_internal_doc_security( $doc_id = 0 ) {
 			$user_group  = ezd_get_opt( 'private_doc_user_restriction' );
 			$is_all_user = $user_group['private_doc_all_user'] ?? 0;
 			
-			if ( '1' === (string) $is_all_user || true === $is_all_user ) {
+			if ( '1' === $is_all_user || 1 === $is_all_user || true === $is_all_user ) {
 				// All logged-in users can access
 				if ( is_user_logged_in() ) {
 					return true;
@@ -1889,7 +1889,7 @@ function has_ezd_mark_text_class() {
     global $post;
 
     if ( is_singular('docs') && isset($post->post_content) ) {
-        return strpos($post->post_content, 'class="ezd_mark_text"') !== false;
+        return false !== strpos($post->post_content, 'class="ezd_mark_text"');
     }
 
     return false;
@@ -1937,7 +1937,7 @@ function ezd_read_private_docs_cap_to_user() {
         $user_group  = ezd_get_opt( 'private_doc_user_restriction' );
         $is_all_user = $user_group['private_doc_all_user'] ?? 0;
 
-        if ( '1' === (string) $is_all_user || true === $is_all_user ) {
+        if ( '1' === $is_all_user || 1 === $is_all_user || true === $is_all_user ) {
 			$get_users_role = function_exists( 'eazydocs_user_role_names' ) ? array_values( array_keys( eazydocs_user_role_names() ) ) : [];
         } else {
             $get_users_role = $user_group['private_doc_roles'] ?? [];
@@ -2043,7 +2043,7 @@ add_action( 'init', 'ezd_docs_cap_to_user' );
 /**
  * Admin bar hide for OnePage Docs
  */
-add_filter('show_admin_bar', function( $show ) {
+add_filter('show_admin_bar', function ( $show ) {
     // Hide admin bar on singular onepage-docs
     if ( is_singular('onepage-docs') ) {
         return false;
@@ -2124,7 +2124,7 @@ function ezd_docs_slug() {
     $custom_slug  = ezd_get_opt( 'docs-type-slug' );
     $safe_slug 	  = preg_replace( '/[^a-zA-Z0-9-_]/', '-', $custom_slug );
 	
-	if ( 'custom-slug' === $docs_url || $permalink === '' || $permalink === '/archives/%post_id%' ) {
+	if ( 'custom-slug' === $docs_url || '' === $permalink || '/archives/%post_id%' === $permalink ) {
 		return $safe_slug ?: 'docs';
 	}
 
@@ -2370,7 +2370,7 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
 
         foreach ( $posts as $post ) {
             // Do NOT change any already-related child (keep whatever parent it has)
-            if ( (int) $post->post_parent !== 0 ) {
+            if ( 0 !== (int) $post->post_parent ) {
                 continue;
             }
 
@@ -2398,7 +2398,7 @@ add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
             $parent_doc_id = $created_docs[ $deepest_term->term_id ];
 
             // Re-parent only if it still has no parent (extra safety)
-            if ( (int) $post->post_parent === 0 ) {
+            if ( 0 === (int) $post->post_parent ) {
                 wp_update_post( [
                     'ID'          => $post->ID,
                     'post_parent' => $parent_doc_id,
@@ -2629,68 +2629,67 @@ function ezd_manual_import_sample_data( $file ) {
 
 	return true;
 }
-if ( ! class_exists( 'EazyDocs_Article_Walker' ) ) {
-	class EazyDocs_Article_Walker extends Walker_Page {
-		public function start_el( &$output, $data_object, $depth = 0, $args = [], $current_object_id = 0 ) {
-			$page = $data_object;
-			$css_class = [ 'page_item', 'page-item-' . $page->ID ];
 
-			if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
-				$css_class[] = 'page_item_has_children';
+class EazyDocs_Article_Walker extends Walker_Page {
+	public function start_el( &$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0 ) {
+		$page = $data_object;
+		$css_class = array( 'page_item', 'page-item-' . $page->ID );
+
+		if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
+			$css_class[] = 'page_item_has_children';
+		}
+
+		if ( ! empty( $current_object_id ) ) {
+			$_current_page = get_post( $current_object_id );
+			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
+				$css_class[] = 'current_page_ancestor';
 			}
-
-			if ( ! empty( $current_object_id ) ) {
-				$_current_page = get_post( $current_object_id );
-				if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
-					$css_class[] = 'current_page_ancestor';
-				}
-				if ( (int) $page->ID === (int) $current_object_id ) {
-					$css_class[] = 'current_page_item';
-				} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
-					$css_class[] = 'current_page_parent';
-				}
-			} elseif ( get_option( 'page_for_posts' ) == $page->ID ) {
+			if ( $page->ID == $current_object_id ) {
+				$css_class[] = 'current_page_item';
+			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
 				$css_class[] = 'current_page_parent';
 			}
-
-			$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_object_id ) );
-			$css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . '"' : '';
-
-			if ( '' === $page->post_title ) {
-				$page->post_title = sprintf( __( '#%d (no title)', 'eazydocs' ), $page->ID );
-			}
-
-			$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
-			$args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
-
-			$badge_html = '';
-			if ( function_exists( 'ezdpro_badge' ) && ezd_is_premium() ) {
-				$badge_html = ezdpro_badge( $page->ID );
-			}
-
-			$atts                 = [];
-			$atts['href']         = get_permalink( $page->ID );
-			$atts['aria-current'] = ( (int) $page->ID === (int) $current_object_id ) ? 'page' : '';
-
-			$atts = apply_filters( 'page_menu_link_attributes', $atts, $page, $depth, $args, $current_object_id );
-
-			$attributes = '';
-			foreach ( $atts as $attr => $value ) {
-				if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
-					$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-					$attributes .= ' ' . $attr . '="' . $value . '"';
-				}
-			}
-
-			$output .= sprintf(
-				'<li%s><a%s>%s%s%s%s</a>',
-				$css_classes,
-				$attributes,
-				$args['link_before'],
-				apply_filters( 'the_title', $page->post_title, $page->ID ),
-				$args['link_after'],
-				$badge_html
-			);
+		} elseif ( get_option( 'page_for_posts' ) == $page->ID ) {
+			$css_class[] = 'current_page_parent';
 		}
+
+		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_object_id ) );
+		$css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . '"' : '';
+
+		if ( '' === $page->post_title ) {
+			$page->post_title = sprintf( __( '#%d (no title)', 'eazydocs' ), $page->ID );
+		}
+
+		$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
+		$args['link_after']  = empty( $args['link_after'] ) ? '' : $args['link_after'];
+
+		$badge_html = '';
+		if ( function_exists( 'ezdpro_badge' ) && ezd_is_premium() ) {
+			$badge_html = ezdpro_badge( $page->ID );
+		}
+
+		$atts                 = array();
+		$atts['href']         = get_permalink( $page->ID );
+		$atts['aria-current'] = ( $page->ID == $current_object_id ) ? 'page' : '';
+
+		$atts = apply_filters( 'page_menu_link_attributes', $atts, $page, $depth, $args, $current_object_id );
+
+		$attributes = '';
+		foreach ( $atts as $attr => $value ) {
+			if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
+				$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				$attributes .= ' ' . $attr . '="' . $value . '"';
+			}
+		}
+
+		$output .= sprintf(
+			'<li%s><a%s>%s%s%s%s</a>',
+			$css_classes,
+			$attributes,
+			$args['link_before'],
+			apply_filters( 'the_title', $page->post_title, $page->ID ),
+			$args['link_after'],
+			$badge_html
+		);
 	}
 }

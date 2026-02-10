@@ -72,7 +72,6 @@ class Admin {
 		$analytics_access = is_array( $analytics_access ) ? $analytics_access : [ $analytics_access ];
 
 		$analytics_capability = 'manage_options';
-		$analytics_capability = 'manage_options';
 		foreach ( $current_user_roles as $role ) {
 			if ( in_array( $role, $analytics_access, true ) ) {
 				$analytics_capability = 'publish_pages';
