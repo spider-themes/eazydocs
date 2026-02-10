@@ -81,7 +81,7 @@ function ezd_meta_apply( $option_id, $default = '' ) {
 	$option_value = ezd_get_opt( $option_id, $default );
 
 	// Check if meta value is an array and empty
-	$is_meta_arr_empty = is_array( $meta_value ) && empty( array_filter( $meta_value ) );
+	$is_meta_arr_empty = is_array($meta_value) && empty(array_filter($meta_value));
 	if ( 'default' === $meta_value || '' === $meta_value || null === $meta_value || $is_meta_arr_empty ) {
 		return $option_value;
 	}
