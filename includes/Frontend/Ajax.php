@@ -118,80 +118,72 @@ class Ajax {
 			wp_send_json_error( [ 'message' => 'No keyword provided' ] );
 		}
 
-		// Optimization: Check for cached results (60s TTL)
-		$cache_key = 'ezd_search_' . md5( $keyword . serialize( $post_status ) . $search_mode );
-		if ( false !== ( $cached_output = get_transient( $cache_key ) ) ) {
-			echo $cached_output;
-			die();
-		}
+		// Optimization: Check for cached IDs to skip expensive LIKE queries
+		$cache_key = 'ezd_search_ids_' . md5( $keyword . '_' . $search_mode . '_' . ( $can_read_private ? 'private' : 'public' ) );
+		$final_ids = get_transient( $cache_key );
 
-		// Cache Check
-		$cache_key   = 'ezd_search_' . md5( $keyword . '_' . $search_mode . '_' . ( $can_read_private ? 'private' : 'public' ) );
-		$cached_html = get_transient( $cache_key );
-		if ( false !== $cached_html ) {
-			echo $cached_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			die();
-		}
+		if ( false === $final_ids ) {
+			// --- SEARCH LOGIC (Cache Miss) ---
 
-		ob_start();
-
-		// --- SEARCH LOGIC ---
-
-		// Exact title matches
-		$exact_ids = $wpdb->get_col( $wpdb->prepare( "
-			SELECT ID FROM {$wpdb->posts}
-			WHERE post_type = 'docs'
-			AND post_status IN ('" . implode( "','", $post_status ) . "')
-			AND post_title = %s
-		", $keyword ) );
-
-		// Partial title matches (excluding exact)
-		$partial_ids = $wpdb->get_col( $wpdb->prepare( "
-			SELECT ID FROM {$wpdb->posts}
-			WHERE post_type = 'docs'
-			AND post_status IN ('" . implode( "','", $post_status ) . "')
-			AND post_title LIKE %s
-		", '%' . $wpdb->esc_like( $keyword ) . '%' ) );
-		$partial_ids = array_diff( $partial_ids, $exact_ids );
-
-		//  Content matches (only if mode allows)
-		$content_ids = [];
-		if ( 'title_and_content' === $search_mode ) {
-			$content_ids = $wpdb->get_col( $wpdb->prepare( "
+			// Exact title matches
+			$exact_ids = $wpdb->get_col( $wpdb->prepare( "
 				SELECT ID FROM {$wpdb->posts}
 				WHERE post_type = 'docs'
 				AND post_status IN ('" . implode( "','", $post_status ) . "')
-				AND post_content LIKE %s
+				AND post_title = %s
+			", $keyword ) );
+
+			// Partial title matches (excluding exact)
+			$partial_ids = $wpdb->get_col( $wpdb->prepare( "
+				SELECT ID FROM {$wpdb->posts}
+				WHERE post_type = 'docs'
+				AND post_status IN ('" . implode( "','", $post_status ) . "')
+				AND post_title LIKE %s
 			", '%' . $wpdb->esc_like( $keyword ) . '%' ) );
-			$content_ids = array_diff( $content_ids, $exact_ids, $partial_ids );
-		}
+			$partial_ids = array_diff( $partial_ids, $exact_ids );
 
-		// Combine: exact → partial → content
-		$final_ids = array_merge( $exact_ids, $partial_ids, $content_ids );
-		if ( empty( $final_ids ) ) {
-			$final_ids = [ 0 ];
-		}
+			//  Content matches (only if mode allows)
+			$content_ids = [];
+			if ( 'title_and_content' === $search_mode ) {
+				$content_ids = $wpdb->get_col( $wpdb->prepare( "
+					SELECT ID FROM {$wpdb->posts}
+					WHERE post_type = 'docs'
+					AND post_status IN ('" . implode( "','", $post_status ) . "')
+					AND post_content LIKE %s
+				", '%' . $wpdb->esc_like( $keyword ) . '%' ) );
+				$content_ids = array_diff( $content_ids, $exact_ids, $partial_ids );
+			}
 
-		// Add tag matches (appended after)
-		if ( get_term_by( 'name', $keyword, 'doc_tag' ) ) {
-			$tag_posts = new WP_Query( [
-				'post_type'      => 'docs',
-				'posts_per_page' => -1,
-				'post_status'    => $post_status,
-				'tax_query'      => [ [
-					'taxonomy' => 'doc_tag',
-					'field'    => 'name',
-					'terms'    => $keyword,
-				] ],
-			] );
-			$merged_ids = array_unique( array_merge( $final_ids, wp_list_pluck( $tag_posts->posts, 'ID' ) ) );
-			$final_ids  = $merged_ids;
+			// Combine: exact → partial → content
+			$final_ids = array_merge( $exact_ids, $partial_ids, $content_ids );
+			if ( empty( $final_ids ) ) {
+				$final_ids = [ 0 ];
+			}
+
+			// Add tag matches (appended after)
+			if ( get_term_by( 'name', $keyword, 'doc_tag' ) ) {
+				$tag_posts = new WP_Query( [
+					'post_type'      => 'docs',
+					'posts_per_page' => -1,
+					'post_status'    => $post_status,
+					'tax_query'      => [ [
+						'taxonomy' => 'doc_tag',
+						'field'    => 'name',
+						'terms'    => $keyword,
+					] ],
+				] );
+				$merged_ids = array_unique( array_merge( $final_ids, wp_list_pluck( $tag_posts->posts, 'ID' ) ) );
+				$final_ids  = $merged_ids;
+			}
+
+			// Cache the result IDs for 5 minutes
+			set_transient( $cache_key, $final_ids, 5 * MINUTE_IN_SECONDS );
 		}
 
 		// Maintain order priority: exact → partial → content → tag
 		$args = [
 			'post_type'      => 'docs',
-			'posts_per_page' => -1,
+			'posts_per_page' => 20, // Limit results for performance
 			'post_status'    => $post_status,
 			'post__in'       => $final_ids,
 			'orderby'        => [
@@ -209,10 +201,18 @@ class Ajax {
 		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
 		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
 
-		$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-		$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+		// Optimization: Check for table existence check (24h TTL)
+		$tables_check_key = 'ezd_search_tables_check';
+		$tables_exist = get_transient( $tables_check_key );
 
-		if ( $keyword_table_exists && $log_table_exists ) {
+		if ( false === $tables_exist ) {
+			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
+			$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+			$tables_exist = ( $keyword_table_exists && $log_table_exists ) ? 1 : 0;
+			set_transient( $tables_check_key, $tables_exist, DAY_IN_SECONDS );
+		}
+
+		if ( $tables_exist ) {
 			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
 			$keyword_id = $wpdb->insert_id;
 
@@ -221,8 +221,8 @@ class Ajax {
 					$wp_eazydocs_search_log,
 					[
 						'keyword_id'      => $keyword_id,
-						'count'           => $posts->post_count,
-						'not_found_count' => $posts->post_count ? 0 : 1,
+						'count'           => $posts->found_posts, // Use found_posts to track actual count vs paginated
+						'not_found_count' => $posts->found_posts ? 0 : 1,
 						'created_at'      => current_time('mysql'),
 					],
 					['%d', '%d', '%d', '%s']
@@ -230,7 +230,6 @@ class Ajax {
 			}
 		}
 
-		// Optimization: Start buffering output for cache
 		ob_start();
 		?>
 		<script>
@@ -285,10 +284,7 @@ class Ajax {
 
 		wp_reset_postdata();
 
-		// Optimization: Cache output and display
-		$output = ob_get_clean();
-		set_transient( $cache_key, $output, 60 );
-		echo $output;
+		echo ob_get_clean();
 		die();
 	}
 
