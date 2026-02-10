@@ -2236,9 +2236,18 @@ function ezd_prev_next_docs( $current_post_id ) {
 
 	// Step 3: Find current index and prev/next IDs
 	$current_index = array_search( $current_post_id, $ordered_ids );
-	$prev_id       = $ordered_ids[ $current_index - 1 ] ?? null;
-	$next_id       = $ordered_ids[ $current_index + 1 ] ?? null;
 
+	// If the current post is not in the ordered list, do not attempt prev/next.
+	if ( false === $current_index ) {
+		return [
+			'prev'    => null,
+			'current' => $current_post_id,
+			'next'    => null,
+		];
+	}
+
+	$prev_id = $ordered_ids[ $current_index - 1 ] ?? null;
+	$next_id = $ordered_ids[ $current_index + 1 ] ?? null;
 	return [
 		'prev'    => $prev_id,
 		'current' => $current_post_id,
