@@ -6,7 +6,8 @@
  * Bundle this file with your plugin to enable remote admin notices.
  *
  * @package Remote_Notice_Client
- * @version 1.1.1
+ * @version 1.1.0
+ *
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -63,13 +64,6 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		private $dismiss_duration;
 
 		/**
-		 * Allow HTML tags for content
-		 *
-		 * @var array
-		 */
-		private $allowed_html;
-
-		/**
 		 * Initialize the client
 		 *
 		 * @param string $product Product identifier.
@@ -107,36 +101,18 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 			$this->schedule         = isset( $config['schedule'] ) ? $config['schedule'] : 'daily';
 			$this->capability       = isset( $config['capability'] ) ? $config['capability'] : 'manage_options';
 			$this->dismiss_duration = isset( $config['dismiss_duration'] ) ? absint( $config['dismiss_duration'] ) : WEEK_IN_SECONDS;
-			
-			// Define allowed HTML tags for notices
-			$this->allowed_html = array(
-				'div'    => array( 'class' => array(), 'style' => array(), 'id' => array() ),
-				'p'      => array( 'class' => array(), 'style' => array() ),
-				'span'   => array( 'class' => array(), 'style' => array() ),
-				'strong' => array( 'class' => array() ),
-				'em'     => array( 'class' => array() ),
-				'b'      => array(),
-				'i'      => array(),
-				'a'      => array( 'href' => array(), 'title' => array(), 'target' => array(), 'class' => array(), 'rel' => array() ),
-				'br'     => array(),
-				'h1'     => array( 'class' => array() ),
-				'h2'     => array( 'class' => array() ),
-				'h3'     => array( 'class' => array() ),
-				'h4'     => array( 'class' => array() ),
-				'ul'     => array( 'class' => array() ),
-				'ol'     => array( 'class' => array() ),
-				'li'     => array( 'class' => array() ),
-				'img'    => array( 'src' => array(), 'alt' => array(), 'class' => array(), 'width' => array(), 'height' => array() ),
-			);
 		}
 
 		/**
 		 * Setup WordPress hooks
 		 */
 		private function setup_hooks() {
-			// Cron.
-			add_action( 'admin_init', array( $this, 'init_cron' ) );
+			// Cron callback - must be registered on every request including WP-Cron.
+			// This ensures the callback is available when WordPress cron executes.
 			add_action( 'rnc_fetch_content_' . $this->product, array( $this, 'fetch_content' ) );
+
+			// Cron scheduling - only needs to run in admin context.
+			add_action( 'admin_init', array( $this, 'init_cron' ) );
 
 			// Display notices.
 			add_action( 'admin_notices', array( $this, 'display_notices' ) );
@@ -221,8 +197,8 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 				delete_option( $this->get_option_key( 'dismissed_' . $removed_id ) );
 			}
 
-			update_option( $key, $contents, false );
-			update_option( $this->get_option_key( 'fetched_time' ), current_time( 'mysql' ), false );
+			update_option( $key, $contents );
+			update_option( $this->get_option_key( 'fetched_time' ), current_time( 'mysql' ) );
 		}
 
 		/**
@@ -232,11 +208,9 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 			$contents = get_option( $this->get_option_key( 'contents' ), array() );
 
 			// Clean up all dismiss keys.
-			if ( is_array( $contents ) ) {
-				foreach ( $contents as $content ) {
-					if ( isset( $content['id'] ) ) {
-						delete_option( $this->get_option_key( 'dismissed_' . $content['id'] ) );
-					}
+			foreach ( $contents as $content ) {
+				if ( isset( $content['id'] ) ) {
+					delete_option( $this->get_option_key( 'dismissed_' . $content['id'] ) );
 				}
 			}
 
@@ -253,10 +227,6 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		private function get_non_dismissed_contents() {
 			$contents = get_option( $this->get_option_key( 'contents' ), array() );
 			$result   = array();
-
-			if ( ! is_array( $contents ) ) {
-				return $result;
-			}
 
 			foreach ( $contents as $content ) {
 				if ( ! isset( $content['id'] ) ) {
@@ -311,7 +281,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 				}
 
 				$content_id   = sanitize_key( $content['id'] );
-				$html_content = wp_kses( $content['content'], $this->allowed_html );
+				$html_content = $content['content'];
 				$nonce        = wp_create_nonce( 'rnc_dismiss_' . $this->product . '_' . $content_id );
 				$ajax_action  = 'rnc_dismiss_content_' . $this->product;
 
@@ -323,7 +293,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 				     data-nonce="<?php echo esc_attr( $nonce ); ?>"
 				     data-action="<?php echo esc_attr( $ajax_action ); ?>">
 					<div class="rnc-notice-content">
-						<?php echo $html_content; // Already sanitized with wp_kses above ?>
+						<?php echo $html_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 					<button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
 				</div>
@@ -362,11 +332,6 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 						if (closeBtn) {
 							closeBtn.addEventListener('click', function(e) {
 								e.preventDefault();
-								
-								var action = notice.getAttribute('data-action');
-								var contentId = notice.getAttribute('data-content-id');
-								var nonce = notice.getAttribute('data-nonce');
-								
 								var xhr = new XMLHttpRequest();
 								xhr.open('POST', '<?php echo esc_js( admin_url( 'admin-ajax.php' ) ); ?>', true);
 								xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -375,9 +340,9 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 										notice.style.display = 'none';
 									}
 								};
-								var data = 'action=' + encodeURIComponent(action) +
-								           '&content_id=' + encodeURIComponent(contentId) +
-								           '&nonce=' + encodeURIComponent(nonce);
+								var data = 'action=' + encodeURIComponent(notice.dataset.action) +
+								           '&content_id=' + encodeURIComponent(notice.dataset.contentId) +
+								           '&nonce=' + encodeURIComponent(notice.dataset.nonce);
 								xhr.send(data);
 							});
 						}
@@ -406,7 +371,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 				wp_send_json_error( array( 'message' => 'Invalid content ID' ) );
 			}
 
-			update_option( $this->get_option_key( 'dismissed_' . $content_id ), true, false );
+			update_option( $this->get_option_key( 'dismissed_' . $content_id ), true );
 
 			wp_send_json_success( array( 'message' => 'Content dismissed' ) );
 		}
@@ -429,7 +394,6 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		 */
 		private function log( $message, $level = 'info' ) {
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 				error_log( '[Remote Notice Client - ' . strtoupper( $level ) . '] [' . $this->product . '] ' . $message );
 			}
 		}
@@ -438,37 +402,22 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		 * Manually trigger fetch (useful for testing)
 		 *
 		 * @param string $product Product identifier.
-		 * @return bool True if triggered, false if instance doesn't exist.
 		 */
 		public static function trigger_fetch( $product ) {
-			$product = sanitize_key( $product );
-			
-			if ( ! isset( self::$instances[ $product ] ) ) {
-				return false;
+			if ( isset( self::$instances[ $product ] ) ) {
+				self::$instances[ $product ]->fetch_content();
 			}
-			
-			self::$instances[ $product ]->fetch_content();
-			return true;
 		}
 
 		/**
 		 * Clear all data for a product
 		 *
 		 * @param string $product Product identifier.
-		 * @return bool True if cleared, false if instance doesn't exist.
 		 */
 		public static function clear_all( $product ) {
-			$product = sanitize_key( $product );
-			
-			if ( ! isset( self::$instances[ $product ] ) ) {
-				// Still try to clear data even if instance doesn't exist
-				$temp_instance = new self( $product, array() );
-				$temp_instance->clear_contents();
-				return true;
+			if ( isset( self::$instances[ $product ] ) ) {
+				self::$instances[ $product ]->clear_contents();
 			}
-			
-			self::$instances[ $product ]->clear_contents();
-			return true;
 		}
 
 		/**
@@ -483,7 +432,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 			$product = sanitize_key( $product );
 			
 			// Mark as disabled
-			update_option( 'rnc_' . $product . '_disabled', true, false );
+			update_option( 'rnc_' . $product . '_disabled', true );
 			
 			// Unschedule cron
 			$hook      = 'rnc_fetch_content_' . $product;
@@ -492,14 +441,9 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 				wp_unschedule_event( $timestamp, $hook );
 			}
 			
-			// Clear all stored data
+			// Remove from instances
 			if ( isset( self::$instances[ $product ] ) ) {
-				self::$instances[ $product ]->clear_contents();
 				unset( self::$instances[ $product ] );
-			} else {
-				// Clear data even if instance doesn't exist
-				$temp_instance = new self( $product, array() );
-				$temp_instance->clear_contents();
 			}
 		}
 

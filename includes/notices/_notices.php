@@ -13,7 +13,7 @@ require_once __DIR__ . '/offer.php';
 require_once __DIR__ . '/class-remote-notice-client.php';
 
 // Disable notices when Pro is active
-add_action( 'admin_init', function() {
+add_action( 'plugins_loaded', function() {
     if (function_exists('ezd_is_premium') && ezd_is_premium() ) {
         Remote_Notice_Client::disable( 'Eazydocs' );
         return;
