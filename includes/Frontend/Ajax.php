@@ -125,14 +125,6 @@ class Ajax {
 			die();
 		}
 
-		// Cache Check
-		$cache_key   = 'ezd_search_' . md5( $keyword . '_' . $search_mode . '_' . ( $can_read_private ? 'private' : 'public' ) );
-		$cached_html = get_transient( $cache_key );
-		if ( false !== $cached_html ) {
-			echo $cached_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			die();
-		}
-
 		ob_start();
 
 		// --- SEARCH LOGIC ---
@@ -191,7 +183,7 @@ class Ajax {
 		// Maintain order priority: exact → partial → content → tag
 		$args = [
 			'post_type'      => 'docs',
-			'posts_per_page' => -1,
+			'posts_per_page' => 20,
 			'post_status'    => $post_status,
 			'post__in'       => $final_ids,
 			'orderby'        => [
@@ -209,10 +201,16 @@ class Ajax {
 		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
 		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
 
-		$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-		$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+		// Optimize: Cache table existence check for 24 hours
+		$tables_exist = get_transient( 'ezd_search_tables_check' );
+		if ( false === $tables_exist ) {
+			$keyword_table_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword ) ) === $wp_eazydocs_search_keyword;
+			$log_table_exists     = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_log ) ) === $wp_eazydocs_search_log;
+			$tables_exist         = ( $keyword_table_exists && $log_table_exists ) ? 1 : 0;
+			set_transient( 'ezd_search_tables_check', $tables_exist, DAY_IN_SECONDS );
+		}
 
-		if ( $keyword_table_exists && $log_table_exists ) {
+		if ( $tables_exist ) {
 			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
 			$keyword_id = $wpdb->insert_id;
 
@@ -221,8 +219,8 @@ class Ajax {
 					$wp_eazydocs_search_log,
 					[
 						'keyword_id'      => $keyword_id,
-						'count'           => $posts->post_count,
-						'not_found_count' => $posts->post_count ? 0 : 1,
+						'count'           => $posts->found_posts,
+						'not_found_count' => $posts->found_posts ? 0 : 1,
 						'created_at'      => current_time('mysql'),
 					],
 					['%d', '%d', '%d', '%s']
