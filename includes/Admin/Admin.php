@@ -24,7 +24,7 @@ class Admin {
 	/**
 	 * Admin constructor.
 	 */
-	function __construct() {
+	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'eazyDocs_menu' ] );
 		add_action( 'admin_menu', [ $this, 'reorder_eazydocs_admin_submenu' ], 999 );
 		add_filter( 'admin_body_class', [ $this, 'body_class' ] );

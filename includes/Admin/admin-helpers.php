@@ -121,7 +121,7 @@ function ezd_render_doc_actions( $doc_id, $actions = ['duplicate', 'add_child', 
 
             case 'add_child':
                 $depth = isset( $item['depth'] ) ? $item['depth'] : 1;
-                $is_premium = ! ezd_is_premium() && $depth === 3 ? false : ( ezd_is_premium() && $depth === 4 ? false : true );
+                $is_premium = ! ezd_is_premium() && 3 === $depth ? false : ( ezd_is_premium() && 4 === $depth ? false : true );
 
                 if ( $is_premium ) {
                     echo '<li>';
@@ -192,7 +192,7 @@ function ezd_render_doc_filters( $filters = ['all', 'publish', 'private', 'prote
     foreach ( $filters as $filter ) {
         if ( isset( $filter_config[$filter] ) ) {
             $config = $filter_config[$filter];
-            echo '<li class="easydocs-btn easydocs-btn-rounded easydocs-btn-sm ' . esc_attr( $config['class'] ) . '" data-filter="' . ( $filter === 'all' ? 'all' : '.' . $filter ) . '">';
+            echo '<li class="easydocs-btn easydocs-btn-rounded easydocs-btn-sm ' . esc_attr( $config['class'] ) . '" data-filter="' . ( 'all' === $filter ? 'all' : '.' . $filter ) . '">';
             echo '<span class="dashicons dashicons-' . esc_attr( $config['icon'] ) . '"></span>';
             echo esc_html( $config['label'] );
             echo '</li>';

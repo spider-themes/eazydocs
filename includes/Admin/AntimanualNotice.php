@@ -238,7 +238,7 @@ class AntimanualNotice {
             'eazydocs_page_ezd-user-feedback',
         ];
 
-        return in_array( $screen->id, $eazydocs_pages ) || $screen->post_type === 'docs';
+        return in_array( $screen->id, $eazydocs_pages ) || 'docs' === $screen->post_type;
     }
 
     /**

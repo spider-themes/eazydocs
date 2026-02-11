@@ -115,7 +115,7 @@ class Create_Post {
 			'menu_order'   => $menu_order,
 		];
 
-		if ( $parent_id === 0 ) {
+		if ( 0 === $parent_id ) {
 			$post_data['post_author'] = get_current_user_id();
 		}
 
@@ -128,7 +128,7 @@ class Create_Post {
 		if ( ! is_wp_error( $post_id ) ) {
 			wp_update_post( [ 'ID' => $post_id ] );
 		}
-		wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' . ( $parent_id === 0 ? '&new_doc_id=' . $post_id : '' ) ) );
+		wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' . ( 0 === $parent_id ? '&new_doc_id=' . $post_id : '' ) ) );
 
 		exit;
 	}
