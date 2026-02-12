@@ -118,18 +118,11 @@ class Ajax {
 			wp_send_json_error( [ 'message' => 'No keyword provided' ] );
 		}
 
-		// Optimization: Check for cached results (60s TTL)
-		$cache_key = 'ezd_search_' . md5( $keyword . serialize( $post_status ) . $search_mode );
-		if ( false !== ( $cached_output = get_transient( $cache_key ) ) ) {
-			echo $cached_output;
-			die();
-		}
+		// Optimization: Check for cached results (5min TTL)
+		$cache_key = 'ezd_search_' . md5( $keyword . '_' . $search_mode . '_' . ( $can_read_private ? 'private' : 'public' ) );
 
-		// Cache Check
-		$cache_key   = 'ezd_search_' . md5( $keyword . '_' . $search_mode . '_' . ( $can_read_private ? 'private' : 'public' ) );
-		$cached_html = get_transient( $cache_key );
-		if ( false !== $cached_html ) {
-			echo $cached_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( false !== ( $cached_output = get_transient( $cache_key ) ) ) {
+			echo $cached_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			die();
 		}
 
@@ -191,7 +184,7 @@ class Ajax {
 		// Maintain order priority: exact → partial → content → tag
 		$args = [
 			'post_type'      => 'docs',
-			'posts_per_page' => -1,
+			'posts_per_page' => 20, // Limit to 20 results for performance
 			'post_status'    => $post_status,
 			'post__in'       => $final_ids,
 			'orderby'        => [
@@ -209,10 +202,17 @@ class Ajax {
 		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
 		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
 
-		$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-		$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+		// Check table existence once every 24 hours
+		$tables_exist = get_transient( 'ezd_search_tables_check' );
 
-		if ( $keyword_table_exists && $log_table_exists ) {
+		if ( false === $tables_exist ) {
+			$keyword_table_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword ) ) === $wp_eazydocs_search_keyword;
+			$log_table_exists     = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_log ) ) === $wp_eazydocs_search_log;
+			$tables_exist         = ( $keyword_table_exists && $log_table_exists ) ? 1 : 0;
+			set_transient( 'ezd_search_tables_check', $tables_exist, DAY_IN_SECONDS );
+		}
+
+		if ( 1 === (int) $tables_exist ) {
 			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
 			$keyword_id = $wpdb->insert_id;
 
@@ -287,7 +287,7 @@ class Ajax {
 
 		// Optimization: Cache output and display
 		$output = ob_get_clean();
-		set_transient( $cache_key, $output, 60 );
+		set_transient( $cache_key, $output, 300 ); // Cache for 5 minutes
 		echo $output;
 		die();
 	}
