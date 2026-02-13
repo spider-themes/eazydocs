@@ -335,7 +335,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$view_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name3 ) );
 
-			if ( $keyword_exists !== $table_name || $logs_exists !== $table_name2 || $view_exists !== $table_name3 ) {
+			if ( $table_name !== $keyword_exists || $table_name2 !== $logs_exists || $table_name3 !== $view_exists ) {
 				?>
                 <div class="notice notice-error is-dismissible eazydocs_table_error">
                     <p><?php esc_html_e( 'EazyDocs database needs an update. Please click the Update button to update your database.', 'eazydocs' ); ?></p>
@@ -348,14 +348,29 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			}
 		}
 
+		/**
+		 * Get the plugin URL.
+		 *
+		 * @return string
+		 */
 		public function plugin_url() {
 			return $this->plugin_url ?: ( $this->plugin_url = untrailingslashit( plugins_url( '/', __FILE__ ) ) );
 		}
 
+		/**
+		 * Get the plugin path.
+		 *
+		 * @return string
+		 */
 		public function plugin_path() {
 			return $this->plugin_path ?: ( $this->plugin_path = untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		}
 
+		/**
+		 * Get the template path.
+		 *
+		 * @return string
+		 */
 		public function template_path() {
 			return $this->plugin_path() . '/templates/';
 		}

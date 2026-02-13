@@ -1058,8 +1058,15 @@ add_action( 'save_post', function ( $post_id ) {
 add_image_size( 'ezd_searrch_thumb16x16', '16', '16', true );
 add_image_size( 'ezd_searrch_thumb50x50', '50', '50', true );
 
-// Doc password form
-function ezd_password_form($output, $post = 0) {
+/**
+ * Doc password form
+ *
+ * @param string      $output The password form HTML.
+ * @param int|WP_Post $post   Optional. Post ID or WP_Post object. Default 0.
+ *
+ * @return string
+ */
+function ezd_password_form( $output, $post = 0 ) {
 
     // Check if post is set and is the desired custom post type
     if ( is_null( $post ) || ( 'docs' !== get_post_type( $post ) ) ) {
@@ -2714,10 +2721,29 @@ function ezd_manual_import_sample_data( $file ) {
 	return true;
 }
 
+/**
+ * EazyDocs_Article_Walker Class.
+ *
+ * @since 1.0.0
+ */
 class EazyDocs_Article_Walker extends Walker_Page {
-	public function start_el( &$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0 ) {
-		$page = $data_object;
-		$css_class = array( 'page_item', 'page-item-' . $page->ID );
+
+	/**
+	 * Outputs the beginning of the current element in the tree.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @see Walker::start_el()
+	 *
+	 * @param string  $output            Used to append additional content. Passed by reference.
+	 * @param WP_Post $data_object       Page data object.
+	 * @param int     $depth             Optional. Depth of page. Used for padding. Default 0.
+	 * @param array   $args              Optional. Array of arguments. Default empty array.
+	 * @param int     $current_object_id Optional. ID of the current page. Default 0.
+	 */
+	public function start_el( &$output, $data_object, $depth = 0, $args = [], $current_object_id = 0 ) {
+		$page      = $data_object;
+		$css_class = [ 'page_item', 'page-item-' . $page->ID ];
 
 		if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
 			$css_class[] = 'page_item_has_children';
@@ -2741,6 +2767,7 @@ class EazyDocs_Article_Walker extends Walker_Page {
 		$css_classes = $css_classes ? ' class="' . esc_attr( $css_classes ) . '"' : '';
 
 		if ( '' === $page->post_title ) {
+			/* translators: %d: ID of a post */
 			$page->post_title = sprintf( __( '#%d (no title)', 'eazydocs' ), $page->ID );
 		}
 
@@ -2752,7 +2779,7 @@ class EazyDocs_Article_Walker extends Walker_Page {
 			$badge_html = ezdpro_badge( $page->ID );
 		}
 
-		$atts                 = array();
+		$atts                 = [];
 		$atts['href']         = get_permalink( $page->ID );
 		$atts['aria-current'] = ( (int) $page->ID === (int) $current_object_id ) ? 'page' : '';
 
