@@ -2230,7 +2230,7 @@ function ezd_get_docs_tree_flat_cached( $post_type ) {
 
 	if ( false === $ordered_ids ) {
 		// Step 1: Get all top-level docs
-		$top_level_docs = get_posts( array(
+		$top_level_docs = get_posts( [
 			'post_type'   => $post_type,
 			'post_status' => 'publish',
 			'post_parent' => 0,
@@ -2238,7 +2238,7 @@ function ezd_get_docs_tree_flat_cached( $post_type ) {
 			'order'       => 'ASC',
 			'fields'      => 'ids',
 			'numberposts' => -1,
-		) );
+		] );
 
 		// Step 2: Recursively build a flat ordered list
 		$ordered_ids = [];
