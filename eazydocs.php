@@ -100,7 +100,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 					}
 
 					$is_dev_mode = defined( 'DEVELOPER_MODE' ) && DEVELOPER_MODE;
-					if ( $is_dev_mode || ( ! ezd_is_premium() && ezd_is_plugin_installed_for_days( 12 ) && ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'eazydocs-initial-setup' ) ) ) {
+					if ( $is_dev_mode || ( ! ezd_is_premium() && ezd_is_plugin_installed_for_days( 12 ) && ( ! isset( $_GET['page'] ) || 'eazydocs-initial-setup' !== $_GET['page'] ) ) ) {
 						add_action( 'admin_notices', 'ezd_offer_notice' );
 					}
 
@@ -151,7 +151,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				$docs_url   = ezd_get_opt( 'docs-url-structure', 'custom-slug' );
 				$permalink  = get_option( 'permalink_structure' );
 
-				if ( 'post-name' === $docs_url && ! empty( $permalink ) && $permalink !== '/archives/%post_id%' ) {
+				if ( 'post-name' === $docs_url && ! empty( $permalink ) && '/archives/%post_id%' !== $permalink ) {
 					require_once __DIR__ . '/includes/Root_Conversion.php';
 				}
 			}
