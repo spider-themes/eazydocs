@@ -462,6 +462,43 @@ class Admin {
 	}
 
 	/**
+	 * Helper function to update doc order
+	 *
+	 * @param int $id
+	 * @param int $menu_order
+	 * @param int $parent_id
+	 * @return void
+	 */
+	private function update_doc_order( $id, $menu_order, $parent_id ) {
+		if ( current_user_can( 'edit_post', $id ) && 'docs' === get_post_type( $id ) ) {
+			wp_update_post( [
+				'ID'          => $id,
+				'menu_order'  => $menu_order,
+				'post_parent' => $parent_id
+			] );
+		}
+	}
+
+	/**
+	 * Recursive function to update child docs
+	 *
+	 * @param array $children
+	 * @param int $parent_id
+	 * @return void
+	 */
+	private function update_nestable_children( $children, $parent_id ) {
+		$menu_order = 0;
+		foreach ( $children as $child ) {
+			$menu_order++;
+			$this->update_doc_order( $child->id, $menu_order, $parent_id );
+
+			if ( ! empty( $child->children ) && is_array( $child->children ) ) {
+				$this->update_nestable_children( $child->children, $child->id );
+			}
+		}
+	}
+
+	/**
 	 ** Nestable Callback function
 	 **/
 	public function nestable_callback() {
@@ -484,46 +521,29 @@ class Admin {
 
 		$nestedArray = ezd_sanitize_nested_objects( $nestedArray ); // ✅ sanitize all IDs
 
-		$i    = 0;
-		$c    = 0;
-		$c_of = 0;
-		$f_of = 0;
+		// Defer cache clearing to improve performance by removing save_post hooks temporarily
+		remove_action( 'save_post', 'ezd_clear_docs_tree_cache', 10 );
+		remove_action( 'save_post', 'ezd_flush_docs_tree_cache', 10 );
 
-		$update_doc = function ( $id, $menu_order, $parent_id ) {
-			if ( current_user_can( 'edit_post', $id ) && 'docs' === get_post_type( $id ) ) {
-				wp_update_post( [
-					'ID'          => $id,
-					'menu_order'  => $menu_order,
-					'post_parent' => $parent_id
-				] );
-			}
-		};
-
+		$menu_order = 0;
 		foreach ( $nestedArray as $value ) {
-			$i++;
-			$update_doc( $value->id, $i, eaz_get_nestable_parent_id( $value->id ) );
+			$menu_order++;
+			// Top level items keep their original root (or get assigned one if they were orphans)
+			$parent_id = eaz_get_nestable_parent_id( $value->id );
 
-			if ( is_array( $value->children ) ) {
-				foreach ( $value->children as $child ) {
-					$c++;
-					$update_doc( $child->id, $c, $value->id );
+			$this->update_doc_order( $value->id, $menu_order, $parent_id );
 
-					if ( is_array( $child->children ) ) {
-						foreach ( $child->children as $of_child ) {
-							$c_of++;
-							$update_doc( $of_child->id, $c_of, $child->id );
-
-							if ( is_array( $of_child->children ) ) {
-								foreach ( $of_child->children as $fourth_child ) {
-									$f_of++;
-									$update_doc( $fourth_child->id, $f_of, $of_child->id );
-								}
-							}
-						}
-					}
-				}
+			if ( ! empty( $value->children ) && is_array( $value->children ) ) {
+				$this->update_nestable_children( $value->children, $value->id );
 			}
 		}
+
+		// Manually flush cache once after all updates are done
+		delete_transient( 'ezd_docs_tree_flat_docs' );
+
+		// Restore actions (optional, but good practice)
+		add_action( 'save_post', 'ezd_clear_docs_tree_cache', 10, 2 );
+		add_action( 'save_post', 'ezd_flush_docs_tree_cache', 10 );
 
 		wp_send_json_success( $nestedArray );
 	}
