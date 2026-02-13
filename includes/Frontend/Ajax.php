@@ -119,8 +119,9 @@ class Ajax {
 		}
 
 		// Optimization: Check for cached IDs to skip expensive LIKE queries
-		$cache_key = 'ezd_search_ids_' . md5( $keyword . '_' . $search_mode . '_' . ( $can_read_private ? 'private' : 'public' ) );
-		$final_ids = get_transient( $cache_key );
+		$normalized_keyword = strtolower( trim( $keyword ) );
+		$cache_key          = 'ezd_search_ids_' . md5( $normalized_keyword . '_' . $search_mode . '_' . ( $can_read_private ? 'private' : 'public' ) );
+		$final_ids          = get_transient( $cache_key );
 
 		if ( false === $final_ids ) {
 			// --- SEARCH LOGIC (Cache Miss) ---
