@@ -89,16 +89,22 @@ class Assets
 
 		$elementor_docs = [];
 		if (class_exists('\Elementor\Plugin')) {
-			$elementor_docs = get_posts(
-				[
-					'post_type' => 'docs',
-					'post_status' => 'publish',
-					'numberposts' => -1,
-					'fields' => 'ids',
-					'meta_key' => '_elementor_edit_mode',
-					'meta_value' => 'builder',
-				]
-			);
+			$cache_key      = 'ezd_elementor_docs_ids';
+			$elementor_docs = get_transient( $cache_key );
+
+			if ( false === $elementor_docs ) {
+				$elementor_docs = get_posts(
+					[
+						'post_type'   => 'docs',
+						'post_status' => 'publish',
+						'numberposts' => - 1,
+						'fields'      => 'ids',
+						'meta_key'    => '_elementor_edit_mode',
+						'meta_value'  => 'builder',
+					]
+				);
+				set_transient( $cache_key, $elementor_docs, DAY_IN_SECONDS );
+			}
 		}
 
 		wp_localize_script(
