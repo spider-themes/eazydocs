@@ -91,9 +91,9 @@ function ezd_meta_apply( $option_id, $default = '' ) {
 }
 
 /**
- * Check if the pro plugin and plan is active
+ * Check if the pro plugin and plan is active.
  *
- * @return bool|void
+ * @return bool True if premium features are active, false otherwise.
  */
 function ezd_is_premium() {
 	if ( eaz_fs()->can_use_premium_code() && class_exists('EZD_EazyDocsPro')) {
@@ -181,7 +181,10 @@ function ezd_container() {
 }
 
 /**
- * Get admin template part
+ * Get admin template part.
+ *
+ * @param string $template The template name to load.
+ * @return void
  */
 function eazydocs_get_admin_template_part( $template ) {
 	$file = EAZYDOCS_PATH . "/includes/admin/templates/$template.php";
@@ -189,11 +192,12 @@ function eazydocs_get_admin_template_part( $template ) {
 }
 
 /**
- * Get Page by title
- * @param $title
- * @param $post_type
+ * Get Page by title.
  *
- * @return int[]|WP_Post[]
+ * @param string $title     Page title.
+ * @param string $post_type Optional. Post type. Default 'page'.
+ *
+ * @return int[]|WP_Post[] Array of post objects or IDs.
  */
 function ezd_get_page_by_title( $title, $post_type = 'page' ) {
 	return get_posts(
@@ -211,10 +215,11 @@ function ezd_get_page_by_title( $title, $post_type = 'page' ) {
 }
 
 /**
- * Get template part implementation for eazydocs.
- * Looks at the theme directory first
+ * Get template part implementation for EazyDocs.
+ * Looks at the theme directory first.
  *
- * @param $template
+ * @param string $template The template filename.
+ * @return void
  */
 function eazydocs_get_template_part( $template ) {
 	// Sanitize template name to prevent directory traversal attacks
@@ -255,11 +260,12 @@ function eazydocs_get_template_part( $template ) {
 }
 
 /**
- * Get template part implementation for eazydocs.
- * Looks at the theme directory first
+ * Get template part implementation for EazyDocs.
+ * Looks at the theme directory first.
  *
- * @param       $template
- * @param array $args
+ * @param string $template_name The template filename.
+ * @param array  $args          Optional. Arguments to pass to the template. Default empty array.
+ * @return void
  */
 function eazydocs_get_template( $template_name, $args = [] ) {
 	$ezd_obj = EazyDocs::init();
@@ -325,9 +331,11 @@ function ezd_reading_time() {
 
 
 /**
- * @param string $args
+ * List pages with specific arguments.
  *
- * @return mixed|void
+ * @param string|array $args Optional. Array or string of arguments to retrieve pages.
+ *                           Default empty string.
+ * @return string|void HTML content of the pages list if 'echo' is false, void otherwise.
  */
 function ezd_list_pages( $args = '' ) {
 	// Sentinel: Prevent unauthorized access to private docs
@@ -1123,11 +1131,10 @@ function ezd_password_form( $output, $post = 0 ) {
 add_filter( 'the_password_form', 'ezd_password_form', 9999 );
 
 /**
- * Get EazyDocs admin pages
+ * Check if current page is an EazyDocs admin page.
  *
- * @param array $pages
- *
- * @return true|void
+ * @param string|array $pages Optional. Specific pages to check against. Default empty array.
+ * @return bool True if on an EazyDocs admin page, false otherwise.
  */
 function ezd_admin_pages( $pages = [] ) {
     // if $pages is string, convert it to an array
@@ -1268,9 +1275,9 @@ function ezd_widget_excerpt( $settings_key, $limit = 10 ) {
 }
 
 /**
- * Arrow Left Right
+ * Get arrow icon based on text direction.
  *
- * @return void
+ * @return string The arrow icon class name.
  */
 function ezd_arrow() {
     $arrow_icon = is_rtl() ? 'arrow_left' : 'arrow_right';
