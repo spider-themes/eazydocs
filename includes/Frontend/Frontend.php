@@ -9,6 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Frontend {
+	/**
+	 * Frontend constructor.
+	 */
 	public function __construct() {
 		add_filter( 'template_include', [ $this, 'template_loads' ], 20 );
 		add_action( 'eazydocs_footnote', [ $this, 'footnotes' ] );
@@ -19,8 +22,10 @@ class Frontend {
 	}
 
 	/**
-	 * Returns template file
+	 * Load template file for specific EazyDocs pages.
 	 *
+	 * @param string $template The path of the template to include.
+	 * @return string The path of the template to include.
 	 * @since 1.0.0
 	 */
 	public function template_loads( $template ) {
@@ -52,12 +57,12 @@ class Frontend {
 
 
 	/**
-	 * Footnotes
-	 * 
-	 * @param $post_id
+	 * Render Footnotes for a post.
 	 *
+	 * @param int $post_id The post ID.
+	 * @return void
 	 */
-	public function footnotes($post_id){		
+	public function footnotes( $post_id ) {
 		if ( ! ezd_is_footnotes_unlocked() ) {
 			return;
 		}
@@ -155,12 +160,14 @@ class Frontend {
 	}
 
 	/**
-	 * Recently Viewed Docs [ Single Docs ]
+	 * Render Recently Viewed Docs section.
 	 *
-	 * @param $title
-	 * @param $visibility
-	 * @param $visible_item
-	 * @param $see_more
+	 * @param string $title        Section title.
+	 * @param string $visibility   CSS visibility class.
+	 * @param int    $visible_item Number of items to show initially.
+	 * @param string $see_more     Text for 'See More' button.
+	 *
+	 * @return void
 	 */
 	public function recently_viewed_docs( $title, $visibility, $visible_item, $see_more ) {
 		$ft_cookie_posts = isset($_COOKIE['eazydocs_recent_posts']) ? json_decode(sanitize_text_field(wp_unslash($_COOKIE['eazydocs_recent_posts'])), true) : null;
@@ -245,10 +252,14 @@ class Frontend {
 	}
 
 	/**
-	 * @param $title
-	 * @param $visibility
-	 * @param $visible_item
-	 * @param $see_more
+	 * Render Related Articles section.
+	 *
+	 * @param string $title        Section title.
+	 * @param string $visibility   CSS visibility class.
+	 * @param int    $visible_item Number of items to show initially.
+	 * @param string $see_more     Text for 'See More' button.
+	 *
+	 * @return void
 	 */
 	public function related_articles( $title, $visibility, $visible_item, $see_more ) {
 		global $post;
@@ -328,9 +339,11 @@ class Frontend {
 	}
 
 	/**
-	 * @param $get_id
-	 * Single docs Previous & Next Link
-	 **/
+	 * Render Previous & Next Links for single docs.
+	 *
+	 * @param int $current_post_id The current post ID.
+	 * @return void
+	 */
 	public function prev_next_docs( $current_post_id ) {
 		$current_post_id = (int)$current_post_id;
 		$prev_next 		 = ezd_prev_next_docs( $current_post_id );

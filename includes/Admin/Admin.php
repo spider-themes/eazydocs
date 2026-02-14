@@ -143,6 +143,8 @@ class Admin {
 	 * 4) Settings, Customize, Setup Wizard
 	 * 5) Migration, FAQ Builder, Integrated Themes
 	 * 6) Rest
+	 *
+	 * @return void
 	 */
 	public function reorder_eazydocs_admin_submenu() {
 		global $submenu;
@@ -274,16 +276,19 @@ class Admin {
 	}
 
 	/**
-	 * Docs page
+	 * Render the Docs Builder page.
+	 *
+	 * @return void
 	 */
 	public function eazydocs_builder() {
 		include __DIR__ . '/admin-template.php';
 	}
 
 	/**
-	 * @param $classes
+	 * Add custom classes to the admin body.
 	 *
-	 * @return string
+	 * @param string $classes Existing body classes.
+	 * @return string Modified body classes.
 	 */
 	public function body_class( $classes ) {
 
@@ -420,11 +425,12 @@ class Admin {
 	}
 
 	/**
-	 * @param $link
-	 * @param $post_ID
-	 * @param $content
+	 * Modify the edit post link for OnePage Docs to include custom parameters.
 	 *
-	 * @return mixed|string
+	 * @param string $link    The edit link.
+	 * @param int    $post_ID Post ID.
+	 *
+	 * @return string Modified edit link.
 	 */
 	public function one_page_docs_edit_content( $link, $post_ID ) {
 		if ( 'onepage-docs' === get_post_type( $post_ID ) ) {
@@ -462,8 +468,10 @@ class Admin {
 	}
 
 	/**
-	 ** Nestable Callback function
-	 **/
+	 * AJAX handler for saving nested docs order.
+	 *
+	 * @return void Sends JSON response.
+	 */
 	public function nestable_callback() {
 		check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
 
@@ -528,6 +536,11 @@ class Admin {
 		wp_send_json_success( $nestedArray );
 	}
 	
+	/**
+	 * AJAX handler for saving parent docs order.
+	 *
+	 * @return void Sends JSON response.
+	 */
 	public function parent_nestable_callback() {
 		check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
 
@@ -553,14 +566,20 @@ class Admin {
 	}
 	
 	/**
-	 * Docs page
+	 * Render the Migration page.
+	 *
+	 * @return void
 	 */
 	public function ezd_docs_migration() {
 		include __DIR__ . '/migration.php';
 	}
 	
 	/**
-	 * Post states added in EazyDocs pages
+	 * Add custom post states to EazyDocs pages in the admin list table.
+	 *
+	 * @param array   $post_states An array of post display states.
+	 * @param WP_Post $post        The current post object.
+	 * @return array Modified post states.
 	 */
 	public function ezd_post_states( $post_states, $post ) {
 		if ( 'page' !== $post->post_type ) {
@@ -592,7 +611,9 @@ class Admin {
 	}
 	
 	/**
-	 * Dashboard page
+	 * Render the EazyDocs Dashboard page.
+	 *
+	 * @return void
 	 */
 	public function eazydocs_dashboard() {
 		include __DIR__ . '/admin-dashboard.php';
