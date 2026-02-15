@@ -323,10 +323,20 @@
 		 */
 		$('.pageSideSection .print').on('click', function (e) {
 			e.preventDefault();
-			$('.doc-middle-content .doc-post-content, body.single-onepage-docs .documentation_info').printThis({
-				loadCSS:
-					eazydocs_local_object.EAZYDOCS_FRONT_CSS + '/print.css',
-			});
+
+			var printContent = function() {
+				$('.doc-middle-content .doc-post-content, body.single-onepage-docs .documentation_info').printThis({
+					loadCSS: eazydocs_local_object.EAZYDOCS_FRONT_CSS + '/print.css',
+				});
+			};
+
+			if ($.fn.printThis) {
+				printContent();
+			} else {
+				$.getScript(eazydocs_local_object.EAZYDOCS_ASSETS + '/js/frontend/printThis.js', function() {
+					printContent();
+				});
+			}
 		});
 
 		/**

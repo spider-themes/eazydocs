@@ -2268,6 +2268,7 @@ function ezd_get_docs_tree_flat_cached( $post_type ) {
 function ezd_clear_docs_tree_cache( $post_id, $post ) {
 	if ( in_array( $post->post_type, [ 'docs', 'onepage-docs' ] ) ) {
 		delete_transient( 'ezd_docs_tree_flat_' . $post->post_type );
+		delete_transient( 'ezd_elementor_docs_ids' );
 	}
 }
 add_action( 'save_post', 'ezd_clear_docs_tree_cache', 10, 2 );
@@ -2330,6 +2331,7 @@ function ezd_flush_docs_tree_cache( $post_id ) {
 	$post_type = get_post_type( $post_id );
 	if ( 'docs' === $post_type || 'onepage-docs' === $post_type ) {
 		delete_transient( 'ezd_docs_tree_flat_' . $post_type );
+		delete_transient( 'ezd_elementor_docs_ids' );
 	}
 }
 add_action( 'save_post', 'ezd_flush_docs_tree_cache' );

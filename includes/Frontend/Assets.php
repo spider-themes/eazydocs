@@ -49,7 +49,7 @@ class Assets
 
 		if (ezd_frontend_pages()) {
 			// Scripts
-			wp_enqueue_script('printThis', EAZYDOCS_ASSETS . '/js/frontend/printThis.js', array(), EAZYDOCS_VERSION, true);
+			wp_register_script('printThis', EAZYDOCS_ASSETS . '/js/frontend/printThis.js', array(), EAZYDOCS_VERSION, true);
 
 			wp_enqueue_script('anchor');
 			wp_enqueue_script('scrollspy');
@@ -87,32 +87,37 @@ class Assets
 			$ajax_url = add_query_arg('wpml_lang', $wpml_current_language, $ajax_url);
 		}
 
-		$elementor_docs = [];
-		if (class_exists('\Elementor\Plugin')) {
-			$elementor_docs = get_posts(
-				[
-					'post_type' => 'docs',
-					'post_status' => 'publish',
-					'numberposts' => -1,
-					'fields' => 'ids',
-					'meta_key' => '_elementor_edit_mode',
-					'meta_value' => 'builder',
-				]
-			);
+		$elementor_docs = get_transient( 'ezd_elementor_docs_ids' );
+		if ( false === $elementor_docs ) {
+			$elementor_docs = [];
+			if ( class_exists( '\Elementor\Plugin' ) ) {
+				$elementor_docs = get_posts(
+					[
+						'post_type'   => 'docs',
+						'post_status' => 'publish',
+						'numberposts' => -1,
+						'fields'      => 'ids',
+						'meta_key'    => '_elementor_edit_mode',
+						'meta_value'  => 'builder',
+					]
+				);
+			}
+			set_transient( 'ezd_elementor_docs_ids', $elementor_docs, DAY_IN_SECONDS );
 		}
 
 		wp_localize_script(
 			'jquery',
 			'eazydocs_local_object',
 			array(
-				'ajaxurl' => $ajax_url,
-				'EAZYDOCS_FRONT_CSS' => EAZYDOCS_FRONT_CSS,
-				'nonce' => wp_create_nonce('eazydocs-ajax'),
-				'is_doc_ajax' => ezd_is_premium() ? ezd_get_opt('is_doc_ajax') : false,
+				'ajaxurl'              => $ajax_url,
+				'EAZYDOCS_FRONT_CSS'   => EAZYDOCS_FRONT_CSS,
+				'EAZYDOCS_ASSETS'      => EAZYDOCS_ASSETS,
+				'nonce'                => wp_create_nonce( 'eazydocs-ajax' ),
+				'is_doc_ajax'          => ezd_is_premium() ? ezd_get_opt( 'is_doc_ajax' ) : false,
 				'ezd_layout_container' => ezd_container(),
-				'ezd_search_submit' => ezd_get_opt('is_search_submit', true),
-				'ezd_dark_switcher' => ezd_get_opt('is_dark_switcher', true),
-				'elementor_docs' => $elementor_docs,
+				'ezd_search_submit'    => ezd_get_opt( 'is_search_submit', true ),
+				'ezd_dark_switcher'    => ezd_get_opt( 'is_dark_switcher', true ),
+				'elementor_docs'       => $elementor_docs,
 			)
 		);
 

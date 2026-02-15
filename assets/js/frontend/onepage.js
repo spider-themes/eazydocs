@@ -9,7 +9,18 @@
 			'click',
 			function (e) {
 				e.preventDefault();
-				$('.page-template-page-onepage #post').printThis();
+
+				var printContent = function() {
+					$('.page-template-page-onepage #post').printThis();
+				};
+
+				if ($.fn.printThis) {
+					printContent();
+				} else {
+					$.getScript(eazydocs_local_object.EAZYDOCS_ASSETS + '/js/frontend/printThis.js', function() {
+						printContent();
+					});
+				}
 			}
 		);
 
