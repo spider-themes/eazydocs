@@ -34,16 +34,16 @@ function eazydocs_set_post_view() {
 
 	ezd_ensure_eazydocs_view_log_table_exists();
 
-	if ( is_single() && get_post_type() === 'docs' ) {
+	if ( is_single() && 'docs' === get_post_type() ) {
 
 		global $wpdb;
 		$post_id = get_the_ID();
 
 		// Check if views tracking is enabled, unique views are enabled, and the user has premium access.
-		if ( ezd_get_opt( 'enable-views' ) === '1' && ( ezd_is_premium() ? ezd_get_opt( 'enable-unique-views' ) === '1' : false ) ) {
+		if ( '1' === ezd_get_opt( 'enable-views' ) && ( ezd_is_premium() ? '1' === ezd_get_opt( 'enable-unique-views' ) : false ) ) {
 
 			// Retrieve viewed posts from cookies
-			$viewed_posts = isset( $_COOKIE['eazydocs_viewed_posts'] ) ? json_decode( sanitize_text_field( wp_unslash( $_COOKIE['eazydocs_viewed_posts'] ) ), true ) : array();
+			$viewed_posts = isset( $_COOKIE['eazydocs_viewed_posts'] ) ? json_decode( sanitize_text_field( wp_unslash( $_COOKIE['eazydocs_viewed_posts'] ) ), true ) : [];
 
 			// Increment post views count if post has not been viewed
 			if ( ! in_array( $post_id, $viewed_posts, true ) ) {
@@ -61,16 +61,16 @@ function eazydocs_set_post_view() {
 				// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 				$wpdb->insert(
 					$wpdb->prefix . 'eazydocs_view_log',
-					array(
+					[
 						'post_id'    => $post_id,
 						'count'      => 1,
 						'created_at' => current_time( 'mysql', 1 ),
-					),
-					array(
+					],
+					[
 						'%d',
 						'%d',
 						'%s',
-					)
+					]
 				);
 			}
 		} else {
@@ -83,16 +83,16 @@ function eazydocs_set_post_view() {
 			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
 			$wpdb->insert(
 				$wpdb->prefix . 'eazydocs_view_log',
-				array(
+				[
 					'post_id'    => $post_id,
 					'count'      => 1,
 					'created_at' => current_time( 'mysql', 1 ),
-				),
-				array(
+				],
+				[
 					'%d',
 					'%d',
 					'%s',
-				)
+				]
 			);
 		}
 	}

@@ -96,9 +96,9 @@ function eazydocs_feedback_email() {
 
 		];
 
-		$feedback = wp_insert_post( $args, $wp_error = '' );
+		$feedback = wp_insert_post( $args );
 
-		if ( $feedback != 0 ) {
+		if ( 0 !== $feedback ) {
 
 			if ( ! empty( $doc_id ) ) {
 				update_post_meta( $feedback, 'ezd_feedback_id', $doc_id );
