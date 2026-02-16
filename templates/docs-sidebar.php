@@ -108,10 +108,11 @@ if ( $credit_enable == '1' ) {
                 $parent_doc_id_left      = function_exists('get_root_parent_id') ? get_root_parent_id( get_queried_object_id() ) : '';
                 $content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar_type', true );
                 $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
+                $left_sidebar_content    = ezd_get_renderable_sidebar_content( $ezd_shortcode_left );
                 $is_valid_post_id   	 = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
 
-                if ( $content_type_left  == 'string_data'  && ! empty ( $ezd_shortcode_left ) ) {
-                    echo wp_kses_post(do_shortcode( html_entity_decode( $ezd_shortcode_left ) ));
+                if ( $content_type_left  == 'string_data'  && ! empty( $left_sidebar_content ) ) {
+                    echo wp_kses_post( do_shortcode( $left_sidebar_content ) );
                 } else {
                     if( $content_type_left == 'widget_data' && ! empty( $is_valid_post_id ) ) {
                         $wp_blocks = new WP_Query([

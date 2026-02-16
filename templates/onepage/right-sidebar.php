@@ -37,10 +37,11 @@ $widget_sidebar 	= ezd_get_opt( 'is_widget_sidebar' );
 				$parent_doc_id    = get_the_ID();
 				$content_type     = get_post_meta( $parent_doc_id, 'ezd_doc_content_type_right', true );
 				$ezd_shortcode    = get_post_meta( $parent_doc_id, 'ezd_doc_content_box_right', true );
+				$right_sidebar_content = ezd_get_renderable_sidebar_content( $ezd_shortcode );
 				$is_valid_post_id = is_null( get_post( $ezd_shortcode ) ) ? 'No' : 'Yes';
 
-				if ( $content_type == 'string_data_right' && ! empty ( $ezd_shortcode ) ) {
-					echo do_shortcode( html_entity_decode( $ezd_shortcode ) );
+				if ( $content_type == 'string_data_right' && ! empty( $right_sidebar_content ) ) {
+					echo do_shortcode( $right_sidebar_content );
 				} elseif ( $content_type == 'shortcode_right' ) {
 					if ( is_active_sidebar( 'doc_sidebar' ) && $widget_sidebar == 1 ) {
 						dynamic_sidebar( 'doc_sidebar' );

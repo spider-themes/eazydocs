@@ -91,6 +91,35 @@ function ezd_meta_apply( $option_id, $default = '' ) {
 }
 
 /**
+ * Normalize optional sidebar content before rendering.
+ *
+ * Treat placeholder quoted-empty strings (`""`/`''`) as empty so they are not
+ * printed in left/right sidebar optional content blocks.
+ *
+ * @param mixed $content Raw sidebar content from post meta.
+ * @return string
+ */
+function ezd_get_renderable_sidebar_content( $content ) {
+	if ( ! is_scalar( $content ) ) {
+		return '';
+	}
+
+	$content = trim( (string) $content );
+	if ( '' === $content ) {
+		return '';
+	}
+
+	$charset = get_bloginfo( 'charset' );
+	$content = trim( html_entity_decode( $content, ENT_QUOTES, $charset ?: 'UTF-8' ) );
+
+	if ( in_array( $content, [ '""', "''" ], true ) ) {
+		return '';
+	}
+
+	return $content;
+}
+
+/**
  * Check if the pro plugin and plan is active.
  *
  * @return bool True if premium features are active, false otherwise.
@@ -1045,19 +1074,19 @@ add_action( 'save_post', function ( $post_id ) {
 	$ezd_doc_content_type_right = $_POST['ezd_doc_content_type_right'] ?? '';
 	$ezd_doc_content_box_right  = $_POST['ezd_doc_content_box_right'] ?? '';
 
-	if ( ! empty( $std_comment_id ) ) {
+	if ( isset( $_POST['ezd_doc_layout'] ) ) {
 		update_post_meta( $post_id, 'ezd_doc_layout', $std_comment_id );
 	}
 
-	if ( ! empty( $ezd_doc_content_type ) ) {
+	if ( isset( $_POST['ezd_doc_content_type'] ) ) {
 		update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
 	}
 
-	if ( ! empty( $ezd_doc_content_type_right ) ) {
+	if ( isset( $_POST['ezd_doc_content_type_right'] ) ) {
 		update_post_meta( $post_id, 'ezd_doc_content_type_right', $ezd_doc_content_type_right );
 	}
 
-	if ( ! empty( $ezd_doc_content_box_right ) ) {
+	if ( isset( $_POST['ezd_doc_content_box_right'] ) ) {
 		update_post_meta( $post_id, 'ezd_doc_content_box_right', wp_kses_post( $ezd_doc_content_box_right ) );
 	}	
 

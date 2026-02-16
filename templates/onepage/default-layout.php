@@ -55,10 +55,11 @@ $children         = wp_list_pages( array(
 					$parent_doc_id_left = get_the_ID();
 					$content_type_left  = get_post_meta( $parent_doc_id_left, 'ezd_doc_content_type', true );
 					$ezd_shortcode_left = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
+					$left_sidebar_content = ezd_get_renderable_sidebar_content( $ezd_shortcode_left );
 					$is_valid_post_id   = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
 
-					if ( $content_type_left == 'string_data' && ! empty ( $ezd_shortcode_left ) ) {
-						echo do_shortcode( html_entity_decode( $ezd_shortcode_left ) );
+					if ( $content_type_left == 'string_data' && ! empty( $left_sidebar_content ) ) {
+						echo do_shortcode( $left_sidebar_content );
 					} else {
 						if ( $content_type_left == 'widget_data' && ! empty( $is_valid_post_id ) ) {
 							$wp_blocks = new WP_Query( [

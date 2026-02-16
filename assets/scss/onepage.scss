@@ -309,9 +309,6 @@ body {
     .fullscreen-layout-onepage-sidebar{
       .nav-item{
         background: transparent;
-        .docs-progress-bar {
-          background: #444857;
-        }
         a {
           color: #fff;
         }
@@ -333,6 +330,15 @@ body {
     }
     }
   }
+}
+
+.nav-sidebar .nav-item .docs-progress-bar {
+    position: absolute;
+    background: rgb(214 214 214 / 30%);
+    bottom: 0;
+    left: 0;
+    top: 0;
+    max-height: 44px;
 }
 
 .single-onepage-docs {

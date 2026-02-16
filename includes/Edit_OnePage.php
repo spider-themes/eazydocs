@@ -115,12 +115,14 @@ class Edit_OnePage {
             if ( ! empty( $content_type ) ) {
                 update_post_meta( $page_id, 'ezd_doc_content_type', $content_type );
             }
-            if ( ! empty( $page_content ) ) {
-                // Sentinel: Sanitize content to prevent Stored XSS
+            $has_left_content_input = isset( $_GET['edit_content'] ) || isset( $_GET['left_side_sidebar'] );
+            if ( $has_left_content_input ) {
+                // Persist empty values too, so clearing the optional field removes old content.
                 update_post_meta( $page_id, 'ezd_doc_left_sidebar', wp_kses_post( $page_content ) );
             }
-            if ( ! empty( $shortcode_content_right ) ) {
-                // Sentinel: Sanitize content to prevent Stored XSS
+            $has_right_content_input = isset( $_GET['shortcode_content_right'] ) || isset( $_GET['right_side_sidebar'] ) || 'shortcode_right' === $content_type_right;
+            if ( $has_right_content_input ) {
+                // Persist empty values too, so clearing the optional field removes old content.
                 update_post_meta( $page_id, 'ezd_doc_content_box_right', wp_kses_post( $shortcode_content_right ) );
             }
             if ( ! empty( $content_type_right ) ) {
