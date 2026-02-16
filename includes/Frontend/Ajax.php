@@ -66,6 +66,23 @@ class Ajax {
 
 			update_post_meta( $post_id, $type, $count + 1 );
 
+			if ( 'negative' === $type ) {
+				// EazyDocs Enhancement: Notify admin when negative feedback threshold is reached.
+				$negative_count = $count + 1;
+				/**
+				 * Filter the negative feedback threshold for admin notification.
+				 *
+				 * @param int $threshold The number of negative feedbacks required to trigger a notification. Default 3.
+				 */
+				$threshold = apply_filters( 'ezd_negative_feedback_threshold', 3 );
+
+				if ( $threshold > 0 && $negative_count >= $threshold && 0 === ( $negative_count % $threshold ) ) {
+					if ( ! wp_next_scheduled( 'ezd_negative_feedback_notification', [ $post_id ] ) ) {
+						wp_schedule_single_event( time(), 'ezd_negative_feedback_notification', [ $post_id ] );
+					}
+				}
+			}
+
 			if ( 'positive' === $type ) {
 				$voters = get_post_meta( $post_id, 'positive_voter', true );
 				$voters = is_array( $voters ) ? $voters : [];
