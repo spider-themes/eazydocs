@@ -2716,6 +2716,7 @@ function ezd_manual_import_sample_data( $file ) {
 
 		// Create the doc post.
 		$post_data = [
+			'import_id'    => $old_id, // Preserve original post ID to avoid occupying IDs other plugins rely on.
 			'post_title'   => sanitize_text_field( $title ),
 			'post_content' => wp_kses_post( $post_content ),
 			'post_status'  => ( 'private' === (string) $wp_data->status ) ? 'publish' : sanitize_text_field( (string) $wp_data->status ),
