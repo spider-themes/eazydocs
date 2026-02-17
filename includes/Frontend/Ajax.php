@@ -86,6 +86,12 @@ class Ajax {
 				}
 
 				update_post_meta( $post_id, 'negative_time', $timestamp );
+
+				// Schedule notification when negative count reaches a multiple of the threshold (e.g., 3, 6, 9)
+				$new_count = $count + 1;
+				if ( $new_count > 0 && 0 === ( $new_count % 3 ) ) {
+					wp_schedule_single_event( time(), 'ezd_negative_feedback_notification', [ $post_id, $new_count ] );
+				}
 			}
 
 			array_push( $previous, $post_id );
