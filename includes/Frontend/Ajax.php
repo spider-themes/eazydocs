@@ -76,7 +76,7 @@ class Ajax {
 				 */
 				$threshold = apply_filters( 'ezd_negative_feedback_threshold', 3 );
 
-				if ( $threshold > 0 && $negative_count >= $threshold && 0 === ( $negative_count % $threshold ) ) {
+				if ( $threshold > 0 && $negative_count === $threshold ) {
 					if ( ! wp_next_scheduled( 'ezd_negative_feedback_notification', [ $post_id ] ) ) {
 						wp_schedule_single_event( time(), 'ezd_negative_feedback_notification', [ $post_id ] );
 					}

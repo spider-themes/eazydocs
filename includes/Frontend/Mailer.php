@@ -31,16 +31,16 @@ function ezd_send_negative_feedback_notification( $post_id ) {
 
 	$subject = sprintf(
 		/* translators: 1: Site Name, 2: Doc Title */
-		esc_html__( '[%1$s] Alert: High Negative Feedback for "%2$s"', 'eazydocs' ),
+		__( '[%1$s] Alert: High Negative Feedback for "%2$s"', 'eazydocs' ),
 		get_bloginfo( 'name' ),
-		$post->post_title
+		sanitize_text_field( $post->post_title )
 	);
 
-	$message  = sprintf( esc_html__( 'Hello,', 'eazydocs' ) ) . "\r\n\r\n";
+	$message  = esc_html__( 'Hello,', 'eazydocs' ) . "\r\n\r\n";
 	$message .= sprintf(
 		/* translators: %s: Doc Title */
 		esc_html__( 'The document "%s" has received a significant number of negative feedback votes.', 'eazydocs' ),
-		$post->post_title
+		sanitize_text_field( $post->post_title )
 	) . "\r\n";
 
 	$message .= sprintf(
@@ -56,7 +56,23 @@ function ezd_send_negative_feedback_notification( $post_id ) {
 	$message .= esc_html__( 'Regards,', 'eazydocs' ) . "\r\n";
 	$message .= get_bloginfo( 'name' );
 
-	wp_mail( $admin_email, $subject, $message );
+	// Apply filters for extensibility (consistent with eazydocs_feedback_email pattern)
+	$admin_email = apply_filters( 'ezd_negative_feedback_email_to', $admin_email, $post_id, $post );
+	$subject     = apply_filters( 'ezd_negative_feedback_email_subject', $subject, $post_id, $post );
+	$message     = apply_filters( 'ezd_negative_feedback_email_body', $message, $post_id, $post );
+	$headers     = apply_filters( 'ezd_negative_feedback_email_headers', '', $post_id, $post );
+
+	$mail_sent = wp_mail( $admin_email, $subject, $message, $headers );
+
+	if ( ! $mail_sent ) {
+		error_log(
+			sprintf(
+				'EazyDocs: Failed to send negative feedback notification email for post ID %d to %s',
+				$post_id,
+				$admin_email
+			)
+		);
+	}
 }
 
 /**
