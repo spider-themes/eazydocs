@@ -119,10 +119,10 @@ class Assets
 		wp_register_style('ezd-frontend-global', EAZYDOCS_ASSETS . '/css/frontend-global.css', [], EAZYDOCS_VERSION);
 
 		// Global Scripts
-		wp_register_style('elegant-icon', EAZYDOCS_VEND . '/elegant-icon/style.css', [], EAZYDOCS_VERSION);
+		wp_register_style('elegant-icon-vend', EAZYDOCS_VEND . '/elegant-icon/style.css', [], EAZYDOCS_VERSION);
 
 		if (self::global_scope()) {
-			wp_enqueue_style('elegant-icon');
+			wp_enqueue_style('elegant-icon-vend');
 			wp_enqueue_style('ezd-frontend-global');
 
 			// Note: Dynamic RGBA brand colors are now handled via CSS custom properties in SCSS
