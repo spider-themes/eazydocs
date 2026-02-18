@@ -89,8 +89,13 @@ class Ajax {
 
 				// Schedule notification when negative count reaches a multiple of the threshold (e.g., 3, 6, 9)
 				$new_count = $count + 1;
-				if ( $new_count > 0 && 0 === ( $new_count % 3 ) ) {
-					wp_schedule_single_event( time(), 'ezd_negative_feedback_notification', [ $post_id, $new_count ] );
+				$threshold = function_exists( 'ezd_get_opt' ) ? (int) ezd_get_opt( 'negative-feedback-threshold' ) : 0;
+				if ( $threshold <= 0 ) {
+					$threshold = 3;
+				}
+
+				if ( $new_count > 0 && 0 === ( $new_count % $threshold ) ) {
+					wp_schedule_single_event( time(), 'eazydocs_negative_feedback_notification', [ $post_id, $new_count ] );
 				}
 			}
 
