@@ -3,15 +3,16 @@
  * Cannot access directly.
  */
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
-add_action( 'wp_ajax_eazydocs_feedback_email', 'eazydocs_feedback_email' );    //execute when wp logged in
-add_action( 'wp_ajax_nopriv_eazydocs_feedback_email', 'eazydocs_feedback_email' ); //execute when logged out
+add_action( 'wp_ajax_eazydocs_feedback_email', 'eazydocs_feedback_email' );    // execute when wp logged in
+add_action( 'wp_ajax_nopriv_eazydocs_feedback_email', 'eazydocs_feedback_email' ); // execute when logged out
 
 /**
  * Send email feedback on a document.
  *
+ * @return void
  */
 function eazydocs_feedback_email() {
 
@@ -27,13 +28,13 @@ function eazydocs_feedback_email() {
 
 	if ( isset( $_POST['email'] ) ) {
 		$admin_email      = ezd_get_opt( 'feedback-admin-email', get_option( 'admin_email' ) );
-		$author           = ! empty ( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+		$author           = ! empty( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
 		$author           = str_replace( [ "\r", "\n" ], '', $author ); // Prevent header injection
-		$subject          = ! empty ( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
-		$feedback_subject = ! empty ( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
-		$email            = ! empty ( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
-		$message          = ! empty ( $_POST['message'] ) ? sanitize_text_field( wp_unslash( $_POST['message'] ) ) : '';
-		$doc_id           = ! empty ( $_POST['doc_id'] ) ? intval( $_POST['doc_id'] ) : 0;
+		$subject          = ! empty( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
+		$feedback_subject = ! empty( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : '';
+		$email            = ! empty( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+		$message          = ! empty( $_POST['message'] ) ? sanitize_text_field( wp_unslash( $_POST['message'] ) ) : '';
+		$doc_id           = ! empty( $_POST['doc_id'] ) ? intval( $_POST['doc_id'] ) : 0;
 
 		if ( ! is_user_logged_in() ) {
 			$email = ! empty( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
@@ -45,14 +46,14 @@ function eazydocs_feedback_email() {
 			$email = wp_get_current_user()->user_email;
 		}
 
-		if ( empty ( $subject ) ) {
+		if ( empty( $subject ) ) {
 			wp_send_json_error( esc_html__( 'Please provide a subject line.', 'eazydocs' ) );
 		}
 
-		if ( ! isset ( $message ) ) {
+		if ( ! isset( $message ) ) {
 			wp_send_json_error( esc_html__( 'Please provide the message details.', 'eazydocs' ) );
 		}
-		
+
 		$wp_email = 'wordpress@' . preg_replace( '#^www\.#', '', strtolower( sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ?? '' ) ) ) );
 
 		$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
@@ -62,8 +63,10 @@ function eazydocs_feedback_email() {
 		/* translators: 1: Site name, 2: Subject line */
 		$subject = sprintf( __( '[%1$s] New Doc Feedback: "%2$s"', 'eazydocs' ), $blogname, $subject );
 		/* translators: %s: Document title */
-		$email_body = sprintf( __( 'New feedback on your doc "%s"', 'eazydocs' ),
-				apply_filters( 'eazydocs_translate_text', $document->post_title ) ) . "\r\n";
+		$email_body = sprintf(
+			__( 'New feedback on your doc "%s"', 'eazydocs' ),
+			apply_filters( 'eazydocs_translate_text', $document->post_title )
+		) . "\r\n";
 		/* translators: %s: Author name */
 		$email_body .= sprintf( esc_html__( 'Author: %s', 'eazydocs' ), $author ) . "\r\n";
 		/* translators: %s: Email address */
@@ -78,7 +81,7 @@ function eazydocs_feedback_email() {
 		$from     = "From: \"{$author}\" <{$wp_email}>";
 		$reply_to = "Reply-To: \"{$email}\" <{$email}>";
 
-		$message_headers = "{$from}\n"
+		$message_headers  = "{$from}\n"
 		                   . 'Content-Type: text/plain; charset ="' . get_option( 'blog_charset' ) . "\"\n";
 		$message_headers .= $reply_to . "\n";
 
@@ -92,13 +95,12 @@ function eazydocs_feedback_email() {
 			'post_type'    => 'ezd_feedback',
 			'post_title'   => $feedback_subject . ' - ' . $author,
 			'post_content' => $message,
-			'post_status'  => 'publish'
-
+			'post_status'  => 'publish',
 		];
 
-		$feedback = wp_insert_post( $args, $wp_error = '' );
+		$feedback = wp_insert_post( $args, true ); // Pass true to get WP_Error on failure
 
-		if ( $feedback != 0 ) {
+		if ( ! is_wp_error( $feedback ) && 0 !== $feedback ) {
 
 			if ( ! empty( $doc_id ) ) {
 				update_post_meta( $feedback, 'ezd_feedback_id', $doc_id );
@@ -115,7 +117,6 @@ function eazydocs_feedback_email() {
 			if ( ! empty( $feedback_subject ) ) {
 				update_post_meta( $feedback, 'ezd_feedback_subject', $feedback_subject );
 			}
-
 		}
 		wp_send_json_success( __( 'Your feedback has been submitted successfully.', 'eazydocs' ) );
 	}

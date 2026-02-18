@@ -3,12 +3,13 @@ namespace EazyDocs\Frontend;
 
 use JetBrains\PhpStorm\NoReturn;
 use WP_Query;
+use WP_User;
 
 /**
  * Cannot access directly.
  */
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 /**
@@ -18,13 +19,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  * searching documentation, and loading single page content.
  */
 class Ajax {
+
+	/**
+	 * Ajax constructor.
+	 */
 	public function __construct() {
-		// feedback
+		// Feedback
 		add_action( 'wp_ajax_eazydocs_handle_feedback', [ $this, 'handle_feedback' ] );
 		add_action( 'wp_ajax_nopriv_eazydocs_handle_feedback', [ $this, 'handle_feedback' ] );
+
 		// Search Results
 		add_action( 'wp_ajax_eazydocs_search_results', [ $this, 'eazydocs_search_results' ] );
 		add_action( 'wp_ajax_nopriv_eazydocs_search_results', [ $this, 'eazydocs_search_results' ] );
+
 		// Load Doc single page
 		add_action( 'wp_ajax_docs_single_content', [ $this, 'docs_single_content' ] );
 		add_action( 'wp_ajax_nopriv_docs_single_content', [ $this, 'docs_single_content' ] );
@@ -49,8 +56,8 @@ class Ajax {
 			$previous = explode( ',', sanitize_text_field( $cookie_value ) );
 		}
 
-		$post_id  = intval( $_POST['post_id'] );
-		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ], true ) ? sanitize_text_field( $_POST['type'] ) : false;
+		$post_id = isset( $_POST['post_id'] ) ? intval( $_POST['post_id'] ) : 0;
+		$type    = isset( $_POST['type'] ) && in_array( $_POST['type'], [ 'positive', 'negative' ], true ) ? sanitize_text_field( $_POST['type'] ) : false;
 
 		// check previous response
 		// $previous is array of strings (from explode), $post_id is int. Cast to string for strict check.
@@ -59,10 +66,9 @@ class Ajax {
 			wp_send_json_error( $message );
 		}
 
-		// seems new
 		if ( $type ) {
-			$count      = (int) get_post_meta( $post_id, $type, true );
-			$timestamp  = current_time( 'mysql' );
+			$count     = (int) get_post_meta( $post_id, $type, true );
+			$timestamp = current_time( 'mysql' );
 
 			update_post_meta( $post_id, $type, $count + 1 );
 
@@ -91,7 +97,7 @@ class Ajax {
 			array_push( $previous, $post_id );
 			$cookie_val = implode( ',', $previous );
 
-			$val = setcookie( 'eazydocs_response', $cookie_val, time() + WEEK_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+			setcookie( 'eazydocs_response', $cookie_val, time() + WEEK_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
 		}
 
 		$message = sprintf( $template, 'success', esc_html__( 'Thanks for your feedback!', 'eazydocs' ) );
@@ -103,7 +109,7 @@ class Ajax {
 	 *
 	 * @return void
 	 */
-	function eazydocs_search_results() {
+	public function eazydocs_search_results() {
 		check_ajax_referer( 'eazydocs-ajax', 'security' );
 		global $wpdb;
 
@@ -167,11 +173,13 @@ class Ajax {
 					'post_type'      => 'docs',
 					'posts_per_page' => -1,
 					'post_status'    => $post_status,
-					'tax_query'      => [ [
-						'taxonomy' => 'doc_tag',
-						'field'    => 'name',
-						'terms'    => $keyword,
-					] ],
+					'tax_query'      => [
+						[
+							'taxonomy' => 'doc_tag',
+							'field'    => 'name',
+							'terms'    => $keyword,
+						],
+					],
 				] );
 				$merged_ids = array_unique( array_merge( $final_ids, wp_list_pluck( $tag_posts->posts, 'ID' ) ) );
 				$final_ids  = $merged_ids;
@@ -188,27 +196,29 @@ class Ajax {
 			'post_status'    => $post_status,
 			'post__in'       => $final_ids,
 			'orderby'        => [
-				'post__in'    => 'ASC',
-				'menu_order'  => 'ASC',
-				'date'        => get_option( 'posts_order' ) === 'asc' ? 'ASC' : 'DESC',
-				'title'       => 'ASC',
+				'post__in'   => 'ASC',
+				'menu_order' => 'ASC',
+				'date'       => 'asc' === get_option( 'posts_order' ) ? 'ASC' : 'DESC',
+				'title'      => 'ASC',
 			],
 		];
 
 		$posts = new WP_Query( $args );
 
 		// --- LOG SEARCH KEYWORD ---
-		$keyword_for_db = trim(strtolower($keyword));
+		$keyword_for_db             = trim( strtolower( $keyword ) );
 		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
 		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
 
 		// Optimization: Check for table existence check (24h TTL)
 		$tables_check_key = 'ezd_search_tables_check';
-		$tables_exist = get_transient( $tables_check_key );
+		$tables_exist     = get_transient( $tables_check_key );
 
 		if ( false === $tables_exist ) {
-			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-			$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
+			// @codingStandardsIgnoreStart
+			$keyword_table_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword ) ) === $wp_eazydocs_search_keyword;
+			$log_table_exists     = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_log ) ) === $wp_eazydocs_search_log;
+			// @codingStandardsIgnoreEnd
 			$tables_exist = ( $keyword_table_exists && $log_table_exists ) ? 1 : 0;
 			set_transient( $tables_check_key, $tables_exist, DAY_IN_SECONDS );
 		}
@@ -224,9 +234,9 @@ class Ajax {
 						'keyword_id'      => $keyword_id,
 						'count'           => $posts->found_posts, // Use found_posts to track actual count vs paginated
 						'not_found_count' => $posts->found_posts ? 0 : 1,
-						'created_at'      => current_time('mysql'),
+						'created_at'      => current_time( 'mysql' ),
 					],
-					['%d', '%d', '%d', '%s']
+					[ '%d', '%d', '%d', '%s' ]
 				);
 			}
 		}
@@ -247,21 +257,26 @@ class Ajax {
 		<?php
 		// --- OUTPUT RESULTS (unchanged) ---
 		if ( $posts->have_posts() ) :
-			while ( $posts->have_posts() ) : $posts->the_post();
+			while ( $posts->have_posts() ) :
+				$posts->the_post();
 				$no_thumbnail = ! ezd_get_opt( 'is_search_result_thumbnail' ) ? 'no-thumbnail' : '';
 				?>
-				<div class="search-result-item <?php echo esc_attr($no_thumbnail); ?>" data-url="<?php the_permalink(); ?>">
+				<div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" data-url="<?php the_permalink(); ?>">
 					<a href="<?php the_permalink(); ?>" class="title">
-						<?php if ( ezd_get_opt( 'is_search_result_thumbnail' ) ) :
-							if (has_post_thumbnail() && ezd_is_premium() ) {
-								the_post_thumbnail('ezd_searrch_thumb16x16');
-							} else { ?>
+						<?php
+						if ( ezd_get_opt( 'is_search_result_thumbnail' ) ) :
+							if ( has_post_thumbnail() && ezd_is_premium() ) {
+								the_post_thumbnail( 'ezd_searrch_thumb16x16' );
+							} else {
+								?>
 								<svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img">
 									<title id="title">Building Search UI</title>
 									<path d="M14.72,0H2.28A2.28,2.28,0,0,0,0,2.28V14.72A2.28,2.28,0,0,0,2.28,17H14.72A2.28,2.28,0,0,0,17,14.72V2.28A2.28,2.28,0,0,0,14.72,0ZM2.28,1H14.72A1.28,1.28,0,0,1,16,2.28V5.33H1V2.28A1.28,1.28,0,0,1,2.28,1ZM1,14.72V6.33H5.33V16H2.28A1.28,1.28,0,0,1,1,14.72ZM14.72,16H6.33V6.33H16v8.39A1.28,1.28,0,0,1,14.72,16Z"></path>
 								</svg>
-							<?php }
-						endif; ?>
+								<?php
+							}
+						endif;
+						?>
 						<span class="doc-section"><?php the_title(); ?></span>
 						<svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round"
 							stroke-linejoin="round" class="block h-auto w-16">
@@ -269,34 +284,36 @@ class Ajax {
 							<path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
 						</svg>
 					</a>
-					<?php 
-					if (ezd_get_opt('is_search_result_breadcrumb') && ezd_is_premium() ){
+					<?php
+					if ( ezd_get_opt( 'is_search_result_breadcrumb' ) && ezd_is_premium() ) {
 						eazydocs_search_breadcrumbs();
 					}
 					?>
 				</div>
 				<?php
 			endwhile;
-			else :
-				?>
-				<div><h5 class="error title"><?php esc_html_e('No result found!', 'eazydocs'); ?></h5></div>
-				<?php
+		else :
+			?>
+			<div><h5 class="error title"><?php esc_html_e( 'No result found!', 'eazydocs' ); ?></h5></div>
+			<?php
 		endif;
 
 		wp_reset_postdata();
 
 		echo ob_get_clean();
-		die();
+		wp_die();
 	}
 
 	/**
 	 * Doc single page
+	 *
+	 * @return void
 	 */
-	function docs_single_content() {
+	public function docs_single_content() {
 		// Verify nonce for security
 		check_ajax_referer( 'eazydocs-ajax', 'security' );
 
-		$postid     = isset( $_POST['postid'] ) ? intval( $_POST['postid'] ) : 0;
+		$postid = isset( $_POST['postid'] ) ? intval( $_POST['postid'] ) : 0;
 
 		// Validate post ID
 		if ( $postid <= 0 ) {
@@ -323,7 +340,7 @@ class Ajax {
 					}
 
 					$current_user_id = get_current_user_id();
-					$current_user    = new \WP_User( $current_user_id );
+					$current_user    = new WP_User( $current_user_id );
 					$current_roles   = (array) $current_user->roles;
 					$matching_roles  = array_intersect( $current_roles, $allowed_roles );
 
@@ -338,7 +355,7 @@ class Ajax {
 					$has_access = is_user_logged_in();
 				} else {
 					$current_user_id   = get_current_user_id();
-					$current_user      = new \WP_User( $current_user_id );
+					$current_user      = new WP_User( $current_user_id );
 					$current_roles     = (array) $current_user->roles;
 					$private_doc_roles = $user_group['private_doc_roles'] ?? [];
 					$matching_roles    = array_intersect( $current_roles, $private_doc_roles );
@@ -355,9 +372,12 @@ class Ajax {
 		}
 
 		global $post, $wp_query;
-		$wp_query       = new \WP_Query( [ 'post_type' => 'docs', 'p' => $postid ] );
-		$modified       = '';
-		$html           = '';
+		$wp_query = new WP_Query( [
+			'post_type' => 'docs',
+			'p'         => $postid,
+		] );
+		$modified = '';
+		$html     = '';
 
 		ob_start();
 
@@ -383,8 +403,8 @@ class Ajax {
 		$html = ob_get_clean();
 
 		return wp_send_json_success( [
-			'content'         => $html,
-			'modified_date'   => $modified,
+			'content'       => $html,
+			'modified_date' => $modified,
 		] );
 	}
 }
