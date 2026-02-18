@@ -333,9 +333,14 @@
 			if ($.fn.printThis) {
 				printContent();
 			} else {
-				$.getScript(eazydocs_local_object.EAZYDOCS_ASSETS + '/js/frontend/printThis.js', function() {
-					printContent();
-				});
+				$.getScript(eazydocs_local_object.EAZYDOCS_ASSETS + '/js/frontend/printThis.js')
+					.done(function () {
+						printContent();
+					})
+					.fail(function (jqxhr, settings, exception) {
+						console.error('Failed to load printThis.js for printing:', exception);
+						alert('Printing is currently unavailable. Please try again later.');
+					});
 			}
 		});
 
