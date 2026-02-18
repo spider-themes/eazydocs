@@ -30,19 +30,19 @@ class Frontend {
 	 */
 	public function template_loads( $template ) {
 		$file = '';
-		if ( is_single() && 'docs' == get_post_type() ) {
+		if ( is_single() && 'docs' === get_post_type() ) {
 			$single_template = 'single-docs.php';
 			// Check if a custom template exists in the theme folder, if not, load the plugin template file
-			if ( $theme_file = locate_template( array( 'eazydocs/' . $single_template ) ) ) {
+			if ( $theme_file = locate_template( [ 'eazydocs/' . $single_template ] ) ) {
 				$file = $theme_file;
 			} else {
 				$file = EAZYDOCS_PATH . '/templates' . '//' . $single_template;
 			}
-		} elseif ( is_single() && 'onepage-docs' == get_post_type() ) {
+		} elseif ( is_single() && 'onepage-docs' === get_post_type() ) {
 
 			$single_template = 'single-onepage-docs.php';
 			// Check if a custom template exists in the theme folder, if not, load the plugin template file
-			if ( $theme_file = locate_template( array( 'eazydocs/' . $single_template ) ) ) {
+			if ( $theme_file = locate_template( [ 'eazydocs/' . $single_template ] ) ) {
 				$file = $theme_file;
 			} else {
 				$file = EAZYDOCS_PATH . '/templates' . '//' . $single_template;
@@ -69,23 +69,26 @@ class Frontend {
 		$default_column 		= ezd_get_opt( 'footnotes_column', '4' );		
 		$is_notes_title   		= ezd_get_opt( 'is_footnotes_heading', '1' );
 		$footnotes_layout  	 	= ezd_get_opt( 'footnotes_layout', 'collapsed' );
-		$is_footnotes_expand 	= $is_notes_title == 1 ? $footnotes_layout : '';
-		$ezd_notes_footer_mt 	= $is_notes_title != '1' ? 'mt-30' : '';
-		$notes_title_text 		= ezd_get_opt( 'footnotes_heading_text', esc_html__( 'Footnotes', 'eazydocs' ) );
+		$is_footnotes_expand    = '1' === $is_notes_title ? $footnotes_layout : '';
+		$ezd_notes_footer_mt    = '1' !== $is_notes_title ? 'mt-30' : '';
+		$notes_title_text       = ezd_get_opt( 'footnotes_heading_text', esc_html__( 'Footnotes', 'eazydocs' ) );
 
-		$meta_options			= get_post_meta( $post_id, 'footnotes_colum_opt', true );
-		$col_meta 				= $meta_options['footnotes_column'] ?? '3';
-		$source 				= $meta_options['footnotes_column_source'] ?? 'default';
-		$footnotes_column 		= $source == 'default' ? $default_column : $col_meta;
+		$meta_options           = get_post_meta( $post_id, 'footnotes_colum_opt', true );
+		if ( ! is_array( $meta_options ) ) {
+			$meta_options = [];
+		}
+		$col_meta               = $meta_options['footnotes_column'] ?? '3';
+		$source                 = $meta_options['footnotes_column_source'] ?? 'default';
+		$footnotes_column       = 'default' === $source ? $default_column : $col_meta;
 
-		$reference_with_content = ezd_get_footnotes_in_content($post_id);
-		$shortcode_counter 		= count($reference_with_content);
+		$reference_with_content = ezd_get_footnotes_in_content( $post_id );
+		$shortcode_counter      = count( $reference_with_content );
 
-		if ( $shortcode_counter == 0 ) {
+		if ( 0 === $shortcode_counter ) {
 			return;
 		}
 
-		if ( ! empty( $notes_title_text ) && $is_notes_title == '1' ):
+		if ( ! empty( $notes_title_text ) && '1' === $is_notes_title ) :
 			?>
 			<div class="ezd-footnote-title <?php echo esc_attr( $is_footnotes_expand ); ?>">
 				<span class="ezd-plus-minus"> <i class="icon_plus-box"></i><i class="icon_minus-box"></i></span>
@@ -170,29 +173,29 @@ class Frontend {
 	 * @return void
 	 */
 	public function recently_viewed_docs( $title, $visibility, $visible_item, $see_more ) {
-		$ft_cookie_posts = isset($_COOKIE['eazydocs_recent_posts']) ? json_decode(sanitize_text_field(wp_unslash($_COOKIE['eazydocs_recent_posts'])), true) : null;
-		$ft_cookie_posts = isset( $ft_cookie_posts ) ? array_diff( $ft_cookie_posts, array( get_the_ID() ) ) : '';
+		$ft_cookie_posts = isset( $_COOKIE['eazydocs_recent_posts'] ) ? json_decode( sanitize_text_field( wp_unslash( $_COOKIE['eazydocs_recent_posts'] ) ), true ) : null;
+		$ft_cookie_posts = isset( $ft_cookie_posts ) ? array_diff( $ft_cookie_posts, [ get_the_ID() ] ) : '';
 		if ( is_array( $ft_cookie_posts ) && count( $ft_cookie_posts ) > 0 && isset( $ft_cookie_posts ) ) :
 
 			global $post;
 			$cats            = get_the_terms( get_the_ID(), 'doc_tag' );
 			$cat_ids         = ! empty( $cats ) ? wp_list_pluck( $cats, 'term_id' ) : '';
 
-			$doc_posts = new \WP_Query( array(
+			$doc_posts = new \WP_Query( [
 				'post_type'           => 'docs',
-				'tax_query'           => array(
-					array(
+				'tax_query'           => [
+					[
 						'taxonomy' => 'doc_tag',
 						'field'    => 'id',
 						'terms'    => $cat_ids,
-						'operator' => 'IN' //Or 'AND' or 'NOT IN'
-					)
-				),
+						'operator' => 'IN', // Or 'AND' or 'NOT IN'
+					],
+				],
 				'posts_per_page'      => - 1,
 				'ignore_sticky_posts' => 1,
 				'orderby'             => 'rand',
-				'post__not_in'        => array( $post->ID )
-			) );
+				'post__not_in'        => [ $post->ID ],
+			] );
 
 			$related_docs  = $doc_posts->post_count ?? 0;
 			$viewed_column = $related_docs > 0 ?  ezd_get_opt( 'viewed-doc-column' ) : '12';
@@ -265,23 +268,23 @@ class Frontend {
 		global $post;
 		$cats            = get_the_terms( get_the_ID(), 'doc_tag' );
 		$cat_ids         = ! empty( $cats ) ? wp_list_pluck( $cats, 'term_id' ) : '';
-		$related_column  =  ezd_get_opt( 'related-doc-column', '6' );
-        $col_visibility  = $related_column.' '.$visibility;
-		$doc_posts       = new \WP_Query( array(
+		$related_column  = ezd_get_opt( 'related-doc-column', '6' );
+		$col_visibility  = $related_column . ' ' . $visibility;
+		$doc_posts       = new \WP_Query( [
 			'post_type'           => 'docs',
-			'tax_query'           => array(
-				array(
+			'tax_query'           => [
+				[
 					'taxonomy' => 'doc_tag',
 					'field'    => 'id',
 					'terms'    => $cat_ids,
-					'operator' => 'IN' //Or 'AND' or 'NOT IN'
-				)
-			),
+					'operator' => 'IN', // Or 'AND' or 'NOT IN'
+				],
+			],
 			'posts_per_page'      => - 1,
 			'ignore_sticky_posts' => 1,
 			'orderby'             => 'rand',
-			'post__not_in'        => array( $post->ID )
-		) );
+			'post__not_in'        => [ $post->ID ],
+		] );
 
 		if ( $doc_posts->have_posts() ) :
 

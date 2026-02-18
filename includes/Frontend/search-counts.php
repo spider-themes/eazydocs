@@ -31,13 +31,13 @@ function eazydocs_set_search_count() {
 /**
  * View post views in post column
  */
-add_filter( 'manage_doc_posts_columns', function () {
-    $columns['search_count'] = esc_html__( 'Search Count', 'eazydocs' );
-    return $columns;
-});
+add_filter( 'manage_doc_posts_columns', function ( $columns ) {
+	$columns['search_count'] = esc_html__( 'Search Count', 'eazydocs' );
+	return $columns;
+} );
 
 add_action( 'manage_doc_posts_custom_column', function ( $column ) {
-    if ( $column === 'search_count') {
-        echo esc_html( eazydocs_get_search_count() );
-    }
-});
+	if ( 'search_count' === $column ) {
+		echo esc_html( eazydocs_get_search_count() );
+	}
+} );

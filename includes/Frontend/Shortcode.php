@@ -93,9 +93,11 @@ class Shortcode {
                 $valA   = $a->$key ?? 0;
                 $valB   = $b->$key ?? 0;
 
-                if ( $valA == $valB ) return 0;
+                if ( $valA === $valB ) {
+                    return 0;
+                }
 
-                return ( $order === 'ASC' ) ? ( $valA < $valB ? -1 : 1 ) : ( $valA > $valB ? -1 : 1 );
+                return ( 'ASC' === $order ) ? ( $valA < $valB ? -1 : 1 ) : ( $valA > $valB ? -1 : 1 );
             });
         }
 
