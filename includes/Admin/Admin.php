@@ -492,48 +492,54 @@ class Admin {
 
 		$nestedArray = ezd_sanitize_nested_objects( $nestedArray ); // ✅ sanitize all IDs
 
-		$i    = 0;
-		$c    = 0;
-		$c_of = 0;
-		$f_of = 0;
+		// Optimization: Unhook expensive actions to prevent massive performance hit
+		// during bulk updates (e.g. cache clearing on every single post update)
+		remove_action( 'save_post', 'ezd_clear_docs_tree_cache', 10 );
+		remove_action( 'save_post', 'ezd_flush_docs_tree_cache' );
 
-		$update_doc = function ( $id, $menu_order, $parent_id ) {
-			if ( current_user_can( 'edit_post', $id ) && 'docs' === get_post_type( $id ) ) {
-				wp_update_post( [
-					'ID'          => $id,
-					'menu_order'  => $menu_order,
-					'post_parent' => $parent_id
-				] );
-			}
-		};
+		// Recursively update doc structure
+		$this->update_nestable_children( $nestedArray );
 
-		foreach ( $nestedArray as $value ) {
-			$i++;
-			$update_doc( $value->id, $i, eaz_get_nestable_parent_id( $value->id ) );
+		// Restore actions
+		add_action( 'save_post', 'ezd_clear_docs_tree_cache', 10, 2 );
+		add_action( 'save_post', 'ezd_flush_docs_tree_cache' );
 
-			if ( is_array( $value->children ) ) {
-				foreach ( $value->children as $child ) {
-					$c++;
-					$update_doc( $child->id, $c, $value->id );
-
-					if ( is_array( $child->children ) ) {
-						foreach ( $child->children as $of_child ) {
-							$c_of++;
-							$update_doc( $of_child->id, $c_of, $child->id );
-
-							if ( is_array( $of_child->children ) ) {
-								foreach ( $of_child->children as $fourth_child ) {
-									$f_of++;
-									$update_doc( $fourth_child->id, $f_of, $of_child->id );
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		// Clear cache once at the end
+		delete_transient( 'ezd_docs_tree_flat_docs' );
 
 		wp_send_json_success( $nestedArray );
+	}
+
+	/**
+	 * Recursive function to update nestable docs.
+	 *
+	 * @param array    $items     Array of items to update.
+	 * @param int|null $parent_id Parent ID to assign. If null, uses existing parent logic.
+	 */
+	private function update_nestable_children( $items, $parent_id = null ) {
+		$menu_order = 0;
+
+		foreach ( $items as $item ) {
+			$menu_order++;
+			$current_parent = $parent_id;
+
+			// If no parent specified (top level), use existing parent logic
+			if ( null === $current_parent ) {
+				$current_parent = eaz_get_nestable_parent_id( $item->id );
+			}
+
+			if ( current_user_can( 'edit_post', $item->id ) && 'docs' === get_post_type( $item->id ) ) {
+				wp_update_post( [
+					'ID'          => $item->id,
+					'menu_order'  => $menu_order,
+					'post_parent' => $current_parent,
+				] );
+			}
+
+			if ( ! empty( $item->children ) && is_array( $item->children ) ) {
+				$this->update_nestable_children( $item->children, $item->id );
+			}
+		}
 	}
 	
 	/**
