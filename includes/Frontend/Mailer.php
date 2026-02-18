@@ -170,3 +170,32 @@ function eazydocs_feedback_email() {
 		wp_send_json_success( __( 'Your feedback has been submitted successfully.', 'eazydocs' ) );
 	}
 }
+
+add_action( 'ezd_negative_feedback_notification', 'ezd_send_negative_feedback_email', 10, 2 );
+
+/**
+ * Send email notification to admin on high negative feedback
+ *
+ * @param int $post_id The post ID
+ * @param int $count   The negative feedback count
+ */
+function ezd_send_negative_feedback_email( $post_id, $count ) {
+	$admin_email = ezd_get_opt( 'feedback-admin-email', get_option( 'admin_email' ) );
+
+	if ( ! is_email( $admin_email ) ) {
+		return;
+	}
+
+	$post = get_post( $post_id );
+	if ( ! $post ) {
+		return;
+	}
+
+	$subject = sprintf( __( '[%s] Alert: High Negative Feedback on Doc', 'eazydocs' ), get_bloginfo( 'name' ) );
+
+	$message  = sprintf( __( 'The document "%s" has received %d negative feedback votes.', 'eazydocs' ), $post->post_title, $count ) . "\r\n\r\n";
+	$message .= sprintf( __( 'View Document: %s', 'eazydocs' ), get_permalink( $post_id ) ) . "\r\n";
+	$message .= sprintf( __( 'Edit Document: %s', 'eazydocs' ), admin_url( 'post.php?post=' . $post_id . '&action=edit' ) ) . "\r\n";
+
+	wp_mail( $admin_email, $subject, $message );
+}
