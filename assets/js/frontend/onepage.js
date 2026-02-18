@@ -17,9 +17,16 @@
 				if ($.fn.printThis) {
 					printContent();
 				} else {
-					$.getScript(eazydocs_local_object.EAZYDOCS_ASSETS + '/js/frontend/printThis.js', function() {
-						printContent();
-					});
+					$.getScript(
+						eazydocs_local_object.EAZYDOCS_ASSETS + '/js/frontend/printThis.js'
+					)
+						.done(function () {
+							printContent();
+						})
+						.fail(function (jqxhr, settings, exception) {
+							console.error('Failed to load printThis.js:', exception);
+							alert('Unable to load print functionality. Please try again later.');
+						});
 				}
 			}
 		);
