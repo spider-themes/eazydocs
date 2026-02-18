@@ -321,6 +321,10 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 					#rnc-notice-<?php echo esc_attr( $this->product . '-' . $content_id ); ?> .notice-dismiss:hover {
 						color: #c92c2c !important;
 					}
+					#rnc-notice-<?php echo esc_attr( $this->product . '-' . $content_id ); ?> .rnc-notice-content img{
+						max-width: 100% !important;
+						height: auto !important;
+					}
 				</style>
 
 				<script>

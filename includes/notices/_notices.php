@@ -17,6 +17,8 @@ add_action( 'plugins_loaded', function() {
     if (function_exists('ezd_is_premium') && ezd_is_premium() ) {
         Remote_Notice_Client::disable( 'Eazydocs' );
         return;
+    }else{
+        Remote_Notice_Client::enable( 'Eazydocs' );
     }
     
     Remote_Notice_Client::init( 'Eazydocs', [
