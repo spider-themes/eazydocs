@@ -74,6 +74,9 @@ class Frontend {
 		$notes_title_text       = ezd_get_opt( 'footnotes_heading_text', esc_html__( 'Footnotes', 'eazydocs' ) );
 
 		$meta_options           = get_post_meta( $post_id, 'footnotes_colum_opt', true );
+		if ( ! is_array( $meta_options ) ) {
+			$meta_options = [];
+		}
 		$col_meta               = $meta_options['footnotes_column'] ?? '3';
 		$source                 = $meta_options['footnotes_column_source'] ?? 'default';
 		$footnotes_column       = 'default' === $source ? $default_column : $col_meta;
