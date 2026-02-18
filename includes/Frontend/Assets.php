@@ -111,6 +111,7 @@ class Assets
 			array(
 				'ajaxurl'              => $ajax_url,
 				'EAZYDOCS_FRONT_CSS'   => EAZYDOCS_FRONT_CSS,
+				// Base URL for EazyDocs assets, used by frontend JS for dynamic script/style loading.
 				'EAZYDOCS_ASSETS'      => EAZYDOCS_ASSETS,
 				'nonce'                => wp_create_nonce( 'eazydocs-ajax' ),
 				'is_doc_ajax'          => ezd_is_premium() ? ezd_get_opt( 'is_doc_ajax' ) : false,
