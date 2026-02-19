@@ -15,7 +15,7 @@ class Assets
 	 **/
 	public function __construct()
 	{
-		add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+		add_action('wp_enqueue_scripts', [__CLASS__, 'enqueue_scripts']);
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts_after'], 999);
 	}
 
@@ -133,6 +133,11 @@ class Assets
 		}
 	}
 
+	/**
+	 * Scripts enqueue after.
+	 *
+	 * @return void
+	 */
 	public function enqueue_scripts_after()
 	{
 		if (is_singular('docs') || 'onepage-docs' === get_post_type() || is_page_template('page-onepage.php')) {
@@ -147,6 +152,11 @@ class Assets
 		}
 	}
 
+	/**
+	 * Check if current page is in global scope.
+	 *
+	 * @return bool
+	 */
 	private static function global_scope()
 	{
 		if (

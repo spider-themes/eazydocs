@@ -126,7 +126,7 @@ class Ajax {
 	 *
 	 * @return void
 	 */
-	function eazydocs_search_results() {
+	public function eazydocs_search_results() {
 		check_ajax_referer( 'eazydocs-ajax', 'security' );
 		global $wpdb;
 
@@ -309,13 +309,15 @@ class Ajax {
 		wp_reset_postdata();
 
 		echo ob_get_clean();
-		die();
+		wp_die();
 	}
 
 	/**
 	 * Doc single page
+	 *
+	 * @return void
 	 */
-	function docs_single_content() {
+	public function docs_single_content() {
 		// Verify nonce for security
 		check_ajax_referer( 'eazydocs-ajax', 'security' );
 
@@ -396,6 +398,10 @@ class Ajax {
 				add_filter( 'is_singular', '__return_true' );
 
 				// Instantiate Frontend from same namespace
+				/**
+				 * The Frontend class is not instantiated during AJAX requests (is_admin() is true),
+				 * but we need its hooks (like shortcode handling) for rendering the single doc content.
+				 */
 				new Frontend();
 
 				eazydocs_get_template_part( 'single-doc-content' );

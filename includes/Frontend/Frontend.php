@@ -33,7 +33,8 @@ class Frontend {
 		if ( is_single() && 'docs' === get_post_type() ) {
 			$single_template = 'single-docs.php';
 			// Check if a custom template exists in the theme folder, if not, load the plugin template file
-			if ( $theme_file = locate_template( [ 'eazydocs/' . $single_template ] ) ) {
+			$theme_file = locate_template( [ 'eazydocs/' . $single_template ] );
+			if ( $theme_file ) {
 				$file = $theme_file;
 			} else {
 				$file = EAZYDOCS_PATH . '/templates' . '//' . $single_template;
@@ -42,7 +43,8 @@ class Frontend {
 
 			$single_template = 'single-onepage-docs.php';
 			// Check if a custom template exists in the theme folder, if not, load the plugin template file
-			if ( $theme_file = locate_template( [ 'eazydocs/' . $single_template ] ) ) {
+			$theme_file = locate_template( [ 'eazydocs/' . $single_template ] );
+			if ( $theme_file ) {
 				$file = $theme_file;
 			} else {
 				$file = EAZYDOCS_PATH . '/templates' . '//' . $single_template;
