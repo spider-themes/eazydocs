@@ -31,7 +31,7 @@ if ( function_exists( 'eaz_fs' ) ) {
 		global $eaz_fs;
 
 		if ( ! isset( $eaz_fs ) ) {
-			require_once dirname( __FILE__ ) . '/vendor/fs/start.php';
+			require_once dirname( __FILE__ ) . '/vendor/freemius/wordpress-sdk/start.php';
 
 			$eaz_fs = fs_dynamic_init( [
 				'id'                      => '10290',
@@ -164,7 +164,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 */
 		public function load_csf_files(){
 			// Load CSF framework (needed on both frontend and admin)
-			require __DIR__ . '/vendor/csf/classes/setup.class.php';
+			require __DIR__ . '/includes/csf/classes/setup.class.php';
 			require __DIR__ . '/includes/Admin/options/settings-options.php';
 			if ( ezd_is_premium() ) {
 				require_once __DIR__ . '/includes/Admin/options/taxonomy-options.php';

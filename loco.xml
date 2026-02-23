@@ -18,13 +18,13 @@
     <domain name="freemius">
         <project name="freemius">
             <source>
-                <directory>vendor/fs</directory>
+                <directory>vendor/freemius/wordpress-sdk</directory>
             </source>
             <target>
-                <directory>vendor/fs/languages</directory>
+                <directory>vendor/freemius/wordpress-sdk/languages</directory>
             </target>
             <template>
-                <file>vendor/fs/languages/freemius.pot</file>
+                <file>vendor/freemius/wordpress-sdk/languages/freemius.pot</file>
             </template>
         </project>
     </domain>

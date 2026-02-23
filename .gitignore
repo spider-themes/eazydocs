@@ -1,6 +1,3 @@
-node_modules/
-.specify/
-.github/
-/src/css
-/vendor/csf/assets/css
-/.agent
+node_modules
+vendor
+build

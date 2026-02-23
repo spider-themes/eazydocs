@@ -1,6 +1,6 @@
 {
-    "name": "delwer/eazydocs",
-    "description": "short info",
+    "name": "spider-themes/eazydocs",
+    "description": "EazyDocs is a modern, feature-rich documentation plugin for WordPress. Create professional knowledge bases, FAQs, and help centers with ease.",
     "type": "wordpress-plugin",
     "license": "GPLv2",
     "authors": [
@@ -9,8 +9,10 @@
             "email": "spiderthemes@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {},
+    "minimum-stability": "stable",
+    "require": {
+        "freemius/wordpress-sdk": "2.13.0"
+    },
     "autoload": {
         "psr-4": {
             "EazyDocs\\": "includes/"

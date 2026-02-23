@@ -1,0 +1,133 @@
+name: Package
+
+on:
+  push:
+    branches: "*"
+    tags: "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: NPM Install and Build
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+            npm run build
+          else
+            echo "No package.json found, skipping build"
+          fi
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+
+      - name: Composer Install
+        run: |
+          if [ -f composer.json ]; then
+            composer install --no-dev --optimize-autoloader --no-interaction && composer dump-autoload
+          else
+            echo "No composer.json found, skipping composer install and dump-autoload"
+          fi
+
+      - name: Define Variables
+        run: |
+          DIR_NAME="${{ vars.SLUG }}"
+          PROD_FILES="${{ vars.PROD_FILES }}"
+          GDRIVE_TARGET_PATH="github/artifacts/${{ vars.SLUG }}"
+          REF="${{ github.sha }}"
+          REF="${REF:0:7}"
+
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            REF="${{ github.ref_name }}"
+          fi
+
+          SLUG="$DIR_NAME-$REF"
+          ZIP_FILE="$SLUG.zip"
+
+          echo "DIR_NAME=$DIR_NAME" >> $GITHUB_ENV
+          echo "SLUG=$SLUG" >> $GITHUB_ENV
+          echo "ZIP_FILE=$ZIP_FILE" >> $GITHUB_ENV
+          echo "PROD_FILES=$PROD_FILES" >> $GITHUB_ENV
+          echo "GDRIVE_TARGET_PATH=$GDRIVE_TARGET_PATH" >> $GITHUB_ENV
+
+      - name: Production Directory
+        run: |
+          mkdir -p $DIR_NAME
+          for file in $PROD_FILES; do
+            if [ -e "$file" ]; then
+              cp -r "$file" "$DIR_NAME/"
+            else
+              echo "Skipping optional file: $file"
+            fi
+          done
+
+      - name: Create ZIP
+        run: |
+          zip -r $ZIP_FILE "$DIR_NAME/"
+
+      - name: Upload to Google Drive
+        if: startsWith(github.ref, 'refs/heads/')
+        env:
+          GDRIVE_TOKEN: ${{ secrets.GDRIVE_TOKEN }}
+        run: |
+          curl https://rclone.org/install.sh | sudo bash
+
+          mkdir -p ~/.config/rclone
+          cat > ~/.config/rclone/rclone.conf << EOF
+          [gdrive]
+          type = drive
+          scope = drive
+          token = $GDRIVE_TOKEN
+          EOF
+
+          echo "📤 Uploading $ZIP_FILE to Google Drive: $GDRIVE_TARGET_PATH"
+          rclone copy "$ZIP_FILE" "gdrive:$GDRIVE_TARGET_PATH" -v --drive-use-trash=false
+          
+          # Get the file ID and create link
+          FILE_ID=$(rclone lsjson "gdrive:$GDRIVE_TARGET_PATH" | jq -r ".[] | select(.Name==\"$ZIP_FILE\") | .ID")
+          
+          if [ -n "$FILE_ID" ]; then
+            # Create links (file inherits permissions from parent folder)
+            DOWNLOAD_LINK="https://drive.google.com/uc?export=download&id=$FILE_ID"
+            VIEW_LINK="https://drive.google.com/file/d/$FILE_ID/view"
+            
+            echo "✅ Upload complete!"
+            echo "📥 Download Link: $DOWNLOAD_LINK"
+            
+            echo "## 🎉 Build Successful!" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 📦 Download Plugin ZIP" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**File:** \`$ZIP_FILE\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "🔗 **[Download ZIP]($DOWNLOAD_LINK)**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "👁️ [View in Google Drive]($VIEW_LINK)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "📂 Path: \`$GDRIVE_TARGET_PATH\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "> 💡 **Note:** Anyone with access to the parent folder can download this file." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Upload complete but could not get file ID"
+          fi
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP_FILE }}
