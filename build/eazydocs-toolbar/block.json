@@ -1,8 +1,0 @@
-{
-  "apiVersion": 2,
-  "name": "eazydocs/eazydocs-toolbar",
-  "version": "0.1.0",
-  "title": "EazyDocs Toolbar",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css"
-}
