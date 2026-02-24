@@ -4,7 +4,7 @@
  * This file contains JavaScript functionality for the EazyDocs Dashboard page.
  * It handles NiceSelect initialization and stats filter interactions.
  * 
- * Note: Doc Builder-specific code is now in doc-builder.js
+ * Note: Docs Builder-specific code is now in docs-builder.js
  * Note: Analytics page has its own tab handling in Analytics.php
  * 
  * @package EazyDocs

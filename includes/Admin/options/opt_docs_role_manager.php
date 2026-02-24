@@ -19,7 +19,7 @@ CSF::createSection( $prefix, array(
 			'id'       => 'docs-write-access',
 			'type'     => 'select',
 			'title'    => esc_html__( 'Documentation Authors', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Select which user roles can create and manage documentation from the Doc Builder interface.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Select which user roles can create and manage documentation from the Docs Builder interface.', 'eazydocs' ),
 			'options'  => [
 				'administrator' => esc_html__( 'Administrator', 'eazydocs' ),
 				'editor'        => esc_html__( 'Editor', 'eazydocs' ),

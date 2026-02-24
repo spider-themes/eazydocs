@@ -1,0 +1,157 @@
+/*----------------------------------------*/
+/*  Empty State – Docs Builder
+/*  Shown when no documentation exists yet.
+/*----------------------------------------*/
+
+// ===== Wrapper =====
+.eazydocs-no-content-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 500px;
+	padding: 40px 20px;
+}
+
+// ===== Card =====
+.ezd-empty-state-card {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 6px 16px rgba(0, 0, 0, 0.04);
+	padding: 50px 40px 45px;
+	max-width: 520px;
+	width: 100%;
+	text-align: center;
+}
+
+// ===== Icon =====
+.ezd-empty-icon-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 90px;
+	height: 90px;
+	margin: 0 auto 24px;
+	background: #f4f2ff;
+	border-radius: 50%;
+}
+
+.ezd-empty-icon {
+	width: 48px;
+	height: 48px;
+	object-fit: contain;
+}
+
+// ===== Title =====
+.ezd-empty-title {
+	font-size: 22px;
+	font-weight: 700;
+	color: #1e1e2f;
+	margin: 0 0 12px;
+	line-height: 1.35;
+}
+
+// ===== Description =====
+.ezd-empty-desc {
+	font-size: 15px;
+	color: #6b7280;
+	line-height: 1.65;
+	margin: 0 auto 28px;
+	max-width: 420px;
+}
+
+// ===== Actions =====
+.ezd-empty-actions {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 14px;
+	flex-wrap: wrap;
+}
+
+// ===== Premium Buttons =====
+.ezd-btn-premium {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	border-radius: 8px;
+	cursor: pointer;
+	text-decoration: none;
+	border: none;
+	transition: all 0.25s ease;
+	line-height: 1;
+	white-space: nowrap;
+
+	.dashicons {
+		font-size: 18px;
+		width: 18px;
+		height: 18px;
+		line-height: 1;
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(90, 80, 249, 0.25);
+	}
+}
+
+// Primary gradient button
+.ezd-btn-primary-gradient {
+	background: linear-gradient(135deg, #5a50f9 0%, #7b6cff 100%);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(90, 80, 249, 0.35);
+
+	&:hover {
+		background: linear-gradient(135deg, #4a3ff0 0%, #6b5cf5 100%);
+		color: #fff;
+		box-shadow: 0 6px 16px rgba(90, 80, 249, 0.45);
+		transform: translateY(-1px);
+	}
+
+	&:active {
+		transform: translateY(0);
+		box-shadow: 0 2px 8px rgba(90, 80, 249, 0.35);
+	}
+}
+
+// Import sample button
+.ezd-btn-import-sample {
+	background: #fff;
+	color: #5a50f9;
+	border: 1.5px solid #e0deff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+
+	&:hover {
+		background: #f8f7ff;
+		border-color: #c5c1ff;
+		color: #4a3ff0;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 10px rgba(90, 80, 249, 0.1);
+	}
+
+	&:active {
+		transform: translateY(0);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	}
+
+	&.is-loading {
+		opacity: 0.7;
+		pointer-events: none;
+	}
+}
+
+// ===== Spin Animation (re-used across builder) =====
+.ezd-spin {
+	animation: ezd-spin-rotate 1s linear infinite;
+}
+
+@keyframes ezd-spin-rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

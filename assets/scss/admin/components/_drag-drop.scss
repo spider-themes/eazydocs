@@ -1,379 +1,471 @@
 /*----------------------------------------*/
 /*  Enhanced Drag & Drop Styles
-/*  Visual improvements only - no layout changes
-/*  Works alongside existing custom.css styles
+/*  Polished, consistent UX for nestable
+/*  drag-and-drop reordering.
 /*----------------------------------------*/
 
 // ===== CSS Custom Properties =====
 :root {
-    --ezd-drag-handle-color: #9199a1;
-    --ezd-drag-handle-hover-color: #4c4cf1;
-    --ezd-drag-active-bg: rgba(76, 76, 241, 0.08);
-    --ezd-drag-placeholder-bg: rgba(76, 76, 241, 0.1);
-    --ezd-drag-placeholder-border: #4c4cf1;
-    --ezd-drag-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    --ezd-drag-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	--ezd-drag-handle-color: #b0b5bd;
+	--ezd-drag-handle-hover-color: #4c4cf1;
+	--ezd-drag-active-bg: rgba(76, 76, 241, 0.06);
+	--ezd-drag-placeholder-bg: rgba(76, 76, 241, 0.06);
+	--ezd-drag-placeholder-border: rgba(76, 76, 241, 0.45);
+	--ezd-drag-ghost-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(76, 76, 241, 0.25);
+	--ezd-drag-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-// ===== Enhanced Drag Handle Icon Styles =====
-// Only styling the icon appearance, not the handle position
+// ==========================================================
+//  CHILD DOCS (right panel) – Drag Handle
+// ==========================================================
+
+// Handle icon SVG – consistent appearance at all depths.
 .nestables-child .dd3-handle {
-    transition: var(--ezd-drag-transition);
-    
-    .dd-handle-icon {
-        width: 16px;
-        height: 16px;
-        color: var(--ezd-drag-handle-color);
-        transition: color 0.2s ease;
-        
-        circle {
-            fill: currentColor;
-        }
-        
-        path {
-            stroke: currentColor;
-        }
-    }
-    
-    &:hover {
-        .dd-handle-icon {
-            color: var(--ezd-drag-handle-hover-color);
-        }
-    }
+	transition: opacity 0.2s ease, background 0.2s ease;
+
+	.dd-handle-icon {
+		width: 14px;
+		height: 14px;
+		color: var(--ezd-drag-handle-color);
+		transition: color 0.2s ease, transform 0.2s ease;
+		display: block;
+
+		circle {
+			fill: currentColor;
+		}
+	}
+
+	&:hover {
+		.dd-handle-icon {
+			color: var(--ezd-drag-handle-hover-color);
+			transform: scale(1.15);
+		}
+	}
 }
 
-// ===== Enhanced Placeholder Styles =====
+// ==========================================================
+//  PLACEHOLDER – Drop target indicator
+// ==========================================================
 .dd-placeholder {
-    background: var(--ezd-drag-placeholder-bg) !important;
-    border: 2px dashed var(--ezd-drag-placeholder-border) !important;
-    border-radius: 8px;
-    animation: ezd-placeholder-pulse 1.5s ease-in-out infinite;
-    
-    &::before {
-        content: 'Drop here';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--ezd-drag-placeholder-border);
-        opacity: 0.8;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-    }
+	position: relative;
+	background: var(--ezd-drag-placeholder-bg) !important;
+	border: 2px dashed var(--ezd-drag-placeholder-border) !important;
+	border-radius: 6px;
+	min-height: 44px;
+	margin: 4px 0 !important;
+	transition: background 0.2s ease;
+	animation: ezd-placeholder-pulse 1.8s ease-in-out infinite;
+
+	// "Drop here" label
+	&::before {
+		content: '';
+		display: block;
+	}
 }
 
 @keyframes ezd-placeholder-pulse {
-    0%, 100% {
-        background: rgba(76, 76, 241, 0.08);
-    }
-    50% {
-        background: rgba(76, 76, 241, 0.15);
-    }
+	0%, 100% {
+		background: rgba(76, 76, 241, 0.05) !important;
+	}
+	50% {
+		background: rgba(76, 76, 241, 0.12) !important;
+	}
 }
 
-// ===== Enhanced Drag Element (Ghost) =====
+// ==========================================================
+//  DRAG GHOST (dd-dragel) – The element following the cursor
+// ==========================================================
 .dd-dragel {
-    > .dd-item,
-    > .dd3-item {
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: var(--ezd-drag-shadow);
-        transform: rotate(2deg);
-        
-        .dd3-content {
-            border: 2px solid var(--ezd-drag-placeholder-border);
-            border-radius: 8px;
-            background: #fff;
-        }
-        
-        // Hide nested children in drag preview
-        .dd-list {
-            display: none !important;
-        }
-    }
+	pointer-events: none;
+	z-index: 99999 !important;
+	opacity: 0.97;
+
+	> .dd-item,
+	> .dd3-item {
+		background: #fff !important;
+		border-radius: 8px !important;
+		box-shadow: var(--ezd-drag-ghost-shadow) !important;
+		transform: rotate(1.5deg);
+		overflow: hidden;
+		max-width: 700px;
+
+		> .dd3-handle {
+			display: block !important;
+			opacity: 1 !important;
+			position: static !important;
+			background: rgba(76, 76, 241, 0.08);
+			border-right: 1px solid rgba(76, 76, 241, 0.15);
+			padding: 10px 8px;
+		}
+
+		.dd3-content {
+			border: none !important;
+			border-radius: 8px !important;
+			background: #fff !important;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+
+		// Hide nested children in drag preview to keep compact.
+		> .dd-list,
+		.dd-list {
+			display: none !important;
+		}
+
+		// Hide expand/collapse buttons in the ghost.
+		> button,
+		button[data-action="expand"],
+		button[data-action="collapse"] {
+			display: none !important;
+		}
+	}
 }
 
-// ===== Item States During Drag =====
-.dd-item.is-dragging {
-    opacity: 0.5;
-}
-
-// ===== Row Hover Enhancement =====
+// ==========================================================
+//  ROW HOVER – Subtle indicator on content rows
+// ==========================================================
 .nestables-child .dd3-content {
-    transition: background 0.2s ease;
-    position: relative;
-    
-    &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: transparent;
-        border-radius: 0 2px 2px 0;
-        transition: background 0.2s ease;
-    }
-    
-    &:hover::before {
-        background: var(--ezd-drag-placeholder-border);
-    }
+	transition: background 0.15s ease, box-shadow 0.15s ease;
+	position: relative;
+
+	// Left accent bar on hover.
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 4px;
+		bottom: 4px;
+		width: 3px;
+		background: transparent;
+		border-radius: 0 3px 3px 0;
+		transition: background 0.2s ease;
+		pointer-events: none;
+	}
+
+	&:hover::after {
+		background: var(--ezd-drag-handle-hover-color);
+	}
 }
 
-// ===== Button Visibility for Items with Children =====
-// Only ensure proper z-index and pointer-events, let nestable library handle display
+// ==========================================================
+//  ITEM STATES DURING DRAG
+// ==========================================================
+
+// Body class added via JS during drag.
+body.ezd-is-dragging {
+	cursor: grabbing !important;
+
+	* {
+		cursor: grabbing !important;
+	}
+
+	// Prevent hover side-effects during drag.
+	.nestables-child .dd3-content:hover {
+		background: transparent;
+
+		&::after {
+			background: transparent;
+		}
+	}
+
+	// Prevent action icons from appearing during drag.
+	.accordion-title:hover ul.actions,
+	.dd3-content:hover .accordion-title ul.actions {
+		display: none !important;
+	}
+}
+
+// The item being dragged (source) should fade.
+.nestables-child .dd-item.dd-is-dragging {
+	opacity: 0.35;
+	transition: opacity 0.15s ease;
+}
+
+// ==========================================================
+//  EXPAND/COLLAPSE BUTTONS (nestable library generated)
+// ==========================================================
 .nestables-child .dd-item {
-    > button.nestable--button,
-    > button[data-action="expand"],
-    > button[data-action="collapse"] {
-        z-index: 5;
-        pointer-events: auto;
-    }
+	> button.nestable--button,
+	> button[data-action="expand"],
+	> button[data-action="collapse"] {
+		z-index: 5;
+		pointer-events: auto;
+		cursor: pointer;
+	}
 }
 
-// ===== Drag Indicator Tooltip =====
-.ezd-drag-tooltip {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #252733;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    z-index: 10000;
-    display: none;
-    align-items: center;
-    gap: 10px;
-    
-    &.is-visible {
-        display: flex;
-        animation: ezd-tooltip-slide-up 0.3s ease;
-    }
-    
-    .ezd-drag-tooltip-icon {
-        width: 20px;
-        height: 20px;
-        fill: #4c4cf1;
-    }
-}
-
-@keyframes ezd-tooltip-slide-up {
-    from {
-        opacity: 0;
-        transform: translate(-50%, 10px);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-}
-
-// ===== Success/Save Indicator =====
+// ==========================================================
+//  SAVE INDICATOR – Toast after reorder
+// ==========================================================
 .ezd-save-indicator {
-    position: fixed;
-    top: 80px;
-    right: 20px;
-    background: #2db22d;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    box-shadow: 0 4px 20px rgba(45, 178, 45, 0.3);
-    z-index: 10000;
-    display: none;
-    align-items: center;
-    gap: 10px;
-    
-    &.is-visible {
-        display: flex;
-        animation: ezd-save-slide-in 0.3s ease;
-    }
-    
-    .dashicons {
-        font-size: 18px;
-        width: 18px;
-        height: 18px;
-    }
+	position: fixed;
+	top: 46px;
+	right: 20px;
+	background: linear-gradient(135deg, #2db22d 0%, #27a027 100%);
+	color: #fff;
+	padding: 10px 18px;
+	border-radius: 8px;
+	font-size: 13px;
+	font-weight: 500;
+	box-shadow: 0 4px 16px rgba(45, 178, 45, 0.3);
+	z-index: 100000;
+	display: none;
+	align-items: center;
+	gap: 8px;
+
+	&.is-visible {
+		display: flex;
+		animation: ezd-save-slide-in 0.3s ease forwards;
+	}
+
+	&.is-hiding {
+		animation: ezd-save-slide-out 0.3s ease forwards;
+	}
+
+	.dashicons {
+		font-size: 16px;
+		width: 16px;
+		height: 16px;
+	}
 }
 
 @keyframes ezd-save-slide-in {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
-// ===== Parent Docs Sidebar Drag Enhancement =====
+@keyframes ezd-save-slide-out {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+}
+
+// ==========================================================
+//  PARENT DOCS SIDEBAR – Drag Enhancement
+// ==========================================================
 .parent-nestable {
-    .easydocs-navitem {
-        transition: var(--ezd-drag-transition);
-        
-        &::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: transparent;
-            transition: background 0.2s ease;
-        }
-        
-        &:hover::after {
-            background: var(--clr-blue);
-        }
-        
-        // Drag handle in sidebar - enhanced hover
-        .dd-handle:hover {
-            svg path {
-                stroke: #fff;
-            }
-        }
-    }
-    
-    // Placeholder in sidebar
-    .dd-placeholder {
-        background: rgba(76, 76, 241, 0.2) !important;
-        border-color: #4c4cf1 !important;
-        
-        &::before {
-            color: #fff;
-        }
-    }
-    
-    // Dragging item in sidebar
-    .dd-dragel {
-        .easydocs-navitem {
-            background: #1e1f3a;
-            border-radius: 8px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        }
-    }
+	.easydocs-navitem {
+		transition: var(--ezd-drag-transition);
+	}
+
+	// Drag handle in sidebar – enhanced hover.
+	.dd-handle {
+
+		.dd-handle-icon {
+			color: rgba(255, 255, 255, 0.5);
+			transition: color 0.2s ease, transform 0.2s ease;
+		}
+
+		&:hover .dd-handle-icon {
+			color: #fff;
+			transform: scale(1.15);
+		}
+	}
+
+	// Placeholder in sidebar
+	.dd-placeholder {
+		background: rgba(76, 76, 241, 0.2) !important;
+		border-color: rgba(76, 76, 241, 0.6) !important;
+		border-radius: 4px;
+		height: 50px !important;
+		margin: 4px 0 !important;
+
+		&::before {
+			display: none;
+		}
+	}
+
+	// Dragging item in sidebar.
+	.dd-dragel {
+		.easydocs-navitem {
+			background: #1e1f3a !important;
+			border-radius: 8px;
+			box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+			border-left-color: var(--clr-blue, #4c4cf1);
+		}
+	}
 }
 
-// ===== Responsive Adjustments =====
-@media (max-width: 1440px) {
-    .dd-placeholder::before {
-        font-size: 11px;
-    }
-}
-
-body.rtl {
-    .nestables-child .dd3-content::before {
-        left: auto;
-        right: 0;
-        border-radius: 2px 0 0 2px;
-    }
-    
-    .parent-nestable .easydocs-navitem::after {
-        right: auto;
-        left: 0;
-    }
-    
-    .ezd-save-indicator {
-        right: auto;
-        left: 20px;
-    }
-}
-
-// ===== Filter Container with Toolbar =====
+// ==========================================================
+//  FILTER CONTAINER WITH TOOLBAR
+// ==========================================================
 .easydocs-filter-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid #edeae9;
-    margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 15px;
+	padding: 15px 0;
+	border-bottom: 1px solid #edeae9;
+	margin-bottom: 10px;
 }
 
 // ===== Toolbar Actions =====
 .ezd-toolbar-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: auto;
 }
 
 // ===== Toggle Expand/Collapse Button =====
 .ezd-toggle-expand-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    color: #495057;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    
-    .dashicons {
-        font-size: 16px;
-        width: 16px;
-        height: 16px;
-        transition: transform 0.2s ease;
-    }
-    
-    .btn-text {
-        line-height: 1;
-    }
-    
-    &:hover {
-        background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
-        border-color: #adb5bd;
-        color: #212529;
-        
-        .dashicons {
-            color: var(--clr-blue, #4c4cf1);
-        }
-    }
-    
-    &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(76, 76, 241, 0.15);
-        border-color: var(--clr-blue, #4c4cf1);
-    }
-    
-    &:active {
-        transform: scale(0.98);
-    }
-    
-    // Expanded state styling
-    &[data-state="expanded"] {
-        background: linear-gradient(135deg, #e7f3ff 0%, #d2e6f9 100%);
-        border-color: #90c2f0;
-        color: #1877f2;
-        
-        .dashicons {
-            color: #1877f2;
-        }
-        
-        &:hover {
-            background: linear-gradient(135deg, #d2e6f9 0%, #bbd8f0 100%);
-            border-color: #6eb1eb;
-        }
-    }
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+	border: 1px solid #dee2e6;
+	border-radius: 6px;
+	color: #495057;
+	font-size: 13px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	.dashicons {
+		font-size: 16px;
+		width: 16px;
+		height: 16px;
+		transition: transform 0.2s ease;
+	}
+
+	.btn-text {
+		line-height: 1;
+	}
+
+	&:hover {
+		background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+		border-color: #adb5bd;
+		color: #212529;
+
+		.dashicons {
+			color: var(--clr-blue, #4c4cf1);
+		}
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(76, 76, 241, 0.15);
+		border-color: var(--clr-blue, #4c4cf1);
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+
+	// Expanded state styling
+	&[data-state="expanded"] {
+		background: linear-gradient(135deg, #e7f3ff 0%, #d2e6f9 100%);
+		border-color: #90c2f0;
+		color: #1877f2;
+
+		.dashicons {
+			color: #1877f2;
+		}
+
+		&:hover {
+			background: linear-gradient(135deg, #d2e6f9 0%, #bbd8f0 100%);
+			border-color: #6eb1eb;
+		}
+	}
 }
 
-// ===== RTL Support for Toolbar =====
+// ==========================================================
+//  RESPONSIVE ADJUSTMENTS
+// ==========================================================
+@media (max-width: 1440px) {
+	.dd-placeholder::before {
+		font-size: 11px;
+	}
+}
+
+// ==========================================================
+//  SKELETON LOADING
+// ==========================================================
+.ezd-skeleton-line {
+	background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+	background-size: 200% 100%;
+	animation: ezd-skeleton-shimmer 1.5s ease-in-out infinite;
+	border-radius: 4px;
+}
+
+@keyframes ezd-skeleton-shimmer {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+.ezd-skeleton-loading {
+	pointer-events: none;
+	opacity: 0.85;
+}
+
+// ==========================================================
+//  TOAST ERROR VARIANT
+// ==========================================================
+.ezd-save-indicator.is-error {
+	background: linear-gradient(135deg, #d33 0%, #b52727 100%) !important;
+	box-shadow: 0 4px 16px rgba(211, 51, 51, 0.3);
+}
+
+.ezd-toast-container {
+	position: fixed;
+	top: 46px;
+	right: 20px;
+	z-index: 100000;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	pointer-events: none;
+
+	.ezd-save-indicator {
+		pointer-events: auto;
+		position: static;
+	}
+}
+
+// ==========================================================
+//  RTL SUPPORT
+// ==========================================================
 body.rtl {
-    .ezd-toolbar-actions {
-        margin-left: 0;
-        margin-right: auto;
-    }
+	.nestables-child .dd3-content::after {
+		left: auto;
+		right: 0;
+		border-radius: 3px 0 0 3px;
+	}
+
+	.parent-nestable .easydocs-navitem::after {
+		right: auto;
+		left: 0;
+	}
+
+	.ezd-save-indicator {
+		right: auto;
+		left: 20px;
+	}
+
+	.ezd-toolbar-actions {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	.ezd-toast-container {
+		right: auto;
+		left: 20px;
+	}
 }

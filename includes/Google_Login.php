@@ -41,7 +41,7 @@ class Google_Login {
 
         // login page 
         add_action( 'login_enqueue_scripts', function(){
-            wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_ASSETS . '/css/frontend.css', array(), EAZYDOCS_VERSION );
+            wp_enqueue_style( 'eazydocs-frontend', EAZYDOCS_URL . '/build/styles/frontend.css', array(), EAZYDOCS_VERSION );
             wp_enqueue_script( 'eazydocs-single', EAZYDOCS_ASSETS . '/js/frontend/docs-single.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
         });
         

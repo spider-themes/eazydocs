@@ -371,7 +371,7 @@ class Admin {
 		// Enqueue the feedback presentation CSS.
 		wp_enqueue_style(
 			'ezd-feedback-presentation',
-			EAZYDOCS_ASSETS . '/css/feedback-presentation.css',
+			EAZYDOCS_URL . '/build/styles/feedback-presentation.css',
 			[],
 			EAZYDOCS_VERSION
 		);
@@ -384,7 +384,7 @@ class Admin {
 		// Enqueue the analytics presentation CSS.
 		wp_enqueue_style(
 			'ezd-analytics-presentation',
-			EAZYDOCS_ASSETS . '/css/analytics-presentation.css',
+			EAZYDOCS_URL . '/build/styles/analytics-presentation.css',
 			[],
 			EAZYDOCS_VERSION
 		);

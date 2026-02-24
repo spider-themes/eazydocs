@@ -1,0 +1,437 @@
+/*----------------------------------------*/
+/*  Section Card Layout
+/*  Modern card-based docs builder UI.
+/*----------------------------------------*/
+
+// ==========================================================
+//  SECTION LIST – container for all section cards
+// ==========================================================
+.ezd-section-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 16px;
+	margin-bottom: 24px;
+}
+
+// ==========================================================
+//  SECTION CARD – each depth-1 item
+// ==========================================================
+.ezd-section-card {
+	background: #fff;
+	border: 1px solid #e2e6ea;
+	border-radius: 10px;
+	overflow: visible;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+	&:hover {
+		border-color: #d0d5dc;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+	}
+
+	&.dd-is-dragging {
+		opacity: 0.35;
+	}
+}
+
+// ==========================================================
+//  SECTION HEADER – top bar of each card
+// ==========================================================
+.ezd-section-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 20px;
+	gap: 12px;
+}
+
+.ezd-section-header-left {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex: 1;
+	min-width: 0;
+}
+
+// Drag handle – 6-dot grip
+.ezd-section-drag-handle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	cursor: grab;
+	color: #b0b5bd;
+	flex-shrink: 0;
+	border-radius: 4px;
+	transition: color 0.15s ease, background 0.15s ease;
+
+	&:hover {
+		color: var(--ezd-drag-handle-hover-color, #4c4cf1);
+		background: rgba(76, 76, 241, 0.06);
+	}
+
+	&:active {
+		cursor: grabbing;
+	}
+}
+
+// Collapse/expand chevron button
+.ezd-section-collapse-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	color: #6b7280;
+	border-radius: 4px;
+	flex-shrink: 0;
+	transition: color 0.15s ease, background 0.15s ease;
+
+	&:hover {
+		color: #374151;
+		background: #f3f4f6;
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 2px rgba(76, 76, 241, 0.2);
+	}
+}
+
+.ezd-section-chevron {
+	transition: transform 0.2s ease;
+
+	&.ezd-chevron-collapsed {
+		transform: rotate(-90deg);
+	}
+}
+
+// Numbered badge
+.ezd-section-number {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 26px;
+	height: 26px;
+	padding: 0 8px;
+	background: #e8eefb;
+	color: #3b6de0;
+	font-size: 13px;
+	font-weight: 600;
+	border-radius: 6px;
+	flex-shrink: 0;
+	line-height: 1;
+}
+
+// Section title
+.ezd-section-title-text {
+	font-size: 15px;
+	font-weight: 500;
+	color: #1a1a2e;
+	margin: 0;
+	line-height: 1.4;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	flex: 0 1 auto;
+
+	a {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover {
+			color: #3b6de0;
+		}
+	}
+}
+
+// Header action icons (right side)
+.ezd-section-header-actions {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	flex-shrink: 0;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.ezd-section-card:hover .ezd-section-header-actions {
+	opacity: 1;
+}
+
+.ezd-header-action-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 6px;
+	color: #9ca3af;
+	text-decoration: none;
+	transition: color 0.15s ease, background 0.15s ease;
+
+	&:hover {
+		color: #374151;
+		background: #f3f4f6;
+	}
+
+	&.ezd-header-action-delete:hover {
+		color: #dc2626;
+		background: #fef2f2;
+	}
+}
+
+// ==========================================================
+//  SECTION BODY – children area
+// ==========================================================
+.ezd-section-body {
+	border-top: 1px solid #f0f1f3;
+	padding: 8px 12px 12px;
+}
+
+// ==========================================================
+//  CHILD ROW – each depth-2+ item
+// ==========================================================
+.ezd-child-row {
+	border-radius: 8px;
+	transition: background 0.15s ease;
+
+	&:hover {
+		background: #f8f9fb;
+	}
+
+	&.dd-is-dragging {
+		opacity: 0.35;
+	}
+}
+
+.ezd-child-row-inner {
+	display: flex;
+	align-items: center;
+	padding: 10px 14px;
+	gap: 10px;
+	min-height: 42px;
+}
+
+// Child drag handle
+.ezd-child-drag-handle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 16px;
+	height: 16px;
+	cursor: grab;
+	color: #c5c9d0;
+	flex-shrink: 0;
+	opacity: 0;
+	transition: opacity 0.15s ease, color 0.15s ease;
+
+	&:hover {
+		color: var(--ezd-drag-handle-hover-color, #4c4cf1);
+	}
+
+	&:active {
+		cursor: grabbing;
+	}
+}
+
+.ezd-child-row:hover .ezd-child-drag-handle {
+	opacity: 1;
+}
+
+// Status dot indicator
+.ezd-status-dot {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.ezd-dot-publish {
+	background: #3b82f6;
+}
+
+.ezd-dot-private {
+	background: #f59e0b;
+}
+
+.ezd-dot-protected {
+	background: #8b5cf6;
+}
+
+.ezd-dot-draft {
+	background: #9ca3af;
+}
+
+// Child title
+.ezd-child-title {
+	flex: 0 1 auto;
+	font-size: 14px;
+	color: #374151;
+	line-height: 1.4;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	a {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover {
+			color: #3b6de0;
+		}
+	}
+}
+
+// Child hover actions
+.ezd-child-actions {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	flex-shrink: 0;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.ezd-child-row:hover .ezd-child-actions {
+	opacity: 1;
+}
+
+.ezd-inline-action {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	color: #9ca3af;
+	text-decoration: none;
+	transition: color 0.15s ease, background 0.15s ease;
+
+	.dashicons {
+		font-size: 16px;
+		width: 16px;
+		height: 16px;
+	}
+
+	&:hover {
+		color: #374151;
+		background: #f3f4f6;
+	}
+
+	&.ezd-inline-action-delete:hover {
+		color: #dc2626;
+		background: #fef2f2;
+	}
+
+	&.eazydocs-pro-notice {
+		.dashicons {
+			color: #f1bd6c;
+		}
+	}
+}
+
+// Nested children indentation
+.ezd-child-nested {
+	padding-left: 24px;
+}
+
+// ==========================================================
+//  COLLAPSED STATE
+// ==========================================================
+.ezd-section-collapsed {
+	.ezd-section-body {
+		display: none;
+	}
+}
+
+.ezd-child-collapsed {
+	.ezd-child-nested {
+		display: none;
+	}
+}
+
+// ==========================================================
+//  ADD SUB-LESSON BUTTON
+// ==========================================================
+.ezd-add-sub-lesson-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 16px;
+	background: #fff;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	color: #374151;
+	font-size: 13px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	margin-top: 4px;
+
+	&:hover {
+		border-color: #9ca3af;
+		background: #f9fafb;
+		color: #111827;
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(76, 76, 241, 0.12);
+		border-color: var(--clr-blue, #4c4cf1);
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+}
+
+.ezd-add-sub-lesson-icon {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1;
+	color: #6b7280;
+}
+
+// ==========================================================
+//  DRAG STATES FOR SECTION CARDS
+// ==========================================================
+body.ezd-is-dragging {
+	.ezd-section-header-actions,
+	.ezd-child-actions {
+		opacity: 0 !important;
+	}
+
+	.ezd-child-row:hover {
+		background: transparent;
+	}
+
+	.ezd-section-card:hover {
+		border-color: #e2e6ea;
+		box-shadow: none;
+	}
+}
+
+// ==========================================================
+//  RTL SUPPORT
+// ==========================================================
+body.rtl {
+	.ezd-section-header-left {
+		flex-direction: row-reverse;
+	}
+
+	.ezd-child-nested {
+		padding-left: 0;
+		padding-right: 24px;
+	}
+
+	.ezd-section-header-actions {
+		flex-direction: row-reverse;
+	}
+}

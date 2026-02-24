@@ -254,35 +254,5 @@
             });
         });
         
-
-        // ADD PARENT DOC
-        function add_parent_doc() {
-            $(document).on('click', '#parent-doc', function (e) {
-                e.preventDefault();
-                let href = $(this).attr('data-url');
-                Swal.fire({
-                    title: eazydocs_local_object.create_prompt_title,
-                    input: 'text',
-                    showCancelButton: true,
-                    inputAttributes: {
-                        name: 'parent_title',
-                    },
-                }).then((result) => {
-                    if (result.value) {
-                        let results = result.value.replaceAll(
-                            '&',
-                            'ezd_ampersand'
-                        );
-                        results = results.replaceAll('#', 'ezd_hash');
-                        results = results.replaceAll('+', 'ezd_plus');
-
-                        document.location.href = href + results;
-                    }
-                });
-            });
-        }
-
-        add_parent_doc();
-        
     });
 })(jQuery);

@@ -246,11 +246,19 @@
       this.dragEl = $(document.createElement(this.options.listNodeName)).addClass(this.options.listClass + ' ' + this.options.dragClass);
       this.dragEl.css('width', dragItem.width());
 
+      // Mark the source item as being dragged (CSS will dim it).
+      this.sourceItem = dragItem;
+      dragItem.addClass('dd-is-dragging');
+
       dragItem.after(this.placeEl);
       dragItem[0].parentNode.removeChild(dragItem[0]);
       dragItem.appendTo(this.dragEl);
 
       $(document.body).append(this.dragEl);
+
+      // Add body-level drag class for global cursor & hover suppression.
+      $(document.body).addClass('ezd-is-dragging');
+
       this.dragEl.css({
         'left': e.pageX - mouse.offsetX,
         'top': e.pageY - mouse.offsetY
@@ -268,10 +276,18 @@
 
     dragStop: function (e) {
       var el = this.dragEl.children(this.options.itemNodeName).first();
+
+      // Remove the dragging state class before re-inserting.
+      el.removeClass('dd-is-dragging');
+
       el[0].parentNode.removeChild(el[0]);
       this.placeEl.replaceWith(el);
 
       this.dragEl.remove();
+
+      // Remove body-level drag class.
+      $(document.body).removeClass('ezd-is-dragging');
+
       this.el.trigger('change');
       if (this.hasNewRoot) {
         this.dragRootEl.trigger('change');

@@ -941,9 +941,15 @@ function sidebar_selectbox() {
  * @return string
  */
 function get_reusable_blocks() {
-	$wp_registered_blocks = get_posts( [
-		'post_type' => 'wp_block'
-	] );
+	$wp_registered_blocks = get_posts(
+		array(
+			'post_type'      => array( 'wp_block', 'wp_pattern' ),
+			'post_status'    => array( 'publish', 'private' ),
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		)
+	);
 	if ( ! empty ( $wp_registered_blocks ) ) {
 		$sidebars = '';
 		foreach ( $wp_registered_blocks as $wp_registered_block ) {
@@ -967,9 +973,15 @@ function get_reusable_blocks() {
  * @return string HTML option tags for the select box.
  */
 function get_reusable_blocks_right() {
-	$wp_registered_blocks = get_posts( [
-		'post_type' => 'wp_block'
-	] );
+	$wp_registered_blocks = get_posts(
+		array(
+			'post_type'      => array( 'wp_block', 'wp_pattern' ),
+			'post_status'    => array( 'publish', 'private' ),
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		)
+	);
 	if ( ! empty( $wp_registered_blocks ) ) {
 		$sidebars = '';
 
@@ -986,6 +998,39 @@ function get_reusable_blocks_right() {
 		return $return_output
 			= '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat"><option>No block found!</option></select>';
 	}
+}
+
+/**
+ * Get reusable blocks as structured options for React UIs.
+ *
+ * @return array<int, array{id: string, title: string}>
+ */
+function ezd_get_reusable_blocks_options() {
+	$wp_registered_blocks = get_posts(
+		array(
+			'post_type'      => array( 'wp_block', 'wp_pattern' ),
+			'post_status'    => array( 'publish', 'private' ),
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		)
+	);
+
+	if ( empty( $wp_registered_blocks ) ) {
+		return array();
+	}
+
+	return array_map(
+		static function ( $wp_registered_block ) {
+			$title = isset( $wp_registered_block->post_title ) ? wp_strip_all_tags( $wp_registered_block->post_title ) : '';
+
+			return array(
+				'id'    => (string) $wp_registered_block->ID,
+				'title' => '' !== $title ? $title : esc_html__( '(Untitled)', 'eazydocs' ),
+			);
+		},
+		$wp_registered_blocks
+	);
 }
 
 /**

@@ -30,16 +30,34 @@ class Assets {
 	 * Register scripts and styles
 	 **/
 	public function dashboard_scripts() {
-		// Doc Builder Assets (only on Doc Builder page)
+		// Docs Builder Assets (only on Docs Builder page)
 		if ( ezd_admin_pages('eazydocs-builder') ) {
-			wp_enqueue_script( 'ezd-accordion', EAZYDOCS_ASSETS . '/js/admin/accordion.min.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
+			// Nestable is still needed – used by React components via jQuery bridge.
 			wp_enqueue_script( 'ezd-nestable', EAZYDOCS_ASSETS . '/js/admin/jquery.nestable.js', array('jquery'), EAZYDOCS_VERSION, true );
-			
-			// Doc Builder specific JavaScript (tab handling, doc CRUD, search, drag-drop, etc.)
-			wp_enqueue_script( 'ezd-doc-builder', EAZYDOCS_ASSETS . '/js/admin/doc-builder.js', array( 'jquery', 'mixitup', 'ezd-nestable' ), EAZYDOCS_VERSION, true );
+
+			// React Docs Builder app.
+			$asset_file = EAZYDOCS_PATH . '/build/docs-builder/index.asset.php';
+			if ( file_exists( $asset_file ) ) {
+				$asset = require $asset_file;
+				wp_enqueue_script(
+					'ezd-docs-builder-react',
+					EAZYDOCS_URL . '/build/docs-builder/index.js',
+					array_merge( $asset['dependencies'], array( 'jquery', 'ezd-nestable' ) ),
+					$asset['version'],
+					true
+				);
+				if ( file_exists( EAZYDOCS_PATH . '/build/docs-builder/index.css' ) ) {
+					wp_enqueue_style(
+						'ezd-docs-builder-react',
+						EAZYDOCS_URL . '/build/docs-builder/index.css',
+						array(),
+						$asset['version']
+					);
+				}
+			}
 		}
 
-		// MixItUp - needed on both Doc Builder (notification filtering) and Analytics (data filtering)
+		// MixItUp - needed on both Docs Builder (notification filtering) and Analytics (data filtering)
 		if ( ezd_admin_pages( ['eazydocs-builder', 'ezd-analytics'] ) ) {
 			wp_enqueue_script( 'mixitup', EAZYDOCS_VEND . '/mixitup/mixitup.min.js', array( 'jquery' ), '2.1.11', true );
 		}
@@ -51,18 +69,18 @@ class Assets {
 			wp_enqueue_script( 'tabby-polyfills', EAZYDOCS_ASSETS . '/js/admin/tabby.polyfills.min.js', array( 'jquery' ), '12.0.3', true );
 		}
 
-		// Dashboard page only (NOT on Doc Builder or Analytics to prevent conflicts)
+		// Dashboard page only (NOT on Docs Builder or Analytics to prevent conflicts)
 		if ( ezd_admin_pages( 'eazydocs' ) ) {
 			wp_enqueue_script( 'ezd-admin-custom', EAZYDOCS_ASSETS . '/js/admin/custom.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
 		}
 
-		// NiceSelect - only needed on Dashboard and Setup pages (not Doc Builder or Analytics)
+		// NiceSelect - only needed on Dashboard and Setup pages (not Docs Builder or Analytics)
 		if ( ezd_admin_pages( ['eazydocs', 'eazydocs-initial-setup'] ) ) {
 			wp_enqueue_style( 'nice-select', EAZYDOCS_ASSETS . '/css/admin/nice-select.css', array(), EAZYDOCS_VERSION );
 			wp_enqueue_script( 'jquery-nice-select', EAZYDOCS_ASSETS . '/js/admin/jquery.nice-select.min.js', array( 'jquery' ), '1.0', true );
 		}
 
-		// ApexCharts - only needed on Dashboard and Analytics for charts (not Doc Builder)
+		// ApexCharts - only needed on Dashboard and Analytics for charts (not Docs Builder)
 		if ( ezd_admin_pages( ['eazydocs', 'ezd-analytics'] ) ) {
 			wp_deregister_style('csf-fa5');
 			wp_deregister_style('csf-fa5-v4-shims');
@@ -73,7 +91,7 @@ class Assets {
 			wp_enqueue_script( 'ezd-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
 		}
 
-		wp_enqueue_style( 'ezd-main', EAZYDOCS_ASSETS . '/css/admin.css', array(), EAZYDOCS_VERSION );
+		wp_enqueue_style( 'ezd-main', EAZYDOCS_URL . '/build/styles/admin.css', array(), EAZYDOCS_VERSION );
 		wp_enqueue_style( 'ezd-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css', array(), EAZYDOCS_VERSION );
 
 		// Enqueue scripts and styles for initial setup page
@@ -88,9 +106,9 @@ class Assets {
 			wp_enqueue_script( 'wp-color-picker' );
 			wp_enqueue_script( 'smartwizard', EAZYDOCS_ASSETS . '/js/admin/jquery.smartWizard.min.js', array('jquery'), true, true );
 			// Custom styles and scripts (use filemtime for cache busting during development)
-			$setup_wizard_css_ver = filemtime( EAZYDOCS_PATH . '/assets/css/admin_setup_wizard.css' );
+			$setup_wizard_css_ver = file_exists( EAZYDOCS_PATH . '/build/styles/admin-setup-wizard.css' ) ? filemtime( EAZYDOCS_PATH . '/build/styles/admin-setup-wizard.css' ) : EAZYDOCS_VERSION;
 			$setup_wizard_js_ver  = filemtime( EAZYDOCS_PATH . '/assets/js/admin/setup_wizard_config.js' );
-			wp_enqueue_style( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/css/admin_setup_wizard.css', array(), $setup_wizard_css_ver );
+			wp_enqueue_style( 'ezd_setup_wizard', EAZYDOCS_URL . '/build/styles/admin-setup-wizard.css', array(), $setup_wizard_css_ver );
 			wp_enqueue_script( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/js/admin/setup_wizard_config.js', array( 'jquery', 'smartwizard' ), $setup_wizard_js_ver, true );
 		}
 	}
@@ -114,7 +132,7 @@ class Assets {
 		wp_localize_script('ezd-block-insert-handler', 'ezdAssets', [
 			'styles' => [
 				EAZYDOCS_ASSETS . '/vendors/elegant-icon/style.css',
-				EAZYDOCS_ASSETS . '/css/ezd-docs-widgets.css',
+				EAZYDOCS_URL . '/build/styles/ezd-docs-widgets.css',
 			],
 			'scripts' => [
 				EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js',
@@ -128,9 +146,9 @@ class Assets {
 	 * Load on all pages of WordPress dashboard
 	 */
 	public function global_scripts() {
-		wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/css/admin-global.css', array(), EAZYDOCS_VERSION );
+		wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_URL . '/build/styles/admin-global.css', array(), EAZYDOCS_VERSION );
 		wp_enqueue_style( 'elegant-icon', EAZYDOCS_ASSETS . '/vendors/elegant-icon/style.css', array(), EAZYDOCS_VERSION );		
-		wp_register_style( 'ezd-admin-settings', EAZYDOCS_ASSETS . '/css/admin-settings.css', array(), EAZYDOCS_VERSION );
+		wp_register_style( 'ezd-admin-settings', EAZYDOCS_URL . '/build/styles/admin-settings.css', array(), EAZYDOCS_VERSION );
 
 		// Settings page specific styles
 		if ( ezd_admin_pages( 'eazydocs-settings' )  ) {
@@ -206,6 +224,8 @@ class Assets {
 				'get_reusable_block'        => get_reusable_blocks(),
 				'get_reusable_blocks_right' => get_reusable_blocks_right(),
 				'manage_reusable_blocks'    => ezd_manage_reusable_blocks(),
+				'reusable_blocks_options'   => ezd_get_reusable_blocks_options(),
+				'manage_reusable_blocks_url'=> admin_url( 'edit.php?post_type=wp_block' ),
 				'is_ezd_premium'            => eaz_fs()->is_paying_or_trial() ? 'yes' : '',
 				'is_ezd_pro_block'          => ezd_is_premium() ? 'yes' : '',
 				'ezd_get_conditional_items' => ezd_get_conditional_items(),

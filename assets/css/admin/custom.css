@@ -40,7 +40,8 @@
     text-transform: uppercase;
 }
 
-.easydocs-navitem.is-active::before {
+.easydocs-navitem.is-active::before,
+.easydocs-navitem.active::before {
     border-color: transparent #e5e5e5 transparent transparent !important
 }
 
@@ -155,11 +156,14 @@ div.search_result {
 
 .create_onepage_doc_area {
     overflow: hidden;
+    text-align: left;
 }
 
 label[for='ezd-shortcode-edit'],
 label[for='right_side_sidebar'],
-.create_onepage_doc_area label[for='ezd-shortcode'] {
+.create_onepage_doc_area label[for='ezd-shortcode'],
+.create_onepage_doc_area .ezd_shortcode_content_wrap label,
+.create_onepage_doc_area .ezd_shortcode_content_wrap_right label {
     margin: 20px 0 6px 0;
     display: inline-block;
     width: 99%;
@@ -258,7 +262,8 @@ select#ezd_docs_layout {
     font-weight: 500;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: .3s all
+    transition: .3s all;
+    text-align: center;
 }
 
 .ezd_content_btn_wrap .left_btn_link.ezd_left_active,
@@ -513,7 +518,9 @@ select#ezd_docs_layout {
 }
 
 .easydocs-navbar .dd-placeholder {
-    background: gray;
+    background: rgba(76, 76, 241, 0.15);
+    border: 2px dashed rgba(76, 76, 241, 0.4);
+    border-radius: 4px;
 }
 
 .nestables-child .dd-handle {
@@ -521,28 +528,46 @@ select#ezd_docs_layout {
     width: 30px;
     height: 100%;
     margin: 0;
-    padding: 5px 14px;
+    padding: 5px 10px;
     line-height: 36px;
     opacity: 1;
     visibility: visible;
-    transition: 0.3s ease-out;
+    transition: opacity 0.2s ease;
 }
 
 .nestables-child .dd3-handle {
     position: absolute;
     left: 0;
-    top: 2px;
-    cursor: move;
+    top: 0;
+    bottom: 0;
+    cursor: grab;
     white-space: nowrap;
     overflow: hidden;
     background: transparent;
     border: 0;
     z-index: 9;
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.easydocs-accordion-item:hover > .dd3-handle {
-    display: block;
+/* Show handle on row hover - needs multiple selectors for robustness */
+/* 1) When hovering anywhere on the li.dd-item (works as handle is direct child) */
+.nestables-child .dd-item:hover > .dd3-handle,
+/* 2) When hovering the accordion item specifically */
+.nestables-child .easydocs-accordion-item:hover > .dd3-handle,
+/* 3) When the dd3-content content area is hovered (using :has) */
+.nestables-child .dd-item:has(.dd3-content:hover) > .dd3-handle {
+    opacity: 1;
+}
+
+/* Always show handle on active drag */
+.nestables-child .dd3-handle:active {
+    opacity: 1;
+    cursor: grabbing;
 }
 
 .nestables-child .dd-item > button {
@@ -585,20 +610,9 @@ select#ezd_docs_layout {
     position: relative;
 }
 
+/* No-children items should NOT show the expand arrow pseudo-element. */
 .nestables-child .dd3-have-no-children .dd3-content::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 5px 0 5px 6px;
-    border-color: transparent transparent transparent #575767;
-    display: block;
-    transform: rotate(0deg);
-    left: 38px;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    top: 17px;
+    display: none !important;
 }
 
 .nestables-child .dd-item > button[data-action="collapse"]:before {
@@ -606,22 +620,25 @@ select#ezd_docs_layout {
 }
 
 .dd-placeholder, .dd-empty {
-    margin: 5px 0;
+    margin: 4px 0;
     padding: 0;
-    background: #f2fbff;
-    border: 1px dashed #b6bcbf;
+    background: rgba(76, 76, 241, 0.06);
+    border: 2px dashed rgba(76, 76, 241, 0.4);
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    height: 40px !important;
+    height: 44px !important;
+    border-radius: 6px;
+    transition: background 0.15s ease;
 }
 
+/* Depth-based handle positioning */
 .dd-item-child .dd-handle.dd3-handle {
-    left: 20px;
+    left: 18px;
 }
 
 .child-of-child .dd-handle.dd3-handle {
-    left: 40px;
+    left: 36px;
 }
 
 .dd-empty {
@@ -632,7 +649,7 @@ select#ezd_docs_layout {
 .dd-dragel {
     position: absolute;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 99999;
 }
 
 .dd-dragel > .dd-item .dd-handle {
@@ -640,8 +657,7 @@ select#ezd_docs_layout {
 }
 
 .dd-dragel .dd-handle {
-    -webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1);
-    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1);
+    box-shadow: none;
 }
 
 .dd3-content {
@@ -655,7 +671,7 @@ select#ezd_docs_layout {
 }
 
 .depth-4 .dd-handle.dd3-handle {
-    left: 60px;
+    left: 54px;
 }
 
 .dd-dragel > .dd3-item > .dd3-content {
@@ -695,10 +711,31 @@ select#ezd_docs_layout {
     background: #F9F9F9;
 }
 
+/**
+ * Show child doc action icons when hovering the entire row.
+ *
+ * The existing rule `.accordion-title:hover ul.actions` targets a 20px-high
+ * element which makes the hover target too small. This selector triggers on
+ * the full `.dd3-content` wrapper (including its padding) so the action icons
+ * reliably appear when hovering anywhere on the child doc row.
+ */
+.dd3-content:hover .accordion-title ul.actions {
+    display: flex;
+}
+
+.dd3-content:hover .accordion-title ul.actions li {
+    margin: 0;
+}
+
+.swal2-styled.swal2-cancel {
+	color: #fff;
+}
+
 body.rtl,
 body.rtl .ezd_docs_content_type_wrap,
 body.rtl .ezd_docs_content_type_wrap > label[for="ezd_docs_content_type"],
 body.rtl label[for='ezd-shortcode-edit'], body.rtl label[for='right_side_sidebar'], body.rtl .create_onepage_doc_area label[for='ezd-shortcode'],
+body.rtl .create_onepage_doc_area .ezd_shortcode_content_wrap label, body.rtl .create_onepage_doc_area .ezd_shortcode_content_wrap_right label,
 body.rtl .ezd_content_btn_wrap .left_btn_link, body.rtl .ezd_content_btn_wrap .right_btn_link,
 body.rtl h2#swal2-title,
 body.rtl .docs_visibility_field_wrap,
@@ -824,4 +861,649 @@ select[name="eazydocs_settings[docs-url-structure]"] {
     margin-left: 0;
     border-radius: 3px 3px 0 0;
     margin-right: 5px;
+}
+
+/* =============================================
+   React Docs Builder – Active State & UX Fixes
+   ============================================= */
+
+/**
+ * Status filter active styles.
+ *
+ * The React builder uses `is-active` as the state class
+ * whereas the old MixItUp-based page used `mixitup-control-active`.
+ * These selectors ensure both classes produce the same active appearance.
+ */
+.single-item-filter .easydocs-btn.easydocs-btn-black-light.is-active,
+.single-item-filter .easydocs-btn.easydocs-btn-black-light.mixitup-control-active {
+	--btn-bg: #0d0e2b;
+	--btn-clr: #fff;
+	--btn-icon: #fff;
+}
+
+.single-item-filter .easydocs-btn.easydocs-btn-green-light.is-active,
+.single-item-filter .easydocs-btn.easydocs-btn-green-light.mixitup-control-active {
+	--btn-bg: #2db22d;
+	--btn-clr: #fff;
+	--btn-icon: #fff;
+}
+
+.single-item-filter .easydocs-btn.easydocs-btn-blue-light.is-active,
+.single-item-filter .easydocs-btn.easydocs-btn-blue-light.mixitup-control-active {
+	--btn-bg: #0275d8;
+	--btn-clr: #fff;
+	--btn-icon: #fff;
+}
+
+.single-item-filter .easydocs-btn.easydocs-btn-orange-light.is-active,
+.single-item-filter .easydocs-btn.easydocs-btn-orange-light.mixitup-control-active {
+	--btn-bg: #cc8033;
+	--btn-clr: #fff;
+	--btn-icon: #fff;
+}
+
+.single-item-filter .easydocs-btn.easydocs-btn-gray-light.is-active,
+.single-item-filter .easydocs-btn.easydocs-btn-gray-light.mixitup-control-active {
+	--btn-bg: #424242;
+	--btn-clr: #fff;
+	--btn-icon: #fff;
+}
+
+/* Active filter hover states */
+.single-item-filter .easydocs-btn.is-active:hover {
+	opacity: 0.9;
+}
+
+/* Active filter cursor */
+.single-item-filter .easydocs-btn {
+	cursor: pointer;
+	user-select: none;
+}
+
+/**
+ * Hide expand/collapse arrow on items without children.
+ *
+ * The nestable library injects a pseudo-element arrow on
+ * `.dd3-content::before`, but items with `dd3-have-no-children`
+ * should not show this arrow since they cannot be expanded.
+ */
+.nestables-child .dd3-have-no-children .dd3-content::before {
+	display: none !important;
+}
+
+/* The nestable library may also inject a button for expand/collapse */
+.nestables-child .dd3-have-no-children > button {
+	display: none !important;
+}
+
+/**
+ * Section / Sub-section alignment fixes.
+ *
+ * Ensure consistent indentation at each nesting level
+ * regardless of whether the item has children or not.
+ */
+.nestables-child .dd-list .dd-list {
+	padding-left: 18px;
+}
+
+.nestables-child .dd-list .dd-list .dd-list {
+	padding-left: 18px;
+}
+
+.nestables-child .dd-list .dd-list .dd-list .dd-list {
+	padding-left: 18px;
+}
+
+/* Fix button margin alignment at each depth */
+.nestables-child .dd-item > button {
+	margin-top: 0;
+}
+
+/* Ensure accordion items without children have proper left padding */
+.nestables-child .dd3-have-no-children .dd3-content {
+	padding-left: 55px;
+}
+
+.nestables-child .dd-list .dd-list .dd3-have-no-children .dd3-content {
+	padding-left: 55px;
+}
+
+/**
+ * Drag-and-drop UX improvements.
+ *
+ * Comprehensive overhaul: clean ghost, smooth transitions,
+ * body-level cursor during drag, proper depth handling.
+ */
+
+/* Nestable container: ensure proper overflow handling */
+.nestables-child {
+	overflow: visible;
+	position: relative;
+}
+
+/* Drag ghost: compact, elevated, branded */
+.dd-dragel > .dd-item,
+.dd-dragel > .dd3-item {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12),
+	            0 0 0 1px rgba(76, 76, 241, 0.25);
+	transform: rotate(1.5deg);
+	opacity: 0.97;
+	max-width: 700px;
+	overflow: hidden;
+}
+
+.dd-dragel > .dd-item .dd3-content,
+.dd-dragel > .dd3-item .dd3-content {
+	border: none;
+	border-radius: 8px;
+	background: #fff;
+}
+
+/* Show handle in drag ghost */
+.dd-dragel > .dd-item > .dd3-handle,
+.dd-dragel > .dd3-item > .dd3-handle {
+	opacity: 1 !important;
+	display: flex !important;
+	background: rgba(76, 76, 241, 0.06);
+}
+
+/* Hide nested children in drag ghost to keep it compact */
+.dd-dragel .dd-list {
+	display: none !important;
+}
+
+/* Hide expand/collapse buttons in drag ghost */
+.dd-dragel > .dd-item > button,
+.dd-dragel > .dd3-item > button {
+	display: none !important;
+}
+
+/* Placeholder: dashed, branded, animated */
+.nestables-child .dd-placeholder {
+	background: rgba(76, 76, 241, 0.06) !important;
+	border: 2px dashed rgba(76, 76, 241, 0.45) !important;
+	border-radius: 6px;
+	margin: 4px 0;
+	min-height: 44px;
+	transition: background 0.15s ease;
+	animation: ezd-placeholder-glow 1.8s ease-in-out infinite;
+}
+
+@keyframes ezd-placeholder-glow {
+	0%, 100% { background: rgba(76, 76, 241, 0.05) !important; }
+	50% { background: rgba(76, 76, 241, 0.12) !important; }
+}
+
+/* Smooth transition when dragging items */
+.nestables-child .dd-item {
+	transition: opacity 0.15s ease;
+}
+
+/* Dim items that are being dragged */
+.nestables-child .dd-item.dd-is-dragging {
+	opacity: 0.35;
+}
+
+/* Parent sidebar drag: smoother placeholder in dark sidebar */
+.parent-nestable .dd-placeholder {
+	background: rgba(76, 76, 241, 0.15) !important;
+	border-color: rgba(76, 76, 241, 0.5) !important;
+	border-radius: 4px;
+	height: 50px !important;
+	margin: 4px 0;
+}
+
+/* Parent sidebar drag ghost: keep sidebar dark theme */
+.parent-nestable .dd-dragel .easydocs-navitem {
+	background: #252733;
+	border-radius: 8px;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+	border-left-color: var(--clr-blue, #4c4cf1);
+}
+
+/* Prevent dragged items from moving outside container */
+.parent-nestable .dd-list {
+	position: relative;
+}
+
+/* Cursor feedback: grab on handles */
+.nestables-child .dd3-handle:hover {
+	cursor: grab;
+}
+
+/* Body-level drag state: managed via JS class `ezd-is-dragging` */
+body.ezd-is-dragging {
+	cursor: grabbing !important;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+body.ezd-is-dragging * {
+	cursor: grabbing !important;
+}
+
+/* Prevent hover effects during drag to avoid flicker */
+body.ezd-is-dragging .dd3-content:hover,
+body.ezd-is-dragging .dd3-content:hover > .accordion-title {
+	background: transparent;
+}
+
+body.ezd-is-dragging .accordion-title:hover ul.actions,
+body.ezd-is-dragging .dd3-content:hover .accordion-title ul.actions {
+	display: none !important;
+}
+
+/* Ensure depth styles remain consistent after reorder */
+.nestables-child .dd-item .dd3-content {
+	transition: background 0.15s ease;
+}
+
+/* =============================================
+   Section Card Layout – Modern card-based UI
+   ============================================= */
+
+/* Section list container */
+.ezd-section-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 16px;
+	margin-bottom: 24px;
+}
+
+/* Section card */
+.ezd-section-card {
+	background: #fff;
+	border: 1px solid #e2e6ea;
+	border-radius: 10px;
+	overflow: visible;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ezd-section-card:hover {
+	border-color: #d0d5dc;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.ezd-section-card.dd-is-dragging {
+	opacity: 0.35;
+}
+
+/* Section header */
+.ezd-section-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 20px;
+	gap: 12px;
+}
+
+.ezd-section-header-left {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex: 1;
+	min-width: 0;
+}
+
+/* Section drag handle */
+.ezd-section-drag-handle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	cursor: grab;
+	color: #b0b5bd;
+	flex-shrink: 0;
+	border-radius: 4px;
+	transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ezd-section-drag-handle:hover {
+	color: var(--ezd-drag-handle-hover-color, #4c4cf1);
+	background: rgba(76, 76, 241, 0.06);
+}
+
+.ezd-section-drag-handle:active {
+	cursor: grabbing;
+}
+
+/* Collapse button */
+.ezd-section-collapse-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	color: #6b7280;
+	border-radius: 4px;
+	flex-shrink: 0;
+	transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ezd-section-collapse-btn:hover {
+	color: #374151;
+	background: #f3f4f6;
+}
+
+.ezd-section-collapse-btn:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px rgba(76, 76, 241, 0.2);
+}
+
+.ezd-section-chevron {
+	transition: transform 0.2s ease;
+}
+
+.ezd-section-chevron.ezd-chevron-collapsed {
+	transform: rotate(-90deg);
+}
+
+/* Numbered badge */
+.ezd-section-number {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 26px;
+	height: 26px;
+	padding: 0 8px;
+	background: #e8eefb;
+	color: #3b6de0;
+	font-size: 13px;
+	font-weight: 600;
+	border-radius: 6px;
+	flex-shrink: 0;
+	line-height: 1;
+}
+
+/* Section title */
+.ezd-section-title-text {
+	font-size: 15px;
+	font-weight: 500;
+	color: #1a1a2e;
+	margin: 0;
+	line-height: 1.4;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.ezd-section-title-text a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.ezd-section-title-text a:hover {
+	color: #3b6de0;
+}
+
+/* Header actions */
+.ezd-section-header-actions {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	flex-shrink: 0;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.ezd-section-card:hover .ezd-section-header-actions {
+	opacity: 1;
+}
+
+.ezd-header-action-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 6px;
+	color: #9ca3af;
+	text-decoration: none;
+	transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ezd-header-action-icon:hover {
+	color: #374151;
+	background: #f3f4f6;
+}
+
+.ezd-header-action-icon.ezd-header-action-delete:hover {
+	color: #dc2626;
+	background: #fef2f2;
+}
+
+/* Section body */
+.ezd-section-body {
+	border-top: 1px solid #f0f1f3;
+	padding: 8px 12px 12px;
+}
+
+/* Child row */
+.ezd-child-row {
+	border-radius: 8px;
+	transition: background 0.15s ease;
+}
+
+.ezd-child-row:hover {
+	background: #f8f9fb;
+}
+
+.ezd-child-row.dd-is-dragging {
+	opacity: 0.35;
+}
+
+.ezd-child-row-inner {
+	display: flex;
+	align-items: center;
+	padding: 10px 14px;
+	gap: 10px;
+	min-height: 42px;
+}
+
+/* Child drag handle */
+.ezd-child-drag-handle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 16px;
+	height: 16px;
+	cursor: grab;
+	color: #c5c9d0;
+	flex-shrink: 0;
+	opacity: 0;
+	transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.ezd-child-drag-handle:hover {
+	color: var(--ezd-drag-handle-hover-color, #4c4cf1);
+}
+
+.ezd-child-drag-handle:active {
+	cursor: grabbing;
+}
+
+.ezd-child-row:hover .ezd-child-drag-handle {
+	opacity: 1;
+}
+
+/* Status dot */
+.ezd-status-dot {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.ezd-dot-publish {
+	background: #3b82f6;
+}
+
+.ezd-dot-private {
+	background: #f59e0b;
+}
+
+.ezd-dot-protected {
+	background: #8b5cf6;
+}
+
+.ezd-dot-draft {
+	background: #9ca3af;
+}
+
+/* Child title */
+.ezd-child-title {
+	flex: 1;
+	font-size: 14px;
+	color: #374151;
+	line-height: 1.4;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.ezd-child-title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.ezd-child-title a:hover {
+	color: #3b6de0;
+}
+
+/* Child hover actions */
+.ezd-child-actions {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	flex-shrink: 0;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.ezd-child-row:hover .ezd-child-actions {
+	opacity: 1;
+}
+
+.ezd-inline-action {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	color: #9ca3af;
+	text-decoration: none;
+	transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ezd-inline-action .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.ezd-inline-action:hover {
+	color: #374151;
+	background: #f3f4f6;
+}
+
+.ezd-inline-action.ezd-inline-action-delete:hover {
+	color: #dc2626;
+	background: #fef2f2;
+}
+
+.ezd-inline-action.eazydocs-pro-notice .dashicons {
+	color: #f1bd6c;
+}
+
+/* Nested children */
+.ezd-child-nested {
+	padding-left: 24px;
+}
+
+/* Collapsed state */
+.ezd-section-collapsed .ezd-section-body {
+	display: none;
+}
+
+.ezd-child-collapsed .ezd-child-nested {
+	display: none;
+}
+
+/* Add sub-lesson button */
+.ezd-add-sub-lesson-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 16px;
+	background: #fff;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	color: #374151;
+	font-size: 13px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	margin-top: 4px;
+}
+
+.ezd-add-sub-lesson-btn:hover {
+	border-color: #9ca3af;
+	background: #f9fafb;
+	color: #111827;
+}
+
+.ezd-add-sub-lesson-btn:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(76, 76, 241, 0.12);
+	border-color: var(--clr-blue, #4c4cf1);
+}
+
+.ezd-add-sub-lesson-btn:active {
+	transform: scale(0.98);
+}
+
+.ezd-add-sub-lesson-icon {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1;
+	color: #6b7280;
+}
+
+/* Drag states for section cards */
+body.ezd-is-dragging .ezd-section-header-actions,
+body.ezd-is-dragging .ezd-child-actions {
+	opacity: 0 !important;
+}
+
+body.ezd-is-dragging .ezd-child-row:hover {
+	background: transparent;
+}
+
+body.ezd-is-dragging .ezd-section-card:hover {
+	border-color: #e2e6ea;
+	box-shadow: none;
+}
+
+/* RTL support */
+body.rtl .ezd-section-header-left {
+	flex-direction: row-reverse;
+}
+
+body.rtl .ezd-child-nested {
+	padding-left: 0;
+	padding-right: 24px;
+}
+
+body.rtl .ezd-section-header-actions {
+	flex-direction: row-reverse;
 }

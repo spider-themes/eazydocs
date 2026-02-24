@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Convert font-size from px to rem with px fallback
  *
@@ -149,55 +150,55 @@
   --black_900: #0c0d0e;
 }
 
-.ezd_doc_builder * {
+.ezd_docs_builder * {
   box-sizing: border-box;
 }
-.ezd_doc_builder a {
+.ezd_docs_builder a {
   text-decoration: none;
 }
-.ezd_doc_builder {
+.ezd_docs_builder {
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 }
 @media (prefers-reduced-motion: reduce) {
-  .ezd_doc_builder html:focus-within {
+  .ezd_docs_builder html:focus-within {
     scroll-behavior: auto;
   }
-  .ezd_doc_builder *,
-  .ezd_doc_builder *::before,
-  .ezd_doc_builder *::after {
+  .ezd_docs_builder *,
+  .ezd_docs_builder *::before,
+  .ezd_docs_builder *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
-.ezd_doc_builder .fill-current {
+.ezd_docs_builder .fill-current {
   fill: currentColor;
 }
-.ezd_doc_builder {
+.ezd_docs_builder {
   /* A elements that don't have a class get default styles */
 }
-.ezd_doc_builder a:not([class]) {
+.ezd_docs_builder a:not([class]) {
   text-decoration-skip-ink: auto;
 }
-.ezd_doc_builder {
+.ezd_docs_builder {
   /* Make images easier to work with */
 }
-.ezd_doc_builder img,
-.ezd_doc_builder picture {
+.ezd_docs_builder img,
+.ezd_docs_builder picture {
   max-width: 100%;
   display: block;
 }
-.ezd_doc_builder {
+.ezd_docs_builder {
   /* Inherit fonts for inputs and buttons */
 }
-.ezd_doc_builder input,
-.ezd_doc_builder button,
-.ezd_doc_builder textarea,
-.ezd_doc_builder select {
+.ezd_docs_builder input,
+.ezd_docs_builder button,
+.ezd_docs_builder textarea,
+.ezd_docs_builder select {
   font: inherit;
 }
-.ezd_doc_builder .hr {
+.ezd_docs_builder .hr {
   background: var(--clr-black-200);
   width: 100%;
   height: 1px;
@@ -207,11 +208,11 @@
   border-radius: 0;
   opacity: 1;
 }
-.ezd_doc_builder {
+.ezd_docs_builder {
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 }
 @media (prefers-reduced-motion: reduce) {
-  .ezd_doc_builder html:focus-within {
+  .ezd_docs_builder html:focus-within {
     scroll-behavior: auto;
   }
 }
@@ -1253,105 +1254,146 @@ body.rtl a.child-delete {
 
 /*----------------------------------------*/
 /*  Enhanced Drag & Drop Styles
-/*  Visual improvements only - no layout changes
-/*  Works alongside existing custom.css styles
+/*  Polished, consistent UX for nestable
+/*  drag-and-drop reordering.
 /*----------------------------------------*/
 :root {
-  --ezd-drag-handle-color: #9199a1;
+  --ezd-drag-handle-color: #b0b5bd;
   --ezd-drag-handle-hover-color: #4c4cf1;
-  --ezd-drag-active-bg: rgba(76, 76, 241, 0.08);
-  --ezd-drag-placeholder-bg: rgba(76, 76, 241, 0.1);
-  --ezd-drag-placeholder-border: #4c4cf1;
-  --ezd-drag-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --ezd-drag-active-bg: rgba(76, 76, 241, 0.06);
+  --ezd-drag-placeholder-bg: rgba(76, 76, 241, 0.06);
+  --ezd-drag-placeholder-border: rgba(76, 76, 241, 0.45);
+  --ezd-drag-ghost-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(76, 76, 241, 0.25);
   --ezd-drag-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nestables-child .dd3-handle {
-  transition: var(--ezd-drag-transition);
+  transition: opacity 0.2s ease, background 0.2s ease;
 }
 .nestables-child .dd3-handle .dd-handle-icon {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   color: var(--ezd-drag-handle-color);
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: block;
 }
 .nestables-child .dd3-handle .dd-handle-icon circle {
   fill: currentColor;
 }
-.nestables-child .dd3-handle .dd-handle-icon path {
-  stroke: currentColor;
-}
 .nestables-child .dd3-handle:hover .dd-handle-icon {
   color: var(--ezd-drag-handle-hover-color);
+  transform: scale(1.15);
 }
 
 .dd-placeholder {
+  position: relative;
   background: var(--ezd-drag-placeholder-bg) !important;
   border: 2px dashed var(--ezd-drag-placeholder-border) !important;
-  border-radius: 8px;
-  animation: ezd-placeholder-pulse 1.5s ease-in-out infinite;
+  border-radius: 6px;
+  min-height: 44px;
+  margin: 4px 0 !important;
+  transition: background 0.2s ease;
+  animation: ezd-placeholder-pulse 1.8s ease-in-out infinite;
 }
 .dd-placeholder::before {
-  content: "Drop here";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--ezd-drag-placeholder-border);
-  opacity: 0.8;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  content: "";
+  display: block;
 }
 
 @keyframes ezd-placeholder-pulse {
   0%, 100% {
-    background: rgba(76, 76, 241, 0.08);
+    background: rgba(76, 76, 241, 0.05) !important;
   }
   50% {
-    background: rgba(76, 76, 241, 0.15);
+    background: rgba(76, 76, 241, 0.12) !important;
   }
+}
+.dd-dragel {
+  pointer-events: none;
+  z-index: 99999 !important;
+  opacity: 0.97;
 }
 .dd-dragel > .dd-item,
 .dd-dragel > .dd3-item {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: var(--ezd-drag-shadow);
-  transform: rotate(2deg);
+  background: #fff !important;
+  border-radius: 8px !important;
+  box-shadow: var(--ezd-drag-ghost-shadow) !important;
+  transform: rotate(1.5deg);
+  overflow: hidden;
+  max-width: 700px;
+}
+.dd-dragel > .dd-item > .dd3-handle,
+.dd-dragel > .dd3-item > .dd3-handle {
+  display: block !important;
+  opacity: 1 !important;
+  position: static !important;
+  background: rgba(76, 76, 241, 0.08);
+  border-right: 1px solid rgba(76, 76, 241, 0.15);
+  padding: 10px 8px;
 }
 .dd-dragel > .dd-item .dd3-content,
 .dd-dragel > .dd3-item .dd3-content {
-  border: 2px solid var(--ezd-drag-placeholder-border);
-  border-radius: 8px;
-  background: #fff;
+  border: none !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+.dd-dragel > .dd-item > .dd-list,
 .dd-dragel > .dd-item .dd-list,
+.dd-dragel > .dd3-item > .dd-list,
 .dd-dragel > .dd3-item .dd-list {
   display: none !important;
 }
-
-.dd-item.is-dragging {
-  opacity: 0.5;
+.dd-dragel > .dd-item > button,
+.dd-dragel > .dd-item button[data-action=expand],
+.dd-dragel > .dd-item button[data-action=collapse],
+.dd-dragel > .dd3-item > button,
+.dd-dragel > .dd3-item button[data-action=expand],
+.dd-dragel > .dd3-item button[data-action=collapse] {
+  display: none !important;
 }
 
 .nestables-child .dd3-content {
-  transition: background 0.2s ease;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
   position: relative;
 }
-.nestables-child .dd3-content::before {
+.nestables-child .dd3-content::after {
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 4px;
+  bottom: 4px;
   width: 3px;
   background: transparent;
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 3px 3px 0;
   transition: background 0.2s ease;
+  pointer-events: none;
 }
-.nestables-child .dd3-content:hover::before {
-  background: var(--ezd-drag-placeholder-border);
+.nestables-child .dd3-content:hover::after {
+  background: var(--ezd-drag-handle-hover-color);
+}
+
+body.ezd-is-dragging {
+  cursor: grabbing !important;
+}
+body.ezd-is-dragging * {
+  cursor: grabbing !important;
+}
+body.ezd-is-dragging .nestables-child .dd3-content:hover {
+  background: transparent;
+}
+body.ezd-is-dragging .nestables-child .dd3-content:hover::after {
+  background: transparent;
+}
+body.ezd-is-dragging .accordion-title:hover ul.actions,
+body.ezd-is-dragging .dd3-content:hover .accordion-title ul.actions {
+  display: none !important;
+}
+
+.nestables-child .dd-item.dd-is-dragging {
+  opacity: 0.35;
+  transition: opacity 0.15s ease;
 }
 
 .nestables-child .dd-item > button.nestable--button,
@@ -1359,130 +1401,84 @@ body.rtl a.child-delete {
 .nestables-child .dd-item > button[data-action=collapse] {
   z-index: 5;
   pointer-events: auto;
+  cursor: pointer;
 }
 
-.ezd-drag-tooltip {
+.ezd-save-indicator {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #252733;
+  top: 46px;
+  right: 20px;
+  background: linear-gradient(135deg, #2db22d 0%, #27a027 100%);
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  z-index: 10000;
+  box-shadow: 0 4px 16px rgba(45, 178, 45, 0.3);
+  z-index: 100000;
   display: none;
   align-items: center;
-  gap: 10px;
-}
-.ezd-drag-tooltip.is-visible {
-  display: flex;
-  animation: ezd-tooltip-slide-up 0.3s ease;
-}
-.ezd-drag-tooltip .ezd-drag-tooltip-icon {
-  width: 20px;
-  height: 20px;
-  fill: #4c4cf1;
-}
-
-@keyframes ezd-tooltip-slide-up {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 10px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-.ezd-save-indicator {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  background: #2db22d;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  box-shadow: 0 4px 20px rgba(45, 178, 45, 0.3);
-  z-index: 10000;
-  display: none;
-  align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .ezd-save-indicator.is-visible {
   display: flex;
-  animation: ezd-save-slide-in 0.3s ease;
+  animation: ezd-save-slide-in 0.3s ease forwards;
+}
+.ezd-save-indicator.is-hiding {
+  animation: ezd-save-slide-out 0.3s ease forwards;
 }
 .ezd-save-indicator .dashicons {
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 @keyframes ezd-save-slide-in {
   from {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
+  }
+}
+@keyframes ezd-save-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
   }
 }
 .parent-nestable .easydocs-navitem {
   transition: var(--ezd-drag-transition);
 }
-.parent-nestable .easydocs-navitem::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: transparent;
-  transition: background 0.2s ease;
+.parent-nestable .dd-handle .dd-handle-icon {
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s ease, transform 0.2s ease;
 }
-.parent-nestable .easydocs-navitem:hover::after {
-  background: var(--clr-blue);
-}
-.parent-nestable .easydocs-navitem .dd-handle:hover svg path {
-  stroke: #fff;
+.parent-nestable .dd-handle:hover .dd-handle-icon {
+  color: #fff;
+  transform: scale(1.15);
 }
 .parent-nestable .dd-placeholder {
   background: rgba(76, 76, 241, 0.2) !important;
-  border-color: #4c4cf1 !important;
+  border-color: rgba(76, 76, 241, 0.6) !important;
+  border-radius: 4px;
+  height: 50px !important;
+  margin: 4px 0 !important;
 }
 .parent-nestable .dd-placeholder::before {
-  color: #fff;
+  display: none;
 }
 .parent-nestable .dd-dragel .easydocs-navitem {
-  background: #1e1f3a;
+  background: #1e1f3a !important;
   border-radius: 8px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-}
-
-@media (max-width: 1440px) {
-  .dd-placeholder::before {
-    font-size: 11px;
-  }
-}
-body.rtl .nestables-child .dd3-content::before {
-  left: auto;
-  right: 0;
-  border-radius: 2px 0 0 2px;
-}
-body.rtl .parent-nestable .easydocs-navitem::after {
-  right: auto;
-  left: 0;
-}
-body.rtl .ezd-save-indicator {
-  right: auto;
-  left: 20px;
+  border-left-color: var(--clr-blue, #4c4cf1);
 }
 
 .easydocs-filter-container {
@@ -1555,11 +1551,212 @@ body.rtl .ezd-save-indicator {
   border-color: #6eb1eb;
 }
 
+@media (max-width: 1440px) {
+  .dd-placeholder::before {
+    font-size: 11px;
+  }
+}
+.ezd-skeleton-line {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: ezd-skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes ezd-skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+.ezd-skeleton-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.ezd-save-indicator.is-error {
+  background: linear-gradient(135deg, #d33 0%, #b52727 100%) !important;
+  box-shadow: 0 4px 16px rgba(211, 51, 51, 0.3);
+}
+
+.ezd-toast-container {
+  position: fixed;
+  top: 46px;
+  right: 20px;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.ezd-toast-container .ezd-save-indicator {
+  pointer-events: auto;
+  position: static;
+}
+
+body.rtl .nestables-child .dd3-content::after {
+  left: auto;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+body.rtl .parent-nestable .easydocs-navitem::after {
+  right: auto;
+  left: 0;
+}
+body.rtl .ezd-save-indicator {
+  right: auto;
+  left: 20px;
+}
 body.rtl .ezd-toolbar-actions {
   margin-left: 0;
   margin-right: auto;
 }
+body.rtl .ezd-toast-container {
+  right: auto;
+  left: 20px;
+}
 
+/*----------------------------------------*/
+/*  Empty State – Docs Builder
+/*  Shown when no documentation exists yet.
+/*----------------------------------------*/
+.eazydocs-no-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  padding: 40px 20px;
+}
+
+.ezd-empty-state-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 6px 16px rgba(0, 0, 0, 0.04);
+  padding: 50px 40px 45px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+}
+
+.ezd-empty-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 24px;
+  background: #f4f2ff;
+  border-radius: 50%;
+}
+
+.ezd-empty-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.ezd-empty-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e1e2f;
+  margin: 0 0 12px;
+  line-height: 1.35;
+}
+
+.ezd-empty-desc {
+  font-size: 15px;
+  color: #6b7280;
+  line-height: 1.65;
+  margin: 0 auto 28px;
+  max-width: 420px;
+}
+
+.ezd-empty-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ezd-btn-premium {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: all 0.25s ease;
+  line-height: 1;
+  white-space: nowrap;
+}
+.ezd-btn-premium .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 1;
+}
+.ezd-btn-premium:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(90, 80, 249, 0.25);
+}
+
+.ezd-btn-primary-gradient {
+  background: linear-gradient(135deg, #5a50f9 0%, #7b6cff 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(90, 80, 249, 0.35);
+}
+.ezd-btn-primary-gradient:hover {
+  background: linear-gradient(135deg, #4a3ff0 0%, #6b5cf5 100%);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(90, 80, 249, 0.45);
+  transform: translateY(-1px);
+}
+.ezd-btn-primary-gradient:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(90, 80, 249, 0.35);
+}
+
+.ezd-btn-import-sample {
+  background: #fff;
+  color: #5a50f9;
+  border: 1.5px solid #e0deff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.ezd-btn-import-sample:hover {
+  background: #f8f7ff;
+  border-color: #c5c1ff;
+  color: #4a3ff0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(90, 80, 249, 0.1);
+}
+.ezd-btn-import-sample:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.ezd-btn-import-sample.is-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.ezd-spin {
+  animation: ezd-spin-rotate 1s linear infinite;
+}
+
+@keyframes ezd-spin-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 /*----------------------------------------*/
 /*  02. Header Area
 /*----------------------------------------*/
@@ -2137,6 +2334,7 @@ body.rtl .ezd-toolbar-actions {
   flex: 1;
   width: auto;
   padding: 0 30px 30px 30px;
+  background: #f4f5f7;
 }
 
 button.nestable--button.nestable--expand {

@@ -1,7 +1,7 @@
 /**
- * EazyDocs Doc Builder JavaScript
+ * EazyDocs Docs Builder JavaScript
  * 
- * This file contains all JavaScript functionality specific to the Doc Builder page.
+ * This file contains all JavaScript functionality specific to the Docs Builder page.
  * It handles tab management, doc CRUD operations, search, bulk options, and MixItUp configurations.
  * 
  * @package EazyDocs
@@ -138,7 +138,7 @@
 			return false;
 		} );
 
-		// Notification icon toggle (Doc Builder specific)
+		// Notification icon toggle (Docs Builder specific)
 		$(document).ready(function (e) {
 			function t(t) {
 				e(t).bind('click', function (t) {
@@ -429,7 +429,7 @@
 			$(this).attr('aria-pressed', 'true');
 		});
 
-		// Notifications filter buttons (Doc Builder page)
+		// Notifications filter buttons (Docs Builder page)
 		$('.easydocs-filters button').on('click', function(e){
 			e.preventDefault();
 
@@ -581,7 +581,7 @@
 
 })(jQuery);
 
-// Menu Toggle function (Doc Builder specific)
+// Menu Toggle function (Docs Builder specific)
 function menuToggle() {
 	const toggleMenu = document.querySelector('.easydocs-dropdown');
 	if (toggleMenu) {
@@ -589,7 +589,7 @@ function menuToggle() {
 	}
 }
 
-// MixItUp configurations for Doc Builder
+// MixItUp configurations for Docs Builder
 (function() {
 	let docContainer = document.querySelectorAll('.easydocs-tab');
 
@@ -611,7 +611,7 @@ function menuToggle() {
 	/**
 	 * Mixitup config
 	 * Used in the Notification Filter
-	 * Located on the Doc Builder UI page
+	 * Located on the Docs Builder UI page
 	 */
 	var containerEl1 = document.querySelector('[data-ref="container-1"]');
 	if (containerEl1) {

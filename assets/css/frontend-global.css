@@ -777,8 +777,6 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
   top: calc(100% - 0px);
   max-height: 100vh;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 #ezd-search-results::-webkit-scrollbar {
   width: 8px;
@@ -793,6 +791,10 @@ form.ezd_search_form .form-group .input-wrapper input::placeholder {
 }
 #ezd-search-results::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
+}
+#ezd-search-results {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 #ezd-search-results a {
   text-decoration: none;
