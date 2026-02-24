@@ -149,18 +149,14 @@
   --black_900: #0c0d0e;
 }
 
-.ezd_doc_builder {
-  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-  /* A elements that don't have a class get default styles */
-  /* Make images easier to work with */
-  /* Inherit fonts for inputs and buttons */
-  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-}
 .ezd_doc_builder * {
   box-sizing: border-box;
 }
 .ezd_doc_builder a {
   text-decoration: none;
+}
+.ezd_doc_builder {
+  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 }
 @media (prefers-reduced-motion: reduce) {
   .ezd_doc_builder html:focus-within {
@@ -178,13 +174,22 @@
 .ezd_doc_builder .fill-current {
   fill: currentColor;
 }
+.ezd_doc_builder {
+  /* A elements that don't have a class get default styles */
+}
 .ezd_doc_builder a:not([class]) {
   text-decoration-skip-ink: auto;
+}
+.ezd_doc_builder {
+  /* Make images easier to work with */
 }
 .ezd_doc_builder img,
 .ezd_doc_builder picture {
   max-width: 100%;
   display: block;
+}
+.ezd_doc_builder {
+  /* Inherit fonts for inputs and buttons */
 }
 .ezd_doc_builder input,
 .ezd_doc_builder button,
@@ -201,6 +206,9 @@
   border: none;
   border-radius: 0;
   opacity: 1;
+}
+.ezd_doc_builder {
+  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 }
 @media (prefers-reduced-motion: reduce) {
   .ezd_doc_builder html:focus-within {

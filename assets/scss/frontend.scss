@@ -416,6 +416,14 @@ body.single-docs {
     display: none;
   }
 
+  /* WoodMart: reset content layout wrapper */
+  &.wp-theme-woodmart .wd-content-layout,
+  &.wp-theme-woodmart main#main-content {
+    display: block;
+    padding: 0;
+    max-width: 100%;
+  }
+
   #main .doc_left_sidebarlist h2.doc-title {
     margin-bottom: 25px;
   }
@@ -522,4 +530,152 @@ body.single-docs {
 #loginform .ezd-google-login-btn {
     width: 100%;
     box-sizing: border-box;
+}
+
+.wp-theme-twentytwentyfive,
+.wp-theme-twentytwentyfour,
+.wp-theme-twentytwentythree{
+  .left-sidebar-toggle{
+    .left-arrow{
+      line-height: 21px !important;
+    }
+  }
+  .doc_rightsidebar,.doc_left_sidebarlist{
+    .open_icon{
+      .arrow_carrot-left,
+      .arrow_carrot-right{
+        line-height: 35px;
+      }
+    }
+  }
+}
+
+.wp-theme-hello-elementor{
+  .left-sidebar-toggle{
+    .left-arrow{
+      line-height: 17px !important;
+    }
+  }
+  .doc_rightsidebar,.doc_left_sidebarlist{
+    .open_icon{
+      .arrow_carrot-left,
+      .arrow_carrot-right{
+        line-height: 35px;
+      }
+    }
+  }
+}
+/**
+ * WoodMart Theme Compatibility
+ *
+ * WoodMart wraps content inside .wd-content-layout which applies its own
+ * CSS grid, padding, and container styles. These conflict with EazyDocs'
+ * custom grid system (.ezd-grid, .ezd-container). The fixes below
+ * neutralize those conflicting styles on EazyDocs pages.
+ */
+.wp-theme-woodmart {
+  .doc_left_sidebarlist {
+    .filter_form {
+      .filterform {
+        overflow: hidden;
+      }
+    }
+  }
+
+  .left-sidebar-toggle {
+    .left-arrow {
+      line-height: 17px !important;
+    }
+  }
+
+  .doc_rightsidebar,
+  .doc_left_sidebarlist {
+    .open_icon {
+      .arrow_carrot-left,
+      .arrow_carrot-right {
+        line-height: 35px;
+      }
+    }
+  }
+
+  /**
+   * Reset WoodMart's main content layout wrapper on EazyDocs pages.
+   * WoodMart's .wd-content-layout sets padding-block and a grid context
+   * via :where(.wd-content-layout > div) { grid-column: auto/span var(--wd-col) }
+   * which breaks EazyDocs' own 12-column CSS grid.
+   */
+  &.single-docs {
+    /* Neutralize WoodMart's main content wrapper layout */
+    .wd-content-layout {
+      display: block !important;
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
+
+    /* Prevent WoodMart's page wrapper from constraining width */
+    .wd-page-content {
+      max-width: 100% !important;
+    }
+
+    /* Reset WoodMart's .container override on EazyDocs containers */
+    .doc_documentation_area .ezd-container,
+    .doc_documentation_area .ezd-custom-container {
+      max-width: 1470px;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Ensure EazyDocs' 12-column grid displays correctly */
+    .doc_documentation_area .ezd-grid {
+      display: grid !important;
+    }
+
+    .doc_documentation_area .ezd-grid.ezd-grid-cols-12 {
+      grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    }
+
+    /* Prevent WoodMart's global `.title` rule from overriding EazyDocs titles */
+    .doc_documentation_area .shortcode_title .title,
+    .doc_documentation_area .shortcode_title .s_title {
+      color: inherit;
+      text-transform: none;
+      font-family: inherit;
+      font-weight: inherit;
+      font-style: normal;
+    }
+
+    /* Reset WoodMart heading margin overrides inside doc content */
+    .doc-scrollable h1,
+    .doc-scrollable h2,
+    .doc-scrollable h3,
+    .doc-scrollable h4,
+    .doc-scrollable h5,
+    .doc-scrollable h6 {
+      margin-bottom: revert;
+    }
+
+    /* WoodMart hides the page title – allow EazyDocs to control visibility */
+    .wd-page-title {
+      display: none;
+    }
+
+    /* Ensure breadcrumbs render with EazyDocs' own styles */
+    .ezd-breadcrumb {
+      font-family: inherit;
+    }
+    .ezd_search_form .input-wrapper input{
+      @media (max-width: 375px) {
+        width: 80% !important;
+      }
+    }
+  }
+  .eazydocs-assistant-wrapper{
+    .chatbox-wrapper{
+      bottom: 120px !important;
+    }
+  }
 }
