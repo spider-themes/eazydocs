@@ -48,13 +48,13 @@
 // ==========================================================
 .dd-placeholder {
 	position: relative;
-	background: var(--ezd-drag-placeholder-bg) !important;
-	border: 2px dashed var(--ezd-drag-placeholder-border) !important;
-	border-radius: 6px;
-	min-height: 44px;
-	margin: 4px 0 !important;
-	transition: background 0.2s ease;
-	animation: ezd-placeholder-pulse 1.8s ease-in-out infinite;
+	background: rgba(99, 102, 241, 0.05) !important;
+	border: 2px dashed rgba(99, 102, 241, 0.4) !important;
+	border-radius: 12px;
+	min-height: 48px;
+	margin: 8px 0 !important;
+	transition: background 0.2s ease, border-color 0.2s ease;
+	animation: ezd-placeholder-pulse 2s ease-in-out infinite;
 
 	// "Drop here" label
 	&::before {
@@ -65,10 +65,12 @@
 
 @keyframes ezd-placeholder-pulse {
 	0%, 100% {
-		background: rgba(76, 76, 241, 0.05) !important;
+		background: rgba(99, 102, 241, 0.03) !important;
+		border-color: rgba(99, 102, 241, 0.3) !important;
 	}
 	50% {
-		background: rgba(76, 76, 241, 0.12) !important;
+		background: rgba(99, 102, 241, 0.08) !important;
+		border-color: rgba(99, 102, 241, 0.6) !important;
 	}
 }
 
@@ -78,32 +80,33 @@
 .dd-dragel {
 	pointer-events: none;
 	z-index: 99999 !important;
-	opacity: 0.97;
+	opacity: 0.98;
 
 	> .dd-item,
 	> .dd3-item {
-		background: #fff !important;
-		border-radius: 8px !important;
-		box-shadow: var(--ezd-drag-ghost-shadow) !important;
-		transform: rotate(1.5deg);
+		background: #ffffff !important;
+		border-radius: 12px !important;
+		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(99, 102, 241, 0.2) !important;
+		transform: rotate(2deg) scale(1.02);
 		overflow: hidden;
 		max-width: 700px;
+		transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1);
 
 		> .dd3-handle {
 			display: block !important;
 			opacity: 1 !important;
 			position: static !important;
-			background: rgba(76, 76, 241, 0.08);
-			border-right: 1px solid rgba(76, 76, 241, 0.15);
-			padding: 10px 8px;
+			background: rgba(99, 102, 241, 0.05);
+			border-right: 1px solid rgba(99, 102, 241, 0.1);
+			padding: 12px 10px;
 		}
 
 		.dd3-content {
 			border: none !important;
-			border-radius: 8px !important;
-			background: #fff !important;
-			padding-top: 10px;
-			padding-bottom: 10px;
+			border-radius: 12px !important;
+			background: #ffffff !important;
+			padding-top: 12px;
+			padding-bottom: 12px;
 		}
 
 		// Hide nested children in drag preview to keep compact.
@@ -125,7 +128,7 @@
 //  ROW HOVER – Subtle indicator on content rows
 // ==========================================================
 .nestables-child .dd3-content {
-	transition: background 0.15s ease, box-shadow 0.15s ease;
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	position: relative;
 
 	// Left accent bar on hover.
@@ -133,17 +136,26 @@
 		content: '';
 		position: absolute;
 		left: 0;
-		top: 4px;
-		bottom: 4px;
+		top: 50%;
+		transform: translateY(-50%);
+		height: 0;
 		width: 3px;
 		background: transparent;
-		border-radius: 0 3px 3px 0;
-		transition: background 0.2s ease;
+		border-radius: 0 4px 4px 0;
+		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 		pointer-events: none;
+		opacity: 0;
 	}
 
-	&:hover::after {
-		background: var(--ezd-drag-handle-hover-color);
+	&:hover {
+		background: #f8fafc;
+		transform: translateX(2px);
+
+		&::after {
+			background: var(--ezd-drag-handle-hover-color, #4f46e5);
+			height: 60%;
+			opacity: 1;
+		}
 	}
 }
 

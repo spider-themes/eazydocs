@@ -760,7 +760,7 @@ const ProActionsButtons: React.FC< ProActionsButtonsProps > = ( {
 				onClick={ ( e: React.MouseEvent ) => {
 					e.preventDefault();
 					e.stopPropagation();
-					showProAlert( urls.pricing );
+					showProAlert( urls.pricing, urls.assetsUrl );
 				} }
 			>
 				<span className="dashicons dashicons-admin-page"></span>
@@ -776,7 +776,7 @@ const ProActionsButtons: React.FC< ProActionsButtonsProps > = ( {
 				onClick={ ( e: React.MouseEvent ) => {
 					e.preventDefault();
 					e.stopPropagation();
-					showProAlert( urls.pricing );
+					showProAlert( urls.pricing, urls.assetsUrl );
 				} }
 			>
 				<span className="dashicons dashicons-visibility"></span>
@@ -793,7 +793,7 @@ const ProActionsButtons: React.FC< ProActionsButtonsProps > = ( {
 					onClick={ ( e: React.MouseEvent ) => {
 						e.preventDefault();
 						e.stopPropagation();
-						showProAlert( urls.pricing );
+						showProAlert( urls.pricing, urls.assetsUrl );
 					} }
 				>
 					<span className="dashicons dashicons-welcome-widgets-menus"></span>

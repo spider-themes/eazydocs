@@ -16,6 +16,7 @@ import {
 	PointerSensor,
 	useSensor,
 	useSensors,
+	DragOverlay,
 } from '@dnd-kit/core';
 import type { DragStartEvent, DragEndEvent } from '@dnd-kit/core';
 import {
@@ -228,6 +229,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 	const reorderDocs = useReorderDocs();
 	const { searchValue } = useSearch();
 	const { showToast } = useToast();
+	const [ activeDragItem, setActiveDragItem ] = useState<{ id: string | number; doc: ParentDoc } | null>( null );
 
 	// Local state for optimistic reorder.
 	const [ localDocs, setLocalDocs ] = useState< ParentDoc[] | null >( null );
@@ -360,8 +362,14 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 	/**
 	 * Handle drag start.
 	 */
-	const handleDragStart = ( _event: DragStartEvent ): void => {
+	const handleDragStart = ( event: DragStartEvent ): void => {
 		document.body.classList.add( 'ezd-is-dragging' );
+		if ( event.active.data.current ) {
+			setActiveDragItem( {
+				id: event.active.id,
+				doc: event.active.data.current.doc,
+			} );
+		}
 	};
 
 	/**
@@ -369,6 +377,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 	 */
 	const handleDragEnd = ( event: DragEndEvent ): void => {
 		document.body.classList.remove( 'ezd-is-dragging' );
+		setActiveDragItem( null );
 
 		const { active, over } = event;
 
@@ -455,6 +464,23 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 					</ol>
 				</div>
 			</SortableContext>
+			<DragOverlay dropAnimation={{ duration: 250, easing: 'ease' }}>
+				{ activeDragItem ? (
+					<SortableParentItem
+						doc={ activeDragItem.doc }
+						isActive={ activeDragItem.doc.id === activeTab }
+						isPremium={ isPremium }
+						capabilities={ capabilities }
+						urls={ urls }
+						roleVisibility={ roleVisibility }
+						openBulk={ null }
+						onNavClick={ () => {} }
+						onNavKeyDown={ () => {} }
+						onDelete={ () => {} }
+						onBulkToggle={ () => {} }
+					/>
+				) : null }
+			</DragOverlay>
 		</DndContext>
 	);
 };

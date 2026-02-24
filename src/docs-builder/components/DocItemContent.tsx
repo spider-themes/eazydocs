@@ -232,7 +232,7 @@ const DocItemContent: React.FC< DocItemContentProps > = ( { doc, depth, parentId
 									onClick={ ( e: React.MouseEvent ) => {
 										e.preventDefault();
 										e.stopPropagation();
-										showProAlert( urls.pricing );
+										showProAlert( urls.pricing, urls.assetsUrl );
 									} }
 								>
 									<span className="dashicons dashicons-admin-page"></span>
@@ -387,7 +387,7 @@ const DocItemContent: React.FC< DocItemContentProps > = ( { doc, depth, parentId
 												onClick={ ( e: React.MouseEvent ) => {
 													e.preventDefault();
 													e.stopPropagation();
-													showProAlert( urls.pricing );
+													showProAlert( urls.pricing, urls.assetsUrl );
 												} }
 											>
 												<span className="dashicons dashicons-admin-page"></span>

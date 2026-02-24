@@ -149,21 +149,53 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 							<a
 								id="ezd-create-doc-with-ai"
 								href={ urls.antimanualDocs }
-								className="easydocs-btn easydocs-btn-ai-gold easydocs-btn-sm easydocs-btn-round"
-								style={ { marginLeft: '10px' } }
+								className="easydocs-btn easydocs-btn-sm easydocs-btn-round"
+								style={ { 
+									marginLeft: '10px', 
+									background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)', 
+									color: '#fff', 
+									border: 'none',
+									boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)',
+									display: 'flex',
+									alignItems: 'center',
+									gap: '6px',
+									fontWeight: '600',
+									transition: 'all 0.2s ease'
+								} }
 								role="button"
+								onMouseEnter={ e => e.currentTarget.style.transform = 'translateY(-1px)' }
+								onMouseLeave={ e => e.currentTarget.style.transform = 'translateY(0)' }
 							>
-								🪄 { __( 'Create Doc with AI', 'eazydocs' ) }
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L13.1 8.9L20 10L13.1 11.1L12 18L10.9 11.1L4 10L10.9 8.9L12 2Z" fill="currentColor" />
+								</svg>
+								{ __( 'Create Doc with AI', 'eazydocs' ) }
 							</a>
 						) : (
 							<button
 								type="button"
 								id="ezd-create-doc-with-ai"
-								className="easydocs-btn easydocs-btn-ai-gold easydocs-btn-sm easydocs-btn-round"
-								style={ { marginLeft: '10px' } }
+								className="easydocs-btn easydocs-btn-sm easydocs-btn-round"
+								style={ { 
+									marginLeft: '10px', 
+									background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)', 
+									color: '#fff', 
+									border: 'none',
+									boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)',
+									display: 'flex',
+									alignItems: 'center',
+									gap: '6px',
+									fontWeight: '600',
+									transition: 'all 0.2s ease'
+								} }
 								onClick={ handleAiCreate }
+								onMouseEnter={ e => e.currentTarget.style.transform = 'translateY(-1px)' }
+								onMouseLeave={ e => e.currentTarget.style.transform = 'translateY(0)' }
 							>
-								🪄 { __( 'Create Doc with AI', 'eazydocs' ) }
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2L13.1 8.9L20 10L13.1 11.1L12 18L10.9 11.1L4 10L10.9 8.9L12 2Z" fill="currentColor" />
+								</svg>
+								{ __( 'Create Doc with AI', 'eazydocs' ) }
 							</button>
 						) }
 					</div>
