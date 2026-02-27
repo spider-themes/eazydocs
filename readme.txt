@@ -341,7 +341,7 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.10.1 (21 February 2026) =
+= 2.10.1 (27 February 2026) =
 *   Improved: Feedback modal design refreshed with cleaner UI and better usability.
 *   Optimized: Implemented transient caching for EazyDocs search results to reduce database load.
 *   Optimized: Added 60-second transient cache for AJAX search results with user-aware cache keys.
@@ -421,16 +421,6 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 *   Improved: Strengthened permission checks across review notices, CSF import/export/reset, and one-page edit actions.
 *   Improved: Refactored Google_Login enrollment logic for clarity and maintainability.
 *   Improved: Refreshed search banner and breadcrumb colors for a cleaner look.
-
-= 2.7.4 (14 November 2025) =
-*   Fixed: Database deadlock issue caused by uppercase SQL column types in CREATE TABLE statements triggering unnecessary dbDelta operations on every request.
-*   Fixed: Local File Inclusion (LFI) vulnerability patched in template loading functions.
-*   Fixed: Resolved Advanced Accordion Block plugin installation issue in FAQ Builder.
-*   Security: Added input validation and path traversal protection to eazydocs_get_template_part() and eazydocs_get_template() functions.
-*   Security: Implemented whitelist validation for template file paths to prevent arbitrary file inclusion.
-*   Improved: Normalized all SQL DDL statements to lowercase to ensure compatibility with WordPress dbDelta function.
-*   Improved: Replaced hardcoded color values with CSS variables for the attached file accordion.
-*   Improved: Sanitized URL hash on docs page load for enhanced security.
 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 

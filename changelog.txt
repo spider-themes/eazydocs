@@ -1,6 +1,6 @@
 == Changelog ==
 
-= 2.10.1 (21 February 2026) =
+= 2.10.1 (27 February 2026) =
 Improved: Feedback modal design refreshed with cleaner UI and better usability.
 Optimized: Implemented transient caching for EazyDocs search results to reduce database load.
 Optimized: Added 60-second transient cache for AJAX search results with user-aware cache keys.
