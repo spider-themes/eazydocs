@@ -53,7 +53,8 @@ export const useNotifications = ( filter: string = 'all', enabled: boolean = tru
 		initialPageParam: 1,
 		enabled,
 		staleTime: 60_000,
-		refetchOnWindowFocus: false,
+		refetchInterval: 30_000, // Refetch every 30 seconds for timely updates
+		refetchOnWindowFocus: true,
 	} );
 };
 

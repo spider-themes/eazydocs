@@ -30,7 +30,7 @@ import { useCreateSection, useReorderDocs } from '../hooks/useBuilderData';
 import { useSearch } from '../hooks/useSearch';
 import { useToast } from '../hooks/useToast';
 import { useRoute } from '../../hooks/use-route';
-import { getItemIds, arrayMove, serializeTree, reorderInTree } from '../utils/tree-utils';
+import { serializeTree, findNodePosition, isDescendant, removeNode, insertNode, updateNodeOrder } from '../utils/tree-utils';
 import type { ParentDoc, DocChild, Capabilities, BuilderUrls, RoleVisibilityConfig } from '../types';
 
 declare const eazydocs_local_object: any;
@@ -68,10 +68,8 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 		const ids = new Set< number >();
 		const collectIds = ( items: DocChild[] ) => {
 			items.forEach( ( item ) => {
-				if ( item.children && item.children.length > 0 ) {
-					ids.add( item.id );
-					collectIds( item.children );
-				}
+				ids.add( item.id );
+				collectIds( item.children );
 			} );
 		};
 		collectIds( children );
@@ -117,6 +115,7 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 
 	/**
 	 * Filter items by status and search value.
+	 * Currently operates on the root nodes.
 	 */
 	const getFilteredChildren = useCallback( (): DocChild[] => {
 		let filtered = displayChildren;
@@ -183,9 +182,127 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 	}, [] );
 
 	/**
-	 * Handle "Add Section" button click.
+	 * Handle drag start – add body class for cursor styling.
 	 */
-	const handleAddSection = ( e: React.MouseEvent< HTMLButtonElement > ): void => {
+	const handleDragStart = ( event: DragStartEvent ): void => {
+		setIsDragging( true );
+		document.body.classList.add( 'ezd-is-dragging' );
+		if ( event.active.data.current ) {
+			setActiveDragItem( {
+				id: event.active.id,
+				doc: event.active.data.current.doc,
+				depth: event.active.data.current.depth,
+				parentId: event.active.data.current.parentId,
+			} );
+            
+            // Auto collapse to hide children during drag visualization
+            setCollapsedIds( (prev) => new Set([...prev, Number(event.active.id)]) );
+		}
+	};
+
+    /**
+     * Cross-container tracking: move nodes visually in the tree.
+     */
+	const handleDragOver = ( event: any ): void => {
+		const { active, over } = event;
+		if ( !over ) return;
+
+		const activeId = active.id as number;
+		const overId = over.id;
+
+		let overParentId: number;
+		let overIndex: number;
+
+		if ( String( overId ).startsWith( 'container-' ) ) {
+			overParentId = parseInt( String( overId ).replace( 'container-', '' ), 10 );
+			overIndex = 0;
+		} else {
+			const overPos = findNodePosition( displayChildren, overId as number );
+			if ( !overPos ) return;
+			overParentId = overPos.parentId;
+			overIndex = overPos.index;
+		}
+
+		const activePos = findNodePosition( displayChildren, activeId );
+		if ( !activePos || activePos.parentId === overParentId ) return;
+
+		if ( isDescendant( displayChildren, activeId, overParentId ) ) return;
+
+		setLocalChildren( ( prev ) => {
+            const current = prev || displayChildren;
+			const { updated, removed } = removeNode( current, activeId );
+			if ( removed ) {
+				return insertNode( updated, overParentId, overIndex, removed );
+			}
+			return current;
+		} );
+	};
+
+	const handleDragCancel = (): void => {
+		setIsDragging( false );
+		document.body.classList.remove( 'ezd-is-dragging' );
+		setActiveDragItem( null );
+        setLocalChildren(null); // revert local moves
+	};
+
+	const handleDragEnd = ( event: DragEndEvent ): void => {
+		setIsDragging( false );
+		document.body.classList.remove( 'ezd-is-dragging' );
+		
+		const { active, over } = event;
+
+		if ( !over || active.id === over.id && !localChildren ) {
+			setActiveDragItem( null );
+			return;
+		}
+
+		const activeId = active.id as number;
+		const overId = over ? over.id : null;
+
+        let finalTree = displayChildren;
+
+        if ( overId ) {
+            let overParentId: number;
+            let overIndex: number;
+
+            if ( String( overId ).startsWith( 'container-' ) ) {
+                overParentId = parseInt( String( overId ).replace( 'container-', '' ), 10 );
+                overIndex = 0;
+            } else {
+                const overPos = findNodePosition( displayChildren, overId as number );
+                if ( overPos ) {
+                    overParentId = overPos.parentId;
+                    overIndex = overPos.index;
+                    
+                    const activePos = findNodePosition( displayChildren, activeId );
+                    if ( activePos && activePos.parentId === overParentId && activePos.index !== overIndex ) {
+                        finalTree = updateNodeOrder( displayChildren, activePos.parentId, activePos.index, overIndex );
+                        setLocalChildren( finalTree );
+                    }
+                }
+            }
+        }
+
+		setActiveDragItem( null );
+
+		// Serialize and save to database.
+		const serialized = serializeTree( finalTree );
+		reorderDocs.mutate(
+			{
+				data: window.JSON.stringify( serialized ),
+				action: 'eaz_nestable_docs',
+			},
+			{
+				onSuccess: () => showToast( __( 'Order saved', 'eazydocs' ) ),
+				onError: () => {
+					showToast( __( 'Failed to save order', 'eazydocs' ), 'error' );
+					setLocalChildren( null );
+				},
+			}
+		);
+	};
+
+    const handleAddSection = ( e: React.MouseEvent< HTMLButtonElement > ): void => {
 		e.preventDefault();
 
 		if ( typeof window.Swal !== 'undefined' ) {
@@ -247,83 +364,6 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 		}
 	};
 
-	/**
-	 * Handle drag start – add body class for cursor styling.
-	 */
-	const handleDragStart = ( event: DragStartEvent ): void => {
-		setIsDragging( true );
-		document.body.classList.add( 'ezd-is-dragging' );
-		if ( event.active.data.current ) {
-			setActiveDragItem( {
-				id: event.active.id,
-				doc: event.active.data.current.doc,
-				depth: event.active.data.current.depth,
-				parentId: event.active.data.current.parentId,
-			} );
-		}
-	};
-
-	const handleDragCancel = (): void => {
-		setIsDragging( false );
-		document.body.classList.remove( 'ezd-is-dragging' );
-		setActiveDragItem( null );
-	};
-
-	/**
-	 * Handle drag end – reorder items and save to backend.
-	 */
-	const handleDragEnd = ( event: DragEndEvent ): void => {
-		setIsDragging( false );
-		document.body.classList.remove( 'ezd-is-dragging' );
-		setActiveDragItem( null );
-
-		const { active, over } = event;
-
-		if ( ! over || active.id === over.id ) {
-			return;
-		}
-
-		const activeId = active.id as number;
-		const overId = over.id as number;
-		const activeData = active.data.current;
-		const overData = over.data.current;
-
-		// Only reorder if items are at the same depth/parent.
-		if ( activeData?.parentId !== overData?.parentId ) {
-			return;
-		}
-
-		// Reorder in tree.
-		const newTree = reorderInTree(
-			displayChildren,
-			activeId,
-			overId,
-			activeData?.parentId
-		);
-
-		if ( newTree ) {
-			// Optimistic update.
-			setLocalChildren( newTree );
-
-			// Serialize and save.
-			const serialized = serializeTree( newTree );
-			reorderDocs.mutate(
-				{
-					data: window.JSON.stringify( serialized ),
-					action: 'eaz_nestable_docs',
-				},
-				{
-					onSuccess: () => showToast( __( 'Order saved', 'eazydocs' ) ),
-					onError: () => {
-						showToast( __( 'Failed to save order', 'eazydocs' ), 'error' );
-						// Revert optimistic update.
-						setLocalChildren( null );
-					},
-				}
-			);
-		}
-	};
-
 	const filters: FilterItem[] = [
 		{ key: 'all', label: __( 'All articles', 'eazydocs' ), icon: 'media-document', className: 'easydocs-btn-black-light' },
 		{ key: '.publish', label: __( 'Public', 'eazydocs' ), icon: 'admin-site-alt3', className: 'easydocs-btn-green-light' },
@@ -332,8 +372,9 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 		{ key: '.draft', label: __( 'Draft', 'eazydocs' ), icon: 'edit-page', className: 'easydocs-btn-gray-light' },
 	];
 
-	const filteredChildren = getFilteredChildren();
-	const sortableIds = getItemIds( filteredChildren );
+	// Filter root items
+	const rootItems = getFilteredChildren();
+	const sortableIds = rootItems.map( ( item ) => item.id );
 
 	return (
 		<div
@@ -393,6 +434,7 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 				sensors={ sensors }
 				collisionDetection={ closestCenter }
 				onDragStart={ handleDragStart }
+				onDragOver={ handleDragOver }
 				onDragEnd={ handleDragEnd }
 				onDragCancel={ handleDragCancel }
 			>
@@ -403,22 +445,22 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 					<div
 						className="ezd-section-list nestables-child"
 						id={ `nestable-${ parent.id }` }
+						style={{ gap: 4 }}
 					>
-						{ filteredChildren.map( ( child, index ) => (
-							<SortableDocItem
-								key={ child.id }
-								doc={ child }
-								depth={ 1 }
-								parentId={ parent.id }
-								isPremium={ isPremium }
-								capabilities={ capabilities }
-								urls={ urls }
-								roleVisibility={ roleVisibility }
-								collapsedIds={ collapsedIds }
-								onToggleCollapse={ handleToggleCollapse }
-								orderIndex={ index + 1 }
-							/>
-						) ) }
+						{ rootItems.map( ( child ) => (
+                            <SortableDocItem
+                                key={ child.id }
+                                doc={ child }
+                                depth={ 1 }
+                                parentId={ parent.id }
+                                isPremium={ isPremium }
+                                capabilities={ capabilities }
+                                urls={ urls }
+                                roleVisibility={ roleVisibility }
+                                collapsedIds={ collapsedIds }
+                                onToggleCollapse={ handleToggleCollapse }
+                            />
+                        ) ) }
 					</div>
 				</SortableContext>
 				<DragOverlay dropAnimation={{ duration: 250, easing: 'ease' }}>

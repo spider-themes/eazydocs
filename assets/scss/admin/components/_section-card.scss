@@ -14,23 +14,23 @@
 	margin-bottom: 24px;
 }
 
-// ==========================================================
-//  SECTION CARD – each depth-1 item
-// ==========================================================
 .ezd-section-card {
 	background: #fff;
-	border: 1px solid #e2e6ea;
-	border-radius: 10px;
-	overflow: visible;
-	transition: box-shadow 0.2s ease, border-color 0.2s ease;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+	transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
 	&:hover {
-		border-color: #d0d5dc;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+		border-color: #cbd5e1;
+		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
 	}
 
 	&.dd-is-dragging {
-		opacity: 0.35;
+		opacity: 0.4;
+		box-shadow: none;
+		transform: none;
 	}
 }
 
@@ -41,14 +41,21 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 14px 20px;
-	gap: 12px;
+	padding: 16px 20px;
+	gap: 16px;
+	border-bottom: 1px solid transparent;
+	transition: border-color 0.2s ease;
+	background-color: #f7f4f442;
+}
+
+.ezd-section-card:not(.ezd-section-collapsed) .ezd-section-header {
+	border-bottom-color: #f1f5f9;
 }
 
 .ezd-section-header-left {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 12px;
 	flex: 1;
 	min-width: 0;
 }
@@ -58,21 +65,22 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 20px;
-	height: 20px;
+	width: 28px;
+	height: 28px;
 	cursor: grab;
-	color: #b0b5bd;
+	color: #94a3b8;
 	flex-shrink: 0;
-	border-radius: 4px;
-	transition: color 0.15s ease, background 0.15s ease;
+	border-radius: 6px;
+	transition: all 0.2s ease;
 
 	&:hover {
-		color: var(--ezd-drag-handle-hover-color, #4c4cf1);
-		background: rgba(76, 76, 241, 0.06);
+		color: var(--ezd-drag-handle-hover-color, #4f46e5);
+		background: #f1f5f9;
 	}
 
 	&:active {
 		cursor: grabbing;
+		background: #e2e8f0;
 	}
 }
 
@@ -81,30 +89,30 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 24px;
-	height: 24px;
+	width: 28px;
+	height: 28px;
 	padding: 0;
 	border: none;
 	background: transparent;
 	cursor: pointer;
-	color: #6b7280;
-	border-radius: 4px;
+	color: #64748b;
+	border-radius: 6px;
 	flex-shrink: 0;
-	transition: color 0.15s ease, background 0.15s ease;
+	transition: all 0.2s ease;
 
 	&:hover {
-		color: #374151;
-		background: #f3f4f6;
+		color: #1e293b;
+		background: #f1f5f9;
 	}
 
 	&:focus {
 		outline: none;
-		box-shadow: 0 0 0 2px rgba(76, 76, 241, 0.2);
+		box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
 	}
 }
 
 .ezd-section-chevron {
-	transition: transform 0.2s ease;
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 	&.ezd-chevron-collapsed {
 		transform: rotate(-90deg);
@@ -116,36 +124,39 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	min-width: 26px;
-	height: 26px;
+	min-width: 28px;
+	height: 28px;
 	padding: 0 8px;
-	background: #e8eefb;
-	color: #3b6de0;
+	background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+	color: #4338ca;
 	font-size: 13px;
-	font-weight: 600;
-	border-radius: 6px;
+	font-weight: 700;
+	border-radius: 8px;
 	flex-shrink: 0;
 	line-height: 1;
+	box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4);
 }
 
 // Section title
 .ezd-section-title-text {
-	font-size: 15px;
-	font-weight: 500;
-	color: #1a1a2e;
+	font-size: 16px;
+	font-weight: 600;
+	color: #0f172a;
 	margin: 0;
 	line-height: 1.4;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	flex: 0 1 auto;
+	transition: color 0.2s ease;
 
 	a {
 		color: inherit;
 		text-decoration: none;
+		transition: color 0.2s ease;
 
 		&:hover {
-			color: #3b6de0;
+			color: #4f46e5;
 		}
 	}
 }
@@ -154,13 +165,14 @@
 .ezd-section-header-actions {
 	display: flex;
 	align-items: center;
-	gap: 4px;
+	gap: 6px;
 	flex-shrink: 0;
 	opacity: 0;
-	transition: opacity 0.15s ease;
+	transform: translateX(8px);
+	transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ezd-section-card:hover .ezd-section-header-actions {
+.ezd-section-header:hover .ezd-section-header-actions {
 	opacity: 1;
 }
 
@@ -168,20 +180,22 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 32px;
-	height: 32px;
-	border-radius: 6px;
-	color: #9ca3af;
+	width: 34px;
+	height: 34px;
+	border-radius: 8px;
+	color: #94a3b8;
 	text-decoration: none;
-	transition: color 0.15s ease, background 0.15s ease;
+	background: transparent;
+	transition: all 0.2s ease;
 
 	&:hover {
-		color: #374151;
-		background: #f3f4f6;
+		color: #1e293b;
+		background: #f1f5f9;
+		transform: scale(1.05);
 	}
 
 	&.ezd-header-action-delete:hover {
-		color: #dc2626;
+		color: #ef4444;
 		background: #fef2f2;
 	}
 }
@@ -190,8 +204,9 @@
 //  SECTION BODY – children area
 // ==========================================================
 .ezd-section-body {
-	border-top: 1px solid #f0f1f3;
-	padding: 8px 12px 12px;
+	padding: 12px 16px 16px;
+	background: #f8fafc;
+	border-radius: 0 0 12px 12px;
 }
 
 // ==========================================================
@@ -199,23 +214,50 @@
 // ==========================================================
 .ezd-child-row {
 	border-radius: 8px;
-	transition: background 0.15s ease;
+	transition: all 0.2s ease;
+	position: relative;
+	background: #ffffff;
+	border: 1px solid transparent;
+	margin-bottom: 4px;
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		height: 0;
+		width: 3px;
+		background: #6366f1;
+		border-radius: 0 4px 4px 0;
+		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		opacity: 0;
+	}
 
 	&:hover {
-		background: #f8f9fb;
+		background: #ffffff;
+		border-color: #e2e8f0;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+		transform: translateX(2px);
+		
+		&::before {
+			height: 60%;
+			opacity: 1;
+		}
 	}
 
 	&.dd-is-dragging {
-		opacity: 0.35;
+		opacity: 0.4;
+		transform: none;
 	}
 }
 
 .ezd-child-row-inner {
 	display: flex;
 	align-items: center;
-	padding: 10px 14px;
-	gap: 10px;
-	min-height: 42px;
+	padding: 12px 14px;
+	gap: 12px;
+	min-height: 46px;
 }
 
 // Child drag handle
@@ -223,16 +265,19 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 16px;
-	height: 16px;
+	width: 24px;
+	height: 24px;
 	cursor: grab;
-	color: #c5c9d0;
+	color: #cbd5e1;
 	flex-shrink: 0;
 	opacity: 0;
-	transition: opacity 0.15s ease, color 0.15s ease;
+	border-radius: 4px;
+	transform: scale(0.9);
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
 	&:hover {
-		color: var(--ezd-drag-handle-hover-color, #4c4cf1);
+		color: var(--ezd-drag-handle-hover-color, #4f46e5);
+		background: #f1f5f9;
 	}
 
 	&:active {
@@ -242,15 +287,17 @@
 
 .ezd-child-row:hover .ezd-child-drag-handle {
 	opacity: 1;
+	transform: scale(1);
 }
 
 // Status dot indicator
 .ezd-status-dot {
 	display: inline-block;
-	width: 8px;
-	height: 8px;
+	width: 10px;
+	height: 10px;
 	border-radius: 50%;
 	flex-shrink: 0;
+	box-shadow: 0 0 0 2px #ffffff;
 }
 
 .ezd-dot-publish {

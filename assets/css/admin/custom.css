@@ -1118,8 +1118,8 @@ body.ezd-is-dragging .dd3-content:hover .accordion-title ul.actions {
 	background: #fff;
 	border: 1px solid #e2e6ea;
 	border-radius: 10px;
-	overflow: visible;
 	transition: box-shadow 0.2s ease, border-color 0.2s ease;
+	overflow: hidden;
 }
 
 .ezd-section-card:hover {
@@ -1138,6 +1138,7 @@ body.ezd-is-dragging .dd3-content:hover .accordion-title ul.actions {
 	justify-content: space-between;
 	padding: 14px 20px;
 	gap: 12px;
+    background-color: #f7f4f442;
 }
 
 .ezd-section-header-left {
@@ -1252,10 +1253,6 @@ body.ezd-is-dragging .dd3-content:hover .accordion-title ul.actions {
 	flex-shrink: 0;
 	opacity: 0;
 	transition: opacity 0.15s ease;
-}
-
-.ezd-section-card:hover .ezd-section-header-actions {
-	opacity: 1;
 }
 
 .ezd-header-action-icon {
