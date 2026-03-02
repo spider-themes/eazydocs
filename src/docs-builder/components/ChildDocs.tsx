@@ -160,10 +160,8 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 			const ids = new Set< number >();
 			const collectIds = ( items: DocChild[] ) => {
 				items.forEach( ( item ) => {
-					if ( item.children && item.children.length > 0 ) {
-						ids.add( item.id );
-						collectIds( item.children );
-					}
+					ids.add( item.id );
+					collectIds( item.children );
 				} );
 			};
 			collectIds( displayChildren );
