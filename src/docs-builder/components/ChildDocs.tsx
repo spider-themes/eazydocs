@@ -65,8 +65,24 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 	const { searchValue } = useSearch();
 	const { showToast } = useToast();
 
+	// localStorage key scoped to this parent doc.
+	const storageKey = `ezd-collapsed-${ parent.id }`;
+
 	// Track which items are collapsed.
 	const [ collapsedIds, setCollapsedIds ] = useState< Set< number > >( () => {
+		// Restore from localStorage if available.
+		try {
+			const saved = localStorage.getItem( storageKey );
+			if ( saved ) {
+				const parsed = JSON.parse( saved );
+				if ( Array.isArray( parsed ) ) {
+					return new Set< number >( parsed );
+				}
+			}
+		} catch {
+			// Ignore parse errors – fall through to default.
+		}
+
 		// Default: all items collapsed (matching the old nestable('collapseAll') behaviour).
 		const ids = new Set< number >();
 		const collectIds = ( items: DocChild[] ) => {
@@ -78,6 +94,15 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 		collectIds( children );
 		return ids;
 	} );
+
+	// Persist collapsed state to localStorage whenever it changes.
+	useEffect( () => {
+		try {
+			localStorage.setItem( storageKey, JSON.stringify( [ ...collapsedIds ] ) );
+		} catch {
+			// Silently ignore storage errors (e.g. quota exceeded).
+		}
+	}, [ collapsedIds, storageKey ] );
 
 	// Local state for optimistic reorder.
 	const [ localChildren, setLocalChildren ] = useState< DocChild[] | null >( null );

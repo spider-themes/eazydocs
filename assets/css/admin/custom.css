@@ -1,35 +1,5 @@
-.easydocs-tab.tab-inactive {
-    display: none;
-}
 
-.accordion-title .light-green {
-    display: inline-flex;
-    margin: 0;
-    height: auto !important;
-    width: auto !important;
-    padding: 3px;
-    line-height: 0 !important;
-}
 
-.accordion-title .light-green.block-color-draft {
-    background: rgba(66, 66, 66, 0.1);
-}
-
-.accordion-title .light-green.block-color-protected {
-    background: rgba(204, 128, 51, 0.1);
-}
-
-.accordion-title .light-green.block-color-private {
-    background: rgba(2, 117, 216, 0.1);
-}
-
-.accordion-title .light-green img {
-    width: auto;
-    max-width: 12px;
-    height: auto;
-    max-height: 12px;
-    margin: 0;
-}
 
 .easydocs-accordion-body.child-docs a {
     text-decoration: none;
@@ -49,16 +19,9 @@ div.search_result {
     display: none;
 }
 
-.edit-img {
-    max-width: 12px;
-    margin-top: 2px;
-}
 
-.eazydocs-classi-ui {
-    position: absolute;
-    bottom: 10px;
-    z-index: 9;
-}
+
+
 
 .easydocs-settings {
     display: flex;
@@ -71,9 +34,7 @@ div.search_result {
     box-shadow: none;
 }
 
-.child-one .accordion-title.has-child h4 {
-    font-weight: normal;
-}
+
 
 .eazydocs-no-content {
     display: block;
@@ -106,26 +67,9 @@ div.search_result {
     margin: 0 auto 10px;
 }
 
-.clone-docs {
-    line-height: 0;
-    vertical-align: sub;
-}
-
-.easydocs-accordion-item a:focus,
-.clone-docs:focus {
+.easydocs-accordion-item a:focus {
     outline: none;
     box-shadow: none;
-}
-
-.clone-docs img {
-    width: auto;
-    max-width: 15px;
-    margin: 2.7px 7px 0;
-    opacity: .7;
-}
-
-.clone-docs img:hover {
-    opacity: 1
 }
 
 .eazydocs-pro-notice .dashicons,
@@ -462,9 +406,7 @@ select#ezd_docs_layout {
     box-shadow: none;
 }
 
-#doc_extra_information {
-    display: none;
-}
+
 
 /*Nestable CSS*/
 .dd,
@@ -494,10 +436,6 @@ select#ezd_docs_layout {
 
 .nestables-child .dd-list .dd-list .dd-item.depth-3 > button {
     margin-left: 65px;
-}
-
-.accordion-title.has-child .left-content.left-content-3 h4 > a {
-    padding-left: 0;
 }
 
 .nestables-child .dd-collapsed .dd-list {
@@ -686,18 +624,9 @@ select#ezd_docs_layout {
     margin-left: 18px;
 }
 
-.dd3-empty {
-    height: 1px;
-}
-
 .nestables-child .dd-item > button {
     padding: 14px 0;
     margin: 1px 7px 0 25px;
-}
-
-
-.dd-nochildren .dd-placeholder {
-    display: none;
 }
 
 .accordion-title.has-child::before,
@@ -1098,410 +1027,4 @@ body.ezd-is-dragging .dd3-content:hover .accordion-title ul.actions {
 /* Ensure depth styles remain consistent after reorder */
 .nestables-child .dd-item .dd3-content {
 	transition: background 0.15s ease;
-}
-
-/* =============================================
-   Section Card Layout – Modern card-based UI
-   ============================================= */
-
-/* Section list container */
-.ezd-section-list {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	margin-top: 16px;
-	margin-bottom: 24px;
-}
-
-/* Section card */
-.ezd-section-card {
-	background: #fff;
-	border: 1px solid #e2e6ea;
-	border-radius: 10px;
-	transition: box-shadow 0.2s ease, border-color 0.2s ease;
-	overflow: hidden;
-}
-
-.ezd-section-card:hover {
-	border-color: #d0d5dc;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.ezd-section-card.dd-is-dragging {
-	opacity: 0.35;
-}
-
-/* Section header */
-.ezd-section-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 14px 20px;
-	gap: 12px;
-    background-color: #f7f4f442;
-}
-
-.ezd-section-header-left {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	flex: 1;
-	min-width: 0;
-}
-
-/* Section drag handle */
-.ezd-section-drag-handle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 20px;
-	height: 20px;
-	cursor: grab;
-	color: #b0b5bd;
-	flex-shrink: 0;
-	border-radius: 4px;
-	transition: color 0.15s ease, background 0.15s ease;
-}
-
-.ezd-section-drag-handle:hover {
-	color: var(--ezd-drag-handle-hover-color, #4c4cf1);
-	background: rgba(76, 76, 241, 0.06);
-}
-
-.ezd-section-drag-handle:active {
-	cursor: grabbing;
-}
-
-/* Collapse button */
-.ezd-section-collapse-btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 24px;
-	height: 24px;
-	padding: 0;
-	border: none;
-	background: transparent;
-	cursor: pointer;
-	color: #6b7280;
-	border-radius: 4px;
-	flex-shrink: 0;
-	transition: color 0.15s ease, background 0.15s ease;
-}
-
-.ezd-section-collapse-btn:hover {
-	color: #374151;
-	background: #f3f4f6;
-}
-
-.ezd-section-collapse-btn:focus {
-	outline: none;
-	box-shadow: 0 0 0 2px rgba(76, 76, 241, 0.2);
-}
-
-.ezd-section-chevron {
-	transition: transform 0.2s ease;
-}
-
-.ezd-section-chevron.ezd-chevron-collapsed {
-	transform: rotate(-90deg);
-}
-
-/* Numbered badge */
-.ezd-section-number {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 26px;
-	height: 26px;
-	padding: 0 8px;
-	background: #e8eefb;
-	color: #3b6de0;
-	font-size: 13px;
-	font-weight: 600;
-	border-radius: 6px;
-	flex-shrink: 0;
-	line-height: 1;
-}
-
-/* Section title */
-.ezd-section-title-text {
-	font-size: 15px;
-	font-weight: 500;
-	color: #1a1a2e;
-	margin: 0;
-	line-height: 1.4;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.ezd-section-title-text a {
-	color: inherit;
-	text-decoration: none;
-}
-
-.ezd-section-title-text a:hover {
-	color: #3b6de0;
-}
-
-/* Header actions */
-.ezd-section-header-actions {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	flex-shrink: 0;
-	opacity: 0;
-	transition: opacity 0.15s ease;
-}
-
-.ezd-header-action-icon {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 32px;
-	height: 32px;
-	border-radius: 6px;
-	color: #9ca3af;
-	text-decoration: none;
-	transition: color 0.15s ease, background 0.15s ease;
-}
-
-.ezd-header-action-icon:hover {
-	color: #374151;
-	background: #f3f4f6;
-}
-
-.ezd-header-action-icon.ezd-header-action-delete:hover {
-	color: #dc2626;
-	background: #fef2f2;
-}
-
-/* Section body */
-.ezd-section-body {
-	border-top: 1px solid #f0f1f3;
-	padding: 8px 12px 12px;
-}
-
-/* Child row */
-.ezd-child-row {
-	border-radius: 8px;
-	transition: background 0.15s ease;
-}
-
-.ezd-child-row:hover {
-	background: #f8f9fb;
-}
-
-.ezd-child-row.dd-is-dragging {
-	opacity: 0.35;
-}
-
-.ezd-child-row-inner {
-	display: flex;
-	align-items: center;
-	padding: 10px 14px;
-	gap: 10px;
-	min-height: 42px;
-}
-
-/* Child drag handle */
-.ezd-child-drag-handle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 16px;
-	height: 16px;
-	cursor: grab;
-	color: #c5c9d0;
-	flex-shrink: 0;
-	opacity: 0;
-	transition: opacity 0.15s ease, color 0.15s ease;
-}
-
-.ezd-child-drag-handle:hover {
-	color: var(--ezd-drag-handle-hover-color, #4c4cf1);
-}
-
-.ezd-child-drag-handle:active {
-	cursor: grabbing;
-}
-
-.ezd-child-row:hover .ezd-child-drag-handle {
-	opacity: 1;
-}
-
-/* Status dot */
-.ezd-status-dot {
-	display: inline-block;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	flex-shrink: 0;
-}
-
-.ezd-dot-publish {
-	background: #3b82f6;
-}
-
-.ezd-dot-private {
-	background: #f59e0b;
-}
-
-.ezd-dot-protected {
-	background: #8b5cf6;
-}
-
-.ezd-dot-draft {
-	background: #9ca3af;
-}
-
-/* Child title */
-.ezd-child-title {
-	flex: 1;
-	font-size: 14px;
-	color: #374151;
-	line-height: 1.4;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.ezd-child-title a {
-	color: inherit;
-	text-decoration: none;
-}
-
-.ezd-child-title a:hover {
-	color: #3b6de0;
-}
-
-/* Child hover actions */
-.ezd-child-actions {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	flex-shrink: 0;
-	opacity: 0;
-	transition: opacity 0.15s ease;
-}
-
-.ezd-child-row:hover .ezd-child-actions {
-	opacity: 1;
-}
-
-.ezd-inline-action {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 28px;
-	height: 28px;
-	border-radius: 4px;
-	color: #9ca3af;
-	text-decoration: none;
-	transition: color 0.15s ease, background 0.15s ease;
-}
-
-.ezd-inline-action .dashicons {
-	font-size: 16px;
-	width: 16px;
-	height: 16px;
-    color: #9ca3af;
-}
-
-.ezd-inline-action:hover {
-	color: #374151;
-	background: #f3f4f6;
-}
-
-.ezd-inline-action.ezd-inline-action-delete:hover {
-	color: #dc2626;
-	background: #fef2f2;
-}
-
-.ezd-inline-action.eazydocs-pro-notice .dashicons {
-	color: #f1bd6c;
-}
-
-/* Nested children */
-.ezd-child-nested {
-	padding-left: 24px;
-}
-
-/* Collapsed state */
-.ezd-section-collapsed .ezd-section-body {
-	display: none;
-}
-
-.ezd-child-collapsed .ezd-child-nested {
-	display: none;
-}
-
-/* Add sub-lesson button */
-.ezd-add-sub-lesson-btn {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	padding: 8px 16px;
-	background: #fff;
-	border: 1px solid #d1d5db;
-	border-radius: 8px;
-	color: #374151;
-	font-size: 13px;
-	font-weight: 500;
-	cursor: pointer;
-	transition: all 0.15s ease;
-	margin-top: 4px;
-}
-
-.ezd-add-sub-lesson-btn:hover {
-	border-color: #9ca3af;
-	background: #f9fafb;
-	color: #111827;
-}
-
-.ezd-add-sub-lesson-btn:focus {
-	outline: none;
-	box-shadow: 0 0 0 3px rgba(76, 76, 241, 0.12);
-	border-color: var(--clr-blue, #4c4cf1);
-}
-
-.ezd-add-sub-lesson-btn:active {
-	transform: scale(0.98);
-}
-
-.ezd-add-sub-lesson-icon {
-	font-size: 16px;
-	font-weight: 400;
-	line-height: 1;
-	color: #6b7280;
-}
-
-/* Drag states for section cards */
-body.ezd-is-dragging .ezd-section-header-actions,
-body.ezd-is-dragging .ezd-child-actions {
-	opacity: 0 !important;
-}
-
-body.ezd-is-dragging .ezd-child-row:hover {
-	background: transparent;
-}
-
-body.ezd-is-dragging .ezd-section-card:hover {
-	border-color: #e2e6ea;
-	box-shadow: none;
-}
-
-/* RTL support */
-body.rtl .ezd-section-header-left {
-	flex-direction: row-reverse;
-}
-
-body.rtl .ezd-child-nested {
-	padding-left: 0;
-	padding-right: 24px;
-}
-
-body.rtl .ezd-section-header-actions {
-	flex-direction: row-reverse;
 }

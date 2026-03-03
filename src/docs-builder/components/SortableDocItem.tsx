@@ -162,6 +162,7 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 
 	const sectionClasses = [
 		'ezd-section-card',
+		hasChildren ? 'has-child' : '',
 		isDragging ? 'dd-is-dragging' : '',
 		isCollapsed ? 'ezd-section-collapsed' : '',
 	].filter( Boolean ).join( ' ' );
@@ -179,7 +180,7 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 			<div 
                 className="ezd-section-header"
                 onClick={ () => onToggleCollapse( doc.id ) }
-                style={{ cursor: 'pointer', padding: '12px 16px' }}
+                style={{ cursor: 'pointer' }}
             >
 				<div className="ezd-section-header-left" style={{ display: 'flex', alignItems: 'center' }}>
 					{ /* Drag handle */ }
@@ -296,7 +297,6 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
                 className="ezd-section-children-box"
                 style={{ 
                     display: isCollapsed ? 'none' : 'block',
-                    padding: '0 24px',
                 }}
             >
                 <SortableContext items={ childIds } strategy={ verticalListSortingStrategy }>
@@ -326,15 +326,7 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
                         ) }
 
                         { !hasChildren && (
-                            <div className="ezd-empty-dropzone" style={{
-                                padding: '24px',
-                                textAlign: 'center',
-                                border: '2px dashed #cbd5e1',
-                                borderRadius: '6px',
-                                color: '#64748b',
-                                fontSize: '14px',
-                                marginTop: '12px'
-                            }}>
+                            <div className="ezd-empty-dropzone">
                                 { __( 'Drop items here to make them a sub-section', 'eazydocs' ) }
                             </div>
                         ) }
