@@ -344,6 +344,8 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 = 2.11.0 (12 March 2026) =
 *   New: The Docs Builder page page has re-built with React js for better and smoother performance.
 *   Improved: The Docs Builder page design refreshed with cleaner UI and better usability.
+*   Optimized: Removed some unused and unnecessary code and files from the Docs Builder and the Analytics page.
+*   Improved: The drag-n-drop docs re-ordering feature has been improved for better usability.
 
 = 2.10.1 (27 February 2026) =
 *   Improved: Feedback modal design refreshed with cleaner UI and better usability.

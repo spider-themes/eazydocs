@@ -53,19 +53,7 @@ class Assets {
 				}
 			}
 		}
-
-		// MixItUp - needed on Analytics page for data filtering.
-		if ( ezd_admin_pages( 'ezd-analytics' ) ) {
-			wp_enqueue_script( 'mixitup', EAZYDOCS_VEND . '/mixitup/mixitup.min.js', array( 'jquery' ), '2.1.11', true );
-		}
-
-		// Analytics page also needs multifilter, modernizr, and tabby polyfills
-		if ( ezd_admin_pages( 'ezd-analytics' ) ) {
-			wp_enqueue_script( 'mixitup-multifilter', EAZYDOCS_ASSETS . '/js/admin/mixitup-multifilter.js', array( 'jquery', 'mixitup' ), '2.1.11', true );
-			wp_enqueue_script( 'modernizr', EAZYDOCS_ASSETS . '/js/admin/modernizr-3.11.2.min.js', array( 'jquery' ), '3.11.2', true );
-			wp_enqueue_script( 'tabby-polyfills', EAZYDOCS_ASSETS . '/js/admin/tabby.polyfills.min.js', array( 'jquery' ), '12.0.3', true );
-		}
-
+		
 		// Dashboard page only (NOT on Docs Builder or Analytics to prevent conflicts)
 		if ( ezd_admin_pages( 'eazydocs' ) ) {
 			wp_enqueue_script( 'ezd-admin-custom', EAZYDOCS_ASSETS . '/js/admin/custom.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
