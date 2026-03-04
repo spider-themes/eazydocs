@@ -61,7 +61,7 @@ if ( $single_layout == 'default' ) {
         <div class="ezd-link-copied-wrap"></div>
         <div class="overlay_bg"></div>
 		<?php
-		if ( ezd_get_opt( 'docs-breadcrumb', '1' ) == '1' && $current_theme != 'docy' ) {
+		if ( ezd_get_opt( 'docs-breadcrumb', '1' ) == '1' ) {
 			eazydocs_get_template_part( 'breadcrumbs' );
 		}
 		do_action( 'ezd_before_single_content' );
