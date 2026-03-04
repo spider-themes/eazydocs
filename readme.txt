@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.10.1
+Stable tag: 2.11.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -340,6 +340,10 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 10. Password Protected Doc – Secure sensitive documents with password protection and controlled access.
 
 == Changelog ==
+
+= 2.11.0 (12 March 2026) =
+*   New: The Docs Builder page page has re-built with React js for better and smoother performance.
+*   Improved: The Docs Builder page design refreshed with cleaner UI and better usability.
 
 = 2.10.1 (27 February 2026) =
 *   Improved: Feedback modal design refreshed with cleaner UI and better usability.

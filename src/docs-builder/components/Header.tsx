@@ -121,182 +121,180 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 
 	return (
 		<header className="easydocs-header-area">
-			<div className="ezd-container-fluid">
-				<div className="row alignment-center justify-content-between ml-0">
-					<div className="navbar-left d-flex alignment-center">
-						<div className="easydocs-logo-area">
-							<a
-								href="#"
-								onClick={ ( e ) => e.preventDefault() }
-							>
-								{ __( 'Documentations', 'eazydocs' ) }
-							</a>
-						</div>
-
-						{ capabilities.canPublishDocs && (
-							<button
-								type="button"
-								id="parent-doc"
-								className="easydocs-btn filled easydocs-btn-sm easydocs-btn-round"
-								onClick={ handleAddDoc }
-							>
-								<span className="dashicons dashicons-plus-alt2"></span>
-								{ __( 'Add Doc', 'eazydocs' ) }
-							</button>
-						) }
-
-						{ antimanualActive ? (
-							<a
-								id="ezd-create-doc-with-ai"
-								href={ urls.antimanualDocs }
-								className="easydocs-btn easydocs-btn-sm easydocs-btn-round"
-								style={ { 
-									marginLeft: '10px', 
-									background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)', 
-									color: '#fff', 
-									border: 'none',
-									display: 'flex',
-									alignItems: 'center',
-									gap: '6px',
-									fontWeight: '600',
-									transition: 'all 0.2s ease'
-								} }
-								role="button"
-								onMouseEnter={ e => e.currentTarget.style.transform = 'translateY(-1px)' }
-								onMouseLeave={ e => e.currentTarget.style.transform = 'translateY(0)' }
-							>
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M12 2L13.1 8.9L20 10L13.1 11.1L12 18L10.9 11.1L4 10L10.9 8.9L12 2Z" fill="currentColor" />
-								</svg>
-								{ __( 'Create Doc with AI', 'eazydocs' ) }
-							</a>
-						) : (
-							<button
-								type="button"
-								id="ezd-create-doc-with-ai"
-								className="easydocs-btn easydocs-btn-sm easydocs-btn-round"
-								style={ { 
-									marginLeft: '10px', 
-									background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)', 
-									color: '#fff', 
-									border: 'none',
-									display: 'flex',
-									alignItems: 'center',
-									gap: '6px',
-									fontWeight: '600',
-									transition: 'all 0.2s ease'
-								} }
-								onClick={ handleAiCreate }
-								onMouseEnter={ e => e.currentTarget.style.transform = 'translateY(-1px)' }
-								onMouseLeave={ e => e.currentTarget.style.transform = 'translateY(0)' }
-							>
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M12 2L13.1 8.9L20 10L13.1 11.1L12 18L10.9 11.1L4 10L10.9 8.9L12 2Z" fill="currentColor" />
-								</svg>
-								{ __( 'Create Doc with AI', 'eazydocs' ) }
-							</button>
-						) }
+			<div className="row alignment-center justify-content-between ml-0">
+				<div className="navbar-left d-flex alignment-center">
+					<div className="easydocs-logo-area">
+						<a
+							href="#"
+							onClick={ ( e ) => e.preventDefault() }
+						>
+							{ __( 'Documentations', 'eazydocs' ) }
+						</a>
 					</div>
 
-					<form action="#" method="POST" className="easydocs-search-form">
-						<div className="search-icon">
-							<span className="dashicons dashicons-search"></span>
-						</div>
-						<input
-							type="search"
-							name="keyword"
-							className="form-control"
-							id="easydocs-search"
-							placeholder={ __( 'Search for', 'eazydocs' ) }
-							value={ searchValue }
-							onChange={ handleSearch }
-							ref={ searchInputRef }
-						/>
-					</form>
+					{ capabilities.canPublishDocs && (
+						<button
+							type="button"
+							id="parent-doc"
+							className="easydocs-btn filled easydocs-btn-sm easydocs-btn-round"
+							onClick={ handleAddDoc }
+						>
+							<span className="dashicons dashicons-plus-alt2"></span>
+							{ __( 'Add Doc', 'eazydocs' ) }
+						</button>
+					) }
 
-					<div className="navbar-right">
-						<ul className="d-flex justify-content-end">
-							{ ( capabilities.canManageOptions || capabilities.canEditDocs ) && (
-								<li>
-									<div className="easydocs-settings">
-										{ capabilities.canEditDocs && (
-											<div className="header-notify-icons">
-												<a
-													href={ urls.classicUi }
-													title={ __( 'Go to Classic UI', 'eazydocs' ) }
-												>
-													{ __( 'Classic UI', 'eazydocs' ) }
-												</a>
-											</div>
-										) }
+					{ antimanualActive ? (
+						<a
+							id="ezd-create-doc-with-ai"
+							href={ urls.antimanualDocs }
+							className="easydocs-btn easydocs-btn-sm easydocs-btn-round"
+							style={ { 
+								marginLeft: '10px', 
+								background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)', 
+								color: '#fff', 
+								border: 'none',
+								display: 'flex',
+								alignItems: 'center',
+								gap: '6px',
+								fontWeight: '600',
+								transition: 'all 0.2s ease'
+							} }
+							role="button"
+							onMouseEnter={ e => e.currentTarget.style.transform = 'translateY(-1px)' }
+							onMouseLeave={ e => e.currentTarget.style.transform = 'translateY(0)' }
+						>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M12 2L13.1 8.9L20 10L13.1 11.1L12 18L10.9 11.1L4 10L10.9 8.9L12 2Z" fill="currentColor" />
+							</svg>
+							{ __( 'Create Doc with AI', 'eazydocs' ) }
+						</a>
+					) : (
+						<button
+							type="button"
+							id="ezd-create-doc-with-ai"
+							className="easydocs-btn easydocs-btn-sm easydocs-btn-round"
+							style={ { 
+								marginLeft: '10px', 
+								background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)', 
+								color: '#fff', 
+								border: 'none',
+								display: 'flex',
+								alignItems: 'center',
+								gap: '6px',
+								fontWeight: '600',
+								transition: 'all 0.2s ease'
+							} }
+							onClick={ handleAiCreate }
+							onMouseEnter={ e => e.currentTarget.style.transform = 'translateY(-1px)' }
+							onMouseLeave={ e => e.currentTarget.style.transform = 'translateY(0)' }
+						>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M12 2L13.1 8.9L20 10L13.1 11.1L12 18L10.9 11.1L4 10L10.9 8.9L12 2Z" fill="currentColor" />
+							</svg>
+							{ __( 'Create Doc with AI', 'eazydocs' ) }
+						</button>
+					) }
+				</div>
 
-										{ capabilities.hasSettingsAccess && (
-											<div
-												className="header-notify-icon"
-												title={ __( 'Central settings page', 'eazydocs' ) }
+				<form action="#" method="POST" className="easydocs-search-form">
+					<div className="search-icon">
+						<span className="dashicons dashicons-search"></span>
+					</div>
+					<input
+						type="search"
+						name="keyword"
+						className="form-control"
+						id="easydocs-search"
+						placeholder={ __( 'Search for', 'eazydocs' ) }
+						value={ searchValue }
+						onChange={ handleSearch }
+						ref={ searchInputRef }
+					/>
+				</form>
+
+				<div className="navbar-right">
+					<ul className="d-flex justify-content-end">
+						{ ( capabilities.canManageOptions || capabilities.canEditDocs ) && (
+							<li>
+								<div className="easydocs-settings">
+									{ capabilities.canEditDocs && (
+										<div className="header-notify-icons">
+											<a
+												href={ urls.classicUi }
+												title={ __( 'Go to Classic UI', 'eazydocs' ) }
 											>
-												<a href={ urls.settings }>
-													<img
-														src={ urls.settingsIcon }
-														alt={ __( 'Settings Icon', 'eazydocs' ) }
-													/>
-												</a>
-											</div>
-										) }
-
-										<div
-											className="header-notify-icon ezd-trashicon"
-											title={ __( 'View, manage, restore the trashed docs', 'eazydocs' ) }
-										>
-											<a href={ urls.trash }>
-												<span className="dashicons dashicons-trash"></span>
+												{ __( 'Classic UI', 'eazydocs' ) }
 											</a>
-											<span className="easydocs-badge"> { trashCount } </span>
 										</div>
-									</div>
-								</li>
-							) }
+									) }
 
-							{ capabilities.canManageOptions && (
-								isPremium ? (
-									<NotificationPanel
-										notificationCount={ data.notificationCount }
-										notificationIcon={ urls.notificationIcon }
-									/>
-								) : (
-									<li
-										className="easydocs-notification pro-notification-alert"
-										title={ __( 'Notifications', 'eazydocs' ) }
-										onClick={ ( e: React.MouseEvent ) => {
+									{ capabilities.hasSettingsAccess && (
+										<div
+											className="header-notify-icon"
+											title={ __( 'Central settings page', 'eazydocs' ) }
+										>
+											<a href={ urls.settings }>
+												<img
+													src={ urls.settingsIcon }
+													alt={ __( 'Settings Icon', 'eazydocs' ) }
+												/>
+											</a>
+										</div>
+									) }
+
+									<div
+										className="header-notify-icon ezd-trashicon"
+										title={ __( 'View, manage, restore the trashed docs', 'eazydocs' ) }
+									>
+										<a href={ urls.trash }>
+											<span className="dashicons dashicons-trash"></span>
+										</a>
+										<span className="easydocs-badge"> { trashCount } </span>
+									</div>
+								</div>
+							</li>
+						) }
+
+						{ capabilities.canManageOptions && (
+							isPremium ? (
+								<NotificationPanel
+									notificationCount={ data.notificationCount }
+									notificationIcon={ urls.notificationIcon }
+								/>
+							) : (
+								<li
+									className="easydocs-notification pro-notification-alert"
+									title={ __( 'Notifications', 'eazydocs' ) }
+									onClick={ ( e: React.MouseEvent ) => {
+										e.preventDefault();
+										showNotificationProAlert( urls.assetsUrl, urls.pricing );
+									} }
+									role="button"
+									tabIndex={ 0 }
+									onKeyDown={ ( e: React.KeyboardEvent ) => {
+										if ( 13 === e.which || 32 === e.which ) {
 											e.preventDefault();
 											showNotificationProAlert( urls.assetsUrl, urls.pricing );
-										} }
-										role="button"
-										tabIndex={ 0 }
-										onKeyDown={ ( e: React.KeyboardEvent ) => {
-											if ( 13 === e.which || 32 === e.which ) {
-												e.preventDefault();
-												showNotificationProAlert( urls.assetsUrl, urls.pricing );
-											}
-										} }
-									>
-										<div className="header-notify-icon">
-											<img
-												className="notify-icon"
-												src={ urls.notificationIcon }
-												alt={ __( 'Notify Icon', 'eazydocs' ) }
-											/>
-											<img
-												className="settings-pro-icon"
-												src={ urls.proIcon }
-												alt={ __( 'Pro Icon', 'eazydocs' ) }
-											/>
-										</div>
-									</li>
-								)
-							) }
-						</ul>
-					</div>
+										}
+									} }
+								>
+									<div className="header-notify-icon">
+										<img
+											className="notify-icon"
+											src={ urls.notificationIcon }
+											alt={ __( 'Notify Icon', 'eazydocs' ) }
+										/>
+										<img
+											className="settings-pro-icon"
+											src={ urls.proIcon }
+											alt={ __( 'Pro Icon', 'eazydocs' ) }
+										/>
+									</div>
+								</li>
+							)
+						) }
+					</ul>
 				</div>
 			</div>
 		</header>

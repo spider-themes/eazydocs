@@ -157,8 +157,10 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 
 
 	const hasChildren = doc.children && doc.children.length > 0;
-	// Always treat as collapsible to allow dropping inside even if currently empty.
-	const isCollapsed = collapsedIds.has( doc.id );
+	const canAddChild = doc.canAddChild;
+	// Items at the last depth (canAddChild === false) are leaf nodes – no accordion.
+	const isCollapsible = canAddChild;
+	const isCollapsed = isCollapsible && collapsedIds.has( doc.id );
 
 	const sectionClasses = [
 		'ezd-section-card',
@@ -179,8 +181,8 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 			{ /* Section header */ }
 			<div 
                 className="ezd-section-header"
-                onClick={ () => onToggleCollapse( doc.id ) }
-                style={{ cursor: 'pointer' }}
+                onClick={ isCollapsible ? () => onToggleCollapse( doc.id ) : undefined }
+                style={{ cursor: isCollapsible ? 'pointer' : 'default' }}
             >
 				<div className="ezd-section-header-left" style={{ display: 'flex', alignItems: 'center' }}>
 					{ /* Drag handle */ }
@@ -270,69 +272,73 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 				{ /* Vote pie chart */ }
 				<VotePieChart positive={ doc.positive } negative={ doc.negative } />
 
-                { /* Collapse toggle moved to the far right */ }
-                <button
-                    type="button"
-                    className="ezd-section-collapse-btn"
-                    aria-label={ isCollapsed ? __( 'Expand section', 'eazydocs' ) : __( 'Collapse section', 'eazydocs' ) }
-                    onClick={ (e) => { e.stopPropagation(); onToggleCollapse( doc.id ); } }
-                >
-                    <svg
-                        className={ `ezd-section-chevron${ isCollapsed ? ' ezd-chevron-collapsed' : '' }` }
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
+                { /* Collapse toggle – only shown if this item can have children */ }
+                { isCollapsible && (
+                    <button
+                        type="button"
+                        className="ezd-section-collapse-btn"
+                        aria-label={ isCollapsed ? __( 'Expand section', 'eazydocs' ) : __( 'Collapse section', 'eazydocs' ) }
+                        onClick={ (e) => { e.stopPropagation(); onToggleCollapse( doc.id ); } }
                     >
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
+                        <svg
+                            className={ `ezd-section-chevron${ isCollapsed ? ' ezd-chevron-collapsed' : '' }` }
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                ) }
 			</div>
 
-            { /* The children box */ }
-            <div 
-                ref={ setDroppableNodeRef } 
-                className="ezd-section-children-box"
-                style={{ 
-                    display: isCollapsed ? 'none' : 'block',
-                }}
-            >
-                <SortableContext items={ childIds } strategy={ verticalListSortingStrategy }>
-                    <div className="ezd-section-list">
-                        { doc.children && doc.children.map( ( child, index ) => (
-                            <React.Fragment key={ child.id }>
-                                { isDropTarget && dropIndicator && dropIndicator.index === index && (
-                                    <DropIndicatorLine />
-                                ) }
-                                <SortableDocItem
-                                    doc={ child }
-                                    depth={ depth + 1 }
-                                    parentId={ doc.id }
-                                    isPremium={ isPremium }
-                                    capabilities={ capabilities }
-                                    urls={ urls }
-                                    roleVisibility={ roleVisibility }
-                                    collapsedIds={ collapsedIds }
-                                    onToggleCollapse={ onToggleCollapse }
-                                    dropIndicator={ dropIndicator }
-                                    isDragActive={ isDragActive }
-                                />
-                            </React.Fragment>
-                        ) ) }
-                        { isDropTarget && dropIndicator && dropIndicator.index === ( doc.children?.length ?? 0 ) && (
-                            <DropIndicatorLine />
-                        ) }
+            { /* The children box – only rendered if this item can accept children */ }
+            { isCollapsible && (
+                <div 
+                    ref={ setDroppableNodeRef } 
+                    className="ezd-section-children-box"
+                    style={{ 
+                        display: isCollapsed ? 'none' : 'block',
+                    }}
+                >
+                    <SortableContext items={ childIds } strategy={ verticalListSortingStrategy }>
+                        <div className="ezd-section-list">
+                            { doc.children && doc.children.map( ( child, index ) => (
+                                <React.Fragment key={ child.id }>
+                                    { isDropTarget && dropIndicator && dropIndicator.index === index && (
+                                        <DropIndicatorLine />
+                                    ) }
+                                    <SortableDocItem
+                                        doc={ child }
+                                        depth={ depth + 1 }
+                                        parentId={ doc.id }
+                                        isPremium={ isPremium }
+                                        capabilities={ capabilities }
+                                        urls={ urls }
+                                        roleVisibility={ roleVisibility }
+                                        collapsedIds={ collapsedIds }
+                                        onToggleCollapse={ onToggleCollapse }
+                                        dropIndicator={ dropIndicator }
+                                        isDragActive={ isDragActive }
+                                    />
+                                </React.Fragment>
+                            ) ) }
+                            { isDropTarget && dropIndicator && dropIndicator.index === ( doc.children?.length ?? 0 ) && (
+                                <DropIndicatorLine />
+                            ) }
 
-                        { !hasChildren && (
-                            <div className="ezd-empty-dropzone">
-                                { __( 'Drop items here to make them a sub-section', 'eazydocs' ) }
-                            </div>
-                        ) }
-                    </div>
-                </SortableContext>
-            </div>
+                            { !hasChildren && (
+                                <div className="ezd-empty-dropzone">
+                                    { __( 'Drop items here to make them a sub-section', 'eazydocs' ) }
+                                </div>
+                            ) }
+                        </div>
+                    </SortableContext>
+                </div>
+            ) }
 		</div>
 	);
 };

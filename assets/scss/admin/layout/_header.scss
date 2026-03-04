@@ -3,7 +3,7 @@
 /*----------------------------------------*/
 .easydocs-header-area {
   padding-top: 20px;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
 
   .easydocs-row {
     @include margin(mx, 0);
@@ -64,7 +64,7 @@
     @include size(2.5rem);
     line-height: 2.5rem;
     border-radius: 50%;
-    background: rgba(#252733, 0.05);
+    background: #fff;
     text-align: center;
     cursor: pointer;
     display: inline-flex;
@@ -89,11 +89,13 @@
 }
 
 .easydocs-notification {
-  margin-right: rem(27px);
   position: relative;
 }
 
 .easydocs-settings {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-right: 10px;
 
   .header-notify-icons {
@@ -115,276 +117,17 @@
   }
 }
 
-:is(.knobs, .layer) {
-  @include absolute(inset 0);
-}
-
-.navbar-right .js-darkmode-btn {
-  .day svg {
-    color: #fff;
-  }
-
-  .night svg {
-    color: var(--clr-dark);
-  }
-}
-
-.body_dark {
-  .navbar-right .js-darkmode-btn {
-    .day svg {
-      --toggle-icon: #575766;
-    }
-
-    .night svg {
-      --toggle-icon: #fff;
-    }
-  }
-}
-
 .navbar-right {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  margin-right: 10px;
 
-  .js-darkmode-btn {
+  ul {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    @include size(rem(80px), rem(40px));
-    position: relative;
-    background: rgba(#252733, 0.05);
-    padding: 0 10px;
-    color: #fff;
-    border-radius: 24px;
-    @include property;
-
-    .day svg {
-      --toggle-icon: #fff;
-      @include property;
-      margin-top: 7px;
-    }
-
-    .night svg {
-      --toggle-icon: #575766;
-      @include property;
-      margin-top: 7px;
-    }
-  }
-
-  .js-darkmode-btn label {
+    gap: 6px;
+    list-style: none;
     margin: 0;
-    cursor: pointer;
-    position: relative;
-    z-index: 2;
+    padding: 0;
   }
-
-  .js-darkmode-btn .ball {
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    background-color: var(--clr-blue);
-    border-radius: 50%;
-    left: 4px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: default;
-    transition: all 0.3s linear 0s;
-    z-index: 1;
-  }
-
-  .js-darkmode-btn svg {
-    font-size: 16px;
-    transition: all 0.3s linear 0s;
-  }
-
-  .js-darkmode-btn input {
-    display: none;
-  }
-}
-
-.notification-head {
-  padding: var(--gutter-20) var(--gutter-25);
-  @include shadow($y: 1px, $color: #EDEEF2);
-
-  .header-text {
-    color: var(--clr-dark);
-    font-size: var(--fs-14);
-    font-weight: var(--fw-500);
-    line-height: 1;
-  }
-
-  .right-text {
-    color: var(--clr-text);
-    font-size: var(--fs-12);
-    line-height: 1;
-  }
-}
-
-.notification-body {
-  padding: 18px 0;
-
-  .filter-button-group {
-    display: flex;
-    gap: 8px;
-    @include padding(px, var(--gutter-25));
-
-    svg {
-      top: 0;
-    }
-
-    .easydocs-btn {
-      --notification-icon: var(--clr-dark);
-      --btn-px: 1rem;
-      --btn-fs: var(--fs-14);
-      --btn-py: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 1px;
-      --btn-bg: #e4e6eb;
-      --btn-clr: var(--clr-dark);
-      --btn-bc: transparent;
-      font-size: 12px;
-
-      span.dashicons {
-        height: unset;
-      }
-
-      &.mixitup-control-active {
-        background-color: #e7f3ff;
-        color: #1877f2;
-        --notification-icon: #1877f2;
-
-        .dashicons-screenoptions:before {
-          color: #1877f2;
-        }
-
-        @include hover {
-          background-color: #d2e6f9;
-        }
-      }
-
-      @include hover {
-        --notification-icon: var(--clr-white);
-        background: #cdcdcd;
-      }
-    }
-  }
-}
-
-.notify-column {
-  margin-top: 16px;
-  max-height: rem(320px);
-  overflow-y: auto !important;
-  scrollbar-width: thin;
-perspective-origin: unset !important;
-height: 100% !important;
-
-  &::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: var(--clr-text-light);
-  }
-
-  &::-webkit-scrollbar {
-    width: 8px;
-    background-color: #F5F5F5;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: var(--clr-text);
-  }
-}
-
-.notification-item {
-  display: none;
-  align-items: flex-start;
-  cursor: pointer;
-  gap: var(--gutter-10);
-  padding: var(--gutter-10) 15px;
-  @include margin(mx, var(--gutter-10));
-  @include property;
-  border-radius: rem(5px);
-  transition: .3s all;
-  &.show_mix{
-    display: flex;
-    opacity: 1 !important;
-    transform: unset !important
-  }
-
-  .notification-image {
-    @include size(2.5rem);
-    border-radius: 50%;
-    position: relative;
-
-    .notify-badge {
-      @include absolute(bottom 0 right 0);
-      @include size(1.125rem);
-      line-height: 1.125rem;
-      border-radius: 50%;
-      text-align: center;
-
-      .dashicons {
-        top: 0;
-      }
-    }
-
-    .notify-badge-blue {
-      @include gradient(180deg, #22AAF1, #066BDA);
-
-      .dashicons {
-        font-size: 12px;
-        color: white;
-        padding-top: 2.5px;
-      }
-    }
-
-    .notify-badge-green {
-      @include gradient(180deg, #62D77E, #2BB64E);
-
-      .dashicons {
-        font-size: 12px;
-        color: white;
-        padding-top: 4px;
-      }
-    }
-  }
-
-  @include hover {
-    background: rgba(#4C4CF1, 0.05);
-  }
-}
-
-.notification-content {
-  .notify-name {
-    font-size: var(--fs-14);
-    font-weight: var(--fw-500);
-    color: var(--clr-dark);
-    padding-right: 0.5rem;
-    margin: 0;
-    line-height: 1.3;
-    a {
-      text-decoration: none;
-    }
-  }
-
-  .reply-text {
-    font-size: 14px;
-    color: var(--clr-text-light);
-    line-height: 1;
-    margin-top: 5px;
-  }
-}
-
-.notify-short-description {
-  font-size: var(--fs-14);
-  color: var(--clr-text);
-  line-height: 1;
-  margin-top: 0.325rem;
-}
-
-.notify-date {
-  text-align: left;
-  color: var(--clr-text-light);
-  line-height: 1;
-  margin-top: 0.375rem;
 }

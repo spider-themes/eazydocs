@@ -93,7 +93,7 @@ const App: React.FC = () => {
 
 	if ( isError || ! data ) {
 		return (
-			<div className="ezd_docs_builder">
+			<div className="ezd-builder-error">
 				<p>{ __( 'Failed to load builder data.', 'eazydocs' ) }</p>
 			</div>
 		);
@@ -104,45 +104,43 @@ const App: React.FC = () => {
 	return (
 		<SearchProvider>
 			<ToastProvider>
-				<div className="ezd_docs_builder">
-					{ hasDocs ? (
-						<>
-							<Header data={ data } onTabChange={ handleTabChange } />
-							<main>
-								<div className="easydocs-sidebar-menu">
-									<div className="tab-container">
-										<ParentDocs
-											parentDocs={ data.parentDocs }
-											activeTab={ activeTab }
-											onTabChange={ handleTabChange }
-											capabilities={ data.capabilities }
-											isPremium={ data.isPremium }
-											urls={ data.urls }
-											roleVisibility={ data.roleVisibility }
-										/>
-										<div className="easydocs-tab-content" style={ { flex: 8 } }>
-											{ data.parentDocs.map( ( parent ) => (
-												<ChildDocs
-													key={ parent.id }
-													parent={ parent }
-													children={ data.childrenMap[ parent.id ] || [] }
-													isActive={ parent.id === activeTab }
-													capabilities={ data.capabilities }
-													isPremium={ data.isPremium }
-													urls={ data.urls }
-													currentTheme={ data.currentTheme }
-													roleVisibility={ data.roleVisibility }
-												/>
-											) ) }
-										</div>
+				{ hasDocs ? (
+					<>
+						<Header data={ data } onTabChange={ handleTabChange } />
+						<main>
+							<div className="easydocs-sidebar-menu">
+								<div className="tab-container">
+									<ParentDocs
+										parentDocs={ data.parentDocs }
+										activeTab={ activeTab }
+										onTabChange={ handleTabChange }
+										capabilities={ data.capabilities }
+										isPremium={ data.isPremium }
+										urls={ data.urls }
+										roleVisibility={ data.roleVisibility }
+									/>
+									<div className="easydocs-tab-content" style={ { flex: 8 } }>
+										{ data.parentDocs.map( ( parent ) => (
+											<ChildDocs
+												key={ parent.id }
+												parent={ parent }
+												children={ data.childrenMap[ parent.id ] || [] }
+												isActive={ parent.id === activeTab }
+												capabilities={ data.capabilities }
+												isPremium={ data.isPremium }
+												urls={ data.urls }
+												currentTheme={ data.currentTheme }
+												roleVisibility={ data.roleVisibility }
+											/>
+										) ) }
 									</div>
 								</div>
-							</main>
-						</>
-					) : (
-						<EmptyState data={ data } />
-					) }
-				</div>
+							</div>
+						</main>
+					</>
+				) : (
+					<EmptyState data={ data } />
+				) }
 			</ToastProvider>
 		</SearchProvider>
 	);

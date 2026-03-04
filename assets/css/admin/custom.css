@@ -19,23 +19,6 @@ div.search_result {
     display: none;
 }
 
-
-
-
-
-.easydocs-settings {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.easydocs-settings a:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-
-
 .eazydocs-no-content {
     display: block;
     text-align: center;
@@ -76,7 +59,6 @@ div.search_result {
 .eazydocs-pro-notice .dashicons-admin-page:before {
     color: #f1bd6c
 }
-
 
 .settings-pro-icon {
     position: absolute;

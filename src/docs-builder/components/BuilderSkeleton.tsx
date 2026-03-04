@@ -28,25 +28,23 @@ const SkeletonLine: React.FC< { width?: string; height?: string } > = ( {
  */
 const HeaderSkeleton: React.FC = () => (
 	<header className="easydocs-header-area">
-		<div className="ezd-container-fluid">
-			<div className="row alignment-center justify-content-between ml-0">
-				<div className="navbar-left d-flex alignment-center">
-					<div className="easydocs-logo-area">
-						<SkeletonLine width="140px" height="20px" />
-					</div>
-					<div style={ { marginLeft: '15px' } }>
-						<SkeletonLine width="100px" height="32px" />
-					</div>
+		<div className="row alignment-center justify-content-between ml-0">
+			<div className="navbar-left d-flex alignment-center">
+				<div className="easydocs-logo-area">
+					<SkeletonLine width="140px" height="20px" />
 				</div>
-				<div style={ { width: '240px' } }>
-					<SkeletonLine width="100%" height="36px" />
+				<div style={ { marginLeft: '15px' } }>
+					<SkeletonLine width="100px" height="32px" />
 				</div>
-				<div className="navbar-right">
-					<div className="d-flex" style={ { gap: '12px' } }>
-						<SkeletonLine width="60px" height="24px" />
-						<SkeletonLine width="24px" height="24px" />
-						<SkeletonLine width="24px" height="24px" />
-					</div>
+			</div>
+			<div style={ { width: '240px' } }>
+				<SkeletonLine width="100%" height="36px" />
+			</div>
+			<div className="navbar-right">
+				<div className="d-flex" style={ { gap: '12px' } }>
+					<SkeletonLine width="60px" height="24px" />
+					<SkeletonLine width="24px" height="24px" />
+					<SkeletonLine width="24px" height="24px" />
 				</div>
 			</div>
 		</div>
@@ -119,7 +117,7 @@ const ContentSkeleton: React.FC = () => (
  * Full page skeleton loader for the Docs Builder.
  */
 const BuilderSkeleton: React.FC = () => (
-	<div className="ezd_docs_builder ezd-skeleton-loading" role="status" aria-label={ __( 'Loading documentation builder...', 'eazydocs' ) }>
+	<div className="ezd-skeleton-loading" role="status" aria-label={ __( 'Loading documentation builder...', 'eazydocs' ) }>
 		<HeaderSkeleton />
 		<main>
 			<div className="easydocs-sidebar-menu">

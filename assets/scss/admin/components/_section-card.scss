@@ -54,7 +54,7 @@
 
 .ezd-section-card:not(.ezd-section-collapsed) .ezd-section-header {
 	border-bottom-color: #e2e8f0;
-	background-color: #f8fafc;
+	background-color: #f4f4ff;
 }
 
 .ezd-section-header-left {
@@ -138,13 +138,7 @@
 	}
 }
 
-.ezd-vote-pie-label {
-	font-size: 9px;
-	font-weight: 700;
-	fill: #475569;
-	user-select: none;
-	pointer-events: none;
-}
+
 
 // Numbered badge
 .ezd-section-number {
@@ -278,162 +272,11 @@
 	}
 }
 
-// ==========================================================
-//  SECTION BODY – children area
-// ==========================================================
-.ezd-section-body {
-	padding: 8px 12px 12px;
-	background: #f8fafc;
-	border-radius: 0 0 10px 10px;
-}
-
-// ==========================================================
-//  CHILD ROW – each depth-2+ item
-// ==========================================================
-.ezd-child-row {
-	border-radius: 6px;
-	transition: all 0.2s ease;
-	position: relative;
-	background: #ffffff;
-	border: 1px solid transparent;
-	margin-bottom: 2px;
-
-	&::before {
-		content: "";
-		position: absolute;
-		left: 0;
-		top: 50%;
-		transform: translateY(-50%);
-		height: 0;
-		width: 3px;
-		background: #6366f1;
-		border-radius: 0 4px 4px 0;
-		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-		opacity: 0;
-	}
-
-	&:hover {
-		background: #ffffff;
-		border-color: #e2e8f0;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-		transform: translateX(2px);
-
-		&::before {
-			height: 60%;
-			opacity: 1;
-		}
-	}
-
-	&.dd-is-dragging {
-		opacity: 0.4;
-		transform: none;
-	}
-}
-
-.ezd-child-row-inner {
-	display: flex;
-	align-items: center;
-	padding: 8px 12px;
-	gap: 10px;
-	min-height: 38px;
-}
-
-// Child drag handle
-.ezd-child-drag-handle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 20px;
-	height: 20px;
-	cursor: grab;
-	color: #cbd5e1;
-	flex-shrink: 0;
-	opacity: 0;
-	border-radius: 4px;
-	transform: scale(0.9);
-	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-
-	&:hover {
-		color: var(--ezd-drag-handle-hover-color, #4f46e5);
-		background: #f1f5f9;
-	}
-
-	&:active {
-		cursor: grabbing;
-	}
-}
-
-.ezd-child-row:hover .ezd-child-drag-handle {
-	opacity: 1;
-	transform: scale(1);
-}
-
-// Status dot indicator
-.ezd-status-dot {
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	flex-shrink: 0;
-	box-shadow: 0 0 0 2px #ffffff;
-}
-
-.ezd-dot-publish {
-	background: #3b82f6;
-}
-
-.ezd-dot-private {
-	background: #f59e0b;
-}
-
-.ezd-dot-protected {
-	background: #8b5cf6;
-}
-
-.ezd-dot-draft {
-	background: #9ca3af;
-}
-
-// Child title
-.ezd-child-title {
-	flex: 0 1 auto;
-	font-size: 13.5px;
-	color: #374151;
-	line-height: 1.35;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-
-	a {
-		color: inherit;
-		text-decoration: none;
-
-		&:hover {
-			color: #3b6de0;
-		}
-	}
-}
-
-// Child hover actions
-.ezd-child-actions {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	flex-shrink: 0;
-	opacity: 0;
-	transition: opacity 0.15s ease;
-}
-
-.ezd-child-row:hover .ezd-child-actions {
-	opacity: 1;
-}
-
 .ezd-inline-action {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 26px;
-	height: 26px;
+	padding: 5px;
 	border-radius: 4px;
 	color: #9ca3af;
 	text-decoration: none;
@@ -474,7 +317,7 @@
 //  EXPANDED / ACTIVE STATE – compact children area
 // ==========================================================
 
-// Children wrapper (rendered by React as .ezd-section-children-box)
+// Children wrapper
 .ezd-section-children-box {
 	padding: 6px 10px 10px !important; // Override inline style
 }
@@ -493,6 +336,7 @@
 	border-color: transparent;
 	background: transparent;
 
+	&:not(.ezd-section-collapsed),
 	&:hover {
 		border-color: #e2e8f0;
 		box-shadow: none;
@@ -534,7 +378,7 @@
 		transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
 	}
 
-	&:hover .ezd-section-drag-handle {
+	&:hover > .ezd-section-header .ezd-section-drag-handle {
 		opacity: 1;
 	}
 
@@ -570,23 +414,6 @@
 			height: 11px;
 		}
 	}
-
-	// Nested children box inside child — deeper indent cascade
-	.ezd-section-children-box {
-		padding: 2px 0 4px 16px !important;
-	}
-}
-
-// 3rd-level (grandchild) cards: even more compact
-.ezd-section-card .ezd-section-card .ezd-section-card {
-	.ezd-section-header {
-		padding: 5px 6px;
-		gap: 5px;
-	}
-
-	.ezd-section-title-text {
-		font-size: 13px;
-	}
 }
 
 // Empty drop-zone inside expanded cards
@@ -610,11 +437,7 @@
 	}
 }
 
-.ezd-child-collapsed {
-	.ezd-child-nested {
-		display: none;
-	}
-}
+
 
 // ==========================================================
 //  ADD SUB-LESSON BUTTON
@@ -623,7 +446,7 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
-	padding: 6px 14px;
+	padding: 10px 20px;
 	background: #fff;
 	border: 1px solid #d1d5db;
 	border-radius: 6px;
@@ -632,7 +455,7 @@
 	font-weight: 500;
 	cursor: pointer;
 	transition: all 0.15s ease;
-	margin-top: 16px;
+	margin-top: 10px;
 
 	&:hover {
 		border-color: #9ca3af;
@@ -722,10 +545,5 @@ body.rtl {
 	.ezd-drop-indicator-dot {
 		left: auto;
 		right: -4px;
-	}
-
-	// RTL: flip nested children indent direction
-	.ezd-section-card .ezd-section-card .ezd-section-children-box {
-		padding: 2px 16px 4px 0 !important;
 	}
 }
