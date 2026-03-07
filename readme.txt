@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.11.0
+Stable tag: 2.10.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -341,92 +341,82 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.11.0 (12 March 2026) =
-*   New: The Docs Builder page page has re-built with React js for better and smoother performance.
-*   Improved: The Docs Builder page design refreshed with cleaner UI and better usability.
-*   Optimized: Removed some unused and unnecessary code and files from the Docs Builder and the Analytics page.
-*   Improved: The drag-n-drop docs re-ordering feature has been improved for better usability.
+= 2.10.2 (07 March 2026) =
+* Improved: Completely rebuilt the Docs Builder page to provide a much smoother, faster, and more responsive experience.
+* Improved: Refreshed the Docs Builder design with a cleaner layout and easier-to-read section lists.
+* Improved: Reordering documents using drag-and-drop is now greatly enhanced and more reliable.
+* Improved: Redesigned the Pro upgrade popup for a more pleasant user experience.
+* Fixed: The "Expand All" and "Collapse All" buttons on the Docs Builder page are now working perfectly.
+* Fixed: Resolved an issue where breadcrumb navigation wasn't displaying correctly alongside the Docy theme.
+* Optimized: Under-the-hood performance improvements to make the Docs Builder load faster.
 
 = 2.10.1 (27 February 2026) =
-*   Improved: Feedback modal design refreshed with cleaner UI and better usability.
-*   Optimized: Implemented transient caching for EazyDocs search results to reduce database load.
-*   Optimized: Added 60-second transient cache for AJAX search results with user-aware cache keys.
-*   Optimized: Improved docs sidebar existence check for faster rendering.
-*   Optimized: Search performance improved using ID caching and query limits.
-*   Refactored: Enforced strict comparisons and better type safety in core functions.
-*   Fixed: Import conflict with WoodMart theme resolved.
-*   Fixed: Stored XSS vulnerability in OnePage Docs module.
-*   Fixed: Strengthened nonce security for document creation and deletion actions.
-*   Fixed: Memory leak issue in search banner event listeners resolved.
-*   Added: Admin notification for negative user feedback submissions.
-*   Added: Docblocks across core files with WPCS standard documentation.
-*   Updated: HTML Notice SDK upgraded to latest version.
+* Improved: Feedback modal design refreshed with cleaner UI and better usability.
+* Optimized: Implemented transient caching for EazyDocs search results to reduce database load.
+* Optimized: Added 60-second transient cache for AJAX search results with user-aware cache keys.
+* Optimized: Improved docs sidebar existence check for faster rendering.
+* Optimized: Search performance improved using ID caching and query limits.
+* Refactored: Enforced strict comparisons and better type safety in core functions.
+* Fixed: Import conflict with WoodMart theme resolved.
+* Fixed: Stored XSS vulnerability in OnePage Docs module.
+* Fixed: Strengthened nonce security for document creation and deletion actions.
+* Fixed: Memory leak issue in search banner event listeners resolved.
+* Added: Admin notification for negative user feedback submissions.
+* Added: Docblocks across core files with WPCS standard documentation.
+* Updated: HTML Notice SDK upgraded to latest version.
 
 = 2.10.0 (08 February 2026) =
-*   New: Pro badge indicator in admin menu when EazyDocs Pro is active for better visibility.
-*   New: informational notice clarifying that EazyDocs works with Gutenberg blocks and doesn't require Elementor.
-*   New: "Tabbed Docs" block for organizing documentation content in a tab-based layout.
-*   New: EazyDocs Shortcode block option to display featured images as 50x50 thumbnails or full size.
-*   New: Ddoc theme to the integrated themes list.
-*   Improved: Setup Wizard page redesigned and optimized to be fully responsive on all desktop screen sizes.
-*   Improved: Docs Builder now remembers the last active documentation item in the sidebar on page reload.
-*   Improved: Email settings reorganized under a new “Email Settings” parent section for better clarity.
-*   Improved: Dashboard page UI and overall user experience refined.
-*   Improved: Private docs are now visible in the frontend sidebar navigation.
-*   Improved: Pro and ProMax badges and notices fixed in both Admin Settings and Customizer.
-*   Improved: Accessibility enhanced across admin actions, bulk options, doc builder filters, analytics filters, and sidebar tabs with proper ARIA roles, keyboard navigation, and focus indicators.
-*   Improved: Doc Builder UI now fully support keyboard interaction (Enter/Space).
-*   Improved: Asset loading optimized to load scripts only where needed, reducing unnecessary overhead.
-*   Improved: Doc IDs processing optimized using map/join logic, reducing memory usage and improving speed.
-*   Improved: Core files standardized with strict comparisons, Yoda conditions, and improved type safety.
-*   Improved: Updated documentation to clarify that no third-party page builder is required.
-*   Fixed: Review reminder now properly hides after user clicks "Ok, you deserve" and rates the plugin.
-*   Fixed: Search form spinner alignment issue.
-*   Fixed: IDOR vulnerability in nestable callback functions by enforcing proper permission checks.
-*   Fixed: Information disclosure issue by restricting private docs visibility based on user capabilities.
-*   Fixed: Prevented unauthorized user creation via Google Login when registration is disabled.
-*   Fixed: Accessibility issue with duplicate IDs and missing ARIA labels in child docs list.
-*   Fixed: Undefined function errors related to update_post_meta_cache.
-*   Fixed: Dark mode compatibility issue with Docly theme.
-*   Performance: Optimized AJAX tag search by replacing get_terms with direct database lookup.
-*   Performance: Optimized doc builder queries for faster load times.
-*   Updated: Added admin-settings.css and limited settings styling to the Settings page only.
-*   Updated: Twitter logo replaced with the X logo in admin UI.
-*   [Read the full v2.10.0 release article](https://eazydocs.spider-themes.net/eazydocs-2-10-0/).
+* New: Pro badge indicator in admin menu when EazyDocs Pro is active for better visibility.
+* New: informational notice clarifying that EazyDocs works with Gutenberg blocks and doesn't require Elementor.
+* New: "Tabbed Docs" block for organizing documentation content in a tab-based layout.
+* New: EazyDocs Shortcode block option to display featured images as 50x50 thumbnails or full size.
+* New: Ddoc theme to the integrated themes list.
+* Improved: Setup Wizard page redesigned and optimized to be fully responsive on all desktop screen sizes.
+* Improved: Docs Builder now remembers the last active documentation item in the sidebar on page reload.
+* Improved: Email settings reorganized under a new “Email Settings” parent section for better clarity.
+* Improved: Dashboard page UI and overall user experience refined.
+* Improved: Private docs are now visible in the frontend sidebar navigation.
+* Improved: Pro and ProMax badges and notices fixed in both Admin Settings and Customizer.
+* Improved: Accessibility enhanced across admin actions, bulk options, doc builder filters, analytics filters, and sidebar tabs with proper ARIA roles, keyboard navigation, and focus indicators.
+* Improved: Doc Builder UI now fully support keyboard interaction (Enter/Space).
+* Improved: Asset loading optimized to load scripts only where needed, reducing unnecessary overhead.
+* Improved: Doc IDs processing optimized using map/join logic, reducing memory usage and improving speed.
+* Improved: Core files standardized with strict comparisons, Yoda conditions, and improved type safety.
+* Improved: Updated documentation to clarify that no third-party page builder is required.
+* Fixed: Review reminder now properly hides after user clicks "Ok, you deserve" and rates the plugin.
+* Fixed: Search form spinner alignment issue.
+* Fixed: IDOR vulnerability in nestable callback functions by enforcing proper permission checks.
+* Fixed: Information disclosure issue by restricting private docs visibility based on user capabilities.
+* Fixed: Prevented unauthorized user creation via Google Login when registration is disabled.
+* Fixed: Accessibility issue with duplicate IDs and missing ARIA labels in child docs list.
+* Fixed: Undefined function errors related to update_post_meta_cache.
+* Fixed: Dark mode compatibility issue with Docly theme.
+* Performance: Optimized AJAX tag search by replacing get_terms with direct database lookup.
+* Performance: Optimized doc builder queries for faster load times.
+* Updated: Added admin-settings.css and limited settings styling to the Settings page only.
+* Updated: Twitter logo replaced with the X logo in admin UI.
+* [Read the full v2.10.0 release article](https://eazydocs.spider-themes.net/eazydocs-2-10-0/).
 
 
 = 2.9.0 (03 January 2026) =
-*   New: Redesigned Setup Wizard with a compact, modern UI and improved progress tracking.
-*   New: Added floating Quick Tips panel in the Setup Wizard for contextual guidance (visible on desktop).
-*   New: Added "Import Sample Data" feature to quickly populate documentation with demo content.
-*   New: Added "Close All/Collapse All" button in the EazyDocs > Docs Builder page to expand/collapse the docs at a single click.
-*   Fixed: UI alignment and progress indicator issues in the Setup Wizard.
-*   Improved: Setup Wizard navigation now supports clicking on completed steps to go back.
-*   Improved: Replaced Forumax with Antimanual in the plugin recommendation step.
-*   Improved: Redesigned "Create Doc with AI" popup with a modern, feature-rich UI and video preview.
-*   Improved: Enhanced Antimanual AI integration card on the dashboard with a cleaner layout.
-*   Improved: Streamlined Setup Wizard steps by removing redundant text and improving layout consistency.
-*   Added: Sample data import from demo.xml using WordPress Importer with fallback manual import support.
+* New: Redesigned Setup Wizard with a compact, modern UI and improved progress tracking.
+* New: Added floating Quick Tips panel in the Setup Wizard for contextual guidance (visible on desktop).
+* New: Added "Import Sample Data" feature to quickly populate documentation with demo content.
+* New: Added "Close All/Collapse All" button in the EazyDocs > Docs Builder page to expand/collapse the docs at a single click.
+* Fixed: UI alignment and progress indicator issues in the Setup Wizard.
+* Improved: Setup Wizard navigation now supports clicking on completed steps to go back.
+* Improved: Replaced Forumax with Antimanual in the plugin recommendation step.
+* Improved: Redesigned "Create Doc with AI" popup with a modern, feature-rich UI and video preview.
+* Improved: Enhanced Antimanual AI integration card on the dashboard with a cleaner layout.
+* Improved: Streamlined Setup Wizard steps by removing redundant text and improving layout consistency.
+* Added: Sample data import from demo.xml using WordPress Importer with fallback manual import support.
 
 = 2.8.1 (19 December 2025) =
-*   Tweaked: Settings page reorganized for easier navigation.
-*   Improved: AJAX breadcrumb updated and Russian translations refreshed for accuracy and consistency.
-*   Improved: Minor tweaks and performance enhancements for smoother usage.
-*   Updated: Dashboard links improved and top docs limited to 10 posts for better overview.
-*   Updated: Freemius SDK updated to 2.13.0.
-
-= 2.8.0 (03 December 2025) =
-*   New: Added dedicated EazyDocs Admin Dashboard page.
-*   New: Added featured image support for the EazyDocs shortcode.
-*   Fixed: Prevented empty search submissions in all EazyDocs search forms.
-*   Fixed: Improved Previous/Next docs navigation markup and resolved structural inconsistencies.
-*   Improved: Major dashboard UI and analytics enhancements.
-*   Improved: WpEazy AI presentation added inside the Doc Builder.
-*   Improved: Enhanced security with added nonce verification and capability checks across AJAX/admin actions.
-*   Improved: Refactored doc creation logic to unify handlers and simplify Create_Post workflow.
-*   Improved: Strengthened permission checks across review notices, CSF import/export/reset, and one-page edit actions.
-*   Improved: Refactored Google_Login enrollment logic for clarity and maintainability.
-*   Improved: Refreshed search banner and breadcrumb colors for a cleaner look.
+* Tweaked: Settings page reorganized for easier navigation.
+* Improved: AJAX breadcrumb updated and Russian translations refreshed for accuracy and consistency.
+* Improved: Minor tweaks and performance enhancements for smoother usage.
+* Updated: Dashboard links improved and top docs limited to 10 posts for better overview.
+* Updated: Freemius SDK updated to 2.13.0.
 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 

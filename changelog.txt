@@ -1,5 +1,14 @@
 == Changelog ==
 
+= 2.10.2 (07 March 2026) =
+Improved: Completely rebuilt the Docs Builder page to provide a much smoother, faster, and more responsive experience.
+Improved: Refreshed the Docs Builder design with a cleaner layout and easier-to-read section lists.
+Improved: Reordering documents using drag-and-drop is now greatly enhanced and more reliable.
+Improved: Redesigned the Pro upgrade popup for a more pleasant user experience.
+Fixed: The "Expand All" and "Collapse All" buttons on the Docs Builder page are now working perfectly.
+Fixed: Resolved an issue where breadcrumb navigation wasn't displaying correctly alongside the Docy theme.
+Optimized: Under-the-hood performance improvements to make the Docs Builder load faster.
+
 = 2.10.1 (27 February 2026) =
 Improved: Feedback modal design refreshed with cleaner UI and better usability.
 Optimized: Implemented transient caching for EazyDocs search results to reduce database load.
