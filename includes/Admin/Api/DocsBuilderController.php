@@ -854,7 +854,10 @@ class Docs_Builder_Controller {
 				'post_status'    => array( 'publish' ),
 			);
 
-			foreach ( get_posts( $args ) as $post ) {
+			$docs = get_posts( $args );
+			update_postmeta_cache( wp_list_pluck( $docs, 'ID' ) );
+
+			foreach ( $docs as $post ) {
 				$positive_time = get_post_meta( $post->ID, 'positive_time', true );
 				if ( ! empty( $positive_time ) ) {
 					$time = strtotime( $positive_time );
