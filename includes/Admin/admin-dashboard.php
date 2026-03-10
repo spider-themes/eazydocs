@@ -59,6 +59,10 @@ for ( $i = 0; $i <= 6; $i++ ) {
 	$searchCountNotFound[] = 0;
 }
 
+// Pre-fetch metadata for all posts
+$post_ids = wp_list_pluck( $posts, 'post_id' );
+ezd_update_post_meta_cache( $post_ids );
+
 // Get 7 data date wise.
 foreach ( $posts as $key => $item ) {
 	$dates = gmdate( 'd M, Y', strtotime( $item->created_at ) );
