@@ -34,6 +34,7 @@ class Admin {
 		add_action( 'wp_ajax_eaz_nestable_docs', [ $this, 'nestable_callback' ] );
 		add_action( 'wp_ajax_eaz_parent_nestable_docs', [ $this, 'parent_nestable_callback' ] );
 		add_filter( 'display_post_states', [ $this, 'ezd_post_states' ], 10, 2 );
+		add_action( 'admin_head', [ $this, 'ezd_docs_builder_button' ] );
 		
 		// Initialize Antimanual notice
 		AntimanualNotice::init();
@@ -616,6 +617,40 @@ class Admin {
 		return $post_states;
 	}
 	
+	/**
+	 * Inject a "Switch to Docs Builder" button beside the "Add Doc" heading button
+	 * on the Docs post list page via an inline script.
+	 *
+	 * WordPress has no PHP hook for the page-title action area, so we use a small
+	 * DOMContentLoaded script to insert the link after the first .page-title-action element.
+	 *
+	 * @return void
+	 */
+	public function ezd_docs_builder_button() {
+		$screen = get_current_screen();
+
+		if ( ! $screen || 'docs' !== $screen->post_type ) {
+			return;
+		}
+
+		$builder_url = esc_url( admin_url( 'admin.php?page=eazydocs-builder' ) );
+		$label       = esc_js( __( 'Switch to Docs Builder', 'eazydocs' ) );
+		?>
+		<script type="text/javascript">
+			document.addEventListener( 'DOMContentLoaded', function () {
+				var addDocBtn = document.querySelector( '.page-title-action' );
+				if ( addDocBtn ) {
+					var btn = document.createElement( 'a' );
+					btn.href      = '<?php echo $builder_url; ?>';
+					btn.className = 'page-title-action';
+					btn.textContent = '<?php echo $label; ?>';
+					addDocBtn.parentNode.insertBefore( btn, addDocBtn.nextSibling );
+				}
+			} );
+		</script>
+		<?php
+	}
+
 	/**
 	 * Render the EazyDocs Dashboard page.
 	 *
