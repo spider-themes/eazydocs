@@ -40,6 +40,7 @@ From small teams to enterprise organizations, EazyDocs is the go-to solution for
 ### Real Success Stories
 - **[Bit Apps](https://eazydocs.spider-themes.net/bit-apps/)** - Complete SaaS documentation
 - **[Glamsy Designs](https://eazydocs.spider-themes.net/glamsydesigns/)** - Product knowledge base
+- **[Quomodosoft](https://eazydocs.spider-themes.net/quomodosoft/)** - Product knowledge base
 
 == Getting Started ==
 
