@@ -2,132 +2,138 @@
 /*  02. Header Area
 /*----------------------------------------*/
 .easydocs-header-area {
-  padding-top: 20px;
-  padding-bottom: 40px;
+	padding-top: 20px;
+	padding-bottom: 40px;
 
-  .easydocs-row {
-    @include margin(mx, 0);
-  }
-  .row{
-    &.ml-0{
-      margin-left: 0;
-    }
-  }
+	.easydocs-row {
+		@include margin(mx, 0);
+	}
+	.row {
+		&.ml-0 {
+			margin-left: 0;
+		}
+	}
 }
 
 .navbar-left {
-  gap: var(--gutter-20);
+	gap: var(--gutter-20);
 
-  .easydocs-btn {
-    --btn-icon: var(--clr-blue);
-    --btn-py: 0.5rem;
-    --btn-px: 1rem;
-    --btn-fs: var(--fs-12);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+	.easydocs-btn {
+		--btn-icon: var(--clr-blue);
+		--btn-py: 0.5rem;
+		--btn-px: 1rem;
+		--btn-fs: var(--fs-12);
+		font-weight: 500;
+		display: flex;
+		align-items: center;
+		gap: 6px;
 
-    span.dashicons {
-      font-size: 14px;
-      margin-bottom: -4px;
-    }
+		span.dashicons {
+			font-size: 14px;
+			margin-bottom: -4px;
+		}
 
-    @include hover {
-      --btn-icon: var(--clr-white);
-    }
+		@include hover {
+			--btn-icon: var(--clr-white);
+		}
 
-    &.filled {
-        --btn-bg: var(--clr-blue);
-        --btn-clr: var(--clr-white);
-        --btn-bc: var(--clr-blue);
+		&.filled {
+			--btn-bg: var(--clr-blue);
+			--btn-clr: var(--clr-white);
+			--btn-bc: var(--clr-blue);
 
-        @include hover {
-            --btn-bg: #1818AAFF;
-        }
-    }
-  }
+			@include hover {
+				--btn-bg: #1818aaff;
+			}
+		}
+	}
 }
 
 .easydocs-logo-area {
-  a {
-    text-decoration: none;
-    color: var(--clr-dark);
-    font-size: var(--fs-24);
-    font-weight: var(--fw-700);
-  }
+	a {
+		text-decoration: none;
+		color: var(--clr-dark);
+		font-size: var(--fs-24);
+		font-weight: var(--fw-700);
+	}
 }
 
 :is(.easydocs-notification, .easydocs-settings) {
+	.header-notify-icon {
+		@include size(2.5rem);
+		line-height: 2.5rem;
+		border-radius: 50%;
+		background: #fff;
+		text-align: center;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: #747474;
+		text-decoration: none;
+		&:hover {
+			background: #cdcdcd;
+		}
 
-  .header-notify-icon {
-    @include size(2.5rem);
-    line-height: 2.5rem;
-    border-radius: 50%;
-    background: #fff;
-    text-align: center;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #747474;
-    text-decoration: none;
-    &:hover {
-      background: #cdcdcd;
-    }
+		img.settings-pro-icon {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 12px;
+		}
 
-    a{
-      color: #747474;
-      line-height: 1;
-    }
+		a {
+			color: #747474;
+			line-height: 1;
+		}
 
-    svg {
-      position: relative;
-      top: 1px;
-    }
-  }
+		svg {
+			position: relative;
+			top: 1px;
+		}
+	}
 }
 
 .easydocs-notification {
-  position: relative;
+	position: relative;
 }
 
 .easydocs-settings {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-right: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-right: 10px;
 
-  .header-notify-icons {
-    a {
-      text-decoration: none;
-      padding-top: 5px;
-      display: inline-block;
-    }
-  }
-  
-  .header-notify-icon {
-    &.ezd-trashicon{
-      position: relative;
-        .easydocs-badge {
-          background: #333;
-          color: #fff;
-        }
-    }
-  }
+	.header-notify-icons {
+		a {
+			text-decoration: none;
+			padding-top: 5px;
+			display: inline-block;
+		}
+	}
+
+	.header-notify-icon {
+		&.ezd-trashicon {
+			position: relative;
+			.easydocs-badge {
+				background: #333;
+				color: #fff;
+			}
+		}
+	}
 }
 
 .navbar-right {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
+	display: flex;
+	align-items: center;
+	margin-right: 10px;
 
-  ul {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+	ul {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
 }

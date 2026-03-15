@@ -24,6 +24,8 @@ interface NotificationPanelProps {
 const NotificationItemRow: React.FC< { item: NotificationItem } > = ( { item } ) => {
 	const { mutate: markRead } = useMarkNotificationRead();
 	const [ isRead, setIsRead ] = useState( item.isRead || false );
+	const readClass = isRead ? 'ezd-notification-read' : 'ezd-notification-unread';
+	const stateLabel = isRead ? __( 'Read', 'eazydocs' ) : __( 'Unread', 'eazydocs' );
 
 	const handleRead = () => {
 		if ( ! isRead ) {
@@ -43,7 +45,6 @@ const NotificationItemRow: React.FC< { item: NotificationItem } > = ( { item } )
 		const voteLabel = isPositive
 			? __( 'Positive vote', 'eazydocs' )
 			: __( 'Negative vote', 'eazydocs' );
-		const readClass = isRead ? 'ezd-notification-read' : '';
 
 		return (
 			<a
@@ -52,7 +53,6 @@ const NotificationItemRow: React.FC< { item: NotificationItem } > = ( { item } )
 				target="_blank"
 				rel="noopener noreferrer"
 				onClick={ handleRead }
-				style={ isRead ? { opacity: 0.6 } : {} }
 			>
 				<div className="ezd-notification-avatar">
 					{ item.thumbnail ? (
@@ -74,14 +74,15 @@ const NotificationItemRow: React.FC< { item: NotificationItem } > = ( { item } )
 						{ ' ' }
 						<span className="ezd-doc-title">{ item.postTitle }</span>
 					</p>
-					<time className="ezd-notification-time">{ item.timeAgo }</time>
+					<div className="ezd-notification-meta">
+						<time className="ezd-notification-time">{ item.timeAgo }</time>
+					</div>
 				</div>
 			</a>
 		);
 	}
 
 	// Comment type.
-	const readClass = isRead ? 'ezd-notification-read' : '';
 	return (
 		<a
 			href={ item.commentLink || '#' }
@@ -89,7 +90,6 @@ const NotificationItemRow: React.FC< { item: NotificationItem } > = ( { item } )
 			target="_blank"
 			rel="noopener noreferrer"
 			onClick={ handleRead }
-			style={ isRead ? { opacity: 0.6 } : {} }
 		>
 			<div className="ezd-notification-avatar">
 				{ item.avatar ? (
@@ -111,7 +111,9 @@ const NotificationItemRow: React.FC< { item: NotificationItem } > = ( { item } )
 					{ ' ' }
 					<span className="ezd-doc-title">{ item.postTitle }</span>
 				</p>
-				<time className="ezd-notification-time">{ item.timeAgo }</time>
+				<div className="ezd-notification-meta">
+					<time className="ezd-notification-time">{ item.timeAgo }</time>
+				</div>
 			</div>
 		</a>
 	);
@@ -186,6 +188,13 @@ const NotificationPanel: React.FC< NotificationPanelProps > = ( { notificationCo
 
 	// Gather all items from pages.
 	const allItems = data?.pages.flatMap( ( page ) => page.items ) || [];
+	const totalNotifications = data?.pages[ 0 ]?.total || 0;
+	const hasNotificationFeed =
+		notificationCount > 0 ||
+		isLoading ||
+		totalNotifications > 0 ||
+		allItems.length > 0 ||
+		activeFilter !== 'all';
 
 	const filters: Array< { key: FilterType; label: string; icon: string } > = [
 		{ key: 'all', label: __( 'All', 'eazydocs' ), icon: 'dashicons-list-view' },
@@ -244,7 +253,7 @@ const NotificationPanel: React.FC< NotificationPanelProps > = ( { notificationCo
 						</div>
 					</div>
 
-					{ notificationCount > 0 ? (
+					{ hasNotificationFeed ? (
 						<>
 							{ /* Filter tabs */ }
 							<div className="ezd-notification-filters">

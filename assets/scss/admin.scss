@@ -1,8 +1,11 @@
 @import 'abstracts/index';
 @import 'admin/base/index';
 @import 'admin/utilities/index';
-@import 'admin/components/index';
-@import 'admin/layout/index';
+@import 'admin/components/ai-popup';
+@import 'admin/components/badge';
+@import 'admin/components/btn';
+@import 'admin/components/progress';
+@import 'admin/layout/grid';
 
 @include xl {
   .container {

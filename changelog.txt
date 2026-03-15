@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 2.11.0 (15 March 2026) =
+Improved: Docs Builder – Faster initial loading by fetching parent and child articles progressively.
+Improved: Docs Builder – Smoother UI and drag-and-drop operations with optimized component rendering.
+Improved: Removed the unused css - assets/css folder along with the css files (the css files is loading from the buil/styles folder).
+Improved: Admin Architecture – Consolidated stylesheets for better performance.
+Fixed: Docs Builder – Drag-and-drop indicators not showing accurately when moving child articles.
+
 = 2.10.2 (07 March 2026) =
 Improved: Completely rebuilt the Docs Builder page to provide a much smoother, faster, and more responsive experience.
 Improved: Refreshed the Docs Builder design with a cleaner layout and easier-to-read section lists.

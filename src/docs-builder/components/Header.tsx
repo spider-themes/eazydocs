@@ -148,21 +148,8 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 						<a
 							id="ezd-create-doc-with-ai"
 							href={ urls.antimanualDocs }
-							className="easydocs-btn easydocs-btn-sm easydocs-btn-round"
-							style={ { 
-								marginLeft: '10px', 
-								background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)', 
-								color: '#fff', 
-								border: 'none',
-								display: 'flex',
-								alignItems: 'center',
-								gap: '6px',
-								fontWeight: '600',
-								transition: 'all 0.2s ease'
-							} }
+							className="easydocs-btn easydocs-btn-sm easydocs-btn-round ezd-docs-builder-ai-btn"
 							role="button"
-							onMouseEnter={ e => e.currentTarget.style.transform = 'translateY(-1px)' }
-							onMouseLeave={ e => e.currentTarget.style.transform = 'translateY(0)' }
 						>
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M12 2L13.1 8.9L20 10L13.1 11.1L12 18L10.9 11.1L4 10L10.9 8.9L12 2Z" fill="currentColor" />
@@ -173,21 +160,8 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 						<button
 							type="button"
 							id="ezd-create-doc-with-ai"
-							className="easydocs-btn easydocs-btn-sm easydocs-btn-round"
-							style={ { 
-								marginLeft: '10px', 
-								background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)', 
-								color: '#fff', 
-								border: 'none',
-								display: 'flex',
-								alignItems: 'center',
-								gap: '6px',
-								fontWeight: '600',
-								transition: 'all 0.2s ease'
-							} }
+							className="easydocs-btn easydocs-btn-sm easydocs-btn-round ezd-docs-builder-ai-btn"
 							onClick={ handleAiCreate }
-							onMouseEnter={ e => e.currentTarget.style.transform = 'translateY(-1px)' }
-							onMouseLeave={ e => e.currentTarget.style.transform = 'translateY(0)' }
 						>
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M12 2L13.1 8.9L20 10L13.1 11.1L12 18L10.9 11.1L4 10L10.9 8.9L12 2Z" fill="currentColor" />

@@ -7,7 +7,7 @@
  * @package EazyDocs
  * @since   2.9.0
  */
-import { useState, useEffect, useMemo } from '@wordpress/element';
+import { useState, useEffect, useMemo, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import {
 	DndContext,
@@ -62,7 +62,7 @@ interface SortableParentItemProps {
 	onBulkToggle: ( e: React.MouseEvent< HTMLSpanElement > | React.KeyboardEvent< HTMLSpanElement >, docId: number ) => void;
 }
 
-const SortableParentItem: React.FC< SortableParentItemProps > = ( {
+const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 	doc,
 	isActive,
 	isPremium,
@@ -223,6 +223,23 @@ const SortableParentItem: React.FC< SortableParentItemProps > = ( {
 	);
 };
 
+const SortableParentItem = React.memo( SortableParentItemComponent, ( prevProps, nextProps ) => {
+	const wasBulkOpen = prevProps.openBulk === prevProps.doc.id;
+	const isBulkOpen = nextProps.openBulk === nextProps.doc.id;
+
+	return prevProps.doc === nextProps.doc
+		&& prevProps.isActive === nextProps.isActive
+		&& prevProps.isPremium === nextProps.isPremium
+		&& prevProps.capabilities === nextProps.capabilities
+		&& prevProps.urls === nextProps.urls
+		&& prevProps.roleVisibility === nextProps.roleVisibility
+		&& prevProps.onNavClick === nextProps.onNavClick
+		&& prevProps.onNavKeyDown === nextProps.onNavKeyDown
+		&& prevProps.onDelete === nextProps.onDelete
+		&& prevProps.onBulkToggle === nextProps.onBulkToggle
+		&& wasBulkOpen === isBulkOpen;
+} );
+
 const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTabChange, capabilities, isPremium, urls, roleVisibility } ) => {
 	const [ openBulk, setOpenBulk ] = useState< number | null >( null );
 	const deleteDoc = useDeleteDoc();
@@ -268,18 +285,18 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 	/**
 	 * Handle clicking on a parent doc nav item.
 	 */
-	const handleNavClick = ( e: React.MouseEvent< HTMLLIElement >, docId: number ): void => {
+	const handleNavClick = useCallback( ( e: React.MouseEvent< HTMLLIElement >, docId: number ): void => {
 		// Don't switch tab if clicking on action links.
 		if ( ( e.target as HTMLElement ).closest( 'a, button, [role="button"], .link-wrapper' ) ) {
 			return;
 		}
 		onTabChange( docId );
-	};
+	}, [ onTabChange ] );
 
 	/**
 	 * Handle keyboard activation on nav items.
 	 */
-	const handleNavKeyDown = ( e: React.KeyboardEvent< HTMLLIElement >, docId: number ): void => {
+	const handleNavKeyDown = useCallback( ( e: React.KeyboardEvent< HTMLLIElement >, docId: number ): void => {
 		if ( e.which !== 13 && e.which !== 32 ) {
 			return;
 		}
@@ -289,12 +306,12 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 		}
 		e.preventDefault();
 		onTabChange( docId );
-	};
+	}, [ onTabChange ] );
 
 	/**
 	 * Handle delete parent doc.
 	 */
-	const handleDelete = ( e: React.MouseEvent< HTMLAnchorElement >, doc: ParentDoc ): void => {
+	const handleDelete = useCallback( ( e: React.MouseEvent< HTMLAnchorElement >, doc: ParentDoc ): void => {
 		e.preventDefault();
 		e.stopPropagation();
 
@@ -340,12 +357,12 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 				}
 			} );
 		}
-	};
+	}, [ deleteDoc ] );
 
 	/**
 	 * Toggle bulk options dropdown.
 	 */
-	const handleBulkToggle = ( e: React.MouseEvent< HTMLSpanElement > | React.KeyboardEvent< HTMLSpanElement >, docId: number ): void => {
+	const handleBulkToggle = useCallback( ( e: React.MouseEvent< HTMLSpanElement > | React.KeyboardEvent< HTMLSpanElement >, docId: number ): void => {
 		if ( ( e.target as HTMLElement ).closest( '.ezd-admin-bulk-actions' ) ) {
 			return;
 		}
@@ -357,12 +374,12 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 		}
 		e.stopPropagation();
 		setOpenBulk( openBulk === docId ? null : docId );
-	};
+	}, [ openBulk ] );
 
 	/**
 	 * Handle drag start.
 	 */
-	const handleDragStart = ( event: DragStartEvent ): void => {
+	const handleDragStart = useCallback( ( event: DragStartEvent ): void => {
 		document.body.classList.add( 'ezd-is-dragging' );
 		if ( event.active.data.current ) {
 			setActiveDragItem( {
@@ -370,12 +387,12 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 				doc: event.active.data.current.doc,
 			} );
 		}
-	};
+	}, [] );
 
 	/**
 	 * Handle drag end – reorder parent docs.
 	 */
-	const handleDragEnd = ( event: DragEndEvent ): void => {
+	const handleDragEnd = useCallback( ( event: DragEndEvent ): void => {
 		document.body.classList.remove( 'ezd-is-dragging' );
 		setActiveDragItem( null );
 
@@ -417,12 +434,12 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 				},
 			}
 		);
-	};
+	}, [ displayDocs, reorderDocs, showToast ] );
 
 	// Close bulk options when clicking outside.
-	const handleClickOutside = (): void => {
+	const handleClickOutside = useCallback( (): void => {
 		setOpenBulk( null );
-	};
+	}, [] );
 
 	// Close bulk options when clicking outside.
 	useEffect( () => {

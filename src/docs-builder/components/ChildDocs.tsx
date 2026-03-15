@@ -56,7 +56,7 @@ interface FilterItem {
 	className: string;
 }
 
-const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, capabilities, isPremium, urls, roleVisibility } ) => {
+const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isActive, capabilities, isPremium, urls, roleVisibility } ) => {
 	const { query, updateQuery } = useRoute();
 	const activeFilter = useMemo( () => query.filter || 'all', [ query.filter ] );
 	const [ expandState, setExpandState ] = useState< 'collapsed' | 'expanded' >( 'collapsed' );
@@ -139,10 +139,10 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 	/**
 	 * Handle filter button click.
 	 */
-	const handleFilter = ( e: React.MouseEvent | React.KeyboardEvent, filter: string ): void => {
+	const handleFilter = useCallback( ( e: React.MouseEvent | React.KeyboardEvent, filter: string ): void => {
 		e.preventDefault();
 		updateQuery( { filter: filter === 'all' ? '' : filter } );
-	};
+	}, [ updateQuery ] );
 
 	/**
 	 * Filter items by status and search value.
@@ -213,7 +213,7 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 	/**
 	 * Handle drag start – add body class for cursor styling.
 	 */
-	const handleDragStart = ( event: DragStartEvent ): void => {
+	const handleDragStart = useCallback( ( event: DragStartEvent ): void => {
 		setIsDragging( true );
 		document.body.classList.add( 'ezd-is-dragging' );
 		if ( event.active.data.current ) {
@@ -227,7 +227,7 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 			// Auto collapse to hide children during drag visualization.
 			setCollapsedIds( ( prev ) => new Set( [ ...prev, Number( event.active.id ) ] ) );
 		}
-	};
+	}, [] );
 
 	/**
 	 * Cross-container tracking: compute the exact drop position indicator.
@@ -237,7 +237,7 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 	 * indicator at the exact drop position and defer the actual move to
 	 * handleDragEnd.
 	 */
-	const handleDragOver = ( event: any ): void => {
+	const handleDragOver = useCallback( ( event: any ): void => {
 		const { active, over } = event;
 
 		// When the cursor moves into a gap (no droppable underneath), keep the
@@ -299,17 +299,17 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 			}
 			return { parentId: overParentId as number, index: overIndex };
 		} );
-	};
+	}, [ displayChildren ] );
 
-	const handleDragCancel = (): void => {
+	const handleDragCancel = useCallback( (): void => {
 		setIsDragging( false );
 		document.body.classList.remove( 'ezd-is-dragging' );
 		setActiveDragItem( null );
 		setDropIndicator( null );
 		setLocalChildren( null );
-	};
+	}, [] );
 
-	const handleDragEnd = ( event: DragEndEvent ): void => {
+	const handleDragEnd = useCallback( ( event: DragEndEvent ): void => {
 		setIsDragging( false );
 		document.body.classList.remove( 'ezd-is-dragging' );
 
@@ -368,9 +368,9 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 				},
 			}
 		);
-	};
+	}, [ displayChildren, dropIndicator, reorderDocs, showToast ] );
 
-    const handleAddSection = ( e: React.MouseEvent< HTMLButtonElement > ): void => {
+	const handleAddSection = useCallback( ( e: React.MouseEvent< HTMLButtonElement > ): void => {
 		e.preventDefault();
 
 		if ( typeof window.Swal !== 'undefined' ) {
@@ -430,19 +430,19 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 				}
 			} );
 		}
-	};
+	}, [ createSection, parent.id, parent.sectionNonce ] );
 
-	const filters: FilterItem[] = [
+	const filters: FilterItem[] = useMemo( () => [
 		{ key: 'all', label: __( 'All articles', 'eazydocs' ), icon: 'media-document', className: 'easydocs-btn-black-light' },
 		{ key: '.publish', label: __( 'Public', 'eazydocs' ), icon: 'admin-site-alt3', className: 'easydocs-btn-green-light' },
 		{ key: '.private', label: __( 'Private', 'eazydocs' ), icon: 'privacy', className: 'easydocs-btn-blue-light' },
 		{ key: '.protected', label: __( 'Protected', 'eazydocs' ), icon: 'lock', className: 'easydocs-btn-orange-light' },
 		{ key: '.draft', label: __( 'Draft', 'eazydocs' ), icon: 'edit-page', className: 'easydocs-btn-gray-light' },
-	];
+	], [] );
 
 	// Filter root items
-	const rootItems = getFilteredChildren();
-	const sortableIds = rootItems.map( ( item ) => item.id );
+	const rootItems = useMemo( () => getFilteredChildren(), [ getFilteredChildren ] );
+	const sortableIds = useMemo( () => rootItems.map( ( item ) => item.id ), [ rootItems ] );
 
 	return (
 		<div
@@ -523,6 +523,7 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 									doc={ child }
 									depth={ 1 }
 									parentId={ parent.id }
+									rootParentId={ parent.id }
 									isPremium={ isPremium }
 									capabilities={ capabilities }
 									urls={ urls }
@@ -545,6 +546,7 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 							doc={ activeDragItem.doc }
 							depth={ activeDragItem.depth }
 							parentId={ activeDragItem.parentId }
+							rootParentId={ parent.id }
 							isPremium={ isPremium }
 							capabilities={ capabilities }
 							urls={ urls }
@@ -570,5 +572,15 @@ const ChildDocs: React.FC< ChildDocsProps > = ( { parent, children, isActive, ca
 		</div>
 	);
 };
+
+const ChildDocs = React.memo( ChildDocsComponent, ( prevProps, nextProps ) => {
+	return prevProps.parent === nextProps.parent
+		&& prevProps.children === nextProps.children
+		&& prevProps.isActive === nextProps.isActive
+		&& prevProps.capabilities === nextProps.capabilities
+		&& prevProps.isPremium === nextProps.isPremium
+		&& prevProps.urls === nextProps.urls
+		&& prevProps.roleVisibility === nextProps.roleVisibility;
+} );
 
 export default ChildDocs;

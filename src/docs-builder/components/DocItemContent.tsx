@@ -27,6 +27,7 @@ interface DocItemContentProps {
 	doc: DocChild;
 	depth: number;
 	parentId: number;
+	rootParentId: number;
 	isPremium: boolean;
 	capabilities: Capabilities;
 	urls: BuilderUrls;
@@ -38,6 +39,7 @@ const DocItemContent: React.FC<DocItemContentProps> = ({
 	doc,
 	depth,
 	parentId,
+	rootParentId,
 	isPremium,
 	capabilities,
 	urls,
@@ -142,6 +144,7 @@ const DocItemContent: React.FC<DocItemContentProps> = ({
 						createChild.mutate(
 							{
 								parentId: doc.id,
+								rootParentId,
 								title: value,
 								nonce: doc.childNonce,
 							},

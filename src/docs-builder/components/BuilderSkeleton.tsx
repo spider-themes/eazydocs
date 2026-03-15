@@ -117,7 +117,7 @@ const ContentSkeleton: React.FC = () => (
  * Full page skeleton loader for the Docs Builder.
  */
 const BuilderSkeleton: React.FC = () => (
-	<div className="ezd-skeleton-loading" role="status" aria-label={ __( 'Loading documentation builder...', 'eazydocs' ) }>
+	<div className="ezd-skeleton-loading ezd-docs-builder-root" role="status" aria-label={ __( 'Loading documentation builder...', 'eazydocs' ) }>
 		<HeaderSkeleton />
 		<main>
 			<div className="easydocs-sidebar-menu">

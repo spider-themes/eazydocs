@@ -346,8 +346,9 @@ class Admin {
 				?>
                 <img src="<?php echo esc_url( EAZYDOCS_IMG . '/icon/crown.svg' ); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
                 <h3> <?php echo esc_html__( 'Add Your OnePage Doc', 'eazydocs' ); ?> </h3>
-                <p class="big-p"> <?php esc_html_e( 'Onepage documentation format will generate all the pages of a Doc as sections in a single page which is scrollable by sections. Visitors can find the all guides on a single page and they can navigate through the different sections very fast.',
-						'eazydocs' ); ?> </p>
+                <p class="big-p"> 
+					<?php esc_html_e( 'Onepage documentation format will generate all the pages of a Doc as sections in a single page which is scrollable by sections. Visitors can find the all guides on a single page and they can navigate through the different sections very fast.','eazydocs' ); ?> 
+				</p>
 				<?php // PHPCS - No need to escape a URL. The query arg is sanitized. 
 				?>
                 <div class="button-inline">

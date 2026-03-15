@@ -33,6 +33,7 @@ class Assets {
 	public function dashboard_scripts() {
 		// React Docs Builder app (only on Docs Builder page).
 		if ( ezd_admin_pages( 'eazydocs-builder' ) ) {
+			wp_enqueue_style( 'ezd-docs-builder-page', EAZYDOCS_URL . '/build/styles/docs-builder.css', array(), EAZYDOCS_VERSION );
 			$asset_file = EAZYDOCS_PATH . '/build/docs-builder/index.asset.php';
 			if ( file_exists( $asset_file ) ) {
 				$asset = require $asset_file;
@@ -77,7 +78,6 @@ class Assets {
 			wp_enqueue_script( 'ezd-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
 		}
 
-		wp_enqueue_style( 'ezd-main', EAZYDOCS_URL . '/build/styles/admin.css', array(), EAZYDOCS_VERSION );
 		wp_enqueue_style( 'ezd-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css', array(), EAZYDOCS_VERSION );
 
 		// Enqueue scripts and styles for initial setup page

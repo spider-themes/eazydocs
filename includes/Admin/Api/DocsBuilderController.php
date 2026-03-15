@@ -105,7 +105,7 @@ class Docs_Builder_Controller {
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'mark_notification_read' ),
 				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
+					return $this->can_access_pro_notifications();
 				},
 			)
 		);
@@ -162,7 +162,7 @@ class Docs_Builder_Controller {
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_notifications' ),
 				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
+					return $this->can_access_pro_notifications();
 				},
 			)
 		);
@@ -294,8 +294,15 @@ class Docs_Builder_Controller {
 	 * @return \WP_REST_Response
 	 */
 	public function get_child_docs_data( $request ) {
-		$parent_docs  = $this->get_parent_docs();
 		$children_map = array();
+		$parent_id    = absint( $request->get_param( 'parent_id' ) );
+
+		if ( $parent_id > 0 ) {
+			$children_map[ $parent_id ] = $this->get_children_tree( $parent_id );
+			return new \WP_REST_Response( $children_map, 200 );
+		}
+
+		$parent_docs = $this->get_parent_docs();
 
 		foreach ( $parent_docs as $parent ) {
 			$children_map[ $parent['id'] ] = $this->get_children_tree( $parent['id'] );
@@ -312,13 +319,8 @@ class Docs_Builder_Controller {
 	 */
 	public function get_counts_data( $request ) {
 		$trash_count = wp_count_posts( 'docs' );
-		
-		$notification_count = 0;
-		if ( ezd_is_premium() && current_user_can( 'manage_options' ) ) {
-			if ( function_exists( 'eazydocs_voted' ) && function_exists( 'ezd_comment_count' ) ) {
-				$notification_count = eazydocs_voted() + ezd_comment_count();
-			}
-		}
+
+		$notification_count = $this->get_unread_notification_count();
 
 		$data = array(
 			'trashCount'        => isset( $trash_count->trash ) ? (int) $trash_count->trash : 0,
@@ -374,9 +376,22 @@ class Docs_Builder_Controller {
 	public function get_builder_data( $request ) {
 		$parent_docs  = $this->get_parent_docs();
 		$children_map = array();
+		$active_doc   = absint( $request->get_param( 'active_doc' ) );
+		$active_doc_exists = false;
 
 		foreach ( $parent_docs as $parent ) {
-			$children_map[ $parent['id'] ] = $this->get_children_tree( $parent['id'] );
+			if ( (int) $parent['id'] === $active_doc ) {
+				$active_doc_exists = true;
+				break;
+			}
+		}
+
+		if ( ! $active_doc_exists && ! empty( $parent_docs ) ) {
+			$active_doc = (int) $parent_docs[0]['id'];
+		}
+
+		if ( $active_doc > 0 ) {
+			$children_map[ $active_doc ] = $this->get_children_tree( $active_doc );
 		}
 
 		$trash_count = wp_count_posts( 'docs' );
@@ -397,13 +412,8 @@ class Docs_Builder_Controller {
 		}
 		$antimanual_active = function_exists( 'is_plugin_active' ) && ( is_plugin_active( 'antimanual/antimanual.php' ) || is_plugin_active( 'antimanual-pro/antimanual.php' ) );
 
-		// Get notification count for Pro users.
-		$notification_count = 0;
-		if ( ezd_is_premium() && current_user_can( 'manage_options' ) ) {
-			if ( function_exists( 'eazydocs_voted' ) && function_exists( 'ezd_comment_count' ) ) {
-				$notification_count = eazydocs_voted() + ezd_comment_count();
-			}
-		}
+		// Get unread notification count for Pro users.
+		$notification_count = $this->get_unread_notification_count();
 
 		// Get role visibility configuration.
 		$role_visibility_config = $this->get_role_visibility_config();
@@ -469,41 +479,7 @@ class Docs_Builder_Controller {
 		while ( $query->have_posts() ) {
 			$query->the_post();
 
-			$post_id     = get_the_ID();
-			$post_status = get_post_status( $post_id );
-			$post_obj    = get_post( $post_id );
-
-			// Determine status icon.
-			$status_info = $this->get_status_info( $post_status, $post_obj );
-
-			// Child count.
-			$child_pages = get_pages(
-				array(
-					'child_of'    => $post_id,
-					'post_type'   => 'docs',
-					'post_status' => array( 'publish', 'draft', 'private' ),
-				)
-			);
-
-			// Get Pro action structured data for parent docs.
-			$pro_data = $this->get_pro_actions_data( $post_id );
-
-			$docs[] = array(
-				'id'              => $post_id,
-				'title'           => html_entity_decode( $post_obj->post_title ),
-				'permalink'       => get_permalink(),
-				'editLink'        => get_edit_post_link( $post_id, 'raw' ),
-				'status'          => $post_status,
-				'statusIcon'      => $status_info['icon'],
-				'statusText'      => $status_info['text'],
-				'hasPassword'     => ! empty( $post_obj->post_password ),
-				'childCount'      => count( $child_pages ),
-				'canEdit'         => ezd_is_admin_or_editor( $post_id, 'edit' ),
-				'canDelete'       => ezd_is_admin_or_editor( $post_id, 'delete' ),
-				'deleteNonce'     => wp_create_nonce( 'ezd_delete_doc_' . $post_id ),
-				'sectionNonce'    => wp_create_nonce( 'ezd_create_section_' . $post_id ),
-				'proActions'      => $pro_data,
-			);
+			$docs[] = $this->build_parent_doc_item( get_the_ID() );
 		}
 
 		wp_reset_postdata();
@@ -538,67 +514,11 @@ class Docs_Builder_Controller {
 		$results = array();
 
 		foreach ( $children as $child ) {
-			$post_status = $child->post_status;
-			if ( ! empty( $child->post_password ) ) {
-				$post_status = 'protected';
-			}
-
-			$sub_children = eaz_get_nestable_children( $child->ID );
-			$has_children = ! empty( $sub_children );
-
-			// Determine child count.
-			$child_pages = get_pages(
-				array(
-					'child_of'    => $child->ID,
-					'post_type'   => 'docs',
-					'post_status' => array( 'publish', 'draft', 'private' ),
-				)
-			);
-
-			// Positive / negative votes.
-			$positive = (int) get_post_meta( $child->ID, 'positive', true );
-			$negative = (int) get_post_meta( $child->ID, 'negative', true );
-
-			// Visibility badge info.
-			$visibility = $this->get_visibility_info( $child->ID );
-
-			// Determine if adding child is possible at this depth.
-			$can_add_sub = true;
-			if ( ! ezd_is_premium() && 3 === $depth ) {
-				$can_add_sub = false;
-			}
-			if ( ezd_is_premium() && 4 === $depth ) {
-				$can_add_sub = false;
-			}
-
-			// Get Pro action structured data for child docs.
-			$pro_data = $this->get_pro_actions_data( $child->ID );
-
-			$item = array(
-				'id'              => $child->ID,
-				'title'           => html_entity_decode( $child->post_title ),
-				'permalink'       => get_permalink( $child->ID ),
-				'editLink'        => admin_url( 'post.php' ) . '?post=' . $child->ID . '&action=edit',
-				'status'          => $post_status,
-				'hasPassword'     => ! empty( $child->post_password ),
-				'hasChildren'     => $has_children,
-				'childCount'      => count( $child_pages ),
-				'positive'        => $positive,
-				'negative'        => $negative,
-				'visibility'      => $visibility,
-				'canEdit'         => ezd_is_admin_or_editor( $child->ID, 'edit' ),
-				'canDelete'       => ezd_is_admin_or_editor( $child->ID, 'delete' ),
-				'canAddChild'     => $can_add_sub,
-				'deleteNonce'     => wp_create_nonce( 'ezd_delete_doc_' . $child->ID ),
-				'childNonce'      => wp_create_nonce( 'ezd_create_child_' . $child->ID ),
-				'depth'           => $depth,
-				'children'        => array(),
-				'proActions'      => $pro_data,
-			);
+			$item = $this->build_child_doc_item( $child, $depth );
 
 			// Recurse if children exist and depth allows.
 			$max_depth = ezd_is_premium() ? 4 : 3;
-			if ( $has_children && $depth < $max_depth ) {
+			if ( ! empty( $item['hasChildren'] ) && $depth < $max_depth ) {
 				$item['children'] = $this->get_children_tree( $child->ID, $depth + 1 );
 			}
 
@@ -606,6 +526,148 @@ class Docs_Builder_Controller {
 		}
 
 		return $results;
+	}
+
+	/**
+	 * Build a parent doc payload for the React builder.
+	 *
+	 * @since  2.9.0
+	 * @param  int $post_id Post ID.
+	 * @return array
+	 */
+	private function build_parent_doc_item( $post_id ) {
+		$post_obj = get_post( $post_id );
+
+		if ( ! $post_obj instanceof \WP_Post ) {
+			return array();
+		}
+
+		$post_status = get_post_status( $post_id );
+		$status_info = $this->get_status_info( $post_status, $post_obj );
+		$child_pages = get_pages(
+			array(
+				'child_of'    => $post_id,
+				'post_type'   => 'docs',
+				'post_status' => array( 'publish', 'draft', 'private' ),
+			)
+		);
+
+		return array(
+			'id'           => $post_id,
+			'title'        => html_entity_decode( $post_obj->post_title ),
+			'permalink'    => get_permalink( $post_id ),
+			'editLink'     => get_edit_post_link( $post_id, 'raw' ),
+			'status'       => $post_status,
+			'statusIcon'   => $status_info['icon'],
+			'statusText'   => $status_info['text'],
+			'hasPassword'  => ! empty( $post_obj->post_password ),
+			'childCount'   => count( $child_pages ),
+			'canEdit'      => ezd_is_admin_or_editor( $post_id, 'edit' ),
+			'canDelete'    => ezd_is_admin_or_editor( $post_id, 'delete' ),
+			'deleteNonce'  => wp_create_nonce( 'ezd_delete_doc_' . $post_id ),
+			'sectionNonce' => wp_create_nonce( 'ezd_create_section_' . $post_id ),
+			'proActions'   => $this->get_pro_actions_data( $post_id ),
+		);
+	}
+
+	/**
+	 * Build a child doc payload for the React builder.
+	 *
+	 * @since  2.9.0
+	 * @param  \WP_Post $post  Post object.
+	 * @param  int      $depth Depth level.
+	 * @return array
+	 */
+	private function build_child_doc_item( $post, $depth ) {
+		$post_status = $post->post_status;
+		if ( ! empty( $post->post_password ) ) {
+			$post_status = 'protected';
+		}
+
+		$sub_children = eaz_get_nestable_children( $post->ID );
+		$has_children = ! empty( $sub_children );
+		$child_pages  = get_pages(
+			array(
+				'child_of'    => $post->ID,
+				'post_type'   => 'docs',
+				'post_status' => array( 'publish', 'draft', 'private' ),
+			)
+		);
+
+		$can_add_sub = true;
+		if ( ! ezd_is_premium() && 3 === (int) $depth ) {
+			$can_add_sub = false;
+		}
+		if ( ezd_is_premium() && 4 === (int) $depth ) {
+			$can_add_sub = false;
+		}
+
+		return array(
+			'id'          => $post->ID,
+			'title'       => html_entity_decode( $post->post_title ),
+			'permalink'   => get_permalink( $post->ID ),
+			'editLink'    => admin_url( 'post.php' ) . '?post=' . $post->ID . '&action=edit',
+			'status'      => $post_status,
+			'hasPassword' => ! empty( $post->post_password ),
+			'hasChildren' => $has_children,
+			'childCount'  => count( $child_pages ),
+			'positive'    => (int) get_post_meta( $post->ID, 'positive', true ),
+			'negative'    => (int) get_post_meta( $post->ID, 'negative', true ),
+			'visibility'  => $this->get_visibility_info( $post->ID ),
+			'canEdit'     => ezd_is_admin_or_editor( $post->ID, 'edit' ),
+			'canDelete'   => ezd_is_admin_or_editor( $post->ID, 'delete' ),
+			'canAddChild' => $can_add_sub,
+			'deleteNonce' => wp_create_nonce( 'ezd_delete_doc_' . $post->ID ),
+			'childNonce'  => wp_create_nonce( 'ezd_create_child_' . $post->ID ),
+			'depth'       => $depth,
+			'children'    => array(),
+			'proActions'  => $this->get_pro_actions_data( $post->ID ),
+		);
+	}
+
+	/**
+	 * Get the current nesting depth for a doc item.
+	 *
+	 * Direct children of a parent doc have depth 1.
+	 *
+	 * @since  2.9.0
+	 * @param  int $post_id Post ID.
+	 * @return int
+	 */
+	private function get_doc_depth( $post_id ) {
+		$depth      = 0;
+		$current_id = $post_id;
+
+		while ( $current_id > 0 ) {
+			$current = get_post( $current_id );
+			if ( ! $current instanceof \WP_Post || empty( $current->post_parent ) ) {
+				break;
+			}
+
+			++$depth;
+			$current_id = (int) $current->post_parent;
+		}
+
+		return max( 1, $depth );
+	}
+
+	/**
+	 * Get the top-level parent doc ID for a nested doc.
+	 *
+	 * @since  2.9.0
+	 * @param  int $post_id Post ID.
+	 * @return int
+	 */
+	private function get_root_parent_id( $post_id ) {
+		$current_id = $post_id;
+		$current    = get_post( $current_id );
+
+		while ( $current instanceof \WP_Post && ! empty( $current->post_parent ) ) {
+			$current_id = (int) $current->post_parent;
+			$current    = get_post( $current_id );
+		}
+
+		return (int) $current_id;
 	}
 
 	/**
@@ -823,6 +885,88 @@ class Docs_Builder_Controller {
 	}
 
 	/**
+	 * Get the unread notification count for the Docs Builder header.
+	 *
+	 * Counts unread vote and comment notifications using the same read-state
+	 * sources as the builder notification list.
+	 *
+	 * @since  2.9.0
+	 * @return int
+	 */
+	private function get_unread_notification_count() {
+		if ( ! $this->can_access_pro_notifications() ) {
+			return 0;
+		}
+
+		$unread_count = 0;
+		$read_votes   = get_user_meta( get_current_user_id(), '_ezd_read_votes', true );
+
+		if ( ! is_array( $read_votes ) ) {
+			$read_votes = array();
+		}
+
+		$vote_posts = get_posts(
+			array(
+				'post_type'      => 'docs',
+				'posts_per_page' => -1,
+				'post_status'    => array( 'publish' ),
+			)
+		);
+
+		foreach ( $vote_posts as $post ) {
+			$positive_time = get_post_meta( $post->ID, 'positive_time', true );
+			if ( ! empty( $positive_time ) ) {
+				$positive_key = $post->ID . '_' . strtotime( $positive_time );
+				if ( ! in_array( $positive_key, $read_votes, true ) ) {
+					++$unread_count;
+				}
+			}
+
+			$negative_time = get_post_meta( $post->ID, 'negative_time', true );
+			if ( ! empty( $negative_time ) ) {
+				$negative_key = $post->ID . '_' . strtotime( $negative_time );
+				if ( ! in_array( $negative_key, $read_votes, true ) ) {
+					++$unread_count;
+				}
+			}
+		}
+
+		$comments = get_comments(
+			array(
+				'post_status' => 'publish',
+				'post_type'   => array( 'docs' ),
+				'parent'      => 0,
+				'order'       => 'desc',
+				'number'      => 100,
+			)
+		);
+
+		foreach ( $comments as $comment ) {
+			if ( ! (bool) get_comment_meta( $comment->comment_ID, '_ezd_is_read', true ) ) {
+				++$unread_count;
+			}
+		}
+
+		return $unread_count;
+	}
+
+	/**
+	 * Check whether the current request can access Pro notification features.
+	 *
+	 * Keeps the Docs Builder notification feature gated the same way as before:
+	 * only when Pro is active and the Pro notification helpers are available.
+	 *
+	 * @since  2.9.0
+	 * @return bool
+	 */
+	private function can_access_pro_notifications() {
+		return ezd_is_premium()
+			&& current_user_can( 'manage_options' )
+			&& function_exists( 'eazydocs_voted' )
+			&& function_exists( 'ezd_comment_count' );
+	}
+
+	/**
 	 * Get paginated notifications as JSON.
 	 *
 	 * @since  2.9.0
@@ -830,6 +974,18 @@ class Docs_Builder_Controller {
 	 * @return \WP_REST_Response
 	 */
 	public function get_notifications( $request ) {
+		if ( ! $this->can_access_pro_notifications() ) {
+			return new \WP_REST_Response(
+				array(
+					'items'   => array(),
+					'hasMore' => false,
+					'total'   => 0,
+					'page'    => 1,
+				),
+				200
+			);
+		}
+
 		$page     = absint( $request->get_param( 'page' ) ) ?: 1;
 		$per_page = absint( $request->get_param( 'per_page' ) ) ?: 10;
 		$filter   = sanitize_text_field( $request->get_param( 'filter' ) ) ?: 'all';
@@ -1144,6 +1300,7 @@ class Docs_Builder_Controller {
 				'data'    => array(
 					'id'       => $post_id,
 					'redirect' => admin_url( 'admin.php?page=eazydocs-builder&new_doc_id=' . $post_id ),
+					'doc'      => $this->build_parent_doc_item( $post_id ),
 				),
 			),
 			200
@@ -1203,7 +1360,9 @@ class Docs_Builder_Controller {
 			array(
 				'success' => true,
 				'data'    => array(
-					'id' => $post_id,
+					'id'       => $post_id,
+					'parentId' => $parent_id,
+					'item'     => $this->build_child_doc_item( get_post( $post_id ), 1 ),
 				),
 			),
 			200
@@ -1265,7 +1424,10 @@ class Docs_Builder_Controller {
 			array(
 				'success' => true,
 				'data'    => array(
-					'id' => $post_id,
+					'id'           => $post_id,
+					'parentId'     => $parent_id,
+					'rootParentId' => $this->get_root_parent_id( $parent_id ),
+					'item'         => $this->build_child_doc_item( get_post( $post_id ), $this->get_doc_depth( $parent_id ) + 1 ),
 				),
 			),
 			200

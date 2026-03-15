@@ -28,7 +28,7 @@ import type { DocChild, Capabilities, BuilderUrls, RoleVisibilityConfig } from '
  * @param {number}  props.negative – Number of negative votes.
  * @since 2.9.0
  */
-const VotePieChart: React.FC< { positive: number; negative: number } > = ( { positive, negative } ) => {
+const VotePieChart: React.FC< { positive: number; negative: number } > = React.memo( ( { positive, negative } ) => {
 	const total = positive + negative;
 
 	if ( total === 0 ) {
@@ -83,12 +83,13 @@ const VotePieChart: React.FC< { positive: number; negative: number } > = ( { pos
 			</svg>
 		</div>
 	);
-};
+} );
 
 interface SortableDocItemProps {
 	doc: DocChild;
 	depth: number;
 	parentId: number;
+	rootParentId: number;
 	isPremium: boolean;
 	capabilities: Capabilities;
 	urls: BuilderUrls;
@@ -102,10 +103,11 @@ interface SortableDocItemProps {
 	isDragActive?: boolean;
 }
 
-const SortableDocItem: React.FC< SortableDocItemProps > = ( {
+const SortableDocItemComponent: React.FC< SortableDocItemProps > = ( {
 	doc,
 	depth,
 	parentId,
+	rootParentId,
 	isPremium,
 	capabilities,
 	urls,
@@ -134,7 +136,7 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 	} );
 
     // This droppable allows us to drop items directly into this section's children list.
-	const { setNodeRef: setDroppableNodeRef, isOver } = useDroppable( {
+	const { setNodeRef: setDroppableNodeRef } = useDroppable( {
 		id: `container-${ doc.id }`,
 		data: {
 			type: 'container',
@@ -169,7 +171,7 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 		isCollapsed ? 'ezd-section-collapsed' : '',
 	].filter( Boolean ).join( ' ' );
 
-    const childIds = doc.children ? doc.children.map( child => child.id ) : [];
+	const childIds = doc.children ? doc.children.map( ( child ) => child.id ) : [];
 
 	return (
 		<div
@@ -208,12 +210,13 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 					) }
 
 					{ /* Title */ }
-					<h3 className="ezd-section-title-text" style={{ flex: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+					<h3 className="ezd-section-title-text" style={{ flex: 'none', display: 'flex', alignItems: 'center', gap: '8px' }} title={ __( 'Click to Edit', 'eazydocs' ) }>
 						{ doc.canEdit ? (
 							<a 
                                 href={ doc.editLink } 
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                title={ __( 'Click to Edit', 'eazydocs' ) }
                                 onClick={ (e) => e.stopPropagation() }
                             >
 								{ doc.title }
@@ -258,6 +261,7 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 							doc={ doc }
 							depth={ depth }
 							parentId={ parentId }
+							rootParentId={ rootParentId }
 							isPremium={ isPremium }
 							capabilities={ capabilities }
 							urls={ urls }
@@ -315,6 +319,7 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
                                         doc={ child }
                                         depth={ depth + 1 }
                                         parentId={ doc.id }
+										rootParentId={ rootParentId }
                                         isPremium={ isPremium }
                                         capabilities={ capabilities }
                                         urls={ urls }
@@ -342,5 +347,24 @@ const SortableDocItem: React.FC< SortableDocItemProps > = ( {
 		</div>
 	);
 };
+
+const isIndicatorRelevant = ( indicator: DropIndicator | null | undefined, docId: number ): boolean => {
+	return Boolean( indicator && indicator.parentId === docId );
+};
+
+const SortableDocItem = React.memo( SortableDocItemComponent, ( prevProps, nextProps ) => {
+	return prevProps.doc === nextProps.doc
+		&& prevProps.depth === nextProps.depth
+		&& prevProps.parentId === nextProps.parentId
+		&& prevProps.rootParentId === nextProps.rootParentId
+		&& prevProps.isPremium === nextProps.isPremium
+		&& prevProps.capabilities === nextProps.capabilities
+		&& prevProps.urls === nextProps.urls
+		&& prevProps.roleVisibility === nextProps.roleVisibility
+		&& prevProps.onToggleCollapse === nextProps.onToggleCollapse
+		&& prevProps.isDragActive === nextProps.isDragActive
+		&& prevProps.collapsedIds.has( prevProps.doc.id ) === nextProps.collapsedIds.has( nextProps.doc.id )
+		&& isIndicatorRelevant( prevProps.dropIndicator, prevProps.doc.id ) === isIndicatorRelevant( nextProps.dropIndicator, nextProps.doc.id );
+} );
 
 export default SortableDocItem;
