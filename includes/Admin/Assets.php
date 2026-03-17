@@ -33,21 +33,21 @@ class Assets {
 	public function dashboard_scripts() {
 		// React Docs Builder app (only on Docs Builder page).
 		if ( ezd_admin_pages( 'eazydocs-builder' ) ) {
-			wp_enqueue_style( 'ezd-docs-builder-page', EAZYDOCS_URL . '/build/styles/docs-builder.css', array(), EAZYDOCS_VERSION );
-			$asset_file = EAZYDOCS_PATH . '/build/docs-builder/index.asset.php';
+			wp_enqueue_style( 'ezd-docs-builder-page', EZD_STYLES . 'admin/docs-builder.css', array(), EZD_VERSION );
+			$asset_file = EZD_PATH . '/build/docs-builder/index.asset.php';
 			if ( file_exists( $asset_file ) ) {
 				$asset = require $asset_file;
 				wp_enqueue_script(
 					'ezd-docs-builder-react',
-					EAZYDOCS_URL . '/build/docs-builder/index.js',
+					EZD_URL . '/build/docs-builder/index.js',
 					array_merge( $asset['dependencies'], array( 'jquery' ) ),
 					$asset['version'],
 					true
 				);
-				if ( file_exists( EAZYDOCS_PATH . '/build/docs-builder/index.css' ) ) {
+				if ( file_exists( EZD_PATH . '/build/docs-builder/index.css' ) ) {
 					wp_enqueue_style(
 						'ezd-docs-builder-react',
-						EAZYDOCS_URL . '/build/docs-builder/index.css',
+						EZD_URL . '/build/docs-builder/index.css',
 						array(),
 						$asset['version']
 					);
@@ -57,28 +57,27 @@ class Assets {
 		
 		// Dashboard page only (NOT on Docs Builder or Analytics to prevent conflicts)
 		if ( ezd_admin_pages( 'eazydocs' ) ) {
-			wp_enqueue_script( 'ezd-admin-custom', EAZYDOCS_ASSETS . '/js/admin/custom.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
+			wp_enqueue_script( 'ezd-admin-custom', EZD_ASSETS . 'js/admin/custom.js', array( 'jquery' ), EZD_VERSION, true );
 		}
 
 		// NiceSelect - only needed on Dashboard and Setup pages (not Docs Builder or Analytics)
 		if ( ezd_admin_pages( array( 'eazydocs', 'eazydocs-initial-setup' ) ) ) {
-			wp_enqueue_style( 'nice-select', EAZYDOCS_ASSETS . '/css/admin/nice-select.css', array(), EAZYDOCS_VERSION );
-			wp_enqueue_script( 'jquery-nice-select', EAZYDOCS_ASSETS . '/js/admin/jquery.nice-select.min.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( 'nice-select', EZD_ASSETS . 'css/admin/nice-select.css', array(), EZD_VERSION );
+			wp_enqueue_script( 'jquery-nice-select', EZD_ASSETS . 'js/admin/jquery.nice-select.min.js', array( 'jquery' ), '1.0', true );
 		}
 
 		// ApexCharts - only needed on Dashboard and Analytics for charts (not Docs Builder)
 		if ( ezd_admin_pages( array( 'eazydocs', 'ezd-analytics' ) ) ) {
 			wp_deregister_style( 'csf-fa5' );
 			wp_deregister_style( 'csf-fa5-v4-shims' );
-			wp_enqueue_script( 'apexchart', EAZYDOCS_ASSETS . '/js/apexchart.js', array( 'jquery' ), EAZYDOCS_VERSION, false );
+			wp_enqueue_script( 'apexchart', EZD_ASSETS . 'js/apexchart.js', array( 'jquery' ), EZD_VERSION, false );
 		}
 
 		// OnePage Doc JS – only needed on the onepage-docs post type screen.
 		if ( ezd_admin_post_types( 'onepage-docs' ) ) {
-			wp_enqueue_script( 'ezd-admin-onepage', EAZYDOCS_ASSETS . '/js/admin/one_page.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
+			wp_enqueue_style( 'ezd-admin-onepage', EZD_STYLES . 'admin/onepage.css', array( 'eazydocs-admin' ), EZD_VERSION );
+			wp_enqueue_script( 'ezd-admin-onepage', EZD_ASSETS . 'js/admin/one_page.js', array( 'jquery' ), EZD_VERSION, true );
 		}
-
-		wp_enqueue_style( 'ezd-custom', EAZYDOCS_ASSETS . '/css/admin/custom.css', array(), EAZYDOCS_VERSION );
 
 		// Enqueue scripts and styles for initial setup page
 		if ( ezd_admin_pages( 'eazydocs-initial-setup' ) ) {
@@ -90,12 +89,12 @@ class Assets {
 			// Frameworks
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'wp-color-picker' );
-			wp_enqueue_script( 'smartwizard', EAZYDOCS_ASSETS . '/js/admin/jquery.smartWizard.min.js', array( 'jquery' ), true, true );
+			wp_enqueue_script( 'smartwizard', EZD_ASSETS . 'js/admin/jquery.smartWizard.min.js', array( 'jquery' ), true, true );
 			// Custom styles and scripts (use filemtime for cache busting during development)
-			$setup_wizard_css_ver = file_exists( EAZYDOCS_PATH . '/build/styles/admin-setup-wizard.css' ) ? filemtime( EAZYDOCS_PATH . '/build/styles/admin-setup-wizard.css' ) : EAZYDOCS_VERSION;
-			$setup_wizard_js_ver  = filemtime( EAZYDOCS_PATH . '/assets/js/admin/setup_wizard_config.js' );
-			wp_enqueue_style( 'ezd_setup_wizard', EAZYDOCS_URL . '/build/styles/admin-setup-wizard.css', array(), $setup_wizard_css_ver );
-			wp_enqueue_script( 'ezd_setup_wizard', EAZYDOCS_ASSETS . '/js/admin/setup_wizard_config.js', array( 'jquery', 'smartwizard' ), $setup_wizard_js_ver, true );
+			$setup_wizard_css_ver = file_exists( EZD_STYLES . 'admin/setup-wizard.css' ) ? filemtime( EZD_STYLES . 'admin/setup-wizard.css' ) : EZD_VERSION;
+			$setup_wizard_js_ver  = filemtime( EZD_PATH . '/assets/js/admin/setup_wizard_config.js' );
+			wp_enqueue_style( 'ezd_setup_wizard', EZD_STYLES . 'admin/setup-wizard.css', array(), $setup_wizard_css_ver );
+			wp_enqueue_script( 'ezd_setup_wizard', EZD_ASSETS . 'js/admin/setup_wizard_config.js', array( 'jquery', 'smartwizard' ), $setup_wizard_js_ver, true );
 		}
 	}
 
@@ -103,16 +102,15 @@ class Assets {
 		// Enqueue initial assets for the editor
 		wp_enqueue_script(
 			'ezd-block-insert-handler',
-			EAZYDOCS_ASSETS . '/js/block-insert-handler.js',
+			EZD_ASSETS . 'js/block-insert-handler.js',
 			array( 'wp-data', 'wp-blocks', 'wp-edit-post' ),
-			EAZYDOCS_VERSION,
+			EZD_VERSION,
 			true
 		);
 
 		// Enqueue SweetAlert for ProMax notices in toolbar
 		if ( get_post_type() === 'docs' ) {
-			wp_enqueue_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css', array(), EAZYDOCS_VERSION );
-			wp_enqueue_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
+			wp_enqueue_script( 'sweetalert', EZD_ASSETS . 'js/admin/sweetalert.min.js', array( 'jquery' ), EZD_VERSION, true );
 		}
 
 		wp_localize_script(
@@ -120,13 +118,13 @@ class Assets {
 			'ezdAssets',
 			array(
 				'styles'      => array(
-					EAZYDOCS_ASSETS . '/vendors/elegant-icon/style.css',
-					EAZYDOCS_URL . '/build/styles/ezd-docs-widgets.css',
+					EZD_ASSETS . 'vendors/elegant-icon/style.css',
+					EZD_STYLES . 'ezd-docs-widgets.css',
 				),
 				'scripts'     => array(
-					EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js',
+					EZD_ASSETS . 'js/admin/sweetalert.min.js',
 				),
-				'ezd_img_dir' => EAZYDOCS_IMG,
+				'ezd_img_dir' => EZD_IMG,
 			)
 		);
 	}
@@ -136,24 +134,23 @@ class Assets {
 	 * Load on all pages of WordPress dashboard
 	 */
 	public function global_scripts() {
-		wp_enqueue_style( 'eazydocs-admin-global', EAZYDOCS_URL . '/build/styles/admin-global.css', array(), EAZYDOCS_VERSION );
-		wp_enqueue_style( 'elegant-icon', EAZYDOCS_ASSETS . '/vendors/elegant-icon/style.css', array(), EAZYDOCS_VERSION );
-		wp_register_style( 'ezd-admin-settings', EAZYDOCS_URL . '/build/styles/admin-settings.css', array(), EAZYDOCS_VERSION );
+		wp_enqueue_style( 'eazydocs-admin-global', EZD_STYLES . 'admin/admin-global.css', array(), EZD_VERSION );
+		wp_enqueue_style( 'eazydocs-admin', EZD_STYLES . 'admin/admin.css', array(), EZD_VERSION );
+		wp_enqueue_style( 'elegant-icon', EZD_ASSETS . 'vendors/elegant-icon/style.css', array(), EZD_VERSION );
+		wp_register_style( 'ezd-admin-settings', EZD_STYLES . 'admin/admin-settings.css', array(), EZD_VERSION );
 
 		// Settings page specific styles
 		if ( ezd_admin_pages( 'eazydocs-settings' ) ) {
 			wp_enqueue_style( 'ezd-admin-settings' );
 		}
 
-		wp_register_style( 'sweetalert', EAZYDOCS_ASSETS . '/css/admin/sweetalert.css', array(), EAZYDOCS_VERSION );
-		wp_register_script( 'sweetalert', EAZYDOCS_ASSETS . '/js/admin/sweetalert.min.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
+		wp_register_script( 'sweetalert', EZD_ASSETS . 'js/admin/sweetalert.min.js', array( 'jquery' ), EZD_VERSION, true );
 
 		if ( ezd_admin_pages( array( 'eazydocs-builder', 'eazydocs-settings', 'eazydocs', 'eazydocs-initial-setup', 'ezd-analytics', 'ezd-user-feedback' ) ) || ezd_admin_post_types( 'onepage-docs' ) ) {
-			wp_enqueue_style( 'sweetalert' );
 			wp_enqueue_script( 'sweetalert' );
 		}
 
-		wp_enqueue_script( 'eazydocs-admin-global', EAZYDOCS_ASSETS . '/js/admin/admin-global.js', array( 'jquery' ), EAZYDOCS_VERSION, true );
+		wp_enqueue_script( 'eazydocs-admin-global', EZD_ASSETS . 'js/admin/admin-global.js', array( 'jquery' ), EZD_VERSION, true );
 
 		// Localize the script with new data
 		$ajax_url              = admin_url( 'admin-ajax.php' );
@@ -170,7 +167,7 @@ class Assets {
 
 		// Shared "Create Doc with AI" popup HTML (single source)
 		$ai_popup_html     = '';
-		$ai_popup_template = EAZYDOCS_PATH . '/includes/Admin/template/partials/ai-create-doc-popup.php';
+		$ai_popup_template = EZD_PATH . '/includes/Admin/template/partials/ai-create-doc-popup.php';
 		if ( file_exists( $ai_popup_template ) ) {
 			$antimanual_settings_url  = admin_url( 'admin.php?page=antimanual' );
 			$antimanual_docs_url      = 'https://helpdesk.spider-themes.net/docs/antimanual';
@@ -197,8 +194,8 @@ class Assets {
 			'eazydocs_local_object',
 			array(
 				'ajaxurl'                    => $ajax_url,
-				'EAZYDOCS_FRONT_CSS'         => EAZYDOCS_FRONT_CSS,
-				'EAZYDOCS_ASSETS'            => EAZYDOCS_ASSETS,
+				'EZD_STYLES'         => EZD_STYLES,
+				'EZD_ASSETS'            => EZD_ASSETS,
 				'antimanualActive'           => $antimanual_active,
 				'aiPopupHtml'                => $ai_popup_html,
 				'create_prompt_title'        => esc_html__( 'Enter Doc Title', 'eazydocs' ),

@@ -11,9 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div id="step-2" class="tab-pane ezd-settings-step" role="tabpanel" style="display:none">
 	<div class="ezd-step-header">
-		<div class="ezd-step-icon">
-			<span class="dashicons dashicons-admin-settings"></span>
-		</div>
 		<h2><?php esc_html_e( 'Basic Configuration', 'eazydocs' ); ?></h2>
 		<p class="ezd-step-description"><?php esc_html_e( 'Configure the essential settings for your documentation. Don\'t worry, you can change these later.', 'eazydocs' ); ?></p>
 	</div>

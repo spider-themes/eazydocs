@@ -257,11 +257,11 @@ class Docs_Builder_Controller {
 				'trash'             => admin_url( 'edit.php?post_status=trash&post_type=docs' ),
 				'antimanualDocs'    => admin_url( 'admin.php?page=atml-docs' ),
 				'pricing'           => admin_url( 'admin.php?page=eazydocs-pricing' ),
-				'assetsUrl'         => esc_url( EAZYDOCS_ASSETS ),
-				'settingsIcon'      => esc_url( EAZYDOCS_IMG ) . '/admin/admin-settings.svg',
-				'notificationIcon'  => esc_url( EAZYDOCS_IMG ) . '/admin/notification.svg',
-				'proIcon'           => esc_url( EAZYDOCS_IMG ) . '/admin/pro-icon.png',
-				'folderOpenIcon'    => esc_url( EAZYDOCS_IMG ) . '/icon/folder-open.png',
+				'assetsUrl'         => esc_url( EZD_ASSETS ),
+				'settingsIcon'      => esc_url( EZD_IMG ) . '/admin/admin-settings.svg',
+				'notificationIcon'  => esc_url( EZD_IMG ) . '/admin/notification.svg',
+				'proIcon'           => esc_url( EZD_IMG ) . '/admin/pro-icon.png',
+				'folderOpenIcon'    => esc_url( EZD_IMG ) . '/icon/folder-open.png',
 			),
 			'nonces'            => array(
 				'parentDoc'    => wp_create_nonce( 'parent_doc_nonce' ),
@@ -439,11 +439,11 @@ class Docs_Builder_Controller {
 				'trash'             => admin_url( 'edit.php?post_status=trash&post_type=docs' ),
 				'antimanualDocs'    => admin_url( 'admin.php?page=atml-docs' ),
 				'pricing'           => admin_url( 'admin.php?page=eazydocs-pricing' ),
-				'assetsUrl'         => esc_url( EAZYDOCS_ASSETS ),
-				'settingsIcon'      => esc_url( EAZYDOCS_IMG ) . '/admin/admin-settings.svg',
-				'notificationIcon'  => esc_url( EAZYDOCS_IMG ) . '/admin/notification.svg',
-				'proIcon'           => esc_url( EAZYDOCS_IMG ) . '/admin/pro-icon.png',
-				'folderOpenIcon'    => esc_url( EAZYDOCS_IMG ) . '/icon/folder-open.png',
+				'assetsUrl'         => esc_url( EZD_ASSETS ),
+				'settingsIcon'      => esc_url( EZD_IMG ) . '/admin/admin-settings.svg',
+				'notificationIcon'  => esc_url( EZD_IMG ) . '/admin/notification.svg',
+				'proIcon'           => esc_url( EZD_IMG ) . '/admin/pro-icon.png',
+				'folderOpenIcon'    => esc_url( EZD_IMG ) . '/icon/folder-open.png',
 			),
 			'nonces'            => array(
 				'parentDoc'    => wp_create_nonce( 'parent_doc_nonce' ),
@@ -517,7 +517,7 @@ class Docs_Builder_Controller {
 			$item = $this->build_child_doc_item( $child, $depth );
 
 			// Recurse if children exist and depth allows.
-			$max_depth = ezd_is_premium() ? 4 : 3;
+			$max_depth = ezd_is_premium() ? 5 : 3;
 			if ( ! empty( $item['hasChildren'] ) && $depth < $max_depth ) {
 				$item['children'] = $this->get_children_tree( $child->ID, $depth + 1 );
 			}
@@ -598,7 +598,7 @@ class Docs_Builder_Controller {
 		if ( ! ezd_is_premium() && 3 === (int) $depth ) {
 			$can_add_sub = false;
 		}
-		if ( ezd_is_premium() && 4 === (int) $depth ) {
+		if ( ezd_is_premium() && 5 === (int) $depth ) {
 			$can_add_sub = false;
 		}
 

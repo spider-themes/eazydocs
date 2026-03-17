@@ -1,4 +1,4 @@
-@import "frontend/variables";
+@import "../frontend/variables";
 @import "admin-dashboard";
 
 code {
@@ -127,14 +127,6 @@ body.post-type-onepage-docs .wrap .page-title-action:not(.add-onepage),
 
 select#ezd_docs_select {
   max-width: 100%
-}
-
-label[for="ezd_docs_select"] {
-  display: block;
-  text-align: left;
-  margin: 15px 0 10px;
-  font-weight: 400;
-  font-size: 16px;
 }
 
 label[for="ezd_docs_sidebar"] {

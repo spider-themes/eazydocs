@@ -128,7 +128,7 @@ if ($capability === 'manage_options' || $capability === 'publish_pages' || $capa
 }
 
 CSF::createOptions( $prefix, array(
-	'framework_title'    => esc_html__( 'EazyDocs', 'eazydocs' ) . ' <small> v' . EAZYDOCS_VERSION . '</small>',
+	'framework_title'    => esc_html__( 'EazyDocs', 'eazydocs' ) . ' <small> v' . EZD_VERSION . '</small>',
 	'menu_title'         => esc_html__( 'Settings', 'eazydocs' ),
 	'show_bar_menu' 	 => false,
 	'menu_slug'          => 'eazydocs-settings',

@@ -38,7 +38,7 @@ function ezd_get_greeting() {
 <div class="ezd-header">
 	<div class="ezd-header-left">
 		<div class="ezd-logo-container" title="EazyDocs Dashboard">
-			<img src="<?php echo esc_url( EAZYDOCS_IMG . '/eazydocs-logo.png' ); ?>" alt="EazyDocs Logo">
+			<img src="<?php echo esc_url( EZD_IMG . 'eazydocs-logo.png' ); ?>" alt="EazyDocs Logo">
 			<div class="ezd-logo-info">
 				<h1 class="ezd-logo-text"><?php esc_html_e( 'Dashboard', 'eazydocs' ); ?></h1>
 				<p class="ezd-greeting"><?php echo esc_html( $greeting ); ?>, <strong><?php echo esc_html( $user_name ); ?></strong></p>

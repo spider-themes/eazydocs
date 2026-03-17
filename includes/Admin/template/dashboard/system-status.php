@@ -7,12 +7,12 @@
  */
 
 // Get plugin version.
-$plugin_data = get_plugin_data( EAZYDOCS_FILE );
+$plugin_data = get_plugin_data( EZD_FILE );
 $plugin_version = $plugin_data['Version'] ?? '1.0.0';
 
 // Check if Pro is active.
-$is_pro_active = defined( 'EAZYDOCS_PRO_VERSION' );
-$pro_version = defined( 'EAZYDOCS_PRO_VERSION' ) ? EAZYDOCS_PRO_VERSION : null;
+$is_pro_active = defined( 'EZD_PRO_VERSION' );
+$pro_version = defined( 'EZD_PRO_VERSION' ) ? EZD_PRO_VERSION : null;
 
 // Get PHP version.
 $php_version = phpversion();

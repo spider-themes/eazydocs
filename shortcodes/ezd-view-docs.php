@@ -25,7 +25,7 @@ add_shortcode('ezd-view-docs', function() {
             }
         } else {
             // Load the default single-docs template if the condition is not met
-            load_template( EAZYDOCS_PATH . '/templates/single-docs.php', true );
+            load_template( EZD_PATH . '/templates/single-docs.php', true );
         }
 
         // Return the output buffer content

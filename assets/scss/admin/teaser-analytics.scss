@@ -11,9 +11,8 @@
 // ============================================
 // Variables - Using CSS Custom Properties
 // ============================================
-$brand-color: var(--clr-blue, #4C4CF1);
-$brand-color-hex: #4C4CF1;
-
+$brand-color: var(--clr-blue, #4c4cf1);
+$brand-color-hex: #4c4cf1;
 $success-color: #22c55e;
 $warning-color: #f59e0b;
 $danger-color: #ef4444;
@@ -31,8 +30,12 @@ $background-light: #f9fafb;
 $background-lighter: #f3f4f6;
 
 $shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-md:
+	0 4px 6px -1px rgba(0, 0, 0, 0.1),
+	0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+	0 10px 15px -3px rgba(0, 0, 0, 0.1),
+	0 4px 6px -2px rgba(0, 0, 0, 0.05);
 $shadow-xl: 0 15px 30px -5px rgba(0, 0, 0, 0.25);
 
 $radius-sm: 6px;
@@ -50,7 +53,9 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	max-width: 1200px;
 	margin: 20px auto 60px;
 	padding: 0 20px;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+	font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
+		Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
 // ============================================
@@ -74,9 +79,17 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .ezd-anp-hero-pattern {
 	position: absolute;
 	inset: 0;
-	background-image: 
-		radial-gradient(circle at 25% 25%, rgba($brand-color-hex, 0.15) 0%, transparent 50%),
-		radial-gradient(circle at 75% 75%, rgba($info-color, 0.1) 0%, transparent 50%);
+	background-image:
+		radial-gradient(
+			circle at 25% 25%,
+			rgba($brand-color-hex, 0.15) 0%,
+			transparent 50%
+		),
+		radial-gradient(
+			circle at 75% 75%,
+			rgba($info-color, 0.1) 0%,
+			transparent 50%
+		);
 }
 
 .ezd-anp-hero-glow {
@@ -85,7 +98,11 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	right: -25%;
 	width: 150%;
 	height: 200%;
-	background: radial-gradient(ellipse at center, rgba($brand-color-hex, 0.2) 0%, transparent 60%);
+	background: radial-gradient(
+		ellipse at center,
+		rgba($brand-color-hex, 0.2) 0%,
+		transparent 60%
+	);
 	animation: anpHeroGlow 20s ease-in-out infinite alternate;
 }
 
@@ -93,6 +110,7 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	0% {
 		transform: translate(0, 0) scale(1);
 	}
+
 	100% {
 		transform: translate(-10%, 10%) scale(1.1);
 	}
@@ -109,7 +127,11 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	align-items: center;
 	gap: 8px;
 	padding: 8px 18px;
-	background: linear-gradient(135deg, rgba($brand-color-hex, 0.3) 0%, rgba($purple-color, 0.2) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($brand-color-hex, 0.3) 0%,
+		rgba($purple-color, 0.2) 100%
+	);
 	border: 1px solid rgba($brand-color-hex, 0.3);
 	border-radius: 50px;
 	font-size: 13px;
@@ -126,33 +148,34 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 }
 
-.ezd-anp-title {
-	font-size: 44px;
-	font-weight: 800;
-	color: $white;
-	margin: 0 0 16px;
-	line-height: 1.15;
-	letter-spacing: -0.02em;
-	
-	background: linear-gradient(135deg, $white 0%, rgba($white, 0.8) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-}
+.ezd-anp-hero {
+	.ezd-anp-title {
+		font-size: 44px;
+		font-weight: 800;
+		color: $white;
+		margin: 0 0 10px;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+		background: linear-gradient(135deg, $white 0%, rgba($white, 0.8) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
 
-.ezd-anp-subtitle {
-	font-size: 18px;
-	color: rgba($white, 0.8);
-	margin: 0 auto 32px;
-	max-width: 750px;
-	line-height: 1.6;
-}
+	.ezd-anp-subtitle {
+		font-size: 18px;
+		color: rgba($white, 0.8);
+		margin: 0 auto 32px;
+		max-width: 750px;
+		line-height: 1.6;
+	}
 
-.ezd-anp-hero-actions {
-	display: flex;
-	justify-content: center;
-	gap: 16px;
-	flex-wrap: wrap;
+	.ezd-anp-hero-actions {
+		display: flex;
+		justify-content: center;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
 }
 
 // ============================================
@@ -261,350 +284,13 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ============================================
-// Demo Stats
-// ============================================
-.ezd-anp-demo-stats {
-	position: relative;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 20px;
-	margin-bottom: 32px;
-	
-	@media (max-width: 900px) {
-		grid-template-columns: repeat(2, 1fr);
-	}
-	
-	@media (max-width: 500px) {
-		grid-template-columns: 1fr;
-	}
-}
-
-.ezd-anp-stat {
-	position: relative;
-	display: flex;
-	align-items: flex-start;
-	gap: 16px;
-	padding: 24px;
-	background: $white;
-	border-radius: $radius-lg;
-	box-shadow: $shadow-md;
-	border: 1px solid $border-color;
-	transition: $transition-fast;
-	overflow: hidden;
-
-	&:hover {
-		transform: translateY(-4px);
-		box-shadow: $shadow-lg;
-	}
-}
-
-.ezd-anp-stat-views {
-	border-top: 4px solid $brand-color;
-	
-	.ezd-anp-stat-icon {
-		background: linear-gradient(135deg, rgba($brand-color-hex, 0.15) 0%, rgba($brand-color-hex, 0.05) 100%);
-		color: $brand-color;
-	}
-}
-
-.ezd-anp-stat-satisfaction {
-	border-top: 4px solid $success-color;
-	
-	.ezd-anp-stat-icon {
-		background: linear-gradient(135deg, rgba($success-color, 0.15) 0%, rgba($success-color, 0.05) 100%);
-		color: $success-color;
-	}
-}
-
-.ezd-anp-stat-search {
-	border-top: 4px solid $info-color;
-	
-	.ezd-anp-stat-icon {
-		background: linear-gradient(135deg, rgba($info-color, 0.15) 0%, rgba($info-color, 0.05) 100%);
-		color: $info-color;
-	}
-}
-
-.ezd-anp-stat-docs {
-	border-top: 4px solid $warning-color;
-	
-	.ezd-anp-stat-icon {
-		background: linear-gradient(135deg, rgba($warning-color, 0.15) 0%, rgba($warning-color, 0.05) 100%);
-		color: $warning-color;
-	}
-}
-
-.ezd-anp-stat-icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 52px;
-	height: 52px;
-	border-radius: $radius-md;
-	flex-shrink: 0;
-
-	.dashicons {
-		width: 26px;
-		height: 26px;
-		font-size: 26px;
-	}
-}
-
-.ezd-anp-stat-content {
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
-	flex: 1;
-}
-
-.ezd-anp-stat-value {
-	font-size: 28px;
-	font-weight: 800;
-	color: $text-primary;
-	line-height: 1;
-}
-
-.ezd-anp-stat-label {
-	font-size: 14px;
-	color: $text-secondary;
-	font-weight: 500;
-}
-
-.ezd-anp-stat-trend {
-	display: inline-flex;
-	align-items: center;
-	gap: 4px;
-	font-size: 12px;
-	font-weight: 600;
-	margin-top: 4px;
-	
-	.dashicons {
-		width: 14px;
-		height: 14px;
-		font-size: 14px;
-	}
-}
-
-.ezd-anp-trend-up {
-	color: $success-color;
-}
-
-.ezd-anp-trend-down {
-	color: $danger-color;
-}
-
-.ezd-anp-trend-neutral {
-	color: $text-muted;
-}
-
-.ezd-anp-demo-overlay {
-	position: absolute;
-	inset: 0;
-	background: rgba($white, 0.5);
-	backdrop-filter: blur(3px);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: $radius-lg;
-	opacity: 0;
-	transition: $transition-fast;
-	pointer-events: none;
-
-	.dashicons {
-		width: 48px;
-		height: 48px;
-		font-size: 48px;
-		color: $brand-color;
-		opacity: 0.7;
-	}
-}
-
-.ezd-anp-demo-stats:hover .ezd-anp-demo-overlay {
-	opacity: 1;
-}
-
-// ============================================
-// Demo Chart
-// ============================================
-.ezd-anp-demo-chart {
-	position: relative;
-	background: $white;
-	border-radius: $radius-xl;
-	border: 1px solid $border-color;
-	box-shadow: $shadow-md;
-	overflow: hidden;
-}
-
-.ezd-anp-chart-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 16px;
-	padding: 20px 24px;
-	border-bottom: 1px solid $border-color;
-	flex-wrap: wrap;
-}
-
-.ezd-anp-chart-title {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	
-	.dashicons {
-		width: 22px;
-		height: 22px;
-		font-size: 22px;
-		color: $brand-color;
-	}
-	
-	h4 {
-		margin: 0;
-		font-size: 16px;
-		font-weight: 600;
-		color: $text-primary;
-	}
-}
-
-.ezd-anp-chart-legend {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-}
-
-.ezd-anp-legend-item {
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	font-size: 13px;
-	font-weight: 500;
-	color: $text-secondary;
-}
-
-.ezd-anp-legend-dot {
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-}
-
-.ezd-anp-legend-views .ezd-anp-legend-dot {
-	background: $brand-color-hex;
-}
-
-.ezd-anp-legend-feedback .ezd-anp-legend-dot {
-	background: $success-color;
-}
-
-.ezd-anp-legend-search .ezd-anp-legend-dot {
-	background: $warning-color;
-}
-
-.ezd-anp-chart-visual {
-	padding: 24px;
-	min-height: 220px;
-}
-
-.ezd-anp-svg-chart {
-	width: 100%;
-	height: 180px;
-}
-
-.ezd-anp-grid line {
-	stroke: $border-color;
-	stroke-width: 1;
-	stroke-dasharray: 4;
-}
-
-.ezd-anp-area {
-	opacity: 0.15;
-}
-
-.ezd-anp-area-views {
-	fill: $brand-color-hex;
-}
-
-.ezd-anp-area-feedback {
-	fill: $success-color;
-}
-
-.ezd-anp-area-search {
-	fill: $warning-color;
-}
-
-.ezd-anp-line {
-	fill: none;
-	stroke-width: 3;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-}
-
-.ezd-anp-line-views {
-	stroke: $brand-color-hex;
-}
-
-.ezd-anp-line-feedback {
-	stroke: $success-color;
-}
-
-.ezd-anp-line-search {
-	stroke: $warning-color;
-}
-
-.ezd-anp-point-views {
-	fill: $white;
-	stroke: $brand-color-hex;
-	stroke-width: 2;
-}
-
-.ezd-anp-chart-labels {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 16px;
-	padding: 0 10px;
-	
-	span {
-		font-size: 12px;
-		color: $text-muted;
-		font-weight: 500;
-	}
-}
-
-.ezd-anp-chart-overlay {
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(180deg, rgba($white, 0) 0%, rgba($white, 0.7) 40%, rgba($white, 0.95) 100%);
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
-	padding-bottom: 40px;
-}
-
-.ezd-anp-chart-lock {
-	text-align: center;
-	
-	.dashicons {
-		width: 40px;
-		height: 40px;
-		font-size: 40px;
-		color: $brand-color;
-		margin-bottom: 8px;
-	}
-	
-	p {
-		font-size: 14px;
-		font-weight: 600;
-		color: $text-secondary;
-		margin: 0;
-	}
-}
-
-// ============================================
 // Analytics Modules
 // ============================================
 .ezd-anp-modules {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 24px;
-	
+
 	@media (max-width: 800px) {
 		grid-template-columns: 1fr;
 	}
@@ -649,45 +335,69 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ezd-anp-icon-primary {
-	background: linear-gradient(135deg, rgba($brand-color-hex, 0.15) 0%, rgba($brand-color-hex, 0.05) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($brand-color-hex, 0.15) 0%,
+		rgba($brand-color-hex, 0.05) 100%
+	);
 	color: $brand-color;
 }
 
 .ezd-anp-icon-blue {
-	background: linear-gradient(135deg, rgba($info-color, 0.15) 0%, rgba($info-color, 0.05) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($info-color, 0.15) 0%,
+		rgba($info-color, 0.05) 100%
+	);
 	color: $info-color;
 }
 
 .ezd-anp-icon-green {
-	background: linear-gradient(135deg, rgba($success-color, 0.15) 0%, rgba($success-color, 0.05) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($success-color, 0.15) 0%,
+		rgba($success-color, 0.05) 100%
+	);
 	color: $success-color;
 }
 
 .ezd-anp-icon-purple {
-	background: linear-gradient(135deg, rgba($purple-color, 0.15) 0%, rgba($purple-color, 0.05) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($purple-color, 0.15) 0%,
+		rgba($purple-color, 0.05) 100%
+	);
 	color: $purple-color;
 }
 
 .ezd-anp-icon-orange {
-	background: linear-gradient(135deg, rgba($orange-color, 0.15) 0%, rgba($orange-color, 0.05) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($orange-color, 0.15) 0%,
+		rgba($orange-color, 0.05) 100%
+	);
 	color: $orange-color;
 }
 
 .ezd-anp-icon-teal {
-	background: linear-gradient(135deg, rgba($teal-color, 0.15) 0%, rgba($teal-color, 0.05) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($teal-color, 0.15) 0%,
+		rgba($teal-color, 0.05) 100%
+	);
 	color: $teal-color;
 }
 
 .ezd-anp-module-content {
 	flex: 1;
-	
+
 	h3 {
 		font-size: 18px;
 		font-weight: 700;
 		color: $text-primary;
 		margin: 0 0 10px;
 	}
-	
+
 	p {
 		font-size: 14px;
 		color: $text-secondary;
@@ -700,7 +410,7 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	
+
 	li {
 		display: flex;
 		align-items: center;
@@ -708,7 +418,7 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		font-size: 13px;
 		color: $text-secondary;
 		padding: 4px 0;
-		
+
 		.dashicons {
 			width: 16px;
 			height: 16px;
@@ -725,11 +435,11 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 24px;
-	
+
 	@media (max-width: 900px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	
+
 	@media (max-width: 500px) {
 		grid-template-columns: 1fr;
 	}
@@ -748,14 +458,14 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		box-shadow: $shadow-md;
 		border-color: rgba($brand-color-hex, 0.2);
 	}
-	
+
 	h4 {
 		font-size: 16px;
 		font-weight: 700;
 		color: $text-primary;
 		margin: 16px 0 8px;
 	}
-	
+
 	p {
 		font-size: 13px;
 		color: $text-secondary;
@@ -770,9 +480,13 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	justify-content: center;
 	width: 52px;
 	height: 52px;
-	background: linear-gradient(135deg, rgba($brand-color-hex, 0.12) 0%, rgba($brand-color-hex, 0.04) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($brand-color-hex, 0.12) 0%,
+		rgba($brand-color-hex, 0.04) 100%
+	);
 	border-radius: $radius-md;
-	
+
 	.dashicons {
 		width: 26px;
 		height: 26px;
@@ -854,7 +568,11 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	justify-content: center;
 	width: 72px;
 	height: 72px;
-	background: linear-gradient(135deg, rgba($brand-color-hex, 0.15) 0%, rgba($brand-color-hex, 0.05) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($brand-color-hex, 0.15) 0%,
+		rgba($brand-color-hex, 0.05) 100%
+	);
 	border-radius: 20px;
 	margin-bottom: 20px;
 
@@ -956,7 +674,11 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .ezd-anp-circle {
 	position: absolute;
 	border-radius: 50%;
-	background: linear-gradient(135deg, rgba($brand-color-hex, 0.2) 0%, rgba($purple-color, 0.1) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba($brand-color-hex, 0.2) 0%,
+		rgba($purple-color, 0.1) 100%
+	);
 }
 
 .ezd-anp-circle-1 {
@@ -1003,7 +725,7 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	.ezd-anp-module {
 		flex-direction: column;
 		text-align: center;
-		
+
 		.ezd-anp-module-icon {
 			margin: 0 auto;
 		}
@@ -1023,15 +745,5 @@ $transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 	.ezd-anp-cta-content h2 {
 		font-size: 24px;
-	}
-	
-	.ezd-anp-chart-header {
-		flex-direction: column;
-		align-items: flex-start;
-	}
-	
-	.ezd-anp-chart-legend {
-		flex-wrap: wrap;
-		gap: 12px;
 	}
 }

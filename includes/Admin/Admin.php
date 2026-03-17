@@ -344,7 +344,7 @@ class Admin {
             <div class="ezd-blank_state">
 				<?php // PHPCS - No need to escape an SVG image from the Elementor assets/images folder. 
 				?>
-                <img src="<?php echo esc_url( EAZYDOCS_IMG . '/icon/crown.svg' ); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
+                <img src="<?php echo esc_url( EZD_IMG . 'icon/crown.svg' ); ?>" alt="<?php esc_attr_e( 'crown icon', 'eazydocs' ); ?>" width="250px"/>
                 <h3> <?php echo esc_html__( 'Add Your OnePage Doc', 'eazydocs' ); ?> </h3>
                 <p class="big-p"> 
 					<?php esc_html_e( 'Onepage documentation format will generate all the pages of a Doc as sections in a single page which is scrollable by sections. Visitors can find the all guides on a single page and they can navigate through the different sections very fast.','eazydocs' ); ?> 
@@ -373,9 +373,9 @@ class Admin {
 		// Enqueue the feedback presentation CSS.
 		wp_enqueue_style(
 			'ezd-feedback-presentation',
-			EAZYDOCS_URL . '/build/styles/feedback-presentation.css',
+			EZD_STYLES . 'admin/teaser-feedback.css',
 			[],
-			EAZYDOCS_VERSION
+			EZD_VERSION
 		);
 
 		// Include the template file.
@@ -386,9 +386,9 @@ class Admin {
 		// Enqueue the analytics presentation CSS.
 		wp_enqueue_style(
 			'ezd-analytics-presentation',
-			EAZYDOCS_URL . '/build/styles/analytics-presentation.css',
+			EZD_STYLES . 'admin/teaser-analytics.css',
 			[],
-			EAZYDOCS_VERSION
+			EZD_VERSION
 		);
 
 		// Include the template file.
@@ -406,14 +406,14 @@ class Admin {
 	 * FAQ Builder Page
 	 */
 	public function ezd_faq_builder() {
-		wp_enqueue_style( 'ezd-faq-builder', EAZYDOCS_ASSETS . '/css/admin/faq-builder.css', [], EAZYDOCS_VERSION );
-		wp_enqueue_script( 'ezd-faq-builder', EAZYDOCS_ASSETS . '/js/admin/faq-builder.js', [ 'jquery' ], EAZYDOCS_VERSION, true );
+		wp_enqueue_style( 'ezd-faq-builder', EZD_STYLES . 'admin/teaser-aab.css', [], EZD_VERSION );
+		wp_enqueue_script( 'ezd-faq-builder', EZD_ASSETS . 'js/admin/faq-builder.js', [ 'jquery' ], EZD_VERSION, true );
 		
 		// Localize script with necessary data
 		wp_localize_script( 'ezd-faq-builder', 'ezd_faq_builder', [
 			'nonce' => wp_create_nonce( 'ezd_install_accordion_nonce' ),
 			'ajaxurl' => admin_url( 'admin-ajax.php' )
-		] );
+		]);
 		
 		require_once __DIR__ . '/template/faq-builder.php';
 	}
@@ -422,7 +422,7 @@ class Admin {
 	 * Integrated Themes Showcase Page
 	 */
 	public function ezd_integrated_themes() {
-		wp_enqueue_style( 'ezd-integrated-themes', EAZYDOCS_ASSETS . '/css/admin/integrated-themes.css', [], EAZYDOCS_VERSION );
+		wp_enqueue_style( 'ezd-integrated-themes', EZD_STYLES . 'admin/teaser-integrated-themes.css', [], EZD_VERSION );
 		require_once __DIR__ . '/template/integrated-themes.php';
 	}
 

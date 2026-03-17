@@ -23,7 +23,7 @@ $disabled_attr        = $is_betterdocs_active ? '' : 'disabled';
 <div class="wrap">
     <div class="ezd-migration-wrapper">
         <div class="ezd-migration-inner">
-            <img src="<?php echo esc_url( EAZYDOCS_IMG . '/bdocs-ezd.png' ); ?>" alt="<?php esc_attr_e( 'Eazydocs icon', 'eazydocs' ); ?>" />
+            <img src="<?php echo esc_url( EZD_IMG . 'bdocs-ezd.png' ); ?>" alt="<?php esc_attr_e( 'Eazydocs icon', 'eazydocs' ); ?>" />
 
             <h1><?php esc_html_e( 'Migrate from BetterDocs to EazyDocs', 'eazydocs' ); ?></h1>
 

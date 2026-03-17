@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const EVENT_NAME = "EAZYDOCS_ROUTE_CHANGE";
+const EVENT_NAME = "EZD_ROUTE_CHANGE";
 const routeEvent = new Event(EVENT_NAME);
 
 const processHref = (href: string) => {

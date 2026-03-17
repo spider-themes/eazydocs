@@ -37,7 +37,7 @@ class Frontend {
 			if ( $theme_file ) {
 				$file = $theme_file;
 			} else {
-				$file = EAZYDOCS_PATH . '/templates' . '//' . $single_template;
+				$file = EZD_PATH . '/templates' . '//' . $single_template;
 			}
 		} elseif ( is_single() && 'onepage-docs' === get_post_type() ) {
 
@@ -47,7 +47,7 @@ class Frontend {
 			if ( $theme_file ) {
 				$file = $theme_file;
 			} else {
-				$file = EAZYDOCS_PATH . '/templates' . '//' . $single_template;
+				$file = EZD_PATH . '/templates' . '//' . $single_template;
 			}
 
 		} else {

@@ -363,7 +363,7 @@ const SortableDocItem = React.memo( SortableDocItemComponent, ( prevProps, nextP
 		&& prevProps.roleVisibility === nextProps.roleVisibility
 		&& prevProps.onToggleCollapse === nextProps.onToggleCollapse
 		&& prevProps.isDragActive === nextProps.isDragActive
-		&& prevProps.collapsedIds.has( prevProps.doc.id ) === nextProps.collapsedIds.has( nextProps.doc.id )
+		&& prevProps.collapsedIds === nextProps.collapsedIds
 		&& isIndicatorRelevant( prevProps.dropIndicator, prevProps.doc.id ) === isIndicatorRelevant( nextProps.dropIndicator, nextProps.doc.id );
 } );
 

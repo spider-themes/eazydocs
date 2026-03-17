@@ -45,7 +45,7 @@ $wizard_steps = array(
 	<div class="ezd-setup-wizard-wrapper">
 		<div class="ezd-setup-wizard-header">
 			<div class="ezd-setup-logo">
-				<img src="<?php echo esc_url( EAZYDOCS_IMG . '/eazydocs-favicon.png' ); ?>" alt="<?php echo esc_attr__( 'EazyDocs icon', 'eazydocs' ); ?>"/>
+				<img src="<?php echo esc_url( EZD_IMG . 'eazydocs-favicon.png' ); ?>" alt="<?php echo esc_attr__( 'EazyDocs icon', 'eazydocs' ); ?>"/>
 				<span class="ezd-logo-text"><?php esc_html_e( 'EazyDocs', 'eazydocs' ); ?></span>
 				<span class="ezd-setup-badge"><?php esc_html_e( 'Setup Wizard', 'eazydocs' ); ?></span>
 			</div>

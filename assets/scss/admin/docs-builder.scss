@@ -1,7 +1,7 @@
-@import 'abstracts/index';
-@import 'admin/base/index';
-@import 'admin/utilities/index';
-@import 'admin/layout/grid';
+@import '../abstracts/index';
+@import 'base/index';
+@import 'utilities/index';
+@import 'layout/grid';
 
 :root {
 	--ezd-drag-handle-hover-color: #4c4cf1;
@@ -49,16 +49,16 @@
 }
 
 .ezd-docs-builder-root {
-	@import 'admin/components/badge';
-	@import 'admin/components/btn';
-	@import 'admin/components/drag-drop';
-	@import 'admin/components/dropdown';
-	@import 'admin/components/empty-state';
-	@import 'admin/components/form';
-	@import 'admin/components/progress';
-	@import 'admin/components/section-card';
-	@import 'admin/layout/header';
-	@import 'admin/layout/sidebar';
+	@import 'components/badge';
+	@import 'components/btn';
+	@import 'components/drag-drop';
+	@import 'components/dropdown';
+	@import 'components/empty-state';
+	@import 'components/form';
+	@import 'components/progress';
+	@import 'components/section-card';
+	@import 'layout/header';
+	@import 'layout/sidebar';
 
 	.ezd-builder-content {
 		flex: 8;

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Blocks Final Class
  */
 
-final class EAZYDOCS_BLOCKS_CLASS {
+final class EZD_BLOCKS_CLASS {
     public function __construct() {
         // block initialization
         add_action( 'init', [ $this, 'blocks_init' ] );
@@ -78,9 +78,9 @@ final class EAZYDOCS_BLOCKS_CLASS {
         // Enqueue Tabbed Docs specific styles
         wp_enqueue_style(
             'ezd-tabbed-docs',
-            EAZYDOCS_URL . '/build/tabbed-docs/frontend.css',
+            EZD_URL . '/build/tabbed-docs/frontend.css',
             array(),
-            EAZYDOCS_VERSION
+            EZD_VERSION
         );
 
         ob_start();
@@ -93,7 +93,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
 
         $file_path = sprintf(
             '%s/includes/block-templates/tabbed-docs/%s.php',
-            EAZYDOCS_PATH,
+            EZD_PATH,
             $preset
         );
 
@@ -117,7 +117,7 @@ final class EAZYDOCS_BLOCKS_CLASS {
      * Enqueue editor scripts
      */
     function search_banner_block_render( $attributes ) {
-	    wp_register_style( 'ezd-search-block', EAZYDOCS_URL.'/build/search-banner/style-index.css', array(), EAZYDOCS_VERSION );
+	    wp_register_style( 'ezd-search-block', EZD_URL.'/build/search-banner/style-index.css', array(), EZD_VERSION );
         return require_once __DIR__ . '/includes/block-templates/search-banner.php';
     }
 
@@ -140,4 +140,4 @@ final class EAZYDOCS_BLOCKS_CLASS {
 /**
  * Kickoff
  */
-EAZYDOCS_BLOCKS_CLASS::init();
+EZD_BLOCKS_CLASS::init();

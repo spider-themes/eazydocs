@@ -216,7 +216,7 @@ function ezd_container() {
  * @return void
  */
 function eazydocs_get_admin_template_part( $template ) {
-	$file = EAZYDOCS_PATH . "/includes/admin/templates/$template.php";
+	$file = EZD_PATH . "/includes/admin/templates/$template.php";
 	load_template( $file, false );
 }
 
@@ -269,13 +269,13 @@ function eazydocs_get_template_part( $template ) {
 		$file = $theme_file;
 	} else {
 		//here path to '/single-paper.php'
-		$file = EAZYDOCS_PATH . "/templates/" . $template;
+		$file = EZD_PATH . "/templates/" . $template;
 	}
 
 	// Verify the file exists and is within the expected directory
 	if ( $file && file_exists( $file ) ) {
 		$real_file = realpath( $file );
-		$real_templates_dir = realpath( EAZYDOCS_PATH . '/templates' );
+		$real_templates_dir = realpath( EZD_PATH . '/templates' );
 		
 		// Ensure the resolved file path is within the templates directory or theme directory
 		if ( $real_file && ( 
@@ -2646,7 +2646,7 @@ function ezd_import_sample_data() {
 	}
 
 	// Path to the sample data XML file.
-	$sample_data_file = EAZYDOCS_PATH . '/sample-data/demo.xml';
+	$sample_data_file = EZD_PATH . '/sample-data/demo.xml';
 
 	// Check if the file exists.
 	if ( ! file_exists( $sample_data_file ) ) {

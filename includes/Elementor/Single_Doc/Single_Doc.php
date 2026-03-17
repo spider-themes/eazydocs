@@ -555,7 +555,7 @@ class Single_Doc extends Widget_Base {
 				'description' => esc_html__( 'The background shape should be transparent png or svg image.', 'eazydocs' ),
 				'type'        => Controls_Manager::MEDIA,
 				'default'     => [
-					'url' => EAZYDOCS_IMG . '/widgets/docbg-shap.png'
+					'url' => EZD_IMG . 'widgets/docbg-shap.png'
 				],
 				'condition'   => [
 					'is_bg_objects' => [ 'yes' ]

@@ -35,9 +35,9 @@ CSF::createSection(
 				'title'    => esc_html__( 'Page Layout', 'eazydocs' ),
 				'subtitle' => esc_html__( 'Choose the sidebar arrangement for your documentation pages.', 'eazydocs' ),
 				'options'  => array(
-					'both_sidebar'  => EAZYDOCS_IMG . '/customizer/both_sidebar.jpg',
-					'left_sidebar'  => EAZYDOCS_IMG . '/customizer/sidebar_left.jpg',
-					'right_sidebar' => EAZYDOCS_IMG . '/customizer/sidebar_right.jpg',
+					'both_sidebar'  => EZD_IMG . 'customizer/both_sidebar.jpg',
+					'left_sidebar'  => EZD_IMG . 'customizer/sidebar_left.jpg',
+					'right_sidebar' => EZD_IMG . 'customizer/sidebar_right.jpg',
 				),
 				'default'  => 'both_sidebar',
 				'class'    => 'single-layout-img-wrap eazydocs-pro-notice active-theme',
@@ -756,7 +756,7 @@ CSF::createSection(
 				'id'       => 'doc_sec_icon',
 				'type'     => 'media',
 				'default'  => array(
-					'url' => EAZYDOCS_IMG . '/icon/folder-closed.png',
+					'url' => EZD_IMG . 'icon/folder-closed.png',
 				),
 			),
 
@@ -769,7 +769,7 @@ CSF::createSection(
 				'id'       => 'doc_sec_icon_open',
 				'type'     => 'media',
 				'default'  => array(
-					'url' => EAZYDOCS_IMG . '/icon/folder-open.png',
+					'url' => EZD_IMG . 'icon/folder-open.png',
 				),
 			),
 

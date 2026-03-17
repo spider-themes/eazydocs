@@ -78,7 +78,7 @@ export const showProAlert = ( pricingUrl: string, assetsUrl?: string ): void => 
  *
  * Mirrors the jQuery handler in admin-global.js for .pro-notification-alert elements.
  *
- * @param {string} assetsUrl  The EAZYDOCS_ASSETS URL for the video.
+ * @param {string} assetsUrl  The EZD_ASSETS URL for the video.
  * @param {string} pricingUrl URL to the pricing page.
  */
 export const showNotificationProAlert = ( assetsUrl: string, pricingUrl: string ): void => {

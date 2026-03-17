@@ -153,7 +153,7 @@ class EazyDocs_Walker_Onepage extends Walker_Page {
 
 		$thumb = '';
 		if ( 0 === $depth ) {
-			$folder = '<img class="closed" src="' . EAZYDOCS_IMG . '/icon/folder-closed.png" alt="' . esc_attr__( 'Folder icon closed', 'eazydocs' ) . '"> <img class="open" src="' . EAZYDOCS_IMG . '/icon/folder-open.png" alt="' . esc_attr__( 'Folder icon', 'eazydocs' ) . '">';
+			$folder = '<img class="closed" src="' . EZD_IMG . 'icon/folder-closed.png" alt="' . esc_attr__( 'Folder icon closed', 'eazydocs' ) . '"> <img class="open" src="' . EZD_IMG . 'icon/folder-open.png" alt="' . esc_attr__( 'Folder icon', 'eazydocs' ) . '">';
 			$thumb  = has_post_thumbnail( $page->ID ) ? get_the_post_thumbnail( $page->ID ) : $folder;
 		}
 

@@ -205,7 +205,7 @@ body.documentation_page_eazydocs-initial-setup {
 #ezd-setup-wizard-wrap {
 	width: 100%;
 	max-width: 900px;
-	margin: 16px auto;
+	margin: 30px auto;
 	background: $bg-white;
 	border-radius: $radius-lg;
 	box-shadow: $shadow-xl;
@@ -378,7 +378,7 @@ body.documentation_page_eazydocs-initial-setup {
 	flex: 1;
 	overflow-y: auto;
 	overflow-x: hidden;
-	padding: 16px 32px 20px;
+	padding: 20px 32px;
 	position: relative;
 
 	.tab-pane {
@@ -406,34 +406,6 @@ body.documentation_page_eazydocs-initial-setup {
 	margin-bottom: 12px;
 	flex-shrink: 0;
 
-	.ezd-welcome-icon,
-	.ezd-step-icon {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 44px;
-		height: 44px;
-		background: linear-gradient(
-			135deg,
-			$primary-light 0%,
-			rgba($primary-color, 0.15) 100%
-		);
-		border-radius: 50%;
-		margin-bottom: 8px;
-
-		img {
-			width: 26px;
-			height: 26px;
-		}
-
-		.dashicons {
-			font-size: 22px;
-			width: 22px;
-			height: 22px;
-			color: $primary-color;
-		}
-	}
-
 	h2 {
 		font-size: 18px;
 		font-weight: 700;
@@ -446,7 +418,7 @@ body.documentation_page_eazydocs-initial-setup {
 		font-size: 13px;
 		color: $text-secondary;
 		max-width: 500px;
-		margin: 0 auto;
+		margin: 6px auto 12px;
 		line-height: 1.4;
 	}
 }
@@ -472,12 +444,12 @@ body.documentation_page_eazydocs-initial-setup {
 			overflow: hidden;
 			box-shadow: $shadow-lg;
 			background: #000;
-			max-height: 200px;
+			max-height: 250px;
 
 			iframe {
 				display: block;
 				border: none;
-				height: 200px;
+				height: 250px;
 			}
 		}
 

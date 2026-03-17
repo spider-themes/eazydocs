@@ -51,9 +51,6 @@ $plugins = array(
 ?>
 <div id="step-4" class="tab-pane ezd-plugins-step" role="tabpanel" style="display:none">
 	<div class="ezd-step-header">
-		<div class="ezd-step-icon">
-			<span class="dashicons dashicons-admin-plugins"></span>
-		</div>
 		<h2><?php esc_html_e( 'Recommended Plugins', 'eazydocs' ); ?></h2>
 		<p class="ezd-step-description"><?php esc_html_e( 'These plugins enhance your documentation experience. Choose the ones that fit your needs.', 'eazydocs' ); ?></p>
 	</div>
@@ -85,7 +82,7 @@ $plugins = array(
 
 					<div class="ezd-plugin-header">
 						<div class="ezd-plugin-icon">
-							<img src="<?php echo esc_url( EAZYDOCS_IMG . '/admin/' . $plugin['img'] ); ?>" alt="<?php echo esc_attr( $plugin['title'] ); ?>" />
+							<img src="<?php echo esc_url( EZD_IMG . 'admin/' . $plugin['img'] ); ?>" alt="<?php echo esc_attr( $plugin['title'] ); ?>" />
 						</div>
 						<h4 class="ezd-plugin-title"><?php echo esc_html( $plugin['title'] ); ?></h4>
 					</div>

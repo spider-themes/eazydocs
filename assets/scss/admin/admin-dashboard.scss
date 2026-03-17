@@ -25,7 +25,6 @@ $gray-700: #334155;
 $gray-800: #1e293b;
 $gray-900: #0f172a;
 
-$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 $border-radius: 12px;
 $border-radius-sm: 8px;
 $border-radius-xs: 6px;
@@ -37,7 +36,6 @@ $shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 .ezd-dashboard-container {
 	padding: 1.5rem 2rem 2rem;
 	position: relative;
-	font-family: $font-family;
 	color: $gray-800;
 	min-height: 100vh;
 	background: linear-gradient(135deg, $gray-50 0%, $gray-100 100%);

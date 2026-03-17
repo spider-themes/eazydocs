@@ -48,7 +48,7 @@ if ( $is_social_links ) :
                                 <input readonly type="text" value="<?php the_permalink(); ?>" class="word-wrap">
                                 <div class="share-this-doc"
                                      data-success-message="<?php echo esc_attr( $copy_link_text_success ) ?>">
-                                    <img src="<?php echo esc_url( EAZYDOCS_IMG . '/clone.svg' ); ?>"
+                                    <img src="<?php echo esc_url( EZD_IMG . 'clone.svg' ); ?>"
                                          alt="<?php esc_attr_e( 'Clipboard Icon', 'eazydocs' ); ?>">
                                 </div>
                             </div>

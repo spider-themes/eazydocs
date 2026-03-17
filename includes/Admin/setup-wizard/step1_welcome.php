@@ -11,9 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div id="step-1" class="tab-pane ezd-welcome-step" role="tabpanel">
 	<div class="ezd-step-header">
-		<div class="ezd-welcome-icon">
-			<img src="<?php echo esc_url( EAZYDOCS_IMG . '/eazydocs-favicon.png' ); ?>" alt="<?php echo esc_attr__( 'EazyDocs', 'eazydocs' ); ?>"/>
-		</div>
 		<h2><?php esc_html_e( 'Welcome to EazyDocs!', 'eazydocs' ); ?></h2>
 		<p class="ezd-step-description"><?php esc_html_e( 'Thank you for choosing EazyDocs - the best documentation plugin for WordPress. Let\'s set up your knowledge base in just a few minutes.', 'eazydocs' ); ?></p>
 	</div>

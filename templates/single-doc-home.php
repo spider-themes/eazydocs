@@ -26,7 +26,7 @@ if ( $sections && $post->post_parent === 0 ) :
                 if ( has_post_thumbnail( $section->ID ) ) {
                     echo get_the_post_thumbnail( $section->ID, 'full' );
                 } else {
-                    $default_icon = esc_url(EAZYDOCS_IMG) . '/icon/folder.png';
+                    $default_icon = esc_url(EZD_IMG) . '/icon/folder.png';
 	                echo '<img src="' . esc_url( $default_icon ) . '" alt="' . esc_attr( $section->post_title ) . '">';
                 }
                 ?>

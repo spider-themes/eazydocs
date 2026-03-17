@@ -342,6 +342,13 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
+= 2.11.0 (17 March 2026) =
+* New: Docs Builder – Added a "Switch to Docs Builder" button in the admin for quicker access.
+* Updated: Internal Architecture – Refactored plugin constants and consolidated stylesheets to optimize performance.
+* Improved: Docs Builder – Optimized article loading and component rendering for a faster, smoother experience.
+* Improved: OnePage Docs – Restored and refined the SweetAlert2 modal design for a consistent user experience.
+* Fixed: Docs Builder – Resolved an issue with drag-and-drop indicators not displaying accurately.
+
 = 2.10.2 (07 March 2026) =
 * Improved: Completely rebuilt the Docs Builder page to provide a much smoother, faster, and more responsive experience.
 * Improved: Refreshed the Docs Builder design with a cleaner layout and easier-to-read section lists.

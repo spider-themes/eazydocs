@@ -42,7 +42,7 @@ function ezd_gutenberg_info_notice()
 		style="padding: 18px 20px; background: #fff; border-left: 4px solid #2271b1; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-top: 20px; border-top: none; border-right: none; border-bottom: none;">
 		<div style="display: flex; align-items: start;">
 			<div style="margin-right: 20px; background: #f0f6fb; padding: 12px; border-radius: 8px; flex-shrink: 0;">
-				<img src="<?php echo esc_url(EAZYDOCS_IMG . '/eazydocs-logo.png') ?>"
+				<img src="<?php echo esc_url(EZD_IMG . 'eazydocs-logo.png') ?>"
 					style="width: 38px; height: auto; display: block;" />
 			</div>
 			<div style="padding-top: 2px;">

@@ -7,7 +7,7 @@
  * @package EazyDocs
  * @since   2.9.0
  */
-import { useState, useEffect, useMemo, useCallback } from '@wordpress/element';
+import { useState, useEffect, useMemo, useCallback, useRef, memo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import {
 	DndContext,
@@ -223,7 +223,7 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 	);
 };
 
-const SortableParentItem = React.memo( SortableParentItemComponent, ( prevProps, nextProps ) => {
+const SortableParentItem = memo( SortableParentItemComponent, ( prevProps, nextProps ) => {
 	const wasBulkOpen = prevProps.openBulk === prevProps.doc.id;
 	const isBulkOpen = nextProps.openBulk === nextProps.doc.id;
 
@@ -242,11 +242,13 @@ const SortableParentItem = React.memo( SortableParentItemComponent, ( prevProps,
 
 const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTabChange, capabilities, isPremium, urls, roleVisibility } ) => {
 	const [ openBulk, setOpenBulk ] = useState< number | null >( null );
+	const [ viewportHeight, setViewportHeight ] = useState< number | null >( null );
 	const deleteDoc = useDeleteDoc();
 	const reorderDocs = useReorderDocs();
 	const { searchValue } = useSearch();
 	const { showToast } = useToast();
 	const [ activeDragItem, setActiveDragItem ] = useState<{ id: string | number; doc: ParentDoc } | null>( null );
+	const parentNestableRef = useRef< HTMLDivElement | null >( null );
 
 	// Local state for optimistic reorder.
 	const [ localDocs, setLocalDocs ] = useState< ParentDoc[] | null >( null );
@@ -267,6 +269,48 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 	}, [ displayDocs, searchValue ] );
 
 	const count = filteredDocs.length;
+
+	/**
+	 * Calculate the available viewport height for the left sidebar.
+	 */
+	const updateViewportHeight = useCallback( (): void => {
+		if ( ! parentNestableRef.current || typeof window === 'undefined' ) {
+			return;
+		}
+
+		const { top } = parentNestableRef.current.getBoundingClientRect();
+		const availableHeight = Math.max( 320, Math.floor( window.innerHeight - top - 24 ) );
+
+		setViewportHeight( ( currentHeight ) => currentHeight === availableHeight ? currentHeight : availableHeight );
+	}, [] );
+
+	// Keep the parent docs sidebar sized to the current viewport.
+	useEffect( () => {
+		if ( typeof window === 'undefined' ) {
+			return undefined;
+		}
+
+		let frameId = 0;
+
+		const queueViewportHeightUpdate = () => {
+			window.cancelAnimationFrame( frameId );
+			frameId = window.requestAnimationFrame( updateViewportHeight );
+		};
+
+		queueViewportHeightUpdate();
+		window.addEventListener( 'resize', queueViewportHeightUpdate );
+		window.addEventListener( 'scroll', queueViewportHeightUpdate, true );
+
+		return () => {
+			window.cancelAnimationFrame( frameId );
+			window.removeEventListener( 'resize', queueViewportHeightUpdate );
+			window.removeEventListener( 'scroll', queueViewportHeightUpdate, true );
+		};
+	}, [ updateViewportHeight ] );
+
+	useEffect( () => {
+		updateViewportHeight();
+	}, [ count, updateViewportHeight ] );
 
 	/**
 	 * Configure sensors.
@@ -448,6 +492,15 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 	}, [] );
 
 	const sortableIds = filteredDocs.map( ( doc ) => doc.id );
+	const parentNestableStyle: React.CSSProperties = {
+		flex: 3,
+		overflowY: 'auto',
+	};
+
+	if ( viewportHeight ) {
+		parentNestableStyle.height = `${ viewportHeight }px`;
+		parentNestableStyle.maxHeight = `${ viewportHeight }px`;
+	}
 
 	return (
 		<DndContext
@@ -460,7 +513,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 				items={ sortableIds }
 				strategy={ verticalListSortingStrategy }
 			>
-				<div className={ `dd parent-nestable tab-menu ${ count > 12 ? '' : 'short' }` } style={ { flex: 3 } }>
+				<div ref={ parentNestableRef } className={ `dd parent-nestable tab-menu ${ count > 12 ? '' : 'short' }` } style={ parentNestableStyle }>
 					<ol className="easydocs-navbar sortabled dd-list">
 						{ filteredDocs.map( ( doc ) => (
 							<SortableParentItem

@@ -11,9 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div id="step-3" class="tab-pane ezd-layout-step" role="tabpanel" style="display:none">
 	<div class="ezd-step-header">
-		<div class="ezd-step-icon">
-			<span class="dashicons dashicons-layout"></span>
-		</div>
 		<h2><?php esc_html_e( 'Choose Your Layout', 'eazydocs' ); ?></h2>
 		<p class="ezd-step-description"><?php esc_html_e( 'Select how your documentation pages will look. Pick a layout that suits your content best.', 'eazydocs' ); ?></p>
 	</div>
@@ -35,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<label for="both_sidebar" class="ezd-layout-option <?php echo 'both_sidebar' === $docs_single_layout ? 'active' : ''; ?>">
 						<input type="radio" id="both_sidebar" value="both_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'both_sidebar' ); ?>>
 						<div class="ezd-layout-preview">
-							<img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/both_sidebar.jpg' ); ?>" alt="<?php esc_attr_e( 'Both Sidebars', 'eazydocs' ); ?>" />
+							<img src="<?php echo esc_url( EZD_IMG . 'customizer/both_sidebar.jpg' ); ?>" alt="<?php esc_attr_e( 'Both Sidebars', 'eazydocs' ); ?>" />
 						</div>
 						<span class="ezd-layout-name"><?php esc_html_e( 'Both Sidebars', 'eazydocs' ); ?></span>
 						<span class="ezd-layout-desc"><?php esc_html_e( 'Left: Navigation | Right: TOC', 'eazydocs' ); ?></span>
@@ -47,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<label for="left_sidebar" class="ezd-layout-option <?php echo 'left_sidebar' === $docs_single_layout ? 'active' : ''; ?>">
 						<input type="radio" id="left_sidebar" value="left_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'left_sidebar' ); ?>>
 						<div class="ezd-layout-preview">
-							<img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/sidebar_left.jpg' ); ?>" alt="<?php esc_attr_e( 'Left Sidebar', 'eazydocs' ); ?>" />
+							<img src="<?php echo esc_url( EZD_IMG . 'customizer/sidebar_left.jpg' ); ?>" alt="<?php esc_attr_e( 'Left Sidebar', 'eazydocs' ); ?>" />
 						</div>
 						<span class="ezd-layout-name"><?php esc_html_e( 'Left Sidebar', 'eazydocs' ); ?></span>
 						<span class="ezd-layout-desc"><?php esc_html_e( 'Navigation on left side', 'eazydocs' ); ?></span>
@@ -59,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<label for="right_sidebar" class="ezd-layout-option <?php echo 'right_sidebar' === $docs_single_layout ? 'active' : ''; ?>">
 						<input type="radio" id="right_sidebar" value="right_sidebar" name="docs_single_layout" <?php checked( $docs_single_layout, 'right_sidebar' ); ?>>
 						<div class="ezd-layout-preview">
-							<img src="<?php echo esc_url( EAZYDOCS_IMG . '/customizer/sidebar_right.jpg' ); ?>" alt="<?php esc_attr_e( 'Right Sidebar', 'eazydocs' ); ?>" />
+							<img src="<?php echo esc_url( EZD_IMG . 'customizer/sidebar_right.jpg' ); ?>" alt="<?php esc_attr_e( 'Right Sidebar', 'eazydocs' ); ?>" />
 						</div>
 						<span class="ezd-layout-name"><?php esc_html_e( 'Right Sidebar', 'eazydocs' ); ?></span>
 						<span class="ezd-layout-desc"><?php esc_html_e( 'Navigation on right side', 'eazydocs' ); ?></span>

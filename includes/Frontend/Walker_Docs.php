@@ -164,10 +164,10 @@ class Walker_Docs extends Walker_Page {
 			$doc_sec_icon_open = ezd_get_opt( 'doc_sec_icon_open' );
 			$folder_open       = is_array( $doc_sec_icon_open ) && ! empty( $doc_sec_icon_open['url'] )
 				? $doc_sec_icon_open['url']
-				: EAZYDOCS_IMG . '/icon/folder-open.png';
+				: EZD_IMG . 'icon/folder-open.png';
 
 			$doc_sec_icon  = ezd_get_opt( 'doc_sec_icon' );
-			$folder_closed = is_array( $doc_sec_icon ) && ! empty( $doc_sec_icon['url'] ) ? $doc_sec_icon['url'] : EAZYDOCS_IMG . '/icon/folder-closed.png';
+			$folder_closed = is_array( $doc_sec_icon ) && ! empty( $doc_sec_icon['url'] ) ? $doc_sec_icon['url'] : EZD_IMG . 'icon/folder-closed.png';
 
 			$folder = "<img class='closed' src='$folder_closed' alt='" . esc_attr__( 'Folder icon closed', 'eazydocs' )
 						. "'> <img class='open' src='$folder_open' alt='" . esc_attr__( 'Folder open icon', 'eazydocs' ) . "'>";
