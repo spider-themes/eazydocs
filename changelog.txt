@@ -1,12 +1,12 @@
 == Changelog ==
 
-= 2.11.0 (17 March 2026) =
-New: Docs Builder – Added a "Switch to Docs Builder" button in the admin for quicker access.
-Updated: Internal Architecture – Refactored plugin constants and consolidated stylesheets to optimize performance.
-Improved: Docs Builder – Optimized article loading and component rendering for a faster, smoother experience.
-Improved: OnePage Docs – improved and refined the SweetAlert2 modal design for a consistent user experience.
-Optimized: Removed the unused css - assets/css folder along with the css files (the css files is loading from the buil/styles folder).
-Fixed: Docs Builder – Resolved an issue with drag-and-drop indicators not displaying accurately.
+= 2.11.0 (25 March 2026) =
+New: Docs Builder – Added a "Switch to Docs Builder" button in the dashboard for quicker access.
+Updated: Internal Architecture – Improved behind-the-scenes code to make the plugin run faster.
+Improved: Docs Builder – Made articles and the builder load noticeably faster for a smoother experience.
+Improved: OnePage Docs – Updated the design of notification pop-ups to look better and more consistent.
+Optimized: Cleaned up old and unused files to make the plugin load faster.
+Fixed: Docs Builder – Fixed a visual issue where the drag-and-drop lines were not showing up correctly.
 
 = 2.10.2 (07 March 2026) =
 Improved: Completely rebuilt the Docs Builder page to provide a much smoother, faster, and more responsive experience.
