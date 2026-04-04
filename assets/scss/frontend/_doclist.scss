@@ -1331,6 +1331,55 @@ span.ezd-doc-lock {
 		margin-top: 50px;
 	}
 
+	.doc_documentation_area {
+		position: relative;
+		overflow: hidden !important;
+	}
+
+	.left-column .doc_left_sidebarlist {
+		max-width: 330px;
+		width: 330px;
+		height: 100vh;
+		left: -330px;
+		position: absolute;
+		top: 0;
+		z-index: 2;
+		padding: 30px 20px;
+		box-sizing: border-box;
+
+		&.opened {
+			z-index: 3;
+		}
+	}
+
+	.doc_right_mobile_menu .doc_rightsidebar {
+		max-width: 290px;
+		width: 100%;
+		height: 100vh;
+		right: -290px;
+		position: absolute;
+		top: 0;
+		z-index: 2;
+		background: #fff;
+		padding: 30px 15px 30px 0;
+		box-sizing: border-box;
+
+		&.opened {
+			z-index: 3;
+		}
+	}
+
+	.open_icon {
+		display: block;
+		left: -25px;
+		right: auto;
+	}
+
+	.doc_left_sidebarlist .open_icon {
+		right: -25px;
+		left: auto;
+	}
+
 	.doc_right_mobile_menu .doc_rightsidebar,
 	.left-column .doc_left_sidebarlist {
 		&.sticky {
@@ -1338,6 +1387,15 @@ span.ezd-doc-lock {
 			top: 55px;
 			margin-top: 0;
 		}
+	}
+}
+
+@media (max-width: 360px) {
+	.left-column .doc_left_sidebarlist {
+		max-width: 280px;
+		width: 280px;
+		left: -280px;
+		padding: 30px 10px;
 	}
 }
 

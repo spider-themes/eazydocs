@@ -140,9 +140,6 @@ class Assets
 	 */
 	public function enqueue_scripts_after()
 	{
-		if (is_singular('docs') || 'onepage-docs' === get_post_type() || is_page_template('page-onepage.php')) {
-			wp_enqueue_style('eazydocs-responsive', EZD_ASSETS . 'css/frontend/ezd-responsive.css', [], EZD_VERSION);
-		}
 		if (is_singular('docs') && (ezd_is_premium() ? '1' === ezd_get_opt('is_doc_ajax') : false) && ezd_unlock_themes('docy', 'docly', 'ama')) {
 			wp_enqueue_script('eazydocs-ajax-loading', EZD_ASSETS . 'js/frontend/ajax.js', ['jquery'], EZD_VERSION, true);
 		}

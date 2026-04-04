@@ -424,6 +424,7 @@
 			// Right sidebar toggle
 			$(document).on('click', '#mobile-right-toggle, .doc_rightsidebar.opened .doc_menu a', function (e) {
 				e.preventDefault();
+				e.stopPropagation();
 				if (leftOpen) closeLeftSidebar();
 
 				if (!rightOpen) {
@@ -438,6 +439,7 @@
 			// Left sidebar toggle
 			$(document).on('click', '#mobile-left-toggle', function (e) {
 				e.preventDefault();
+				e.stopPropagation();
 				if (rightOpen) closeRightSidebar();
 
 				if (!leftOpen) {
