@@ -17,3 +17,5 @@ jobs:
           slug: ${{ vars.SLUG }}
           prod_files: ${{ vars.PROD_FILES }}
           gdrive_token: ${{ secrets.GDRIVE_TOKEN }}
+          wp_org_username: ${{ secrets.WP_ORG_USERNAME }}
+          wp_org_password: ${{ secrets.WP_ORG_PASSWORD }}
