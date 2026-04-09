@@ -17,3 +17,5 @@ jobs:
           slug: ${{ vars.SLUG }}
           prod_files: ${{ vars.PROD_FILES }}
           gdrive_token: ${{ secrets.GDRIVE_TOKEN }}
+          svn_username: ${{ secrets.SVN_USERNAME }}
+          svn_password: ${{ secrets.SVN_PASSWORD }}
