@@ -12,7 +12,7 @@
 	width: auto;
 	max-width: 520px !important;
 	&.short {
-		height: 100vh;
+		min-height: 70vh;
 	}
 }
 
