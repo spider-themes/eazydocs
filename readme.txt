@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs
 Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 6.9.4
 Requires PHP: 7.4
-Stable tag: 2.11.0
+Stable tag: 2.11.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -341,6 +341,13 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 10. Password Protected Doc – Secure sensitive documents with password protection and controlled access.
 
 == Changelog ==
+
+= 2.11.1 (16 April 2026) =
+* Added: "Publish" and "Save as Draft" buttons when creating new documents in the builder.
+* Improved: System notifications and internal update alerts.
+* Improved: Smoothness of license and payment management.
+* Fixed: Scrolling issues that caused the list to load repeatedly in the Docs Builder.
+* Fixed: Mobile sidebar menu opening and closing is now working correctly.
 
 = 2.11.0 (25 March 2026) =
 * New: Docs Builder – Added a "Switch to Docs Builder" button in the dashboard for quicker access.

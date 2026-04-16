@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 2.11.1 (16 April 2026) =
+Added: "Publish" and "Save as Draft" buttons when creating new documents in the builder.
+Improved: System notifications and internal update alerts.
+Improved: Smoothness of license and payment management.
+Fixed: Scrolling issues that caused the list to load repeatedly in the Docs Builder.
+Fixed: Mobile sidebar menu opening and closing is now working correctly.
+
 = 2.11.0 (25 March 2026) =
 New: Docs Builder – Added a "Switch to Docs Builder" button in the dashboard for quicker access.
 Updated: Internal Architecture – Improved behind-the-scenes code to make the plugin run faster.
