@@ -40,63 +40,69 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 			window.Swal.fire( {
 				title: eazydocs_local_object.create_prompt_title,
 				input: 'text',
+				showDenyButton: true,
+				returnInputValueOnDeny: true,
+				confirmButtonText: __( 'Publish', 'eazydocs' ),
+				denyButtonText: __( 'Save as Draft', 'eazydocs' ),
 				showCancelButton: true,
 				inputAttributes: {
 					name: 'new_doc',
 				},
-				preConfirm: ( value: string ) => {
-					if ( ! value ) {
-						return false;
-					}
-
-					// Show loading state on the modal button.
-					window.Swal.showLoading();
-
-					return new Promise( ( resolve, reject ) => {
-						createParentDoc.mutate(
-							{
-								title: value,
-								nonce: nonces.parentDoc,
-							},
-							{
-								onSuccess: ( response ) => {
-									resolve( response );
-								},
-								onError: ( error ) => {
-									reject( error );
-								},
-							}
-						);
-					} );
-				},
-				allowOutsideClick: () => ! window.Swal.isLoading(),
 			} ).then( ( result: any ) => {
-				if ( result.isConfirmed && result.value ) {
-					const response = result.value;
+				if ( ! result.isConfirmed && ! result.isDenied ) {
+					return;
+				}
 
-					// Switch to the newly created doc tab.
-					if ( response?.data?.id && onTabChange ) {
-						onTabChange( response.data.id );
+				const value = result.value as string;
+					if ( ! value ) {
+						if ( typeof window.Swal !== 'undefined' ) {
+							window.Swal.fire( {
+								title: __( 'Error', 'eazydocs' ),
+								text: __( 'Please enter a title.', 'eazydocs' ),
+								icon: 'error',
+							} );
+						}
+						return;
 					}
 
-					if ( typeof window.Swal !== 'undefined' ) {
-						window.Swal.fire( {
-							title: __( 'Success!', 'eazydocs' ),
-							text: __( 'Documentation created successfully.', 'eazydocs' ),
-							icon: 'success',
-							timer: 1500,
-							showConfirmButton: false,
-						} );
+				const selectedStatus = result.isDenied ? 'draft' : 'publish';
+
+				createParentDoc.mutate(
+					{
+						title: value,
+						nonce: nonces.parentDoc,
+						postStatus: selectedStatus,
+					},
+					{
+						onSuccess: ( response ) => {
+							// Switch to the newly created doc tab.
+							if ( response?.data?.id && onTabChange ) {
+								onTabChange( response.data.id );
+							}
+
+							if ( typeof window.Swal !== 'undefined' ) {
+								window.Swal.fire( {
+									title: __( 'Success!', 'eazydocs' ),
+									text: result.isDenied
+										? __( 'Documentation saved as draft.', 'eazydocs' )
+										: __( 'Documentation created successfully.', 'eazydocs' ),
+									icon: 'success',
+									timer: 1500,
+									showConfirmButton: false,
+								} );
+							}
+						},
+						onError: () => {
+							if ( typeof window.Swal !== 'undefined' ) {
+								window.Swal.fire( {
+									title: __( 'Error', 'eazydocs' ),
+									text: __( 'Failed to create documentation.', 'eazydocs' ),
+									icon: 'error',
+								} );
+							}
+						},
 					}
-				}
-			} ).catch( () => {
-				if ( typeof window.Swal !== 'undefined' ) {
-					window.Swal.fire( {
-						title: __( 'Error', 'eazydocs' ),
-						text: __( 'Failed to create documentation.', 'eazydocs' ),
-						icon: 'error',
-					} );
-				}
+				);
 			} );
 		}
 	};

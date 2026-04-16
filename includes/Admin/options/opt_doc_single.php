@@ -160,6 +160,16 @@ CSF::createSection(
 
 			ezd_csf_switcher_field(
 				array(
+					'id'       => 'enable-ai-summary',
+					'title'    => esc_html__( 'Ask AI Summary', 'eazydocs' ),
+					'subtitle' => esc_html__( 'Show an "Ask AI" dropdown in the doc meta area to open external AI tools with a prefilled summary prompt.', 'eazydocs' ),
+					'default'  => false,
+					'class'    => 'eazydocs-pro-notice',
+				)
+			),
+
+			ezd_csf_switcher_field(
+				array(
 					'id'         => 'enable-unique-views',
 					'title'      => esc_html__( 'Unique Visitors Only', 'eazydocs' ),
 					'subtitle'   => esc_html__( 'Count only unique visitors, ignoring page refreshes from the same user.', 'eazydocs' ),

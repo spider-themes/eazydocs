@@ -7,11 +7,12 @@ $layout                  = ezd_get_opt( 'docs_single_layout', 'both_sidebar' );
 $is_doc_title			 = ezd_get_opt( 'is_doc_title', true );
 $is_doc_contribution	 = ezd_is_promax() ? ezd_get_opt( 'is_doc_contribution', false ) : false;
 $is_selected_comment 	 = ezd_get_opt( 'enable-selected-comment', false );
+$is_ai_summary_meta	 = ezd_is_promax() ? ezd_get_opt( 'enable-ai-summary', false ) : false;
 $selected_comment_active = $is_selected_comment == true ? 'selected-comment-active' : '';
 $current_parent_id  	 = wp_get_post_parent_id( get_the_ID() );
 
 $is_meta_visible 		 = false;
-if ( $reading_time_visibility == '1' || $views_visibility == '1' || $is_doc_contribution || $is_selected_comment ) {
+if ( $reading_time_visibility == '1' || $views_visibility == '1' || $is_doc_contribution || $is_selected_comment || $is_ai_summary_meta ) {
 	$is_meta_visible = true;
 }
 
@@ -74,6 +75,12 @@ endif;
 
 						if ( $is_selected_comment ) {
 							do_action( 'ezd_selected_comment_switcher_meta' );
+						}
+
+						do_action( 'eazydocs_reviewed_by_meta', get_the_ID() );
+
+						if ( $is_ai_summary_meta ) {
+							do_action( 'eazydocs_ai_summary_meta', get_the_ID() );
 						}
 						?>
 					</div>

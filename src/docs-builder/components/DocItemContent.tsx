@@ -128,65 +128,75 @@ const DocItemContent: React.FC<DocItemContentProps> = ({
 			window.Swal.fire({
 				title: eazydocs_local_object.create_prompt_title,
 				input: 'text',
+				showDenyButton: true,
+				returnInputValueOnDeny: true,
+				confirmButtonText: __('Publish', 'eazydocs'),
+				denyButtonText: __('Save as Draft', 'eazydocs'),
 				showCancelButton: true,
 				inputAttributes: {
 					name: 'child_title',
 				},
-				preConfirm: (value: string) => {
-					if (!value) {
-						return false;
-					}
-
-					// Show loading state on the modal button.
-					window.Swal.showLoading();
-
-					return new Promise((resolve, reject) => {
-						createChild.mutate(
-							{
-								parentId: doc.id,
-								rootParentId,
-								title: value,
-								nonce: doc.childNonce,
-							},
-							{
-								onSuccess: (response) => {
-									resolve(response);
-								},
-								onError: (error) => {
-									reject(error);
-								},
-							}
-						);
-					});
-				},
-				allowOutsideClick: () => !window.Swal.isLoading(),
 			})
 				.then((result: any) => {
-					if (result.isConfirmed && result.value) {
+					if (!result.isConfirmed && !result.isDenied) {
+						return;
+					}
+
+					const value = result.value as string;
+					if (!value) {
 						if (typeof window.Swal !== 'undefined') {
-							(window.Swal as any).fire({
-								title: __('Success!', 'eazydocs'),
-								text: __(
-									'Document created successfully.',
-									'eazydocs'
-								),
-								icon: 'success',
-								toast: true,
-								position: 'top-end',
-								timer: 1500,
-								showConfirmButton: false,
+							window.Swal.fire({
+								title: __('Error', 'eazydocs'),
+								text: __('Please enter a title.', 'eazydocs'),
+								icon: 'error',
 							});
 						}
+						return;
 					}
+
+					const selectedStatus = result.isDenied ? 'draft' : 'publish';
+
+					createChild.mutate(
+						{
+							parentId: doc.id,
+							rootParentId,
+							title: value,
+							nonce: doc.childNonce,
+							postStatus: selectedStatus,
+						},
+						{
+							onSuccess: () => {
+								if (typeof window.Swal !== 'undefined') {
+									(window.Swal as any).fire({
+										title: __('Success!', 'eazydocs'),
+										text: result.isDenied
+											? __('Document saved as draft.', 'eazydocs')
+											: __('Document created successfully.', 'eazydocs'),
+										icon: 'success',
+										toast: true,
+										position: 'top-end',
+										timer: 1500,
+										showConfirmButton: false,
+									});
+								}
+							},
+							onError: () => {
+								if (typeof window.Swal !== 'undefined') {
+									window.Swal.fire({
+										title: __('Error', 'eazydocs'),
+										text: __('Failed to create the document.', 'eazydocs'),
+										icon: 'error',
+									});
+								}
+							},
+						}
+					);
 				})
 				.catch(() => {
 					if (typeof window.Swal !== 'undefined') {
 						window.Swal.fire({
 							title: __('Error', 'eazydocs'),
-							text: __(
-								'Failed to create the document.',
-								'eazydocs'
-							),
+							text: __('Failed to create the document.', 'eazydocs'),
 							icon: 'error',
 						});
 					}

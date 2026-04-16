@@ -73,41 +73,63 @@ const EmptyState: React.FC< EmptyStateProps > = ( { data } ) => {
 			window.Swal.fire( {
 				title: eazydocs_local_object.create_prompt_title,
 				input: 'text',
+				showDenyButton: true,
+				returnInputValueOnDeny: true,
+				confirmButtonText: __( 'Publish', 'eazydocs' ),
+				denyButtonText: __( 'Save as Draft', 'eazydocs' ),
 				showCancelButton: true,
 				inputAttributes: {
 					name: 'new_doc',
 				},
 			} ).then( ( result: any ) => {
-				if ( result.value ) {
-					createParentDoc.mutate(
-						{
-							title: result.value,
-							nonce: nonces.parentDoc,
-						},
-						{
-							onSuccess: () => {
-								if ( typeof window.Swal !== 'undefined' ) {
-									window.Swal.fire( {
-										title: __( 'Success!', 'eazydocs' ),
-										text: __( 'Documentation created successfully.', 'eazydocs' ),
-										icon: 'success',
-										timer: 1500,
-										showConfirmButton: false,
-									} );
-								}
-							},
-							onError: () => {
-								if ( typeof window.Swal !== 'undefined' ) {
-									window.Swal.fire( {
-										title: __( 'Error', 'eazydocs' ),
-										text: __( 'Failed to create documentation.', 'eazydocs' ),
-										icon: 'error',
-									} );
-								}
-							},
-						}
-					);
+				if ( ! result.isConfirmed && ! result.isDenied ) {
+					return;
 				}
+
+				if ( ! result.value ) {
+					if ( typeof window.Swal !== 'undefined' ) {
+						window.Swal.fire( {
+							title: __( 'Error', 'eazydocs' ),
+							text: __( 'Please enter a title.', 'eazydocs' ),
+							icon: 'error',
+						} );
+					}
+					return;
+				}
+
+				const selectedStatus = result.isDenied ? 'draft' : 'publish';
+
+				createParentDoc.mutate(
+					{
+						title: result.value,
+						nonce: nonces.parentDoc,
+						postStatus: selectedStatus,
+					},
+					{
+						onSuccess: () => {
+							if ( typeof window.Swal !== 'undefined' ) {
+								window.Swal.fire( {
+									title: __( 'Success!', 'eazydocs' ),
+									text: result.isDenied
+										? __( 'Documentation saved as draft.', 'eazydocs' )
+										: __( 'Documentation created successfully.', 'eazydocs' ),
+									icon: 'success',
+									timer: 1500,
+									showConfirmButton: false,
+								} );
+							}
+						},
+						onError: () => {
+							if ( typeof window.Swal !== 'undefined' ) {
+								window.Swal.fire( {
+									title: __( 'Error', 'eazydocs' ),
+									text: __( 'Failed to create documentation.', 'eazydocs' ),
+									icon: 'error',
+								} );
+							}
+						},
+					}
+				);
 			} );
 		}
 	};

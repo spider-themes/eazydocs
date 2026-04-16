@@ -377,57 +377,65 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 			window.Swal.fire( {
 				title: eazydocs_local_object.create_prompt_title,
 				input: 'text',
+				showDenyButton: true,
+				returnInputValueOnDeny: true,
+				confirmButtonText: __( 'Publish', 'eazydocs' ),
+				denyButtonText: __( 'Save as Draft', 'eazydocs' ),
 				showCancelButton: true,
 				inputAttributes: {
 					name: 'section',
 				},
-				preConfirm: ( value: string ) => {
-					if ( ! value ) {
-						return false;
-					}
-
-					// Show loading state on the modal button.
-					window.Swal.showLoading();
-
-					return new Promise( ( resolve, reject ) => {
-						createSection.mutate(
-							{
-								parentId: parent.id,
-								title: value,
-								nonce: parent.sectionNonce,
-							},
-							{
-								onSuccess: ( response ) => {
-									resolve( response );
-								},
-								onError: ( error ) => {
-									reject( error );
-								},
-							}
-						);
-					} );
-				},
-				allowOutsideClick: () => ! window.Swal.isLoading(),
 			} ).then( ( result: any ) => {
-				if ( result.isConfirmed && result.value ) {
-					if ( typeof window.Swal !== 'undefined' ) {
-						window.Swal.fire( {
-							title: __( 'Success!', 'eazydocs' ),
-							text: __( 'Section created successfully.', 'eazydocs' ),
-							icon: 'success',
-							timer: 1500,
-							showConfirmButton: false,
-						} );
+				if ( ! result.isConfirmed && ! result.isDenied ) {
+					return;
+				}
+
+				const value = result.value as string;
+					if ( ! value ) {
+						if ( typeof window.Swal !== 'undefined' ) {
+							window.Swal.fire( {
+								title: __( 'Error', 'eazydocs' ),
+								text: __( 'Please enter a title.', 'eazydocs' ),
+								icon: 'error',
+							} );
+						}
+						return;
 					}
-				}
-			} ).catch( () => {
-				if ( typeof window.Swal !== 'undefined' ) {
-					window.Swal.fire( {
-						title: __( 'Error', 'eazydocs' ),
-						text: __( 'Failed to create section.', 'eazydocs' ),
-						icon: 'error',
-					} );
-				}
+
+				const selectedStatus = result.isDenied ? 'draft' : 'publish';
+
+				createSection.mutate(
+					{
+						parentId: parent.id,
+						title: value,
+						nonce: parent.sectionNonce,
+						postStatus: selectedStatus,
+					},
+					{
+						onSuccess: () => {
+							if ( typeof window.Swal !== 'undefined' ) {
+								window.Swal.fire( {
+									title: __( 'Success!', 'eazydocs' ),
+									text: result.isDenied
+										? __( 'Section saved as draft.', 'eazydocs' )
+										: __( 'Section created successfully.', 'eazydocs' ),
+									icon: 'success',
+									timer: 1500,
+									showConfirmButton: false,
+								} );
+							}
+						},
+						onError: () => {
+							if ( typeof window.Swal !== 'undefined' ) {
+								window.Swal.fire( {
+									title: __( 'Error', 'eazydocs' ),
+									text: __( 'Failed to create section.', 'eazydocs' ),
+									icon: 'error',
+								} );
+							}
+						},
+					}
+				);
 			} );
 		}
 	}, [ createSection, parent.id, parent.sectionNonce ] );

@@ -71,7 +71,7 @@ class Shortcode {
             'post_parent'   => 0,
             'orderby'       => $args['parent_docs_order'],
             'order'         => strtoupper( $args['parent_docs_order_by'] ),
-            'post_status'   => [ 'publish', 'private' ],
+            'post_status'   => [ 'publish' ],
             'numberposts'   => $args['show_docs']
         ];
 
@@ -115,7 +115,7 @@ class Shortcode {
                 'post_parent__in' => $parent_ids,
                 'post_type'       => 'docs',
                 'posts_per_page'  => -1,
-                'post_status'     => [ 'publish', 'private' ],
+                'post_status'     => [ 'publish' ],
                 'orderby'         => $orderby,
             ] );
         }

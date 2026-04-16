@@ -1262,6 +1262,10 @@ class Docs_Builder_Controller {
 	 */
 	public function create_parent_doc( $request ) {
 		$title = sanitize_text_field( $request->get_param( 'title' ) );
+		$post_status = sanitize_key( $request->get_param( 'post_status' ) );
+		if ( ! in_array( $post_status, array( 'publish', 'draft' ), true ) ) {
+			$post_status = 'publish';
+		}
 
 		if ( empty( $title ) ) {
 			return new \WP_Error( 'missing_title', __( 'A title is required.', 'eazydocs' ), array( 'status' => 400 ) );
@@ -1282,7 +1286,7 @@ class Docs_Builder_Controller {
 				'post_parent'  => 0,
 				'post_content' => '',
 				'post_type'    => 'docs',
-				'post_status'  => 'publish',
+				'post_status'  => $post_status,
 				'menu_order'   => $query->found_posts + 2,
 				'post_author'  => get_current_user_id(),
 			)
@@ -1317,6 +1321,10 @@ class Docs_Builder_Controller {
 	public function create_section( $request ) {
 		$parent_id = absint( $request->get_param( 'parent_id' ) );
 		$title     = sanitize_text_field( $request->get_param( 'title' ) );
+		$post_status = sanitize_key( $request->get_param( 'post_status' ) );
+		if ( ! in_array( $post_status, array( 'publish', 'draft' ), true ) ) {
+			$post_status = 'publish';
+		}
 
 		if ( empty( $title ) ) {
 			return new \WP_Error( 'missing_title', __( 'A title is required.', 'eazydocs' ), array( 'status' => 400 ) );
@@ -1338,7 +1346,7 @@ class Docs_Builder_Controller {
 			)
 		);
 
-		$status = ezd_is_premium() ? get_post_status( $parent_id ) : 'publish';
+		$status = $post_status;
 
 		$post_id = wp_insert_post(
 			array(
@@ -1379,6 +1387,10 @@ class Docs_Builder_Controller {
 	public function create_child( $request ) {
 		$parent_id = absint( $request->get_param( 'parent_id' ) );
 		$title     = sanitize_text_field( $request->get_param( 'title' ) );
+		$post_status = sanitize_key( $request->get_param( 'post_status' ) );
+		if ( ! in_array( $post_status, array( 'publish', 'draft' ), true ) ) {
+			$post_status = 'publish';
+		}
 
 		if ( empty( $title ) ) {
 			return new \WP_Error( 'missing_title', __( 'A title is required.', 'eazydocs' ), array( 'status' => 400 ) );
@@ -1402,7 +1414,7 @@ class Docs_Builder_Controller {
 			)
 		);
 
-		$status = ezd_is_premium() ? get_post_status( $parent_id ) : 'publish';
+		$status = $post_status;
 
 		$post_id = wp_insert_post(
 			array(

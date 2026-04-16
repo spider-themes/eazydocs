@@ -192,6 +192,7 @@ export const useCountsQuery = ( options: BuilderQueryOptions<{ trashCount: numbe
 interface CreateDocParams {
 	title: string;
 	nonce: string;
+	postStatus?: 'publish' | 'draft';
 }
 
 interface CreateParentResponse {
@@ -219,6 +220,7 @@ export const useCreateParentDoc = () => {
 				method: 'POST',
 				data: {
 					title: normalizeTitle( params.title ),
+					post_status: params.postStatus || 'publish',
 					_wpnonce: params.nonce,
 				},
 			} );
@@ -271,6 +273,7 @@ interface CreateSectionParams {
 	parentId: number;
 	title: string;
 	nonce: string;
+	postStatus?: 'publish' | 'draft';
 }
 
 interface CreateSectionResponse {
@@ -296,6 +299,7 @@ export const useCreateSection = () => {
 				data: {
 					parent_id: params.parentId,
 					title: normalizeTitle( params.title ),
+					post_status: params.postStatus || 'publish',
 					_wpnonce: params.nonce,
 				},
 			} );
@@ -323,6 +327,7 @@ interface CreateChildParams {
 	rootParentId: number;
 	title: string;
 	nonce: string;
+	postStatus?: 'publish' | 'draft';
 }
 
 interface CreateChildResponse {
@@ -349,6 +354,7 @@ export const useCreateChild = () => {
 				data: {
 					parent_id: params.parentId,
 					title: normalizeTitle( params.title ),
+					post_status: params.postStatus || 'publish',
 					_wpnonce: params.nonce,
 				},
 			} );
