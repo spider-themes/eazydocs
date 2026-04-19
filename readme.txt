@@ -342,7 +342,7 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.11.1 (16 April 2026) =
+= 2.11.1 (20 April 2026) =
 * Added: "Publish" and "Save as Draft" buttons when creating new documents in the builder.
 * Improved: System notifications and internal update alerts.
 * Improved: Smoothness of license and payment management.
