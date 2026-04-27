@@ -177,6 +177,122 @@ $this->add_control(
 $this->end_controls_section();
 
 
+// Filter Button styling
+$this->start_controls_section(
+	'ezd_filter_btn_style', [
+		'label'     => esc_html__( 'Filter Button', 'eazydocs' ),
+		'tab'       => Controls_Manager::TAB_STYLE,
+		'condition' => [
+			'show_post_type_filter' => 'yes',
+		],
+	]
+);
+
+$this->start_controls_tabs( 'filter_btn_tabs' );
+
+$this->start_controls_tab(
+	'filter_btn_tab_normal',
+	[ 'label' => esc_html__( 'Normal', 'eazydocs' ) ]
+);
+
+$this->add_control(
+	'filter_btn_bg', [
+		'label'     => esc_html__( 'Background', 'eazydocs' ),
+		'type'      => Controls_Manager::COLOR,
+		'default'   => '#1d2939',
+		'selectors' => [
+			'{{WRAPPER}} .ezd-type-filter-btn' => 'background: {{VALUE}};',
+		],
+	]
+);
+
+$this->add_control(
+	'filter_btn_color', [
+		'label'     => esc_html__( 'Text Color', 'eazydocs' ),
+		'type'      => Controls_Manager::COLOR,
+		'default'   => '#ffffff',
+		'selectors' => [
+			'{{WRAPPER}} .ezd-type-filter-btn'     => 'color: {{VALUE}};',
+			'{{WRAPPER}} .ezd-type-filter-btn svg' => 'stroke: {{VALUE}};',
+		],
+	]
+);
+
+$this->end_controls_tab();
+
+$this->start_controls_tab(
+	'filter_btn_tab_hover',
+	[ 'label' => esc_html__( 'Hover', 'eazydocs' ) ]
+);
+
+$this->add_control(
+	'filter_btn_bg_hover', [
+		'label'     => esc_html__( 'Background', 'eazydocs' ),
+		'type'      => Controls_Manager::COLOR,
+		'selectors' => [
+			'{{WRAPPER}} .ezd-type-filter-btn:hover' => 'background: {{VALUE}};',
+		],
+	]
+);
+
+$this->add_control(
+	'filter_btn_color_hover', [
+		'label'     => esc_html__( 'Text Color', 'eazydocs' ),
+		'type'      => Controls_Manager::COLOR,
+		'selectors' => [
+			'{{WRAPPER}} .ezd-type-filter-btn:hover'     => 'color: {{VALUE}};',
+			'{{WRAPPER}} .ezd-type-filter-btn:hover svg' => 'stroke: {{VALUE}};',
+		],
+	]
+);
+
+$this->end_controls_tab();
+
+$this->end_controls_tabs();
+
+$this->add_group_control(
+	\Elementor\Group_Control_Border::get_type(),
+	[
+		'name'      => 'filter_btn_border',
+		'separator' => 'before',
+		'selector'  => '{{WRAPPER}} .ezd-type-filter-btn',
+	]
+);
+
+$this->add_responsive_control(
+	'filter_btn_border_radius', [
+		'label'      => esc_html__( 'Border Radius', 'eazydocs' ),
+		'type'       => Controls_Manager::DIMENSIONS,
+		'size_units' => [ 'px', '%', 'em' ],
+		'selectors'  => [
+			'{{WRAPPER}} .ezd-type-filter-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+		],
+	]
+);
+
+$this->add_responsive_control(
+	'filter_btn_padding', [
+		'label'      => esc_html__( 'Padding', 'eazydocs' ),
+		'type'       => Controls_Manager::DIMENSIONS,
+		'size_units' => [ 'px', '%', 'em' ],
+		'separator'  => 'before',
+		'selectors'  => [
+			'{{WRAPPER}} .ezd-type-filter-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+		],
+	]
+);
+
+$this->add_group_control(
+	Group_Control_Typography::get_type(), [
+		'name'     => 'filter_btn_typography',
+		'label'    => esc_html__( 'Typography', 'eazydocs' ),
+		'selector' => '{{WRAPPER}} .ezd-type-filter-btn',
+	]
+);
+
+$this->end_controls_section();
+
+
 // Keywords styling
 $this->start_controls_section(
 	'ezd_search_style_keywords', [
@@ -244,9 +360,33 @@ $this->add_control(
     'color_keywords_bg', [
         'label'     => esc_html__( 'Background Color', 'eazydocs' ),
         'type'      => Controls_Manager::COLOR,
-        'separator' => 'after',
         'selectors' => [
             '{{WRAPPER}} .header_search_keyword ul li a' => 'background: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->add_control(
+    'keyword_underline_color', [
+        'label'     => esc_html__( 'Underline Color', 'eazydocs' ),
+        'type'      => Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .header_search_keyword ul li a' => 'border-bottom-color: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->add_responsive_control(
+    'keyword_underline_width', [
+        'label'      => esc_html__( 'Underline Width', 'eazydocs' ),
+        'type'       => Controls_Manager::SLIDER,
+        'size_units' => [ 'px' ],
+        'range'      => [
+            'px' => [ 'min' => 0, 'max' => 10, 'step' => 1 ],
+        ],
+        'separator'  => 'after',
+        'selectors'  => [
+            '{{WRAPPER}} .header_search_keyword ul li a' => 'border-bottom-width: {{SIZE}}{{UNIT}}; border-bottom-style: solid;',
         ],
     ]
 );
@@ -265,7 +405,8 @@ $this->add_control(
         'label'     => esc_html__( 'Keyword Color', 'eazydocs' ),
         'type'      => Controls_Manager::COLOR,
         'selectors' => [
-            '{{WRAPPER}} .header_search_keyword ul li a:hover' => 'color: {{VALUE}};',
+            '{{WRAPPER}} .header_search_keyword ul li a:hover'        => 'color: {{VALUE}};',
+            '{{WRAPPER}} .header_search_keyword ul li a.has-bg:hover' => 'color: {{VALUE}};',
         ],
     ]
 );
@@ -274,9 +415,36 @@ $this->add_control(
     'color_keywords_bg_hover', [
         'label'     => esc_html__( 'Background Color', 'eazydocs' ),
         'type'      => Controls_Manager::COLOR,
-        'separator' => 'after',
         'selectors' => [
-            '{{WRAPPER}} .header_search_keyword ul li a:hover' => 'background: {{VALUE}};',
+            '{{WRAPPER}} .header_search_keyword ul li a:hover'        => 'background: {{VALUE}};',
+            '{{WRAPPER}} .header_search_keyword ul li a.has-bg:hover' => 'background: {{VALUE}} !important;',
+        ],
+    ]
+);
+
+$this->add_control(
+    'keyword_underline_color_hover', [
+        'label'     => esc_html__( 'Underline Color', 'eazydocs' ),
+        'type'      => Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .header_search_keyword ul li a:hover'        => 'border-bottom-color: {{VALUE}};',
+            '{{WRAPPER}} .header_search_keyword ul li a.has-bg:hover' => 'border-bottom-color: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->add_responsive_control(
+    'keyword_underline_width_hover', [
+        'label'      => esc_html__( 'Underline Width', 'eazydocs' ),
+        'type'       => Controls_Manager::SLIDER,
+        'size_units' => [ 'px' ],
+        'range'      => [
+            'px' => [ 'min' => 0, 'max' => 10, 'step' => 1 ],
+        ],
+        'separator'  => 'after',
+        'selectors'  => [
+            '{{WRAPPER}} .header_search_keyword ul li a:hover'        => 'border-bottom-width: {{SIZE}}{{UNIT}};',
+            '{{WRAPPER}} .header_search_keyword ul li a.has-bg:hover' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
         ],
     ]
 );
@@ -313,6 +481,77 @@ $this->add_control(
 		'default'    => [
 			'unit' => 'px', // The selected CSS Unit. 'px', '%', 'em',
 		],
+	]
+);
+
+$this->end_controls_section();
+
+
+// No Result styling
+$this->start_controls_section(
+	'ezd_no_result_style', [
+		'label' => esc_html__( 'No Result', 'eazydocs' ),
+		'tab'   => Controls_Manager::TAB_STYLE,
+	]
+);
+
+$this->add_control(
+	'no_result_bg', [
+		'label'     => esc_html__( 'Background', 'eazydocs' ),
+		'type'      => Controls_Manager::COLOR,
+		'selectors' => [
+			'{{WRAPPER}} .ezd-no-results' => 'background: {{VALUE}};',
+		],
+	]
+);
+
+$this->add_responsive_control(
+	'no_result_img_width', [
+		'label'      => esc_html__( 'Image Width', 'eazydocs' ),
+		'type'       => Controls_Manager::SLIDER,
+		'size_units' => [ 'px' ],
+		'range'      => [ 'px' => [ 'min' => 40, 'max' => 200 ] ],
+		'selectors'  => [
+			'{{WRAPPER}} .ezd-no-results-img img' => 'width: {{SIZE}}{{UNIT}};',
+		],
+	]
+);
+
+$this->add_control(
+	'no_result_title_color', [
+		'label'     => esc_html__( 'Title Color', 'eazydocs' ),
+		'type'      => Controls_Manager::COLOR,
+		'separator' => 'before',
+		'selectors' => [
+			'{{WRAPPER}} .ezd-no-results-title' => 'color: {{VALUE}};',
+		],
+	]
+);
+
+$this->add_group_control(
+	Group_Control_Typography::get_type(), [
+		'name'     => 'no_result_title_typography',
+		'label'    => esc_html__( 'Title Typography', 'eazydocs' ),
+		'selector' => '{{WRAPPER}} .ezd-no-results-title',
+	]
+);
+
+$this->add_control(
+	'no_result_sub_color', [
+		'label'     => esc_html__( 'Subtitle Color', 'eazydocs' ),
+		'type'      => Controls_Manager::COLOR,
+		'separator' => 'before',
+		'selectors' => [
+			'{{WRAPPER}} .ezd-no-results-sub' => 'color: {{VALUE}};',
+		],
+	]
+);
+
+$this->add_group_control(
+	Group_Control_Typography::get_type(), [
+		'name'     => 'no_result_sub_typography',
+		'label'    => esc_html__( 'Subtitle Typography', 'eazydocs' ),
+		'selector' => '{{WRAPPER}} .ezd-no-results-sub',
 	]
 );
 

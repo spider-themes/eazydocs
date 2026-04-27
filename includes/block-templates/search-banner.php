@@ -55,6 +55,18 @@ ob_start();
         jQuery('form.ezd_search_form').css('z-index','999');
     })
 
+    jQuery(document).on('click', '.ezd-tab', function() {
+        var tab = jQuery(this).data('tab');
+        jQuery('.ezd-tab').removeClass('active');
+        jQuery(this).addClass('active');
+        if ( tab === 'all' ) {
+            jQuery('#ezd-search-results .ezd-result-group').show();
+        } else {
+            jQuery('#ezd-search-results .ezd-result-group').hide();
+            jQuery('#ezd-search-results .ezd-result-group[data-type="' + tab + '"]').show();
+        }
+    })
+
     jQuery(".focus_overlay").click(function() {
         jQuery('body').removeClass('ezd-search-focused');
         jQuery('form.ezd_search_form').css('z-index','unset');
@@ -81,9 +93,14 @@ ob_start();
         ezSearchResults()
     })
 
+    function ezdBuildNoResult() {
+        var $r    = jQuery('#ezd-search-results');
+        var title = $r.attr('data-noresult') || 'No Results Found';
+        $r.addClass('ajax-search').html('<h5 class="error title">' + title + '</h5>');
+    }
+
     function ezSearchResults(){
         let keyword = jQuery('#ezd_searchInput').val();
-        let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
         if ( keyword.trim() === "" ) {
             jQuery('#ezd-search-results').removeClass('ajax-search').html("")
@@ -103,11 +120,10 @@ ob_start();
                             jQuery('#ezd-search-results').removeClass('ajax-search').html("")
                         }
                     })
-                    if ( data.length > 0 ) {
+                    if ( data.trim().length > 0 ) {
                         jQuery('#ezd-search-results').addClass('ajax-search').html(data);
                     } else {
-                        var data_error = '<h5 class="error title">' + noresult + '</h5>';
-                        jQuery('#ezd-search-results').html(data_error);
+                        ezdBuildNoResult();
                     }
                 }
             })
@@ -129,7 +145,6 @@ ob_start();
     jQuery('#ezd_searchInput').keyup(
         ezdFetchDelay(function (e) {
         let keyword = jQuery('#ezd_searchInput').val();
-        let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
         if (keyword.trim() === "") {
             jQuery('#ezd-search-results').removeClass('ajax-search').html("")
@@ -149,11 +164,10 @@ ob_start();
                             jQuery('#ezd-search-results').removeClass('ajax-search').html("")
                         }
                     });
-                    if ( data.length > 0 ) {
+                    if ( data.trim().length > 0 ) {
                         jQuery('#ezd-search-results').addClass('ajax-search').html(data);
                     } else {
-                        var data_error = '<h5 class="error title">' + noresult + '</h5>';
-                        jQuery('#ezd-search-results').html(data_error);
+                        ezdBuildNoResult();
                     }
                 }
             })

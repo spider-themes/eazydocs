@@ -133,7 +133,6 @@ class Ajax {
 		$keyword     = isset( $_POST['keyword'] ) ? sanitize_text_field( $_POST['keyword'] ) : '';
 		$search_mode = ezd_is_premium() ? ezd_get_opt( 'search_by', 'title_and_content' ) : 'title_and_content';
 
-		// Sentinel: Prevent unauthorized access to private docs
 		$can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
 		$post_status      = $can_read_private ? [ 'publish', 'private', 'protected' ] : [ 'publish', 'protected' ];
 
@@ -141,172 +140,161 @@ class Ajax {
 			wp_send_json_error( [ 'message' => 'No keyword provided' ] );
 		}
 
-		// Optimization: Check for cached IDs to skip expensive LIKE queries
+		$selected_type = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : 'all';
+		if ( ! in_array( $selected_type, [ 'all', 'docs', 'page', 'post' ], true ) ) {
+			$selected_type = 'all';
+		}
+		$search_types = $selected_type === 'all' ? [ 'docs', 'page', 'post' ] : [ $selected_type ];
+
 		$normalized_keyword = strtolower( trim( $keyword ) );
-		$cache_key          = 'ezd_search_ids_' . md5( $normalized_keyword . '_' . $search_mode . '_' . ( $can_read_private ? 'private' : 'public' ) );
-		$final_ids          = get_transient( $cache_key );
+		$status_in          = "'" . implode( "','", $post_status ) . "'";
+		$results_by_type    = [];
 
-		if ( false === $final_ids ) {
-			// --- SEARCH LOGIC (Cache Miss) ---
+		foreach ( $search_types as $ptype ) {
+			$cache_key = 'ezd_search_ids_' . md5( $normalized_keyword . '_' . $search_mode . '_' . $ptype . '_' . ( $can_read_private ? 'priv' : 'pub' ) );
+			$ids       = get_transient( $cache_key );
 
-			// Exact title matches
-			$exact_ids = $wpdb->get_col( $wpdb->prepare( "
-				SELECT ID FROM {$wpdb->posts}
-				WHERE post_type = 'docs'
-				AND post_status IN ('" . implode( "','", $post_status ) . "')
-				AND post_title = %s
-			", $keyword ) );
+			if ( false === $ids ) {
+				$exact_ids = $wpdb->get_col( $wpdb->prepare(
+					"SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND post_status IN ({$status_in}) AND post_title = %s",
+					$ptype, $keyword
+				) );
 
-			// Partial title matches (excluding exact)
-			$partial_ids = $wpdb->get_col( $wpdb->prepare( "
-				SELECT ID FROM {$wpdb->posts}
-				WHERE post_type = 'docs'
-				AND post_status IN ('" . implode( "','", $post_status ) . "')
-				AND post_title LIKE %s
-			", '%' . $wpdb->esc_like( $keyword ) . '%' ) );
-			$partial_ids = array_diff( $partial_ids, $exact_ids );
+				$partial_ids = $wpdb->get_col( $wpdb->prepare(
+					"SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND post_status IN ({$status_in}) AND post_title LIKE %s",
+					$ptype, '%' . $wpdb->esc_like( $keyword ) . '%'
+				) );
+				$partial_ids = array_diff( $partial_ids, $exact_ids );
 
-			//  Content matches (only if mode allows)
-			$content_ids = [];
-			if ( 'title_and_content' === $search_mode ) {
-				$content_ids = $wpdb->get_col( $wpdb->prepare( "
-					SELECT ID FROM {$wpdb->posts}
-					WHERE post_type = 'docs'
-					AND post_status IN ('" . implode( "','", $post_status ) . "')
-					AND post_content LIKE %s
-				", '%' . $wpdb->esc_like( $keyword ) . '%' ) );
-				$content_ids = array_diff( $content_ids, $exact_ids, $partial_ids );
+				$content_ids = [];
+				if ( 'title_and_content' === $search_mode ) {
+					$content_ids = $wpdb->get_col( $wpdb->prepare(
+						"SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND post_status IN ({$status_in}) AND post_content LIKE %s",
+						$ptype, '%' . $wpdb->esc_like( $keyword ) . '%'
+					) );
+					$content_ids = array_diff( $content_ids, $exact_ids, $partial_ids );
+				}
+
+				$ids = array_merge( $exact_ids, $partial_ids, $content_ids );
+
+				if ( 'docs' === $ptype && get_term_by( 'name', $keyword, 'doc_tag' ) ) {
+					$tag_query = new WP_Query( [
+						'post_type'      => 'docs',
+						'posts_per_page' => -1,
+						'post_status'    => $post_status,
+						'tax_query'      => [ [ 'taxonomy' => 'doc_tag', 'field' => 'name', 'terms' => $keyword ] ],
+					] );
+					$ids = array_unique( array_merge( $ids, wp_list_pluck( $tag_query->posts, 'ID' ) ) );
+					wp_reset_postdata();
+				}
+
+				set_transient( $cache_key, $ids, 5 * MINUTE_IN_SECONDS );
 			}
 
-			// Combine: exact → partial → content
-			$final_ids = array_merge( $exact_ids, $partial_ids, $content_ids );
-			if ( empty( $final_ids ) ) {
-				$final_ids = [ 0 ];
-			}
-
-			// Add tag matches (appended after)
-			if ( get_term_by( 'name', $keyword, 'doc_tag' ) ) {
-				$tag_posts = new WP_Query( [
-					'post_type'      => 'docs',
-					'posts_per_page' => -1,
+			if ( ! empty( $ids ) ) {
+				$query = new WP_Query( [
+					'post_type'      => $ptype,
+					'posts_per_page' => 10,
 					'post_status'    => $post_status,
-					'tax_query'      => [ [
-						'taxonomy' => 'doc_tag',
-						'field'    => 'name',
-						'terms'    => $keyword,
-					] ],
+					'post__in'       => $ids,
+					'orderby'        => [ 'post__in' => 'ASC', 'title' => 'ASC' ],
 				] );
-				$merged_ids = array_unique( array_merge( $final_ids, wp_list_pluck( $tag_posts->posts, 'ID' ) ) );
-				$final_ids  = $merged_ids;
+				if ( $query->have_posts() ) {
+					$results_by_type[ $ptype ] = $query;
+				}
 			}
-
-			// Cache the result IDs for 5 minutes
-			set_transient( $cache_key, $final_ids, 5 * MINUTE_IN_SECONDS );
 		}
 
-		// Maintain order priority: exact → partial → content → tag
-		$args = [
-			'post_type'      => 'docs',
-			'posts_per_page' => 20, // Limit results for performance
-			'post_status'    => $post_status,
-			'post__in'       => $final_ids,
-			'orderby'        => [
-				'post__in'    => 'ASC',
-				'menu_order'  => 'ASC',
-				'date'        => get_option( 'posts_order' ) === 'asc' ? 'ASC' : 'DESC',
-				'title'       => 'ASC',
-			],
-		];
-
-		$posts = new WP_Query( $args );
-
 		// --- LOG SEARCH KEYWORD ---
-		$keyword_for_db = trim(strtolower($keyword));
+		$keyword_for_db             = trim( strtolower( $keyword ) );
 		$wp_eazydocs_search_keyword = $wpdb->prefix . 'eazydocs_search_keyword';
 		$wp_eazydocs_search_log     = $wpdb->prefix . 'eazydocs_search_log';
-
-		// Optimization: Check for table existence check (24h TTL)
-		$tables_check_key = 'ezd_search_tables_check';
-		$tables_exist = get_transient( $tables_check_key );
+		$tables_check_key           = 'ezd_search_tables_check';
+		$tables_exist               = get_transient( $tables_check_key );
 
 		if ( false === $tables_exist ) {
-			$keyword_table_exists = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword)) === $wp_eazydocs_search_keyword;
-			$log_table_exists     = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wp_eazydocs_search_log)) === $wp_eazydocs_search_log;
-			$tables_exist = ( $keyword_table_exists && $log_table_exists ) ? 1 : 0;
+			$kw_exists  = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_keyword ) ) === $wp_eazydocs_search_keyword;
+			$log_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $wp_eazydocs_search_log ) ) === $wp_eazydocs_search_log;
+			$tables_exist = ( $kw_exists && $log_exists ) ? 1 : 0;
 			set_transient( $tables_check_key, $tables_exist, DAY_IN_SECONDS );
+		}
+
+		$total_found = 0;
+		foreach ( $results_by_type as $q ) {
+			$total_found += $q->found_posts;
 		}
 
 		if ( $tables_exist ) {
 			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
 			$keyword_id = $wpdb->insert_id;
-
 			if ( $keyword_id ) {
-				$wpdb->insert(
-					$wp_eazydocs_search_log,
-					[
-						'keyword_id'      => $keyword_id,
-						'count'           => $posts->found_posts, // Use found_posts to track actual count vs paginated
-						'not_found_count' => $posts->found_posts ? 0 : 1,
-						'created_at'      => current_time('mysql'),
-					],
-					['%d', '%d', '%d', '%s']
-				);
+				$wpdb->insert( $wp_eazydocs_search_log, [
+					'keyword_id'      => $keyword_id,
+					'count'           => $total_found,
+					'not_found_count' => $total_found ? 0 : 1,
+					'created_at'      => current_time( 'mysql' ),
+				], [ '%d', '%d', '%d', '%s' ] );
 			}
 		}
 
-		ob_start();
-		?>
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				document.querySelectorAll('.search-result-item').forEach(function(item) {
-					item.addEventListener('click', function(e) {
-						if (e.target.tagName === 'A' || e.target.closest('a')) return;
-						let url = this.getAttribute('data-url');
-						if (url) window.location.href = url;
-					});
-				});
-			});
-		</script>
-		<?php
-		// --- OUTPUT RESULTS (unchanged) ---
-		if ( $posts->have_posts() ) :
-			while ( $posts->have_posts() ) : $posts->the_post();
-				$no_thumbnail = ! ezd_get_opt( 'is_search_result_thumbnail' ) ? 'no-thumbnail' : '';
-				?>
-				<div class="search-result-item <?php echo esc_attr($no_thumbnail); ?>" data-url="<?php the_permalink(); ?>">
-					<a href="<?php the_permalink(); ?>" class="title">
-						<?php if ( ezd_get_opt( 'is_search_result_thumbnail' ) ) :
-							if (has_post_thumbnail() && ezd_is_premium() ) {
-								the_post_thumbnail('ezd_searrch_thumb16x16');
-							} else { ?>
-								<svg width="16px" aria-labelledby="title" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img">
-									<title id="title">Building Search UI</title>
-									<path d="M14.72,0H2.28A2.28,2.28,0,0,0,0,2.28V14.72A2.28,2.28,0,0,0,2.28,17H14.72A2.28,2.28,0,0,0,17,14.72V2.28A2.28,2.28,0,0,0,14.72,0ZM2.28,1H14.72A1.28,1.28,0,0,1,16,2.28V5.33H1V2.28A1.28,1.28,0,0,1,2.28,1ZM1,14.72V6.33H5.33V16H2.28A1.28,1.28,0,0,1,1,14.72ZM14.72,16H6.33V6.33H16v8.39A1.28,1.28,0,0,1,14.72,16Z"></path>
-								</svg>
-							<?php }
-						endif; ?>
-						<span class="doc-section"><?php the_title(); ?></span>
-						<svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round"
-							stroke-linejoin="round" class="block h-auto w-16">
-							<polyline points="9 10 4 15 9 20"></polyline>
-							<path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
-						</svg>
-					</a>
-					<?php 
-					if (ezd_get_opt('is_search_result_breadcrumb') && ezd_is_premium() ){
-						eazydocs_search_breadcrumbs();
-					}
-					?>
-				</div>
-				<?php
-			endwhile;
-			else :
-				?>
-				<div><h5 class="error title"><?php esc_html_e('No result found!', 'eazydocs'); ?></h5></div>
-				<?php
-		endif;
+		// --- OUTPUT ---
+		$type_labels = [
+			'docs' => __( 'Docs', 'eazydocs' ),
+			'page' => __( 'Page', 'eazydocs' ),
+			'post' => __( 'Post', 'eazydocs' ),
+		];
 
-		wp_reset_postdata();
+		ob_start();
+
+		if ( ! empty( $results_by_type ) ) :
+			?>
+			<div class="ezd-result-tabs">
+				<button class="ezd-tab active" data-tab="all"><?php esc_html_e( 'All', 'eazydocs' ); ?></button>
+				<?php foreach ( $results_by_type as $ptype => $query ) : ?>
+					<button class="ezd-tab" data-tab="<?php echo esc_attr( $ptype ); ?>">
+						<?php echo esc_html( $type_labels[ $ptype ] ?? ucfirst( $ptype ) ); ?>
+					</button>
+				<?php endforeach; ?>
+			</div>
+			<?php
+			foreach ( $results_by_type as $ptype => $query ) :
+				?>
+				<div class="ezd-result-group" data-type="<?php echo esc_attr( $ptype ); ?>">
+					<div class="ezd-result-group-label"><?php echo esc_html( $type_labels[ $ptype ] ?? ucfirst( $ptype ) ); ?></div>
+					<?php
+					while ( $query->have_posts() ) :
+						$query->the_post();
+						$no_thumbnail = ! ezd_get_opt( 'is_search_result_thumbnail' ) ? 'no-thumbnail' : '';
+						?>
+						<div class="search-result-item <?php echo esc_attr( $no_thumbnail ); ?>" data-url="<?php the_permalink(); ?>" data-type="<?php echo esc_attr( $ptype ); ?>">
+							<a href="<?php the_permalink(); ?>" class="title">
+								<?php if ( ezd_get_opt( 'is_search_result_thumbnail' ) ) :
+									if ( has_post_thumbnail() && ezd_is_premium() ) {
+										the_post_thumbnail( 'ezd_searrch_thumb16x16' );
+									} else { ?>
+										<svg width="16px" aria-labelledby="ezd-doc-icon" viewBox="0 0 17 17" fill="currentColor" class="block h-full w-auto" role="img">
+											<title id="ezd-doc-icon">Document</title>
+											<path d="M14.72,0H2.28A2.28,2.28,0,0,0,0,2.28V14.72A2.28,2.28,0,0,0,2.28,17H14.72A2.28,2.28,0,0,0,17,14.72V2.28A2.28,2.28,0,0,0,14.72,0ZM2.28,1H14.72A1.28,1.28,0,0,1,16,2.28V5.33H1V2.28A1.28,1.28,0,0,1,2.28,1ZM1,14.72V6.33H5.33V16H2.28A1.28,1.28,0,0,1,1,14.72ZM14.72,16H6.33V6.33H16v8.39A1.28,1.28,0,0,1,14.72,16Z"></path>
+										</svg>
+									<?php }
+								endif; ?>
+								<span class="doc-section"><?php the_title(); ?></span>
+								<svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block h-auto w-16">
+									<polyline points="9 10 4 15 9 20"></polyline>
+									<path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
+								</svg>
+							</a>
+							<?php
+							if ( 'docs' === $ptype && ezd_get_opt( 'is_search_result_breadcrumb' ) && ezd_is_premium() ) {
+								eazydocs_search_breadcrumbs();
+							}
+							?>
+						</div>
+					<?php endwhile; ?>
+					<?php wp_reset_postdata(); ?>
+				</div>
+			<?php endforeach; ?>
+		<?php endif;
 
 		echo ob_get_clean();
 		wp_die();

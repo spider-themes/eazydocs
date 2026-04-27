@@ -47,6 +47,18 @@ jQuery("#ezd_searchInput").focus(function() {
     jQuery('form.ezd_search_form').css('z-index', '999');
 })
 
+jQuery(document).on('click', '.ezd-tab', function() {
+    var tab = jQuery(this).data('tab');
+    jQuery('.ezd-tab').removeClass('active');
+    jQuery(this).addClass('active');
+    if ( tab === 'all' ) {
+        jQuery('#ezd-search-results .ezd-result-group').show();
+    } else {
+        jQuery('#ezd-search-results .ezd-result-group').hide();
+        jQuery('#ezd-search-results .ezd-result-group[data-type="' + tab + '"]').show();
+    }
+})
+
 jQuery(".focus_overlay").click(function() {
     jQuery('body').removeClass('ezd-search-focused');
     jQuery('form.ezd_search_form').css('z-index', 'unset');

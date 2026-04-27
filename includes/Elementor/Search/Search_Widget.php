@@ -131,6 +131,43 @@ class Search_Widget extends Widget_Base {
 		    ]
 		);
 
+        $this->add_control(
+            'filter-divider',
+            [
+                'label'     => esc_html__( 'Post Type Filter', 'eazydocs' ),
+                'type'      => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'show_post_type_filter',
+            [
+                'label'        => esc_html__( 'Enable Post Type Filter', 'eazydocs' ),
+                'type'         => Controls_Manager::SWITCHER,
+                'return_value' => 'yes',
+                'default'      => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'filter_post_types',
+            [
+                'label'    => esc_html__( 'Post Types', 'eazydocs' ),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => [
+                    'docs' => esc_html__( 'Docs', 'eazydocs' ),
+                    'page' => esc_html__( 'Page', 'eazydocs' ),
+                    'post' => esc_html__( 'Post', 'eazydocs' ),
+                ],
+                'default'   => [ 'docs', 'page', 'post' ],
+                'condition' => [
+                    'show_post_type_filter' => 'yes',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -270,8 +307,46 @@ class Search_Widget extends Widget_Base {
             ]
 		);
         
-        $this->end_controls_section();		
-        
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'ezd_no_result_sec',
+            [
+                'label' => esc_html__( 'No Result', 'eazydocs' ),
+            ]
+        );
+
+        $this->add_control(
+            'no_result_image',
+            [
+                'label'   => esc_html__( 'Image', 'eazydocs' ),
+                'type'    => Controls_Manager::MEDIA,
+                'default' => [ 'url' => '' ],
+            ]
+        );
+
+        $this->add_control(
+            'no_result_title',
+            [
+                'label'       => esc_html__( 'Title', 'eazydocs' ),
+                'type'        => Controls_Manager::TEXT,
+                'label_block' => true,
+                'default'     => esc_html__( 'No Results Found', 'eazydocs' ),
+            ]
+        );
+
+        $this->add_control(
+            'no_result_subtitle',
+            [
+                'label'   => esc_html__( 'Subtitle', 'eazydocs' ),
+                'type'    => Controls_Manager::TEXTAREA,
+                'default' => esc_html__( 'Check the spellings or use a different word or phrase', 'eazydocs' ),
+                'rows'    => 2,
+            ]
+        );
+
+        $this->end_controls_section();
+
          /**
          * Style Keywords
          * Global

@@ -11,14 +11,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <form action="<?php echo esc_url(home_url('/')) ?>" role="search" method="get" class="ezd_search_form" >
     <div class="header_search_form_info search_form_wrap">
-        <div class="form-group ezd-<?php echo esc_attr($settings['btn-position'] ?? ''); ?>">
+        <?php
+        $filter_enabled = ( $settings['show_post_type_filter'] ?? '' ) === 'yes' && ! empty( $settings['filter_post_types'] );
+        $has_filter_cls = $filter_enabled ? ' has-type-filter' : '';
+        $type_labels    = [
+            'docs' => __( 'Docs', 'eazydocs' ),
+            'page' => __( 'Page', 'eazydocs' ),
+            'post' => __( 'Post', 'eazydocs' ),
+        ];
+        ?>
+        <div class="form-group ezd-<?php echo esc_attr( $settings['btn-position'] ?? '' ); ?><?php echo esc_attr( $has_filter_cls ); ?>">
             <div class="input-wrapper">
-                <input type='search' class="search_field_wrap" id="ezd_searchInput" autocomplete="off" name="s"  placeholder="<?php echo esc_attr($settings['placeholder']) ?>">
+                <input type='search' class="search_field_wrap" id="ezd_searchInput" autocomplete="off" name="s" placeholder="<?php echo esc_attr( $settings['placeholder'] ); ?>">
                 <!-- Ajax Search Loading Spinner -->
                 <span class="spinner-border spinner"> </span>
                 <button type="submit" class="search_submit_btn">
                     <?php \Elementor\Icons_Manager::render_icon( $settings['submit_btn_icon'], [ 'aria-hidden' => 'true' ] ); ?>
                 </button>
+                <?php if ( $filter_enabled ) :
+                    $filter_types = $settings['filter_post_types'];
+                ?>
+                <div class="ezd-type-filter">
+                    <button type="button" class="ezd-type-filter-btn">
+                        <span class="ezd-filter-label"><?php esc_html_e( 'All', 'eazydocs' ); ?></span>
+                        <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" width="10" height="10" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <ul class="ezd-type-filter-dropdown">
+                        <li class="active" data-type="all"><?php esc_html_e( 'All', 'eazydocs' ); ?></li>
+                        <?php foreach ( $filter_types as $type ) : ?>
+                            <li data-type="<?php echo esc_attr( $type ); ?>"><?php echo esc_html( $type_labels[ $type ] ?? ucfirst( $type ) ); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -39,6 +64,48 @@ add_action('wp_footer', function() {
                 jQuery('form.ezd_search_form').css('z-index', '999');
             });
 
+            jQuery(document).on('click', '.ezd-tab', function() {
+                var tab = jQuery(this).data('tab');
+                jQuery('.ezd-tab').removeClass('active');
+                jQuery(this).addClass('active');
+                if ( tab === 'all' ) {
+                    jQuery('#ezd-search-results .ezd-result-group').show();
+                } else {
+                    jQuery('#ezd-search-results .ezd-result-group').hide();
+                    jQuery('#ezd-search-results .ezd-result-group[data-type="' + tab + '"]').show();
+                }
+            });
+
+            var selectedPostType = 'all';
+
+            jQuery(document).on('click', '.ezd-type-filter-btn', function(e) {
+                e.stopPropagation();
+                var $dropdown = jQuery(this).next('.ezd-type-filter-dropdown');
+                $dropdown.toggleClass('open');
+                jQuery(this).toggleClass('open');
+            });
+
+            jQuery(document).on('click', '.ezd-type-filter-dropdown li', function() {
+                var type  = jQuery(this).data('type');
+                var label = jQuery(this).text();
+                selectedPostType = type;
+                jQuery('.ezd-type-filter-dropdown li').removeClass('active');
+                jQuery(this).addClass('active');
+                jQuery('.ezd-filter-label').text(label);
+                jQuery(this).closest('.ezd-type-filter-dropdown').removeClass('open');
+                jQuery('.ezd-type-filter-btn').removeClass('open');
+                if ( jQuery('#ezd_searchInput').val().trim() !== '' ) {
+                    ezSearchResults();
+                }
+            });
+
+            jQuery(document).on('click', function(e) {
+                if ( ! jQuery(e.target).closest('.ezd-type-filter').length ) {
+                    jQuery('.ezd-type-filter-dropdown').removeClass('open');
+                    jQuery('.ezd-type-filter-btn').removeClass('open');
+                }
+            });
+
             jQuery(".focus_overlay").click(function() {
                 jQuery('body').removeClass('ezd-search-focused');
                 jQuery('form.ezd_search_form').css('z-index', 'unset');
@@ -54,9 +121,22 @@ add_action('wp_footer', function() {
                 ezSearchResults()
             })
 
+            function ezdBuildNoResult() {
+                var $r    = jQuery('#ezd-search-results');
+                var img   = $r.data('noresult-img');
+                var title = $r.data('noresult-title') || $r.attr('data-noresult') || 'No Results Found';
+                var sub   = $r.data('noresult-sub');
+                var imgHtml = img ? '<div class="ezd-no-results-img"><img src="' + img + '" alt=""></div>' : '';
+                var subHtml = sub ? '<p class="ezd-no-results-sub">' + sub + '</p>' : '';
+                $r.addClass('ajax-search').html(
+                    '<div class="ezd-no-results">' + imgHtml +
+                    '<h4 class="ezd-no-results-title">' + title + '</h4>' +
+                    subHtml + '</div>'
+                );
+            }
+
             function ezSearchResults() {
                 let keyword = jQuery('#ezd_searchInput').val();
-                let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
                 if (keyword.trim() === "") {
                     jQuery('#ezd-search-results').removeClass('ajax-search').html("")
@@ -67,7 +147,8 @@ add_action('wp_footer', function() {
                         data: {
                             action: 'eazydocs_search_results',
                             keyword: keyword,
-                            security: eazydocs_local_object.nonce 
+                            post_type: selectedPostType,
+                            security: eazydocs_local_object.nonce
                         },
                         beforeSend: function() {
                             jQuery(".spinner-border").show();
@@ -80,11 +161,10 @@ add_action('wp_footer', function() {
                                     jQuery('#ezd-search-results').removeClass('ajax-search').html("")
                                 }
                             });
-                            if (data.length > 0) {
+                            if (data.trim().length > 0) {
                                 jQuery('#ezd-search-results').addClass('ajax-search').html(data);
                             } else {
-                                var data_error = '<h5 class="error title">' + noresult + '</h5>';
-                                jQuery('#ezd-search-results').html(data_error);
+                                ezdBuildNoResult();
                             }
                         }
                     })
@@ -106,7 +186,6 @@ add_action('wp_footer', function() {
             jQuery('#ezd_searchInput').keyup(
                 ezdFetchDelay(function(e) {
                     let keyword = jQuery('#ezd_searchInput').val();
-                    let noresult = jQuery('#ezd-search-results').attr('data-noresult');
 
                     if (keyword.trim() === "") {
                         jQuery('#ezd-search-results').removeClass('ajax-search').html("")
@@ -117,7 +196,8 @@ add_action('wp_footer', function() {
                             data: {
                                 action: 'eazydocs_search_results',
                                 keyword: keyword,
-                                security: eazydocs_local_object.nonce 
+                                post_type: selectedPostType,
+                                security: eazydocs_local_object.nonce
                             },
                             beforeSend: function() {
                                 jQuery(".spinner-border").show();
@@ -125,17 +205,16 @@ add_action('wp_footer', function() {
                             success: function(data) {
                                 jQuery(".spinner-border").hide();
                                 // hide search results by pressing Escape button
-                                jQuery(document).keyup(function(e) {
-                                    if (e.key === "Escape") { // escape key maps to keycode `27`
-                                        jQuery('#ezd-search-results').removeClass('ajax-search').html(
+                            jQuery(document).keyup(function(e) {
+                                if (e.key === "Escape") { // escape key maps to keycode `27`
+                                    jQuery('#ezd-search-results').removeClass('ajax-search').html(
                                             "")
                                     }
                                 });
-                                if (data.length > 0) {
+                                if (data.trim().length > 0) {
                                     jQuery('#ezd-search-results').addClass('ajax-search').html(data);
                                 } else {
-                                    var data_error = '<h5 class="error title">' + noresult + '</h5>';
-                                    jQuery('#ezd-search-results').html(data_error);
+                                    ezdBuildNoResult();
                                 }
                             }
                         })
