@@ -484,3 +484,191 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		grid-template-columns: repeat(1, 1fr);
 	}
 }
+
+/* ============================================================
+   EazyDocs Card Grid skin (docs-7) — BEM: .ezd-docs-card
+   ============================================================ */
+
+// Grid wrapper: equal column and row gap by default.
+.ezd-card-grid-7 {
+	gap: 25px;
+}
+
+.ezd-docs-card {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+	padding: 28px 24px 24px;
+	transition: box-shadow 0.2s ease;
+	display: flex;
+	flex-direction: column;
+
+	// Required for .private indicator absolute positioning (same as .categories_guide_item).
+	position: relative;
+
+	&:hover {
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+	}
+
+	// ── Private / protected indicator — matches other layouts ──
+	.private {
+		position: absolute;
+		right: 12px;
+		top: 12px;
+		z-index: 2;
+
+		i.icon_lock {
+			font-size: 24px;
+			color: var(--black_500, #6a737c);
+		}
+
+		svg {
+			width: 22px;
+			height: 22px;
+			fill: var(--black_500, #6a737c);
+		}
+	}
+
+	// ── Header ──────────────────────────────────────
+	&__head {
+		display: flex;
+		align-items: flex-start;
+		gap: 14px;
+	}
+
+	// ── Icon: comes from doc featured image only ────
+	// Rendered only when a featured image exists; no letter fallback.
+	&__icon {
+		width: 52px;
+		height: 52px;
+		border-radius: 12px;
+		flex-shrink: 0;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	&__info {
+		flex: 1;
+		min-width: 0;
+	}
+
+	&__title {
+		font-size: 17px;
+		font-weight: 700;
+		color: var(--black_800, #242729);
+		margin: 0 0 4px;
+		line-height: 1.35;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover {
+				color: var(--ezd_brand_color, #0870ff);
+			}
+		}
+	}
+
+	// ── Meta: avg read time only (count shown as ezd-badge) ──
+	&__meta {
+		margin-top: 4px;
+	}
+
+	&__readtime {
+		font-size: 12px;
+		color: var(--black_400, #848d95);
+		line-height: 1.4;
+	}
+
+	// ── Separator ───────────────────────────────────
+	&__sep {
+		border: none;
+		border-top: 1px dashed #dde1e7;
+		margin: 16px 0;
+	}
+
+	// ── Article list ────────────────────────────────
+	&__articles {
+		padding: 0;
+		margin: 0;
+		flex: 1;
+
+		li {
+			border-bottom: 1px dashed #eef0f4;
+			padding: 0;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			a {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				color: var(--p_color, #425466);
+				font-size: 14px;
+				text-decoration: none !important;
+				padding: 8px 0;
+				line-height: 1.4;
+				transition: color 0.15s ease;
+
+				&::before {
+					content: "›";
+					font-size: 18px;
+					color: var(--black_300, #9fa6ad);
+					flex-shrink: 0;
+					line-height: 1;
+				}
+
+				&:hover {
+					color: var(--ezd_brand_color, #0870ff);
+
+					&::before {
+						color: var(--ezd_brand_color, #0870ff);
+					}
+				}
+			}
+		}
+	}
+
+	// ── Browse-all button ───────────────────────────
+	// Uses the existing Elegant Icons font-library arrow (arrow_right / arrow_left).
+	&__browse {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		color: var(--ezd_brand_color, #0870ff);
+		font-size: 14px;
+		font-weight: 600;
+		text-decoration: none !important;
+		background: none;
+		border: none;
+		padding: 0;
+		margin-top: auto;
+		transition: gap 0.15s ease, color 0.15s ease;
+
+		i {
+			font-size: 16px;
+			line-height: 1;
+			transition: transform 0.15s ease;
+		}
+
+		&:hover {
+			gap: 10px;
+			color: var(--ezd_brand_color, #0870ff);
+
+			i {
+				transform: translateX(2px);
+			}
+		}
+	}
+}
