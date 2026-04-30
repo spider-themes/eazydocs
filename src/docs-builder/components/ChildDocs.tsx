@@ -83,21 +83,41 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 			// Ignore parse errors – fall through to default.
 		}
 
-		// Default: all items collapsed (matching the old nestable('collapseAll') behaviour).
+		// Default: at every level only the first item is open; all others collapsed.
 		const ids = new Set< number >();
-		const collectIds = ( items: DocChild[] ) => {
+
+		const collapseAllDescendants = ( items: DocChild[] ): void => {
 			items.forEach( ( item ) => {
-				ids.add( item.id );
-				collectIds( item.children );
+				if ( item.canAddChild ) {
+					ids.add( item.id );
+				}
+				collapseAllDescendants( item.children );
 			} );
 		};
-		collectIds( children );
+
+		const applyFirstOpenRule = ( items: DocChild[] ): void => {
+			items.forEach( ( item, index ) => {
+				if ( index === 0 ) {
+					// First item stays open; recurse into its children with the same rule.
+					applyFirstOpenRule( item.children );
+				} else {
+					// Non-first items are collapsed along with all their descendants.
+					if ( item.canAddChild ) {
+						ids.add( item.id );
+					}
+					collapseAllDescendants( item.children );
+				}
+			} );
+		};
+
+		applyFirstOpenRule( children );
 		return ids;
 	} );
 
 	// Persist collapsed state to localStorage whenever it changes.
 	useEffect( () => {
 		try {
+			localStorage.removeItem( `ezd-collapsed-v2-${ parent.id }` );
 			localStorage.setItem( storageKey, JSON.stringify( [ ...collapsedIds ] ) );
 		} catch {
 			// Silently ignore storage errors (e.g. quota exceeded).
