@@ -97,11 +97,7 @@ class Doc_Widget extends Widget_Base
 		$base_options = [
 			'1' => [
 				'title' => esc_html__('Docs without tab', 'eazydocs'),
-				'icon' => 'free-doc-tab'
-			],
-			'7' => [
-				'title' => esc_html__('Card Grid', 'eazydocs'),
-				'icon' => 'free-doc-tab'
+				'image' => EAZYDOCS_IMG . 'elementor-skins/no-tab-docs.jpg'
 			],
 		];
 
@@ -110,14 +106,15 @@ class Doc_Widget extends Widget_Base
 			'3' => ['title' => esc_html__('Flat tabbed docs', 'eazydocs')],
 			'4' => ['title' => esc_html__('Boxed Style', 'eazydocs')],
 			'5' => ['title' => esc_html__('Book Chapters / Tutorials', 'eazydocs')],
-			'6' => ['title' => esc_html__('List Style', 'eazydocs')]
+			'6' => ['title' => esc_html__('List Style', 'eazydocs')],
+			'7' => ['title' => esc_html__('Topics Grid', 'eazydocs')]
 		];
 
 		foreach ($pro_options as $key => $option) {
 			$icon_suffix = ezd_unlock_themes('docy', 'docly') ? '' : ' ezd-pro-docs';
 			$base_options[$key] = [
 				'title' => $option['title'],
-				'icon' => "docs-" . ($key - 1) . $icon_suffix
+				'image' => EAZYDOCS_IMG . "elementor-skins/docs-" . ($key - 1) . ".png" . $icon_suffix
 			];
 		}
 
@@ -145,10 +142,11 @@ class Doc_Widget extends Widget_Base
 			'doc-widget-skin',
 			[
 				'label' => esc_html__('Skins', 'eazydocs'),
-				'type' => Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::VISUAL_CHOICE,
 				'options' => $this->docs_layout_option(),
 				'toggle' => false,
 				'default' => '1',
+				'label_block' => true,
 			]
 		);
 

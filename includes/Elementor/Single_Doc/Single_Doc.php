@@ -65,31 +65,32 @@ class Single_Doc extends Widget_Base {
 		$this->add_control(
 			'doc-widget-single-search', [
 				'label'   => esc_html__( 'Skins', 'eazydocs' ),
-				'type'    => Controls_Manager::CHOOSE,
+				'type'    => Controls_Manager::VISUAL_CHOICE,
 				'options' => [
 					'1' => [
 						'title' => esc_html__( 'Light', 'eazydocs' ),
-						'icon'  => 'single-doc1',
+						'image'  => EAZYDOCS_IMG . 'elementor-skins/single-doc-1.jpg  ',
 					],
 					'2' => [
 						'title' => ! empty ( $skins_label ) ? 'pro-label' : esc_html__( 'Creative', 'eazydocs' ),
-						'icon'  => 'single-doc2 ' . $support_pro,
+						'image'  => EAZYDOCS_IMG . 'elementor-skins/single-doc-2.jpg' . $support_pro,
 					],
 					'3' => [
 						'title' => ! empty ( $skins_label ) ? 'pro-label' : esc_html__( 'Box', 'eazydocs' ),
-						'icon'  => 'single-doc3  ' . $support_pro,
+						'image'  => EAZYDOCS_IMG . 'elementor-skins/single-doc-3.jpg' . $support_pro,
 					],
 					'4' => [
 						'title' => ! empty ( $skins_label ) ? 'pro-label' : esc_html__( 'Topic Boxes', 'eazydocs' ),
-						'icon'  => 'single-doc4  ' . $support_pro,
+						'image'  => EAZYDOCS_IMG . 'elementor-skins/single-doc-4.jpg' . $support_pro,
 					],
 					'5' => [
 						'title' => ! empty ( $skins_label ) ? 'pro-label' : esc_html__( 'Docs Boxes', 'eazydocs' ),
-						'icon'  => 'single-doc5  ' . $support_pro,
+						'image'  => EAZYDOCS_IMG . 'elementor-skins/single-doc-5.jpg' . $support_pro,
 					],
 				],
 				'toggle'  => false,
 				'default' => '1',
+				'label_block' => true,
 			]
 		);
 
