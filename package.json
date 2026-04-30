@@ -19,13 +19,13 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/eslint-plugin": "^13.0.0",
-		"@wordpress/prettier-config": "^2.0.0",
-		"@wordpress/scripts": "^30.26.0",
-		"@wordpress/stylelint-config": "^21.0.0",
+		"@wordpress/eslint-plugin": "^25.1.0",
+		"@wordpress/prettier-config": "^4.45.0",
+		"@wordpress/scripts": "^32.1.0",
+		"@wordpress/stylelint-config": "^23.37.0",
 		"css-loader": "^7.1.2",
-		"eslint-config-prettier": "^8.3.0",
-		"sass": "^1.78.0",
+		"eslint-config-prettier": "^10.0.0",
+		"sass": "^1.99.0",
 		"sass-loader": "^16.0.1",
 		"style-loader": "^4.0.0"
 	},

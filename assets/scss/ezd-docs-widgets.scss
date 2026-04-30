@@ -1,7 +1,7 @@
 @import "frontend/variables";
 @import "frontend/framework";
 @import "frontend/widget_docs";
-@import "frontend/single-&-docs_widget";
+@import "frontend/single-docs_widget";
 
 /** === Doc search form result === **/
 .doc_banner_text .banner_search_form {
@@ -28,7 +28,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 }
 
 .has_drop #ezd_searchInput {
-	+ .spinner {
+	+.spinner {
 		right: 130px;
 	}
 
@@ -39,13 +39,15 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 }
 
 .elementor-widget-ezd_search_form {
-	.header_search_form_info.search_form_wrap .search_submit_btn > i {
+	.header_search_form_info.search_form_wrap .search_submit_btn>i {
 		color: #fff;
 	}
+
 	input#ezd_searchInput {
 		padding-left: 25px;
 		border-radius: 5px;
 		color: var(--black_800);
+
 		@media (min-width: 991px) {
 			min-width: 450px;
 		}
@@ -54,7 +56,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 			color: var(--black_400);
 		}
 
-		~ .spinner {
+		~.spinner {
 			right: 60px;
 		}
 
@@ -65,7 +67,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 
 	.ezd-left {
 		input#ezd_searchInput {
-			~ .spinner {
+			~.spinner {
 				right: 20px;
 			}
 
@@ -121,6 +123,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	position: relative;
 	z-index: 1;
 	padding: 100px 0;
+
 	.recommended_item {
 		.ct-heading-text {
 			margin-bottom: 25px;
@@ -208,6 +211,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		margin-left: 0;
 		margin-bottom: 0;
 		padding-left: 0;
+
 		li {
 			padding-left: 20px;
 			margin-left: 0;
@@ -234,7 +238,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 				}
 			}
 
-			& + li {
+			&+li {
 				margin-top: 20px;
 			}
 		}
@@ -330,11 +334,12 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	}
 }
 
-.h_content_items{
+.h_content_items {
 	&.box-item.collapse-wrap {
 		display: none;
 	}
-	a{
+
+	a {
 		text-decoration: none !important;
 	}
 }
@@ -422,7 +427,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		span {
 			display: inline-block;
 
-			& + span {
+			&+span {
 				display: none;
 			}
 		}
@@ -431,7 +436,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 			span {
 				display: none;
 
-				& + span {
+				&+span {
 					display: inline-block;
 				}
 			}
@@ -469,10 +474,12 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	display: flex;
 	box-sizing: border-box;
 	gap: 25px;
-	 > * {
-	flex: 1;
-  }
+
+	>* {
+		flex: 1;
+	}
 }
+
 .ezd-mobile-column {
 	@media (max-width: 881px) {
 		grid-template-columns: repeat(2, 1fr);

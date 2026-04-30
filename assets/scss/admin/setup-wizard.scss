@@ -25,14 +25,11 @@ $bg-light: #f9fafb;
 $bg-white: #ffffff;
 
 $shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md:
-	0 4px 6px -1px rgba(0, 0, 0, 0.1),
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
 	0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-lg:
-	0 10px 15px -3px rgba(0, 0, 0, 0.1),
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
 	0 4px 6px -2px rgba(0, 0, 0, 0.05);
-$shadow-xl:
-	0 20px 25px -5px rgba(0, 0, 0, 0.1),
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
 	0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
 $radius-sm: 6px;
@@ -130,11 +127,9 @@ body.documentation_page_eazydocs-initial-setup {
 		}
 
 		.ezd-setup-badge {
-			background: linear-gradient(
-				135deg,
-				$primary-color 0%,
-				$primary-dark 100%
-			);
+			background: linear-gradient(135deg,
+					$primary-color 0%,
+					$primary-dark 100%);
 			color: white;
 			font-size: 11px;
 			font-weight: 600;
@@ -252,11 +247,9 @@ body.documentation_page_eazydocs-initial-setup {
 
 		.ezd-progress-fill {
 			height: 100%;
-			background: linear-gradient(
-				90deg,
-				$success-color 0%,
-				$primary-color 100%
-			);
+			background: linear-gradient(90deg,
+					$success-color 0%,
+					$primary-color 100%);
 			border-radius: 2px;
 			width: 0%;
 			transition: width $transition-slow;
@@ -394,6 +387,7 @@ body.documentation_page_eazydocs-initial-setup {
 		opacity: 0;
 		transform: translateY(20px);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -574,6 +568,7 @@ body.documentation_page_eazydocs-initial-setup {
 // ========================================
 .ezd-settings-step,
 .ezd-layout-step {
+
 	.ezd-settings-content,
 	.ezd-layout-content {
 		max-width: 700px;
@@ -653,6 +648,7 @@ body.documentation_page_eazydocs-initial-setup {
 
 // Select Styling
 .archive-page-selection-wrap {
+
 	.ezd-select,
 	select {
 		width: 100%;
@@ -1014,7 +1010,7 @@ body.documentation_page_eazydocs-initial-setup {
 	input[type="checkbox"] {
 		display: none;
 
-		& + .ezd-toggle-label {
+		&+.ezd-toggle-label {
 			width: 52px;
 			height: 28px;
 			background: $border-color;
@@ -1038,7 +1034,7 @@ body.documentation_page_eazydocs-initial-setup {
 			}
 		}
 
-		&:checked + .ezd-toggle-label {
+		&:checked+.ezd-toggle-label {
 			background: $success-color;
 
 			&::after {
@@ -1054,11 +1050,9 @@ body.documentation_page_eazydocs-initial-setup {
 	align-items: center;
 	gap: 14px;
 	padding: 12px 16px;
-	background: linear-gradient(
-		135deg,
-		rgba($pro-color, 0.08) 0%,
-		rgba($pro-color, 0.15) 100%
-	);
+	background: linear-gradient(135deg,
+			rgba($pro-color, 0.08) 0%,
+			rgba($pro-color, 0.15) 100%);
 	border: 1px solid rgba($pro-color, 0.2);
 	border-radius: $radius-md;
 	margin-top: 12px;
@@ -1237,11 +1231,9 @@ body.documentation_page_eazydocs-initial-setup {
 	.ezd-success-circle {
 		width: 70px;
 		height: 70px;
-		background: linear-gradient(
-			135deg,
-			$success-color 0%,
-			darken($success-color, 10%) 100%
-		);
+		background: linear-gradient(135deg,
+				$success-color 0%,
+				color.adjust($success-color, $lightness: -10%) 100%);
 		border-radius: 50%;
 		display: inline-flex;
 		align-items: center;
@@ -1257,10 +1249,12 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	@keyframes successPulse {
+
 		0%,
 		100% {
 			box-shadow: 0 0 0 0 rgba($success-color, 0.4);
 		}
+
 		50% {
 			box-shadow: 0 0 0 20px rgba($success-color, 0);
 		}
@@ -1330,7 +1324,7 @@ body.documentation_page_eazydocs-initial-setup {
 			}
 		}
 
-		> .dashicons {
+		>.dashicons {
 			color: $text-muted;
 			transition: all $transition-fast;
 		}
@@ -1341,18 +1335,16 @@ body.documentation_page_eazydocs-initial-setup {
 			box-shadow: $shadow-md;
 			transform: translateY(-2px);
 
-			> .dashicons {
+			>.dashicons {
 				color: $primary-color;
 				transform: translateX(4px);
 			}
 		}
 
 		&.ezd-primary-action {
-			background: linear-gradient(
-				135deg,
-				$primary-color 0%,
-				$primary-dark 100%
-			);
+			background: linear-gradient(135deg,
+					$primary-color 0%,
+					$primary-dark 100%);
 			border-color: $primary-color;
 
 			.ezd-card-icon {
@@ -1368,7 +1360,7 @@ body.documentation_page_eazydocs-initial-setup {
 				color: white;
 			}
 
-			> .dashicons {
+			>.dashicons {
 				color: rgba(white, 0.7);
 			}
 
@@ -1376,18 +1368,16 @@ body.documentation_page_eazydocs-initial-setup {
 				transform: translateY(-4px);
 				box-shadow: $shadow-lg;
 
-				> .dashicons {
+				>.dashicons {
 					color: white;
 				}
 			}
 		}
 
 		&.ezd-pro-card {
-			background: linear-gradient(
-				135deg,
-				rgba($pro-color, 0.08) 0%,
-				rgba($pro-color, 0.15) 100%
-			);
+			background: linear-gradient(135deg,
+					rgba($pro-color, 0.08) 0%,
+					rgba($pro-color, 0.15) 100%);
 			border-color: rgba($pro-color, 0.3);
 
 			.ezd-card-icon {
@@ -1473,20 +1463,16 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	&.ezd-btn-primary {
-		background: linear-gradient(
-			135deg,
-			$primary-color 0%,
-			$primary-dark 100%
-		);
+		background: linear-gradient(135deg,
+				$primary-color 0%,
+				$primary-dark 100%);
 		color: white;
 		box-shadow: 0 4px 12px rgba($primary-color, 0.3);
 
 		&:hover {
-			background: linear-gradient(
-				135deg,
-				$primary-dark 0%,
-				darken($primary-dark, 5%) 100%
-			);
+			background: linear-gradient(135deg,
+					$primary-dark 0%,
+					darken($primary-dark, 5%) 100%);
 			transform: translateY(-2px);
 			box-shadow: 0 6px 16px rgba($primary-color, 0.4);
 			color: white;
@@ -1527,19 +1513,15 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	&.ezd-btn-pro {
-		background: linear-gradient(
-			135deg,
-			$pro-color 0%,
-			darken($pro-color, 10%) 100%
-		);
+		background: linear-gradient(135deg,
+				$pro-color 0%,
+				color.adjust($pro-color, $lightness: -10%) 100%);
 		color: white;
 
 		&:hover {
-			background: linear-gradient(
-				135deg,
-				darken($pro-color, 5%) 0%,
-				darken($pro-color, 15%) 100%
-			);
+			background: linear-gradient(135deg,
+					color.adjust($pro-color, $lightness: -5%) 0%,
+					color.adjust($pro-color, $lightness: -15%) 100%);
 			color: white;
 		}
 	}
@@ -1602,7 +1584,7 @@ body.documentation_page_eazydocs-initial-setup {
 			}
 
 			// Make the lightbulb icon larger and centered
-			> .dashicons-lightbulb {
+			>.dashicons-lightbulb {
 				font-size: 24px;
 				width: 24px;
 				height: 24px;
@@ -1619,21 +1601,17 @@ body.documentation_page_eazydocs-initial-setup {
 		align-items: center;
 		gap: 10px;
 		padding: 16px 20px;
-		background: linear-gradient(
-			135deg,
-			$warning-color 0%,
-			darken($warning-color, 10%) 100%
-		);
+		background: linear-gradient(135deg,
+				$warning-color 0%,
+				darken($warning-color, 10%) 100%);
 		color: white;
 		cursor: pointer;
 		transition: background $transition-fast;
 
 		&:hover {
-			background: linear-gradient(
-				135deg,
-				darken($warning-color, 3%) 0%,
-				darken($warning-color, 13%) 100%
-			);
+			background: linear-gradient(135deg,
+					darken($warning-color, 3%) 0%,
+					darken($warning-color, 13%) 100%);
 		}
 
 		.dashicons {
@@ -1714,6 +1692,7 @@ body.documentation_page_eazydocs-initial-setup {
 		opacity: 0;
 		transform: translateY(20px);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -1749,6 +1728,7 @@ body.documentation_page_eazydocs-initial-setup {
 		padding: 0 16px;
 
 		.ezd-setup-logo {
+
 			.ezd-logo-text,
 			.ezd-setup-badge {
 				display: none;
@@ -1814,6 +1794,7 @@ body.documentation_page_eazydocs-initial-setup {
 // SmartWizard buttons in footer - ensure proper styling
 .toolbar-bottom,
 .ezd-wizard-footer {
+
 	.sw-btn-prev,
 	.sw-btn-next {
 		&:not(.ezd-btn) {
