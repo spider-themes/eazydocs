@@ -153,18 +153,38 @@ class Search_Widget extends Widget_Base {
         $this->add_control(
             'filter_post_types',
             [
-                'label'    => esc_html__( 'Post Types', 'eazydocs' ),
-                'type'     => Controls_Manager::SELECT2,
-                'multiple' => true,
+                'label'    => esc_html__( 'Post Type', 'eazydocs' ),
+                'type'     => Controls_Manager::SELECT,
                 'options'  => [
+                    'all'  => esc_html__( 'All', 'eazydocs' ),
                     'docs' => esc_html__( 'Docs', 'eazydocs' ),
                     'page' => esc_html__( 'Page', 'eazydocs' ),
                     'post' => esc_html__( 'Post', 'eazydocs' ),
                 ],
-                'default'   => [ 'docs', 'page', 'post' ],
+                'default'   => 'all',
                 'condition' => [
                     'show_post_type_filter' => 'yes',
                 ],
+            ]
+        );
+
+        $this->add_control(
+            'result-tabs-divider',
+            [
+                'label'     => esc_html__( 'Result Tabs', 'eazydocs' ),
+                'type'      => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'show_result_tabs',
+            [
+                'label'        => esc_html__( 'Show Result Tabs', 'eazydocs' ),
+                'description'  => esc_html__( 'Show All / Docs / Page / Post tabs on top of search results.', 'eazydocs' ),
+                'type'         => Controls_Manager::SWITCHER,
+                'return_value' => 'yes',
+                'default'      => 'yes',
             ]
         );
 

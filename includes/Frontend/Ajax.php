@@ -28,6 +28,9 @@ class Ajax {
 		// Load Doc single page
 		add_action( 'wp_ajax_docs_single_content', [ $this, 'docs_single_content' ] );
 		add_action( 'wp_ajax_nopriv_docs_single_content', [ $this, 'docs_single_content' ] );
+		// Child docs for browse dropdown
+		add_action( 'wp_ajax_eazydocs_child_docs', [ $this, 'child_docs' ] );
+		add_action( 'wp_ajax_nopriv_eazydocs_child_docs', [ $this, 'child_docs' ] );
 	}
 
 	/**
@@ -249,9 +252,9 @@ class Ajax {
 		if ( ! empty( $results_by_type ) ) :
 			?>
 			<div class="ezd-result-tabs">
-				<button class="ezd-tab active" data-tab="all"><?php esc_html_e( 'All', 'eazydocs' ); ?></button>
+				<button type="button" class="ezd-tab active" data-tab="all"><?php esc_html_e( 'All', 'eazydocs' ); ?></button>
 				<?php foreach ( $results_by_type as $ptype => $query ) : ?>
-					<button class="ezd-tab" data-tab="<?php echo esc_attr( $ptype ); ?>">
+					<button type="button" class="ezd-tab" data-tab="<?php echo esc_attr( $ptype ); ?>">
 						<?php echo esc_html( $type_labels[ $ptype ] ?? ucfirst( $ptype ) ); ?>
 					</button>
 				<?php endforeach; ?>
@@ -278,11 +281,10 @@ class Ajax {
 										</svg>
 									<?php }
 								endif; ?>
-								<span class="doc-section"><?php the_title(); ?></span>
-								<svg viewBox="0 0 24 24" fill="none" color="white" stroke="white" width="16px" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="block h-auto w-16">
-									<polyline points="9 10 4 15 9 20"></polyline>
-									<path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
-								</svg>
+								<div class="ezd-item-body">
+									<span class="doc-section"><?php the_title(); ?></span>
+									<span class="ezd-item-type"><?php echo esc_html( $type_labels[ $ptype ] ?? ucfirst( $ptype ) ); ?></span>
+								</div>
 							</a>
 							<?php
 							if ( 'docs' === $ptype && ezd_get_opt( 'is_search_result_breadcrumb' ) && ezd_is_premium() ) {
@@ -403,5 +405,53 @@ class Ajax {
 			'content'         => $html,
 			'modified_date'   => $modified,
 		] );
+	}
+
+	/**
+	 * Return child docs of a parent doc for the browse dropdown.
+	 *
+	 * @return void
+	 */
+	public function child_docs() {
+		check_ajax_referer( 'eazydocs-ajax', 'security' );
+
+		$parent_id = isset( $_POST['parent_id'] ) ? intval( $_POST['parent_id'] ) : 0;
+
+		if ( $parent_id <= 0 ) {
+			wp_send_json_error( [ 'message' => 'Invalid parent ID' ] );
+			return;
+		}
+
+		$children = get_posts( [
+			'post_type'      => 'docs',
+			'post_parent'    => $parent_id,
+			'posts_per_page' => -1,
+			'orderby'        => 'menu_order',
+			'order'          => 'ASC',
+			'post_status'    => 'publish',
+		] );
+
+		if ( empty( $children ) ) {
+			wp_send_json_success( [ 'html' => '', 'count' => 0 ] );
+			return;
+		}
+
+		ob_start();
+		foreach ( $children as $child ) {
+			$url = get_permalink( $child->ID );
+			?>
+			<div class="search-result-item no-thumbnail">
+				<a href="<?php echo esc_url( $url ); ?>" class="title">
+					<div class="ezd-item-body">
+						<p class="doc-section"><?php echo esc_html( $child->post_title ); ?></p>
+						<span class="ezd-item-type"><?php esc_html_e( 'Docs', 'eazydocs' ); ?></span>
+					</div>
+				</a>
+			</div>
+			<?php
+		}
+		$html = ob_get_clean();
+
+		wp_send_json_success( [ 'html' => $html, 'count' => count( $children ) ] );
 	}
 }
