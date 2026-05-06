@@ -1,5 +1,13 @@
 == Changelog ==
 
+= 2.11.2 (06 May 2026) =
+New: Added "Topic Grid" layout option for the Doc widget.
+Improved: Doc and Single Doc layout skins refreshed for a more polished appearance.
+Improved: Elementor Search widget redesigned with advanced filtering capabilities.
+Improved: Elementor Search widget enhanced for better usability and performance.
+Fixed: Doc Builder design and collapse functionality issue resolved.
+Fixed: Missing Elementor Editor CSS files causing 404 errors in the admin area.
+
 = 2.11.1 (20 April 2026) =
 Added: "Publish" and "Save as Draft" buttons when creating new documents in the builder.
 Improved: System notifications and internal update alerts.

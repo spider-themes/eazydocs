@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 6.9.4
 Requires PHP: 7.4
-Stable tag: 2.11.1
+Stable tag: 2.11.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -341,6 +341,14 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 10. Password Protected Doc – Secure sensitive documents with password protection and controlled access.
 
 == Changelog ==
+
+= 2.11.2 (06 May 2026) =
+* New: Added "Topic Grid" layout option for the Doc widget.
+* Improved: Doc and Single Doc layout skins refreshed for a more polished appearance.
+* Improved: Elementor Search  widget redesigned with advanced filtering capabilities.
+* Improved: Elementor Search widget enhanced for better usability and performance.
+* Fixed: Doc Builder design and collapse functionality issue resolved.
+* Fixed: Missing Elementor Editor CSS files causing 404 errors in the admin area.
 
 = 2.11.1 (20 April 2026) =
 * Added: "Publish" and "Save as Draft" buttons when creating new documents in the builder.
