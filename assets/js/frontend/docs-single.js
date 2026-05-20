@@ -154,7 +154,7 @@
 			const $headings = $(ezdHeadingSelector);
 			$headings.each(function () {
 				const text = $(this).text();
-				const clean = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
+				const clean = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s\-_\/]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
 				if (clean) {
 					$(this).attr('id', clean);
 				}
@@ -166,12 +166,15 @@
 		window.ezd_heading_anchors = ezdSetupHeadingAnchors;
 		ezdSetupHeadingAnchors();
 
-		// Anchor JS scroll
+		// Anchor JS scroll — use getElementById so IDs with / or _ don't break jQuery CSS selectors
 		var urlHash = window.location.href.split('#')[1];
-		if (urlHash && $('#' + urlHash).length) {
-			$('html,body').animate({
-				scrollTop: $('#' + urlHash).offset().top
-			}, 30);
+		if (urlHash) {
+			var hashTarget = document.getElementById(decodeURIComponent(urlHash));
+			if (hashTarget) {
+				$('html,body').animate({
+					scrollTop: $(hashTarget).offset().top
+				}, 30);
+			}
 		}
 
 		/**
