@@ -449,9 +449,75 @@ function ezd_generate_embed_code_box() {
 	$code .= '   </div>' . "\n";
 	$code .= '</div>';
 
+    // The Site / Product Label + guidance only makes sense when EazyDocs is
+    // merged with the Antimanual chatbot, because Antimanual is what honors
+    // the ?ctx= query parameter end-to-end (reads it on the iframe page,
+    // forwards it to the LLM as scope, and locks it onto the conversation).
+    // Plain EazyDocs assistant ignores the param, so showing the field there
+    // would mislead the admin into thinking it does something.
+    $merge_active = function_exists( 'atml_option' )
+        ? (bool) atml_option( 'chatbot_merge_ezd' )
+        : false;
+
+    $guidelines  = '';
+    $label_field = '';
+    $script      = '';
+
+    if ( $merge_active ) {
+        $guidelines  = "<div class='ezd-embed-guidelines' style='background:#eef2ff;border:1px solid #c7d2fe;border-left:3px solid #6366f1;border-radius:6px;padding:12px 14px;margin-bottom:14px;font-size:13px;line-height:1.55;color:#1e293b;'>";
+        $guidelines .= "<strong style='display:block;margin-bottom:6px;color:#3730a3;'>" . esc_html__( 'How to embed the assistant on another site', 'eazydocs' ) . "</strong>";
+        $guidelines .= "<ol style='margin:0;padding-left:18px;'>";
+        $guidelines .= "<li>" . esc_html__( '(Optional) Enter a Site / Product Label below — the name of the site or product where you are pasting this embed. This tells the assistant which product the visitor is asking about so it does not confuse multiple products in one knowledge base.', 'eazydocs' ) . "</li>";
+        $guidelines .= "<li>" . esc_html__( 'Copy the generated Embed Code from the box below.', 'eazydocs' ) . "</li>";
+        $guidelines .= "<li>" . esc_html__( 'Paste it into the HTML of the target site — anywhere inside the <body>. The assistant loads as a floating widget.', 'eazydocs' ) . "</li>";
+        $guidelines .= "</ol>";
+        $guidelines .= "<div style='margin-top:8px;color:#475569;font-size:12px;'><strong>" . esc_html__( 'When to fill the label:', 'eazydocs' ) . "</strong> " . esc_html__( 'only when one knowledge base serves multiple products or brands. If you have one product on one site, leave it empty.', 'eazydocs' ) . "</div>";
+        $guidelines .= "<div style='margin-top:4px;color:#475569;font-size:12px;'><strong>" . esc_html__( 'Example:', 'eazydocs' ) . "</strong> " . esc_html__( 'on eazydocs.com use label "Eazydocs"; on antimanual.com use "Antimanual". Both iframes load the same KB but answer in their own product context.', 'eazydocs' ) . "</div>";
+        $guidelines .= "</div>";
+
+        $label_field  = "<div class='ezd-embed-label-field' style='margin-bottom:12px;'>";
+        $label_field .= "<label for='ezd-embed-context-input' style='display:block;font-weight:600;font-size:13px;margin-bottom:4px;color:#1e293b;'>" . esc_html__( 'Site / Product Label (optional)', 'eazydocs' ) . "</label>";
+        $label_field .= "<input type='text' id='ezd-embed-context-input' maxlength='200' placeholder='" . esc_attr__( 'e.g., Eazydocs, Acme CRM, Plan Pro', 'eazydocs' ) . "' style='width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:4px;font-size:13px;' />";
+        $label_field .= "<div style='font-size:12px;color:#64748b;margin-top:4px;'>" . esc_html__( 'Max 200 characters. The label is passed as scope only — it never appears in the user message.', 'eazydocs' ) . "</div>";
+        $label_field .= "</div>";
+
+        // Inline script: when the label input changes, rewrite the iframe src
+        // in the snippet to append/replace ?ctx=<encoded label>. Pure
+        // client-side, no server round-trip — the embed snippet is just
+        // text the admin copies.
+        $script = "
+        <script>
+        (function(){
+            var input = document.getElementById('ezd-embed-context-input');
+            var ta = document.querySelector('.assistant-embed-code-box textarea');
+            if (!input || !ta) return;
+            var original = ta.value;
+            function rebuild() {
+                var v = (input.value || '').trim().slice(0, 200);
+                var src = original;
+                if (v) {
+                    var enc = encodeURIComponent(v);
+                    src = original.replace(/iframe-assistant\\/(\\?[^\"\\s]*)?/, function(_match, qs) {
+                        if (!qs) return 'iframe-assistant/?ctx=' + enc;
+                        if (/[?&]ctx=/.test(qs)) {
+                            return 'iframe-assistant/' + qs.replace(/([?&])ctx=[^&\"]*/, '$1ctx=' + enc);
+                        }
+                        return 'iframe-assistant/' + qs + '&ctx=' + enc;
+                    });
+                }
+                ta.value = src;
+            }
+            input.addEventListener('input', rebuild);
+        })();
+        </script>";
+    }
+
     return "
+    {$guidelines}
+    {$label_field}
     <div class='assistant-embed-code-box' style='position:relative;margin-bottom:15px;'>
         <textarea readonly >{$code}</textarea>
         <button class='button admin-copy-embed-code' >Copy</button>
-    </div>";
+    </div>
+    {$script}";
 }
