@@ -5,7 +5,7 @@
  * A reusable SDK for integrating remote HTML notices from the NoticePilot API.
  * Bundle this file with your plugin to enable remote admin notices.
  *
- * @package Remote_Notice_Client
+ * @package Noticepilot_Remote_Notice_Client
  * @version 1.1.1
  */
 
@@ -13,12 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Remote_Notice_Client' ) ) {
+if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
 
 	/**
 	 * Remote Notice Client Class
 	 */
-	class Remote_Notice_Client {
+	class Noticepilot_Remote_Notice_Client {
+
+		/**
+		 * SDK version.
+		 */
+		const SDK_VERSION = '1.1.1';
 
 		/**
 		 * Registered instances
@@ -88,7 +93,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		 *
 		 * @param string $product Product identifier.
 		 * @param array  $config  Configuration options.
-		 * @return Remote_Notice_Client|false Instance or false if disabled.
+		 * @return Noticepilot_Remote_Notice_Client|false Instance or false if disabled.
 		 */
 		public static function init( $product, $config = array() ) {
 			$product = sanitize_key( $product );
@@ -151,22 +156,74 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		 * Setup WordPress hooks
 		 */
 		private function setup_hooks() {
-			// Cron.
-			add_action( 'admin_init', array( $this, 'init_cron' ) );
-			add_action( 'rnc_fetch_content_' . $this->product, array( $this, 'fetch_content' ) );
+			// Cron. If admin_init has already fired (or is currently firing — e.g. the
+			// integrating plugin called init() from within its own admin_init callback),
+			// schedule immediately; otherwise hook normally. Without this, registering a
+			// callback on admin_init while admin_init is mid-fire silently drops the
+			// callback and the cron event is never scheduled.
+			if ( did_action( 'admin_init' ) || doing_action( 'admin_init' ) ) {
+				$this->init_cron();
+			} else {
+				add_action( 'admin_init', array( $this, 'init_cron' ) );
+			}
+			add_action( 'noticepilot_rnc_fetch_content_' . $this->product, array( $this, 'fetch_content' ) );
+
+			// Enqueue inline CSS/JS via WordPress APIs.
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_notice_assets' ) );
 
 			// Display notices.
 			add_action( 'admin_notices', array( $this, 'display_notices' ) );
 
 			// AJAX handlers.
-			add_action( 'wp_ajax_rnc_dismiss_content_' . $this->product, array( $this, 'ajax_dismiss_content' ) );
+			add_action( 'wp_ajax_noticepilot_rnc_dismiss_content_' . $this->product, array( $this, 'ajax_dismiss_content' ) );
+		}
+
+		/**
+		 * Enqueue inline CSS for notice styling via WordPress APIs
+		 *
+		 * Registers a virtual style handle and attaches the notice CSS
+		 * so it prints in the document head before notices render.
+		 * Also registers the script handle used for per-notice JS.
+		 */
+		public function enqueue_notice_assets() {
+			if ( ! current_user_can( $this->capability ) ) {
+				return;
+			}
+
+			$contents = $this->get_non_dismissed_contents();
+
+			if ( empty( $contents ) ) {
+				return;
+			}
+
+			$handle = 'noticepilot-rnc-notice-' . $this->product;
+
+			// Register and enqueue inline CSS.
+			wp_register_style( $handle, false );
+			wp_enqueue_style( $handle );
+			wp_add_inline_style( $handle, $this->get_notice_css() );
+
+			// Register script handle for per-notice inline JS (added in display_notices).
+			wp_register_script( $handle, false, array(), self::SDK_VERSION, true );
+		}
+
+		/**
+		 * Get the CSS string for notice wrapper styling
+		 *
+		 * @return string CSS rules.
+		 */
+		private function get_notice_css() {
+			return '.rnc-notice-wrapper{margin:20px 20px 20px 0!important;padding:0!important;background:transparent!important;border:0!important;position:relative;box-shadow:none}'
+				. '.rnc-notice-wrapper .notice-dismiss{position:absolute!important;top:0!important;right:1px!important;border:none!important;margin:0!important;padding:9px!important;background:none!important;color:#787c82!important;cursor:pointer!important}'
+				. '.rnc-notice-wrapper .notice-dismiss:hover{color:#c92c2c!important}'
+				. '.rnc-notice-wrapper img{max-width:100%!important}';
 		}
 
 		/**
 		 * Initialize cron schedule
 		 */
 		public function init_cron() {
-			$hook = 'rnc_fetch_content_' . $this->product;
+			$hook = 'noticepilot_rnc_fetch_content_' . $this->product;
 
 			if ( ! wp_next_scheduled( $hook ) ) {
 				wp_schedule_event( time(), $this->schedule, $hook );
@@ -313,6 +370,9 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 
 		/**
 		 * Display admin notices
+		 *
+		 * CSS is already enqueued via enqueue_notice_assets().
+		 * Per-notice JS is added via wp_add_inline_script() for footer output.
 		 */
 		public function display_notices() {
 			if ( ! current_user_can( $this->capability ) ) {
@@ -324,136 +384,68 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 			if ( empty( $contents ) ) {
 				return;
 			}
-			?>
-			<style>
-				.rnc-notice-wrapper {
-					margin: 20px 20px 20px 0 !important;
-					padding: 0 !important;
-					background: transparent !important;
-					border: 0 !important;
-					position: relative;
-					box-shadow: none;
-				}
-				.rnc-notice-wrapper .notice-dismiss {
-					position: absolute !important;
-					top: 0 !important;
-					right: 1px !important;
-					border: none !important;
-					margin: 0 !important;
-					padding: 9px !important;
-					background: none !important;
-					color: #787c82 !important;
-					cursor: pointer !important;
-				}
-				.rnc-notice-wrapper .notice-dismiss:hover {
-					color: #c92c2c !important;
-				}
-				.rnc-notice-wrapper img {
-					max-width: 100% !important;
-				}
-			</style>
-			<?php
+
+			$script_handle = 'noticepilot-rnc-notice-' . $this->product;
 
 			foreach ( $contents as $content ) {
 				if ( ! isset( $content['id'] ) || ! isset( $content['content'] ) ) {
 					continue;
 				}
 
-				// Evaluate targeting rules before display
+				// Evaluate targeting rules before display.
 				if ( ! $this->should_display_content( $content ) ) {
 					continue;
 				}
 
 				$content_id   = sanitize_key( $content['id'] );
-				$html_content = $content['content']; // Admin-authored, stored raw — no filtering needed.
-				$nonce        = wp_create_nonce( 'rnc_dismiss_' . $this->product . '_' . $content_id );
-				$ajax_action  = 'rnc_dismiss_content_' . $this->product;
+				$html_content = wp_kses( $content['content'], $this->allowed_html );
+				$nonce        = wp_create_nonce( 'noticepilot_rnc_dismiss_' . $this->product . '_' . $content_id );
+				$ajax_action  = 'noticepilot_rnc_dismiss_content_' . $this->product;
 
 				?>
-				<div id="rnc-notice-<?php echo esc_attr( $this->product . '-' . $content_id ); ?>" 
+				<div id="rnc-notice-<?php echo esc_attr( $this->product . '-' . $content_id ); ?>"
 				     class="notice notice-info rnc-notice-wrapper"
 				     data-product="<?php echo esc_attr( $this->product ); ?>"
 				     data-content-id="<?php echo esc_attr( $content_id ); ?>"
 				     data-nonce="<?php echo esc_attr( $nonce ); ?>"
 				     data-action="<?php echo esc_attr( $ajax_action ); ?>">
 					<div class="rnc-notice-content">
-						<?php
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Admin-authored campaign content, stored raw by design.
-					echo $html_content;
-					?>
+						<?php echo $html_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already filtered through wp_kses() above. ?>
 					</div>
 					<button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
 				</div>
-
-
-
-				<script>
-					(function() {
-						var notice = document.getElementById('rnc-notice-<?php echo esc_js( $this->product . '-' . $content_id ); ?>');
-						if (!notice) return;
-
-						/* ---------- Analytics beacon helper ---------- */
-						var apiUrl = '<?php echo esc_js( $this->api_url ); ?>';
-						var trackUrl = apiUrl.replace(/\/content\/[^\/]+$/, '/analytics/track');
-						var endpoint = '<?php echo esc_js( $this->product ); ?>';
-						var cid = '<?php echo esc_js( $content_id ); ?>';
-
-						function sendBeacon(eventType) {
-							if (typeof navigator.sendBeacon === 'function') {
-								var payload = JSON.stringify({
-									endpoint: endpoint,
-									campaign_id: cid,
-									event_type: eventType,
-									site_url: window.location.origin
-								});
-								navigator.sendBeacon(trackUrl, new Blob([payload], {type: 'application/json'}));
-							}
-						}
-
-						/* ---------- Impression (fire once on render) ---------- */
-						sendBeacon('impression');
-
-						/* ---------- Click tracking ---------- */
-						var contentEl = notice.querySelector('.rnc-notice-content');
-						if (contentEl) {
-							contentEl.addEventListener('click', function(e) {
-								var link = e.target.closest('a');
-								if (link) {
-									sendBeacon('click');
-								}
-							});
-						}
-
-						/* ---------- Dismiss handler (existing + dismissal beacon) ---------- */
-						var closeBtn = notice.querySelector('.notice-dismiss');
-						if (closeBtn) {
-							closeBtn.addEventListener('click', function(e) {
-								e.preventDefault();
-								
-								/* Fire dismissal beacon */
-								sendBeacon('dismissal');
-
-								var action = notice.getAttribute('data-action');
-								var contentId = notice.getAttribute('data-content-id');
-								var nonce = notice.getAttribute('data-nonce');
-								
-								var xhr = new XMLHttpRequest();
-								xhr.open('POST', '<?php echo esc_js( admin_url( 'admin-ajax.php' ) ); ?>', true);
-								xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-								xhr.onload = function() {
-									if (xhr.status === 200) {
-										notice.style.display = 'none';
-									}
-								};
-								var data = 'action=' + encodeURIComponent(action) +
-								           '&content_id=' + encodeURIComponent(contentId) +
-								           '&nonce=' + encodeURIComponent(nonce);
-								xhr.send(data);
-							});
-						}
-					})();
-				</script>
 				<?php
+
+				// Per-notice JS: analytics beacons + dismiss handler (printed in footer).
+				$notice_js = '(function(){'
+					. 'var notice=document.getElementById("rnc-notice-' . esc_js( $this->product . '-' . $content_id ) . '");'
+					. 'if(!notice)return;'
+					. 'var apiUrl="' . esc_js( $this->api_url ) . '";'
+					. 'var trackUrl=apiUrl.replace(/\/content\/[^\/]+$/,"/analytics/track");'
+					. 'var endpoint="' . esc_js( $this->product ) . '";'
+					. 'var cid="' . esc_js( $content_id ) . '";'
+					. 'function sendBeacon(t){if(typeof navigator.sendBeacon==="function"){'
+					. 'var p=JSON.stringify({endpoint:endpoint,campaign_id:cid,event_type:t,site_url:window.location.origin});'
+					. 'navigator.sendBeacon(trackUrl,new Blob([p],{type:"application/json"}));}}'
+					. 'sendBeacon("impression");'
+					. 'var ce=notice.querySelector(".rnc-notice-content");'
+					. 'if(ce){ce.addEventListener("click",function(e){var a=e.target.closest("a");if(a){sendBeacon("click");}});}'
+					. 'var cb=notice.querySelector(".notice-dismiss");'
+					. 'if(cb){cb.addEventListener("click",function(e){'
+					. 'e.preventDefault();sendBeacon("dismissal");'
+					. 'var act=notice.getAttribute("data-action");'
+					. 'var cid2=notice.getAttribute("data-content-id");'
+					. 'var nc=notice.getAttribute("data-nonce");'
+					. 'var x=new XMLHttpRequest();'
+					. 'x.open("POST","' . esc_js( admin_url( 'admin-ajax.php' ) ) . '",true);'
+					. 'x.setRequestHeader("Content-Type","application/x-www-form-urlencoded");'
+					. 'x.onload=function(){if(x.status===200){notice.style.display="none";}};'
+					. 'x.send("action="+encodeURIComponent(act)+"&content_id="+encodeURIComponent(cid2)+"&nonce="+encodeURIComponent(nc));'
+					. '});}'
+					. '})();';
+
+				wp_enqueue_script( $script_handle );
+				wp_add_inline_script( $script_handle, $notice_js );
 			}
 		}
 
@@ -464,7 +456,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 			$content_id = isset( $_POST['content_id'] ) ? sanitize_text_field( wp_unslash( $_POST['content_id'] ) ) : '';
 			$nonce      = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
-			if ( ! wp_verify_nonce( $nonce, 'rnc_dismiss_' . $this->product . '_' . $content_id ) ) {
+			if ( ! wp_verify_nonce( $nonce, 'noticepilot_rnc_dismiss_' . $this->product . '_' . $content_id ) ) {
 				wp_send_json_error( array( 'message' => 'Invalid nonce' ) );
 			}
 
@@ -488,7 +480,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		 * @return string
 		 */
 		private function get_option_key( $key ) {
-			return 'rnc_' . $this->product . '_' . $key;
+			return 'noticepilot_rnc_' . $this->product . '_' . $key;
 		}
 
 		/**
@@ -615,10 +607,10 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 			$product = sanitize_key( $product );
 			
 			// Mark as disabled
-			update_option( 'rnc_' . $product . '_disabled', true, false );
-			
+			update_option( 'noticepilot_rnc_' . $product . '_disabled', true, false );
+
 			// Unschedule cron
-			$hook      = 'rnc_fetch_content_' . $product;
+			$hook      = 'noticepilot_rnc_fetch_content_' . $product;
 			$timestamp = wp_next_scheduled( $hook );
 			if ( $timestamp ) {
 				wp_unschedule_event( $timestamp, $hook );
@@ -642,7 +634,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		 */
 		public static function enable( $product ) {
 			$product = sanitize_key( $product );
-			delete_option( 'rnc_' . $product . '_disabled' );
+			delete_option( 'noticepilot_rnc_' . $product . '_disabled' );
 		}
 
 		/**
@@ -653,7 +645,7 @@ if ( ! class_exists( 'Remote_Notice_Client' ) ) {
 		 */
 		public static function is_disabled( $product ) {
 			$product = sanitize_key( $product );
-			return (bool) get_option( 'rnc_' . $product . '_disabled', false );
+			return (bool) get_option( 'noticepilot_rnc_' . $product . '_disabled', false );
 		}
 	}
 }
