@@ -52,6 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						    $child_authors = [];
 						    if ( ! empty( $child_ids ) ) {
+							    update_postmeta_cache( $child_ids );
 							    foreach ( $child_ids as $child_id ) {
 								    $child_authors[] = get_post_meta( $child_id, 'ezd_doc_contributors', true );
 							    }
