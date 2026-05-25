@@ -1877,7 +1877,7 @@ function ezd_update_footnotes_content($content) {
                 esc_attr($original_title),
                 $i_attributes,
                 esc_html($i_content),
-                esc_html($footnote_content)
+                wp_kses_post($footnote_content)
             );
         }, $content);
     }
