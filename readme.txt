@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs
 Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
-Tested up to: 6.9.4
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.11.2
+Stable tag: 2.11.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -341,6 +341,10 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 10. Password Protected Doc – Secure sensitive documents with password protection and controlled access.
 
 == Changelog ==
+
+= 2.11.3 (25 May 2026) =
+* Improved: Enable product name pass in embedding Chatbot
+* Fixed: Anchor ID generation in EazyDocs heading blocks
 
 = 2.11.2 (06 May 2026) =
 * New: Added "Topic Grid" layout option for the Doc widget.

@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 2.11.3 (25 May 2026) =
+Improved: Enable product name pass in embedding Chatbot.
+Fixed: Anchor ID generation in EazyDocs heading blocks.
+
 = 2.11.2 (06 May 2026) =
 New: Added "Topic Grid" layout option for the Doc widget.
 Improved: Doc and Single Doc layout skins refreshed for a more polished appearance.
