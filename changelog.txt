@@ -1,4 +1,4 @@
-== Changelog ==
+
 
 = 2.11.3 (25 May 2026) =
 Improved: Enable product name pass in embedding Chatbot.
@@ -42,7 +42,7 @@ Optimized: Implemented transient caching for EazyDocs search results to reduce d
 Optimized: Added 60-second transient cache for AJAX search results with user-aware cache keys.
 Optimized: Improved docs sidebar existence check for faster rendering.
 Optimized: Search performance improved using ID caching and query limits.
-Refactored: Enforced strict comparisons and better type safety in core functions.
+Improved: Enforced strict comparisons and better type safety in core functions.
 Fixed: Import conflict with WoodMart theme resolved.
 Fixed: Stored XSS vulnerability in OnePage Docs module.
 Fixed: Strengthened nonce security for document creation and deletion actions.
@@ -77,8 +77,8 @@ Fixed: Prevented unauthorized user creation via Google Login when registration i
 Fixed: Accessibility issue with duplicate IDs and missing ARIA labels in child docs list.
 Fixed: Undefined function errors related to update_post_meta_cache.
 Fixed: Dark mode compatibility issue with Docly theme.
-Performance: Optimized AJAX tag search by replacing get_terms with direct database lookup.
-Performance: Optimized doc builder queries for faster load times.
+Optimized: AJAX tag search by replacing get_terms with direct database lookup.
+Optimized: Doc builder queries for faster load times.
 Updated: Added admin-settings.css and limited settings styling to the Settings page only.
 Updated: Twitter logo replaced with the X logo in admin UI.
 
@@ -108,10 +108,10 @@ New: Added featured image support for the EazyDocs shortcode
 Fixed: Prevented empty search submissions in all EazyDocs search forms
 Fixed: Improved Previous/Next docs navigation markup and resolved structural inconsistencies
 Improved: Major dashboard UI and analytics enhancements
-    – Added “View More” analytics link inside dashboard cards
-    – Fixed active-state issue on the Performance tab
-    – Updated search analytics chart with grey fallback when data is missing
-    – Added Top Ranked Docs section for engagement insights
+New: Added “View More” analytics link inside dashboard cards
+Fixed: Fixed active-state issue on the Performance tab
+Updated: Updated search analytics chart with grey fallback when data is missing
+New: Added Top Ranked Docs section for engagement insights
 Improved: WpEazy AI presentation added inside the Doc Builder
 Improved: Enhanced security with added nonce verification and capability checks across AJAX/admin actions
 Improved: Refactored doc creation logic to unify handlers and simplify Create_Post workflow
@@ -153,7 +153,7 @@ Improved: Setup wizard made smoother and more user-friendly with efficient wrapp
 Improved: Admin panel feedback section styling refined with better CSS alignment and layout adjustments for a cleaner interface.
 Improved: Grammar in notices corrected and SCSS styling improved for consistency and visual appeal
 Improved: Doc Sections design improved in the Single doc page
-Reorganized: Repetitive code replaced with reusable helper functions (ezd_get_doc_items, ezd_render_doc_items_list, etc.) to improve maintainability
+Improved: Repetitive code replaced with reusable helper functions (ezd_get_doc_items, ezd_render_doc_items_list, etc.) to improve maintainability
 Updated: ezd_arrow() function now returns the icon class instead of echoing it, ensuring correct icon rendering in Elementor widgets
 Updated: CSS optimized to make UI elements cleaner and ensure faster loading performance
 Updated: Language files updated
@@ -436,7 +436,7 @@ Tweaked: Hover state improved on the current Doc item on the Left sidebar on the
 Fixed: Keywords were missing in the Search Banner block (unlocked in Docy, Docly themes and EazyDocs Premium plans)
 
 = 2.3.2 (03 November 2023) =
-Note: The EazyDocs Search Form widget re-structured and improved. If you are using the EazyDocs Search Form widget on your site, you may need to re-configure the widget settings.
+Tweak: The EazyDocs Search Form widget re-structured and improved. If you are using the EazyDocs Search Form widget on your site, you may need to re-configure the widget settings.
 New: Submit button position, border radius and Form Width fields are added in the EazyDocs Search Elementor widget
 Fixed: Console error on block editor if the 'EazyDocs Search Banner' block is used on the page
 Tweaked: EazyDocs Search Elementor widget's markup, design and design improved
@@ -563,7 +563,7 @@ Tweaked: Docs filter by words/characters restore to default data after clearing 
 Tweaked: Docs builder UI design improved
 
 = 2.0.0 (05 December 2022) =
-Note/Blog: This is a major release. Please read the release notes carefully before updating https://tinyurl.com/2zx3askn
+Tweak: This is a major release. Please read the release notes carefully before updating https://tinyurl.com/2zx3askn
 New: Opt-In v.2.0
 New: Drag-n-drop ordering and nesting of docs in the Docs builder UI in the WordPress Admin dashboard
 New: Docs, Single Doc and Doc Search Form Elementor widgets added
@@ -731,24 +731,24 @@ Tweaked: Columns (left sidebar, middle content and right sidebar) adjustment imp
 Tweaked: Doc single page elements (left sidebar navigation, background color, position, height) design improved
 
 = 1.1.1 (09 May 2022) =
-* New: Customizer Options added to customize the Docs Archive & Single page
-* New: Pro Features and Options added (locked)
-* Tweaked: Contact Form modal design improved
+New: Customizer Options added to customize the Docs Archive & Single page
+New: Pro Features and Options added (locked)
+Tweaked: Contact Form modal design improved
 
 
 = 1.1.0 (02 May 2022) =
-* New: Search Banner
-* New: Brand Color changing option added to Settings page.
-* Dropped: Add New Doc via Ajax feature dropped due to this feature was not working for some users
-* Fixed: Doc archive page was rendering doc lists incorrectly
-* Fixed: JS error on single doc
-* Tweaked: Responsive view improved
-* Tweaked: Add prefix to HTML classes, IDs to avoid conflict with other plugins and themes
-* Tweaked: Some UI & UX improved on doc frontend
-* Tweaked: Admin UI & UX improved
-* Tweaked: Left sidebar toggle position
-* Tweaked: Was this doc helpful? Voting design and ajax loading icon improved
-* Tweaked: Code and file structure re-organized
+New: Search Banner
+New: Brand Color changing option added to Settings page.
+Removed: Add New Doc via Ajax feature dropped due to this feature was not working for some users
+Fixed: Doc archive page was rendering doc lists incorrectly
+Fixed: JS error on single doc
+Tweaked: Responsive view improved
+Tweaked: Add prefix to HTML classes, IDs to avoid conflict with other plugins and themes
+Tweaked: Some UI & UX improved on doc frontend
+Tweaked: Admin UI & UX improved
+Tweaked: Left sidebar toggle position
+Tweaked: Was this doc helpful? Voting design and ajax loading icon improved
+Tweaked: Code and file structure re-organized
 
 = 1.0.0 (09 April 2022) =
- * Init: Initial release
+New: Initial release
