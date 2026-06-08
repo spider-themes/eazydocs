@@ -31,7 +31,7 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
                     </div>
                     <div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
                     <?php
-                    if ( ezd_is_premium() ) {
+                    if ( ( ezd_is_premium() || ezd_is_promax() || eaz_fs()->is_paying_or_trial() ) && ezd_get_opt('is_keywords') == '1' ) {
                         eazydocs_get_template_part('keywords');
                     }
                     ?>

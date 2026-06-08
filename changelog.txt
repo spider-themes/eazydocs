@@ -1,4 +1,8 @@
 
+= Upcoming =
+Fixed: Search Keywords show/hide switcher visibility control.
+Fixed: HTML link footnotes.
+Fixed: Search banner CSS styling.
 
 = 2.11.3 (25 May 2026) =
 Improved: Enable product name pass in embedding Chatbot.
