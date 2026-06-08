@@ -26,18 +26,18 @@
 /* Search Banner area
 ============================================================================================ */
 .ezd_search_banner {
-	background-color: #fafafa;
-	padding-top: 140px;
-	padding-bottom: 70px;
-	background-position: bottom;
-	background-repeat: no-repeat;
+	background: #fafafa no-repeat bottom;
 	background-size: contain;
-	margin: 0 !important;
-	width: 100% !important;
-	max-width: 100% !important;
+	padding: 180px 0 80px;
+	width: 100%;
 
 	&.no_keywords #ezd-search-results {
 		top: calc(100% + 10px);
+	}
+
+	&.no_keywords .ezd_search_keywords,
+	&.no_keywords .header_search_keyword {
+		display: none;
 	}
 
 	&.has_bg_dark {
@@ -102,10 +102,10 @@ form.ezd_search_form {
 				font-weight: 400;
 				height: 50px;
 				line-height: 64px;
-				box-shadow: 0 1px 1px rgb(11 80 115 / .3),0 1px 5px rgb(60 64 67 / .1);
+				box-shadow: 0 1px 1px rgb(11 80 115 / .3), 0 1px 5px rgb(60 64 67 / .1);
 				padding-right: 32px;
 				margin-bottom: 0;
-				
+
 
 				&::-webkit-search-cancel-button {
 					padding-right: 0px;
@@ -117,11 +117,11 @@ form.ezd_search_form {
 
 				&:focus,
 				&:hover {
-					box-shadow: 0 1px 1px rgb(11 80 115 / .3),0 1px 5px rgb(60 64 67 / .1);
+					box-shadow: 0 1px 1px rgb(11 80 115 / .3), 0 1px 5px rgb(60 64 67 / .1);
 				}
 
 				&:focus {
-					background: var(--bs-white)!important;
+					background: var(--bs-white) !important;
 					color: var(--black_900);
 					outline: none;
 
@@ -129,7 +129,7 @@ form.ezd_search_form {
 						color: var(--black_500);
 					}
 
-					+ label i {
+					+label i {
 						color: var(--black_900);
 					}
 				}
@@ -184,7 +184,7 @@ form.ezd_search_form {
 		padding-right: 36px !important;
 	}
 
-	#ezd_searchInput ~ .spinner {
+	#ezd_searchInput~.spinner {
 		right: 88px;
 	}
 }
@@ -399,29 +399,29 @@ form.ezd_search_form {
 	z-index: 99;
 	top: calc(100% - 43px);
 	max-height: 100vh;
-    overflow-y: auto;
+	overflow-y: auto;
 
 	// Custom scrollbar styling
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-    
-    &::-webkit-scrollbar-track {
-        background: transparent;
-        border-radius: 10px;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-    }
-    
-    &::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 0, 0, 0.3);
-    }
-	
+	&::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: transparent;
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: rgba(0, 0, 0, 0.3);
+	}
+
 	scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+	scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 
 	a {
 		text-decoration: none;
@@ -556,7 +556,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	margin: 0;
 }
 
-#ezd_searchInput ~ .spinner {
+#ezd_searchInput~.spinner {
 	position: absolute;
 	right: 22px;
 	display: none;
@@ -608,7 +608,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 }
 
 .has_drop #ezd_searchInput {
-	+ .spinner {
+	+.spinner {
 		right: 130px;
 	}
 
@@ -641,7 +641,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		}
 
 		input {
-			background: var(--bs-white)!important;
+			background: var(--bs-white) !important;
 			border: 0;
 			height: 64px;
 			font-size: 16px;
@@ -706,12 +706,12 @@ body.ezd-search-focused {
 			padding: 0;
 			z-index: 2;
 
-			> i {
+			>i {
 				font-size: 20px;
 				color: #5f6fff;
 			}
 
-			> svg {
+			>svg {
 				width: auto;
 				max-width: 22px;
 				height: auto;
@@ -732,6 +732,7 @@ body.ezd-search-focused {
 			padding-right: 0 !important;
 			border-radius: 999px;
 		}
+
 		.search_submit_btn {
 			left: auto;
 			right: 0;
@@ -745,6 +746,7 @@ body.ezd-search-focused {
 			padding-left: 64px !important;
 			border-radius: 50px;
 		}
+
 		.search_submit_btn {
 			left: 0;
 			right: auto;
@@ -780,7 +782,7 @@ body.ezd-search-focused {
 	}
 }
 
-.breadcrumb .breadcrumb-item + .breadcrumb-item:before {
+.breadcrumb .breadcrumb-item+.breadcrumb-item:before {
 	content: "5";
 	font-family: eleganticons;
 	color: #b7b9be;
@@ -798,7 +800,7 @@ body.ezd-search-focused {
 	row-gap: 10px;
 	margin-top: 14px;
 
-	&.justify-content-end{
+	&.justify-content-end {
 		justify-content: flex-end;
 	}
 
@@ -933,7 +935,7 @@ body.ezd-search-focused {
 		background: #fff;
 		z-index: 999;
 
-		> img {
+		>img {
 			max-width: 22px;
 		}
 	}

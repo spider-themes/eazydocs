@@ -8,7 +8,7 @@
 
 // Import shared variables and common styles
 @use "common";
-@import "../../assets/scss/frontend/variables.scss";
+@use "../../assets/scss/frontend/variables" as *;
 
 // ============================================
 // CSS VARIABLES - Scoped to the block editor

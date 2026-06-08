@@ -7,7 +7,7 @@
  */
 
 @use "common";
-@import "../../assets/scss/frontend/variables.scss";
+@use "../../assets/scss/frontend/variables" as *;
 
 // Main Container - CSS Variables are scoped here for proper cascade
 // Inline styles on the element can override these defaults
