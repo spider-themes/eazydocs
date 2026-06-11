@@ -446,65 +446,16 @@ p.big-p {
   }
 }
 
-.migration-alert-info {
-  p {
-    margin: 0;
-  }
-
-  label {
-    display: block;
-    text-align: left;
-    margin-top: 30px;
-
-    strong {
-      text-transform: uppercase;
-    }
-  }
-
-  .migration-alert-text {
-    border: 1px solid #c7c7c7;
-    border-radius: 10px;
-    text-align: left;
-    margin: 20px 0 0;
-    background: #fff8e1;
-    border-left: 5px solid #ffc107;
-    padding: 15px;
-    color: #760000;
-    font-size: 15px;
-    box-sizing: border-box;
-  }
-
-  .migration-field-wrap {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    margin: 10px 0 0;
-
-    fieldset {
-      border: 1px solid gray;
-      padding: 4px 15px;
-      font-size: 16px;
-      line-height: 28px;
-      border-radius: 4px;
-      font-weight: 500;
-      background: #fdfdfd;
-    }
-
-    select#ezd_migration_options {
-      padding: 3px 30px 5px 15px;
-      font-size: 16px;
-      line-height: 28px;
-      border-radius: 4px;
-      width: 60%;
-
-      &:focus {
-        outline: none;
-        box-shadow: none;
-
-      }
-    }
-  }
-
+// "Export a backup first" hint inside the migration confirm dialog.
+.ezd-migration-alert {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 14px;
+  background: #fff8e1;
+  border-left: 4px solid #ffc107;
+  border-radius: 6px;
+  color: #5c4b00;
 }
 
 .ezd-collaboration-data {

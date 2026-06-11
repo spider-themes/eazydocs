@@ -34,7 +34,7 @@ add_action( 'admin_notices', function () {
                     <?php 
 					if ( $plugin_data['migrate'] ) : 
 						?>
-                        <a href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-migration' ) ); ?>" class="button-primary button-large">
+                        <a href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-import-export&tab=migrate' ) ); ?>" class="button-primary button-large">
                             <?php esc_html_e( 'Migrate to EazyDocs', 'eazydocs' ); ?>
                         </a>
                     	<?php 

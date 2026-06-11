@@ -1,0 +1,52 @@
+<wpml-config>
+    <!--
+        EazyDocs translation configuration.
+
+        Read automatically by both WPML and Polylang. It marks the documentation
+        post types, taxonomies and meta fields as translatable so docs can be
+        maintained in multiple languages (e.g. English + Turkish) using the
+        established translation plugins, rather than a bespoke system.
+
+        "display-as-translated" lets docs that are not yet translated fall back to
+        the original language so navigation trees never appear empty.
+    -->
+    <custom-types>
+        <custom-type translate="1" display-as-translated="1">docs</custom-type>
+        <custom-type translate="1" display-as-translated="1">onepage-docs</custom-type>
+    </custom-types>
+
+    <taxonomies>
+        <taxonomy translate="1">doc_tag</taxonomy>
+        <taxonomy translate="1">doc_category</taxonomy>
+        <taxonomy translate="1">doc_badge</taxonomy>
+    </taxonomies>
+
+    <custom-fields>
+        <!-- Human-readable text: translate per language. -->
+        <custom-field action="translate">ezd_doc_secondary_title</custom-field>
+        <custom-field action="translate">ezd_doc_left_sidebar</custom-field>
+        <custom-field action="translate">ezd_doc_right_sidebar</custom-field>
+
+        <!-- Structural / layout configuration: copy to every translation. -->
+        <custom-field action="copy">ezd_doc_layout</custom-field>
+        <custom-field action="copy">ezd_doc_order</custom-field>
+        <custom-field action="copy">ezd_doc_parent</custom-field>
+        <custom-field action="copy">ezd_doc_content_type</custom-field>
+        <custom-field action="copy">ezd_doc_content_type_right</custom-field>
+        <custom-field action="copy">ezd_doc_content_box_right</custom-field>
+        <custom-field action="copy">ezd_doc_left_sidebar_type</custom-field>
+        <custom-field action="copy">ezd_doc_right_sidebar_type</custom-field>
+        <custom-field action="copy">ezd_doc_login_form</custom-field>
+        <custom-field action="copy">ezd_doc_login_wrap</custom-field>
+        <custom-field action="copy">ezd_doc_attached_files</custom-field>
+        <custom-field action="copy">ezd_doc_contributors</custom-field>
+        <custom-field action="copy">_elementor_edit_mode</custom-field>
+
+        <!-- Analytics counters belong to each post individually: do not copy. -->
+        <custom-field action="ignore">post_views_count</custom-field>
+        <custom-field action="ignore">positive</custom-field>
+        <custom-field action="ignore">negative</custom-field>
+        <custom-field action="ignore">positive_voter</custom-field>
+        <custom-field action="ignore">negative_voter</custom-field>
+    </custom-fields>
+</wpml-config>

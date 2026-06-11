@@ -1,5 +1,10 @@
 <?php
 get_header();
+
+// Rendering the whole tree (and every Elementor node) in one request is heavy;
+// give it room so large docs don't 500 mid-render / during "print to PDF".
+ezd_raise_onepage_render_limits();
+
 wp_enqueue_script( 'eazydocs-onepage' );
 $widget_sidebar = ezd_get_opt( 'is_widget_sidebar' );
 global $post;
@@ -7,6 +12,8 @@ $post_slug        = $post->post_name;
 $post_id          = get_page_by_path( $post_slug, OBJECT, array( 'docs' ) );
 $walker           = new EazyDocs\Frontend\Walker_Docs();
 $child_of_id      = $post_id->ID ?? '';
+// Build the navigation list once and reuse it below (it was previously generated
+// twice — once only to test for emptiness).
 $children         = wp_list_pages( array(
 	'title_li'  => '',
 	'order'     => 'menu_order',
@@ -14,6 +21,7 @@ $children         = wp_list_pages( array(
 	'echo'      => false,
 	'post_type' => 'docs',
 	'walker'    => new EazyDocs_Walker_Onepage(),
+	'depth'     => 4,
 ) );
 ?>
 
@@ -36,16 +44,8 @@ $children         = wp_list_pages( array(
 						<nav class="scroll op-docs-sidebar">
 							<ul class="ezd-list-unstyled nav-sidebar default-layout-onepage-sidebar doc-nav one-page-doc-nav-wrap" id="eazydocs-toc">
 								<?php
-								$nav_html = wp_list_pages( array(
-									'title_li'  => '',
-									'order'     => 'menu_order',
-									'child_of'  => $child_of_id,
-									'echo'      => false,
-									'post_type' => 'docs',
-									'walker'    => new EazyDocs_Walker_Onepage(),
-									'depth'     => 4
-									) );
-								echo wp_kses( $nav_html, ezd_kses_allowed_docs_nav_html() );
+								// Reuse the list built above instead of querying again.
+								echo wp_kses( $children, ezd_kses_allowed_docs_nav_html() );
 								?>
 							</ul>
 						</nav>
@@ -114,12 +114,7 @@ $children         = wp_list_pages( array(
 							<?php endif; ?>
 							<div class="doc-content">
 								<?php
-								if ( did_action( 'elementor/loaded' ) ) {
-									$parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $doc_item->ID );
-									echo ! empty( $parent_content ) ? wp_kses_post($parent_content) : wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
-								} else {
-									echo wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
-								}
+								echo wp_kses_post( ezd_get_onepage_doc_content( $doc_item ) );
 								?>
 							</div>
 
@@ -161,12 +156,7 @@ $children         = wp_list_pages( array(
 									</div>
 									<div class="doc-content">
 										<?php
-										if ( did_action( 'elementor/loaded' ) ) {
-											$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $child_section->ID );
-											echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $child_section->post_content ))  ;
-										} else {
-											echo wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
-										}
+										echo wp_kses_post( ezd_get_onepage_doc_content( $child_section ) );
 										?>
 									</div>
 								</div>
@@ -193,13 +183,7 @@ $children         = wp_list_pages( array(
 										</div>
 										<div class="doc-content">
 											<?php
-											if ( did_action( 'elementor/loaded' ) ) {
-												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-												echo ! empty( $child_content ) ? wp_kses_post($child_content)
-													: wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
-											} else {
-												echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
-											}
+											echo wp_kses_post( ezd_get_onepage_doc_content( $last_depth_doc ) );
 											?>
 										</div>
 									</div>
@@ -226,13 +210,7 @@ $children         = wp_list_pages( array(
 											</div>
 											<div class="doc-content">
 												<?php
-												if ( did_action( 'elementor/loaded' ) ) {
-													$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-													echo ! empty( $child_content ) ? wp_kses_post($child_content)
-														: wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
-												} else {
-													echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
-												}
+												echo wp_kses_post( ezd_get_onepage_doc_content( $last_depth_doc ) );
 												?>
 											</div>
 										</div>

@@ -10,23 +10,7 @@ if ( $post->post_parent ) {
 	$parent     	= $post->ID;
 }
 
-$walker = new EazyDocs\Frontend\Walker_Docs();
-$children = array(
-    'title_li'    => '',
-    'order'       => 'menu_order',
-    'echo'        => false,
-    'post_type'   => 'docs',
-    'walker'      => $walker,
-    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private', 'draft' ] : ['publish'],
-);
-
-// If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
-$sidebar_source = ezd_is_premium() ? ezd_get_opt('docs_to_view', 'self_docs') : 'self_docs';
-if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
-    $children['child_of'] = $parent;
-}
-
-$children           = wp_list_pages($children);
+$walker             = new EazyDocs\Frontend\Walker_Docs();
 $sidebar_search 	= ezd_get_opt( 'search_visibility', '1' );
 $content_layout 	= ezd_get_opt( 'docs_content_layout', '1' );
 $nav_sidebar_active = '';
@@ -34,6 +18,33 @@ $nav_sidebar_active = '';
 if ( class_exists('EZD_EazyDocsPro') && $content_layout == 'category_base' ){
 	$nav_sidebar_active = 'nav_category_layout';
 }
+
+// If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
+$sidebar_source = ezd_is_premium() ? ezd_get_opt('docs_to_view', 'self_docs') : 'self_docs';
+
+// Build the navigation list once and reuse it for both the empty check and the
+// markup below. Previously wp_list_pages() ran twice per doc page — the first
+// call's output was discarded after a truthiness test.
+if ( $content_layout == 'category_base' && ezd_is_premium() ) {
+    $doc_walker = '';
+} else {
+    $doc_walker = $walker;
+}
+
+$nav_args = [
+    'title_li'    => '',
+    'sort_column' => 'menu_order',
+    'echo'        => false,
+    'post_type'   => 'docs',
+    'walker'      => $doc_walker,
+    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private', 'draft' ] : ['publish', 'private'],
+];
+
+if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
+    $nav_args['child_of'] = $parent;
+}
+
+$nav_html = wp_list_pages( $nav_args );
 
 $credit_enable   	= '1';
 $credit_text_wrap 	= '';
@@ -74,32 +85,9 @@ if ( $credit_enable == '1' ) {
 		?>
 
         <div class="ezd-scroll">
-            <?php
-            if ( $children ) :
-                if ( $content_layout == 'category_base' && ezd_is_premium() ) {
-                    $doc_walker = '';
-                } else {
-                    $doc_walker = $walker;
-                }
-            ?>
+            <?php if ( $nav_html ) : ?>
             <ul class="ezd-list-unstyled nav-sidebar left-sidebar-results ezd-list-unstyled">
-                <?php
-                $args = [
-                    'title_li'    => '',
-                    'sort_column' => 'menu_order',
-                    'echo'        => false,
-                    'post_type'   => 'docs',
-                    'walker'      => $doc_walker,
-                    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private', 'draft' ] : ['publish', 'private'],
-                ];
-
-                // If 'Self Docs' is selected, set 'child_of' to filter by the current doc.
-                if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {
-                    $args['child_of'] = $parent;
-                }
-                $nav_html = wp_list_pages( $args );
-                echo wp_kses( $nav_html, ezd_kses_allowed_docs_nav_html() );
-                ?>
+                <?php echo wp_kses( $nav_html, ezd_kses_allowed_docs_nav_html() ); ?>
             </ul>
             <?php
             endif;

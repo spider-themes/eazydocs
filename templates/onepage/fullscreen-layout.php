@@ -24,6 +24,10 @@ if ( function_exists( 'wp_body_open' ) ) {
 
 wp_enqueue_script( 'eazydocs-onepage' );
 
+// Rendering the whole tree (and every Elementor node) in one request is heavy;
+// give it room so large docs don't 500 mid-render / during "print to PDF".
+ezd_raise_onepage_render_limits();
+
 $widget_sidebar = ezd_get_opt( 'is_widget_sidebar' );
 
 global $post;
@@ -133,12 +137,7 @@ $children = ezd_list_pages_onepage_others( array(
 							<?php endif; ?>
                             <div class="doc-content">
 								<?php
-								if ( did_action( 'elementor/loaded' ) ) {
-									$parent_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $doc_item->ID );
-									echo ! empty( $parent_content ) ? wp_kses_post($parent_content) : wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
-								} else {
-									echo wp_kses_post(apply_filters( 'the_content', $doc_item->post_content ));
-								}
+								echo wp_kses_post( ezd_get_onepage_doc_content( $doc_item ) );
 								?>
                             </div>
 							<?php
@@ -161,12 +160,7 @@ $children = ezd_list_pages_onepage_others( array(
                                     </div>
                                     <div class="doc-content">
 										<?php
-										if ( did_action( 'elementor/loaded' ) ) {
-											$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $child_section->ID );
-											echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
-										} else {
-											echo wp_kses_post(apply_filters( 'the_content', $child_section->post_content ));
-										}
+										echo wp_kses_post( ezd_get_onepage_doc_content( $child_section ) );
 										?>
                                     </div>
                                 </div>
@@ -198,12 +192,7 @@ $children = ezd_list_pages_onepage_others( array(
                                         </div>
                                         <div class="doc-content">
 											<?php
-											if ( did_action( 'elementor/loaded' ) ) {
-												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-												echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
-											} else {
-												echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
-											}
+											echo wp_kses_post( ezd_get_onepage_doc_content( $last_depth_doc ) );
 											?>
                                         </div>
                                     </div>
@@ -236,12 +225,7 @@ $children = ezd_list_pages_onepage_others( array(
                                         </div>
                                         <div class="doc-content">
 											<?php
-											if ( did_action( 'elementor/loaded' ) ) {
-												$child_content = \Elementor\Plugin::instance()->frontend->get_builder_content( $last_depth_doc->ID );
-												echo ! empty( $child_content ) ? wp_kses_post($child_content) : wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
-											} else {
-												echo wp_kses_post(apply_filters( 'the_content', $last_depth_doc->post_content ));
-											}
+											echo wp_kses_post( ezd_get_onepage_doc_content( $last_depth_doc ) );
 											?>
                                         </div>
                                     </div>

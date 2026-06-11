@@ -130,7 +130,10 @@ class Admin {
 
 		add_submenu_page( 'eazydocs', esc_html__( 'Integrated Themes', 'eazydocs' ), esc_html__( 'Integrated Themes', 'eazydocs' ), $settings_capability, 'ezd-integrated-themes', [ $this, 'ezd_integrated_themes' ] );
 		add_submenu_page( 'eazydocs', esc_html__( 'Setup Wizard', 'eazydocs' ), esc_html__( 'Setup Wizard', 'eazydocs' ), $settings_capability, 'eazydocs-initial-setup', [ $this, 'ezd_setup_wizard' ] );
-		add_submenu_page( 'eazydocs', esc_html__( 'Migration', 'eazydocs' ), esc_html__( 'Migration', 'eazydocs' ), $settings_capability, 'eazydocs-migration', [ $this, 'ezd_docs_migration' ] );
+
+		// Migration is now the "Migrate" tab of the Import / Export screen. The old
+		// slug stays routable (hidden) so existing links keep working.
+		add_submenu_page( '', esc_html__( 'Migration', 'eazydocs' ), '', $settings_capability, 'eazydocs-migration', [ $this, 'ezd_docs_migration' ] );
 	}
 
 
@@ -213,7 +216,7 @@ class Admin {
 		if ( $item = $take( [ 'eazydocs-initial-setup' ] ) ) { $group_4[] = $item; }
 
 		$group_5 = [];
-		if ( $item = $take( [ 'eazydocs-migration' ] ) ) { $group_5[] = $item; }
+		if ( $item = $take( [ 'eazydocs-import-export' ] ) ) { $group_5[] = $item; }
 		if ( $item = $take( [ 'ezd-faq-builder' ] ) ) { $group_5[] = $item; }
 		if ( $item = $take( [ 'ezd-integrated-themes' ] ) ) { $group_5[] = $item; }
 
@@ -506,8 +509,8 @@ class Admin {
 		add_action( 'save_post', 'ezd_clear_docs_tree_cache', 10, 2 );
 		add_action( 'save_post', 'ezd_flush_docs_tree_cache' );
 
-		// Clear cache once at the end
-		delete_transient( 'ezd_docs_tree_flat_docs' );
+		// Clear cache once at the end (every language variant, not just the base key).
+		ezd_delete_docs_tree_cache_all_langs( 'docs' );
 
 		wp_send_json_success( $nestedArray );
 	}

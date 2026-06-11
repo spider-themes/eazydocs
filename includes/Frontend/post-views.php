@@ -10,10 +10,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get post views and update view count for the current user/visitor
  */
 function ezd_ensure_eazydocs_view_log_table_exists() {
+    // dbDelta() is expensive (it introspects and diffs the schema). The table is
+    // created on plugin activation, so here we only re-verify occasionally rather
+    // than on every request that reaches this helper.
+    if ( get_transient( 'ezd_view_log_table_ready' ) ) {
+        return;
+    }
+
     global $wpdb;
 
     $table_name = $wpdb->prefix . 'eazydocs_view_log';
-    
+
     // Use dbDelta without manually checking the table
     $charset_collate = $wpdb->get_charset_collate();
 
@@ -27,14 +34,18 @@ function ezd_ensure_eazydocs_view_log_table_exists() {
 
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta( $sql );
+
+    set_transient( 'ezd_view_log_table_ready', 1, WEEK_IN_SECONDS );
 }
 
 add_action('wp', 'eazydocs_set_post_view');
 function eazydocs_set_post_view() {
 
-	ezd_ensure_eazydocs_view_log_table_exists();
-
+	// Only track views on single doc pages. Bailing early keeps this off the
+	// critical path for every other front-end request.
 	if ( is_single() && 'docs' === get_post_type() ) {
+
+		ezd_ensure_eazydocs_view_log_table_exists();
 
 		global $wpdb;
 		$post_id = get_the_ID();

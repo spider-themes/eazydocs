@@ -5,7 +5,7 @@
  * Plugin URI: https://eazydocs.spider-themes.net
  * Author: spider-themes
  * Author URI: https://eazydocs.spider-themes.net
- * Version: 2.11.3
+ * Version: 2.12.0
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -76,7 +76,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 	class EazyDocs {
 
 		// Default constants
-		const version = '2.11.3';
+		const version = '2.12.0';
 		public $plugin_path;
 		public $theme_dir_path;
 
@@ -211,6 +211,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new EazyDocs\Admin\Create_Post();
 				new EazyDocs\Admin\Delete_Post();
 				new EazyDocs\Admin\Assets();
+				new EazyDocs\Admin\Import_Export();
 				new EazyDocs\One_Page();
 				new EazyDocs\Edit_OnePage();
 			} elseif ( ! is_admin() ) {
@@ -273,6 +274,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			$this->create_analytics_db_tables();
 
+			// Re-verify the table-existence flags on the next admin/front-end load.
+			delete_transient( 'ezd_analytics_tables_ready' );
+			delete_transient( 'ezd_view_log_table_ready' );
+
 			// Update the option when the setup wizard is activated
 			update_option( 'ezd_get_setup_wizard', true );
 		}
@@ -327,6 +332,13 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 * Database not found
 		 */
 		function update_database() {
+			// Once the analytics tables are confirmed present, skip the three
+			// SHOW TABLES probes that otherwise ran on every admin page load.
+			// The flag is cleared on plugin activation (and self-heals after a day).
+			if ( get_transient( 'ezd_analytics_tables_ready' ) ) {
+				return;
+			}
+
 			global $wpdb;
 			$table_name  = $wpdb->prefix . 'eazydocs_search_keyword';
 			$table_name2 = $wpdb->prefix . 'eazydocs_search_log';
@@ -341,6 +353,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			$view_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name3 ) );
 
 			if ( $table_name !== $keyword_exists || $table_name2 !== $logs_exists || $table_name3 !== $view_exists ) {
+				// Don't cache the negative result — keep prompting until it's fixed.
 				?>
 				<div class="notice notice-error is-dismissible eazydocs_table_error">
 					<p><?php esc_html_e( 'EazyDocs database needs an update. Please click the Update button to update your database.', 'eazydocs' ); ?></p>
@@ -350,6 +363,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 					</form>
 				</div>
 				<?php
+			} else {
+				// All tables present — remember it so we stop probing on every page.
+				set_transient( 'ezd_analytics_tables_ready', 1, DAY_IN_SECONDS );
 			}
 		}
 

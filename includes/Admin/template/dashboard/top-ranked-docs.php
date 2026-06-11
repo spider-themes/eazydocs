@@ -11,47 +11,9 @@
 	</div>
 
 	<?php
-	// Fetch all docs.
-	$posts = get_posts(
-		array(
-			'post_type'      => 'docs',
-			'posts_per_page' => -1,
-		)
-	);
-
-	// Build ranking data.
-	$post_data = array();
-	foreach ( $posts as $post ) {
-		$positive_meta = get_post_meta( $post->ID, 'positive', false );
-		$negative_meta = get_post_meta( $post->ID, 'negative', false );
-		$positive      = array_sum( is_array( $positive_meta ) ? $positive_meta : array() );
-		$negative      = array_sum( is_array( $negative_meta ) ? $negative_meta : array() );
-		$total_votes   = $positive + $negative;
-
-		// Skip docs with NO ranking at all.
-		if ( 0 === $total_votes ) {
-			continue;
-		}
-
-		// Collect post data.
-		$post_data[] = array(
-			'post_id'        => $post->ID,
-			'post_title'     => $post->post_title,
-			'post_permalink' => get_permalink( $post->ID ),
-			'post_edit_link' => get_edit_post_link( $post->ID ),
-			'positive_time'  => $positive,
-			'negative_time'  => $negative,
-			'created_at'     => get_the_time( 'U', $post->ID ),
-		);
-	}
-
-	// Sort by total positive votes (DESC).
-	usort(
-		$post_data,
-		function ( $a, $b ) {
-			return $b['positive_time'] <=> $a['positive_time'];
-		}
-	);
+	// Top docs by positive votes, aggregated in a single query (only the top 5
+	// docs that actually have votes are loaded into memory).
+	$post_data = ezd_map_ranked_docs_for_display( ezd_get_ranked_docs_by_votes( 'positive', 5 ) );
 	?>
 	<ul class="ezd-activity-list">
 		<?php

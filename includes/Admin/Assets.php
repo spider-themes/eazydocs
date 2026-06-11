@@ -203,6 +203,29 @@ class Assets {
 				'no_revert_title'            => esc_html__( 'This doc will be trashed with the child docs and you will be able to restore it later from the trash!', 'eazydocs' ),
 				'clone_prompt_title'         => esc_html__( 'Are you sure to Duplicate this doc?', 'eazydocs' ),
 				'nonce'                      => wp_create_nonce( 'eazydocs-admin-nonce' ),
+				'migration'                  => array(
+					'confirmTitle'  => esc_html__( 'Migrate from BetterDocs to EazyDocs?', 'eazydocs' ),
+					'confirmHtml'   => sprintf(
+						'<p>%1$s</p><p class="ezd-migration-alert"><strong>%2$s</strong> %3$s</p>',
+						esc_html__( 'Your BetterDocs categories become parent docs and your existing docs are nested beneath them. No BetterDocs content is deleted.', 'eazydocs' ),
+						esc_html__( 'Recommended:', 'eazydocs' ),
+						sprintf(
+							/* translators: %s: URL of the Export tab. */
+							wp_kses( __( '<a href="%s" target="_blank" rel="noopener">Export a backup</a> of your docs first so you can restore them if anything looks off.', 'eazydocs' ), array( 'a' => array( 'href' => array(), 'target' => array(), 'rel' => array() ) ) ),
+							esc_url( admin_url( 'admin.php?page=eazydocs-import-export&tab=export' ) )
+						)
+					),
+					'confirmBtn'    => esc_html__( 'Yes, migrate now', 'eazydocs' ),
+					'cancelBtn'     => esc_html__( 'Cancel', 'eazydocs' ),
+					'progressTitle' => esc_html__( 'Migrating…', 'eazydocs' ),
+					'progressText'  => esc_html__( 'Importing your BetterDocs content into EazyDocs…', 'eazydocs' ),
+					'successTitle'  => esc_html__( 'Migration complete!', 'eazydocs' ),
+					'successBtn'    => esc_html__( 'Go to EazyDocs', 'eazydocs' ),
+					'failTitle'     => esc_html__( 'Migration failed', 'eazydocs' ),
+					'genericError'  => esc_html__( 'Something went wrong. Please try again.', 'eazydocs' ),
+					'ajaxError'     => esc_html__( 'The request failed. Please try again.', 'eazydocs' ),
+					'eazydocsUrl'   => admin_url( 'admin.php?page=eazydocs' ),
+				),
 				'one_page_prompt_docs'       => eazydocs_pro_doc_list(),
 				'onepage_doc_admin_url'      => admin_url(),
 				'one_page_prompt_sidebar'    => sidebar_selectbox(),

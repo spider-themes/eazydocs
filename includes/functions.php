@@ -1220,7 +1220,7 @@ function ezd_admin_pages( $pages = [] ) {
         // Default admin pages of EazyDocs
 	    $admin_pages = !empty($_GET['page']) ? in_array( sanitize_text_field( $_GET['page'] ), [
 		    'eazydocs-builder', 'eazydocs-settings', 'ezd-user-feedback', 'ezd-user-feedback-archived',
-            'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account', 'eazydocs-migration', 'ezd-faq-builder', 'ezd-integrated-themes', 'eazydocs'
+            'ezd-analytics', 'ezd-onepage-presents', 'onepage-docs', 'eazydocs-initial-setup', 'eazydocs-account', 'eazydocs-migration', 'eazydocs-import-export', 'ezd-faq-builder', 'ezd-integrated-themes', 'eazydocs'
 	    ], true ) : '';
     } else {
         // Selected admin pages of EazyDocs
@@ -2300,37 +2300,128 @@ function ezd_get_all_descendant_ids( $parent_id, $post_type = 'docs', $post_stat
 }
 
 /**
+ * Active language codes from Polylang or WPML (empty array if neither is active).
+ *
+ * @return string[]
+ */
+function ezd_active_language_codes() {
+	static $codes = null;
+	if ( null !== $codes ) {
+		return $codes;
+	}
+
+	$codes = [];
+	if ( function_exists( 'pll_languages_list' ) ) {
+		$codes = (array) pll_languages_list( [ 'fields' => 'slug' ] );
+	}
+	if ( empty( $codes ) ) {
+		$wpml = apply_filters( 'wpml_active_languages', null );
+		if ( is_array( $wpml ) ) {
+			$codes = array_keys( $wpml );
+		}
+	}
+
+	$codes = array_values( array_filter( array_map( 'sanitize_key', $codes ) ) );
+	return $codes;
+}
+
+/**
+ * Whether a known multilingual plugin (WPML or Polylang) is active with >1 language.
+ *
+ * @return bool
+ */
+function ezd_is_multilingual() {
+	return count( ezd_active_language_codes() ) > 1;
+}
+
+/**
+ * Current request language code, or '' when the site is not multilingual.
+ *
+ * @return string
+ */
+function ezd_current_language() {
+	if ( function_exists( 'pll_current_language' ) ) {
+		$lang = pll_current_language( 'slug' );
+		if ( $lang ) {
+			return sanitize_key( $lang );
+		}
+	}
+	$wpml = apply_filters( 'wpml_current_language', null );
+	return $wpml ? sanitize_key( $wpml ) : '';
+}
+
+/**
+ * Transient key for the flat docs tree, segmented per language so a cached tree
+ * from one language is never served on another.
+ *
+ * @param string $post_type
+ * @return string
+ */
+function ezd_docs_tree_cache_key( $post_type ) {
+	$lang = ezd_current_language();
+	return 'ezd_docs_tree_flat_' . $post_type . ( $lang ? '_' . $lang : '' );
+}
+
+/**
+ * Build the flat, ordered list of doc IDs for a post type.
+ *
+ * On multilingual sites suppress_filters is disabled so WPML/Polylang scope the
+ * query to the current language instead of mixing every translation into one tree.
+ *
+ * @param string $post_type
+ * @return int[]
+ */
+function ezd_build_docs_tree_flat_ids( $post_type ) {
+	$args = [
+		'post_type'   => $post_type,
+		'post_status' => 'publish',
+		'post_parent' => 0,
+		'orderby'     => 'menu_order title',
+		'order'       => 'ASC',
+		'fields'      => 'ids',
+		'numberposts' => -1,
+	];
+
+	if ( ezd_is_multilingual() ) {
+		$args['suppress_filters'] = false;
+	}
+
+	$ordered_ids = [];
+	foreach ( get_posts( $args ) as $top_id ) {
+		ezd_docs_build_tree_flat( $top_id, $ordered_ids );
+	}
+
+	return $ordered_ids;
+}
+
+/**
  * Get cached flat document tree (array of IDs in order)
  *
  * @param string $post_type
  * @return array
  */
 function ezd_get_docs_tree_flat_cached( $post_type ) {
-	$cache_key   = 'ezd_docs_tree_flat_' . $post_type;
+	$cache_key   = ezd_docs_tree_cache_key( $post_type );
 	$ordered_ids = get_transient( $cache_key );
 
 	if ( false === $ordered_ids ) {
-		// Step 1: Get all top-level docs
-		$top_level_docs = get_posts( [
-			'post_type'   => $post_type,
-			'post_status' => 'publish',
-			'post_parent' => 0,
-			'orderby'     => 'menu_order title',
-			'order'       => 'ASC',
-			'fields'      => 'ids',
-			'numberposts' => -1,
-		] );
-
-		// Step 2: Recursively build a flat ordered list
-		$ordered_ids = [];
-		foreach ( $top_level_docs as $top_id ) {
-			ezd_docs_build_tree_flat( $top_id, $ordered_ids );
-		}
-
+		$ordered_ids = ezd_build_docs_tree_flat_ids( $post_type );
 		set_transient( $cache_key, $ordered_ids, 12 * HOUR_IN_SECONDS );
 	}
 
 	return $ordered_ids;
+}
+
+/**
+ * Delete the flat docs-tree cache for a post type across every active language.
+ *
+ * @param string $post_type
+ */
+function ezd_delete_docs_tree_cache_all_langs( $post_type ) {
+	delete_transient( 'ezd_docs_tree_flat_' . $post_type );
+	foreach ( ezd_active_language_codes() as $code ) {
+		delete_transient( 'ezd_docs_tree_flat_' . $post_type . '_' . $code );
+	}
 }
 
 /**
@@ -2340,8 +2431,8 @@ function ezd_get_docs_tree_flat_cached( $post_type ) {
  * @param WP_Post $post
  */
 function ezd_clear_docs_tree_cache( $post_id, $post ) {
-	if ( in_array( $post->post_type, [ 'docs', 'onepage-docs' ] ) ) {
-		delete_transient( 'ezd_docs_tree_flat_' . $post->post_type );
+	if ( in_array( $post->post_type, [ 'docs', 'onepage-docs' ], true ) ) {
+		ezd_delete_docs_tree_cache_all_langs( $post->post_type );
 	}
 }
 add_action( 'save_post', 'ezd_clear_docs_tree_cache', 10, 2 );
@@ -2355,33 +2446,8 @@ add_action( 'delete_post', 'ezd_clear_docs_tree_cache', 10, 2 );
  * @return array
  */
 function ezd_prev_next_docs( $current_post_id ) {
-	$post_type = get_post_type( $current_post_id );
-
-	// Check for cached flat tree
-	$cache_key   = 'ezd_docs_tree_flat_' . $post_type;
-	$ordered_ids = get_transient( $cache_key );
-
-	if ( false === $ordered_ids ) {
-		// Step 1: Get all top-level docs
-		$top_level_docs = get_posts( [
-			'post_type'   => $post_type,
-			'post_status' => 'publish',
-			'post_parent' => 0,
-			'orderby'     => 'menu_order title',
-			'order'       => 'ASC',
-			'fields'      => 'ids',
-			'numberposts' => -1,
-		] );
-
-		// Step 2: Recursively build a flat ordered list
-		$ordered_ids = [];
-		foreach ( $top_level_docs as $top_id ) {
-			ezd_docs_build_tree_flat( $top_id, $ordered_ids );
-		}
-
-		// Cache the result for 12 hours
-		set_transient( $cache_key, $ordered_ids, 12 * HOUR_IN_SECONDS );
-	}
+	$post_type   = get_post_type( $current_post_id );
+	$ordered_ids = ezd_get_docs_tree_flat_cached( $post_type );
 
 	// Find current index and prev/next IDs
 	$current_index = array_search( $current_post_id, $ordered_ids );
@@ -2403,7 +2469,7 @@ function ezd_prev_next_docs( $current_post_id ) {
 function ezd_flush_docs_tree_cache( $post_id ) {
 	$post_type = get_post_type( $post_id );
 	if ( 'docs' === $post_type || 'onepage-docs' === $post_type ) {
-		delete_transient( 'ezd_docs_tree_flat_' . $post_type );
+		ezd_delete_docs_tree_cache_all_langs( $post_type );
 	}
 }
 add_action( 'save_post', 'ezd_flush_docs_tree_cache' );
@@ -2413,7 +2479,7 @@ add_action( 'delete_post', 'ezd_flush_docs_tree_cache' );
 function ezd_docs_build_tree_flat( $post_id, &$list ) {
 	$list[] = $post_id;
 
-	$children = get_posts( [
+	$args = [
 		'post_type'   => get_post_type( $post_id ),
 		'post_status' => 'publish',
 		'post_parent' => $post_id,
@@ -2421,172 +2487,438 @@ function ezd_docs_build_tree_flat( $post_id, &$list ) {
 		'order'       => 'ASC',
 		'fields'      => 'ids',
 		'numberposts' => -1,
-	] );
+	];
 
-	foreach ( $children as $child_id ) {
+	if ( ezd_is_multilingual() ) {
+		$args['suppress_filters'] = false;
+	}
+
+	foreach ( get_posts( $args ) as $child_id ) {
 		ezd_docs_build_tree_flat( $child_id, $list );
 	}
 }
 
 /**
- * AJAX handler to migrate BetterDocs to EazyDocs
- * This function will create parent docs for each category and re-parent existing docs.
+ * Get the IDs of docs built with Elementor, cached.
+ *
+ * This list is only consumed by the AJAX doc loader on single doc pages, yet the
+ * underlying unbounded meta query previously ran on every front-end page load via
+ * the asset localizer. Caching it for 12 hours (flushed on doc save/delete) keeps
+ * large doc libraries from re-running the query on unrelated requests.
+ *
+ * @return int[] Doc post IDs edited with Elementor.
  */
-add_action('wp_ajax_ezd_migrate_to_eazydocs', function () {
+function ezd_get_elementor_doc_ids() {
+	if ( ! class_exists( '\Elementor\Plugin' ) ) {
+		return [];
+	}
+
+	$cache_key = 'ezd_elementor_doc_ids';
+	$doc_ids   = get_transient( $cache_key );
+
+	if ( false === $doc_ids ) {
+		$doc_ids = get_posts(
+			[
+				'post_type'   => 'docs',
+				'post_status' => 'publish',
+				'numberposts' => -1,
+				'fields'      => 'ids',
+				'meta_key'    => '_elementor_edit_mode',
+				'meta_value'  => 'builder',
+			]
+		);
+
+		$doc_ids = array_map( 'absint', (array) $doc_ids );
+		set_transient( $cache_key, $doc_ids, 12 * HOUR_IN_SECONDS );
+	}
+
+	return $doc_ids;
+}
+
+/**
+ * Flush the cached Elementor doc IDs when a doc is saved or deleted.
+ *
+ * @param int $post_id Post ID.
+ */
+function ezd_flush_elementor_doc_ids_cache( $post_id ) {
+	if ( 'docs' === get_post_type( $post_id ) ) {
+		delete_transient( 'ezd_elementor_doc_ids' );
+	}
+}
+add_action( 'save_post', 'ezd_flush_elementor_doc_ids_cache' );
+add_action( 'delete_post', 'ezd_flush_elementor_doc_ids_cache' );
+
+/**
+ * Raise memory and execution limits for the one-page doc render / "print to PDF".
+ *
+ * The one-page layout renders an entire doc tree in a single synchronous request,
+ * and with Elementor active it renders every node's builder output. On large trees
+ * this can exhaust PHP's default memory/time limits and return a 500 mid-render.
+ * Both limits are filterable, and wp_raise_memory_limit() never lowers a value that
+ * is already higher.
+ *
+ * @return void
+ */
+function ezd_raise_onepage_render_limits() {
+	// Respects WP_MAX_MEMORY_LIMIT and the {$context}_memory_limit filter.
+	wp_raise_memory_limit( 'ezd_onepage' );
+
+	// Give a large export room to finish instead of timing out part-way through.
+	$time_limit = (int) apply_filters( 'ezd_onepage_time_limit', 300 );
+	if ( $time_limit > 0 && function_exists( 'set_time_limit' ) ) {
+		@set_time_limit( $time_limit );
+	}
+}
+
+/**
+ * Render a single doc's body for the one-page view, cached in the object cache.
+ *
+ * Centralises the rendering logic that was previously duplicated at every depth of
+ * the one-page templates. Elementor's get_builder_content() is expensive, so the
+ * rendered markup is stored in the object cache; on hosts with a persistent backend
+ * (Redis/Memcached) it is reused across requests. The entry is flushed on doc save.
+ *
+ * The cache is only used for logged-out visitors. the_content can render
+ * user-specific markup (login-gated shortcodes, draft previews, per-user nonces),
+ * so caching a single rendering by post ID alone could leak it across users on a
+ * persistent backend; logged-in requests always render fresh.
+ *
+ * The caller is responsible for escaping the return value (e.g. with wp_kses_post()),
+ * preserving the previous template behaviour.
+ *
+ * @param int|WP_Post $doc Post ID or object.
+ * @return string Rendered doc body HTML.
+ */
+function ezd_get_onepage_doc_content( $doc ) {
+	$post = get_post( $doc );
+	if ( ! $post ) {
+		return '';
+	}
+
+	$use_cache = ! is_user_logged_in();
+
+	if ( $use_cache ) {
+		$cached = wp_cache_get( $post->ID, 'ezd_onepage_content' );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+	}
+
+	if ( did_action( 'elementor/loaded' ) ) {
+		$builder = \Elementor\Plugin::instance()->frontend->get_builder_content( $post->ID );
+		$content = ! empty( $builder ) ? $builder : apply_filters( 'the_content', $post->post_content );
+	} else {
+		$content = apply_filters( 'the_content', $post->post_content );
+	}
+
+	if ( $use_cache ) {
+		wp_cache_set( $post->ID, $content, 'ezd_onepage_content' );
+	}
+
+	return $content;
+}
+
+/**
+ * Flush the cached one-page render for a doc when it changes.
+ *
+ * @param int $post_id Post ID.
+ */
+function ezd_flush_onepage_doc_content_cache( $post_id ) {
+	if ( in_array( get_post_type( $post_id ), [ 'docs', 'onepage-docs' ], true ) ) {
+		wp_cache_delete( $post_id, 'ezd_onepage_content' );
+	}
+}
+add_action( 'save_post', 'ezd_flush_onepage_doc_content_cache' );
+add_action( 'delete_post', 'ezd_flush_onepage_doc_content_cache' );
+
+/**
+ * Get docs ranked by feedback votes via a single aggregated query.
+ *
+ * Replaces the previous approach of loading every doc into memory and summing
+ * 'positive'/'negative' meta per post. The votes are aggregated in one GROUP BY
+ * query and only docs that actually have votes are returned, ordered by the
+ * requested vote type. This mirrors the direct-SQL aggregation already used by
+ * the dashboard health widget.
+ *
+ * @param string $order_by 'positive' or 'negative'. Sort key (DESC) and HAVING filter.
+ * @param int    $limit    Max rows to return. 0 for no limit.
+ * @return array[] Each row: [ 'post_id' => int, 'positive' => int, 'negative' => int ].
+ */
+function ezd_get_ranked_docs_by_votes( $order_by = 'positive', $limit = 0 ) {
+	global $wpdb;
+
+	// Whitelist the sortable column so it is safe to interpolate directly.
+	$order_by = ( 'negative' === $order_by ) ? 'negative' : 'positive';
+
+	$sql = "SELECT p.ID AS post_id,
+			COALESCE( SUM( CASE WHEN pm.meta_key = 'positive' THEN pm.meta_value ELSE 0 END ), 0 ) AS positive,
+			COALESCE( SUM( CASE WHEN pm.meta_key = 'negative' THEN pm.meta_value ELSE 0 END ), 0 ) AS negative
+		FROM {$wpdb->posts} p
+		INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+		WHERE p.post_type = 'docs'
+		  AND p.post_status = 'publish'
+		  AND pm.meta_key IN ( 'positive', 'negative' )
+		GROUP BY p.ID
+		HAVING {$order_by} > 0
+		ORDER BY {$order_by} DESC, post_id DESC";
+
+	if ( $limit > 0 ) {
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $order_by is whitelisted above; $limit is bound below.
+		$rows = $wpdb->get_results( $wpdb->prepare( "{$sql} LIMIT %d", $limit ), ARRAY_A );
+	} else {
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $order_by is whitelisted above; query has no dynamic input.
+		$rows = $wpdb->get_results( $sql, ARRAY_A );
+	}
+
+	return is_array( $rows ) ? $rows : [];
+}
+
+/**
+ * Map ranked vote rows to the display array used by the dashboard/analytics panels.
+ *
+ * Loads the matching posts in a single query (which also primes the meta cache)
+ * instead of one lookup per row, and preserves the SQL ordering of $rows.
+ *
+ * @param array[] $rows Rows from ezd_get_ranked_docs_by_votes().
+ * @return array[]
+ */
+function ezd_map_ranked_docs_for_display( $rows ) {
+	if ( empty( $rows ) ) {
+		return [];
+	}
+
+	$post_ids = array_map(
+		static function ( $row ) {
+			return (int) $row['post_id'];
+		},
+		$rows
+	);
+
+	// Single query for the (already limited) set of ranked docs.
+	$posts = get_posts(
+		[
+			'post_type'   => 'docs',
+			'post__in'    => $post_ids,
+			'numberposts' => count( $post_ids ),
+			'post_status' => 'publish',
+		]
+	);
+
+	$posts_by_id = [];
+	foreach ( $posts as $post ) {
+		$posts_by_id[ $post->ID ] = $post;
+	}
+
+	$data = [];
+	foreach ( $rows as $row ) {
+		$post_id = (int) $row['post_id'];
+		if ( empty( $posts_by_id[ $post_id ] ) ) {
+			continue;
+		}
+
+		$post     = $posts_by_id[ $post_id ];
+		$data[]   = [
+			'post_id'        => $post_id,
+			'post_title'     => $post->post_title,
+			'post_permalink' => get_permalink( $post_id ),
+			'post_edit_link' => get_edit_post_link( $post_id ),
+			'positive_time'  => (int) $row['positive'],
+			'negative_time'  => (int) $row['negative'],
+			'created_at'     => get_the_time( 'U', $post_id ),
+		];
+	}
+
+	return $data;
+}
+
+/**
+ * AJAX handler to migrate BetterDocs content into EazyDocs.
+ *
+ * Converts every doc_category into a parent doc and nests existing docs beneath
+ * the parent that matches their deepest category. The run is idempotent: parent
+ * docs created by an earlier migration (flagged _ezd_migrated_parent) are removed
+ * and rebuilt, while user-authored docs are never deleted. Returns a count
+ * summary so the UI can report exactly what changed.
+ */
+add_action( 'wp_ajax_ezd_migrate_to_eazydocs', 'ezd_migrate_betterdocs_to_eazydocs' );
+function ezd_migrate_betterdocs_to_eazydocs() {
 
 	check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
 
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( ['message' => 'Unauthorized user'] );
+	// Mirror the capability the Migrate tab itself is gated behind.
+	$settings_cap = function_exists( 'ezd_get_opt' ) ? ezd_get_opt( 'settings-edit-access', 'manage_options' ) : 'manage_options';
+	if ( ! current_user_can( $settings_cap ) && ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( [ 'message' => __( 'You do not have permission to run a migration.', 'eazydocs' ) ] );
 	}
 
 	if ( ! function_exists( 'is_plugin_active' ) ) {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 	}
 	if ( ! is_plugin_active( 'betterdocs/betterdocs.php' ) ) {
-		wp_send_json_error( ['message' => 'BetterDocs is not active. Please activate it first.'] );
+		wp_send_json_error( [ 'message' => __( 'BetterDocs is not active. Please activate it first.', 'eazydocs' ) ] );
 	}
 
-    $from = isset( $_POST[ 'migrate_from' ] ) ? sanitize_text_field( $_POST[ 'migrate_from' ]) : '';
+	$from = isset( $_POST['migrate_from'] ) ? sanitize_text_field( wp_unslash( $_POST['migrate_from'] ) ) : '';
+	if ( 'betterdocs' !== $from ) {
+		wp_send_json_error( [ 'message' => __( 'Only BetterDocs migration is supported currently.', 'eazydocs' ) ] );
+	}
 
-    if ( 'betterdocs' !== $from ) {
-        wp_send_json_error('Only BetterDocs migration is supported currently.');
-    }
+	// A whole-library migration can be slow on shared hosting.
+	wp_raise_memory_limit( 'admin' );
+	if ( function_exists( 'set_time_limit' ) ) {
+		@set_time_limit( 0 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- disabled on some hosts.
+	}
 
-    /**
-     * OPTIONAL CLEANUP:
-     * Remove only previously created CATEGORY PARENT docs from earlier runs.
-     * (They were marked with _ezd_migrated_parent = yes)
-     */
-    $old_parent_docs = get_posts( [
-        'post_type'      => 'docs',
-        'post_status'    => 'any',
-        'numberposts'    => -1,
-        'fields'         => 'ids',
-        'meta_key'       => '_ezd_migrated_parent',
-        'meta_value'     => 'yes',
-    ] );
-    foreach ( $old_parent_docs as $pid ) {
-        wp_delete_post( $pid, true );
-    }
+	/**
+	 * Cleanup: remove only the category parent docs a previous migration created
+	 * (flagged _ezd_migrated_parent) so re-running stays clean. -1 is intentional —
+	 * a one-time admin migration must see the whole library.
+	 */
+	$old_parent_docs = get_posts( [
+		'post_type'              => 'docs',
+		'post_status'            => 'any',
+		'posts_per_page'         => -1,
+		'fields'                 => 'ids',
+		'no_found_rows'          => true,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
+		'meta_key'               => '_ezd_migrated_parent',
+		'meta_value'             => 'yes',
+	] );
+	foreach ( $old_parent_docs as $pid ) {
+		wp_delete_post( $pid, true );
+	}
 
-    $created_docs = []; // term_id => parent_doc_id
+	// PASS 1 — one parent doc per category (recursive); returns the count created.
+	$created_docs    = []; // term_id => parent_doc_id.
+	$parents_created = ezd_create_parent_docs_from_terms( $created_docs, 0 );
 
-    /**
-     * PASS 1
-     * Create a parent doc for every category (recursively), but DO NOT create any child posts.
-     */
-    function ezd_create_parent_docs_from_terms( &$created_docs, $parent_term_id = 0 ) {
-        $categories = get_categories( [
-            'taxonomy'   => 'doc_category',
-            'hide_empty' => false,
-            'parent'     => $parent_term_id
-        ] );
+	// PASS 2 — nest existing docs under the parent for their deepest category.
+	$docs_reparented = 0;
+	if ( ! empty( $created_docs ) ) {
+		$created_parent_doc_ids = array_values( $created_docs );
 
-        foreach ( $categories as $cat ) {
-            $parent_doc_parent_id = ( $cat->parent && isset( $created_docs[ $cat->parent ] ) ) ? $created_docs[ $cat->parent ] : 0;
+		$posts = get_posts( [
+			'post_type'              => 'docs',
+			'post_status'            => 'any',
+			'posts_per_page'         => -1,
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'post__not_in'           => $created_parent_doc_ids,
+			'tax_query'              => [
+				[
+					'taxonomy' => 'doc_category',
+					'operator' => 'EXISTS',
+				],
+			],
+		] );
 
-            // Create the parent Doc for this term
-            $parent_doc_id = wp_insert_post( [
-                'post_type'   => 'docs',
-                'post_title'  => $cat->name,
-                'post_name'   => $cat->slug,
-                'post_status' => 'publish',
-                'post_parent' => $parent_doc_parent_id,
-                'meta_input'  => [
-                    '_ezd_migrated_parent' => 'yes',
-                    '_ezd_parent_term'     => $cat->term_id
-                ]
-            ] );
+		foreach ( $posts as $post ) {
+			// Leave docs that already sit under a parent untouched.
+			if ( 0 !== (int) $post->post_parent ) {
+				continue;
+			}
 
-            if ( is_wp_error( $parent_doc_id ) ) {
-                continue;
-            }
+			$terms = wp_get_post_terms( $post->ID, 'doc_category' );
+			if ( empty( $terms ) || is_wp_error( $terms ) ) {
+				continue;
+			}
 
-            // (Optional) attach the category to its parent doc, keep taxonomy intact
-            wp_set_post_terms( $parent_doc_id, [ $cat->term_id ], 'doc_category', false );
+			// Deepest (most specific) category wins.
+			$deepest_term = null;
+			$max_depth    = -1;
+			foreach ( $terms as $term ) {
+				$depth = count( get_ancestors( $term->term_id, 'doc_category' ) );
+				if ( $depth > $max_depth ) {
+					$max_depth    = $depth;
+					$deepest_term = $term;
+				}
+			}
 
-            $created_docs[ $cat->term_id ] = $parent_doc_id;
+			if ( ! $deepest_term || ! isset( $created_docs[ $deepest_term->term_id ] ) ) {
+				continue;
+			}
 
-            // Recurse
-            ezd_create_parent_docs_from_terms( $created_docs, $cat->term_id, );
-        }
-    }
+			$parent_doc_id = $created_docs[ $deepest_term->term_id ];
 
-    ezd_create_parent_docs_from_terms( $created_docs, 0 );
+			wp_update_post( [
+				'ID'          => $post->ID,
+				'post_parent' => $parent_doc_id,
+				'menu_order'  => $post->menu_order,
+			] );
 
-    /**
-     * PASS 2
-     * Re-parent existing posts (do NOT create new ones).
-     * Each post will be attached under the doc created for its *deepest* category,
-     * BUT ONLY if it doesn't already have a parent (we won't touch existing relations).
-     */
-    if ( ! empty( $created_docs )) {
+			// Flags for future cleanups / debugging.
+			update_post_meta( $post->ID, '_ezd_migrated', 'yes' );
+			update_post_meta( $post->ID, '_ezd_parent_doc', $parent_doc_id );
+			update_post_meta( $post->ID, '_ezd_parent_term', $deepest_term->term_id );
 
-        // Collect IDs of all parent docs we just created so we don't try to re-parent them
-        $created_parent_doc_ids = array_values( $created_docs );
+			$docs_reparented++;
+		}
+	}
 
-        // Get all existing docs that have doc_category terms and are NOT the parent docs we created
-        $posts = get_posts( [
-            'post_type'      => 'docs',
-            'post_status'    => 'any',
-            'numberposts'    => -1,
-            'post__not_in'   => $created_parent_doc_ids,
-            'tax_query'      => [
-                [
-                    'taxonomy' => 'doc_category',
-                    'operator' => 'EXISTS'
-                ]
-            ]
-        ] );
+	// Build a translated, pluralised summary for the success dialog.
+	$summary_parts   = [];
+	/* translators: %d: number of categories converted into parent docs. */
+	$summary_parts[] = sprintf( _n( '%d category converted into a parent doc.', '%d categories converted into parent docs.', $parents_created, 'eazydocs' ), $parents_created );
+	/* translators: %d: number of docs nested under their category. */
+	$summary_parts[] = sprintf( _n( '%d doc organised under its category.', '%d docs organised under their categories.', $docs_reparented, 'eazydocs' ), $docs_reparented );
 
-        foreach ( $posts as $post ) {
-            // Do NOT change any already-related child (keep whatever parent it has)
-            if ( 0 !== (int) $post->post_parent ) {
-                continue;
-            }
+	wp_send_json_success( [
+		'message'    => __( 'Migration completed.', 'eazydocs' ),
+		'categories' => $parents_created,
+		'docs'       => $docs_reparented,
+		'summary'    => implode( '<br>', array_map( 'esc_html', $summary_parts ) ),
+	] );
+}
 
-            $terms = wp_get_post_terms( $post->ID, 'doc_category' );
+/**
+ * Recursively create a parent doc for each doc_category term.
+ *
+ * @param array $created_docs   Map of term_id => created parent doc ID (by reference).
+ * @param int   $parent_term_id Term to start from (0 = top level).
+ * @return int  Number of parent docs created within this subtree.
+ */
+if ( ! function_exists( 'ezd_create_parent_docs_from_terms' ) ) {
+	function ezd_create_parent_docs_from_terms( &$created_docs, $parent_term_id = 0 ) {
+		$created = 0;
 
-            if ( empty( $terms ) || is_wp_error( $terms ) ) {
-                continue; // no category, we skip
-            }
+		$categories = get_categories( [
+			'taxonomy'   => 'doc_category',
+			'hide_empty' => false,
+			'parent'     => $parent_term_id,
+		] );
 
-            // Find the deepest (most specific) category of the post
-            $deepest_term = null;
-            $max_depth 	  = -1;
-            foreach ($terms as $term) {
-                $depth = count( get_ancestors( $term->term_id, 'doc_category' ) );
-                if ( $depth > $max_depth ) {
-                    $max_depth 	  = $depth;
-                    $deepest_term = $term;
-                }
-            }
+		foreach ( $categories as $cat ) {
+			$parent_doc_parent_id = ( $cat->parent && isset( $created_docs[ $cat->parent ] ) ) ? $created_docs[ $cat->parent ] : 0;
 
-            if ( ! $deepest_term || !isset( $created_docs[ $deepest_term->term_id ] ) ) {
-                continue;
-            }
+			$parent_doc_id = wp_insert_post( [
+				'post_type'   => 'docs',
+				'post_title'  => $cat->name,
+				'post_name'   => $cat->slug,
+				'post_status' => 'publish',
+				'post_parent' => $parent_doc_parent_id,
+				'meta_input'  => [
+					'_ezd_migrated_parent' => 'yes',
+					'_ezd_parent_term'     => $cat->term_id,
+				],
+			] );
 
-            $parent_doc_id = $created_docs[ $deepest_term->term_id ];
+			if ( is_wp_error( $parent_doc_id ) ) {
+				continue;
+			}
 
-            // Re-parent only if it still has no parent (extra safety)
-            if ( 0 === (int) $post->post_parent ) {
-                wp_update_post( [
-                    'ID'          => $post->ID,
-                    'post_parent' => $parent_doc_id,
-					'menu_order'  => $post->menu_order
-                ] );
+			// Keep the original taxonomy term attached to its new parent doc.
+			wp_set_post_terms( $parent_doc_id, [ $cat->term_id ], 'doc_category', false );
 
-                // Optional flags for future cleanups / debugging
-                update_post_meta( $post->ID, '_ezd_migrated', 'yes' );
-                update_post_meta( $post->ID, '_ezd_parent_doc', $parent_doc_id );
-                update_post_meta( $post->ID, '_ezd_parent_term', $deepest_term->term_id );
-            }
-        }
-    }
+			$created_docs[ $cat->term_id ] = $parent_doc_id;
+			$created++;
 
-    wp_send_json_success('Migration completed');
-});
+			$created += ezd_create_parent_docs_from_terms( $created_docs, $cat->term_id );
+		}
+
+		return $created;
+	}
+}
 
 
 /**

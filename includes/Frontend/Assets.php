@@ -87,19 +87,9 @@ class Assets
 			$ajax_url = add_query_arg('wpml_lang', $wpml_current_language, $ajax_url);
 		}
 
-		$elementor_docs = [];
-		if (class_exists('\Elementor\Plugin')) {
-			$elementor_docs = get_posts(
-				[
-					'post_type' => 'docs',
-					'post_status' => 'publish',
-					'numberposts' => -1,
-					'fields' => 'ids',
-					'meta_key' => '_elementor_edit_mode',
-					'meta_value' => 'builder',
-				]
-			);
-		}
+		// Only the AJAX doc loader (single doc pages) consumes this list, so skip the
+		// unbounded meta query on every other front-end request. The result is cached.
+		$elementor_docs = is_singular('docs') ? ezd_get_elementor_doc_ids() : [];
 
 		wp_localize_script(
 			'jquery',

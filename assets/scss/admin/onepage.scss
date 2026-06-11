@@ -35,7 +35,8 @@ body.post-type-onepage-docs {
 
 	.ezd-onepage-modal-popup.swal2-popup {
 		position: relative;
-		display: block;
+		display: flex !important;
+		flex-direction: column !important;
 		width: min(760px, 100%);
 		max-width: 760px;
 		padding: 0;
@@ -46,13 +47,15 @@ body.post-type-onepage-docs {
 		box-sizing: border-box;
 		color: var(--ezd-onepage-text);
 		overflow: hidden;
-		max-height: calc(100vh - 32px);
+		max-height: calc(100vh - 32px) !important;
 	}
 
 	.ezd-onepage-modal-html.swal2-html-container {
 		margin: 0;
 		padding: 0;
-		overflow: auto;
+		flex: 1 1 auto !important;
+		overflow-y: auto !important;
+		min-height: 0 !important;
 		font-size: 13px;
 		line-height: 1.5;
 		text-align: left;
@@ -75,8 +78,10 @@ body.post-type-onepage-docs {
 		justify-content: flex-end;
 		gap: 10px;
 		margin: 0;
-		padding: 0 22px 22px;
+		padding: 14px 22px 18px;
 		background: var(--ezd-onepage-surface);
+		border-top: 1px solid var(--ezd-onepage-border);
+		flex-shrink: 0;
 	}
 
 	.ezd-onepage-modal-confirm.swal2-styled,
@@ -147,7 +152,7 @@ body.post-type-onepage-docs {
 	}
 
 	.create_onepage_doc_area.ezd-onepage-modal {
-		padding: 8px 22px 0;
+		padding: 8px 22px 16px;
 	}
 
 	.ezd-onepage-modal__hero {
@@ -483,7 +488,7 @@ body.post-type-onepage-docs {
 		.ezd-onepage-modal-actions.swal2-actions {
 			flex-direction: column-reverse;
 			align-items: stretch;
-			padding: 0 16px 16px;
+			padding: 12px 16px 16px;
 		}
 
 		.ezd-onepage-modal-confirm.swal2-styled,
@@ -498,6 +503,160 @@ body.post-type-onepage-docs {
 
 		.ezd_docs_content_type_wrap {
 			gap: 8px;
+		}
+	}
+
+	@media (max-height: 820px), (max-width: 1024px) {
+		.swal2-title {
+			padding: 16px 20px 0;
+			font-size: 20px;
+		}
+
+		.swal2-close {
+			top: 10px;
+			right: 10px;
+		}
+
+		.create_onepage_doc_area.ezd-onepage-modal {
+			padding: 6px 20px 14px;
+		}
+
+		.ezd-onepage-modal__hero {
+			padding-bottom: 8px;
+		}
+
+		.ezd-onepage-modal__intro {
+			font-size: 12px;
+		}
+
+		.ezd-onepage-card {
+			margin-bottom: 8px;
+			border-radius: 12px;
+		}
+
+		.ezd-onepage-card__header {
+			padding: 8px 12px;
+
+			h3 {
+				font-size: 13px;
+				margin-bottom: 2px;
+			}
+
+			p {
+				font-size: 11px;
+			}
+		}
+
+		.ezd-onepage-card__body {
+			padding: 10px 12px;
+		}
+
+		.ezd-onepage-card__body--grid {
+			gap: 10px;
+		}
+
+		.ezd-onepage-field {
+			gap: 4px;
+
+			label {
+				font-size: 11px;
+				margin-bottom: 2px;
+			}
+		}
+
+		select.widefat,
+		textarea.widefat,
+		input[type='text'],
+		input[type='search'],
+		.select2-container--default .select2-selection--single,
+		.select2-container--default .select2-selection--multiple {
+			min-height: 34px !important;
+			padding: 6px 10px !important;
+			font-size: 12px !important;
+		}
+
+		.select2-container--default .select2-selection--single .select2-selection__rendered {
+			line-height: 32px !important;
+			padding-left: 10px !important;
+		}
+
+		.select2-container--default .select2-selection--single .select2-selection__arrow {
+			height: 32px !important;
+		}
+
+		textarea.widefat {
+			min-height: 70px !important;
+			line-height: 1.4;
+		}
+
+		.ezd_content_btn_wrap {
+			margin: 8px 12px 0;
+			border-radius: 10px;
+			padding: 3px;
+
+			.left_btn_link,
+			.right_btn_link {
+				padding: 6px 10px;
+				font-size: 12px;
+				border-radius: 8px;
+			}
+		}
+
+		.ezd-onepage-panels {
+			padding: 8px 12px;
+		}
+
+		.ezd_left_content,
+		.ezd_right_content {
+			padding: 10px;
+			border-radius: 10px;
+
+			label {
+				font-size: 11px;
+				margin-bottom: 2px;
+			}
+		}
+
+		.ezd-onepage-panel__header {
+			margin-bottom: 8px;
+
+			h4 {
+				font-size: 12px;
+				margin-bottom: 2px;
+			}
+
+			p {
+				font-size: 11px;
+			}
+		}
+
+		.ezd_docs_content_type_wrap {
+			padding: 6px 10px;
+			margin-bottom: 10px;
+			border-radius: 10px;
+
+			label:not(:first-child) {
+				padding: 4px 8px;
+				font-size: 11px;
+			}
+		}
+
+		.ezd-onepage-content-block {
+			margin-top: 8px;
+			padding: 8px 10px;
+			border-radius: 10px;
+		}
+
+		.ezd_shortcode_content_wrap,
+		.ezd_shortcode_content_wrap_right,
+		.ezd_widget_content_wrap,
+		.ezd_widget_content_wrap_right,
+		.ezd-doc-sidebar-intro {
+			margin-top: 8px;
+		}
+
+		.ezd-onepage-modal-actions.swal2-actions {
+			padding: 10px 20px 14px;
 		}
 	}
 }

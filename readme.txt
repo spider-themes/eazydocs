@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.11.3
+Stable tag: 2.12.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -341,6 +341,15 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 10. Password Protected Doc – Secure sensitive documents with password protection and controlled access.
 
 == Changelog ==
+
+= 2.12.0 (10 June 2026) =
+* New: Markdown & CSV Import/Export – Export your documentation as Markdown or CSV and import Markdown or CSV files back into your doc tree, making content migration and backups simple.
+* New: Multilingual Documentation – Added WPML and Polylang support so docs, categories, and tags can be translated and managed in multiple languages.
+* Improved: One-Page Docs – Large one-page documents now load and print to PDF reliably without timing out, and the sidebar navigation is cleaner and stays scrollable on smaller screens.
+* Optimized: Performance – Streamlined database queries and added caching across the dashboard, doc pages, and admin area for faster loading on large documentation libraries.
+* Fixed: Search Keywords show/hide switcher visibility control.
+* Fixed: HTML link footnotes.
+* Fixed: Search banner CSS styling.
 
 = 2.11.3 (25 May 2026) =
 * Improved: Enable product name pass in embedding Chatbot
