@@ -71,6 +71,7 @@ From small teams to enterprise organizations, EazyDocs is the go-to solution for
 *   **Smart Doc Ordering** – Intuitive drag-and-drop interface for restructuring docs.
 *   **Bulk Operations** – Duplicate, manage visibility, and organize docs in bulk.
 *   **Revision History** – Track all changes and restore previous versions anytime.
+*   **Markdown & CSV Import/Export** – Export documentation as Markdown or CSV and re-import them to migrate content or create backups with ease.
 
 ### User Experience & Navigation
 *   **Live Search with AJAX** – Fast, intelligent search with instant results.
@@ -95,7 +96,7 @@ From small teams to enterprise organizations, EazyDocs is the go-to solution for
 ### Technical & SEO Features
 *   **SEO Optimized** – Built with search engine ranking in mind.
 *   **Schema.org Integration** – Rich snippets for better search visibility.
-*   **Multilingual Ready** – Full WPML and RTL language support.
+*   **Multilingual Ready** – Native WPML and Polylang support so docs, categories, and tags can be translated and managed across multiple languages, with full RTL compatibility. Pre-translated languages included: Arabic (ar), Bengali (bn_BD), German (de_DE), Spanish – Spain (es_ES), Spanish – Mexico (es_MX), French (fr_FR), Portuguese – Brazil (pt_BR), Portuguese – Portugal (pt_PT), Russian (ru_RU), and Chinese Simplified (zh_CN).
 *   **On-Demand Asset Loading** – Lightweight footprint for fast performance.
 
 ### Page Builder Integration
@@ -342,9 +343,10 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.12.0 (10 June 2026) =
-* New: Markdown & CSV Import/Export – Export your documentation as Markdown or CSV and import Markdown or CSV files back into your doc tree, making content migration and backups simple.
+= 2.12.0 (12 June 2026) =
+* New: Markdown & CSV Import-Export – Export your documentation as Markdown or CSV and import Markdown or CSV files back into your doc tree, making content migration and backups simple.
 * New: Multilingual Documentation – Added WPML and Polylang support so docs, categories, and tags can be translated and managed in multiple languages.
+* Improved: Multilingual Support – Loaded the plugin textdomain and added pre-translated language files for Arabic, Bengali, German, Spanish, French, Portuguese, Russian, and Chinese Simplified.
 * Improved: One-Page Docs – Large one-page documents now load and print to PDF reliably without timing out, and the sidebar navigation is cleaner and stays scrollable on smaller screens.
 * Optimized: Performance – Streamlined database queries and added caching across the dashboard, doc pages, and admin area for faster loading on large documentation libraries.
 * Fixed: Search Keywords show/hide switcher visibility control.

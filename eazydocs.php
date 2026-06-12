@@ -9,6 +9,7 @@
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
+ * Domain Path: /languages
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -205,6 +206,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 * Initialize the plugin
 		 */
 		public function init_plugin() {
+			load_plugin_textdomain( 'eazydocs', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 			$this->theme_dir_path = apply_filters( 'eazydocs_theme_dir_path', 'eazydocs/' );
 			if ( is_admin() ) {
 				new EazyDocs\Admin\Admin();
@@ -241,6 +243,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		 * Initialize hooked classes
 		 */
 		public function init_hooked() {
+			load_plugin_textdomain( 'eazydocs', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 			new EazyDocs\Frontend\Ajax();
 		}
 
