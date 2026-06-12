@@ -1682,10 +1682,64 @@ body:not(.onepage-doc) .sticky_menu {
 }
 
 .print {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	padding: 0;
 	color: var(--p_color);
 	font-size: 18px;
+	line-height: 1;
 	text-decoration: none;
-	z-index: 0;
+	background: transparent;
+	border: 1px solid var(--black_50);
+	border-radius: 4px;
+	cursor: pointer;
+	transition:
+		color 0.15s ease-in-out,
+		background-color 0.15s ease-in-out,
+		border-color 0.15s ease-in-out;
+
+	&:hover {
+		color: var(--ezd_brand_color);
+		background: rgba(0, 0, 0, 0.04);
+		border-color: var(--black_100);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--ezd_brand_color);
+		outline-offset: 2px;
+	}
+
+	i {
+		pointer-events: none;
+	}
+
+	/* Busy state while the print dialog is being prepared. */
+	&.is-printing {
+		pointer-events: none;
+		opacity: 0.6;
+
+		i {
+			width: 16px;
+			height: 16px;
+			border: 2px solid currentColor;
+			border-top-color: transparent;
+			border-radius: 50%;
+			animation: ezd-print-spin 0.6s linear infinite;
+
+			&::before {
+				content: none;
+			}
+		}
+	}
+}
+
+@keyframes ezd-print-spin {
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 /* Collaps Tabs Area css

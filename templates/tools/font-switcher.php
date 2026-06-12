@@ -25,7 +25,11 @@ if ( $font_size_switcher == 1 || $article_print == '1' ) :
     <?php endif; ?>
     <?php
         if ( $article_print == '1' ) : ?>
-    <a href="#" class="print"><i class="icon_printer"></i></a>
+    <button type="button" class="print"
+        aria-label="<?php esc_attr_e( 'Print this article', 'eazydocs' ); ?>"
+        title="<?php esc_attr_e( 'Print article', 'eazydocs' ); ?>">
+        <i class="icon_printer" aria-hidden="true"></i>
+    </button>
     <?php endif; ?>
 </div>
 <?php

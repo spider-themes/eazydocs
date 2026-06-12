@@ -346,6 +346,7 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 = 2.12.0 (12 June 2026) =
 * New: Markdown & CSV Import-Export – Export your documentation as Markdown or CSV and import Markdown or CSV files back into your doc tree, making content migration and backups simple.
 * New: Multilingual Documentation – Added WPML and Polylang support so docs, categories, and tags can be translated and managed in multiple languages.
+* Improved: Article Printing – Upgraded the print button with accessibility enhancements, a loading state indicator, and a cleaner print/PDF layout that hides site navigation, expands external links, and prevents page breaks within headings or media blocks.
 * Improved: Multilingual Support – Loaded the plugin textdomain and added pre-translated language files for Arabic, Bengali, German, Spanish, French, Portuguese, Russian, and Chinese Simplified.
 * Improved: One-Page Docs – Large one-page documents now load and print to PDF reliably without timing out, and the sidebar navigation is cleaner and stays scrollable on smaller screens.
 * Optimized: Performance – Streamlined database queries and added caching across the dashboard, doc pages, and admin area for faster loading on large documentation libraries.

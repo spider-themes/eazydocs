@@ -97,6 +97,7 @@ class Assets
 			[
 				'ajaxurl' => $ajax_url,
 				'EZD_STYLES' => EZD_STYLES,
+				'EZD_VERSION' => EZD_VERSION,
 				'nonce' => wp_create_nonce('eazydocs-ajax'),
 				'is_doc_ajax' => ezd_is_premium() ? ezd_get_opt('is_doc_ajax') : false,
 				'ezd_layout_container' => ezd_container(),

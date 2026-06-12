@@ -323,13 +323,74 @@
 
 		/**
 		 * Print doc
+		 *
+		 * Builds a clean, self-contained printout via printThis: sets a proper
+		 * document title (so "Save as PDF" yields a meaningful filename), prepends
+		 * a source header (title + URL + date), shows a busy state on the button,
+		 * and guards against repeat clicks spawning multiple print dialogs.
 		 */
+		let ezdIsPrinting = false;
+
+		// HTML-escape helper to keep injected title/URL safe.
+		function ezdEscapeHtml(value) {
+			return $('<div>').text(value == null ? '' : value).html();
+		}
+
 		$('.pageSideSection .print').on('click', function (e) {
 			e.preventDefault();
-			$('.doc-middle-content .doc-post-content, body.single-onepage-docs .documentation_info').printThis({
-				loadCSS:
-					eazydocs_local_object.EZD_STYLES + 'print.css',
+
+			if (ezdIsPrinting) {
+				return;
+			}
+
+			const $btn = $(this);
+			const $content = $(
+				'.doc-middle-content .doc-post-content, body.single-onepage-docs .documentation_info'
+			);
+
+			if (!$content.length) {
+				return;
+			}
+
+			// Prefer the doc heading for the title; fall back to the page title.
+			const docTitle = ($content.find('h1').first().text() || document.title || '').trim();
+			const printDate = new Date().toLocaleDateString(undefined, {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric',
 			});
+
+			const printHeader =
+				'<div class="ezd-print-header">' +
+				'<span class="ezd-print-header__title">' + ezdEscapeHtml(docTitle) + '</span>' +
+				'<span class="ezd-print-header__meta">' +
+				'<span class="ezd-print-header__url">' + ezdEscapeHtml(window.location.href) + '</span>' +
+				'<span class="ezd-print-header__date">' + ezdEscapeHtml(printDate) + '</span>' +
+				'</span>' +
+				'</div>';
+
+			ezdIsPrinting = true;
+			$btn.addClass('is-printing').attr('aria-busy', 'true');
+
+			function ezdRestorePrintButton() {
+				ezdIsPrinting = false;
+				$btn.removeClass('is-printing').removeAttr('aria-busy');
+			}
+
+			// Append the plugin version so the print stylesheet busts cache on release.
+			const printCssVer = eazydocs_local_object.EZD_VERSION
+				? '?ver=' + encodeURIComponent(eazydocs_local_object.EZD_VERSION)
+				: '';
+
+			$content.printThis({
+				loadCSS: eazydocs_local_object.EZD_STYLES + 'print.css' + printCssVer,
+				pageTitle: docTitle,
+				header: printHeader,
+				afterPrint: ezdRestorePrintButton,
+			});
+
+			// Safety net if afterPrint never fires (e.g. dialog dismissed instantly).
+			setTimeout(ezdRestorePrintButton, 5000);
 		});
 
 		/**

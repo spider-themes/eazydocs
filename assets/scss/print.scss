@@ -1,11 +1,117 @@
+/**
+ * EazyDocs — print stylesheet.
+ *
+ * Loaded into the printThis iframe (see assets/js/frontend/docs-single.js),
+ * which clones the article (.doc-post-content) for printing. printThis also
+ * imports the on-screen stylesheet, so the rules below neutralise screen-only
+ * chrome, tune typography for paper, and add page/break handling so docs
+ * print cleanly and save to PDF with sensible margins.
+ */
+
+/* Comfortable, consistent margins for the printed page. */
+@page {
+    margin: 18mm 16mm;
+}
+
+html,
+body {
+    background: #fff !important;
+    color: #1d2746 !important;
+    font-size: 12pt;
+    line-height: 1.5;
+}
+
 .doc-post-content {
-    padding: 60px 0 0 40px;
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+/* Source header prepended by docs-single.js for printed/PDF context. */
+.ezd-print-header {
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #d5d8e0;
+
+    .ezd-print-header__title {
+        display: block;
+        font-size: 11pt;
+        font-weight: 600;
+        color: #1d2746;
+    }
+
+    .ezd-print-header__meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 4px;
+        font-size: 8.5pt;
+        color: #6b7280;
+    }
+
+    .ezd-print-header__url {
+        word-break: break-all;
+    }
+
+    .ezd-print-header__date {
+        white-space: nowrap;
+    }
+}
+
+/* Headings: token-consistent colour, never stranded at a page bottom. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #1d2746 !important;
+    break-after: avoid;
+    page-break-after: avoid;
 }
 
 h1 {
-    color: #1d2746;
+    font-size: 20pt;
 }
 
-.eazydocs-hide-print {
+/* Keep atomic blocks from being split across pages. */
+pre,
+blockquote,
+table,
+figure,
+img,
+.ezd-alert,
+.wp-block-image,
+.wp-block-table {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Expand external link destinations so paper readers can follow them. */
+a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 85%;
+    color: #6b7280;
+    word-break: break-all;
+}
+
+/* Preserve ink for code blocks and callouts where colour carries meaning. */
+pre,
+code,
+.ezd-alert {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* Screen-only chrome that should never reach paper. */
+.eazydocs-hide-print,
+.ezd-meta,
+.d-items.doc-items,
+.recently_added,
+.page-links {
     display: none !important;
 }
