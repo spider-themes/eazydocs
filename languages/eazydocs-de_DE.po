@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: EazyDocs\nReport-Msgid-Bugs-To: https://wordpress.org/support/plugin/eazydocs\nPOT-Creation-Date: 2026-06-11T09:19:28+00:00\nPO-Revision-Date: 2026-01-02 20:23+0600\nLast-Translator: \nLanguage-Team: \nLanguage: de_DE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Generator: Poedit 3.4.4\nX-Poedit-Basepath: ..\nX-Poedit-Flags-xgettext: --add-comments=translators:\nX-Poedit-WPHeader: eazydocs.php\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\nX-Poedit-SearchPath-0: .\nX-Poedit-SearchPathExcluded-0: *.min.js\nX-Poedit-SearchPathExcluded-1: vendor\nX-Poedit-SearchPathExcluded-2: node_modules\n"
+msgstr "Project-Id-Version: EazyDocs\nReport-Msgid-Bugs-To: https://wordpress.org/support/plugin/eazydocs\nPOT-Creation-Date: 2026-06-11T09:19:28+00:00\nPO-Revision-Date: 2026-01-02 20:23+0600\nLast-Translator: \nLanguage-Team: \nLanguage: de_DE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 3.4.4\nX-Poedit-Basepath: ..\nX-Poedit-Flags-xgettext: --add-comments=translators:\nX-Poedit-WPHeader: eazydocs.php\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\nX-Poedit-SearchPath-0: .\nX-Poedit-SearchPathExcluded-0: *.min.js\nX-Poedit-SearchPathExcluded-1: vendor\nX-Poedit-SearchPathExcluded-2: node_modules\n\nPlural-Forms: nplurals=2; plural=(n != 1);"
 
 #. Plugin Name of the plugin
 #: eazydocs.php blocks.php:132 includes/Admin/Admin.php:87
@@ -242,7 +242,7 @@ msgstr "Aktivieren Sie Antimanual, um EazyDocs mit KI aufzuladen"
 
 #: includes/Admin/AntimanualNotice.php:82
 msgid "Antimanual is installed but not active. Activate it to unlock AI chatbot, smart search, and auto-generated documentation features."
-msgstr ""
+msgstr "Antimanual ist installiert, aber nicht aktiv. Aktivieren Sie es, um KI-Chatbot, intelligente Suche und automatisch generierte Dokumentationsfunktionen freizuschalten."
 
 #: includes/Admin/AntimanualNotice.php:84
 msgid "Supercharge EazyDocs with AI-powered Antimanual"
@@ -250,7 +250,7 @@ msgstr "Erweitern Sie EazyDocs mit KI-gestütztem Antimanual"
 
 #: includes/Admin/AntimanualNotice.php:85
 msgid "Add an AI chatbot trained on your docs, smart semantic search, and auto-generated documentation. Reduce support tickets by 70%+."
-msgstr ""
+msgstr "Fügen Sie einen auf Ihre Dokumente trainierten KI-Chatbot, eine intelligente semantische Suche und eine automatisch generierte Dokumentation hinzu. Reduzieren Sie Support-Tickets um über 70 %."
 
 #: includes/Admin/AntimanualNotice.php:91
 #, fuzzy
@@ -350,7 +350,7 @@ msgstr "Von BetterDocs zu EazyDocs migrieren?"
 
 #: includes/Admin/Assets.php:210
 msgid "Your BetterDocs categories become parent docs and your existing docs are nested beneath them. No BetterDocs content is deleted."
-msgstr ""
+msgstr "Ihre BetterDocs-Kategorien werden zu übergeordneten Dokumenten und Ihre vorhandenen Dokumente werden darunter verschachtelt. Es werden keine BetterDocs-Inhalte gelöscht."
 
 #: includes/Admin/Assets.php:211
 #, fuzzy
@@ -401,11 +401,11 @@ msgstr "Plugin-Installation fehlgeschlagen."
 
 #: includes/Admin/Assets.php:225
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
 
 #: includes/Admin/Assets.php:226
 msgid "The request failed. Please try again."
-msgstr ""
+msgstr "Die Anfrage ist fehlgeschlagen. Bitte versuchen Sie es erneut."
 
 #: includes/Admin/Import_Export.php:57 includes/Admin/Import_Export.php:58
 msgid "Import / Export"
@@ -417,7 +417,7 @@ msgstr "Sie haben keine Berechtigung, auf diese Seite zuzugreifen."
 
 #: includes/Admin/Import_Export.php:202
 msgid "Import &amp; Export"
-msgstr ""
+msgstr "Importieren und Exportieren"
 
 #: includes/Admin/Import_Export.php:203
 msgid "Move documentation in and out of EazyDocs — import Markdown or CSV, download a portable backup, or migrate from another plugin."
@@ -425,7 +425,7 @@ msgstr "Verschieben Sie Dokumentation in und aus EazyDocs – importieren Sie Ma
 
 #: includes/Admin/Import_Export.php:211
 msgid "Markdown import/export needs PHP 8.1 or newer, so the Markdown option is disabled. CSV import/export still works."
-msgstr ""
+msgstr "Für den Markdown-Import/-Export ist PHP 8.1 oder neuer erforderlich, daher ist die Markdown-Option deaktiviert. Der CSV-Import/Export funktioniert weiterhin."
 
 #: includes/Admin/Import_Export.php:217 includes/Admin/Import_Export.php:310
 #: includes/csf/fields/backup/backup.php:26
@@ -513,7 +513,7 @@ msgstr "Dokumentation"
 
 #: includes/Admin/Import_Export.php:330
 msgid "Download any document and its sub-tree as Markdown files (.zip, folders mirror the hierarchy) or a flat CSV spreadsheet. All statuses — published, draft and private — are included."
-msgstr ""
+msgstr "Laden Sie jedes Dokument und seinen Unterbaum als Markdown-Dateien (.zip, Ordner spiegeln die Hierarchie wider) oder eine flache CSV-Tabelle herunter. Alle Status – veröffentlicht, Entwurf und privat – sind enthalten."
 
 #: includes/Admin/Import_Export.php:336
 msgid "There are no documents to export yet."
@@ -543,7 +543,7 @@ msgstr "CSV (.csv)"
 
 #: includes/Admin/Import_Export.php:361
 msgid "Images stay linked to this site; they are not bundled into the file."
-msgstr ""
+msgstr "Bilder bleiben mit dieser Website verlinkt; Sie werden nicht in der Datei gebündelt."
 
 #: includes/Admin/Import_Export.php:387 includes/functions.php:2751
 msgid "You do not have permission to run a migration."
@@ -554,16 +554,16 @@ msgstr "Sie haben keine Berechtigung zum Ausführen einer Migration."
 #, fuzzy, php-format
 msgid "%d created"
 msgid_plural "%d created"
-msgstr[0] "Handbuch erstellen"
-msgstr[1] "Handbuch erstellen"
+msgstr[0] "Handbuch erstellen %d"
+msgstr[1] "Handbuch erstellen %d"
 
 #. translators: %d: number of documents updated
 #: includes/Admin/Import_Export.php:429
 #, fuzzy, php-format
 msgid "%d updated"
 msgid_plural "%d updated"
-msgstr[0] "Badge aktualisiert"
-msgstr[1] "Badge aktualisiert"
+msgstr[0] "Badge aktualisiert %d"
+msgstr[1] "Badge aktualisiert %d"
 
 #. translators: %d: number of documents that failed to import
 #: includes/Admin/Import_Export.php:433
@@ -571,7 +571,7 @@ msgstr[1] "Badge aktualisiert"
 msgid "%d failed"
 msgid_plural "%d failed"
 msgstr[0] "%d ist fehlgeschlagen"
-msgstr[1] ""
+msgstr[1] " %d"
 
 #: includes/Admin/Import_Export.php:436
 msgid "Nothing to import"
@@ -618,7 +618,7 @@ msgstr "Migrieren Sie von BetterDocs zu EazyDocs"
 #: includes/Admin/migration.php:62
 #, php-format
 msgid "Bring your existing documentation from %1$sBetterDocs%2$s into %3$sEazyDocs%4$s. Here is exactly what happens:"
-msgstr ""
+msgstr " %1$s %2$s %3$s %4$s"
 
 #: includes/Admin/migration.php:75 includes/Elementor/Search/ezd-search.php:24
 #: includes/Elementor/Search/Search_Widget.php:159
@@ -671,19 +671,19 @@ msgstr "%1$s und %2$s wurden zur Migration bereit gefunden."
 #, fuzzy, php-format
 msgid "%d category"
 msgid_plural "%d categories"
-msgstr[0] "Kategorie verbergen"
-msgstr[1] "Kategorie verbergen"
+msgstr[0] "Kategorie verbergen %d"
+msgstr[1] "Kategorie verbergen %d"
 
 #: includes/Admin/migration.php:100
 #, php-format
 msgid "%d doc"
 msgid_plural "%d docs"
 msgstr[0] "%d Dokument"
-msgstr[1] ""
+msgstr[1] " %d"
 
 #: includes/Admin/migration.php:110
 msgid "BetterDocs is not active. Activate the BetterDocs plugin to enable this migration."
-msgstr ""
+msgstr "BetterDocs ist nicht aktiv. Aktivieren Sie das BetterDocs-Plugin, um diese Migration zu ermöglichen."
 
 #: includes/Admin/migration.php:115
 msgid "No BetterDocs categories were found, so there is nothing to migrate yet."
@@ -771,7 +771,7 @@ msgstr "Aktivieren Sie das Umschalten des Dunkelmodus"
 
 #: includes/Admin/options/opt_dark_mode.php:19
 msgid "Allow visitors to switch between light and dark themes. The toggle button appears on documentation pages."
-msgstr ""
+msgstr "Ermöglichen Sie den Besuchern, zwischen hellen und dunklen Themen zu wechseln. Die Umschalttaste erscheint auf Dokumentationsseiten."
 
 #: includes/Admin/options/opt_dark_mode.php:22
 #: includes/Admin/options/opt_docs_collaboration.php:95
@@ -818,7 +818,7 @@ msgstr "Benutzerdefinierter Dunkelmodus-Akzent"
 
 #: includes/Admin/options/opt_dark_mode.php:31
 msgid "Use a different accent color when dark mode is active. Useful for improving contrast and visibility."
-msgstr ""
+msgstr "Verwenden Sie eine andere Akzentfarbe, wenn der Dunkelmodus aktiv ist. Nützlich zur Verbesserung von Kontrast und Sichtbarkeit."
 
 #: includes/Admin/options/opt_dark_mode.php:34
 #: includes/Admin/options/opt_docs_subscription.php:242
@@ -849,7 +849,7 @@ msgstr "Frontend-Markenfarbe"
 
 #: includes/Admin/options/opt_dark_mode.php:46
 msgid "Choose an accent color optimized for dark backgrounds. Lighter colors typically work better."
-msgstr ""
+msgstr "Wählen Sie eine Akzentfarbe, die für dunkle Hintergründe optimiert ist. Hellere Farben funktionieren normalerweise besser."
 
 #: includes/Admin/options/opt_docs_assistant.php:15
 #: includes/Admin/options/opt_docs_assistant.php:26
@@ -1095,7 +1095,7 @@ msgstr "So betten Sie den Assistenten auf einer anderen Website ein"
 
 #: includes/Admin/options/opt_docs_assistant.php:470
 msgid "(Optional) Enter a Site / Product Label below — the name of the site or product where you are pasting this embed. This tells the assistant which product the visitor is asking about so it does not confuse multiple products in one knowledge base."
-msgstr ""
+msgstr "(Optional) Geben Sie unten eine Site-/Produktbezeichnung ein – den Namen der Site oder des Produkts, in die Sie diese Einbettung einfügen. Dadurch wird dem Assistenten mitgeteilt, nach welchem ​​Produkt der Besucher fragt, sodass nicht mehrere Produkte in einer Wissensdatenbank verwechselt werden."
 
 #: includes/Admin/options/opt_docs_assistant.php:471
 msgid "Copy the generated Embed Code from the box below."
@@ -1103,7 +1103,7 @@ msgstr "Kopieren Sie den generierten Einbettungscode aus dem Feld unten."
 
 #: includes/Admin/options/opt_docs_assistant.php:472
 msgid "Paste it into the HTML of the target site — anywhere inside the <body>. The assistant loads as a floating widget."
-msgstr ""
+msgstr "Fügen Sie es in den HTML-Code der Zielseite ein – irgendwo im <body>. Der Assistent wird als schwebendes Widget geladen."
 
 #: includes/Admin/options/opt_docs_assistant.php:474
 msgid "When to fill the label:"
@@ -1111,7 +1111,7 @@ msgstr "Wann das Etikett auszufüllen ist:"
 
 #: includes/Admin/options/opt_docs_assistant.php:474
 msgid "only when one knowledge base serves multiple products or brands. If you have one product on one site, leave it empty."
-msgstr ""
+msgstr "Nur wenn eine Wissensdatenbank mehrere Produkte oder Marken bedient. Wenn Sie ein Produkt auf einer Website haben, lassen Sie es leer."
 
 #: includes/Admin/options/opt_docs_assistant.php:475
 #: includes/Admin/options/opt_restricted_docs.php:255
@@ -1121,7 +1121,7 @@ msgstr "name@beispiel.de"
 
 #: includes/Admin/options/opt_docs_assistant.php:475
 msgid "on eazydocs.com use label \"Eazydocs\"; on antimanual.com use \"Antimanual\". Both iframes load the same KB but answer in their own product context."
-msgstr ""
+msgstr "Verwenden Sie auf eazydocs.com die Bezeichnung „Eazydocs“; auf antimanual.com verwenden Sie „Antimanual“. Beide Iframes laden dieselbe KB, antworten jedoch in ihrem eigenen Produktkontext."
 
 #: includes/Admin/options/opt_docs_assistant.php:479
 msgid "Site / Product Label (optional)"
@@ -1133,7 +1133,7 @@ msgstr "z. B. Eazydocs, Acme CRM, Plan Pro"
 
 #: includes/Admin/options/opt_docs_assistant.php:481
 msgid "Max 200 characters. The label is passed as scope only — it never appears in the user message."
-msgstr ""
+msgstr "Maximal 200 Zeichen. Die Bezeichnung wird nur als Gültigkeitsbereich übergeben – sie erscheint nie in der Benutzernachricht."
 
 #: includes/Admin/options/opt_docs_collaboration.php:15
 #, fuzzy
@@ -1162,11 +1162,11 @@ msgstr "Login-Seite"
 
 #: includes/Admin/options/opt_docs_collaboration.php:37
 msgid "Type in the field to select the login page. User would require to login to edit/add docs from frontend."
-msgstr ""
+msgstr "Geben Sie in das Feld ein, um die Anmeldeseite auszuwählen. Der Benutzer muss sich anmelden, um Dokumente vom Frontend aus bearbeiten/hinzufügen."
 
 #: includes/Admin/options/opt_docs_collaboration.php:38
 msgid "This page is required to select to show/enable the Add/Edit doc buttons. You can use the shortcode [ezd_login_form] for the login page."
-msgstr ""
+msgstr "Diese Seite ist erforderlich, um auszuwählen, ob die Schaltflächen „Dokument hinzufügen/bearbeiten“ angezeigt/aktiviert werden soll. Sie können den Shortcode [ezd_login_form] für die Anmeldeseite verwenden."
 
 #: includes/Admin/options/opt_docs_collaboration.php:54
 #, fuzzy
@@ -1184,7 +1184,7 @@ msgstr "Erlaubte Benutzerrollen"
 
 #: includes/Admin/options/opt_docs_collaboration.php:66
 msgid "Select the user roles that can add or edit documentation from the frontend. These roles will have contributor privileges."
-msgstr ""
+msgstr "Wählen Sie die Benutzerrollen aus, die Dokumentation über das Frontend hinzufügen oder bearbeiten können. Diese Rollen verfügen über Mitwirkender-Berechtigungen."
 
 #: includes/Admin/options/opt_docs_collaboration.php:68
 #: includes/Admin/options/opt_docs_role_manager.php:24
@@ -1344,7 +1344,7 @@ msgstr "Titel der Docs-Archivseite"
 
 #: includes/Admin/options/opt_docs_general.php:25
 msgid "Select the main page that displays all your documentation. This page will appear in breadcrumbs and serve as your docs homepage."
-msgstr ""
+msgstr "Wählen Sie die Hauptseite aus, auf der Ihre gesamte Dokumentation angezeigt wird. Diese Seite wird in Breadcrumbs angezeigt und dient als Startseite Ihrer Dokumente."
 
 #: includes/Admin/options/opt_docs_general.php:26
 msgid "Create this page using the [eazydocs] shortcode, EazyDocs Gutenberg blocks, or Elementor widgets."
@@ -1375,7 +1375,7 @@ msgstr "Wählen Sie aus, wie Ihre Dokumentations-URLs formatiert werden."
 #: includes/Admin/options/opt_docs_general.php:46
 #, fuzzy, php-format
 msgid "<strong>Important:</strong> After changing this setting, visit %1$sSettings → Permalinks%2$s and click \"Save Changes\" to apply."
-msgstr "Nachdem Sie den Slug geändert haben, gehen Sie zu Einstellungen > Permalinks und klicken Sie auf die Schaltfläche Änderungen speichern."
+msgstr "Nachdem Sie den Slug geändert haben, gehen Sie zu Einstellungen > Permalinks und klicken Sie auf die Schaltfläche Änderungen speichern. %1$s %2$s"
 
 #: includes/Admin/options/opt_docs_general.php:49
 msgid "Custom Slug (e.g., /docs/article-name)"
@@ -1396,13 +1396,13 @@ msgstr "Dokumentation"
 
 #: includes/Admin/options/opt_docs_general.php:66
 msgid "Define the base URL path for all documentation pages. Cannot be left empty."
-msgstr ""
+msgstr "Definieren Sie den Basis-URL-Pfad für alle Dokumentationsseiten. Darf nicht leer bleiben."
 
 #. translators: %1$s and %2$s are HTML link tags
 #: includes/Admin/options/opt_docs_general.php:70
 #, fuzzy, php-format
 msgid "<strong>Important:</strong> After changing, visit %1$sSettings → Permalinks%2$s and click \"Save Changes\"."
-msgstr "Nachdem Sie den Slug geändert haben, gehen Sie zu Einstellungen > Permalinks und klicken Sie auf die Schaltfläche Änderungen speichern."
+msgstr "Nachdem Sie den Slug geändert haben, gehen Sie zu Einstellungen > Permalinks und klicken Sie auf die Schaltfläche Änderungen speichern. %1$s %2$s"
 
 #: includes/Admin/options/opt_docs_general.php:79
 #, fuzzy
@@ -1472,7 +1472,7 @@ msgstr "Dokumentation"
 #: includes/Admin/options/opt_docs_shortcodes.php:26
 #, php-format
 msgid "Display your documentation in a grid layout. %1$sView full documentation%2$s for all available options."
-msgstr ""
+msgstr " %1$s %2$s"
 
 #: includes/Admin/options/opt_docs_shortcodes.php:30
 #: includes/Admin/options/opt_docs_shortcodes.php:89
@@ -1488,7 +1488,7 @@ msgstr "Bedingtes Dropdown-Menü"
 #: includes/Admin/options/opt_docs_shortcodes.php:43
 #, php-format
 msgid "Show or hide content based on dropdown selections. %1$sLearn more%2$s"
-msgstr ""
+msgstr " %1$s %2$s"
 
 #: includes/Admin/options/opt_docs_shortcodes.php:54
 #, fuzzy
@@ -1513,7 +1513,7 @@ msgstr "Fußnoten-Shortcode"
 #: includes/Admin/options/opt_docs_shortcodes.php:71
 #, php-format
 msgid "Add numbered footnotes with tooltips to your documentation. %1$sSetup guide%2$s"
-msgstr ""
+msgstr " %1$s %2$s"
 
 #: includes/Admin/options/opt_docs_shortcodes.php:73
 #: includes/Admin/options/opt_footnotes.php:79
@@ -1530,7 +1530,7 @@ msgstr "Dokumentation"
 #: includes/Admin/options/opt_docs_shortcodes.php:87
 #, php-format
 msgid "Embed content from one doc into another to avoid duplication. %1$sLearn more%2$s"
-msgstr ""
+msgstr " %1$s %2$s"
 
 #: includes/Admin/options/opt_docs_subscription.php:14
 #, fuzzy
@@ -1691,7 +1691,7 @@ msgstr "E-Mail"
 
 #: includes/Admin/options/opt_docs_subscription.php:141
 msgid "Logo displayed in email header. Recommended size: 200x50px."
-msgstr ""
+msgstr "Logo wird im E-Mail-Header angezeigt. Empfohlene Größe: 200x50px."
 
 #: includes/Admin/options/opt_docs_subscription.php:148
 #, fuzzy
@@ -2077,7 +2077,7 @@ msgstr "Danksagung"
 
 #: includes/Admin/options/opt_doc_single.php:296
 msgid "Customize the footer credit message. HTML links are supported."
-msgstr ""
+msgstr "Passen Sie die Gutschriftsnachricht in der Fußzeile an. HTML-Links werden unterstützt."
 
 #: includes/Admin/options/opt_doc_single.php:317
 #, fuzzy
@@ -2268,7 +2268,7 @@ msgstr "Ajax-Suchergebnisse"
 
 #: includes/Admin/options/opt_doc_single.php:556
 msgid "The Search Results settings is global. This settings will be applied to all Ajax Doc Search Results in the plugin."
-msgstr ""
+msgstr "Die Einstellungen für die Suchergebnisse sind global. Diese Einstellungen werden auf alle Ajax-Doc-Suchergebnisse im Plugin angewendet."
 
 #: includes/Admin/options/opt_doc_single.php:567
 msgid "Show / Hide the breadcrumbs in search results"
@@ -2290,7 +2290,7 @@ msgstr "Suche nach"
 #: includes/Admin/options/opt_doc_single.php:598
 #, php-format
 msgid "%1$sSelect how you want the search to work.%2$s %3$s\n\t\t\t\t\t• %1$sBy Title Only:%2$s Shows results that match your search keywords in titles. %3$s\n\t\t\t\t\t• %1$sBy Title and Content:%2$s First shows title matches, then includes results that match inside the content."
-msgstr ""
+msgstr " %1$s %2$s %3$s"
 
 #: includes/Admin/options/opt_doc_single.php:609
 msgid "Search in Titles Only"
@@ -2651,7 +2651,7 @@ msgstr "Automatisierte regelmäßige Berichte"
 
 #: includes/Admin/options/opt_email_reporting.php:61
 msgid "Receive comprehensive analytics summaries directly in your inbox. Track page views, search queries, user reactions, and documentation statistics without logging in to your dashboard."
-msgstr ""
+msgstr "Erhalten Sie umfassende Analysezusammenfassungen direkt in Ihrem Posteingang. Verfolgen Sie Seitenaufrufe, Suchanfragen, Benutzerreaktionen und Dokumentationsstatistiken, ohne sich bei Ihrem Dashboard anzumelden."
 
 #: includes/Admin/options/opt_email_reporting.php:63
 #, fuzzy
@@ -2677,7 +2677,7 @@ msgstr "E-Mail: %s"
 
 #: includes/Admin/options/opt_email_reporting.php:86
 msgid "Toggle this option to activate automated email reports. When enabled, you'll receive periodic summaries of your documentation analytics based on the schedule you configure below."
-msgstr ""
+msgstr "Schalten Sie diese Option um, um automatische E-Mail-Berichte zu aktivieren. Wenn diese Option aktiviert ist, erhalten Sie regelmäßig Zusammenfassungen Ihrer Dokumentationsanalysen basierend auf dem Zeitplan, den Sie unten konfigurieren."
 
 #: includes/Admin/options/opt_email_reporting.php:94
 #, fuzzy
@@ -2690,7 +2690,7 @@ msgstr "Häufigkeit melden"
 
 #: includes/Admin/options/opt_email_reporting.php:104
 msgid "Select how often you want to receive analytics reports. Daily reports are ideal for active documentation sites, while weekly or monthly reports work better for smaller sites."
-msgstr ""
+msgstr "Wählen Sie aus, wie oft Sie Analyseberichte erhalten möchten. Tägliche Berichte sind ideal für aktive Dokumentationsseiten, während wöchentliche oder monatliche Berichte für kleinere Seiten besser funktionieren."
 
 #: includes/Admin/options/opt_email_reporting.php:109
 msgid "📅 Daily — Perfect for high-traffic documentation"
@@ -2711,7 +2711,7 @@ msgstr "Layout auswählen"
 
 #: includes/Admin/options/opt_email_reporting.php:121
 msgid "Choose which day of the week you'd like to receive your weekly reports. Many users prefer Monday to review the previous week's activity."
-msgstr ""
+msgstr "Wählen Sie aus, an welchem ​​Wochentag Sie Ihre wöchentlichen Berichte erhalten möchten. Viele Benutzer bevorzugen den Montag, um die Aktivitäten der Vorwoche zu überprüfen."
 
 #: includes/Admin/options/opt_email_reporting.php:128
 msgid "Sunday"
@@ -2749,7 +2749,7 @@ msgstr "Layout auswählen"
 
 #: includes/Admin/options/opt_email_reporting.php:144
 msgid "Select which day of the month to receive your monthly report. Choose \"Last Day\" for end-of-month summaries."
-msgstr ""
+msgstr "Wählen Sie aus, an welchem ​​Tag des Monats Sie Ihren Monatsbericht erhalten möchten. Wählen Sie „Letzter Tag“ für Zusammenfassungen zum Monatsende."
 
 #: includes/Admin/options/opt_email_reporting.php:150
 msgid "1st of the month"
@@ -2769,7 +2769,7 @@ msgstr "Bevorzugte Zeit"
 
 #: includes/Admin/options/opt_email_reporting.php:162
 msgid "Select the time of day when you'd like to receive your email reports. Reports will be sent in your site's timezone."
-msgstr ""
+msgstr "Wählen Sie die Tageszeit aus, zu der Sie Ihre E-Mail-Berichte erhalten möchten. Berichte werden in der Zeitzone Ihrer Website gesendet."
 
 #: includes/Admin/options/opt_email_reporting.php:167
 msgid "12:00 AM (Midnight)"
@@ -2818,7 +2818,7 @@ msgstr "Meta-Content"
 
 #: includes/Admin/options/opt_email_reporting.php:197
 msgid "Choose which analytics metrics to include in your email reports. Select multiple metrics for a comprehensive overview. Each metric includes trend comparisons with the previous period."
-msgstr ""
+msgstr "Wählen Sie aus, welche Analysemetriken in Ihre E-Mail-Berichte einbezogen werden sollen. Wählen Sie mehrere Metriken aus, um einen umfassenden Überblick zu erhalten. Jede Metrik umfasst Trendvergleiche mit der vorherigen Periode."
 
 #: includes/Admin/options/opt_email_reporting.php:200
 #, fuzzy
@@ -2852,7 +2852,7 @@ msgstr "Hauptempfänger"
 
 #: includes/Admin/options/opt_email_reporting.php:227
 msgid "Enter the primary email address where reports should be sent. This is required. Leave empty to use the site administrator email."
-msgstr ""
+msgstr "Geben Sie die primäre E-Mail-Adresse ein, an die Berichte gesendet werden sollen. Dies ist erforderlich. Lassen Sie das Feld leer, um die E-Mail-Adresse des Site-Administrators zu verwenden."
 
 #: includes/Admin/options/opt_email_reporting.php:242
 #, fuzzy
@@ -2861,7 +2861,7 @@ msgstr "Empfänger Mail"
 
 #: includes/Admin/options/opt_email_reporting.php:243
 msgid "Add additional email addresses to receive copies of the report. Separate multiple emails with commas."
-msgstr ""
+msgstr "Fügen Sie zusätzliche E-Mail-Adressen hinzu, um Kopien des Berichts zu erhalten. Trennen Sie mehrere E-Mails durch Kommas."
 
 #: includes/Admin/options/opt_email_reporting.php:256
 #, fuzzy
@@ -2875,7 +2875,7 @@ msgstr "Suche per E-Mail"
 
 #: includes/Admin/options/opt_email_reporting.php:266
 msgid "Customize how your site name appears in the email header. Leave empty to use your WordPress site title."
-msgstr ""
+msgstr "Passen Sie an, wie der Name Ihrer Website im E-Mail-Header angezeigt wird. Lassen Sie das Feld leer, um den Titel Ihrer WordPress-Site zu verwenden."
 
 #: includes/Admin/options/opt_email_reporting.php:280
 #, fuzzy
@@ -2884,7 +2884,7 @@ msgstr "E-Mail: %s"
 
 #: includes/Admin/options/opt_email_reporting.php:281
 msgid "Customize the subject line for report emails. Use clear, descriptive text so your reports are easy to find in your inbox."
-msgstr ""
+msgstr "Passen Sie die Betreffzeile für Berichts-E-Mails an. Verwenden Sie klaren, beschreibenden Text, damit Ihre Berichte in Ihrem Posteingang leicht zu finden sind."
 
 #: includes/Admin/options/opt_email_reporting.php:282
 #, fuzzy
@@ -2907,11 +2907,11 @@ msgstr "Abschnitte"
 
 #: includes/Admin/options/opt_email_reporting.php:297
 msgid "Add a personalized introduction message that appears at the top of each report email. This helps provide context for team members receiving the reports."
-msgstr ""
+msgstr "Fügen Sie eine personalisierte Einführungsnachricht hinzu, die oben in jeder Berichts-E-Mail angezeigt wird. Dies trägt dazu bei, den Teammitgliedern, die die Berichte erhalten, Kontext zu bieten."
 
 #: includes/Admin/options/opt_email_reporting.php:298
 msgid "Here's your comprehensive analytics summary for the documentation on your website. This report includes key metrics and performance trends to help you understand how users interact with your documentation."
-msgstr ""
+msgstr "Hier ist Ihre umfassende Analysezusammenfassung für die Dokumentation auf Ihrer Website. Dieser Bericht enthält wichtige Kennzahlen und Leistungstrends, um Ihnen zu helfen, zu verstehen, wie Benutzer mit Ihrer Dokumentation interagieren."
 
 #: includes/Admin/options/opt_email_reporting.php:305
 msgid "Write a brief introduction for your reports..."
@@ -2928,7 +2928,7 @@ msgstr "Testbericht senden"
 
 #: includes/Admin/options/opt_email_reporting.php:321
 msgid "Send a sample report email to verify your settings are configured correctly. The test report uses sample data to show how your actual reports will look."
-msgstr ""
+msgstr "Senden Sie eine E-Mail mit einem Beispielbericht, um zu überprüfen, ob Ihre Einstellungen korrekt konfiguriert sind. Der Testbericht zeigt anhand von Beispieldaten, wie Ihre tatsächlichen Berichte aussehen werden."
 
 #: includes/Admin/options/opt_email_reporting.php:328
 #, fuzzy
@@ -2950,7 +2950,7 @@ msgstr "📧 SMTP-Konfiguration empfohlen"
 
 #: includes/Admin/options/opt_email_reporting.php:355
 msgid "For reliable email delivery, we strongly recommend configuring SMTP (Simple Mail Transfer Protocol) on your WordPress site. By default, WordPress uses PHP's mail() function which often fails or emails end up in spam folders."
-msgstr ""
+msgstr "Für eine zuverlässige E-Mail-Zustellung empfehlen wir dringend, SMTP (Simple Mail Transfer Protocol) auf Ihrer WordPress-Site zu konfigurieren. Standardmäßig verwendet WordPress die Funktion mail() von PHP, die häufig fehlschlägt oder E-Mails in Spam-Ordnern landet."
 
 #: includes/Admin/options/opt_email_reporting.php:356
 msgid "Benefits of using SMTP:"
@@ -3279,7 +3279,7 @@ msgstr "Fußnoten-Shortcode"
 #: includes/Admin/options/opt_footnotes.php:77
 #, php-format
 msgid "Add clickable footnote references in your content. %1$sView documentation%2$s"
-msgstr ""
+msgstr " %1$s %2$s"
 
 #: includes/Admin/options/opt_footnotes.php:93
 #, fuzzy
@@ -3333,7 +3333,7 @@ msgstr "Fügen Sie eine oder mehrere Dateien hinzu, die Sie an diese Dokumentati
 
 #: includes/Admin/options/opt_footnotes.php:159
 msgid "You can upload PDF, DOC, DOCX, or TXT files. Each file will be listed as an attachment for this document."
-msgstr ""
+msgstr "Sie können PDF-, DOC-, DOCX- oder TXT-Dateien hochladen. Jede Datei wird als Anhang zu diesem Dokument aufgeführt."
 
 #: includes/Admin/options/opt_footnotes.php:166
 msgid "Upload File"
@@ -3509,7 +3509,7 @@ msgstr "Dokumentation"
 
 #: includes/Admin/options/opt_restricted_docs.php:50
 msgid "Protect your sensitive documentation by requiring users to log in before viewing. Perfect for internal knowledge bases, member-only content, customer documentation, and confidential guides."
-msgstr ""
+msgstr "Schützen Sie Ihre vertrauliche Dokumentation, indem Sie Benutzer dazu auffordern, sich vor der Anzeige anzumelden. Perfekt für interne Wissensdatenbanken, Inhalte nur für Mitglieder, Kundendokumentation und vertrauliche Leitfäden."
 
 #: includes/Admin/options/opt_restricted_docs.php:52
 #, fuzzy
@@ -3574,7 +3574,7 @@ msgstr "Was passiert, wenn ein nicht angemeldeter Benutzer versucht, auf ein pri
 
 #: includes/Admin/options/opt_restricted_docs.php:109
 msgid "Choose how to handle unauthorized visitors. Redirecting to a login page provides a better user experience than showing an error."
-msgstr ""
+msgstr "Wählen Sie, wie mit unbefugten Besuchern umgegangen werden soll. Die Weiterleitung zu einer Anmeldeseite bietet eine bessere Benutzererfahrung als die Anzeige eines Fehlers."
 
 #: includes/Admin/options/opt_restricted_docs.php:111
 #, fuzzy
@@ -3594,7 +3594,7 @@ msgstr "Wählen Sie die Seite aus, auf der Benutzer zur Anmeldung weitergeleitet
 #: includes/Admin/options/opt_restricted_docs.php:126
 #, fuzzy, php-format
 msgid "Use the %s shortcode to display the login form on any page."
-msgstr "Verwenden Sie diesen Shortcode, um das Anmeldeformular anzuzeigen."
+msgstr "Verwenden Sie diesen Shortcode, um das Anmeldeformular anzuzeigen. %s"
 
 #: includes/Admin/options/opt_restricted_docs.php:129
 #: includes/Admin/options/opt_restricted_docs.php:308
@@ -3626,7 +3626,7 @@ msgstr "Globale vs. dokumentbezogene Kontrolle"
 
 #: includes/Admin/options/opt_restricted_docs.php:179
 msgid "Settings here apply to ALL private docs as a default. You can override these on individual docs using the Visibility popup in the Docs Builder."
-msgstr ""
+msgstr "Die Einstellungen hier gelten standardmäßig für ALLE privaten Dokumente. Sie können diese für einzelne Dokumente über das Sichtbarkeits-Popup im Docs Builder überschreiben."
 
 #: includes/Admin/options/opt_restricted_docs.php:192
 #, fuzzy
@@ -3652,7 +3652,7 @@ msgstr "Wählen Sie standardmäßig die aktive Registerkarte \"Dokument\" aus."
 
 #: includes/Admin/options/opt_restricted_docs.php:211
 msgid "Users with these roles will be able to view private documentation. Administrators always have access."
-msgstr ""
+msgstr "Benutzer mit diesen Rollen können private Dokumentation anzeigen. Administratoren haben immer Zugriff."
 
 #: includes/Admin/options/opt_restricted_docs.php:212
 #, fuzzy
@@ -3670,11 +3670,11 @@ msgstr "Erweiterte Kontrolle pro Dokument"
 
 #: includes/Admin/options/opt_restricted_docs.php:253
 msgid "Set unique role requirements for individual docs. Perfect when different docs need different access levels — like restricting HR docs to HR roles, or limiting API docs to developers."
-msgstr ""
+msgstr "Legen Sie eindeutige Rollenanforderungen für einzelne Dokumente fest. Perfekt, wenn unterschiedliche Dokumente unterschiedliche Zugriffsebenen erfordern – beispielsweise die Beschränkung von HR-Dokumenten auf HR-Rollen oder die Beschränkung von API-Dokumenten auf Entwickler."
 
 #: includes/Admin/options/opt_restricted_docs.php:255
 msgid "Your global setting allows all logged-in users. But for your \"Admin Guides\" doc, you set it to only allow Administrators. Only Admins can see that specific doc."
-msgstr ""
+msgstr "Ihre globale Einstellung lässt alle angemeldeten Benutzer zu. Für Ihr Dokument „Administratorhandbücher“ haben Sie jedoch so eingestellt, dass nur Administratoren zugelassen sind. Nur Administratoren können dieses spezifische Dokument sehen."
 
 #: includes/Admin/options/opt_restricted_docs.php:268
 msgid "Enable Per-Doc Role Control"
@@ -3799,7 +3799,7 @@ msgstr "Diese Meldung wird angezeigt, wenn ein Benutzer versucht, auf ein Dokume
 
 #: includes/Admin/options/opt_restricted_docs.php:421
 msgid "This documentation is private. Please log in with an authorized account to view this content."
-msgstr ""
+msgstr "Diese Dokumentation ist privat. Bitte melden Sie sich mit einem autorisierten Konto an, um diesen Inhalt anzuzeigen."
 
 #: includes/Admin/options/opt_restricted_docs.php:432
 msgid "Login Prompt Text"
@@ -3827,7 +3827,7 @@ msgstr "Passwortgeschütztes Dokument"
 
 #: includes/Admin/options/opt_restricted_docs.php:468
 msgid "Protect specific docs with a password. Perfect for sharing sensitive documentation with external parties without requiring them to create an account."
-msgstr ""
+msgstr "Schützen Sie bestimmte Dokumente mit einem Passwort. Perfekt für die Weitergabe vertraulicher Dokumente an externe Parteien, ohne dass diese ein Konto erstellen müssen."
 
 #: includes/Admin/options/opt_restricted_docs.php:481
 #, fuzzy
@@ -3976,7 +3976,7 @@ msgstr "Einrichtung abgeschlossen!"
 
 #: includes/Admin/setup-wizard/setup.php:117
 msgid "Your documentation site is ready. Here's what you can do next:"
-msgstr ""
+msgstr "Ihre Dokumentationsseite ist fertig. Folgendes können Sie als Nächstes tun:"
 
 #: includes/Admin/setup-wizard/setup.php:125
 #, fuzzy
@@ -4069,7 +4069,7 @@ msgstr "Willkommen bei EazyDocs!"
 
 #: includes/Admin/setup-wizard/step1_welcome.php:15
 msgid "Thank you for choosing EazyDocs - the best documentation plugin for WordPress. Let's set up your knowledge base in just a few minutes."
-msgstr ""
+msgstr "Vielen Dank, dass Sie sich für EazyDocs entschieden haben – das beste Dokumentations-Plugin für WordPress. Lassen Sie uns in wenigen Minuten Ihre Wissensdatenbank einrichten."
 
 #: includes/Admin/setup-wizard/step1_welcome.php:26
 #, fuzzy
@@ -4130,7 +4130,7 @@ msgstr "Navigation in der Badge-Liste"
 
 #: includes/Admin/setup-wizard/step2_settings.php:15
 msgid "Configure the essential settings for your documentation. Don't worry, you can change these later."
-msgstr ""
+msgstr "Konfigurieren Sie die wesentlichen Einstellungen für Ihre Dokumentation. Keine Sorge, Sie können diese später ändern."
 
 #: includes/Admin/setup-wizard/step2_settings.php:26
 #, fuzzy
@@ -4192,7 +4192,7 @@ msgstr "Docs-Layout"
 
 #: includes/Admin/setup-wizard/step3_settings.php:15
 msgid "Select how your documentation pages will look. Pick a layout that suits your content best."
-msgstr ""
+msgstr "Wählen Sie aus, wie Ihre Dokumentationsseiten aussehen sollen. Wählen Sie ein Layout, das am besten zu Ihren Inhalten passt."
 
 #: includes/Admin/setup-wizard/step3_settings.php:26
 #, fuzzy
@@ -4211,7 +4211,7 @@ msgstr "Linke Seitenleiste"
 
 #: includes/Admin/setup-wizard/step3_settings.php:38
 msgid "Left: Navigation | Right: TOC"
-msgstr ""
+msgstr "Links: Navigation | Rechts: Inhaltsverzeichnis"
 
 #: includes/Admin/setup-wizard/step3_settings.php:50
 msgid "Navigation on left side"
@@ -4268,7 +4268,7 @@ msgstr "Elementor"
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:22
 msgid "Required for EazyDocs Elementor widgets. Perfect for building custom documentation layouts."
-msgstr ""
+msgstr "Erforderlich für EazyDocs Elementor-Widgets. Perfekt zum Erstellen benutzerdefinierter Dokumentationslayouts."
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:24
 msgid "Required"
@@ -4315,7 +4315,7 @@ msgstr "Empfohlene Plugins installieren"
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:55
 msgid "These plugins enhance your documentation experience. Choose the ones that fit your needs."
-msgstr ""
+msgstr "Diese Plugins verbessern Ihr Dokumentationserlebnis. Wählen Sie diejenigen aus, die Ihren Anforderungen entsprechen."
 
 #: includes/Admin/setup-wizard/step4_install_plugins.php:66
 msgid "Activated"
@@ -4346,7 +4346,7 @@ msgstr "Dokumentationen"
 
 #: includes/Admin/template/analytics-presentation.php:33
 msgid "Get deep insights into how users interact with your documentation. Track views, understand search behavior, measure satisfaction, and make data-driven improvements."
-msgstr ""
+msgstr "Erhalten Sie tiefe Einblicke in die Art und Weise, wie Benutzer mit Ihrer Dokumentation interagieren. Verfolgen Sie Aufrufe, verstehen Sie das Suchverhalten, messen Sie die Zufriedenheit und nehmen Sie datengesteuerte Verbesserungen vor."
 
 #: includes/Admin/template/analytics-presentation.php:38
 msgid "Get Promax Plan"
@@ -4387,7 +4387,7 @@ msgstr "EazyDocs Analytik"
 
 #: includes/Admin/template/analytics-presentation.php:82
 msgid "Track detailed page view statistics for every documentation page. Identify your most popular content and engagement patterns."
-msgstr ""
+msgstr "Verfolgen Sie detaillierte Seitenaufrufstatistiken für jede Dokumentationsseite. Identifizieren Sie Ihre beliebtesten Inhalte und Interaktionsmuster."
 
 #: includes/Admin/template/analytics-presentation.php:84
 msgid "Daily/weekly/monthly views"
@@ -4409,7 +4409,7 @@ msgstr "Feedback-Bereich"
 
 #: includes/Admin/template/analytics-presentation.php:98
 msgid "Monitor user satisfaction with helpful/not helpful vote tracking. Identify which docs need improvement based on real user feedback."
-msgstr ""
+msgstr "Überwachen Sie die Benutzerzufriedenheit mit der Verfolgung hilfreicher/nicht hilfreicher Abstimmungen. Identifizieren Sie anhand des echten Benutzerfeedbacks, welche Dokumente verbessert werden müssen."
 
 #: includes/Admin/template/analytics-presentation.php:100
 msgid "Satisfaction rate tracking"
@@ -4430,7 +4430,7 @@ msgstr "Analytics"
 
 #: includes/Admin/template/analytics-presentation.php:114
 msgid "Understand what users are searching for in your documentation. Discover content gaps and optimize for commonly searched terms."
-msgstr ""
+msgstr "Verstehen Sie, wonach Benutzer in Ihrer Dokumentation suchen. Entdecken Sie Inhaltslücken und optimieren Sie für häufig gesuchte Begriffe."
 
 #: includes/Admin/template/analytics-presentation.php:116
 #, fuzzy
@@ -4453,7 +4453,7 @@ msgstr "Doc Einzel"
 
 #: includes/Admin/template/analytics-presentation.php:130
 msgid "See which documentation pages are performing best and which need improvement. Rankings based on views and user feedback combined."
-msgstr ""
+msgstr "Sehen Sie, welche Dokumentationsseiten die beste Leistung erbringen und welche verbessert werden müssen. Rankings basierend auf Ansichten und Benutzerfeedback kombiniert."
 
 #: includes/Admin/template/analytics-presentation.php:132
 msgid "Most helpful docs"
@@ -4474,7 +4474,7 @@ msgstr "Beitragsfunktion"
 
 #: includes/Admin/template/analytics-presentation.php:146
 msgid "Track team collaboration and contribution metrics. See who is actively contributing to your documentation and measure team productivity."
-msgstr ""
+msgstr "Verfolgen Sie Kennzahlen zur Teamzusammenarbeit und zum Beitrag. Sehen Sie, wer aktiv zu Ihrer Dokumentation beiträgt, und messen Sie die Teamproduktivität."
 
 #: includes/Admin/template/analytics-presentation.php:148
 #, fuzzy
@@ -4616,7 +4616,7 @@ msgstr "Suche"
 
 #: includes/Admin/template/components/failed-searches-list.php:46
 msgid "These keywords yielded no results. Consider creating content to address these searches."
-msgstr ""
+msgstr "Diese Schlüsselwörter lieferten keine Ergebnisse. Erwägen Sie die Erstellung von Inhalten, die auf diese Suchanfragen eingehen."
 
 #. translators: %d: number of failed search attempts
 #: includes/Admin/template/components/failed-searches-list.php:61
@@ -4645,12 +4645,12 @@ msgstr "Lösen"
 #: includes/Admin/template/components/failed-searches-list.php:97
 #, fuzzy, php-format
 msgid "View all %d Keywords"
-msgstr "Such-Keywords"
+msgstr "Such-Keywords %d"
 
 #: includes/Admin/template/components/failed-searches-list.php:110
 #: includes/Admin/template/components/failed-searches-list.php:215
 msgid "Great! No failed searches recorded."
-msgstr ""
+msgstr "Großartig! Es wurden keine fehlgeschlagenen Suchvorgänge aufgezeichnet."
 
 #: includes/Admin/template/components/failed-searches-list.php:111
 #: includes/Admin/template/components/failed-searches-list.php:216
@@ -4667,7 +4667,7 @@ msgstr "Das Schlüsselwort konnte nicht aufgelöst werden."
 
 #: includes/Admin/template/components/failed-searches-list.php:227
 msgid "An error occurred. Please try again."
-msgstr ""
+msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
 
 #: includes/Admin/template/dashboard/analytics.php:5
 msgid "Performance Overview"
@@ -4861,7 +4861,7 @@ msgstr "Domainübergreifende Einbettung und bbPress-Integration"
 
 #: includes/Admin/template/dashboard/antimanual-ai.php:200
 msgid "Free version available. Upgrade to Premium for higher limits and priority support."
-msgstr ""
+msgstr "Kostenlose Version verfügbar. Upgraden Sie auf Premium, um höhere Limits und vorrangigen Support zu erhalten."
 
 #: includes/Admin/template/dashboard/card-info.php:28
 #, fuzzy
@@ -4953,7 +4953,7 @@ msgstr "Empfohlen"
 
 #: includes/Admin/template/dashboard/doc-health.php:208
 msgid "Great job! Your documentation is in excellent shape."
-msgstr ""
+msgstr "Tolle Arbeit! Ihre Dokumentation ist in ausgezeichnetem Zustand."
 
 #: includes/Admin/template/dashboard/header.php:28
 msgid "Good morning"
@@ -5162,7 +5162,7 @@ msgstr "Erstellen Sie FAQs mit Advanced Accordion Block"
 
 #: includes/Admin/template/faq-builder.php:24
 msgid "Transform your documentation with interactive, user-friendly accordions. Install our recommended plugin and start creating engaging FAQs in minutes."
-msgstr ""
+msgstr "Verwandeln Sie Ihre Dokumentation mit interaktiven, benutzerfreundlichen Akkordeons. Installieren Sie unser empfohlenes Plugin und beginnen Sie in wenigen Minuten mit der Erstellung ansprechender FAQs."
 
 #: includes/Admin/template/faq-builder.php:29
 msgid "Why Accordions Matter for Your Documentation"
@@ -5170,7 +5170,7 @@ msgstr "Warum Akkordeons für Ihre Dokumentation wichtig sind"
 
 #: includes/Admin/template/faq-builder.php:30
 msgid "Accordions transform how users interact with your documentation by organizing content into collapsible sections. This reduces cognitive load, minimizes scrolling, and helps visitors find exactly what they need—faster. With the Advanced Accordion Block, you can create stunning, responsive accordions that seamlessly integrate with your EazyDocs setup."
-msgstr ""
+msgstr "Akkordeons verändern die Art und Weise, wie Benutzer mit Ihrer Dokumentation interagieren, indem sie Inhalte in zusammenklappbaren Abschnitten organisieren. Dies reduziert die kognitive Belastung, minimiert das Scrollen und hilft Besuchern, genau das zu finden, was sie brauchen – und zwar schneller. Mit dem Advanced Accordion Block können Sie atemberaubende, reaktionsschnelle Akkordeons erstellen, die sich nahtlos in Ihr EazyDocs-Setup integrieren lassen."
 
 #: includes/Admin/template/faq-builder.php:42
 msgid "Ready to Elevate Your Documentation?"
@@ -5178,7 +5178,7 @@ msgstr "Sind Sie bereit, Ihre Dokumentation zu verbessern?"
 
 #: includes/Admin/template/faq-builder.php:43
 msgid "Install the Advanced Accordion Block now and start creating professional, interactive accordions in minutes. It's completely free and takes just one click."
-msgstr ""
+msgstr "Installieren Sie jetzt den Advanced Accordion Block und beginnen Sie in wenigen Minuten mit der Erstellung professioneller, interaktiver Akkordeons. Es ist völlig kostenlos und erfordert nur einen Klick."
 
 #: includes/Admin/template/faq-builder.php:46
 msgid "🚀 Install for Free"
@@ -5206,7 +5206,7 @@ msgstr "🎨 Hochgradig anpassbar"
 
 #: includes/Admin/template/faq-builder.php:70
 msgid "Unlimited styling options to match your brand identity. Control colors, spacing, icons, typography, and more."
-msgstr ""
+msgstr "Unbegrenzte Styling-Optionen passend zu Ihrer Markenidentität. Steuern Sie Farben, Abstände, Symbole, Typografie und mehr."
 
 #: includes/Admin/template/faq-builder.php:74
 msgid "📚 Nested Accordions"
@@ -5222,7 +5222,7 @@ msgstr "⚡ Blitzschnell"
 
 #: includes/Admin/template/faq-builder.php:80
 msgid "Optimized for performance with minimal impact on load times. Your documentation stays fast and responsive."
-msgstr ""
+msgstr "Optimiert für Leistung mit minimalen Auswirkungen auf die Ladezeiten. Ihre Dokumentation bleibt schnell und reaktionsschnell."
 
 #: includes/Admin/template/faq-builder.php:84
 msgid "📱 Fully Responsive"
@@ -5230,7 +5230,7 @@ msgstr "📱 Vollständig reaktionsfähig"
 
 #: includes/Admin/template/faq-builder.php:85
 msgid "Perfect display on all devices—from mobile phones to large desktop screens. Looks great everywhere."
-msgstr ""
+msgstr "Perfekte Darstellung auf allen Geräten – vom Mobiltelefon bis zum großen Desktop-Bildschirm. Sieht überall toll aus."
 
 #: includes/Admin/template/faq-builder.php:89
 msgid "♿ Accessibility Ready"
@@ -5273,7 +5273,7 @@ msgstr "Feedback der Benutzer"
 
 #: includes/Admin/template/feedback-presentation.php:32
 msgid "Collect, manage, and analyze user feedback to improve your documentation. Understand what users find helpful and what needs improvement."
-msgstr ""
+msgstr "Sammeln, verwalten und analysieren Sie Benutzerfeedback, um Ihre Dokumentation zu verbessern. Verstehen Sie, was Benutzer hilfreich finden und was verbessert werden muss."
 
 #: includes/Admin/template/feedback-presentation.php:37
 msgid "Unlock This Feature"
@@ -5321,7 +5321,7 @@ msgstr "Feedback"
 
 #: includes/Admin/template/feedback-presentation.php:117
 msgid "Collect helpful/unhelpful votes on each documentation page. See which docs are performing well and which need attention."
-msgstr ""
+msgstr "Sammeln Sie hilfreiche/nicht hilfreiche Stimmen auf jeder Dokumentationsseite. Sehen Sie, welche Dokumente eine gute Leistung erbringen und welche Ihrer Aufmerksamkeit bedürfen."
 
 #: includes/Admin/template/feedback-presentation.php:123
 #: includes/Admin/template/feedback-presentation.php:176
@@ -5332,7 +5332,7 @@ msgstr "Feedback"
 
 #: includes/Admin/template/feedback-presentation.php:124
 msgid "Allow users to submit detailed text feedback with email contact. Understand specific pain points and suggestions."
-msgstr ""
+msgstr "Ermöglichen Sie Benutzern, detailliertes Text-Feedback per E-Mail-Kontakt abzugeben. Verstehen Sie spezifische Problempunkte und Vorschläge."
 
 #: includes/Admin/template/feedback-presentation.php:130
 #, fuzzy
@@ -5341,11 +5341,11 @@ msgstr "E-Mail: %s"
 
 #: includes/Admin/template/feedback-presentation.php:131
 msgid "Reply directly to user feedback via email. Build a relationship with your users and show them you care."
-msgstr ""
+msgstr "Antworten Sie direkt per E-Mail auf Benutzerfeedback. Bauen Sie eine Beziehung zu Ihren Benutzern auf und zeigen Sie ihnen, dass Sie sich um sie kümmern."
 
 #: includes/Admin/template/feedback-presentation.php:138
 msgid "Filter feedback by status, date, doc type, and more. Quickly find what you need with powerful search."
-msgstr ""
+msgstr "Filtern Sie Feedback nach Status, Datum, Dokumenttyp und mehr. Finden Sie mit der leistungsstarken Suche schnell, was Sie brauchen."
 
 #: includes/Admin/template/feedback-presentation.php:144
 msgid "CSV Export"
@@ -5353,7 +5353,7 @@ msgstr "CSV-Export"
 
 #: includes/Admin/template/feedback-presentation.php:145
 msgid "Export all feedback data to CSV for analysis in Excel or Google Sheets. Create reports and track trends."
-msgstr ""
+msgstr "Exportieren Sie alle Feedbackdaten zur Analyse in Excel oder Google Sheets in CSV. Erstellen Sie Berichte und verfolgen Sie Trends."
 
 #: includes/Admin/template/feedback-presentation.php:151
 #, fuzzy
@@ -5362,7 +5362,7 @@ msgstr "Titel der Docs-Archivseite"
 
 #: includes/Admin/template/feedback-presentation.php:152
 msgid "Archive resolved feedback to keep your workspace clean. Bulk actions make managing hundreds of items easy."
-msgstr ""
+msgstr "Archivieren Sie gelöstes Feedback, um Ihren Arbeitsplatz sauber zu halten. Massenaktionen erleichtern die Verwaltung Hunderter Artikel."
 
 #: includes/Admin/template/feedback-presentation.php:161
 msgid "Interface Preview"
@@ -5402,7 +5402,7 @@ msgstr "Vor 2 Stunden"
 
 #: includes/Admin/template/feedback-presentation.php:217
 msgid "This documentation was incredibly helpful! The step-by-step instructions made it easy to set up everything correctly."
-msgstr ""
+msgstr "Diese Dokumentation war unglaublich hilfreich! Die Schritt-für-Schritt-Anleitung machte es einfach, alles richtig einzurichten."
 
 #: includes/Admin/template/feedback-presentation.php:221
 #: includes/Admin/template/feedback-presentation.php:251
@@ -5436,7 +5436,7 @@ msgstr "Alle Dokumente"
 
 #: includes/Admin/template/feedback-presentation.php:247
 msgid "Could you add more code examples for the authentication section? The current examples are good but more use cases would help."
-msgstr ""
+msgstr "Könnten Sie weitere Codebeispiele für den Authentifizierungsabschnitt hinzufügen? Die aktuellen Beispiele sind gut, aber mehr Anwendungsfälle würden helfen."
 
 #: includes/Admin/template/feedback-presentation.php:271
 msgid "Yesterday"
@@ -5449,7 +5449,7 @@ msgstr "Zentriert"
 
 #: includes/Admin/template/feedback-presentation.php:277
 msgid "The troubleshooting section saved me hours of debugging! Found the solution to my caching issue right away."
-msgstr ""
+msgstr "Der Abschnitt zur Fehlerbehebung hat mir stundenlanges Debuggen erspart! Ich habe sofort die Lösung für mein Caching-Problem gefunden."
 
 #: includes/Admin/template/feedback-presentation.php:296
 #, fuzzy
@@ -5600,7 +5600,7 @@ msgstr "Kompatible Themes für EazyDocs"
 
 #: includes/Admin/template/integrated-themes.php:108
 msgid "Discover professionally designed WordPress themes optimized for documentation. Each theme is tested and verified to work seamlessly with EazyDocs for the best user experience."
-msgstr ""
+msgstr "Entdecken Sie professionell gestaltete WordPress-Themes, die für die Dokumentation optimiert sind. Jedes Theme wird getestet und verifiziert, um nahtlos mit EazyDocs zu funktionieren und die beste Benutzererfahrung zu gewährleisten."
 
 #: includes/Admin/template/integrated-themes.php:130
 msgid "View Demo"
@@ -5629,7 +5629,7 @@ msgstr "Dokumentation"
 
 #: includes/Admin/template/partials/ai-create-doc-popup.php:44
 msgid "Generate comprehensive, SEO-optimized docs with custom tone and language. Choose professional, friendly, or technical styles."
-msgstr ""
+msgstr "Erstellen Sie umfassende, SEO-optimierte Dokumente mit individuellem Ton und Sprache. Wählen Sie einen professionellen, freundlichen oder technischen Stil."
 
 #: includes/Admin/template/partials/ai-create-doc-popup.php:50
 msgid "24/7 AI Chatbot"
@@ -5637,7 +5637,7 @@ msgstr "KI-Chatbot rund um die Uhr"
 
 #: includes/Admin/template/partials/ai-create-doc-popup.php:52
 msgid "Reduce support tickets by 70%+ with an intelligent chatbot trained on your EazyDocs knowledge base. Instant, accurate answers."
-msgstr ""
+msgstr "Reduzieren Sie Support-Tickets um über 70 % mit einem intelligenten Chatbot, der auf Ihrer EazyDocs-Wissensdatenbank trainiert wird. Sofortige, genaue Antworten."
 
 #: includes/Admin/template/partials/ai-create-doc-popup.php:58
 msgid "Bulk Generation"
@@ -5645,7 +5645,7 @@ msgstr "Massengenerierung"
 
 #: includes/Admin/template/partials/ai-create-doc-popup.php:60
 msgid "Generate multiple docs at once with comprehensive structures. Review and refine outlines before generation."
-msgstr ""
+msgstr "Generieren Sie mehrere Dokumente gleichzeitig mit umfassenden Strukturen. Überprüfen und verfeinern Sie die Umrisse vor der Generierung."
 
 #: includes/Admin/template/partials/ai-create-doc-popup.php:66
 #, fuzzy
@@ -5709,8 +5709,8 @@ msgstr "In dieser Dokumentation wurden keine Abschnitte gefunden."
 #, fuzzy, php-format
 msgid "%d article"
 msgid_plural "%d articles"
-msgstr[0] "Alle Artikel"
-msgstr[1] "Alle Artikel"
+msgstr[0] "Alle Artikel %d"
+msgstr[1] "Alle Artikel %d"
 
 #: includes/block-templates/tabbed-docs/flat_tabbed.php:287
 #: includes/block-templates/tabbed-docs/tabbed_doc_list.php:287
@@ -5812,7 +5812,7 @@ msgstr "Sind Sie sicher, dass Sie löschen möchten?"
 #: includes/csf/classes/setup.class.php:618
 #, fuzzy, php-format
 msgid "Please enter %s or more characters"
-msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein. %s"
 
 #: includes/csf/classes/setup.class.php:619
 #, fuzzy
@@ -5826,7 +5826,7 @@ msgstr "Kein Ergebnis gefunden!"
 
 #: includes/csf/classes/setup.class.php:721
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Hoppla! Nicht erlaubt."
 
 #: includes/csf/classes/setup.class.php:789
 #: includes/csf/classes/setup.class.php:793
@@ -5871,19 +5871,19 @@ msgstr "Verlaufsrichtung"
 
 #: includes/csf/fields/background/background.php:115
 msgid "&#8659; top to bottom"
-msgstr ""
+msgstr "⇓ von oben nach unten"
 
 #: includes/csf/fields/background/background.php:116
 msgid "&#8658; left to right"
-msgstr ""
+msgstr "⇒ von links nach rechts"
 
 #: includes/csf/fields/background/background.php:117
 msgid "&#8664; corner top to right"
-msgstr ""
+msgstr "⇘ Ecke von oben nach rechts"
 
 #: includes/csf/fields/background/background.php:118
 msgid "&#8665; corner top to left"
-msgstr ""
+msgstr "⇙ Ecke von oben nach links"
 
 #: includes/csf/fields/background/background.php:161
 #, fuzzy
@@ -6484,7 +6484,7 @@ msgstr[1] "Artikel"
 msgid "%d minute average read"
 msgid_plural "%d minutes average read"
 msgstr[0] "%d Minuten durchschnittlicher Lesevorgang"
-msgstr[1] ""
+msgstr[1] " %d"
 
 #: includes/Elementor/Docs/Doc_Widget.php:29
 #, fuzzy
@@ -7252,7 +7252,7 @@ msgstr "Möglicherweise möchten Sie dieses Dokument überprüfen und aktualisie
 #: includes/Frontend/Mailer.php:53
 #, fuzzy, php-format
 msgid "View Doc: %s"
-msgstr "Handbuch ansehen"
+msgstr "Handbuch ansehen %s"
 
 #. translators: %s: Edit document URL
 #: includes/Frontend/Mailer.php:54 includes/Frontend/Mailer.php:126
@@ -7292,7 +7292,7 @@ msgstr "Neues Feedback für dein Dokument \"%s\""
 #: includes/Frontend/Mailer.php:118
 #, fuzzy, php-format
 msgid "Author: %s"
-msgstr "Autor: %1$s"
+msgstr "Autor: %1$s %s"
 
 #. translators: %s: Email address
 #: includes/Frontend/Mailer.php:120
@@ -7330,7 +7330,7 @@ msgstr "Das Dokument „%s“ hat %d negative Feedback-Stimmen erhalten."
 #: includes/Frontend/Mailer.php:197
 #, fuzzy, php-format
 msgid "View Document: %s"
-msgstr "Dokumentation"
+msgstr "Dokumentation %s"
 
 #: includes/Frontend/Mailer.php:198
 #, fuzzy, php-format
@@ -7459,7 +7459,7 @@ msgstr "Einzelner Doc"
 
 #: includes/functions.php:2758
 msgid "BetterDocs is not active. Please activate it first."
-msgstr ""
+msgstr "BetterDocs ist nicht aktiv. Bitte aktivieren Sie es zuerst."
 
 #: includes/functions.php:2763
 msgid "Only BetterDocs migration is supported currently."
@@ -7471,7 +7471,7 @@ msgstr "Derzeit wird nur die BetterDocs-Migration unterstützt."
 msgid "%d category converted into a parent doc."
 msgid_plural "%d categories converted into parent docs."
 msgstr[0] "%d Kategorie wurde in ein übergeordnetes Dokument umgewandelt."
-msgstr[1] ""
+msgstr[1] " %d"
 
 #. translators: %d: number of docs nested under their category.
 #: includes/functions.php:2864
@@ -7479,7 +7479,7 @@ msgstr[1] ""
 msgid "%d doc organised under its category."
 msgid_plural "%d docs organised under their categories."
 msgstr[0] "%d Dokument in seiner Kategorie organisiert."
-msgstr[1] ""
+msgstr[1] " %d"
 
 #: includes/functions.php:2867
 msgid "Migration completed."
@@ -7510,7 +7510,7 @@ msgstr "Die Beispieldatendatei konnte nicht analysiert werden."
 
 #: includes/Google_Login.php:82
 msgid "Google login failed. Please try again or contact support."
-msgstr ""
+msgstr "Die Google-Anmeldung ist fehlgeschlagen. Bitte versuchen Sie es erneut oder wenden Sie sich an den Support."
 
 #: includes/Google_Login.php:112 includes/Google_Login.php:127
 #: includes/Google_Login.php:152 includes/Google_Login.php:164
@@ -7519,7 +7519,7 @@ msgstr "Melden Sie sich mit Google an"
 
 #: includes/Google_Login.php:123
 msgid "Google Login not configured. Please check settings."
-msgstr ""
+msgstr "Google Login nicht konfiguriert. Bitte überprüfen Sie die Einstellungen."
 
 #: includes/Google_Login.php:291
 msgid "Redirecting…"
@@ -7594,7 +7594,7 @@ msgstr "Vielen Dank, dass Sie sich für EazyDocs entschieden haben. Wir hoffen, 
 #: includes/notices/asking-for-review.php:60
 #, php-format
 msgid "You have created <b>%1$d</b> docs%2$s with EazyDocs. That's awesome! May we ask you to give it a 5-Star rating on WordPress? It will help us spread the word and boost our motivation."
-msgstr ""
+msgstr " %1$d %2$s"
 
 #: includes/notices/asking-for-review.php:73
 msgid "We will be forever grateful. Thank you in advance."
@@ -7630,7 +7630,7 @@ msgstr "Migrieren Sie zu EazyDocs"
 #: includes/notices/deactivate-other-doc-plugins.php:46
 #, fuzzy, php-format
 msgid "Deactivate %s"
-msgstr "weDocs deaktivieren"
+msgstr "weDocs deaktivieren %s"
 
 #: includes/notices/gutenberg-info.php:50
 msgid "Build Stunning Docs with Gutenberg!"
@@ -7638,7 +7638,7 @@ msgstr "Erstellen Sie atemberaubende Dokumente mit Gutenberg!"
 
 #: includes/notices/gutenberg-info.php:53
 msgid "EazyDocs is fully optimized for the WordPress Block Editor. You have everything you need to create professional help centers and documentation landing pages right out of the box—no third-party page builders like Elementor required."
-msgstr ""
+msgstr "EazyDocs ist vollständig für den WordPress Block Editor optimiert. Sie verfügen über alles, was Sie benötigen, um professionelle Hilfezentren und Dokumentations-Landingpages direkt nach dem Auspacken zu erstellen – es sind keine Seitenersteller von Drittanbietern wie Elementor erforderlich."
 
 #: includes/notices/gutenberg-info.php:59
 #, fuzzy
@@ -7649,7 +7649,7 @@ msgstr "Wählen Sie Bedingung"
 #: includes/notices/offer.php:39
 #, php-format
 msgid "You've created %d docs! Ready to supercharge your documentation?"
-msgstr ""
+msgstr " %d"
 
 #: includes/notices/offer.php:42
 msgid "Unlock advanced features like advanced Collaboration, Analytics & Role-based Access"
@@ -7657,11 +7657,11 @@ msgstr "Schalten Sie erweiterte Funktionen wie erweiterte Zusammenarbeit, Analys
 
 #: includes/notices/offer.php:43
 msgid "Upgrade & Save 30%"
-msgstr "Upgraden und 30 % sparen"
+msgstr "Upgraden und 30 %sparen"
 
 #: includes/notices/offer.php:47
 msgid "You've been with us for a month! Here's a special thank you."
-msgstr ""
+msgstr "Du bist seit einem Monat bei uns! Hier ein besonderes Dankeschön."
 
 #: includes/notices/offer.php:48
 msgid "Get 30% off EazyDocs Pro as our way of saying thanks!"
@@ -7752,7 +7752,7 @@ msgstr "Die EazyDocs-Datenbank wurde erfolgreich aktualisiert."
 
 #: includes/One_Page.php:77
 msgid "Security check failed. Please try again."
-msgstr ""
+msgstr "Sicherheitsüberprüfung fehlgeschlagen. Bitte versuchen Sie es erneut."
 
 #: includes/One_Page.php:82
 msgid "You do not have permission to perform this action."
@@ -8059,7 +8059,7 @@ msgstr "Doks:"
 #: templates/single-docs.php:29
 #, fuzzy, php-format
 msgid "Powered By %1$s EazyDocs %2$s"
-msgstr "Angetrieben von %s EazyDocs %s"
+msgstr "Angetrieben von %s EazyDocs %s %1$s %2$s"
 
 #: templates/tools/font-switcher.php:12
 msgid "Decrease font size"
@@ -8250,7 +8250,7 @@ msgstr "Beispieldaten konnten nicht importiert werden."
 
 #: build/docs-builder/index.js:6951
 msgid "An error occurred while importing. Please try again."
-msgstr ""
+msgstr "Beim Import ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
 
 #: build/docs-builder/index.js:6992 build/docs-builder/index.js:7214
 #, fuzzy
@@ -8281,7 +8281,7 @@ msgstr "Ja, Demo importieren"
 
 #: build/docs-builder/index.js:7039
 msgid "This will import demo documentation to help you get started. Do you want to continue?"
-msgstr ""
+msgstr "Dadurch wird eine Demodokumentation importiert, die Ihnen den Einstieg erleichtert. Möchten Sie fortfahren?"
 
 #: build/docs-builder/index.js:7065
 msgid "Folder Open"
@@ -8293,7 +8293,7 @@ msgstr "Sind Sie bereit, Ihre Wissensdatenbank zu starten?"
 
 #: build/docs-builder/index.js:7073
 msgid "It looks like you haven't created any documentation yet. Get started by creating your first doc or import our sample data to see how it works."
-msgstr ""
+msgstr "Anscheinend haben Sie noch keine Dokumentation erstellt. Beginnen Sie mit der Erstellung Ihres ersten Dokuments oder importieren Sie unsere Beispieldaten, um zu sehen, wie es funktioniert."
 
 #: build/docs-builder/index.js:7083
 #, fuzzy
@@ -8444,7 +8444,7 @@ msgstr "Passwort"
 
 #: build/docs-builder/index.js:8458
 msgid "Restrict this doc to specific user roles. Leave unchecked for all logged-in users."
-msgstr ""
+msgstr "Beschränken Sie dieses Dokument auf bestimmte Benutzerrollen. Für alle angemeldeten Benutzer deaktiviert lassen."
 
 #: build/docs-builder/index.js:8505
 msgid "Allow guests (not logged in)"
@@ -8514,7 +8514,7 @@ msgstr "und fügen Sie Ihre Inhalte hinzu"
 
 #: build/docs-builder/index.js:8697
 msgid "location. If you cannot find the location in Widgets, go to"
-msgstr ""
+msgstr "Standort. Wenn Sie den Standort in Widgets nicht finden können, gehen Sie zu"
 
 #: build/docs-builder/index.js:8701
 msgid "Then go to"
@@ -8542,7 +8542,7 @@ msgstr "Duplizieren"
 
 #: build/docs-builder/index.js:8783
 msgid "A duplicate copy of this doc (including its child) will be created. And a unique ID number will be appended on every cloned doc. The cloned doc will be drafted by default."
-msgstr ""
+msgstr "Es wird eine Duplikatkopie dieses Dokuments (einschließlich seines untergeordneten Dokuments) erstellt. Und an jedes geklonte Dokument wird eine eindeutige ID-Nummer angehängt. Das geklonte Dokument wird standardmäßig als Entwurf erstellt."
 
 #: build/docs-builder/index.js:8793
 #, fuzzy
@@ -8565,7 +8565,7 @@ msgstr "Die EazyDocs-Datenbank wurde erfolgreich aktualisiert."
 
 #: build/docs-builder/index.js:8829
 msgid "Failed to duplicate the document. Please try again."
-msgstr ""
+msgstr "Das Dokument konnte nicht dupliziert werden. Bitte versuchen Sie es erneut."
 
 #: build/docs-builder/index.js:8847 build/docs-builder/index.js:9063
 msgid "Duplicate"
@@ -9014,7 +9014,7 @@ msgstr "Anzahl der Artikel, die unter den einzelnen Abschnitten angezeigt werden
 #: build/tabbed-docs/index.js:607 src/tabbed-docs/edit.js:605
 #: build/tabbed-docs/index.js:605
 msgid "Select specific docs to show. Leave empty for all."
-msgstr ""
+msgstr "Wählen Sie bestimmte Dokumente aus, die angezeigt werden sollen. Für alle leer lassen."
 
 #: build/tabbed-docs/index.js:614 src/tabbed-docs/edit.js:620
 #: build/tabbed-docs/index.js:620
@@ -9258,7 +9258,7 @@ msgstr "Suche"
 #: build/search-banner/block.json src/search-banner/block.json
 msgctxt "block description"
 msgid "EazyDocs search banner. Insert this block on a full-width page template to view it properly."
-msgstr ""
+msgstr "EazyDocs-Suchbanner. Fügen Sie diesen Block in eine Seitenvorlage mit voller Breite ein, um ihn richtig anzuzeigen."
 
 #: build/shortcode/block.json src/shortcode/block.json
 #, fuzzy

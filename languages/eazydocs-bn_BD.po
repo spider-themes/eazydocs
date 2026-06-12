@@ -1,7 +1,7 @@
 # Copyright (C) 2026 spider-themes
 # This file is distributed under the GPL2 or later.
 msgid ""
-msgstr "Project-Id-Version: EazyDocs 2.12.0\nReport-Msgid-Bugs-To: https://wordpress.org/support/plugin/eazydocs\nPOT-Creation-Date: 2026-06-11T11:05:10+00:00\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Generator: WP-CLI 2.12.0\nX-Domain: eazydocs\n"
+msgstr "Project-Id-Version: EazyDocs 2.12.0\nReport-Msgid-Bugs-To: https://wordpress.org/support/plugin/eazydocs\nPOT-Creation-Date: 2026-06-11T11:05:10+00:00\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: WP-CLI 2.12.0\nX-Domain: eazydocs\n\nPlural-Forms: nplurals=2; plural=(n != 1);"
 
 #. Plugin Name of the plugin
 #: eazydocs.php blocks.php:132 includes/Admin/Admin.php:87
