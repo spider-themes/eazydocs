@@ -1,21 +1,49 @@
 <?php
 if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
-	$custom_banner  = ezd_get_opt( 'doc_banner_bg' );
-	$cs_banner_wrap = empty( $custom_banner['background-color'] ) && empty( $custom_banner['background-image']['url'] ) ? 'no_cs_bg' : 'has_cs_bg';
-    $is_keywords = ezd_get_opt('is_keywords') != '1' ? ' no_keywords' : '';
+	$custom_banner = ezd_get_opt( 'doc_banner_bg' );
+	$has_cs_color  = ! empty( $custom_banner['background-color'] );
+	$has_cs_image  = ! empty( $custom_banner['background-image']['url'] );
+
+	// Apply the dark theme (white keyword text) only when the banner is actually dark.
+	// The default banner and custom images keep the dark theme; a custom solid color uses
+	// it only when the color itself is dark, otherwise white text is invisible on a light bg.
+	$is_dark_banner = ( $has_cs_color && ! $has_cs_image ) ? ezd_is_dark_color( $custom_banner['background-color'] ) : true;
+
+	$banner_classes = [ 'ezd_search_banner' ];
+	if ( $is_dark_banner ) {
+		$banner_classes[] = 'has_bg_dark';
+	}
+	$banner_classes[] = ( $has_cs_color || $has_cs_image ) ? 'has_cs_bg' : 'no_cs_bg';
+	if ( ezd_get_opt( 'is_keywords' ) != '1' ) {
+		$banner_classes[] = 'no_keywords';
+	}
+
+	$banner_title    = ezd_get_opt( 'search_banner_title', '' );
+	$banner_subtitle = ezd_get_opt( 'search_banner_subtitle', '' );
 	?>
     <div class="focus_overlay"></div>
-    <section class="ezd_search_banner has_bg_dark <?php echo esc_attr( $cs_banner_wrap.$is_keywords ); ?>">
+    <section class="<?php echo esc_attr( implode( ' ', $banner_classes ) ); ?>">
 
         <div class="ezd-grid ezd-grid-cols-12 doc_banner_content">
             <div class="ezd-grid-column-full">
-                <form action="<?php echo esc_url( home_url('/') ); ?>" role="search" method="post"
+                <?php if ( $banner_title || $banner_subtitle ) : ?>
+                <div class="ezd_search_banner_heading">
+                    <?php if ( $banner_title ) : ?>
+                        <h2 class="ezd_search_banner_title"><?php echo esc_html( $banner_title ); ?></h2>
+                    <?php endif; ?>
+                    <?php if ( $banner_subtitle ) : ?>
+                        <p class="ezd_search_banner_subtitle"><?php echo esc_html( $banner_subtitle ); ?></p>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+                <form action="<?php echo esc_url( home_url('/') ); ?>" role="search" method="get"
                     class="ezd_search_form">
                     <div class="header_search_form_info">
                         <div class="form-group">
                             <div class="input-wrapper">
-                                <input type='search' id="ezd_searchInput" name="s"
+                                <input type='search' class="search_field_wrap" id="ezd_searchInput" name="s"
                                     placeholder='<?php esc_attr_e( 'Search here', 'eazydocs' ); ?>' autocomplete="off"
+                                    aria-label="<?php esc_attr_e( 'Search documentation', 'eazydocs' ); ?>"
                                     value="<?php echo get_search_query(); ?>" />
                                 <label for="ezd_searchInput">
                                     <i class="left-icon icon_search"></i>
@@ -29,7 +57,11 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
                             </div>
                         </div>
                     </div>
-                    <div id="ezd-search-results" class="eazydocs-search-tree" data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"></div>
+                    <div id="ezd-search-results" class="eazydocs-search-tree" role="region"
+                        aria-label="<?php esc_attr_e( 'Search results', 'eazydocs' ); ?>"
+                        data-noresult="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"
+                        data-noresult-title="<?php esc_attr_e( 'No Results Found', 'eazydocs' ); ?>"
+                        data-noresult-sub="<?php esc_attr_e( 'Check the spelling or try a different word or phrase.', 'eazydocs' ); ?>"></div>
                     <?php
                     if ( ( ezd_is_premium() || ezd_is_promax() || eaz_fs()->is_paying_or_trial() ) && ezd_get_opt('is_keywords') == '1' ) {
                         eazydocs_get_template_part('keywords');
@@ -40,147 +72,3 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
         </div>
     </section>
 <?php endif; ?>
-
-<script>
-jQuery("#ezd_searchInput").focus(function() {
-    jQuery('body').addClass('ezd-search-focused');
-    jQuery('form.ezd_search_form').css('z-index', '999');
-})
-
-jQuery(document).on('click', '.ezd-tab', function() {
-    var tab = jQuery(this).data('tab');
-    jQuery('.ezd-tab').removeClass('active');
-    jQuery(this).addClass('active');
-    if ( tab === 'all' ) {
-        jQuery('#ezd-search-results .ezd-result-group').show();
-    } else {
-        jQuery('#ezd-search-results .ezd-result-group').hide();
-        jQuery('#ezd-search-results .ezd-result-group[data-type="' + tab + '"]').show();
-    }
-})
-
-jQuery(".focus_overlay").click(function() {
-    jQuery('body').removeClass('ezd-search-focused');
-    jQuery('form.ezd_search_form').css('z-index', 'unset');
-})
-
-// Hide search results by pressing Escape button
-jQuery(document).keyup(function(e) {
-    if (e.key === "Escape") { // escape key maps to keycode `27`
-        jQuery('#ezd-search-results').removeClass('ajax-search').html("")
-    }
-});
-
-/**
- * Search Form Keywords
- */
-jQuery(".ezd_search_keywords ul li a").on("click", function(e) {
-    e.preventDefault()
-    var content = jQuery(this).text()
-    jQuery("#ezd_searchInput").val(content).focus()
-    ezSearchResults()
-});
-
-jQuery("label[for=ezd_searchInput]").on("click", function(e) {
-    if ( eazydocs_local_object.ezd_search_submit == 1 ) {
-        jQuery(".ezd_search_form").submit();
-    }
-});
-
-function ezSearchResults() {
-    let keyword = jQuery('#ezd_searchInput').val();
-    let noresult = jQuery('#ezd-search-results').attr('data-noresult');
-
-    if (keyword.trim() === "") {
-        jQuery('#ezd-search-results').removeClass('ajax-search').html("")
-    } else {
-        jQuery.ajax({
-            url: eazydocs_local_object.ajaxurl,
-            type: 'post',
-            data: {
-                action: 'eazydocs_search_results',
-                keyword: keyword,
-                security: eazydocs_local_object.nonce 
-            },
-            beforeSend: function() {
-                jQuery(".spinner-border").show();
-            },
-            success: function(data) {
-                jQuery(".spinner-border").hide();
-                if (data.length > 0) {
-                    jQuery('#ezd-search-results').addClass('ajax-search').html(data);
-                } else {
-                    var data_error = '<h5 class="error title">' + noresult + '</h5>';
-                    jQuery('#ezd-search-results').html(data_error);
-                }
-            }
-        })
-    }
-}
-
-function ezdFetchDelay(callback, ms) {
-    var timer = 0;
-    return function() {
-        var context = this,
-            args = arguments;
-        clearTimeout(timer);
-        timer = setTimeout(function() {
-            callback.apply(context, args);
-        }, ms || 0);
-    };
-}
-
-jQuery('#ezd_searchInput').keyup(
-    ezdFetchDelay(function(e) {
-        let keyword = jQuery('#ezd_searchInput').val();
-        let noresult = jQuery('#ezd-search-results').attr('data-noresult');
-
-        if (keyword.trim() === "") {
-            jQuery('#ezd-search-results').removeClass('ajax-search').html("")
-        } else {
-            jQuery.ajax({
-                url: eazydocs_local_object.ajaxurl,
-                type: 'post',
-                data: {
-                    action: 'eazydocs_search_results',
-                    keyword: keyword,
-                    security: eazydocs_local_object.nonce 
-                },
-                beforeSend: function() {
-                    jQuery(".spinner-border").show();
-                },
-                success: function(data) {
-                    jQuery(".spinner-border").hide();
-                    if (data.length > 0) {
-                        jQuery('#ezd-search-results').addClass('ajax-search').html(data);
-                    } else {
-                        var data_error = '<h5 class="error title">' + noresult + '</h5>';
-                        jQuery('#ezd-search-results').html(data_error);
-                    }
-                }
-            })
-        }
-    }, 500)
-);
-
-// Search results should close on clearing the input field
-if (document.getElementById('ezd_searchInput')) {
-    document
-        .getElementById('ezd_searchInput')
-        .addEventListener('search', function (event) {
-            jQuery('#ezd-search-results').empty().removeClass('ajax-search');
-        });
-}
-
-// Prevent empty search submit
-jQuery('.ezd_search_form').on('submit', function(e) {
-    let keyword = jQuery('#ezd_searchInput').val().trim();
-
-    // If empty or only spaces, stop search submit
-    if (keyword === "") {
-        e.preventDefault(); // Stop submit
-        return false;
-    }
-});
-
-</script>

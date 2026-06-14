@@ -18,7 +18,7 @@ Build professional knowledge bases with unlimited docs, drag-and-drop editor, li
 EazyDocs is the most comprehensive knowledge base and documentation plugin for WordPress. Create unlimited knowledge bases, help centers, wikis, and FAQs with zero limitations. Perfect for SaaS companies, software developers, agencies, e-learning platforms, and any business needing professional documentation.
 
 **Supercharge Your Docs with AI**
-Integrate EazyDocs with [Antimanual](https://antimanual.spider-themes.net) to add an intelligent AI chatbot, automated documentation generation, and advanced AI search. Reduce support tickets by 70% and provide instant answers to your users.
+Integrate EazyDocs with [Antimanual](https://wordpress.org/plugins/antimanual/) to add an intelligent AI chatbot, automated documentation generation, and advanced AI search. Reduce support tickets by 70% and provide instant answers to your users.
 
 ### Why Choose EazyDocs?
 
@@ -125,7 +125,9 @@ From small teams to enterprise organizations, EazyDocs is the go-to solution for
 
 **Add Enterprise-Grade AI to Your Documentation – Reduce Support Tickets by 70%+**
 
-Integrate EazyDocs with [Antimanual](https://antimanual.spider-themes.net) to transform your knowledge base into an intelligent support hub. Get AI-powered chatbot, auto-generated documentation, semantic search, and more.
+Integrate EazyDocs with [Antimanual](https://wordpress.org/plugins/antimanual/) to transform your knowledge base into an intelligent support hub. Get AI-powered chatbot, auto-generated documentation, semantic search, and more.
+
+**Why a separate plugin?** We believe AI integration shouldn't be locked to EazyDocs — or to any single plugin. It should give you the freedom to put these capabilities to work across your entire website. That's why the chatbot knowledge base, excerpt and taxonomy generation, SEO, and article/post generation aren't limited to Docs; they work with any post type you choose. The result is one focused toolkit instead of a stack of overlapping plugins for different AI tasks. Best of all, Antimanual is completely free — simply bring your own AI provider API key. It supports OpenAI, Anthropic, Grok, Gemini, Minimax, Deepseek, Qwen, OpenCode API, and many more.
 
 ### Watch the AI Integration in Action
 [youtube https://youtu.be/X9HMPBkzDeM]
@@ -163,12 +165,12 @@ Integrate EazyDocs with [Antimanual](https://antimanual.spider-themes.net) to tr
 ### Quick Start with Antimanual + EazyDocs
 
 1. Install [Antimanual](https://wordpress.org/plugins/antimanual/) from the WordPress plugin directory
-2. Add your OpenAI or Gemini API key in Antimanual settings
+2. Add your own AI provider API key in Antimanual settings (OpenAI, Anthropic, Grok, Gemini, Minimax, Deepseek, Qwen, OpenCode API, and more)
 3. Antimanual automatically indexes your entire EazyDocs knowledge base
 4. Customize chatbot appearance and response style
 5. Add to your docs with a simple shortcode – Done!
 
-**[Learn More About Antimanual](https://antimanual.spider-themes.net) • [View Full Integration Guide](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)**
+**[Learn More About Antimanual](https://wordpress.org/plugins/antimanual/) • [View Full Integration Guide](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)**
 
 == Premium Plans & Features ==
 
@@ -273,8 +275,11 @@ Yes! EazyDocs includes pre-built widgets and blocks for both Elementor and Guten
 Yes! EazyDocs seamlessly integrates with Antimanual, our advanced AI plugin. This integration provides intelligent chatbot support, AI-powered documentation generation, semantic search, and automated content creation. Unlike basic AI features in other documentation plugins, Antimanual offers enterprise-grade capabilities including GPT-5 support, multi-source training, conversation history, and forum automation. See the "AI Integration" section above for complete details.
 
 = Why is the AI functionality a separate plugin (Antimanual)? =
-If you want to use the AI features, you can install the Antimanual plugin alongside EazyDocs. However, it is not mandatory.
-We created Antimanual as a standalone plugin to enable AI features throughout your entire website, rather than integrating them only with EazyDocs content. For instance, you can use the Bulk Rewrite tools, Chatbot, Knowledge Base, AI Search, and Auto Posting features of Antimanual with any post type, not just Docs. This unified approach helps you consolidate AI functionalities and avoid the need for multiple AI tools on your website.
+If you want the AI features, you can install the Antimanual plugin alongside EazyDocs at any time. It works hand in hand with EazyDocs, but it is never mandatory.
+
+We built Antimanual as a standalone plugin because we believe AI integration shouldn't be locked to EazyDocs — or to any single plugin. It should give you the freedom to use these capabilities across your whole site. The chatbot knowledge base, excerpt and taxonomy generation, SEO, and article/post generation are genuinely useful well beyond Docs articles, so you can apply them to any post type you like. That way you don't have to juggle multiple plugins for different AI tasks — we've kept everything you need together in one place.
+
+Best of all, it's completely free. You simply bring your own AI provider API key to get started, with support for OpenAI, Anthropic, Grok, Gemini, Minimax, Deepseek, Qwen, OpenCode API, and many more.
 
 = How do I get support if I have issues? =
 EazyDocs has multiple support channels:
@@ -343,16 +348,27 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.12.0 (12 June 2026) =
+= 2.12.0 (14 June 2026) =
+* New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.
+* New: Last Updated Date – Added option switcher to display the last modified date on single document pages.
 * New: Markdown & CSV Import-Export – Export your documentation as Markdown or CSV and import Markdown or CSV files back into your doc tree, making content migration and backups simple.
 * New: Multilingual Documentation – Added WPML and Polylang support so docs, categories, and tags can be translated and managed in multiple languages.
 * Improved: Article Printing – Upgraded the print button with accessibility enhancements, a loading state indicator, and a cleaner print/PDF layout that hides site navigation, expands external links, and prevents page breaks within headings or media blocks.
+* Improved: Inline Child Navigation – Added support to dynamically load child documents inline when clicking parent links in search results.
 * Improved: Multilingual Support – Loaded the plugin textdomain and added pre-translated language files for Arabic, Bengali, German, Spanish, French, Portuguese, Russian, and Chinese Simplified.
 * Improved: One-Page Docs – Large one-page documents now load and print to PDF reliably without timing out, and the sidebar navigation is cleaner and stays scrollable on smaller screens.
+* Improved: Reading Time Estimation – Allowed customizing the words-per-minute (WPM) rate in settings for more accurate estimations.
+* Improved: Search Accessibility – Added polite screen reader announcements (aria-live) for search status/results count, enqueued standard ARIA attributes/labels, and added keyboard navigation support (arrow keys and Escape).
+* Improved: Search Banner – Added settings to configure a custom banner title and subtitle above the search field.
+* Improved: Search Form – Changed live-search form submission method from POST to GET to improve native SEO compatibility.
+* Optimized: Color Contrast Detection – Integrated perceived-brightness (YIQ) calculation to automatically apply the dark theme contrast classes based on custom background colors.
 * Optimized: Performance – Streamlined database queries and added caching across the dashboard, doc pages, and admin area for faster loading on large documentation libraries.
-* Fixed: Search Keywords show/hide switcher visibility control.
+* Optimized: Search Performance – Implemented input debouncing (400ms) and automatic request aborting for in-flight queries to reduce server load.
+* Optimized: Unified AJAX Search – Consolidated duplicate inline scripts into a single, enqueued JavaScript asset (search-banner.js) serving Gutenberg blocks, Elementor widgets, and built-in templates.
 * Fixed: HTML link footnotes.
 * Fixed: Search banner CSS styling.
+* Fixed: Search Keywords show/hide switcher visibility control.
+
 
 = 2.11.3 (25 May 2026) =
 * Improved: Enable product name pass in embedding Chatbot

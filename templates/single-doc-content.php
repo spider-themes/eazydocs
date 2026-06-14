@@ -2,6 +2,7 @@
 $comment_visibility      = ezd_get_opt( 'enable-comment', '1' );
 $reading_time_visibility = ezd_get_opt( 'enable-reading-time', '1' );
 $views_visibility        = ezd_get_opt( 'enable-views', '1' );
+$last_updated_visibility = ezd_get_opt( 'enable-last-updated', '0' );
 $sidebar_toggle          = ezd_get_opt( 'toggle_visibility', '1' );
 $layout                  = ezd_get_opt( 'docs_single_layout', 'both_sidebar' );
 $is_doc_title			 = ezd_get_opt( 'is_doc_title', true );
@@ -12,7 +13,7 @@ $selected_comment_active = $is_selected_comment == true ? 'selected-comment-acti
 $current_parent_id  	 = wp_get_post_parent_id( get_the_ID() );
 
 $is_meta_visible 		 = false;
-if ( $reading_time_visibility == '1' || $views_visibility == '1' || $is_doc_contribution || $is_selected_comment || $is_ai_summary_meta ) {
+if ( $reading_time_visibility == '1' || $views_visibility == '1' || $last_updated_visibility == '1' || $is_doc_contribution || $is_selected_comment || $is_ai_summary_meta ) {
 	$is_meta_visible = true;
 }
 
@@ -69,6 +70,16 @@ endif;
 							<?php
 						endif;
 
+						if ( $last_updated_visibility == '1' ) : ?>
+							<span class="last-updated ezd-sep">
+								<?php
+								/* translators: %s: the date the doc was last modified. */
+								printf( esc_html__( 'Updated on %s', 'eazydocs' ), esc_html( get_the_modified_date() ) );
+								?>
+							</span>
+							<?php
+						endif;
+
 						if( ! empty( $is_doc_contribution ) ) {
 							do_action( 'eazydocs_docs_contributor', get_the_ID() );
 						}
@@ -104,7 +115,7 @@ endif;
 				if ( ezd_get_opt( 'is_excerpt' ) == '1' && has_excerpt() ) {
 					?>
 					<p class="doc-excerpt ezd-alert ezd-alert-info">
-						<strong><?php echo esc_html(ezd_get_opt( 'excerpt_label', 'Summary' ));; ?></strong>
+						<strong><?php echo esc_html( ezd_get_opt( 'excerpt_label', esc_html__( 'Summary: ', 'eazydocs' ) ) ); ?></strong>
 						<?php echo wp_kses_post( get_the_excerpt() ); ?>
 					</p>
 					<?php

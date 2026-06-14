@@ -12,7 +12,8 @@ if ( $settings['is_ezd_search_keywords'] == 'yes' && !empty($settings['ezd_searc
 		<?php
 		if ( ! empty( $settings['ezd_search_keywords_label'] )  && ezd_is_premium() ) : ?>
             <span class="header-search-form__keywords-label search_keyword_label">
-                <?php echo esc_attr($settings['ezd_search_keywords_label']) ?> </span>
+				<?php echo esc_attr($settings['ezd_search_keywords_label']) ?> 
+			</span>
 		<?php
 		endif;
 

@@ -33,6 +33,11 @@ class Assets
 		wp_register_script('scrollspy', EZD_ASSETS . 'js/frontend/scrollspy-gumshoe.js', ['jquery'], '5.1.2', true);
 		wp_register_script('eazydocs-el-widgets', EZD_ASSETS . 'js/frontend/elementor-widgets.js', [], EZD_VERSION, true);
 
+		// Shared AJAX live-search for every banner context (built-in banner,
+		// Gutenberg block, Elementor widget). Registered unconditionally so the
+		// Elementor widget can enqueue it on any page; auto-enqueued in global scope below.
+		wp_register_script('eazydocs-search-banner', EZD_ASSETS . 'js/frontend/search-banner.js', ['jquery'], EZD_VERSION, true);
+
 		wp_register_style('elegant-icon', EZD_ASSETS . 'vendors/elegant-icon/style.css', [], EZD_VERSION);
 		wp_register_style('ezd-docs-widgets', EZD_STYLES . 'ezd-docs-widgets.css', [], EZD_VERSION);
 
@@ -104,6 +109,10 @@ class Assets
 				'ezd_search_submit' => ezd_get_opt('is_search_submit', true),
 				'ezd_dark_switcher' => ezd_get_opt('is_dark_switcher', true),
 				'elementor_docs' => $elementor_docs,
+				'i18n' => [
+					/* translators: %d: number of search results found. */
+					'results_found' => __('%d results found', 'eazydocs'),
+				],
 			]
 		);
 
@@ -121,6 +130,7 @@ class Assets
 			// No inline PHP-generated CSS needed anymore
 
 			wp_enqueue_script('eazydocs-global', EZD_ASSETS . 'js/frontend/global.js', ['jquery'], EZD_VERSION, true);
+			wp_enqueue_script('eazydocs-search-banner');
 		}
 	}
 

@@ -1,14 +1,25 @@
 
-= 2.12.0 (12 June 2026) =
+= 2.12.0 (14 June 2026) =
+New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.
+New: Last Updated Date – Added option switcher to display the last modified date on single document pages.
 New: Markdown & CSV Import-Export – Export your documentation as Markdown or CSV and import Markdown or CSV files back into your doc tree, making content migration and backups simple.
 New: Multilingual Documentation – Added WPML and Polylang support so docs, categories, and tags can be translated and managed in multiple languages.
 Improved: Article Printing – Upgraded the print button with accessibility enhancements, a loading state indicator, and a cleaner print/PDF layout that hides site navigation, expands external links, and prevents page breaks within headings or media blocks.
+Improved: Inline Child Navigation – Added support to dynamically load child documents inline when clicking parent links in search results.
 Improved: Multilingual Support – Loaded the plugin textdomain and added pre-translated language files for Arabic, Bengali, German, Spanish, French, Portuguese, Russian, and Chinese Simplified.
 Improved: One-Page Docs – Large one-page documents now load and print to PDF reliably without timing out, and the sidebar navigation is cleaner and stays scrollable on smaller screens.
+Improved: Reading Time Estimation – Allowed customizing the words-per-minute (WPM) rate in settings for more accurate estimations.
+Improved: Search Accessibility – Added polite screen reader announcements (aria-live) for search status/results count, enqueued standard ARIA attributes/labels, and added keyboard navigation support (arrow keys and Escape).
+Improved: Search Banner – Added settings to configure a custom banner title and subtitle above the search field.
+Improved: Search Form – Changed live-search form submission method from POST to GET to improve native SEO compatibility.
+Optimized: Color Contrast Detection – Integrated perceived-brightness (YIQ) calculation to automatically apply the dark theme contrast classes based on custom background colors.
 Optimized: Performance – Streamlined database queries and added caching across the dashboard, doc pages, and admin area for faster loading on large documentation libraries.
-Fixed: Search Keywords show/hide switcher visibility control.
+Optimized: Search Performance – Implemented input debouncing (400ms) and automatic request aborting for in-flight queries to reduce server load.
+Optimized: Unified AJAX Search – Consolidated duplicate inline scripts into a single, enqueued JavaScript asset (search-banner.js) serving Gutenberg blocks, Elementor widgets, and built-in templates.
 Fixed: HTML link footnotes.
 Fixed: Search banner CSS styling.
+Fixed: Search Keywords show/hide switcher visibility control.
+
 
 = 2.11.3 (25 May 2026) =
 Improved: Enable product name pass in embedding Chatbot.

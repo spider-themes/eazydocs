@@ -25,8 +25,9 @@ CSF::createSection(
 CSF::createSection(
 	$prefix,
 	array(
+		'id'     => 'single_doc_general',
 		'parent' => 'single_doc',
-		'title'  => esc_html__( 'Layout & Display', 'eazydocs' ),
+		'title'  => esc_html__( 'General', 'eazydocs' ),
 		'icon'   => '',
 		'fields' => array(
 			array(
@@ -87,16 +88,6 @@ CSF::createSection(
 				'class'      => 'eazydocs-pro-notice active-theme-docy active-theme-docly active-theme-ama',
 			),
 
-			ezd_csf_switcher_field(
-				array(
-					'id'         => 'is_doc_tag',
-					'title'      => esc_html__( 'Document Tags', 'eazydocs' ),
-					'subtitle'   => esc_html__( 'Display associated tags at the bottom of each documentation page.', 'eazydocs' ),
-					'text_width' => 70,
-					'default'    => true,
-				)
-			),
-
 			// Meta Information
 			array(
 				'type'     => 'heading',
@@ -134,8 +125,8 @@ CSF::createSection(
 			ezd_csf_switcher_field(
 				array(
 					'id'       => 'is_doc_title',
-					'title'    => esc_html__( 'Document Title', 'eazydocs' ),
-					'subtitle' => esc_html__( 'Display the document title prominently at the top of the content area.', 'eazydocs' ),
+					'title'    => esc_html__( 'Doc Title', 'eazydocs' ),
+					'subtitle' => esc_html__( 'Display the doc title prominently at the top of the content area.', 'eazydocs' ),
 					'default'  => true,
 				)
 			),
@@ -144,17 +135,38 @@ CSF::createSection(
 				array(
 					'id'       => 'enable-reading-time',
 					'title'    => esc_html__( 'Reading Time Estimate', 'eazydocs' ),
-					'subtitle' => esc_html__( 'Show estimated time required to read the document.', 'eazydocs' ),
+					'subtitle' => esc_html__( 'Show estimated time required to read the doc.', 'eazydocs' ),
 					'default'  => true,
 				)
+			),
+
+			array(
+				'id'         => 'reading_time_wpm',
+				'type'       => 'slider',
+				'title'      => esc_html__( 'Reading Speed (WPM)', 'eazydocs' ),
+				'subtitle'   => esc_html__( 'Average words-per-minute used to calculate the reading time estimate.', 'eazydocs' ),
+				'default'    => 200,
+				'min'        => 100,
+				'max'        => 400,
+				'step'       => 10,
+				'dependency' => array( 'enable-reading-time', '==', 'true' ),
 			),
 
 			ezd_csf_switcher_field(
 				array(
 					'id'       => 'enable-views',
 					'title'    => esc_html__( 'View Counter', 'eazydocs' ),
-					'subtitle' => esc_html__( 'Display the number of times this document has been viewed.', 'eazydocs' ),
+					'subtitle' => esc_html__( 'Display the number of times this doc has been viewed.', 'eazydocs' ),
 					'default'  => true,
+				)
+			),
+
+			ezd_csf_switcher_field(
+				array(
+					'id'       => 'enable-last-updated',
+					'title'    => esc_html__( 'Last Updated Date', 'eazydocs' ),
+					'subtitle' => esc_html__( 'Show the date the doc was last modified in the header meta area.', 'eazydocs' ),
+					'default'  => false,
 				)
 			),
 
@@ -164,7 +176,7 @@ CSF::createSection(
 					'title'    => esc_html__( 'Ask AI Summary', 'eazydocs' ),
 					'subtitle' => esc_html__( 'Show an "Ask AI" dropdown in the doc meta area to open external AI tools with a prefilled summary prompt.', 'eazydocs' ),
 					'default'  => false,
-					'class'    => 'eazydocs-pro-notice',
+					'class'    => 'eazydocs-promax-notice',
 				)
 			),
 
@@ -190,8 +202,8 @@ CSF::createSection(
 			ezd_csf_switcher_field(
 				array(
 					'id'       => 'is_excerpt',
-					'title'    => esc_html__( 'Document Summary', 'eazydocs' ),
-					'subtitle' => esc_html__( 'Display a brief summary or excerpt at the top of the document.', 'eazydocs' ),
+					'title'    => esc_html__( 'Doc Summary', 'eazydocs' ),
+					'subtitle' => esc_html__( 'Display a brief summary or excerpt at the top of the doc.', 'eazydocs' ),
 					'default'  => true,
 				)
 			),
@@ -241,8 +253,8 @@ CSF::createSection(
 			array(
 				'id'       => 'is_articles',
 				'type'     => 'switcher',
-				'title'    => esc_html__( 'Related Articles List', 'eazydocs' ),
-				'subtitle' => esc_html__( 'Display a list of child documentation pages below the current document.', 'eazydocs' ),
+				'title'    => esc_html__( 'Child Articles List', 'eazydocs' ),
+				'subtitle' => esc_html__( 'Display a list of child doc pages below the current doc.', 'eazydocs' ),
 				'default'  => true,
 			),
 
@@ -259,6 +271,16 @@ CSF::createSection(
 			array(
 				'type'    => 'heading',
 				'content' => esc_html__( 'Page Footer', 'eazydocs' ),
+			),
+
+			ezd_csf_switcher_field(
+				array(
+					'id'         => 'is_doc_tag',
+					'title'      => esc_html__( 'Doc Tags', 'eazydocs' ),
+					'subtitle'   => esc_html__( 'Display associated tags at the bottom of each doc page.', 'eazydocs' ),
+					'text_width' => 70,
+					'default'    => true,
+				)
 			),
 
 			array(
@@ -313,6 +335,7 @@ CSF::createSection(
 CSF::createSection(
 	$prefix,
 	array(
+		'id'     => 'single_doc_search_header',
 		'parent' => 'single_doc',
 		'title'  => esc_html__( 'Search Header', 'eazydocs' ),
 		'icon'   => '',
@@ -335,15 +358,6 @@ CSF::createSection(
 				'subtitle' => esc_html__( 'Choose between the default search banner or a custom Elementor template.', 'eazydocs' ),
 			),
 
-			array(
-				'id'         => 'single_layout_id',
-				'type'       => 'select',
-				'title'      => esc_html__( 'Elementor Template', 'eazydocs' ),
-				'subtitle'   => esc_html__( 'Select a saved Elementor template. <a target="_blank" href="https://shorturl.at/filGI">Learn how to create templates</a>', 'eazydocs' ),
-				'options'    => ezd_get_elementor_templates(),
-				'dependency' => array( 'search_banner_layout', '==', 'el-template' ),
-			),
-
 			ezd_csf_switcher_field(
 				array(
 					'id'         => 'is_search_banner',
@@ -356,11 +370,20 @@ CSF::createSection(
 			),
 
 			array(
+				'id'         => 'single_layout_id',
+				'type'       => 'select',
+				'title'      => esc_html__( 'Elementor Template', 'eazydocs' ),
+				'subtitle'   => esc_html__( 'Select a saved Elementor template. <a target="_blank" href="https://shorturl.at/filGI">Learn how to create templates</a>', 'eazydocs' ),
+				'options'    => ezd_get_elementor_templates(),
+				'dependency' => array( 'search_banner_layout', '==', 'el-template' ),
+			),
+
+			array(
 				'id'         => 'is_search_submit',
 				'type'       => 'switcher',
 				'title'      => esc_html__( 'Enter Key Search', 'eazydocs' ),
 				'subtitle'   => esc_html__( 'Allow users to submit search by pressing Enter or clicking the search icon.', 'eazydocs' ),
-				'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
+				'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 				'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 				'default'    => true,
 				'dependency' => array(
@@ -371,11 +394,35 @@ CSF::createSection(
 			),
 
 			array(
+				'id'         => 'search_banner_title',
+				'type'       => 'text',
+				'title'      => esc_html__( 'Banner Title', 'eazydocs' ),
+				'subtitle'   => esc_html__( 'Optional heading shown above the search field to orient visitors.', 'eazydocs' ),
+				'default'    => '',
+				'dependency' => array(
+					array( 'is_search_banner', '==', 'true' ),
+					array( 'search_banner_layout', '==', 'default' ),
+				),
+			),
+
+			array(
+				'id'         => 'search_banner_subtitle',
+				'type'       => 'text',
+				'title'      => esc_html__( 'Banner Subtitle', 'eazydocs' ),
+				'subtitle'   => esc_html__( 'Optional supporting text shown below the banner title.', 'eazydocs' ),
+				'default'    => '',
+				'dependency' => array(
+					array( 'is_search_banner', '==', 'true' ),
+					array( 'search_banner_layout', '==', 'default' ),
+				),
+			),
+
+			array(
 				'id'         => 'doc_banner_bg',
 				'type'       => 'background',
 				'title'      => esc_html__( 'Banner Background', 'eazydocs' ),
 				'subtitle'   => esc_html__( 'Background color or image for the search banner area.', 'eazydocs' ),
-				'output'     => '.ezd_search_banner.has_bg_dark',
+				'output'     => '.ezd_search_banner.has_cs_bg',
 				'dependency' => array(
 					array( 'is_search_banner', '==', 'true' ),
 					array( 'search_banner_layout', '==', 'default' ),
@@ -627,6 +674,7 @@ CSF::createSection(
 CSF::createSection(
 	$prefix,
 	array(
+		'id'     => 'single_doc_breadcrumbs',
 		'parent' => 'single_doc',
 		'title'  => esc_html__( 'Breadcrumbs', 'eazydocs' ),
 		'icon'   => '',
@@ -686,6 +734,7 @@ CSF::createSection(
 CSF::createSection(
 	$prefix,
 	array(
+		'id'     => 'single_doc_left_sidebar',
 		'parent' => 'single_doc',
 		'title'  => esc_html__( 'Left Sidebar', 'eazydocs' ),
 		'icon'   => '',
@@ -730,7 +779,7 @@ CSF::createSection(
 				array(
 					'id'         => 'search_visibility',
 					'title'      => esc_html__( 'Filter Form', 'eazydocs' ),
-					'subtitle'   => esc_html__( 'Filter the left sidebar doc items by typing latter.', 'eazydocs' ),
+					'subtitle'   => esc_html__( 'Filter the left sidebar doc items by typing a letter.', 'eazydocs' ),
 					'text_width' => 72,
 					'default'    => true,
 				)
@@ -741,8 +790,8 @@ CSF::createSection(
 				'type'       => 'switcher',
 				'title'      => esc_html__( 'Mark Words', 'eazydocs' ),
 				'subtitle'   => esc_html__( 'Highlight the typed keyword in the docs.', 'eazydocs' ),
-				'text_on'    => esc_html__( 'Enable', 'eazydocs' ),
-				'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
+				'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+				'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 				'text_width' => 85,
 				'default'    => false,
 				'class'      => 'eazydocs-pro-notice',
@@ -807,6 +856,7 @@ CSF::createSection(
 CSF::createSection(
 	$prefix,
 	array(
+		'id'     => 'single_doc_right_sidebar',
 		'parent' => 'single_doc',
 		'title'  => esc_html__( 'Right Sidebar', 'eazydocs' ),
 		'icon'   => '',
@@ -831,10 +881,7 @@ CSF::createSection(
 				'type'       => 'text',
 				'title'      => esc_html__( 'Share Button Label', 'eazydocs' ),
 				'default'    => esc_html__( 'Share this Doc', 'eazydocs' ),
-				'dependency' => array(
-					array( 'is_copy_link', '==', '1' ),
-					array( 'is_social_links', '==', '1' ),
-				),
+				'dependency' => array( 'is_social_links', '==', '1' ),
 			),
 
 			ezd_csf_switcher_field(
@@ -908,7 +955,7 @@ CSF::createSection(
 			// TOC
 			array(
 				'type'  => 'heading',
-				'title' => esc_html__( 'Table on Contents (TOC)', 'eazydocs' ),
+				'title' => esc_html__( 'Table of Contents (TOC)', 'eazydocs' ),
 			),
 
 			array(
@@ -1031,7 +1078,7 @@ CSF::createSection(
 				'id'         => 'related-visible-docs',
 				'type'       => 'number',
 				'title'      => esc_html__( 'Docs Number', 'eazydocs' ),
-				'default'    => esc_html__( '4', 'eazydocs' ),
+				'default'    => 4,
 				'dependency' => array(
 					'related-docs',
 					'==',
@@ -1109,7 +1156,7 @@ CSF::createSection(
 				'id'         => 'viewed-visible-docs',
 				'type'       => 'number',
 				'title'      => esc_html__( 'Docs Number', 'eazydocs' ),
-				'default'    => esc_html__( '4', 'eazydocs' ),
+				'default'    => 4,
 				'dependency' => array(
 					'viewed-docs',
 					'==',

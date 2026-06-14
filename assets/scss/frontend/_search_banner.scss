@@ -28,7 +28,7 @@
 .ezd_search_banner {
 	background: #fafafa no-repeat bottom;
 	background-size: contain;
-	padding: 180px 0 80px;
+	padding: 180px 20px 80px;
 	width: 100%;
 
 	&.no_keywords #ezd-search-results {
@@ -79,6 +79,43 @@
 				left: auto;
 				right: 0;
 			}
+		}
+	}
+}
+
+/* Search banner heading (optional title / subtitle above the field)
+============================================================================================ */
+.ezd_search_banner_heading {
+	text-align: center;
+	max-width: 650px;
+	margin: 0 auto 24px;
+
+	.ezd_search_banner_title {
+		font-size: 32px;
+		line-height: 1.25;
+		font-weight: 700;
+		margin: 0 0 10px;
+		color: #1d2939;
+
+		@media (max-width: 767px) {
+			font-size: 24px;
+		}
+	}
+
+	.ezd_search_banner_subtitle {
+		font-size: 16px;
+		line-height: 1.5;
+		margin: 0;
+		color: #5d6c82;
+	}
+
+	.has_bg_dark & {
+		.ezd_search_banner_title {
+			color: #fff;
+		}
+
+		.ezd_search_banner_subtitle {
+			color: rgba(255, 255, 255, 0.8);
 		}
 	}
 }
@@ -645,7 +682,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 			border: 0;
 			height: 64px;
 			font-size: 16px;
-			padding-left: 64px;
+			padding-left: 56px;
 			width: 100%;
 			border-radius: 999px;
 			padding-right: 32px;
@@ -904,10 +941,6 @@ body.ezd-search-focused {
 }
 
 .header_search_form_info {
-	input[type="search"] {
-		padding-right: 0 !important;
-	}
-
 	&.search_form_wrap {
 		.form-group {
 			padding-bottom: 0;

@@ -346,7 +346,8 @@ function eazydocs_get_template( $template_name, $args = [] ) {
 function ezd_reading_time() {
     $content     = get_post_field( 'post_content', get_the_ID() );
     $word_count  = str_word_count( wp_strip_all_tags( $content ) );
-    $readingtime = (int) ceil( $word_count / 200 );
+    $wpm         = max( 1, absint( ezd_get_opt( 'reading_time_wpm', 200 ) ) );
+    $readingtime = (int) ceil( $word_count / $wpm );
 
     if ( 1 === $readingtime ) {
         $timer = esc_html__( " minute", 'eazydocs' );
@@ -918,6 +919,39 @@ function ezd_hex2rgba( $color, $opacity = false ) {
 
 	//Return rgb(a) color string
 	return $output;
+}
+
+/**
+ * Determine whether a hex color is visually dark.
+ *
+ * Used to decide whether light (white) text is legible over a background color.
+ * Uses the perceived-brightness (YIQ) formula. Empty or unparseable values
+ * (e.g. an rgba() string) are treated as dark so existing dark styling is preserved.
+ *
+ * @param string $hex       Hex color, with or without leading "#", 3 or 6 digits.
+ * @param int    $threshold Brightness cutoff (0-255); below this is "dark". Default 140.
+ *
+ * @return bool True when the color is dark (or cannot be parsed).
+ */
+function ezd_is_dark_color( $hex, $threshold = 140 ) {
+	$hex = ltrim( (string) $hex, '#' );
+
+	if ( 3 === strlen( $hex ) ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+
+	if ( 6 !== strlen( $hex ) || ! ctype_xdigit( $hex ) ) {
+		return true; // Unknown format — assume dark to preserve default styling.
+	}
+
+	$r = hexdec( substr( $hex, 0, 2 ) );
+	$g = hexdec( substr( $hex, 2, 2 ) );
+	$b = hexdec( substr( $hex, 4, 2 ) );
+
+	// Perceived brightness (YIQ).
+	$brightness = ( ( $r * 299 ) + ( $g * 587 ) + ( $b * 114 ) ) / 1000;
+
+	return $brightness < $threshold;
 }
 
 /**
