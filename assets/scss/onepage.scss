@@ -683,7 +683,7 @@ body {
   &.one-page-doc-nav-wrap {
     .nav-item {
       .icon {
-        right: 20px;
+        right: 0;
         position: absolute;
         top: 12px;
         font-size: 18px;
@@ -784,7 +784,7 @@ body {
     color: #fff;
     font-size: 15px;
     letter-spacing: 0.6px;
-    padding: 8px 12px 14px;
+    padding: 8px 15px 14px;
     margin-bottom: 8px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   }
@@ -807,7 +807,7 @@ body {
       > a {
         color: rgba(255, 255, 255, 0.92);
         border-radius: 10px;
-        padding: 12px 16px;
+        padding: 12px 5px;
         font-weight: 500;
         transition: background-color 0.2s ease, color 0.2s ease;
       }
@@ -1074,6 +1074,14 @@ body {
 
     .one-page-docs-sidebar-wrap {
       position: relative;
+      // The single-doc off-canvas styles (.left-column .doc_left_sidebarlist in
+      // frontend.css) park this shared class at left: -330px and cap its width;
+      // that pushed the classic drawer's contents off-screen so the panel slid
+      // in empty. Reset the offset/size so it fills the fixed drawer instead.
+      left: auto;
+      right: auto;
+      width: 100%;
+      max-width: none;
       height: 100%;
       max-height: none;
       border-radius: 0;
@@ -1113,10 +1121,17 @@ body {
       }
     }
 
+    // Trim the wide 50px desktop side gutters on small screens so the reading
+    // area gets the most width; the vertical rhythm is kept intact.
+    .ezd-container-fluid {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
     // Tighter, symmetric reading padding on small screens (overrides the
     // wider desktop offsets). Compound class keeps it above the base rule.
     &.onepage_doc_area .middle-content {
-      padding: 0 20px;
+      padding: 0 8px;
     }
 
     // Tools (right) sidebar toggle — a clean edge tab with a comfortable tap
@@ -1161,13 +1176,15 @@ body {
     top: 46px;
   }
 
-  // The site content wrapper (docy/docly) is a stacking context sitting BELOW
-  // the theme header (.body_wrapper z-index:30 vs .header z-index:99), which
-  // would otherwise leave the off-canvas drawer stuck behind the navbar. While
-  // the drawer is open, lift the wrapper above the header so the drawer and its
-  // backdrop cover the whole screen. (Stays under the WP admin bar at 99999.)
-  body.ezd-onepage-drawer-open .body_wrapper {
-    z-index: 1000;
+  // The classic section (.doc_documentation_area) carries `z-index: 0`, which
+  // makes it a stacking context and traps the fixed off-canvas drawer inside
+  // it. Any theme header with its own stacking order (e.g. Astra's #masthead at
+  // z-index: 99, docy/docly's .header at 99) then paints over the top of the
+  // drawer. While the drawer is open, lift the whole section — the actual
+  // stacking-context root — above the header so the drawer and its backdrop
+  // cover the full screen. (Stays under the WP admin bar at 99999.)
+  body.ezd-onepage-drawer-open .classic-onepage {
+    z-index: 9999;
   }
 }
 
@@ -1326,10 +1343,6 @@ body.admin-bar .doc_documentation_area.body_fixed {
     .doc_left_sidebarlist:after {
       display: none;
     }
-  }
-
-  .doc_left_sidebarlist.one-page-docs-sidebar-wrap {
-    padding-top: 0;
   }
 }
 

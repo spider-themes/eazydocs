@@ -3,3 +3,4 @@ vendor
 build
 /src/css
 /includes/csf
+/assets/scss/css

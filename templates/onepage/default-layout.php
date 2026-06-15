@@ -41,7 +41,7 @@ $children         = wp_list_pages( array(
 		<div class="ezd-grid ezd-grid-cols-12 doc-container">
 			<div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top ezd-sticky-lg-top left-column">
 				<aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap" id="ezd-classic-sidebar">
-					<button type="button" class="open_icon ezd-sidebar-close" id="mobile-left-close" aria-label="<?php esc_attr_e( 'Close documentation menu', 'eazydocs' ); ?>">
+					<button type="button" class="ezd-sidebar-close" id="mobile-left-close" aria-label="<?php esc_attr_e( 'Close documentation menu', 'eazydocs' ); ?>">
 						<i class="icon_close" aria-hidden="true"></i>
 					</button>
 					<h3 class="nav_title">
