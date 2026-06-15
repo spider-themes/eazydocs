@@ -44,6 +44,12 @@ CSF::createSection( $prefix, array(
 			'type'       => 'text',
 			'title'      => esc_html__( 'Google Client Secret', 'eazydocs' ),
 			'subtitle'   => esc_html__( 'Your OAuth 2.0 Client Secret from Google Cloud Console.', 'eazydocs' ),
+			'desc'       => esc_html__( 'Stored encrypted. The masked value is never shown in plain text.', 'eazydocs' ),
+			'sanitize'   => 'ezd_sanitize_encrypted_secret',
+			'attributes' => array(
+				'type'         => 'password',
+				'autocomplete' => 'new-password',
+			),
 			'dependency' 	=> array(
 				[ 'is_google_login', '==', 'true' ]
 			)

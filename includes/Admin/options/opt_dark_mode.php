@@ -11,6 +11,7 @@ if (!defined('ABSPATH')) {
 // Dark Mode Fields
 CSF::createSection($prefix, array(
     'id' => 'dark_mode',
+    'parent' => 'ezd_appearance',
     'title' => esc_html__('Dark Mode', 'eazydocs'),
     'icon' => 'dashicons dashicons-star-half',
     'fields' => array(

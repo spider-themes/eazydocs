@@ -907,7 +907,14 @@
 		 * This applies to both the left sidebar and mobile right sidebar in smaller screens.
 		 */
 		function ezd_sidebar_enable_sticky() {
-			var $stickyElements = $('.left-column .doc_left_sidebarlist, .doc_right_mobile_menu .doc_rightsidebar'); // Select sidebar elements
+			// One-page layouts manage sidebar stickiness via CSS (.ezd-sticky-lg-top)
+			// and the off-canvas drawer. The JS `.sticky` toggle below applies
+			// `position: fixed`, which detaches the one-page drawer/aside from its
+			// column — so restrict this to the single-doc layout only.
+			var $stickyElements = $('.left-column .doc_left_sidebarlist, .doc_right_mobile_menu .doc_rightsidebar')
+				.filter(function () {
+					return $(this).closest('.onepage_doc_area').length === 0;
+				}); // Select single-doc sidebar elements
 
 			if ($stickyElements.length === 0) return; // Exit if no target elements found
 

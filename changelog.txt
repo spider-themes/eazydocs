@@ -1,25 +1,34 @@
 
-= 2.12.0 (14 June 2026) =
+= 2.12.0 (15 June 2026) =
 New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.
 New: Last Updated Date – Added option switcher to display the last modified date on single document pages.
 New: Markdown & CSV Import-Export – Export your documentation as Markdown or CSV and import Markdown or CSV files back into your doc tree, making content migration and backups simple.
 New: Multilingual Documentation – Added WPML and Polylang support so docs, categories, and tags can be translated and managed in multiple languages.
+New: One-Page Style Options – Added color and background customization settings for the sidebar, content area, right sidebar, and section numbers.
+New: One-Page Content Width – Added a content width option to configure boxed (centered) or full-width layouts.
+Updated: Settings Architecture – Nested all visual settings under a unified Appearance parent tab for a cleaner dashboard navigation.
 Improved: Article Printing – Upgraded the print button with accessibility enhancements, a loading state indicator, and a cleaner print/PDF layout that hides site navigation, expands external links, and prevents page breaks within headings or media blocks.
 Improved: Inline Child Navigation – Added support to dynamically load child documents inline when clicking parent links in search results.
+Improved: In-Page Navigation – Added offset scroll positioning to prevent sticky headers from overlapping target sections when clicking navigation sidebar links.
 Improved: Multilingual Support – Loaded the plugin textdomain and added pre-translated language files for Arabic, Bengali, German, Spanish, French, Portuguese, Russian, and Chinese Simplified.
+Improved: One-Page Mobile UX – Redesigned the classic one-page sidebar with an accessible floating trigger, dedicated close button, smooth backdrop, and escape key closing.
 Improved: One-Page Docs – Large one-page documents now load and print to PDF reliably without timing out, and the sidebar navigation is cleaner and stays scrollable on smaller screens.
 Improved: Reading Time Estimation – Allowed customizing the words-per-minute (WPM) rate in settings for more accurate estimations.
 Improved: Search Accessibility – Added polite screen reader announcements (aria-live) for search status/results count, enqueued standard ARIA attributes/labels, and added keyboard navigation support (arrow keys and Escape).
 Improved: Search Banner – Added settings to configure a custom banner title and subtitle above the search field.
 Improved: Search Form – Changed live-search form submission method from POST to GET to improve native SEO compatibility.
+Improved: Admin Session Persistence – Restored the state of the Create One-Page modal window when the dashboard page is refreshed.
 Optimized: Color Contrast Detection – Integrated perceived-brightness (YIQ) calculation to automatically apply the dark theme contrast classes based on custom background colors.
+Optimized: Document List Performance – Improved database loading efficiency by counting child documents in a single query when selecting parent articles.
 Optimized: Performance – Streamlined database queries and added caching across the dashboard, doc pages, and admin area for faster loading on large documentation libraries.
 Optimized: Search Performance – Implemented input debouncing (400ms) and automatic request aborting for in-flight queries to reduce server load.
+Optimized: Security and Credential Storage – Added secure encryption for the Google Client Secret at rest and masked the value in the settings page for enhanced privacy.
 Optimized: Unified AJAX Search – Consolidated duplicate inline scripts into a single, enqueued JavaScript asset (search-banner.js) serving Gutenberg blocks, Elementor widgets, and built-in templates.
 Fixed: HTML link footnotes.
+Fixed: One-Page Sidebar Scrolling – Prevented sticky sidebar scripts from overriding one-page layouts to keep sidebar menus scrolling smoothly.
+Fixed: Print Dialog Redundancy – Removed duplicate print triggers in one-page scripts to prevent double-firing the browser print dialog.
 Fixed: Search banner CSS styling.
 Fixed: Search Keywords show/hide switcher visibility control.
-
 
 = 2.11.3 (25 May 2026) =
 Improved: Enable product name pass in embedding Chatbot.

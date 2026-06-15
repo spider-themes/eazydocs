@@ -26,6 +26,98 @@ function ezd_get_opt( $option, $default = '' ) {
 }
 
 /**
+ * Marker prefix used to identify EazyDocs-encrypted secrets at rest.
+ */
+const EZD_ENC_PREFIX = 'ezd_enc::';
+
+/**
+ * Derive the symmetric encryption key from the site's secret auth salts.
+ *
+ * Using wp_salt() keeps the key out of the database and the codebase. The key
+ * is hashed to a fixed 32-byte length for AES-256.
+ *
+ * @return string 32-byte binary key.
+ */
+function ezd_encryption_key() {
+	return hash( 'sha256', wp_salt( 'secure_auth' ), true );
+}
+
+/**
+ * Encrypt a sensitive value (e.g. an API secret) for storage at rest.
+ *
+ * Returns a prefixed, base64-encoded "IV + ciphertext" string so the value can
+ * be recognised and decrypted later. Empty values and already-encrypted values
+ * are returned unchanged to keep saves idempotent.
+ *
+ * @param string $value Plaintext value to encrypt.
+ * @return string Encrypted, prefixed value (or the original input when empty/already encrypted).
+ */
+function ezd_encrypt( $value ) {
+	if ( ! is_string( $value ) || '' === $value ) {
+		return $value;
+	}
+
+	// Already encrypted — do not double-encrypt on re-save.
+	if ( 0 === strpos( $value, EZD_ENC_PREFIX ) ) {
+		return $value;
+	}
+
+	if ( ! function_exists( 'openssl_encrypt' ) ) {
+		return $value; // Graceful fallback when OpenSSL is unavailable.
+	}
+
+	$iv         = random_bytes( 16 );
+	$ciphertext = openssl_encrypt( $value, 'aes-256-cbc', ezd_encryption_key(), OPENSSL_RAW_DATA, $iv );
+
+	if ( false === $ciphertext ) {
+		return $value;
+	}
+
+	return EZD_ENC_PREFIX . base64_encode( $iv . $ciphertext );
+}
+
+/**
+ * Decrypt a value previously encrypted with ezd_encrypt().
+ *
+ * Values without the EazyDocs marker prefix (e.g. legacy plaintext secrets) are
+ * returned as-is so existing configurations keep working until re-saved.
+ *
+ * @param string $value Stored value to decrypt.
+ * @return string Decrypted plaintext (or the original input when not encrypted).
+ */
+function ezd_decrypt( $value ) {
+	if ( ! is_string( $value ) || 0 !== strpos( $value, EZD_ENC_PREFIX ) ) {
+		return $value;
+	}
+
+	if ( ! function_exists( 'openssl_decrypt' ) ) {
+		return '';
+	}
+
+	$payload = base64_decode( substr( $value, strlen( EZD_ENC_PREFIX ) ), true );
+
+	if ( false === $payload || strlen( $payload ) <= 16 ) {
+		return '';
+	}
+
+	$iv         = substr( $payload, 0, 16 );
+	$ciphertext = substr( $payload, 16 );
+	$plaintext  = openssl_decrypt( $ciphertext, 'aes-256-cbc', ezd_encryption_key(), OPENSSL_RAW_DATA, $iv );
+
+	return ( false === $plaintext ) ? '' : $plaintext;
+}
+
+/**
+ * CSF sanitize callback: encrypt a secret field value before it is saved.
+ *
+ * @param string $value Submitted field value.
+ * @return string Encrypted value safe for storage.
+ */
+function ezd_sanitize_encrypted_secret( $value ) {
+	return ezd_encrypt( sanitize_text_field( $value ) );
+}
+
+/**
  * Prime the post meta cache with backward compatibility.
  *
  * @param array|int|WP_Post $post_ids Post IDs or post objects.
@@ -799,12 +891,37 @@ function eazydocs_pro_doc_list() {
 	];
 	$docs      		= get_posts( $args );
 	$doc_item_count = 0;
-	$doc_items 		= '<option value="">Select a doc</option>';
+	$doc_items 		= '<option value="">' . esc_html__( 'Select a doc', 'eazydocs' ) . '</option>';
+
+	// Batch-fetch direct child counts for all parent docs in one grouped query
+	// (avoids an N+1 lookup inside the loop below).
+	$child_counts = [];
+	$parent_ids   = wp_list_pluck( $docs, 'ID' );
+	if ( ! empty( $parent_ids ) ) {
+		global $wpdb;
+		$placeholders = implode( ', ', array_fill( 0, count( $parent_ids ), '%d' ) );
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT post_parent, COUNT(*) AS total
+				 FROM {$wpdb->posts}
+				 WHERE post_type = 'docs'
+				   AND post_status = 'publish'
+				   AND post_parent IN ($placeholders)
+				 GROUP BY post_parent",
+				...$parent_ids
+			)
+		);
+		foreach ( $rows as $row ) {
+			$child_counts[ (int) $row->post_parent ] = (int) $row->total;
+		}
+	}
 
 	foreach ( $docs as $doc ) {
 		if ( ! get_page_by_path( $doc->post_name, OBJECT, 'onepage-docs' ) ) {
 			$doc_item_count ++;
-			$doc_items .= '<option _wpnonce="'.wp_create_nonce('ezd_make_onepage').'" value="' . $doc->ID . '">' . $doc->post_title . '</option>';
+			$child_count = $child_counts[ $doc->ID ] ?? 0;
+			$label       = $doc->post_title . ' (' . $child_count . ')';
+			$doc_items  .= '<option _wpnonce="' . esc_attr( wp_create_nonce( 'ezd_make_onepage' ) ) . '" value="' . esc_attr( $doc->ID ) . '" data-child-count="' . esc_attr( $child_count ) . '">' . esc_html( $label ) . '</option>';
 		}
 	}
 	if ( 0 === $doc_item_count ) {

@@ -47,7 +47,8 @@ class Google_Login {
         
         // Get plugin settings
         $this->client_id     = ezd_get_opt( 'google_client_id', '' );
-        $this->client_secret = ezd_get_opt( 'google_client_secret', '' );
+        // Secret is stored encrypted at rest; decrypt for use (legacy plaintext is returned as-is).
+        $this->client_secret = ezd_decrypt( ezd_get_opt( 'google_client_secret', '' ) );
         $this->redirect_uri  = home_url( '/google-auth-callback/' );
     }
     

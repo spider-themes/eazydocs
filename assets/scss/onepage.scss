@@ -3,6 +3,23 @@ $breakpoint-xs: 670px;
 $breakpoint-xl: 1199px;
 $breakpoint-lg: 991px;
 
+// One-Page content width (set in Settings → Appearance → One-Page Layout).
+// "full-width" keeps the historical stretch behaviour, so only "boxed" adds a cap.
+.onepage_doc_area {
+  &.ezd-onepage-boxed {
+    .doc-container {
+      max-width: 1320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // Auto-numbered section prefix (e.g. "1.2.3"); colored from settings.
+  .ezd-onepage-sec-no {
+    margin-right: 6px;
+  }
+}
+
 .container-fluid {
   &.pl-60 {
     padding-left: 60px;
@@ -704,12 +721,453 @@ body {
   }
 }
 
+/* =========================================================================
+   Classic One-Page layout
+   Modern sidebar navigation, readable active states, polished reading tools,
+   and a working off-canvas drawer on mobile. Everything is scoped to
+   .classic-onepage so the fullscreen layout is untouched.
+   ========================================================================= */
 .classic-onepage {
+
+  .ezd-container-fluid {
+    padding: 120px 50px;
+  }
+
   .nav-sidebar.one-page-doc-nav-wrap .nav-item .icon {
     top: 50%;
   }
   #post .doc-section {
     padding-top: 0;
+  }
+
+  // ---- Sidebar shell -----------------------------------------------------
+  // The .left-column is already sticky (.ezd-sticky-lg-top: position: sticky,
+  // top: 0, align-self: flex-start) so it hugs its content. We only need to
+  // cap the wrap's height and let long menus scroll inside the sticky frame.
+  .one-page-docs-sidebar-wrap {
+    // Fallback so the sidebar looks finished even without the Pro colour
+    // option; the option's inline style still overrides this when set.
+    background: var(--ezd_brand_color, #0870ff);
+    color: #fff;
+    border-radius: 14px;
+    padding: 10px 12px 16px;
+    box-shadow: var(--bs_md);
+    box-sizing: border-box;
+
+    @media (min-width: 992px) {
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+
+      // Subtle, on-brand scrollbar.
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 30px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+    }
+  }
+
+  // ---- Sidebar heading ---------------------------------------------------
+  .nav_title {
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 0.6px;
+    padding: 8px 12px 14px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  // ---- Navigation list ---------------------------------------------------
+  // These selectors deliberately mirror the Pro "Navigation Sidebar" colour
+  // settings (.single-onepage-docs .one-page-doc-nav-wrap …) in specificity —
+  // `.nav-sidebar` is intentionally omitted so we never out-specify them. CSF
+  // prints those settings later in <head>, so a configured colour always wins
+  // and the values below are only the out-of-the-box appearance.
+  .one-page-doc-nav-wrap {
+    padding: 0;
+
+    // Top-level section rows.
+    .nav-item {
+      background: transparent;
+      margin: 3px 0;
+      border-radius: 10px;
+
+      > a {
+        color: rgba(255, 255, 255, 0.92);
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-weight: 500;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      // Default hover (overridden by the "Menu Link Hover" setting).
+      &:hover > a {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .icon {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      // ---- Child (nested) list -------------------------------------------
+      // Kept inside the parent `.nav-item` so these selectors reach the same
+      // depth (0,6,1) as the framework's default brand-colour rule and win by
+      // source order — otherwise the current child renders blue-on-blue.
+      .dropdown_nav {
+        background: transparent !important;
+        padding-top: 10px;
+        padding-bottom: 6px;
+
+        // Vertical guide line linking the children to their section.
+        &:before {
+          background: rgba(255, 255, 255, 0.28);
+        }
+
+        .nav-item {
+          // The ">" leader before each child.
+          &:before {
+            color: rgba(255, 255, 255, 0.55);
+          }
+
+          > a {
+            color: rgba(255, 255, 255, 0.82);
+            transition: color 0.2s ease;
+
+            &:hover {
+              color: #fff;
+            }
+          }
+
+          // Current section: bright white + bold, no longer the unreadable
+          // brand colour. Reinforced by a brighter leader caret.
+          &.active {
+            &:before {
+              color: #fff;
+            }
+
+            > a {
+              color: #fff;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+
+    // Open/active section header (top-level only). The highlight lives on the
+    // row (the <a>), not the whole block, so the children below stay on the
+    // solid sidebar colour at full contrast. The <li> stays transparent by
+    // default but remains the target the "Active Item Background" overrides.
+    > .nav-item.active {
+      background: transparent;
+
+      > a {
+        color: #fff;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.16);
+      }
+    }
+  }
+
+  // Scroll-progress fill behind the active section link.
+  .nav-sidebar .nav-item .docs-progress-bar {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 9px;
+    max-height: none;
+  }
+
+  // ---- Articles list (in-content section index) --------------------------
+  .articles-list {
+    .c_head {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--black_500);
+      margin-bottom: 14px;
+    }
+
+    .article_list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        margin: 0;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border: 1px solid var(--border_on_white);
+        border-radius: 10px;
+        color: var(--black_700);
+        text-decoration: none;
+        transition: border-color 0.2s ease, background-color 0.2s ease,
+          transform 0.2s ease;
+
+        i {
+          color: var(--ezd_brand_color);
+          font-size: 18px;
+          margin-right: 0;
+        }
+
+        &:hover {
+          border-color: var(--ezd_brand_color);
+          background: var(--ezd_brand_color_07);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  // ---- Reading tools (font size + print) ---------------------------------
+  #font-switcher {
+    gap: 10px;
+    flex-wrap: wrap;
+
+    .btn-group {
+      display: inline-flex;
+      gap: 2px;
+      padding: 4px;
+      background: var(--black_50);
+      border-radius: 11px;
+    }
+
+    button {
+      border: 0;
+      background: transparent;
+      border-radius: 8px;
+      padding: 7px 13px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--black_600);
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        background: #fff;
+        color: var(--ezd_brand_color);
+      }
+    }
+
+    .print {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border_on_white);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--black_600);
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease,
+        background-color 0.2s ease;
+
+      i {
+        font-size: 18px;
+      }
+
+      &:hover {
+        border-color: var(--ezd_brand_color);
+        background: var(--ezd_brand_color_07);
+        color: var(--ezd_brand_color);
+      }
+    }
+  }
+
+  // ---- Mobile trigger + in-panel close (hidden on desktop) ---------------
+  .ezd-classic-menu-trigger {
+    display: none;
+  }
+
+  .ezd-sidebar-close {
+    display: none;
+  }
+
+  // ---- Accessible focus styling ------------------------------------------
+  .op-docs-sidebar a:focus-visible,
+  #font-switcher button:focus-visible,
+  .ezd-classic-menu-trigger:focus-visible,
+  .ezd-sidebar-close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+}
+
+/* ---- Classic layout: off-canvas drawer (mobile / tablet) --------------- */
+@media (max-width: 991px) {
+  .classic-onepage {
+    // Floating button that opens the drawer; sits above content, always reachable.
+    .ezd-classic-menu-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      position: fixed;
+      left: 16px;
+      bottom: 22px;
+      z-index: 1060;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 30px;
+      background: var(--ezd_brand_color, #0870ff);
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+
+      // Stack the three bars into a hamburger glyph (the button itself is a
+      // row of [glyph][label], so the bars need their own column wrapper).
+      .ezd-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .ezd-bar {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+      }
+    }
+
+    // The drawer panel itself.
+    .doc_mobile_menu.left-column {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 320px;
+      max-width: 86vw;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      z-index: 1070;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+
+      &.opened {
+        transform: translateX(0);
+      }
+    }
+
+    .one-page-docs-sidebar-wrap {
+      position: relative;
+      height: 100%;
+      max-height: none;
+      border-radius: 0;
+      padding: 22px 18px;
+      overflow-y: auto;
+      box-shadow: none;
+    }
+
+    // In-panel close control, top-right.
+    .ezd-sidebar-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      left: auto;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      // Dark translucent disc keeps the white "×" high-contrast on any sidebar
+      // colour (a light/white disc washed the icon out).
+      background: rgba(0, 0, 0, 0.22);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 2;
+
+      i {
+        line-height: 1;
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.34);
+      }
+    }
+
+    // Tighter, symmetric reading padding on small screens (overrides the
+    // wider desktop offsets). Compound class keeps it above the base rule.
+    &.onepage_doc_area .middle-content {
+      padding: 0 20px;
+    }
+
+    // Tools (right) sidebar toggle — a clean edge tab with a comfortable tap
+    // target, instead of the tiny washed default poking out the side.
+    .doc_right_mobile_menu .open_icon {
+      width: 34px;
+      height: 46px;
+      line-height: 46px;
+      left: -34px;
+      background: var(--ezd_brand_color, #0870ff);
+      color: #fff;
+      border-radius: 12px 0 0 12px;
+      box-shadow: -4px 4px 14px rgba(0, 0, 0, 0.18);
+      font-size: 18px;
+
+      &:hover {
+        background: var(--ezd_brand_color, #0870ff);
+        color: #fff;
+      }
+    }
+
+    // Backdrop for the LEFT drawer only (scoped to .sidebar-open). The right
+    // tools sidebar opens with the shared lower-z backdrop, so its panel is
+    // never dimmed or covered by this full-screen overlay.
+    &.sidebar-open .overlay_bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 1;
+      visibility: visible;
+      z-index: 1065;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    &.sidebar-open .ezd-classic-menu-trigger {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .admin-bar .classic-onepage .doc_mobile_menu.left-column {
+    top: 46px;
+  }
+
+  // The site content wrapper (docy/docly) is a stacking context sitting BELOW
+  // the theme header (.body_wrapper z-index:30 vs .header z-index:99), which
+  // would otherwise leave the off-canvas drawer stuck behind the navbar. While
+  // the drawer is open, lift the wrapper above the header so the drawer and its
+  // backdrop cover the whole screen. (Stays under the WP admin bar at 99999.)
+  body.ezd-onepage-drawer-open .body_wrapper {
+    z-index: 1000;
   }
 }
 
@@ -813,6 +1271,103 @@ body {
   @media (min-width: 768px) {
     .ezd-md-col-9 {
         grid-column: default;
+    }
+  }
+}
+
+/* =========================================================================
+   Relocated one-page styles
+   Consolidated here from frontend/_doclist.scss and frontend.scss so every
+   one-page layout rule lives in this file. All of these selectors are
+   one-page-only (they hinge on .onepage_doc_area / .one-page-docs-sidebar-wrap
+   / .default-layout-onepage-sidebar / the page-onepage template), and
+   onepage.css is loaded wherever those exist, so behaviour is unchanged.
+   ========================================================================= */
+
+// Content column cap on the page-onepage.php page template.
+.page-template-page-onepage #post {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+// One-page sidebar wrapper: drop the shared doc-list divider/background and
+// cap the size of a logo image placed in the sidebar.
+.doc_left_sidebarlist.one-page-docs-sidebar-wrap {
+  &:before {
+    background: transparent;
+    border-right: none;
+  }
+
+  img {
+    max-width: 150px;
+  }
+}
+
+// Sticky padding offsets for the one-page sidebars while the header is fixed.
+.doc_documentation_area.body_fixed {
+  .doc-sidebar {
+    padding-top: 70px;
+  }
+}
+
+body.admin-bar .doc_documentation_area.body_fixed {
+  .doc_rightsidebar.one-page-docs-sidebar-wrap,
+  .doc_left_sidebarlist.one-page-docs-sidebar-wrap {
+    padding-top: 100px;
+  }
+}
+
+.doc_documentation_area {
+  &.onepage_doc_area {
+    @media (min-width: 992px) {
+      padding-top: 120px;
+    }
+
+    .doc_left_sidebarlist:after {
+      display: none;
+    }
+  }
+
+  .doc_left_sidebarlist.one-page-docs-sidebar-wrap {
+    padding-top: 0;
+  }
+}
+
+// Article/section index list — suppress the inherited list leader.
+.one-page-docs-tag-list {
+  li a:before {
+    content: none !important;
+  }
+}
+
+.onepage_doc_area {
+  .documentation_body footer .border_bottom {
+    margin-top: 100px;
+  }
+
+  .middle-content {
+    padding: 0 25px 0 40px;
+  }
+
+  @media (min-width: 1441px) {
+    .middle-content {
+      padding-left: 0;
+    }
+  }
+}
+
+// Deepest nested dropdown in the classic (default-layout) sidebar.
+.nav-sidebar.default-layout-onepage-sidebar {
+  .nav-item .dropdown_nav .nav-item .dropdown_nav.doc-last-depth {
+    display: block !important;
+    padding-left: 4px !important;
+
+    &::before {
+      content: none !important;
+    }
+
+    .nav-item::before {
+      left: 0 !important;
     }
   }
 }

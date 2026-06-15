@@ -7,6 +7,7 @@ ezd_raise_onepage_render_limits();
 
 wp_enqueue_script( 'eazydocs-onepage' );
 $widget_sidebar = ezd_get_opt( 'is_widget_sidebar' );
+$onepage_width  = ezd_get_opt( 'onepage_content_width', 'full-width' );
 global $post;
 $post_slug        = $post->post_name;
 $post_id          = get_page_by_path( $post_slug, OBJECT, array( 'docs' ) );
@@ -25,16 +26,24 @@ $children         = wp_list_pages( array(
 ) );
 ?>
 
-<section class="doc_documentation_area onepage_doc_area classic-onepage" id="sticky_doc">
-	<div class="overlay_bg"></div>
-	<div class="ezd-container-fluid p-lg-5">
+<section class="doc_documentation_area onepage_doc_area classic-onepage ezd-onepage-<?php echo esc_attr( $onepage_width ); ?>" id="sticky_doc">
+	<?php // Mobile-only trigger; lives outside the off-canvas panel so it stays reachable when the panel is closed. ?>
+	<button type="button" class="ezd-classic-menu-trigger" id="mobile-left-toggle" aria-controls="ezd-classic-sidebar" aria-expanded="false" aria-label="<?php esc_attr_e( 'Open documentation menu', 'eazydocs' ); ?>">
+		<span class="ezd-bars" aria-hidden="true">
+			<span class="ezd-bar"></span>
+			<span class="ezd-bar"></span>
+			<span class="ezd-bar"></span>
+		</span>
+		<span class="ezd-trigger-label"><?php esc_html_e( 'Contents', 'eazydocs' ); ?></span>
+	</button>
+	<div class="overlay_bg" id="ezd-classic-overlay"></div>
+	<div class="ezd-container-fluid">
 		<div class="ezd-grid ezd-grid-cols-12 doc-container">
 			<div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top ezd-sticky-lg-top left-column">
-				<aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap">
-					<div class="open_icon" id="mobile-left-toggle">
-						<i class="arrow_carrot-right"></i>
-						<i class="arrow_carrot-left"></i>
-					</div>
+				<aside class="doc_left_sidebarlist one-page-docs-sidebar-wrap" id="ezd-classic-sidebar">
+					<button type="button" class="open_icon ezd-sidebar-close" id="mobile-left-close" aria-label="<?php esc_attr_e( 'Close documentation menu', 'eazydocs' ); ?>">
+						<i class="icon_close" aria-hidden="true"></i>
+					</button>
 					<h3 class="nav_title">
 						<?php echo esc_html(get_post_field( 'post_title', $child_of_id, 'display' )); ?>
 					</h3>

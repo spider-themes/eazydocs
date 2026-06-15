@@ -339,7 +339,7 @@ form.ezd_search_form {
 	flex-wrap: wrap;
 	gap: 2px;
 	padding: 8px 10px;
-	border-bottom: 1px solid #f0f1f2;
+	border-bottom: 1px solid var(--black_50);
 
 	.ezd-tab {
 		background: transparent;
@@ -491,7 +491,7 @@ form.ezd_search_form {
 	.doc-section {
 		font-size: 14px;
 		font-weight: 500;
-		color: #202124;
+		color: var(--black_900);
 		line-height: 1.4;
 		margin: 0;
 		white-space: nowrap;
@@ -501,7 +501,7 @@ form.ezd_search_form {
 
 	.search-result-item {
 		padding: 12px 16px;
-		border-bottom: 1px solid #f0f1f2;
+		border-bottom: 1px solid var(--black_50);
 		transition: background 0.15s;
 		cursor: pointer;
 
@@ -538,7 +538,7 @@ form.ezd_search_form {
 		}
 
 		&:hover {
-			background: #f8f9fa;
+			background: var(--black_25);
 
 			.doc-section {
 				color: #1a73e8;
@@ -996,8 +996,8 @@ form.ezd_search_form.ezd-results-open {
 		border-top-right-radius: 26px !important;
 		border-bottom-left-radius: 0 !important;
 		border-bottom-right-radius: 0 !important;
-		border: 1.5px solid #dadce0 !important;
-		border-bottom-color: #f0f2f5 !important;
+		border: 1.5px solid var(--black_50) !important;
+		border-bottom-color: var(--black_50) !important;
 		box-shadow: 0 1px 6px rgba(32, 33, 36, 0.05) !important;
 	}
 
@@ -1006,7 +1006,7 @@ form.ezd_search_form.ezd-results-open {
 		border-top-right-radius: 0 !important;
 		border-bottom-left-radius: 26px !important;
 		border-bottom-right-radius: 26px !important;
-		border: 1.5px solid #dadce0 !important;
+		border: 1.5px solid var(--black_50) !important;
 		border-top: none !important;
 		padding-right: 0 !important;
 		box-shadow: 0 6px 20px rgba(32, 33, 36, 0.1) !important;

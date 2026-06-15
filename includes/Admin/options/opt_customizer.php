@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 CSF::createSection( $prefix, array(
 	'id'     => 'design_fields',
+	'parent' => 'ezd_appearance',
 	'title'  => esc_html__( 'Theme Customizer', 'eazydocs' ),
 	'icon'   => 'dashicons dashicons-admin-customizer',
 	'fields' => [

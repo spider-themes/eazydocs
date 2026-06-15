@@ -55,6 +55,13 @@
 	width: 70%;
 }
 
+// Normalize switcher widths so toggles align in a consistent column regardless
+// of their per-field `text_width` (values range 70–100px across sections).
+// min-width fits the longest label set ("Enabled/Disabled") so nothing clips.
+.csf-field-switcher .csf--switcher {
+	min-width: 95px;
+}
+
 // Image select
 .csf-field-image_select {
 	figure {
@@ -700,6 +707,12 @@ body.ama {
 	li#accordion-section-design_fields {
 		display: none !important;
 	}
+}
+
+// "Theme Customizer" is now nested under the Appearance panel; hide it inside
+// the Customizer regardless of nesting depth (it only toggles Customizer access).
+li#accordion-section-design_fields {
+	display: none !important;
 }
 
 /** === Email Reports Settings Enhanced Styles === **/

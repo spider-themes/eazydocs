@@ -100,11 +100,15 @@
                         '</div>' +
                     '</div>' +
                 '</div>' +
-                '<div class="ezd-onepage-card ezd-onepage-card--content">' +
-                    '<div class="ezd-onepage-card__header">' +
-                        '<h3>Sidebar content</h3>' +
-                        '<p>Switch between the left and right sidebar panels and choose how each side should be populated.</p>' +
+                '<div class="ezd-onepage-card ezd-onepage-card--content ezd-onepage-card--collapsible is-collapsed">' +
+                    '<div class="ezd-onepage-card__header ezd-onepage-card__header--toggle" role="button" tabindex="0" aria-expanded="false">' +
+                        '<div class="ezd-onepage-card__header-text">' +
+                            '<h3>Sidebar content</h3>' +
+                            '<p>Switch between the left and right sidebar panels and choose how each side should be populated.</p>' +
+                        '</div>' +
+                        '<span class="ezd-onepage-card__toggle-icon" aria-hidden="true"></span>' +
                     '</div>' +
+                    '<div class="ezd-onepage-card__collapse">' +
                     '<div class="ezd_content_btn_wrap" role="tablist" aria-label="Choose sidebar panel">' +
                         '<div class="left_btn_link ezd_left_active">Left Sidebar</div>' +
                         '<div class="right_btn_link">Right Sidebar</div>' +
@@ -137,6 +141,7 @@
                             showSidebarIntro: true,
                         }) +
                     '</div>' +
+                    '</div>' +
                 '</div>' +
             '</div>';
         };
@@ -156,6 +161,22 @@
         });
 
         const initializeOnePageModalInteractions = () => {
+            // Collapsible cards (e.g. "Sidebar content"); starts collapsed via markup.
+            const toggleCollapsibleCard = function () {
+                const $card = $(this).closest('.ezd-onepage-card--collapsible');
+                const isCollapsed = $card.toggleClass('is-collapsed').hasClass('is-collapsed');
+                $(this).attr('aria-expanded', String(!isCollapsed));
+            };
+
+            $('.ezd-onepage-card--collapsible .ezd-onepage-card__header--toggle')
+                .off('click').on('click', toggleCollapsibleCard)
+                .off('keydown').on('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                        e.preventDefault();
+                        toggleCollapsibleCard.call(this);
+                    }
+                });
+
             $('.ezd_content_btn_wrap .left_btn_link').addClass('ezd_left_active');
             $('.ezd_left_content').addClass('ezd_left_content_active');
 
@@ -232,7 +253,10 @@
                             <input type="hidden" id="ezd_onepage_nonce">
                         </div>`;
                 }
-                
+
+                // Remember the modal is open so a page refresh can restore it.
+                try { sessionStorage.setItem('ezd_onepage_create_open', '1'); } catch (err) {}
+
 				Swal.fire({
                     ...getOnePageModalOptions({
                         title: 'Want to make OnePage?',
@@ -265,6 +289,10 @@
                     }
                     
 				}).then((result) => {
+					// Intentional close (confirm/cancel/dismiss) — stop restoring on refresh.
+					// A page reload never resolves this promise, so the flag survives reloads.
+					try { sessionStorage.removeItem('ezd_onepage_create_open'); } catch (err) {}
+
 					if (result.isConfirmed) {
 						let left_content  = document.getElementById( 'ezd-shortcode-content' ).value;
 						let right_content = document.getElementById( 'ezd-shortcode-content-right' ).value;
@@ -355,6 +383,28 @@
 			});
 		}
 		one_page_doc();
+
+        // Reopen the create modal after a refresh if it was left open.
+        function restoreOnePageModal() {
+            let isOpen = false;
+            try { isOpen = sessionStorage.getItem('ezd_onepage_create_open') === '1'; } catch (err) {}
+            if (!isOpen) {
+                return;
+            }
+
+            const $opener = $('.page-title-action.add-onepage').first().length
+                ? $('.page-title-action.add-onepage').first()
+                : $('.one-page-doc').first();
+
+            if ($opener.length) {
+                // Defer so delegated handlers and Swal are ready.
+                setTimeout(() => $opener.trigger('click'), 0);
+            } else {
+                // Opener isn't on this page; drop the stale flag.
+                try { sessionStorage.removeItem('ezd_onepage_create_open'); } catch (err) {}
+            }
+        }
+        restoreOnePageModal();
 
         // EDIT ONE PAGE DOC
         function edit_one_page_doc_doc() {

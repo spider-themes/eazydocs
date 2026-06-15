@@ -70,7 +70,14 @@ function ezd_get_csf_field_config( $type, $config ) {
 }
 
 /**
- * Create common CSF switcher field
+ * Create common CSF switcher field.
+ *
+ * Convention for toggle copy across the settings page:
+ *  - Visibility toggles (show/hide a UI element) use this helper → "Show / Hide".
+ *  - Feature toggles (turn a behaviour on/off) use "Enabled / Disabled".
+ *  - Yes/No only for fields phrased as a question.
+ * Switch widths are normalized in CSS (.csf-field-switcher .csf--switcher),
+ * so `text_width` here only needs to fit the label text.
  *
  * @param array $config Field configuration
  * @return array Complete field configuration
@@ -165,20 +172,22 @@ define( 'EZD_SETTINGS_PATH', plugin_dir_path( __FILE__ ) );
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 include EZD_SETTINGS_PATH . 'opt_docs_general.php';
 include EZD_SETTINGS_PATH . 'opt_doc_single.php';
-include EZD_SETTINGS_PATH . 'opt_onepage_doc.php';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // APPEARANCE
-// Visual customization and theming options
+// Visual customization and theming options, grouped under one parent tab
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+include EZD_SETTINGS_PATH . 'opt_appearance.php';   // Parent section (must load first)
 include EZD_SETTINGS_PATH . 'opt_dark_mode.php';
 include EZD_SETTINGS_PATH . 'opt_customizer.php';
+include EZD_SETTINGS_PATH . 'opt_onepage_doc.php';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // CONTENT FEATURES
 // Documentation-specific functionality
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-include EZD_SETTINGS_PATH . 'opt_footnotes.php';
+include EZD_SETTINGS_PATH . 'opt_footnotes.php';        // Registers the per-doc meta box
+include EZD_SETTINGS_PATH . 'opt_attached_docs.php';    // Attached Documents meta box section
 include EZD_SETTINGS_PATH . 'opt_docs_shortcodes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_assistant.php';
 include EZD_SETTINGS_PATH . 'opt_feedback.php';

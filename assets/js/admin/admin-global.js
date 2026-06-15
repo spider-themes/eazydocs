@@ -15,11 +15,11 @@
                     e.preventDefault();
                     let href = $(this).attr('href')
                     Swal.fire({
-                        title: 'Opps...',
-                        html: 'This is a Premium feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium plan to use this feature',
-                        icon: "warning",
+                        title: 'Premium feature',
+                        html: 'Unlock this feature to get more control over your documentation. <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium plan to enable it.',
+                        icon: "info",
                         buttons: [false, "Close"],
-                        dangerMode: true,
+                        dangerMode: false,
                     })
                 })
             } else {
@@ -30,11 +30,11 @@
                     e.preventDefault();
                     let href = $(this).attr('href')
                     Swal.fire({
-                        title: 'Opps...',
-                        html: 'This is a PRO feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
-                        icon: "warning",
+                        title: 'Pro feature',
+                        html: 'This feature is part of EazyDocs Pro. <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Pro version to enable it.',
+                        icon: "info",
                         buttons: [false, "Close"],
-                        dangerMode: true
+                        dangerMode: false
                     })
                 })
             }
@@ -44,11 +44,11 @@
                 e.preventDefault();
                 let href = $(this).attr('href')
                 Swal.fire({
-                    title: 'Opps...',
-                    html: 'This is a Promax feature. You need to <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Premium Version to use this feature',
-                    icon: "warning",
+                    title: 'Pro Max feature',
+                    html: 'This feature is part of EazyDocs Pro Max. <a href="admin.php?page=eazydocs-pricing"><strong class="upgrade-link">Upgrade&nbsp;&nbsp;➤</strong></a> to the Pro Max plan to enable it.',
+                    icon: "info",
                     buttons: [false, "Close"],
-                    dangerMode: true,
+                    dangerMode: false,
                 })
             })
         }

@@ -60,7 +60,8 @@ class Assets
 			wp_enqueue_script('scrollspy');
 			wp_enqueue_script('bootstrap-toc-js', EZD_ASSETS . 'js/frontend/bootstrap-toc.min.js', ['jquery'], '1.0.1', true);
 			wp_enqueue_script('eazydocs-single', EZD_ASSETS . 'js/frontend/docs-single.js', ['jquery'], EZD_VERSION, true);
-			wp_register_script('eazydocs-onepage', EZD_ASSETS . 'js/frontend/onepage.js', ['jquery'], EZD_VERSION, true);
+			// Depends on 'scrollspy' (Gumshoe) — onepage.js instantiates `new Gumshoe(...)`.
+			wp_register_script('eazydocs-onepage', EZD_ASSETS . 'js/frontend/onepage.js', ['jquery', 'scrollspy'], EZD_VERSION, true);
 
 			$is_dark_switcher = ezd_unlock_themes('docy', 'docly') ? ezd_get_opt('is_dark_switcher') : false;
 
