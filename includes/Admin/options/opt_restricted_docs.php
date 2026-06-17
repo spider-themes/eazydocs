@@ -106,37 +106,13 @@ CSF::createSection( $prefix, array(
 			'type'     => 'button_set',
 			'title'    => esc_html__( 'Unauthorized Access Behavior', 'eazydocs' ),
 			'subtitle' => esc_html__( 'What happens when a non-logged-in user tries to access a private doc?', 'eazydocs' ),
-			'desc'     => esc_html__( 'Choose how to handle unauthorized visitors. Redirecting to a login page provides a better user experience than showing an error.', 'eazydocs' ),
+			'desc'     => esc_html__( 'Choose how to handle unauthorized visitors. Showing a login popup in place provides a better user experience than showing an error.', 'eazydocs' ),
 			'options'  => array(
-				'login' => esc_html__( 'Redirect to Login Page', 'eazydocs' ),
+				'login' => esc_html__( 'Show Login Popup', 'eazydocs' ),
 				'none'  => esc_html__( 'Show 404 Error', 'eazydocs' ),
 			),
 			'default'  => 'login',
 			'class'    => 'eazydocs-pro-notice',
-		),
-
-		// Login Page Selection
-		array(
-			'id'          => 'private_doc_login_page',
-			'type'        => 'select',
-			'title'       => esc_html__( 'Login Page', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Select the page where users will be redirected to log in.', 'eazydocs' ),
-			'desc'        => sprintf(
-				/* translators: %s: shortcode */
-				esc_html__( 'Use the %s shortcode to display the login form on any page.', 'eazydocs' ),
-				'<code>[ezd_login_form]</code>'
-			),
-			'placeholder' => esc_html__( 'Select a page...', 'eazydocs' ),
-			'options'     => 'pages',
-			'class'       => 'eazydocs-pro-notice',
-			'dependency'  => array(
-				array( 'private_doc_mode', '==', 'login' ),
-			),
-			'query_args'  => array(
-				'posts_per_page' => -1,
-			),
-			'chosen'      => true,
-			'ajax'        => true,
 		),
 
 		// Redirect After Login
@@ -286,7 +262,7 @@ CSF::createSection( $prefix, array(
 			'subtitle'   => esc_html__( 'What happens when a logged-in user lacks the required role for a specific doc?', 'eazydocs' ),
 			'desc'       => esc_html__( 'This only applies when a doc has specific role requirements that the user doesn\'t meet.', 'eazydocs' ),
 			'options'    => array(
-				'login'  => esc_html__( 'Redirect to Login Page — User can login with a different account', 'eazydocs' ),
+				'login'  => esc_html__( 'Show Login Popup — User can login with a different account', 'eazydocs' ),
 				'custom' => esc_html__( 'Redirect to Custom Page — Show an "Access Denied" page', 'eazydocs' ),
 				'404'    => esc_html__( 'Show 404 Error — Pretend the doc doesn\'t exist', 'eazydocs' ),
 			),

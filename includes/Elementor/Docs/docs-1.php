@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $private_doc_mode       = ezd_is_premium() ? ezd_get_opt( 'private_doc_mode' ) : 'none';
-$private_doc_login_page = ezd_is_premium() ? ezd_get_opt( 'private_doc_login_page' ) : '';
 $ppp_column             = ! empty( $settings['ppp_column'] ) ? $settings['ppp_column'] : '3';
 $is_masonry     		= $settings['masonry'] ?? '';
 $masonry_layout 		= $is_masonry == 'yes' ? ' ezd-masonry' : '';

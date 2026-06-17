@@ -597,25 +597,10 @@ class Admin {
 			return $post_states;
 		}
 
-		$docs_slug_page   = ezd_get_opt( 'docs-slug' );
-		$login_page       = ezd_is_premium() ? ezd_get_opt( 'private_doc_login_page' ) : '';
-		$frontend_login   = ezd_is_promax() ? ezd_get_opt( 'docs_frontend_login_page' ) : '';
-		$private_mode     = ezd_is_premium() ? ezd_get_opt( 'private_doc_mode' ) : 'none';
-		$is_contribution  = ezd_is_promax() ? ezd_get_opt( 'is_doc_contribution' ) : false;
+		$docs_slug_page = ezd_get_opt( 'docs-slug' );
 
 		if ( (int) $post->ID === (int) $docs_slug_page ) {
 			$post_states['docs_archive'] = __( 'Docs Archive', 'eazydocs' );
-		}
-
-		if ( $login_page === $frontend_login && (int) $post->ID === (int) $login_page ) {
-			$post_states['docs_login'] = __( 'Docs Access', 'eazydocs' );
-		} else {
-			if ( (int) $post->ID === (int) $login_page && 'login' === $private_mode ) {
-				$post_states['docs_login'] = __( 'Private Access', 'eazydocs' );
-			}
-			if ( (int) $post->ID === (int) $frontend_login && $is_contribution ) {
-				$post_states['docs_collaborator'] = __( 'Collaborator Access', 'eazydocs' );
-			}
 		}
 
 		return $post_states;

@@ -1,6 +1,5 @@
 <?php
 $private_doc_mode       = ezd_is_premium() ? ezd_get_opt( 'private_doc_mode' ) : 'none';
-$private_doc_login_page = ezd_is_premium() ? ezd_get_opt( 'private_doc_login_page' ) : '';
 $is_subscription 		= ezd_get_opt( 'subscriptions', false );
 $is_btn_show 			= ezd_get_opt('docs-view-all-btn');
 $is_masonry             = '';

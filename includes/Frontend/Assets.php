@@ -41,10 +41,17 @@ class Assets
 		wp_register_style('elegant-icon', EZD_ASSETS . 'vendors/elegant-icon/style.css', [], EZD_VERSION);
 		wp_register_style('ezd-docs-widgets', EZD_STYLES . 'ezd-docs-widgets.css', [], EZD_VERSION);
 
-		$dynamic_cssd = ":root { --ezd_brand_color: " . ezd_get_opt('brand_color') . "; }";
+		// Expose the brand color both as-is and as an RGB triplet so styles can
+		// build translucent tints with rgba(var(--ezd_brand_color_rgb), .x).
+		$brand_color  = ezd_get_opt('brand_color');
+		$dynamic_cssd = ":root { --ezd_brand_color: " . $brand_color . ";";
+		if (!empty($brand_color)) {
+			$dynamic_cssd .= " --ezd_brand_color_rgb: " . ezd_hex2rgba($brand_color) . ";";
+		}
+		$dynamic_cssd .= " }";
 		wp_add_inline_style('eazydocs-blocks', $dynamic_cssd);
 
-		if (ezd_has_shortcode(['ezd_login_form', 'reference']) || has_ezd_mark_text_class()) {
+		if (ezd_has_shortcode(['reference']) || has_ezd_mark_text_class()) {
 			wp_enqueue_style('eazydocs-shortcodes', EZD_STYLES . 'shortcodes.css', [], EZD_VERSION);
 		}
 

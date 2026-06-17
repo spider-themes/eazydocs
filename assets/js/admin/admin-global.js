@@ -237,6 +237,57 @@
                 }
             });
         });
-        
+
+        // Google Sign-In: test the saved credentials against Google.
+        $(document).on('click', '.ezd-google-test-btn', function (e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var $result = $('.ezd-google-test-result');
+            var original = $btn.text();
+
+            $btn.prop('disabled', true).text('Testing…');
+            $result.removeClass('ezd-test-ok ezd-test-fail').text('');
+
+            $.ajax({
+                url: eazydocs_local_object.ajaxurl,
+                method: 'POST',
+                data: {
+                    action: 'ezd_google_test_connection',
+                    nonce: eazydocs_local_object.nonce
+                }
+            }).done(function (response) {
+                var ok = response && response.success;
+                var message = response && response.data && response.data.message
+                    ? response.data.message
+                    : (ok ? 'Connection OK.' : 'Connection failed.');
+                $result.addClass(ok ? 'ezd-test-ok' : 'ezd-test-fail').text(message);
+            }).fail(function () {
+                $result.addClass('ezd-test-fail').text('Request failed. Please try again.');
+            }).always(function () {
+                $btn.prop('disabled', false).text(original);
+            });
+        });
+
+        // Google Sign-In: copy the redirect URI to the clipboard.
+        $(document).on('click', '.ezd-copy-redirect', function (e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var value = $btn.data('copy') || $btn.closest('p, div').find('input').val() || '';
+            var done = function () {
+                var label = $btn.text();
+                $btn.text('Copied!');
+                setTimeout(function () { $btn.text(label); }, 1500);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(done);
+            } else {
+                var $tmp = $('<input>').val(value).appendTo('body').select();
+                document.execCommand('copy');
+                $tmp.remove();
+                done();
+            }
+        });
+
     });
 })(jQuery);

@@ -34,6 +34,9 @@ class Google_Login {
         // Native WP login/register forms
         add_action( 'login_form', array( $this, 'add_google_login_button' ) );
         add_action( 'register_form', array( $this, 'add_google_login_button' ) );
+
+        // EazyDocs login popup (private/role gate + collaboration).
+        add_action( 'ezd_login_popup_alt_methods', array( $this, 'render_popup_button' ), 10, 1 );
         
         add_action( 'template_redirect', array( $this, 'handle_google_callback' ) );
         add_action( 'login_message', array( $this, 'show_login_messages' ) );
@@ -112,6 +115,29 @@ class Google_Login {
         }
         echo wp_kses_post( $this->get_google_login_html( __( 'Sign in with Google', 'eazydocs' ), 'ezd-google-login-btn' ) );
     }
+
+    /**
+     * Render the Google button inside the EazyDocs login popup.
+     *
+     * Hooked to `ezd_login_popup_alt_methods`. Includes an "or" divider and
+     * passes a redirect so the user returns to where they started after sign-in.
+     *
+     * @param string $redirect Where to send the user after a successful sign-in.
+     *
+     * @return void
+     */
+    public function render_popup_button( $redirect = '' ) {
+        if ( empty( $this->client_id ) || empty( $this->client_secret ) ) {
+            return;
+        }
+
+        $redirect = $redirect ? esc_url_raw( $redirect ) : '';
+
+        // get_google_login_html() returns trusted, internally-escaped markup
+        // (svg + data-* attributes that wp_kses_post would strip).
+        echo '<div class="ezd-login-or"><span>' . esc_html__( 'or', 'eazydocs' ) . '</span></div>';
+        echo $this->get_google_login_html( __( 'Sign in with Google', 'eazydocs' ), 'ezd-google-login-btn', $redirect ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    }
     
     /**
      * Shortcode for Google Login button
@@ -159,6 +185,14 @@ class Google_Login {
         $_SESSION[ 'gcl_product_id' ] = $product_id;
         $_SESSION[ 'gcl_docs_id' ]    = $docs_id;
 
+        // Explicit, caller-provided redirect (e.g. the doc a visitor was viewing).
+        // Kept separate so it never overrides WooCommerce/course flows.
+        if ( ! empty( $redirect ) ) {
+            $_SESSION[ 'gcl_explicit_redirect' ] = esc_url_raw( $redirect );
+        } else {
+            unset( $_SESSION[ 'gcl_explicit_redirect' ] );
+        }
+
         $google_url = $this->get_google_auth_url();
 
         $html  = '<div class="ezd-google-login-container">';
@@ -180,8 +214,9 @@ class Google_Login {
         $this->ensure_session();
         
         $state               = [];
-        $state['product_id'] = isset( $_SESSION['gcl_product_id'] ) ? sanitize_text_field( wp_unslash( $_SESSION['gcl_product_id'] ) ) : '';        
+        $state['product_id'] = isset( $_SESSION['gcl_product_id'] ) ? sanitize_text_field( wp_unslash( $_SESSION['gcl_product_id'] ) ) : '';
         $state['docs_id']    = isset( $_SESSION['gcl_docs_id'] ) ? sanitize_text_field( wp_unslash( $_SESSION['gcl_docs_id'] ) ) : '';
+        $state['redirect']   = isset( $_SESSION['gcl_explicit_redirect'] ) ? esc_url_raw( wp_unslash( $_SESSION['gcl_explicit_redirect'] ) ) : '';
         $state[ 'nonce' ]    = wp_create_nonce( 'ezd_google_login' );
 
         $params = [
@@ -230,8 +265,9 @@ class Google_Login {
                     $this->ensure_session();
 
                     // Fallback via state param if session fails
-                    $product_id = 0;
-                    $docs_id = 0;
+                    $product_id        = 0;
+                    $docs_id           = 0;
+                    $explicit_redirect = '';
 
                     if ( isset( $_SESSION[ 'gcl_product_id' ] ) ) {
                         $product_id = intval( $_SESSION[ 'gcl_product_id' ] );
@@ -239,6 +275,10 @@ class Google_Login {
 
                     if ( isset( $_SESSION[ 'gcl_docs_id' ] ) ) {
                         $docs_id = intval( $_SESSION[ 'gcl_docs_id' ] );
+                    }
+
+                    if ( ! empty( $_SESSION[ 'gcl_explicit_redirect' ] ) ) {
+                        $explicit_redirect = esc_url_raw( wp_unslash( $_SESSION[ 'gcl_explicit_redirect' ] ) );
                     }
 
                     // Try to recover from state param if session empty
@@ -254,13 +294,16 @@ class Google_Login {
                             }
                             $product_id = ! empty( $state_data[ 'product_id' ] ) ? intval( $state_data[ 'product_id' ] ) : $product_id;
                             $docs_id    = ! empty( $state_data[ 'docs_id' ] ) ? intval( $state_data[ 'docs_id' ] ) : $docs_id;
+                            $explicit_redirect = ! empty( $state_data[ 'redirect' ] ) ? esc_url_raw( $state_data[ 'redirect' ] ) : $explicit_redirect;
                         }
                     }
 
                     // Clear session
-                    unset( $_SESSION[ 'gcl_product_id' ], $_SESSION[ 'gcl_docs_id' ], $_SESSION[ 'gcl_redirect_url' ] );
+                    unset( $_SESSION[ 'gcl_product_id' ], $_SESSION[ 'gcl_docs_id' ], $_SESSION[ 'gcl_redirect_url' ], $_SESSION[ 'gcl_explicit_redirect' ] );
 
-                    $redirect = home_url();
+                    // Default to the caller-provided destination (validated to this
+                    // site); WooCommerce/course flows below may still override it.
+                    $redirect = $explicit_redirect ? wp_validate_redirect( $explicit_redirect, home_url() ) : home_url();
 
                     // WooCommerce session fix
                     if ( function_exists( 'WC' ) ) {

@@ -7,7 +7,11 @@ New: Multilingual Documentation – Added WPML and Polylang support so docs, cat
 New: One-Page Content Width – Added a content width option to configure boxed (centered) or full-width layouts.
 New: One-Page Page Banner – Added a fully customizable hero banner at the top of One-Page documents displaying the document title, description, and at-a-glance stat metrics.
 New: One-Page Style Options – Added color and background customization settings for the sidebar, content area, right sidebar, and section numbers.
+New: Google Login Test – Added a "Test Connection" button in the admin settings to verify credentials and redirect URIs with Google.
+New: Redirect URI Clipboard Copy – Added a quick-copy button next to the Google Redirect URI field in the admin settings.
 Updated: Settings Architecture – Nested all visual settings under a unified Appearance parent tab for a cleaner dashboard navigation.
+Updated: Google Login Configuration – Refreshed instructions and settings for the new Google Auth Platform.
+Updated: Restricted Docs Access – Unauthorized visitors now see a login prompt in place rather than being redirected to a separate page.
 Improved: AJAX Doc Loading – Enhanced the AJAX document loading experience with race-condition prevention (aborts older requests), an accessible loading spinner, auto-scrolling to the top of the content, and clean error notices.
 Improved: Article Printing – Upgraded the print button with accessibility enhancements, a loading state indicator, a cleaner print/PDF layout, and resolved issues with the browser print dialog not opening on iOS Safari.
 Improved: Breadcrumbs Navigation – Ensured breadcrumbs display clean, plain-text titles by stripping HTML tags and icons from page links.
@@ -21,6 +25,7 @@ Improved: Search Accessibility – Added polite screen reader announcements (ari
 Improved: Search Banner – Added settings to configure a custom banner title and subtitle above the search field.
 Improved: Search Form – Changed live-search form submission method from POST to GET to improve native SEO compatibility.
 Improved: Admin Session Persistence – Restored the state of the Create One-Page modal window when the dashboard page is refreshed.
+Improved: Article Tree Navigation – Re-designed the sidebar article lists with compact indentation, vertical guide lines, active page highlights, and custom brand color support.
 Optimized: Color Contrast Detection – Integrated perceived-brightness (YIQ) calculation to automatically apply the dark theme contrast classes based on custom background colors.
 Optimized: Document List Performance – Improved database loading efficiency by counting child documents in a single query when selecting parent articles.
 Optimized: One-Page Banner Queries – Aggregated stats for the One-Page hero banner in a single database query, caching results in transient records that are automatically updated when documents are changed.
@@ -28,11 +33,13 @@ Optimized: Performance – Streamlined database queries and added caching across
 Optimized: Search Performance – Implemented input debouncing (400ms) and automatic request aborting for in-flight queries to reduce server load.
 Optimized: Security and Credential Storage – Added secure encryption for the Google Client Secret at rest and masked the value in the settings page for enhanced privacy.
 Optimized: Unified AJAX Search – Consolidated duplicate inline scripts into a single, enqueued JavaScript asset (search-banner.js) serving Gutenberg blocks, Elementor widgets, and built-in templates.
+Optimized: Asset Performance – Simplified inline scripts and optimized shortcode assets loading.
 Fixed: HTML link footnotes.
 Fixed: One-Page Sidebar Scrolling – Prevented sticky sidebar scripts from overriding one-page layouts to keep sidebar menus scrolling smoothly.
 Fixed: Print Dialog Redundancy – Removed duplicate print triggers in one-page scripts to prevent double-firing the browser print dialog.
 Fixed: Search banner CSS styling.
 Fixed: Search Keywords show/hide switcher visibility control.
+
 
 = 2.11.3 (25 May 2026) =
 Improved: Enable product name pass in embedding Chatbot.

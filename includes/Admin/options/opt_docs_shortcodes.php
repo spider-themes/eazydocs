@@ -48,20 +48,6 @@ CSF::createSection( $prefix, array(
 			),
 		),
 
-		array(
-			'id'         => 'ezdocs_login_shortcode',
-			'type'       => 'text',
-			'title'      => esc_html__( 'Login Form', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Display a customizable login form for restricted documentation access.', 'eazydocs' ),
-			'desc'       => esc_html__( 'Example with all attributes:', 'eazydocs' )
-			                . '<br><code>[ezd_login_form login_title="You must log in to continue."  login_subtitle="Login to ' . get_bloginfo()
-			                . '" login_btn="Log In" login_forgot_btn="Forgotten account?"]</code>',
-			'default'    => '[ezd_login_form login_title="" login_subtitle="" login_btn=""]',
-			'attributes' => array(
-				'readonly' => 'readonly',
-			),
-			'class'      => 'eazydocs-pro-notice'
-		),
 
 		array(
 			'id'         => 'ezdocs_footnote_shortcode',

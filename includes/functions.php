@@ -118,6 +118,68 @@ function ezd_sanitize_encrypted_secret( $value ) {
 }
 
 /**
+ * Test the saved Google OAuth credentials against Google.
+ *
+ * Sends a token request with a dummy authorization code. Google validates the
+ * client (and the redirect URI) before the code, so the error it returns tells
+ * us exactly what is wrong without needing a full sign-in flow:
+ *   - invalid_grant        => credentials + redirect URI are valid (success).
+ *   - invalid_client       => wrong Client ID / Secret.
+ *   - redirect_uri_mismatch => credentials OK, redirect URI not authorized.
+ *
+ * @return void Sends a JSON response.
+ */
+function ezd_google_test_connection_ajax() {
+	if ( ! check_ajax_referer( 'eazydocs-admin-nonce', 'nonce', false ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Invalid security token. Please refresh and try again.', 'eazydocs' ) ] );
+	}
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'You are not allowed to do this.', 'eazydocs' ) ] );
+	}
+
+	$client_id = ezd_get_opt( 'google_client_id', '' );
+	$secret    = ezd_decrypt( ezd_get_opt( 'google_client_secret', '' ) );
+
+	if ( empty( $client_id ) || empty( $secret ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Enter and save your Client ID and Client Secret first.', 'eazydocs' ) ] );
+	}
+
+	$response = wp_remote_post( 'https://oauth2.googleapis.com/token', [
+		'timeout' => 15,
+		'body'    => [
+			'client_id'     => $client_id,
+			'client_secret' => $secret,
+			'code'          => 'ezd-connection-test',
+			'grant_type'    => 'authorization_code',
+			'redirect_uri'  => home_url( '/google-auth-callback/' ),
+		],
+	] );
+
+	if ( is_wp_error( $response ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Could not reach Google. Check your server connectivity and try again.', 'eazydocs' ) ] );
+	}
+
+	$body  = json_decode( wp_remote_retrieve_body( $response ), true );
+	$error = is_array( $body ) && ! empty( $body['error'] ) ? $body['error'] : '';
+
+	if ( 'invalid_grant' === $error ) {
+		wp_send_json_success( [ 'message' => esc_html__( 'Success — your Client ID, Secret and Redirect URI are all valid.', 'eazydocs' ) ] );
+	}
+
+	if ( in_array( $error, [ 'invalid_client', 'unauthorized_client' ], true ) ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Invalid Client ID or Client Secret. Re-copy both values from Google Cloud Console.', 'eazydocs' ) ] );
+	}
+
+	if ( 'redirect_uri_mismatch' === $error ) {
+		wp_send_json_error( [ 'message' => esc_html__( 'Credentials are valid, but the Redirect URI is not authorized. Add the exact URI shown above to your Google OAuth client.', 'eazydocs' ) ] );
+	}
+
+	wp_send_json_error( [ 'message' => esc_html__( 'Unexpected response from Google. Please re-check your credentials.', 'eazydocs' ) ] );
+}
+add_action( 'wp_ajax_ezd_google_test_connection', 'ezd_google_test_connection_ajax' );
+
+/**
  * Prime the post meta cache with backward compatibility.
  *
  * @param array|int|WP_Post $post_ids Post IDs or post objects.
@@ -1838,11 +1900,28 @@ function ezd_internal_doc_security( $doc_id = 0 ) {
 			}
 		}
 		
-		// Access denied - show message
+		// Access denied - show the locked content area (with login button for
+		// logged-out users) inside the normal single-doc layout.
 		if ( is_singular( 'docs' ) ) {
-			$denied_message = ezd_get_opt( 'role_visibility_denied_message', esc_html__( "You don't have permission to access this document!", 'eazydocs' ) );
-			$output = sprintf( '<div class="ezd-lg-col-9"><span class="ezd-doc-warning-wrap"><i class="icon_lock"></i><span>%s</span></span></div>', esc_html( $denied_message ) );
-			echo wp_kses_post( $output );
+			if ( class_exists( '\eazyDocsPro\Frontend\Login_Popup' ) ) {
+				// Trusted, internally-escaped markup from the Pro popup helper.
+				$gated_id = get_the_ID();
+				echo '<div class="ezd-xl-col-7 ezd-lg-col-6 ezd-grid-column-full doc-middle-content">'
+					. \eazyDocsPro\Frontend\Login_Popup::locked_block_html( [
+						'post_id'      => $gated_id,
+						'message'      => ezd_get_opt( 'role_visibility_denied_message', '' ),
+						'button_label' => ezd_get_opt( 'private_doc_login_prompt', '' ),
+						'with_title'   => true,
+						'redirect'     => get_permalink( $gated_id ),
+						'gate_type'    => 'private',
+						'gate_post'    => $gated_id,
+					] )
+					. '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			} else {
+				$denied_message = ezd_get_opt( 'role_visibility_denied_message', esc_html__( "You don't have permission to access this document!", 'eazydocs' ) );
+				$output = sprintf( '<div class="ezd-lg-col-9"><span class="ezd-doc-warning-wrap"><i class="icon_lock"></i><span>%s</span></span></div>', esc_html( $denied_message ) );
+				echo wp_kses_post( $output );
+			}
 		}
 		return null;
 	}
@@ -2330,25 +2409,18 @@ function ezd_private_docs_access() {
                 // Get the private doc mode setting (only for pro users)
                 $private_doc_mode = ezd_is_premium() ? ezd_get_opt( 'private_doc_mode', 'none' ) : 'none';
                 
-                // If mode is 'login', redirect to login page instead of showing 404
+                // If mode is 'login', show the login popup in place (locked view)
+                // instead of redirecting to a dedicated login page.
                 if ( 'login' === $private_doc_mode ) {
-                    $login_page_id = ezd_get_opt( 'private_doc_login_page', '' );
-                    
-                    if ( ! empty( $login_page_id ) ) {
-                        $login_page_url = get_permalink( $login_page_id );
-                        
-                        if ( $login_page_url ) {
-                            // Add redirect parameters
-                            $permalink_structure = get_option( 'permalink_structure' );
-                            $separator = empty( $permalink_structure ) ? '&' : '?';
-                            $redirect_url = $login_page_url . $separator . 'post_id=' . $post->ID . '&private_doc=yes';
-                            
-                            wp_safe_redirect( $redirect_url );
-                            exit;
-                        }
+                    if ( class_exists( '\eazyDocsPro\Frontend\Login_Popup' ) ) {
+                        $redirect_back = ezd_get_opt( 'private_doc_redirect_back', true );
+                        $redirect_to   = $redirect_back ? get_permalink( $post->ID ) : home_url();
+
+                        \eazyDocsPro\Frontend\Login_Popup::request_gate( $post->ID, $redirect_to, 'private' );
+                        return;
                     }
-                    
-                    // Fallback to WordPress login if no custom login page set
+
+                    // Fallback to WordPress login if the popup is unavailable.
                     wp_safe_redirect( wp_login_url( get_permalink( $post->ID ) ) );
                     exit;
                 }
