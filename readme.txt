@@ -360,7 +360,7 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 * New: Redirect URI Clipboard Copy – Added a quick-copy button next to the Google Redirect URI field in the admin settings.
 * Updated: Settings Architecture – Nested all visual settings under a unified Appearance parent tab for a cleaner dashboard navigation.
 * Updated: Google Login Configuration – Refreshed instructions and settings for the new Google Auth Platform.
-* Updated: Restricted Docs Access – Unauthorized visitors now see a login prompt in place rather than being redirected to a separate page.
+* Updated: Restricted Docs Access – Replaced the old login page with the new login/sign up popup for better user experience. The old login form page will not work from this version.
 * Improved: AJAX Doc Loading – Enhanced the AJAX document loading experience with race-condition prevention (aborts older requests), an accessible loading spinner, auto-scrolling to the top of the content, and clean error notices.
 * Improved: Article Printing – Upgraded the print button with accessibility enhancements, a loading state indicator, a cleaner print/PDF layout, and resolved issues with the browser print dialog not opening on iOS Safari.
 * Improved: Breadcrumbs Navigation – Ensured breadcrumbs display clean, plain-text titles by stripping HTML tags and icons from page links.
