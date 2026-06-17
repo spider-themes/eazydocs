@@ -207,6 +207,7 @@ include EZD_SETTINGS_PATH . 'opt_email_reporting.php';    // Email Reports
 include EZD_SETTINGS_PATH . 'opt_restricted_docs.php';
 include EZD_SETTINGS_PATH . 'opt_docs_role_manager.php';
 include EZD_SETTINGS_PATH . 'opt_docs_collaboration.php';
+include EZD_SETTINGS_PATH . 'opt_login_popup.php';
 include EZD_SETTINGS_PATH . 'opt_google_login.php';
 
 // Additional fields from extensions
