@@ -6,7 +6,7 @@ $doc_container    = $doc_container == 'full-width' ? 'ezd-container-fluid px-lg-
 ?>
 <section class="page_breadcrumb ezd-breadcrumb">
     <div class="<?php echo esc_attr( ezd_container() ); ?>">
-        <div class="ezd-grid ezd-grid-cols-12">
+        <div class="ezd-grid ezd-grid-cols-12 mgap-0">
             <div class="ezd-lg-col-9 ezd-md-col-8 ezd-grid-column-full">
                 <nav aria-label="breadcrumb">
                     <?php eazydocs_breadcrumbs(); ?>

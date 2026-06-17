@@ -348,15 +348,18 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.12.0 (15 June 2026) =
+= 2.12.0 (17 June 2026) =
 * New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.
 * New: Last Updated Date – Added option switcher to display the last modified date on single document pages.
 * New: Markdown & CSV Import-Export – Export your documentation as Markdown or CSV and import Markdown or CSV files back into your doc tree, making content migration and backups simple.
 * New: Multilingual Documentation – Added WPML and Polylang support so docs, categories, and tags can be translated and managed in multiple languages.
-* New: One-Page Style Options – Added color and background customization settings for the sidebar, content area, right sidebar, and section numbers.
 * New: One-Page Content Width – Added a content width option to configure boxed (centered) or full-width layouts.
+* New: One-Page Page Banner – Added a fully customizable hero banner at the top of One-Page documents displaying the document title, description, and at-a-glance stat metrics.
+* New: One-Page Style Options – Added color and background customization settings for the sidebar, content area, right sidebar, and section numbers.
 * Updated: Settings Architecture – Nested all visual settings under a unified Appearance parent tab for a cleaner dashboard navigation.
-* Improved: Article Printing – Upgraded the print button with accessibility enhancements, a loading state indicator, and a cleaner print/PDF layout that hides site navigation, expands external links, and prevents page breaks within headings or media blocks.
+* Improved: AJAX Doc Loading – Enhanced the AJAX document loading experience with race-condition prevention (aborts older requests), an accessible loading spinner, auto-scrolling to the top of the content, and clean error notices.
+* Improved: Article Printing – Upgraded the print button with accessibility enhancements, a loading state indicator, a cleaner print/PDF layout, and resolved issues with the browser print dialog not opening on iOS Safari.
+* Improved: Breadcrumbs Navigation – Ensured breadcrumbs display clean, plain-text titles by stripping HTML tags and icons from page links.
 * Improved: Inline Child Navigation – Added support to dynamically load child documents inline when clicking parent links in search results.
 * Improved: In-Page Navigation – Added offset scroll positioning to prevent sticky headers from overlapping target sections when clicking navigation sidebar links.
 * Improved: Multilingual Support – Loaded the plugin textdomain and added pre-translated language files for Arabic, Bengali, German, Spanish, French, Portuguese, Russian, and Chinese Simplified.
@@ -369,6 +372,7 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 * Improved: Admin Session Persistence – Restored the state of the Create One-Page modal window when the dashboard page is refreshed.
 * Optimized: Color Contrast Detection – Integrated perceived-brightness (YIQ) calculation to automatically apply the dark theme contrast classes based on custom background colors.
 * Optimized: Document List Performance – Improved database loading efficiency by counting child documents in a single query when selecting parent articles.
+* Optimized: One-Page Banner Queries – Aggregated stats for the One-Page hero banner in a single database query, caching results in transient records that are automatically updated when documents are changed.
 * Optimized: Performance – Streamlined database queries and added caching across the dashboard, doc pages, and admin area for faster loading on large documentation libraries.
 * Optimized: Search Performance – Implemented input debouncing (400ms) and automatic request aborting for in-flight queries to reduce server load.
 * Optimized: Security and Credential Storage – Added secure encryption for the Google Client Secret at rest and masked the value in the settings page for enhanced privacy.

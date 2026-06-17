@@ -15,6 +15,12 @@
 	margin-bottom: 20px;
 }
 
+.mgap-0 {
+	@media (min-width: 991px) {
+		gap: 0;
+	}
+}
+
 // ezd grid columns css
 .ezd-grid {
 	display: grid;

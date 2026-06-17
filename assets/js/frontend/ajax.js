@@ -8,6 +8,39 @@
          */
         if ( eazydocs_local_object.is_doc_ajax == '1' ) {
             const elementorDocs = eazydocs_local_object.elementor_docs || [];
+            const $content      = $('.doc-middle-content');
+
+            // Track the in-flight request so a rapid second click can cancel the
+            // first one instead of racing it (last click wins).
+            let activeRequest = null;
+
+            /**
+             * Toggle the loading state on the content area.
+             *
+             * Adds an overlay + spinner and marks the region busy for assistive
+             * tech while the next doc is fetched.
+             *
+             * @param {boolean} isLoading Whether a request is in progress.
+             */
+            function setLoading( isLoading ) {
+                if ( isLoading ) {
+                    if ( ! $content.children('.ezd-ajax-loader').length ) {
+                        $content.append(
+                            '<div class="ezd-ajax-loader" role="status" aria-live="polite">' +
+                                '<span class="ezd-ajax-spinner" aria-hidden="true"></span>' +
+                                '<span class="screen-reader-text">' +
+                                    ( eazydocs_local_object.i18n_loading || 'Loading…' ) +
+                                '</span>' +
+                            '</div>'
+                        );
+                    }
+                    $content.addClass('ezd-is-loading').attr('aria-busy', 'true');
+                } else {
+                    $content.removeClass('ezd-is-loading').attr('aria-busy', 'false');
+                    $content.children('.ezd-ajax-loader').remove();
+                }
+            }
+
             $('.single-docs .nav-sidebar .nav-item .nav-link, .single-docs .nav-sidebar .nav-item .dropdown_nav li a').on('click', function (e) {
                 let self    = $(this);
                 const postid = parseInt( self.attr('data-postid'), 10 );
@@ -16,7 +49,13 @@
                 }
 
                 e.preventDefault();
-                let title   = self.text();
+
+                // Already on this doc (or its request is mid-flight) — do nothing.
+                if ( self.hasClass('active') && ! activeRequest ) {
+                    return;
+                }
+
+                let title = self.text();
 
                 function changeurl(page_title) {
                     let new_url = self.attr('href');
@@ -24,7 +63,12 @@
                     document.title = page_title;
                 }
 
-                $.ajax({
+                // Cancel any request still in progress before starting a new one.
+                if ( activeRequest ) {
+                    activeRequest.abort();
+                }
+
+                activeRequest = $.ajax({
                     url: eazydocs_local_object.ajaxurl,
                     method: 'post',
                     data: {
@@ -33,14 +77,22 @@
                         security: eazydocs_local_object.nonce,
                     },
                     beforeSend: function () {
+                        setLoading( true );
                         $('#reading-progress-fill').css({
                             width: '100%',
                             display: 'block',
                         });
                     },
                     success: function (response) {
-                        $('#reading-progress-fill').css({ display: 'none' });
-                        $('.doc-middle-content').html(response.data.content);
+                        if ( ! response || ! response.success || ! response.data ) {
+                            const message = ( response && response.data && response.data.message )
+                                ? response.data.message
+                                : ( eazydocs_local_object.i18n_error || 'Something went wrong. Please try again.' );
+                            $content.html( '<div class="ezd-ajax-error" role="alert">' + message + '</div>' );
+                            return;
+                        }
+
+                        $content.html(response.data.content);
                         $('.ezd-breadcrumb time span').text(response.data.modified_date);
                         $('nav .breadcrumb .breadcrumb-item:last-child').text(title);
                         changeurl(title);
@@ -81,10 +133,36 @@
                         if (typeof window.ezd_refresh_scrollspy === 'function') {
                             window.ezd_refresh_scrollspy();
                         }
-                        
+
+                        // Bring the reader back to the top of the freshly loaded doc.
+                        if ( $content.length ) {
+                            $('html, body').animate(
+                                { scrollTop: $content.offset().top - 120 },
+                                300
+                            );
+                        }
                     },
-                    error: function () {
-                        console.log('Oops! Something wrong, try again!');
+                    error: function (jqXHR, textStatus) {
+                        // Ignore aborts triggered by a newer click.
+                        if ( 'abort' === textStatus ) {
+                            return;
+                        }
+                        $content.html(
+                            '<div class="ezd-ajax-error" role="alert">' +
+                                ( eazydocs_local_object.i18n_error || 'Something went wrong. Please try again.' ) +
+                            '</div>'
+                        );
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        // Only clear the loading UI for the request that actually
+                        // finished — an aborted request is superseded by a newer one
+                        // that owns the spinner now.
+                        if ( 'abort' === textStatus ) {
+                            return;
+                        }
+                        activeRequest = null;
+                        setLoading( false );
+                        $('#reading-progress-fill').css({ display: 'none', width: '0%' });
                     },
                 });
             });

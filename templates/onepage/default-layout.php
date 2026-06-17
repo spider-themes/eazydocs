@@ -37,6 +37,104 @@ $children         = wp_list_pages( array(
 		<span class="ezd-trigger-label"><?php esc_html_e( 'Contents', 'eazydocs' ); ?></span>
 	</button>
 	<div class="overlay_bg" id="ezd-classic-overlay"></div>
+	<?php
+	// Full-width page banner: the parent doc's title and excerpt alongside a set
+	// of at-a-glance stat metrics, shown as a hero at the top of the page (above
+	// the content grid). The banner and which metrics appear are controlled from
+	// Appearance → One-Page Layout.
+	$banner_title   = get_post_field( 'post_title', $child_of_id, 'display' );
+	$banner_excerpt = has_excerpt( $child_of_id ) ? get_the_excerpt( $child_of_id ) : '';
+	if ( ezd_get_opt( 'onepage_banner', '1' ) == '1' && ( $banner_title || $banner_excerpt ) ) :
+		$banner_meta     = ezd_get_onepage_banner_meta( $child_of_id );
+		$enabled_metrics = (array) ezd_get_opt( 'onepage_banner_metrics', [ 'count', 'modified', 'authors', 'reading_time' ] );
+
+		// Build the metric items; skip empties and any the admin switched off.
+		$banner_stats = [];
+		if ( in_array( 'count', $enabled_metrics, true ) && $banner_meta['count'] > 0 ) {
+			$banner_stats[] = [
+				'icon'  => 'icon_documents_alt',
+				'value' => number_format_i18n( $banner_meta['count'] ),
+				'label' => _n( 'Doc', 'Docs', $banner_meta['count'], 'eazydocs' ),
+			];
+		}
+		if ( in_array( 'modified', $enabled_metrics, true ) && $banner_meta['modified'] > 0 ) {
+			$banner_stats[] = [
+				'icon'  => 'icon_calendar',
+				'value' => wp_date( get_option( 'date_format' ), $banner_meta['modified'] ),
+				'label' => esc_html__( 'Updated', 'eazydocs' ),
+			];
+		}
+		$banner_author_ids = (array) ( $banner_meta['author_ids'] ?? [] );
+		if ( in_array( 'authors', $enabled_metrics, true ) && ! empty( $banner_author_ids ) ) {
+			$banner_stats[] = [
+				'type'    => 'avatars',
+				'authors' => $banner_author_ids,
+				'label'   => _n( 'Author', 'Authors', count( $banner_author_ids ), 'eazydocs' ),
+			];
+		}
+		if ( in_array( 'reading_time', $enabled_metrics, true ) && $banner_meta['reading_time'] > 0 ) {
+			$banner_stats[] = [
+				'icon'  => 'icon_hourglass',
+				/* translators: %s: estimated number of minutes to read. */
+				'value' => sprintf( esc_html__( '%s min', 'eazydocs' ), number_format_i18n( $banner_meta['reading_time'] ) ),
+				'label' => esc_html__( 'Read', 'eazydocs' ),
+			];
+		}
+		?>
+		<div class="ezd-onepage-banner">
+			<?php // Decorative shapes — purely graphical, hidden from assistive tech. ?>
+			<span class="ezd-onepage-banner-shape ezd-onepage-banner-shape--one" aria-hidden="true"></span>
+			<span class="ezd-onepage-banner-shape ezd-onepage-banner-shape--two" aria-hidden="true"></span>
+			<span class="ezd-onepage-banner-grid" aria-hidden="true"></span>
+			<div class="ezd-onepage-banner-content ezd-d-flex ezd-align-items-center ezd-justify-content-between">
+				<div class="ezd-onepage-banner-main">
+					<?php
+					// Badge label is configurable; an empty value hides the pill entirely.
+					$banner_badge = ezd_get_opt( 'onepage_banner_badge', esc_html__( 'Documentation', 'eazydocs' ) );
+					if ( '' !== trim( (string) $banner_badge ) ) :
+						?>
+						<span class="ezd-onepage-banner-badge" aria-hidden="true">
+							<i class="icon_book_alt"></i>
+							<?php echo esc_html( $banner_badge ); ?>
+						</span>
+					<?php endif; ?>
+					<?php if ( $banner_title ) : ?>
+						<h1 class="ezd-onepage-banner-title"><?php echo esc_html( $banner_title ); ?></h1>
+					<?php endif; ?>
+					<?php if ( $banner_excerpt ) : ?>
+						<p class="ezd-onepage-banner-excerpt"><?php echo wp_kses_post( $banner_excerpt ); ?></p>
+					<?php endif; ?>
+				</div>
+				<?php if ( ! empty( $banner_stats ) ) : ?>
+					<ul class="ezd-onepage-banner-stats ezd-list-unstyled">
+						<?php foreach ( $banner_stats as $stat ) : ?>
+							<li class="ezd-onepage-banner-stat ezd-d-flex ezd-align-items-center<?php echo isset( $stat['type'] ) ? ' ezd-onepage-banner-stat--' . esc_attr( $stat['type'] ) : ''; ?>">
+								<?php if ( isset( $stat['type'] ) && 'avatars' === $stat['type'] ) : ?>
+									<span class="ezd-onepage-banner-avatars ezd-align-items-center" aria-hidden="true">
+										<?php
+										$shown  = array_slice( $stat['authors'], 0, 4 );
+										$hidden = count( $stat['authors'] ) - count( $shown );
+										foreach ( $shown as $author_id ) {
+											echo get_avatar( $author_id, 56, '', '', [ 'class' => 'ezd-onepage-banner-avatar' ] );
+										}
+										if ( $hidden > 0 ) {
+											echo '<span class="ezd-onepage-banner-avatar ezd-onepage-banner-avatar-more">+' . esc_html( number_format_i18n( $hidden ) ) . '</span>';
+										}
+										?>
+									</span>
+									<span class="ezd-onepage-banner-stat-label"><?php echo esc_html( $stat['label'] ); ?></span>
+								<?php else : ?>
+									<i class="<?php echo esc_attr( $stat['icon'] ); ?>" aria-hidden="true"></i>
+									<span class="ezd-onepage-banner-stat-value"><?php echo esc_html( $stat['value'] ); ?></span>
+									<span class="ezd-onepage-banner-stat-label"><?php echo esc_html( $stat['label'] ); ?></span>
+								<?php endif; ?>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+			</div>
+		</div>
+	<?php endif; ?>
 	<div class="ezd-container-fluid">
 		<div class="ezd-grid ezd-grid-cols-12 doc-container">
 			<div class="ezd-xl-col-3 ezd-lg-col-3 ezd-grid-column-full doc_mobile_menu doc-sidebar sticky-top ezd-sticky-lg-top left-column">

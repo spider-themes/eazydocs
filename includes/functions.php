@@ -563,6 +563,10 @@ if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
 	 * @return string
 	 */
 	function eazydocs_get_breadcrumb_item( $label, $permalink, $position = 1 ) {
+		// Breadcrumbs are plain-text navigation: strip any markup (e.g. a doc's
+		// featured-image/icon) so only the title text is shown.
+		$label = wp_strip_all_tags( $label );
+
 		return '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
             <a itemprop="item" href="' . esc_url( $permalink ) . '" target="_top">
             <span itemprop="name">' . esc_html( $label ) . '</span></a>
@@ -572,7 +576,7 @@ if ( ! function_exists( 'eazydocs_get_breadcrumb_item' ) ) {
 
 	function eazydocs_get_breadcrumb_root_title( $label ) {
 		return '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-             ' . esc_html( $label ) . '</li>';
+             ' . esc_html( wp_strip_all_tags( $label ) ) . '</li>';
 	}
 }
 
@@ -632,7 +636,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 			}
 		}
 
-		$html .= ' ' . $args['before'] . get_the_title() . $args['after'];
+		$html .= ' ' . $args['before'] . esc_html( wp_strip_all_tags( get_the_title() ) ) . $args['after'];
 
 		$html .= '</ol>';
 
@@ -690,7 +694,7 @@ if ( ! function_exists( 'eazydocs_search_breadcrumbs' ) ) {
 			}
 		}
 
-		$html .= ' ' . $args['before'] . get_the_title() . $args['after'];
+		$html .= ' ' . $args['before'] . esc_html( wp_strip_all_tags( get_the_title() ) ) . $args['after'];
 		$html .= '</ol>';
 		echo wp_kses_post( apply_filters( 'eazydocs_breadcrumbs_html', $html, $args ) );
 	}
@@ -2781,6 +2785,104 @@ function ezd_flush_onepage_doc_content_cache( $post_id ) {
 }
 add_action( 'save_post', 'ezd_flush_onepage_doc_content_cache' );
 add_action( 'delete_post', 'ezd_flush_onepage_doc_content_cache' );
+
+/**
+ * Aggregate stat metrics for the One-Page banner.
+ *
+ * Summarises a parent doc and all of its descendants: total doc count, most
+ * recent update time, distinct author count, and estimated reading time. All
+ * values come from a single batched query (after the descendant-ID lookup) and
+ * the result is cached in a transient that is flushed whenever a doc is saved.
+ *
+ * @param int $parent_id Parent doc ID.
+ * @return array{count:int,modified:int,authors:int,author_ids:int[],reading_time:int} Metric set.
+ */
+function ezd_get_onepage_banner_meta( $parent_id ) {
+	$parent_id = absint( $parent_id );
+	$empty     = [ 'count' => 0, 'modified' => 0, 'authors' => 0, 'author_ids' => [], 'reading_time' => 0 ];
+
+	if ( ! $parent_id ) {
+		return $empty;
+	}
+
+	// The version suffix lets a structure change (e.g. new keys) invalidate any
+	// data cached by an older build instead of returning an incomplete shape.
+	$cache_key = 'ezd_onepage_banner_meta_v2_' . $parent_id;
+	$cached    = get_transient( $cache_key );
+	if ( is_array( $cached ) && isset( $cached['author_ids'] ) ) {
+		return $cached;
+	}
+
+	// Parent + every descendant make up the metric set.
+	$ids   = ezd_get_all_descendant_ids( $parent_id );
+	$ids[] = $parent_id;
+	$ids   = array_values( array_unique( array_map( 'absint', $ids ) ) );
+
+	if ( empty( $ids ) ) {
+		return $empty;
+	}
+
+	global $wpdb;
+
+	// One batched query for everything the metrics need — no per-doc lookups.
+	$placeholders = implode( ', ', array_fill( 0, count( $ids ), '%d' ) );
+	$rows         = $wpdb->get_results( $wpdb->prepare(
+		"SELECT post_author, post_modified_gmt, post_content
+		 FROM {$wpdb->posts}
+		 WHERE ID IN ($placeholders)",
+		...$ids
+	) );
+
+	$authors     = [];
+	$latest      = 0;
+	$total_words = 0;
+	foreach ( $rows as $row ) {
+		$authors[ (int) $row->post_author ] = true;
+		$modified                           = (int) mysql2date( 'U', $row->post_modified_gmt );
+		if ( $modified > $latest ) {
+			$latest = $modified;
+		}
+		$total_words += str_word_count( wp_strip_all_tags( (string) $row->post_content ) );
+	}
+
+	$wpm        = max( 1, absint( ezd_get_opt( 'reading_time_wpm', 200 ) ) );
+	$author_ids = array_map( 'intval', array_keys( $authors ) );
+	$meta       = [
+		// Exclude the parent itself from the "docs" count.
+		'count'        => max( 0, count( $ids ) - 1 ),
+		'modified'     => $latest,
+		'authors'      => count( $author_ids ),
+		'author_ids'   => $author_ids,
+		'reading_time' => max( 1, (int) ceil( $total_words / $wpm ) ),
+	];
+
+	set_transient( $cache_key, $meta, 12 * HOUR_IN_SECONDS );
+
+	return $meta;
+}
+
+/**
+ * Flush every cached One-Page banner metric set when a doc changes.
+ *
+ * Metrics are keyed by ancestor, so a child edit must invalidate its parent's
+ * cache too; the simplest correct approach is to clear them all on any doc save.
+ *
+ * @param int $post_id Post ID.
+ */
+function ezd_flush_onepage_banner_meta_cache( $post_id ) {
+	if ( ! in_array( get_post_type( $post_id ), [ 'docs', 'onepage-docs' ], true ) ) {
+		return;
+	}
+
+	global $wpdb;
+	$wpdb->query(
+		"DELETE FROM {$wpdb->options}
+		 WHERE option_name LIKE '\_transient\_ezd\_onepage\_banner\_meta\_%'
+		    OR option_name LIKE '\_transient\_timeout\_ezd\_onepage\_banner\_meta\_%'"
+	);
+}
+add_action( 'save_post', 'ezd_flush_onepage_banner_meta_cache' );
+add_action( 'delete_post', 'ezd_flush_onepage_banner_meta_cache' );
 
 /**
  * Get docs ranked by feedback votes via a single aggregated query.

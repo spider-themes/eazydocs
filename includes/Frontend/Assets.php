@@ -110,6 +110,8 @@ class Assets
 				'ezd_search_submit' => ezd_get_opt('is_search_submit', true),
 				'ezd_dark_switcher' => ezd_get_opt('is_dark_switcher', true),
 				'elementor_docs' => $elementor_docs,
+				'i18n_loading' => __('Loading…', 'eazydocs'),
+				'i18n_error' => __('Something went wrong. Please try again.', 'eazydocs'),
 				'i18n' => [
 					/* translators: %d: number of search results found. */
 					'results_found' => __('%d results found', 'eazydocs'),

@@ -282,12 +282,16 @@
                     $head.append("<script>  window.print(); </s" + "cript>");
                 } else {
                     // proper method
-                    if (document.queryCommandSupported("print")) {
-                        $iframe[0].contentWindow.document.execCommand("print", false, null);
-                    } else {
-                        $iframe[0].contentWindow.focus();
-                        $iframe[0].contentWindow.print();
-                    }
+                    // Focus the iframe element itself before its contentWindow:
+                    // iOS Safari ignores print() unless the frame element holds
+                    // focus first. execCommand("print") is intentionally dropped
+                    // as it is non-standard and a no-op on Safari/iOS.
+                    try {
+                        $iframe[0].focus();
+                    } catch (e) {}
+                    var printWindow = $iframe[0].contentWindow;
+                    printWindow.focus();
+                    printWindow.print();
                 }
 
                 // remove iframe after print

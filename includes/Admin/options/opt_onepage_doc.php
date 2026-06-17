@@ -61,6 +61,92 @@ CSF::createSection( $prefix, array(
             'default'  => 'full-width',
         ),
 
+        // ── Page Banner ─────────────────────────────────────────
+        array(
+            'id'          => 'onepage_banner_heading',
+            'type'        => 'subheading',
+            'title'       => esc_html__( 'Page Banner', 'eazydocs' ),
+            'subtitle'    => esc_html__( 'A hero shown at the top of the page with the document title, excerpt and at-a-glance stat metrics.', 'eazydocs' ),
+        ),
+
+        array(
+            'id'       => 'onepage_banner',
+            'type'     => 'switcher',
+            'title'    => esc_html__( 'Show Page Banner', 'eazydocs' ),
+            'subtitle' => esc_html__( 'Display the title/excerpt hero banner at the top of One-Page docs.', 'eazydocs' ),
+            'default'  => true,
+            'text_on'  => esc_html__( 'On', 'eazydocs' ),
+            'text_off' => esc_html__( 'Off', 'eazydocs' ),
+        ),
+
+        array(
+            'id'         => 'onepage_banner_metrics',
+            'type'       => 'checkbox',
+            'title'      => esc_html__( 'Banner Stat Metrics', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Pick which stat metric cards appear on the banner. Each is only shown when it has data.', 'eazydocs' ),
+            'options'    => array(
+                'count'        => esc_html__( 'Docs count', 'eazydocs' ),
+                'modified'     => esc_html__( 'Last updated date', 'eazydocs' ),
+                'authors'      => esc_html__( 'Authors', 'eazydocs' ),
+                'reading_time' => esc_html__( 'Estimated reading time', 'eazydocs' ),
+            ),
+            'default'    => array( 'count', 'modified', 'authors', 'reading_time' ),
+            'dependency' => array( 'onepage_banner', '==', 'true' ),
+        ),
+
+        array(
+            'id'         => 'onepage_banner_badge',
+            'type'       => 'text',
+            'title'      => esc_html__( 'Banner Badge Label', 'eazydocs' ),
+            'subtitle'   => esc_html__( 'Small pill shown above the title. Leave empty to hide it.', 'eazydocs' ),
+            'default'    => esc_html__( 'Documentation', 'eazydocs' ),
+            'dependency' => array( 'onepage_banner', '==', 'true' ),
+        ),
+
+        array(
+            'id'          => 'onepage_banner_accent',
+            'type'        => 'color',
+            'title'       => esc_html__( 'Banner Gradient Start', 'eazydocs' ),
+            'subtitle'    => esc_html__( 'Start color of the banner background gradient. Defaults to your brand color when left empty.', 'eazydocs' ),
+            'output'      => '.single-onepage-docs .ezd-onepage-banner',
+            'output_mode' => '--ezd-banner-accent',
+            'class'       => $ezd_onepage_pro,
+            'dependency'  => array( 'onepage_banner', '==', 'true' ),
+        ),
+
+        array(
+            'id'          => 'onepage_banner_gradient_end',
+            'type'        => 'color',
+            'title'       => esc_html__( 'Banner Gradient End', 'eazydocs' ),
+            'subtitle'    => esc_html__( 'End color the banner background gradient fades into.', 'eazydocs' ),
+            'output'      => '.single-onepage-docs .ezd-onepage-banner',
+            'output_mode' => '--ezd-banner-gradient-end',
+            'class'       => $ezd_onepage_pro,
+            'dependency'  => array( 'onepage_banner', '==', 'true' ),
+        ),
+
+        array(
+            'id'          => 'onepage_banner_title_color',
+            'type'        => 'color',
+            'title'       => esc_html__( 'Banner Title Color', 'eazydocs' ),
+            'subtitle'    => esc_html__( 'Color for the banner title text.', 'eazydocs' ),
+            'output'      => '.single-onepage-docs .ezd-onepage-banner .ezd-onepage-banner-title',
+            'output_mode' => 'color',
+            'class'       => $ezd_onepage_pro,
+            'dependency'  => array( 'onepage_banner', '==', 'true' ),
+        ),
+
+        array(
+            'id'          => 'onepage_banner_text_color',
+            'type'        => 'color',
+            'title'       => esc_html__( 'Banner Text Color', 'eazydocs' ),
+            'subtitle'    => esc_html__( 'Color for the banner excerpt/description text.', 'eazydocs' ),
+            'output'      => '.single-onepage-docs .ezd-onepage-banner .ezd-onepage-banner-excerpt',
+            'output_mode' => 'color',
+            'class'       => $ezd_onepage_pro,
+            'dependency'  => array( 'onepage_banner', '==', 'true' ),
+        ),
+
         // ── Navigation Sidebar ──────────────────────────────────
         array(
             'id'          => 'onepage_sidebar',

@@ -683,7 +683,7 @@ body {
   &.one-page-doc-nav-wrap {
     .nav-item {
       .icon {
-        right: 0;
+        right: 10px;
         position: absolute;
         top: 12px;
         font-size: 18px;
@@ -721,6 +721,17 @@ body {
   }
 }
 
+// Gentle drift for the banner's decorative blobs.
+@keyframes ezd-banner-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-14px, 16px, 0);
+  }
+}
+
 /* =========================================================================
    Classic One-Page layout
    Modern sidebar navigation, readable active states, polished reading tools,
@@ -740,6 +751,254 @@ body {
     padding-top: 0;
   }
 
+  // ---- Page banner -------------------------------------------------------
+  // Full-width hero at the very top of the page (sibling of the content grid).
+  // The surface is a brand-tinted gradient layered with decorative blobs and a
+  // faint grid so the page opens with a polished, graphical hero. It bleeds
+  // edge-to-edge; the inner content is centred and padded to line up with the
+  // grid below.
+  .ezd-onepage-banner {
+    // Customizable from Appearance → One-Page Layout → Page Banner. The admin
+    // color options write these custom properties (and the title/excerpt colors)
+    // onto the banner, so every visual knob has a sensible built-in default here.
+    --ezd-banner-accent: var(--ezd_brand_color, #0870ff);
+    --ezd-banner-gradient-end: #111a3a;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: -50vw;
+    left: 50%;
+    right: auto;
+    box-sizing: border-box;
+    padding: 170px 0 80px;
+    color: #fff;
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgba(255, 255, 255, 0.18), transparent 55%),
+      linear-gradient(135deg, var(--ezd-banner-accent) 0%, var(--ezd-banner-gradient-end) 100%);
+    .ezd-onepage-banner-content {
+      position: relative;
+      z-index: 2;
+      gap: 48px;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 50px;
+    }
+
+    .ezd-onepage-banner-main {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    // ---- Stat metrics (right side) ----------------------------------------
+    // Compact pill cards laid out in two columns: each is a fully-rounded chip
+    // reading "[icon] value label" on a single line.
+    // .ezd-list-unstyled (framework) handles list-style/left spacing; the grid
+    // layout is banner-specific.
+    .ezd-onepage-banner-stats {
+      flex: 0 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      min-width: 300px;
+      margin: 0;
+    }
+
+    // Flex + centering come from the framework utility classes on the <li>.
+    .ezd-onepage-banner-stat {
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      // The metric icon — slim and outline-like to match the reference.
+      > i {
+        flex: 0 0 auto;
+        font-size: 17px;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.85);
+      }
+    }
+
+    .ezd-onepage-banner-stat-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .ezd-onepage-banner-stat-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+      white-space: nowrap;
+    }
+
+    // ---- Author avatars ----------------------------------------------------
+    // .ezd-align-items-center (framework) centers the row; inline-flex is kept
+    // so the avatar cluster sits inline with its label.
+    .ezd-onepage-banner-avatars {
+      display: inline-flex;
+      flex: 0 0 auto;
+    }
+
+    .ezd-onepage-banner-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--ezd-banner-accent, #0870ff);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
+
+      &:not(:first-child) {
+        margin-left: -8px;
+      }
+    }
+
+    // "+N" overflow chip styled to match the avatars.
+    .ezd-onepage-banner-avatar-more {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: -8px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    // Soft floating blobs.
+    .ezd-onepage-banner-shape {
+      position: absolute;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(2px);
+      pointer-events: none;
+
+      &--one {
+        top: -70px;
+        right: -50px;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 70%);
+        animation: ezd-banner-float 9s ease-in-out infinite;
+      }
+
+      &--two {
+        bottom: -90px;
+        left: 20%;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.22), transparent 70%);
+        animation: ezd-banner-float 11s ease-in-out infinite reverse;
+      }
+    }
+
+    // Faint dotted grid overlay for texture.
+    .ezd-onepage-banner-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(120deg, #000 0%, transparent 70%);
+      -webkit-mask-image: linear-gradient(120deg, #000 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .ezd-onepage-banner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+
+      i {
+        font-size: 15px;
+      }
+    }
+
+    .ezd-onepage-banner-title {
+      margin: 0 0 14px;
+      font-size: 38px;
+      line-height: 1.15;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .ezd-onepage-banner-excerpt {
+      margin: 0;
+      max-width: 60ch;
+      font-size: 17px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    // Stack the columns once the two-up layout gets cramped; the stats keep
+    // their two-column grid below the title/excerpt.
+    @media (max-width: $breakpoint-lg) {
+      .ezd-onepage-banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+      }
+
+      .ezd-onepage-banner-stats {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: $breakpoint-sm) {
+
+      .ezd-onepage-banner-content {
+        padding: 0 24px;
+      }
+
+      .ezd-onepage-banner-title {
+        font-size: 28px;
+      }
+
+      .ezd-onepage-banner-excerpt {
+        font-size: 15px;
+      }
+
+      .ezd-onepage-banner-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  // With a hero on top, the grid's generous top padding becomes a dead gap;
+  // tighten it so the banner and first section sit closer together.
+  &:has(.ezd-onepage-banner) .ezd-container-fluid {
+    padding-top: 56px;
+  }
+
+  // Respect users who prefer reduced motion.
+  @media (prefers-reduced-motion: reduce) {
+    .ezd-onepage-banner .ezd-onepage-banner-shape {
+      animation: none;
+    }
+  }
+
   // ---- Sidebar shell -----------------------------------------------------
   // The .left-column is already sticky (.ezd-sticky-lg-top: position: sticky,
   // top: 0, align-self: flex-start) so it hugs its content. We only need to
@@ -750,7 +1009,7 @@ body {
     background: var(--ezd_brand_color, #0870ff);
     color: #fff;
     border-radius: 14px;
-    padding: 10px 12px 16px;
+    padding: 15px 12px;
     box-shadow: var(--bs_md);
     box-sizing: border-box;
 
@@ -807,7 +1066,7 @@ body {
       > a {
         color: rgba(255, 255, 255, 0.92);
         border-radius: 10px;
-        padding: 12px 5px;
+        padding: 12px 12px;
         font-weight: 500;
         transition: background-color 0.2s ease, color 0.2s ease;
       }
@@ -963,7 +1222,7 @@ body {
       transition: background-color 0.2s ease, color 0.2s ease;
 
       &:hover {
-        background: #fff;
+        background: var(--bs-white);
         color: var(--ezd_brand_color);
       }
     }
@@ -976,7 +1235,7 @@ body {
       height: 40px;
       border: 1px solid var(--border_on_white);
       border-radius: 10px;
-      background: #fff;
+      background: var(--bs-white);
       color: var(--black_600);
       cursor: pointer;
       transition: border-color 0.2s ease, color 0.2s ease,
