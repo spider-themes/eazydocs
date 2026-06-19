@@ -32,6 +32,7 @@ if ( ezd_is_premium() ) {
 			'orderby'        => $order_by ?? 'menu_order',
 			'order'          => $doc_order ?? 'ASC',
 			'post_parent'    => 0,
+			'post__not_in'   => ! empty( $empty_doc_ids ) ? $empty_doc_ids : [],
 		]);
 
 		if ( ! empty( $exclude_ids ) && !empty($parent_args->posts)) {
@@ -65,17 +66,20 @@ if ( ezd_is_premium() ) {
 					'post_status' => array( 'publish', 'private' ),
 				) );
 
-				$private_bg     = get_post_status() == 'private' ? 'bg-warning' : '';
-				$private_bg_op  = get_post_status() == 'private' ? 'style="--bs-bg-opacity: .4;"' : '';
-				$protected_bg   = ! empty( $post->post_password ) ? 'bg-dark' : '';
+				// Skip docs with no child docs when "Hide Empty Docs" is enabled.
+				if ( ! empty( $hide_empty ) && empty( $get_child_docs ) ) {
+					continue;
+				}
+
 				?>
                 <div class="ezd-col-width">
-                    <div class="categories_guide_item <?php echo esc_attr( $private_bg . $protected_bg ); ?> wow fadeInUp" <?php echo wp_kses_post($private_bg_op); ?>>
+                    <div class="categories_guide_item <?php echo esc_attr( ezd_doc_status_classes( get_the_ID() ) ); ?> wow fadeInUp">
 						<?php ezd_render_doc_indicators( get_the_ID() ); ?>
 
                         <div class="doc-top ezd-d-flex ezd-align-items-start">
                             <a class="doc_tag_title" href="<?php the_permalink(); ?>">
                                 <h4 class="title ezd_item_title"> <?php the_title(); ?> </h4>
+								<?php echo ezd_doc_status_badge( get_the_ID() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                 <span class="ezd-badge">
 									<?php 
 									echo count( $get_child_docs );

@@ -19,7 +19,7 @@ $date_range = strtotime( '-7 day' );
 $posts = $wpdb->get_results( "SELECT post_id, SUM(count) AS totalcount, created_at FROM {$wpdb->prefix}eazydocs_view_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY post_id" );
 
 // Get data from wp_eazydocs_search_log base on $date_range with prefix.
-$search_keyword = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}eazydocs_search_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)" );
+$search_keyword = $wpdb->get_results( "SELECT count, not_found_count FROM {$wpdb->prefix}eazydocs_search_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)" );
 
 // Get total search count from wp_eazydocs_search_log table and check if empty then set 0.
 $total_search = $wpdb->get_var( "SELECT count(id) FROM {$wpdb->prefix}eazydocs_search_log" );

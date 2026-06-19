@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class Edit_OnePage
  *
- * @package EZD_EazyDocsPro\Duplicator
+ * @package EazyDocs
  */
 class Edit_OnePage {
     public function __construct() {

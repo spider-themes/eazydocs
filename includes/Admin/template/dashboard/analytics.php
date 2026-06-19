@@ -209,7 +209,7 @@
 		$posts = $wpdb->get_results( "SELECT post_id, SUM(count) AS totalcount, created_at FROM {$wpdb->prefix}eazydocs_view_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY post_id" );
 
 		// Get data from wp_eazydocs_search_log base on $date_range with prefix.
-		$search_keyword = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}eazydocs_search_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)" );
+		$search_keyword = $wpdb->get_results( "SELECT count, not_found_count FROM {$wpdb->prefix}eazydocs_search_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)" );
 		$labels              = array();
 		$Liked               = array();
 		$Disliked            = array();

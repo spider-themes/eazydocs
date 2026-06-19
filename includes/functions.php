@@ -1975,6 +1975,114 @@ function ezd_get_doc_parent_id( $doc_id = 0 ) {
 }
 
 /**
+ * Get IDs of top-level docs that have NO child docs ("empty" docs).
+ *
+ * Used by the "Hide Empty Docs" option so empty docs can be excluded at the
+ * query level (via post__not_in / exclude), which keeps the requested number
+ * of docs accurate instead of filtering after the query limit is applied.
+ *
+ * Runs two lightweight queries (no per-doc loops) and caches the result per
+ * status set for the duration of the request.
+ *
+ * @param array $statuses Post statuses to consider (e.g. ['publish'] or ['publish','private']).
+ * @return int[] List of empty parent doc IDs.
+ */
+function ezd_get_empty_doc_ids( $statuses = [ 'publish' ] ) {
+	global $wpdb;
+
+	$statuses = array_values( array_filter( array_map( 'sanitize_key', (array) $statuses ) ) );
+	if ( empty( $statuses ) ) {
+		$statuses = [ 'publish' ];
+	}
+
+	static $cache = [];
+	$cache_key = implode( ',', $statuses );
+	if ( isset( $cache[ $cache_key ] ) ) {
+		return $cache[ $cache_key ];
+	}
+
+	$placeholders = implode( ', ', array_fill( 0, count( $statuses ), '%s' ) );
+
+	// Distinct parents that have at least one child doc.
+	$parents_with_children = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT DISTINCT post_parent FROM {$wpdb->posts}
+			 WHERE post_type = 'docs' AND post_parent > 0 AND post_status IN ($placeholders)",
+			...$statuses
+		)
+	);
+	$parents_with_children = array_map( 'absint', (array) $parents_with_children );
+
+	// All top-level docs.
+	$top_level = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT ID FROM {$wpdb->posts}
+			 WHERE post_type = 'docs' AND post_parent = 0 AND post_status IN ($placeholders)",
+			...$statuses
+		)
+	);
+	$top_level = array_map( 'absint', (array) $top_level );
+
+	// Empty docs = top-level docs that are not a parent of anything.
+	$empty = array_values( array_diff( $top_level, $parents_with_children ) );
+
+	$cache[ $cache_key ] = $empty;
+
+	return $empty;
+}
+
+/**
+ * Build the CSS classes that flag a doc as private or password-protected.
+ *
+ * Used by every doc skin/preset so restricted docs read consistently.
+ *
+ * @param int $post_id Doc post ID.
+ * @return string Space-separated classes (empty for public docs).
+ */
+function ezd_doc_status_classes( $post_id ) {
+	$classes = [];
+
+	if ( 'private' === get_post_status( $post_id ) ) {
+		$classes[] = 'ezd-doc-private';
+	}
+
+	$post = get_post( $post_id );
+	if ( $post && '' !== $post->post_password ) {
+		$classes[] = 'ezd-doc-protected';
+	}
+
+	return implode( ' ', $classes );
+}
+
+/**
+ * Return the status badge markup for a private or password-protected doc.
+ *
+ * Password-protected takes priority when a doc is both. The markup is fully
+ * controlled here (only the label is dynamic, and it is escaped), so callers
+ * echo the return value directly.
+ *
+ * @param int $post_id Doc post ID.
+ * @return string Badge HTML, or an empty string for public docs.
+ */
+function ezd_doc_status_badge( $post_id ) {
+	$post         = get_post( $post_id );
+	$is_protected = $post && '' !== $post->post_password;
+	$is_private   = ( 'private' === get_post_status( $post_id ) );
+
+	if ( $is_protected ) {
+		$icon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm3 8H9V6a3 3 0 016 0v3z"/></svg>';
+		return '<span class="ezd-doc-flag ezd-doc-flag--protected">' . $icon . esc_html__( 'Protected', 'eazydocs' ) . '</span>';
+	}
+
+	if ( $is_private ) {
+		$icon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
+		return '<span class="ezd-doc-flag ezd-doc-flag--private">' . $icon . esc_html__( 'Private', 'eazydocs' ) . '</span>';
+	}
+
+	return '';
+}
+
+/**
  * Get all conditional items
  */
  function ezd_get_conditional_items() {

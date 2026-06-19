@@ -126,7 +126,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php
 							foreach ( $main_doc['sections'] as $section ) :
 								?>
-                                <div class="media documentation_item">
+                                <div class="media documentation_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
                                     <div class="icon bs-sm">
 										<?php
 
@@ -144,6 +144,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 												<?php echo wp_kses_post( $section->post_title ); ?>
                                             </h5>
                                         </a>
+										<?php echo ezd_doc_status_badge( $section->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                         <p class="ezd_item_content">
 											<?php
 											if ( strlen( trim( $section->post_excerpt ) ) != 0 ) {

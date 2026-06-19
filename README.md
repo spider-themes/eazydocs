@@ -2,7 +2,7 @@
 
 ## The #1 WordPress Plugin for Building Professional Knowledge Bases, Help Centers & Documentation Sites
 
-![Version](https://img.shields.io/badge/version-2.8.0-blue)
+![Version](https://img.shields.io/badge/version-2.12.0-blue)
 ![License](https://img.shields.io/badge/license-GPLv2%20or%20later-green)
 ![WordPress](https://img.shields.io/badge/wordpress-5.0%2B-blue)
 ![PHP](https://img.shields.io/badge/php-7.4%2B-blue)
@@ -11,7 +11,7 @@
 
 EazyDocs is the most comprehensive knowledge base and documentation plugin for WordPress. Create unlimited knowledge bases, help centers, wikis, and FAQs with zero limitations. Perfect for SaaS companies, software developers, agencies, e-learning platforms, and any business needing professional documentation.
 
-**Trusted by 50,000+ websites worldwide** to power their documentation and knowledge bases.
+**Trusted by 2000+ businesses worldwide** to power their documentation and knowledge bases.
 
 ## Key Features
 

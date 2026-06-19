@@ -4,7 +4,7 @@
  *
  * To customize this template, create a folder in your current theme named "eazydocs" and copy it there.
  *
- * @package eazydocs
+ * @package EazyDocs
  */
 
 

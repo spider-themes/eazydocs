@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class Single_doc
  *
- * @package DocyCore\Widgets
+ * @package EazyDocs\Elementor
  */
 class Single_Doc extends Widget_Base {
 	public function get_name() {

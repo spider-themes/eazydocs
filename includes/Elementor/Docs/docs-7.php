@@ -10,6 +10,7 @@ $ppp_column     = ! empty( $settings['ppp_column'] ) ? $settings['ppp_column'] :
 $articles_limit = ! empty( $settings['doc_items_articles'] ) ? absint( $settings['doc_items_articles'] ) : 4;
 $show_count     = ( $settings['md_show_article_count'] ?? 'yes' ) === 'yes';
 $show_rd_time   = ( $settings['md_show_read_time'] ?? 'yes' ) === 'yes';
+$hide_empty     = ( $settings['md_hide_empty_docs'] ?? '' ) === 'yes';
 ?>
 
 <div class="eazydocs_shortcode">
@@ -25,6 +26,7 @@ $show_rd_time   = ( $settings['md_show_read_time'] ?? 'yes' ) === 'yes';
 				'orderby'        => $order_by ?? 'menu_order',
 				'order'          => $doc_order ?? 'ASC',
 				'post_parent'    => 0,
+				'post__not_in'   => ! empty( $empty_doc_ids ) ? $empty_doc_ids : [],
 			)
 		);
 
@@ -55,6 +57,11 @@ $show_rd_time   = ( $settings['md_show_read_time'] ?? 'yes' ) === 'yes';
 				);
 				$article_count = count( $all_children );
 
+				// Skip docs without any child docs when "Hide Empty Docs" is enabled.
+				if ( $hide_empty && 0 === $article_count ) {
+					continue;
+				}
+
 				// Direct children for the visible article list (limited by control).
 				$direct_articles = get_children(
 					array(
@@ -77,7 +84,7 @@ $show_rd_time   = ( $settings['md_show_read_time'] ?? 'yes' ) === 'yes';
 					$avg_read_time = max( 1, (int) ceil( ( $total_words / count( $all_children ) ) / 200 ) );
 				}
 				?>
-				<div class="ezd-docs-card">
+				<div class="ezd-docs-card <?php echo esc_attr( ezd_doc_status_classes( $doc_id ) ); ?>">
 
 					<?php ezd_render_doc_indicators( $doc_id ); ?>
 
@@ -93,6 +100,7 @@ $show_rd_time   = ( $settings['md_show_read_time'] ?? 'yes' ) === 'yes';
 							<h3 class="ezd-docs-card__title ezd_item_title">
 								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 							</h3>
+							<?php echo ezd_doc_status_badge( $doc_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 							<?php if ( $show_count ) : ?>
 								<span class="ezd-badge">

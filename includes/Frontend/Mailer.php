@@ -50,7 +50,9 @@ function ezd_send_negative_feedback_notification( $post_id ) {
 	) . "\r\n\r\n";
 
 	$message .= esc_html__( 'You may want to review and update this document to address user concerns.', 'eazydocs' ) . "\r\n";
+	/* translators: %s: Document permalink */
 	$message .= sprintf( esc_html__( 'View Doc: %s', 'eazydocs' ), get_permalink( $post_id ) ) . "\r\n";
+	/* translators: %s: Edit document URL */
 	$message .= sprintf( esc_html__( 'Edit Doc: %s', 'eazydocs' ), admin_url( 'post.php?post=' . $post_id . '&action=edit' ) ) . "\r\n\r\n";
 
 	$message .= esc_html__( 'Regards,', 'eazydocs' ) . "\r\n";
@@ -191,10 +193,14 @@ function ezd_send_negative_feedback_email( $post_id, $count ) {
 		return;
 	}
 
+	/* translators: %s: Site name */
 	$subject = sprintf( __( '[%s] Alert: High Negative Feedback on Doc', 'eazydocs' ), get_bloginfo( 'name' ) );
 
-	$message  = sprintf( __( 'The document "%s" has received %d negative feedback votes.', 'eazydocs' ), $post->post_title, $count ) . "\r\n\r\n";
+	/* translators: %1$s: Document title, %2$d: Negative feedback count */
+	$message  = sprintf( __( 'The document "%1$s" has received %2$d negative feedback votes.', 'eazydocs' ), $post->post_title, $count ) . "\r\n\r\n";
+	/* translators: %s: Document permalink */
 	$message .= sprintf( __( 'View Document: %s', 'eazydocs' ), get_permalink( $post_id ) ) . "\r\n";
+	/* translators: %s: Edit document URL */
 	$message .= sprintf( __( 'Edit Document: %s', 'eazydocs' ), admin_url( 'post.php?post=' . $post_id . '&action=edit' ) ) . "\r\n";
 
 	wp_mail( $admin_email, $subject, $message );

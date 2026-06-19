@@ -84,13 +84,14 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 					$section_count = $sections ++;
 					?>
                     <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
-                        <div class="topic_list_item">
+                        <div class="topic_list_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
 							<?php
 							if ( ! empty( $section->post_title ) ) :
 								?>
                                 <a class="doc4-section-title" href="<?php the_permalink( $section->ID ); ?>">
                                     <h4> <?php echo wp_kses_post( $section->post_title ); ?> </h4>
                                 </a>
+							<?php echo ezd_doc_status_badge( $section->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							<?php
 							endif;
 							?>

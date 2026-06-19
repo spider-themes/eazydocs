@@ -95,7 +95,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						foreach ( $main_doc['sections'] as $section ) :
 							?>
                             <div class="ezd-grid-column-full ezd-sm-col-6 ezd-lg-col-4">
-                                <div class="doc_tag_item">
+                                <div class="doc_tag_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
 									<?php 
 									if ( ! empty( $section->post_title ) ) : 
 										?>
@@ -103,6 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                                             <h4 class="ezd_item_title">
 												<?php echo wp_kses_post( $section->post_title ); ?>
 											</h4>
+											<?php echo ezd_doc_status_badge( $section->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                             <div class="line"></div>
                                         </div>
 										<?php 

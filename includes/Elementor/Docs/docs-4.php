@@ -99,9 +99,10 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 					foreach ( $main_doc['sections'] as $section ) :
 						?>
                         <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
-                            <div class="topic_list_item">
+                            <div class="topic_list_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
 								<?php if ( ! empty( $section->post_title ) ) : ?>
                                     <h4 class="ezd_item_title"><?php echo wp_kses_post( $section->post_title ); ?></h4>
+								<?php echo ezd_doc_status_badge( $section->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								<?php endif; ?>
                                 <ul class="navbar-nav">
 									<?php

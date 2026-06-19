@@ -513,6 +513,17 @@ class Doc_Widget extends Widget_Base
 		);
 
 		$this->add_control(
+			'md_hide_empty_docs',
+			[
+				'label' => esc_html__( 'Hide Empty Docs', 'eazydocs' ),
+				'description' => esc_html__( 'Hide docs that have no child docs. Applies to all skins.', 'eazydocs' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => '',
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->add_control(
 			'topics_label',
 			[
 				'label' => esc_html__('Topics Label', 'eazydocs'),
@@ -1311,6 +1322,9 @@ class Doc_Widget extends Widget_Base
 		$order_by = $settings['order_by'] ?? 'menu_order'; // e.g., 'post_title', 'menu_order', 'post_date'
 		$doc_exclude = $settings['exclude'] ?? '';
 		$topics_label = !empty($settings['topics_label']) ? $settings['topics_label'] : esc_html__('Topics', 'eazydocs');
+		$hide_empty = ($settings['md_hide_empty_docs'] ?? '') === 'yes'; // Hide docs without child docs (all skins).
+		// IDs of docs with no child docs — excluded at the query level so "Number of Docs" stays accurate.
+		$empty_doc_ids = ( $hide_empty && function_exists('ezd_get_empty_doc_ids') ) ? ezd_get_empty_doc_ids( ['publish', 'private'] ) : [];
 
 		// Map Elementor 'orderby' options to get_pages 'sort_column'
 		$valid_sort_columns = [
@@ -1330,8 +1344,13 @@ class Doc_Widget extends Widget_Base
 			'sort_order' => $doc_order,
 		);
 
+		$exclude_list = [];
 		if (!empty($doc_exclude)) {
-			$args['exclude'] = $doc_exclude;
+			$exclude_list = is_array($doc_exclude) ? $doc_exclude : array_map('trim', explode(',', $doc_exclude));
+		}
+		$exclude_list = array_merge($exclude_list, $empty_doc_ids);
+		if (!empty($exclude_list)) {
+			$args['exclude'] = $exclude_list;
 		}
 
 		$parent_docs = get_pages($args);
@@ -1364,6 +1383,11 @@ class Doc_Widget extends Widget_Base
 
 			foreach ($parent_docs as $root) {
 				$sections = isset($sections_by_parent[$root->ID]) ? $sections_by_parent[$root->ID] : array();
+
+				// Skip docs with no child docs when "Hide Empty Docs" is enabled (skins 1-6; skin 7 self-filters).
+				if ($hide_empty && empty($sections)) {
+					continue;
+				}
 
 				if ($limit != -1 && count($sections) > $limit) {
 					$sections = array_slice($sections, 0, $limit, true);

@@ -278,14 +278,16 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	.topic-title {
 		display: flex;
 		justify-content: space-between;
+		text-decoration: none !important;
 
-		h4 {
+		.ct-heading-text {
 			font-size: 20px;
 			margin-bottom: 25px;
 			display: flex;
 			width: 100%;
 			margin-top: 0;
 			color: var(--black_700);
+			padding: 5px 0 0;
 		}
 	}
 
@@ -301,12 +303,13 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 			margin-bottom: 10px;
 
 			a {
+				color: var(--p_color);
+				font-size: 16px;
+				text-decoration: none !important;
+
 				i {
 					padding-right: 12px;
 				}
-
-				color: var(--p_color);
-				font-size: 16px;
 
 				&:hover {
 					color: var(--ezd_brand_color);
@@ -677,5 +680,68 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 				transform: translateX(2px);
 			}
 		}
+	}
+}
+
+/* ===================================================================
+   Restricted doc indicators (private / password-protected)
+   Shared across every doc skin & preset so restricted docs read
+   consistently. Keep in sync with the editor copy in
+   eazydocs-pro/src/eazy-docs/editor.scss
+   =================================================================== */
+:root {
+	--ezd-doc-private: #b45309;
+	--ezd-doc-private-bg: rgba(245, 158, 11, 0.12);
+	--ezd-doc-protected: #4f46e5;
+	--ezd-doc-protected-bg: rgba(79, 70, 229, 0.12);
+}
+
+.ezd-doc-private,
+.ezd-doc-protected {
+	outline-offset: -2px;
+}
+
+.ezd-doc-private {
+	outline: 2px solid var(--ezd-doc-private);
+}
+
+.ezd-doc-protected {
+	outline: 2px solid var(--ezd-doc-protected);
+}
+
+.ezd-doc-flag {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	width: fit-content;
+	margin: 2px 0 14px;
+	padding: 4px 11px;
+	border: 1px solid transparent;
+	border-radius: 999px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	line-height: 1.5;
+	white-space: nowrap;
+	vertical-align: middle;
+
+	svg {
+		width: 12px;
+		height: 12px;
+		display: block;
+		flex-shrink: 0;
+	}
+
+	&.ezd-doc-flag--private {
+		color: var(--ezd-doc-private);
+		background: var(--ezd-doc-private-bg);
+		border-color: rgba(180, 83, 9, 0.18);
+	}
+
+	&.ezd-doc-flag--protected {
+		color: var(--ezd-doc-protected);
+		background: var(--ezd-doc-protected-bg);
+		border-color: rgba(79, 70, 229, 0.18);
 	}
 }
