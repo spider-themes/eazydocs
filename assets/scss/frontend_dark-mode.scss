@@ -208,4 +208,9 @@ body.body_dark {
     color: #fff;
   }
 
+  /* Restricted doc card (private / protected) dark-mode styling lives in
+     assets/scss/ezd-docs-widgets.scss instead of here, because those cards
+     render on listing surfaces (shortcode / blocks / Elementor home & archive
+     pages) where this single-doc-page stylesheet is not loaded. */
+
 }

@@ -559,14 +559,14 @@ body.ama {
 	}
 }
 
-// SMTP Configuration Notice
+// SMTP Configuration Notice — info-blue so it reads as guidance, not a warning
 .ezd-smtp-notice {
   display: flex;
   gap: 20px;
   padding: 24px;
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
   border-radius: 12px;
-  border: 1px solid #f59e0b;
+  border: 1px solid #bfdbfe;
   margin-top: 10px;
 
   .ezd-smtp-notice-icon {
@@ -576,9 +576,9 @@ body.ama {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 
     .dashicons {
       font-size: 26px;
@@ -594,13 +594,13 @@ body.ama {
     h4 {
       font-size: 18px;
       font-weight: 700;
-      color: #78350f;
+      color: #1e3a8a;
       margin: 0 0 10px;
     }
 
     p {
       font-size: 14px;
-      color: #92400e;
+      color: #1e40af;
       margin: 0 0 12px;
       line-height: 1.6;
     }
@@ -608,7 +608,7 @@ body.ama {
     .ezd-smtp-benefits-title,
     .ezd-smtp-plugins-title {
       font-weight: 600;
-      color: #78350f;
+      color: #1e3a8a;
       margin: 16px 0 8px;
     }
 
@@ -622,7 +622,7 @@ body.ama {
         align-items: center;
         gap: 8px;
         font-size: 13px;
-        color: #92400e;
+        color: #1e40af;
         margin-bottom: 6px;
         line-height: 1.5;
 
@@ -649,9 +649,9 @@ body.ama {
         border-radius: 8px;
         font-size: 13px;
         font-weight: 600;
-        color: #78350f;
+        color: #1e3a8a;
         text-decoration: none;
-        border: 1px solid #fcd34d;
+        border: 1px solid #bfdbfe;
         transition: all 0.2s;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
@@ -682,10 +682,10 @@ body.ama {
         }
 
         &:hover {
-          background: #fffbeb;
+          background: #eff6ff;
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-          border-color: #f59e0b;
+          border-color: #3b82f6;
         }
       }
     }
@@ -841,6 +841,14 @@ li#accordion-section-design_fields {
 
         .dashicons {
           color: #22c55e;
+        }
+      }
+
+      &.ezd-status-icon-tz {
+        background: #e0f2fe;
+
+        .dashicons {
+          color: #3b82f6;
         }
       }
     }

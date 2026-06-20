@@ -2055,16 +2055,140 @@ function ezd_doc_status_classes( $post_id ) {
 }
 
 /**
+ * Read a yes/no display toggle from a widget/block settings array.
+ *
+ * Normalises the many truthy shapes used across Elementor switchers ('yes'),
+ * block attributes (true / '1') and shortcode atts ('true') into a boolean so
+ * every surface can share the same visibility helpers.
+ *
+ * @param array  $settings Settings / attributes array.
+ * @param string $key      Setting key to read.
+ * @param string $default  Value to assume when the key is missing.
+ * @return bool True when the toggle is enabled.
+ */
+function ezd_setting_enabled( $settings, $key, $default = 'yes' ) {
+	$value = isset( $settings[ $key ] ) ? $settings[ $key ] : $default;
+
+	return in_array( $value, [ 'yes', 'true', '1', 1, true ], true );
+}
+
+/**
+ * Read a global restricted-docs display toggle from the Settings page.
+ *
+ * Acts as a master switch for the status badge / lock icon across every
+ * surface (shortcode, blocks, Elementor widgets). When off, the element is
+ * hidden everywhere regardless of any per-widget toggle.
+ *
+ * @param string $key     Option key (e.g. 'restricted_show_badge').
+ * @param bool   $default Value to assume when the option is unset.
+ * @return bool True when the element should render.
+ */
+function ezd_global_restricted_enabled( $key, $default = true ) {
+	$value = ezd_get_opt( $key, $default ? '1' : '0' );
+
+	return in_array( $value, [ 'yes', 'true', '1', 1, true ], true );
+}
+
+/**
+ * Flag the restricted-docs "Outline" card style on the front-end <body>.
+ *
+ * Lets one admin setting re-style every restricted doc card (shortcode,
+ * blocks, Elementor) without touching markup. The matching CSS lives in
+ * assets/scss/ezd-docs-widgets.scss (body.ezd-restricted--outline).
+ *
+ * @param array $classes Existing body classes.
+ * @return array Body classes, with the outline flag appended when selected.
+ */
+function ezd_restricted_body_class( $classes ) {
+	if ( 'outline' === ezd_get_opt( 'restricted_card_style', 'filled' ) ) {
+		$classes[] = 'ezd-restricted--outline';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'ezd_restricted_body_class' );
+
+/**
+ * Resolve which post statuses a docs listing query should request.
+ *
+ * Password-protected docs are post_status 'publish', so they are always
+ * included here and filtered out separately via ezd_filter_doc_visibility().
+ * Private docs are only surfaced when the toggle is on and the current user
+ * is allowed to read them.
+ *
+ * @param bool $show_private Whether private docs should be listed.
+ * @return array Post statuses for the query.
+ */
+function ezd_doc_listing_statuses( $show_private = true ) {
+	$statuses = [ 'publish' ];
+
+	if ( $show_private && ( is_user_logged_in() || current_user_can( 'read_private_posts' ) ) ) {
+		$statuses[] = 'private';
+	}
+
+	return $statuses;
+}
+
+/**
+ * Filter a list of doc posts by the per-widget visibility toggles.
+ *
+ * Removes password-protected docs when $show_protected is false and private
+ * docs when $show_private is false. Accepts WP_Post objects or post IDs and
+ * returns a re-indexed array of the same shape it received.
+ *
+ * @param array $docs           Array of WP_Post objects or post IDs.
+ * @param bool  $show_private   Whether to keep private docs.
+ * @param bool  $show_protected Whether to keep password-protected docs.
+ * @return array Filtered, re-indexed array.
+ */
+function ezd_filter_doc_visibility( $docs, $show_private = true, $show_protected = true ) {
+	if ( ( $show_private && $show_protected ) || empty( $docs ) ) {
+		return $docs;
+	}
+
+	$filtered = array_filter(
+		(array) $docs,
+		function ( $doc ) use ( $show_private, $show_protected ) {
+			$post = is_object( $doc ) ? $doc : get_post( $doc );
+
+			if ( ! $post ) {
+				return false;
+			}
+
+			if ( ! $show_protected && '' !== (string) $post->post_password ) {
+				return false;
+			}
+
+			if ( ! $show_private && 'private' === $post->post_status ) {
+				return false;
+			}
+
+			return true;
+		}
+	);
+
+	// Preserve the original keys for ID-keyed arrays (e.g. sections), otherwise re-index.
+	$is_assoc = array_keys( $docs ) !== range( 0, count( $docs ) - 1 );
+
+	return $is_assoc ? $filtered : array_values( $filtered );
+}
+
+/**
  * Return the status badge markup for a private or password-protected doc.
  *
  * Password-protected takes priority when a doc is both. The markup is fully
  * controlled here (only the label is dynamic, and it is escaped), so callers
  * echo the return value directly.
  *
- * @param int $post_id Doc post ID.
- * @return string Badge HTML, or an empty string for public docs.
+ * @param int  $post_id Doc post ID.
+ * @param bool $show    Whether status badges should render (per-widget toggle).
+ * @return string Badge HTML, or an empty string for public docs / when disabled.
  */
-function ezd_doc_status_badge( $post_id ) {
+function ezd_doc_status_badge( $post_id, $show = true ) {
+	if ( ! $show || ! ezd_global_restricted_enabled( 'restricted_show_badge' ) ) {
+		return '';
+	}
+
 	$post         = get_post( $post_id );
 	$is_protected = $post && '' !== $post->post_password;
 	$is_private   = ( 'private' === get_post_status( $post_id ) );
@@ -2080,6 +2204,66 @@ function ezd_doc_status_badge( $post_id ) {
 	}
 
 	return '';
+}
+
+/**
+ * Return a compact, inline lock icon for a restricted doc.
+ *
+ * Unlike ezd_render_doc_indicators() (an absolutely-positioned card overlay),
+ * this is a small inline badge meant to sit next to a doc title in lists — used
+ * by the Gutenberg blocks where the overlay markup would be mis-positioned.
+ *
+ * @param int  $post_id Doc post ID.
+ * @param bool $show    Whether lock icons should render (per-block toggle).
+ * @return string Lock icon HTML, or an empty string for public docs / when disabled.
+ */
+function ezd_doc_lock_icon( $post_id, $show = true ) {
+	if ( ! $show || ! ezd_global_restricted_enabled( 'restricted_show_lock' ) ) {
+		return '';
+	}
+
+	$post         = get_post( $post_id );
+	$is_protected = $post && '' !== $post->post_password;
+	$is_private   = ( 'private' === get_post_status( $post_id ) );
+
+	if ( ! $is_protected && ! $is_private ) {
+		return '';
+	}
+
+	$label = $is_protected ? esc_attr__( 'Password protected', 'eazydocs' ) : esc_attr__( 'Private', 'eazydocs' );
+	$class = $is_protected ? 'ezd-doc-lock-inline--protected' : 'ezd-doc-lock-inline--private';
+	$icon  = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm3 8H9V6a3 3 0 016 0v3z"/></svg>';
+
+	return '<span class="ezd-doc-lock-inline ' . $class . '" title="' . $label . '">' . $icon . '</span>';
+}
+
+/**
+ * Render the absolutely-positioned corner lock overlay for a restricted doc.
+ *
+ * Shared by every card-style surface (shortcode, Elementor doc skins). Lives in
+ * functions.php (always loaded) because the shortcode can run on pages where the
+ * Elementor template helpers are not included. Honours the global lock toggle.
+ *
+ * @param int  $post_id Doc post ID.
+ * @param bool $show    Per-widget lock toggle.
+ * @return void
+ */
+function ezd_render_doc_indicators( $post_id, $show = true ) {
+	if ( ! $show || ! ezd_global_restricted_enabled( 'restricted_show_lock' ) ) {
+		return;
+	}
+
+	if ( get_post_status( $post_id ) === 'private' ) {
+		echo '<div class="private" title="' . esc_attr__( 'Private Doc', 'eazydocs' ) . '"><i class="icon_lock"></i></div>';
+	}
+
+	if ( ! empty( get_post( $post_id )->post_password ) ) {
+		echo '<div class="private" title="' . esc_attr__( 'Password Protected Doc', 'eazydocs' ) . '">';
+		echo '<svg width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#4e5668">';
+		echo '<g><path fill="none" d="M0 0h24v24H0z"/><path d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zm-2 0V7a4 4 0 1 0-8 0v1h8zm-5 6v2h2v-2h-2zm-4 0v2h2v-2H7zm8 0v2h2v-2h-2z"/></g>';
+		echo '</svg>';
+		echo '</div>';
+	}
 }
 
 /**

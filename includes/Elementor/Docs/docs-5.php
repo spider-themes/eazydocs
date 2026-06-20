@@ -9,6 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 $is_masonry     = $settings['masonry'] ?? '';
 $masonry_layout = $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : 'ezd-grid ezd-grid-cols-12 ';
 $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
+
+// Restricted docs visibility / display toggles.
+$show_private   = ezd_setting_enabled( $settings, 'md_show_private_docs' );
+$show_protected = ezd_setting_enabled( $settings, 'md_show_protected_docs' );
+$show_badge     = ezd_setting_enabled( $settings, 'md_show_status_badge' );
+$show_lock      = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
+$doc_statuses   = ezd_doc_listing_statuses( $show_private );
 ?>
 
 <div class="docs4">
@@ -85,13 +92,14 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 					?>
                     <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
                         <div class="topic_list_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
+							<?php ezd_render_doc_indicators( $section->ID, $show_lock ); ?>
 							<?php
 							if ( ! empty( $section->post_title ) ) :
 								?>
                                 <a class="doc4-section-title" href="<?php the_permalink( $section->ID ); ?>">
                                     <h4> <?php echo wp_kses_post( $section->post_title ); ?> </h4>
                                 </a>
-							<?php echo ezd_doc_status_badge( $section->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php echo ezd_doc_status_badge( $section->ID, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							<?php
 							endif;
 							?>
@@ -100,11 +108,12 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 								$doc_items = get_children( array(
 									'post_parent'    => $section->ID,
 									'post_type'      => 'docs',
-									'post_status'    => 'publish',
+									'post_status'    => $doc_statuses,
 									'orderby'        => 'menu_order',
 									'order'          => 'ASC',
 									'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
 								) );
+								$doc_items = ezd_filter_doc_visibility( $doc_items, $show_private, $show_protected );
 								$child     = 1;
 								foreach ( $doc_items as $doc_item ) :
 									$child_count = $child ++

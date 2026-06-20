@@ -5,6 +5,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+// Restricted docs display toggles (visibility is handled in the parent query).
+$show_badge = ezd_setting_enabled( $settings, 'md_show_status_badge' );
+$show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
 ?>
 
 <section class="doc_tag_area" id="Arrow_slides-<?php echo esc_attr( $this->get_id() ) ?>">
@@ -96,14 +100,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 							?>
                             <div class="ezd-grid-column-full ezd-sm-col-6 ezd-lg-col-4">
                                 <div class="doc_tag_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
-									<?php 
-									if ( ! empty( $section->post_title ) ) : 
+									<?php ezd_render_doc_indicators( $section->ID, $show_lock ); ?>
+									<?php
+									if ( ! empty( $section->post_title ) ) :
 										?>
                                         <div class="doc_tag_title">
                                             <h4 class="ezd_item_title">
 												<?php echo wp_kses_post( $section->post_title ); ?>
 											</h4>
-											<?php echo ezd_doc_status_badge( $section->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+											<?php echo ezd_doc_status_badge( $section->ID, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                             <div class="line"></div>
                                         </div>
 										<?php 

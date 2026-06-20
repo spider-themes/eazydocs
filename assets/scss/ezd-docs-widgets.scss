@@ -193,7 +193,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		max-width: 44px;
 	}
 
-	h3 {
+	.ct-heading-text {
 		font-size: 18px;
 		color: var(--black_700);
 		font-weight: 700;
@@ -201,6 +201,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		margin-bottom: 25px;
 		margin-top: 0;
 		transition: color 0.2s linear;
+		padding: 0;
 
 		&:hover {
 			color: var(--ezd_brand_color);
@@ -232,6 +233,8 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 
 			a {
 				color: var(--p_color);
+				text-decoration: none !important;
+				transition: color 0.2s linear;
 
 				&:hover {
 					color: var(--ezd_brand_color);
@@ -279,6 +282,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		display: flex;
 		justify-content: space-between;
 		text-decoration: none !important;
+		gap: 10px;
 
 		.ct-heading-text {
 			font-size: 20px;
@@ -685,8 +689,10 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 
 /* ===================================================================
    Restricted doc indicators (private / password-protected)
-   Shared across every doc skin & preset so restricted docs read
-   consistently. Keep in sync with the editor copy in
+   Mirrors the [eazydocs] shortcode card design so every doc skin &
+   preset reads consistently: a filled card (amber = private,
+   dark = password-protected), a straddling corner lock overlay and an
+   inline status badge. Keep in sync with the editor copy in
    eazydocs-pro/src/eazy-docs/editor.scss
    =================================================================== */
 :root {
@@ -694,19 +700,220 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	--ezd-doc-private-bg: rgba(245, 158, 11, 0.12);
 	--ezd-doc-protected: #4f46e5;
 	--ezd-doc-protected-bg: rgba(79, 70, 229, 0.12);
+
+	// Filled-card colours — match the shortcode bg-warning / bg-dark.
+	// All four are overridable from Settings → Restricted Docs → Card Design.
+	--ezd-doc-private-fill: #ffe69c;
+	--ezd-doc-protected-fill: #212529;
+	--ezd-doc-protected-text: #ffffff;
 }
 
+// Filled card + corner lock — shared by every skin (shortcode, docs-1…7).
 .ezd-doc-private,
 .ezd-doc-protected {
-	outline-offset: -2px;
+	position: relative; // Anchor the absolutely-positioned corner lock.
+
+	// Corner lock overlay (rendered by ezd_render_doc_indicators()).
+	> .private {
+		position: absolute;
+		right: -4px;
+		top: -16px;
+		z-index: 2;
+		line-height: 1;
+
+		i.icon_lock {
+			font-size: 38px;
+		}
+
+		svg {
+			width: 34px;
+			height: 34px;
+			display: block;
+		}
+	}
 }
 
 .ezd-doc-private {
-	outline: 2px solid var(--ezd-doc-private);
+	background: var(--ezd-doc-private-fill) !important;
+
+	> .private {
+		i.icon_lock {
+			color: #7a5c00;
+		}
+
+		svg {
+			fill: #7a5c00;
+		}
+	}
 }
 
 .ezd-doc-protected {
-	outline: 2px solid var(--ezd-doc-protected);
+	background: var(--ezd-doc-protected-fill) !important;
+
+	// Lift every bit of copy for contrast on the dark fill. All text is derived
+	// from --ezd-doc-protected-text so a single admin colour stays cohesive.
+	.title,
+	.ezd_item_title,
+	.doc_tag_title .title,
+	.doc4-section-title h4,
+	h4,
+	h5,
+	h6 {
+		color: var(--ezd-doc-protected-text, #fff) !important;
+	}
+
+	a,
+	p,
+	.ezd_item_content,
+	.chapter_counter,
+	.article_list a,
+	.tag_list a,
+	.navbar-nav a,
+	.section5-article a {
+		color: color-mix(in srgb, var(--ezd-doc-protected-text, #fff) 84%, transparent) !important;
+	}
+
+	a:hover,
+	.article_list a:hover,
+	.tag_list a:hover,
+	.navbar-nav a:hover {
+		color: var(--ezd-doc-protected-text, #fff) !important;
+	}
+
+	.ezd-badge {
+		background: rgba(255, 255, 255, 0.12);
+		color: var(--ezd-doc-protected-text, #fff);
+	}
+
+	.line {
+		background: rgba(255, 255, 255, 0.18) !important;
+	}
+
+	// Buttons: keep them legible against the dark fill.
+	.doc_border_btn {
+		color: var(--ezd-doc-protected-text, #fff);
+		border-color: rgba(255, 255, 255, 0.35);
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.learn_btn,
+	.text_btn {
+		color: var(--ezd-doc-protected-text, #fff) !important;
+	}
+
+	> .private {
+		i.icon_lock {
+			color: color-mix(in srgb, var(--ezd-doc-protected-text, #fff) 80%, transparent);
+		}
+
+		svg {
+			fill: color-mix(in srgb, var(--ezd-doc-protected-text, #fff) 80%, transparent);
+		}
+	}
+}
+
+// ── "Outline" style (Settings → Restricted Docs → Card Design) ──
+// Drops the solid fill in favour of a thin accent outline, letting the
+// theme's normal typography show through. Applied via a <body> class so it
+// covers shortcodes, blocks and Elementor widgets at once.
+body.ezd-restricted--outline {
+	.ezd-doc-private,
+	.ezd-doc-protected {
+		background: transparent !important;
+		outline: 2px solid;
+		outline-offset: -2px;
+	}
+
+	.ezd-doc-private {
+		outline-color: var(--ezd-doc-private);
+	}
+
+	.ezd-doc-protected {
+		outline-color: var(--ezd-doc-protected);
+
+		// No dark fill any more — return text to the theme defaults.
+		.title,
+		.ezd_item_title,
+		.doc_tag_title .title,
+		.doc4-section-title h4,
+		h4,
+		h5,
+		h6,
+		a,
+		p,
+		.ezd_item_content,
+		.chapter_counter,
+		.article_list a,
+		.tag_list a,
+		.navbar-nav a,
+		.section5-article a,
+		.doc_border_btn,
+		.learn_btn,
+		.text_btn {
+			color: inherit !important;
+		}
+	}
+}
+
+// ── Dark mode (Docy `body.body_dark`) ──
+// Lives here, not in frontend_dark-mode.scss, because restricted cards render
+// on listing surfaces (shortcode / blocks / Elementor home & archive pages)
+// where the single-doc dark stylesheet is never enqueued — this widgets sheet
+// always is. The bright amber/cream private fill glares against the dark canvas
+// and the protected fill disappears into it, so re-skin both as warm/cool dark
+// surfaces with a subtle accent ring; the private & protected identity (lock +
+// badge) survives while the cards sit naturally in dark mode. Inner copy keeps
+// the theme's dark-mode light palette. Skipped for the Outline style, which is
+// already transparent.
+body.body_dark:not(.ezd-restricted--outline) {
+	.ezd-doc-private {
+		background: #231d13 !important;
+		outline: 1px solid rgba(245, 158, 11, 0.32);
+		outline-offset: -1px;
+
+		// Brighten the amber lock & badge so they read on the dark card.
+		> .private {
+			i.icon_lock {
+				color: #f59e0b;
+			}
+
+			svg {
+				fill: #f59e0b;
+			}
+		}
+
+		.ezd-doc-flag--private {
+			color: #fbbf24;
+			background: rgba(245, 158, 11, 0.14);
+			border-color: rgba(245, 158, 11, 0.3);
+		}
+	}
+
+	// Protected cards already use a dark fill; lift the surface just above the
+	// near-black canvas and add a faint indigo edge so the card stays distinct.
+	.ezd-doc-protected {
+		background: #1b1c21 !important;
+		outline: 1px solid rgba(129, 140, 248, 0.28);
+		outline-offset: -1px;
+
+		.ezd-doc-flag--protected {
+			color: #a5b4fc;
+			background: rgba(129, 140, 248, 0.16);
+			border-color: rgba(129, 140, 248, 0.3);
+		}
+	}
+}
+
+// List-style skins (docs-2 tags, docs-3 media) carry no card padding until
+// they are filled — give them a comfortable card box and rounded corners so
+// the content never sits flush against the coloured edge.
+.doc_tag_item,
+.documentation_item {
+	&.ezd-doc-private,
+	&.ezd-doc-protected {
+		padding: 30px 28px;
+		border-radius: 8px;
+	}
 }
 
 .ezd-doc-flag {
@@ -743,5 +950,28 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		color: var(--ezd-doc-protected);
 		background: var(--ezd-doc-protected-bg);
 		border-color: rgba(79, 70, 229, 0.18);
+	}
+}
+
+// Compact inline lock icon for restricted docs in list/title contexts (blocks).
+.ezd-doc-lock-inline {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	margin-left: 6px;
+
+	svg {
+		width: 13px;
+		height: 13px;
+		display: block;
+	}
+
+	&--private {
+		color: var(--ezd-doc-private);
+	}
+
+	&--protected {
+		color: var(--ezd-doc-protected);
 	}
 }

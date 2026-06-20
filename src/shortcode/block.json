@@ -60,6 +60,22 @@
 		"img_size": {
 			"type": "string",
 			"default": "ezd_searrch_thumb50x50"
+		},
+		"show_private": {
+			"type": "boolean",
+			"default": true
+		},
+		"show_protected": {
+			"type": "boolean",
+			"default": true
+		},
+		"show_status_badge": {
+			"type": "boolean",
+			"default": true
+		},
+		"show_lock_icon": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "eazydocs",

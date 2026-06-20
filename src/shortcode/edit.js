@@ -5,7 +5,7 @@ import {
 	RichText,
 } from '@wordpress/block-editor';
 import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
-import { PanelBody, FormTokenField, RangeControl, TextControl, CheckboxControl, SelectControl, RadioControl } from '@wordpress/components';
+import { PanelBody, FormTokenField, RangeControl, TextControl, CheckboxControl, SelectControl, RadioControl, Notice, ExternalLink } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
@@ -21,8 +21,14 @@ import {doc_ids} from "../custom-functions";
 import colors from '../colors-palette';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { col, include, exclude, show_docs, show_articles, more, list, show_topic, topic_label, child_docs_order, parent_docs_order, parent_docs_order_by, docs_layout, img_size } = attributes;
+	const { col, include, exclude, show_docs, show_articles, more, list, show_topic, topic_label, child_docs_order, parent_docs_order, parent_docs_order_by, docs_layout, img_size, show_private, show_protected, show_status_badge, show_lock_icon } = attributes;
 	const blockProps = useBlockProps();
+
+	// Restricted docs are styled globally — deep-link to the settings tab.
+	const ezdSettingsUrl =
+		typeof window.ajaxurl !== 'undefined'
+			? window.ajaxurl.replace( 'admin-ajax.php', 'admin.php?page=eazydocs-settings#tab=restricted-docs/card-design' )
+			: '/wp-admin/admin.php?page=eazydocs-settings#tab=restricted-docs/card-design';
 
 	const docs = useSelect( (select) => {
 		return select("core").getEntityRecords('postType', 'docs', {
@@ -206,6 +212,35 @@ export default function Edit( { attributes, setAttributes } ) {
 						suggestions={ docSuggestions}
 						value={exclude}
 						onChange={(value) => setAttributes({ exclude: value })}
+					/>
+				</PanelBody>
+
+				<PanelBody title={__('Restricted Docs', 'eazydocs')} initialOpen={false}>
+					<Notice status="info" isDismissible={false} className="ezd-restricted-design-notice">
+						{__('Card colours, style and badge/lock visibility for restricted docs are set globally for the whole site.', 'eazydocs')}{' '}
+						<ExternalLink href={ezdSettingsUrl}>
+							{__('Customize in Settings → Restricted Docs → Card Design', 'eazydocs')}
+						</ExternalLink>
+					</Notice>
+					<CheckboxControl
+						label={__('Show Private Docs', 'eazydocs')}
+						checked={show_private}
+						onChange={(value) => setAttributes({ show_private: value })}
+					/>
+					<CheckboxControl
+						label={__('Show Password Protected Docs', 'eazydocs')}
+						checked={show_protected}
+						onChange={(value) => setAttributes({ show_protected: value })}
+					/>
+					<CheckboxControl
+						label={__('Show Status Badges', 'eazydocs')}
+						checked={show_status_badge}
+						onChange={(value) => setAttributes({ show_status_badge: value })}
+					/>
+					<CheckboxControl
+						label={__('Show Lock Icons', 'eazydocs')}
+						checked={show_lock_icon}
+						onChange={(value) => setAttributes({ show_lock_icon: value })}
 					/>
 				</PanelBody>
 			</InspectorControls>

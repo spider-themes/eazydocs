@@ -523,6 +523,8 @@ class Doc_Widget extends Widget_Base
 			]
 		);
 
+		// Restricted Docs controls live in their own section (see below).
+
 		$this->add_control(
 			'topics_label',
 			[
@@ -548,6 +550,78 @@ class Doc_Widget extends Widget_Base
 		);
 
 		$this->end_controls_section(); // End Controls Section
+
+		/**
+		 * Restricted Docs — grouped in their own section. Visibility toggles are
+		 * per-widget; the card design (colours, style, badge/lock) is global and
+		 * managed in EazyDocs → Settings → Restricted Docs → Card Design.
+		 */
+		$this->start_controls_section(
+			'restricted_docs_section',
+			[
+				'label' => esc_html__( 'Restricted Docs', 'eazydocs' ),
+			]
+		);
+
+		$this->add_control(
+			'md_restricted_docs_notice',
+			[
+				'type'            => \Elementor\Controls_Manager::RAW_HTML,
+				'raw'             => sprintf(
+					/* translators: %1$s: opening link tag, %2$s: closing link tag. */
+					esc_html__( 'Card colours, style and badge/lock visibility for restricted docs are set globally for the whole site. %1$sCustomize in Settings → Restricted Docs → Card Design%2$s', 'eazydocs' ),
+					'<a href="' . esc_url( admin_url( 'admin.php?page=eazydocs-settings#tab=restricted-docs/card-design' ) ) . '" target="_blank" rel="noopener">',
+					' →</a>'
+				),
+				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+			]
+		);
+
+		$this->add_control(
+			'md_show_private_docs',
+			[
+				'label'        => esc_html__( 'Show Private Docs', 'eazydocs' ),
+				'description'  => esc_html__( 'List private docs (only shown to users allowed to read them).', 'eazydocs' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'md_show_protected_docs',
+			[
+				'label'        => esc_html__( 'Show Password Protected Docs', 'eazydocs' ),
+				'description'  => esc_html__( 'List docs that are protected with a password.', 'eazydocs' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'md_show_status_badge',
+			[
+				'label'        => esc_html__( 'Show Status Badges', 'eazydocs' ),
+				'description'  => esc_html__( 'Show the "Private" / "Protected" badge on restricted docs.', 'eazydocs' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'md_show_lock_icon',
+			[
+				'label'        => esc_html__( 'Show Lock Icons', 'eazydocs' ),
+				'description'  => esc_html__( 'Show the lock icon overlay on restricted docs.', 'eazydocs' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+			]
+		);
+
+		$this->end_controls_section(); // End Restricted Docs Section
 	}
 
 
@@ -1326,6 +1400,11 @@ class Doc_Widget extends Widget_Base
 		// IDs of docs with no child docs — excluded at the query level so "Number of Docs" stays accurate.
 		$empty_doc_ids = ( $hide_empty && function_exists('ezd_get_empty_doc_ids') ) ? ezd_get_empty_doc_ids( ['publish', 'private'] ) : [];
 
+		// Restricted docs visibility toggles (shared by every skin).
+		$show_private   = ezd_setting_enabled( $settings, 'md_show_private_docs' );
+		$show_protected = ezd_setting_enabled( $settings, 'md_show_protected_docs' );
+		$doc_statuses   = ezd_doc_listing_statuses( $show_private );
+
 		// Map Elementor 'orderby' options to get_pages 'sort_column'
 		$valid_sort_columns = [
 			'ID',
@@ -1342,6 +1421,7 @@ class Doc_Widget extends Widget_Base
 			'parent' => 0,
 			'sort_column' => $sort_column,
 			'sort_order' => $doc_order,
+			'post_status' => $doc_statuses,
 		);
 
 		$exclude_list = [];
@@ -1354,6 +1434,9 @@ class Doc_Widget extends Widget_Base
 		}
 
 		$parent_docs = get_pages($args);
+
+		// Drop password-protected (and, as a safety net, private) parents per the toggles.
+		$parent_docs = ezd_filter_doc_visibility($parent_docs, $show_private, $show_protected);
 
 
 		/**
@@ -1368,11 +1451,14 @@ class Doc_Widget extends Widget_Base
 				$all_sections = get_posts(array(
 					'post_parent__in' => $parent_ids,
 					'post_type' => 'docs',
-					'post_status' => 'publish',
+					'post_status' => $doc_statuses,
 					'orderby' => $order_by,
 					'order' => $child_order,
 					'posts_per_page' => -1,
 				));
+
+				// Respect the protected/private toggles on child sections too.
+				$all_sections = ezd_filter_doc_visibility($all_sections, $show_private, $show_protected);
 
 				foreach ($all_sections as $section) {
 					$sections_by_parent[$section->post_parent][$section->ID] = $section;
@@ -1490,6 +1576,9 @@ class Doc_Widget extends Widget_Base
 						});
 					}
 
+					// Storage key for persisting the last opened tab of this widget.
+					var ezdTabStorageKey = 'ezd_active_tab_' + tabId.replace('#', '');
+
 					// custom tab js
 					$('.ezd-tab-menu li a').on('click', function (e) {
 						e.preventDefault();
@@ -1507,8 +1596,31 @@ class Doc_Widget extends Widget_Base
 							.siblings('.ezd-tab-box')
 							.removeClass('active');
 
+						// Remember the last opened tab for its widget container.
+						var $widget = $(this).closest('[id^="Arrow_slides-"]');
+						if ($widget.length) {
+							try {
+								window.localStorage.setItem('ezd_active_tab_' + $widget.attr('id'), target);
+							} catch (err) {}
+						}
+
 						return false;
 					});
+
+					// Restore the last opened tab for this widget on page load.
+					try {
+						var ezdSavedTab = window.localStorage.getItem(ezdTabStorageKey);
+						if (ezdSavedTab) {
+							var $savedLink = $(tabId + ' .ezd-tab-menu li a[data-rel="' + ezdSavedTab + '"]');
+							var $savedPane = $(tabId + ' #' + ezdSavedTab);
+
+							if ($savedLink.length && $savedPane.length) {
+								$(tabId + ' .ezd-tab-menu li a').removeClass('active');
+								$savedLink.addClass('active');
+								$savedPane.addClass('active').siblings('.ezd-tab-box').removeClass('active');
+							}
+						}
+					} catch (err) {}
 
 				});
 			})(jQuery);

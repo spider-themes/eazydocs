@@ -1,6 +1,7 @@
 
-= 2.12.0 (19 June 2026) =
+= 2.12.0 (20 June 2026) =
 New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.
+New: Docs Assistant AI Upgrade – Added a guided panel in the Docs Assistant settings to connect the free Antimanual plugin and turn the assistant into an AI chatbot trained on your documentation.
 New: Document Restricted Badges – Added visual status indicators and custom CSS classes for private and password-protected documents across layout skins.
 New: Google Login Test – Added a "Test Connection" button in the admin settings to verify credentials and redirect URIs with Google.
 New: Hide Empty Docs – Added a switcher option to hide top-level documents that do not contain any child articles.
@@ -11,7 +12,10 @@ New: One-Page Content Width – Added a content width option to configure boxed 
 New: One-Page Page Banner – Added a fully customizable hero banner at the top of One-Page documents displaying the document title, description, and at-a-glance stat metrics.
 New: One-Page Style Options – Added color and background customization settings for the sidebar, content area, right sidebar, and section numbers.
 New: Redirect URI Clipboard Copy – Added a quick-copy button next to the Google Redirect URI field in the admin settings.
+New: Restricted Docs Card Design – Added a global Card Design panel to style private and password-protected doc cards — choose a filled or outline style and set custom badge and background colors that apply everywhere docs appear: the shortcode, Gutenberg blocks, and Elementor widgets.
+New: Restricted Docs Visibility Controls – Added per-widget, block, and shortcode options to show or hide private and password-protected documents, status badges, and lock icons across Elementor widgets, Gutenberg blocks, and the shortcode.
 Updated: Settings Architecture – Nested all visual settings under a unified Appearance parent tab for a cleaner dashboard navigation.
+Updated: Authentication Settings – Grouped the Login & Sign-up Popup and Google Sign-In settings under a single "Authentication" tab for easier navigation.
 Updated: Google Login Configuration – Refreshed instructions and settings for the new Google Auth Platform.
 Updated: Restricted Docs Access – Replaced the old login page with the new login/sign up popup for better user experience. The old login form page will not work from this version.
 Improved: AJAX Doc Loading – Enhanced the AJAX document loading experience with race-condition prevention (aborts older requests), an accessible loading spinner, auto-scrolling to the top of the content, and clean error notices.
@@ -23,9 +27,11 @@ Improved: Multilingual Support – Loaded the plugin textdomain and added pre-tr
 Improved: One-Page Mobile UX – Redesigned the classic one-page sidebar with an accessible floating trigger, dedicated close button, smooth backdrop, and escape key closing.
 Improved: One-Page Docs – Large one-page documents now load and print to PDF reliably without timing out, and the sidebar navigation is cleaner and stays scrollable on smaller screens.
 Improved: Reading Time Estimation – Allowed customizing the words-per-minute (WPM) rate in settings for more accurate estimations.
+Improved: Restricted Doc Presentation – Aligned status badges and lock icons neatly beside document titles and refined card styling for a cleaner restricted-document layout.
 Improved: Search Accessibility – Added polite screen reader announcements (aria-live) for search status/results count, enqueued standard ARIA attributes/labels, and added keyboard navigation support (arrow keys and Escape).
 Improved: Search Banner – Added settings to configure a custom banner title and subtitle above the search field.
 Improved: Search Form – Changed live-search form submission method from POST to GET to improve native SEO compatibility.
+Improved: Tabbed Docs – The tabbed documentation blocks and the Elementor docs widget now remember the last opened tab when the page is reloaded.
 Improved: Admin Session Persistence – Restored the state of the Create One-Page modal window when the dashboard page is refreshed.
 Improved: Article Tree Navigation – Re-designed the sidebar article lists with compact indentation, vertical guide lines, active page highlights, and custom brand color support.
 Optimized: Analytics Queries – Improved database query performance on the dashboard by selecting only necessary columns from the search log table.

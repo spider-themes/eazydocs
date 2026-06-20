@@ -246,6 +246,10 @@ export default function Edit({ attributes, setAttributes }) {
 		cardStyle,
 		animationSpeed,
 		showLastUpdated,
+		showPrivateDocs,
+		showProtectedDocs,
+		showStatusBadge,
+		showLockIcon,
 		compactMode,
 		// Advanced styling attributes
 		primaryColor,
@@ -260,6 +264,12 @@ export default function Edit({ attributes, setAttributes }) {
 
 	// Check Pro status
 	const isPro = isProActive();
+
+	// Restricted docs are styled globally — deep-link to the settings tab.
+	const ezdSettingsUrl =
+		typeof window.ajaxurl !== 'undefined'
+			? window.ajaxurl.replace( 'admin-ajax.php', 'admin.php?page=eazydocs-settings#tab=restricted-docs/card-design' )
+			: '/wp-admin/admin.php?page=eazydocs-settings#tab=restricted-docs/card-design';
 
 	// State for active tab in preview
 	const [activeTab, setActiveTab] = useState(null);
@@ -832,6 +842,63 @@ export default function Edit({ attributes, setAttributes }) {
 						checked={showLastUpdated}
 						onChange={(value) =>
 							setAttributes({ showLastUpdated: value })
+						}
+					/>
+				</PanelBody>
+
+				{/* Restricted Docs */}
+				<PanelBody
+					title={__('Restricted Docs', 'eazydocs')}
+					initialOpen={false}
+				>
+					<Notice status="info" isDismissible={false} className="ezd-restricted-design-notice">
+						{__('Card colours, style and badge/lock visibility for restricted docs are set globally for the whole site.', 'eazydocs')}{' '}
+						<ExternalLink href={ezdSettingsUrl}>
+							{__('Customize in Settings → Restricted Docs → Card Design', 'eazydocs')}
+						</ExternalLink>
+					</Notice>
+					<ToggleControl
+						label={__('Show Private Docs', 'eazydocs')}
+						help={__(
+							'List private docs (only shown to users allowed to read them).',
+							'eazydocs'
+						)}
+						checked={showPrivateDocs}
+						onChange={(value) =>
+							setAttributes({ showPrivateDocs: value })
+						}
+					/>
+					<ToggleControl
+						label={__('Show Password Protected Docs', 'eazydocs')}
+						help={__(
+							'List docs that are protected with a password.',
+							'eazydocs'
+						)}
+						checked={showProtectedDocs}
+						onChange={(value) =>
+							setAttributes({ showProtectedDocs: value })
+						}
+					/>
+					<ToggleControl
+						label={__('Show Status Badges', 'eazydocs')}
+						help={__(
+							'Show the "Private" / "Protected" badge on restricted docs.',
+							'eazydocs'
+						)}
+						checked={showStatusBadge}
+						onChange={(value) =>
+							setAttributes({ showStatusBadge: value })
+						}
+					/>
+					<ToggleControl
+						label={__('Show Lock Icons', 'eazydocs')}
+						help={__(
+							'Show a lock icon next to restricted doc titles.',
+							'eazydocs'
+						)}
+						checked={showLockIcon}
+						onChange={(value) =>
+							setAttributes({ showLockIcon: value })
 						}
 					/>
 				</PanelBody>

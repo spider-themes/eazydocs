@@ -25,6 +25,7 @@ $ezd_lp_reg_note     = $ezd_lp_can_register
 
 CSF::createSection( $prefix, array(
 	'id'     => 'ezd_login_popup',
+	'parent' => 'ezd_authentication',
 	'title'  => esc_html__( 'Login & Sign-up Popup', 'eazydocs' ),
 	'icon'   => 'dashicons dashicons-id-alt',
 	'fields' => [

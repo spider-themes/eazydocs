@@ -56,6 +56,10 @@ class Shortcode {
             'parent_docs_order_by' => $args['parent_docs_order_by'] ?? 'ASC',
             'child_docs_order'     => $args['child_docs_order'] ?? 'ASC',
             'img_size'             => $args['img_size'] ?? 'ezd_searrch_thumb50x50',
+            'show_private'         => $args['show_private'] ?? 'yes',
+            'show_protected'       => $args['show_protected'] ?? 'yes',
+            'show_status_badge'    => $args['show_status_badge'] ?? 'yes',
+            'show_lock_icon'       => $args['show_lock_icon'] ?? 'yes',
         ];
 
         $args       = wp_parse_args( $args, $defaults );
@@ -65,13 +69,18 @@ class Shortcode {
         $args['show_docs']     = is_numeric( $args['show_docs'] ) ? (int) $args['show_docs'] : -1;
         $args['show_articles'] = is_numeric( $args['show_articles'] ) ? (int) $args['show_articles'] : 5;
 
+        // Restricted docs visibility / display toggles.
+        $show_private   = ezd_setting_enabled( $args, 'show_private' );
+        $show_protected = ezd_setting_enabled( $args, 'show_protected' );
+        $doc_statuses   = ezd_doc_listing_statuses( $show_private );
+
         // Parent Docs Query Args
         $parent_args = [
             'post_type'     => 'docs',
             'post_parent'   => 0,
             'orderby'       => $args['parent_docs_order'],
             'order'         => strtoupper( $args['parent_docs_order_by'] ),
-            'post_status'   => [ 'publish', 'private' ],
+            'post_status'   => $doc_statuses,
             'numberposts'   => $args['show_docs']
         ];
 
@@ -84,6 +93,9 @@ class Shortcode {
         }
 
         $parent_docs = get_posts( $parent_args );
+
+        // Drop password-protected (and, when disabled, private) parents per the toggles.
+        $parent_docs = ezd_filter_doc_visibility( $parent_docs, $show_private, $show_protected );
 
         // Optional PHP-side sort override (for premium users)
         if ( $parent_docs && ezd_is_premium() ) {
@@ -115,9 +127,12 @@ class Shortcode {
                 'post_parent__in' => $parent_ids,
                 'post_type'       => 'docs',
                 'posts_per_page'  => -1,
-                'post_status'     => [ 'publish', 'private' ],
+                'post_status'     => $doc_statuses,
                 'orderby'         => $orderby,
             ] );
+
+            // Respect the protected/private toggles on child articles too.
+            $all_children = ezd_filter_doc_visibility( $all_children, $show_private, $show_protected );
         }
 
         // Group children by parent
@@ -149,6 +164,8 @@ class Shortcode {
             'topic_label' => $args['topic_label'] ?? esc_html__( 'Topics', 'eazydocs' ),
             'layout'      => $args['docs_layout'] ?? 'grid',
             'img_size'    => $args['img_size'],
+            'show_badge'  => ezd_setting_enabled( $args, 'show_status_badge' ),
+            'show_lock'   => ezd_setting_enabled( $args, 'show_lock_icon' ),
         ] );
     }
 }

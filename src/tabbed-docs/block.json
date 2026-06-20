@@ -99,6 +99,22 @@
 			"type": "boolean",
 			"default": false
 		},
+		"showPrivateDocs": {
+			"type": "boolean",
+			"default": true
+		},
+		"showProtectedDocs": {
+			"type": "boolean",
+			"default": true
+		},
+		"showStatusBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"showLockIcon": {
+			"type": "boolean",
+			"default": true
+		},
 		"compactMode": {
 			"type": "boolean",
 			"default": false

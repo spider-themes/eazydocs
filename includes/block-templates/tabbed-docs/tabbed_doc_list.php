@@ -23,6 +23,13 @@ $col             = isset( $attributes['col'] ) ? intval( $attributes['col'] ) : 
 $docs_layout     = isset( $attributes['docs_layout'] ) ? $attributes['docs_layout'] : 'grid';
 $show_last_updated = isset( $attributes['showLastUpdated'] ) ? $attributes['showLastUpdated'] : false;
 
+// Restricted docs visibility / display toggles.
+$show_private   = ezd_setting_enabled( $attributes, 'showPrivateDocs' );
+$show_protected = ezd_setting_enabled( $attributes, 'showProtectedDocs' );
+$show_badge     = ezd_setting_enabled( $attributes, 'showStatusBadge' );
+$show_lock      = ezd_setting_enabled( $attributes, 'showLockIcon' );
+$doc_statuses   = ezd_doc_listing_statuses( $show_private );
+
 // Advanced Styling Attributes - Only apply if Pro is active
 $card_padding     = $is_pro_active && isset( $attributes['cardPadding'] ) ? intval( $attributes['cardPadding'] ) : 32;
 $card_gap         = $is_pro_active && isset( $attributes['cardGap'] ) ? intval( $attributes['cardGap'] ) : 24;
@@ -105,7 +112,7 @@ $layout_class = 'grid' === $selected_layout
 $parent_args = new WP_Query(
 	array(
 		'post_type'      => 'docs',
-		'post_status'    => is_user_logged_in() ? array( 'publish', 'private' ) : 'publish',
+		'post_status'    => $doc_statuses,
 		'orderby'        => $attributes['orderBy'] ?? 'menu_order',
 		'posts_per_page' => $attributes['show_docs'] ?? -1,
 		'order'          => $attributes['parent_docs_order'] ?? 'desc',
@@ -114,6 +121,10 @@ $parent_args = new WP_Query(
 		'post__in'       => $attributes['include'] ?? array(),
 	)
 );
+
+// Drop password-protected (and, when disabled, private) parents per the toggles.
+$parent_args->posts      = ezd_filter_doc_visibility( $parent_args->posts, $show_private, $show_protected );
+$parent_args->post_count = count( $parent_args->posts );
 
 /**
  * Get article count for a parent doc (including nested children)
@@ -208,11 +219,12 @@ if ( ! function_exists( 'ezd_tabbed_list_get_article_count' ) ) {
 						'post_parent' => get_the_ID(),
 						'post_type'   => 'docs',
 						'numberposts' => $attributes['sectionsNumber'] ?? -1,
-						'post_status' => array( 'publish', 'private' ),
+						'post_status' => $doc_statuses,
 						'orderby'     => $attributes['orderBy'] ?? 'menu_order',
 						'order'       => $attributes['child_docs_order'] ?? 'desc',
 					)
 				);
+				$sections = ezd_filter_doc_visibility( $sections, $show_private, $show_protected );
 				?>
 				<div class="ezd-tab-pane <?php echo esc_attr( $active ); ?>" id="<?php echo esc_attr( $block_unique_id . '-' . get_post_field( 'post_name', get_the_ID() ) ); ?>">
 					<?php if ( empty( $sections ) ) : ?>
@@ -232,11 +244,12 @@ if ( ! function_exists( 'ezd_tabbed_list_get_article_count' ) ) {
 										'post_parent' => $section->ID,
 										'post_type'   => 'docs',
 										'numberposts' => $attributes['articlesNumber'] ?? -1,
-										'post_status' => array( 'publish', 'private' ),
+										'post_status' => $doc_statuses,
 										'orderby'     => $attributes['orderBy'] ?? 'menu_order',
 										'order'       => $attributes['child_docs_order'] ?? 'desc',
 									)
 								);
+								$articles = ezd_filter_doc_visibility( $articles, $show_private, $show_protected );
 								?>
 								<div class="ezd-section-card">
 									<div class="ezd-doc-tag-item">
@@ -244,7 +257,9 @@ if ( ! function_exists( 'ezd_tabbed_list_get_article_count' ) ) {
 											<h4 class="ezd-item-title">
 												<a href="<?php echo esc_url( get_permalink( $section->ID ) ); ?>">
 													<?php echo wp_kses_post( $section->post_title ); ?>
+													<?php echo ezd_doc_lock_icon( $section->ID, $show_lock ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 												</a>
+												<?php echo ezd_doc_status_badge( $section->ID, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 												<?php if ( count( $articles ) > 0 ) : ?>
 													<span class="ezd-section-count">
 														<?php
@@ -273,6 +288,7 @@ if ( ! function_exists( 'ezd_tabbed_list_get_article_count' ) ) {
 																<polyline points="10 9 9 9 8 9"></polyline>
 															</svg>
 															<?php echo wp_kses_post( $article->post_title ); ?>
+															<?php echo ezd_doc_lock_icon( $article->ID, $show_lock ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 															<?php if ( $show_last_updated ) : ?>
 																<span class="ezd-article-date">
 																	<?php echo esc_html( human_time_diff( strtotime( $article->post_modified ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'eazydocs' ) ); ?>
@@ -371,17 +387,43 @@ if ( ! function_exists( 'ezd_tabbed_list_get_article_count' ) ) {
 			});
 		}
 
+		// Persist the last opened tab across page reloads (scoped to this block).
+		var ezdTabStorageKey = 'ezd_active_tab_' + tabId.replace('#', '');
+
+		// Activate a tab and its pane by the data-rel target identifier.
+		function ezdActivateTab(target) {
+			var $link = $(tabId + ' .ezd-tab-menu li a[data-rel="' + target + '"]');
+			var $pane = $(tabId + ' #' + target);
+
+			if (!$link.length || !$pane.length) {
+				return false;
+			}
+
+			$(tabId + ' .ezd-tab-menu li a').removeClass('ezd-active');
+			$link.addClass('ezd-active');
+			$pane.addClass('ezd-active').siblings('.ezd-tab-pane').removeClass('ezd-active');
+
+			return true;
+		}
+
+		// Restore the last opened tab on page load.
+		try {
+			var ezdSavedTab = window.localStorage.getItem(ezdTabStorageKey);
+			if (ezdSavedTab) {
+				ezdActivateTab(ezdSavedTab);
+			}
+		} catch (err) {}
+
 		// Tab switching with animation
 		$(tabId + ' .ezd-tab-menu li a').on('click', function(e) {
 			e.preventDefault();
-			$(this).closest('.ezd-tab-menu').find('li a').removeClass('ezd-active');
-			$(this).addClass('ezd-active');
 
 			var target = $(this).attr('data-rel');
-			$(tabId + ' #' + target)
-				.addClass('ezd-active')
-				.siblings('.ezd-tab-pane')
-				.removeClass('ezd-active');
+			ezdActivateTab(target);
+
+			try {
+				window.localStorage.setItem(ezdTabStorageKey, target);
+			} catch (err) {}
 
 			return false;
 		});

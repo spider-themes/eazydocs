@@ -44,6 +44,7 @@ $ezd_g_reg_warning = $ezd_g_can_reg
 // Google Login
 CSF::createSection( $prefix, array(
 	'id'     => 'ezd_google_login',
+	'parent' => 'ezd_authentication',
 	'title'  => esc_html__( 'Google Sign-In', 'eazydocs' ),
 	'icon'   => 'dashicons dashicons-google',
 	'fields' => [

@@ -83,23 +83,13 @@ function ezd_render_read_more_btn( $url, $text, $class = 'doc_border_btn', $icon
 }
 
 /**
- * Render private/protected doc indicators
+ * Render private/protected doc indicators.
  *
- * @param int $post_id Post ID
+ * Moved to includes/functions.php (always loaded) so the [eazydocs] shortcode
+ * can call it on non-Elementor pages. Kept referenced here for discoverability.
+ *
+ * @see ezd_render_doc_indicators()
  */
-function ezd_render_doc_indicators( $post_id ) {
-    if ( get_post_status( $post_id ) === 'private' ) {
-        echo '<div class="private" title="' . esc_attr__( 'Private Doc', 'eazydocs' ) . '"><i class="icon_lock"></i></div>';
-    }
-
-    if ( ! empty( get_post( $post_id )->post_password ) ) {
-        echo '<div class="private" title="' . esc_attr__( 'Password Protected Doc', 'eazydocs' ) . '">';
-        echo '<svg width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#4e5668">';
-        echo '<g><path fill="none" d="M0 0h24v24H0z"/><path d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zm-2 0V7a4 4 0 1 0-8 0v1h8zm-5 6v2h2v-2h-2zm-4 0v2h2v-2H7zm8 0v2h2v-2h-2z"/></g>';
-        echo '</svg>';
-        echo '</div>';
-    }
-}
 
 /**
  * Get doc items for a section

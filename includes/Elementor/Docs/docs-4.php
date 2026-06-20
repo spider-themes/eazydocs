@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 $is_masonry     = $settings['masonry'] ?? '';
 $masonry_layout = $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : 'ezd-grid ezd-grid-cols-12';
 $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
+
+// Restricted docs display toggles (visibility is handled in the parent query).
+$show_badge = ezd_setting_enabled( $settings, 'md_show_status_badge' );
+$show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
 ?>
 <div class="question_menu docs3" id="Arrow_slides-<?php echo esc_attr( $this->get_id() ) ?>">
     <div class="tabs_sliders">
@@ -100,9 +104,10 @@ $masonry_attr   = $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 						?>
                         <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
                             <div class="topic_list_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
+								<?php ezd_render_doc_indicators( $section->ID, $show_lock ); ?>
 								<?php if ( ! empty( $section->post_title ) ) : ?>
                                     <h4 class="ezd_item_title"><?php echo wp_kses_post( $section->post_title ); ?></h4>
-								<?php echo ezd_doc_status_badge( $section->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo ezd_doc_status_badge( $section->ID, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								<?php endif; ?>
                                 <ul class="navbar-nav">
 									<?php

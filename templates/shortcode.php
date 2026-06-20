@@ -1,5 +1,7 @@
 <?php
 $private_doc_mode       = ezd_is_premium() ? ezd_get_opt( 'private_doc_mode' ) : 'none';
+$show_badge             = $show_badge ?? true; // Status badge toggle (defaults on).
+$show_lock              = $show_lock ?? true;  // Lock icon toggle (defaults on).
 $is_subscription 		= ezd_get_opt( 'subscriptions', false );
 $is_btn_show 			= ezd_get_opt('docs-view-all-btn');
 $is_masonry             = '';
@@ -28,32 +30,15 @@ if ( $docs ) :
 
 				global $post;
 
-				$private_bg    = $main_doc['doc']->post_status == 'private' ? 'bg-warning' : '';
-				$private_bg_op = $main_doc['doc']->post_status == 'private' ? 'style="--bs-bg-opacity: .4;"' : '';
-				$protected_bg  = ! empty( $main_doc['doc']->post_password ) ? 'bg-dark' : '';
-
 				$col_wrapper = $i == 1;
 				?>
 
                 <div class="ezd-col-width">
-                    <div class="categories_guide_item <?php echo esc_attr( $private_bg . $protected_bg ); ?> wow fadeInUp" <?php echo wp_kses_post( $private_bg_op ); ?>>
+                    <div class="categories_guide_item <?php echo esc_attr( ezd_doc_status_classes( $main_doc['doc']->ID ) ); ?> wow fadeInUp">
 						<?php
-						if ( $main_doc['doc']->post_status == 'private' ) {
-							$pd_txt = esc_attr__( 'Private Doc', 'eazydocs' );
-							echo '<div class="private" title="' . esc_attr( $pd_txt ) . '"><i class="icon_lock"></i></div>';
-						}
-						if ( ! empty( $main_doc['doc']->post_password ) ) {
-							?>
-                            <div class="private" title="Password Protected Doc">
-                                <svg width="50px" height="50px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#4e5668">
-                                    <g>
-                                        <path fill="none" d="M0 0h24v24H0z"/>
-                                        <path d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zm-2 0V7a4 4 0 1 0-8 0v1h8zm-5 6v2h2v-2h-2zm-4 0v2h2v-2H7zm8 0v2h2v-2h-2z"/>
-                                    </g>
-                                </svg>
-                            </div>
-							<?php
-						}
+						// Shared private / password-protected corner lock (honours the
+						// global Settings → Restricted Docs → Card Design toggles).
+						ezd_render_doc_indicators( $main_doc['doc']->ID, $show_lock );
 						?>
                         <div class="doc-top ezd-d-flex ezd-align-items-start<?php echo $img_size === 'full' ? ' ezd-img-full' : ''; ?>">
 							<?php 
@@ -66,7 +51,8 @@ if ( $docs ) :
                                     <h4 class="title">
 										<?php echo wp_kses_post( $main_doc['doc']->post_title ); ?>
                                     </h4>
-									<?php 
+										<?php echo ezd_doc_status_badge( $main_doc['doc']->ID, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<?php
 								endif;
 								if ( $show_topic == true ) : ?>
                                     <span class="ezd-badge">

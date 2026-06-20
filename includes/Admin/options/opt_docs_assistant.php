@@ -16,6 +16,11 @@ CSF::createSection( $prefix, array(
 	'icon'   => 'dashicons dashicons-format-chat',
 	'fields' => [
 		array(
+			'type'    => 'content',
+			'content' => ezd_assistant_antimanual_info(),
+		),
+
+		array(
 			'type'  => 'heading',
 			'title' => esc_html__( 'Assistant Settings', 'eazydocs' ),
 		),
@@ -389,6 +394,67 @@ CSF::createSection( $prefix, array(
 		),
 	]
 ) );
+
+/**
+ * Render the Antimanual AI chatbot integration notice shown at the top of the
+ * Docs Assistant settings.
+ *
+ * The Docs Assistant ships a rule-based knowledge-base widget. Pairing it with
+ * the free Antimanual plugin upgrades it into an AI chatbot trained on the
+ * site's docs. The notice is state-aware: it guides the admin to install,
+ * activate, or (once connected) configure Antimanual.
+ *
+ * @return string Escaped HTML markup for a CSF `content` field.
+ */
+function ezd_assistant_antimanual_info() {
+	// Load plugin helpers if not already available (settings load in admin,
+	// but guard so this never fatals outside the dashboard).
+	if ( ! function_exists( 'is_plugin_active' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
+
+	$plugin_file = 'antimanual/antimanual.php';
+	$is_active    = is_plugin_active( $plugin_file );
+	$is_installed = $is_active || file_exists( WP_PLUGIN_DIR . '/' . $plugin_file );
+
+	$wporg_url     = 'https://wordpress.org/plugins/antimanual/';
+	$learn_more    = 'https://antimanual.spider-themes.net';
+	$install_url   = admin_url( 'plugin-install.php?s=antimanual&tab=search&type=term' );
+	$activate_url  = wp_nonce_url( admin_url( 'plugins.php?action=activate&plugin=' . $plugin_file ), 'activate-plugin_' . $plugin_file );
+	$settings_url  = admin_url( 'admin.php?page=atml-chatbot' );
+
+	if ( $is_active ) {
+		$badge   = esc_html__( 'Connected', 'eazydocs' );
+		$heading = esc_html__( 'AI chatbot powered by Antimanual', 'eazydocs' );
+		$body    = esc_html__( 'Antimanual is active. Your Docs Assistant can now answer visitors with an AI chatbot trained on your documentation — alongside the built-in knowledge base and contact tabs below.', 'eazydocs' );
+		$primary = '<a href="' . esc_url( $settings_url ) . '" class="button button-primary">' . esc_html__( 'Configure Antimanual', 'eazydocs' ) . '</a>';
+	} elseif ( $is_installed ) {
+		$badge   = esc_html__( 'Action needed', 'eazydocs' );
+		$heading = esc_html__( 'Activate Antimanual to add an AI chatbot', 'eazydocs' );
+		$body    = esc_html__( 'Antimanual is installed but not active. Activate it to upgrade your Docs Assistant into an AI chatbot trained on your docs, with smart semantic search.', 'eazydocs' );
+		$primary = '<a href="' . esc_url( $activate_url ) . '" class="button button-primary">' . esc_html__( 'Activate Antimanual', 'eazydocs' ) . '</a>';
+	} else {
+		$badge   = esc_html__( 'Free add-on', 'eazydocs' );
+		$heading = esc_html__( 'Turn your Docs Assistant into an AI chatbot', 'eazydocs' );
+		$body    = esc_html__( 'Install the free Antimanual plugin to train an AI chatbot on your documentation. Visitors get instant, conversational answers from your docs — reducing repetitive support tickets.', 'eazydocs' );
+		$primary = '<a href="' . esc_url( $install_url ) . '" class="button button-primary">' . esc_html__( 'Install Antimanual', 'eazydocs' ) . '</a>';
+	}
+
+	$secondary  = '<a href="' . esc_url( $wporg_url ) . '" target="_blank" rel="noopener noreferrer" class="button button-secondary">' . esc_html__( 'View on WordPress.org', 'eazydocs' ) . '</a>';
+	$secondary .= ' <a href="' . esc_url( $learn_more ) . '" target="_blank" rel="noopener noreferrer" class="button button-secondary">' . esc_html__( 'Learn More', 'eazydocs' ) . '</a>';
+
+	$html  = '<div class="ezd-assistant-antimanual" style="border:1px solid #d8d0fb;border-left:4px solid #5E3AEE;border-radius:8px;background:#faf9fe;padding:16px 18px;margin-bottom:18px;">';
+	$html .= '<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">';
+	$html .= '<span class="dashicons dashicons-superhero-alt" style="color:#5E3AEE;font-size:22px;width:22px;height:22px;"></span>';
+	$html .= '<strong style="font-size:15px;color:#1e1e1e;">' . $heading . '</strong>';
+	$html .= '<span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:#5E3AEE;background:#ece7fd;border-radius:10px;padding:2px 10px;">' . $badge . '</span>';
+	$html .= '</div>';
+	$html .= '<p style="margin:0 0 12px;font-size:13px;line-height:1.6;color:#50575e;">' . $body . '</p>';
+	$html .= '<div style="display:flex;gap:8px;flex-wrap:wrap;">' . $primary . $secondary . '</div>';
+	$html .= '</div>';
+
+	return $html;
+}
 
 // Function to generate dynamic embed code box
 function ezd_generate_embed_code_box() {

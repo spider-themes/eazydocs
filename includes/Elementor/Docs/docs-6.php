@@ -5,6 +5,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+// Restricted docs display toggles (visibility is handled in the parent query).
+$show_badge = ezd_setting_enabled( $settings, 'md_show_status_badge' );
+$show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
 ?>
 
 <section class="doc6_community_area docs6 bew-topics">
@@ -17,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		    $doc_id = $doc['doc']->ID;
 		    ?>
             <div class="doc_community_item topic-item wow fadeInUp <?php echo esc_attr( ezd_doc_status_classes( $doc_id ) ); ?>" data-wow-delay="<?php echo esc_attr( $delay ) ?>s">
+				<?php ezd_render_doc_indicators( $doc_id, $show_lock ); ?>
                 <div class="doc_community_icon ezd-docs5-icon-wrap">
 				    <?php echo get_the_post_thumbnail( $doc_id, 'full' ); ?>
                 </div>
@@ -26,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						    <?php echo wp_kses_post( $doc['doc']->post_title ); ?>
                         </h4>
                     </a>
-					<?php echo ezd_doc_status_badge( $doc_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo ezd_doc_status_badge( $doc_id, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     <p class="ezd_item_content"> <?php ezd_widget_excerpt( $doc_id, 15 ); ?> </p>
                     <div class="doc_entry_info">
                         <ul class="ezd-list-unstyled author_avatar">
