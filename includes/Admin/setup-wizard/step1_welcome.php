@@ -19,13 +19,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Video Section -->
 		<div class="ezd-welcome-video">
 			<div class="ezd-video-wrapper">
-				<iframe 
-					width="100%" 
-					height="340" 
-					src="https://www.youtube.com/embed/4H2npHIR2qg?si=ApQh7BL6CL5QM4zX" 
-					title="<?php echo esc_attr__( 'EazyDocs Tutorial', 'eazydocs' ); ?>" 
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-					referrerpolicy="strict-origin-when-cross-origin" 
+				<iframe
+					width="100%"
+					height="340"
+					loading="lazy"
+					src="https://www.youtube-nocookie.com/embed/4H2npHIR2qg?si=ApQh7BL6CL5QM4zX"
+					title="<?php echo esc_attr__( 'EazyDocs Tutorial', 'eazydocs' ); ?>"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					referrerpolicy="strict-origin-when-cross-origin"
 					allowfullscreen>
 				</iframe>
 			</div>

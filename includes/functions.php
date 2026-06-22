@@ -219,6 +219,228 @@ function ezd_update_post_meta_cache( $post_ids ) {
 }
 
 /**
+ * Format a number into a compact, human-readable string (e.g. 1.2k, 3.4M).
+ *
+ * Used across the dashboard so view counts, vote totals and search figures
+ * are displayed consistently.
+ *
+ * @param int|float $number   The raw number.
+ * @param int       $decimals Maximum decimals for the shortened value.
+ * @return string
+ */
+function ezd_format_number( $number, $decimals = 1 ) {
+	$number = (float) $number;
+
+	if ( $number >= 1000000 ) {
+		return rtrim( rtrim( number_format( $number / 1000000, $decimals ), '0' ), '.' ) . 'M';
+	}
+
+	if ( $number >= 1000 ) {
+		return rtrim( rtrim( number_format( $number / 1000, $decimals ), '0' ), '.' ) . 'k';
+	}
+
+	return (string) (int) $number;
+}
+
+/**
+ * Calculate the percentage change between two values.
+ *
+ * @param int|float $old Previous period value.
+ * @param int|float $new Current period value.
+ * @return int|null Whole-number percentage change, or null when no baseline exists.
+ */
+function ezd_percent_change( $old, $new ) {
+	$old = (float) $old;
+	$new = (float) $new;
+
+	if ( $old <= 0 ) {
+		// No baseline: report growth only when something new appeared.
+		return $new > 0 ? 100 : null;
+	}
+
+	return (int) round( ( ( $new - $old ) / $old ) * 100 );
+}
+
+/**
+ * Build correctly bucketed daily time-series for the dashboard chart.
+ *
+ * Returns three honest, per-day series sourced from the logging tables:
+ * - views    : SUM(count) from the view log (view increments per day).
+ * - searches : COUNT(*) of search events per day.
+ * - failed   : SUM(not_found_count) of searches that returned nothing.
+ *
+ * Feedback is intentionally omitted: the schema only stores cumulative vote
+ * totals and the last vote time, so a truthful per-day feedback line is not
+ * possible. Arrays are ordered oldest -> newest and aligned with `labels`.
+ *
+ * @param int $days Number of days to include (e.g. 7 or 30).
+ * @return array{labels:string[],views:int[],searches:int[],failed:int[]}
+ */
+function ezd_dashboard_daily_series( $days = 7 ) {
+	global $wpdb;
+
+	$days = max( 1, (int) $days );
+
+	$view_table   = $wpdb->prefix . 'eazydocs_view_log';
+	$search_table = $wpdb->prefix . 'eazydocs_search_log';
+
+	$labels    = [];
+	$views     = [];
+	$searches  = [];
+	$failed    = [];
+	$positions = []; // 'Y-m-d' => index in the series arrays.
+
+	$now = current_time( 'timestamp' );
+
+	for ( $i = $days - 1; $i >= 0; $i-- ) {
+		$ts                 = $now - ( $i * DAY_IN_SECONDS );
+		$key                = wp_date( 'Y-m-d', $ts );
+		$labels[]           = wp_date( 'd M', $ts );
+		$views[]            = 0;
+		$searches[]         = 0;
+		$failed[]           = 0;
+		$positions[ $key ]  = count( $labels ) - 1;
+	}
+
+	// Widen the lower bound by a day so timezone skew between the GMT view log
+	// and the local search log never drops boundary rows.
+	$since = gmdate( 'Y-m-d 00:00:00', $now - ( $days * DAY_IN_SECONDS ) );
+
+	// Views per day. phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+	$view_rows = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT DATE(created_at) AS d, SUM(count) AS total FROM {$view_table} WHERE created_at >= %s GROUP BY DATE(created_at)",
+			$since
+		)
+	);
+	foreach ( (array) $view_rows as $row ) {
+		if ( isset( $positions[ $row->d ] ) ) {
+			$views[ $positions[ $row->d ] ] = (int) $row->total;
+		}
+	}
+
+	// Searches and failed searches per day. phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+	$search_rows = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT DATE(created_at) AS d, COUNT(*) AS total, SUM(not_found_count) AS failed FROM {$search_table} WHERE created_at >= %s GROUP BY DATE(created_at)",
+			$since
+		)
+	);
+	foreach ( (array) $search_rows as $row ) {
+		if ( isset( $positions[ $row->d ] ) ) {
+			$searches[ $positions[ $row->d ] ] = (int) $row->total;
+			$failed[ $positions[ $row->d ] ]   = (int) $row->failed;
+		}
+	}
+
+	return [
+		'labels'   => $labels,
+		'views'    => $views,
+		'searches' => $searches,
+		'failed'   => $failed,
+	];
+}
+
+/**
+ * Compute the dashboard KPI cards with 7-day trend deltas.
+ *
+ * @return array
+ */
+function ezd_compute_dashboard_kpis() {
+	global $wpdb;
+
+	$now       = current_time( 'timestamp' );
+	$boundary7 = gmdate( 'Y-m-d H:i:s', time() - 7 * DAY_IN_SECONDS );
+	$boundary14 = gmdate( 'Y-m-d H:i:s', time() - 14 * DAY_IN_SECONDS );
+
+	$view_table   = $wpdb->prefix . 'eazydocs_view_log';
+	$search_table = $wpdb->prefix . 'eazydocs_search_log';
+
+	// Total published docs + how many are new this week.
+	$total_docs = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status = 'publish'" );
+	$new_docs   = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status = 'publish' AND post_date >= %s",
+			wp_date( 'Y-m-d H:i:s', $now - 7 * DAY_IN_SECONDS )
+		)
+	);
+
+	// Total views (all-time) and the week-over-week trend from the view log.
+	$total_views = (int) $wpdb->get_var( "SELECT SUM(meta_value + 0) FROM {$wpdb->postmeta} WHERE meta_key = 'post_views_count'" );
+	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+	$views_7    = (int) $wpdb->get_var( $wpdb->prepare( "SELECT SUM(count) FROM {$view_table} WHERE created_at >= %s", $boundary7 ) );
+	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+	$views_prev = (int) $wpdb->get_var( $wpdb->prepare( "SELECT SUM(count) FROM {$view_table} WHERE created_at >= %s AND created_at < %s", $boundary14, $boundary7 ) );
+
+	// Helpful rate from true cumulative vote totals.
+	$positive = (int) $wpdb->get_var( "SELECT SUM(meta_value + 0) FROM {$wpdb->postmeta} WHERE meta_key = 'positive'" );
+	$negative = (int) $wpdb->get_var( "SELECT SUM(meta_value + 0) FROM {$wpdb->postmeta} WHERE meta_key = 'negative'" );
+	$total_votes  = $positive + $negative;
+	$helpful_rate = $total_votes > 0 ? (int) round( ( $positive / $total_votes ) * 100 ) : 0;
+
+	// Failed searches (all-time) and the week-over-week trend.
+	$failed_total = (int) $wpdb->get_var( "SELECT SUM(not_found_count) FROM {$search_table}" );
+	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+	$failed_7    = (int) $wpdb->get_var( $wpdb->prepare( "SELECT SUM(not_found_count) FROM {$search_table} WHERE created_at >= %s", $boundary7 ) );
+	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+	$failed_prev = (int) $wpdb->get_var( $wpdb->prepare( "SELECT SUM(not_found_count) FROM {$search_table} WHERE created_at >= %s AND created_at < %s", $boundary14, $boundary7 ) );
+
+	return [
+		'total_docs'    => $total_docs,
+		'new_docs'      => $new_docs,
+		'total_views'   => $total_views,
+		'views_delta'   => ezd_percent_change( $views_prev, $views_7 ),
+		'helpful_rate'  => $helpful_rate,
+		'total_votes'   => $total_votes,
+		'failed_total'  => $failed_total,
+		'failed_delta'  => ezd_percent_change( $failed_prev, $failed_7 ),
+	];
+}
+
+/**
+ * Get the full dashboard data payload (KPIs + chart series) with caching.
+ *
+ * One transient holds everything so a dashboard load fires the aggregate
+ * queries once and reuses them for five minutes. The cache is flushed when
+ * docs change or feedback is recorded via ezd_flush_dashboard_cache().
+ *
+ * @param bool $force Bypass the cache and recompute.
+ * @return array
+ */
+function ezd_get_dashboard_data( $force = false ) {
+	$cache_key = 'ezd_dashboard_data_v1';
+
+	if ( ! $force ) {
+		$cached = get_transient( $cache_key );
+		if ( is_array( $cached ) ) {
+			return $cached;
+		}
+	}
+
+	$data = [
+		'kpis'  => ezd_compute_dashboard_kpis(),
+		'week'  => ezd_dashboard_daily_series( 7 ),
+		'month' => ezd_dashboard_daily_series( 30 ),
+	];
+
+	set_transient( $cache_key, $data, 5 * MINUTE_IN_SECONDS );
+
+	return $data;
+}
+
+/**
+ * Invalidate the cached dashboard data payload.
+ *
+ * @return void
+ */
+function ezd_flush_dashboard_cache() {
+	delete_transient( 'ezd_dashboard_data_v1' );
+}
+add_action( 'save_post_docs', 'ezd_flush_dashboard_cache' );
+add_action( 'deleted_post', 'ezd_flush_dashboard_cache' );
+add_action( 'trashed_post', 'ezd_flush_dashboard_cache' );
+
+/**
  * Get post-meta value or theme option value.
  *
  * This function first attempts to retrieve a post-meta value. If the post meta
@@ -2454,6 +2676,43 @@ function customizer_visibility_callback() {
 /**
  * Setup wizard save settings
  */
+/**
+ * Create (or reuse) a documentation archive page with the [eazydocs] shortcode.
+ *
+ * The setup wizard auto-saves on every step change, so this must be idempotent —
+ * it tracks the created page in an option and reuses it instead of duplicating.
+ *
+ * @return int The archive page ID, or 0 on failure.
+ */
+function ezd_create_docs_archive_page() {
+	// Reuse a page created by a previous run to avoid duplicates.
+	$existing_id = absint( get_option( 'ezd_wizard_archive_page_id' ) );
+	if ( $existing_id && 'page' === get_post_type( $existing_id ) && 'trash' !== get_post_status( $existing_id ) ) {
+		return $existing_id;
+	}
+
+	$page_id = wp_insert_post(
+		array(
+			'post_title'   => __( 'Documentation', 'eazydocs' ),
+			'post_name'    => 'documentation',
+			'post_status'  => 'publish',
+			'post_type'    => 'page',
+			'post_content' => '[eazydocs]',
+		)
+	);
+
+	if ( is_wp_error( $page_id ) || ! $page_id ) {
+		return 0;
+	}
+
+	update_option( 'ezd_wizard_archive_page_id', $page_id, false );
+
+	return $page_id;
+}
+
+/**
+ * Save the EazyDocs setup wizard settings via AJAX.
+ */
 function ezd_setup_wizard_save_settings() {
 
 	check_ajax_referer( 'eazydocs-admin-nonce', 'security' );
@@ -2462,15 +2721,21 @@ function ezd_setup_wizard_save_settings() {
 		wp_send_json_error( 'Unauthorized user' );
 	}
 
-	$rootslug        = isset( $_POST['rootslug'] ) ? sanitize_text_field( $_POST['rootslug'] ) : '';
-	$brandColor      = isset( $_POST['brandColor'] ) ? sanitize_text_field( $_POST['brandColor'] ) : '';
-	$slugType        = isset( $_POST['slugType'] ) ? sanitize_text_field( $_POST['slugType'] ) : '';
-	$docSingleLayout = isset( $_POST['docSingleLayout'] ) ? sanitize_text_field( $_POST['docSingleLayout'] ) : '';
-	$docsPageWidth   = isset( $_POST['docsPageWidth'] ) ? sanitize_text_field( $_POST['docsPageWidth'] ) : '';
-	$live_customizer = isset( $_POST['live_customizer'] ) ? sanitize_text_field( $_POST['live_customizer'] ) : '';
-	// int value
-	$archivePage = isset( $_POST['archivePage'] ) ? intval( $_POST['archivePage'] ) : '';
-	$options     = get_option( 'eazydocs_settings' );
+	$rootslug        = isset( $_POST['rootslug'] ) ? sanitize_text_field( wp_unslash( $_POST['rootslug'] ) ) : '';
+	$brandColor      = isset( $_POST['brandColor'] ) ? sanitize_hex_color( wp_unslash( $_POST['brandColor'] ) ) : '';
+	$slugType        = isset( $_POST['slugType'] ) ? sanitize_text_field( wp_unslash( $_POST['slugType'] ) ) : '';
+	$docSingleLayout = isset( $_POST['docSingleLayout'] ) ? sanitize_text_field( wp_unslash( $_POST['docSingleLayout'] ) ) : '';
+	$docsPageWidth   = isset( $_POST['docsPageWidth'] ) ? sanitize_text_field( wp_unslash( $_POST['docsPageWidth'] ) ) : '';
+	$live_customizer = isset( $_POST['live_customizer'] ) ? sanitize_text_field( wp_unslash( $_POST['live_customizer'] ) ) : '';
+	$is_dark_switcher = isset( $_POST['is_dark_switcher'] ) ? sanitize_text_field( wp_unslash( $_POST['is_dark_switcher'] ) ) : '';
+
+	// Archive page can be an existing page ID or the "create_new" sentinel.
+	$archive_raw = isset( $_POST['archivePage'] ) ? sanitize_text_field( wp_unslash( $_POST['archivePage'] ) ) : '';
+	$archivePage = ( 'create_new' === $archive_raw )
+		? ezd_create_docs_archive_page()
+		: absint( $archive_raw );
+
+	$options = get_option( 'eazydocs_settings' );
 
 	// Check if the option exists and is an array
 	if ( is_array( $options ) ) {
@@ -2482,8 +2747,13 @@ function ezd_setup_wizard_save_settings() {
 		$options['docs_single_layout']     = $docSingleLayout;
 		$options['docs_page_width']        = $docsPageWidth;
 		$options['customizer_visibility']  = $live_customizer;
-		$options['docs-slug']              = $archivePage;
+		$options['is_dark_switcher']       = $is_dark_switcher;
 		$options['setup_wizard_completed'] = true;
+
+		// Only overwrite the archive page when a valid one was provided/created.
+		if ( $archivePage ) {
+			$options['docs-slug'] = $archivePage;
+		}
 
 		// Update the option in the database
 		update_option( 'eazydocs_settings', $options );

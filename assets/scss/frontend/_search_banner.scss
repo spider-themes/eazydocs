@@ -393,14 +393,14 @@ form.ezd_search_form {
 	.ezd-no-results-title {
 		font-size: 16px;
 		font-weight: 700;
-		color: #1d2327;
+		color: var(--black_900);
 		margin: 0 0 8px;
 		line-height: 1.4;
 	}
 
 	.ezd-no-results-sub {
 		font-size: 14px;
-		color: #6b7280;
+		color: var(--black_500);
 		margin: 0;
 		line-height: 1.5;
 	}

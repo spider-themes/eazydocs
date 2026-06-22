@@ -4,7 +4,7 @@
 			<span class="dashicons dashicons-visibility"></span>
 			<?php esc_html_e( 'Top Viewed Docs', 'eazydocs' ); ?>
 		</h2>
-		<a href="<?php echo esc_url( admin_url( 'admin.php?page=ezd-analytics#analytics-helpful' ) ); ?>" class="ezd-view-all-link">
+		<a href="<?php echo esc_url( admin_url( 'admin.php?page=ezd-analytics&more_state=analytics-views' ) ); ?>" class="ezd-view-all-link">
 			<?php esc_html_e( 'View All', 'eazydocs' ); ?>
 			<span class="dashicons dashicons-arrow-right-alt"></span>
 		</a>
@@ -25,8 +25,8 @@
 			$rank = 1;
 			while ( $top_products->have_posts() ) :
 				$top_products->the_post();
-				$views = get_post_meta( get_the_ID(), 'post_views_count', true );
-				$views_display = $views >= 1000 ? round( $views / 1000, 1 ) . 'k' : $views;
+				$views         = (int) get_post_meta( get_the_ID(), 'post_views_count', true );
+				$views_display = ezd_format_number( $views );
 				?>
 				<li class="ezd-activity-item">
 					<div class="ezd-activity-icon-wrapper ezd-icon-bg-blue">
@@ -39,8 +39,11 @@
 						<p class="ezd-activity-time">
 							<span class="dashicons dashicons-visibility ezd-state-view-icon"></span>
 							<?php
-							echo esc_html( $views_display );
-							esc_html_e( ' views', 'eazydocs' );
+							printf(
+								/* translators: %s: formatted view count, e.g. "1.2k" */
+								esc_html__( '%s views', 'eazydocs' ),
+								esc_html( $views_display )
+							);
 							?>
 						</p>
 					</div>
@@ -62,11 +65,3 @@
 		?>
 	</ul>
 </div>
-
-<style>
-	.ezd-rank-number {
-		font-size: 14px;
-		font-weight: 700;
-		color: inherit;
-	}
-</style>

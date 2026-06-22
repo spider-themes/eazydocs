@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div id="step-2" class="tab-pane ezd-settings-step" role="tabpanel" style="display:none">
 	<div class="ezd-step-header">
-		<h2><?php esc_html_e( 'Basic Configuration', 'eazydocs' ); ?></h2>
+		<h2><?php esc_html_e( 'Basic Setup', 'eazydocs' ); ?></h2>
 		<p class="ezd-step-description"><?php esc_html_e( 'Configure the essential settings for your documentation. Don\'t worry, you can change these later.', 'eazydocs' ); ?></p>
 	</div>
 
@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="archive-page-selection-wrap">
 					<select name="docs_archive_page" id="docs_archive_page" class="ezd-select">
 						<option value=""><?php esc_html_e( '— Select a page —', 'eazydocs' ); ?></option>
+						<option value="create_new"><?php esc_html_e( '✚ Create a new docs page automatically', 'eazydocs' ); ?></option>
 						<?php
 						$pages = get_pages();
 						foreach ( $pages as $page ) {
@@ -41,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</select>
 					<span class="ezd-setting-hint">
 						<span class="dashicons dashicons-info"></span>
-						<?php esc_html_e( 'Use [eazydocs] shortcode, Gutenberg blocks, or Elementor widgets on this page.', 'eazydocs' ); ?>
+						<?php esc_html_e( 'Pick an existing page, or let EazyDocs create one for you with the [eazydocs] shortcode already added.', 'eazydocs' ); ?>
 					</span>
 				</div>
 			</div>
@@ -82,10 +83,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="ezd-setting-body">
 				<div class="root-slug-wrap">
 					<div class="ezd-slug-options">
-						<label for="post-name" class="ezd-slug-option <?php echo 'post-name' === $slugType ? 'active' : ''; ?>">
-							<input type="radio" id="post-name" name="slug" value="post-name" <?php checked( $slugType, 'post-name' ); ?>>
+						<?php $is_slug_locked = ! ezd_is_premium(); ?>
+						<label for="post-name" class="ezd-slug-option <?php echo 'post-name' === $slugType ? 'active' : ''; ?> <?php echo $is_slug_locked ? 'is-locked' : ''; ?>">
+							<input type="radio" id="post-name" name="slug" value="post-name" <?php checked( $slugType, 'post-name' ); ?> <?php disabled( $is_slug_locked ); ?>>
 							<span class="ezd-option-label">
-								<span class="ezd-option-title"><?php esc_html_e( 'Default Slug', 'eazydocs' ); ?></span>
+								<span class="ezd-option-title">
+									<?php esc_html_e( 'Default Slug', 'eazydocs' ); ?>
+									<?php if ( $is_slug_locked ) : ?>
+										<span class="ezd-option-pro"><span class="dashicons dashicons-star-filled"></span><?php esc_html_e( 'Pro', 'eazydocs' ); ?></span>
+									<?php endif; ?>
+								</span>
 								<span class="ezd-option-example"><?php echo esc_html( home_url( '/docs/your-doc-title/' ) ); ?></span>
 							</span>
 						</label>

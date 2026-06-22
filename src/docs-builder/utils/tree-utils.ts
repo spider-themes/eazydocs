@@ -64,6 +64,33 @@ export function serializeTree( items: DocChild[] ): SerializedItem[] {
 	} ) );
 }
 
+/**
+ * Prune a doc tree to nodes that match a predicate at any depth.
+ *
+ * A node is kept when it matches the predicate itself OR has a kept
+ * descendant, so ancestors of a match remain visible. This powers
+ * full-depth search/filtering across nested docs.
+ *
+ * @param {DocChild[]}                    nodes     - The tree to filter.
+ * @param {(node: DocChild) => boolean}   predicate - Match test for a node.
+ * @return {DocChild[]} A new pruned tree (matches preserved with their ancestors).
+ */
+export function filterDocTree( nodes: DocChild[], predicate: ( node: DocChild ) => boolean ): DocChild[] {
+	const result: DocChild[] = [];
+
+	for ( const node of nodes ) {
+		const filteredChildren = node.children && node.children.length > 0
+			? filterDocTree( node.children, predicate )
+			: [];
+
+		if ( predicate( node ) || filteredChildren.length > 0 ) {
+			result.push( { ...node, children: filteredChildren } );
+		}
+	}
+
+	return result;
+}
+
 export type FlatDocChild = DocChild & { parentId: number; depth: number; };
 
 /**

@@ -1,3 +1,22 @@
+<?php
+/**
+ * Performance Overview Widget
+ *
+ * Renders three honest, per-day series (Views, Searches, Failed Searches)
+ * for the last 7 or 30 days. Both ranges are precomputed (cached) in
+ * ezd_get_dashboard_data() so switching tabs needs no extra queries and the
+ * initial render always matches the active tab.
+ *
+ * @package EazyDocs
+ *
+ * @var array $ezd_dashboard Shared dashboard data payload.
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+$ezd_week  = $ezd_dashboard['week'] ?? [ 'labels' => [], 'views' => [], 'searches' => [], 'failed' => [] ];
+$ezd_month = $ezd_dashboard['month'] ?? [ 'labels' => [], 'views' => [], 'searches' => [], 'failed' => [] ];
+?>
 <div class="ezd-card ezd-grid-col-lg-2">
 	<div class="ezd-card-header">
 		<h2 class="ezd-card-title">
@@ -5,14 +24,14 @@
 			<?php esc_html_e( 'Performance Overview', 'eazydocs' ); ?>
 		</h2>
 		<div class="ezd-stat-filter-container">
-			<ul>
-				<li class="is-active" role="button" tabindex="0" data-filter="weekly" onclick="OverviewWeekly()" onkeydown="if(event.key === 'Enter' || event.key === ' ') { this.click(); event.preventDefault(); }">
+			<div class="ezd-stat-filter" role="tablist" aria-label="<?php esc_attr_e( 'Performance time range', 'eazydocs' ); ?>">
+				<button type="button" class="is-active" role="tab" aria-selected="true" data-range="week">
 					<?php esc_html_e( 'This Week', 'eazydocs' ); ?>
-				</li>
-				<li role="button" tabindex="0" data-filter=".lastmonth" onclick="OverviewLastmonth()" onkeydown="if(event.key === 'Enter' || event.key === ' ') { this.click(); event.preventDefault(); }">
-					<?php esc_html_e( 'Last Month', 'eazydocs' ); ?>
-				</li>
-			</ul>
+				</button>
+				<button type="button" role="tab" aria-selected="false" data-range="month">
+					<?php esc_html_e( 'Last 30 Days', 'eazydocs' ); ?>
+				</button>
+			</div>
 		</div>
 	</div>
 
@@ -22,246 +41,110 @@
 </div>
 
 <script>
-	// Fetch apexchartjs area chart in #OvervIewChart.
-	var options = {
-		chart: {
-			height: 320,
-			type: 'area',
-			fontFamily: 'inherit',
-			toolbar: {
-				show: false
+	( function () {
+		// Precomputed, correctly bucketed daily series for both ranges.
+		var ezdOverviewData = {
+			week: {
+				labels: <?php echo wp_json_encode( $ezd_week['labels'] ); ?>,
+				views: <?php echo wp_json_encode( $ezd_week['views'] ); ?>,
+				searches: <?php echo wp_json_encode( $ezd_week['searches'] ); ?>,
+				failed: <?php echo wp_json_encode( $ezd_week['failed'] ); ?>
 			},
-			zoom: {
-				enabled: false
-			},
-			animations: {
-				enabled: true,
-				easing: 'easeinout',
-				speed: 800
+			month: {
+				labels: <?php echo wp_json_encode( $ezd_month['labels'] ); ?>,
+				views: <?php echo wp_json_encode( $ezd_month['views'] ); ?>,
+				searches: <?php echo wp_json_encode( $ezd_month['searches'] ); ?>,
+				failed: <?php echo wp_json_encode( $ezd_month['failed'] ); ?>
 			}
-		},
-		colors: ['#3b82f6', '#10b981', '#f59e0b'],
-		dataLabels: {
-			enabled: false
-		},
-		series: [
-			{
-				name: "<?php esc_html_e( 'Views', 'eazydocs' ); ?>",
-				data: <?php echo wp_json_encode( $dataCount ); ?>
-			},
-			{
-				name: "<?php esc_html_e( 'Feedback', 'eazydocs' ); ?>",
-				data: <?php echo wp_json_encode( array_map( function( $l, $d ) { return $l + $d; }, $Liked, $Disliked ) ); ?>
-			},
-			{
-				name: "<?php esc_html_e( 'Searches', 'eazydocs' ); ?>",
-				data: <?php echo wp_json_encode( $searchCount ); ?>
-			}
-		],
-		fill: {
-			type: "gradient",
-			gradient: {
-				shadeIntensity: 1,
-				opacityFrom: 0.4,
-				opacityTo: 0.05,
-				stops: [0, 100]
-			}
-		},
-		stroke: {
-			curve: 'smooth',
-			width: 3
-		},
-		xaxis: {
-			categories: <?php echo wp_json_encode( $labels ); ?>,
-			axisBorder: {
-				show: false
-			},
-			axisTicks: {
-				show: false
-			},
-			labels: {
-				style: {
-					colors: '#64748b',
-					fontSize: '11px'
-				}
-			}
-		},
-		yaxis: {
-			labels: {
-				style: {
-					colors: '#64748b',
-					fontSize: '11px'
-				}
-			}
-		},
-		grid: {
-			borderColor: '#f1f5f9',
-			strokeDashArray: 4,
-			xaxis: {
-				lines: {
-					show: false
-				}
-			}
-		},
-		legend: {
-			position: 'top',
-			horizontalAlign: 'right',
-			fontSize: '13px',
-			fontWeight: 500,
-			markers: {
-				radius: 12,
-				width: 10,
-				height: 10
-			},
-			itemMargin: {
-				horizontal: 12
-			}
-		},
-		tooltip: {
-			theme: 'light',
-			x: {
-				show: true
-			},
-			y: {
-				formatter: function(val) {
-					return val + '';
-				}
-			}
-		},
-		markers: {
-			size: 0,
-			hover: {
-				size: 6
-			}
-		}
-	};
+		};
 
+		var seriesNames = {
+			views: '<?php echo esc_js( __( 'Views', 'eazydocs' ) ); ?>',
+			searches: '<?php echo esc_js( __( 'Searches', 'eazydocs' ) ); ?>',
+			failed: '<?php echo esc_js( __( 'Failed Searches', 'eazydocs' ) ); ?>'
+		};
 
-	var Overviewchart = new ApexCharts(document.querySelector("#OvervIewChart"), options);
-	Overviewchart.render();
-
-	// Count Overviewchart in positive-feedback.
-	var positive_feedback = document.querySelector(".positive-feedback");
-		positive_feedback = <?php echo esc_js( $total_positive_feedback ); ?>
-
-	// Count and sum negative-feedback of Disliked.
-	var negative_feedback = document.querySelector(".negative-feedback");
-		negative_feedback = <?php echo esc_js( $total_negative_feedback ); ?>
-
-	// Count and sum total-views of dataCount.
-	var failed_searches = <?php echo esc_js( $total_failed_search ); ?>
-
-	// Count and sum total-search of total_search.
-	var total_search = document.querySelector(".total-search");
-		total_search = <?php echo esc_js( $total_search ); ?>
-
-	// .ezd-docs-checkbox each input[type=checkbox] check then alert.
-	var ezd_docs_checkbox = document.querySelectorAll(".chartoverview input[type=checkbox]");
-	ezd_docs_checkbox.forEach(function (ezd_docs_checkbox) {
-		ezd_docs_checkbox.addEventListener("change", function () {
-			if (this.checked) {
-				Overviewchart.showSeries(this.value);
-			} else {
-				Overviewchart.hideSeries(this.value);
-			}
-		});
-	});
-
-	// Tab switching for filter.
-	document.querySelectorAll('.ezd-stat-filter-container li').forEach(function(tab) {
-		tab.addEventListener('click', function() {
-			document.querySelectorAll('.ezd-stat-filter-container li').forEach(function(t) {
-				t.classList.remove('is-active');
-			});
-			this.classList.add('is-active');
-		});
-	});
-
-	function OverviewWeekly() {
-		// Update the apexchart in liked and disliked OverviewTabs.
-		Overviewchart.updateOptions({
-			xaxis: {
-				categories: <?php echo wp_json_encode( array_slice( $labels, 0, 7 ) ); ?>,
-			},
-			series: [
-				{
-					name: '<?php esc_html_e( 'Views', 'eazydocs' ); ?>',
-					data: <?php echo wp_json_encode( $dataCount ); ?>
-				},
-				{
-					name: '<?php esc_html_e( 'Feedback', 'eazydocs' ); ?>',
-					data: <?php echo wp_json_encode( $Liked ); ?>
-				},
-				{
-					name: '<?php esc_html_e( 'Searches', 'eazydocs' ); ?>',
-					data: <?php echo wp_json_encode( array_reverse( $searchCount ) ); ?>
-				}
-			]
-		});
-	}
-
-	function OverviewLastmonth() {
-		<?php
-		global $wpdb;
-		$date_range = strtotime( '-29 day' );
-
-		// Get views from wp eazy docs views table and post type docs and sum count.
-		$posts = $wpdb->get_results( "SELECT post_id, SUM(count) AS totalcount, created_at FROM {$wpdb->prefix}eazydocs_view_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY post_id" );
-
-		// Get data from wp_eazydocs_search_log base on $date_range with prefix.
-		$search_keyword = $wpdb->get_results( "SELECT count, not_found_count FROM {$wpdb->prefix}eazydocs_search_log WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)" );
-		$labels              = array();
-		$Liked               = array();
-		$Disliked            = array();
-		$searchCount         = array();
-		$searchCountNotFound = array();
-
-		$m  = gmdate( 'm' );
-		$de = gmdate( 'd' );
-		$y  = gmdate( 'Y' );
-
-		for ( $i = 0; $i <= 29; $i++ ) {
-			$labels[]              = gmdate( 'd M, Y', mktime( 0, 0, 0, $m, ( $de - $i ), $y ) );
-			$Liked[]               = 0;
-			$Disliked[]            = 0;
-			$searchCount[]         = 0;
-			$searchCountNotFound[] = 0;
+		function buildSeries( range ) {
+			var d = ezdOverviewData[ range ];
+			return [
+				{ name: seriesNames.views, data: d.views },
+				{ name: seriesNames.searches, data: d.searches },
+				{ name: seriesNames.failed, data: d.failed }
+			];
 		}
 
-		// Pre-fetch metadata for all posts
-		$post_ids = wp_list_pluck( $posts, 'post_id' );
-		ezd_update_post_meta_cache( $post_ids );
-
-		foreach ( $posts as $key => $item ) {
-			$dates = gmdate( 'd M, Y', strtotime( $item->created_at ) );
-			foreach ( $labels as $datekey => $weekdays ) {
-				if ( $weekdays === $dates ) {
-					$Liked[ $datekey ]    = $Liked[ $datekey ] + array_sum( get_post_meta( $item->post_id, 'positive', false ) );
-					$Disliked[ $datekey ] = $Disliked[ $datekey ] + array_sum( get_post_meta( $item->post_id, 'negative', false ) );
-
-					$searchCount[ $datekey ]         = array_sum( array_column( $search_keyword, 'count' ) );
-					$searchCountNotFound[ $datekey ] = array_sum( array_column( $search_keyword, 'not_found_count' ) );
-				}
-			}
-		}
-		?>
-
-		Overviewchart.updateOptions({
+		var options = {
+			chart: {
+				height: 320,
+				type: 'area',
+				fontFamily: 'inherit',
+				toolbar: { show: false },
+				zoom: { enabled: false },
+				animations: { enabled: true, easing: 'easeinout', speed: 800 }
+			},
+			colors: [ '#3b82f6', '#6366f1', '#ef4444' ],
+			dataLabels: { enabled: false },
+			series: buildSeries( 'week' ),
+			fill: {
+				type: 'gradient',
+				gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [ 0, 100 ] }
+			},
+			stroke: { curve: 'smooth', width: 3 },
 			xaxis: {
-				categories: <?php echo wp_json_encode( $labels ); ?>,
+				categories: ezdOverviewData.week.labels,
+				axisBorder: { show: false },
+				axisTicks: { show: false },
+				labels: { style: { colors: '#64748b', fontSize: '11px' } }
 			},
-			series: [{
-				name: '<?php esc_html_e( 'Views', 'eazydocs' ); ?>',
-				data: <?php echo wp_json_encode( $monthlyViews ); ?>
+			yaxis: {
+				labels: {
+					style: { colors: '#64748b', fontSize: '11px' },
+					formatter: function ( val ) { return Math.round( val ); }
+				}
 			},
-			{
-				name: '<?php esc_html_e( 'Feedback', 'eazydocs' ); ?>',
-				data: <?php echo wp_json_encode( $Liked ); ?>
+			grid: {
+				borderColor: '#f1f5f9',
+				strokeDashArray: 4,
+				xaxis: { lines: { show: false } }
 			},
-			{
-				name: '<?php esc_html_e( 'Searches', 'eazydocs' ); ?>',
-				data: <?php echo wp_json_encode( $searchCount ); ?>
-			}],
-		});
-	}
+			legend: {
+				position: 'top',
+				horizontalAlign: 'right',
+				fontSize: '13px',
+				fontWeight: 500,
+				markers: { radius: 12, width: 10, height: 10 },
+				itemMargin: { horizontal: 12 }
+			},
+			tooltip: {
+				theme: 'light',
+				x: { show: true },
+				y: { formatter: function ( val ) { return val; } }
+			},
+			markers: { size: 0, hover: { size: 6 } },
+			noData: { text: '<?php echo esc_js( __( 'No activity recorded yet.', 'eazydocs' ) ); ?>' }
+		};
+
+		var Overviewchart = new ApexCharts( document.querySelector( '#OvervIewChart' ), options );
+		Overviewchart.render();
+
+		// Accessible tab switching for the time-range filter.
+		var tabs = document.querySelectorAll( '.ezd-stat-filter [data-range]' );
+		tabs.forEach( function ( tab ) {
+			tab.addEventListener( 'click', function () {
+				var range = this.getAttribute( 'data-range' );
+
+				tabs.forEach( function ( t ) {
+					t.classList.remove( 'is-active' );
+					t.setAttribute( 'aria-selected', 'false' );
+				} );
+				this.classList.add( 'is-active' );
+				this.setAttribute( 'aria-selected', 'true' );
+
+				Overviewchart.updateOptions( {
+					xaxis: { categories: ezdOverviewData[ range ].labels }
+				} );
+				Overviewchart.updateSeries( buildSeries( range ) );
+			} );
+		} );
+	}() );
 </script>

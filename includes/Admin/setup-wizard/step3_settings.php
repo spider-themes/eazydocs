@@ -13,9 +13,62 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="ezd-step-header">
 		<h2><?php esc_html_e( 'Choose Your Layout', 'eazydocs' ); ?></h2>
 		<p class="ezd-step-description"><?php esc_html_e( 'Select how your documentation pages will look. Pick a layout that suits your content best.', 'eazydocs' ); ?></p>
+		<button type="button" class="ezd-restore-defaults" title="<?php esc_attr_e( 'Reset layout, width and theme to the recommended defaults', 'eazydocs' ); ?>">
+			<span class="dashicons dashicons-image-rotate"></span>
+			<?php esc_html_e( 'Restore defaults', 'eazydocs' ); ?>
+		</button>
 	</div>
 
 	<div class="ezd-layout-content">
+		<!-- Live Layout Preview -->
+		<div class="ezd-layout-live-preview" data-layout="<?php echo esc_attr( $docs_single_layout ); ?>" data-width="<?php echo esc_attr( $docs_page_width ); ?>" data-theme="light" style="--ezd-preview-brand: <?php echo esc_attr( $brand_color ? $brand_color : '#007FFF' ); ?>">
+			<!-- Preview controls: brand colour + light/dark appearance -->
+			<div class="ezd-preview-controls">
+				<label class="ezd-preview-brand-control">
+					<span class="ezd-preview-brand-swatch"></span>
+					<span class="ezd-preview-brand-text"><?php esc_html_e( 'Brand color', 'eazydocs' ); ?></span>
+					<input type="color" class="ezd-preview-brand-input" value="<?php echo esc_attr( $brand_color ? $brand_color : '#007FFF' ); ?>" aria-label="<?php esc_attr_e( 'Brand color', 'eazydocs' ); ?>">
+				</label>
+				<div class="ezd-preview-mode-toggle" role="group" aria-label="<?php esc_attr_e( 'Preview appearance', 'eazydocs' ); ?>">
+					<button type="button" class="ezd-mode-btn active" data-mode="light" aria-pressed="true">
+						<span class="dashicons dashicons-sticky"></span>
+						<?php esc_html_e( 'Light', 'eazydocs' ); ?>
+					</button>
+					<button type="button" class="ezd-mode-btn" data-mode="dark" aria-pressed="false">
+						<span class="dashicons dashicons-admin-appearance"></span>
+						<?php esc_html_e( 'Dark', 'eazydocs' ); ?>
+					</button>
+				</div>
+			</div>
+			<div class="ezd-preview-browser">
+				<div class="ezd-preview-bar">
+					<span></span><span></span><span></span>
+				</div>
+				<div class="ezd-preview-viewport">
+					<div class="ezd-preview-page">
+						<div class="ezd-preview-topbar"></div>
+						<div class="ezd-preview-body">
+							<aside class="ezd-preview-sidebar ezd-preview-sidebar-left" aria-hidden="true">
+								<span></span><span></span><span></span><span></span><span></span>
+							</aside>
+							<main class="ezd-preview-main" aria-hidden="true">
+								<span class="ezd-preview-title"></span>
+								<span></span><span></span><span></span><span class="short"></span>
+								<span></span><span></span><span class="short"></span>
+							</main>
+							<aside class="ezd-preview-sidebar ezd-preview-sidebar-right" aria-hidden="true">
+								<span></span><span></span><span></span>
+							</aside>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="ezd-preview-caption">
+				<span class="dashicons dashicons-visibility"></span>
+				<?php esc_html_e( 'Live preview — updates instantly as you change the options', 'eazydocs' ); ?>
+			</p>
+		</div>
+
 		<!-- Page Layout Selection -->
 		<div class="ezd-setting-card ezd-layout-card">
 			<div class="ezd-setting-header">
@@ -34,7 +87,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<div class="ezd-layout-preview">
 							<img src="<?php echo esc_url( EZD_IMG . 'customizer/both_sidebar.jpg' ); ?>" alt="<?php esc_attr_e( 'Both Sidebars', 'eazydocs' ); ?>" />
 						</div>
-						<span class="ezd-layout-name"><?php esc_html_e( 'Both Sidebars', 'eazydocs' ); ?></span>
+						<span class="ezd-layout-name">
+							<?php esc_html_e( 'Both Sidebars', 'eazydocs' ); ?>
+							<span class="ezd-layout-recommended"><?php esc_html_e( 'Recommended', 'eazydocs' ); ?></span>
+						</span>
 						<span class="ezd-layout-desc"><?php esc_html_e( 'Left: Navigation | Right: TOC', 'eazydocs' ); ?></span>
 						<span class="ezd-check-icon">
 							<span class="dashicons dashicons-yes"></span>
@@ -113,6 +169,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="ezd-toggle-switch">
 					<input type="checkbox" id="live-customizer" name="customizer_visibility" value="1" <?php checked( $customizer_visibility, '1' ); ?>>
 					<label for="live-customizer" class="ezd-toggle-label"></label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Dark Mode -->
+		<div class="ezd-setting-card ezd-toggle-card">
+			<div class="ezd-setting-header">
+				<div class="ezd-setting-icon">
+					<span class="dashicons dashicons-admin-appearance"></span>
+				</div>
+				<div class="ezd-setting-title">
+					<h3><?php esc_html_e( 'Dark Mode Switcher', 'eazydocs' ); ?></h3>
+					<p><?php esc_html_e( 'Let visitors switch between light and dark themes. Use the toggle above to preview both.', 'eazydocs' ); ?></p>
+				</div>
+				<div class="ezd-toggle-switch">
+					<input type="checkbox" id="dark-mode-switcher" name="is_dark_switcher" value="1" <?php checked( $is_dark_switcher, '1' ); ?>>
+					<label for="dark-mode-switcher" class="ezd-toggle-label"></label>
 				</div>
 			</div>
 		</div>

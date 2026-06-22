@@ -31,7 +31,8 @@ import { useCreateSection, useReorderDocs } from '../hooks/useBuilderData';
 import { useSearch } from '../hooks/useSearch';
 import { useToast } from '../hooks/useToast';
 import { useRoute } from '../../hooks/use-route';
-import { serializeTree, findNodePosition, findNodeById, isDescendant, removeNode, insertNode } from '../utils/tree-utils';
+import { serializeTree, findNodePosition, findNodeById, isDescendant, removeNode, insertNode, filterDocTree } from '../utils/tree-utils';
+import { promptForDocTitle, showCreateSuccess, showCreateError } from '../utils/prompt';
 import DropIndicatorLine from './DropIndicatorLine';
 import type { DropIndicator } from './DropIndicatorLine';
 import type { ParentDoc, DocChild, Capabilities, BuilderUrls, RoleVisibilityConfig } from '../types';
@@ -59,11 +60,16 @@ interface FilterItem {
 const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isActive, capabilities, isPremium, urls, roleVisibility } ) => {
 	const { query, updateQuery } = useRoute();
 	const activeFilter = useMemo( () => query.filter || 'all', [ query.filter ] );
-	const [ expandState, setExpandState ] = useState< 'collapsed' | 'expanded' >( 'collapsed' );
 	const createSection = useCreateSection();
 	const reorderDocs = useReorderDocs();
-	const { searchValue } = useSearch();
+	const { searchValue, setSearchValue } = useSearch();
 	const { showToast } = useToast();
+
+	// Whether a search term is currently active.
+	const isSearching = searchValue.trim().length > 0;
+
+	// Whether any non-default filter/search is narrowing the list.
+	const isFiltering = isSearching || activeFilter !== 'all';
 
 	// localStorage key scoped to this parent doc.
 	const storageKey = `ezd-collapsed-${ parent.id }`;
@@ -165,30 +171,33 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 	}, [ updateQuery ] );
 
 	/**
-	 * Filter items by status and search value.
-	 * Currently operates on the root nodes.
+	 * Filter the full doc tree by status and search value.
+	 *
+	 * Operates at every depth: a node is kept when it matches the active
+	 * status filter AND the search term, or when one of its descendants
+	 * does (so the ancestor stays visible). This lets search find deeply
+	 * nested docs instead of only root-level items.
 	 */
 	const getFilteredChildren = useCallback( (): DocChild[] => {
-		let filtered = displayChildren;
-
-		// Filter by status.
-		if ( activeFilter !== 'all' ) {
-			filtered = filtered.filter( ( child ) => {
-				const status = child.hasPassword ? 'protected' : child.status;
-				return status === activeFilter.replace( '.', '' );
-			} );
+		if ( activeFilter === 'all' && ! isSearching ) {
+			return displayChildren;
 		}
 
-		// Filter by search value.
-		if ( searchValue ) {
-			const lower = searchValue.toLowerCase();
-			filtered = filtered.filter( ( child ) =>
-				child.title.toLowerCase().indexOf( lower ) > -1
-			);
-		}
+		const lower = searchValue.trim().toLowerCase();
+		const statusKey = activeFilter.replace( '.', '' );
 
-		return filtered;
-	}, [ displayChildren, activeFilter, searchValue ] );
+		return filterDocTree( displayChildren, ( node ) => {
+			const statusMatch =
+				activeFilter === 'all' ||
+				( node.hasPassword ? 'protected' : node.status ) === statusKey;
+			const searchMatch = ! lower || node.title.toLowerCase().indexOf( lower ) > -1;
+			return statusMatch && searchMatch;
+		} );
+	}, [ displayChildren, activeFilter, searchValue, isSearching ] );
+
+	// Derive the toggle state from the actual collapsed set so the button
+	// label always reflects reality (even when restored from localStorage).
+	const allExpanded = useMemo( () => collapsedIds.size === 0, [ collapsedIds ] );
 
 	/**
 	 * Handle Expand/Collapse All toggle.
@@ -196,12 +205,11 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 	const handleExpandToggle = ( e: React.MouseEvent< HTMLButtonElement > ): void => {
 		e.preventDefault();
 
-		if ( expandState === 'collapsed' ) {
+		if ( ! allExpanded ) {
 			// Expand all: clear the collapsed set.
 			setCollapsedIds( new Set() );
-			setExpandState( 'expanded' );
 		} else {
-			// Collapse all: add all items with children.
+			// Collapse all: add every item that can have children.
 			const ids = new Set< number >();
 			const collectIds = ( items: DocChild[] ) => {
 				items.forEach( ( item ) => {
@@ -211,7 +219,6 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 			};
 			collectIds( displayChildren );
 			setCollapsedIds( ids );
-			setExpandState( 'collapsed' );
 		}
 	};
 
@@ -390,78 +397,51 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 		);
 	}, [ displayChildren, dropIndicator, reorderDocs, showToast ] );
 
-	const handleAddSection = useCallback( ( e: React.MouseEvent< HTMLButtonElement > ): void => {
+	const handleAddSection = useCallback( async ( e: React.MouseEvent< HTMLButtonElement > ): Promise< void > => {
 		e.preventDefault();
 
-		if ( typeof window.Swal !== 'undefined' ) {
-			window.Swal.fire( {
-				title: eazydocs_local_object.create_prompt_title,
-				input: 'text',
-				showDenyButton: true,
-				returnInputValueOnDeny: true,
-				confirmButtonText: __( 'Publish', 'eazydocs' ),
-				denyButtonText: __( 'Save as Draft', 'eazydocs' ),
-				showCancelButton: true,
-				inputAttributes: {
-					name: 'section',
-				},
-			} ).then( ( result: any ) => {
-				if ( ! result.isConfirmed && ! result.isDenied ) {
-					return;
-				}
-
-				const value = result.value as string;
-					if ( ! value ) {
-						if ( typeof window.Swal !== 'undefined' ) {
-							window.Swal.fire( {
-								title: __( 'Error', 'eazydocs' ),
-								text: __( 'Please enter a title.', 'eazydocs' ),
-								icon: 'error',
-							} );
-						}
-						return;
-					}
-
-				const selectedStatus = result.isDenied ? 'draft' : 'publish';
-
-				createSection.mutate(
-					{
-						parentId: parent.id,
-						title: value,
-						nonce: parent.sectionNonce,
-						postStatus: selectedStatus,
-					},
-					{
-						onSuccess: () => {
-							if ( typeof window.Swal !== 'undefined' ) {
-								window.Swal.fire( {
-									title: __( 'Success!', 'eazydocs' ),
-									text: result.isDenied
-										? __( 'Section saved as draft.', 'eazydocs' )
-										: __( 'Section created successfully.', 'eazydocs' ),
-									icon: 'success',
-									timer: 1500,
-									showConfirmButton: false,
-								} );
-							}
-						},
-						onError: () => {
-							if ( typeof window.Swal !== 'undefined' ) {
-								window.Swal.fire( {
-									title: __( 'Error', 'eazydocs' ),
-									text: __( 'Failed to create section.', 'eazydocs' ),
-									icon: 'error',
-								} );
-							}
-						},
-					}
-				);
-			} );
+		// Guard against double submissions while a create is in flight.
+		if ( createSection.isPending ) {
+			return;
 		}
+
+		const prompt = await promptForDocTitle();
+		if ( ! prompt ) {
+			return;
+		}
+
+		createSection.mutate(
+			{
+				parentId: parent.id,
+				title: prompt.title,
+				nonce: parent.sectionNonce,
+				postStatus: prompt.status,
+			},
+			{
+				onSuccess: () => {
+					showCreateSuccess(
+						'draft' === prompt.status
+							? __( 'Section saved as draft.', 'eazydocs' )
+							: __( 'Section created successfully.', 'eazydocs' )
+					);
+				},
+				onError: () => {
+					showCreateError( __( 'Failed to create section.', 'eazydocs' ) );
+				},
+			}
+		);
 	}, [ createSection, parent.id, parent.sectionNonce ] );
 
+	/**
+	 * Clear the active search term and status filter at once.
+	 */
+	const handleClearFilters = useCallback( (): void => {
+		setSearchValue( '' );
+		updateQuery( { filter: '' } );
+	}, [ setSearchValue, updateQuery ] );
+
 	const filters: FilterItem[] = useMemo( () => [
-		{ key: 'all', label: __( 'All articles', 'eazydocs' ), icon: 'media-document', className: 'easydocs-btn-black-light' },
+		{ key: 'all', label: __( 'All Docs', 'eazydocs' ), icon: 'media-document', className: 'easydocs-btn-black-light' },
 		{ key: '.publish', label: __( 'Public', 'eazydocs' ), icon: 'admin-site-alt3', className: 'easydocs-btn-green-light' },
 		{ key: '.private', label: __( 'Private', 'eazydocs' ), icon: 'privacy', className: 'easydocs-btn-blue-light' },
 		{ key: '.protected', label: __( 'Protected', 'eazydocs' ), icon: 'lock', className: 'easydocs-btn-orange-light' },
@@ -471,6 +451,15 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 	// Filter root items
 	const rootItems = useMemo( () => getFilteredChildren(), [ getFilteredChildren ] );
 	const sortableIds = useMemo( () => rootItems.map( ( item ) => item.id ), [ rootItems ] );
+
+	// While searching, expand every branch so matches are never hidden behind
+	// a collapsed ancestor. The user's manual collapsed state is preserved and
+	// restored automatically once the search is cleared.
+	const emptyCollapsed = useMemo( () => new Set< number >(), [] );
+	const effectiveCollapsedIds = isSearching ? emptyCollapsed : collapsedIds;
+
+	// The active doc has no sections at all (as opposed to none matching a filter).
+	const sectionIsEmpty = displayChildren.length === 0;
 
 	return (
 		<div
@@ -507,20 +496,20 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 					<button
 						type="button"
 						className="ezd-toggle-expand-btn"
-						data-state={ expandState }
-						title={ expandState === 'collapsed'
-							? __( 'Expand all sections', 'eazydocs' )
-							: __( 'Collapse all sections', 'eazydocs' ) }
+						data-state={ allExpanded ? 'expanded' : 'collapsed' }
+						title={ allExpanded
+							? __( 'Collapse all sections', 'eazydocs' )
+							: __( 'Expand all sections', 'eazydocs' ) }
 						onClick={ handleExpandToggle }
 					>
 						<span
-							className={ `dashicons ${ expandState === 'collapsed' ? 'dashicons-arrow-down-alt2' : 'dashicons-arrow-up-alt2' }` }
+							className={ `dashicons ${ allExpanded ? 'dashicons-arrow-up-alt2' : 'dashicons-arrow-down-alt2' }` }
 							aria-hidden="true"
 						></span>
 						<span className="btn-text">
-							{ expandState === 'collapsed'
-								? __( 'Expand All', 'eazydocs' )
-								: __( 'Collapse All', 'eazydocs' ) }
+							{ allExpanded
+								? __( 'Collapse All', 'eazydocs' )
+								: __( 'Expand All', 'eazydocs' ) }
 						</span>
 					</button>
 				</div>
@@ -556,7 +545,7 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 									capabilities={ capabilities }
 									urls={ urls }
 									roleVisibility={ roleVisibility }
-									collapsedIds={ collapsedIds }
+									collapsedIds={ effectiveCollapsedIds }
 									onToggleCollapse={ handleToggleCollapse }
 									dropIndicator={ dropIndicator }
 									isDragActive={ activeDragItem !== null }
@@ -565,6 +554,36 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 						) ) }
 						{ dropIndicator && dropIndicator.parentId === 0 && dropIndicator.index === rootItems.length && (
 							<DropIndicatorLine />
+						) }
+
+						{ rootItems.length === 0 && isFiltering && (
+							<div className="ezd-builder-empty ezd-builder-empty--no-results">
+								<span className="dashicons dashicons-search ezd-builder-empty__icon" aria-hidden="true"></span>
+								<p className="ezd-builder-empty__title">
+									{ isSearching
+										? __( 'No docs match your search.', 'eazydocs' )
+										: __( 'No docs match this filter.', 'eazydocs' ) }
+								</p>
+								<button
+									type="button"
+									className="ezd-builder-empty__action"
+									onClick={ handleClearFilters }
+								>
+									{ __( 'Clear search & filters', 'eazydocs' ) }
+								</button>
+							</div>
+						) }
+
+						{ sectionIsEmpty && ! isFiltering && (
+							<div className="ezd-builder-empty ezd-builder-empty--no-sections">
+								<span className="dashicons dashicons-portfolio ezd-builder-empty__icon" aria-hidden="true"></span>
+								<p className="ezd-builder-empty__title">
+									{ __( 'This doc has no sections yet.', 'eazydocs' ) }
+								</p>
+								<p className="ezd-builder-empty__desc">
+									{ __( 'Add your first section to start organising articles under this doc.', 'eazydocs' ) }
+								</p>
+							</div>
 						) }
 					</div>
 				</SortableContext>
@@ -590,11 +609,13 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 				<button
 					type="button"
 					className="ezd-add-sub-lesson-btn"
-					aria-label={ __( 'Add sub-lesson', 'eazydocs' ) }
+					aria-label={ __( 'Add section', 'eazydocs' ) }
 					onClick={ handleAddSection }
+					disabled={ createSection.isPending }
+					aria-busy={ createSection.isPending }
 				>
 					<span className="ezd-add-sub-lesson-icon" aria-hidden="true">+</span>
-					{ __( 'Add sub-lesson', 'eazydocs' ) }
+					{ createSection.isPending ? __( 'Adding…', 'eazydocs' ) : __( 'Add Section', 'eazydocs' ) }
 				</button>
 			) }
 		</div>

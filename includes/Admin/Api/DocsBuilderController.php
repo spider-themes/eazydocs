@@ -697,7 +697,7 @@ class Docs_Builder_Controller {
 			),
 			'draft'   => array(
 				'icon' => 'edit-page',
-				'text' => __( 'Drafted Doc', 'eazydocs' ),
+				'text' => __( 'Draft Doc', 'eazydocs' ),
 			),
 		);
 

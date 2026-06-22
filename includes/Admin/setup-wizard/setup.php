@@ -15,6 +15,7 @@ $brand_color           = ezd_get_opt( 'brand_color' );
 $docs_single_layout    = ezd_is_premium() ? ezd_get_opt( 'docs_single_layout' ) : 'both_sidebar';
 $docs_page_width       = ezd_get_opt( 'docs_page_width' );
 $customizer_visibility = ezd_get_opt( 'customizer_visibility' );
+$is_dark_switcher      = ezd_get_opt( 'is_dark_switcher' );
 $docs_archive_page     = ezd_get_opt( 'docs-slug' );
 
 $wizard_steps = array(
@@ -163,13 +164,6 @@ $wizard_steps = array(
 							</a>
 						<?php endif; ?>
 					</div>
-
-					<div class="ezd-finish-actions">
-						<button type="button" id="finish-btn" class="ezd-btn ezd-btn-primary ezd-btn-lg">
-							<span class="dashicons dashicons-yes"></span>
-							<?php esc_html_e( 'Finish & Go to Dashboard', 'eazydocs' ); ?>
-						</button>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -192,6 +186,10 @@ $wizard_steps = array(
 				<button class="sw-btn sw-btn-next ezd-btn ezd-btn-primary">
 					<?php esc_html_e( 'Next', 'eazydocs' ); ?>
 					<span class="dashicons dashicons-arrow-right-alt"></span>
+				</button>
+				<button type="button" id="finish-btn" class="ezd-btn ezd-btn-primary ezd-btn-finish">
+					<span class="dashicons dashicons-yes"></span>
+					<?php esc_html_e( 'Finish & Go to Dashboard', 'eazydocs' ); ?>
 				</button>
 			</div>
 		</div>
@@ -217,7 +215,7 @@ $wizard_steps = array(
 			</li>
 			<li data-step="3">
 				<span class="dashicons dashicons-info"></span>
-				<?php esc_html_e( 'The layout can be changed later in the settings page.', 'eazydocs' ); ?>
+				<?php esc_html_e( 'Use the Light/Dark toggle on the preview to see both appearances. Everything here can be changed later in settings.', 'eazydocs' ); ?>
 			</li>
 			<li data-step="4">
 				<span class="dashicons dashicons-info"></span>

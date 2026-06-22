@@ -37,7 +37,7 @@ if ( $keyword_table_exists && $log_table_exists ) {
 		WHERE l.not_found_count > 0 {$exclude_resolved}
 		GROUP BY k.id, k.keyword
 		ORDER BY total_failed DESC, last_searched DESC
-		LIMIT 20"
+		LIMIT 5"
 	);
 
 	// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared

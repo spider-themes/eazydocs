@@ -135,7 +135,7 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 				</span>
 			</div>
 			<div className="link link-wrapper">
-				{ isPremium && capabilities.canManageOptions && (
+				{ capabilities.canManageOptions && (
 					<span
 						ref={ setActivatorNodeRef }
 						className="dd-handle dd3-handle"
@@ -324,7 +324,8 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 				showCancelButton: true,
 				confirmButtonColor: '#d33',
 				cancelButtonColor: '#3085d6',
-				confirmButtonText: 'Yes, delete it!',
+				confirmButtonText: __( 'Yes, delete it!', 'eazydocs' ),
+				cancelButtonText: __( 'Cancel', 'eazydocs' ),
 			} ).then( ( result: any ) => {
 				if ( result.value ) {
 					deleteDoc.mutate(
@@ -471,7 +472,12 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 						}
 					}
 				>
-					<ol className="easydocs-navbar sortabled dd-list">
+					<ol
+						className="easydocs-navbar sortabled dd-list"
+						role="tablist"
+						aria-orientation="vertical"
+						aria-label={ __( 'Documentation', 'eazydocs' ) }
+					>
 						{ filteredDocs.map( ( doc ) => (
 							<SortableParentItem
 								key={ doc.id }

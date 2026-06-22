@@ -14,6 +14,7 @@ import ProgressBar from './ProgressBar';
 import ProActionsButtons from './ProActionsButtons';
 import { useDeleteDoc, useCreateChild } from '../hooks/useBuilderData';
 import { showProAlert } from '../utils/pro-alert';
+import { promptForDocTitle, showCreateSuccess, showCreateError } from '../utils/prompt';
 import type {
 	DocChild,
 	Capabilities,
@@ -73,7 +74,8 @@ const DocItemContent: React.FC<DocItemContentProps> = ({
 				showCancelButton: true,
 				confirmButtonColor: '#d33',
 				cancelButtonColor: '#3085d6',
-				confirmButtonText: 'Yes, delete it!',
+				confirmButtonText: __('Yes, delete it!', 'eazydocs'),
+				cancelButtonText: __('Cancel', 'eazydocs'),
 			}).then((result: any) => {
 				if (result.value) {
 					deleteDoc.mutate(
@@ -120,88 +122,41 @@ const DocItemContent: React.FC<DocItemContentProps> = ({
 	/**
 	 * Handle add child doc.
 	 */
-	const handleAddChild = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+	const handleAddChild = async (e: React.MouseEvent<HTMLAnchorElement>): Promise<void> => {
 		e.preventDefault();
 		e.stopPropagation();
 
-		if (typeof window.Swal !== 'undefined') {
-			window.Swal.fire({
-				title: eazydocs_local_object.create_prompt_title,
-				input: 'text',
-				showDenyButton: true,
-				returnInputValueOnDeny: true,
-				confirmButtonText: __('Publish', 'eazydocs'),
-				denyButtonText: __('Save as Draft', 'eazydocs'),
-				showCancelButton: true,
-				inputAttributes: {
-					name: 'child_title',
-				},
-			})
-				.then((result: any) => {
-					if (!result.isConfirmed && !result.isDenied) {
-						return;
-					}
-
-					const value = result.value as string;
-					if (!value) {
-						if (typeof window.Swal !== 'undefined') {
-							window.Swal.fire({
-								title: __('Error', 'eazydocs'),
-								text: __('Please enter a title.', 'eazydocs'),
-								icon: 'error',
-							});
-						}
-						return;
-					}
-
-					const selectedStatus = result.isDenied ? 'draft' : 'publish';
-
-					createChild.mutate(
-						{
-							parentId: doc.id,
-							rootParentId,
-							title: value,
-							nonce: doc.childNonce,
-							postStatus: selectedStatus,
-						},
-						{
-							onSuccess: () => {
-								if (typeof window.Swal !== 'undefined') {
-									(window.Swal as any).fire({
-										title: __('Success!', 'eazydocs'),
-										text: result.isDenied
-											? __('Document saved as draft.', 'eazydocs')
-											: __('Document created successfully.', 'eazydocs'),
-										icon: 'success',
-										toast: true,
-										position: 'top-end',
-										timer: 1500,
-										showConfirmButton: false,
-									});
-								}
-							},
-							onError: () => {
-								if (typeof window.Swal !== 'undefined') {
-									window.Swal.fire({
-										title: __('Error', 'eazydocs'),
-										text: __('Failed to create the document.', 'eazydocs'),
-										icon: 'error',
-									});
-								}
-							},
-						}
-					);
-				})
-				.catch(() => {
-					if (typeof window.Swal !== 'undefined') {
-						window.Swal.fire({
-							title: __('Error', 'eazydocs'),
-							text: __('Failed to create the document.', 'eazydocs'),
-							icon: 'error',
-						});
-					}
-				});
+		// Guard against double submissions while a create is in flight.
+		if (createChild.isPending) {
+			return;
 		}
+
+		const prompt = await promptForDocTitle();
+		if (!prompt) {
+			return;
+		}
+
+		createChild.mutate(
+			{
+				parentId: doc.id,
+				rootParentId,
+				title: prompt.title,
+				nonce: doc.childNonce,
+				postStatus: prompt.status,
+			},
+			{
+				onSuccess: () => {
+					showCreateSuccess(
+						'draft' === prompt.status
+							? __('Document saved as draft.', 'eazydocs')
+							: __('Document created successfully.', 'eazydocs')
+					);
+				},
+				onError: () => {
+					showCreateError(__('Failed to create the document.', 'eazydocs'));
+				},
+			}
+		);
 	};
 
 	// Build edit link.

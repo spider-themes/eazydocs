@@ -11,6 +11,7 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { useCreateParentDoc, PARENTS_QUERY_KEY, CHILDREN_QUERY_KEY, COUNTS_QUERY_KEY } from '../hooks/useBuilderData';
+import { promptForDocTitle, showCreateSuccess } from '../utils/prompt';
 import type { BuilderData } from '../types';
 
 declare const eazydocs_local_object: any;
@@ -66,72 +67,37 @@ const EmptyState: React.FC< EmptyStateProps > = ( { data } ) => {
 		},
 	} );
 
-	const handleCreateFirstDoc = ( e: React.MouseEvent< HTMLAnchorElement > ): void => {
+	const handleCreateFirstDoc = async ( e: React.MouseEvent< HTMLAnchorElement > ): Promise< void > => {
 		e.preventDefault();
 
-		if ( typeof window.Swal !== 'undefined' ) {
-			window.Swal.fire( {
-				title: eazydocs_local_object.create_prompt_title,
-				input: 'text',
-				showDenyButton: true,
-				returnInputValueOnDeny: true,
-				confirmButtonText: __( 'Publish', 'eazydocs' ),
-				denyButtonText: __( 'Save as Draft', 'eazydocs' ),
-				showCancelButton: true,
-				inputAttributes: {
-					name: 'new_doc',
-				},
-			} ).then( ( result: any ) => {
-				if ( ! result.isConfirmed && ! result.isDenied ) {
-					return;
-				}
-
-				if ( ! result.value ) {
-					if ( typeof window.Swal !== 'undefined' ) {
-						window.Swal.fire( {
-							title: __( 'Error', 'eazydocs' ),
-							text: __( 'Please enter a title.', 'eazydocs' ),
-							icon: 'error',
-						} );
-					}
-					return;
-				}
-
-				const selectedStatus = result.isDenied ? 'draft' : 'publish';
-
-				createParentDoc.mutate(
-					{
-						title: result.value,
-						nonce: nonces.parentDoc,
-						postStatus: selectedStatus,
-					},
-					{
-						onSuccess: () => {
-							if ( typeof window.Swal !== 'undefined' ) {
-								window.Swal.fire( {
-									title: __( 'Success!', 'eazydocs' ),
-									text: result.isDenied
-										? __( 'Documentation saved as draft.', 'eazydocs' )
-										: __( 'Documentation created successfully.', 'eazydocs' ),
-									icon: 'success',
-									timer: 1500,
-									showConfirmButton: false,
-								} );
-							}
-						},
-						onError: () => {
-							if ( typeof window.Swal !== 'undefined' ) {
-								window.Swal.fire( {
-									title: __( 'Error', 'eazydocs' ),
-									text: __( 'Failed to create documentation.', 'eazydocs' ),
-									icon: 'error',
-								} );
-							}
-						},
-					}
-				);
-			} );
+		if ( createParentDoc.isPending ) {
+			return;
 		}
+
+		const prompt = await promptForDocTitle();
+		if ( ! prompt ) {
+			return;
+		}
+
+		createParentDoc.mutate(
+			{
+				title: prompt.title,
+				nonce: nonces.parentDoc,
+				postStatus: prompt.status,
+			},
+			{
+				onSuccess: () => {
+					showCreateSuccess(
+						'draft' === prompt.status
+							? __( 'Documentation saved as draft.', 'eazydocs' )
+							: __( 'Documentation created successfully.', 'eazydocs' )
+					);
+				},
+				onError: () => {
+					showError( __( 'Failed to create documentation.', 'eazydocs' ) );
+				},
+			}
+		);
 	};
 
 	const handleImportSample = ( e: React.MouseEvent< HTMLButtonElement > ): void => {

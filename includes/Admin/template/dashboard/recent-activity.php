@@ -68,7 +68,8 @@
 			$status       = get_post_status( $post );
 			$activities[] = array(
 				'type'       => 'post',
-				'date'       => (int) get_post_modified_time( 'U', false, $post ),
+				// Use GMT consistently so post and comment timestamps share one clock.
+				'date'       => (int) get_post_modified_time( 'U', true, $post ),
 				'post_id'    => $post->ID,
 				'post_title' => get_the_title( $post ),
 				'edit_link'  => get_edit_post_link( $post->ID ),
@@ -105,7 +106,8 @@
 			<?php
 		else :
 			foreach ( $activities as $act ) :
-				$time_ago = human_time_diff( $act['date'], current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'eazydocs' );
+				/* translators: %s: human-readable time difference, e.g. "2 hours" */
+				$time_ago = sprintf( __( '%s ago', 'eazydocs' ), human_time_diff( $act['date'], time() ) );
 
 				if ( 'comment' === $act['type'] ) :
 					// Comment entry.

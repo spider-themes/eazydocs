@@ -42,4 +42,44 @@
         left: 15px;
         transform: translateY(50%);
     }
+
+    input[type="search"] {
+        // Hide the native clear control – we render our own.
+        &::-webkit-search-cancel-button {
+            display: none;
+        }
+    }
+
+    .easydocs-search-clear {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: #9199a1;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        .dashicons {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+            line-height: 1;
+        }
+
+        &:hover,
+        &:focus {
+            background: #f0f0f5;
+            color: #4c4cf1;
+            outline: none;
+        }
+    }
 }

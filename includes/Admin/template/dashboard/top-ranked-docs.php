@@ -4,7 +4,7 @@
 			<span class="dashicons dashicons-star-filled"></span>
 			<?php esc_html_e( 'Top Ranked Docs', 'eazydocs' ); ?>
 		</h2>
-		<a href="<?php echo esc_url( admin_url( 'admin.php?page=ezd-analytics#analytics-helpful' ) ); ?>" class="ezd-view-all-link">
+		<a href="<?php echo esc_url( admin_url( 'admin.php?page=ezd-analytics&more_state=analytics-feedback' ) ); ?>" class="ezd-view-all-link">
 			<?php esc_html_e( 'View All', 'eazydocs' ); ?>
 			<span class="dashicons dashicons-arrow-right-alt"></span>
 		</a>

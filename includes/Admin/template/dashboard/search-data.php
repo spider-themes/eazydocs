@@ -66,53 +66,6 @@ $is_empty_data = ( 0 === $total_search && 0 === $total_failed_search );
 	<?php endif; ?>
 </div>
 
-<style>
-	.ezd-success-rate {
-		padding: 0.25rem 0.625rem;
-		border-radius: 6px;
-		font-size: 0.75rem;
-		font-weight: 600;
-	}
-	.ezd-rate-good {
-		background: #ecfdf5;
-		color: #10b981;
-	}
-	.ezd-rate-fair {
-		background: #fffbeb;
-		color: #f59e0b;
-	}
-	.ezd-rate-poor {
-		background: #fef2f2;
-		color: #ef4444;
-	}
-	.ezd-search-stats {
-		display: flex;
-		justify-content: center;
-		gap: 1.5rem;
-		padding-top: 1rem;
-		border-top: 1px solid #f1f5f9;
-		margin-top: 0.5rem;
-	}
-	.ezd-search-stat {
-		display: flex;
-		align-items: center;
-		gap: 0.375rem;
-		font-size: 0.75rem;
-	}
-	.ezd-search-stat-dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-	}
-	.ezd-search-stat-label {
-		color: #64748b;
-	}
-	.ezd-search-stat-value {
-		font-weight: 600;
-		color: #1e293b;
-	}
-</style>
-
 <script>
 	var is_empty = <?php echo $is_empty_data ? 'true' : 'false'; ?>;
 

@@ -142,6 +142,67 @@
 	}
 }
 
+// ===== In-tab empty / no-results state =====
+// Shown inside the content panel when a search/filter yields nothing,
+// or when an active doc has no sections yet.
+.ezd-builder-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 8px;
+	padding: 48px 24px;
+	margin: 8px 0;
+	background: #fbfbfd;
+	border: 1px dashed #e2e2ec;
+	border-radius: 12px;
+
+	&__icon {
+		font-size: 40px;
+		width: 40px;
+		height: 40px;
+		line-height: 1;
+		color: #c3c3d4;
+	}
+
+	&__title {
+		margin: 4px 0 0;
+		font-size: 15px;
+		font-weight: 600;
+		color: #3b3b52;
+	}
+
+	&__desc {
+		margin: 0;
+		font-size: 13px;
+		color: #8a8aa0;
+		max-width: 340px;
+		line-height: 1.5;
+	}
+
+	&__action {
+		margin-top: 6px;
+		padding: 8px 18px;
+		font-size: 13px;
+		font-weight: 600;
+		color: #4c4cf1;
+		background: #fff;
+		border: 1px solid #d9d9ec;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+
+		&:hover,
+		&:focus {
+			background: #4c4cf1;
+			border-color: #4c4cf1;
+			color: #fff;
+			outline: none;
+		}
+	}
+}
+
 // ===== Spin Animation (re-used across builder) =====
 .ezd-spin {
 	animation: ezd-spin-rotate 1s linear infinite;

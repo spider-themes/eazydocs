@@ -19,26 +19,31 @@
 				this.initSlugOptions();
 				this.initLayoutOptions();
 				this.initWidthOptions();
+				this.initPreviewControls();
 				this.initSmartWizard();
 				this.initFinishButton();
 				this.initPluginActions();
 				this.initTips();
 				this.updateProgress();
+				this.updateLayoutPreview();
 			},
 
 			/**
 			 * Initialize color picker
 			 */
 			initColorPicker: function () {
+				const self = this;
 				if (typeof $.fn.wpColorPicker !== 'undefined') {
 					$('.brand-color-picker').wpColorPicker({
 						change: function (event, ui) {
 							const color = ui.color.toString();
 							$('.brand-color-picker').val(color);
 							$('.ezd-color-preview').css('--preview-color', color);
+							self.updateLayoutPreview();
 						},
 						clear: function () {
 							$('.ezd-color-preview').css('--preview-color', '#007FFF');
+							self.updateLayoutPreview();
 						}
 					});
 				}
@@ -71,10 +76,11 @@
 			 * Initialize layout options
 			 */
 			initLayoutOptions: function () {
+				const self = this;
 				$('.page-layout-wrap').on('change', 'input[type="radio"]', function () {
-					const name = $(this).attr('value');
 					$('.page-layout-wrap .ezd-layout-option').removeClass('active');
-					$('.page-layout-wrap label[for="' + name + '"]').addClass('active');
+					$(this).closest('.ezd-layout-option').addClass('active');
+					self.updateLayoutPreview();
 				});
 			},
 
@@ -82,10 +88,51 @@
 			 * Initialize width options
 			 */
 			initWidthOptions: function () {
+				const self = this;
 				$('.page-width-wrap').on('change', 'input[type="radio"]', function () {
-					const name = $(this).attr('value');
 					$('.page-width-wrap .ezd-width-option').removeClass('active');
-					$('.page-width-wrap label[for="' + name + '"]').addClass('active');
+					$(this).closest('.ezd-width-option').addClass('active');
+					self.updateLayoutPreview();
+				});
+			},
+
+			/**
+			 * Initialize the live-preview controls: the in-step brand colour
+			 * swatch, the light/dark appearance toggle, and "Restore defaults".
+			 */
+			initPreviewControls: function () {
+				const self = this;
+
+				// In-step brand colour: keep the wpColorPicker field as the single
+				// source of truth so the Step 2 picker and the save payload stay
+				// in sync, then refresh the preview.
+				$(document).on('input change', '.ezd-preview-brand-input', function () {
+					const color = $(this).val();
+					const $picker = $('.brand-color-picker');
+
+					if ($picker.length && typeof $.fn.wpColorPicker !== 'undefined' && $picker.hasClass('wp-color-picker')) {
+						$picker.wpColorPicker('color', color);
+					} else {
+						$picker.val(color);
+					}
+
+					self.updateLayoutPreview();
+				});
+
+				// Light / dark appearance toggle (preview only).
+				$(document).on('click', '.ezd-mode-btn', function () {
+					const mode = $(this).data('mode');
+					$('.ezd-mode-btn').removeClass('active').attr('aria-pressed', 'false');
+					$(this).addClass('active').attr('aria-pressed', 'true');
+					$('.ezd-layout-live-preview').attr('data-theme', mode);
+				});
+
+				// Restore recommended defaults.
+				$(document).on('click', '.ezd-restore-defaults', function () {
+					$('#both_sidebar').prop('checked', true).trigger('change');
+					$('#boxed').prop('checked', true).trigger('change');
+					$('.ezd-mode-btn[data-mode="light"]').trigger('click');
+					self.updateLayoutPreview();
 				});
 			},
 
@@ -102,15 +149,29 @@
 					// Initialize Smart Wizard
 					$wizard.smartWizard({
 						autoAdjustHeight: false,
+						// Keyboard arrow navigation is disabled: SmartWizard binds it
+						// to the document with no focus check, so arrow keys used to
+						// move the caret inside the slug / colour inputs would jump steps.
 						keyboard: {
-							keyNavigation: true,
-							keyLeft: [37],
-							keyRight: [39]
+							keyNavigation: false
 						},
 						lang: {
 							next: 'Next',
 							previous: 'Previous'
 						}
+					});
+
+					// Validate and persist before leaving a step. Returning false
+					// cancels the navigation (SmartWizard honours a false result).
+					$wizard.on('leaveStep', function (e, anchorObject, fromStep, toStep, stepDirection) {
+						// fromStep is 0-indexed.
+						if (stepDirection === 'forward' && !self.validateStep(fromStep + 1)) {
+							return false;
+						}
+
+						// Persist progress on every navigation so nothing is lost if
+						// the user skips, closes the tab, or clicks a Finish-screen card.
+						self.saveSettings();
 					});
 
 					// Listen for Smart Wizard showStep event
@@ -120,6 +181,12 @@
 						self.updateProgress();
 						self.updateNavigation(stepPosition);
 						self.updateTip(self.currentStep);
+						self.clearNotice();
+
+						// Refresh the live layout preview when entering the Layout step.
+						if (self.currentStep === 3) {
+							self.updateLayoutPreview();
+						}
 
 						// Show confetti on finish step
 						if (self.currentStep === 5) {
@@ -139,13 +206,31 @@
 						}, 100);
 					});
 
-					// Handle clicks on completed progress steps
-					$(document).on('click', '.ezd-progress-step.completed', function () {
-						const stepNum = parseInt($(this).data('step'));
+					// Handle clicks on completed progress steps (mouse + keyboard).
+					const goToProgressStep = function ($step) {
+						const stepNum = parseInt($step.data('step'));
 						if (stepNum && stepNum >= 1 && stepNum <= self.totalSteps) {
 							// Use Smart Wizard's goToStep method (0-indexed)
 							$wizard.smartWizard("goToStep", stepNum - 1);
 						}
+					};
+
+					$(document).on('click', '.ezd-progress-step.completed', function () {
+						goToProgressStep($(this));
+					});
+
+					$(document).on('keydown', '.ezd-progress-step.completed', function (e) {
+						if (e.key === 'Enter' || e.key === ' ' || e.keyCode === 13 || e.keyCode === 32) {
+							e.preventDefault();
+							goToProgressStep($(this));
+						}
+					});
+
+					// Dismiss inline wizard notices.
+					$(document).on('click', '.ezd-notice-dismiss', function () {
+						$(this).closest('.ezd-wizard-notice').slideUp(150, function () {
+							$(this).remove();
+						});
 					});
 
 					// Sync on initial load if there's a hash
@@ -197,8 +282,12 @@
 
 					if (stepNum < self.currentStep) {
 						$step.addClass('completed');
+						// Completed steps are navigable, so expose them to keyboard / AT.
+						$step.attr({ role: 'button', tabindex: '0' });
 					} else if (stepNum === self.currentStep) {
-						$step.addClass('active');
+						$step.addClass('active').attr('role', 'button').removeAttr('tabindex');
+					} else {
+						$step.removeAttr('tabindex').removeAttr('role');
 					}
 				});
 
@@ -211,7 +300,6 @@
 			 */
 			updateNavigation: function (position) {
 				const $prevBtn = $('.sw-btn-prev');
-				const $nextBtn = $('.sw-btn-next');
 
 				// Handle previous button
 				if (position === 'first') {
@@ -220,12 +308,10 @@
 					$prevBtn.removeClass('disabled');
 				}
 
-				// Handle next button visibility on last step
-				if (position === 'last') {
-					$nextBtn.hide();
-				} else {
-					$nextBtn.show();
-				}
+				// On the last step, swap the Next button for the Finish button.
+				// (Visibility is handled in CSS via this class so it overrides the
+				// !important display rules on the SmartWizard buttons.)
+				$('.ezd-wizard-footer').toggleClass('is-last-step', position === 'last');
 			},
 
 				/**
@@ -296,43 +382,177 @@
 				$('#finish-btn').on('click', function () {
 					const $btn = $(this);
 
-					// Get form values
-					let customSlug = $('.custom-slug-field').val();
-					customSlug = customSlug.replace(/[^a-zA-Z0-9-_]/g, '-').toLowerCase();
-
-					const formData = {
-						action: 'ezd_setup_wizard_save_settings',
-						security: eazydocs_local_object.nonce,
-						rootslug: customSlug,
-						brandColor: $('.brand-color-picker').val(),
-						slugType: $('.root-slug-wrap input[name="slug"]:checked').val(),
-						docSingleLayout: $('.page-layout-wrap input[name="docs_single_layout"]:checked').val(),
-						docsPageWidth: $('.page-width-wrap input[name="docsPageWidth"]:checked').val(),
-						live_customizer: $('input[name="customizer_visibility"]:checked').val(),
-						archivePage: $('.archive-page-selection-wrap select').val()
-					};
-
 					// Show loading state
 					$btn.prop('disabled', true).html(
 						'<span class="dashicons dashicons-update-alt spin"></span> Saving...'
 					);
 
-					$.ajax({
-						url: eazydocs_local_object.ajaxurl,
-						type: 'POST',
-						data: formData,
+					self.saveSettings({
 						success: function (response) {
-							if (response.success) {
+							if (response && response.success) {
 								self.showSuccessState();
 							} else {
 								self.showErrorState($btn, 'Error saving settings');
 							}
 						},
-						error: function (xhr, status, error) {
+						error: function (error) {
 							self.showErrorState($btn, 'AJAX error: ' + error);
 						}
 					});
 				});
+			},
+
+			/**
+			 * Collect all wizard field values into the save payload.
+			 */
+			collectFormData: function () {
+				const slugType = $('.root-slug-wrap input[name="slug"]:checked').val() || 'post-name';
+
+				// Only send a custom slug when the custom option is selected, so the
+				// stored value never leaks from the hidden field on the default option.
+				let customSlug = '';
+				if (slugType === 'custom-slug') {
+					customSlug = ($('.custom-slug-field').val() || '')
+						.replace(/[^a-zA-Z0-9-_]/g, '-')
+						.toLowerCase();
+				}
+
+				return {
+					action: 'ezd_setup_wizard_save_settings',
+					security: eazydocs_local_object.nonce,
+					rootslug: customSlug,
+					brandColor: $('.brand-color-picker').val() || '',
+					slugType: slugType,
+					docSingleLayout: $('.page-layout-wrap input[name="docs_single_layout"]:checked').val() || '',
+					docsPageWidth: $('.page-width-wrap input[name="docsPageWidth"]:checked').val() || '',
+					// Always send an explicit 0/1 so the toggle can be turned off.
+					live_customizer: $('#live-customizer').is(':checked') ? '1' : '0',
+					is_dark_switcher: $('#dark-mode-switcher').is(':checked') ? '1' : '0',
+					archivePage: $('.archive-page-selection-wrap select').val() || ''
+				};
+			},
+
+			/**
+			 * Persist the current wizard state. Silent by default; pass
+			 * success/error callbacks for the explicit Finish action.
+			 */
+			saveSettings: function (options) {
+				options = options || {};
+
+				return $.ajax({
+					url: eazydocs_local_object.ajaxurl,
+					type: 'POST',
+					data: this.collectFormData(),
+					success: function (response) {
+						if (typeof options.success === 'function') {
+							options.success(response);
+						}
+					},
+					error: function (xhr, status, error) {
+						if (typeof options.error === 'function') {
+							options.error(error);
+						}
+					}
+				});
+			},
+
+			/**
+			 * Validate a step before advancing. Returns false to block navigation.
+			 *
+			 * @param {number} step 1-indexed step number being left.
+			 */
+			validateStep: function (step) {
+				this.clearNotice();
+
+				// Step 2 — Basic Setup.
+				if (step === 2) {
+					const slugType = $('.root-slug-wrap input[name="slug"]:checked').val();
+					if (slugType === 'custom-slug' && !($('.custom-slug-field').val() || '').trim()) {
+						this.showNotice(2, 'Please enter a custom URL slug, or choose the Default Slug option.', 'error');
+						$('.custom-slug-field').focus();
+						return false;
+					}
+
+					const color = ($('.brand-color-picker').val() || '').trim();
+					if (color && !/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(color)) {
+						this.showNotice(2, 'Please enter a valid hex brand colour, e.g. #007FFF.', 'error');
+						return false;
+					}
+				}
+
+				// Step 4 — required plugins must be active before continuing.
+				if (step === 4) {
+					const $pending = $('.ezd-plugin-card[data-status="required"]').not('.is-active');
+					if ($pending.length) {
+						this.showNotice(4, 'Please install the required plugin(s) before continuing.', 'warning');
+						return false;
+					}
+				}
+
+				return true;
+			},
+
+			/**
+			 * Show a dismissible inline notice within a step.
+			 *
+			 * @param {number} step    1-indexed step to attach the notice to.
+			 * @param {string} message Notice text.
+			 * @param {string} type    info | warning | error | success.
+			 */
+			showNotice: function (step, message, type) {
+				this.clearNotice();
+
+				type = type || 'info';
+				const icons = {
+					error: 'dashicons-warning',
+					warning: 'dashicons-info',
+					success: 'dashicons-yes',
+					info: 'dashicons-info'
+				};
+
+				const $notice = $(
+					'<div class="ezd-wizard-notice ezd-notice-' + type + '" role="alert">' +
+						'<span class="dashicons ' + (icons[type] || icons.info) + '"></span>' +
+						'<span class="ezd-notice-text"></span>' +
+						'<button type="button" class="ezd-notice-dismiss" aria-label="Dismiss notice">' +
+							'<span class="dashicons dashicons-no-alt"></span>' +
+						'</button>' +
+					'</div>'
+				);
+
+				$notice.find('.ezd-notice-text').text(message);
+				$('#step-' + step + ' .ezd-step-header').after($notice);
+				$notice.hide().slideDown(150);
+			},
+
+			/**
+			 * Remove any visible inline notice.
+			 */
+			clearNotice: function () {
+				$('.ezd-wizard-notice').stop(true, true).remove();
+			},
+
+			/**
+			 * Sync the live layout preview with the current selections.
+			 */
+			updateLayoutPreview: function () {
+				const $preview = $('.ezd-layout-live-preview');
+				if (!$preview.length) {
+					return;
+				}
+
+				const layout = $('.page-layout-wrap input[name="docs_single_layout"]:checked').val() || 'both_sidebar';
+				const width = $('.page-width-wrap input[name="docsPageWidth"]:checked').val() || 'boxed';
+				const color = ($('.brand-color-picker').val() || '').trim() || '#007FFF';
+
+				$preview.attr('data-layout', layout).attr('data-width', width);
+				$preview[0].style.setProperty('--ezd-preview-brand', color);
+
+				// Keep the in-step brand swatch in sync with the saved colour.
+				const $brandInput = $('.ezd-preview-brand-input');
+				if ($brandInput.length && $brandInput.val().toLowerCase() !== color.toLowerCase()) {
+					$brandInput.val(color);
+				}
 			},
 
 			/**
@@ -358,7 +578,7 @@
 			 * Show error state
 			 */
 			showErrorState: function ($btn, message) {
-				alert(message);
+				this.showNotice(5, message, 'error');
 				$btn.prop('disabled', false).html(
 					'<span class="dashicons dashicons-yes"></span> Finish & Go to Dashboard'
 				);
@@ -447,7 +667,7 @@
 							}
 						} else {
 							self.resetPluginButton($btn, originalText, action);
-							alert('Error: ' + response.data);
+							self.showNotice(4, 'Error: ' + response.data, 'error');
 						}
 					},
 					error: function (xhr, status, error) {
@@ -456,7 +676,7 @@
 							self.markPluginActivated($btn);
 						} else {
 							self.resetPluginButton($btn, originalText, action);
-							alert('Error: ' + error);
+							self.showNotice(4, 'Error: ' + error, 'error');
 						}
 					}
 				});
@@ -474,6 +694,9 @@
 
 				// Update card state
 				$btn.closest('.ezd-plugin-card').addClass('is-active');
+
+				// Clear any "required plugin" gate notice now that it is active.
+				this.clearNotice();
 			},
 
 			/**

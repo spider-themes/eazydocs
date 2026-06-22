@@ -16,12 +16,20 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 
 $plugins = array(
 	array(
+		'img'         => 'antimanual-logo.png',
+		'title'       => esc_html__( 'Antimanual', 'eazydocs' ),
+		'slug'        => 'antimanual',
+		'description' => esc_html__( 'Required for AI integration. Create comprehensive user guides and documentation with Antimanual.', 'eazydocs' ),
+		'status'      => 'required',
+		'status_text' => esc_html__( 'Required', 'eazydocs' ),
+	),
+	array(
 		'slug'        => 'elementor',
 		'img'         => 'elementor-logo.png',
 		'title'       => esc_html__( 'Elementor', 'eazydocs' ),
 		'description' => esc_html__( 'Required for EazyDocs Elementor widgets. Perfect for building custom documentation layouts.', 'eazydocs' ),
-		'status'      => 'required',
-		'status_text' => esc_html__( 'Required', 'eazydocs' ),
+		'status'      => 'optional',
+		'status_text' => esc_html__( 'Optional', 'eazydocs' ),
 	),
 	array(
 		'slug'        => 'advanced-accordion-block',
@@ -30,14 +38,6 @@ $plugins = array(
 		'description' => esc_html__( 'Create beautiful FAQs and accordion content in the block editor.', 'eazydocs' ),
 		'status'      => 'recommended',
 		'status_text' => esc_html__( 'Recommended', 'eazydocs' ),
-	),
-	array(
-		'img'         => 'antimanual-logo.png',
-		'title'       => esc_html__( 'Antimanual', 'eazydocs' ),
-		'slug'        => 'antimanual',
-		'description' => esc_html__( 'Create comprehensive user guides and documentation with Antimanual.', 'eazydocs' ),
-		'status'      => 'optional',
-		'status_text' => esc_html__( 'Optional', 'eazydocs' ),
 	),
 	array(
 		'img'         => 'changeloger-logo.png',

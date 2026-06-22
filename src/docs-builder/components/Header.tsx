@@ -13,6 +13,7 @@ import { useCreateParentDoc } from '../hooks/useBuilderData';
 import { useSearch } from '../hooks/useSearch';
 import { useAiCreate } from '../hooks/useAiCreate';
 import { showNotificationProAlert } from '../utils/pro-alert';
+import { promptForDocTitle, showCreateSuccess, showCreateError } from '../utils/prompt';
 import NotificationPanel from './NotificationPanel';
 import type { BuilderData } from '../types';
 
@@ -31,80 +32,45 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 	const { triggerAiCreate } = useAiCreate( antimanualActive );
 
 	/**
-	 * Handle "Add Doc" button click – show SweetAlert prompt.
+	 * Handle "Add Doc" button click – prompt for a title then create the doc.
 	 */
-	const handleAddDoc = ( e: React.MouseEvent< HTMLButtonElement > ): void => {
+	const handleAddDoc = async ( e: React.MouseEvent< HTMLButtonElement > ): Promise< void > => {
 		e.preventDefault();
 
-		if ( typeof window.Swal !== 'undefined' ) {
-			window.Swal.fire( {
-				title: eazydocs_local_object.create_prompt_title,
-				input: 'text',
-				showDenyButton: true,
-				returnInputValueOnDeny: true,
-				confirmButtonText: __( 'Publish', 'eazydocs' ),
-				denyButtonText: __( 'Save as Draft', 'eazydocs' ),
-				showCancelButton: true,
-				inputAttributes: {
-					name: 'new_doc',
-				},
-			} ).then( ( result: any ) => {
-				if ( ! result.isConfirmed && ! result.isDenied ) {
-					return;
-				}
-
-				const value = result.value as string;
-					if ( ! value ) {
-						if ( typeof window.Swal !== 'undefined' ) {
-							window.Swal.fire( {
-								title: __( 'Error', 'eazydocs' ),
-								text: __( 'Please enter a title.', 'eazydocs' ),
-								icon: 'error',
-							} );
-						}
-						return;
-					}
-
-				const selectedStatus = result.isDenied ? 'draft' : 'publish';
-
-				createParentDoc.mutate(
-					{
-						title: value,
-						nonce: nonces.parentDoc,
-						postStatus: selectedStatus,
-					},
-					{
-						onSuccess: ( response ) => {
-							// Switch to the newly created doc tab.
-							if ( response?.data?.id && onTabChange ) {
-								onTabChange( response.data.id );
-							}
-
-							if ( typeof window.Swal !== 'undefined' ) {
-								window.Swal.fire( {
-									title: __( 'Success!', 'eazydocs' ),
-									text: result.isDenied
-										? __( 'Documentation saved as draft.', 'eazydocs' )
-										: __( 'Documentation created successfully.', 'eazydocs' ),
-									icon: 'success',
-									timer: 1500,
-									showConfirmButton: false,
-								} );
-							}
-						},
-						onError: () => {
-							if ( typeof window.Swal !== 'undefined' ) {
-								window.Swal.fire( {
-									title: __( 'Error', 'eazydocs' ),
-									text: __( 'Failed to create documentation.', 'eazydocs' ),
-									icon: 'error',
-								} );
-							}
-						},
-					}
-				);
-			} );
+		// Guard against double submissions while a create is in flight.
+		if ( createParentDoc.isPending ) {
+			return;
 		}
+
+		const prompt = await promptForDocTitle();
+		if ( ! prompt ) {
+			return;
+		}
+
+		createParentDoc.mutate(
+			{
+				title: prompt.title,
+				nonce: nonces.parentDoc,
+				postStatus: prompt.status,
+			},
+			{
+				onSuccess: ( response ) => {
+					// Switch to the newly created doc tab.
+					if ( response?.data?.id && onTabChange ) {
+						onTabChange( response.data.id );
+					}
+
+					showCreateSuccess(
+						'draft' === prompt.status
+							? __( 'Documentation saved as draft.', 'eazydocs' )
+							: __( 'Documentation created successfully.', 'eazydocs' )
+					);
+				},
+				onError: () => {
+					showCreateError( __( 'Failed to create documentation.', 'eazydocs' ) );
+				},
+			}
+		);
 	};
 
 	/**
@@ -144,9 +110,11 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 							id="parent-doc"
 							className="easydocs-btn filled easydocs-btn-sm easydocs-btn-round"
 							onClick={ handleAddDoc }
+							disabled={ createParentDoc.isPending }
+							aria-busy={ createParentDoc.isPending }
 						>
-							<span className="dashicons dashicons-plus-alt2"></span>
-							{ __( 'Add Doc', 'eazydocs' ) }
+							<span className={ `dashicons ${ createParentDoc.isPending ? 'dashicons-update ezd-spin' : 'dashicons-plus-alt2' }` }></span>
+							{ createParentDoc.isPending ? __( 'Adding…', 'eazydocs' ) : __( 'Add Doc', 'eazydocs' ) }
 						</button>
 					) }
 
@@ -177,20 +145,38 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 					) }
 				</div>
 
-				<form action="#" method="POST" className="easydocs-search-form">
+				<form action="#" method="POST" className="easydocs-search-form" onSubmit={ ( e ) => e.preventDefault() }>
 					<div className="search-icon">
 						<span className="dashicons dashicons-search"></span>
 					</div>
+					<label htmlFor="easydocs-search" className="screen-reader-text">
+						{ __( 'Search documentation', 'eazydocs' ) }
+					</label>
 					<input
 						type="search"
 						name="keyword"
 						className="form-control"
 						id="easydocs-search"
-						placeholder={ __( 'Search for', 'eazydocs' ) }
+						placeholder={ __( 'Search documentation…', 'eazydocs' ) }
+						aria-label={ __( 'Search documentation', 'eazydocs' ) }
 						value={ searchValue }
 						onChange={ handleSearch }
 						ref={ searchInputRef }
 					/>
+					{ searchValue && (
+						<button
+							type="button"
+							className="easydocs-search-clear"
+							aria-label={ __( 'Clear search', 'eazydocs' ) }
+							title={ __( 'Clear search', 'eazydocs' ) }
+							onClick={ () => {
+								setSearchValue( '' );
+								searchInputRef.current?.focus();
+							} }
+						>
+							<span className="dashicons dashicons-no-alt"></span>
+						</button>
+					) }
 				</form>
 
 				<div className="navbar-right">
@@ -230,7 +216,9 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 										<a href={ urls.trash }>
 											<span className="dashicons dashicons-trash"></span>
 										</a>
-										<span className="easydocs-badge"> { trashCount } </span>
+										{ trashCount > 0 && (
+											<span className="easydocs-badge"> { trashCount } </span>
+										) }
 									</div>
 								</div>
 							</li>

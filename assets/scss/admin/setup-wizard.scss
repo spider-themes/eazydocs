@@ -202,7 +202,7 @@ body.documentation_page_eazydocs-initial-setup {
 #ezd-setup-wizard-wrap {
 	width: 100%;
 	max-width: 900px;
-	margin: 30px auto;
+	margin: 16px auto;
 	background: $bg-white;
 	border-radius: $radius-lg;
 	box-shadow: $shadow-xl;
@@ -211,7 +211,9 @@ body.documentation_page_eazydocs-initial-setup {
 	border: 1px solid $border-light;
 	display: flex;
 	flex-direction: column;
-	max-height: calc(100vh - 88px); // 56px header + 16px margin top/bottom
+	// Fill the remaining viewport height below the fixed header.
+	flex: 1 1 auto;
+	min-height: 0;
 
 	// Hide WordPress notices and smart wizard toolbar
 	.notice,
@@ -381,6 +383,9 @@ body.documentation_page_eazydocs-initial-setup {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+		// Vertically centre shorter steps within the full-height card, while
+		// "safe" keeps tall steps top-aligned so scrolling never clips them.
+		justify-content: safe center;
 	}
 }
 
@@ -417,6 +422,39 @@ body.documentation_page_eazydocs-initial-setup {
 		margin: 6px auto 12px;
 		line-height: 1.4;
 	}
+
+	// Reset-to-defaults affordance (Layout / Design step).
+	.ezd-restore-defaults {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		padding: 5px 12px;
+		background: $bg-white;
+		border: 1px solid $border-color;
+		border-radius: $radius-full;
+		font-size: 12px;
+		font-weight: 600;
+		color: $text-secondary;
+		cursor: pointer;
+		transition: all $transition-fast;
+
+		.dashicons {
+			font-size: 14px;
+			width: 14px;
+			height: 14px;
+		}
+
+		&:hover {
+			border-color: $primary-color;
+			color: $primary-color;
+			background: $primary-light;
+		}
+
+		&:focus-visible {
+			outline: none;
+			box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+		}
+	}
 }
 
 // ========================================
@@ -424,28 +462,35 @@ body.documentation_page_eazydocs-initial-setup {
 // ========================================
 .ezd-welcome-step {
 	.ezd-welcome-content {
-		max-width: 100%;
+		max-width: 860px;
+		width: 100%;
+		margin: 0 auto;
 		flex: 1;
 		display: flex;
 		flex-direction: column;
+		// Balance the content within the full-height card; "safe" keeps it
+		// top-aligned (and scrollable) when the viewport is short.
+		justify-content: safe center;
+		gap: 22px;
 		min-height: 0;
 	}
 
 	.ezd-welcome-video {
-		margin-bottom: 12px;
 		flex-shrink: 0;
 
 		.ezd-video-wrapper {
-			border-radius: $radius-md;
+			border-radius: $radius-lg;
 			overflow: hidden;
 			box-shadow: $shadow-lg;
 			background: #000;
-			max-height: 250px;
 
 			iframe {
 				display: block;
 				border: none;
-				height: 250px;
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				height: auto;
+				max-height: 42vh;
 			}
 		}
 
@@ -470,8 +515,7 @@ body.documentation_page_eazydocs-initial-setup {
 	.ezd-features-grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		gap: 10px;
-		margin-bottom: 12px;
+		gap: 12px;
 		flex-shrink: 0;
 
 		@media (max-width: 768px) {
@@ -482,8 +526,8 @@ body.documentation_page_eazydocs-initial-setup {
 	.ezd-feature-card {
 		background: $bg-light;
 		border: 1px solid $border-light;
-		border-radius: $radius-sm;
-		padding: 10px 8px;
+		border-radius: $radius-md;
+		padding: 16px 12px;
 		text-align: center;
 		transition: all $transition-base;
 
@@ -495,35 +539,35 @@ body.documentation_page_eazydocs-initial-setup {
 		}
 
 		.ezd-feature-icon {
-			width: 30px;
-			height: 30px;
+			width: 40px;
+			height: 40px;
 			background: $primary-light;
-			border-radius: $radius-sm;
+			border-radius: $radius-md;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			margin-bottom: 6px;
+			margin-bottom: 10px;
 
 			.dashicons {
-				font-size: 15px;
-				width: 15px;
-				height: 15px;
+				font-size: 20px;
+				width: 20px;
+				height: 20px;
 				color: $primary-color;
 			}
 		}
 
 		h4 {
-			font-size: 12px;
+			font-size: 13px;
 			font-weight: 600;
 			color: $text-primary;
-			margin: 0 0 4px;
+			margin: 0 0 6px;
 		}
 
 		p {
-			font-size: 11px;
+			font-size: 12px;
 			color: $text-secondary;
 			margin: 0;
-			line-height: 1.3;
+			line-height: 1.45;
 		}
 	}
 
@@ -622,14 +666,14 @@ body.documentation_page_eazydocs-initial-setup {
 		flex: 1;
 
 		h3 {
-			font-size: 13px;
+			font-size: 15px;
 			font-weight: 600;
 			color: $text-primary;
 			margin: 0 0 2px;
 		}
 
 		p {
-			font-size: 13px;
+			font-size: 12px;
 			color: $text-secondary;
 			margin: 0;
 			line-height: 1.4;
@@ -783,6 +827,11 @@ body.documentation_page_eazydocs-initial-setup {
 			background: $bg-light;
 		}
 
+		&:focus-within {
+			border-color: $primary-color;
+			box-shadow: 0 0 0 3px rgba($primary-color, 0.15);
+		}
+
 		&.active {
 			border-color: $primary-color;
 			background: $primary-light;
@@ -881,15 +930,30 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	.ezd-layout-name {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
 		font-size: 12px;
 		font-weight: 600;
 		color: $text-primary;
 		margin-bottom: 2px;
 	}
 
+	.ezd-layout-recommended {
+		font-size: 9px;
+		font-weight: 700;
+		letter-spacing: 0.3px;
+		text-transform: uppercase;
+		color: $primary-color;
+		background: $primary-light;
+		border-radius: $radius-full;
+		padding: 2px 6px;
+		line-height: 1;
+	}
+
 	.ezd-layout-desc {
 		font-size: 11px;
-		color: $text-muted;
+		color: $text-secondary;
 	}
 
 	.ezd-check-icon {
@@ -919,6 +983,11 @@ body.documentation_page_eazydocs-initial-setup {
 		.ezd-layout-preview img {
 			transform: scale(1.02);
 		}
+	}
+
+	&:focus-within {
+		border-color: $primary-color;
+		box-shadow: 0 0 0 3px rgba($primary-color, 0.15);
 	}
 
 	&.active {
@@ -994,6 +1063,13 @@ body.documentation_page_eazydocs-initial-setup {
 			color: $text-primary;
 		}
 
+		&:focus-within {
+			border-color: $primary-color;
+			box-shadow: 0 0 0 3px rgba($primary-color, 0.15);
+		}
+
+		// Selection state is communicated with the primary colour everywhere
+		// in the wizard; green is reserved for completion/success states.
 		&:hover,
 		&.active {
 			border-color: $primary-color;
@@ -1001,8 +1077,12 @@ body.documentation_page_eazydocs-initial-setup {
 		}
 
 		&.active {
-			border-color: $success-color;
-			background: $success-light;
+			box-shadow: inset 0 0 0 1px $primary-color;
+
+			.ezd-width-preview::before {
+				background: var(--ezd-preview-brand, $primary-color);
+				opacity: 0.5;
+			}
 		}
 	}
 }
@@ -1222,17 +1302,27 @@ body.documentation_page_eazydocs-initial-setup {
 // ========================================
 .ezd-finish-step {
 	.ezd-finish-content {
+		max-width: 720px;
+		width: 100%;
+		margin: 0 auto;
 		text-align: center;
+
+		h2 {
+			font-size: 22px;
+			font-weight: 700;
+			color: $text-primary;
+			margin: 0 0 6px;
+		}
 	}
 
 	.ezd-success-animation {
 		position: relative;
-		margin-bottom: 16px;
+		margin-bottom: 18px;
 	}
 
 	.ezd-success-circle {
-		width: 70px;
-		height: 70px;
+		width: 84px;
+		height: 84px;
 		background: linear-gradient(135deg,
 				$success-color 0%,
 				color.adjust($success-color, $lightness: -10%) 100%);
@@ -1243,9 +1333,9 @@ body.documentation_page_eazydocs-initial-setup {
 		animation: successPulse 2s ease-in-out infinite;
 
 		.dashicons {
-			font-size: 36px;
-			width: 36px;
-			height: 36px;
+			font-size: 42px;
+			width: 42px;
+			height: 42px;
 			color: white;
 		}
 	}
@@ -1263,28 +1353,34 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	.ezd-finish-subtitle {
-		font-size: 14px;
+		font-size: 15px;
 		color: $text-secondary;
-		margin-bottom: 16px;
+		margin-bottom: 24px;
 	}
 
 	.ezd-next-steps-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 10px;
-		margin-bottom: 16px;
+		gap: 12px;
 		text-align: left;
 
 		@media (max-width: 600px) {
 			grid-template-columns: 1fr;
+		}
+
+		// Hero + teaser cards span the full row so the grid stays balanced
+		// whether there are 3 (Pro) or 4 (free) cards.
+		.ezd-primary-action,
+		.ezd-pro-card {
+			grid-column: 1 / -1;
 		}
 	}
 
 	.ezd-next-step-card {
 		display: flex;
 		align-items: center;
-		gap: 12px;
-		padding: 12px 14px;
+		gap: 14px;
+		padding: 16px 18px;
 		background: $bg-light;
 		border: 1px solid $border-color;
 		border-radius: $radius-md;
@@ -1395,12 +1491,6 @@ body.documentation_page_eazydocs-initial-setup {
 			}
 		}
 	}
-
-	.ezd-finish-actions {
-		button {
-			margin: 0 auto;
-		}
-	}
 }
 
 // ========================================
@@ -1436,6 +1526,21 @@ body.documentation_page_eazydocs-initial-setup {
 		.current-step {
 			color: $primary-color;
 			font-weight: 600;
+		}
+	}
+
+	// The Finish button replaces Next only on the last step.
+	.ezd-btn-finish {
+		display: none;
+	}
+
+	&.is-last-step {
+		.sw-btn-next.ezd-btn-primary {
+			display: none !important;
+		}
+
+		.ezd-btn-finish {
+			display: inline-flex;
 		}
 	}
 }
@@ -1802,6 +1907,14 @@ body.documentation_page_eazydocs-initial-setup {
 		&:not(.ezd-btn) {
 			display: none !important;
 		}
+
+		// SmartWizard binds navigation to the exact click target's class
+		// (sw-btn-next / sw-btn-prev). Make inner elements non-interactive so
+		// clicks on the icon/text always resolve to the button itself,
+		// otherwise the click is ignored and appears to need multiple taps.
+		* {
+			pointer-events: none;
+		}
 	}
 
 	// Ensure footer nav buttons are properly styled
@@ -1835,6 +1948,371 @@ body.documentation_page_eazydocs-initial-setup {
 			border-color: $primary-color !important;
 			color: $primary-color !important;
 			background: $primary-light !important;
+		}
+	}
+}
+
+/* -------------------------------------------------------------------------
+ * Inline wizard notices (replaces native alert() dialogs)
+ * ---------------------------------------------------------------------- */
+.ezd-wizard-notice {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin: 0 0 24px;
+	padding: 14px 16px;
+	border: 1px solid $border-color;
+	border-left-width: 4px;
+	border-radius: $radius-md;
+	background: $bg-white;
+	box-shadow: $shadow-sm;
+	font-size: 14px;
+	line-height: 1.5;
+	color: $text-primary;
+
+	> .dashicons {
+		flex-shrink: 0;
+		margin-top: 1px;
+	}
+
+	.ezd-notice-text {
+		flex: 1;
+	}
+
+	.ezd-notice-dismiss {
+		flex-shrink: 0;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		color: $text-muted;
+		line-height: 1;
+		transition: color $transition-fast;
+
+		&:hover {
+			color: $text-primary;
+		}
+	}
+
+	&.ezd-notice-error {
+		border-left-color: $danger-color;
+
+		> .dashicons {
+			color: $danger-color;
+		}
+	}
+
+	&.ezd-notice-warning {
+		border-left-color: $warning-color;
+
+		> .dashicons {
+			color: $warning-color;
+		}
+	}
+
+	&.ezd-notice-success {
+		border-left-color: $success-color;
+
+		> .dashicons {
+			color: $success-color;
+		}
+	}
+
+	&.ezd-notice-info {
+		border-left-color: $primary-color;
+
+		> .dashicons {
+			color: $primary-color;
+		}
+	}
+}
+
+/* -------------------------------------------------------------------------
+ * Pro lock badge for the URL-slug option (free tier)
+ * ---------------------------------------------------------------------- */
+.ezd-slug-option {
+	&.is-locked {
+		cursor: not-allowed;
+		opacity: 0.75;
+	}
+
+	.ezd-option-pro {
+		display: inline-flex;
+		align-items: center;
+		gap: 3px;
+		margin-left: 8px;
+		padding: 1px 8px;
+		border-radius: $radius-full;
+		background: rgba($pro-color, 0.12);
+		color: $pro-color;
+		font-size: 11px;
+		font-weight: 600;
+		vertical-align: middle;
+
+		.dashicons {
+			font-size: 12px;
+			width: 12px;
+			height: 12px;
+		}
+	}
+}
+
+/* -------------------------------------------------------------------------
+ * Live layout preview (Layout / Design step)
+ * ---------------------------------------------------------------------- */
+.ezd-layout-live-preview {
+	--ezd-preview-brand: #{$primary-color};
+	// Theme tokens — swapped wholesale by the dark variant below so every
+	// preview element follows the chosen appearance.
+	--ezd-pv-page: #{$bg-white};
+	--ezd-pv-chrome: #{$bg-light};
+	--ezd-pv-border: #{$border-light};
+	--ezd-pv-line: #{$border-light};
+	--ezd-pv-line-strong: #{$border-color};
+
+	position: sticky;
+	top: 12px;
+	z-index: 2;
+	margin-bottom: 28px;
+	padding: 8px 8px 4px;
+	border-radius: $radius-lg;
+	// Frosted backdrop so cards scrolling beneath the pinned preview never
+	// bleed through the transparent gaps around the controls / caption.
+	background: rgba(245, 247, 250, 0.92);
+	backdrop-filter: blur(6px);
+
+	.ezd-preview-browser {
+		overflow: hidden;
+		border: 1px solid $border-color;
+		border-radius: $radius-lg;
+		background: var(--ezd-pv-page);
+		box-shadow: $shadow-md;
+		transition: background $transition-base;
+	}
+
+	.ezd-preview-bar {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		padding: 10px 14px;
+		background: var(--ezd-pv-chrome);
+		border-bottom: 1px solid var(--ezd-pv-border);
+
+		span {
+			width: 10px;
+			height: 10px;
+			border-radius: $radius-full;
+			background: $border-color;
+
+			&:first-child { background: #ff5f57; }
+			&:nth-child(2) { background: #febc2e; }
+			&:nth-child(3) { background: #28c840; }
+		}
+	}
+
+	.ezd-preview-viewport {
+		padding: 24px;
+		background: var(--ezd-pv-chrome);
+		transition: padding $transition-base, background $transition-base;
+	}
+
+	.ezd-preview-page {
+		margin: 0 auto;
+		width: 100%;
+		max-width: 100%;
+		background: var(--ezd-pv-page);
+		border: 1px solid var(--ezd-pv-border);
+		border-radius: $radius-md;
+		overflow: hidden;
+		transition: max-width $transition-base, background $transition-base;
+	}
+
+	.ezd-preview-topbar {
+		height: 34px;
+		background: var(--ezd-preview-brand);
+	}
+
+	.ezd-preview-body {
+		display: flex;
+		gap: 14px;
+		padding: 16px;
+		min-height: 190px;
+	}
+
+	.ezd-preview-sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: 9px;
+		flex: 0 0 22%;
+
+		span {
+			height: 9px;
+			border-radius: $radius-sm;
+			background: var(--ezd-pv-line-strong);
+
+			&:first-child {
+				background: var(--ezd-preview-brand);
+				opacity: 0.55;
+			}
+		}
+	}
+
+	.ezd-preview-main {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 11px;
+
+		span {
+			height: 10px;
+			border-radius: $radius-sm;
+			background: var(--ezd-pv-line);
+
+			&.short { width: 55%; }
+		}
+
+		.ezd-preview-title {
+			height: 16px;
+			width: 70%;
+			background: var(--ezd-preview-brand);
+			opacity: 0.85;
+			margin-bottom: 4px;
+		}
+	}
+
+	// Layout variants — toggle sidebar visibility.
+	&[data-layout="left_sidebar"] .ezd-preview-sidebar-right,
+	&[data-layout="right_sidebar"] .ezd-preview-sidebar-left {
+		display: none;
+	}
+
+	&[data-layout="right_sidebar"] .ezd-preview-body {
+		flex-direction: row-reverse;
+	}
+
+	// Width variants — kept visually distinct so the choice reads at a glance.
+	&[data-width="boxed"] {
+		.ezd-preview-page { max-width: 62%; }
+	}
+
+	&[data-width="full-width"] {
+		.ezd-preview-viewport {
+			padding-left: 8px;
+			padding-right: 8px;
+		}
+
+		.ezd-preview-page { max-width: 100%; }
+	}
+
+	// Dark appearance — preview-only; mirrors the frontend dark theme so users
+	// can judge both before enabling the Dark Mode Switcher below.
+	&[data-theme="dark"] {
+		--ezd-pv-page: #1f2430;
+		--ezd-pv-chrome: #161a22;
+		--ezd-pv-border: #2c3340;
+		--ezd-pv-line: #2c3340;
+		--ezd-pv-line-strong: #3a4252;
+	}
+
+	.ezd-preview-caption {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		margin: 12px 0 4px;
+		font-size: 13px;
+		color: $text-secondary;
+
+		.dashicons {
+			font-size: 16px;
+			width: 16px;
+			height: 16px;
+			color: var(--ezd-preview-brand);
+		}
+	}
+
+	// Preview controls row: brand colour + light/dark appearance.
+	.ezd-preview-controls {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-bottom: 10px;
+	}
+
+	.ezd-preview-brand-control {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 5px 10px;
+		background: $bg-white;
+		border: 1px solid $border-color;
+		border-radius: $radius-full;
+		font-size: 12px;
+		font-weight: 500;
+		color: $text-secondary;
+		cursor: pointer;
+
+		.ezd-preview-brand-swatch {
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			background: var(--ezd-preview-brand);
+			box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+		}
+
+		// Native colour input acts as the clickable swatch trigger.
+		.ezd-preview-brand-input {
+			width: 22px;
+			height: 22px;
+			padding: 0;
+			border: none;
+			background: none;
+			cursor: pointer;
+
+			&::-webkit-color-swatch-wrapper { padding: 0; }
+			&::-webkit-color-swatch { border: none; border-radius: 50%; }
+			&::-moz-color-swatch { border: none; border-radius: 50%; }
+		}
+	}
+
+	.ezd-preview-mode-toggle {
+		display: inline-flex;
+		padding: 3px;
+		background: $bg-white;
+		border: 1px solid $border-color;
+		border-radius: $radius-full;
+
+		.ezd-mode-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+			padding: 5px 12px;
+			border: none;
+			background: none;
+			border-radius: $radius-full;
+			font-size: 12px;
+			font-weight: 600;
+			color: $text-secondary;
+			cursor: pointer;
+			transition: all $transition-fast;
+
+			.dashicons {
+				font-size: 14px;
+				width: 14px;
+				height: 14px;
+			}
+
+			&:focus-visible {
+				outline: none;
+				box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+			}
+
+			&.active {
+				background: $primary-color;
+				color: white;
+			}
 		}
 	}
 }

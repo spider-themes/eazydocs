@@ -187,7 +187,7 @@ const SortableDocItemComponent: React.FC< SortableDocItemProps > = ( {
                 style={{ cursor: isCollapsible ? 'pointer' : 'default' }}
             >
 				<div className="ezd-section-header-left" style={{ display: 'flex', alignItems: 'center' }}>
-					{ /* Drag handle */ }
+					{ /* Drag handle - reordering is available to all users who can manage docs. */ }
 					{ capabilities.canManageOptions && (
 						<div
 							ref={ setActivatorNodeRef }
