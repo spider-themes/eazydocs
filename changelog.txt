@@ -1,5 +1,5 @@
 
-= 2.12.0 (22 June 2026) =
+= 2.12.0 (26 June 2026) =
 New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.
 New: Docs Assistant AI Upgrade – Added a guided panel in the Docs Assistant settings to connect the free Antimanual plugin and turn the assistant into an AI chatbot trained on your documentation.
 New: Document Restricted Badges – Added visual status indicators and custom CSS classes for private and password-protected documents across layout skins.
