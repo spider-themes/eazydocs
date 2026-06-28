@@ -136,6 +136,18 @@ class Import_Export {
 			]
 		);
 
+		// Object-level read filter: the screen capability (edit_docs) does not by
+		// itself grant read access to every private/draft doc, so only offer docs
+		// the current user is actually allowed to read.
+		$docs = array_values(
+			array_filter(
+				$docs,
+				static function ( $doc ) {
+					return current_user_can( 'read_post', $doc->ID );
+				}
+			)
+		);
+
 		if ( empty( $docs ) ) {
 			return [];
 		}
@@ -509,6 +521,16 @@ class Import_Export {
 
 		$root_id = absint( $_POST['root_id'] ?? 0 );
 		$format  = ( isset( $_POST['format'] ) && 'csv' === $_POST['format'] ) ? 'csv' : 'markdown';
+
+		// Object-level authorization: the export screen requires only edit_docs,
+		// which on sites that delegate that capability is not sufficient to read
+		// every private/draft doc. Confirm the user may actually read the selected
+		// root before streaming its subtree (descendants are filtered in the
+		// exporters). read_post maps through the docs CPT meta caps, so private
+		// docs correctly require read_private_docs.
+		if ( ! $root_id || ! current_user_can( 'read_post', $root_id ) ) {
+			wp_die( esc_html__( 'You are not allowed to export this document.', 'eazydocs' ), '', [ 'response' => 403 ] );
+		}
 
 		if ( 'csv' === $format ) {
 			$csv = Csv::export_to_string( $root_id );

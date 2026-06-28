@@ -102,6 +102,12 @@ class Csv {
 		);
 
 		foreach ( $children as $child ) {
+			// Object-level read enforcement: never export a private/draft descendant
+			// the current user is not allowed to read. Skipping a doc also skips its
+			// subtree, so no hidden branch leaks through the flat CSV.
+			if ( ! current_user_can( 'read_post', $child->ID ) ) {
+				continue;
+			}
 			self::collect( $child, $rows );
 		}
 	}

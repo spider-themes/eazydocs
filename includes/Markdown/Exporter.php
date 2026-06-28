@@ -88,6 +88,12 @@ class Exporter {
 			$files[ $dir . 'index.md' ] = self::to_markdown( $post );
 
 			foreach ( $children as $child ) {
+				// Object-level read enforcement: never export a private/draft
+				// descendant the current user is not allowed to read. Skipping a doc
+				// also skips its subtree, so no hidden branch leaks into the archive.
+				if ( ! current_user_can( 'read_post', $child->ID ) ) {
+					continue;
+				}
 				self::collect( $child, $dir, $files );
 			}
 		} else {

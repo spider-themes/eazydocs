@@ -20,12 +20,15 @@ if ( $docs ) :
 			<?php
 			$i = 1;
 			foreach ( $docs as $main_doc ) :
+				// get_pages() applies post_status directly in SQL with no per-user read
+				// filtering, so gate 'private' on the read_private_docs capability to keep
+				// private child docs out of the count for visitors who cannot read them.
 				$doc_counter = get_pages( [
 					'child_of'    => $main_doc['doc']->ID,
 					'post_type'   => 'docs',
 					'orderby'     => 'menu_order',
 					'order'       => 'asc',
-					'post_status' => array( 'publish', 'private' )
+					'post_status' => ezd_doc_listing_statuses(),
 				] );
 
 				global $post;

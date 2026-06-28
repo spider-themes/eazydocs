@@ -1765,11 +1765,14 @@ function ezd_has_shortcode( $shortcodes = [] ) {
  * @return array
  */
 function ezd_get_posts( $post_type = 'docs' ) {
+	// get_pages() applies post_status directly in SQL with no per-user read
+	// filtering, so gate 'private' on the read_private_docs capability rather than
+	// always requesting it (prevents private doc titles leaking into pickers/lists).
 	$docs       = get_pages(
 		[
 			'post_type'   => $post_type,
 			'numberposts' => - 1,
-			'post_status' => [ 'publish', 'private' ],
+			'post_status' => ezd_doc_listing_statuses(),
 			'parent'      => 0,
 		]
 	);
@@ -2336,7 +2339,12 @@ add_filter( 'body_class', 'ezd_restricted_body_class' );
  * Password-protected docs are post_status 'publish', so they are always
  * included here and filtered out separately via ezd_filter_doc_visibility().
  * Private docs are only surfaced when the toggle is on and the current user
- * is allowed to read them.
+ * holds the plugin's read_private_docs capability — the same capability that
+ * gates the single-doc view (see ezd_private_docs_access()). This is mapped
+ * from the docs CPT's read_private_posts meta cap and assigned per the
+ * "who can access private docs" setting. Being merely logged in is not enough,
+ * which also prevents private metadata/excerpt disclosure through the
+ * get_pages()-based listing paths (those skip core's per-user private filter).
  *
  * @param bool $show_private Whether private docs should be listed.
  * @return array Post statuses for the query.
@@ -2344,7 +2352,7 @@ add_filter( 'body_class', 'ezd_restricted_body_class' );
 function ezd_doc_listing_statuses( $show_private = true ) {
 	$statuses = [ 'publish' ];
 
-	if ( $show_private && ( is_user_logged_in() || current_user_can( 'read_private_posts' ) ) ) {
+	if ( $show_private && current_user_can( 'read_private_docs' ) ) {
 		$statuses[] = 'private';
 	}
 

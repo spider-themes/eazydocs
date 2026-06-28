@@ -37,7 +37,11 @@ $nav_args = [
     'echo'        => false,
     'post_type'   => 'docs',
     'walker'      => $doc_walker,
-    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private', 'draft' ] : ['publish', 'private'],
+    // wp_list_pages() -> get_pages() applies post_status directly in SQL with no
+    // per-user read filtering, so visitors without read_private_docs must never be
+    // handed 'private' (or 'draft') here or private doc titles/links/hierarchy leak
+    // into the sidebar nav. The single-doc body stays gated by ezd_internal_doc_security().
+    'post_status' => current_user_can( 'read_private_docs' ) ? [ 'publish', 'private', 'draft' ] : [ 'publish' ],
 ];
 
 if ( $sidebar_source === 'self_docs' || ! class_exists( 'EZD_EazyDocsPro' )  ) {

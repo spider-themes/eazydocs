@@ -138,7 +138,7 @@ if ( ! function_exists( 'ezd_tabbed_list_get_article_count' ) ) {
 			array(
 				'post_parent' => $parent_id,
 				'post_type'   => 'docs',
-				'post_status' => array( 'publish', 'private' ),
+				'post_status' => ezd_doc_listing_statuses(),
 			)
 		);
 
@@ -150,7 +150,7 @@ if ( ! function_exists( 'ezd_tabbed_list_get_article_count' ) ) {
 				array(
 					'post_parent' => $child->ID,
 					'post_type'   => 'docs',
-					'post_status' => array( 'publish', 'private' ),
+					'post_status' => ezd_doc_listing_statuses(),
 				)
 			);
 			$count        += count( $grandchildren );

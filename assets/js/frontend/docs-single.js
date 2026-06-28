@@ -999,9 +999,32 @@
 	});
 })(jQuery);
 
-// Listen for messages from the popup window
+// Listen for messages from the Google login popup window.
+// Hardened against cross-origin open redirect / javascript: URL injection:
+// only same-origin senders and same-origin http(s) redirect targets are honored.
 window.addEventListener("message", function (event) {
-	if (event.data.type === "google_login_success" && event.data.redirect) {
-		window.location.href = event.data.redirect;
+	// Reject messages from any origin other than this site.
+	if (event.origin !== window.location.origin) {
+		return;
+	}
+
+	var data = event.data;
+	if (!data || data.type !== "google_login_success" || !data.redirect) {
+		return;
+	}
+
+	// Resolve and validate the redirect target before navigating.
+	var target;
+	try {
+		target = new URL(data.redirect, window.location.origin);
+	} catch (err) {
+		return;
+	}
+
+	if (
+		(target.protocol === "http:" || target.protocol === "https:") &&
+		target.origin === window.location.origin
+	) {
+		window.location.href = target.href;
 	}
 });

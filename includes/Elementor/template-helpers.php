@@ -102,7 +102,7 @@ function ezd_get_doc_items( $section_id, $settings = [] ) {
     return get_children( [
         'post_parent'    => $section_id,
         'post_type'      => 'docs',
-        'post_status'    => ['publish', 'private'],
+        'post_status'    => ezd_doc_listing_statuses(),
         'orderby'        => $settings['order_by'] ?? 'menu_order',
         'order'          => $settings['child_order'] ?? 'ASC',
         'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : -1,
