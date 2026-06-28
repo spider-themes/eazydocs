@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.12.0
+Stable tag: 2.12.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -348,7 +348,11 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.12.0 (28 June 2026) =
+= 2.12.1 (28 June 2026) =
+* Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.
+* Fixed: Security – Strengthened sign-in redirect handling after Google login.
+
+= 2.12.0 (26 June 2026) =
 * New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.
 * New: Docs Assistant AI Upgrade – Added a guided panel in the Docs Assistant settings to connect the free Antimanual plugin and turn the assistant into an AI chatbot trained on your documentation.
 * New: Document Restricted Badges – Added visual status indicators and custom CSS classes for private and password-protected documents across layout skins.
@@ -409,8 +413,6 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 * Fixed: Search banner CSS styling.
 * Fixed: Search Keywords show/hide switcher visibility control.
 * Fixed: Setup Wizard Typing – Arrow keys now move the cursor within the URL slug and brand color fields instead of unexpectedly jumping between wizard steps.
-* Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.
-* Fixed: Security – Strengthened sign-in redirect handling after Google login.
 
 = 2.11.3 (25 May 2026) =
 * Improved: Enable product name pass in embedding Chatbot
