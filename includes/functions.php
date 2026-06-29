@@ -2858,36 +2858,95 @@ function ezd_read_private_docs_cap_to_user() {
         $wp_roles = new WP_Roles();
     }
 
+    $get_users_role = array_map( 'strval', (array) $get_users_role );
+
     foreach ( $wp_roles->roles as $role_key => $role_data ) {
         $role = get_role( $role_key );
+        if ( ! $role ) {
+            continue;
+        }
 
-        if ( in_array( $role_key, $get_users_role ) ) {
+        $should_have = in_array( $role_key, $get_users_role, true );
+        $has_cap     = ! empty( $role->capabilities['read_private_docs'] );
+
+        // Only touch the role (which writes to the wp_user_roles option) when
+        // the desired state actually differs from what is stored.
+        if ( $should_have && ! $has_cap ) {
             $role->add_cap( 'read_private_docs' );
-        } else {
+        } elseif ( ! $should_have && $has_cap ) {
             $role->remove_cap( 'read_private_docs' );
         }
     }
 }
-add_action( 'init', 'ezd_read_private_docs_cap_to_user' );
+
+/**
+ * Resolve the user roles that are allowed to author documentation.
+ *
+ * This is the single source of truth shared by the capability sync
+ * (ezd_docs_cap_to_user) and the admin-menu access check in Admin.php, so the
+ * granted capabilities and the menu visibility can never drift apart. It merges
+ * the "Documentation Authors" (User Permissions) and "Allowed User Roles"
+ * (Docs Collaboration) settings, because both grant doc-editing capabilities.
+ *
+ * @return string[] Role slugs allowed to author docs.
+ */
+function ezd_get_doc_author_roles() {
+	$write_access_roles  = ezd_get_opt( 'docs-write-access' );
+	$collaboration_roles = ezd_get_opt( 'ezd_add_editable_roles' );
+
+	$write_access_roles  = is_array( $write_access_roles ) ? $write_access_roles : array_filter( [ $write_access_roles ] );
+	$collaboration_roles = is_array( $collaboration_roles ) ? $collaboration_roles : array_filter( [ $collaboration_roles ] );
+
+	$active_roles = array_values( array_unique( array_merge( $write_access_roles, $collaboration_roles ) ) );
+
+	return ! empty( $active_roles ) ? $active_roles : [ 'administrator', 'editor', 'author' ];
+}
+
+/**
+ * Build the list of assignable user roles for the permission selectors.
+ *
+ * Sources roles dynamically so custom roles registered by the site (or other
+ * plugins) appear consistently across User Permissions and Docs Collaboration,
+ * instead of a hard-coded list of the five default roles. Falls back to the
+ * default roles if the editable-roles API is unavailable.
+ *
+ * @return array<string,string> Role slug => translated label.
+ */
+function ezd_assignable_role_options() {
+	// Pro ships a richer role-name helper; keep using it when available.
+	if ( function_exists( 'eazydocs_user_role_names' ) && ezd_is_premium() ) {
+		return eazydocs_user_role_names();
+	}
+
+	if ( ! function_exists( 'get_editable_roles' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/user.php';
+	}
+
+	$roles = [];
+	if ( function_exists( 'get_editable_roles' ) ) {
+		foreach ( get_editable_roles() as $slug => $details ) {
+			$roles[ $slug ] = translate_user_role( $details['name'] );
+		}
+	}
+
+	if ( ! empty( $roles ) ) {
+		return $roles;
+	}
+
+	return [
+		'administrator' => esc_html__( 'Administrator', 'eazydocs' ),
+		'editor'        => esc_html__( 'Editor', 'eazydocs' ),
+		'author'        => esc_html__( 'Author', 'eazydocs' ),
+		'contributor'   => esc_html__( 'Contributor', 'eazydocs' ),
+		'subscriber'    => esc_html__( 'Subscriber', 'eazydocs' ),
+	];
+}
 
 /**
  * Assigns or removes the 'add or edit_docs' capability to user roles
  */
 function ezd_docs_cap_to_user() {
-	$collaboration_roles = ezd_get_opt( 'ezd_add_editable_roles' );
-	$write_access_roles  = ezd_get_opt( 'docs-write-access' );
-	$default_roles       = [ 'administrator', 'editor', 'author' ];
-
-	if ( ! is_array( $collaboration_roles ) ) {
-		$collaboration_roles = array_filter( [ $collaboration_roles ] );
-	}
-
-	if ( ! is_array( $write_access_roles ) ) {
-		$write_access_roles = array_filter( [ $write_access_roles ] );
-	}
-
-	$active_roles = array_unique( array_merge( $collaboration_roles, $write_access_roles ) );
-	$active_roles = ! empty( $active_roles ) ? $active_roles : $default_roles;
+	$active_roles = ezd_get_doc_author_roles();
 
 	$author_caps = [
 		'edit_doc',
@@ -2922,29 +2981,97 @@ function ezd_docs_cap_to_user() {
 		if ( in_array( $role_key, $active_roles, true ) ) {
 			// Grant Author capabilities to all active roles
 			foreach ( $author_caps as $cap ) {
-				$role->add_cap( $cap );
+				ezd_set_role_cap( $role, $cap, true );
 			}
 
 			// Grant Manager capabilities only to roles that can normally edit others' posts
-			if ( $role->has_cap( 'edit_others_posts' ) ) {
-				foreach ( $manager_caps as $cap ) {
-					$role->add_cap( $cap );
-				}
-			} else {
-				foreach ( $manager_caps as $cap ) {
-					$role->remove_cap( $cap );
-				}
+			$grant_manager = $role->has_cap( 'edit_others_posts' );
+			foreach ( $manager_caps as $cap ) {
+				ezd_set_role_cap( $role, $cap, $grant_manager );
 			}
 		} else {
 			// Remove all documentation capabilities from inactive roles
-			$all_caps = array_merge( $author_caps, $manager_caps );
-			foreach ( $all_caps as $cap ) {
-				$role->remove_cap( $cap );
+			foreach ( array_merge( $author_caps, $manager_caps ) as $cap ) {
+				ezd_set_role_cap( $role, $cap, false );
 			}
 		}
 	}
 }
-add_action( 'init', 'ezd_docs_cap_to_user' );
+
+/**
+ * Add or remove a single capability on a role, but only when it would change
+ * the stored value. WP_Role::add_cap()/remove_cap() persist the whole
+ * wp_user_roles option on every call, so skipping no-op writes turns the
+ * capability sync from dozens of option writes into zero when nothing changed.
+ *
+ * @param WP_Role $role  Role object to modify.
+ * @param string  $cap   Capability name.
+ * @param bool    $grant Whether the role should have the capability.
+ */
+function ezd_set_role_cap( $role, $cap, $grant ) {
+	$has_cap = ! empty( $role->capabilities[ $cap ] );
+
+	if ( $grant && ! $has_cap ) {
+		$role->add_cap( $cap );
+	} elseif ( ! $grant && $has_cap ) {
+		$role->remove_cap( $cap );
+	}
+}
+
+/**
+ * A fingerprint of every setting (and the registered role list) that affects
+ * the documentation capability map. When this changes, the capabilities need
+ * re-syncing; when it does not, the heavy add_cap/remove_cap loop can be skipped.
+ *
+ * @return string MD5 signature.
+ */
+function ezd_docs_capabilities_signature() {
+	$relevant = [
+		'docs-write-access'            => ezd_get_opt( 'docs-write-access' ),
+		'ezd_add_editable_roles'       => ezd_get_opt( 'ezd_add_editable_roles' ),
+		'private_doc_access_type'      => ezd_get_opt( 'private_doc_access_type' ),
+		'private_doc_allowed_roles'    => ezd_get_opt( 'private_doc_allowed_roles' ),
+		'private_doc_user_restriction' => ezd_get_opt( 'private_doc_user_restriction' ),
+		'roles'                        => array_keys( wp_roles()->roles ),
+		'version'                      => defined( 'EZD_VERSION' ) ? EZD_VERSION : '',
+	];
+
+	return md5( maybe_serialize( $relevant ) );
+}
+
+/**
+ * Reconcile EazyDocs role capabilities with the current permission settings.
+ *
+ * Replaces the previous approach of running the capability grant/revoke loop on
+ * every `init` (which wrote the wp_user_roles option on each page load). Now the
+ * sync runs only on settings save, on activation, or once after the relevant
+ * settings change — tracked by a lightweight signature so the cheap check can
+ * safely run on admin_init without touching the database when nothing changed.
+ *
+ * @param bool $force Run the sync even if the signature is unchanged.
+ */
+function ezd_sync_docs_capabilities( $force = false ) {
+	$signature = ezd_docs_capabilities_signature();
+
+	if ( ! $force && get_option( 'ezd_docs_caps_signature' ) === $signature ) {
+		return;
+	}
+
+	// Order matters: both touch read_private_docs. Run the private-docs sync
+	// first and the author sync last (matching the original init priority) so
+	// manager roles keep read_private_docs as before.
+	ezd_read_private_docs_cap_to_user();
+	ezd_docs_cap_to_user();
+
+	update_option( 'ezd_docs_caps_signature', $signature, false );
+}
+
+// Reconcile once per admin load only when settings actually changed, and
+// immediately after the settings screen is saved.
+add_action( 'admin_init', 'ezd_sync_docs_capabilities' );
+add_action( 'csf_eazydocs_settings_saved', function () {
+	ezd_sync_docs_capabilities( true );
+} );
 
 /**
  * Admin bar hide for OnePage Docs

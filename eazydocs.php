@@ -5,7 +5,7 @@
  * Plugin URI: https://eazydocs.spider-themes.net
  * Author: Spider Themes
  * Author URI: https://eazydocs.spider-themes.net
- * Version: 2.12.1
+ * Version: 2.12.2
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -77,7 +77,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 	class EazyDocs {
 
 		// Default constants
-		const version = '2.12.1';
+		const version = '2.12.2';
 		public $plugin_path;
 		public $theme_dir_path;
 
@@ -283,6 +283,11 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			// Update the option when the setup wizard is activated
 			update_option( 'ezd_get_setup_wizard', true );
+
+			// Reconcile documentation role capabilities from the saved settings.
+			if ( function_exists( 'ezd_sync_docs_capabilities' ) ) {
+				ezd_sync_docs_capabilities( true );
+			}
 		}
 
 		/**

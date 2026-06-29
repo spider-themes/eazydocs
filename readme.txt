@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.12.1
+Stable tag: 2.12.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -347,6 +347,13 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 10. Password Protected Doc – Secure sensitive documents with password protection and controlled access.
 
 == Changelog ==
+
+= 2.12.2 (29 June 2026) =
+* Improved: User Permissions Settings – Redesigned the User Permissions and Docs Collaboration screens with clearer descriptions, a capability reference table, and helpful notes so it's easy to see exactly what each role can do.
+* Improved: Role Selection – The Documentation Authors and Analytics Viewers selectors now list every role on your site, including custom roles, instead of a fixed set of defaults.
+* Optimized: Role Capabilities – Documentation role capabilities now update only when your permission settings change, removing unnecessary work on every admin page load.
+* Fixed: Documentation Menu Visibility – The Documentation admin menu now appears for exactly the roles you've granted access, keeping menu visibility in step with the permissions you set.
+* Fixed: Search Result Thumbnails – Search results now fall back to the document icon when a thumbnail image is missing, preventing blank thumbnails.
 
 = 2.12.1 (28 June 2026) =
 * Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.

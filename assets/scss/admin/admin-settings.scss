@@ -494,6 +494,27 @@ body.ama {
 		}
 	}
 
+	&--info {
+		background: #eff6ff;
+		border: 1px solid #bfdbfe;
+
+		.dashicons {
+			color: #2563eb;
+			flex-shrink: 0;
+			margin-top: 2px;
+		}
+
+		strong {
+			color: #1e40af;
+		}
+
+		p {
+			margin: 5px 0 0;
+			font-size: 13px;
+			color: #1e3a8a;
+		}
+	}
+
 	&__example {
 		background: #fff;
 		border-radius: 6px;
@@ -503,6 +524,64 @@ body.ama {
 
 		strong {
 			color: #5b21b6;
+		}
+	}
+}
+
+// Permissions capability reference matrix
+.ezd-perm-matrix {
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 10px;
+	padding: 20px;
+	margin-top: 20px;
+
+	h4 {
+		margin: 0 0 15px;
+		font-size: 15px;
+		font-weight: 600;
+		color: #1a202c;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+
+		.dashicons {
+			color: #5b86e5;
+		}
+	}
+
+	&__table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 13px;
+
+		th,
+		td {
+			text-align: left;
+			padding: 10px 12px;
+			border-bottom: 1px solid #e2e8f0;
+			vertical-align: top;
+		}
+
+		th {
+			color: #475569;
+			font-weight: 600;
+			background: #f1f5f9;
+		}
+
+		td:first-child {
+			font-weight: 600;
+			color: #1e293b;
+			white-space: nowrap;
+		}
+
+		td:last-child {
+			color: #475569;
+			line-height: 1.5;
+		}
+
+		tr:last-child td {
+			border-bottom: 0;
 		}
 	}
 }

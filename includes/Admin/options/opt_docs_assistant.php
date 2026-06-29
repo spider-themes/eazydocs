@@ -501,7 +501,7 @@ function ezd_generate_embed_code_box() {
 
 	$code .= '   <!-- Embed Assistant Styles -->' . "\n";
 	// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
-	$code .= '   <link rel="stylesheet" href="' . esc_url( $site_url ) . '/wp-content/plugins/eazydocs-pro/assets/css/embed-assistant.css" media="all">' . "\n";
+	$code .= '   <link rel="stylesheet" href="' . esc_url( $site_url ) . '/wp-content/plugins/eazydocs-pro/build/styles/embed-assistant.css" media="all">' . "\n";
 	// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
 	$code .= '   <script src="' . esc_url( $site_url ) . '/wp-content/plugins/eazydocs-pro/assets/js/embed-assistant.js"></script>' . "\n";
 

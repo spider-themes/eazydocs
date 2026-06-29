@@ -50,9 +50,10 @@ class Admin {
 		$user              = get_userdata( $user_id );
 		$current_user_roles = (array) $user->roles;
 
-		// Documentation Authors Capabilities
-		$docs_write_access = ezd_get_opt( 'docs-write-access', [ 'administrator' ] );
-		$docs_write_access = is_array( $docs_write_access ) ? $docs_write_access : [ $docs_write_access ];
+		// Documentation Authors Capabilities. Use the same merged role set that
+		// actually receives the doc capabilities (Documentation Authors + Docs
+		// Collaboration) so menu visibility never disagrees with granted access.
+		$docs_write_access = ezd_get_doc_author_roles();
 
 		$docs_capability = 'manage_options';
 		foreach ( $current_user_roles as $role ) {

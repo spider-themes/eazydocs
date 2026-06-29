@@ -15,12 +15,37 @@ CSF::createSection( $prefix, array(
 	'title'  => esc_html__( 'Docs Collaboration', 'eazydocs' ),
 	'icon'   => 'dashicons dashicons-groups',
 	'fields' => [
+
+		// ── Intro ────────────────────────────────────────────────────────
+		array(
+			'id'      => 'collaboration_intro',
+			'type'    => 'content',
+			'content' => '
+				<div class="ezd-settings-intro">
+					<div class="ezd-settings-intro__inner">
+						<div class="ezd-settings-intro__icon">
+							<span class="dashicons dashicons-groups"></span>
+						</div>
+						<div class="ezd-settings-intro__content">
+							<h2>' . esc_html__( 'Docs Collaboration', 'eazydocs' ) . '</h2>
+							<p>' . esc_html__( 'Let trusted users help maintain your documentation. When enabled, "Add Doc" and "Edit Doc" buttons appear in the documentation right sidebar so the roles you allow can create and edit docs straight from the front end — no wp-admin access required.', 'eazydocs' ) . '</p>
+							<div class="ezd-settings-intro__features">
+								<span><span class="dashicons dashicons-plus-alt"></span>' . esc_html__( 'Front-end Add Doc', 'eazydocs' ) . '</span>
+								<span><span class="dashicons dashicons-edit"></span>' . esc_html__( 'Front-end Edit Doc', 'eazydocs' ) . '</span>
+								<span><span class="dashicons dashicons-groups"></span>' . esc_html__( 'Contributor credits', 'eazydocs' ) . '</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			',
+		),
+
 		array(
 			'id'         => 'is_doc_contribution',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Collaboration Feature', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Collaboration buttons on the doc Right Sidebar.', 'eazydocs' ),
-			'desc'       => esc_html__( 'By enabling this feature, you are allowing to Administrator & Editor people to contribute the docs. This will also let you manage the contributors from the Doc post editor.',
+			'subtitle'   => esc_html__( 'Show the collaboration buttons in the documentation right sidebar.', 'eazydocs' ),
+			'desc'       => esc_html__( 'Adds "Add Doc" / "Edit Doc" buttons to the documentation right sidebar so the user roles you allow below can create and edit docs directly from the front end. Selected roles also receive the matching doc-editing capabilities, and you can manage contributors from the Doc post editor.',
 				'eazydocs' ),
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
@@ -55,13 +80,33 @@ CSF::createSection( $prefix, array(
 			'chosen'     => true,
 			'ajax'       => true,
 			'multiple'   => true,
-			'class'      => 'eazydocs-pro-notice'
+			'class'      => 'eazydocs-promax-notice'
 		),
-		
+
+		// Overlap note: these roles also receive doc authoring capabilities,
+		// mirroring the reciprocal note on the User Permissions screen.
+		array(
+			'id'         => 'collaboration_permissions_note',
+			'type'       => 'content',
+			'content'    => '
+				<div class="ezd-settings-info ezd-settings-info--info">
+					<span class="dashicons dashicons-info-outline"></span>
+					<div>
+						<strong>' . esc_html__( 'These roles also gain doc-editing capabilities.', 'eazydocs' ) . '</strong>
+						<p>' . esc_html__( 'The roles you allow here are combined with the Documentation Authors selected under User Permissions, and receive the same create / edit capabilities everywhere — the Docs Builder, the block editor and the front end. Review User Permissions too if you intend to restrict who can edit docs.', 'eazydocs' ) . '</p>
+					</div>
+				</div>
+			',
+			'dependency' => array(
+				array( 'is_doc_contribution', '==', 'true' ),
+			)
+		),
+
 		array(
 			'id'         => 'ezd_add_doc_heading',
 			'type'       => 'heading',
 			'title'      => esc_html__( 'Add Doc', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Let contributors create new docs from the front end.', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 			)
@@ -71,6 +116,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'frontend_add_switcher',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Add Button', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show the "Add Doc" button in the right sidebar.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
@@ -84,7 +130,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'frontend_add_btn_text',
 			'type'       => 'text',
-			'title'      => esc_html__( 'Button', 'eazydocs' ),
+			'title'      => esc_html__( 'Button Label', 'eazydocs' ),
 			'default'    => esc_html__( 'Add Doc', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
@@ -97,6 +143,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'frontend_edit_doc',
 			'type'       => 'heading',
 			'title'      => esc_html__( 'Edit Doc', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Let contributors edit existing docs from the front end.', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 			)
@@ -106,6 +153,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'frontend_edit_switcher',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Edit Button', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show the "Edit Doc" button in the right sidebar.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'text_width' => 72,
@@ -119,7 +167,7 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'frontend_edit_btn_text',
 			'type'       => 'text',
-			'title'      => esc_html__( 'Button', 'eazydocs' ),
+			'title'      => esc_html__( 'Button Label', 'eazydocs' ),
 			'default'    => esc_html__( 'Edit Doc', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
@@ -131,7 +179,8 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'docs_contributor_meta',
 			'type'       => 'heading',
-			'title'      => esc_html__( 'Meta Content', 'eazydocs' ),
+			'title'      => esc_html__( 'Contributors Box', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Display and manage the list of contributors shown on each doc.', 'eazydocs' ),
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
 			)
@@ -140,7 +189,8 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'contributor_meta_visibility',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Enable / Disable', 'eazydocs' ),
+			'title'      => esc_html__( 'Contributors Box', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Show the contributors list on the doc.', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
@@ -195,9 +245,9 @@ CSF::createSection( $prefix, array(
 			'id'         => 'contributor_load_more',
 			'type'       => 'switcher',
 			'title'      => esc_html__( 'Load More By Ajax', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Enable / Disable the Load more users with scrolling', 'eazydocs' ),
-			'text_on'    => esc_html__( 'Show', 'eazydocs' ),
-			'text_off'   => esc_html__( 'Hide', 'eazydocs' ),
+			'subtitle'   => esc_html__( 'Load more users on scroll instead of a fixed number.', 'eazydocs' ),
+			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'class'      => 'eazydocs-promax-notice',
 			'text_width' => 70,
 			'default'    => false,
@@ -224,7 +274,7 @@ CSF::createSection( $prefix, array(
 			'id'         => 'contributor_load_per_scroll',
 			'type'       => 'number',
 			'title'      => esc_html__( 'Load Per Scroll', 'eazydocs' ),
-			'default'    => esc_html__( '3', 'eazydocs' ),
+			'default'    => 3,
 			'class'      => 'eazydocs-promax-notice',
 			'dependency' => array(
 				array( 'is_doc_contribution', '==', 'true' ),
