@@ -1737,6 +1737,58 @@ function ezd_frontend_pages() {
 }
 
 /**
+ * Whether the Dark Mode feature is enabled for the front end.
+ *
+ * Mirrors the gate used when enqueuing the dark stylesheet: the toggle must be
+ * switched on AND the active theme must support it (docy/docly) or premium be
+ * active. Use this single helper everywhere so the switcher UI, the stylesheet,
+ * and the server-side body class never drift out of sync.
+ *
+ * @return bool
+ */
+function ezd_is_dark_mode_enabled() {
+	return '1' === ezd_get_opt( 'is_dark_switcher' ) && ezd_unlock_themes( 'docy', 'docly' );
+}
+
+/**
+ * Resolve the admin-chosen default appearance for first-time visitors.
+ *
+ * @return string One of 'light', 'dark', 'system'.
+ */
+function ezd_dark_default_mode() {
+	$mode = ezd_get_opt( 'ezd_dark_default', 'system' );
+	return in_array( $mode, [ 'light', 'dark', 'system' ], true ) ? $mode : 'system';
+}
+
+/**
+ * Whether the current request is an EazyDocs front-end surface that should
+ * honour the dark theme (single docs, one-page docs, docs archive/taxonomy, or
+ * a page rendering an EazyDocs shortcode). Kept deliberately free of
+ * get_body_class() so it is safe to call from inside the body_class filter.
+ *
+ * @return bool
+ */
+function ezd_is_dark_context() {
+	return ezd_frontend_pages()
+		|| is_post_type_archive( 'docs' )
+		|| is_tax( [ 'doc_tag', 'doc_badge' ] )
+		|| eazydocs_has_shortcode();
+}
+
+/**
+ * Whether the front-end dark-mode switcher button should be rendered.
+ *
+ * Themes that ship their own dark switcher (e.g. Docy's header toggle) can
+ * return false via the `eazydocs_render_dark_switcher` filter to avoid showing
+ * two competing toggles that fight over the same `body_dark` class.
+ *
+ * @return bool
+ */
+function ezd_should_render_dark_switcher() {
+	return (bool) apply_filters( 'eazydocs_render_dark_switcher', ezd_is_dark_mode_enabled() );
+}
+
+/**
  * EazyDocs Shortcodes
  *
  * @return bool|void
@@ -2737,6 +2789,12 @@ function ezd_setup_wizard_save_settings() {
 	$live_customizer = isset( $_POST['live_customizer'] ) ? sanitize_text_field( wp_unslash( $_POST['live_customizer'] ) ) : '';
 	$is_dark_switcher = isset( $_POST['is_dark_switcher'] ) ? sanitize_text_field( wp_unslash( $_POST['is_dark_switcher'] ) ) : '';
 
+	// Default appearance is allowlisted; anything unexpected falls back to "system".
+	$ezd_dark_default_raw = isset( $_POST['ezd_dark_default'] ) ? sanitize_key( wp_unslash( $_POST['ezd_dark_default'] ) ) : 'system';
+	$ezd_dark_default     = in_array( $ezd_dark_default_raw, [ 'light', 'dark', 'system' ], true ) ? $ezd_dark_default_raw : 'system';
+	$is_dark_accent       = isset( $_POST['is_dark_accent'] ) && '1' === sanitize_text_field( wp_unslash( $_POST['is_dark_accent'] ) ) ? '1' : '';
+	$brand_color_dark     = isset( $_POST['brand_color_dark'] ) ? sanitize_hex_color( wp_unslash( $_POST['brand_color_dark'] ) ) : '';
+
 	// Archive page can be an existing page ID or the "create_new" sentinel.
 	$archive_raw = isset( $_POST['archivePage'] ) ? sanitize_text_field( wp_unslash( $_POST['archivePage'] ) ) : '';
 	$archivePage = ( 'create_new' === $archive_raw )
@@ -2756,6 +2814,11 @@ function ezd_setup_wizard_save_settings() {
 		$options['docs_page_width']        = $docsPageWidth;
 		$options['customizer_visibility']  = $live_customizer;
 		$options['is_dark_switcher']       = $is_dark_switcher;
+		$options['ezd_dark_default']       = $ezd_dark_default;
+		$options['is_dark_accent_color']   = $is_dark_accent;
+		if ( $brand_color_dark ) {
+			$options['ezd_brand_color_dark'] = $brand_color_dark;
+		}
 		$options['setup_wizard_completed'] = true;
 
 		// Only overwrite the archive page when a valid one was provided/created.

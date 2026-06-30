@@ -119,19 +119,57 @@
 					self.updateLayoutPreview();
 				});
 
-				// Light / dark appearance toggle (preview only).
-				$(document).on('click', '.ezd-mode-btn', function () {
-					const mode = $(this).data('mode');
+				// Custom dark-mode accent: drives the preview's dark accent token and
+				// flags that a custom accent is in use (persisted on save).
+				$(document).on('input change', '.ezd-preview-dark-accent-input', function () {
+					const color = $(this).val();
+					$('.ezd-layout-live-preview')
+						.attr('data-dark-accent', '1')
+						.css('--ezd-preview-brand-dark', color);
+				});
+
+				// Set which appearance the preview shows, keeping the preview-mode
+				// buttons in sync. Used by every control that affects appearance so
+				// the preview is always a single source of truth.
+				const setPreviewMode = function (mode) {
 					$('.ezd-mode-btn').removeClass('active').attr('aria-pressed', 'false');
-					$(this).addClass('active').attr('aria-pressed', 'true');
+					$('.ezd-mode-btn[data-mode="' + mode + '"]')
+						.addClass('active')
+						.attr('aria-pressed', 'true');
 					$('.ezd-layout-live-preview').attr('data-theme', mode);
+				};
+
+				// Light / dark appearance toggle (preview only — for comparison).
+				$(document).on('click', '.ezd-mode-btn', function () {
+					setPreviewMode($(this).data('mode'));
+				});
+
+				// Dark Mode Switcher ↔ preview: enabling it reveals the default-
+				// appearance options and jumps the preview to dark so the choice is
+				// visible; disabling returns the preview to light.
+				$(document).on('change', '#dark-mode-switcher', function () {
+					const on = $(this).is(':checked');
+					$('.ezd-dark-mode-card').toggleClass('is-enabled', on);
+					setPreviewMode(on ? 'dark' : 'light');
+				});
+
+				// Default appearance radio → preview reflects the chosen baseline.
+				$(document).on('change', 'input[name="ezd_dark_default"]', function () {
+					$('.ezd-dark-default-option').removeClass('active');
+					$(this).closest('.ezd-dark-default-option').addClass('active');
+					setPreviewMode('dark' === $(this).val() ? 'dark' : 'light');
 				});
 
 				// Restore recommended defaults.
 				$(document).on('click', '.ezd-restore-defaults', function () {
 					$('#both_sidebar').prop('checked', true).trigger('change');
 					$('#boxed').prop('checked', true).trigger('change');
-					$('.ezd-mode-btn[data-mode="light"]').trigger('click');
+					$('#dark-mode-switcher').prop('checked', false);
+					$('.ezd-dark-mode-card').removeClass('is-enabled');
+					$('input[name="ezd_dark_default"][value="system"]').prop('checked', true);
+					$('.ezd-dark-default-option').removeClass('active')
+						.has('input[value="system"]').addClass('active');
+					setPreviewMode('light');
 					self.updateLayoutPreview();
 				});
 			},
@@ -428,6 +466,9 @@
 					// Always send an explicit 0/1 so the toggle can be turned off.
 					live_customizer: $('#live-customizer').is(':checked') ? '1' : '0',
 					is_dark_switcher: $('#dark-mode-switcher').is(':checked') ? '1' : '0',
+					ezd_dark_default: $('input[name="ezd_dark_default"]:checked').val() || 'system',
+					is_dark_accent: $('.ezd-layout-live-preview').attr('data-dark-accent') === '1' ? '1' : '0',
+					brand_color_dark: $('.ezd-preview-dark-accent-input').val() || '',
 					archivePage: $('.archive-page-selection-wrap select').val() || ''
 				};
 			},

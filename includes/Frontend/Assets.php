@@ -70,13 +70,14 @@ class Assets
 			// Depends on 'scrollspy' (Gumshoe) — onepage.js instantiates `new Gumshoe(...)`.
 			wp_register_script('eazydocs-onepage', EZD_ASSETS . 'js/frontend/onepage.js', ['jquery', 'scrollspy'], EZD_VERSION, true);
 
-			$is_dark_switcher = ezd_unlock_themes('docy', 'docly') ? ezd_get_opt('is_dark_switcher') : false;
-
-			if ('1' === $is_dark_switcher && is_singular(['docs', 'onepage-docs'])) {
-				wp_enqueue_style('eazydocs-dark-mode', EZD_STYLES . 'frontend-dark-mode.css', [], EZD_VERSION);
-			}
-
 			wp_enqueue_style('eazydocs-frontend', EZD_STYLES . 'frontend.css', [], EZD_VERSION);
+		}
+
+		// Dark theme stylesheet. Loaded across every EazyDocs surface (single docs,
+		// one-page docs, archive/taxonomy and shortcode pages) — not just single
+		// docs — so a visitor's saved preference carries as they browse the docs.
+		if (ezd_is_dark_mode_enabled() && ezd_is_dark_context()) {
+			wp_enqueue_style('eazydocs-dark-mode', EZD_STYLES . 'frontend-dark-mode.css', [], EZD_VERSION);
 		}
 
 		if (is_rtl()) {
@@ -116,6 +117,7 @@ class Assets
 				'ezd_layout_container' => ezd_container(),
 				'ezd_search_submit' => ezd_get_opt('is_search_submit', true),
 				'ezd_dark_switcher' => ezd_get_opt('is_dark_switcher', true),
+				'ezd_dark_default' => ezd_dark_default_mode(),
 				'elementor_docs' => $elementor_docs,
 				'i18n_loading' => __('Loading…', 'eazydocs'),
 				'i18n_error' => __('Something went wrong. Please try again.', 'eazydocs'),

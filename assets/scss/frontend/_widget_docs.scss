@@ -52,6 +52,10 @@
   margin-bottom: 30px;
   text-decoration: none !important;
 
+  .ezd-badge {
+    margin-top: 0;
+  }
+
   .title {
     font-size: 20px;
     line-height: 26px;
@@ -1192,6 +1196,9 @@
     margin-bottom: 0;
 
     .title {
+      // Take the full first line so the topic-count badge wraps onto its
+      // own line directly below the title instead of sitting beside it.
+      flex: 1 0 100%;
       font-size: 20px;
       text-decoration: none;
       margin: 0;

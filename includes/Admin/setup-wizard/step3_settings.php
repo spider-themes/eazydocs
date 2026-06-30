@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div id="step-3" class="tab-pane ezd-layout-step" role="tabpanel" style="display:none">
 	<div class="ezd-step-header">
-		<h2><?php esc_html_e( 'Choose Your Layout', 'eazydocs' ); ?></h2>
-		<p class="ezd-step-description"><?php esc_html_e( 'Select how your documentation pages will look. Pick a layout that suits your content best.', 'eazydocs' ); ?></p>
+		<h2><?php esc_html_e( 'Design Your Docs', 'eazydocs' ); ?></h2>
+		<p class="ezd-step-description"><?php esc_html_e( 'Shape how your documentation looks — layout, width, brand color and dark mode. Watch the live preview update as you go.', 'eazydocs' ); ?></p>
 		<button type="button" class="ezd-restore-defaults" title="<?php esc_attr_e( 'Reset layout, width and theme to the recommended defaults', 'eazydocs' ); ?>">
 			<span class="dashicons dashicons-image-rotate"></span>
 			<?php esc_html_e( 'Restore defaults', 'eazydocs' ); ?>
@@ -21,13 +21,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="ezd-layout-content">
 		<!-- Live Layout Preview -->
-		<div class="ezd-layout-live-preview" data-layout="<?php echo esc_attr( $docs_single_layout ); ?>" data-width="<?php echo esc_attr( $docs_page_width ); ?>" data-theme="light" style="--ezd-preview-brand: <?php echo esc_attr( $brand_color ? $brand_color : '#007FFF' ); ?>">
+		<?php
+		// Dark-mode accent: falls back to the light brand color until the admin
+		// opts into a custom one, so the dark preview always shows a real accent.
+		$preview_brand      = $brand_color ? $brand_color : '#007FFF';
+		$preview_brand_dark = ( '1' === $is_dark_accent_color && $brand_color_dark ) ? $brand_color_dark : $preview_brand;
+		?>
+		<div class="ezd-layout-live-preview" data-layout="<?php echo esc_attr( $docs_single_layout ); ?>" data-width="<?php echo esc_attr( $docs_page_width ); ?>" data-theme="light" data-dark-accent="<?php echo esc_attr( $is_dark_accent_color ? '1' : '0' ); ?>" style="--ezd-preview-brand: <?php echo esc_attr( $preview_brand ); ?>; --ezd-preview-brand-dark: <?php echo esc_attr( $preview_brand_dark ); ?>">
 			<!-- Preview controls: brand colour + light/dark appearance -->
 			<div class="ezd-preview-controls">
 				<label class="ezd-preview-brand-control">
 					<span class="ezd-preview-brand-swatch"></span>
 					<span class="ezd-preview-brand-text"><?php esc_html_e( 'Brand color', 'eazydocs' ); ?></span>
-					<input type="color" class="ezd-preview-brand-input" value="<?php echo esc_attr( $brand_color ? $brand_color : '#007FFF' ); ?>" aria-label="<?php esc_attr_e( 'Brand color', 'eazydocs' ); ?>">
+					<input type="color" class="ezd-preview-brand-input" value="<?php echo esc_attr( $preview_brand ); ?>" aria-label="<?php esc_attr_e( 'Brand color', 'eazydocs' ); ?>">
+				</label>
+				<!-- Dark accent: only meaningful while previewing dark, shown then. -->
+				<label class="ezd-preview-brand-control ezd-preview-dark-accent-control">
+					<span class="ezd-preview-brand-swatch ezd-preview-dark-accent-swatch"></span>
+					<span class="ezd-preview-brand-text"><?php esc_html_e( 'Dark accent', 'eazydocs' ); ?></span>
+					<input type="color" class="ezd-preview-dark-accent-input" value="<?php echo esc_attr( $preview_brand_dark ); ?>" aria-label="<?php esc_attr_e( 'Dark mode accent color', 'eazydocs' ); ?>">
 				</label>
 				<div class="ezd-preview-mode-toggle" role="group" aria-label="<?php esc_attr_e( 'Preview appearance', 'eazydocs' ); ?>">
 					<button type="button" class="ezd-mode-btn active" data-mode="light" aria-pressed="true">
@@ -174,18 +186,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<!-- Dark Mode -->
-		<div class="ezd-setting-card ezd-toggle-card">
+		<div class="ezd-setting-card ezd-toggle-card ezd-dark-mode-card<?php echo '1' === $is_dark_switcher ? ' is-enabled' : ''; ?>">
 			<div class="ezd-setting-header">
 				<div class="ezd-setting-icon">
 					<span class="dashicons dashicons-admin-appearance"></span>
 				</div>
 				<div class="ezd-setting-title">
 					<h3><?php esc_html_e( 'Dark Mode Switcher', 'eazydocs' ); ?></h3>
-					<p><?php esc_html_e( 'Let visitors switch between light and dark themes. Use the toggle above to preview both.', 'eazydocs' ); ?></p>
+					<p><?php esc_html_e( 'Add a light/dark toggle to your docs. Turning this on switches the preview to dark so you can see it.', 'eazydocs' ); ?></p>
 				</div>
 				<div class="ezd-toggle-switch">
 					<input type="checkbox" id="dark-mode-switcher" name="is_dark_switcher" value="1" <?php checked( $is_dark_switcher, '1' ); ?>>
 					<label for="dark-mode-switcher" class="ezd-toggle-label"></label>
+				</div>
+			</div>
+
+			<!-- Default appearance: revealed only while the switcher is enabled. -->
+			<div class="ezd-setting-body ezd-dark-default-body">
+				<span class="ezd-dark-default-label"><?php esc_html_e( 'Default appearance for new visitors', 'eazydocs' ); ?></span>
+				<div class="ezd-dark-default-options" role="radiogroup" aria-label="<?php esc_attr_e( 'Default appearance for new visitors', 'eazydocs' ); ?>">
+					<?php
+					$dark_default_choices = array(
+						'light'  => array( 'sticky', __( 'Light', 'eazydocs' ) ),
+						'dark'   => array( 'admin-appearance', __( 'Dark', 'eazydocs' ) ),
+						'system' => array( 'desktop', __( 'Follow system', 'eazydocs' ) ),
+					);
+					foreach ( $dark_default_choices as $value => $choice ) :
+						?>
+						<label class="ezd-dark-default-option<?php echo $ezd_dark_default === $value ? ' active' : ''; ?>">
+							<input type="radio" name="ezd_dark_default" value="<?php echo esc_attr( $value ); ?>" <?php checked( $ezd_dark_default, $value ); ?>>
+							<span class="dashicons dashicons-<?php echo esc_attr( $choice[0] ); ?>"></span>
+							<span><?php echo esc_html( $choice[1] ); ?></span>
+						</label>
+					<?php endforeach; ?>
 				</div>
 			</div>
 		</div>

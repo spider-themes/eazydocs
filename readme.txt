@@ -348,12 +348,21 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.12.2 (29 June 2026) =
+= 2.12.2 (30 June 2026) =
+* New: Dark Mode Default Appearance – Decide what first-time visitors see — Light, Dark, or Follow System — before they choose their own preference.
+* New: Docs Assistant Appearance Controls – Style the assistant panel with custom card background, doc title and text colors, panel width, and corner radius.
+* New: Preview Assistant – Added a quick link to open a live preview of the Docs Assistant in a new tab while you adjust its settings.
+* Updated: Setup Wizard Design Step – Renamed the Layout step to "Design" and expanded it to cover layout, width, brand color and dark mode, with the live preview now showing dark mode and a custom dark accent color as you adjust them.
+* Updated: Docs Assistant Knowledge Base – The Knowledge Base tab now lists 20 docs by default (up from 12), with a maximum of 100.
 * Improved: User Permissions Settings – Redesigned the User Permissions and Docs Collaboration screens with clearer descriptions, a capability reference table, and helpful notes so it's easy to see exactly what each role can do.
 * Improved: Role Selection – The Documentation Authors and Analytics Viewers selectors now list every role on your site, including custom roles, instead of a fixed set of defaults.
+* Improved: Dark Mode – Now works across all your documentation pages — single docs, one-page docs, archives, categories, tags and shortcode pages — and the correct theme is applied instantly on load, removing the brief flash of light. Visitors following their system setting also see the theme update live when they change their OS appearance.
+* Improved: Dark Mode Switcher – Made the light/dark toggle clearer for screen reader users, and themes that include their own switcher no longer show a duplicate toggle.
+* Improved: Docs Assistant Instant Answer – Docs now open inside the assistant panel by default instead of navigating away from the page.
 * Optimized: Role Capabilities – Documentation role capabilities now update only when your permission settings change, removing unnecessary work on every admin page load.
 * Fixed: Documentation Menu Visibility – The Documentation admin menu now appears for exactly the roles you've granted access, keeping menu visibility in step with the permissions you set.
 * Fixed: Search Result Thumbnails – Search results now fall back to the document icon when a thumbnail image is missing, preventing blank thumbnails.
+* Fixed: Documentation Widget – The topic-count badge now drops to its own line below the document title instead of crowding it.
 
 = 2.12.1 (28 June 2026) =
 * Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.

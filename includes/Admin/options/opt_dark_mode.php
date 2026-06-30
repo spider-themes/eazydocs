@@ -28,6 +28,21 @@ CSF::createSection($prefix, array(
         ),
 
         array(
+            'id' => 'ezd_dark_default',
+            'type' => 'button_set',
+            'title' => esc_html__('Default Appearance', 'eazydocs'),
+            'subtitle' => esc_html__('Which theme first-time visitors see before they choose. "Follow system" respects each visitor\'s OS light/dark setting.', 'eazydocs'),
+            'options' => array(
+                'light' => esc_html__('Light', 'eazydocs'),
+                'dark' => esc_html__('Dark', 'eazydocs'),
+                'system' => esc_html__('Follow system', 'eazydocs'),
+            ),
+            'default' => 'system',
+            'class' => 'eazydocs-pro-notice active-theme-docly active-theme-docy',
+            'dependency' => array('is_dark_switcher', '==', '1'),
+        ),
+
+        array(
             'title' => esc_html__('Custom Dark Mode Accent', 'eazydocs'),
             'subtitle' => esc_html__('Use a different accent color when dark mode is active. Useful for improving contrast and visibility.', 'eazydocs'),
             'id' => 'is_dark_accent_color',

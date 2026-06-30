@@ -18,6 +18,7 @@ class Frontend {
 		add_action( 'eazydocs_related_articles', [ $this, 'related_articles' ], 99, 4 );
 		add_action( 'eazydocs_viewed_articles', [ $this, 'recently_viewed_docs' ], 99, 4 );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
+		add_action( 'wp_body_open', [ $this, 'dark_mode_system_preference' ] );
 		add_action( 'eazydocs_prev_next_docs', [ $this, 'prev_next_docs' ] );
 	}
 
@@ -161,7 +162,52 @@ class Frontend {
 			$classes[] = 'eazydocs_shortcode';
 		}
 
+		// Apply the dark theme server-side so returning (or force-dark) visitors
+		// never see a flash of light content before JavaScript runs. The visitor
+		// cookie wins; absent a cookie, the admin's "default appearance" decides.
+		// The "follow system" case can't be resolved on the server, so it is
+		// handled flash-free by dark_mode_system_preference() on wp_body_open.
+		if ( ezd_is_dark_mode_enabled() && ezd_is_dark_context() ) {
+			$cookie = isset( $_COOKIE['body_dark'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['body_dark'] ) ) : '';
+
+			if ( 'true' === $cookie || ( '' === $cookie && 'dark' === ezd_dark_default_mode() ) ) {
+				$classes[] = 'body_dark';
+			}
+		}
+
 		return $classes;
+	}
+
+	/**
+	 * First-visit "follow system" handling, printed right after <body> opens so
+	 * it runs before paint. Only fires when no explicit choice (cookie) exists
+	 * and the admin left the default on "system"; every other case is already
+	 * resolved server-side in body_class(), so this stays a no-op for them.
+	 *
+	 * @return void
+	 */
+	public function dark_mode_system_preference() {
+		if ( ! ezd_is_dark_mode_enabled() || ! ezd_is_dark_context() ) {
+			return;
+		}
+
+		if ( 'system' !== ezd_dark_default_mode() ) {
+			return;
+		}
+		?>
+		<script>
+			( function () {
+				try {
+					if ( document.cookie.indexOf( 'body_dark=' ) !== -1 ) {
+						return; // The visitor has already made an explicit choice.
+					}
+					if ( window.matchMedia && window.matchMedia( '(prefers-color-scheme: dark)' ).matches ) {
+						document.body.classList.add( 'body_dark' );
+					}
+				} catch ( e ) {}
+			} )();
+		</script>
+		<?php
 	}
 
 	/**

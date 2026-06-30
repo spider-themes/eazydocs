@@ -770,52 +770,58 @@
 		}
 
 		/**
-		 * Dark mode switcher
-		 * @type {boolean}
+		 * Dark mode switcher.
+		 *
+		 * The server already paints the correct theme before this runs (the
+		 * `body_dark` class is added server-side from the cookie / admin default,
+		 * and the first-visit "follow system" case is handled by an inline script
+		 * on wp_body_open). So here we only mirror that state onto the toggle UI,
+		 * persist the visitor's choice on change, and — while no explicit choice
+		 * exists and the default is "follow system" — track live OS changes.
+		 * Keeping the body class as the single source of truth removes the old
+		 * flicker and the competing active-state logic.
 		 */
-		let prefersDark =
-			window.matchMedia &&
-			window.matchMedia('(prefers-color-scheme: dark)').matches;
-		let selectedNightTheme = readCookie('body_dark');
+		if (eazydocs_local_object.ezd_dark_switcher === '1') {
+			var $darkSwitch = $('#ezd_dark_switch');
 
-		if (
-			selectedNightTheme == 'true' ||
-			(selectedNightTheme === null && prefersDark)
-		) {
-			applyNight();
-			$('#ezd_dark_switch').prop('checked', true);
-		} else {
-			applyDay();
-			$('#ezd_dark_switch').prop('checked', false);
-		}
-		function applyNight() {
-
-			// Check if dark mode switcher is enabled
-			if (eazydocs_local_object.ezd_dark_switcher !== '1') return;
-
-			$('body.single-docs, body.single-onepage-docs').addClass('body_dark');
-			$('body.single-onepage-docs').addClass('body_dark');
-			$('.light-mode').removeClass('active');
-			$('.dark-mode').addClass('active');
-		}
-
-		function applyDay() {
-			$('body.single-docs, body.single-onepage-docs').removeClass('body_dark');
-			$('.dark-mode').removeClass('active');
-			$('.light-mode').addClass('active');
-		}
-
-		$('#ezd_dark_switch').change(function () {
-			if ($(this).is(':checked')) {
-				applyNight();
-				$('.tab-btns').removeClass('active');
-				createCookie('body_dark', true, 999);
-			} else {
-				applyDay();
-				$('.tab-btns').addClass('active');
-				createCookie('body_dark', false, 999);
+			function syncDarkUI(isDark) {
+				$darkSwitch.prop('checked', isDark);
+				$('.light-mode').toggleClass('active', !isDark);
+				$('.dark-mode').toggleClass('active', isDark);
 			}
-		});
+
+			function setDarkMode(isDark) {
+				$('body').toggleClass('body_dark', isDark);
+				syncDarkUI(isDark);
+			}
+
+			// Reflect whatever the server decided.
+			syncDarkUI($('body').hasClass('body_dark'));
+
+			$darkSwitch.on('change', function () {
+				var isDark = $(this).is(':checked');
+				setDarkMode(isDark);
+				createCookie('body_dark', isDark ? 'true' : 'false', 999);
+			});
+
+			// Live-follow the OS preference until the visitor makes a choice.
+			if (
+				window.matchMedia &&
+				readCookie('body_dark') === null &&
+				eazydocs_local_object.ezd_dark_default === 'system'
+			) {
+				var darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+				var onSchemeChange = function (e) {
+					if (readCookie('body_dark') !== null) return; // a choice was made meanwhile
+					setDarkMode(e.matches);
+				};
+				if (darkScheme.addEventListener) {
+					darkScheme.addEventListener('change', onSchemeChange);
+				} else if (darkScheme.addListener) {
+					darkScheme.addListener(onSchemeChange);
+				}
+			}
+		}
 
 		// CONTRIBUTOR SEARCH
 		$('#ezd-contributor-search').on('input', function () {

@@ -172,6 +172,7 @@ body.body_dark {
   
   .cheatsheet_item,
   .process_tab_shortcode .version,
+  .tab_shortcode .nav-tabs .nav-item .nav-link,
   .key, kbd, p .key, p kbd {
     background: #2c303a;
   }
@@ -180,25 +181,9 @@ body.body_dark {
     background: transparent;
   }
 
-  .table_shortcode tbody tr td:not(.th),
-  .notice p {
-    color: black;
-  }
-
-  .cheatsheet_accordian .card .card-header button {
-    color: #fff;
-  }
-
-  .cheatsheet_item,
-  .process_tab_shortcode .version,
-  .tab_shortcode .nav-tabs .nav-item .nav-link {
-    background: #2c303a;
-  }
-
-  .cheatsheet_accordian .card {
-    background: transparent;
-  }
-
+  /* These shortcode widgets keep their light backgrounds in dark mode, so their
+     text stays dark for contrast. If a widget ever renders on a dark surface,
+     give it an explicit light background here too. */
   .table_shortcode tbody tr td:not(.th),
   .notice p {
     color: black;

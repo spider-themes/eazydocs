@@ -2205,14 +2205,24 @@ body.documentation_page_eazydocs-initial-setup {
 	}
 
 	// Dark appearance — preview-only; mirrors the frontend dark theme so users
-	// can judge both before enabling the Dark Mode Switcher below.
+	// can judge both before enabling the Dark Mode Switcher below. The accent
+	// swaps to the dark-mode accent token so a custom dark accent is previewed.
 	&[data-theme="dark"] {
+		--ezd-preview-brand: var(--ezd-preview-brand-dark);
 		--ezd-pv-page: #1f2430;
 		--ezd-pv-chrome: #161a22;
 		--ezd-pv-border: #2c3340;
 		--ezd-pv-line: #2c3340;
 		--ezd-pv-line-strong: #3a4252;
+
+		// The dark accent picker is only meaningful while previewing dark.
+		.ezd-preview-dark-accent-control { display: inline-flex; }
 	}
+
+	// Hidden until the dark preview is active (revealed by the rule above).
+	.ezd-preview-dark-accent-control { display: none; }
+
+	.ezd-preview-dark-accent-swatch { background: var(--ezd-preview-brand-dark); }
 
 	.ezd-preview-caption {
 		display: flex;
@@ -2313,6 +2323,75 @@ body.documentation_page_eazydocs-initial-setup {
 				background: $primary-color;
 				color: white;
 			}
+		}
+	}
+}
+
+/* -------------------------------------------------------------------------
+ * Dark Mode card — default-appearance options (Design step)
+ * ---------------------------------------------------------------------- */
+.ezd-dark-mode-card {
+	// The default-appearance options only make sense once the switcher is on,
+	// so they stay collapsed until the card gains .is-enabled.
+	.ezd-dark-default-body {
+		display: none;
+		padding-top: 14px;
+		margin-top: 14px;
+		border-top: 1px solid $border-light;
+	}
+
+	&.is-enabled .ezd-dark-default-body {
+		display: block;
+	}
+
+	.ezd-dark-default-label {
+		display: block;
+		margin-bottom: 10px;
+		font-size: 13px;
+		font-weight: 600;
+		color: $text-secondary;
+	}
+
+	.ezd-dark-default-options {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.ezd-dark-default-option {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 8px 14px;
+		border: 1px solid $border-color;
+		border-radius: $radius-md;
+		font-size: 13px;
+		font-weight: 500;
+		color: $text-secondary;
+		cursor: pointer;
+		transition: all $transition-fast;
+
+		input {
+			position: absolute;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.dashicons {
+			font-size: 16px;
+			width: 16px;
+			height: 16px;
+		}
+
+		&:hover {
+			border-color: $primary-color;
+			color: $primary-color;
+		}
+
+		&.active {
+			border-color: $primary-color;
+			background: rgba($primary-color, 0.08);
+			color: $primary-color;
 		}
 	}
 }

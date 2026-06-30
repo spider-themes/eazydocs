@@ -16,6 +16,9 @@ $docs_single_layout    = ezd_is_premium() ? ezd_get_opt( 'docs_single_layout' ) 
 $docs_page_width       = ezd_get_opt( 'docs_page_width' );
 $customizer_visibility = ezd_get_opt( 'customizer_visibility' );
 $is_dark_switcher      = ezd_get_opt( 'is_dark_switcher' );
+$ezd_dark_default      = ezd_dark_default_mode();
+$is_dark_accent_color  = ezd_get_opt( 'is_dark_accent_color' );
+$brand_color_dark      = ezd_get_opt( 'ezd_brand_color_dark' );
 $docs_archive_page     = ezd_get_opt( 'docs-slug' );
 
 $wizard_steps = array(
@@ -28,8 +31,8 @@ $wizard_steps = array(
 		'icon'  => 'admin-settings',
 	),
 	3 => array(
-		'title' => esc_html__( 'Layout', 'eazydocs' ),
-		'icon'  => 'layout',
+		'title' => esc_html__( 'Design', 'eazydocs' ),
+		'icon'  => 'admin-appearance',
 	),
 	4 => array(
 		'title' => esc_html__( 'Plugins', 'eazydocs' ),

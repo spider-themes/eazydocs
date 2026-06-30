@@ -28,12 +28,20 @@ CSF::createSection( $prefix, array(
 		array(
 			'id'         => 'assistant_visibility',
 			'type'       => 'switcher',
-			'title'      => esc_html__( 'Docs Assistant', 'eazydocs' ),
+			'title'      => esc_html__( 'Enable Assistant', 'eazydocs' ),
 			'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
 			'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
 			'class'      => 'eazydocs-pro-notice',
 			'text_width' => 92,
 			'default'    => false
+		),
+
+		array(
+			'type'       => 'content',
+			'content'    => ezd_assistant_preview_link(),
+			'dependency' => array(
+				array( 'assistant_visibility', '==', 'true' )
+			),
 		),
 
 		array(
@@ -93,7 +101,7 @@ CSF::createSection( $prefix, array(
 			'preview_height' => '60',
 			'class'          => 'eazydocs-pro-notice',
 			'dependency'     => array(
-				array( 'assistant_visibility', '==', '1' )
+				array( 'assistant_visibility', '==', 'true' )
 			)
 		),
 
@@ -140,6 +148,20 @@ CSF::createSection( $prefix, array(
 							)
 						),
 
+						array(
+							'id'         => 'docs_instant_answer',
+							'type'       => 'switcher',
+							'title'      => esc_html__( 'Instant Answer', 'eazydocs' ),
+							'subtitle'   => esc_html__( 'Open docs inside the assistant panel instead of navigating away from the page.', 'eazydocs' ),
+							'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+							'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+							'text_width' => 83,
+							'default'    => true,
+							'dependency' => array(
+								array( 'kb_visibility', '==', 'true' )
+							)
+						),
+
 						ezd_csf_switcher_field([
 							'id'         => 'assistant_search',
 							'title'      => esc_html__( 'Search', 'eazydocs' ),
@@ -182,29 +204,17 @@ CSF::createSection( $prefix, array(
 						),
 
 						array(
-							'id'         => 'docs_instant_answer',
-							'type'       => 'switcher',
-							'title'      => esc_html__( 'Instant Answer', 'eazydocs' ),
-							'text_on'    => esc_html__( 'Eanble', 'eazydocs' ),
-							'text_off'   => esc_html__( 'Disable', 'eazydocs' ),
-							'text_width' => 83,
-							'default'    => false,
-							'dependency' => array(
-								array( 'kb_visibility', '==', 'true' )
-							)
-						),
-
-						array(
 							'id'         => 'assistant_docs_show',
 							'type'       => 'number',
 							'title'      => esc_html__( 'Number of Docs', 'eazydocs' ),
-							'desc'       => esc_html__( 'Leave this field empty to display all available docs.', 'eazydocs' ),
-							'default'    => 12,
+							'desc'       => esc_html__( 'How many docs to list in the Knowledge Base tab. Defaults to 20 if left empty. Maximum 100.', 'eazydocs' ),
+							'default'    => 20,
 							'dependency' => array(
 								array( 'kb_visibility', '==', 'true' ),
 							),
 							'attributes' => array(
 								'min'  => 1,
+								'max'  => 100,
 								'step' => 1
 							)
 						)
@@ -333,8 +343,33 @@ CSF::createSection( $prefix, array(
 							'id'          => 'assistant_body_bg',
 							'type'        => 'color',
 							'title'       => esc_html__( 'Background', 'eazydocs' ),
-							'output'      => '.chatbox-body',
+							'output'      => '.chatbox-body,.kb-content-wrap.opened',
 							'output_mode' => 'background-color',
+						),
+
+						array(
+							'id'          => 'assistant_card_bg',
+							'type'        => 'color',
+							'title'       => esc_html__( 'Card Background', 'eazydocs' ),
+							'subtitle'    => esc_html__( 'Background of each doc item in the Knowledge Base list.', 'eazydocs' ),
+							'output'      => '.chatbox-posts .post-item',
+							'output_mode' => 'background-color',
+						),
+
+						array(
+							'id'          => 'assistant_title_color',
+							'type'        => 'color',
+							'title'       => esc_html__( 'Doc Title Color', 'eazydocs' ),
+							'output'      => '.chatbox-posts .post-item h2 a,.kb-content-wrap.opened h1.ezd-kbase-extend-heading',
+							'output_mode' => 'color',
+						),
+
+						array(
+							'id'          => 'assistant_text_color',
+							'type'        => 'color',
+							'title'       => esc_html__( 'Doc Text Color', 'eazydocs' ),
+							'output'      => '.chatbox-posts .post-item p,.kb-content-wrap.opened p',
+							'output_mode' => 'color',
 						),
 
 						array(
@@ -378,6 +413,39 @@ CSF::createSection( $prefix, array(
 							'unit'        => '%',
 							'output'      => '.chat-toggle,.chatbox-wrapper',
 							'output_mode' => 'margin-right'
+						),
+
+						array(
+							'id'    => 'assistant_appearance_heading',
+							'type'  => 'subheading',
+							'title' => esc_html__( 'Appearance', 'eazydocs' ),
+						),
+
+						array(
+							'id'          => 'assistant_panel_width',
+							'type'        => 'slider',
+							'title'       => esc_html__( 'Panel Width', 'eazydocs' ),
+							'subtitle'    => esc_html__( 'Width of the assistant panel on desktop. It still shrinks to fit small screens.', 'eazydocs' ),
+							'min'         => 320,
+							'max'         => 520,
+							'step'        => 5,
+							'unit'        => 'px',
+							'default'     => 410,
+							'output'      => '.chatbox-wrapper:not(.extend)',
+							'output_mode' => 'width'
+						),
+
+						array(
+							'id'          => 'assistant_border_radius',
+							'type'        => 'slider',
+							'title'       => esc_html__( 'Corner Radius', 'eazydocs' ),
+							'min'         => 0,
+							'max'         => 28,
+							'step'        => 1,
+							'unit'        => 'px',
+							'default'     => 12,
+							'output'      => '.chatbox-wrapper',
+							'output_mode' => 'border-radius'
 						)
 					)
 				),
@@ -424,16 +492,19 @@ function ezd_assistant_antimanual_info() {
 	$settings_url  = admin_url( 'admin.php?page=atml-chatbot' );
 
 	if ( $is_active ) {
+		$state   = 'connected';
 		$badge   = esc_html__( 'Connected', 'eazydocs' );
 		$heading = esc_html__( 'AI chatbot powered by Antimanual', 'eazydocs' );
 		$body    = esc_html__( 'Antimanual is active. Your Docs Assistant can now answer visitors with an AI chatbot trained on your documentation — alongside the built-in knowledge base and contact tabs below.', 'eazydocs' );
 		$primary = '<a href="' . esc_url( $settings_url ) . '" class="button button-primary">' . esc_html__( 'Configure Antimanual', 'eazydocs' ) . '</a>';
 	} elseif ( $is_installed ) {
+		$state   = 'action';
 		$badge   = esc_html__( 'Action needed', 'eazydocs' );
 		$heading = esc_html__( 'Activate Antimanual to add an AI chatbot', 'eazydocs' );
 		$body    = esc_html__( 'Antimanual is installed but not active. Activate it to upgrade your Docs Assistant into an AI chatbot trained on your docs, with smart semantic search.', 'eazydocs' );
 		$primary = '<a href="' . esc_url( $activate_url ) . '" class="button button-primary">' . esc_html__( 'Activate Antimanual', 'eazydocs' ) . '</a>';
 	} else {
+		$state   = 'addon';
 		$badge   = esc_html__( 'Free add-on', 'eazydocs' );
 		$heading = esc_html__( 'Turn your Docs Assistant into an AI chatbot', 'eazydocs' );
 		$body    = esc_html__( 'Install the free Antimanual plugin to train an AI chatbot on your documentation. Visitors get instant, conversational answers from your docs — reducing repetitive support tickets.', 'eazydocs' );
@@ -443,17 +514,73 @@ function ezd_assistant_antimanual_info() {
 	$secondary  = '<a href="' . esc_url( $wporg_url ) . '" target="_blank" rel="noopener noreferrer" class="button button-secondary">' . esc_html__( 'View on WordPress.org', 'eazydocs' ) . '</a>';
 	$secondary .= ' <a href="' . esc_url( $learn_more ) . '" target="_blank" rel="noopener noreferrer" class="button button-secondary">' . esc_html__( 'Learn More', 'eazydocs' ) . '</a>';
 
-	$html  = '<div class="ezd-assistant-antimanual" style="border:1px solid #d8d0fb;border-left:4px solid #5E3AEE;border-radius:8px;background:#faf9fe;padding:16px 18px;margin-bottom:18px;">';
-	$html .= '<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">';
-	$html .= '<span class="dashicons dashicons-superhero-alt" style="color:#5E3AEE;font-size:22px;width:22px;height:22px;"></span>';
-	$html .= '<strong style="font-size:15px;color:#1e1e1e;">' . $heading . '</strong>';
-	$html .= '<span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:#5E3AEE;background:#ece7fd;border-radius:10px;padding:2px 10px;">' . $badge . '</span>';
+	$html  = ezd_assistant_antimanual_styles();
+	$html .= '<div class="ezd-assistant-antimanual ezd-assistant-antimanual--' . esc_attr( $state ) . '">';
+	$html .= '<div class="ezd-assistant-antimanual__head">';
+	$html .= '<span class="dashicons dashicons-superhero-alt ezd-assistant-antimanual__icon"></span>';
+	$html .= '<strong class="ezd-assistant-antimanual__title">' . $heading . '</strong>';
+	$html .= '<span class="ezd-assistant-antimanual__badge">' . $badge . '</span>';
 	$html .= '</div>';
-	$html .= '<p style="margin:0 0 12px;font-size:13px;line-height:1.6;color:#50575e;">' . $body . '</p>';
-	$html .= '<div style="display:flex;gap:8px;flex-wrap:wrap;">' . $primary . $secondary . '</div>';
+	$html .= '<p class="ezd-assistant-antimanual__body">' . $body . '</p>';
+	$html .= '<div class="ezd-assistant-antimanual__actions">' . $primary . $secondary . '</div>';
 	$html .= '</div>';
 
 	return $html;
+}
+
+/**
+ * Render a "Preview Assistant" link for the settings panel.
+ *
+ * The plugin already exposes a standalone render of the widget at
+ * /iframe-assistant/. Opening it in a new tab gives admins an isolated live
+ * preview of their current settings without hunting for it on the front end.
+ * Saved settings are reflected on the next load, so the hint notes that.
+ *
+ * @return string Escaped HTML for a CSF `content` field.
+ */
+function ezd_assistant_preview_link() {
+	$preview_url = esc_url( site_url( '/iframe-assistant/' ) );
+
+	$html  = '<p style="margin:0 0 4px;">';
+	$html .= '<a href="' . $preview_url . '" target="_blank" rel="noopener noreferrer" class="button button-secondary">';
+	$html .= '<span class="dashicons dashicons-external" style="vertical-align:text-bottom;"></span> ';
+	$html .= esc_html__( 'Preview Assistant', 'eazydocs' );
+	$html .= '</a>';
+	$html .= '</p>';
+	$html .= '<p class="description" style="margin:0;">' . esc_html__( 'Opens a live preview in a new tab. Save your changes first to see them reflected.', 'eazydocs' ) . '</p>';
+
+	return $html;
+}
+
+/**
+ * One-time scoped stylesheet for the Antimanual notice.
+ *
+ * Kept inline (rather than enqueued) so the notice stays fully self-contained
+ * within the CSF `content` field. A static guard ensures the <style> block is
+ * emitted only once even if the notice renders more than once on a page.
+ *
+ * @return string Style markup, or empty string on subsequent calls.
+ */
+function ezd_assistant_antimanual_styles() {
+	static $printed = false;
+	if ( $printed ) {
+		return '';
+	}
+	$printed = true;
+
+	return '<style>
+		.ezd-assistant-antimanual{border:1px solid #d8d0fb;border-left:4px solid #5E3AEE;border-radius:8px;background:#faf9fe;padding:16px 18px;margin-bottom:18px;}
+		.ezd-assistant-antimanual__head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+		.ezd-assistant-antimanual__icon{color:#5E3AEE;font-size:22px;width:22px;height:22px;}
+		.ezd-assistant-antimanual__title{font-size:15px;color:#1e1e1e;}
+		.ezd-assistant-antimanual__badge{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:#5E3AEE;background:#ece7fd;border-radius:10px;padding:2px 10px;}
+		.ezd-assistant-antimanual__body{margin:0 0 12px;font-size:13px;line-height:1.6;color:#50575e;}
+		.ezd-assistant-antimanual__actions{display:flex;gap:8px;flex-wrap:wrap;}
+		.ezd-assistant-antimanual--connected{border-left-color:#1a7f37;}
+		.ezd-assistant-antimanual--connected .ezd-assistant-antimanual__badge{color:#1a7f37;background:#dff4e4;}
+		.ezd-assistant-antimanual--action{border-left-color:#bf8700;}
+		.ezd-assistant-antimanual--action .ezd-assistant-antimanual__badge{color:#8a6500;background:#fcf3da;}
+	</style>';
 }
 
 // Function to generate dynamic embed code box
