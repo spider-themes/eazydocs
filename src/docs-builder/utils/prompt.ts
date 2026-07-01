@@ -77,6 +77,83 @@ export const promptForDocTitle = async (): Promise< DocTitlePromptResult | null 
 };
 
 /**
+ * Confirm a destructive delete before it runs.
+ *
+ * Uses SweetAlert when available and falls back to the native
+ * confirm dialog so deletes never silently no-op when the library
+ * failed to load.
+ *
+ * @return {Promise<boolean>} True when the user confirmed the delete.
+ */
+export const confirmDelete = async (): Promise< boolean > => {
+	const title =
+		( typeof eazydocs_local_object !== 'undefined' && eazydocs_local_object?.delete_prompt_title ) ||
+		__( 'Are you sure?', 'eazydocs' );
+	const text =
+		( typeof eazydocs_local_object !== 'undefined' && eazydocs_local_object?.no_revert_title ) ||
+		__( "You won't be able to revert this!", 'eazydocs' );
+
+	const Swal = getSwal();
+	if ( typeof Swal !== 'undefined' ) {
+		const result = await Swal.fire( {
+			title,
+			text,
+			icon: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#d33',
+			cancelButtonColor: '#3085d6',
+			confirmButtonText: __( 'Yes, delete it!', 'eazydocs' ),
+			cancelButtonText: __( 'Cancel', 'eazydocs' ),
+		} );
+
+		return Boolean( result.value );
+	}
+
+	// eslint-disable-next-line no-alert
+	return window.confirm( `${ title }\n\n${ text }` );
+};
+
+/**
+ * Toast shown after a doc is moved to trash. Consistent, non-blocking
+ * feedback that matches the reorder toast style. No-ops without SweetAlert.
+ */
+export const showDeleteSuccess = (): void => {
+	const Swal = getSwal();
+	if ( typeof Swal === 'undefined' ) {
+		return;
+	}
+
+	Swal.fire( {
+		title: __( 'Moved to Trash', 'eazydocs' ),
+		icon: 'success',
+		toast: true,
+		position: 'top-end',
+		timer: 1500,
+		showConfirmButton: false,
+	} );
+};
+
+/**
+ * Error shown when a delete fails.
+ *
+ * @param {string} text Message to display.
+ */
+export const showDeleteError = ( text: string ): void => {
+	const Swal = getSwal();
+	if ( typeof Swal === 'undefined' ) {
+		// eslint-disable-next-line no-alert
+		window.alert( text );
+		return;
+	}
+
+	Swal.fire( {
+		title: __( 'Error', 'eazydocs' ),
+		text,
+		icon: 'error',
+	} );
+};
+
+/**
  * Lightweight success notification used after create actions.
  *
  * Falls back to a no-op when SweetAlert is unavailable.

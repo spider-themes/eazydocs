@@ -50,11 +50,67 @@
 }
 
 .easydocs-logo-area {
-	a {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 3px;
+
+	a,
+	.easydocs-builder-title {
 		text-decoration: none;
 		color: var(--clr-dark);
 		font-size: var(--fs-24);
 		font-weight: var(--fw-700);
+		line-height: 1.1;
+	}
+}
+
+// Doc totals shown as a subtitle line under the "Documentations" title.
+.ezd-builder-stats {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	font-size: var(--fs-12);
+	font-weight: 500;
+	color: #6b7280;
+
+	.ezd-builder-stat {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		white-space: nowrap;
+
+		strong {
+			font-weight: 700;
+			color: #374151;
+		}
+
+		// Coloured status dot before draft / private counts.
+		&--draft,
+		&--private {
+			&::before {
+				content: '';
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				flex-shrink: 0;
+			}
+		}
+
+		&--draft::before {
+			background: #f59e0b;
+		}
+
+		&--private::before {
+			background: #0275d8;
+		}
+	}
+
+	// Divider between the total and whichever status count comes first.
+	.ezd-builder-stat--total + .ezd-builder-stat {
+		padding-left: 12px;
+		border-left: 1px solid #e2e6ee;
 	}
 }
 

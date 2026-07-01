@@ -26,14 +26,15 @@ import {
 	useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { useDeleteDoc, useReorderDocs } from '../hooks/useBuilderData';
+import { useDeleteDoc, useReorderDocs, useRenameDoc } from '../hooks/useBuilderData';
 import { useSearch } from '../hooks/useSearch';
 import { useToast } from '../hooks/useToast';
 import { arrayMove } from '../utils/tree-utils';
+import { confirmDelete, showDeleteSuccess, showDeleteError } from '../utils/prompt';
 import ProActionsButtons from './ProActionsButtons';
-import type { ParentDoc, Capabilities, BuilderUrls, RoleVisibilityConfig } from '../types';
-
-declare const eazydocs_local_object: any;
+import RenameInput from './RenameInput';
+import { DragHandleIcon } from './icons';
+import type { ParentDoc, DocChild, Capabilities, BuilderUrls, RoleVisibilityConfig } from '../types';
 
 interface ParentDocsProps {
 	parentDocs: ParentDoc[];
@@ -43,6 +44,8 @@ interface ParentDocsProps {
 	isPremium: boolean;
 	urls: BuilderUrls;
 	roleVisibility: RoleVisibilityConfig;
+	/** Full children tree keyed by parent id – used for deep search matching. */
+	childrenMap: Record< number, DocChild[] >;
 }
 
 /**
@@ -56,6 +59,8 @@ interface SortableParentItemProps {
 	urls: BuilderUrls;
 	roleVisibility: RoleVisibilityConfig;
 	openBulk: number | null;
+	/** Count of descendant docs matching the active search (0 when not searching). */
+	searchMatchCount?: number;
 	onNavClick: ( e: React.MouseEvent< HTMLLIElement >, docId: number ) => void;
 	onNavKeyDown: ( e: React.KeyboardEvent< HTMLLIElement >, docId: number ) => void;
 	onDelete: ( e: React.MouseEvent< HTMLAnchorElement >, doc: ParentDoc ) => void;
@@ -70,11 +75,15 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 	urls,
 	roleVisibility,
 	openBulk,
+	searchMatchCount = 0,
 	onNavClick,
 	onNavKeyDown,
 	onDelete,
 	onBulkToggle,
 } ) => {
+	const renameDoc = useRenameDoc();
+	const [ isRenaming, setIsRenaming ] = useState( false );
+
 	const {
 		attributes,
 		listeners,
@@ -122,14 +131,42 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 			onKeyDown={ ( e ) => onNavKeyDown( e, doc.id ) }
 			style={ style }
 		>
-			<div className="title">
+			<div
+				className="title"
+				onDoubleClick={ ( e ) => {
+					if ( doc.canEdit ) {
+						e.stopPropagation();
+						setIsRenaming( true );
+					}
+				} }
+			>
 				<span
 					title={ docStatus }
 					className={ `dashicons dashicons-${ postFormat }` }
 				></span>
-				{ doc.title }
+				{ isRenaming ? (
+					<RenameInput
+						initialTitle={ doc.title }
+						className="ezd-rename-input--parent"
+						onCommit={ ( title ) => {
+							setIsRenaming( false );
+							renameDoc.mutate( { docId: doc.id, title } );
+						} }
+						onCancel={ () => setIsRenaming( false ) }
+					/>
+				) : (
+					doc.title
+				) }
 			</div>
 			<div className="total-page">
+				{ searchMatchCount > 0 && (
+					<span
+						className="ezd-nav-match-badge"
+						title={ __( 'Matches inside this doc', 'eazydocs' ) }
+					>
+						{ searchMatchCount }
+					</span>
+				) }
 				<span>
 					{ doc.childCount > 0 ? doc.childCount : '' }
 				</span>
@@ -140,19 +177,28 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 						ref={ setActivatorNodeRef }
 						className="dd-handle dd3-handle"
 						aria-label={ __( 'Drag to reorder', 'eazydocs' ) }
-						title={ __( 'Drag to reorder', 'eazydocs' ) }
+						title={ __( 'Drag, or focus and press Space then arrow keys, to reorder', 'eazydocs' ) }
 						{ ...attributes }
 						{ ...listeners }
 					>
-						<svg className="dd-handle-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-							<circle cx="9" cy="5" r="2" fill="currentColor" />
-							<circle cx="15" cy="5" r="2" fill="currentColor" />
-							<circle cx="9" cy="12" r="2" fill="currentColor" />
-							<circle cx="15" cy="12" r="2" fill="currentColor" />
-							<circle cx="9" cy="19" r="2" fill="currentColor" />
-							<circle cx="15" cy="19" r="2" fill="currentColor" />
-						</svg>
+						<DragHandleIcon size={ 16 } />
 					</span>
+				) }
+
+				{ doc.canEdit && ! isRenaming && (
+					<a
+						href="#"
+						className="link rename"
+						aria-label={ __( 'Rename this doc', 'eazydocs' ) }
+						title={ __( 'Rename', 'eazydocs' ) }
+						onClick={ ( e ) => {
+							e.preventDefault();
+							e.stopPropagation();
+							setIsRenaming( true );
+						} }
+					>
+						<span className="dashicons dashicons-edit"></span>
+					</a>
 				) }
 
 				{ doc.canEdit && (
@@ -161,11 +207,11 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 						className="link edit"
 						target="_blank"
 						rel="noopener noreferrer"
-						aria-label={ __( 'Edit this doc', 'eazydocs' ) }
-						title={ __( 'Edit this doc', 'eazydocs' ) }
+						aria-label={ __( 'Edit content in the editor', 'eazydocs' ) }
+						title={ __( 'Edit content', 'eazydocs' ) }
 						onClick={ ( e ) => e.stopPropagation() }
 					>
-						<span className="dashicons dashicons-edit"></span>
+						<span className="dashicons dashicons-welcome-write-blog"></span>
 					</a>
 				) }
 
@@ -233,6 +279,7 @@ const SortableParentItem = memo( SortableParentItemComponent, ( prevProps, nextP
 		&& prevProps.capabilities === nextProps.capabilities
 		&& prevProps.urls === nextProps.urls
 		&& prevProps.roleVisibility === nextProps.roleVisibility
+		&& prevProps.searchMatchCount === nextProps.searchMatchCount
 		&& prevProps.onNavClick === nextProps.onNavClick
 		&& prevProps.onNavKeyDown === nextProps.onNavKeyDown
 		&& prevProps.onDelete === nextProps.onDelete
@@ -240,7 +287,23 @@ const SortableParentItem = memo( SortableParentItemComponent, ( prevProps, nextP
 		&& wasBulkOpen === isBulkOpen;
 } );
 
-const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTabChange, capabilities, isPremium, urls, roleVisibility } ) => {
+/**
+ * Count how many descendant docs (at any depth) match the search term.
+ */
+const countDeepMatches = ( nodes: DocChild[], lower: string ): number => {
+	let count = 0;
+	nodes.forEach( ( node ) => {
+		if ( node.title.toLowerCase().indexOf( lower ) > -1 ) {
+			count += 1;
+		}
+		if ( node.children.length ) {
+			count += countDeepMatches( node.children, lower );
+		}
+	} );
+	return count;
+};
+
+const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTabChange, capabilities, isPremium, urls, roleVisibility, childrenMap } ) => {
 	const [ openBulk, setOpenBulk ] = useState< number | null >( null );
 	const deleteDoc = useDeleteDoc();
 	const reorderDocs = useReorderDocs();
@@ -258,14 +321,25 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 		setLocalDocs( null );
 	}, [ parentDocs ] );
 
-	// Filter parent docs by search value.
-	const filteredDocs = useMemo( () => {
-		if ( ! searchValue ) {
-			return displayDocs;
+	// Filter parent docs by search value. A parent is kept when its own title
+	// matches OR any descendant matches, so searching for a nested doc no longer
+	// empties the sidebar. matchCounts drives the per-doc "matches inside" badge.
+	const { filteredDocs, matchCounts } = useMemo( () => {
+		const term = searchValue.trim().toLowerCase();
+		if ( ! term ) {
+			return { filteredDocs: displayDocs, matchCounts: {} as Record< number, number > };
 		}
-		const lower = searchValue.toLowerCase();
-		return displayDocs.filter( ( doc ) => doc.title.toLowerCase().indexOf( lower ) > -1 );
-	}, [ displayDocs, searchValue ] );
+
+		const counts: Record< number, number > = {};
+		const kept = displayDocs.filter( ( doc ) => {
+			const titleMatch = doc.title.toLowerCase().indexOf( term ) > -1;
+			const deep = countDeepMatches( childrenMap[ doc.id ] || [], term );
+			counts[ doc.id ] = deep;
+			return titleMatch || deep > 0;
+		} );
+
+		return { filteredDocs: kept, matchCounts: counts };
+	}, [ displayDocs, searchValue, childrenMap ] );
 
 	const count = filteredDocs.length;
 
@@ -312,53 +386,24 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 	/**
 	 * Handle delete parent doc.
 	 */
-	const handleDelete = useCallback( ( e: React.MouseEvent< HTMLAnchorElement >, doc: ParentDoc ): void => {
+	const handleDelete = useCallback( async ( e: React.MouseEvent< HTMLAnchorElement >, doc: ParentDoc ): Promise< void > => {
 		e.preventDefault();
 		e.stopPropagation();
 
-		if ( typeof window.Swal !== 'undefined' ) {
-			window.Swal.fire( {
-				title: eazydocs_local_object.delete_prompt_title,
-				text: eazydocs_local_object.no_revert_title,
-				icon: 'question',
-				showCancelButton: true,
-				confirmButtonColor: '#d33',
-				cancelButtonColor: '#3085d6',
-				confirmButtonText: __( 'Yes, delete it!', 'eazydocs' ),
-				cancelButtonText: __( 'Cancel', 'eazydocs' ),
-			} ).then( ( result: any ) => {
-				if ( result.value ) {
-					deleteDoc.mutate(
-						{
-							docId: doc.id,
-							nonce: doc.deleteNonce,
-						},
-						{
-							onSuccess: () => {
-								if ( typeof window.Swal !== 'undefined' ) {
-									window.Swal.fire( {
-										title: __( 'Deleted!', 'eazydocs' ),
-										text: __( 'The document has been moved to trash.', 'eazydocs' ),
-										icon: 'success',
-										timer: 1500,
-										showConfirmButton: false,
-									} );
-								}
-							},
-							onError: () => {
-								if ( typeof window.Swal !== 'undefined' ) {
-									window.Swal.fire( {
-										title: __( 'Error', 'eazydocs' ),
-										text: __( 'Failed to delete the document.', 'eazydocs' ),
-										icon: 'error',
-									} );
-								}
-							},
-						}
-					);
-				}
-			} );
+		if ( ! ( await confirmDelete() ) ) {
+			return;
 		}
+
+		deleteDoc.mutate(
+			{
+				docId: doc.id,
+				nonce: doc.deleteNonce,
+			},
+			{
+				onSuccess: () => showDeleteSuccess(),
+				onError: () => showDeleteError( __( 'Failed to delete the document.', 'eazydocs' ) ),
+			}
+		);
 	}, [ deleteDoc ] );
 
 	/**
@@ -464,13 +509,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 			>
 				<div
 					ref={ parentNestableRef }
-					className={ `dd parent-nestable tab-menu ${ count > 12 ? '' : 'short' }` }
-					style={
-						{
-							flex: 3,
-							overflowY: 'auto',
-						}
-					}
+					className={ `dd parent-nestable tab-menu ezd-parent-nestable-scroll ${ count > 12 ? '' : 'short' }` }
 				>
 					<ol
 						className="easydocs-navbar sortabled dd-list"
@@ -488,6 +527,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 								urls={ urls }
 								roleVisibility={ roleVisibility }
 								openBulk={ openBulk }
+								searchMatchCount={ searchValue ? ( matchCounts[ doc.id ] || 0 ) : 0 }
 								onNavClick={ handleNavClick }
 								onNavKeyDown={ handleNavKeyDown }
 								onDelete={ handleDelete }

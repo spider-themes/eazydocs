@@ -154,6 +154,17 @@ class Docs_Builder_Controller {
 			)
 		);
 
+		// Rename a doc (inline title edit).
+		register_rest_route(
+			self::NAMESPACE,
+			'/docs-builder/rename',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'rename_doc' ),
+				'permission_callback' => array( $this, 'check_permission' ),
+			)
+		);
+
 		// Notifications (paginated JSON).
 		register_rest_route(
 			self::NAMESPACE,
@@ -1482,6 +1493,60 @@ class Docs_Builder_Controller {
 				'success' => true,
 				'data'    => array(
 					'trashed' => $trashed,
+				),
+			),
+			200
+		);
+	}
+
+	/**
+	 * Rename a doc's title (inline edit from the builder).
+	 *
+	 * Only the title is updated; the slug/permalink is intentionally left
+	 * untouched so existing links never break on a rename.
+	 *
+	 * @since  2.12.2
+	 * @param  \WP_REST_Request $request REST request.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function rename_doc( $request ) {
+		$doc_id = absint( $request->get_param( 'doc_id' ) );
+		$title  = sanitize_text_field( $request->get_param( 'title' ) );
+		$title  = $this->decode_special_chars( $title );
+		$title  = trim( $title );
+
+		if ( '' === $title ) {
+			return new \WP_Error( 'missing_title', __( 'A title is required.', 'eazydocs' ), array( 'status' => 400 ) );
+		}
+
+		$post = $doc_id > 0 ? get_post( $doc_id ) : null;
+
+		if ( ! $post || 'docs' !== $post->post_type ) {
+			return new \WP_Error( 'invalid_doc', __( 'The specified document does not exist.', 'eazydocs' ), array( 'status' => 400 ) );
+		}
+
+		if ( ! current_user_can( 'edit_post', $doc_id ) ) {
+			return new \WP_Error( 'forbidden', __( 'You do not have permission to edit this document.', 'eazydocs' ), array( 'status' => 403 ) );
+		}
+
+		$updated = wp_update_post(
+			array(
+				'ID'         => $doc_id,
+				'post_title' => $title,
+			),
+			true
+		);
+
+		if ( is_wp_error( $updated ) ) {
+			return new \WP_Error( 'rename_failed', $updated->get_error_message(), array( 'status' => 500 ) );
+		}
+
+		return new \WP_REST_Response(
+			array(
+				'success' => true,
+				'data'    => array(
+					'id'    => $doc_id,
+					'title' => html_entity_decode( $title ),
 				),
 			),
 			200

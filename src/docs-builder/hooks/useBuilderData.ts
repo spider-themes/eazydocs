@@ -377,6 +377,93 @@ export const useCreateChild = () => {
 	} );
 };
 
+const renameNodeInTree = ( items: DocChild[], id: number, title: string ): DocChild[] => {
+	return items.map( ( item ) => {
+		if ( item.id === id ) {
+			return { ...item, title };
+		}
+
+		if ( item.children.length === 0 ) {
+			return item;
+		}
+
+		const updatedChildren = renameNodeInTree( item.children, id, title );
+		if ( updatedChildren === item.children ) {
+			return item;
+		}
+
+		return { ...item, children: updatedChildren };
+	} );
+};
+
+interface RenameDocParams {
+	docId: number;
+	title: string;
+}
+
+interface RenameContext {
+	prevParents?: ParentDoc[];
+	prevChildren?: Record< number, DocChild[] >;
+}
+
+/**
+ * Hook: rename a doc (parent or child) inline.
+ *
+ * Optimistically patches the title in both the parent and children caches
+ * so the new title appears instantly, and rolls back if the request fails.
+ */
+export const useRenameDoc = () => {
+	const queryClient = useQueryClient();
+
+	return useMutation< { success: boolean; data: { id: number; title: string } }, unknown, RenameDocParams, RenameContext >( {
+		mutationFn: async ( params: RenameDocParams ) => {
+			return apiFetch( {
+				path: '/eazydocs/v1/docs-builder/rename',
+				method: 'POST',
+				data: {
+					doc_id: params.docId,
+					title: normalizeTitle( params.title ),
+				},
+			} );
+		},
+		onMutate: async ( params: RenameDocParams ) => {
+			await queryClient.cancelQueries( { queryKey: PARENTS_QUERY_KEY } );
+			await queryClient.cancelQueries( { queryKey: CHILDREN_QUERY_KEY } );
+
+			const prevParents = queryClient.getQueryData< ParentDoc[] >( PARENTS_QUERY_KEY );
+			const prevChildren = queryClient.getQueryData< Record< number, DocChild[] > >( CHILDREN_QUERY_KEY );
+
+			queryClient.setQueryData< ParentDoc[] >( PARENTS_QUERY_KEY, ( previous = [] ) =>
+				previous.map( ( parent ) => ( parent.id === params.docId ? { ...parent, title: params.title } : parent ) )
+			);
+
+			queryClient.setQueryData< Record< number, DocChild[] > >( CHILDREN_QUERY_KEY, ( previous ) => {
+				if ( ! previous ) {
+					return previous;
+				}
+
+				const next: Record< number, DocChild[] > = {};
+				Object.keys( previous ).forEach( ( key ) => {
+					const rootId = Number( key );
+					next[ rootId ] = renameNodeInTree( previous[ rootId ], params.docId, params.title );
+				} );
+
+				return next;
+			} );
+
+			return { prevParents, prevChildren };
+		},
+		onError: ( _error, _params, context ) => {
+			if ( context?.prevParents ) {
+				queryClient.setQueryData( PARENTS_QUERY_KEY, context.prevParents );
+			}
+			if ( context?.prevChildren ) {
+				queryClient.setQueryData( CHILDREN_QUERY_KEY, context.prevChildren );
+			}
+		},
+	} );
+};
+
 interface ReorderParams {
 	data: string;
 	action: string;

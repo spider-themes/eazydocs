@@ -7,9 +7,10 @@
  * @package EazyDocs
  * @since   2.8.0
  */
-import { useRef } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import { useRef, useMemo } from '@wordpress/element';
+import { __, _n } from '@wordpress/i18n';
 import { useCreateParentDoc } from '../hooks/useBuilderData';
+import type { DocChild } from '../types';
 import { useSearch } from '../hooks/useSearch';
 import { useAiCreate } from '../hooks/useAiCreate';
 import { showNotificationProAlert } from '../utils/pro-alert';
@@ -27,6 +28,37 @@ interface HeaderProps {
 const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 	const { capabilities, isPremium, antimanualActive, trashCount, urls, nonces } = data;
 	const { searchValue, setSearchValue } = useSearch();
+
+	// Aggregate doc stats across every parent and descendant so the header
+	// gives an at-a-glance sense of the knowledge base size and status mix.
+	const stats = useMemo( () => {
+		let total = 0;
+		let drafts = 0;
+		let priv = 0;
+
+		const tally = ( status: string ): void => {
+			total += 1;
+			if ( 'draft' === status ) {
+				drafts += 1;
+			} else if ( 'private' === status ) {
+				priv += 1;
+			}
+		};
+
+		const visit = ( nodes: DocChild[] ): void => {
+			nodes.forEach( ( node ) => {
+				tally( node.status );
+				if ( node.children.length ) {
+					visit( node.children );
+				}
+			} );
+		};
+
+		data.parentDocs.forEach( ( parent ) => tally( parent.status ) );
+		Object.values( data.childrenMap ).forEach( ( nodes ) => visit( nodes ) );
+
+		return { total, drafts, priv };
+	}, [ data.parentDocs, data.childrenMap ] );
 	const searchInputRef = useRef< HTMLInputElement >( null );
 	const createParentDoc = useCreateParentDoc();
 	const { triggerAiCreate } = useAiCreate( antimanualActive );
@@ -96,12 +128,29 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 			<div className="row alignment-center justify-content-between ml-0">
 				<div className="navbar-left d-flex alignment-center">
 					<div className="easydocs-logo-area">
-						<a
-							href="#"
-							onClick={ ( e ) => e.preventDefault() }
-						>
+						<span className="easydocs-builder-title">
 							{ __( 'Documentations', 'eazydocs' ) }
-						</a>
+						</span>
+						{ stats.total > 0 && (
+							<span className="ezd-builder-stats" aria-label={ __( 'Documentation totals', 'eazydocs' ) }>
+								<span className="ezd-builder-stat ezd-builder-stat--total">
+									<strong>{ stats.total }</strong>
+									{ _n( 'doc', 'docs', stats.total, 'eazydocs' ) }
+								</span>
+								{ stats.drafts > 0 && (
+									<span className="ezd-builder-stat ezd-builder-stat--draft">
+										<strong>{ stats.drafts }</strong>
+										{ _n( 'draft', 'drafts', stats.drafts, 'eazydocs' ) }
+									</span>
+								) }
+								{ stats.priv > 0 && (
+									<span className="ezd-builder-stat ezd-builder-stat--private">
+										<strong>{ stats.priv }</strong>
+										{ __( 'private', 'eazydocs' ) }
+									</span>
+								) }
+							</span>
+						) }
 					</div>
 
 					{ capabilities.canPublishDocs && (

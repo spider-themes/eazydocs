@@ -614,7 +614,7 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 					disabled={ createSection.isPending }
 					aria-busy={ createSection.isPending }
 				>
-					<span className="ezd-add-sub-lesson-icon" aria-hidden="true">+</span>
+					<span className="dashicons dashicons-plus-alt2 ezd-add-sub-lesson-icon" aria-hidden="true"></span>
 					{ createSection.isPending ? __( 'Adding…', 'eazydocs' ) : __( 'Add Section', 'eazydocs' ) }
 				</button>
 			) }

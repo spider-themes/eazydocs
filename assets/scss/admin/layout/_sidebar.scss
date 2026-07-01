@@ -319,3 +319,43 @@ button.nestable--button.nestable--expand {
 		}
 	}
 }
+// ==========================================================
+//  PARENT NAV: scroll container, search-match badge, rename
+// ==========================================================
+
+// Scroll wrapper for the parent list (moved off an inline style).
+.ezd-parent-nestable-scroll {
+	flex: 3;
+	overflow-y: auto;
+}
+
+// Lay the count + match badge inline within the absolute total-page slot.
+.easydocs-navitem .total-page {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+// "Matches inside this doc" badge shown while searching.
+.ezd-nav-match-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 16px;
+	padding: 0 5px;
+	border-radius: 999px;
+	background: var(--clr-blue, #4c4cf1);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 1.7;
+}
+
+// Keep the inline rename control readable on the dark sidebar.
+.easydocs-navitem .title .ezd-rename {
+	opacity: 1;
+
+	.ezd-rename-input--parent {
+		color: #0f172a;
+	}
+}

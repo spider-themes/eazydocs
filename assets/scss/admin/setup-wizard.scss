@@ -638,15 +638,15 @@ body.documentation_page_eazydocs-initial-setup {
 	.ezd-setting-header {
 		display: flex;
 		align-items: center;
-		gap: 10px;
-		padding: 10px 14px;
+		gap: 8px;
+		padding: 7px 12px;
 		background: $bg-light;
 		border-bottom: 1px solid $border-light;
 	}
 
 	.ezd-setting-icon {
-		width: 32px;
-		height: 32px;
+		width: 26px;
+		height: 26px;
 		background: $primary-light;
 		border-radius: $radius-sm;
 		display: flex;
@@ -655,9 +655,9 @@ body.documentation_page_eazydocs-initial-setup {
 		flex-shrink: 0;
 
 		.dashicons {
-			font-size: 16px;
-			width: 16px;
-			height: 16px;
+			font-size: 15px;
+			width: 15px;
+			height: 15px;
 			color: $primary-color;
 		}
 	}
@@ -666,22 +666,22 @@ body.documentation_page_eazydocs-initial-setup {
 		flex: 1;
 
 		h3 {
-			font-size: 15px;
+			font-size: 14px;
 			font-weight: 600;
 			color: $text-primary;
-			margin: 0 0 2px;
+			margin: 0 0 1px;
 		}
 
 		p {
-			font-size: 12px;
+			font-size: 11px;
 			color: $text-secondary;
 			margin: 0;
-			line-height: 1.4;
+			line-height: 1.35;
 		}
 	}
 
 	.ezd-setting-body {
-		padding: 12px 14px;
+		padding: 10px 12px;
 	}
 
 	// Toggle Card
@@ -896,7 +896,7 @@ body.documentation_page_eazydocs-initial-setup {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 10px 8px;
+	padding: 8px 6px;
 	background: $bg-white;
 	border: 1px solid $border-color;
 	border-radius: $radius-sm;
@@ -913,19 +913,19 @@ body.documentation_page_eazydocs-initial-setup {
 
 	.ezd-layout-preview {
 		width: 100%;
-		margin-bottom: 6px;
+		margin-bottom: 4px;
 		border-radius: $radius-sm;
 		overflow: hidden;
 		box-shadow: $shadow-sm;
 
 		img {
 			max-width: 100%;
-			height: 80px;
+			height: 58px;
 			display: block;
 			transition: transform 0.3s ease;
 			margin: 0 auto;
-			padding: 6px;
-			border-radius: 12px;
+			padding: 4px;
+			border-radius: 10px;
 		}
 	}
 
@@ -1011,7 +1011,7 @@ body.documentation_page_eazydocs-initial-setup {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 12px;
+		padding: 10px;
 		background: $bg-light;
 		border: 2px solid $border-color;
 		border-radius: $radius-md;
@@ -1025,13 +1025,13 @@ body.documentation_page_eazydocs-initial-setup {
 		}
 
 		.ezd-width-icon {
-			margin-bottom: 12px;
+			margin-bottom: 8px;
 		}
 
 		.ezd-width-preview {
 			display: block;
-			width: 80px;
-			height: 50px;
+			width: 64px;
+			height: 40px;
 			border: 2px solid $border-color;
 			border-radius: 4px;
 			position: relative;
@@ -1040,8 +1040,8 @@ body.documentation_page_eazydocs-initial-setup {
 			&::before {
 				content: "";
 				position: absolute;
-				top: 8px;
-				bottom: 8px;
+				top: 6px;
+				bottom: 6px;
 				background: $primary-light;
 				border-radius: 2px;
 			}

@@ -200,6 +200,7 @@ const App: React.FC = () => {
 											isPremium={ data.isPremium }
 											urls={ data.urls }
 											roleVisibility={ data.roleVisibility }
+											childrenMap={ data.childrenMap }
 										/>
 										<div className="easydocs-tab-content ezd-builder-content">
 											{ activeParent && (

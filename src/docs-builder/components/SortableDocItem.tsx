@@ -8,12 +8,16 @@
  * @since   2.9.0
  */
 import React from 'react';
+import { useState } from '@wordpress/element';
 import { useSortable, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useDroppable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import DocItemContent from './DocItemContent';
 import DropIndicatorLine from './DropIndicatorLine';
+import RenameInput from './RenameInput';
+import { DragHandleIcon } from './icons';
+import { useRenameDoc } from '../hooks/useBuilderData';
 import type { DropIndicator } from './DropIndicatorLine';
 import type { DocChild, Capabilities, BuilderUrls, RoleVisibilityConfig } from '../types';
 
@@ -60,7 +64,12 @@ const VotePieChart: React.FC< { positive: number; negative: number } > = React.m
 	const negativePath = `M ${ cx } ${ cy } L ${ x2 } ${ y2 } A ${ r } ${ r } 0 ${ 1 - largeArc } 1 ${ x1 } ${ y1 } Z`;
 
 	// Tooltip text (counts only, no percentage).
-	const tooltipText = `vote: ${ positive } positive, ${ negative } negative`;
+	const tooltipText = sprintf(
+		/* translators: 1: positive vote count, 2: negative vote count. */
+		__( 'Votes: %1$d positive, %2$d negative', 'eazydocs' ),
+		positive,
+		negative
+	);
 
 	return (
 		<div
@@ -146,6 +155,9 @@ const SortableDocItemComponent: React.FC< SortableDocItemProps > = ( {
 
 	const isDropTarget = dropIndicator !== null && dropIndicator.parentId === doc.id;
 
+	const renameDoc = useRenameDoc();
+	const [ isRenaming, setIsRenaming ] = useState( false );
+
 	// Suppress @dnd-kit's built-in transforms for ALL items during drag – the
 	// DragOverlay handles the visual cursor-following while the original item
 	// stays in place at reduced opacity.
@@ -181,97 +193,124 @@ const SortableDocItemComponent: React.FC< SortableDocItemProps > = ( {
 			style={ style }
 		>
 			{ /* Section header */ }
-			<div 
-                className="ezd-section-header"
-                onClick={ isCollapsible ? () => onToggleCollapse( doc.id ) : undefined }
-                style={{ cursor: isCollapsible ? 'pointer' : 'default' }}
-            >
-				<div className="ezd-section-header-left" style={{ display: 'flex', alignItems: 'center' }}>
+			<div
+				className={ `ezd-section-header${ isCollapsible ? ' is-collapsible' : '' }` }
+				onClick={ isCollapsible ? () => onToggleCollapse( doc.id ) : undefined }
+			>
+				<div className="ezd-section-header-left">
 					{ /* Drag handle - reordering is available to all users who can manage docs. */ }
 					{ capabilities.canManageOptions && (
 						<div
 							ref={ setActivatorNodeRef }
 							className="ezd-section-drag-handle"
 							aria-label={ __( 'Drag to reorder this section', 'eazydocs' ) }
-							title={ __( 'Drag to reorder', 'eazydocs' ) }
-                            onClick={ (e) => e.stopPropagation() }
+							title={ __( 'Drag, or focus and press Space then arrow keys, to reorder', 'eazydocs' ) }
+							onClick={ ( e ) => e.stopPropagation() }
 							{ ...attributes }
 							{ ...listeners }
 						>
-							<svg className="dd-handle-icon" width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-								<circle cx="9" cy="5" r="2" fill="currentColor" />
-								<circle cx="15" cy="5" r="2" fill="currentColor" />
-								<circle cx="9" cy="12" r="2" fill="currentColor" />
-								<circle cx="15" cy="12" r="2" fill="currentColor" />
-								<circle cx="9" cy="19" r="2" fill="currentColor" />
-								<circle cx="15" cy="19" r="2" fill="currentColor" />
-							</svg>
+							<DragHandleIcon size={ 14 } />
 						</div>
 					) }
 
-					{ /* Title */ }
-					<h3 className="ezd-section-title-text" style={{ flex: 'none', display: 'flex', alignItems: 'center', gap: '8px' }} title={ __( 'Click to Edit', 'eazydocs' ) }>
-						{ doc.canEdit ? (
-							<a 
-                                href={ doc.editLink } 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                title={ __( 'Click to Edit', 'eazydocs' ) }
-                                onClick={ (e) => e.stopPropagation() }
-                            >
-								{ doc.title }
-							</a>
-						) : (
-							doc.title
-						) }
-
-						{ /* Subsections total count */ }
-						{ doc.childCount > 0 && (
-							<span className="ezd-section-number">
-								{ doc.childCount }
-							</span>
-						) }
-
-						{ /* Post status badge – hidden for published docs */ }
-						{ doc.status !== 'publish' && ( () => {
-							const statusMap: Record< string, { icon: string; label: string } > = {
-								draft:     { icon: 'edit-page',      label: __( 'Draft', 'eazydocs' ) },
-								private:   { icon: 'privacy',        label: __( 'Private', 'eazydocs' ) },
-								protected: { icon: 'lock',           label: __( 'Protected', 'eazydocs' ) },
-							};
-							const entry = statusMap[ doc.status ];
-							if ( ! entry ) {
-								return null;
-							}
-							return (
-								<span
-									className={ `ezd-section-status-badge ezd-status-${ doc.status }` }
-									title={ entry.label }
-									aria-label={ entry.label }
+					{ /* Title – switches to an inline field while renaming */ }
+					{ isRenaming ? (
+						<RenameInput
+							initialTitle={ doc.title }
+							className="ezd-rename-input--section"
+							onCommit={ ( title ) => {
+								setIsRenaming( false );
+								renameDoc.mutate( { docId: doc.id, title } );
+							} }
+							onCancel={ () => setIsRenaming( false ) }
+						/>
+					) : (
+						<h3 className="ezd-section-title-text" title={ __( 'Open the editor', 'eazydocs' ) }>
+							{ doc.canEdit ? (
+								<a
+									href={ doc.editLink }
+									target="_blank"
+									rel="noopener noreferrer"
+									title={ __( 'Open the editor', 'eazydocs' ) }
+									onClick={ ( e ) => e.stopPropagation() }
 								>
-									<span className={ `dashicons dashicons-${ entry.icon }` } aria-hidden="true"></span>
+									{ doc.title }
+								</a>
+							) : (
+								doc.title
+							) }
+
+							{ /* Subsections total count */ }
+							{ doc.childCount > 0 && (
+								<span className="ezd-section-number">
+									{ doc.childCount }
 								</span>
-							);
-						} )() }
-					</h3>
+							) }
+
+							{ /* Post status badge – hidden for published docs */ }
+							{ doc.status !== 'publish' && ( () => {
+								const statusMap: Record< string, { icon: string; label: string } > = {
+									draft:     { icon: 'edit-page', label: __( 'Draft', 'eazydocs' ) },
+									private:   { icon: 'privacy',   label: __( 'Private', 'eazydocs' ) },
+									protected: { icon: 'lock',      label: __( 'Protected', 'eazydocs' ) },
+								};
+								const entry = statusMap[ doc.status ];
+								if ( ! entry ) {
+									return null;
+								}
+								return (
+									<span
+										className={ `ezd-section-status-badge ezd-status-${ doc.status }` }
+										title={ entry.label }
+										aria-label={ entry.label }
+									>
+										<span className={ `dashicons dashicons-${ entry.icon }` } aria-hidden="true"></span>
+									</span>
+								);
+							} )() }
+
+							{ /* Role-based access badge (restored) */ }
+							{ doc.visibility.hasRoleVisibility && (
+								<span
+									className="ezd-section-status-badge ezd-status-role"
+									title={ `${ __( 'Role-Based Access:', 'eazydocs' ) } ${ doc.visibility.rolesList }` }
+									aria-label={ `${ __( 'Role-Based Access:', 'eazydocs' ) } ${ doc.visibility.rolesList }` }
+								>
+									<span className="dashicons dashicons-groups" aria-hidden="true"></span>
+								</span>
+							) }
+						</h3>
+					) }
 
 					{ /* Header actions moved right next to the title */ }
-					<div className="ezd-section-header-actions" onClick={ (e) => e.stopPropagation() }>
+					<div className="ezd-section-header-actions" onClick={ ( e ) => e.stopPropagation() }>
+						{ doc.canEdit && ! isRenaming && (
+							<a
+								href="#"
+								className="ezd-inline-action"
+								aria-label={ __( 'Rename this doc', 'eazydocs' ) }
+								title={ __( 'Rename', 'eazydocs' ) }
+								onClick={ ( e ) => {
+									e.preventDefault();
+									e.stopPropagation();
+									setIsRenaming( true );
+								} }
+							>
+								<span className="dashicons dashicons-edit"></span>
+							</a>
+						) }
 						<DocItemContent
 							doc={ doc }
-							depth={ depth }
-							parentId={ parentId }
 							rootParentId={ rootParentId }
 							isPremium={ isPremium }
 							capabilities={ capabilities }
 							urls={ urls }
 							roleVisibility={ roleVisibility }
-							renderMode="inline-actions"
 						/>
 					</div>
 				</div>
 
-				<div style={{ flex: 1 }}></div>
+				<div className="ezd-section-header-spacer"></div>
 
 				{ /* Vote pie chart */ }
 				<VotePieChart positive={ doc.positive } negative={ doc.negative } />
@@ -301,12 +340,9 @@ const SortableDocItemComponent: React.FC< SortableDocItemProps > = ( {
 
             { /* The children box – only rendered if this item can accept children */ }
             { isCollapsible && (
-                <div 
-                    ref={ setDroppableNodeRef } 
+                <div
+                    ref={ setDroppableNodeRef }
                     className="ezd-section-children-box"
-                    style={{ 
-                        display: isCollapsed ? 'none' : 'block',
-                    }}
                 >
                     <SortableContext items={ childIds } strategy={ verticalListSortingStrategy }>
                         <div className="ezd-section-list">

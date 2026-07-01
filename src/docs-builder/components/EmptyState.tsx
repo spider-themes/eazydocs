@@ -173,7 +173,7 @@ const EmptyState: React.FC< EmptyStateProps > = ( { data } ) => {
 						id="new-doc"
 						onClick={ handleCreateFirstDoc }
 					>
-						<span className="dashicons dashicons-plus"></span>
+						<span className="dashicons dashicons-plus-alt2"></span>
 						{ __( 'Create First Doc', 'eazydocs' ) }
 					</a>
 

@@ -348,10 +348,11 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.12.2 (30 June 2026) =
+= 2.12.2 (01 July 2026) =
 * New: Dark Mode Default Appearance – Decide what first-time visitors see — Light, Dark, or Follow System — before they choose their own preference.
 * New: Docs Assistant Appearance Controls – Style the assistant panel with custom card background, doc title and text colors, panel width, and corner radius.
 * New: Preview Assistant – Added a quick link to open a live preview of the Docs Assistant in a new tab while you adjust its settings.
+* New: Inline Doc Renaming – Rename any document right from the Docs Builder by double-clicking its title or using the new rename icon, then press Enter to save — no need to open the full editor for a quick title fix.
 * Updated: Setup Wizard Design Step – Renamed the Layout step to "Design" and expanded it to cover layout, width, brand color and dark mode, with the live preview now showing dark mode and a custom dark accent color as you adjust them.
 * Updated: Docs Assistant Knowledge Base – The Knowledge Base tab now lists 20 docs by default (up from 12), with a maximum of 100.
 * Improved: User Permissions Settings – Redesigned the User Permissions and Docs Collaboration screens with clearer descriptions, a capability reference table, and helpful notes so it's easy to see exactly what each role can do.
@@ -359,10 +360,15 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 * Improved: Dark Mode – Now works across all your documentation pages — single docs, one-page docs, archives, categories, tags and shortcode pages — and the correct theme is applied instantly on load, removing the brief flash of light. Visitors following their system setting also see the theme update live when they change their OS appearance.
 * Improved: Dark Mode Switcher – Made the light/dark toggle clearer for screen reader users, and themes that include their own switcher no longer show a duplicate toggle.
 * Improved: Docs Assistant Instant Answer – Docs now open inside the assistant panel by default instead of navigating away from the page.
+* Improved: Docs Builder Search – Searching now also matches titles of nested sub-docs, keeping a matching top-level doc visible with a badge showing how many nested docs matched, instead of hiding it from the list.
+* Improved: Docs Builder Header – The header now shows your total document count along with how many are drafts or private, right under the "Documentations" title.
+* Improved: Docs Builder Actions – Delete confirmations now show a toast notification for a smoother, more consistent experience, and the add, edit, and rename icons across the builder were made more visually consistent.
+* Improved: Docs Builder Reordering – Drag handles now note that items can also be reordered with the keyboard, making it easier to discover for keyboard users.
 * Optimized: Role Capabilities – Documentation role capabilities now update only when your permission settings change, removing unnecessary work on every admin page load.
 * Fixed: Documentation Menu Visibility – The Documentation admin menu now appears for exactly the roles you've granted access, keeping menu visibility in step with the permissions you set.
 * Fixed: Search Result Thumbnails – Search results now fall back to the document icon when a thumbnail image is missing, preventing blank thumbnails.
 * Fixed: Documentation Widget – The topic-count badge now drops to its own line below the document title instead of crowding it.
+* Fixed: Docs Builder Role-Based Access Badge – Section cards now correctly show the role-based access badge when a doc is restricted to specific roles.
 
 = 2.12.1 (28 June 2026) =
 * Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.

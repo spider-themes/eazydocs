@@ -211,6 +211,9 @@
 
 // Section title
 .ezd-section-title-text {
+	display: flex;
+	align-items: center;
+	gap: 8px;
 	font-size: 14.5px;
 	font-weight: 600;
 	color: #0f172a;
@@ -219,7 +222,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	flex: 0 1 auto;
+	flex: none;
 	transition: color 0.2s ease;
 
 	a {
@@ -523,6 +526,122 @@ body.ezd-is-dragging {
 	height: 2px;
 	background: #6366f1;
 	border-radius: 1px;
+}
+
+// ==========================================================
+//  HEADER CURSOR / SPACER / COLLAPSED STATE (moved off inline styles)
+// ==========================================================
+.ezd-section-header {
+	&.is-collapsible {
+		cursor: pointer;
+	}
+
+	&:not(.is-collapsible) {
+		cursor: default;
+	}
+}
+
+.ezd-section-header-spacer {
+	flex: 1;
+}
+
+// Collapsed cards hide their children box (previously an inline display:none).
+.ezd-section-card.ezd-section-collapsed > .ezd-section-children-box {
+	display: none;
+}
+
+// ==========================================================
+//  ROLE-BASED ACCESS BADGE (restored)
+// ==========================================================
+.ezd-section-status-badge.ezd-status-role {
+	background: #eef2ff;
+	border-color: #c7d2fe;
+
+	.dashicons {
+		color: #4f46e5;
+	}
+}
+
+// ==========================================================
+//  INLINE RENAME FIELD
+// ==========================================================
+.ezd-rename {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	flex: 1;
+	min-width: 0;
+	max-width: 380px;
+}
+
+.ezd-rename-input {
+	font: inherit;
+	flex: 1;
+	width: 100%;
+	min-width: 0;
+	// Extra right padding reserves room for the confirm button sitting inside.
+	padding: 2px 32px 2px 8px;
+	border: 1px solid var(--clr-blue, #4c4cf1);
+	border-radius: 4px;
+	background: #fff;
+	color: #0f172a;
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 2px rgba(76, 76, 241, 0.2);
+	}
+
+	&--section {
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	&--parent {
+		font-size: 13px;
+	}
+}
+
+// Confirm (checkmark) button docked inside the right edge of the field.
+.ezd-rename-confirm {
+	position: absolute;
+	top: 50%;
+	right: 4px;
+	transform: translateY(-50%);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	padding: 0;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: #16a34a;
+	cursor: pointer;
+	transition: all 0.15s ease;
+
+	.dashicons {
+		font-size: 16px;
+		width: 16px;
+		height: 16px;
+	}
+
+	&:hover {
+		background: #16a34a;
+		color: #fff;
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.3);
+	}
+}
+
+// Add-section button icon is now a dashicon (standardised plus).
+.ezd-add-sub-lesson-icon.dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
 }
 
 // ==========================================================
