@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.12.2
+Stable tag: 2.12.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -348,7 +348,7 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.12.2 (01 July 2026) =
+= 2.12.1 (03 July 2026) =
 * New: Dark Mode Default Appearance – Decide what first-time visitors see — Light, Dark, or Follow System — before they choose their own preference.
 * New: Docs Assistant Appearance Controls – Style the assistant panel with custom card background, doc title and text colors, panel width, and corner radius.
 * New: Preview Assistant – Added a quick link to open a live preview of the Docs Assistant in a new tab while you adjust its settings.
@@ -369,8 +369,6 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 * Fixed: Search Result Thumbnails – Search results now fall back to the document icon when a thumbnail image is missing, preventing blank thumbnails.
 * Fixed: Documentation Widget – The topic-count badge now drops to its own line below the document title instead of crowding it.
 * Fixed: Docs Builder Role-Based Access Badge – Section cards now correctly show the role-based access badge when a doc is restricted to specific roles.
-
-= 2.12.1 (28 June 2026) =
 * Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.
 * Fixed: Security – Strengthened sign-in redirect handling after Google login.
 

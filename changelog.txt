@@ -1,5 +1,5 @@
 
-= 2.12.2 (01 July 2026) =
+= 2.12.1 (03 July 2026) =
 New: Dark Mode Default Appearance – Decide what first-time visitors see — Light, Dark, or Follow System — before they choose their own preference.
 New: Docs Assistant Appearance Controls – Style the assistant panel with custom card background, doc title and text colors, panel width, and corner radius.
 New: Preview Assistant – Added a quick link to open a live preview of the Docs Assistant in a new tab while you adjust its settings.
@@ -20,8 +20,6 @@ Fixed: Documentation Menu Visibility – The Documentation admin menu now appear
 Fixed: Search Result Thumbnails – Search results now fall back to the document icon when a thumbnail image is missing, preventing blank thumbnails.
 Fixed: Documentation Widget – The topic-count badge now drops to its own line below the document title instead of crowding it.
 Fixed: Docs Builder Role-Based Access Badge – Section cards now correctly show the role-based access badge when a doc is restricted to specific roles.
-
-= 2.12.1 (28 June 2026) =
 Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.
 Fixed: Security – Strengthened sign-in redirect handling after Google login.
 
@@ -86,7 +84,6 @@ Fixed: Print Dialog Redundancy – Removed duplicate print triggers in one-page 
 Fixed: Search banner CSS styling.
 Fixed: Search Keywords show/hide switcher visibility control.
 Fixed: Setup Wizard Typing – Arrow keys now move the cursor within the URL slug and brand color fields instead of unexpectedly jumping between wizard steps.
-
 
 = 2.11.3 (25 May 2026) =
 Improved: Enable product name pass in embedding Chatbot.
