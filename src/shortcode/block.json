@@ -20,7 +20,8 @@
 			"default": []
 		},
 		"exclude": {
-			"type": "string"
+			"type": "array",
+			"default": []
 		},
 		"show_docs": {
 			"type": "number"

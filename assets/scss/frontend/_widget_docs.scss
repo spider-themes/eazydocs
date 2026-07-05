@@ -476,6 +476,7 @@
         align-items: center;
         max-width: 80px !important;
         max-height: 80px !important;
+        border-radius: 50%;
       }
     }
   }
@@ -506,7 +507,7 @@
     margin-bottom: 0;
     list-style: none;
     flex-wrap: wrap;
-    margin-top: 0;
+    margin-top: 25px;
   }
 
   .doc4-section-title {
@@ -526,7 +527,6 @@
 
     h4 {
       font-size: 20px;
-      margin-bottom: 25px;
       display: flex;
       width: 100%;
     }

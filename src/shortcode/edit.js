@@ -5,17 +5,15 @@ import {
 	RichText,
 } from '@wordpress/block-editor';
 import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
-import { PanelBody, FormTokenField, RangeControl, TextControl, CheckboxControl, SelectControl, RadioControl, Notice, ExternalLink } from '@wordpress/components';
+import { PanelBody, FormTokenField, RangeControl, TextControl, CheckboxControl, SelectControl, RadioControl, Notice, ExternalLink, Spinner } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
+import ServerSideRender from '@wordpress/server-side-render';
 
 const { Fragment } = wp.element;
 
 // editor style
 import './editor.scss';
-
-// Custom functions
-import {doc_ids} from "../custom-functions";
 
 // colors
 import colors from '../colors-palette';
@@ -77,14 +75,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		{ label: __('Menu Order', 'eazydocs'), value: 'menu_order' },
 	];
 	
-	// Shortcode attributes
-	let include_doc_ids = doc_ids(include) ? 'include="'+doc_ids(include)+'"' : '';
-	let exclude_doc_ids = doc_ids(exclude) ? 'exclude="'+doc_ids(exclude)+'"' : '';
-	let columns = col ? 'col="'+col+'"' : '';
-	let ppp = show_docs ? 'show_docs="'+show_docs+'"' : '';
-	let articles = show_articles ? 'show_articles="'+show_articles+'"' : '';
-	let more_txt = more ? 'more="'+more+'"' : '';
-
 	jQuery('.eazydocs-pro-block-notice').on('click', function (e) {
 		e.preventDefault();
 		let href = jQuery(this).attr('href')
@@ -246,7 +236,24 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				[eazydocs {columns} {include_doc_ids} {exclude_doc_ids} {ppp} {articles} {more_txt}]
+				<ServerSideRender
+					block="eazydocs/shortcode"
+					attributes={ attributes }
+					LoadingResponsePlaceholder={ () => (
+						<p className="ezd-shortcode-loading">
+							<Spinner />
+							{ __( 'Loading docs preview…', 'eazydocs' ) }
+						</p>
+					) }
+					EmptyResponsePlaceholder={ () => (
+						<p className="ezd-shortcode-empty">
+							{ __(
+								'No docs to display yet. Publish some docs or adjust the filters to preview the grid here.',
+								'eazydocs'
+							) }
+						</p>
+					) }
+				/>
 			</div>
 		</>
 	);

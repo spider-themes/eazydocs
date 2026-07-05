@@ -223,6 +223,15 @@ class Importer {
 		if ( 'update' === $mode && $source_id > 0 ) {
 			$existing = get_post( $source_id );
 			if ( $existing && 'docs' === $existing->post_type ) {
+				// Object-level authorization: edit_docs (the screen gate) does not
+				// itself grant permission to modify every doc, so require edit_post
+				// on the specific target (from front-matter eazydocs_id) before
+				// overwriting it.
+				if ( ! current_user_can( 'edit_post', $source_id ) ) {
+					$result['failed']++;
+					return 0;
+				}
+
 				$updated = wp_update_post(
 					[
 						'ID'           => $source_id,

@@ -125,8 +125,12 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	padding: 100px 0;
 
 	.recommended_item {
-		.ct-heading-text {
-			margin-bottom: 25px;
+		a {
+			text-decoration: none !important;
+
+			&:hover {
+				color: var(--ezd_brand_color);
+			}
 		}
 	}
 }
@@ -191,6 +195,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	img {
 		margin-bottom: 15px;
 		max-width: 44px;
+		border-radius: 5px;
 	}
 
 	.ct-heading-text {
@@ -198,8 +203,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		color: var(--black_700);
 		font-weight: 700;
 		line-height: 26px;
-		margin-bottom: 25px;
-		margin-top: 0;
+		margin: 0 0 5px;
 		transition: color 0.2s linear;
 		padding: 0;
 
@@ -208,9 +212,10 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		}
 	}
 
-	ul {
+	ul.article-list {
 		margin-left: 0;
 		margin-bottom: 0;
+		margin-top: 25px;
 		padding-left: 0;
 
 		li {
@@ -273,9 +278,10 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 
 	img {
 		padding-right: 15px;
-		max-width: 40px;
+		max-width: 45px;
 		height: auto;
 		max-height: max-content;
+		border-radius: 4px;
 	}
 
 	.topic-title {
@@ -286,7 +292,6 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 
 		.ct-heading-text {
 			font-size: 20px;
-			margin-bottom: 25px;
 			display: flex;
 			width: 100%;
 			margin-top: 0;
@@ -327,7 +332,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	}
 
 	.text_btn {
-		margin-top: 36px;
+		margin-top: 0;
 		display: inline-block;
 		font-size: 16px;
 		gap: 5px;
@@ -699,7 +704,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	--ezd-doc-private: #b45309;
 	--ezd-doc-private-bg: rgba(245, 158, 11, 0.12);
 	--ezd-doc-protected: #4f46e5;
-	--ezd-doc-protected-bg: rgba(79, 70, 229, 0.12);
+	--ezd-doc-protected-bg: rgba(79, 70, 229, 0.3);
 
 	// Filled-card colours — match the shortcode bg-warning / bg-dark.
 	// All four are overridable from Settings → Restricted Docs → Card Design.
@@ -753,6 +758,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	// Lift every bit of copy for contrast on the dark fill. All text is derived
 	// from --ezd-doc-protected-text so a single admin colour stays cohesive.
 	.title,
+	.ct-heading-text,
 	.ezd_item_title,
 	.doc_tag_title .title,
 	.doc4-section-title h4,
@@ -886,6 +892,7 @@ body.body_dark:not(.ezd-restricted--outline) {
 			color: #fbbf24;
 			background: rgba(245, 158, 11, 0.14);
 			border-color: rgba(245, 158, 11, 0.3);
+			margin: 0;
 		}
 	}
 
@@ -944,12 +951,14 @@ body.body_dark:not(.ezd-restricted--outline) {
 		color: var(--ezd-doc-private);
 		background: var(--ezd-doc-private-bg);
 		border-color: rgba(180, 83, 9, 0.18);
+		margin: 0;
 	}
 
 	&.ezd-doc-flag--protected {
-		color: var(--ezd-doc-protected);
+		color: #bbb7ff;
 		background: var(--ezd-doc-protected-bg);
 		border-color: rgba(79, 70, 229, 0.18);
+		margin: 0;
 	}
 }
 

@@ -22,9 +22,17 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
 		    ?>
             <div class="doc_community_item topic-item wow fadeInUp <?php echo esc_attr( ezd_doc_status_classes( $doc_id ) ); ?>" data-wow-delay="<?php echo esc_attr( $delay ) ?>s">
 				<?php ezd_render_doc_indicators( $doc_id, $show_lock ); ?>
-                <div class="doc_community_icon ezd-docs5-icon-wrap">
-				    <?php echo get_the_post_thumbnail( $doc_id, 'full' ); ?>
-                </div>
+				
+				<?php if ( has_post_thumbnail( $doc_id ) ) : ?>
+				<div class="doc_community_icon ezd-docs5-icon-wrap">
+					<?php echo get_the_post_thumbnail( $doc_id, 'full' ); ?>
+				</div>
+				<?php else : ?>
+				<div class="doc_community_icon ezd-docs5-icon-wrap">
+					<i class="<?php echo esc_attr( ezd_get_icon( $doc_id ) ); ?>"></i>
+				</div>
+
+				<?php endif; ?>
                 <div class="doc_entry_content">
                     <a href="<?php the_permalink( $doc_id ); ?>">
                         <h4 class="ezd_item_title">

@@ -11,6 +11,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 //
 // General Fields
 //
+$archive_id = ezd_get_opt( 'docs-slug' );
+$view_link  = '';
+if ( ! empty( $archive_id ) && 'publish' === get_post_status( $archive_id ) ) {
+	$archive_url = get_permalink( $archive_id );
+	$view_link   = sprintf(
+		'<br><a href="%1$s" target="_blank" class="ezd-view-archive-link" style="display: inline-flex; align-items: center; margin-top: 8px; color: #0866ff; text-decoration: none; font-weight: 500; gap: 4px;">%2$s <span class="dashicons dashicons-external" style="font-size: 16px; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;"></span></a>',
+		esc_url( $archive_url ),
+		esc_html__( 'View Page', 'eazydocs' )
+	);
+}
+
 ezd_render_csf_section( $prefix, 'general_fields', esc_html__( 'General Settings', 'eazydocs' ), 'dashicons dashicons-admin-settings', [
 	ezd_csf_text_field([
 		'id' => 'docs_menu_title',
@@ -23,7 +34,7 @@ ezd_render_csf_section( $prefix, 'general_fields', esc_html__( 'General Settings
 		'id' => 'docs-slug',
 		'title' => esc_html__( 'Documentation Archive Page', 'eazydocs' ),
 		'subtitle' => esc_html__( 'Select the main page that displays all your documentation. This page will appear in breadcrumbs and serve as your docs homepage.', 'eazydocs' ),
-		'desc' => esc_html__( 'Create this page using the [eazydocs] shortcode, EazyDocs Gutenberg blocks, or Elementor widgets.', 'eazydocs' ),
+		'desc' => esc_html__( 'Create this page using the [eazydocs] shortcode, EazyDocs Gutenberg blocks, or Elementor widgets.', 'eazydocs' ) . $view_link,
 		'class' => 'docs-page-wrap',
 		'multiple' => false,
 	]),

@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.12.1
+Stable tag: 2.13.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -348,13 +348,15 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.12.1 (03 July 2026) =
+= 2.13.0 (05 July 2026) =
 * New: Dark Mode Default Appearance – Decide what first-time visitors see — Light, Dark, or Follow System — before they choose their own preference.
 * New: Docs Assistant Appearance Controls – Style the assistant panel with custom card background, doc title and text colors, panel width, and corner radius.
 * New: Preview Assistant – Added a quick link to open a live preview of the Docs Assistant in a new tab while you adjust its settings.
 * New: Inline Doc Renaming – Rename any document right from the Docs Builder by double-clicking its title or using the new rename icon, then press Enter to save — no need to open the full editor for a quick title fix.
+* New: Archive Page Preview Link – Added a "View Page" link next to the Documentation Archive Page setting so you can quickly open the selected page in a new tab.
 * Updated: Setup Wizard Design Step – Renamed the Layout step to "Design" and expanded it to cover layout, width, brand color and dark mode, with the live preview now showing dark mode and a custom dark accent color as you adjust them.
 * Updated: Docs Assistant Knowledge Base – The Knowledge Base tab now lists 20 docs by default (up from 12), with a maximum of 100.
+* Updated: Restricted Doc Icons – Refreshed the private and password-protected status icons with a cleaner, more modern design.
 * Improved: User Permissions Settings – Redesigned the User Permissions and Docs Collaboration screens with clearer descriptions, a capability reference table, and helpful notes so it's easy to see exactly what each role can do.
 * Improved: Role Selection – The Documentation Authors and Analytics Viewers selectors now list every role on your site, including custom roles, instead of a fixed set of defaults.
 * Improved: Dark Mode – Now works across all your documentation pages — single docs, one-page docs, archives, categories, tags and shortcode pages — and the correct theme is applied instantly on load, removing the brief flash of light. Visitors following their system setting also see the theme update live when they change their OS appearance.
@@ -364,13 +366,17 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 * Improved: Docs Builder Header – The header now shows your total document count along with how many are drafts or private, right under the "Documentations" title.
 * Improved: Docs Builder Actions – Delete confirmations now show a toast notification for a smoother, more consistent experience, and the add, edit, and rename icons across the builder were made more visually consistent.
 * Improved: Docs Builder Reordering – Drag handles now note that items can also be reordered with the keyboard, making it easier to discover for keyboard users.
+* Improved: Docs Grid Block Preview – The block editor preview for the Docs Grid (shortcode) block now renders exactly like the live page instead of showing a placeholder shortcode tag.
+* Improved: Documentation Widgets – Polished spacing, image corners, and hover styling across the recommended articles, topic, and article list widgets, and improved the protected-document badge's contrast in dark mode.
 * Optimized: Role Capabilities – Documentation role capabilities now update only when your permission settings change, removing unnecessary work on every admin page load.
 * Fixed: Documentation Menu Visibility – The Documentation admin menu now appears for exactly the roles you've granted access, keeping menu visibility in step with the permissions you set.
 * Fixed: Search Result Thumbnails – Search results now fall back to the document icon when a thumbnail image is missing, preventing blank thumbnails.
 * Fixed: Documentation Widget – The topic-count badge now drops to its own line below the document title instead of crowding it.
 * Fixed: Docs Builder Role-Based Access Badge – Section cards now correctly show the role-based access badge when a doc is restricted to specific roles.
+* Fixed: One-Page Banner – Resolved an issue that could prevent a stat block from displaying correctly when no author avatars were set.
 * Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.
 * Fixed: Security – Strengthened sign-in redirect handling after Google login.
+* Fixed: Security – Importing and updating documents via Markdown or CSV now always respects your editing and publishing permissions.
 
 = 2.12.0 (26 June 2026) =
 * New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.

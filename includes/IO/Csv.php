@@ -142,8 +142,9 @@ class Csv {
 			return new WP_Error( 'ezd_csv_no_title', __( 'The CSV file must include a "title" column.', 'eazydocs' ) );
 		}
 
-		$fallback = in_array( $post_status, [ 'draft', 'publish' ], true ) ? $post_status : 'draft';
-		$cell     = static function ( $data, $index, $key ) {
+		$fallback    = in_array( $post_status, [ 'draft', 'publish' ], true ) ? $post_status : 'draft';
+		$can_publish = current_user_can( 'publish_docs' );
+		$cell        = static function ( $data, $index, $key ) {
 			return ( isset( $index[ $key ], $data[ $index[ $key ] ] ) ) ? $data[ $index[ $key ] ] : '';
 		};
 
@@ -170,10 +171,25 @@ class Csv {
 			$menu_order     = (int) $cell( $data, $index, 'menu_order' );
 			$orig_id        = (int) $cell( $data, $index, 'id' );
 
+			// Post-status restriction: the status column is attacker-controlled row
+			// data, so publish/private is only honoured when the importing user
+			// actually holds publish_docs; otherwise the row is imported as a draft.
+			if ( 'draft' !== $row_status && ! $can_publish ) {
+				$row_status = 'draft';
+			}
+
 			// Update mode: refresh an existing doc in place (parent left untouched).
 			if ( $update && $orig_id > 0 ) {
 				$existing = get_post( $orig_id );
 				if ( $existing && 'docs' === $existing->post_type ) {
+					// Object-level authorization: edit_docs (the screen gate) does not
+					// itself grant permission to modify every doc, so require edit_post
+					// on the specific target before overwriting it.
+					if ( ! current_user_can( 'edit_post', $orig_id ) ) {
+						$result['failed']++;
+						continue;
+					}
+
 					$updated = wp_update_post(
 						[
 							'ID'           => $orig_id,

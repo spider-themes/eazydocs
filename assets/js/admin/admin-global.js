@@ -113,6 +113,37 @@
             $('.docs-url-structure .csf-after-text').hide();
         }
 
+        // Dynamic archive page view link in EazyDocs settings
+        $(document).on('change', 'select[name="eazydocs_settings[docs-slug]"]', function() {
+            var pageId = $(this).val();
+            var $container = $(this).closest('.csf-field').find('.csf-desc');
+            $container.find('.ezd-view-archive-link').remove();
+            
+            if (pageId) {
+                var base_url = eazydocs_local_object.ajaxurl.split('/wp-admin/')[0];
+                var fallback_url = base_url + '/?page_id=' + pageId;
+                
+                $.ajax({
+                    url: base_url + '/wp-json/wp/v2/pages/' + pageId,
+                    method: 'GET',
+                    success: function(response) {
+                        var permalink = (response && response.link) ? response.link : fallback_url;
+                        render_link(permalink);
+                    },
+                    error: function() {
+                        render_link(fallback_url);
+                    }
+                });
+            }
+            
+            function render_link(url) {
+                $container.find('.ezd-view-archive-link').remove();
+                var viewText = 'View Page';
+                var linkHtml = '<br><a href="' + url + '" target="_blank" class="ezd-view-archive-link" style="display: inline-flex; align-items: center; margin-top: 8px; color: #0866ff; text-decoration: none; font-weight: 500; gap: 4px;">' + viewText + ' <span class="dashicons dashicons-external" style="font-size: 16px; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;"></span></a>';
+                $container.append(linkHtml);
+            }
+        });
+
         // Notice for customizer
         $('.no-customizer-access').on('click', function(e){
             e.preventDefault();

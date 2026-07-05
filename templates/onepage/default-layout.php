@@ -112,8 +112,9 @@ $children         = wp_list_pages( array(
 								<?php if ( isset( $stat['type'] ) && 'avatars' === $stat['type'] ) : ?>
 									<span class="ezd-onepage-banner-avatars ezd-align-items-center" aria-hidden="true">
 										<?php
-										$shown  = array_slice( $stat['authors'], 0, 4 );
-										$hidden = count( $stat['authors'] ) - count( $shown );
+										$stat_authors = isset( $stat['authors'] ) && is_array( $stat['authors'] ) ? $stat['authors'] : [];
+										$shown        = array_slice( $stat_authors, 0, 4 );
+										$hidden       = count( $stat_authors ) - count( $shown );
 										foreach ( $shown as $author_id ) {
 											echo get_avatar( $author_id, 56, '', '', [ 'class' => 'ezd-onepage-banner-avatar' ] );
 										}

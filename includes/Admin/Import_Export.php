@@ -610,6 +610,27 @@ class Import_Export {
 		$post_status = ( isset( $_POST['post_status'] ) && 'publish' === $_POST['post_status'] ) ? 'publish' : 'draft';
 		$mode        = ( isset( $_POST['duplicate_mode'] ) && 'update' === $_POST['duplicate_mode'] ) ? 'update' : 'create';
 
+		// Object-level authorization: importing under a parent effectively adds a
+		// child to it, so the current user must be able to edit that specific doc
+		// — edit_docs (the screen gate) does not itself grant that on every doc.
+		// The parent selector is already filtered client-side, but the request is
+		// the real security boundary.
+		if ( $parent_id && ! current_user_can( 'edit_post', $parent_id ) ) {
+			set_transient(
+				'ezd_md_import_result_' . get_current_user_id(),
+				[ 'error' => __( 'You are not allowed to import under the selected document.', 'eazydocs' ) ],
+				MINUTE_IN_SECONDS
+			);
+			wp_safe_redirect( $this->tab_url( 'import' ) );
+			exit;
+		}
+
+		// Post-status restriction: publishing requires publish_docs, otherwise
+		// every imported doc is forced to draft regardless of what was requested.
+		if ( 'publish' === $post_status && ! current_user_can( 'publish_docs' ) ) {
+			$post_status = 'draft';
+		}
+
 		$result = $this->process_upload( $parent_id, $post_status, $mode );
 
 		$payload = is_wp_error( $result )
