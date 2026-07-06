@@ -202,6 +202,11 @@ EazyDocs comes with flexible pricing to suit businesses of all sizes:
 *   Full RTL Compatibility.
 *   Users Feedback Database.
 *   Attach documents to any page.
+*   Docs Assistant Dark Mode.
+*   Docs Assistant Full Article View.
+*   Documentation Subscription Button.
+*   Collaborative Docs Status Icons.
+*   DocBox Status Badges.
 
 ==EazyDocs Promax - Complete Solution==
 ***Everything in Pro, plus advanced analytics and management:***
