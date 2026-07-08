@@ -382,6 +382,7 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 * Fixed: Security – Private documents now stay hidden from visitors without permission across all document listings, navigation sidebars, counts, and Markdown/CSV exports.
 * Fixed: Security – Strengthened sign-in redirect handling after Google login.
 * Fixed: Security – Importing and updating documents via Markdown or CSV now always respects your editing and publishing permissions.
+* Fixed: Security – Resolved a broken access control issue in the Import/Export feature. Thanks to Artus KG for responsibly disclosing this issue.
 
 = 2.12.0 (26 June 2026) =
 * New: Doc Tags – Added option switcher to toggle display of associated tags at the bottom of each document page.
