@@ -83,6 +83,29 @@ function ezd_render_read_more_btn( $url, $text, $class = 'doc_border_btn', $icon
 }
 
 /**
+ * Render the Subscribe button and its modal form for a doc.
+ *
+ * Reuses the EazyDocs Pro subscription feature by firing the same two actions
+ * the shortcode and Gutenberg blocks use. When the Pro subscription feature is
+ * inactive no callbacks are attached, so nothing is output.
+ *
+ * @param array  $settings Widget settings (expects 'show_subscription' and 'subscription_text').
+ * @param int    $doc_id   Any doc ID; the top-level parent doc is resolved automatically.
+ * @param string $class    Extra CSS class for the button (compact inline variant by default).
+ */
+function ezd_render_doc_subscription( $settings, $doc_id, $class = 'ezd-block-subscribe' ) {
+    if ( ( $settings['show_subscription'] ?? '' ) !== 'yes' || ! function_exists( 'ezd_get_doc_parent_id' ) ) {
+        return;
+    }
+
+    $parent_id = ezd_get_doc_parent_id( $doc_id );
+    $sub_text  = $settings['subscription_text'] ?? '';
+
+    do_action( 'eazydocs_docs_subscription', $parent_id, $class, $sub_text );
+    do_action( 'eazydocs_suscription_modal_form', $parent_id );
+}
+
+/**
  * Render private/protected doc indicators.
  *
  * Moved to includes/functions.php (always loaded) so the [eazydocs] shortcode

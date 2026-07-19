@@ -104,7 +104,24 @@ if ( ezd_is_premium() ) {
 						<?php
 						if ( $sections ) :
 							ezd_render_doc_items_list( $sections, 'ezd-list-unstyled article_list' );
-							ezd_render_read_more_btn( get_permalink(), $read_more, 'doc_border_btn ezd_btn', '<i class="arrow_right"></i>' );
+						endif;
+
+						// Read More + Subscribe share a flex row so Subscribe sits to the right (space-between).
+						$has_subscription = ( $settings['show_subscription'] ?? '' ) === 'yes';
+						$has_read_more    = ! empty( $sections ) && ! empty( $read_more );
+
+						if ( $has_read_more || $has_subscription ) :
+							?>
+							<div class="ezd-doc-btn-wrap<?php echo $has_subscription ? ' has-subscription' : ''; ?>">
+								<?php
+								if ( $has_read_more ) {
+									ezd_render_read_more_btn( get_permalink(), $read_more, 'doc_border_btn ezd_btn', '<i class="arrow_right"></i>' );
+								}
+								// Subscribe button (reuses the Pro subscription feature).
+								ezd_render_doc_subscription( $settings, get_the_ID() );
+								?>
+							</div>
+							<?php
 						endif;
 						?>
 						

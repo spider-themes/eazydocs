@@ -487,6 +487,35 @@ class Doc_Widget extends Widget_Base
 		);
 
 		$this->add_control(
+			'show_subscription',
+			[
+				'label' => esc_html__('Show Subscribe Button', 'eazydocs'),
+				'description' => esc_html__('Let visitors subscribe to a doc for update notifications. Requires the EazyDocs Pro subscription feature.', 'eazydocs'),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default' => '',
+				'condition' => [
+					'doc-widget-skin' => ['1', '3', '7']
+				]
+			]
+		);
+
+		$this->add_control(
+			'subscription_text',
+			[
+				'label' => esc_html__('Subscribe Button Text', 'eazydocs'),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default' => '',
+				'placeholder' => esc_html__('Subscribe', 'eazydocs'),
+				'condition' => [
+					'doc-widget-skin' => ['1', '3', '7'],
+					'show_subscription' => 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
 			'md_show_article_count',
 			[
 				'label' => esc_html__( 'Show Article Count', 'eazydocs' ),

@@ -48,7 +48,7 @@ CSF::createSection( $prefix, array(
 						'type'       => 'text',
 						'title'      => esc_html__( 'Subscribe Button', 'eazydocs' ),
 						'subtitle'   => esc_html__( 'Text displayed on the subscription trigger button.', 'eazydocs' ),
-						'default'    => esc_html__( 'Subscribe for updates', 'eazydocs' )
+						'default'    => esc_html__( 'Subscribe', 'eazydocs' )
 					),
 					
 					array(

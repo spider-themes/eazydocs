@@ -123,6 +123,11 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
                             <a href="<?php the_permalink( $main_doc['doc']->ID ); ?>" class="learn_btn ezd_btn">
 								<?php echo esc_html( $settings['read_more'] ); ?> <i class="<?php echo ezd_arrow() ?>"></i>
                             </a>
+
+							<?php
+							// Subscribe button (reuses the Pro subscription feature).
+							ezd_render_doc_subscription( $settings, $main_doc['doc']->ID );
+							?>
                         </div>
                     </div>
                     <div class="ezd-lg-col-8 ezd-grid-column-full">

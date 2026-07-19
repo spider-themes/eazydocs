@@ -359,3 +359,11 @@ button.nestable--button.nestable--expand {
 		color: #0f172a;
 	}
 }
+
+// While renaming, let the title cell claim the row's free space so the
+// rename field can grow (its own max-width caps it); otherwise .title only
+// shrinks to content and the field stays narrow.
+.easydocs-navitem .title:has(.ezd-rename) {
+	flex: 1;
+	min-width: 0;
+}

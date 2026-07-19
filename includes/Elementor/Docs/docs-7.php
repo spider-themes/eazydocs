@@ -168,6 +168,11 @@ $doc_statuses   = ezd_doc_listing_statuses( $show_private );
 						</a>
 					<?php endif; ?>
 
+					<?php
+					// Subscribe button (reuses the Pro subscription feature).
+					ezd_render_doc_subscription( $settings, $doc_id );
+					?>
+
 				</div><!-- /.ezd-docs-card -->
 			<?php
 			endwhile;

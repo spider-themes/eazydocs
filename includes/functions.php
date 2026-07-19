@@ -1843,13 +1843,16 @@ function ezd_widget_excerpt( $settings_key, $limit = 10 ) {
 }
 
 /**
- * Get arrow icon based on text direction.
+ * Output the arrow icon class based on text direction.
  *
- * @return string The arrow icon class name.
+ * Echoes the class name so it can be used directly inside template attributes,
+ * e.g. <i class="<?php ezd_arrow(); ?>"></i>.
+ *
+ * @return void
  */
 function ezd_arrow() {
     $arrow_icon = is_rtl() ? 'arrow_left' : 'arrow_right';
-    return esc_attr( $arrow_icon );
+    echo esc_attr( $arrow_icon );
 }
 
 
