@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.13.0
+Stable tag: 2.13.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -353,8 +353,10 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.13.0 (19 July 2026) =
+= 2.13.1 (19 July 2026) =
 * New: Elementor Subscribe Button – Added a Show Subscribe Button toggle with customizable button text to the Elementor Docs widget's layout skins, so visitors can subscribe to documentation updates directly from your Elementor-built pages (requires the EazyDocs Pro subscription feature).
+
+= 2.13.0 (06 July 2026) =
 * New: Dark Mode Default Appearance – Decide what first-time visitors see — Light, Dark, or Follow System — before they choose their own preference.
 * New: Docs Assistant Appearance Controls – Style the assistant panel with custom card background, doc title and text colors, panel width, and corner radius.
 * New: Preview Assistant – Added a quick link to open a live preview of the Docs Assistant in a new tab while you adjust its settings.
@@ -547,6 +549,9 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 
 == Upgrade Notice ==
+
+= 2.13.1 =
+Adds a Subscribe button to the Elementor Docs widget so visitors can subscribe to documentation updates. Update recommended.
 
 = 2.7.3 =
 Minor CSS improvements and enhanced scroll offset handling for better anchor positioning. Update recommended for improved visual consistency.

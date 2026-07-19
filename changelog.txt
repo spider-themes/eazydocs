@@ -1,6 +1,8 @@
 
-= 2.13.0 (19 July 2026) =
+= 2.13.1 (19 July 2026) =
 New: Elementor Subscribe Button – Added a Show Subscribe Button toggle with customizable button text to the Elementor Docs widget's layout skins, so visitors can subscribe to documentation updates directly from your Elementor-built pages (requires the EazyDocs Pro subscription feature).
+
+= 2.13.0 (06 July 2026) =
 New: Dark Mode Default Appearance – Decide what first-time visitors see — Light, Dark, or Follow System — before they choose their own preference.
 New: Docs Assistant Appearance Controls – Style the assistant panel with custom card background, doc title and text colors, panel width, and corner radius.
 New: Preview Assistant – Added a quick link to open a live preview of the Docs Assistant in a new tab while you adjust its settings.
