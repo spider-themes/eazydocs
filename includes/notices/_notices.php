@@ -62,7 +62,9 @@ add_action( 'plugins_loaded', function () {
  * impression/click/dismissal/goal beacon fires until this grants consent.
  */
 add_action( 'admin_init', function () {
-    if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) || ! function_exists( 'eaz_fs' ) ) {
+    // A sibling plugin may have loaded an older copy of the shared SDK class
+    // first; guard the newer method so we never fatal on an outdated class.
+    if ( ! function_exists( 'eaz_fs' ) || ! method_exists( 'Noticepilot_Remote_Notice_Client', 'grant_consent' ) ) {
         return;
     }
 
@@ -80,7 +82,7 @@ add_action( 'admin_init', function () {
  * conversion rate (and pick A/B winners), not just clicks.
  */
 add_action( 'admin_init', function () {
-    if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) || ! function_exists( 'ezd_is_premium' ) ) {
+    if ( ! function_exists( 'ezd_is_premium' ) || ! method_exists( 'Noticepilot_Remote_Notice_Client', 'track_goal' ) ) {
         return;
     }
 
@@ -103,7 +105,7 @@ add_action( 'admin_init', function () {
  * updates and re-saves simply re-report the same accurate count.
  */
 add_action( 'save_post_docs', function ( $post_id, $post ) {
-    if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
+    if ( ! method_exists( 'Noticepilot_Remote_Notice_Client', 'set_metric' ) ) {
         return;
     }
     if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
