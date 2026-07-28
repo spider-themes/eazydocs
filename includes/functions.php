@@ -4306,3 +4306,95 @@ class EazyDocs_Article_Walker extends Walker_Page {
 		);
 	}
 }
+
+/**
+ * Return default AI Summary providers.
+ *
+ * @return array
+ */
+function ezd_get_default_ai_summary_providers() {
+	return array(
+		array(
+			'enabled'     => true,
+			'name'        => 'ChatGPT',
+			'url'         => 'https://chat.openai.com/?q=',
+			'icon'        => '',
+			'icon_class'  => '',
+			'description' => '',
+		),
+		array(
+			'enabled'     => true,
+			'name'        => 'Claude',
+			'url'         => 'https://www.claude.ai/new?q=',
+			'icon'        => '',
+			'icon_class'  => '',
+			'description' => '',
+		),
+		array(
+			'enabled'     => true,
+			'name'        => 'Grok',
+			'url'         => 'https://www.grok.com/?q=',
+			'icon'        => '',
+			'icon_class'  => '',
+			'description' => '',
+		),
+		array(
+			'enabled'     => true,
+			'name'        => 'Perplexity',
+			'url'         => 'https://www.perplexity.ai/search/new?q=',
+			'icon'        => '',
+			'icon_class'  => '',
+			'description' => '',
+		),
+		array(
+			'enabled'     => true,
+			'name'        => 'Google AI',
+			'url'         => 'https://www.google.com/search?udm=50&aep=11&q=',
+			'icon'        => '',
+			'icon_class'  => '',
+			'description' => '',
+		),
+		array(
+			'enabled'     => true,
+			'name'        => 'Mistral AI',
+			'url'         => 'https://chat.mistral.ai/chat?q=',
+			'icon'        => '',
+			'icon_class'  => '',
+			'description' => '',
+		),
+	);
+}
+
+/**
+ * Retrieve configured AI Summary providers, falling back to defaults.
+ *
+ * @param bool $active_only Whether to return only enabled providers.
+ *
+ * @return array
+ */
+function ezd_get_ai_summary_providers( $active_only = false ) {
+	$defaults  = ezd_get_default_ai_summary_providers();
+	$providers = ezd_get_opt( 'ai_summary_providers', $defaults );
+
+	if ( empty( $providers ) || ! is_array( $providers ) ) {
+		$providers = $defaults;
+	}
+
+	if ( $active_only ) {
+		$providers = array_filter(
+			$providers,
+			function ( $item ) {
+				if ( ! is_array( $item ) ) {
+					return false;
+				}
+				if ( isset( $item['enabled'] ) ) {
+					return filter_var( $item['enabled'], FILTER_VALIDATE_BOOLEAN );
+				}
+				return true;
+			}
+		);
+	}
+
+	return array_values( $providers );
+}
+

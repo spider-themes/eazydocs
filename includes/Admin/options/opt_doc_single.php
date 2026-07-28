@@ -180,6 +180,63 @@ CSF::createSection(
 				)
 			),
 
+			array(
+				'id'                 => 'ai_summary_providers',
+				'type'               => 'group',
+				'title'              => esc_html__( 'Ask AI Providers', 'eazydocs' ),
+				'subtitle'           => esc_html__( 'Manage, enable/disable, reorder, or add custom AI providers for the Ask AI Summary dropdown.', 'eazydocs' ),
+				'button_title'       => esc_html__( 'Add New AI Provider', 'eazydocs' ),
+				'accordion_title_by' => 'name',
+				'class'              => 'eazydocs-promax-notice',
+				'dependency'         => array(
+					array( 'enable-ai-summary', '==', 'true' ),
+				),
+				'default'            => ezd_get_default_ai_summary_providers(),
+				'fields'             => array(
+					array(
+						'id'      => 'enabled',
+						'type'    => 'switcher',
+						'title'   => esc_html__( 'Enable Provider', 'eazydocs' ),
+						'default' => true,
+					),
+					array(
+						'id'       => 'name',
+						'type'     => 'text',
+						'title'    => esc_html__( 'Provider Name', 'eazydocs' ),
+						'subtitle' => esc_html__( 'Display name of the AI service (e.g. DeepSeek, ChatGPT).', 'eazydocs' ),
+					),
+					array(
+						'id'       => 'url',
+						'type'     => 'text',
+						'title'    => esc_html__( 'Search / Prompt URL', 'eazydocs' ),
+						'subtitle' => esc_html__( 'The URL to open. Supports placeholders: {prompt}, {title}, {url}. If no placeholder is used, prompt is appended.', 'eazydocs' ),
+					),
+					array(
+						'id'             => 'icon',
+						'type'           => 'media',
+						'title'          => esc_html__( 'Icon Image', 'eazydocs' ),
+						'subtitle'       => esc_html__( 'Upload or select an icon image for this provider (optional).', 'eazydocs' ),
+						'library'        => 'image',
+						'url'            => true,
+						'preview_width'  => '32',
+						'preview_height' => '32',
+					),
+					array(
+						'id'       => 'icon_class',
+						'type'     => 'icon',
+						'title'    => esc_html__( 'Icon Class', 'eazydocs' ),
+						'subtitle' => esc_html__( 'Or select an icon font class (optional).', 'eazydocs' ),
+					),
+					array(
+						'id'       => 'description',
+						'type'     => 'text',
+						'title'    => esc_html__( 'Description', 'eazydocs' ),
+						'subtitle' => esc_html__( 'Optional tooltip or note for this provider.', 'eazydocs' ),
+					),
+				),
+			),
+
+
 			ezd_csf_switcher_field(
 				array(
 					'id'         => 'enable-unique-views',
