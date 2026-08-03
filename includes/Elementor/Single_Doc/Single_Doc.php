@@ -181,7 +181,6 @@ class Single_Doc extends Widget_Base {
 				'label'       => esc_html__( 'Sections', 'eazydocs' ),
 				'description' => esc_html__( 'Number of section to show', 'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
-				'label_block' => true,
 				'default'     => 6
 			]
 		);
@@ -191,7 +190,6 @@ class Single_Doc extends Widget_Base {
 				'label'       => esc_html__( 'Sections', 'eazydocs' ),
 				'description' => esc_html__( 'Number of section to show', 'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
-				'label_block' => true,
 				'default'     => 6,
 				'condition'   => [
 					'doc-widget-single-search' => [ '4' ]
@@ -205,7 +203,6 @@ class Single_Doc extends Widget_Base {
 				'description' => esc_html__( 'Excerpt word limit of the documentation sections. If the excerpt got empty, this will get from the post content.',
 					'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
-				'label_block' => true,
 				'default'     => 8,
 				'condition'   => [
 					'doc-widget-single-search' => '4'
@@ -218,7 +215,6 @@ class Single_Doc extends Widget_Base {
 				'label'       => esc_html__( 'Articles', 'eazydocs' ),
 				'description' => esc_html__( 'Number of articles to show under every sections', 'eazydocs' ),
 				'type'        => Controls_Manager::NUMBER,
-				'label_block' => true,
 				'default'     => 4,
 
 			]
