@@ -337,13 +337,11 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	}
 
 	.text_btn {
-		margin-top: 0;
+		margin-top: 36px;
 		display: inline-block;
 		font-size: 16px;
-		gap: 5px;
-		align-items: center;
 		color: #1d2746;
-		text-decoration: none !important;
+		text-decoration: none;
 	}
 
 	&:hover {
@@ -725,7 +723,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 	position: relative; // Anchor the absolutely-positioned corner lock.
 
 	// Corner lock overlay (rendered by ezd_render_doc_indicators()).
-	> .private {
+	>.private {
 		position: absolute;
 		right: -4px;
 		top: -16px;
@@ -747,7 +745,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 .ezd-doc-private {
 	background: var(--ezd-doc-private-fill) !important;
 
-	> .private {
+	>.private {
 		i.icon_lock {
 			color: #7a5c00;
 		}
@@ -813,7 +811,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 		color: var(--ezd-doc-protected-text, #fff) !important;
 	}
 
-	> .private {
+	>.private {
 		i.icon_lock {
 			color: color-mix(in srgb, var(--ezd-doc-protected-text, #fff) 80%, transparent);
 		}
@@ -829,6 +827,7 @@ ol.eazydocs-search-wrapper .breadcrumb .breadcrumb-item:first-child {
 // theme's normal typography show through. Applied via a <body> class so it
 // covers shortcodes, blocks and Elementor widgets at once.
 body.ezd-restricted--outline {
+
 	.ezd-doc-private,
 	.ezd-doc-protected {
 		background: transparent !important;
@@ -884,7 +883,7 @@ body.body_dark:not(.ezd-restricted--outline) {
 		outline-offset: -1px;
 
 		// Brighten the amber lock & badge so they read on the dark card.
-		> .private {
+		>.private {
 			i.icon_lock {
 				color: #f59e0b;
 			}
@@ -922,6 +921,7 @@ body.body_dark:not(.ezd-restricted--outline) {
 // the content never sits flush against the coloured edge.
 .doc_tag_item,
 .documentation_item {
+
 	&.ezd-doc-private,
 	&.ezd-doc-protected {
 		padding: 30px 28px;

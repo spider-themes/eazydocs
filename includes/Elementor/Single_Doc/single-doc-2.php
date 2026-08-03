@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php
 						}
 
-						ezd_render_doc_items_list( $doc_items, 'ezd-list-unstyled', 'ct-content-text' );
+						ezd_render_doc_items_list( $doc_items, 'ezd-list-unstyled article-list', 'ct-content-text' );
 						?>
                     </div>
 					<?php

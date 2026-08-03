@@ -33,6 +33,7 @@
 
 	&.ezd-column-2 {
 		grid-template-columns: repeat(2, 1fr);
+
 		@media (max-width: 600px) {
 			grid-template-columns: repeat(1, 1fr);
 		}
@@ -40,9 +41,11 @@
 
 	&.ezd-column-4 {
 		grid-template-columns: repeat(4, 1fr);
+
 		@media (max-width: 991px) {
 			grid-template-columns: repeat(2, 1fr);
 		}
+
 		@media (max-width: 600px) {
 			grid-template-columns: repeat(1, 1fr);
 		}
@@ -50,9 +53,11 @@
 
 	&.ezd-column-3 {
 		grid-template-columns: repeat(3, 1fr);
+
 		@media (max-width: 991px) {
 			grid-template-columns: repeat(2, 1fr);
 		}
+
 		@media (max-width: 600px) {
 			grid-template-columns: repeat(1, 1fr);
 		}
@@ -60,9 +65,11 @@
 
 	&.ezd-column-5 {
 		grid-template-columns: repeat(5, 1fr);
+
 		@media (max-width: 991px) {
 			grid-template-columns: repeat(3, 1fr);
 		}
+
 		@media (max-width: 600px) {
 			grid-template-columns: repeat(1, 1fr);
 		}
@@ -70,9 +77,11 @@
 
 	&.ezd-column-6 {
 		grid-template-columns: repeat(6, 1fr);
+
 		@media (max-width: 991px) {
 			grid-template-columns: repeat(2, 1fr);
 		}
+
 		@media (max-width: 600px) {
 			grid-template-columns: repeat(1, 1fr);
 		}
@@ -101,33 +110,43 @@
 	.ezd-sm-col-4 {
 		grid-column: span 4 / span 4;
 	}
+
 	.ezd-sm-col-3 {
 		grid-column: span 3 / span 3;
 	}
+
 	.ezd-sm-col-5 {
 		grid-column: span 5 / span 5;
 	}
+
 	.ezd-sm-col-6 {
 		grid-column: span 6 / span 6;
 	}
+
 	.ezd-sm-col-7 {
 		grid-column: span 7 / span 7;
 	}
+
 	.ezd-sm-col-8 {
 		grid-column: span 8 / span 8;
 	}
+
 	.ezd-sm-col-9 {
 		grid-column: span 9 / span 9;
 	}
+
 	.ezd-sm-col-10 {
 		grid-column: span 10 / span 10;
 	}
+
 	.ezd-sm-col-2 {
 		grid-column: span 2 / span 2;
 	}
+
 	.ezd-sm-col-11 {
 		grid-column: span 11 / span 11;
 	}
+
 	.ezd-sm-col-12 {
 		grid-column: span 12 / span 12;
 	}
@@ -137,33 +156,43 @@
 	.ezd-md-col-4 {
 		grid-column: span 4 / span 4;
 	}
+
 	.ezd-md-col-3 {
 		grid-column: span 3 / span 3;
 	}
+
 	.ezd-md-col-5 {
 		grid-column: span 5 / span 5;
 	}
+
 	.ezd-md-col-6 {
 		grid-column: span 6 / span 6;
 	}
+
 	.ezd-md-col-7 {
 		grid-column: span 7 / span 7;
 	}
+
 	.ezd-md-col-8 {
 		grid-column: span 8 / span 8;
 	}
+
 	.ezd-md-col-9 {
 		grid-column: span 9 / span 9;
 	}
+
 	.ezd-md-col-10 {
 		grid-column: span 10 / span 10;
 	}
+
 	.ezd-md-col-11 {
 		grid-column: span 11 / span 11;
 	}
+
 	.ezd-md-col-12 {
 		grid-column: span 12 / span 12;
 	}
+
 	.ezd-md-col-2 {
 		grid-column: span 2 / span 2;
 	}
@@ -173,33 +202,43 @@
 	.ezd-lg-col-4 {
 		grid-column: span 4 / span 4;
 	}
+
 	.ezd-lg-col-3 {
 		grid-column: span 3 / span 3;
 	}
+
 	.ezd-lg-col-5 {
 		grid-column: span 5 / span 5;
 	}
+
 	.ezd-lg-col-6 {
 		grid-column: span 6 / span 6;
 	}
+
 	.ezd-lg-col-8 {
 		grid-column: span 8 / span 8;
 	}
+
 	.ezd-lg-col-7 {
 		grid-column: span 7 / span 7;
 	}
+
 	.ezd-lg-col-9 {
 		grid-column: span 9 / span 9;
 	}
+
 	.ezd-lg-col-10 {
 		grid-column: span 10 / span 10;
 	}
+
 	.ezd-lg-col-11 {
 		grid-column: span 11 / span 11;
 	}
+
 	.ezd-lg-col-12 {
 		grid-column: span 12 / span 12;
 	}
+
 	.ezd-lg-col-2 {
 		grid-column: span 2 / span 2;
 	}
@@ -209,33 +248,43 @@
 	.ezd-xl-col-4 {
 		grid-column: span 4 / span 4;
 	}
+
 	.ezd-xl-col-3 {
 		grid-column: span 3 / span 3;
 	}
+
 	.ezd-xl-col-5 {
 		grid-column: span 5 / span 5;
 	}
+
 	.ezd-xl-col-6 {
 		grid-column: span 6 / span 6;
 	}
+
 	.ezd-xl-col-8 {
 		grid-column: span 8 / span 8;
 	}
+
 	.ezd-xl-col-7 {
 		grid-column: span 7 / span 7;
 	}
+
 	.ezd-xl-col-9 {
 		grid-column: span 9 / span 9;
 	}
+
 	.ezd-xl-col-10 {
 		grid-column: span 10 / span 10;
 	}
+
 	.ezd-xl-col-11 {
 		grid-column: span 11 / span 11;
 	}
+
 	.ezd-xl-col-12 {
 		grid-column: span 12 / span 12;
 	}
+
 	.ezd-xl-col-2 {
 		grid-column: span 2 / span 2;
 	}
@@ -244,9 +293,11 @@
 .ezd-custom-container.ezd-container {
 	width: 100%;
 	box-sizing: border-box;
+
 	@media (min-width: 1300px) {
 		max-width: 1240px;
 	}
+
 	@media (min-width: 1500px) {
 		max-width: 1470px;
 	}
@@ -259,6 +310,7 @@
 	@media (min-width: 1200px) {
 		max-width: 1140px;
 	}
+
 	@media (min-width: 992px) {
 		max-width: 960px;
 	}
@@ -267,10 +319,11 @@
 .ezd-container-fluid {
 	width: auto;
 	margin-right: 0 !important;
-    margin-left: 0 !important;
-    padding-left: 50px !important;
-    padding-right: 50px !important;
-    max-width: 100% !important;
+	margin-left: 0 !important;
+	padding-left: 50px !important;
+	padding-right: 50px !important;
+	max-width: 100% !important;
+
 	@media (max-width: 991px) {
 		padding: 0 15px !important;
 	}
@@ -281,6 +334,7 @@
 	width: 100%;
 	margin-right: auto;
 	margin-left: auto;
+
 	@media (min-width: 1200px) {
 		max-width: 1200px;
 	}
@@ -316,17 +370,19 @@
 	background-clip: padding-box;
 	border-radius: 0.3rem;
 	outline: 0;
+
 	.shortcode_title {
 		.title {
 			margin-bottom: 0;
 		}
 	}
+
 	span {
-		&.ezd-input-warning-text{
-		font-size: 15px;
-		color: red;
-		margin-left: 5px;
-		font-style: italic;
+		&.ezd-input-warning-text {
+			font-size: 15px;
+			color: red;
+			margin-left: 5px;
+			font-style: italic;
 		}
 	}
 }
@@ -378,6 +434,7 @@
 		.ezd-col-width {
 			flex: 1;
 			max-width: 50%;
+
 			@media (max-width: 600px) {
 				max-width: 100%;
 			}
@@ -388,9 +445,11 @@
 		.ezd-col-width {
 			flex: 1;
 			max-width: 33.333333%;
+
 			@media (max-width: 991px) {
 				max-width: 50%;
 			}
+
 			@media (max-width: 600px) {
 				max-width: 100%;
 			}
@@ -401,9 +460,11 @@
 		.ezd-col-width {
 			flex: 1;
 			max-width: 25%;
+
 			@media (max-width: 991px) {
 				max-width: 50%;
 			}
+
 			@media (max-width: 600px) {
 				max-width: 100%;
 			}
@@ -414,10 +475,12 @@
 		.ezd-col-width {
 			flex: 0 0 16.67%;
 			max-width: 16.67%;
+
 			@media (max-width: 991px) {
 				flex: 0 0 50%;
 				max-width: 50%;
 			}
+
 			@media (max-width: 600px) {
 				flex: 0 0 100%;
 				max-width: 100%;
@@ -476,8 +539,7 @@
 
 .ezd-list-unstyled {
 	list-style: none !important;
-	padding-left: 0 !important;
-	margin-left: 0 !important;
+	padding: 0 !important;
 }
 
 .ezd-shadow-lg {
@@ -511,6 +573,7 @@
 	margin-bottom: 1.5rem;
 	border: 1px solid transparent;
 	border-radius: .25rem;
+
 	&.ezd-alert-info {
 		background: #daf9ff63;
 		border-color: #6ddaf375;
