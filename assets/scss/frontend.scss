@@ -298,34 +298,10 @@ p .footnotes-link::after {
   height: 50px;
   margin-top: -50px;
   overflow-x: hidden;
-  background: -moz-linear-gradient(
-                  bottom,
-                  rgb(255, 255, 255) 15%,
-                  rgba(255, 255, 255, 0) 100%
-  );
-  background: -webkit-linear-gradient(
-                  bottom,
-                  rgb(255, 255, 255) 15%,
-                  rgba(255, 255, 255, 0) 100%
-  );
-  background: -o-linear-gradient(
-                  bottom,
-                  rgb(255, 255, 255) 15%,
-                  rgba(255, 255, 255, 0) 100%
-  );
-  background: -ms-linear-gradient(
-                  bottom,
-                  rgb(255, 255, 255) 15%,
-                  rgba(255, 255, 255, 0) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(
-                  startColorstr='#03ffffff',
-                  endColorstr='#ffffff', GradientType=0
-  );
   background: linear-gradient(
-                  bottom,
-                  rgb(255, 255, 255) 15%,
-                  rgba(255, 255, 255, 0) 100%
+    to top,
+    rgb(255, 255, 255) 15%,
+    rgba(255, 255, 255, 0) 100%
   );
   display: block;
 }

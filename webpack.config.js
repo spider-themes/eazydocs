@@ -251,6 +251,20 @@ const enableStyleSourceMaps = ( rules = [] ) =>
 					options.sourceMap = true;
 				}
 
+				if ( loader.includes( 'sass-loader' ) ) {
+					options.sassOptions = {
+						...( options.sassOptions || {} ),
+						// Silence legacy Sass APIs until styles are migrated to the module system.
+						silenceDeprecations: [
+							...( options.sassOptions?.silenceDeprecations || [] ),
+							'import',
+							'global-builtin',
+							'color-functions',
+							'if-function',
+						],
+					};
+				}
+
 				if ( loader.includes( 'postcss-loader' ) && options.postcssOptions ) {
 					options.postcssOptions = {
 						...options.postcssOptions,

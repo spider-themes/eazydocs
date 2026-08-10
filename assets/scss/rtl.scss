@@ -50,11 +50,6 @@ blockquote,
   margin-right: 5px;
 }
 
-//.doc_features_item_one .learn_btn:hover i,
-//.doc_border_btn:hover i {
-//  transform: translateX(-8px);
-//}
-
 .nav_btn.icon-btn i {
   padding-left: 10px;
   padding-right: 0;
@@ -1142,4 +1137,8 @@ form.ezd_search_form .form-group .input-wrapper input {
 .doc_left_sidebarlist .ezd-scroll:not(.op-docs-sidebar) {
     margin-left: 0;
     margin-right: -10px;
+}
+
+.classic-onepage .ezd-onepage-banner {
+  left: auto !important;
 }
