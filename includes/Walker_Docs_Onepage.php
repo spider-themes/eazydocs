@@ -284,6 +284,7 @@ function ezd_list_pages_onepage( $args = '' ) {
 		'link_after'   => $plus,
 		'item_spacing' => 'preserve',
 		'walker'       => '',
+		'post_status'  => function_exists( 'ezd_sidebar_doc_listing_statuses' ) ? ezd_sidebar_doc_listing_statuses() : [ 'publish' ],
 	];
 
 	$r = wp_parse_args( $args, $defaults );

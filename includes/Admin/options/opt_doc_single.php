@@ -822,6 +822,18 @@ CSF::createSection(
 			),
 
 			array(
+				'id'       => 'draft_doc_visibility',
+				'type'     => 'select',
+				'title'    => esc_html__( 'Draft Document Visibility', 'eazydocs' ),
+				'subtitle' => esc_html__( 'Control whether draft documents appear in the frontend sidebar navigation.', 'eazydocs' ),
+				'options'  => array(
+					'hide' => esc_html__( 'Hide Draft Documents', 'eazydocs' ),
+					'show' => esc_html__( 'Show Draft Documents', 'eazydocs' ),
+				),
+				'default'  => 'hide',
+			),
+
+			array(
 				'id'         => 'toggle_visibility',
 				'type'       => 'switcher',
 				'title'      => esc_html__( 'Sidebar Toggle', 'eazydocs' ),

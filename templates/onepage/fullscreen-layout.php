@@ -36,13 +36,14 @@ $post_slug = $post->post_name;
 $post_id   = get_page_by_path( $post_slug, OBJECT, array( 'docs' ) );
 
 $children = ezd_list_pages_onepage_others( array(
-	'title_li'  => '',
-	'order'     => 'menu_order',
-	'child_of'  => $post_id->ID ?? 0,
-	'echo'      => false,
-	'post_type' => 'docs',
-	'walker'    => new Walker_Onepage_Fullscren(),
-	'depth'     => 4
+	'title_li'    => '',
+	'order'       => 'menu_order',
+	'child_of'    => $post_id->ID ?? 0,
+	'echo'        => false,
+	'post_type'   => 'docs',
+	'walker'      => new Walker_Onepage_Fullscren(),
+	'depth'       => 4,
+	'post_status' => ezd_sidebar_doc_listing_statuses(),
 ) );
 ?>
 <section class="documentation_area_sticky doc_documentation_area onepage_doc_area fullscreen-layout ezd-onepage-<?php echo esc_attr( $onepage_width ); ?>" id="sticky_doc">

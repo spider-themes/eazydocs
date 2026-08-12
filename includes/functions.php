@@ -2415,6 +2415,29 @@ function ezd_doc_listing_statuses( $show_private = true ) {
 }
 
 /**
+ * Return allowable post statuses for frontend documentation sidebar/navigation queries.
+ *
+ * Respects the administrator setting 'draft_doc_visibility' (default: 'hide').
+ * When set to 'show', 'draft' post status is allowed in sidebar navigation.
+ *
+ * @return array List of post status strings.
+ */
+function ezd_sidebar_doc_listing_statuses() {
+	$visibility = ezd_get_opt( 'draft_doc_visibility', 'hide' );
+	$statuses   = [ 'publish' ];
+
+	if ( current_user_can( 'read_private_docs' ) ) {
+		$statuses[] = 'private';
+	}
+
+	if ( 'show' === $visibility ) {
+		$statuses[] = 'draft';
+	}
+
+	return array_unique( $statuses );
+}
+
+/**
  * Filter a list of doc posts by the per-widget visibility toggles.
  *
  * Removes password-protected docs when $show_protected is false and private

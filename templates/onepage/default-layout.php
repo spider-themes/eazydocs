@@ -16,13 +16,14 @@ $child_of_id      = $post_id->ID ?? '';
 // Build the navigation list once and reuse it below (it was previously generated
 // twice — once only to test for emptiness).
 $children         = wp_list_pages( array(
-	'title_li'  => '',
-	'order'     => 'menu_order',
-	'child_of'  => $child_of_id,
-	'echo'      => false,
-	'post_type' => 'docs',
-	'walker'    => new EazyDocs_Walker_Onepage(),
-	'depth'     => 4,
+	'title_li'    => '',
+	'order'       => 'menu_order',
+	'child_of'    => $child_of_id,
+	'echo'        => false,
+	'post_type'   => 'docs',
+	'walker'      => new EazyDocs_Walker_Onepage(),
+	'depth'       => 4,
+	'post_status' => ezd_sidebar_doc_listing_statuses(),
 ) );
 ?>
 
