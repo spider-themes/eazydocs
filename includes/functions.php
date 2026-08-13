@@ -1731,7 +1731,7 @@ function ezd_admin_taxonomy( $tax = [] ) {
  * @return bool|void
  */
 function ezd_frontend_pages() {
-	if ( is_singular('docs') || is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
+	if ( is_singular( 'docs' ) || is_singular( 'onepage-docs' ) || is_singular( 'api_docs' ) || is_page_template( 'page-onepage.php' ) ) {
 		return true;
 	}
 }
