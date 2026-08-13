@@ -1,6 +1,16 @@
 
-= 2.13.1 (19 July 2026) =
-New: Elementor Subscribe Button – Added a Show Subscribe Button toggle with customizable button text to the Elementor Docs widget's layout skins, so visitors can subscribe to documentation updates directly from your Elementor-built pages (requires the EazyDocs Pro subscription feature).
+= 2.13.1 (13 August 2026) =
+New: Draft Documents Sidebar Control – Added a setting to show or hide draft documents in the frontend sidebar. Draft documents are now hidden by default, while published documents and existing sidebar behavior remain unaffected.
+Updated: NoticePilot SDK – Updated the NoticePilot SDK and configuration for improved integration and reliability.
+Improved: Elementor Docs Widget – Polished the widget styling, dark mode appearance, and document rename field sizing for a cleaner editing experience.
+Improved: Documentation Subscription – The Elementor Subscribe button now uses the same subscription rendering logic as EazyDocs shortcodes and blocks, ensuring consistent behavior across documentation layouts.
+Improved: Dark Mode – Removed unnecessary subscription form input styling and cleaned up conflicting dark mode code for better compatibility with themes such as Docy.
+Improved: One-Page Documentation – Improved RTL support for one-page documentation layouts.
+Improved: Build Process – Resolved a Webpack/SaaS compiler issue to improve the plugin build process and asset compilation.
+Fixed: Draft Documents in Sidebar – Fixed an issue where draft documents could appear in the frontend documentation sidebar.
+Fixed: Elementor Docs Widget Design – Resolved a design issue affecting the single documentation widget.
+Fixed: Arrow Helper – Fixed the `ezd_arrow()` helper to return its class correctly for inline template usage.
+Fixed: Dark Mode Compatibility – Removed conflicting code that could cause styling issues with Docy dark mode.
 
 = 2.13.0 (06 July 2026) =
 New: Dark Mode Default Appearance – Decide what first-time visitors see — Light, Dark, or Follow System — before they choose their own preference.
