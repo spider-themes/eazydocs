@@ -27,11 +27,12 @@ CSF::createSection( $meta, array(
 			'content' => esc_html__( 'API Settings', 'eazydocs' ),
 		),
 		array(
-			'id'      => 'description',
-			'type'    => 'wp_editor',
-			'title'   => esc_html__( 'Description', 'eazydocs' ),
-			'default' => '',
-			'class'   => 'eazydocs-promax-notice',
+			'id'       => 'description',
+			'type'     => 'wp_editor',
+			'title'    => esc_html__( 'Description', 'eazydocs' ),
+			'default'  => '',
+			'sanitize' => 'wp_kses_post',
+			'class'    => 'eazydocs-promax-notice',
 		),
 		array(
 			'id'          => 'base_url',
@@ -48,6 +49,7 @@ CSF::createSection( $meta, array(
 			'title'       => esc_html__( 'API Version', 'eazydocs' ),
 			'placeholder' => 'v1',
 			'default'     => ezd_get_opt( 'default_api_version', 'v1' ),
+			'sanitize'    => 'sanitize_text_field',
 			'class'       => 'eazydocs-promax-notice',
 		),
 		array(
@@ -71,31 +73,9 @@ CSF::createSection( $meta, array(
 			'type'       => 'textarea',
 			'title'      => esc_html__( 'Authentication Details', 'eazydocs' ),
 			'default'    => '',
+			'sanitize'   => 'sanitize_textarea_field',
 			'dependency' => array( 'authentication', '!=', 'none' ),
 			'class'      => 'eazydocs-promax-notice',
-		),
-		array(
-			'id'          => 'tags',
-			'type'        => 'text',
-			'title'       => esc_html__( 'Tags', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Comma-separated labels (e.g. users, management).', 'eazydocs' ),
-			'placeholder' => 'users, management',
-			'default'     => '',
-			'class'       => 'eazydocs-promax-notice',
-		),
-		ezd_csf_switcher_field( array(
-			'id'      => 'show_in_navigation',
-			'title'   => esc_html__( 'Show in Navigation', 'eazydocs' ),
-			'default' => true,
-			'class'   => 'eazydocs-promax-notice',
-		) ),
-		array(
-			'id'      => 'icon',
-			'type'    => 'media',
-			'title'   => esc_html__( 'Icon (Optional)', 'eazydocs' ),
-			'library' => 'image',
-			'default' => '',
-			'class'   => 'eazydocs-promax-notice',
 		),
 	),
 ) );
@@ -108,7 +88,7 @@ CSF::createSection( $meta, array(
 		array(
 			'type'    => 'notice',
 			'style'   => 'info',
-			'content' => esc_html__( 'Collections group related endpoints (e.g. Users, Products, Orders). Expand a collection to manage endpoints, parameters, request, responses, and code examples.', 'eazydocs' ),
+			'content' => esc_html__( 'Collections group related endpoints (e.g. Users, Products, Orders). Expand a collection to manage endpoints, parameters, request, responses, and code examples. Drag to reorder.', 'eazydocs' ),
 		),
 		array(
 			'id'                     => 'collections',
@@ -118,6 +98,7 @@ CSF::createSection( $meta, array(
 			'accordion_title_number' => true,
 			'accordion_title_by'     => array( 'title', 'slug' ),
 			'default'                => array(),
+			'sanitize'               => 'ezd_sanitize_api_docs_collections',
 			'class'                  => 'eazydocs-promax-notice',
 			'fields'                 => array(
 				array(
@@ -140,12 +121,6 @@ CSF::createSection( $meta, array(
 					'text_on'  => esc_html__( 'Yes', 'eazydocs' ),
 					'text_off' => esc_html__( 'No', 'eazydocs' ),
 					'default'  => true,
-				),
-				array(
-					'id'      => 'order',
-					'type'    => 'number',
-					'title'   => esc_html__( 'Order', 'eazydocs' ),
-					'default' => 0,
 				),
 				array(
 					'id'                     => 'endpoints',
@@ -458,83 +433,13 @@ CSF::createSection( $meta, array(
 ) );
 
 CSF::createSection( $meta, array(
-	'id'     => 'ezd_api_endpoints',
-	'title'  => esc_html__( 'Endpoints', 'eazydocs' ),
-	'icon'   => 'dashicons dashicons-rest-api',
-	'fields' => array(
-		array(
-			'type'    => 'notice',
-			'style'   => 'normal',
-			'content' => esc_html__( 'Create and edit endpoints inside each collection on the Collections tab.', 'eazydocs' ),
-			'class'   => 'eazydocs-promax-notice',
-		),
-	),
-) );
-
-CSF::createSection( $meta, array(
-	'id'     => 'ezd_api_parameters',
-	'title'  => esc_html__( 'Parameters', 'eazydocs' ),
-	'icon'   => 'dashicons dashicons-editor-ul',
-	'fields' => array(
-		array(
-			'type'    => 'notice',
-			'style'   => 'normal',
-			'content' => esc_html__( 'Query, path, and header parameters are edited under each endpoint → Parameters (Collections).', 'eazydocs' ),
-			'class'   => 'eazydocs-promax-notice',
-		),
-	),
-) );
-
-CSF::createSection( $meta, array(
-	'id'     => 'ezd_api_request',
-	'title'  => esc_html__( 'Request', 'eazydocs' ),
-	'icon'   => 'dashicons dashicons-upload',
-	'fields' => array(
-		array(
-			'type'    => 'notice',
-			'style'   => 'normal',
-			'content' => esc_html__( 'Request headers, body, content type, and examples are under each endpoint → Request (Collections).', 'eazydocs' ),
-			'class'   => 'eazydocs-promax-notice',
-		),
-	),
-) );
-
-CSF::createSection( $meta, array(
-	'id'     => 'ezd_api_responses',
-	'title'  => esc_html__( 'Responses', 'eazydocs' ),
-	'icon'   => 'dashicons dashicons-download',
-	'fields' => array(
-		array(
-			'type'    => 'notice',
-			'style'   => 'normal',
-			'content' => esc_html__( 'Status codes, headers, body, and examples are under each endpoint → Responses (Collections).', 'eazydocs' ),
-			'class'   => 'eazydocs-promax-notice',
-		),
-	),
-) );
-
-CSF::createSection( $meta, array(
-	'id'     => 'ezd_api_examples',
-	'title'  => esc_html__( 'Examples', 'eazydocs' ),
-	'icon'   => 'dashicons dashicons-editor-code',
-	'fields' => array(
-		array(
-			'type'    => 'notice',
-			'style'   => 'normal',
-			'content' => esc_html__( 'cURL, JavaScript, and PHP examples are under each endpoint → Examples (Collections).', 'eazydocs' ),
-			'class'   => 'eazydocs-promax-notice',
-		),
-	),
-) );
-
-CSF::createSection( $meta, array(
 	'id'     => 'ezd_api_settings',
 	'title'  => esc_html__( 'Settings', 'eazydocs' ),
 	'icon'   => 'dashicons dashicons-admin-generic',
 	'fields' => array(
 		array(
 			'type'    => 'subheading',
-			'content' => esc_html__( 'Display & Navigation', 'eazydocs' ),
+			'content' => esc_html__( 'Display', 'eazydocs' ),
 		),
 		ezd_csf_switcher_field( array(
 			'id'       => 'show_method_badges',
@@ -546,7 +451,7 @@ CSF::createSection( $meta, array(
 		ezd_csf_switcher_field( array(
 			'id'       => 'show_try_it_placeholder',
 			'title'    => esc_html__( 'Implementation Panel', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Show request/response examples in the right-hand implementation area.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Show request/response examples and code samples in the right-hand implementation area.', 'eazydocs' ),
 			'default'  => true,
 			'class'    => 'eazydocs-promax-notice',
 		) ),

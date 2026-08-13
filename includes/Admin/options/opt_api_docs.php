@@ -57,6 +57,7 @@ CSF::createSection( $prefix, array(
 			'subtitle'    => esc_html__( 'Pre-filled when creating a new API Doc project.', 'eazydocs' ),
 			'placeholder' => 'https://api.example.com/v1',
 			'default'     => 'https://api.example.com/v1',
+			'sanitize'    => 'esc_url_raw',
 			'class'       => 'eazydocs-promax-notice',
 		),
 
@@ -67,6 +68,7 @@ CSF::createSection( $prefix, array(
 			'subtitle'    => esc_html__( 'Pre-filled version label for new API Docs (e.g. v1).', 'eazydocs' ),
 			'placeholder' => 'v1',
 			'default'     => 'v1',
+			'sanitize'    => 'sanitize_text_field',
 			'class'       => 'eazydocs-promax-notice',
 		),
 
