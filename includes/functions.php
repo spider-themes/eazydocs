@@ -1686,7 +1686,7 @@ function ezd_admin_post_types( $post_types = [] ) {
     if ( empty( $post_types ) ) {
         // Default post types of EazyDocs
         $admin_post_types = !empty($_GET['post_type']) ? in_array( sanitize_text_field( $_GET['post_type'] ), [
-            'docs', 'onepage-docs'
+            'docs', 'onepage-docs', 'api_docs'
         ], true ) : '';
     } else {
         // Selected post types of EazyDocs
