@@ -2182,7 +2182,7 @@ function ezd_internal_doc_security( $doc_id = 0 ) {
 		
 		// Access denied - show the locked content area (with login button for
 		// logged-out users) inside the normal single-doc layout.
-		if ( is_singular( 'docs' ) ) {
+		if ( is_singular( array( 'docs', 'api_docs' ) ) ) {
 			if ( class_exists( '\eazyDocsPro\Frontend\Login_Popup' ) ) {
 				// Trusted, internally-escaped markup from the Pro popup helper.
 				$gated_id = get_the_ID();
