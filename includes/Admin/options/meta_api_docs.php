@@ -88,6 +88,11 @@ CSF::createSection( $meta, array(
 			'dependency'  => array( 'authentication', '!=', 'none' ),
 			'class'       => 'eazydocs-promax-notice',
 		),
+		array(
+			'type'     => 'callback',
+			'function' => 'ezd_api_docs_render_shortcode',
+			'class'    => 'eazydocs-promax-notice ezd-api-docs-io-field',
+		),
 	),
 ) );
 
@@ -510,14 +515,14 @@ CSF::createSection( $meta, array(
 			'id'       => 'show_method_badges',
 			'title'    => esc_html__( 'Method Badges', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Show GET, POST, and other method badges in the left navigation and beside each path.', 'eazydocs' ),
-			'default'  => true,
+			'default'  => ezd_get_opt( 'default_show_method_badges', true ),
 			'class'    => 'eazydocs-promax-notice',
 		) ),
 		ezd_csf_switcher_field( array(
 			'id'       => 'show_try_it_placeholder',
 			'title'    => esc_html__( 'Implementation Panel', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Show the right-hand code panel. This is documentation only and does not call the live API.', 'eazydocs' ),
-			'default'  => true,
+			'default'  => ezd_get_opt( 'default_show_try_it_placeholder', true ),
 			'class'    => 'eazydocs-promax-notice',
 		) ),
 		array(
@@ -530,7 +535,7 @@ CSF::createSection( $meta, array(
 				'javascript' => 'JavaScript',
 				'php'        => 'PHP',
 			),
-			'default'  => 'curl',
+			'default'  => ezd_get_opt( 'default_example_language', 'curl' ),
 			'chosen'   => true,
 			'class'    => 'eazydocs-promax-notice',
 		),

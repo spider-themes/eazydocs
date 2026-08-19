@@ -1,7 +1,7 @@
 <?php
 /**
  * API Documentation settings (Pro Max).
- * Configure defaults and menu visibility for API Docs.
+ * Configure defaults, menu visibility, and frontend display for API Docs.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -25,21 +25,10 @@ CSF::createSection( $prefix, array(
 						<div class="ezd-settings-intro__content">
 							<h2>' . esc_html__( 'API Documentation', 'eazydocs' ) . '</h2>
 							<p>' . esc_html__( 'Create a dedicated API reference with collections, endpoints, and copy-ready code examples.', 'eazydocs' ) . '</p>
-							<div class="ezd-settings-intro__features">
-								<span><span class="dashicons dashicons-category"></span>' . esc_html__( 'Collections', 'eazydocs' ) . '</span>
-								<span><span class="dashicons dashicons-rest-api"></span>' . esc_html__( 'Endpoints', 'eazydocs' ) . '</span>
-								<span><span class="dashicons dashicons-editor-code"></span>' . esc_html__( 'Code examples', 'eazydocs' ) . '</span>
-							</div>
 						</div>
 					</div>
 				</div>
 			',
-		),
-
-		array(
-			'type'    => 'notice',
-			'style'   => 'info',
-			'content' => esc_html__( 'These settings control the EasyDocs admin menu and the starter values applied when you create a new API Doc.', 'eazydocs' ),
 		),
 
 		array(
@@ -52,7 +41,7 @@ CSF::createSection( $prefix, array(
 			'id'       => 'enable_api_docs_menu',
 			'title'    => esc_html__( 'API Docs Menu', 'eazydocs' ),
 			'subtitle' => esc_html__( 'Add All API Docs and Add New under the EasyDocs menu. Hiding the menu does not delete existing API Docs.', 'eazydocs' ),
-			'default'  => true,
+			'default'  => false,
 			'class'    => 'eazydocs-promax-notice',
 		) ),
 
@@ -98,6 +87,43 @@ CSF::createSection( $prefix, array(
 				'custom'  => esc_html__( 'Custom', 'eazydocs' ),
 			),
 			'default'  => 'none',
+			'chosen'   => true,
+			'class'    => 'eazydocs-promax-notice',
+		),
+
+		array(
+			'id'    => 'api_docs_display_heading',
+			'type'  => 'heading',
+			'title' => esc_html__( 'Display', 'eazydocs' ),
+		),
+
+		ezd_csf_switcher_field( array(
+			'id'       => 'default_show_method_badges',
+			'title'    => esc_html__( 'Method Badges', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Show GET, POST, and other method badges in the left navigation and beside each path.', 'eazydocs' ),
+			'default'  => true,
+			'class'    => 'eazydocs-promax-notice',
+		) ),
+
+		ezd_csf_switcher_field( array(
+			'id'       => 'default_show_try_it_placeholder',
+			'title'    => esc_html__( 'Implementation Panel', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Show the right-hand code panel. This is documentation only and does not call the live API.', 'eazydocs' ),
+			'default'  => true,
+			'class'    => 'eazydocs-promax-notice',
+		) ),
+
+		array(
+			'id'       => 'default_example_language',
+			'type'     => 'select',
+			'title'    => esc_html__( 'Default Language', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Language tab selected first. Visitors can still switch between cURL, JavaScript, and PHP.', 'eazydocs' ),
+			'options'  => array(
+				'curl'       => 'cURL',
+				'javascript' => 'JavaScript',
+				'php'        => 'PHP',
+			),
+			'default'  => 'curl',
 			'chosen'   => true,
 			'class'    => 'eazydocs-promax-notice',
 		),
