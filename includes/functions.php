@@ -1686,7 +1686,7 @@ function ezd_admin_post_types( $post_types = [] ) {
     if ( empty( $post_types ) ) {
         // Default post types of EazyDocs
         $admin_post_types = !empty($_GET['post_type']) ? in_array( sanitize_text_field( $_GET['post_type'] ), [
-            'docs', 'onepage-docs'
+            'docs', 'onepage-docs', 'api_docs'
         ], true ) : '';
     } else {
         // Selected post types of EazyDocs
@@ -1731,7 +1731,7 @@ function ezd_admin_taxonomy( $tax = [] ) {
  * @return bool|void
  */
 function ezd_frontend_pages() {
-	if ( is_singular('docs') || is_singular('onepage-docs') || is_page_template('page-onepage.php') ) {
+	if ( is_singular( 'docs' ) || is_singular( 'onepage-docs' ) || is_singular( 'api_docs' ) || is_page_template( 'page-onepage.php' ) ) {
 		return true;
 	}
 }
@@ -2182,7 +2182,7 @@ function ezd_internal_doc_security( $doc_id = 0 ) {
 		
 		// Access denied - show the locked content area (with login button for
 		// logged-out users) inside the normal single-doc layout.
-		if ( is_singular( 'docs' ) ) {
+		if ( is_singular( array( 'docs', 'api_docs' ) ) ) {
 			if ( class_exists( '\eazyDocsPro\Frontend\Login_Popup' ) ) {
 				// Trusted, internally-escaped markup from the Pro popup helper.
 				$gated_id = get_the_ID();

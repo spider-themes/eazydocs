@@ -157,7 +157,7 @@ class Assets
 			wp_enqueue_script('eazydocs-ajax-loading', EZD_ASSETS . 'js/frontend/ajax.js', ['jquery'], EZD_VERSION, true);
 		}
 		// if gutenberg block theme installed and single docs
-		if (function_exists('block_header_area') && is_singular('docs')) {
+		if (function_exists('block_header_area') && (is_singular('docs') || is_singular('api_docs'))) {
 			wp_enqueue_script('eazydocs-block', EZD_ASSETS . 'js/frontend/block.js', ['jquery'], EZD_VERSION, true);
 		}
 	}
@@ -174,6 +174,7 @@ class Assets
 			|| in_array('eazydocs_shortcode', get_body_class())
 			|| is_singular('docs')
 			|| is_singular('onepage-docs')
+			|| is_singular('api_docs')
 			|| is_page_template('page-onepage.php')
 		) {
 			return true;

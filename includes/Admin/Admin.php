@@ -145,9 +145,10 @@ class Admin {
 	 * 1) Dashboard, Docs Builder, OnePage Docs
 	 * 2) Tags, Badges
 	 * 3) Users Feedback, Analytics
-	 * 4) Settings, Customize, Setup Wizard
-	 * 5) Migration, FAQ Builder, Integrated Themes
-	 * 6) Rest
+	 * 4) API Docs, New API Doc
+	 * 5) Settings, Customize, Setup Wizard
+	 * 6) Tools (Import / Export), FAQ Builder, Integrated Themes
+	 * 7) Rest
 	 *
 	 * @return void
 	 */
@@ -209,27 +210,31 @@ class Admin {
 		if ( $item = $take( [ 'ezd-analytics' ] ) ) { $group_3[] = $item; }
 
 		$group_4 = [];
-		if ( $item = $take( [ 'eazydocs-settings' ] ) ) { $group_4[] = $item; }
+		if ( $item = $take( [ '/edit.php?post_type=api_docs', 'edit.php?post_type=api_docs' ] ) ) { $group_4[] = $item; }
+		if ( $item = $take( [ '/post-new.php?post_type=api_docs', 'post-new.php?post_type=api_docs' ] ) ) { $group_4[] = $item; }
+
+		$group_5 = [];
+		if ( $item = $take( [ 'eazydocs-settings' ] ) ) { $group_5[] = $item; }
 		if ( $item = $take( [
 			'/customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page',
 			'customize.php?autofocus[panel]=docs-page&autofocus[section]=docs-archive-page',
-		] ) ) { $group_4[] = $item; }
-		if ( $item = $take( [ 'eazydocs-initial-setup' ] ) ) { $group_4[] = $item; }
+		] ) ) { $group_5[] = $item; }
+		if ( $item = $take( [ 'eazydocs-initial-setup' ] ) ) { $group_5[] = $item; }
 
-		$group_5 = [];
-		if ( $item = $take( [ 'eazydocs-import-export' ] ) ) { $group_5[] = $item; }
-		if ( $item = $take( [ 'ezd-faq-builder' ] ) ) { $group_5[] = $item; }
-		if ( $item = $take( [ 'ezd-integrated-themes' ] ) ) { $group_5[] = $item; }
-
-		// Group 6: preserve original order for any remaining items.
 		$group_6 = [];
+		if ( $item = $take( [ 'eazydocs-import-export' ] ) ) { $group_6[] = $item; }
+		if ( $item = $take( [ 'ezd-faq-builder' ] ) ) { $group_6[] = $item; }
+		if ( $item = $take( [ 'ezd-integrated-themes' ] ) ) { $group_6[] = $item; }
+
+		// Group 7: preserve original order for any remaining items.
+		$group_7 = [];
 		foreach ( $submenu['eazydocs'] as $key => $item ) {
 			if ( isset( $remaining[ $key ] ) ) {
-				$group_6[] = $remaining[ $key ];
+				$group_7[] = $remaining[ $key ];
 			}
 		}
 
-		$groups = [ $group_1, $group_2, $group_3, $group_4, $group_5, $group_6 ];
+		$groups = [ $group_1, $group_2, $group_3, $group_4, $group_5, $group_6, $group_7 ];
 		$new = [];
 		$sep_index = 1;
 
