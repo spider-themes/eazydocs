@@ -46,6 +46,42 @@ CSF::createSection( $prefix, array(
 		) ),
 
 		array(
+			'id'    => 'api_docs_archive_heading',
+			'type'  => 'heading',
+			'title' => esc_html__( 'Frontend Archive', 'eazydocs' ),
+		),
+
+		ezd_csf_switcher_field( array(
+			'id'       => 'enable_api_docs_archive',
+			'title'    => esc_html__( 'API Docs Archive', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Enable the public archive at /api-docs/ that lists all published API Docs.', 'eazydocs' ),
+			'default'  => true,
+			'class'    => 'eazydocs-promax-notice',
+		) ),
+
+		array(
+			'id'          => 'api_docs_archive_title',
+			'type'        => 'text',
+			'title'       => esc_html__( 'Archive Title', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Heading shown on the frontend archive page.', 'eazydocs' ),
+			'default'     => esc_html__( 'API Docs', 'eazydocs' ),
+			'sanitize'    => 'sanitize_text_field',
+			'class'       => 'eazydocs-promax-notice',
+			'dependency'  => array( 'enable_api_docs_archive', '==', 'true' ),
+		),
+
+		array(
+			'id'          => 'api_docs_archive_description',
+			'type'        => 'textarea',
+			'title'       => esc_html__( 'Archive Description', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Short intro text under the archive title.', 'eazydocs' ),
+			'default'     => esc_html__( 'Browse API references and developer documentation.', 'eazydocs' ),
+			'sanitize'    => 'sanitize_textarea_field',
+			'class'       => 'eazydocs-promax-notice',
+			'dependency'  => array( 'enable_api_docs_archive', '==', 'true' ),
+		),
+
+		array(
 			'id'    => 'api_docs_defaults_heading',
 			'type'  => 'heading',
 			'title' => esc_html__( 'New API Doc Defaults', 'eazydocs' ),

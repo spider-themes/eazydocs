@@ -175,6 +175,7 @@ class Assets
 			|| is_singular('docs')
 			|| is_singular('onepage-docs')
 			|| is_singular('api_docs')
+			|| is_post_type_archive('api_docs')
 			|| is_page_template('page-onepage.php')
 		) {
 			return true;
