@@ -192,7 +192,9 @@ include EZD_SETTINGS_PATH . 'opt_docs_shortcodes.php';
 include EZD_SETTINGS_PATH . 'opt_docs_assistant.php';
 include EZD_SETTINGS_PATH . 'opt_feedback.php';
 include EZD_SETTINGS_PATH . 'opt_api_docs.php';         // API Docs settings
-include EZD_SETTINGS_PATH . 'meta_api_docs.php';        // API Docs metabox (api_docs CPT)
+if ( ezd_is_promax() ) {
+	include EZD_SETTINGS_PATH . 'meta_api_docs.php';    // API Docs metabox
+}
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // EMAIL SETTINGS
