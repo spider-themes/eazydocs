@@ -5,7 +5,7 @@
  * Plugin URI: https://eazydocs.spider-themes.net
  * Author: Spider Themes
  * Author URI: https://eazydocs.spider-themes.net
- * Version: 2.13.1
+ * Version: 2.14.0
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: eazydocs
@@ -77,7 +77,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 	class EazyDocs {
 
 		// Default constants
-		const version = '2.13.1';
+		const version = '2.14.0';
 		public $plugin_path;
 		public $theme_dir_path;
 
