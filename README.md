@@ -184,7 +184,7 @@ EazyDocs is licensed under the GPLv2 or later. See [LICENSE](LICENSE) for detail
 ## Credits
 
 **Author:** [spider-themes](https://eazydocs.spider-themes.net)
-**Contributors:** mdjwel, spiderdevs
+**Contributors:** mdjwel, spiderdevs, arifrahman1
 
 ## Changelog
 

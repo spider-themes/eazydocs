@@ -4,3 +4,13 @@ build
 /src/css
 /includes/csf
 /assets/scss/css
+
+# OS junk (any folder / subfolder)
+.DS_Store
+**/.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+__MACOSX/
+._*

@@ -156,10 +156,11 @@ class Search_Widget extends Widget_Base {
                 'label'    => esc_html__( 'Post Type', 'eazydocs' ),
                 'type'     => Controls_Manager::SELECT,
                 'options'  => [
-                    'all'  => esc_html__( 'All', 'eazydocs' ),
-                    'docs' => esc_html__( 'Docs', 'eazydocs' ),
-                    'page' => esc_html__( 'Page', 'eazydocs' ),
-                    'post' => esc_html__( 'Post', 'eazydocs' ),
+                    'all'      => esc_html__( 'All', 'eazydocs' ),
+                    'docs'     => esc_html__( 'Docs', 'eazydocs' ),
+                    'page'     => esc_html__( 'Page', 'eazydocs' ),
+                    'post'     => esc_html__( 'Post', 'eazydocs' ),
+                    'api_docs' => esc_html__( 'API Docs', 'eazydocs' ),
                 ],
                 'default'   => 'all',
                 'condition' => [

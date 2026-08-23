@@ -20,6 +20,8 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
 
 	$banner_title    = ezd_get_opt( 'search_banner_title', '' );
 	$banner_subtitle = ezd_get_opt( 'search_banner_subtitle', '' );
+
+	$search_post_type = ( is_singular( 'api_docs' ) || is_post_type_archive( 'api_docs' ) ) ? 'api_docs' : '';
 	?>
     <div class="focus_overlay"></div>
     <section class="<?php echo esc_attr( implode( ' ', $banner_classes ) ); ?>">
@@ -44,7 +46,8 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
                                 <input type='search' class="search_field_wrap" id="ezd_searchInput" name="s"
                                     placeholder='<?php esc_attr_e( 'Search here', 'eazydocs' ); ?>' autocomplete="off"
                                     aria-label="<?php esc_attr_e( 'Search documentation', 'eazydocs' ); ?>"
-                                    value="<?php echo get_search_query(); ?>" />
+                                    <?php echo $search_post_type ? 'data-post-type="' . esc_attr( $search_post_type ) . '"' : ''; ?>
+                                    value="<?php echo esc_attr( get_search_query( false ) ); ?>" />
                                 <label for="ezd_searchInput">
                                     <i class="left-icon icon_search"></i>
                                 </label>
@@ -52,7 +55,7 @@ if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
                                 <?php if ( defined( 'ICL_LANGUAGE_CODE' ) ) : ?>
-                                <input type="hidden" name="lang" value="<?php echo esc_html( ICL_LANGUAGE_CODE ); ?>" />
+                                <input type="hidden" name="lang" value="<?php echo esc_attr( ICL_LANGUAGE_CODE ); ?>" />
                                 <?php endif; ?>
                             </div>
                         </div>

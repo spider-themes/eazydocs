@@ -144,10 +144,21 @@ class Ajax {
 		}
 
 		$selected_type = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : 'all';
-		if ( ! in_array( $selected_type, [ 'all', 'docs', 'page', 'post' ], true ) ) {
+		$allowed_types = [ 'all', 'docs', 'page', 'post', 'api_docs' ];
+		if ( ! in_array( $selected_type, $allowed_types, true ) ) {
 			$selected_type = 'all';
 		}
-		$search_types = $selected_type === 'all' ? [ 'docs', 'page', 'post' ] : [ $selected_type ];
+
+		if ( 'all' === $selected_type ) {
+			$search_types = [ 'docs', 'page', 'post' ];
+			if ( post_type_exists( 'api_docs' ) ) {
+				$search_types[] = 'api_docs';
+			}
+		} elseif ( 'api_docs' === $selected_type && ! post_type_exists( 'api_docs' ) ) {
+			$search_types = [ 'docs', 'page', 'post' ];
+		} else {
+			$search_types = [ $selected_type ];
+		}
 
 		$normalized_keyword = strtolower( trim( $keyword ) );
 		$status_in          = "'" . implode( "','", $post_status ) . "'";
@@ -242,9 +253,10 @@ class Ajax {
 
 		// --- OUTPUT ---
 		$type_labels = [
-			'docs' => __( 'Docs', 'eazydocs' ),
-			'page' => __( 'Page', 'eazydocs' ),
-			'post' => __( 'Post', 'eazydocs' ),
+			'docs'     => __( 'Docs', 'eazydocs' ),
+			'page'     => __( 'Page', 'eazydocs' ),
+			'post'     => __( 'Post', 'eazydocs' ),
+			'api_docs' => __( 'API Docs', 'eazydocs' ),
 		];
 
 		ob_start();

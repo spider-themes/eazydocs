@@ -106,10 +106,6 @@
   margin-top: 4px;
 }
 
-.ezd-api-docs-metabox .csf-metabox .csf-fieldset input {
-  width: 100% !important;
-}
-
 body.ezd_no_promax .eazydocs-promax-notice.csf-field,
 .eazydocs-pro-notice.csf-field {
   position: relative;

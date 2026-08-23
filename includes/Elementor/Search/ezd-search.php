@@ -20,15 +20,19 @@ wp_enqueue_script( 'eazydocs-search-banner' );
         $raw_type       = $settings['filter_post_types'] ?? 'all';
         // handle legacy array format (old multi-select) → treat as 'all'
         $selected_type  = $filter_enabled && ! is_array( $raw_type ) ? sanitize_key( $raw_type ) : 'all';
-        $allowed_types  = [ 'all', 'docs', 'page', 'post' ];
+        $allowed_types  = [ 'all', 'docs', 'page', 'post', 'api_docs' ];
         if ( ! in_array( $selected_type, $allowed_types, true ) ) {
             $selected_type = 'all';
         }
+        if ( 'api_docs' === $selected_type && ! post_type_exists( 'api_docs' ) ) {
+            $selected_type = 'all';
+        }
         $type_labels = [
-            'all'  => __( 'All', 'eazydocs' ),
-            'docs' => __( 'Docs', 'eazydocs' ),
-            'page' => __( 'Page', 'eazydocs' ),
-            'post' => __( 'Post', 'eazydocs' ),
+            'all'      => __( 'All', 'eazydocs' ),
+            'docs'     => __( 'Docs', 'eazydocs' ),
+            'page'     => __( 'Page', 'eazydocs' ),
+            'post'     => __( 'Post', 'eazydocs' ),
+            'api_docs' => __( 'API Docs', 'eazydocs' ),
         ];
         $has_filter_cls = $filter_enabled ? ' has-type-filter' : '';
         ?>
@@ -78,7 +82,13 @@ wp_enqueue_script( 'eazydocs-search-banner' );
                     <?php if ( $has_dropdown ) : ?>
                     <ul class="ezd-type-filter-dropdown ezd-title-dropdown">
                         <?php if ( $selected_type === 'all' ) : ?>
-                            <?php foreach ( [ 'all', 'docs', 'page', 'post' ] as $_pt ) : ?>
+                            <?php
+							$filter_types = [ 'all', 'docs', 'page', 'post' ];
+							if ( post_type_exists( 'api_docs' ) ) {
+								$filter_types[] = 'api_docs';
+							}
+							foreach ( $filter_types as $_pt ) :
+								?>
                             <li><a href="#" class="ezd-type-option" data-type="<?php echo esc_attr( $_pt ); ?>"><?php echo esc_html( $type_labels[ $_pt ] ); ?></a></li>
                             <?php endforeach; ?>
                         <?php else : ?>
