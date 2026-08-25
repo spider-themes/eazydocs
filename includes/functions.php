@@ -901,7 +901,7 @@ if ( ! function_exists( 'eazydocs_breadcrumbs' ) ) {
 			$html .= $args['delimiter'];
 		}
 
-		if ( 'docs' === $post->post_type && $post->post_parent ) {
+		if ( in_array( $post->post_type, array( 'docs', 'api_docs' ), true ) && $post->post_parent ) {
 			$parent_id   = $post->post_parent;
 			$breadcrumbs = [];
 
@@ -1731,7 +1731,13 @@ function ezd_admin_taxonomy( $tax = [] ) {
  * @return bool|void
  */
 function ezd_frontend_pages() {
-	if ( is_singular( 'docs' ) || is_singular( 'onepage-docs' ) || is_singular( 'api_docs' ) || is_page_template( 'page-onepage.php' ) ) {
+	if (
+		is_singular( 'docs' )
+		|| is_singular( 'onepage-docs' )
+		|| is_singular( 'api_docs' )
+		|| is_post_type_archive( 'api_docs' )
+		|| is_page_template( 'page-onepage.php' )
+	) {
 		return true;
 	}
 }

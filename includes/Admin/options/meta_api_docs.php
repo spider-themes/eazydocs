@@ -65,7 +65,7 @@ CSF::createSection( $meta, array(
 				'oauth2'  => esc_html__( 'OAuth 2.0', 'eazydocs' ),
 				'custom'  => esc_html__( 'Custom', 'eazydocs' ),
 			),
-			'default'  => ezd_get_opt( 'default_auth', 'none' ),
+			'default'  => 'none',
 			'chosen'   => true,
 		),
 		array(
@@ -458,9 +458,8 @@ CSF::createSection( $meta, array(
 			'title'      => esc_html__( 'Multi-page Sidebar Layout', 'eazydocs' ),
 			'subtitle'   => esc_html__( 'Applies when Display Mode is Multi-page.', 'eazydocs' ),
 			'options'    => array(
-				'both_sidebar'  => EZD_IMG . 'customizer/both_sidebar.jpg',
-				'left_sidebar'  => EZD_IMG . 'customizer/sidebar_left.jpg',
-				'right_sidebar' => EZD_IMG . 'customizer/sidebar_right.jpg',
+				'both_sidebar' => EZD_IMG . 'customizer/both_sidebar.jpg',
+				'left_sidebar' => EZD_IMG . 'customizer/sidebar_left.jpg',
 			),
 			'default'    => ezd_get_opt( 'default_api_page_layout', 'both_sidebar' ),
 			'class'      => 'single-layout-img-wrap',
