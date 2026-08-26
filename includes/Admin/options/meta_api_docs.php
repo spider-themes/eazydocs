@@ -14,11 +14,12 @@ if ( ! ezd_is_promax() ) {
 $meta = 'ezd_api_docs_meta';
 
 CSF::createMetabox( $meta, array(
-	'title'     => esc_html__( 'API Docs', 'eazydocs' ),
-	'post_type' => 'api_docs',
-	'data_type' => 'serialize',
-	'priority'  => 'high',
-	'class'     => 'ezd-api-docs-metabox',
+	'title'        => esc_html__( 'API Docs', 'eazydocs' ),
+	'post_type'    => 'api_docs',
+	'data_type'    => 'serialize',
+	'priority'     => 'high',
+	'class'        => 'ezd-api-docs-metabox',
+	'show_restore' => true,
 ) );
 
 CSF::createSection( $meta, array(
@@ -30,7 +31,7 @@ CSF::createSection( $meta, array(
 			'id'       => 'description',
 			'type'     => 'wp_editor',
 			'title'    => esc_html__( 'Overview Content', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Introduction shown on the API overview page.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Introduction shown at the top of the API Doc (multi-page: overview only).', 'eazydocs' ),
 			'default'  => '',
 			'sanitize' => 'wp_kses_post',
 		),
@@ -38,25 +39,25 @@ CSF::createSection( $meta, array(
 			'id'          => 'base_url',
 			'type'        => 'text',
 			'title'       => esc_html__( 'Base URL', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Root URL for this API. Endpoint paths are added after it.', 'eazydocs' ),
-			'placeholder' => 'https://api.example.com/v1',
-			'default'     => ezd_get_opt( 'default_base_url', 'https://api.example.com/v1' ),
+			'subtitle'    => esc_html__( 'Root URL for this API. Endpoint paths are added after it. Leave empty to use Settings → API Docs → Single.', 'eazydocs' ),
+			'placeholder' => ezd_get_opt( 'default_base_url', 'https://api.example.com/v1' ),
+			'default'     => '',
 			'sanitize'    => 'esc_url_raw',
 		),
 		array(
 			'id'          => 'version',
 			'type'        => 'text',
 			'title'       => esc_html__( 'Version Label', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Shown next to the API name. Does not change URLs.', 'eazydocs' ),
-			'placeholder' => 'v1',
-			'default'     => ezd_get_opt( 'default_api_version', 'v1' ),
+			'subtitle'    => esc_html__( 'Shown next to the API name. Does not change URLs. Leave empty to use Settings → API Docs → Single.', 'eazydocs' ),
+			'placeholder' => ezd_get_opt( 'default_api_version', 'v1' ),
+			'default'     => '',
 			'sanitize'    => 'sanitize_text_field',
 		),
 		array(
 			'id'       => 'authentication',
 			'type'     => 'select',
 			'title'    => esc_html__( 'Authentication Type', 'eazydocs' ),
-			'subtitle' => esc_html__( 'How clients authenticate with this API.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Label shown on the overview (documentation only).', 'eazydocs' ),
 			'options'  => array(
 				'none'    => esc_html__( 'None', 'eazydocs' ),
 				'api_key' => esc_html__( 'API Key', 'eazydocs' ),
@@ -72,7 +73,7 @@ CSF::createSection( $meta, array(
 			'id'          => 'auth_details',
 			'type'        => 'textarea',
 			'title'       => esc_html__( 'Authentication Instructions', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Explain how clients should send credentials.', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Explain how clients should send credentials (shown on the overview).', 'eazydocs' ),
 			'placeholder' => 'Authorization: Bearer {token}',
 			'default'     => '',
 			'sanitize'    => 'sanitize_textarea_field',
@@ -106,7 +107,7 @@ CSF::createSection( $meta, array(
 					'id'          => 'slug',
 					'type'        => 'text',
 					'title'       => esc_html__( 'URL Slug', 'eazydocs' ),
-					'subtitle'    => esc_html__( 'Used in the page URL. Auto-generated if left empty.', 'eazydocs' ),
+					'desc'        => esc_html__( 'Used in the page URL. Auto-generated if left empty.', 'eazydocs' ),
 					'placeholder' => 'users',
 					'default'     => '',
 				),
@@ -151,7 +152,7 @@ CSF::createSection( $meta, array(
 							'id'          => 'path',
 							'type'        => 'text',
 							'title'       => esc_html__( 'Endpoint Path', 'eazydocs' ),
-							'subtitle'    => esc_html__( 'Added after the Base URL.', 'eazydocs' ),
+							'desc'        => esc_html__( 'Added after the Base URL.', 'eazydocs' ),
 							'placeholder' => '/users/{id}',
 							'default'     => '',
 						),
@@ -398,21 +399,22 @@ CSF::createSection( $meta, array(
 													'id'          => 'language',
 													'type'        => 'text',
 													'title'       => esc_html__( 'Code Language', 'eazydocs' ),
-													'subtitle'    => esc_html__( 'Any language name, such as Python, Go, or Ruby.', 'eazydocs' ),
-													'placeholder' => 'cURL',
-													'default'     => 'cURL',
+													'desc'        => esc_html__( 'Used for tab matching and syntax highlighting (e.g. cURL, JavaScript, Python). Must match Settings → API Docs → Single → Code Language to open this tab by default.', 'eazydocs' ),
+													'placeholder' => ezd_get_opt( 'default_example_language', 'cURL' ),
+													'default'     => ezd_get_opt( 'default_example_language', 'cURL' ),
 												),
 												array(
 													'id'      => 'label',
 													'type'    => 'text',
 													'title'   => esc_html__( 'Custom Tab Name', 'eazydocs' ),
-													'subtitle' => esc_html__( 'Leave empty to use the language name.', 'eazydocs' ),
+													'desc'    => esc_html__( 'Optional. Leave empty to show the Code Language name on the tab.', 'eazydocs' ),
 													'default' => '',
 												),
 												array(
 													'id'       => 'code',
 													'type'     => 'code_editor',
 													'title'    => esc_html__( 'Code Snippet', 'eazydocs' ),
+													'desc'     => esc_html__( 'Request sample shown in the Code panel for this language tab.', 'eazydocs' ),
 													'default'  => '',
 													'settings' => array(
 														'theme' => 'default',
@@ -434,47 +436,29 @@ CSF::createSection( $meta, array(
 
 CSF::createSection( $meta, array(
 	'id'     => 'ezd_api_settings',
-	'title'  => esc_html__( 'Settings', 'eazydocs' ),
+	'title'  => esc_html__( 'Display', 'eazydocs' ),
 	'icon'   => 'dashicons dashicons-admin-generic',
 	'fields' => array(
 		array(
-			'type'    => 'subheading',
-			'content' => esc_html__( 'Documentation Layout', 'eazydocs' ),
+			'type'    => 'content',
+			'content' => '
+				<div class="ezd-api-docs-user-guide">
+					<strong>' . esc_html__( 'User Guide', 'eazydocs' ) . '</strong>
+					<p>' . esc_html__( 'Default uses Settings → API Docs → Single. Badges, Code Panel, and Code Language are site-wide only.', 'eazydocs' ) . '</p>
+				</div>
+			',
 		),
 		array(
 			'id'       => 'display_format',
 			'type'     => 'button_set',
 			'title'    => esc_html__( 'Display Mode', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Multi-page uses separate URLs for collections and endpoints. One-page shows the full API on a single page.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Multi-page uses separate URLs for collections and endpoints. One-page lists every endpoint on one scrollable page.', 'eazydocs' ),
 			'options'  => array(
+				'default' => esc_html__( 'Default', 'eazydocs' ),
 				'multi'   => esc_html__( 'Multi-page', 'eazydocs' ),
 				'onepage' => esc_html__( 'One-page', 'eazydocs' ),
 			),
-			'default'  => ezd_get_opt( 'default_api_display_format', 'multi' ),
-		),
-		array(
-			'type'    => 'subheading',
-			'content' => esc_html__( 'Display Options', 'eazydocs' ),
-		),
-		ezd_csf_switcher_field( array(
-			'id'       => 'show_method_badges',
-			'title'    => esc_html__( 'Show HTTP Method Badges', 'eazydocs' ),
-			'default'  => ezd_get_opt( 'default_show_method_badges', true ),
-		) ),
-		ezd_csf_switcher_field( array(
-			'id'       => 'show_try_it_placeholder',
-			'title'    => esc_html__( 'Show Code Panel', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Shows sample code on the right. Does not send live API requests.', 'eazydocs' ),
-			'default'  => ezd_get_opt( 'default_show_try_it_placeholder', true ),
-		) ),
-		array(
-			'id'          => 'default_example_language',
-			'type'        => 'text',
-			'title'       => esc_html__( 'Default Code Language', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Must match a Code Language used in your examples.', 'eazydocs' ),
-			'placeholder' => 'cURL',
-			'default'     => ezd_get_opt( 'default_example_language', 'cURL' ),
-			'sanitize'    => 'sanitize_text_field',
+			'default'  => 'default',
 		),
 	),
 ) );

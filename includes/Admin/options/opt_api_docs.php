@@ -2,6 +2,11 @@
 /**
  * API Docs settings (Pro Max).
  * Parent + Archive / Single child tabs (same pattern as Single Doc Page).
+ *
+ * Placement rules:
+ * - Archive tab  → site-wide only (no per-doc override).
+ * - Single tab   → site defaults (empty meta Base URL / Version fall back here) + site-wide display options.
+ * - Doc metabox  → per-doc content; Display Mode can override the site default.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -14,7 +19,7 @@ CSF::createSection( $prefix, array(
 	'icon'  => 'dashicons dashicons-rest-api',
 ) );
 
-// Archive
+// Archive — site-wide only
 CSF::createSection( $prefix, array(
 	'id'     => 'api_docs_archive',
 	'parent' => 'api_docs',
@@ -33,7 +38,7 @@ CSF::createSection( $prefix, array(
 						</div>
 						<div class="ezd-settings-intro__content">
 							<h2>' . esc_html__( 'API Docs Archive', 'eazydocs' ) . '</h2>
-							<p>' . esc_html__( 'Controls for the public /api-docs/ listing page only.', 'eazydocs' ) . '</p>
+							<p>' . esc_html__( 'Site-wide controls for the public API Docs archive (usually /api-docs/). These are not set per API Doc.', 'eazydocs' ) . '</p>
 						</div>
 					</div>
 				</div>
@@ -43,7 +48,7 @@ CSF::createSection( $prefix, array(
 		ezd_csf_switcher_field( array(
 			'id'       => 'enable_api_docs_archive',
 			'title'    => esc_html__( 'Enable Archive', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Public listing at /api-docs/ for all published API Docs.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Public listing of all published API Docs (usually /api-docs/).', 'eazydocs' ),
 			'default'  => true,
 			'class'    => 'eazydocs-promax-notice',
 		) ),
@@ -87,7 +92,7 @@ CSF::createSection( $prefix, array(
 	),
 ) );
 
-// Single
+// Single — editor placeholders + display defaults
 CSF::createSection( $prefix, array(
 	'id'     => 'api_docs_single',
 	'parent' => 'api_docs',
@@ -106,7 +111,7 @@ CSF::createSection( $prefix, array(
 						</div>
 						<div class="ezd-settings-intro__content">
 							<h2>' . esc_html__( 'Single API Doc', 'eazydocs' ) . '</h2>
-							<p>' . esc_html__( 'Defaults applied when you create a new API Doc. Each doc can still override these in its own settings.', 'eazydocs' ) . '</p>
+							<p>' . esc_html__( 'Site-wide Display options for every API Doc. Display Mode can also be overridden per doc. Base URL and Version apply on the frontend when a doc leaves those fields empty.', 'eazydocs' ) . '</p>
 						</div>
 					</div>
 				</div>
@@ -114,10 +119,15 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'type'    => 'subheading',
+			'content' => esc_html__( 'Defaults', 'eazydocs' ),
+		),
+
+		array(
 			'id'          => 'default_base_url',
 			'type'        => 'text',
 			'title'       => esc_html__( 'Base URL', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Pre-filled on new API Docs.', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Used on the frontend when a doc’s Base URL is empty. Also shown as the editor placeholder.', 'eazydocs' ),
 			'placeholder' => 'https://api.example.com/v1',
 			'default'     => 'https://api.example.com/v1',
 			'sanitize'    => 'esc_url_raw',
@@ -128,7 +138,7 @@ CSF::createSection( $prefix, array(
 			'id'          => 'default_api_version',
 			'type'        => 'text',
 			'title'       => esc_html__( 'Version Label', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Pre-filled on new API Docs.', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Used on the frontend when a doc’s Version is empty. Also shown as the editor placeholder.', 'eazydocs' ),
 			'placeholder' => 'v1',
 			'default'     => 'v1',
 			'sanitize'    => 'sanitize_text_field',
@@ -136,10 +146,15 @@ CSF::createSection( $prefix, array(
 		),
 
 		array(
+			'type'    => 'subheading',
+			'content' => esc_html__( 'Display', 'eazydocs' ),
+		),
+
+		array(
 			'id'       => 'default_api_display_format',
 			'type'     => 'button_set',
 			'title'    => esc_html__( 'Display Mode', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Multi-page uses separate URLs. One-page shows everything on a single page.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Site default. Each doc’s Display tab can override. Multi-page uses separate URLs for collections and endpoints; One-page lists every endpoint on one scrollable page.', 'eazydocs' ),
 			'options'  => array(
 				'multi'   => esc_html__( 'Multi-page', 'eazydocs' ),
 				'onepage' => esc_html__( 'One-page', 'eazydocs' ),
@@ -151,7 +166,7 @@ CSF::createSection( $prefix, array(
 		ezd_csf_switcher_field( array(
 			'id'       => 'default_show_method_badges',
 			'title'    => esc_html__( 'HTTP Method Badges', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Show GET / POST / etc. badges by default.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Site-wide. Colored GET, POST, PUT, PATCH, DELETE labels next to each endpoint title.', 'eazydocs' ),
 			'default'  => true,
 			'class'    => 'eazydocs-promax-notice',
 		) ),
@@ -159,7 +174,7 @@ CSF::createSection( $prefix, array(
 		ezd_csf_switcher_field( array(
 			'id'       => 'default_show_try_it_placeholder',
 			'title'    => esc_html__( 'Code Panel', 'eazydocs' ),
-			'subtitle' => esc_html__( 'Show sample code on the right by default. Does not send live requests.', 'eazydocs' ),
+			'subtitle' => esc_html__( 'Site-wide. Right-side panel with request examples and response samples. Does not send live API calls.', 'eazydocs' ),
 			'default'  => true,
 			'class'    => 'eazydocs-promax-notice',
 		) ),
@@ -168,7 +183,7 @@ CSF::createSection( $prefix, array(
 			'id'          => 'default_example_language',
 			'type'        => 'text',
 			'title'       => esc_html__( 'Code Language', 'eazydocs' ),
-			'subtitle'    => esc_html__( 'Default language tab label, e.g. cURL, Python, or Go.', 'eazydocs' ),
+			'subtitle'    => esc_html__( 'Site-wide. Opens this language tab first in the Code panel when an endpoint has a matching Code Language example (e.g. cURL, JavaScript).', 'eazydocs' ),
 			'placeholder' => 'cURL',
 			'default'     => 'cURL',
 			'sanitize'    => 'sanitize_text_field',
