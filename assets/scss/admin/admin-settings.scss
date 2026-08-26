@@ -62,7 +62,7 @@
 	min-width: 95px;
 }
 
-// Image select
+// Image select — keep CSF checkmark on active only; use dashicons glyph.
 .csf-field-image_select {
 	figure {
 		width: 100px;
@@ -71,7 +71,13 @@
 			content: "\f147";
 			font-family: dashicons;
 			font-size: 14px;
+			line-height: 16px;
+			opacity: 0;
 		}
+	}
+
+	.csf--active figure:before {
+		opacity: 1;
 	}
 
 	img {

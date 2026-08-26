@@ -53,6 +53,11 @@
   content: "\f147";
   font-family: dashicons;
   font-size: 14px;
+  line-height: 16px;
+  opacity: 0;
+}
+.csf-field-image_select .csf--active figure:before {
+  opacity: 1;
 }
 .csf-field-image_select img {
   opacity: 0.6;

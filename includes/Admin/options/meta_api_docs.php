@@ -453,32 +453,6 @@ CSF::createSection( $meta, array(
 			'default'  => ezd_get_opt( 'default_api_display_format', 'multi' ),
 		),
 		array(
-			'id'         => 'page_layout',
-			'type'       => 'image_select',
-			'title'      => esc_html__( 'Multi-page Sidebar Layout', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Applies when Display Mode is Multi-page.', 'eazydocs' ),
-			'options'    => array(
-				'both_sidebar' => EZD_IMG . 'customizer/both_sidebar.jpg',
-				'left_sidebar' => EZD_IMG . 'customizer/sidebar_left.jpg',
-			),
-			'default'    => ezd_get_opt( 'default_api_page_layout', 'both_sidebar' ),
-			'class'      => 'single-layout-img-wrap',
-			'dependency' => array( 'display_format', '==', 'multi' ),
-		),
-		array(
-			'id'         => 'onepage_layout',
-			'type'       => 'image_select',
-			'title'      => esc_html__( 'One-page Sidebar Layout', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Applies when Display Mode is One-page.', 'eazydocs' ),
-			'options'    => array(
-				'classic-onepage-layout' => EZD_IMG . 'customizer/both_sidebar.jpg',
-				'fullscreen-layout'      => EZD_IMG . 'customizer/sidebar_left.jpg',
-			),
-			'default'    => ezd_get_opt( 'default_api_onepage_layout', 'classic-onepage-layout' ),
-			'class'      => 'single-layout-img-wrap',
-			'dependency' => array( 'display_format', '==', 'onepage' ),
-		),
-		array(
 			'type'    => 'subheading',
 			'content' => esc_html__( 'Display Options', 'eazydocs' ),
 		),

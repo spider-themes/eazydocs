@@ -148,34 +148,6 @@ CSF::createSection( $prefix, array(
 			'class'    => 'eazydocs-promax-notice',
 		),
 
-		array(
-			'id'         => 'default_api_page_layout',
-			'type'       => 'image_select',
-			'title'      => esc_html__( 'Multi-page Layout', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Sidebar layout for Multi-page docs.', 'eazydocs' ),
-			'options'    => array(
-				'both_sidebar' => EZD_IMG . 'customizer/both_sidebar.jpg',
-				'left_sidebar' => EZD_IMG . 'customizer/sidebar_left.jpg',
-			),
-			'default'    => 'both_sidebar',
-			'class'      => 'eazydocs-promax-notice single-layout-img-wrap',
-			'dependency' => array( 'default_api_display_format', '==', 'multi' ),
-		),
-
-		array(
-			'id'         => 'default_api_onepage_layout',
-			'type'       => 'image_select',
-			'title'      => esc_html__( 'One-page Layout', 'eazydocs' ),
-			'subtitle'   => esc_html__( 'Sidebar layout for One-page docs.', 'eazydocs' ),
-			'options'    => array(
-				'classic-onepage-layout' => EZD_IMG . 'customizer/both_sidebar.jpg',
-				'fullscreen-layout'      => EZD_IMG . 'customizer/sidebar_left.jpg',
-			),
-			'default'    => 'classic-onepage-layout',
-			'class'      => 'eazydocs-promax-notice single-layout-img-wrap',
-			'dependency' => array( 'default_api_display_format', '==', 'onepage' ),
-		),
-
 		ezd_csf_switcher_field( array(
 			'id'       => 'default_show_method_badges',
 			'title'    => esc_html__( 'HTTP Method Badges', 'eazydocs' ),
