@@ -353,7 +353,7 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 == Changelog ==
 
-= 2.14.0 (25 August 2026) =
+= 2.14.0 (27 August 2026) =
 * New: API Docs Support – Added settings, editor fields, archive options, and search banner integration for API documentation.
 * Fixed: Multidocs List Style – Fixed a fatal error caused by an undefined icon helper in the Multidocs List Style.
 
