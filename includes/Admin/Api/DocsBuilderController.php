@@ -225,8 +225,23 @@ class Docs_Builder_Controller {
 	 * @return bool
 	 */
 	public function check_permission() {
+		if ( current_user_can( 'manage_options' ) ) {
+			return true;
+		}
+
 		$docs_capability = apply_filters( 'eazydocs_docs_capability', 'edit_docs' );
-		return current_user_can( $docs_capability );
+		if ( current_user_can( $docs_capability ) ) {
+			return true;
+		}
+
+		$user         = wp_get_current_user();
+		$user_roles   = ! empty( $user->roles ) ? (array) $user->roles : array();
+		$author_roles = ezd_get_doc_author_roles();
+		if ( array_intersect( $user_roles, $author_roles ) && current_user_can( 'edit_posts' ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -238,8 +253,8 @@ class Docs_Builder_Controller {
 	 */
 	public function get_settings_data( $request ) {
 		$user                 = wp_get_current_user();
-		$user_roles           = ! empty( $user->roles ) ? $user->roles : array();
-		$user_role            = array_shift( $user_roles );
+		$user_roles           = ! empty( $user->roles ) ? (array) $user->roles : array();
+		$user_role            = reset( $user_roles ) ?: '';
 		$settings_edit_access = ezd_get_opt( 'settings-edit-access' );
 
 		if ( ! is_array( $settings_edit_access ) ) {
@@ -251,11 +266,17 @@ class Docs_Builder_Controller {
 		}
 		$antimanual_active = function_exists( 'is_plugin_active' ) && ( is_plugin_active( 'antimanual/antimanual.php' ) || is_plugin_active( 'antimanual-pro/antimanual.php' ) );
 
+		$is_admin       = current_user_can( 'manage_options' );
+		$author_roles   = ezd_get_doc_author_roles();
+		$is_author_role = ! empty( array_intersect( $user_roles, $author_roles ) );
+		$can_publish    = current_user_can( 'publish_docs' ) || $is_admin || ( $is_author_role && current_user_can( 'publish_posts' ) );
+		$can_edit       = current_user_can( 'edit_docs' ) || $is_admin || $is_author_role;
+
 		$data = array(
 			'capabilities'      => array(
-				'canPublishDocs'   => current_user_can( 'publish_docs' ),
-				'canManageOptions' => current_user_can( 'manage_options' ),
-				'canEditDocs'      => current_user_can( 'edit_docs' ),
+				'canPublishDocs'   => $can_publish,
+				'canManageOptions' => $is_admin,
+				'canEditDocs'      => $can_edit,
 				'hasSettingsAccess' => is_array( $settings_edit_access ) && in_array( $user_role, $settings_edit_access, true ),
 			),
 			'isPremium'         => ezd_is_premium(),
@@ -278,6 +299,8 @@ class Docs_Builder_Controller {
 				'parentDoc'    => wp_create_nonce( 'parent_doc_nonce' ),
 				'adminNonce'   => wp_create_nonce( 'eazydocs-admin-nonce' ),
 				'notification' => wp_create_nonce( 'ezd_notification_nonce' ),
+				'rest'         => wp_create_nonce( 'wp_rest' ),
+				'restUrl'      => esc_url_raw( rest_url() ),
 			),
 			'currentTheme'      => get_template(),
 		);
@@ -409,8 +432,8 @@ class Docs_Builder_Controller {
 
 		// Current user capabilities.
 		$user                 = wp_get_current_user();
-		$user_roles           = ! empty( $user->roles ) ? $user->roles : array();
-		$user_role            = array_shift( $user_roles );
+		$user_roles           = ! empty( $user->roles ) ? (array) $user->roles : array();
+		$user_role            = reset( $user_roles ) ?: '';
 		$settings_edit_access = ezd_get_opt( 'settings-edit-access' );
 
 		if ( ! is_array( $settings_edit_access ) ) {
@@ -429,13 +452,19 @@ class Docs_Builder_Controller {
 		// Get role visibility configuration.
 		$role_visibility_config = $this->get_role_visibility_config();
 
+		$is_admin       = current_user_can( 'manage_options' );
+		$author_roles   = ezd_get_doc_author_roles();
+		$is_author_role = ! empty( array_intersect( $user_roles, $author_roles ) );
+		$can_publish    = current_user_can( 'publish_docs' ) || $is_admin || ( $is_author_role && current_user_can( 'publish_posts' ) );
+		$can_edit       = current_user_can( 'edit_docs' ) || $is_admin || $is_author_role;
+
 		$data = array(
 			'parentDocs'        => $parent_docs,
 			'childrenMap'       => $children_map,
 			'capabilities'      => array(
-				'canPublishDocs'   => current_user_can( 'publish_docs' ),
-				'canManageOptions' => current_user_can( 'manage_options' ),
-				'canEditDocs'      => current_user_can( 'edit_docs' ),
+				'canPublishDocs'   => $can_publish,
+				'canManageOptions' => $is_admin,
+				'canEditDocs'      => $can_edit,
 				'hasSettingsAccess' => is_array( $settings_edit_access ) && in_array( $user_role, $settings_edit_access, true ),
 			),
 			'isPremium'         => ezd_is_premium(),
@@ -460,6 +489,8 @@ class Docs_Builder_Controller {
 				'parentDoc'    => wp_create_nonce( 'parent_doc_nonce' ),
 				'adminNonce'   => wp_create_nonce( 'eazydocs-admin-nonce' ),
 				'notification' => wp_create_nonce( 'ezd_notification_nonce' ),
+				'rest'         => wp_create_nonce( 'wp_rest' ),
+				'restUrl'      => esc_url_raw( rest_url() ),
 			),
 			'currentTheme'      => get_template(),
 		);
@@ -1261,7 +1292,23 @@ class Docs_Builder_Controller {
 	 * @return bool
 	 */
 	public function check_publish_permission() {
-		return current_user_can( 'publish_docs' );
+		if ( current_user_can( 'manage_options' ) ) {
+			return true;
+		}
+
+		$docs_capability = apply_filters( 'eazydocs_publish_capability', 'publish_docs' );
+		if ( current_user_can( $docs_capability ) ) {
+			return true;
+		}
+
+		$user         = wp_get_current_user();
+		$user_roles   = ! empty( $user->roles ) ? (array) $user->roles : array();
+		$author_roles = ezd_get_doc_author_roles();
+		if ( array_intersect( $user_roles, $author_roles ) && ( current_user_can( 'publish_posts' ) || current_user_can( 'edit_posts' ) ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -1345,7 +1392,7 @@ class Docs_Builder_Controller {
 			return new \WP_Error( 'invalid_parent', __( 'The specified parent document does not exist.', 'eazydocs' ), array( 'status' => 400 ) );
 		}
 
-		if ( ! current_user_can( 'edit_post', $parent_id ) ) {
+		if ( ! current_user_can( 'edit_post', $parent_id ) && ! current_user_can( 'manage_options' ) ) {
 			return new \WP_Error( 'forbidden', __( 'You do not have permission to edit this document.', 'eazydocs' ), array( 'status' => 403 ) );
 		}
 
@@ -1413,7 +1460,7 @@ class Docs_Builder_Controller {
 			return new \WP_Error( 'invalid_parent', __( 'The specified document does not exist.', 'eazydocs' ), array( 'status' => 400 ) );
 		}
 
-		if ( ! current_user_can( 'edit_post', $parent_id ) ) {
+		if ( ! current_user_can( 'edit_post', $parent_id ) && ! current_user_can( 'manage_options' ) ) {
 			return new \WP_Error( 'forbidden', __( 'You do not have permission to edit this document.', 'eazydocs' ), array( 'status' => 403 ) );
 		}
 
@@ -1525,7 +1572,7 @@ class Docs_Builder_Controller {
 			return new \WP_Error( 'invalid_doc', __( 'The specified document does not exist.', 'eazydocs' ), array( 'status' => 400 ) );
 		}
 
-		if ( ! current_user_can( 'edit_post', $doc_id ) ) {
+		if ( ! current_user_can( 'edit_post', $doc_id ) && ! current_user_can( 'manage_options' ) ) {
 			return new \WP_Error( 'forbidden', __( 'You do not have permission to edit this document.', 'eazydocs' ), array( 'status' => 403 ) );
 		}
 

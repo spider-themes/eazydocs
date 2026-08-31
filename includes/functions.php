@@ -3161,12 +3161,87 @@ function ezd_sync_docs_capabilities( $force = false ) {
 	update_option( 'ezd_docs_caps_signature', $signature, false );
 }
 
-// Reconcile once per admin load only when settings actually changed, and
+// Reconcile once per admin or rest load only when settings actually changed, and
 // immediately after the settings screen is saved.
 add_action( 'admin_init', 'ezd_sync_docs_capabilities' );
+add_action( 'rest_api_init', 'ezd_sync_docs_capabilities' );
 add_action( 'csf_eazydocs_settings_saved', function () {
 	ezd_sync_docs_capabilities( true );
 } );
+
+/**
+ * Dynamically map and grant EazyDocs capabilities to users based on their roles and core capabilities.
+ *
+ * Ensures Administrators (manage_options) and authorized documentation authors
+ * always have the required capabilities even if custom capabilities were not physically
+ * synced into the wp_user_roles database option, or were altered by role manager plugins.
+ *
+ * @param array    $allcaps All capabilities of the user.
+ * @param array    $caps    Required primitive capabilities being checked.
+ * @param array    $args    Arguments passed to current_user_can() [0 => cap, 1 => user_id, 2 => post_id/arg].
+ * @param \WP_User $user    User object.
+ * @return array Modified capabilities.
+ */
+function ezd_filter_user_has_cap( $allcaps, $caps, $args, $user ) {
+	if ( empty( $user ) || ! ( $user instanceof \WP_User ) ) {
+		return $allcaps;
+	}
+
+	// Administrators / users with manage_options or super admins always have all doc capabilities.
+	if ( ! empty( $allcaps['manage_options'] ) || is_super_admin( $user->ID ) ) {
+		$doc_caps = [
+			'edit_doc',
+			'edit_docs',
+			'edit_others_docs',
+			'edit_published_docs',
+			'edit_private_docs',
+			'publish_docs',
+			'read_doc',
+			'read_private_docs',
+			'delete_doc',
+			'delete_docs',
+			'delete_others_docs',
+			'delete_published_docs',
+			'delete_private_docs',
+		];
+		foreach ( $doc_caps as $cap ) {
+			$allcaps[ $cap ] = true;
+		}
+		return $allcaps;
+	}
+
+	// For non-administrators, check if their role is in the configured doc author roles.
+	$author_roles = ezd_get_doc_author_roles();
+	$user_roles   = (array) $user->roles;
+
+	if ( array_intersect( $user_roles, $author_roles ) ) {
+		// Basic author capabilities (create, edit, delete own docs).
+		$allcaps['edit_doc']    = true;
+		$allcaps['edit_docs']   = true;
+		$allcaps['delete_doc']  = true;
+		$allcaps['delete_docs'] = true;
+		$allcaps['read_doc']    = true;
+
+		// Can publish docs if they can publish posts or if role is editor/author.
+		if ( ! empty( $allcaps['publish_posts'] ) || in_array( 'editor', $user_roles, true ) || in_array( 'author', $user_roles, true ) ) {
+			$allcaps['publish_docs']          = true;
+			$allcaps['edit_published_docs']   = true;
+			$allcaps['delete_published_docs'] = true;
+		}
+
+		// Can edit others' docs if they have edit_others_posts (like Editors).
+		if ( ! empty( $allcaps['edit_others_posts'] ) || in_array( 'editor', $user_roles, true ) ) {
+			$allcaps['edit_others_docs']    = true;
+			$allcaps['delete_others_docs']  = true;
+			$allcaps['edit_private_docs']   = true;
+			$allcaps['read_private_docs']   = true;
+			$allcaps['delete_private_docs'] = true;
+		}
+	}
+
+	return $allcaps;
+}
+add_filter( 'user_has_cap', 'ezd_filter_user_has_cap', 10, 4 );
 
 /**
  * Admin bar hide for OnePage Docs

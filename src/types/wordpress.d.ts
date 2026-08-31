@@ -22,12 +22,21 @@ declare module '@wordpress/i18n' {
 }
 
 declare module '@wordpress/api-fetch' {
-	interface ApiFetchOptions {
-		path: string;
+	export interface ApiFetchOptions {
+		path?: string;
+		url?: string;
 		method?: string;
 		data?: Record<string, unknown>;
+		headers?: Record<string, string>;
 	}
-	export default function apiFetch<T = unknown>( options: ApiFetchOptions ): Promise<T>;
+	interface ApiFetch {
+		<T = unknown>( options: ApiFetchOptions ): Promise<T>;
+		use: ( middleware: ( options: ApiFetchOptions, next: ( options: ApiFetchOptions ) => Promise<unknown> ) => Promise<unknown> ) => void;
+		createRootURLMiddleware: ( rootURL: string ) => ( options: ApiFetchOptions, next: ( options: ApiFetchOptions ) => Promise<unknown> ) => Promise<unknown>;
+		createNonceMiddleware: ( nonce: string ) => ( options: ApiFetchOptions, next: ( options: ApiFetchOptions ) => Promise<unknown> ) => Promise<unknown>;
+	}
+	const apiFetch: ApiFetch;
+	export default apiFetch;
 }
 
 /**

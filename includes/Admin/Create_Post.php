@@ -27,7 +27,7 @@ class Create_Post {
 	 */
 	public function handle_doc_creation() {
 		// Check permissions first
-		if ( ! current_user_can( 'publish_docs' ) ) {
+		if ( ! current_user_can( 'publish_docs' ) && ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
@@ -51,7 +51,7 @@ class Create_Post {
 			
 			$parent_id = absint( wp_unslash( $_GET['parentID'] ) );
 
-			if ( ! current_user_can( 'edit_post', $parent_id ) ) {
+			if ( ! current_user_can( 'edit_post', $parent_id ) && ! current_user_can( 'manage_options' ) ) {
 				wp_die( esc_html__( 'You do not have permission to edit this document.', 'eazydocs' ) );
 			}
 
@@ -73,7 +73,7 @@ class Create_Post {
 				wp_die( esc_html__( 'The specified document does not exist.', 'eazydocs' ) );
 			}
 
-			if ( ! current_user_can( 'edit_post', $child_id ) ) {
+			if ( ! current_user_can( 'edit_post', $child_id ) && ! current_user_can( 'manage_options' ) ) {
 				wp_die( esc_html__( 'You do not have permission to edit this document.', 'eazydocs' ) );
 			}
 

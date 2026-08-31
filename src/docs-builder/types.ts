@@ -132,6 +132,8 @@ export interface BuilderNonces {
 	parentDoc: string;
 	adminNonce: string;
 	notification: string;
+	rest?: string;
+	restUrl?: string;
 }
 
 /**

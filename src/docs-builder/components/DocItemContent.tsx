@@ -108,8 +108,9 @@ const DocItemContent: React.FC< DocItemContentProps > = ( {
 							: __( 'Document created successfully.', 'eazydocs' )
 					);
 				},
-				onError: () => {
-					showCreateError( __( 'Failed to create the document.', 'eazydocs' ) );
+				onError: ( error: any ) => {
+					const message = error?.message || error?.data?.message || __( 'Failed to create the document.', 'eazydocs' );
+					showCreateError( message );
 				},
 			}
 		);

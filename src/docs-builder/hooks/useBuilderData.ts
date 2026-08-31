@@ -113,12 +113,27 @@ export const prefetchParentChildren = async ( queryClient: QueryClient, parentId
 };
 
 /**
+ * Helper to dynamically refresh apiFetch nonce middleware when a new REST nonce is received.
+ */
+export const updateApiFetchNonce = ( nonce?: string ) => {
+	if ( nonce && typeof apiFetch.createNonceMiddleware === 'function' ) {
+		apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
+	}
+};
+
+/**
  * Hook: fetch the entire builder payload in one request for first-load bootstrap.
  */
 export const useBuilderBootstrapQuery = ( activeDocId?: number | null ) => {
 	return useQuery<BuilderData>({
 		queryKey: BUILDER_BOOTSTRAP_QUERY_KEY,
-		queryFn: () => apiFetch( { path: getBuilderBootstrapPath( activeDocId ) } ),
+		queryFn: async () => {
+			const data = await apiFetch<BuilderData>( { path: getBuilderBootstrapPath( activeDocId ) } );
+			if ( data?.nonces?.rest ) {
+				updateApiFetchNonce( data.nonces.rest );
+			}
+			return data;
+		},
 		staleTime: 60_000,
 		refetchOnWindowFocus: false,
 		retry: 1,
@@ -131,7 +146,13 @@ export const useBuilderBootstrapQuery = ( activeDocId?: number | null ) => {
 export const useSettingsQuery = ( options: BuilderQueryOptions<Omit<BuilderData, 'parentDocs' | 'childrenMap' | 'trashCount' | 'notificationCount'>> = {} ) => {
 	return useQuery<Omit<BuilderData, 'parentDocs' | 'childrenMap' | 'trashCount' | 'notificationCount'>>({
 		queryKey: SETTINGS_QUERY_KEY,
-		queryFn: () => apiFetch( { path: '/eazydocs/v1/docs-builder/settings' } ),
+		queryFn: async () => {
+			const data = await apiFetch<Omit<BuilderData, 'parentDocs' | 'childrenMap' | 'trashCount' | 'notificationCount'>>( { path: '/eazydocs/v1/docs-builder/settings' } );
+			if ( data?.nonces?.rest ) {
+				updateApiFetchNonce( data.nonces.rest );
+			}
+			return data;
+		},
 		staleTime: 300_000,
 		refetchOnWindowFocus: false,
 		enabled: options.enabled,
@@ -221,7 +242,6 @@ export const useCreateParentDoc = () => {
 				data: {
 					title: normalizeTitle( params.title ),
 					post_status: params.postStatus || 'publish',
-					_wpnonce: params.nonce,
 				},
 			} );
 
@@ -239,7 +259,7 @@ export const useCreateParentDoc = () => {
 
 interface DeleteDocParams {
 	docId: number;
-	nonce: string;
+	nonce?: string;
 }
 
 /**
@@ -255,7 +275,6 @@ export const useDeleteDoc = () => {
 				method: 'POST',
 				data: {
 					doc_id: params.docId,
-					_wpnonce: params.nonce,
 				},
 			} );
 
@@ -272,7 +291,7 @@ export const useDeleteDoc = () => {
 interface CreateSectionParams {
 	parentId: number;
 	title: string;
-	nonce: string;
+	nonce?: string;
 	postStatus?: 'publish' | 'draft';
 }
 
@@ -300,7 +319,6 @@ export const useCreateSection = () => {
 					parent_id: params.parentId,
 					title: normalizeTitle( params.title ),
 					post_status: params.postStatus || 'publish',
-					_wpnonce: params.nonce,
 				},
 			} );
 
@@ -326,7 +344,7 @@ interface CreateChildParams {
 	parentId: number;
 	rootParentId: number;
 	title: string;
-	nonce: string;
+	nonce?: string;
 	postStatus?: 'publish' | 'draft';
 }
 
@@ -355,7 +373,6 @@ export const useCreateChild = () => {
 					parent_id: params.parentId,
 					title: normalizeTitle( params.title ),
 					post_status: params.postStatus || 'publish',
-					_wpnonce: params.nonce,
 				},
 			} );
 

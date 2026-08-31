@@ -425,8 +425,9 @@ const ChildDocsComponent: React.FC< ChildDocsProps > = ( { parent, children, isA
 							: __( 'Section created successfully.', 'eazydocs' )
 					);
 				},
-				onError: () => {
-					showCreateError( __( 'Failed to create section.', 'eazydocs' ) );
+				onError: ( error: any ) => {
+					const message = error?.message || error?.data?.message || __( 'Failed to create section.', 'eazydocs' );
+					showCreateError( message );
 				},
 			}
 		);

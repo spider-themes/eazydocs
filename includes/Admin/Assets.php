@@ -44,6 +44,23 @@ class Assets {
 					$asset['version'],
 					true
 				);
+				wp_localize_script(
+					'ezd-docs-builder-react',
+					'wpApiSettings',
+					array(
+						'root'  => esc_url_raw( rest_url() ),
+						'nonce' => wp_create_nonce( 'wp_rest' ),
+					)
+				);
+				wp_localize_script(
+					'ezd-docs-builder-react',
+					'ezdDocsBuilderData',
+					array(
+						'root'     => esc_url_raw( rest_url() ),
+						'nonce'    => wp_create_nonce( 'wp_rest' ),
+						'adminUrl' => admin_url(),
+					)
+				);
 				if ( file_exists( EZD_PATH . '/build/docs-builder/index.css' ) ) {
 					wp_enqueue_style(
 						'ezd-docs-builder-react',

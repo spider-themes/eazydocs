@@ -98,8 +98,9 @@ const Header: React.FC< HeaderProps > = ( { data, onTabChange } ) => {
 							: __( 'Documentation created successfully.', 'eazydocs' )
 					);
 				},
-				onError: () => {
-					showCreateError( __( 'Failed to create documentation.', 'eazydocs' ) );
+				onError: ( error: any ) => {
+					const message = error?.message || error?.data?.message || __( 'Failed to create documentation.', 'eazydocs' );
+					showCreateError( message );
 				},
 			}
 		);
