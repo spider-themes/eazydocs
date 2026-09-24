@@ -19,15 +19,6 @@ class Google_Login {
     private $client_secret;
     private $redirect_uri;
 
-    /**
-     * Start a PHP session safely (avoid multiple session_start calls / headers already sent).
-     */
-    private function ensure_session() {
-        if ( ! session_id() && ! headers_sent() ) {
-            session_start();
-        }
-    }
-
     public function __construct() {
         add_action( 'init', array( $this, 'init' ) );
         
@@ -178,22 +169,11 @@ class Google_Login {
 
         $text = $text ? $text : __( 'Sign in with Google', 'eazydocs' );
 
-        $this->ensure_session();
-
-        // Save values in session
-        $_SESSION[ 'gcl_redirect_url' ] = ! empty( $redirect ) ? $redirect : ( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : home_url() );
-        $_SESSION[ 'gcl_product_id' ] = $product_id;
-        $_SESSION[ 'gcl_docs_id' ]    = $docs_id;
-
-        // Explicit, caller-provided redirect (e.g. the doc a visitor was viewing).
-        // Kept separate so it never overrides WooCommerce/course flows.
-        if ( ! empty( $redirect ) ) {
-            $_SESSION[ 'gcl_explicit_redirect' ] = esc_url_raw( $redirect );
-        } else {
-            unset( $_SESSION[ 'gcl_explicit_redirect' ] );
-        }
-
-        $google_url = $this->get_google_auth_url();
+        // Pass flow context via the OAuth `state` param only — never start a PHP
+        // session here. session_start() sets PHPSESSID and forces CACHE MISS on
+        // server-level / full-page caches for every page that renders this button
+        // (e.g. the docs login popup in the footer for logged-out visitors).
+        $google_url = $this->get_google_auth_url( $redirect, $product_id, $docs_id );
 
         $html  = '<div class="ezd-google-login-container">';
         $html .= '<a href="#" class="' . esc_attr( $class ) . '" data-href="' . esc_url( $google_url ) . '" data-product_id="' . esc_attr( $product_id ) . '" data-docs_id="' . esc_attr( $docs_id ) . '" aria-label="' . esc_attr__( 'Sign in with Google', 'eazydocs' ) . '">';
@@ -206,18 +186,25 @@ class Google_Login {
     }
     
     /**
-     * Generate Google OAuth URL
+     * Generate Google OAuth URL.
      *
+     * Context (redirect / product / docs) is stored in the signed OAuth `state`
+     * parameter so no PHP session cookie is required on cacheable frontend pages.
+     *
+     * @param string $redirect   Optional post-login redirect URL.
+     * @param string $product_id Optional WooCommerce product ID.
+     * @param string $docs_id    Optional docs ID for enrollment flows.
      * @return string
      */
-    private function get_google_auth_url() {
-        $this->ensure_session();
-        
-        $state               = [];
-        $state['product_id'] = isset( $_SESSION['gcl_product_id'] ) ? sanitize_text_field( wp_unslash( $_SESSION['gcl_product_id'] ) ) : '';
-        $state['docs_id']    = isset( $_SESSION['gcl_docs_id'] ) ? sanitize_text_field( wp_unslash( $_SESSION['gcl_docs_id'] ) ) : '';
-        $state['redirect']   = isset( $_SESSION['gcl_explicit_redirect'] ) ? esc_url_raw( wp_unslash( $_SESSION['gcl_explicit_redirect'] ) ) : '';
-        $state[ 'nonce' ]    = wp_create_nonce( 'ezd_google_login' );
+    private function get_google_auth_url( $redirect = '', $product_id = '', $docs_id = '' ) {
+        $state = [
+            'product_id' => $product_id ? sanitize_text_field( $product_id ) : '',
+            'docs_id'    => $docs_id ? sanitize_text_field( $docs_id ) : '',
+            // Explicit caller redirect only (e.g. the doc being viewed). Empty
+            // when unset so WooCommerce/course defaults in the callback still apply.
+            'redirect'   => $redirect ? esc_url_raw( $redirect ) : '',
+            'nonce'      => wp_create_nonce( 'ezd_google_login' ),
+        ];
 
         $params = [
             'client_id'              => $this->client_id,
@@ -262,26 +249,11 @@ class Google_Login {
                 if ( $user_data ) {
                     $this->login_or_register_user( $user_data );
 
-                    $this->ensure_session();
-
-                    // Fallback via state param if session fails
+                    // Flow context comes only from the OAuth state param (no PHP session).
                     $product_id        = 0;
                     $docs_id           = 0;
                     $explicit_redirect = '';
 
-                    if ( isset( $_SESSION[ 'gcl_product_id' ] ) ) {
-                        $product_id = intval( $_SESSION[ 'gcl_product_id' ] );
-                    }
-
-                    if ( isset( $_SESSION[ 'gcl_docs_id' ] ) ) {
-                        $docs_id = intval( $_SESSION[ 'gcl_docs_id' ] );
-                    }
-
-                    if ( ! empty( $_SESSION[ 'gcl_explicit_redirect' ] ) ) {
-                        $explicit_redirect = esc_url_raw( wp_unslash( $_SESSION[ 'gcl_explicit_redirect' ] ) );
-                    }
-
-                    // Try to recover from state param if session empty
                     if ( isset( $_GET[ 'state' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                         $state_raw  = base64_decode( sanitize_text_field( wp_unslash( $_GET[ 'state' ] ) ) );
                         $state_data = json_decode( $state_raw, true );
@@ -292,14 +264,11 @@ class Google_Login {
                                 wp_redirect( wp_login_url() . '?google_error=1' );
                                 exit;
                             }
-                            $product_id = ! empty( $state_data[ 'product_id' ] ) ? intval( $state_data[ 'product_id' ] ) : $product_id;
-                            $docs_id    = ! empty( $state_data[ 'docs_id' ] ) ? intval( $state_data[ 'docs_id' ] ) : $docs_id;
-                            $explicit_redirect = ! empty( $state_data[ 'redirect' ] ) ? esc_url_raw( $state_data[ 'redirect' ] ) : $explicit_redirect;
+                            $product_id        = ! empty( $state_data[ 'product_id' ] ) ? intval( $state_data[ 'product_id' ] ) : 0;
+                            $docs_id           = ! empty( $state_data[ 'docs_id' ] ) ? intval( $state_data[ 'docs_id' ] ) : 0;
+                            $explicit_redirect = ! empty( $state_data[ 'redirect' ] ) ? esc_url_raw( $state_data[ 'redirect' ] ) : '';
                         }
                     }
-
-                    // Clear session
-                    unset( $_SESSION[ 'gcl_product_id' ], $_SESSION[ 'gcl_docs_id' ], $_SESSION[ 'gcl_redirect_url' ], $_SESSION[ 'gcl_explicit_redirect' ] );
 
                     // Default to the caller-provided destination (validated to this
                     // site); WooCommerce/course flows below may still override it.

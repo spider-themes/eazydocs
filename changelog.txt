@@ -1,4 +1,7 @@
 
+= 2.14.1 - Unreleased =
+Fixed: Google Login – Removed PHP session (PHPSESSID) from the frontend sign-in button so page caching works correctly for logged-out visitors.
+
 = 2.14.0 (27 August 2026) =
 New: API Docs Support – Added settings, editor fields, archive options, and search banner integration for API documentation.
 Fixed: Multidocs List Style – Fixed a fatal error caused by an undefined icon helper in the Multidocs List Style.
