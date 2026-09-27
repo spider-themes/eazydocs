@@ -210,6 +210,10 @@ function ezd_generate_embed_code_box() {
         $guidelines .= "</ol>";
         $guidelines .= "<div style='margin-top:8px;color:#475569;font-size:12px;'><strong>" . esc_html__( 'When to fill the label:', 'eazydocs' ) . "</strong> " . esc_html__( 'only when one knowledge base serves multiple products or brands. If you have one product on one site, leave it empty.', 'eazydocs' ) . "</div>";
         $guidelines .= "<div style='margin-top:4px;color:#475569;font-size:12px;'><strong>" . esc_html__( 'Example:', 'eazydocs' ) . "</strong> " . esc_html__( 'on eazydocs.com use label "Eazydocs"; on antimanual.com use "Antimanual". Both iframes load the same KB but answer in their own product context.', 'eazydocs' ) . "</div>";
+        $guidelines .= "<div style='margin-top:8px;color:#475569;font-size:12px;'><strong>" . esc_html__( 'Skip the lead form for known visitors:', 'eazydocs' ) . "</strong> " . esc_html__( 'when Lead Collection is enabled in Antimanual, the target site can pass the visitor\'s details so the email form is filled in automatically. Add them to the iframe URL from the target site\'s own code (the values differ per visitor, so they cannot be set here):', 'eazydocs' ) . "</div>";
+        $guidelines .= "<code style='display:block;margin-top:4px;padding:6px 8px;background:#fff;border:1px solid #c7d2fe;border-radius:4px;font-size:12px;word-break:break-all;'>" . esc_html( '/iframe-assistant/?ctx=Eazydocs&atml_email=jane%40acme.com&atml_name=Jane' ) . "</code>";
+        $guidelines .= "<div style='margin-top:4px;color:#475569;font-size:12px;'>" . esc_html__( 'Or, to keep the email out of the URL, send it after the iframe loads:', 'eazydocs' ) . "</div>";
+        $guidelines .= "<code style='display:block;margin-top:4px;padding:6px 8px;background:#fff;border:1px solid #c7d2fe;border-radius:4px;font-size:12px;word-break:break-all;'>" . esc_html( "iframe.contentWindow.postMessage({ type: 'atml_set_lead', email: 'jane@acme.com', name: 'Jane' }, '*');" ) . "</code>";
         $guidelines .= "</div>";
 
         $label_field  = "<div class='ezd-embed-label-field' style='margin-bottom:12px;'>";
@@ -217,34 +221,64 @@ function ezd_generate_embed_code_box() {
         $label_field .= "<input type='text' id='ezd-embed-context-input' maxlength='200' placeholder='" . esc_attr__( 'e.g., Eazydocs, Acme CRM, Plan Pro', 'eazydocs' ) . "' style='width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:4px;font-size:13px;' />";
         $label_field .= "<div style='font-size:12px;color:#64748b;margin-top:4px;'>" . esc_html__( 'Max 200 characters. The label is passed as scope only — it never appears in the user message.', 'eazydocs' ) . "</div>";
         $label_field .= "</div>";
+    }
 
-        // Inline script: when the label input changes, rewrite the iframe src
-        // in the snippet to append/replace ?ctx=<encoded label>. Pure
-        // client-side, no server round-trip — the embed snippet is just
-        // text the admin copies.
+    // Knowledge Base scope: limit the KB tab (default list + search) to one
+    // top-level doc and its children. Honored by EazyDocs Pro's assistant
+    // (see eazyDocsPro\Frontend\Assistant_Scope), with or without Antimanual.
+    $scope_field = '';
+    if ( defined( 'EAZYDOCSPRO_VERSION' ) ) {
+        $root_docs = get_posts( [
+            'post_type'      => 'docs',
+            'post_status'    => 'publish',
+            'post_parent'    => 0,
+            'posts_per_page' => 200,
+            'orderby'        => 'menu_order title',
+            'order'          => 'ASC',
+            'no_found_rows'  => true,
+        ] );
+
+        $scope_field  = "<div class='ezd-embed-scope-field' style='margin-bottom:12px;'>";
+        $scope_field .= "<label for='ezd-embed-scope-select' style='display:block;font-weight:600;font-size:13px;margin-bottom:4px;color:#1e293b;'>" . esc_html__( 'Knowledge Base Docs (optional)', 'eazydocs' ) . "</label>";
+        $scope_field .= "<select id='ezd-embed-scope-select' style='width:100%;max-width:100%;padding:6px 8px;border:1px solid #cbd5e1;border-radius:4px;font-size:13px;'>";
+        $scope_field .= "<option value=''>" . esc_html__( 'All docs', 'eazydocs' ) . "</option>";
+        foreach ( $root_docs as $root_doc ) {
+            $scope_field .= "<option value='" . esc_attr( $root_doc->ID ) . "' data-title='" . esc_attr( $root_doc->post_title ) . "'>" . esc_html( $root_doc->post_title ) . "</option>";
+        }
+        $scope_field .= "</select>";
+        $scope_field .= "<div style='font-size:12px;color:#64748b;margin-top:4px;'>" . esc_html__( 'Show only this doc and its sub-docs in the Knowledge Base tab and its search on the embedded site.', 'eazydocs' ) . ( $merge_active ? ' ' . esc_html__( 'Picking one fills the Site / Product Label with its title if the label is empty.', 'eazydocs' ) : '' ) . "</div>";
+        $scope_field .= "</div>";
+    }
+
+    if ( $label_field || $scope_field ) {
+        // Inline script: rewrite the iframe src in the snippet with
+        // ?ctx=<label> and ?ezd_scope=<doc id>. Pure client-side — the embed
+        // snippet is just text the admin copies.
         $script = "
         <script>
         (function(){
-            var input = document.getElementById('ezd-embed-context-input');
+            var label = document.getElementById('ezd-embed-context-input');
+            var scope = document.getElementById('ezd-embed-scope-select');
             var ta = document.querySelector('.assistant-embed-code-box textarea');
-            if (!input || !ta) return;
+            if (!ta || (!label && !scope)) return;
             var original = ta.value;
             function rebuild() {
-                var v = (input.value || '').trim().slice(0, 200);
-                var src = original;
-                if (v) {
-                    var enc = encodeURIComponent(v);
-                    src = original.replace(/iframe-assistant\\/(\\?[^\"\\s]*)?/, function(_match, qs) {
-                        if (!qs) return 'iframe-assistant/?ctx=' + enc;
-                        if (/[?&]ctx=/.test(qs)) {
-                            return 'iframe-assistant/' + qs.replace(/([?&])ctx=[^&\"]*/, '$1ctx=' + enc);
-                        }
-                        return 'iframe-assistant/' + qs + '&ctx=' + enc;
-                    });
-                }
-                ta.value = src;
+                var params = [];
+                var v = label ? (label.value || '').trim().slice(0, 200) : '';
+                if (v) params.push('ctx=' + encodeURIComponent(v));
+                if (scope && scope.value) params.push('ezd_scope=' + encodeURIComponent(scope.value));
+                ta.value = params.length
+                    ? original.replace(/iframe-assistant\\/(\\?[^\"\\s]*)?/, 'iframe-assistant/?' + params.join('&'))
+                    : original;
             }
-            input.addEventListener('input', rebuild);
+            if (label) label.addEventListener('input', rebuild);
+            if (scope) scope.addEventListener('change', function(){
+                var opt = scope.options[scope.selectedIndex];
+                if (label && opt && opt.value && !label.value.trim()) {
+                    label.value = opt.getAttribute('data-title') || '';
+                }
+                rebuild();
+            });
         })();
         </script>";
     }
@@ -252,6 +286,7 @@ function ezd_generate_embed_code_box() {
     return "
     {$guidelines}
     {$label_field}
+    {$scope_field}
     <div class='assistant-embed-code-box' style='position:relative;margin-bottom:15px;'>
         <textarea readonly >{$code}</textarea>
         <button class='button admin-copy-embed-code' >Copy</button>
