@@ -67,6 +67,12 @@ if ( function_exists( 'eaz_fs' ) ) {
 	}
 
 	eaz_fs()->add_filter( 'hide_freemius_powered_by', '__return_true' );
+
+	// Disclose that opting in also pre-fills the in-plugin support chat
+	// (see the Support Assistant class). The on-update screen falls back to this filter.
+	eaz_fs()->add_filter( 'connect_message', function ( $message ) {
+		return $message . '<br><br>' . esc_html__( 'Opting in also pre-fills your name and email in the EazyDocs support chat, so you can get help without typing them. They are only sent to our helpdesk when you open the chat.', 'eazydocs' );
+	} );
 	do_action( 'eaz_fs_loaded' );
 }
 
@@ -216,6 +222,10 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 				new EazyDocs\Admin\Import_Export();
 				new EazyDocs\One_Page();
 				new EazyDocs\Edit_OnePage();
+
+				// Helpdesk docs assistant on EazyDocs admin pages.
+				require_once __DIR__ . '/includes/Admin/class-support-assistant.php';
+				EazyDocs_Support_Assistant::get_instance();
 			} elseif ( ! is_admin() ) {
 				new EazyDocs\Frontend\Frontend();
 				new EazyDocs\Frontend\Assets();

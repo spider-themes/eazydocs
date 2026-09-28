@@ -92,5 +92,13 @@ ezd_render_csf_section( $prefix, 'general_fields', esc_html__( 'General Settings
 		'default'     => '#0866ff',
 		'output'      => ':root',
 		'output_mode' => '--ezd_brand_color',
+	),
+
+	array(
+		'id'       => 'hide_support_assistant',
+		'type'     => 'switcher',
+		'title'    => esc_html__( 'Hide Support Chat', 'eazydocs' ),
+		'subtitle' => esc_html__( 'Hide the documentation support chat button on EazyDocs admin pages.', 'eazydocs' ),
+		'default'  => false,
 	)
 ]);

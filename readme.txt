@@ -338,6 +338,18 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 [Spider Elements](https://wordpress.org/plugins/spider-elements) – Versatile library of 20+ creative widgets to enhance Elementor and build professional websites.
 
+== External services ==
+
+= Spider Themes Helpdesk (support assistant) =
+
+EazyDocs admin pages show a chat button that opens the EazyDocs documentation assistant hosted on the Spider Themes helpdesk (helpdesk.spider-themes.net), so you can search the docs and ask questions without leaving WordPress.
+
+Nothing is loaded from the helpdesk until you press the chat button. Hovering over the button only opens a network connection to the helpdesk so the chat loads faster; no data is sent. When you open it, the assistant is loaded in an iframe from `https://helpdesk.spider-themes.net/iframe-assistant/`, and your browser sends the product name and the documentation section to show. If you opted in through the Freemius opt-in screen and you are the administrator who opted in, your name and email address are also sent so the support chat is pre-filled. Messages you type in the chat are sent to the helpdesk to be answered.
+
+You can turn the assistant off under EazyDocs → Settings → General Settings → Hide Support Chat (or with `add_filter( 'ezd_support_assistant_enabled', '__return_false' );`).
+
+* [Spider Themes](https://spider-themes.net) — [Terms](https://spider-themes.net/terms) — [Privacy](https://spider-themes.net/privacy)
+
 == Screenshots ==
 
 1. Intuitive drag-and-drop interface for organizing and nesting documentation.
