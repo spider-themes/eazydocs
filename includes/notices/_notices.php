@@ -13,7 +13,7 @@ require_once __DIR__ . '/offer.php';
 require_once __DIR__ . '/class-remote-notice-client.php';
 
 /**
- * NoticePilot — remote admin-notice campaigns (SDK v1.6.1).
+ * NoticePilot — remote admin-notice campaigns (SDK v1.7.0).
  *
  * Product id .......... 'Eazydocs' (used for every SDK call below — keep consistent).
  * Hub endpoint ........ manage.spider-themes.net → /content/eazydocs

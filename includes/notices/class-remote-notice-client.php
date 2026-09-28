@@ -5,15 +5,54 @@
  * A reusable SDK for integrating remote HTML notices from the NoticePilot API.
  * Bundle this file with your plugin to enable remote admin notices.
  *
+ * Several plugins on one site may bundle this file. From 1.7.0 the newest
+ * bundled copy is the one that loads: each copy registers itself, and the
+ * winner is required on `plugins_loaded` (priority -9999). Call init() from
+ * `plugins_loaded` or later (never at file-include time).
+ *
  * @package Noticepilot_Remote_Notice_Client
- * @version 1.6.1
+ * @version 1.7.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
+if ( ! class_exists( 'Noticepilot_Remote_Notice_Client', false ) && ! defined( 'NOTICEPILOT_RNC_LOADING' ) ) {
+	// Register this copy; keep only the highest version.
+	if ( empty( $GLOBALS['noticepilot_rnc_sdk']['version'] ) || version_compare( '1.7.0', $GLOBALS['noticepilot_rnc_sdk']['version'], '>' ) ) {
+		$GLOBALS['noticepilot_rnc_sdk'] = array(
+			'version' => '1.7.0',
+			'file'    => __FILE__,
+		);
+	}
+
+	if ( ! function_exists( 'noticepilot_rnc_load_sdk' ) ) {
+		/**
+		 * Load the newest registered copy of the SDK.
+		 */
+		function noticepilot_rnc_load_sdk() {
+			if ( class_exists( 'Noticepilot_Remote_Notice_Client', false ) || empty( $GLOBALS['noticepilot_rnc_sdk']['file'] ) ) {
+				return;
+			}
+			if ( ! defined( 'NOTICEPILOT_RNC_LOADING' ) ) {
+				define( 'NOTICEPILOT_RNC_LOADING', true );
+			}
+			require $GLOBALS['noticepilot_rnc_sdk']['file'];
+		}
+	}
+
+	if ( did_action( 'plugins_loaded' ) || doing_action( 'plugins_loaded' ) ) {
+		// Included late: load the best copy registered so far.
+		noticepilot_rnc_load_sdk();
+	} else {
+		add_action( 'plugins_loaded', 'noticepilot_rnc_load_sdk', -9999 );
+	}
+
+	return;
+}
+
+if ( ! class_exists( 'Noticepilot_Remote_Notice_Client', false ) ) {
 
 	/**
 	 * Remote Notice Client Class
@@ -23,7 +62,12 @@ if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
 		/**
 		 * SDK version.
 		 */
-		const SDK_VERSION = '1.6.1';
+		const SDK_VERSION = '1.7.0';
+
+		/**
+		 * Campaign goal types the SDK evaluates itself (must match the hub).
+		 */
+		const GOAL_TYPES = array( 'plugin_activated', 'plugin_installed' );
 
 		/**
 		 * Registered instances
@@ -225,6 +269,14 @@ if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
 
 			// AJAX handlers.
 			add_action( 'wp_ajax_noticepilot_rnc_dismiss_content_' . $this->product, array( $this, 'ajax_dismiss_content' ) );
+			add_action( 'wp_ajax_noticepilot_rnc_goal_click_' . $this->product, array( $this, 'ajax_goal_click' ) );
+
+			// Campaign goals (e.g. "promoted plugin activated"): check right after
+			// activations/installs, and periodically for changes made outside
+			// wp-admin (WP-CLI, FTP, hosting panels).
+			add_action( 'activated_plugin', array( $this, 'check_campaign_goals_now' ) );
+			add_action( 'upgrader_process_complete', array( $this, 'check_campaign_goals_now' ) );
+			add_action( 'admin_init', array( $this, 'maybe_check_campaign_goals' ) );
 
 			// Deactivation-feedback modal (opt-in, Plugins screen only).
 			if ( $this->deactivation_feedback && $this->plugin_file ) {
@@ -446,6 +498,9 @@ if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
 			}
 
 			$contents = isset( $data['contents'] ) ? $data['contents'] : array();
+
+			// Daily fetch doubles as a goal check that doesn't depend on admin visits.
+			$this->check_campaign_goals();
 
 			if ( empty( $contents ) ) {
 				$this->clear_contents();
@@ -744,30 +799,53 @@ if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
 				// later track_goal() call can attribute the conversion to it.
 				$this->record_shown( $content_id, $variant_id );
 
+				// Campaign goal (Pro): snapshot whether the site already meets it,
+				// so only sites that change AFTER seeing the campaign convert.
+				$has_goal = $this->record_goal_exposure( $content, $content_id, $variant_id );
+
 				// Analytics beacons only fire when allowed: either the
 				// integrating plugin doesn't require consent, or the user
 				// granted it (wp.org guideline 7 — no tracking without opt-in).
 				$analytics_on = $this->analytics_allowed() ? '1' : '';
 
 				// Per-notice JS: analytics beacons + dismiss/snooze handlers (printed in footer).
+				// Impressions count only once the notice is actually on screen
+				// (≥50% visible for 1s), at most once per campaign per browser per
+				// 24h; the hub additionally dedupes to one per site per day.
 				$notice_js = '(function(){'
 					. 'var notice=document.getElementById("rnc-notice-' . esc_js( $this->product . '-' . $content_id ) . '");'
 					. 'if(!notice)return;'
-					. 'var apiUrl="' . esc_js( $this->api_url ) . '";'
-					. 'var trackUrl=apiUrl.replace(/\/content\/[^\/]+$/,"/analytics/track");'
+					. 'var trackUrl="' . esc_js( $this->get_track_url( $this->api_url ) ) . '";'
 					. 'var endpoint="' . esc_js( $this->product ) . '";'
 					. 'var cid="' . esc_js( $content_id ) . '";'
 					. 'var vid="' . esc_js( $variant_id ) . '";'
+					. 'var site="' . esc_js( home_url() ) . '";'
 					. 'var analyticsOn=' . ( $analytics_on ? 'true' : 'false' ) . ';'
 					. 'function sendBeacon(t){if(analyticsOn&&typeof navigator.sendBeacon==="function"){'
-					. 'var p=JSON.stringify({endpoint:endpoint,campaign_id:cid,variant_id:vid,event_type:t,site_url:window.location.origin});'
+					. 'var p=JSON.stringify({endpoint:endpoint,campaign_id:cid,variant_id:vid,event_type:t,site_url:site});'
 					. 'navigator.sendBeacon(trackUrl,new Blob([p],{type:"application/json"}));}}'
-					. 'var impKey="np_imp_"+cid;'
-					. 'if(typeof sessionStorage!=="undefined"){'
-					. 'if(!sessionStorage.getItem(impKey)){sessionStorage.setItem(impKey,"1");sendBeacon("impression");}}'
-					. 'else{sendBeacon("impression");}'
+					. 'var impKey="np_imp_"+endpoint+"_"+cid;'
+					. 'function seen(){try{var t=parseInt(localStorage.getItem(impKey)||"0",10);return t>0&&(Date.now()-t)<864e5;}catch(e){return false;}}'
+					. 'function impression(){if(seen())return;try{localStorage.setItem(impKey,String(Date.now()));}catch(e){}sendBeacon("impression");}'
+					. 'if(analyticsOn&&!seen()){'
+					. 'if(typeof IntersectionObserver==="function"){'
+					. 'var timer=null;'
+					. 'var io=new IntersectionObserver(function(entries){entries.forEach(function(en){'
+					. 'var vis=en.isIntersecting&&(en.intersectionRatio>=0.5||en.intersectionRect.height>=window.innerHeight*0.5);'
+					. 'if(vis&&!timer){timer=setTimeout(function(){io.disconnect();impression();},1000);}'
+					. 'else if(!vis&&timer){clearTimeout(timer);timer=null;}'
+					. '});},{threshold:[0,0.25,0.5,0.75,1]});'
+					. 'io.observe(notice);'
+					. '}else if(notice.offsetWidth||notice.offsetHeight){impression();}}'
+					. 'function goalClick(){'
+					. ( $has_goal
+						? 'var g=new XMLHttpRequest();g.open("POST","' . esc_js( admin_url( 'admin-ajax.php' ) ) . '",true);'
+							. 'g.setRequestHeader("Content-Type","application/x-www-form-urlencoded");'
+							. 'g.send("action=' . esc_js( rawurlencode( 'noticepilot_rnc_goal_click_' . $this->product ) ) . '&content_id="+encodeURIComponent(cid)+"&nonce=' . esc_js( wp_create_nonce( 'noticepilot_rnc_goal_click_' . $this->product . '_' . $content_id ) ) . '");'
+						: '' )
+					. '}'
 					. 'var ce=notice.querySelector(".rnc-notice-content");'
-					. 'if(ce){ce.addEventListener("click",function(e){var a=e.target.closest("a");if(a){sendBeacon("click");}});}'
+					. 'if(ce){ce.addEventListener("click",function(e){var a=e.target.closest("a");if(a){sendBeacon("click");goalClick();}});}'
 					. 'function hideViaAjax(snooze){'
 					. 'var act=notice.getAttribute("data-action");'
 					. 'var cid2=notice.getAttribute("data-content-id");'
@@ -974,10 +1052,31 @@ if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
 				return false;
 			}
 
-			$track_url = preg_replace( '/\/content\/[^\/]+$/', '/analytics/track', $api_url );
+			return $this->post_goal( $api_url, $best_id, $best_variant, $goal_key );
+		}
 
+		/**
+		 * Build the hub's analytics track URL from the content API URL.
+		 *
+		 * @param string $api_url Content endpoint URL.
+		 * @return string
+		 */
+		private function get_track_url( $api_url ) {
+			return preg_replace( '/\/content\/[^\/]+$/', '/analytics/track', (string) $api_url );
+		}
+
+		/**
+		 * POST a goal event to the hub (non-blocking).
+		 *
+		 * @param string $api_url     Content endpoint URL.
+		 * @param string $campaign_id Campaign UUID.
+		 * @param string $variant_id  Variant ID ('' for non-A/B).
+		 * @param string $goal_key    Goal identifier.
+		 * @return bool
+		 */
+		private function post_goal( $api_url, $campaign_id, $variant_id, $goal_key ) {
 			wp_remote_post(
-				$track_url,
+				$this->get_track_url( $api_url ),
 				array(
 					'timeout'   => 8,
 					'blocking'  => false,
@@ -986,8 +1085,8 @@ if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
 					'body'      => wp_json_encode(
 						array(
 							'endpoint'    => $this->product,
-							'campaign_id' => $best_id,
-							'variant_id'  => $best_variant,
+							'campaign_id' => $campaign_id,
+							'variant_id'  => $variant_id,
 							'event_type'  => 'goal',
 							'goal_key'    => $goal_key,
 							'site_url'    => home_url(),
@@ -997,6 +1096,272 @@ if ( ! class_exists( 'Noticepilot_Remote_Notice_Client' ) ) {
 			);
 
 			return true;
+		}
+
+		/* =====================================================================
+		   Campaign goals (authored on the hub — e.g. cross-promotion installs)
+		   ===================================================================== */
+
+		/**
+		 * Sanitize a campaign goal received from the hub.
+		 *
+		 * @param mixed $goal Raw goal.
+		 * @return array Clean goal, or [] when unusable.
+		 */
+		private function sanitize_campaign_goal( $goal ) {
+			if ( ! is_array( $goal ) || empty( $goal['type'] ) || ! in_array( $goal['type'], self::GOAL_TYPES, true ) ) {
+				return array();
+			}
+
+			$slugs = array();
+			foreach ( isset( $goal['slugs'] ) ? (array) $goal['slugs'] : array() as $slug ) {
+				$slug = strtolower( trim( (string) $slug, " \t\n\r\0\x0B/" ) );
+				if ( '' !== $slug && preg_match( '#^[a-z0-9\-_.]+(/[a-z0-9\-_.]+\.php)?$#', $slug ) ) {
+					$slugs[] = $slug;
+				}
+			}
+
+			if ( empty( $slugs ) ) {
+				return array();
+			}
+
+			$window = isset( $goal['window_days'] ) ? absint( $goal['window_days'] ) : 30;
+
+			return array(
+				'type'        => $goal['type'],
+				'slugs'       => array_slice( $slugs, 0, 5 ),
+				'window_days' => max( 1, min( 365, $window ) ),
+				'attribution' => ( isset( $goal['attribution'] ) && 'clicked' === $goal['attribution'] ) ? 'clicked' : 'shown',
+			);
+		}
+
+		/**
+		 * Load the campaign-goal tracking state.
+		 *
+		 * Shape: [ 'checked' => ts, 'items' => [ campaign_id => [
+		 *   'variant_id', 'goal', 'ineligible' (bool), 'shown_at', 'clicked_at', 'done' ] ] ]
+		 *
+		 * @return array
+		 */
+		private function get_goal_state() {
+			$state = get_option( $this->get_option_key( 'goal_tracking' ), array() );
+			if ( ! is_array( $state ) ) {
+				$state = array();
+			}
+			if ( empty( $state['items'] ) || ! is_array( $state['items'] ) ) {
+				$state['items'] = array();
+			}
+			return $state;
+		}
+
+		/**
+		 * Persist the campaign-goal tracking state (autoloaded: read on admin_init).
+		 *
+		 * @param array $state State.
+		 */
+		private function save_goal_state( $state ) {
+			update_option( $this->get_option_key( 'goal_tracking' ), $state, true );
+		}
+
+		/**
+		 * Note that a goal-carrying campaign was shown on this site.
+		 *
+		 * The first exposure snapshots whether the goal is already met — a site
+		 * that already has the promoted plugin can never convert. Later exposures
+		 * refresh the attribution window (throttled to hourly writes).
+		 *
+		 * @param array  $content    Campaign from the hub.
+		 * @param string $content_id Sanitized campaign ID.
+		 * @param string $variant_id Picked variant ID.
+		 * @return bool True when the campaign has a usable goal.
+		 */
+		private function record_goal_exposure( $content, $content_id, $variant_id ) {
+			$goal = $this->sanitize_campaign_goal( isset( $content['goal'] ) ? $content['goal'] : null );
+			if ( empty( $goal ) ) {
+				return false;
+			}
+
+			$state = $this->get_goal_state();
+			$now   = time();
+
+			if ( ! isset( $state['items'][ $content_id ] ) ) {
+				$state['items'][ $content_id ] = array(
+					'variant_id' => (string) $variant_id,
+					'goal'       => $goal,
+					'ineligible' => $this->is_goal_met( $goal ),
+					'shown_at'   => $now,
+					'clicked_at' => 0,
+					'done'       => 0,
+				);
+
+				// Keep the 20 most recently shown campaigns.
+				if ( count( $state['items'] ) > 20 ) {
+					uasort(
+						$state['items'],
+						function ( $a, $b ) {
+							return ( isset( $b['shown_at'] ) ? $b['shown_at'] : 0 ) <=> ( isset( $a['shown_at'] ) ? $a['shown_at'] : 0 );
+						}
+					);
+					$state['items'] = array_slice( $state['items'], 0, 20, true );
+				}
+
+				$this->save_goal_state( $state );
+				return true;
+			}
+
+			$item = $state['items'][ $content_id ];
+			if ( $item['goal'] !== $goal || ( $now - (int) $item['shown_at'] ) >= HOUR_IN_SECONDS ) {
+				// The author may edit the goal on the hub; the eligibility snapshot stays.
+				$item['goal']       = $goal;
+				$item['variant_id'] = (string) $variant_id;
+				$item['shown_at']   = $now;
+
+				$state['items'][ $content_id ] = $item;
+				$this->save_goal_state( $state );
+			}
+
+			return true;
+		}
+
+		/**
+		 * AJAX: remember that a goal-carrying notice was clicked (for "clicked" attribution).
+		 */
+		public function ajax_goal_click() {
+			$content_id = isset( $_POST['content_id'] ) ? sanitize_key( wp_unslash( $_POST['content_id'] ) ) : '';
+			$nonce      = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+
+			if ( '' === $content_id || ! wp_verify_nonce( $nonce, 'noticepilot_rnc_goal_click_' . $this->product . '_' . $content_id ) ) {
+				wp_send_json_error( array( 'message' => 'Invalid nonce' ) );
+			}
+
+			if ( ! current_user_can( $this->capability ) ) {
+				wp_send_json_error( array( 'message' => 'Unauthorized' ) );
+			}
+
+			$state = $this->get_goal_state();
+			if ( isset( $state['items'][ $content_id ] ) && empty( $state['items'][ $content_id ]['done'] ) ) {
+				$state['items'][ $content_id ]['clicked_at'] = time();
+				$this->save_goal_state( $state );
+			}
+
+			wp_send_json_success();
+		}
+
+		/**
+		 * Hook target: check goals immediately (plugin activated / installed).
+		 */
+		public function check_campaign_goals_now() {
+			$this->check_campaign_goals();
+		}
+
+		/**
+		 * admin_init: check goals at most every 15 minutes, and only while any are pending.
+		 */
+		public function maybe_check_campaign_goals() {
+			$state = $this->get_goal_state();
+			if ( empty( $state['items'] ) || ( time() - ( isset( $state['checked'] ) ? (int) $state['checked'] : 0 ) ) < 15 * MINUTE_IN_SECONDS ) {
+				return;
+			}
+			$this->check_campaign_goals();
+		}
+
+		/**
+		 * Send a conversion for every campaign whose goal became true inside its
+		 * attribution window. Each campaign converts at most once per site.
+		 */
+		private function check_campaign_goals() {
+			$state = $this->get_goal_state();
+			if ( empty( $state['items'] ) ) {
+				return;
+			}
+
+			$api_url = $this->api_url ? $this->api_url : get_option( $this->get_option_key( 'api_url' ), '' );
+			$now     = time();
+
+			foreach ( $state['items'] as $cid => $item ) {
+				if ( ! empty( $item['done'] ) || ! empty( $item['ineligible'] ) || empty( $item['goal'] ) ) {
+					continue;
+				}
+
+				$goal  = $item['goal'];
+				$start = ( 'clicked' === $goal['attribution'] ) ? (int) $item['clicked_at'] : (int) $item['shown_at'];
+
+				if ( $start <= 0 || ( $now - $start ) > (int) $goal['window_days'] * DAY_IN_SECONDS ) {
+					continue;
+				}
+
+				if ( ! $this->is_goal_met( $goal ) ) {
+					continue;
+				}
+
+				// No consent / no hub yet: leave pending so a later opt-in still counts.
+				if ( empty( $api_url ) || ! $this->analytics_allowed() ) {
+					continue;
+				}
+
+				$this->post_goal( $api_url, (string) $cid, (string) $item['variant_id'], $goal['type'] );
+				$state['items'][ $cid ]['done'] = $now;
+			}
+
+			// Forget campaigns that can no longer convert (window long past).
+			foreach ( $state['items'] as $cid => $item ) {
+				$window = isset( $item['goal']['window_days'] ) ? (int) $item['goal']['window_days'] : 30;
+				$last   = max( (int) $item['shown_at'], (int) $item['clicked_at'], (int) $item['done'] );
+				if ( ( $now - $last ) > ( $window + 30 ) * DAY_IN_SECONDS ) {
+					unset( $state['items'][ $cid ] );
+				}
+			}
+
+			$state['checked'] = $now;
+			$this->save_goal_state( $state );
+		}
+
+		/**
+		 * Whether a goal's target plugin(s) are currently installed / active.
+		 *
+		 * @param array $goal Sanitized goal.
+		 * @return bool True when any listed plugin satisfies the goal.
+		 */
+		private function is_goal_met( $goal ) {
+			if ( 'plugin_installed' === $goal['type'] ) {
+				if ( ! function_exists( 'get_plugins' ) ) {
+					require_once ABSPATH . 'wp-admin/includes/plugin.php';
+				}
+				$candidates = array_keys( get_plugins() );
+			} else {
+				$candidates = (array) get_option( 'active_plugins', array() );
+				if ( is_multisite() ) {
+					$candidates = array_merge( $candidates, array_keys( (array) get_site_option( 'active_sitewide_plugins', array() ) ) );
+				}
+			}
+
+			foreach ( $candidates as $basename ) {
+				foreach ( $goal['slugs'] as $slug ) {
+					if ( $this->plugin_matches_slug( (string) $basename, $slug ) ) {
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		/**
+		 * Match a plugin basename (folder/file.php) against a slug or basename.
+		 *
+		 * @param string $basename Plugin basename.
+		 * @param string $slug     Folder slug (`antimanual`) or basename.
+		 * @return bool
+		 */
+		private function plugin_matches_slug( $basename, $slug ) {
+			$basename = strtolower( $basename );
+
+			if ( false !== strpos( $slug, '/' ) ) {
+				return $basename === $slug;
+			}
+
+			// Folder plugins (slug/…) and single-file plugins (slug.php).
+			return 0 === strpos( $basename, $slug . '/' ) || $basename === $slug . '.php';
 		}
 
 		/* =====================================================================
