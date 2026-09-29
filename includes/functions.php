@@ -219,6 +219,29 @@ function ezd_update_post_meta_cache( $post_ids ) {
 }
 
 /**
+ * Prime post meta for doc lists returned by get_pages().
+ *
+ * Core get_pages() queries with update_post_meta_cache disabled, so every later
+ * meta read — our sidebar walker (thumbnail, secondary title, visibility) and
+ * any third-party 'get_pages' filter — costs one query per doc. Loading the
+ * meta for the whole list up front turns that N+1 into a single query.
+ *
+ * @param WP_Post[] $pages       Pages returned by get_pages().
+ * @param array     $parsed_args get_pages() arguments.
+ * @return WP_Post[]
+ */
+function ezd_prime_doc_pages_meta( $pages, $parsed_args = [] ) {
+	$post_type = $parsed_args['post_type'] ?? '';
+
+	if ( ! empty( $pages ) && in_array( $post_type, [ 'docs', 'onepage-docs', 'api_docs' ], true ) ) {
+		ezd_update_post_meta_cache( wp_list_pluck( $pages, 'ID' ) );
+	}
+
+	return $pages;
+}
+add_filter( 'get_pages', 'ezd_prime_doc_pages_meta', -999, 2 );
+
+/**
  * Format a number into a compact, human-readable string (e.g. 1.2k, 3.4M).
  *
  * Used across the dashboard so view counts, vote totals and search figures
@@ -435,6 +458,7 @@ function ezd_get_dashboard_data( $force = false ) {
  */
 function ezd_flush_dashboard_cache() {
 	delete_transient( 'ezd_dashboard_data_v1' );
+	delete_transient( 'ezd_doc_health_v1' );
 }
 add_action( 'save_post_docs', 'ezd_flush_dashboard_cache' );
 add_action( 'deleted_post', 'ezd_flush_dashboard_cache' );
@@ -1173,9 +1197,12 @@ add_action( 'admin_footer', function () {
  */
 function eazydocs_pro_doc_list() {
 	$args = [
-		'posts_per_page' => - 1,
-		'post_type'      => [ 'docs' ],
-		'post_parent'    => 0
+		'posts_per_page'         => - 1,
+		'post_type'              => [ 'docs' ],
+		'post_parent'            => 0,
+		'no_found_rows'          => true,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
 	];
 	$docs      		= get_posts( $args );
 	$doc_item_count = 0;
@@ -1204,12 +1231,25 @@ function eazydocs_pro_doc_list() {
 		}
 	}
 
+	// Slugs that already have a OnePage doc, fetched once instead of running
+	// get_page_by_path() for every parent doc in the loop.
+	$onepage_slugs = [];
+	if ( ! empty( $parent_ids ) ) {
+		$onepage_slugs = array_flip(
+			$wpdb->get_col(
+				"SELECT post_name FROM {$wpdb->posts} WHERE post_type = 'onepage-docs'"
+			)
+		);
+	}
+
+	$nonce = wp_create_nonce( 'ezd_make_onepage' );
+
 	foreach ( $docs as $doc ) {
-		if ( ! get_page_by_path( $doc->post_name, OBJECT, 'onepage-docs' ) ) {
+		if ( ! isset( $onepage_slugs[ $doc->post_name ] ) ) {
 			$doc_item_count ++;
 			$child_count = $child_counts[ $doc->ID ] ?? 0;
 			$label       = $doc->post_title . ' (' . $child_count . ')';
-			$doc_items  .= '<option _wpnonce="' . esc_attr( wp_create_nonce( 'ezd_make_onepage' ) ) . '" value="' . esc_attr( $doc->ID ) . '" data-child-count="' . esc_attr( $child_count ) . '">' . esc_html( $label ) . '</option>';
+			$doc_items  .= '<option _wpnonce="' . esc_attr( $nonce ) . '" value="' . esc_attr( $doc->ID ) . '" data-child-count="' . esc_attr( $child_count ) . '">' . esc_html( $label ) . '</option>';
 		}
 	}
 	if ( 0 === $doc_item_count ) {
@@ -1368,10 +1408,75 @@ function sidebar_selectbox() {
 	global $wp_registered_sidebars;
 	$sidebars = '';
 	foreach ( $wp_registered_sidebars as $wp_registered_sidebar ) {
-		$sidebars .= '<option value="' . $wp_registered_sidebar['id'] . '">' . $wp_registered_sidebar['name'] . '</option>';
+		$sidebars .= '<option value="' . esc_attr( $wp_registered_sidebar['id'] ) . '">' . esc_html( $wp_registered_sidebar['name'] ) . '</option>';
 	}
 
 	return $sidebars;
+}
+
+/**
+ * Fetch the reusable blocks (ID + title only) once per request.
+ *
+ * The left/right select boxes and the React options list all need the same
+ * data; previously each ran its own unbounded query that loaded full post
+ * objects (content, meta and term caches) for every block on the site.
+ *
+ * @return array<int, array{id: int, title: string}>
+ */
+function ezd_get_reusable_blocks_list() {
+	static $blocks = null;
+
+	if ( null !== $blocks ) {
+		return $blocks;
+	}
+
+	$blocks = [];
+	$ids    = get_posts(
+		[
+			'post_type'              => [ 'wp_block', 'wp_pattern' ],
+			'post_status'            => [ 'publish', 'private' ],
+			'posts_per_page'         => 500,
+			'orderby'                => 'title',
+			'order'                  => 'ASC',
+			'fields'                 => 'ids',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		]
+	);
+
+	// Load the post rows in one query instead of one get_post() per block.
+	_prime_post_caches( $ids, false, false );
+
+	foreach ( $ids as $id ) {
+		$blocks[] = [
+			'id'    => (int) $id,
+			'title' => wp_strip_all_tags( get_post_field( 'post_title', $id, 'raw' ) ),
+		];
+	}
+
+	return $blocks;
+}
+
+/**
+ * Build the reusable-block <select> markup used by the OnePage sidebar popups.
+ *
+ * @param string $name Select name attribute.
+ * @param string $id   Select id attribute.
+ * @return string
+ */
+function ezd_reusable_blocks_select( $name, $id ) {
+	$options = '';
+	foreach ( ezd_get_reusable_blocks_list() as $block ) {
+		$options .= '<option value="' . esc_attr( $block['id'] ) . '">' . esc_html( $block['title'] ) . '</option>';
+	}
+
+	if ( '' === $options ) {
+		$options = '<option>' . esc_html__( 'No block found!', 'eazydocs' ) . '</option>';
+	}
+
+	return '<label for="ezd-shortcode"> ' . esc_html__( 'Select a Reusable Block (Optional)', 'eazydocs' ) . ' </label><br>'
+		. '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" class="widefat">' . $options . '</select>';
 }
 
 /**
@@ -1380,29 +1485,7 @@ function sidebar_selectbox() {
  * @return string
  */
 function get_reusable_blocks() {
-	$wp_registered_blocks = get_posts(
-		array(
-			'post_type'      => array( 'wp_block', 'wp_pattern' ),
-			'post_status'    => array( 'publish', 'private' ),
-			'posts_per_page' => -1,
-			'orderby'        => 'title',
-			'order'          => 'ASC',
-		)
-	);
-	if ( ! empty ( $wp_registered_blocks ) ) {
-		$sidebars = '';
-		foreach ( $wp_registered_blocks as $wp_registered_block ) {
-			$sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
-		}
-		$return_output
-			= '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat">'
-			  . $sidebars . '</select>';
-
-		return $return_output;
-	} else {
-		return $return_output
-			= '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select name="ezd_sidebar_select_data" id="left_side_sidebar" class="widefat"><option>No block found!</option></select>';
-	}
+	return ezd_reusable_blocks_select( 'ezd_sidebar_select_data', 'left_side_sidebar' );
 }
 
 
@@ -1412,31 +1495,7 @@ function get_reusable_blocks() {
  * @return string HTML option tags for the select box.
  */
 function get_reusable_blocks_right() {
-	$wp_registered_blocks = get_posts(
-		array(
-			'post_type'      => array( 'wp_block', 'wp_pattern' ),
-			'post_status'    => array( 'publish', 'private' ),
-			'posts_per_page' => -1,
-			'orderby'        => 'title',
-			'order'          => 'ASC',
-		)
-	);
-	if ( ! empty( $wp_registered_blocks ) ) {
-		$sidebars = '';
-
-		foreach ( $wp_registered_blocks as $wp_registered_block ) {
-			$sidebars .= '<option value="' . $wp_registered_block->ID . '">' . $wp_registered_block->post_title . '</option>';
-		}
-
-		$return_output
-			= '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select  name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat">'
-			  . $sidebars . '</select>';
-
-		return $return_output;
-	} else {
-		return $return_output
-			= '<label for="ezd-shortcode"> Select a Reusable Block (Optional) </label><br><select name="ezd_sidebar_select_data_right" id="right_side_sidebar" class="widefat"><option>No block found!</option></select>';
-	}
+	return ezd_reusable_blocks_select( 'ezd_sidebar_select_data_right', 'right_side_sidebar' );
 }
 
 /**
@@ -1445,30 +1504,14 @@ function get_reusable_blocks_right() {
  * @return array<int, array{id: string, title: string}>
  */
 function ezd_get_reusable_blocks_options() {
-	$wp_registered_blocks = get_posts(
-		array(
-			'post_type'      => array( 'wp_block', 'wp_pattern' ),
-			'post_status'    => array( 'publish', 'private' ),
-			'posts_per_page' => -1,
-			'orderby'        => 'title',
-			'order'          => 'ASC',
-		)
-	);
-
-	if ( empty( $wp_registered_blocks ) ) {
-		return array();
-	}
-
 	return array_map(
-		static function ( $wp_registered_block ) {
-			$title = isset( $wp_registered_block->post_title ) ? wp_strip_all_tags( $wp_registered_block->post_title ) : '';
-
-			return array(
-				'id'    => (string) $wp_registered_block->ID,
-				'title' => '' !== $title ? $title : esc_html__( '(Untitled)', 'eazydocs' ),
-			);
+		static function ( $block ) {
+			return [
+				'id'    => (string) $block['id'],
+				'title' => '' !== $block['title'] ? $block['title'] : esc_html__( '(Untitled)', 'eazydocs' ),
+			];
 		},
-		$wp_registered_blocks
+		ezd_get_reusable_blocks_list()
 	);
 }
 
@@ -1499,7 +1542,7 @@ function ezd_edit_sidebar_selectbox() {
 	global $post;
 	$edit_sidebars = '';
 	foreach ( $wp_registered_sidebars as $wp_registered_sidebar ) {
-		$edit_sidebars .= '<option value="' . $wp_registered_sidebar['id'] . '">' . $wp_registered_sidebar['name'] . '</option>';
+		$edit_sidebars .= '<option value="' . esc_attr( $wp_registered_sidebar['id'] ) . '">' . esc_html( $wp_registered_sidebar['name'] ) . '</option>';
 	}
 
 	return $edit_sidebars;
@@ -1913,23 +1956,24 @@ function ezd_el_image( $settings_key = '', $alt = '', $class = '', $atts = [] ) 
  * @return mixed
  */
 function eaz_get_nestable_parent_id( $page_id ) {
-	global $wpdb;
-	// Ensure that $page_id is an integer
-	$page_id = intval($page_id);
+	// Walk up via the post object cache (one uncached query per ancestor at most)
+	// rather than an uncached SELECT on every step for every item.
+	$page_id = intval( $page_id );
+	$seen    = [];
 
-	// Prepare the SQL statement using placeholders
-	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-	$query = $wpdb->prepare( "SELECT post_parent FROM $wpdb->posts WHERE post_type='docs' AND  ID = %d", $page_id );
+	while ( $page_id && ! isset( $seen[ $page_id ] ) ) {
+		$seen[ $page_id ] = true;
+		$post             = get_post( $page_id );
+		$parent           = ( $post && 'docs' === $post->post_type ) ? (int) $post->post_parent : 0;
 
-	// Execute the query
-	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-	$parent = (int) $wpdb->get_var( $query );
+		if ( 0 === $parent ) {
+			return $page_id;
+		}
 
-	if ( 0 === $parent ) {
-		return $page_id;
-	} else {
-		return eaz_get_nestable_parent_id( $parent );
+		$page_id = $parent;
 	}
+
+	return $page_id;
 }
 
 /**
@@ -2076,10 +2120,15 @@ function ezd_footer_with_block_theme(){
  * @return array
  */
 function ezd_get_elementor_templates() {
+	// 'status' was a typo for 'post_status' (ignored by WP_Query). Only ID and
+	// title are needed, so skip the meta/term cache priming.
 	$elementor_templates = get_posts( [
-		'post_type' 		=> 'elementor_library',
-		'posts_per_page' 	=> -1,
-		'status' 			=> 'publish'
+		'post_type'              => 'elementor_library',
+		'posts_per_page'         => 500,
+		'post_status'            => 'publish',
+		'no_found_rows'          => true,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
 	] );
 
 	$elementor_templates_array = [];
@@ -2227,7 +2276,9 @@ function ezd_perform_edit_delete_actions( $action = 'delete', $docID = 0 ){
 		// Check if the current user is the author of the post
 		$post_author_id = (int) get_post_field('post_author', $docID);
 
-		if ($current_user_id === $post_author_id || current_user_can('manage_options') ) {
+		// Editors hold "{action}_others_docs"; without that check the builder
+		// showed them Delete/Edit buttons that then always failed.
+		if ( $current_user_id === $post_author_id || current_user_can( 'manage_options' ) || current_user_can( $action . '_others_docs' ) ) {
 			return true;
 		} else {
 			echo sprintf(
@@ -2683,7 +2734,12 @@ function ezd_get_footnotes_in_content($post_id) {
  * Replace footenote number attribute
  */
 function ezd_footnote_number_attribute( $content ) {
-    return preg_replace('/\[reference number="##"\]/', '[reference number="1"]', $content);
+    // Runs on every the_content call site-wide, so skip the regex unless needed.
+    if ( false === strpos( (string) $content, '[reference number="##"]' ) ) {
+        return $content;
+    }
+
+    return str_replace( '[reference number="##"]', '[reference number="1"]', $content );
 }
 add_filter('the_content', 'ezd_footnote_number_attribute');
 
@@ -2692,8 +2748,8 @@ add_filter('the_content', 'ezd_footnote_number_attribute');
  * It targets <span> elements with specific attributes and checks for <i> tags to add an onclick event.
  */
 function ezd_update_footnotes_content($content) {
-    // Apply only to single 'docs' post type
-    if (is_singular('docs')) {
+    // Apply only to single 'docs' post type, and only when footnotes are present.
+    if ( is_singular( 'docs' ) && false !== strpos( (string) $content, 'ezd-footnotes-link-item' ) ) {
         // Regular expression to match the required span tag
         $pattern = '/<span id="serial-id-(\d+)" class="ezd-footnotes-link-item" data-bs-original-title="(.*?)">.*?<i(.*?)>(.*?)<\/i>.*?<span class="ezd-footnote-content">(.*?)<\/span><\/span>/s';
 
@@ -3082,11 +3138,23 @@ function ezd_docs_cap_to_user() {
 			// Grant Manager capabilities only to roles that can normally edit others' posts
 			$grant_manager = $role->has_cap( 'edit_others_posts' );
 			foreach ( $manager_caps as $cap ) {
+				// read_private_docs belongs to the Private Docs setting
+				// (ezd_read_private_docs_cap_to_user): managers get it, but it
+				// is never revoked here.
+				if ( 'read_private_docs' === $cap && ! $grant_manager ) {
+					continue;
+				}
 				ezd_set_role_cap( $role, $cap, $grant_manager );
 			}
 		} else {
-			// Remove all documentation capabilities from inactive roles
+			// Remove all documentation capabilities from inactive roles, except
+			// read_private_docs: revoking it here undid the "who can read
+			// private docs" setting and started a per-request add/remove fight
+			// with EazyDocs Pro's private-docs sync.
 			foreach ( array_merge( $author_caps, $manager_caps ) as $cap ) {
+				if ( 'read_private_docs' === $cap ) {
+					continue;
+				}
 				ezd_set_role_cap( $role, $cap, false );
 			}
 		}
@@ -3129,6 +3197,9 @@ function ezd_docs_capabilities_signature() {
 		'private_doc_user_restriction' => ezd_get_opt( 'private_doc_user_restriction' ),
 		'roles'                        => array_keys( wp_roles()->roles ),
 		'version'                      => defined( 'EZD_VERSION' ) ? EZD_VERSION : '',
+		// Bump when the sync logic itself changes so every site re-syncs once
+		// (2: read_private_docs is no longer revoked by the author-caps sync).
+		'logic'                        => 2,
 	];
 
 	return md5( maybe_serialize( $relevant ) );
@@ -3163,8 +3234,16 @@ function ezd_sync_docs_capabilities( $force = false ) {
 
 // Reconcile once per admin or rest load only when settings actually changed, and
 // immediately after the settings screen is saved.
-add_action( 'admin_init', 'ezd_sync_docs_capabilities' );
-add_action( 'rest_api_init', 'ezd_sync_docs_capabilities' );
+// Wrapped in closures on purpose: rest_api_init passes the WP_REST_Server as the
+// first argument, which landed in $force and forced a full grant/revoke pass
+// (dozens of wp_user_roles writes) on every REST request and every admin screen
+// that preloads REST data.
+add_action( 'admin_init', function () {
+	ezd_sync_docs_capabilities();
+} );
+add_action( 'rest_api_init', function () {
+	ezd_sync_docs_capabilities();
+} );
 add_action( 'csf_eazydocs_settings_saved', function () {
 	ezd_sync_docs_capabilities( true );
 } );
@@ -3183,7 +3262,9 @@ add_action( 'csf_eazydocs_settings_saved', function () {
  * @return array Modified capabilities.
  */
 function ezd_filter_user_has_cap( $allcaps, $caps, $args, $user ) {
-	if ( empty( $user ) || ! ( $user instanceof \WP_User ) ) {
+	// Logged-out visitors (ID 0) and role-less users can never gain doc caps here;
+	// this filter runs dozens of times per page, so bail before any option reads.
+	if ( empty( $user ) || ! ( $user instanceof \WP_User ) || empty( $user->ID ) || ( empty( $user->roles ) && empty( $allcaps['manage_options'] ) ) ) {
 		return $allcaps;
 	}
 
@@ -3252,8 +3333,9 @@ add_filter('show_admin_bar', function ( $show ) {
         return false;
     }
 
-    // Only show admin bar if user is logged in
-    return is_user_logged_in();
+    // Leave every other page alone: forcing is_user_logged_in() here overrode the
+    // user's "Show Toolbar when viewing site" preference and other plugins' filters.
+    return $show;
 });
 
 
@@ -3355,6 +3437,195 @@ function ezd_sanitize_nested_objects( $items ) {
 	return $sanitized;
 }
 
+
+/**
+ * Most-searched keywords for the search banner's "popular keywords" list.
+ *
+ * Replaces an uncached, unbounded `GROUP BY keyword` over the whole keyword log
+ * (one row per search ever made) that ran on every page showing the banner,
+ * and whose output had no cap when the limit setting was empty.
+ *
+ * @param int  $limit             Max keywords to return.
+ * @param bool $exclude_not_found Skip keywords that have never returned a result.
+ * @return string[]
+ */
+function ezd_get_popular_search_keywords( $limit = 6, $exclude_not_found = false ) {
+	$limit     = max( 1, min( 50, (int) $limit ?: 6 ) );
+	$cache_key = 'ezd_popular_kw_' . $limit . ( $exclude_not_found ? '_found' : '' );
+	$keywords  = get_transient( $cache_key );
+
+	if ( is_array( $keywords ) ) {
+		return $keywords;
+	}
+
+	global $wpdb;
+	$keyword_table = $wpdb->prefix . 'eazydocs_search_keyword';
+	$log_table     = $wpdb->prefix . 'eazydocs_search_log';
+
+	if ( $exclude_not_found ) {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table names are prefixed constants.
+		$keywords = $wpdb->get_col( $wpdb->prepare(
+			"SELECT k.keyword FROM {$keyword_table} k
+			 INNER JOIN {$log_table} l ON l.keyword_id = k.id
+			 GROUP BY k.keyword
+			 HAVING SUM(l.not_found_count) < COUNT(*)
+			 ORDER BY COUNT(*) DESC
+			 LIMIT %d",
+			$limit
+		) );
+	} else {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is a prefixed constant.
+		$keywords = $wpdb->get_col( $wpdb->prepare(
+			"SELECT keyword FROM {$keyword_table} GROUP BY keyword ORDER BY COUNT(*) DESC LIMIT %d",
+			$limit
+		) );
+	}
+
+	$keywords = array_values( array_filter( array_map( 'strval', (array) $keywords ), 'strlen' ) );
+	set_transient( $cache_key, $keywords, HOUR_IN_SECONDS );
+
+	return $keywords;
+}
+
+/**
+ * Every descendant doc ID of a doc, at any depth and in any non-trashed status.
+ *
+ * Used when trashing a doc tree. One ID→parent query, walked in memory; only
+ * 'docs' rows, so media attached to a doc is never swept up with it.
+ *
+ * @param int $doc_id Root doc ID.
+ * @return int[] Descendant IDs (root excluded), parents before children.
+ */
+function ezd_get_doc_tree_ids( $doc_id ) {
+	global $wpdb;
+
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- one-off, write-path lookup.
+	$rows = $wpdb->get_results(
+		"SELECT ID, post_parent FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status NOT IN ('trash', 'auto-draft')"
+	);
+
+	$children = [];
+	foreach ( (array) $rows as $row ) {
+		$children[ (int) $row->post_parent ][] = (int) $row->ID;
+	}
+
+	$ids   = [];
+	$queue = $children[ (int) $doc_id ] ?? [];
+	$seen  = [ (int) $doc_id => true ];
+
+	while ( $queue ) {
+		$id = array_shift( $queue );
+		if ( isset( $seen[ $id ] ) ) {
+			continue;
+		}
+		$seen[ $id ] = true;
+		$ids[]       = $id;
+
+		foreach ( $children[ $id ] ?? [] as $child_id ) {
+			$queue[] = $child_id;
+		}
+	}
+
+	return $ids;
+}
+
+/**
+ * Fetch the direct children of several parent docs in ONE query.
+ *
+ * Templates that render a doc tree level by level used to call get_children()
+ * once per node. Call this once per depth level instead and look children up
+ * by parent ID. Children keep get_children()'s menu_order ASC ordering.
+ *
+ * @param int[] $parent_ids Parent doc IDs.
+ * @param array $args       Extra get_posts() args (e.g. post_status).
+ * @return array<int, WP_Post[]> Children grouped by parent ID.
+ */
+function ezd_get_doc_children_map( $parent_ids, $args = [] ) {
+	$parent_ids = array_values( array_filter( array_map( 'intval', (array) $parent_ids ) ) );
+	$grouped    = array_fill_keys( $parent_ids, [] );
+
+	if ( empty( $parent_ids ) ) {
+		return $grouped;
+	}
+
+	$children = get_posts(
+		array_merge(
+			[
+				'post_type'       => 'docs',
+				'post_status'     => 'publish',
+				'post_parent__in' => $parent_ids,
+				'orderby'         => 'menu_order',
+				'order'           => 'ASC',
+				'posts_per_page'  => -1,
+				'no_found_rows'   => true,
+			],
+			$args
+		)
+	);
+
+	foreach ( $children as $child ) {
+		$grouped[ (int) $child->post_parent ][] = $child;
+	}
+
+	return $grouped;
+}
+
+/**
+ * Count every descendant (children, grandchildren, …) of a doc.
+ *
+ * Loads the ID → parent map of all docs once per request (per status set) and
+ * walks it in memory. Replaces calling get_pages( [ 'child_of' => $id ] ) for
+ * each doc card, which re-fetched the whole docs table for every card.
+ *
+ * @param int      $doc_id   Root doc ID.
+ * @param string[] $statuses Post statuses to count. Default: ezd_doc_listing_statuses().
+ * @return int
+ */
+function ezd_count_doc_descendants( $doc_id, $statuses = null ) {
+	static $maps = [];
+
+	$statuses = $statuses ?: ezd_doc_listing_statuses();
+	$map_key  = implode( ',', $statuses );
+
+	if ( ! isset( $maps[ $map_key ] ) ) {
+		global $wpdb;
+
+		$holders = implode( ', ', array_fill( 0, count( $statuses ), '%s' ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- placeholders built above.
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT ID, post_parent FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status IN ({$holders})",
+				$statuses
+			)
+		);
+
+		$children = [];
+		foreach ( (array) $rows as $row ) {
+			$children[ (int) $row->post_parent ][] = (int) $row->ID;
+		}
+		$maps[ $map_key ] = $children;
+	}
+
+	$children = $maps[ $map_key ];
+	$count    = 0;
+	$stack    = $children[ (int) $doc_id ] ?? [];
+	$seen     = [];
+
+	while ( $stack ) {
+		$id = array_pop( $stack );
+		if ( isset( $seen[ $id ] ) ) {
+			continue; // Guard against corrupt parent loops.
+		}
+		$seen[ $id ] = true;
+		++$count;
+
+		if ( ! empty( $children[ $id ] ) ) {
+			array_push( $stack, ...$children[ $id ] );
+		}
+	}
+
+	return $count;
+}
 
 /**
  * Get all descendant IDs by a parent ID
@@ -3466,23 +3737,44 @@ function ezd_docs_tree_cache_key( $post_type ) {
  * @return int[]
  */
 function ezd_build_docs_tree_flat_ids( $post_type ) {
+	// Fetch the whole tree in ONE ordered query and walk it in memory. The
+	// previous version issued a separate query for every doc in the library.
 	$args = [
-		'post_type'   => $post_type,
-		'post_status' => 'publish',
-		'post_parent' => 0,
-		'orderby'     => 'menu_order title',
-		'order'       => 'ASC',
-		'fields'      => 'ids',
-		'numberposts' => -1,
+		'post_type'              => $post_type,
+		'post_status'            => 'publish',
+		'orderby'                => 'menu_order title',
+		'order'                  => 'ASC',
+		'fields'                 => 'id=>parent',
+		'numberposts'            => -1,
+		'no_found_rows'          => true,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
 	];
 
 	if ( ezd_is_multilingual() ) {
 		$args['suppress_filters'] = false;
 	}
 
+	// 'id=>parent' returns an ordered [ ID => post_parent ] map. Group children
+	// under their parent, preserving the query order.
+	$children = [];
+	foreach ( get_posts( $args ) as $id => $parent_id ) {
+		$children[ (int) $parent_id ][] = (int) $id;
+	}
+
 	$ordered_ids = [];
-	foreach ( get_posts( $args ) as $top_id ) {
-		ezd_docs_build_tree_flat( $top_id, $ordered_ids );
+	$stack       = array_reverse( $children[0] ?? [] );
+
+	// Iterative depth-first walk (pre-order): parent first, then its children.
+	while ( $stack ) {
+		$id            = array_pop( $stack );
+		$ordered_ids[] = $id;
+
+		if ( ! empty( $children[ $id ] ) ) {
+			foreach ( array_reverse( $children[ $id ] ) as $child_id ) {
+				$stack[] = $child_id;
+			}
+		}
 	}
 
 	return $ordered_ids;
@@ -3543,10 +3835,20 @@ function ezd_prev_next_docs( $current_post_id ) {
 	$post_type   = get_post_type( $current_post_id );
 	$ordered_ids = ezd_get_docs_tree_flat_cached( $post_type );
 
-	// Find current index and prev/next IDs
-	$current_index = array_search( $current_post_id, $ordered_ids );
-	$prev_id       = $ordered_ids[ $current_index - 1 ] ?? null;
-	$next_id       = $ordered_ids[ $current_index + 1 ] ?? null;
+	// Find current index and prev/next IDs. A doc that is not in the published
+	// tree (draft preview, private doc) has no neighbours; without this guard
+	// array_search() returned false and the first docs were shown as "next".
+	$current_index = array_search( (int) $current_post_id, array_map( 'intval', (array) $ordered_ids ), true );
+	if ( false === $current_index ) {
+		return [
+			'prev'    => null,
+			'current' => $current_post_id,
+			'next'    => null,
+		];
+	}
+
+	$prev_id = $ordered_ids[ $current_index - 1 ] ?? null;
+	$next_id = $ordered_ids[ $current_index + 1 ] ?? null;
 
 	return [
 		'prev'    => $prev_id,

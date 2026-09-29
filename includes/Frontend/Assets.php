@@ -169,9 +169,12 @@ class Assets
 	 */
 	private static function global_scope()
 	{
+		// eazydocs_has_shortcode() is exactly what adds the 'eazydocs_shortcode'
+		// body class; calling get_body_class() here re-ran every theme/plugin
+		// body_class filter on each request just to read that one class back.
 		if (
 			has_block('eazydocs/search-banner')
-			|| in_array('eazydocs_shortcode', get_body_class())
+			|| eazydocs_has_shortcode()
 			|| is_singular('docs')
 			|| is_singular('onepage-docs')
 			|| is_singular('api_docs')
@@ -180,5 +183,7 @@ class Assets
 		) {
 			return true;
 		}
+
+		return false;
 	}
 }

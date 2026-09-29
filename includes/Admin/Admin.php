@@ -507,6 +507,10 @@ class Admin {
 		// during bulk updates (e.g. cache clearing on every single post update)
 		remove_action( 'save_post', 'ezd_clear_docs_tree_cache', 10 );
 		remove_action( 'save_post', 'ezd_flush_docs_tree_cache' );
+		remove_action( 'save_post', 'ezd_flush_elementor_doc_ids_cache' );
+
+		// Load every doc in the payload in one query before the per-item checks.
+		_prime_post_caches( $this->collect_nestable_ids( $nestedArray ), false, false );
 
 		// Recursively update doc structure
 		$this->update_nestable_children( $nestedArray );
@@ -514,6 +518,7 @@ class Admin {
 		// Restore actions
 		add_action( 'save_post', 'ezd_clear_docs_tree_cache', 10, 2 );
 		add_action( 'save_post', 'ezd_flush_docs_tree_cache' );
+		add_action( 'save_post', 'ezd_flush_elementor_doc_ids_cache' );
 
 		// Clear cache once at the end (every language variant, not just the base key).
 		ezd_delete_docs_tree_cache_all_langs( 'docs' );
@@ -539,7 +544,16 @@ class Admin {
 				$current_parent = eaz_get_nestable_parent_id( $item->id );
 			}
 
-			if ( current_user_can( 'edit_post', $item->id ) && 'docs' === get_post_type( $item->id ) ) {
+			$doc = get_post( $item->id );
+
+			// Only write docs whose position actually changed. Moving one item used
+			// to re-save the entire tree, firing every save_post hook (SEO, caches,
+			// search indexers…) once per doc.
+			if (
+				$doc && 'docs' === $doc->post_type
+				&& ( (int) $doc->menu_order !== $menu_order || (int) $doc->post_parent !== (int) $current_parent )
+				&& current_user_can( 'edit_post', $item->id )
+			) {
 				wp_update_post( [
 					'ID'          => $item->id,
 					'menu_order'  => $menu_order,
@@ -551,6 +565,24 @@ class Admin {
 				$this->update_nestable_children( $item->children, $item->id );
 			}
 		}
+	}
+
+	/**
+	 * Flatten the IDs of a sanitized nestable payload.
+	 *
+	 * @param array $items Items with ->id and optional ->children.
+	 * @return int[]
+	 */
+	private function collect_nestable_ids( $items ) {
+		$ids = [];
+		foreach ( (array) $items as $item ) {
+			$ids[] = (int) $item->id;
+			if ( ! empty( $item->children ) && is_array( $item->children ) ) {
+				$ids = array_merge( $ids, $this->collect_nestable_ids( $item->children ) );
+			}
+		}
+
+		return $ids;
 	}
 	
 	/**
@@ -565,19 +597,34 @@ class Admin {
 			wp_send_json_error( [ 'message' => 'Insufficient permissions.' ] );
 		}
 
-		$nestedArray = json_decode( stripslashes( $_POST['data'] ) );
-		$msg         = [];
-		$i           = 0;
+		$nestedArray = isset( $_POST['data'] ) ? json_decode( wp_unslash( $_POST['data'] ) ) : null;
+
+		if ( ! is_array( $nestedArray ) ) {
+			wp_send_json_error( [ 'message' => 'Invalid data format.' ] );
+		}
+
+		$nestedArray = ezd_sanitize_nested_objects( $nestedArray );
+		_prime_post_caches( wp_list_pluck( $nestedArray, 'id' ), false, false );
+
+		$msg = [];
+		$i   = 0;
 		foreach ( $nestedArray as $value ) {
-			if ( current_user_can( 'edit_post', $value->id ) && 'docs' === get_post_type( $value->id ) ) {
+			$doc = get_post( $value->id );
+			if ( $doc && 'docs' === $doc->post_type && current_user_can( 'edit_post', $value->id ) ) {
 				$i ++;
 				$msg = $value->id;
-				wp_update_post( [
-					'ID'         => $value->id,
-					'menu_order' => $i,
-				], true );
+
+				// Skip docs already in place (see update_nestable_children()).
+				if ( (int) $doc->menu_order !== $i ) {
+					wp_update_post( [
+						'ID'         => $value->id,
+						'menu_order' => $i,
+					], true );
+				}
 			}
 		}
+
+		ezd_delete_docs_tree_cache_all_langs( 'docs' );
 
 		wp_send_json_success( $msg );
 	}

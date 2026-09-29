@@ -468,11 +468,16 @@
 		 * Handle scroll events
 		 * Reset navbar margin when scrolled near the top.
 		 */
-		$(window).on('scroll', function () {
-			if ($(this).scrollTop() <= $('.navbar.navbar_fixed').outerHeight()) {
-				ezdSetNavbarMarginTop(false);
-			}
-		});
+		// Look the navbar up per event only when it could exist; skip entirely
+		// when the theme has no fixed navbar (was a DOM query on every scroll).
+		if ($('.navbar').length) {
+			$(window).on('scroll', function () {
+				var $fixedNav = $('.navbar.navbar_fixed');
+				if ($fixedNav.length && $(this).scrollTop() <= $fixedNav.outerHeight()) {
+					ezdSetNavbarMarginTop(false);
+				}
+			});
+		}
 
 		/**
 		 * ============================
@@ -945,6 +950,23 @@
 			e.preventDefault();
 			var $btn = $(this);
 			var googleUrl = $btn.data("href");
+
+			// Bind the OAuth round-trip to this browser: a random token goes into a
+			// short-lived cookie and is appended to the signed `state`; the server
+			// rejects callbacks where the two don't match (login CSRF protection).
+			try {
+				var bytes = new Uint8Array(16);
+				window.crypto.getRandomValues(bytes);
+				var token = Array.prototype.map.call(bytes, function (b) {
+					return ("0" + b.toString(16)).slice(-2);
+				}).join("");
+				document.cookie = "ezd_g_csrf=" + token + "; path=/; max-age=900; SameSite=Lax" + (window.location.protocol === "https:" ? "; Secure" : "");
+				var authUrl = new URL(googleUrl, window.location.href);
+				authUrl.searchParams.set("state", (authUrl.searchParams.get("state") || "") + "." + token);
+				googleUrl = authUrl.toString();
+			} catch (err) {
+				// Very old browsers: the server will refuse the callback and show the login error.
+			}
 
 			// Open popup
 			var width = 600;

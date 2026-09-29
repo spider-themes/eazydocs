@@ -20,16 +20,10 @@ if ( $docs ) :
 			<?php
 			$i = 1;
 			foreach ( $docs as $main_doc ) :
-				// get_pages() applies post_status directly in SQL with no per-user read
-				// filtering, so gate 'private' on the read_private_docs capability to keep
-				// private child docs out of the count for visitors who cannot read them.
-				$doc_counter = get_pages( [
-					'child_of'    => $main_doc['doc']->ID,
-					'post_type'   => 'docs',
-					'orderby'     => 'menu_order',
-					'order'       => 'asc',
-					'post_status' => ezd_doc_listing_statuses(),
-				] );
+				// Descendant count from one shared ID→parent map (was a full get_pages()
+				// per card). Statuses are gated on read_private_docs so private child
+				// docs stay out of the count for visitors who cannot read them.
+				$doc_count = ezd_count_doc_descendants( $main_doc['doc']->ID, ezd_doc_listing_statuses() );
 
 				global $post;
 
@@ -59,7 +53,7 @@ if ( $docs ) :
 								endif;
 								if ( $show_topic == true ) : ?>
                                     <span class="ezd-badge">
-                                        <?php echo count( $doc_counter ) > 0 ? count( $doc_counter ) : '0'; ?>
+                                        <?php echo esc_html( $doc_count ); ?>
                                         <?php echo esc_html( $topic_label ); ?>
                                     </span>
 									<?php 
@@ -90,7 +84,7 @@ if ( $docs ) :
 						<div class="ezd-doc-btn-wrap <?php if ( $is_subscription == '1' ) { echo 'has-subscription'; } ?>">
 
 							<?php
-							$has_children = count( $doc_counter ) > 0;
+							$has_children = $doc_count > 0;
 
 							if ( ( ! $has_children && ! empty( $more ) && ! empty( $is_btn_show ) ) || 
 								( $has_children && ! empty( $more ) ) ) :

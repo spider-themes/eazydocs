@@ -8,33 +8,50 @@
 
 global $wpdb;
 
-// Calculate documentation health metrics.
-$total_docs   = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status = 'publish'" );
-$docs_no_views = (int) $wpdb->get_var( 
-	"SELECT COUNT(*) FROM {$wpdb->posts} p 
-	LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'post_views_count'
-	WHERE p.post_type = 'docs' AND p.post_status = 'publish' AND (pm.meta_value IS NULL OR pm.meta_value = '0')"
-);
+// These aggregates scan postmeta and the search log; cache them alongside the
+// rest of the dashboard data (flushed by ezd_flush_dashboard_cache()).
+$ezd_health = get_transient( 'ezd_doc_health_v1' );
 
-// Get docs without feedback.
-$docs_with_feedback = (int) $wpdb->get_var(
-	"SELECT COUNT(DISTINCT p.ID) FROM {$wpdb->posts} p 
-	INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id 
-	WHERE p.post_type = 'docs' AND p.post_status = 'publish' AND pm.meta_key IN ('positive', 'negative') AND pm.meta_value > 0"
-);
+if ( ! is_array( $ezd_health ) ) {
 
-// Get failed search ratio.
-$search_log_table = $wpdb->prefix . 'eazydocs_search_log';
-$total_search     = (int) $wpdb->get_var( "SELECT count(id) FROM {$search_log_table}" );
-$failed_search    = (int) $wpdb->get_var( "SELECT count(id) FROM {$search_log_table} WHERE not_found_count > 0" );
+	// Calculate documentation health metrics.
+	$total_docs   = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status = 'publish'" );
+	$docs_no_views = (int) $wpdb->get_var( 
+		"SELECT COUNT(*) FROM {$wpdb->posts} p 
+		LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'post_views_count'
+		WHERE p.post_type = 'docs' AND p.post_status = 'publish' AND (pm.meta_value IS NULL OR pm.meta_value = '0')"
+	);
 
-// Get docs older than 90 days without updates.
-$stale_docs = (int) $wpdb->get_var(
-	$wpdb->prepare(
-		"SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status = 'publish' AND post_modified < %s",
-		gmdate( 'Y-m-d', strtotime( '-90 days' ) )
-	)
-);
+	// Get docs without feedback.
+	$docs_with_feedback = (int) $wpdb->get_var(
+		"SELECT COUNT(DISTINCT p.ID) FROM {$wpdb->posts} p 
+		INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id 
+		WHERE p.post_type = 'docs' AND p.post_status = 'publish' AND pm.meta_key IN ('positive', 'negative') AND pm.meta_value > 0"
+	);
+
+	// Get failed search ratio.
+	$search_log_table = $wpdb->prefix . 'eazydocs_search_log';
+	$total_search     = (int) $wpdb->get_var( "SELECT count(id) FROM {$search_log_table}" );
+	$failed_search    = (int) $wpdb->get_var( "SELECT count(id) FROM {$search_log_table} WHERE not_found_count > 0" );
+
+	// Get docs older than 90 days without updates.
+	$stale_docs = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status = 'publish' AND post_modified < %s",
+			gmdate( 'Y-m-d', strtotime( '-90 days' ) )
+		)
+	);
+
+	$ezd_health = compact( 'total_docs', 'docs_no_views', 'docs_with_feedback', 'total_search', 'failed_search', 'stale_docs' );
+	set_transient( 'ezd_doc_health_v1', $ezd_health, 5 * MINUTE_IN_SECONDS );
+}
+
+$total_docs         = (int) ( $ezd_health['total_docs'] ?? 0 );
+$docs_no_views      = (int) ( $ezd_health['docs_no_views'] ?? 0 );
+$docs_with_feedback = (int) ( $ezd_health['docs_with_feedback'] ?? 0 );
+$total_search       = (int) ( $ezd_health['total_search'] ?? 0 );
+$failed_search      = (int) ( $ezd_health['failed_search'] ?? 0 );
+$stale_docs         = (int) ( $ezd_health['stale_docs'] ?? 0 );
 
 // Calculate health score (0-100).
 $health_score = 100;

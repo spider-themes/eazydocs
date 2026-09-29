@@ -20,10 +20,6 @@
 
 		$('.body_wrapper').addClass('eazydocs_assistant_body');
 
-		$(window).scroll(function () {
-			$('.doc-book-layout .nav-sidebar li a').filter('.nav-link').index();
-		});
-
 		/**
 		 * Left Sidebar Toggle Icon
 		 */

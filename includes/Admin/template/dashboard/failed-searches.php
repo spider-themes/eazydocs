@@ -12,9 +12,11 @@ global $wpdb;
 $keyword_table = $wpdb->prefix . 'eazydocs_search_keyword';
 $log_table     = $wpdb->prefix . 'eazydocs_search_log';
 
-// Check if tables exist.
-$keyword_table_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $keyword_table ) ) === $keyword_table;
-$log_table_exists     = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $log_table ) ) === $log_table;
+// Check if tables exist (reuse the flag EazyDocs::update_database() caches
+// instead of two SHOW TABLES probes on every dashboard load).
+$tables_ready         = (bool) get_transient( 'ezd_analytics_tables_ready' );
+$keyword_table_exists = $tables_ready || $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $keyword_table ) ) === $keyword_table;
+$log_table_exists     = $tables_ready || $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $log_table ) ) === $log_table;
 
 $failed_searches = array();
 $total_failed    = 0;

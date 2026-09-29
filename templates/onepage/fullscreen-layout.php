@@ -114,17 +114,16 @@ $children = ezd_list_pages_onepage_others( array(
 						'posts_per_page' => - 1,
 					) );
 
+					// Fetch each depth level in one query instead of a get_children() call
+					// per node; the loops below just look children up by parent ID.
+					$level_2 = ezd_get_doc_children_map( wp_list_pluck( $sections, 'ID' ) );
+					$level_3 = ezd_get_doc_children_map( wp_list_pluck( array_merge( [], ...array_values( $level_2 ) ), 'ID' ) );
+					$level_4 = ezd_get_doc_children_map( wp_list_pluck( array_merge( [], ...array_values( $level_3 ) ), 'ID' ) );
+
 					$i          = 0;
 					$sec_serial = 0;
 					foreach ( $sections as $doc_item ) {
-						$child_sections = get_children( array(
-							'post_parent'    => $doc_item->ID,
-							'post_type'      => 'docs',
-							'post_status'    => 'publish',
-							'orderby'        => 'menu_order',
-							'order'          => 'ASC',
-							'posts_per_page' => - 1,
-						) );
+						$child_sections = $level_2[ $doc_item->ID ] ?? [];
 						$sec_serial ++;
 						$get_title = sanitize_title( $doc_item->post_title );
 						if ( preg_match( '#[0-9]#', $get_title ) ) {
@@ -167,14 +166,7 @@ $children = ezd_list_pages_onepage_others( array(
                                     </div>
                                 </div>
 								<?php
-								$last_depth        = get_children( array(
-									'post_parent'    => $child_section->ID,
-									'post_type'      => 'docs',
-									'post_status'    => 'publish',
-									'orderby'        => 'menu_order',
-									'order'          => 'ASC',
-									'posts_per_page' => - 1,
-								) );
+								$last_depth        = $level_3[ $child_section->ID ] ?? [];
 								$last_depth_serial = 0;
 								foreach ( $last_depth as $last_depth_doc ) :
 									$last_depth_serial ++;
@@ -200,14 +192,7 @@ $children = ezd_list_pages_onepage_others( array(
                                     </div>
 
 								<?php								
-								$last_depth_fiveth = get_children( array(
-									'post_parent'    => $last_depth_doc->ID,
-									'post_type'      => 'docs',
-									'post_status'    => 'publish',
-									'orderby'        => 'menu_order',
-									'order'          => 'ASC',
-									'posts_per_page' => - 1,
-								) );
+								$last_depth_fiveth = $level_4[ $last_depth_doc->ID ] ?? [];
 								$last_depth_serial = 0;
 								foreach ( $last_depth_fiveth as $last_depth_doc ) :
 									$last_depth_serial ++;

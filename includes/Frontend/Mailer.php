@@ -110,6 +110,10 @@ function eazydocs_feedback_email() {
 		$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 		$document = get_post( $doc_id );
 
+		if ( ! $document ) {
+			wp_send_json_error( esc_html__( 'Invalid document.', 'eazydocs' ) );
+		}
+
 		$email_to = $admin_email;
 		/* translators: 1: Site name, 2: Subject line */
 		$subject = sprintf( __( '[%1$s] New Doc Feedback: "%2$s"', 'eazydocs' ), $blogname, $subject );
@@ -173,15 +177,18 @@ function eazydocs_feedback_email() {
 	}
 }
 
-add_action( 'ezd_negative_feedback_notification', 'ezd_send_negative_feedback_email', 10, 2 );
-
 /**
  * Send email notification to admin on high negative feedback
+ *
+ * Legacy helper, no longer hooked: it shared the `ezd_negative_feedback_notification`
+ * hook with ezd_send_negative_feedback_notification(), so every threshold hit sent
+ * two emails, and events scheduled with only a post ID fataled in WP-Cron because
+ * this callback required two arguments.
  *
  * @param int $post_id The post ID
  * @param int $count   The negative feedback count
  */
-function ezd_send_negative_feedback_email( $post_id, $count ) {
+function ezd_send_negative_feedback_email( $post_id, $count = 0 ) {
 	$admin_email = ezd_get_opt( 'feedback-admin-email', get_option( 'admin_email' ) );
 
 	if ( ! is_email( $admin_email ) ) {

@@ -36,7 +36,9 @@ class ezd_remove_docs_base{
 					$old_url = get_permalink();
 					add_filter( 'post_type_link', array( $this, 'remove_slug' ), 10, 3 );
 					$fixed_url = str_replace( $old_url, $new_url, $real_url );
-					wp_redirect( $fixed_url, 301 );
+					wp_safe_redirect( $fixed_url, 301 );
+					// Without exit the whole page kept rendering behind the 301.
+					exit;
 				}
 			}
 		}, 1 );

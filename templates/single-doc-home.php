@@ -3,15 +3,15 @@ global $post;
 $is_full_excerpt 		 = ezd_get_opt( 'is_full_excerpt', false );
 $sec_excerpt 			 = ezd_get_opt( 'doc_sec_excerpt_limit', '8' );
 
-$sections = get_children( array(
+// Sections are only listed on a top-level doc, so skip the query everywhere else.
+$sections = 0 === (int) $post->post_parent ? get_children( array(
 	'post_parent'    => $post->ID,
 	'post_type'      => 'docs',
 	'post_status'    => ezd_doc_listing_statuses(),
 	'orderby'        => 'menu_order',
 	'order'          => 'ASC',
 	'posts_per_page' => -1,
-    ''
-) );
+) ) : array();
 
 if ( $sections && $post->post_parent === 0 ) :
     ?>

@@ -37,6 +37,13 @@ class Docs_Builder_Controller {
 	private static $replacements = array( 'ezd_ampersand' => '&', 'ezd_hash' => '#', 'ezd_plus' => '+' );
 
 	/**
+	 * Request-scoped parent → ordered child IDs map. See get_docs_children_map().
+	 *
+	 * @var array<int, int[]>|null
+	 */
+	private $children_map = null;
+
+	/**
 	 * Register the REST routes.
 	 *
 	 * @since  2.8.0
@@ -538,24 +545,32 @@ class Docs_Builder_Controller {
 	 * @return array
 	 */
 	private function get_children_tree( $parent_id, $depth = 1 ) {
-		$children = get_children(
-			array(
-				'post_parent' => $parent_id,
-				'post_type'   => 'docs',
-				'orderby'     => 'menu_order',
-				'order'       => 'ASC',
-			)
-		);
+		$map       = $this->get_docs_children_map();
+		$child_ids = $map[ (int) $parent_id ] ?? array();
 
-		// Remove the thumbnail ID if it happens to be in children.
-		$thumbnail_id = get_post_thumbnail_id( $parent_id );
-		if ( $thumbnail_id && isset( $children[ $thumbnail_id ] ) ) {
-			unset( $children[ $thumbnail_id ] );
+		// On the root call, load every post row + meta in the subtree in one go so
+		// the per-node helpers below hit the cache instead of the database.
+		if ( 1 === (int) $depth && $child_ids ) {
+			$subtree = array();
+			$stack   = $child_ids;
+			while ( $stack ) {
+				$id        = array_pop( $stack );
+				$subtree[] = $id;
+				if ( ! empty( $map[ $id ] ) ) {
+					array_push( $stack, ...$map[ $id ] );
+				}
+			}
+			_prime_post_caches( $subtree, false, true );
 		}
 
 		$results = array();
 
-		foreach ( $children as $child ) {
+		foreach ( $child_ids as $child_id ) {
+			$child = get_post( $child_id );
+			if ( ! $child instanceof \WP_Post ) {
+				continue;
+			}
+
 			$item = $this->build_child_doc_item( $child, $depth );
 
 			// Recurse if children exist and depth allows.
@@ -568,6 +583,38 @@ class Docs_Builder_Controller {
 		}
 
 		return $results;
+	}
+
+	/**
+	 * Ordered parent → child IDs map of every non-trashed doc, built once per request.
+	 *
+	 * Mirrors get_children()'s default 'any' status (everything except trash and
+	 * auto-draft) and menu_order ordering. The builder previously ran get_children()
+	 * per node plus two more queries per node (one of them get_pages(), which
+	 * loads the whole docs table), which made it O(n²) on large libraries.
+	 *
+	 * @return array<int, int[]>
+	 */
+	private function get_docs_children_map() {
+		if ( null !== $this->children_map ) {
+			return $this->children_map;
+		}
+
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- request-scoped, memoised above.
+		$rows = $wpdb->get_results(
+			"SELECT ID, post_parent FROM {$wpdb->posts}
+			 WHERE post_type = 'docs' AND post_status NOT IN ('trash', 'auto-draft', 'inherit')
+			 ORDER BY menu_order ASC, ID ASC"
+		);
+
+		$this->children_map = array();
+		foreach ( (array) $rows as $row ) {
+			$this->children_map[ (int) $row->post_parent ][] = (int) $row->ID;
+		}
+
+		return $this->children_map;
 	}
 
 	/**
@@ -586,13 +633,6 @@ class Docs_Builder_Controller {
 
 		$post_status = get_post_status( $post_id );
 		$status_info = $this->get_status_info( $post_status, $post_obj );
-		$child_pages = get_pages(
-			array(
-				'child_of'    => $post_id,
-				'post_type'   => 'docs',
-				'post_status' => array( 'publish', 'draft', 'private' ),
-			)
-		);
 
 		return array(
 			'id'           => $post_id,
@@ -603,7 +643,7 @@ class Docs_Builder_Controller {
 			'statusIcon'   => $status_info['icon'],
 			'statusText'   => $status_info['text'],
 			'hasPassword'  => ! empty( $post_obj->post_password ),
-			'childCount'   => count( $child_pages ),
+			'childCount'   => ezd_count_doc_descendants( $post_id, array( 'publish', 'draft', 'private' ) ),
 			'canEdit'      => ezd_is_admin_or_editor( $post_id, 'edit' ),
 			'canDelete'    => ezd_is_admin_or_editor( $post_id, 'delete' ),
 			'deleteNonce'  => wp_create_nonce( 'ezd_delete_doc_' . $post_id ),
@@ -626,15 +666,8 @@ class Docs_Builder_Controller {
 			$post_status = 'protected';
 		}
 
-		$sub_children = eaz_get_nestable_children( $post->ID );
-		$has_children = ! empty( $sub_children );
-		$child_pages  = get_pages(
-			array(
-				'child_of'    => $post->ID,
-				'post_type'   => 'docs',
-				'post_status' => array( 'publish', 'draft', 'private' ),
-			)
-		);
+		$map          = $this->get_docs_children_map();
+		$has_children = ! empty( $map[ (int) $post->ID ] );
 
 		$can_add_sub = true;
 		if ( ! ezd_is_premium() && 3 === (int) $depth ) {
@@ -652,7 +685,7 @@ class Docs_Builder_Controller {
 			'status'      => $post_status,
 			'hasPassword' => ! empty( $post->post_password ),
 			'hasChildren' => $has_children,
-			'childCount'  => count( $child_pages ),
+			'childCount'  => ezd_count_doc_descendants( $post->ID, array( 'publish', 'draft', 'private' ) ),
 			'positive'    => (int) get_post_meta( $post->ID, 'positive', true ),
 			'negative'    => (int) get_post_meta( $post->ID, 'negative', true ),
 			'visibility'  => $this->get_visibility_info( $post->ID ),
@@ -947,29 +980,24 @@ class Docs_Builder_Controller {
 			$read_votes = array();
 		}
 
-		$vote_posts = get_posts(
-			array(
-				'post_type'      => 'docs',
-				'posts_per_page' => -1,
-				'post_status'    => array( 'publish' ),
-			)
+		// Only the two vote timestamps are needed, so read them straight from
+		// postmeta instead of loading every published doc (content, meta, terms).
+		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$vote_rows = $wpdb->get_results(
+			"SELECT pm.post_id, pm.meta_value
+			 FROM {$wpdb->postmeta} pm
+			 INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+			 WHERE pm.meta_key IN ('positive_time', 'negative_time')
+			   AND pm.meta_value <> ''
+			   AND p.post_type = 'docs'
+			   AND p.post_status = 'publish'"
 		);
 
-		foreach ( $vote_posts as $post ) {
-			$positive_time = get_post_meta( $post->ID, 'positive_time', true );
-			if ( ! empty( $positive_time ) ) {
-				$positive_key = $post->ID . '_' . strtotime( $positive_time );
-				if ( ! in_array( $positive_key, $read_votes, true ) ) {
-					++$unread_count;
-				}
-			}
-
-			$negative_time = get_post_meta( $post->ID, 'negative_time', true );
-			if ( ! empty( $negative_time ) ) {
-				$negative_key = $post->ID . '_' . strtotime( $negative_time );
-				if ( ! in_array( $negative_key, $read_votes, true ) ) {
-					++$unread_count;
-				}
+		$read_lookup = array_flip( $read_votes );
+		foreach ( (array) $vote_rows as $row ) {
+			if ( ! isset( $read_lookup[ $row->post_id . '_' . strtotime( $row->meta_value ) ] ) ) {
+				++$unread_count;
 			}
 		}
 
@@ -1029,7 +1057,7 @@ class Docs_Builder_Controller {
 		}
 
 		$page     = absint( $request->get_param( 'page' ) ) ?: 1;
-		$per_page = absint( $request->get_param( 'per_page' ) ) ?: 10;
+		$per_page = min( 50, absint( $request->get_param( 'per_page' ) ) ?: 10 );
 		$filter   = sanitize_text_field( $request->get_param( 'filter' ) ) ?: 'all';
 
 		$allowed_filters = array( 'all', 'comment', 'vote' );
@@ -1046,10 +1074,25 @@ class Docs_Builder_Controller {
 
 		// Get votes if filter allows.
 		if ( 'all' === $filter || 'vote' === $filter ) {
+			// Only docs that actually received a vote (previously every doc was
+			// loaded and then filtered in PHP).
 			$args = array(
-				'post_type'      => 'docs',
-				'posts_per_page' => -1,
-				'post_status'    => array( 'publish' ),
+				'post_type'              => 'docs',
+				'posts_per_page'         => -1,
+				'post_status'            => array( 'publish' ),
+				'no_found_rows'          => true,
+				'update_post_term_cache' => false,
+				'meta_query'             => array(
+					'relation' => 'OR',
+					array(
+						'key'     => 'positive_time',
+						'compare' => 'EXISTS',
+					),
+					array(
+						'key'     => 'negative_time',
+						'compare' => 'EXISTS',
+					),
+				),
 			);
 
 			foreach ( get_posts( $args ) as $post ) {
@@ -1388,7 +1431,8 @@ class Docs_Builder_Controller {
 			return new \WP_Error( 'missing_title', __( 'A title is required.', 'eazydocs' ), array( 'status' => 400 ) );
 		}
 
-		if ( ! $parent_id || ! get_post( $parent_id ) ) {
+		// Must be a doc: otherwise a section could be attached under any post type.
+		if ( ! $parent_id || 'docs' !== get_post_type( $parent_id ) ) {
 			return new \WP_Error( 'invalid_parent', __( 'The specified parent document does not exist.', 'eazydocs' ), array( 'status' => 400 ) );
 		}
 
@@ -1518,12 +1562,18 @@ class Docs_Builder_Controller {
 			return new \WP_Error( 'invalid_doc', __( 'The specified document does not exist.', 'eazydocs' ), array( 'status' => 400 ) );
 		}
 
-		if ( ! function_exists( 'ezd_perform_edit_delete_actions' ) || ! ezd_perform_edit_delete_actions( 'delete', $doc_id ) ) {
+		// The permission helper echoes an HTML notice on failure; swallow it so it
+		// can't corrupt this JSON response.
+		ob_start();
+		$can_delete = function_exists( 'ezd_perform_edit_delete_actions' ) && ezd_perform_edit_delete_actions( 'delete', $doc_id );
+		ob_end_clean();
+
+		if ( ! $can_delete ) {
 			return new \WP_Error( 'forbidden', __( 'You do not have permission to delete this document.', 'eazydocs' ), array( 'status' => 403 ) );
 		}
 
-		// Collect all descendant IDs recursively.
-		$all_ids = $this->collect_descendant_ids( $doc_id );
+		// Collect all descendant IDs (one query; any depth).
+		$all_ids = ezd_get_doc_tree_ids( $doc_id );
 		array_unshift( $all_ids, $doc_id );
 
 		$trashed = 0;
@@ -1598,30 +1648,6 @@ class Docs_Builder_Controller {
 			),
 			200
 		);
-	}
-
-	/**
-	 * Recursively collect all descendant post IDs.
-	 *
-	 * @since  2.8.0
-	 * @param  int $parent_id Parent post ID.
-	 * @return array
-	 */
-	private function collect_descendant_ids( $parent_id ) {
-		$ids      = array();
-		$children = get_children(
-			array(
-				'post_parent' => $parent_id,
-				'post_type'   => 'docs',
-			)
-		);
-
-		foreach ( $children as $child ) {
-			$ids[] = $child->ID;
-			$ids   = array_merge( $ids, $this->collect_descendant_ids( $child->ID ) );
-		}
-
-		return $ids;
 	}
 
 	/**

@@ -17,11 +17,25 @@
 
 		n.find('> li > a').before($('<span class="docs-progress-bar" />'));
 
-		$(window).scroll(function () {
-			let t = $(this).scrollTop(),
-				n = $(this).innerHeight(),
-				e = $('.doc-nav li a').filter('.active').index();
-			$('.doc-section').each(function (i) {
+		// Reading progress per section. Previously every scroll event re-queried the
+		// DOM (including a slow `:eq()` lookup per section) and interleaved layout
+		// reads with style writes, forcing a reflow per section on every frame.
+		// Now: elements are cached, updates run at most once per animation frame,
+		// and all measurements are taken before any style is written.
+		let $window = $(window),
+			$sections = $('.doc-section'),
+			$bars = $('.doc-nav .docs-progress-bar'),
+			$navLinks = $('.doc-nav li a'),
+			ticking = false;
+
+		function updateProgress() {
+			ticking = false;
+			let t = $window.scrollTop(),
+				n = $window.innerHeight(),
+				e = $navLinks.filter('.active').index(),
+				widths = [];
+
+			$sections.each(function () {
 				let c = $(this).offset().top,
 					s = $(this).height(),
 					a = c + s,
@@ -30,9 +44,21 @@
 					? (r = ((t - c) / s) * 100) >= 100 && (r = 100)
 					: t > a && (r = 100),
 					a < t + n - 70 && (r = 100);
-				let d = $('.doc-nav .docs-progress-bar:eq(' + i + ')');
-				e > i && d.parent().addClass('viewed'), d.css('width', r + '%');
+				widths.push(r);
 			});
+
+			$.each(widths, function (i, r) {
+				let d = $bars.eq(i);
+				e > i && d.parent().addClass('viewed');
+				d.css('width', r + '%');
+			});
+		}
+
+		$window.on('scroll', function () {
+			if (!ticking) {
+				ticking = true;
+				window.requestAnimationFrame(updateProgress);
+			}
 		});
 		$(
 			'.nav-sidebar.one-page-doc-nav-wrap .dropdown_nav .dropdown_nav'

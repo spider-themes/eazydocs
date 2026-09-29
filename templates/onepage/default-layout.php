@@ -199,16 +199,15 @@ $children         = wp_list_pages( array(
 						'posts_per_page' => - 1,
 					) );
 
+					// Fetch each depth level in one query instead of a get_children() call
+					// per node; the loops below just look children up by parent ID.
+					$level_2 = ezd_get_doc_children_map( wp_list_pluck( $sections, 'ID' ) );
+					$level_3 = ezd_get_doc_children_map( wp_list_pluck( array_merge( [], ...array_values( $level_2 ) ), 'ID' ) );
+					$level_4 = ezd_get_doc_children_map( wp_list_pluck( array_merge( [], ...array_values( $level_3 ) ), 'ID' ) );
+
 					$i = 0;
 					foreach ( $sections as $doc_item ) {
-						$child_sections = get_children( array(
-							'post_parent'    => $doc_item->ID,
-							'post_type'      => 'docs',
-							'post_status'    => 'publish',
-							'orderby'        => 'menu_order',
-							'order'          => 'ASC',
-							'posts_per_page' => - 1,
-						) );
+						$child_sections = $level_2[ $doc_item->ID ] ?? [];
 						$get_title      = sanitize_title( $doc_item->post_title );
 						if ( preg_match( '#[0-9]#', $get_title ) ) {
 							$get_title = 'ezd-' . sanitize_title( $doc_item->post_title );
@@ -271,14 +270,7 @@ $children         = wp_list_pages( array(
 								</div>
 
 								<?php
-								$last_depth = get_children( array(
-									'post_parent'    => $child_section->ID,
-									'post_type'      => 'docs',
-									'post_status'    => 'publish',
-									'orderby'        => 'menu_order',
-									'order'          => 'ASC',
-									'posts_per_page' => - 1,
-								) );
+								$last_depth = $level_3[ $child_section->ID ] ?? [];
 
 								foreach ( $last_depth as $last_depth_doc ) :
 									$get_last_child_title = sanitize_title( $last_depth_doc->post_title );
@@ -298,14 +290,7 @@ $children         = wp_list_pages( array(
 									</div>
 
 									<?php
-									$last_depth_extend = get_children( array(
-										'post_parent'    => $last_depth_doc->ID,
-										'post_type'      => 'docs',
-										'post_status'    => 'publish',
-										'orderby'        => 'menu_order',
-										'order'          => 'ASC',
-										'posts_per_page' => - 1,
-									) );
+									$last_depth_extend = $level_4[ $last_depth_doc->ID ] ?? [];
 
 									foreach ( $last_depth_extend as $last_depth_doc ) :
 										$get_last_child_title = sanitize_title( $last_depth_doc->post_title );

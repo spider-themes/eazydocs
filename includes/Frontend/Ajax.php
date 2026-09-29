@@ -52,8 +52,14 @@ class Ajax {
 			$previous = explode( ',', sanitize_text_field( $cookie_value ) );
 		}
 
-		$post_id  = intval( $_POST['post_id'] );
-		$type     = in_array( $_POST['type'], [ 'positive', 'negative' ], true ) ? sanitize_text_field( $_POST['type'] ) : false;
+		$post_id  = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+		$raw_type = isset( $_POST['type'] ) ? sanitize_key( wp_unslash( $_POST['type'] ) ) : '';
+		$type     = in_array( $raw_type, [ 'positive', 'negative' ], true ) ? $raw_type : false;
+
+		// Reject votes for posts that don't exist (avoids orphan meta writes).
+		if ( ! $post_id || ! get_post( $post_id ) ) {
+			wp_send_json_error( sprintf( $template, 'danger', esc_html__( 'Invalid document.', 'eazydocs' ) ) );
+		}
 
 		// check previous response
 		// $previous is array of strings (from explode), $post_id is int. Cast to string for strict check.
@@ -106,12 +112,8 @@ class Ajax {
 				}
 
 				update_post_meta( $post_id, 'negative_time', $timestamp );
-
-				// Schedule notification when negative count reaches a multiple of the threshold (e.g., 3, 6, 9)
-				$new_count = $count + 1;
-				if ( $new_count > 0 && 0 === ( $new_count % 3 ) ) {
-					wp_schedule_single_event( time(), 'ezd_negative_feedback_notification', [ $post_id, $new_count ] );
-				}
+				// The threshold notification is scheduled once, above. A second
+				// schedule here used to send the admin duplicate alert emails.
 			}
 
 			array_push( $previous, $post_id );
@@ -130,10 +132,13 @@ class Ajax {
 	 * @return void
 	 */
 	public function eazydocs_search_results() {
-		check_ajax_referer( 'eazydocs-ajax', 'security' );
+		// Search is read-only public data, so a stale nonce (full-page caches often
+		// outlive the 12–24h nonce lifetime) must not break it. The nonce only
+		// gates whether the query is written to the search analytics log.
+		$valid_nonce = false !== check_ajax_referer( 'eazydocs-ajax', 'security', false );
 		global $wpdb;
 
-		$keyword     = isset( $_POST['keyword'] ) ? sanitize_text_field( $_POST['keyword'] ) : '';
+		$keyword     = isset( $_POST['keyword'] ) ? sanitize_text_field( wp_unslash( $_POST['keyword'] ) ) : '';
 		$search_mode = ezd_is_premium() ? ezd_get_opt( 'search_by', 'title_and_content' ) : 'title_and_content';
 
 		$can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
@@ -161,61 +166,83 @@ class Ajax {
 		}
 
 		$normalized_keyword = strtolower( trim( $keyword ) );
-		$status_in          = "'" . implode( "','", $post_status ) . "'";
 		$results_by_type    = [];
+		$found_by_type      = [];
 
-		foreach ( $search_types as $ptype ) {
-			$cache_key = 'ezd_search_ids_' . md5( $normalized_keyword . '_' . $search_mode . '_' . $ptype . '_' . ( $can_read_private ? 'priv' : 'pub' ) );
-			$ids       = get_transient( $cache_key );
+		// Ranked IDs grouped by post type. Cached in the object cache (not a
+		// transient): live search fires on every pause in typing, and transients
+		// wrote two wp_options rows per keystroke per post type on sites without a
+		// persistent object cache.
+		$cache_key    = 'ids_' . md5( $normalized_keyword . '|' . $search_mode . '|' . implode( ',', $search_types ) . '|' . ( $can_read_private ? 'priv' : 'pub' ) );
+		$ids_by_type  = wp_cache_get( $cache_key, 'ezd_search' );
 
-			if ( false === $ids ) {
-				$exact_ids = $wpdb->get_col( $wpdb->prepare(
-					"SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND post_status IN ({$status_in}) AND post_title = %s",
-					$ptype, $keyword
-				) );
+		if ( ! is_array( $ids_by_type ) ) {
+			$like         = '%' . $wpdb->esc_like( $keyword ) . '%';
+			$type_holders = implode( ', ', array_fill( 0, count( $search_types ), '%s' ) );
+			$stat_holders = implode( ', ', array_fill( 0, count( $post_status ), '%s' ) );
+			$match_sql    = 'title_and_content' === $search_mode ? '( post_title LIKE %s OR post_content LIKE %s )' : 'post_title LIKE %s';
+			$match_args   = 'title_and_content' === $search_mode ? [ $like, $like ] : [ $like ];
 
-				$partial_ids = $wpdb->get_col( $wpdb->prepare(
-					"SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND post_status IN ({$status_in}) AND post_title LIKE %s",
-					$ptype, '%' . $wpdb->esc_like( $keyword ) . '%'
-				) );
-				$partial_ids = array_diff( $partial_ids, $exact_ids );
+			// One scan of wp_posts for every post type, ranked exact title →
+			// partial title → content, instead of three LIKE scans per post type.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- placeholders are built above.
+			$rows = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT ID, post_type FROM {$wpdb->posts}
+					 WHERE post_type IN ({$type_holders})
+					   AND post_status IN ({$stat_holders})
+					   AND {$match_sql}
+					 ORDER BY CASE WHEN post_title = %s THEN 0 WHEN post_title LIKE %s THEN 1 ELSE 2 END, post_date ASC, ID ASC",
+					array_merge( $search_types, $post_status, $match_args, [ $keyword, $like ] )
+				)
+			);
 
-				$content_ids = [];
-				if ( 'title_and_content' === $search_mode ) {
-					$content_ids = $wpdb->get_col( $wpdb->prepare(
-						"SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND post_status IN ({$status_in}) AND post_content LIKE %s",
-						$ptype, '%' . $wpdb->esc_like( $keyword ) . '%'
-					) );
-					$content_ids = array_diff( $content_ids, $exact_ids, $partial_ids );
-				}
-
-				$ids = array_merge( $exact_ids, $partial_ids, $content_ids );
-
-				if ( 'docs' === $ptype && get_term_by( 'name', $keyword, 'doc_tag' ) ) {
-					$tag_query = new WP_Query( [
-						'post_type'      => 'docs',
-						'posts_per_page' => -1,
-						'post_status'    => $post_status,
-						'tax_query'      => [ [ 'taxonomy' => 'doc_tag', 'field' => 'name', 'terms' => $keyword ] ],
-					] );
-					$ids = array_unique( array_merge( $ids, wp_list_pluck( $tag_query->posts, 'ID' ) ) );
-					wp_reset_postdata();
-				}
-
-				set_transient( $cache_key, $ids, 5 * MINUTE_IN_SECONDS );
+			$ids_by_type = array_fill_keys( $search_types, [] );
+			foreach ( (array) $rows as $row ) {
+				$ids_by_type[ $row->post_type ][] = (int) $row->ID;
 			}
 
-			if ( ! empty( $ids ) ) {
-				$query = new WP_Query( [
-					'post_type'      => $ptype,
-					'posts_per_page' => 10,
-					'post_status'    => $post_status,
-					'post__in'       => $ids,
-					'orderby'        => [ 'post__in' => 'ASC', 'title' => 'ASC' ],
-				] );
-				if ( $query->have_posts() ) {
-					$results_by_type[ $ptype ] = $query;
+			// Docs tagged with the exact keyword are appended after text matches.
+			if ( isset( $ids_by_type['docs'] ) ) {
+				$tag = get_term_by( 'name', $keyword, 'doc_tag' );
+				if ( $tag ) {
+					$tag_ids = get_posts( [
+						'post_type'              => 'docs',
+						'posts_per_page'         => 200,
+						'post_status'            => $post_status,
+						'fields'                 => 'ids',
+						'no_found_rows'          => true,
+						'update_post_meta_cache' => false,
+						'update_post_term_cache' => false,
+						'tax_query'              => [ [ 'taxonomy' => 'doc_tag', 'field' => 'term_id', 'terms' => (int) $tag->term_id ] ],
+					] );
+					$ids_by_type['docs'] = array_values( array_unique( array_merge( $ids_by_type['docs'], array_map( 'intval', $tag_ids ) ) ) );
 				}
+			}
+
+			wp_cache_set( $cache_key, $ids_by_type, 'ezd_search', 5 * MINUTE_IN_SECONDS );
+		}
+
+		foreach ( $search_types as $ptype ) {
+			$ids = $ids_by_type[ $ptype ] ?? [];
+			if ( empty( $ids ) ) {
+				continue;
+			}
+
+			$found_by_type[ $ptype ] = count( $ids );
+
+			// Only the first 10 per type are rendered; no need to count again.
+			$query = new WP_Query( [
+				'post_type'              => $ptype,
+				'posts_per_page'         => 10,
+				'post_status'            => $post_status,
+				'post__in'               => array_slice( $ids, 0, 10 ),
+				'orderby'                => 'post__in',
+				'no_found_rows'          => true,
+				'ignore_sticky_posts'    => true,
+			] );
+			if ( $query->have_posts() ) {
+				$results_by_type[ $ptype ] = $query;
 			}
 		}
 
@@ -233,12 +260,9 @@ class Ajax {
 			set_transient( $tables_check_key, $tables_exist, DAY_IN_SECONDS );
 		}
 
-		$total_found = 0;
-		foreach ( $results_by_type as $q ) {
-			$total_found += $q->found_posts;
-		}
+		$total_found = array_sum( $found_by_type );
 
-		if ( $tables_exist ) {
+		if ( $tables_exist && $valid_nonce ) {
 			$wpdb->insert( $wp_eazydocs_search_keyword, [ 'keyword' => $keyword_for_db ], [ '%s' ] );
 			$keyword_id = $wpdb->insert_id;
 			if ( $keyword_id ) {
@@ -326,8 +350,10 @@ class Ajax {
 	 * @return void
 	 */
 	public function docs_single_content() {
-		// Verify nonce for security
-		check_ajax_referer( 'eazydocs-ajax', 'security' );
+		// Read-only: access to private docs is enforced below, not by the nonce.
+		// A hard nonce check broke AJAX doc loading on full-page-cached sites
+		// once the cached nonce outlived its 12–24h lifetime.
+		check_ajax_referer( 'eazydocs-ajax', 'security', false );
 
 		$postid     = isset( $_POST['postid'] ) ? intval( $_POST['postid'] ) : 0;
 
@@ -431,7 +457,8 @@ class Ajax {
 	 * @return void
 	 */
 	public function child_docs() {
-		check_ajax_referer( 'eazydocs-ajax', 'security' );
+		// Read-only list of published docs; see docs_single_content() on nonces.
+		check_ajax_referer( 'eazydocs-ajax', 'security', false );
 
 		$parent_id = isset( $_POST['parent_id'] ) ? intval( $_POST['parent_id'] ) : 0;
 
@@ -441,12 +468,15 @@ class Ajax {
 		}
 
 		$children = get_posts( [
-			'post_type'      => 'docs',
-			'post_parent'    => $parent_id,
-			'posts_per_page' => -1,
-			'orderby'        => 'menu_order',
-			'order'          => 'ASC',
-			'post_status'    => 'publish',
+			'post_type'              => 'docs',
+			'post_parent'            => $parent_id,
+			'posts_per_page'         => 200,
+			'orderby'                => 'menu_order',
+			'order'                  => 'ASC',
+			'post_status'            => 'publish',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
 		] );
 
 		if ( empty( $children ) ) {

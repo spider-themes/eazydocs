@@ -100,12 +100,14 @@ if ( $credit_enable == '1' ) {
                 $content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar_type', true );
                 $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
                 $left_sidebar_content    = ezd_get_renderable_sidebar_content( $ezd_shortcode_left );
-                $is_valid_post_id   	 = is_null( get_post( $ezd_shortcode_left ) ) ? 'No' : 'Yes';
+                // 'No' is a non-empty string, so the old ! empty() check never
+                // rejected an invalid block ID.
+                $is_valid_post_id   	 = ( 'widget_data' === $content_type_left && absint( $ezd_shortcode_left ) && get_post( absint( $ezd_shortcode_left ) ) );
 
                 if ( $content_type_left  == 'string_data'  && ! empty( $left_sidebar_content ) ) {
                     echo wp_kses_post( do_shortcode( $left_sidebar_content ) );
                 } else {
-                    if( $content_type_left == 'widget_data' && ! empty( $is_valid_post_id ) ) {
+                    if( $content_type_left == 'widget_data' && $is_valid_post_id ) {
                         $wp_blocks = new WP_Query([
                             'post_type' 	=> 'wp_block',
                             'p'				=> $ezd_shortcode_left

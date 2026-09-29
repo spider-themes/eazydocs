@@ -82,7 +82,8 @@ $toc_auto_numbering = $toc_auto_numbering == '1' ? ' toc_auto_numbering' : '';
 						}
 					}
 				} else {
-					if ( is_active_sidebar( 'doc_sidebar' ) && $widget_sidebar == 1 && $is_pro_themes == 'Docy' || $is_pro_themes == 'Docly' ) {
+					// Parenthesised: without it Docly ignored the "widget sidebar" toggle.
+					if ( is_active_sidebar( 'doc_sidebar' ) && $widget_sidebar == 1 && ( $is_pro_themes == 'Docy' || $is_pro_themes == 'Docly' ) ) {
 						dynamic_sidebar( 'doc_sidebar' );
 					}
 				}

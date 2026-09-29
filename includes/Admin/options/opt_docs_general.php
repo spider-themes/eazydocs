@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 //
 $archive_id = ezd_get_opt( 'docs-slug' );
 $view_link  = '';
-if ( ! empty( $archive_id ) && 'publish' === get_post_status( $archive_id ) ) {
+// The link is only shown on the settings screen; skip the lookup elsewhere.
+if ( is_admin() && ! empty( $archive_id ) && 'publish' === get_post_status( $archive_id ) ) {
 	$archive_url = get_permalink( $archive_id );
 	$view_link   = sprintf(
 		'<br><a href="%1$s" target="_blank" class="ezd-view-archive-link" style="display: inline-flex; align-items: center; margin-top: 8px; color: #0866ff; text-decoration: none; font-weight: 500; gap: 4px;">%2$s <span class="dashicons dashicons-external" style="font-size: 16px; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;"></span></a>',

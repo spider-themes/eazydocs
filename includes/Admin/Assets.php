@@ -176,6 +176,12 @@ class Assets {
 			$ajax_url = add_query_arg( 'wpml_lang', $wpml_current_language, $ajax_url );
 		}
 
+		// This script runs on every wp-admin screen, but the heavy payload below
+		// (every top-level doc, every reusable block, the AI popup markup) is only
+		// consumed by EazyDocs screens. Building it elsewhere slowed down the whole
+		// dashboard, so gate it to the screens that actually use it.
+		$is_ezd_screen = ezd_admin_pages() || ezd_admin_post_types();
+
 		// Check if Antimanual is active
 		if ( ! \function_exists( 'is_plugin_active' ) ) {
 			include_once \ABSPATH . 'wp-admin/includes/plugin.php';
@@ -185,7 +191,7 @@ class Assets {
 		// Shared "Create Doc with AI" popup HTML (single source)
 		$ai_popup_html     = '';
 		$ai_popup_template = EZD_PATH . '/includes/Admin/template/partials/ai-create-doc-popup.php';
-		if ( file_exists( $ai_popup_template ) ) {
+		if ( $is_ezd_screen && file_exists( $ai_popup_template ) ) {
 			$antimanual_settings_url  = admin_url( 'admin.php?page=antimanual' );
 			$antimanual_docs_url      = 'https://helpdesk.spider-themes.net/docs/antimanual';
 			$antimanual_install_url   = add_query_arg(
@@ -243,15 +249,15 @@ class Assets {
 					'ajaxError'     => esc_html__( 'The request failed. Please try again.', 'eazydocs' ),
 					'eazydocsUrl'   => admin_url( 'admin.php?page=eazydocs' ),
 				),
-				'one_page_prompt_docs'       => eazydocs_pro_doc_list(),
+				'one_page_prompt_docs'       => $is_ezd_screen ? eazydocs_pro_doc_list() : '',
 				'onepage_doc_admin_url'      => admin_url(),
-				'one_page_prompt_sidebar'    => sidebar_selectbox(),
-				'one_page_doc_sidebar_edit'  => ezd_edit_sidebar_selectbox(),
+				'one_page_prompt_sidebar'    => $is_ezd_screen ? sidebar_selectbox() : '',
+				'one_page_doc_sidebar_edit'  => $is_ezd_screen ? ezd_edit_sidebar_selectbox() : '',
 				'edit_one_page_url'          => admin_url( 'admin.php?edit_docs=yes&' ),
-				'get_reusable_block'         => get_reusable_blocks(),
-				'get_reusable_blocks_right'  => get_reusable_blocks_right(),
+				'get_reusable_block'         => $is_ezd_screen ? get_reusable_blocks() : '',
+				'get_reusable_blocks_right'  => $is_ezd_screen ? get_reusable_blocks_right() : '',
 				'manage_reusable_blocks'     => ezd_manage_reusable_blocks(),
-				'reusable_blocks_options'    => ezd_get_reusable_blocks_options(),
+				'reusable_blocks_options'    => $is_ezd_screen ? ezd_get_reusable_blocks_options() : array(),
 				'manage_reusable_blocks_url' => admin_url( 'edit.php?post_type=wp_block' ),
 				'is_ezd_premium'             => eaz_fs()->is_paying_or_trial() ? 'yes' : '',
 				'is_ezd_pro_block'           => ezd_is_premium() ? 'yes' : '',

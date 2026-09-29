@@ -17,7 +17,8 @@ add_action( 'wp_ajax_ezd_plugin_action', function () {
 		wp_send_json_error( [ 'message' => esc_html__( 'Permission denied.', 'eazydocs' ) ] );
 	}
 
-	$plugin_slug = isset( $_POST['plugin'] ) ? sanitize_text_field( wp_unslash( $_POST['plugin'] ) ) : '';
+	// Plugin slugs are [a-z0-9-]; sanitize_key() also rules out "../" paths.
+	$plugin_slug = isset( $_POST['plugin'] ) ? sanitize_key( wp_unslash( $_POST['plugin'] ) ) : '';
 	$task        = isset( $_POST['task'] ) ? sanitize_text_field( wp_unslash( $_POST['task'] ) ) : '';
 
 	if ( ! $plugin_slug || ! $task ) {
@@ -47,6 +48,11 @@ add_action( 'wp_ajax_ezd_plugin_action', function () {
 	}
 
 	if ( $task === 'activate' ) {
+		// Installing and activating are separate capabilities.
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'Permission denied.', 'eazydocs' ) ] );
+		}
+
 		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 		$plugin_file = $plugin_slug . '/' . $plugin_slug . '.php';

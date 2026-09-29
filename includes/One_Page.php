@@ -121,12 +121,31 @@ class One_Page {
             $shortcode_content = $clean_left; // raw HTML/shortcodes
         }
 
+        if ( 'docs' !== get_post_type( $parent_id ) ) {
+            wp_die( esc_html__( 'Invalid parent ID.', 'eazydocs' ) );
+        }
+
         // Titles and slugs
         $page_title = get_the_title( $parent_id );
         $post_slug  = get_post_field( 'post_name', $parent_id ) ?: sanitize_title( $page_title );
 
         // Decide redirect target
         $redirect = empty( $_GET['self_doc'] ) ? 'admin.php?page=eazydocs-builder' : 'edit.php?post_type=onepage-docs';
+
+        // A refresh or double click used to create a second OnePage doc (with a
+        // "-2" slug) for the same parent. Reuse the existing one instead.
+        $existing = get_posts( [
+            'post_type'      => 'onepage-docs',
+            'post_status'    => [ 'publish', 'draft', 'private', 'pending', 'future' ],
+            'name'           => $post_slug,
+            'posts_per_page' => 1,
+            'fields'         => 'ids',
+            'no_found_rows'  => true,
+        ] );
+        if ( $existing ) {
+            wp_safe_redirect( admin_url( $redirect ) );
+            exit;
+        }
 
         // Create post array
         $one_page_doc = [

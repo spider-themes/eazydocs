@@ -85,6 +85,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 		// Default constants
 		const version = '2.14.0';
 		public $plugin_path;
+		public $plugin_url;
 		public $theme_dir_path;
 
 		public function __construct() {
@@ -326,6 +327,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			not_found_count mediumint(8) unsigned not null,
 			created_at datetime not null,
 			PRIMARY KEY (id),
+			KEY created_at (created_at),
 			FOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE
 		) {$charset_collate};";
 
@@ -334,7 +336,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			post_id bigint(20) unsigned not null,
 			count mediumint(8) unsigned not null,
 			created_at datetime not null,
-			PRIMARY KEY (id)
+			PRIMARY KEY (id),
+			KEY post_created (post_id,created_at),
+			KEY created_at (created_at)
 		) {$charset_collate};";
 
 			// Load the required upgrade file.
@@ -344,6 +348,12 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			dbDelta( $sql );
 			dbDelta( $sql2 );
 			dbDelta( $sql3 );
+
+			// Existing installs keep their tables; make sure they get the indexes too.
+			if ( function_exists( 'ezd_analytics_db_add_indexes' ) ) {
+				ezd_analytics_db_add_indexes();
+				update_option( 'ezd_analytics_db_version', EZD_ANALYTICS_DB_VERSION );
+			}
 		}
 
 		/**
@@ -377,6 +387,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 					<p><?php esc_html_e( 'EazyDocs database needs an update. Please click the Update button to update your database.', 'eazydocs' ); ?></p>
 					<form method="get">
 						<input type="hidden" name="eazydocs_table_create" value="1">
+						<?php wp_nonce_field( 'ezd_analytics_db_update', '_wpnonce', false ); ?>
 						<input type="submit" class="button button-primary" value="<?php esc_html_e( 'Update Database', 'eazydocs' ); ?>">
 					</form>
 				</div>

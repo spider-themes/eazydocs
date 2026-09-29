@@ -21,21 +21,39 @@ function ezd_ensure_eazydocs_view_log_table_exists() {
 
     $table_name = $wpdb->prefix . 'eazydocs_view_log';
 
-    // Use dbDelta without manually checking the table
-    $charset_collate = $wpdb->get_charset_collate();
-
-    $sql = "CREATE TABLE {$table_name} (
-        id bigint(20) not null auto_increment,
-        post_id bigint(20) unsigned not null,
-        count mediumint(8) unsigned not null,
-        created_at datetime not null,
-        UNIQUE KEY id (id)
-    ) {$charset_collate};";
-
-    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-    dbDelta( $sql );
+    // A cheap existence probe instead of dbDelta() on a front-end request. Only
+    // when the table is really missing do we (re)create the analytics schema,
+    // using the same definition as activation so the two never drift apart.
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- schema introspection.
+    if ( $table_name !== $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) ) {
+        eazydocs()->create_analytics_db_tables();
+    }
 
     set_transient( 'ezd_view_log_table_ready', 1, WEEK_IN_SECONDS );
+}
+
+/**
+ * Increment a doc's view counter and write one row to the view log.
+ *
+ * @param int $post_id Doc ID.
+ * @return void
+ */
+function ezd_record_doc_view( $post_id ) {
+	global $wpdb;
+
+	$count = (int) get_post_meta( $post_id, 'post_views_count', true );
+	update_post_meta( $post_id, 'post_views_count', $count + 1 );
+
+	// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
+	$wpdb->insert(
+		$wpdb->prefix . 'eazydocs_view_log',
+		[
+			'post_id'    => $post_id,
+			'count'      => 1,
+			'created_at' => current_time( 'mysql', 1 ),
+		],
+		[ '%d', '%d', '%s' ]
+	);
 }
 
 add_action('wp', 'eazydocs_set_post_view');
@@ -47,64 +65,30 @@ function eazydocs_set_post_view() {
 
 		ezd_ensure_eazydocs_view_log_table_exists();
 
-		global $wpdb;
-		$post_id = get_the_ID();
+		$post_id = (int) get_the_ID();
 
 		// Check if views tracking is enabled, unique views are enabled, and the user has premium access.
 		if ( '1' === ezd_get_opt( 'enable-views' ) && ( ezd_is_premium() ? '1' === ezd_get_opt( 'enable-unique-views' ) : false ) ) {
 
-			// Retrieve viewed posts from cookies
+			// Retrieve viewed posts from cookies. The cookie is visitor-controlled:
+			// anything that doesn't decode to an array (tampered, truncated) used to
+			// reach in_array() and fatal the page on PHP 8.
 			$viewed_posts = isset( $_COOKIE['eazydocs_viewed_posts'] ) ? json_decode( sanitize_text_field( wp_unslash( $_COOKIE['eazydocs_viewed_posts'] ) ), true ) : [];
+			$viewed_posts = is_array( $viewed_posts ) ? array_map( 'intval', $viewed_posts ) : [];
 
 			// Increment post views count if post has not been viewed
 			if ( ! in_array( $post_id, $viewed_posts, true ) ) {
-
-				// Update the post's view count meta
-				$count = get_post_meta( $post_id, 'post_views_count', true );
-				$count = $count ? $count : 0;
-				update_post_meta( $post_id, 'post_views_count', $count + 1 );
+				ezd_record_doc_view( $post_id );
 
 				// Add this post to the list of viewed posts and update the cookie
+				// Keep the most recent 100 IDs so the cookie can't grow without bound.
 				$viewed_posts[] = $post_id;
-				setcookie( 'eazydocs_viewed_posts', json_encode( $viewed_posts ), time() + 3600 * 24, '/' );
-
-				// Insert view log into the eazydocs_view_log table
-				// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-				$wpdb->insert(
-					$wpdb->prefix . 'eazydocs_view_log',
-					[
-						'post_id'    => $post_id,
-						'count'      => 1,
-						'created_at' => current_time( 'mysql', 1 ),
-					],
-					[
-						'%d',
-						'%d',
-						'%s',
-					]
-				);
+				$viewed_posts   = array_slice( $viewed_posts, -100 );
+				setcookie( 'eazydocs_viewed_posts', wp_json_encode( $viewed_posts ), time() + DAY_IN_SECONDS, '/' );
 			}
 		} else {
 			// Increment the post view count for non-unique views or if views are not enabled
-			$count = get_post_meta( $post_id, 'post_views_count', true );
-			$count = $count ? $count : 0;
-			update_post_meta( $post_id, 'post_views_count', $count + 1 );
-
-			// Insert view log into the eazydocs_view_log table
-			// @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery
-			$wpdb->insert(
-				$wpdb->prefix . 'eazydocs_view_log',
-				[
-					'post_id'    => $post_id,
-					'count'      => 1,
-					'created_at' => current_time( 'mysql', 1 ),
-				],
-				[
-					'%d',
-					'%d',
-					'%s',
-				]
-			);
+			ezd_record_doc_view( $post_id );
 		}
 	}
 

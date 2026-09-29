@@ -169,10 +169,11 @@ class Google_Login {
 
         $text = $text ? $text : __( 'Sign in with Google', 'eazydocs' );
 
-        // Pass flow context via the OAuth `state` param only — never start a PHP
-        // session here. session_start() sets PHPSESSID and forces CACHE MISS on
-        // server-level / full-page caches for every page that renders this button
-        // (e.g. the docs login popup in the footer for logged-out visitors).
+        // Pass flow context via the signed OAuth `state` param only — never start
+        // a PHP session here. session_start() sets PHPSESSID, which forces a cache
+        // MISS on server-level / full-page caches for every page that renders this
+        // button (e.g. the docs login popup in the footer for logged-out visitors),
+        // and serialises concurrent requests behind PHP's session file lock.
         $google_url = $this->get_google_auth_url( $redirect, $product_id, $docs_id );
 
         $html  = '<div class="ezd-google-login-container">';
@@ -197,14 +198,11 @@ class Google_Login {
      * @return string
      */
     private function get_google_auth_url( $redirect = '', $product_id = '', $docs_id = '' ) {
-        $state = [
-            'product_id' => $product_id ? sanitize_text_field( $product_id ) : '',
-            'docs_id'    => $docs_id ? sanitize_text_field( $docs_id ) : '',
-            // Explicit caller redirect only (e.g. the doc being viewed). Empty
-            // when unset so WooCommerce/course defaults in the callback still apply.
+        $state = $this->encode_state( [
+            'product_id' => absint( $product_id ),
+            'docs_id'    => absint( $docs_id ),
             'redirect'   => $redirect ? esc_url_raw( $redirect ) : '',
-            'nonce'      => wp_create_nonce( 'ezd_google_login' ),
-        ];
+        ] );
 
         $params = [
             'client_id'              => $this->client_id,
@@ -213,7 +211,7 @@ class Google_Login {
             'scope'                  => apply_filters( 'eazydocs_google_scopes', 'openid email profile' ),
             'access_type'            => 'offline',
             'include_granted_scopes' => 'true',
-            'state'                  => base64_encode( wp_json_encode( $state ) ),
+            'state'                  => $state,
             // 'prompt' => 'consent' // Optionally force consent each time.
         ];
 
@@ -225,9 +223,7 @@ class Google_Login {
      * Handle Google OAuth callback
      */
     public function handle_google_callback() {
-        $is_callback = get_query_var( 'google_auth_callback' ) || isset( $_GET[ 'code' ] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-
-        if ( ! $is_callback) {
+        if ( ! $this->is_callback_request() ) {
             return;
         }
 
@@ -235,54 +231,47 @@ class Google_Login {
             $error              = sanitize_text_field( wp_unslash( $_GET[ 'error' ] ) );
             $error_description  = isset( $_GET[ 'error_description' ] ) ? sanitize_text_field( wp_unslash( $_GET[ 'error_description' ] ) ) : '';
             error_log( 'Google OAuth Error: ' . $error . ' - ' . $error_description ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-            wp_redirect( wp_login_url() . '?google_error=1' );
+            wp_safe_redirect( wp_login_url() . '?google_error=1' );
             exit;
         }
 
         if ( isset( $_GET[ 'code' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            // Validate the signed state and the browser-bound CSRF token BEFORE
+            // exchanging the code or logging anyone in. Previously the check ran
+            // after login (and was skipped entirely when `state` was absent),
+            // which allowed login CSRF.
+            $state_data = $this->decode_state( isset( $_GET['state'] ) ? sanitize_text_field( wp_unslash( $_GET['state'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $this->clear_csrf_cookie();
+
+            if ( null === $state_data ) {
+                wp_safe_redirect( wp_login_url() . '?google_error=1' );
+                exit;
+            }
+
             $code       = sanitize_text_field( wp_unslash( $_GET[ 'code' ] ) );
             $token_data = $this->exchange_code_for_token( $code );
 
             if ( $token_data && isset( $token_data[ 'access_token' ] ) ) {
                 $user_data = $this->get_user_info( $token_data[ 'access_token' ] );
 
-                if ( $user_data ) {
-                    $this->login_or_register_user( $user_data );
-
-                    // Flow context comes only from the OAuth state param (no PHP session).
-                    $product_id        = 0;
-                    $docs_id           = 0;
-                    $explicit_redirect = '';
-
-                    if ( isset( $_GET[ 'state' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                        $state_raw  = base64_decode( sanitize_text_field( wp_unslash( $_GET[ 'state' ] ) ) );
-                        $state_data = json_decode( $state_raw, true );
-                        if ( is_array( $state_data ) ) {
-                            // Verify nonce for security
-                            if ( empty( $state_data['nonce'] ) || ! wp_verify_nonce( $state_data['nonce'], 'ezd_google_login' ) ) {
-                                wp_logout();
-                                wp_redirect( wp_login_url() . '?google_error=1' );
-                                exit;
-                            }
-                            $product_id        = ! empty( $state_data[ 'product_id' ] ) ? intval( $state_data[ 'product_id' ] ) : 0;
-                            $docs_id           = ! empty( $state_data[ 'docs_id' ] ) ? intval( $state_data[ 'docs_id' ] ) : 0;
-                            $explicit_redirect = ! empty( $state_data[ 'redirect' ] ) ? esc_url_raw( $state_data[ 'redirect' ] ) : '';
-                        }
-                    }
+                if ( $user_data && $this->login_or_register_user( $user_data ) ) {
+                    $product_id        = absint( $state_data['product_id'] ?? 0 );
+                    $docs_id           = absint( $state_data['docs_id'] ?? 0 );
+                    $explicit_redirect = ! empty( $state_data['redirect'] ) ? esc_url_raw( $state_data['redirect'] ) : '';
 
                     // Default to the caller-provided destination (validated to this
                     // site); WooCommerce/course flows below may still override it.
                     $redirect = $explicit_redirect ? wp_validate_redirect( $explicit_redirect, home_url() ) : home_url();
 
                     // WooCommerce session fix
-                    if ( function_exists( 'WC' ) ) {
+                    if ( function_exists( 'WC' ) && WC()->session ) {
                         if ( ! WC()->session->has_session() ) {
                             WC()->session->set_customer_session_cookie( true );
                         }
                     }
 
                     // ✅ Pro Course — Add to cart and redirect to checkout
-                    if ( $product_id && function_exists( 'WC' ) ) {
+                    if ( $product_id && function_exists( 'WC' ) && WC()->cart ) {
                         if ( ! $this->is_user_enrolled( $docs_id, wp_get_current_user()->user_login ) ) {
                             $cart_data = $docs_id ? [ 'docs_id' => $docs_id ] : [];
                             WC()->cart->add_to_cart( $product_id, 1, 0, [], $cart_data );
@@ -302,19 +291,97 @@ class Google_Login {
 
                     // ✅ Output redirect and close popup
                     echo '<!DOCTYPE html><html><head><meta charset="' . esc_attr( get_bloginfo( 'charset' ) ) . '"><title>' . esc_html__( 'Redirecting…', 'eazydocs' ) . '</title></head><body>';
-                    echo '<script>\n                        if ( window.opener ) {\n                            window.opener.location.href = ' . wp_json_encode( esc_url_raw( $redirect ) ) . ';\n                            window.close();\n                        } else {\n                            window.location.href = ' . wp_json_encode( esc_url_raw( $redirect ) ) . ';\n                        }\n                    </script>';
+                    // Note: the old single-quoted string emitted literal "\n" sequences
+                    // into the script (a JS syntax error), so the popup never redirected.
+                    $redirect_js = wp_json_encode( esc_url_raw( $redirect ) );
+                    echo '<script>'
+                        . 'if ( window.opener ) { window.opener.location.href = ' . $redirect_js . '; window.close(); }'
+                        . ' else { window.location.href = ' . $redirect_js . '; }'
+                        . '</script>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-encoded, esc_url_raw()'d URL.
                     echo '</body></html>';
                     exit;
                 }
             }
 
             // Fallback on failure
-            wp_redirect( wp_login_url() . '?google_error=1' );
+            wp_safe_redirect( wp_login_url() . '?google_error=1' );
             exit;
         }
 
-        wp_redirect( home_url() );
+        wp_safe_redirect( home_url() );
         exit;
+    }
+
+    /**
+     * Whether this request is the OAuth callback.
+     *
+     * Matches the callback path itself rather than "any URL with ?code=": the old
+     * check hijacked every front-end request carrying a `code` query arg (other
+     * OAuth plugins, coupon links…) and bounced it to wp-login.php. The path
+     * match also works before rewrite rules are flushed.
+     *
+     * @return bool
+     */
+    private function is_callback_request() {
+        if ( get_query_var( 'google_auth_callback' ) ) {
+            return true;
+        }
+
+        $request_path  = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH ) : '';
+        $callback_path = wp_parse_url( $this->redirect_uri, PHP_URL_PATH );
+
+        return $request_path && untrailingslashit( (string) $request_path ) === untrailingslashit( (string) $callback_path );
+    }
+
+    /**
+     * Sign the sign-in context into an OAuth `state` value.
+     *
+     * The front-end script appends ".<random token>" and stores the same token
+     * in a short-lived cookie, binding the flow to the visitor's browser.
+     *
+     * @param array $data Context (product_id, docs_id, redirect).
+     * @return string
+     */
+    private function encode_state( $data ) {
+        $payload = rtrim( strtr( base64_encode( wp_json_encode( $data ) ), '+/', '-_' ), '=' );
+
+        return $payload . '.' . hash_hmac( 'sha256', $payload, wp_salt( 'auth' ) );
+    }
+
+    /**
+     * Verify a returned `state` (signature + CSRF cookie) and decode it.
+     *
+     * @param string $state Raw state from Google.
+     * @return array|null Context array, or null when invalid.
+     */
+    private function decode_state( $state ) {
+        $parts = explode( '.', (string) $state );
+        if ( 3 !== count( $parts ) ) {
+            return null;
+        }
+
+        list( $payload, $signature, $csrf ) = $parts;
+        $cookie = isset( $_COOKIE['ezd_g_csrf'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['ezd_g_csrf'] ) ) : '';
+
+        if (
+            ! hash_equals( hash_hmac( 'sha256', $payload, wp_salt( 'auth' ) ), $signature )
+            || strlen( $csrf ) < 16 || '' === $cookie || ! hash_equals( $cookie, $csrf )
+        ) {
+            return null;
+        }
+
+        $data = json_decode( base64_decode( strtr( $payload, '-_', '+/' ) ), true );
+
+        return is_array( $data ) ? $data : null;
+    }
+
+    /**
+     * Expire the one-time CSRF cookie.
+     */
+    private function clear_csrf_cookie() {
+        if ( isset( $_COOKIE['ezd_g_csrf'] ) && ! headers_sent() ) {
+            setcookie( 'ezd_g_csrf', '', time() - HOUR_IN_SECONDS, '/' );
+        }
     }
     
     /**
@@ -412,18 +479,30 @@ class Google_Login {
      * @param array $user_data
      */
     private function login_or_register_user( $user_data ) {
-        $email  = sanitize_email( $user_data[ 'email' ] );
+        // Only trust addresses Google has verified. Without this, anyone could
+        // create a Google account on someone else's (unverified) address and be
+        // logged straight into the matching WordPress account — admins included.
+        $verified = $user_data['verified_email'] ?? ( $user_data['email_verified'] ?? false );
+        if ( true !== $verified && 'true' !== $verified ) {
+            return false;
+        }
+
+        $email  = sanitize_email( $user_data[ 'email' ] ?? '' );
+        if ( ! is_email( $email ) ) {
+            return false;
+        }
+
         $user   = get_user_by( 'email', $email );
-        
+
         if ( $user) {
             // User exists, log them in
             wp_set_auth_cookie( $user->ID );
             wp_set_current_user( $user->ID );
+            return true;
         } else {
             // Security: Check if user registration is enabled in WordPress settings
             if ( ! get_option( 'users_can_register' ) ) {
-                wp_redirect( wp_login_url() . '?google_error=1' );
-                exit;
+                return false; // The caller redirects to the login error screen.
             }
 
             // Create new user
@@ -432,16 +511,19 @@ class Google_Login {
             $user_id = wp_create_user( $username, $password, $email );
             
             if ( !is_wp_error( $user_id ) ) {
-                // Update user meta
-                update_user_meta( $user_id, 'first_name', sanitize_text_field( $user_data[ 'given_name' ] ) );
-                update_user_meta( $user_id, 'last_name', sanitize_text_field( $user_data[ 'family_name' ] ) );
-                update_user_meta( $user_id, 'google_id', sanitize_text_field( $user_data[ 'id' ] ) );
-                
+                // Update user meta (Google omits name fields for some accounts).
+                update_user_meta( $user_id, 'first_name', sanitize_text_field( $user_data[ 'given_name' ] ?? '' ) );
+                update_user_meta( $user_id, 'last_name', sanitize_text_field( $user_data[ 'family_name' ] ?? '' ) );
+                update_user_meta( $user_id, 'google_id', sanitize_text_field( $user_data[ 'id' ] ?? '' ) );
+
                 // Log user in
                 wp_set_auth_cookie( $user_id );
                 wp_set_current_user( $user_id );
+                return true;
             }
         }
+
+        return false;
     }
     
     /**

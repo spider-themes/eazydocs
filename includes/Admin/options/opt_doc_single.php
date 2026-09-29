@@ -431,7 +431,9 @@ CSF::createSection(
 				'type'       => 'select',
 				'title'      => esc_html__( 'Elementor Template', 'eazydocs' ),
 				'subtitle'   => esc_html__( 'Select a saved Elementor template. <a target="_blank" href="https://shorturl.at/filGI">Learn how to create templates</a>', 'eazydocs' ),
-				'options'    => ezd_get_elementor_templates(),
+				// Callable name, resolved by CSF only when the field renders; calling it
+				// here loaded every Elementor template on every front-end request.
+				'options'    => 'ezd_get_elementor_templates',
 				'dependency' => array( 'search_banner_layout', '==', 'el-template' ),
 			),
 

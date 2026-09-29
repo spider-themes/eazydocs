@@ -65,13 +65,8 @@ function ezd_render_post_status_badge( $post_id, $class = '' ) {
  * @return int Count of child docs
  */
 function ezd_get_child_docs_count( $parent_id, $statuses = ['publish', 'draft', 'private'] ) {
-    $child_docs = get_pages([
-        'child_of' => $parent_id,
-        'post_type' => 'docs',
-        'post_status' => $statuses
-    ]);
-
-    return count( $child_docs );
+    // Shared ID→parent map instead of a full get_pages() per parent row.
+    return ezd_count_doc_descendants( $parent_id, (array) $statuses );
 }
 
 /**

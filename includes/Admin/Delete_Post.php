@@ -35,41 +35,7 @@ class Delete_Post {
 			$nonce      = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
 
 			if ( 'yes' === $doc_delete && wp_verify_nonce( $nonce, 'ezd_delete_doc_' . $delete_id ) ) {
-				$posts     = intval( $delete_id );
-				$parent_id = $posts . ',';
-
-				$parent        = get_children( [ 'post_parent' => $posts ] );
-				$sec_ids       = '';
-				$child_sec_ids = '';
-				$child_ids     = '';
-
-				foreach ( $parent as $section ) {
-					$sec_ids .= $section->ID . ',';
-
-					$sec_child = get_children( [ 'post_parent' => $section->ID ] );
-					foreach ( $sec_child as $child_sec ) {
-						$child_sec_ids .= $child_sec->ID . ',';
-
-						$child = get_children( [ 'post_parent' => $child_sec->ID ] );
-						foreach ( $child as $childs ) {
-							$child_ids .= $childs->ID . ',';
-						}
-					}
-				}
-
-				$delete_ids  = $parent_id . $sec_ids . $child_sec_ids . $child_ids;
-				$doc_ids     = explode( ',', $delete_ids );
-				$doc_ids_int = array_filter( array_map( 'intval', $doc_ids ) );
-
-				if ( ezd_perform_edit_delete_actions( 'delete', $posts ) ) {
-					foreach ( $doc_ids_int as $deletes ) {
-						if ( get_post( $deletes ) ) {
-							wp_trash_post( $deletes, true );
-						}
-					}
-					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' ) );
-					exit;
-				}
+				$this->trash_tree( intval( $delete_id ) );
 			}
 		}
 
@@ -82,41 +48,7 @@ class Delete_Post {
 			$nonce          = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
 
 			if ( 'yes' === $section_delete && wp_verify_nonce( $nonce, 'ezd_delete_doc_' . $section_id ) ) {
-				$posts     = intval( $section_id );
-				$parent_id = $posts . ',';
-
-				$parent        = get_children( [ 'post_parent' => $posts ] );
-				$sec_ids       = '';
-				$child_sec_ids = '';
-				$child_ids     = '';
-
-				foreach ( $parent as $section ) {
-					$sec_ids .= $section->ID . ',';
-
-					$sec_child = get_children( [ 'post_parent' => $section->ID ] );
-					foreach ( $sec_child as $child_sec ) {
-						$child_sec_ids .= $child_sec->ID . ',';
-
-						$child = get_children( [ 'post_parent' => $child_sec->ID ] );
-						foreach ( $child as $childs ) {
-							$child_ids .= $childs->ID . ',';
-						}
-					}
-				}
-				
-				$delete_ids  = $parent_id . $sec_ids . $child_sec_ids . $child_ids;
-				$doc_ids     = explode( ',', $delete_ids );
-				$doc_ids_int = array_filter( array_map( 'intval', $doc_ids ) );
-				
-				if ( ezd_perform_edit_delete_actions( 'delete', $posts ) ) { 
-					foreach ( $doc_ids_int as $deletes ) {
-						if ( get_post( $deletes ) ) {
-							wp_trash_post( $deletes, true );
-						}
-					}
-					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' ) );
-					exit;
-				}
+				$this->trash_tree( intval( $section_id ) );
 			}
 		}
 
@@ -129,16 +61,36 @@ class Delete_Post {
 			$nonce             = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
 
 			if ( 'yes' === $last_child_delete && wp_verify_nonce( $nonce, 'ezd_delete_doc_' . $child_id ) ) {
-				$last_doc_id = intval( $child_id );
-
-				if ( ezd_perform_edit_delete_actions( 'delete', $last_doc_id ) ) {
-					if ( get_post( $last_doc_id ) ) {
-						wp_trash_post( $last_doc_id, true );
-					}
-					wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' ) );
-					exit;
-				}
+				$this->trash_tree( intval( $child_id ) );
 			}
 		}
+	}
+
+	/**
+	 * Trash a doc and every descendant doc, then return to the builder.
+	 *
+	 * The previous code collected children with get_children() without a
+	 * post_type (so images attached to a doc were trashed along with it) and
+	 * stopped three levels down, leaving deeper docs published under a trashed
+	 * parent.
+	 *
+	 * @param int $doc_id Doc to trash.
+	 * @return void
+	 */
+	private function trash_tree( $doc_id ) {
+		$doc = get_post( $doc_id );
+
+		if ( ! $doc || 'docs' !== $doc->post_type || ! ezd_perform_edit_delete_actions( 'delete', $doc_id ) ) {
+			return;
+		}
+
+		$ids = array_merge( [ $doc_id ], ezd_get_doc_tree_ids( $doc_id ) );
+
+		foreach ( $ids as $id ) {
+			wp_trash_post( $id );
+		}
+
+		wp_safe_redirect( admin_url( 'admin.php?page=eazydocs-builder' ) );
+		exit;
 	}
 }

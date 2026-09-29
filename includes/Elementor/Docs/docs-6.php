@@ -44,25 +44,21 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
                     <div class="doc_entry_info">
                         <ul class="ezd-list-unstyled author_avatar">
 						    <?php
-						    $docs         = new WP_Query( array(
-							    'post_type'     => 'docs',
-							    'post_per_page' => - 1,
-							    'post_parent'   => $doc_id,
+						    // Direct children only need ID + author; the old query also had a
+						    // 'post_per_page' typo, so only the first 10 children were read, and
+						    // it shadowed the outer $docs list.
+						    $child_posts  = get_posts( array(
+							    'post_type'              => 'docs',
+							    'posts_per_page'         => 200,
+							    'post_parent'            => $doc_id,
+							    'no_found_rows'          => true,
+							    'update_post_term_cache' => false,
 						    ) );
-						    $doc_counter  = get_pages( [
-							    'child_of'  => $doc_id,
-							    'post_type' => 'docs'
-						    ] );
+						    $doc_count    = ezd_count_doc_descendants( $doc_id, [ 'publish' ] );
 						    $author_names = [];
 
-						    $i         = 1;
-						    $child_ids = [];
-						    $author_id = [];
-						    while ( $docs->have_posts() ) : $docs->the_post();
-							    $child_ids[] = get_the_ID();
-							    $author_id[] = get_post_field( 'post_author', get_the_ID() );
-							    ++ $i;
-						    endwhile;
+						    $child_ids = wp_list_pluck( $child_posts, 'ID' );
+						    $author_id = wp_list_pluck( $child_posts, 'post_author' );
 
 						    $child_authors = [];
 						    if ( ! empty( $child_ids ) ) {
@@ -127,7 +123,7 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
 						    ?>
                         </ul>
                         <div class="text">
-						    <?php echo count( $doc_counter ) ?> <?php esc_html_e( 'Article in this Docs.', 'eazydocs' ); ?> <br>
+						    <?php echo esc_html( $doc_count ); ?> <?php esc_html_e( 'Article in this Docs.', 'eazydocs' ); ?> <br>
 						    <?php
 						    esc_html_e( 'Written by ', 'eazydocs' );
 						    echo esc_html( $doc_author );

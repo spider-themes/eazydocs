@@ -69,9 +69,13 @@ add_action( 'admin_init', function () {
     }
 
     // is_tracking_allowed() is true once the user opts in to Freemius tracking.
-    if ( method_exists( eaz_fs(), 'is_tracking_allowed' ) && eaz_fs()->is_tracking_allowed() ) {
+    // Only write when the state actually changes (this runs on every admin load).
+    $allowed = method_exists( eaz_fs(), 'is_tracking_allowed' ) && eaz_fs()->is_tracking_allowed();
+    $granted = method_exists( 'Noticepilot_Remote_Notice_Client', 'has_consent' ) ? Noticepilot_Remote_Notice_Client::has_consent( 'Eazydocs' ) : null;
+
+    if ( $allowed && true !== $granted ) {
         Noticepilot_Remote_Notice_Client::grant_consent( 'Eazydocs' );
-    } else {
+    } elseif ( ! $allowed && false !== $granted ) {
         Noticepilot_Remote_Notice_Client::revoke_consent( 'Eazydocs' );
     }
 } );

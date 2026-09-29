@@ -126,9 +126,27 @@ endif;
 			eazydocs_get_template_part( 'single-doc-home' );
 
 			global $post;
-			$children = ezd_list_pages( "title_li=&order=menu_order&child_of=" . absint($post->ID) . "&echo=0&post_type=" . esc_attr($post->post_type) );
 
-			if ( ezd_get_opt('is_articles', 1 ) && $children && $post->post_parent != 0 ) {
+			// Cheap existence check instead of rendering the whole child tree just
+			// to test it for truthiness (it was rendered again below). Skipped
+			// entirely when the Articles section can't show.
+			$children = false;
+			if ( ezd_get_opt( 'is_articles', 1 ) && $post->post_parent != 0 ) {
+				$can_read_private = current_user_can( 'read_private_docs' ) || current_user_can( 'read_private_posts' );
+				$children         = (bool) get_posts( array(
+					'post_type'              => $post->post_type,
+					'post_parent'            => absint( $post->ID ),
+					'post_status'            => $can_read_private ? array( 'publish', 'private' ) : array( 'publish' ),
+					'posts_per_page'         => 1,
+					'fields'                 => 'ids',
+					'no_found_rows'          => true,
+					'update_post_meta_cache' => false,
+					'update_post_term_cache' => false,
+					'suppress_filters'       => false, // Let WPML/Polylang scope by language.
+				) );
+			}
+
+			if ( $children ) {
 				echo '<div class="details_cont ent recently_added" id="content_elements">';
 				echo '<h4 class="c_head">' . esc_html( ezd_get_opt('articles_title', esc_html__( 'Articles', 'eazydocs' )) ) . '</h4>';
 				echo '<ul class="article_list">';

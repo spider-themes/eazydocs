@@ -30,16 +30,12 @@ add_action('wp_ajax_ezd_notify_save_review', 'ezd_notify_save_review');
  ** Give Notice
  **/
 function ezd_notify_give_review() {
-	$docs = get_pages( [
-		'post_type'   => 'docs',
-		'parent'      => 0,
-		'post_status' => 'publish'
-	] );
-
-	$articles = get_pages( [
-		'post_type'   => 'docs',
-		'post_status' => 'publish'
-	] );
+	// Only the counts are shown, so count in SQL instead of loading every doc.
+	global $wpdb;
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	$docs_count     = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status = 'publish' AND post_parent = 0" );
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	$articles_total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = 'docs' AND post_status = 'publish'" );
 	?>
     <div class="notice notice-success is-dismissible" id="ezd_notify_review">
 		<div>
@@ -49,16 +45,16 @@ function ezd_notify_give_review() {
 			<h3><?php esc_html_e( 'Give EazyDocs a review', 'eazydocs' ); ?></h3>
 			<p style="margin-top: 10px;">
 				<?php
-				if ( count( $docs ) <= 0 ) {
+				if ( $docs_count <= 0 ) {
 					esc_html_e( 'Thank you for choosing EazyDocs. We hope you love it. Could you take a couple of seconds posting a nice review to share your happy experience?', 'eazydocs' );
 				} else {
-					$articles_count = count( $articles ) - count( $docs );
+					$articles_count = $articles_total - $docs_count;
 					$articles_text  = $articles_count > 0 ? " and <b>" . $articles_count . "</b> articles" : '';
 					echo wp_kses(
 						sprintf(
 						/* translators: 1: number of docs created, 2: additional articles text */
 							__( 'You have created <b>%1$d</b> docs%2$s with EazyDocs. That\'s awesome! May we ask you to give it a 5-Star rating on WordPress? It will help us spread the word and boost our motivation.', 'eazydocs' ),
-							count( $docs ),
+							$docs_count,
 							$articles_text
 						),
 						array(

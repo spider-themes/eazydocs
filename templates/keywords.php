@@ -29,26 +29,8 @@ if ( ezd_get_opt('is_keywords') == '1' ) :
                         endforeach;
                     endif;
                 else :
-                    global $wpdb;    
-                    // @codingStandardsIgnoreLine WordPress.DB.DirectDatabaseQuery.DirectQuery                
-                    $search_keyword = $wpdb->get_results( "SELECT keyword, COUNT(*) AS count FROM {$wpdb->prefix}eazydocs_search_keyword GROUP BY keyword ORDER BY count DESC" );
-                    $all_keys = [];
-                    if ( count( $search_keyword ) > 0 ) :
-                        foreach ( $search_keyword as $item ): 
-                           $all_keys[] =  $item->keyword;
-                        endforeach;
-                    endif;
-                    
-                    if ( ezd_get_opt('is_exclude_not_found') == '1' ) {
-                        $notFoundKeywords   = ezd_get_search_keywords();
-                        $notFound_keys      = [];
-                        if ( count( $notFoundKeywords ) > 0 ) :
-                            foreach ( $notFoundKeywords as $notFoundKey ) : 
-                            $notFound_keys[] =  $notFoundKey->keyword;
-                            endforeach; 
-                        endif;
-                        $all_keys = array_diff($all_keys, $notFound_keys);
-                    }
+                    // Cached, capped lookup (was an uncached GROUP BY over every search ever logged).
+                    $all_keys = ezd_get_popular_search_keywords( ezd_get_opt( 'keywords_limit', 6 ), '1' == ezd_get_opt( 'is_exclude_not_found' ) );
 
                     if ( count( $all_keys ) > 0 ) :
                         $i = 0;

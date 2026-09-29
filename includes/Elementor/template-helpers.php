@@ -47,18 +47,16 @@ function ezd_render_section_title( $section, $title_class = 'title', $badge_text
         return;
     }
 
-    $doc_counter = get_pages( [
-        'child_of'  => $section->ID,
-        'post_type' => 'docs',
-    ] );
+    // Shared ID→parent map instead of a full get_pages() per section card.
+    $doc_count = $show_count ? ezd_count_doc_descendants( $section->ID, [ 'publish' ] ) : 0;
 
     echo '<h4 class="' . esc_attr( $title_class ) . '">';
     echo esc_html( $section->post_title );
     echo '</h4>';
 
-    if ( $show_count && count( $doc_counter ) > 0 ) {
+    if ( $show_count && $doc_count > 0 ) {
         echo '<span class="ezd-badge">';
-        echo count( $doc_counter ) . ' ' . esc_html( $badge_text );
+        echo esc_html( $doc_count ) . ' ' . esc_html( $badge_text );
         echo '</span>';
     }
 }
