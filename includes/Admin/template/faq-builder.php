@@ -98,26 +98,26 @@ $is_active = is_plugin_active( 'advanced-accordion-block/advanced-accordion-bloc
 		<p><?php esc_html_e( 'Explore real examples of beautiful accordions created with Advanced Accordion Block:', 'eazydocs' ); ?></p>
 		<div class="ezd-screenshots">
 			<div class="ezd-screenshot-item">
-				<a href="https://ps.w.org/advanced-accordion-block/assets/screenshot-1.png" target="_blank" rel="noopener noreferrer">
-					<img src="https://ps.w.org/advanced-accordion-block/assets/screenshot-1.png" alt="Default Group Accordion View">
+				<a href="https://ps.w.org/advanced-accordion-block/assets/screenshot-1.gif?rev=3411759" target="_blank" rel="noopener noreferrer">
+					<img src="https://ps.w.org/advanced-accordion-block/assets/screenshot-1.gif?rev=3411759" alt="Default Group Accordion View">
 				</a>
 				<p><?php esc_html_e( 'Clean & Modern Design', 'eazydocs' ); ?></p>
 			</div>
 			<div class="ezd-screenshot-item">
-				<a href="https://ps.w.org/advanced-accordion-block/assets/screenshot-2.png" target="_blank" rel="noopener noreferrer">
-					<img src="https://ps.w.org/advanced-accordion-block/assets/screenshot-2.png" alt="Pre-Built Patterns">
+				<a href="https://ps.w.org/advanced-accordion-block/assets/screenshot-2.gif?rev=3411759" target="_blank" rel="noopener noreferrer">
+					<img src="https://ps.w.org/advanced-accordion-block/assets/screenshot-2.gif?rev=3411759" alt="Pre-Built Patterns">
 				</a>
 				<p><?php esc_html_e( 'Pre-built Patterns', 'eazydocs' ); ?></p>
 			</div>
 			<div class="ezd-screenshot-item">
-				<a href="https://ps.w.org/advanced-accordion-block/assets/screenshot-3.png" target="_blank" rel="noopener noreferrer">
-					<img src="https://ps.w.org/advanced-accordion-block/assets/screenshot-3.png" alt="Advanced Features">
+				<a href="https://ps.w.org/advanced-accordion-block/assets/screenshot-3.gif?rev=3411759" target="_blank" rel="noopener noreferrer">
+					<img src="https://ps.w.org/advanced-accordion-block/assets/screenshot-3.gif?rev=3411759" alt="Advanced Features">
 				</a>
 				<p><?php esc_html_e( 'Advanced Features', 'eazydocs' ); ?></p>
 			</div>
 			<div class="ezd-screenshot-item">
-				<a href="https://ps.w.org/advanced-accordion-block/assets/screenshot-4.png" target="_blank" rel="noopener noreferrer">
-					<img src="https://ps.w.org/advanced-accordion-block/assets/screenshot-4.png" alt="Pattern Design 2">
+				<a href="https://ps.w.org/advanced-accordion-block/assets/screenshot-4.gif?rev=3411759" target="_blank" rel="noopener noreferrer">
+					<img src="https://ps.w.org/advanced-accordion-block/assets/screenshot-4.gif?rev=3411759" alt="Pattern Design 2">
 				</a>
 				<p><?php esc_html_e( 'Engaging Layouts', 'eazydocs' ); ?></p>
 			</div>
