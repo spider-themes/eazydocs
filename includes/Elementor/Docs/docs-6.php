@@ -17,6 +17,22 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
 	    <?php
 	    $delay    = 0.1;
 	    $duration = 0.5;
+
+	    $all_doc_ids = [];
+	    if ( ! empty( $docs ) ) {
+		    foreach ( $docs as $d ) {
+			    if ( ! empty( $d['doc']->ID ) ) {
+				    $all_doc_ids[] = (int) $d['doc']->ID;
+			    }
+		    }
+	    }
+
+	    $all_descendant_counts  = ! empty( $all_doc_ids ) ? ezd_get_docs_descendant_counts( $all_doc_ids, [ 'publish' ] ) : [];
+	    $all_children_by_parent = ! empty( $all_doc_ids ) ? ezd_get_children_grouped( $all_doc_ids, [
+		    'numberposts' => 200,
+		    'post_status' => [ 'publish' ],
+	    ] ) : [];
+
 	    foreach ( $docs as $doc ) :
 		    $doc_id = $doc['doc']->ID;
 		    ?>
@@ -44,17 +60,8 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
                     <div class="doc_entry_info">
                         <ul class="ezd-list-unstyled author_avatar">
 						    <?php
-						    // Direct children only need ID + author; the old query also had a
-						    // 'post_per_page' typo, so only the first 10 children were read, and
-						    // it shadowed the outer $docs list.
-						    $child_posts  = get_posts( array(
-							    'post_type'              => 'docs',
-							    'posts_per_page'         => 200,
-							    'post_parent'            => $doc_id,
-							    'no_found_rows'          => true,
-							    'update_post_term_cache' => false,
-						    ) );
-						    $doc_count    = ezd_count_doc_descendants( $doc_id, [ 'publish' ] );
+						    $child_posts  = $all_children_by_parent[ $doc_id ] ?? [];
+						    $doc_count    = $all_descendant_counts[ $doc_id ] ?? 0;
 						    $author_names = [];
 
 						    $child_ids = wp_list_pluck( $child_posts, 'ID' );

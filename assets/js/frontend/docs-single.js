@@ -8,10 +8,14 @@
 			 * Used it for the fade gradient shadow on the Read More button
 			 * @type {string}
 			 */
+			const docArea = document.querySelector('.doc_documentation_area');
+			if (!docArea) {
+				return;
+			}
 			let bgColor = window
-				.getComputedStyle(document.querySelector('.doc_documentation_area'), null)
+				.getComputedStyle(docArea, null)
 				.getPropertyValue('background-color'),
-				bgColorRGBA = bgColor.replace(')', ', 0)').replace('rgb', 'rgba');
+				bgColorRGBA = bgColor ? bgColor.replace(')', ', 0)').replace('rgb', 'rgba') : '';
 
 			if (bgColor) {
 				$('.fadeGradient').css(
@@ -685,7 +689,7 @@
 					var tops = $('#sticky_doc2');
 					var topOffset = tops.offset().top;
 					var blogForm = $('.blog_comment_box');
-					var blogFormTop = blogForm.offset().top - 300;
+					var blogFormTop = blogForm.length ? blogForm.offset().top - 300 : 0;
 
 					$(window).on('scroll', function () {
 						var scrolls = $(window).scrollTop();

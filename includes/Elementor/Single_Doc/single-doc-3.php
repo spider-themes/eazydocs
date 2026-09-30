@@ -11,22 +11,21 @@ $title_tag = ! empty( $settings['title_tag'] ) ? $settings['title_tag'] : 'h2';
 
 <div class="ezd-grid ezd-column-<?php echo esc_attr( $ppp_column ); ?> topic_list_inner">
 	<?php
-	$delay             = 0.2;
+	$delay        = 0.2;
+	$section_ids  = ! empty( $sections ) ? wp_list_pluck( $sections, 'ID' ) : array();
+	$grouped_all  = ! empty( $section_ids ) ? ezd_get_children_grouped(
+		$section_ids,
+		array(
+			'post_status' => 'publish',
+			'orderby'     => 'menu_order',
+			'order'       => 'ASC',
+		)
+	) : array();
+	$ppp_limit    = ! empty( $settings['ppp_doc_items'] ) ? (int) $settings['ppp_doc_items'] : -1;
+
 	foreach ( $sections as $section ) :
-		$doc_items = get_children( array(
-			'post_parent'    => $section->ID,
-			'post_type'      => 'docs',
-			'post_status'    => 'publish',
-			'orderby'        => 'menu_order',
-			'order'          => 'ASC',
-			'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-		) );
-		$all_doc_items = get_children( array(
-			'post_parent'    => $section->ID,
-			'post_type'      => 'docs',
-			'post_status'    => 'publish',
-			'posts_per_page' => - 1,
-		) );
+		$all_doc_items = $grouped_all[ $section->ID ] ?? array();
+		$doc_items     = ( $ppp_limit > 0 && count( $all_doc_items ) > $ppp_limit ) ? array_slice( $all_doc_items, 0, $ppp_limit ) : $all_doc_items;
 		?>
         <div class="topic_list_item box-item wow fadeIn" data-wow-delay="0.2s">
 			<?php

@@ -2300,14 +2300,25 @@ function ezd_perform_edit_delete_actions( $action = 'delete', $docID = 0 ){
  * Get doc parent id by current id
  */
 function ezd_get_doc_parent_id( $doc_id = 0 ) {
+	$doc_id = absint( $doc_id ?: get_the_ID() );
+	if ( ! $doc_id ) {
+		return 0;
+	}
 
-	$parent_id = get_post_ancestors( get_the_ID() );
-	$ancestors = end($parent_id);
+	$ancestors = get_post_ancestors( $doc_id );
 
-	if ( ! empty( $ancestors ) ) {
-		return $ancestors;
-	} else {
-		return $doc_id;
+	return ! empty( $ancestors ) ? (int) end( $ancestors ) : $doc_id;
+}
+
+if ( ! function_exists( 'get_root_parent_id' ) ) {
+	/**
+	 * Backward compatibility alias for ezd_get_doc_parent_id.
+	 *
+	 * @param int $page_id Post ID.
+	 * @return int Root parent ID.
+	 */
+	function get_root_parent_id( $page_id ) {
+		return ezd_get_doc_parent_id( $page_id );
 	}
 }
 
@@ -3541,33 +3552,7 @@ function ezd_get_doc_tree_ids( $doc_id ) {
  * @return array<int, WP_Post[]> Children grouped by parent ID.
  */
 function ezd_get_doc_children_map( $parent_ids, $args = [] ) {
-	$parent_ids = array_values( array_filter( array_map( 'intval', (array) $parent_ids ) ) );
-	$grouped    = array_fill_keys( $parent_ids, [] );
-
-	if ( empty( $parent_ids ) ) {
-		return $grouped;
-	}
-
-	$children = get_posts(
-		array_merge(
-			[
-				'post_type'       => 'docs',
-				'post_status'     => 'publish',
-				'post_parent__in' => $parent_ids,
-				'orderby'         => 'menu_order',
-				'order'           => 'ASC',
-				'posts_per_page'  => -1,
-				'no_found_rows'   => true,
-			],
-			$args
-		)
-	);
-
-	foreach ( $children as $child ) {
-		$grouped[ (int) $child->post_parent ][] = $child;
-	}
-
-	return $grouped;
+	return ezd_get_children_grouped( $parent_ids, $args );
 }
 
 /**
@@ -4804,3 +4789,79 @@ function ezd_get_ai_summary_providers( $active_only = false ) {
 	return array_values( $providers );
 }
 
+/**
+ * Efficiently batch-count direct children and grandchildren for a list of parent doc IDs.
+ * Utilizes in-memory tree cache of ezd_count_doc_descendants to avoid redundant DB queries.
+ *
+ * @param array $parent_ids Array of parent post IDs.
+ * @param array $statuses   Post statuses to count.
+ * @return array Map of parent_id => total descendant count.
+ */
+function ezd_get_docs_descendant_counts( $parent_ids, $statuses = [] ) {
+	if ( empty( $parent_ids ) ) {
+		return [];
+	}
+
+	$parent_ids = array_values( array_unique( array_filter( array_map( 'absint', (array) $parent_ids ) ) ) );
+	if ( empty( $parent_ids ) ) {
+		return [];
+	}
+
+	$counts = [];
+	foreach ( $parent_ids as $pid ) {
+		$counts[ $pid ] = ezd_count_doc_descendants( $pid, $statuses );
+	}
+
+	return $counts;
+}
+
+/**
+ * Batch fetch children for an array of parent post IDs, grouped by post_parent.
+ * Eliminates N+1 queries when looping over parent sections or documents.
+ *
+ * @param array $parent_ids Array of parent post IDs.
+ * @param array $args       Query arguments (post_status, orderby, order, numberposts, etc.)
+ * @return array Array mapping parent_id => array of WP_Post objects.
+ */
+function ezd_get_children_grouped( $parent_ids, $args = [] ) {
+	if ( empty( $parent_ids ) ) {
+		return [];
+	}
+
+	$parent_ids = array_values( array_unique( array_filter( array_map( 'absint', (array) $parent_ids ) ) ) );
+	if ( empty( $parent_ids ) ) {
+		return [];
+	}
+
+	$grouped = array_fill_keys( $parent_ids, [] );
+
+	$query_args = [
+		'post_type'      => 'docs',
+		'post_parent__in'=> $parent_ids,
+		'posts_per_page' => -1,
+		'post_status'    => $args['post_status'] ?? ( function_exists( 'ezd_doc_listing_statuses' ) ? ezd_doc_listing_statuses() : [ 'publish' ] ),
+		'orderby'        => $args['orderby'] ?? 'menu_order',
+		'order'          => $args['order'] ?? 'ASC',
+		'no_found_rows'  => true,
+	];
+
+	if ( ! empty( $args['exclude'] ) ) {
+		$query_args['post__not_in'] = (array) $args['exclude'];
+	}
+
+	$posts = get_posts( $query_args );
+
+	$per_parent_limit = isset( $args['numberposts'] ) && (int) $args['numberposts'] > 0 ? (int) $args['numberposts'] : 0;
+
+	foreach ( $posts as $post ) {
+		$pid = (int) $post->post_parent;
+		if ( isset( $grouped[ $pid ] ) ) {
+			if ( $per_parent_limit > 0 && count( $grouped[ $pid ] ) >= $per_parent_limit ) {
+				continue;
+			}
+			$grouped[ $pid ][] = $post;
+		}
+	}
+
+	return $grouped;
+}

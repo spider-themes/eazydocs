@@ -14,15 +14,19 @@ if ( ! defined( 'ABSPATH' ) ) {
     </h5>
     <div class="dox5-section-item">
         <?php
-		foreach ( $sections as $section ) :
-			$doc_items = get_children( array(
-				'post_parent'    => $section->ID,
-				'post_type'      => 'docs',
+		$section_ids = ! empty( $sections ) ? wp_list_pluck( $sections, 'ID' ) : array();
+		$grouped_all = ! empty( $section_ids ) ? ezd_get_children_grouped(
+			$section_ids,
+			array(
 				'post_status'    => 'publish',
 				'orderby'        => 'menu_order',
 				'order'          => 'ASC',
-				'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-			) );
+				'numberposts'    => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : -1,
+			)
+		) : array();
+
+		foreach ( $sections as $section ) :
+			$doc_items = $grouped_all[ $section->ID ] ?? array();
 			?>
         <div class="section5-article">
             <div class="section5-section-title">

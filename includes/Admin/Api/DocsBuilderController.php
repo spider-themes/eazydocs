@@ -643,7 +643,7 @@ class Docs_Builder_Controller {
 			'statusIcon'   => $status_info['icon'],
 			'statusText'   => $status_info['text'],
 			'hasPassword'  => ! empty( $post_obj->post_password ),
-			'childCount'   => ezd_count_doc_descendants( $post_id, array( 'publish', 'draft', 'private' ) ),
+			'childCount'   => $this->count_descendants_from_map( $post_id ),
 			'canEdit'      => ezd_is_admin_or_editor( $post_id, 'edit' ),
 			'canDelete'    => ezd_is_admin_or_editor( $post_id, 'delete' ),
 			'deleteNonce'  => wp_create_nonce( 'ezd_delete_doc_' . $post_id ),
@@ -685,7 +685,7 @@ class Docs_Builder_Controller {
 			'status'      => $post_status,
 			'hasPassword' => ! empty( $post->post_password ),
 			'hasChildren' => $has_children,
-			'childCount'  => ezd_count_doc_descendants( $post->ID, array( 'publish', 'draft', 'private' ) ),
+			'childCount'  => $this->count_descendants_from_map( $post->ID ),
 			'positive'    => (int) get_post_meta( $post->ID, 'positive', true ),
 			'negative'    => (int) get_post_meta( $post->ID, 'negative', true ),
 			'visibility'  => $this->get_visibility_info( $post->ID ),
@@ -701,6 +701,40 @@ class Docs_Builder_Controller {
 	}
 
 	/**
+	 * Count descendants of a doc from the in-memory children map.
+	 *
+	 * @param int $post_id Doc ID.
+	 * @return int
+	 */
+	private function count_descendants_from_map( $post_id ) {
+		$map     = $this->get_docs_children_map();
+		$post_id = (int) $post_id;
+
+		if ( empty( $map[ $post_id ] ) ) {
+			return 0;
+		}
+
+		$count = 0;
+		$stack = $map[ $post_id ];
+		$seen  = array( $post_id => true );
+
+		while ( $stack ) {
+			$id = array_pop( $stack );
+			if ( isset( $seen[ $id ] ) ) {
+				continue;
+			}
+			$seen[ $id ] = true;
+			++$count;
+
+			if ( ! empty( $map[ $id ] ) ) {
+				array_push( $stack, ...$map[ $id ] );
+			}
+		}
+
+		return $count;
+	}
+
+	/**
 	 * Get the current nesting depth for a doc item.
 	 *
 	 * Direct children of a parent doc have depth 1.
@@ -710,20 +744,8 @@ class Docs_Builder_Controller {
 	 * @return int
 	 */
 	private function get_doc_depth( $post_id ) {
-		$depth      = 0;
-		$current_id = $post_id;
-
-		while ( $current_id > 0 ) {
-			$current = get_post( $current_id );
-			if ( ! $current instanceof \WP_Post || empty( $current->post_parent ) ) {
-				break;
-			}
-
-			++$depth;
-			$current_id = (int) $current->post_parent;
-		}
-
-		return max( 1, $depth );
+		$ancestors = get_post_ancestors( $post_id );
+		return max( 1, count( $ancestors ) );
 	}
 
 	/**
@@ -734,15 +756,8 @@ class Docs_Builder_Controller {
 	 * @return int
 	 */
 	private function get_root_parent_id( $post_id ) {
-		$current_id = $post_id;
-		$current    = get_post( $current_id );
-
-		while ( $current instanceof \WP_Post && ! empty( $current->post_parent ) ) {
-			$current_id = (int) $current->post_parent;
-			$current    = get_post( $current_id );
-		}
-
-		return (int) $current_id;
+		$ancestors = get_post_ancestors( $post_id );
+		return ! empty( $ancestors ) ? (int) end( $ancestors ) : (int) $post_id;
 	}
 
 	/**

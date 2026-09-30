@@ -14,9 +14,10 @@
 	'use strict';
 	
 	$(document).ready(function () {
-		// Filter Select (NiceSelect initialization)
-		if ($('select').length > 0) {
-			$('select').niceSelect();
+		// Filter Select (NiceSelect initialization - scoped to EazyDocs containers)
+		var $ezdSelects = $('.ezd-admin, .ezd-container, .eazydocs-dashboard-wrap, .ezd-setup-content, .ezd-stat-filter-container').find('select');
+		if ($ezdSelects.length > 0 && $.fn.niceSelect) {
+			$ezdSelects.niceSelect();
 		}
 
 		// Dashboard Stats Filter Active Class Toggle

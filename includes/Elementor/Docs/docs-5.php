@@ -58,16 +58,32 @@ $doc_statuses   = ezd_doc_listing_statuses( $show_private );
 		<?php
 		$sc_n = 1;
 		if ( ! empty( $docs ) ) :
-		foreach ( $docs
+			$all_sec_ids = array();
+			foreach ( $docs as $d_item ) {
+				if ( ! empty( $d_item['sections'] ) ) {
+					foreach ( $d_item['sections'] as $sec_obj ) {
+						$all_sec_ids[] = $sec_obj->ID;
+					}
+				}
+			}
+			$grouped_doc_items = ! empty( $all_sec_ids ) ? ezd_get_children_grouped(
+				$all_sec_ids,
+				array(
+					'post_status'    => $doc_statuses,
+					'orderby'        => 'menu_order',
+					'order'          => 'ASC',
+					'numberposts'    => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : -1,
+				)
+			) : array();
 
-		as $i => $main_doc ) :
-		// Active Doc
-		if ( $slug_type == 1 ) {
-			$doc_id = $main_doc['doc']->post_name;
-		} else {
-			$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
-		}
-		?>
+			foreach ( $docs as $i => $main_doc ) :
+				// Active Doc
+				if ( $slug_type == 1 ) {
+					$doc_id = $main_doc['doc']->post_name;
+				} else {
+					$doc_id = "{$widget_id}-{$main_doc['doc']->ID}";
+				}
+				?>
         <div id="doc-4<?php echo esc_attr( $doc_id ) ?>" class="doc_section_wrap ">
             <div class="ezd-grid ezd-grid-cols-12">
                 <div class="ezd-lg-col-12 ezd-md-col-12 ezd-grid-column-full">
@@ -97,7 +113,7 @@ $doc_statuses   = ezd_doc_listing_statuses( $show_private );
 							if ( ! empty( $section->post_title ) ) :
 								?>
                                 <a class="doc4-section-title" href="<?php the_permalink( $section->ID ); ?>">
-                                    <h4> <?php echo wp_kses_post( $section->post_title ); ?> </h4>
+                                     <h4> <?php echo wp_kses_post( $section->post_title ); ?> </h4>
                                 </a>
 							<?php echo ezd_doc_status_badge( $section->ID, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							<?php
@@ -105,14 +121,7 @@ $doc_statuses   = ezd_doc_listing_statuses( $show_private );
 							?>
                             <ul class="navbar-nav">
 								<?php
-								$doc_items = get_children( array(
-									'post_parent'    => $section->ID,
-									'post_type'      => 'docs',
-									'post_status'    => $doc_statuses,
-									'orderby'        => 'menu_order',
-									'order'          => 'ASC',
-									'posts_per_page' => ! empty( $settings['ppp_doc_items'] ) ? $settings['ppp_doc_items'] : - 1,
-								) );
+								$doc_items = $grouped_doc_items[ $section->ID ] ?? array();
 								$doc_items = ezd_filter_doc_visibility( $doc_items, $show_private, $show_protected );
 								$child     = 1;
 								foreach ( $doc_items as $doc_item ) :

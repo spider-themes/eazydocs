@@ -83,6 +83,24 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
 		$masonry_layout 		= $is_masonry == 'yes' ? 'ezd-column-3 ezd-masonry' : 'ezd-grid ezd-grid-cols-12 ';
 		$masonry_attr   		= $is_masonry == 'yes' ? 'ezd-massonry-col="3"' : '';
 
+		$all_section_ids = [];
+		if ( ! empty( $docs ) ) {
+			foreach ( $docs as $main_doc ) {
+				if ( ! empty( $main_doc['sections'] ) ) {
+					foreach ( $main_doc['sections'] as $sec ) {
+						$all_section_ids[] = $sec->ID;
+					}
+				}
+			}
+		}
+
+		$doc_items_by_section = ! empty( $all_section_ids ) ? ezd_get_children_grouped( $all_section_ids, [
+			'orderby'     => $settings['order_by'] ?? 'menu_order',
+			'order'       => $settings['child_order'] ?? 'ASC',
+			'numberposts' => ! empty( $settings['ppp_doc_items'] ) ? (int) $settings['ppp_doc_items'] : 0,
+			'post_status' => ezd_doc_listing_statuses(),
+		] ) : [];
+
 		foreach ( $docs as $i => $main_doc ) :
 			// Active Doc
 			if ( ! empty( $settings['active_doc'] ) ) {
@@ -114,7 +132,7 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
 										<?php 
 									endif;
 									
-									$doc_items = ezd_get_doc_items( $section->ID, $settings );
+									$doc_items = $doc_items_by_section[ $section->ID ] ?? ezd_get_doc_items( $section->ID, $settings );
 
 									if ( ! empty( $doc_items ) ) : 
 										ezd_render_doc_items_list( $doc_items, 'ezd-list-unstyled tag_list' );

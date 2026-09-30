@@ -365,6 +365,20 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 
 == Changelog ==
 
+= 2.14.1 (30 September 2026) =
+* Improved: Admin Dropdowns – Scoped select element styling to EazyDocs admin containers to avoid conflicts with core WordPress and third-party dropdowns.
+* Improved: Script Loading – Prevented RTL stylesheet from loading on non-documentation pages, reducing asset footprint.
+* Improved: Sidebar Navigation – Pre-cached post metadata and thumbnails for smoother and faster documentation sidebar rendering.
+* Optimized: Elementor Widgets – Batch-fetched child articles and descendant counts across all documentation skins, eliminating repeated database queries inside layout loops.
+* Optimized: Gutenberg Tabbed Docs – Batch-loaded section articles and document counts in a single query for significantly faster tab rendering.
+* Optimized: Docs Builder – Replaced recursive database queries with in-memory tree traversal for descendant counting, dramatically accelerating builder load time.
+* Optimized: Post Creation – Streamlined document creation queries to check parent and section existence without querying full post objects.
+* Optimized: Page Views Tracking – Added early exit guards for search engine bots, feeds, and background tasks, and capped cookie storage to prevent bloat.
+* Fixed: Parent Document Resolution – Resolved an issue where determining a document's parent ID could incorrectly use the global query ID instead of the requested document.
+* Fixed: Sticky Sidebar – Prevented sticky navigation scripts from unintentionally modifying page body and document overflow styles.
+* Fixed: Single Doc Scripts – Added missing element safety checks to prevent JavaScript errors when specific documentation containers are not present on the page.
+* Fixed: Google Login – Removed PHP session (PHPSESSID) from the frontend sign-in button so page caching works correctly for logged-out visitors.
+
 = 2.14.0 (27 August 2026) =
 * New: API Docs Support – Added settings, editor fields, archive options, and search banner integration for API documentation.
 * Fixed: Multidocs List Style – Fixed a fatal error caused by an undefined icon helper in the Multidocs List Style.

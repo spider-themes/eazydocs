@@ -54,20 +54,22 @@ $doc_statuses   = ezd_doc_listing_statuses( $show_private );
 		$parent_args->post_count = count( $parent_args->posts );
 
 		if ( $parent_args->have_posts() ) :
+			$parent_ids        = ! empty( $parent_args->posts ) ? wp_list_pluck( $parent_args->posts, 'ID' ) : [];
+			$descendant_counts = ! empty( $parent_ids ) ? ezd_get_docs_descendant_counts( $parent_ids, $doc_statuses ) : [];
+			$grouped_articles  = ! empty( $parent_ids ) ? ezd_get_children_grouped(
+				$parent_ids,
+				array(
+					'post_status'    => $doc_statuses,
+					'orderby'        => $order_by ?? 'menu_order',
+					'order'          => $child_order ?? 'ASC',
+					'numberposts'    => $articles_limit,
+				)
+			) : [];
+
 			while ( $parent_args->have_posts() ) :
 				$parent_args->the_post();
-				$doc_id = get_the_ID();
-
-				// All recursive children — total count & avg read time.
-				$all_children  = get_pages(
-					array(
-						'child_of'    => $doc_id,
-						'post_type'   => 'docs',
-						'post_status' => $doc_statuses,
-					)
-				);
-				$all_children  = ezd_filter_doc_visibility( $all_children, $show_private, $show_protected );
-				$article_count = count( $all_children );
+				$doc_id        = get_the_ID();
+				$article_count = $descendant_counts[ $doc_id ] ?? 0;
 
 				// Skip docs without any child docs when "Hide Empty Docs" is enabled.
 				if ( $hide_empty && 0 === $article_count ) {
@@ -75,26 +77,27 @@ $doc_statuses   = ezd_doc_listing_statuses( $show_private );
 				}
 
 				// Direct children for the visible article list (limited by control).
-				$direct_articles = get_children(
-					array(
-						'post_parent'    => $doc_id,
-						'post_type'      => 'docs',
-						'post_status'    => $doc_statuses,
-						'orderby'        => $order_by ?? 'menu_order',
-						'order'          => $child_order ?? 'ASC',
-						'posts_per_page' => $articles_limit,
-					)
-				);
+				$direct_articles = $grouped_articles[ $doc_id ] ?? array();
 				$direct_articles = ezd_filter_doc_visibility( $direct_articles, $show_private, $show_protected );
 
-				// Avg read time: total word count across all articles ÷ 200 wpm.
+				// Avg read time: total word count across all articles ÷ 200 wpm (only computed when enabled).
 				$avg_read_time = 0;
-				if ( $show_rd_time && ! empty( $all_children ) ) {
-					$total_words = 0;
-					foreach ( $all_children as $child ) {
-						$total_words += str_word_count( wp_strip_all_tags( $child->post_content ) );
+				if ( $show_rd_time && $article_count > 0 ) {
+					$all_children = get_pages(
+						array(
+							'child_of'    => $doc_id,
+							'post_type'   => 'docs',
+							'post_status' => $doc_statuses,
+						)
+					);
+					$all_children = ezd_filter_doc_visibility( $all_children, $show_private, $show_protected );
+					if ( ! empty( $all_children ) ) {
+						$total_words = 0;
+						foreach ( $all_children as $child ) {
+							$total_words += str_word_count( wp_strip_all_tags( $child->post_content ) );
+						}
+						$avg_read_time = max( 1, (int) ceil( ( $total_words / count( $all_children ) ) / 200 ) );
 					}
-					$avg_read_time = max( 1, (int) ceil( ( $total_words / count( $all_children ) ) / 200 ) );
 				}
 				?>
 				<div class="ezd-docs-card <?php echo esc_attr( ezd_doc_status_classes( $doc_id ) ); ?>">

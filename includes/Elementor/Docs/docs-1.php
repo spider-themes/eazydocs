@@ -58,43 +58,41 @@ if ( ezd_is_premium() ) {
 
 		// arrange the docs
 		if ( $parent_args->have_posts() ) :
-			while ( $parent_args->have_posts() ) : $parent_args->the_post();
-				$sections = get_children( [
-					'post_parent' => get_the_ID(),
-					'post_type'   => 'docs',
-					'numberposts' => 14,
+			$parent_ids        = ! empty( $parent_args->posts ) ? wp_list_pluck( $parent_args->posts, 'ID' ) : [];
+			$descendant_counts = ! empty( $parent_ids ) ? ezd_get_docs_descendant_counts( $parent_ids, $doc_statuses ) : [];
+			$grouped_sections  = ! empty( $parent_ids ) ? ezd_get_children_grouped(
+				$parent_ids,
+				array(
 					'post_status' => $doc_statuses,
 					'orderby'     => $order_by ?? 'menu_order',
 					'order'       => $child_order,
-                    'posts_per_page' => ! empty( $settings['doc_items_articles'] ) ? $settings['doc_items_articles'] : - 1,
-				] );
-				$sections = ezd_filter_doc_visibility( $sections, $show_private, $show_protected );
+					'numberposts' => ! empty( $settings['doc_items_articles'] ) ? $settings['doc_items_articles'] : 14,
+				)
+			) : [];
 
-				global $post;
-				$get_child_docs = get_pages( array(
-					'child_of'    => get_the_ID(),
-					'post_type'   => 'docs',
-					'post_status' => $doc_statuses,
-				) );
-				$get_child_docs = ezd_filter_doc_visibility( $get_child_docs, $show_private, $show_protected );
+			while ( $parent_args->have_posts() ) : $parent_args->the_post();
+				$current_doc_id = get_the_ID();
+				$sections       = $grouped_sections[ $current_doc_id ] ?? array();
+				$sections       = ezd_filter_doc_visibility( $sections, $show_private, $show_protected );
+				$child_count    = $descendant_counts[ $current_doc_id ] ?? 0;
 
 				// Skip docs with no child docs when "Hide Empty Docs" is enabled.
-				if ( ! empty( $hide_empty ) && empty( $get_child_docs ) ) {
+				if ( ! empty( $hide_empty ) && empty( $child_count ) ) {
 					continue;
 				}
 
 				?>
                 <div class="ezd-col-width">
-                    <div class="categories_guide_item <?php echo esc_attr( ezd_doc_status_classes( get_the_ID() ) ); ?> wow fadeInUp">
-						<?php ezd_render_doc_indicators( get_the_ID(), $show_lock ); ?>
+                    <div class="categories_guide_item <?php echo esc_attr( ezd_doc_status_classes( $current_doc_id ) ); ?> wow fadeInUp">
+						<?php ezd_render_doc_indicators( $current_doc_id, $show_lock ); ?>
 
                         <div class="doc-top ezd-d-flex ezd-align-items-start">
                             <a class="doc_tag_title" href="<?php the_permalink(); ?>">
                                 <h4 class="title ezd_item_title"> <?php the_title(); ?> </h4>
-								<?php echo ezd_doc_status_badge( get_the_ID(), $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo ezd_doc_status_badge( $current_doc_id, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                 <span class="ezd-badge">
 									<?php 
-									echo count( $get_child_docs );
+									echo esc_html( $child_count );
 									echo ' ' . esc_html( $topics_label ); 
 									?>
 								</span>

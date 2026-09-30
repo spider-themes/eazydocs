@@ -32,8 +32,16 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="ezd-grid ezd-mobile-column ezd-column-<?php echo esc_attr( $ppp_column ); ?>">
 				<?php
 				$delay = 0.2;
+				$section_ids = ! empty( $sections ) ? wp_list_pluck( $sections, 'ID' ) : [];
+				$doc_items_by_section = ! empty( $section_ids ) ? ezd_get_children_grouped( $section_ids, [
+					'orderby'     => $settings['order_by'] ?? 'menu_order',
+					'order'       => $settings['child_order'] ?? 'ASC',
+					'numberposts' => ! empty( $settings['ppp_doc_items'] ) ? (int) $settings['ppp_doc_items'] : 0,
+					'post_status' => ezd_doc_listing_statuses(),
+				] ) : [];
+
 				foreach ( $sections as $section ) :
-					$doc_items = ezd_get_doc_items( $section->ID, $settings );
+					$doc_items = $doc_items_by_section[ $section->ID ] ?? ezd_get_doc_items( $section->ID, $settings );
 					?>
                     <div class="recommended_item box-item wow fadeInUp" data-wow-delay="<?php echo esc_attr( $delay ) ?>s">
 						<?php

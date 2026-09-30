@@ -80,12 +80,8 @@ class Assets
 			wp_enqueue_style('eazydocs-dark-mode', EZD_STYLES . 'frontend-dark-mode.css', [], EZD_VERSION);
 		}
 
-		if (is_rtl()) {
-			if (ezd_frontend_pages()) {
-				wp_enqueue_style('eazydocs-rtl', EZD_STYLES . 'rtl.css', ['eazydocs-frontend'], EZD_VERSION);
-			} else {
-				wp_enqueue_style('eazydocs-rtl', EZD_STYLES . 'rtl.css', [], EZD_VERSION);
-			}
+		if (is_rtl() && ezd_frontend_pages()) {
+			wp_enqueue_style('eazydocs-rtl', EZD_STYLES . 'rtl.css', ['eazydocs-frontend'], EZD_VERSION);
 		}
 
 		// Enqueue on onepage doc

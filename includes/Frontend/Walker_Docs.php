@@ -57,6 +57,14 @@ class Walker_Docs extends Walker_Page {
 		if ( \function_exists( '_prime_post_caches' ) ) {
 			\_prime_post_caches( $ids );
 		}
+		if ( \function_exists( 'ezd_update_post_meta_cache' ) ) {
+			\ezd_update_post_meta_cache( $elements );
+		} elseif ( \function_exists( 'update_post_meta_cache' ) ) {
+			\update_post_meta_cache( $ids );
+		}
+		if ( \function_exists( 'update_post_thumbnail_cache' ) ) {
+			\update_post_thumbnail_cache( $elements );
+		}
 
 		return parent::walk( $elements, $max_depth, ...$args );
 	}

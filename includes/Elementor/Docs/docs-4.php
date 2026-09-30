@@ -85,36 +85,50 @@ $show_lock  = ezd_setting_enabled( $settings, 'md_show_lock_icon' );
         <div class="ezd-tab-content">
 			<?php
 			if ( ! empty( $docs ) ) :
-			foreach ( $docs
+				$all_section_ids = [];
+				foreach ( $docs as $main_doc ) {
+					if ( ! empty( $main_doc['sections'] ) ) {
+						foreach ( $main_doc['sections'] as $sec ) {
+							$all_section_ids[] = $sec->ID;
+						}
+					}
+				}
 
-			as $i => $main_doc ) :
-			// Active Doc
-			if ( ! empty( $settings['active_doc'] ) ) {
-				$active = $main_doc['doc']->ID == $settings['active_doc'] ? 'active' : '';
-			} else {
-				$active = ( $i == 0 ) ? 'active' : '';
-			}
-			?>
-            <div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>"
-                 id="<?php $this->tab_id_format( $main_doc['doc']->ID, 'doc3'); ?>">
-                <div class="<?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
-				<?php
-				if ( ! empty( $main_doc['sections'] ) ) :
-					foreach ( $main_doc['sections'] as $section ) :
-						?>
-                        <div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
-                            <div class="topic_list_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
-								<?php ezd_render_doc_indicators( $section->ID, $show_lock ); ?>
-								<?php if ( ! empty( $section->post_title ) ) : ?>
-                                    <h4 class="ezd_item_title"><?php echo wp_kses_post( $section->post_title ); ?></h4>
-								<?php echo ezd_doc_status_badge( $section->ID, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-								<?php endif; ?>
-                                <ul class="navbar-nav">
-									<?php
-									$doc_items = ezd_get_doc_items( $section->ID, $settings );
-									ezd_render_doc_items_list( $doc_items, 'navbar-nav', 'ezd_item_list_title' );
-									?>
-                                </ul>
+				$doc_items_by_section = ! empty( $all_section_ids ) ? ezd_get_children_grouped( $all_section_ids, [
+					'orderby'     => $settings['order_by'] ?? 'menu_order',
+					'order'       => $settings['child_order'] ?? 'ASC',
+					'numberposts' => ! empty( $settings['ppp_doc_items'] ) ? (int) $settings['ppp_doc_items'] : 0,
+					'post_status' => ezd_doc_listing_statuses(),
+				] ) : [];
+
+				foreach ( $docs as $i => $main_doc ) :
+				// Active Doc
+				if ( ! empty( $settings['active_doc'] ) ) {
+					$active = $main_doc['doc']->ID == $settings['active_doc'] ? 'active' : '';
+				} else {
+					$active = ( $i == 0 ) ? 'active' : '';
+				}
+				?>
+				<div class="doc_tab_pane ezd-tab-box <?php echo esc_attr( $active ); ?>"
+					 id="<?php $this->tab_id_format( $main_doc['doc']->ID, 'doc3'); ?>">
+					<div class="<?php echo esc_attr( $masonry_layout ); ?>" <?php echo wp_kses_post( $masonry_attr ); ?>>
+					<?php
+					if ( ! empty( $main_doc['sections'] ) ) :
+						foreach ( $main_doc['sections'] as $section ) :
+							?>
+							<div class="ezd-lg-col-4 ezd-md-col-6 ezd-grid-column-full">
+								<div class="topic_list_item <?php echo esc_attr( ezd_doc_status_classes( $section->ID ) ); ?>">
+									<?php ezd_render_doc_indicators( $section->ID, $show_lock ); ?>
+									<?php if ( ! empty( $section->post_title ) ) : ?>
+										<h4 class="ezd_item_title"><?php echo wp_kses_post( $section->post_title ); ?></h4>
+									<?php echo ezd_doc_status_badge( $section->ID, $show_badge ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<?php endif; ?>
+									<ul class="navbar-nav">
+										<?php
+										$doc_items = $doc_items_by_section[ $section->ID ] ?? ezd_get_doc_items( $section->ID, $settings );
+										ezd_render_doc_items_list( $doc_items, 'navbar-nav', 'ezd_item_list_title' );
+										?>
+									</ul>
 								<?php
 								if ( ! empty( $settings['read_more'] ) ) :
 									ezd_render_read_more_btn( get_permalink( $section->ID ), $settings['read_more'], 'text_btn dark_btn ezd_btn', '<i class="' . ezd_arrow() . '"></i>' );

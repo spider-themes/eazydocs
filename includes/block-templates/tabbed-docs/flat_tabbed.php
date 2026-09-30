@@ -134,31 +134,13 @@ $parent_args->post_count = count( $parent_args->posts );
  */
 if ( ! function_exists( 'ezd_flat_tabbed_get_article_count' ) ) {
 	function ezd_flat_tabbed_get_article_count( $parent_id ) {
-		$children = get_children(
-			array(
-				'post_parent' => $parent_id,
-				'post_type'   => 'docs',
-				'post_status' => ezd_doc_listing_statuses(),
-			)
-		);
-
-		$count = count( $children );
-
-		// Count grandchildren
-		foreach ( $children as $child ) {
-			$grandchildren = get_children(
-				array(
-					'post_parent' => $child->ID,
-					'post_type'   => 'docs',
-					'post_status' => ezd_doc_listing_statuses(),
-				)
-			);
-			$count        += count( $grandchildren );
-		}
-
-		return $count;
+		return ezd_count_doc_descendants( $parent_id, ezd_doc_listing_statuses() );
 	}
 }
+
+// Batch count all descendants for parent tabs in a single query
+$parent_ids_list       = ! empty( $parent_args->posts ) ? wp_list_pluck( $parent_args->posts, 'ID' ) : [];
+$parent_article_counts = $show_doc_count && ! empty( $parent_ids_list ) ? ezd_get_docs_descendant_counts( $parent_ids_list, $doc_statuses ) : [];
 ?>
 <section class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>" id="<?php echo esc_attr( $block_unique_id ); ?>" style="<?php echo esc_attr( $custom_styles ); ?>">
 
@@ -176,12 +158,13 @@ if ( ! function_exists( 'ezd_flat_tabbed_get_article_count' ) ) {
 				while ( $parent_args->have_posts() ) :
 					$parent_args->the_post();
 					$i++;
-					$active        = ( 1 === $i ) ? 'ezd-active' : '';
-					$article_count = $show_doc_count ? ezd_flat_tabbed_get_article_count( get_the_ID() ) : 0;
-					$has_thumbnail = has_post_thumbnail();
+					$current_doc_id = get_the_ID();
+					$active         = ( 1 === $i ) ? 'ezd-active' : '';
+					$article_count  = $show_doc_count ? ( $parent_article_counts[ $current_doc_id ] ?? 0 ) : 0;
+					$has_thumbnail  = has_post_thumbnail();
 					?>
 					<li class="ezd-nav-item">
-						<a data-rel="<?php echo esc_attr( $block_unique_id . '-' . get_post_field( 'post_name', get_the_ID() ) ); ?>" class="ezd-nav-link <?php echo esc_attr( $active ); ?>">
+						<a data-rel="<?php echo esc_attr( $block_unique_id . '-' . get_post_field( 'post_name', $current_doc_id ) ); ?>" class="ezd-nav-link <?php echo esc_attr( $active ); ?>">
 							<?php if ( $show_tab_icon && $has_thumbnail ) : ?>
 								<span class="ezd-tab-icon">
 									<?php the_post_thumbnail( 'thumbnail', array( 'class' => 'ezd-tab-icon-img' ) ); ?>
@@ -225,6 +208,18 @@ if ( ! function_exists( 'ezd_flat_tabbed_get_article_count' ) ) {
 					)
 				);
 				$sections = ezd_filter_doc_visibility( $sections, $show_private, $show_protected );
+
+				// Batch fetch all articles for these sections in 1 single query
+				$section_ids      = ! empty( $sections ) ? wp_list_pluck( $sections, 'ID' ) : [];
+				$grouped_articles = ! empty( $section_ids ) ? ezd_get_children_grouped(
+					$section_ids,
+					array(
+						'numberposts' => $attributes['articlesNumber'] ?? -1,
+						'post_status' => $doc_statuses,
+						'orderby'     => $attributes['orderBy'] ?? 'menu_order',
+						'order'       => $attributes['child_docs_order'] ?? 'desc',
+					)
+				) : [];
 				?>
 				<div class="ezd-tab-pane <?php echo esc_attr( $active ); ?>" id="<?php echo esc_attr( $block_unique_id . '-' . get_post_field( 'post_name', get_the_ID() ) ); ?>">
 					<?php if ( empty( $sections ) ) : ?>
@@ -239,16 +234,7 @@ if ( ! function_exists( 'ezd_flat_tabbed_get_article_count' ) ) {
 						<div class="<?php echo esc_attr( $layout_class ); ?>">
 							<?php
 							foreach ( $sections as $section ) :
-								$articles = get_children(
-									array(
-										'post_parent' => $section->ID,
-										'post_type'   => 'docs',
-										'numberposts' => $attributes['articlesNumber'] ?? -1,
-										'post_status' => $doc_statuses,
-										'orderby'     => $attributes['orderBy'] ?? 'menu_order',
-										'order'       => $attributes['child_docs_order'] ?? 'desc',
-									)
-								);
+								$articles = $grouped_articles[ $section->ID ] ?? array();
 								$articles = ezd_filter_doc_visibility( $articles, $show_private, $show_protected );
 								?>
 								<div class="ezd-section-card">
