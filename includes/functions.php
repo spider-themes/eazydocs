@@ -3279,8 +3279,13 @@ function ezd_filter_user_has_cap( $allcaps, $caps, $args, $user ) {
 		return $allcaps;
 	}
 
-	// Administrators / users with manage_options or super admins always have all doc capabilities.
-	if ( ! empty( $allcaps['manage_options'] ) || is_super_admin( $user->ID ) ) {
+	// Administrators, and anyone WordPress treats as a super admin, always have
+	// all doc capabilities. On a single site that is delete_users, already
+	// present in $allcaps. Do not call is_super_admin() here: on a single site
+	// it calls has_cap(), this filter runs again, and the request uses memory
+	// until PHP stops it. On multisite, is_super_admin() only reads the super-admin list.
+	$is_super_admin = is_multisite() ? is_super_admin( $user->ID ) : ! empty( $allcaps['delete_users'] );
+	if ( ! empty( $allcaps['manage_options'] ) || $is_super_admin ) {
 		$doc_caps = [
 			'edit_doc',
 			'edit_docs',
