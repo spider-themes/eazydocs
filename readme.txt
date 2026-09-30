@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs, arifrahman1
 Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
-Tested up to: 7.1
+Tested up to: 7.1.2
 Requires PHP: 7.4
-Stable tag: 2.14.0
+Stable tag: 2.14.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -365,7 +365,7 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 
 == Changelog ==
 
-= 2.14.1 (30 September 2026) =
+= 2.14.1 (1 October 2026) =
 * Improved: Admin Dropdowns – Scoped select element styling to EazyDocs admin containers to avoid conflicts with core WordPress and third-party dropdowns.
 * Improved: Script Loading – Prevented RTL stylesheet from loading on non-documentation pages, reducing asset footprint.
 * Improved: Sidebar Navigation – Pre-cached post metadata and thumbnails for smoother and faster documentation sidebar rendering.
@@ -378,6 +378,7 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 * Fixed: Sticky Sidebar – Prevented sticky navigation scripts from unintentionally modifying page body and document overflow styles.
 * Fixed: Single Doc Scripts – Added missing element safety checks to prevent JavaScript errors when specific documentation containers are not present on the page.
 * Fixed: Google Login – Removed PHP session (PHPSESSID) from the frontend sign-in button so page caching works correctly for logged-out visitors.
+* Fixed: Documentation Permissions – Resolved an out-of-memory issue caused by documentation permission checks.
 
 = 2.14.0 (27 August 2026) =
 * New: API Docs Support – Added settings, editor fields, archive options, and search banner integration for API documentation.
@@ -589,6 +590,9 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 
 == Upgrade Notice ==
+
+= 2.14.1 =
+Includes performance improvements, optimized queries, and important bug fixes. We recommend updating to the latest version.
 
 = 2.14.0 =
 Adds API Docs support and fixes a Multidocs List Style fatal error.

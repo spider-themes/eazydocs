@@ -1,5 +1,5 @@
 
-= 2.14.1 (30 September 2026) =
+= 2.14.1 (1 October 2026) =
 Improved: Admin Dropdowns – Scoped select element styling to EazyDocs admin containers to avoid conflicts with core WordPress and third-party dropdowns.
 Improved: Script Loading – Prevented RTL stylesheet from loading on non-documentation pages, reducing asset footprint.
 Improved: Sidebar Navigation – Pre-cached post metadata and thumbnails for smoother and faster documentation sidebar rendering.
@@ -12,6 +12,7 @@ Fixed: Parent Document Resolution – Resolved an issue where determining a docu
 Fixed: Sticky Sidebar – Prevented sticky navigation scripts from unintentionally modifying page body and document overflow styles.
 Fixed: Single Doc Scripts – Added missing element safety checks to prevent JavaScript errors when specific documentation containers are not present on the page.
 Fixed: Google Login – Removed PHP session (PHPSESSID) from the frontend sign-in button so page caching works correctly for logged-out visitors.
+Fixed: Documentation Permissions – Resolved an out-of-memory issue caused by documentation permission checks.
 
 = 2.14.0 (27 August 2026) =
 New: API Docs Support – Added settings, editor fields, archive options, and search banner integration for API documentation.
