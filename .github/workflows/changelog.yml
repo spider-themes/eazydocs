@@ -1,0 +1,21 @@
+name: Upload Changelog
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: spider-themes/package@v1
+        with:
+          slug: ${{ vars.SLUG }}
+          prod_files: ${{ vars.PROD_FILES }}
+          changelog_only: true
+          vps_host: ${{ secrets.VPS_HOST }}
+          vps_port: ${{ secrets.VPS_PORT }}
+          vps_user: ${{ secrets.VPS_USER }}
+          vps_ssh_key: ${{ secrets.VPS_SSH_KEY }}
