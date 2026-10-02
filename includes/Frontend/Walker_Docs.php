@@ -62,8 +62,10 @@ class Walker_Docs extends Walker_Page {
 		} elseif ( \function_exists( 'update_post_meta_cache' ) ) {
 			\update_post_meta_cache( $ids );
 		}
-		if ( \function_exists( 'update_post_thumbnail_cache' ) ) {
-			\update_post_thumbnail_cache( $elements );
+		if ( \function_exists( 'update_post_thumbnail_cache' ) && $elements ) {
+			$thumbnail_query        = new \WP_Query();
+			$thumbnail_query->posts = $elements;
+			\update_post_thumbnail_cache( $thumbnail_query );
 		}
 
 		return parent::walk( $elements, $max_depth, ...$args );

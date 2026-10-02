@@ -319,7 +319,9 @@ function ezd_list_pages_onepage( $args = '' ) {
 	if ( ! empty( $pages ) ) {
 		ezd_update_post_meta_cache( $pages );
 		if ( function_exists( 'update_post_thumbnail_cache' ) ) {
-			update_post_thumbnail_cache( $pages );
+			$thumbnail_query        = new WP_Query();
+			$thumbnail_query->posts = $pages;
+			update_post_thumbnail_cache( $thumbnail_query );
 		}
 
 		if ( $r['title_li'] ) {
