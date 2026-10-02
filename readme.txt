@@ -4,7 +4,7 @@ Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
 Tested up to: 7.1.2
 Requires PHP: 7.4
-Stable tag: 2.14.1
+Stable tag: 2.14.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -365,6 +365,9 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 
 == Changelog ==
 
+= 2.14.2 (2 October 2026) =
+* Fixed: PHP 8 fatal error in thumbnail cache handling.
+
 = 2.14.1 (1 October 2026) =
 * Improved: Admin Dropdowns – Scoped select element styling to EazyDocs admin containers to avoid conflicts with core WordPress and third-party dropdowns.
 * Improved: Script Loading – Prevented RTL stylesheet from loading on non-documentation pages, reducing asset footprint.
@@ -590,6 +593,9 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 
 == Upgrade Notice ==
+
+= 2.14.2 =
+Includes an important PHP 8 compatibility fix for thumbnail cache handling. We recommend updating to the latest version.
 
 = 2.14.1 =
 Includes performance improvements, optimized queries, and important bug fixes. We recommend updating to the latest version.
