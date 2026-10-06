@@ -64,12 +64,8 @@ CSF::createSection($prefix, array(
             'output_mode' => '--ezd_brand_color_dark',
             'class' => 'eazydocs-pro-notice active-theme-docly active-theme-docy',
             'dependency' => array(
-                'is_dark_switcher',
-                '==',
-                '1',
-                'is_dark_accent_color',
-                '==',
-                '1',
+                array( 'is_dark_switcher', '==', '1' ),
+                array( 'is_dark_accent_color', '==', '1' ),
             ),
         ),
 

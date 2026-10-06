@@ -1,9 +1,19 @@
 node_modules
 vendor
 build
+.cursor
 /src/css
 /includes/csf
 /assets/scss/css
+
+# Live Sass writes assets/scss into assets/css. That output is local and must
+# not show up as new files in GitHub. CSS already tracked in git stays tracked.
+/assets/css/**/*.css
+/assets/css/**/*.css.map
+!/assets/css/admin/admin-settings.css
+!/assets/css/elementor/ezd-elementor-editor.css
+!/assets/css/elementor/ezd-pro-elementor-editor.css
+!/assets/css/support-assistant.css
 
 # OS junk (any folder / subfolder)
 .DS_Store
