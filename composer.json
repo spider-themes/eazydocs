@@ -10,6 +10,15 @@
         }
     ],
     "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./freemius-sdk",
+            "options": {
+                "symlink": false
+            }
+        }
+    ],
     "require": {
         "freemius/wordpress-sdk": "^2.13",
         "league/commonmark": "^2.8.2",

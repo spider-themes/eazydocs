@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bb423864fe08c4d6313a10eb1c91d50",
+    "content-hash": "a58b290f44eda7159dba9f64304fa5f3",
     "packages": [
         {
             "name": "dflydev/dot-access-data",
@@ -83,17 +83,11 @@
         },
         {
             "name": "freemius/wordpress-sdk",
-            "version": "2.13.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Freemius/wordpress-sdk.git",
-                "reference": "fa43eb92ae9dffa0d9f5ae11b5a1739bd7222308"
-            },
+            "version": "2.13.5",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Freemius/wordpress-sdk/zipball/fa43eb92ae9dffa0d9f5ae11b5a1739bd7222308",
-                "reference": "fa43eb92ae9dffa0d9f5ae11b5a1739bd7222308",
-                "shasum": ""
+                "type": "path",
+                "url": "./freemius-sdk",
+                "reference": "9ffb36d9fe5fa1b5b9e80906b165fff48a8d8d04"
             },
             "require": {
                 "php": ">=5.6"
@@ -105,7 +99,7 @@
                 "phpstan/extension-installer": "^1.3",
                 "squizlabs/php_codesniffer": "^3.7",
                 "szepeviktor/phpstan-wordpress": "^1.3",
-                "wp-coding-standards/wpcs": "^2.3"
+                "wp-coding-standards/wpcs": "^3.4.1"
             },
             "type": "library",
             "autoload": {
@@ -113,7 +107,22 @@
                     "start.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "phpcs": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "phpcs -p -s --colors"
+                ],
+                "phpcs:ci": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "phpcs --standard=phpcompat.xml -p -s --colors"
+                ],
+                "phpstan": [
+                    "./vendor/bin/phpstan analyse phpstan.neon --memory-limit 2G"
+                ],
+                "phpstan:log": [
+                    "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 2G > error-phpstan.xml"
+                ]
+            },
             "license": [
                 "GPL-3.0-only"
             ],
@@ -128,11 +137,10 @@
                 "wordpress-plugin",
                 "wordpress-theme"
             ],
-            "support": {
-                "issues": "https://github.com/Freemius/wordpress-sdk/issues",
-                "source": "https://github.com/Freemius/wordpress-sdk/tree/2.13.4"
-            },
-            "time": "2026-07-09T08:50:52+00:00"
+            "transport-options": {
+                "symlink": false,
+                "relative": true
+            }
         },
         {
             "name": "league/commonmark",
