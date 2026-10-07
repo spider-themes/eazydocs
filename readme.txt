@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs, arifrahman1
 Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
-Tested up to: 7.1.2
+Tested up to: 7.1.3
 Requires PHP: 7.4
-Stable tag: 2.14.2
+Stable tag: 2.15.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spider-themes.net/
@@ -365,8 +365,9 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 
 == Changelog ==
 
-= 2.14.3 (7 October 2026) =
+= 2.15.0 (8 October 2026) =
 * New: Search Shortcode – Added the [ezd_search] shortcode so the EazyDocs search bar can be placed on any page, classic widget, or template without Gutenberg or Elementor.
+* Updated: Updated Freemius SDK to the latest version
 
 = 2.14.2 (2 October 2026) =
 * Fixed: PHP 8 fatal error in thumbnail cache handling.
@@ -596,6 +597,9 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 [See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
 
 == Upgrade Notice ==
+
+= 2.15.0 =
+Adds the new search shortcode and updates the Freemius SDK. We recommend updating to the latest version.
 
 = 2.14.2 =
 Includes an important PHP 8 compatibility fix for thumbnail cache handling. We recommend updating to the latest version.
