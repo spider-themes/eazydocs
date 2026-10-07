@@ -404,6 +404,24 @@ CSF::createSection(
 			),
 
 			array(
+				'type'    => 'notice',
+				'style'   => 'info',
+				'content' => '
+					<div class="ezd-settings-info ezd-settings-info--info ezd-search-note">
+						<span class="dashicons dashicons-search" aria-hidden="true"></span>
+						<div>
+							<strong>' . esc_html__( 'Use this search bar anywhere', 'eazydocs' ) . '</strong>
+							<p>' . sprintf(
+								/* translators: %s: clickable shortcode copy control. */
+								esc_html__( 'Add %s to any page, post, widget, or template. It uses the same design as the options below.', 'eazydocs' ),
+								'<button type="button" class="ezd-search-note__copy" data-copy="[ezd_search]" data-copied="' . esc_attr__( 'Copied', 'eazydocs' ) . '" aria-label="' . esc_attr__( 'Copy shortcode', 'eazydocs' ) . '"><code>[ezd_search]</code><span class="dashicons dashicons-clipboard" aria-hidden="true"></span></button>'
+							) . '</p>
+						</div>
+					</div>
+				',
+			),
+
+			array(
 				'id'       => 'search_banner_layout',
 				'type'     => 'select',
 				'title'    => esc_html__( 'Banner Type', 'eazydocs' ),

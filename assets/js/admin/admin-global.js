@@ -299,6 +299,32 @@
             });
         });
 
+        // Search banner notice: click the shortcode chip to copy it.
+        $(document).on('click', '.ezd-search-note__copy', function (e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var value = $btn.attr('data-copy') || '';
+            if (!value || $btn.hasClass('is-copied')) {
+                return;
+            }
+            var label = $btn.attr('aria-label');
+            var done = function () {
+                $btn.addClass('is-copied').attr('aria-label', $btn.attr('data-copied') || 'Copied');
+                window.setTimeout(function () {
+                    $btn.removeClass('is-copied').attr('aria-label', label);
+                }, 1600);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(done);
+            } else {
+                var $tmp = $('<input>').val(value).appendTo('body').select();
+                document.execCommand('copy');
+                $tmp.remove();
+                done();
+            }
+        });
+
         // Google Sign-In: copy the redirect URI to the clipboard.
         $(document).on('click', '.ezd-copy-redirect', function (e) {
             e.preventDefault();

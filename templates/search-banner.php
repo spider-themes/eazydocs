@@ -1,5 +1,11 @@
 <?php
-if ( ezd_get_opt('is_search_banner', '1') == '1' ) :
+// Documentation pages follow the "Show Search Banner" setting. The [ezd_search]
+// shortcode sets this flag so the same banner can render anywhere else.
+$ezd_show_search_banner = ! empty( $GLOBALS['ezd_search_shortcode'] ) || apply_filters(
+	'eazydocs_show_search_banner',
+	ezd_get_opt( 'is_search_banner', '1' ) == '1'
+);
+if ( $ezd_show_search_banner ) :
 	$custom_banner = ezd_get_opt( 'doc_banner_bg' );
 	$has_cs_color  = ! empty( $custom_banner['background-color'] );
 	$has_cs_image  = ! empty( $custom_banner['background-image']['url'] );

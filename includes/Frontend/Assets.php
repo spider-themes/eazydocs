@@ -140,6 +140,12 @@ class Assets
 			wp_enqueue_script('eazydocs-global', EZD_ASSETS . 'js/frontend/global.js', ['jquery'], EZD_VERSION, true);
 			wp_enqueue_script('eazydocs-search-banner');
 		}
+
+		// The shortcode prints the existing banner markup, so it only needs the
+		// styles and script that banner already uses. It does not load global.js.
+		if (ezd_is_search_shortcode_present()) {
+			ezd_enqueue_search_shortcode_assets();
+		}
 	}
 
 	/**

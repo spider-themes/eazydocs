@@ -102,7 +102,7 @@ From small teams to enterprise organizations, EazyDocs is the go-to solution for
 ### Page Builder Integration
 *   **Gutenberg Blocks** – Comprehensive pre-built blocks for dynamic doc page creation. **No third-party page builder required!**
 *   **Elementor Widgets (Optional)** – Optional drag-and-drop widgets if you prefer Elementor.
-*   **Shortcodes** – Flexible shortcode system for advanced customization.
+*   **Shortcodes** – Flexible shortcode system for advanced customization. Use `[ezd_search]` to place the live search bar on any page, post, or widget.
 
 **Note:** EazyDocs works perfectly with WordPress's native Gutenberg editor. You do NOT need Elementor or any other third-party page builder to create beautiful documentation and helpdesk landing pages.
 
@@ -364,6 +364,9 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 10. Password Protected Doc – Secure sensitive documents with password protection and controlled access.
 
 == Changelog ==
+
+= 2.14.3 (7 October 2026) =
+* New: Search Shortcode – Added the [ezd_search] shortcode so the EazyDocs search bar can be placed on any page, classic widget, or template without Gutenberg or Elementor.
 
 = 2.14.2 (2 October 2026) =
 * Fixed: PHP 8 fatal error in thumbnail cache handling.

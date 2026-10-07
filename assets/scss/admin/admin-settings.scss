@@ -534,6 +534,79 @@ body.ama {
 	}
 }
 
+// Compact shortcode guide on the search banner settings.
+.csf-field-notice:has(.ezd-search-note) {
+	padding-top: 0;
+	padding-bottom: 8px;
+
+	.csf-fieldset {
+		width: 100% !important;
+	}
+
+	.csf-notice {
+		padding: 0;
+		background: transparent;
+		border: 0;
+		box-shadow: none;
+	}
+}
+
+.ezd-search-note {
+	margin-bottom: 0;
+	padding: 12px 14px;
+
+	&__copy {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		margin: 0 2px;
+		padding: 0 6px 0 8px;
+		border: 1px solid #bfdbfe;
+		border-radius: 4px;
+		background: #fff;
+		color: #1d4ed8;
+		font-family: inherit;
+		font-size: 12px;
+		line-height: 1.7;
+		cursor: pointer;
+		vertical-align: baseline;
+
+		code {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			background: transparent;
+			color: inherit;
+			font-size: inherit;
+			line-height: inherit;
+		}
+
+		.dashicons {
+			width: 14px;
+			height: 14px;
+			font-size: 14px;
+			color: #64748b;
+		}
+
+		&:hover,
+		&:focus {
+			border-color: #93c5fd;
+			box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+			outline: none;
+		}
+
+		&.is-copied {
+			border-color: #86efac;
+			color: #166534;
+
+			.dashicons:before {
+				content: "\f147";
+				color: #16a34a;
+			}
+		}
+	}
+}
+
 // Permissions capability reference matrix
 .ezd-perm-matrix {
 	background: #f8fafc;

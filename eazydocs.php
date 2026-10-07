@@ -162,6 +162,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			require_once __DIR__ . '/shortcodes/conditional_data.php';
 			require_once __DIR__ . '/shortcodes/ezd-view-docs.php';
+			require_once __DIR__ . '/shortcodes/ezd-search.php';
 
 			if ( ezd_is_premium() ) {
 				$docs_url  = ezd_get_opt( 'docs-url-structure', 'custom-slug' );
