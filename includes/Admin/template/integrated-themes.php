@@ -18,7 +18,7 @@ $integrated_themes = [
 		'name'            => __( 'Docy', 'eazydocs' ),
 		'description'     => __( 'Professional documentation and forum theme with advanced features for creating knowledge bases, community forums, and comprehensive support resources.', 'eazydocs' ),
 		'preview_url'     => EZD_ASSETS . 'images/admin/themes/docy.png',
-		'demo_url'        => 'https://wordpress-theme.spider-themes.net/docy/',
+		'demo_url'        => 'https://wordpress-theme.spiderthemes.net/docy/',
 		'marketplace_url' => 'https://themeforest.net/item/docy-documentation-and-forum-wordpress-theme/31370838',
 	],
 	[
@@ -26,7 +26,7 @@ $integrated_themes = [
 		'name'            => __( 'Docly', 'eazydocs' ),
 		'description'     => __( 'Comprehensive documentation and knowledge base theme with powerful built-in features for creating extensive documentation, forums, and support systems.', 'eazydocs' ),
 		'preview_url'     => EZD_ASSETS . 'images/admin/themes/docly.png',
-		'demo_url'        => 'https://wordpress-theme.spider-themes.net/docly/',
+		'demo_url'        => 'https://wordpress-theme.spiderthemes.net/docly/',
 		'marketplace_url' => 'https://themeforest.net/item/docly-documentation-and-knowledge-base-wordpress-theme/26885280',
 	],
 	[
@@ -42,7 +42,7 @@ $integrated_themes = [
 		'name'            => __( 'Banca', 'eazydocs' ),
 		'description'     => __( 'Banking and business finance theme for financial institutions, loan services, and corporate documentation with professional layouts and trust-building features.', 'eazydocs' ),
 		'preview_url'     => EZD_ASSETS . 'images/admin/themes/banca.png',
-		'demo_url'        => 'https://wordpress-theme.spider-themes.net/banca/',
+		'demo_url'        => 'https://wordpress-theme.spiderthemes.net/banca/',
 		'marketplace_url' => 'https://themeforest.net/item/banca-banking-business-loanwordpress-theme/33736009',
 	],
 	[
@@ -50,7 +50,7 @@ $integrated_themes = [
 		'name'            => __( 'Ama', 'eazydocs' ),
 		'description'     => __( 'Social Q&A and forum WordPress theme for building community-driven question and answer platforms with discussion forums and user engagement features.', 'eazydocs' ),
 		'preview_url'     => EZD_ASSETS . 'images/admin/themes/ama.png',
-		'demo_url'        => 'https://wordpress-theme.spider-themes.net/ama/',
+		'demo_url'        => 'https://wordpress-theme.spiderthemes.net/ama/',
 		'marketplace_url' => 'https://themeforest.net/item/ama-social-questions-and-answers-wordpress-theme/36587700',
 	],
 	[
@@ -58,7 +58,7 @@ $integrated_themes = [
 		'name'            => __( 'Landpagy', 'eazydocs' ),
 		'description'     => __( 'Multipurpose landing page theme ideal for creating high-converting product pages, promotional campaigns, and corporate websites with modern design elements.', 'eazydocs' ),
 		'preview_url'     => EZD_ASSETS . 'images/admin/themes/landpagy.png',
-		'demo_url'        => 'https://wordpress-theme.spider-themes.net/landpagy/',
+		'demo_url'        => 'https://wordpress-theme.spiderthemes.net/landpagy/',
 		'marketplace_url' => 'https://themeforest.net/item/landpagy-multipurpose-landing-page-wordpress-theme/36332915',
 	],
 	[
@@ -66,7 +66,7 @@ $integrated_themes = [
 		'name'            => __( 'Deski', 'eazydocs' ),
 		'description'     => __( 'Modern event ticketing and landing page WordPress theme designed for creating professional event pages, ticket sales, and promotional campaigns.', 'eazydocs' ),
 		'preview_url'     => EZD_ASSETS . 'images/admin/themes/deski.png',
-		'demo_url'        => 'https://creativegigs.spider-themes.net/deski/',
+		'demo_url'        => 'https://creativegigs.spiderthemes.net/deski/',
 		'marketplace_url' => 'https://themeforest.net/item/deski-multipurpose-landing-page-wordpress-theme/34094683',
 	],
     [
@@ -82,7 +82,7 @@ $integrated_themes = [
 		'name'            => __( 'Rogan', 'eazydocs' ),
 		'description'     => __( 'Creative multipurpose WordPress theme perfect for businesses, portfolios, and customer support platforms with elegant design and powerful customization options.', 'eazydocs' ),
 		'preview_url'     => EZD_ASSETS . 'images/admin/themes/rogan.png',
-		'demo_url'        => 'https://creativegigs.spider-themes.net/rogan/',
+		'demo_url'        => 'https://creativegigs.spiderthemes.net/rogan/',
 		'marketplace_url' => 'https://themeforest.net/item/rogan-creative-multipurpose-wordpress-theme/24061213',
 	],
 	[
@@ -90,7 +90,7 @@ $integrated_themes = [
 		'name'            => __( 'Zoomy', 'eazydocs' ),
 		'description'     => __( 'Learning management system theme for online courses and educational platforms featuring course management, instructor profiles, and student engagement tools.', 'eazydocs' ),
 		'preview_url'     => EZD_ASSETS . 'images/admin/themes/zoomy.png',
-		'demo_url'        => 'https://wordpress-theme.spider-themes.net/zoomy/',
+		'demo_url'        => 'https://wordpress-theme.spiderthemes.net/zoomy/',
 		'marketplace_url' => 'https://themeforest.net/item/zoomy-lms-education-wordpress-theme/36597783',
 	],
 ];

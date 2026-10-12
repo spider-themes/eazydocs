@@ -83,7 +83,7 @@
                 showCloseButton: true,
                 confirmButtonText:
                     '<a href="admin.php?page=eazydocs-pricing">Upgrade to Premium</a>',
-                footer: '<a href="https://eazydocs.spider-themes.net/" target="_blank"> Learn More </a>',
+                footer: '<a href="https://eazydocs.spiderthemes.net/" target="_blank"> Learn More </a>',
 
                 customClass: {
                     title: 'upgrade-premium-heading',

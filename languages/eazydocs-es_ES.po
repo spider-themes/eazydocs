@@ -14,8 +14,8 @@ msgstr "EazyDocs"
 #. Author URI of the plugin
 #: eazydocs.php
 #, fuzzy
-msgid "https://eazydocs.spider-themes.net"
-msgstr "https://spider-themes.net/eazydocs"
+msgid "https://eazydocs.spiderthemes.net"
+msgstr "https://spiderthemes.net/eazydocs"
 
 #. Description of the plugin
 #: eazydocs.php

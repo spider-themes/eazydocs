@@ -55,7 +55,7 @@ $wizard_steps = array(
 			</div>
 
 			<div class="ezd-setup-header-actions">
-				<a href="https://eazydocs.spider-themes.net/changelog/" target="_blank" class="ezd-header-link">
+				<a href="https://eazydocs.spiderthemes.net/changelog/" target="_blank" class="ezd-header-link">
 					<span class="dashicons dashicons-megaphone"></span>
 					<span><?php esc_html_e( "What's New", 'eazydocs' ); ?></span>
 				</a>
@@ -143,7 +143,7 @@ $wizard_steps = array(
 							<span class="dashicons dashicons-arrow-right-alt2"></span>
 						</a>
 
-						<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank" class="ezd-next-step-card">
+						<a href="https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/" target="_blank" class="ezd-next-step-card">
 							<div class="ezd-card-icon">
 								<span class="dashicons dashicons-book"></span>
 							</div>
@@ -155,7 +155,7 @@ $wizard_steps = array(
 						</a>
 
 						<?php if ( ! ezd_is_premium() ) : ?>
-							<a href="https://eazydocs.spider-themes.net/pricing" target="_blank" class="ezd-next-step-card ezd-pro-card">
+							<a href="https://eazydocs.spiderthemes.net/pricing" target="_blank" class="ezd-next-step-card ezd-pro-card">
 								<div class="ezd-card-icon">
 									<span class="dashicons dashicons-star-filled"></span>
 								</div>

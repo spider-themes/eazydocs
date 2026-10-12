@@ -193,7 +193,7 @@ class Assets {
 		$ai_popup_template = EZD_PATH . '/includes/Admin/template/partials/ai-create-doc-popup.php';
 		if ( $is_ezd_screen && file_exists( $ai_popup_template ) ) {
 			$antimanual_settings_url  = admin_url( 'admin.php?page=antimanual' );
-			$antimanual_docs_url      = 'https://helpdesk.spider-themes.net/docs/antimanual';
+			$antimanual_docs_url      = 'https://helpdesk.spiderthemes.net/docs/antimanual';
 			$antimanual_install_url   = add_query_arg(
 				array(
 					's'    => 'antimanual',
@@ -202,9 +202,9 @@ class Assets {
 				),
 				admin_url( 'plugin-install.php' )
 			);
-			$antimanual_learn_more    = 'https://antimanual.spider-themes.net';
+			$antimanual_learn_more    = 'https://antimanual.spiderthemes.net';
 			$antimanual_demo_url      = 'https://www.youtube.com/watch?v=X9HMPBkzDeM';
-			$antimanual_video_mp4_url = 'https://antimanual.spider-themes.net/wp-content/uploads/2025/08/AI-Doc-generate.mp4';
+			$antimanual_video_mp4_url = 'https://antimanual.spiderthemes.net/wp-content/uploads/2025/08/AI-Doc-generate.mp4';
 
 			ob_start();
 			$is_antimanual_active = $antimanual_active;

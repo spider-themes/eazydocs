@@ -33,7 +33,7 @@ $ezd_create_url  = admin_url( 'admin.php' ) . '?Create_doc=yes&_wpnonce=' . $ezd
 			<span class="dashicons dashicons-admin-settings" aria-hidden="true"></span>
 			<?php esc_html_e( 'Run Setup Wizard', 'eazydocs' ); ?>
 		</a>
-		<a href="https://helpdesk.spider-themes.net/docs/eazydocs/" target="_blank" rel="noopener" class="ezd-onboarding__btn ezd-onboarding__btn--link">
+		<a href="https://helpdesk.spiderthemes.net/docs/eazydocs/" target="_blank" rel="noopener" class="ezd-onboarding__btn ezd-onboarding__btn--link">
 			<span class="dashicons dashicons-book" aria-hidden="true"></span>
 			<?php esc_html_e( 'Read the Docs', 'eazydocs' ); ?>
 		</a>

@@ -30,7 +30,7 @@ msgstr ""
 #. Plugin URI of the plugin
 #. Author URI of the plugin
 #: eazydocs.php
-msgid "https://eazydocs.spider-themes.net"
+msgid "https://eazydocs.spiderthemes.net"
 msgstr ""
 
 #. Description of the plugin

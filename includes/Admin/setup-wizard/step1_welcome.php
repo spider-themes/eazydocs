@@ -73,7 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<!-- Quick Links -->
 		<div class="ezd-quick-links">
-			<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/" target="_blank" class="ezd-quick-link">
+			<a href="https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/" target="_blank" class="ezd-quick-link">
 				<span class="dashicons dashicons-sos"></span>
 				<span><?php esc_html_e( 'Documentation', 'eazydocs' ); ?></span>
 			</a>

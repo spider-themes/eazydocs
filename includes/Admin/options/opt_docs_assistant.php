@@ -30,7 +30,7 @@ function ezd_assistant_antimanual_info() {
 	$is_installed = $is_active || file_exists( WP_PLUGIN_DIR . '/' . $plugin_file );
 
 	$wporg_url     = 'https://wordpress.org/plugins/antimanual/';
-	$learn_more    = 'https://antimanual.spider-themes.net';
+	$learn_more    = 'https://antimanual.spiderthemes.net';
 	$install_url   = admin_url( 'plugin-install.php?s=antimanual&tab=search&type=term' );
 	$activate_url  = wp_nonce_url( admin_url( 'plugins.php?action=activate&plugin=' . $plugin_file ), 'activate-plugin_' . $plugin_file );
 	$settings_url  = admin_url( 'admin.php?page=atml-chatbot' );

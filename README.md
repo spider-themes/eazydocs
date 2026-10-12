@@ -76,7 +76,7 @@ EazyDocs is the most comprehensive knowledge base and documentation plugin for W
 3. Click "Install Now" and then "Activate"
 
 ### Manual Installation
-1. Download the plugin from [EazyDocs.com](https://eazydocs.spider-themes.net)
+1. Download the plugin from [EazyDocs.com](https://eazydocs.spiderthemes.net)
 2. Upload the `eazydocs` folder to `/wp-content/plugins/`
 3. Activate the plugin from WordPress Admin Dashboard
 
@@ -148,10 +148,10 @@ npm run lint:css   # Lint CSS/SCSS files
 
 ## Documentation & Support
 
-- 📚 [Full Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+- 📚 [Full Documentation](https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/)
 - 🎥 [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 - 💬 [Support Forum](https://wordpress.org/support/plugin/eazydocs/)
-- 🚀 [Live Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
+- 🚀 [Live Demo](https://wordpress-plugins.spiderthemes.net/eazydocs-pro/)
 - 🐛 [Report Issues](https://wordpress.org/support/plugin/eazydocs/)
 
 ## Premium Features
@@ -163,7 +163,7 @@ Upgrade to **EazyDocs Pro** for:
 - Priority support
 - And much more!
 
-[Learn More →](https://eazydocs.spider-themes.net/)
+[Learn More →](https://eazydocs.spiderthemes.net/)
 
 ## Success Stories
 
@@ -171,7 +171,7 @@ Trusted by leading companies including:
 - **Bit Apps** - Complete SaaS documentation
 - **Glamsy Designs** - Product knowledge base
 
-[See More Case Studies →](https://eazydocs.spider-themes.net/)
+[See More Case Studies →](https://eazydocs.spiderthemes.net/)
 
 ## Contributing
 
@@ -183,7 +183,7 @@ EazyDocs is licensed under the GPLv2 or later. See [LICENSE](LICENSE) for detail
 
 ## Credits
 
-**Author:** [spider-themes](https://eazydocs.spider-themes.net)
+**Author:** [spider-themes](https://eazydocs.spiderthemes.net)
 **Contributors:** mdjwel, spiderdevs, arifrahman1
 
 ## Changelog
@@ -192,5 +192,5 @@ See [CHANGELOG.txt](changelog.txt) for detailed version history.
 
 ---
 
-**Ready to build amazing documentation?** [Get EazyDocs Today →](https://eazydocs.spider-themes.net)
+**Ready to build amazing documentation?** [Get EazyDocs Today →](https://eazydocs.spiderthemes.net)
 

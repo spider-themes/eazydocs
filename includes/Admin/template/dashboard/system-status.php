@@ -96,7 +96,7 @@ $theme = wp_get_theme();
 	<div class="ezd-system-links">
 		<h4 class="ezd-system-links-title"><?php esc_html_e( 'Resources', 'eazydocs' ); ?></h4>
 		<div class="ezd-system-links-grid">
-			<a href="https://helpdesk.spider-themes.net/docs/eazydocs/" target="_blank" class="ezd-system-link">
+			<a href="https://helpdesk.spiderthemes.net/docs/eazydocs/" target="_blank" class="ezd-system-link">
 				<span class="dashicons dashicons-book"></span>
 				<?php esc_html_e( 'Documentation', 'eazydocs' ); ?>
 			</a>
@@ -104,11 +104,11 @@ $theme = wp_get_theme();
 				<span class="dashicons dashicons-sos"></span>
 				<?php esc_html_e( 'Support', 'eazydocs' ); ?>
 			</a>
-			<a href="https://eazydocs.spider-themes.net/changelog/" target="_blank" class="ezd-system-link">
+			<a href="https://eazydocs.spiderthemes.net/changelog/" target="_blank" class="ezd-system-link">
 				<span class="dashicons dashicons-list-view"></span>
 				<?php esc_html_e( 'Changelog', 'eazydocs' ); ?>
 			</a>
-			<a href="https://eazydocs.spider-themes.net/features" target="_blank" class="ezd-system-link">
+			<a href="https://eazydocs.spiderthemes.net/features" target="_blank" class="ezd-system-link">
 				<span class="dashicons dashicons-star-empty"></span>
 				<?php esc_html_e( 'Features', 'eazydocs' ); ?>
 			</a>

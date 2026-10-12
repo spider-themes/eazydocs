@@ -115,7 +115,7 @@ class Import_Export {
 	}
 
 	/** Help-centre article for the screen. */
-	const DOC_URL = 'https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/';
+	const DOC_URL = 'https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/';
 
 	/**
 	 * The whole doc tree (bounded) as a flat, depth-tagged list in tree order, so

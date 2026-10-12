@@ -123,7 +123,7 @@ $disabled_attr = $has_content ? '' : 'disabled';
 			</button>
 			<p class="ezd-tools-help ezd-migration-help">
 				<?php esc_html_e( 'Need help?', 'eazydocs' ); ?>
-				<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/getting-started/migrate-from-betterdocs-to-eazydocs" target="_blank" rel="noopener"><?php esc_html_e( 'Read the full migration guide', 'eazydocs' ); ?></a>
+				<a href="https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/getting-started/migrate-from-betterdocs-to-eazydocs" target="_blank" rel="noopener"><?php esc_html_e( 'Read the full migration guide', 'eazydocs' ); ?></a>
 			</p>
 		</div>
 	</div>

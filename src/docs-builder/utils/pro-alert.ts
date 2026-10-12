@@ -109,7 +109,7 @@ export const showNotificationProAlert = ( assetsUrl: string, pricingUrl: string 
 				Upgrade to Premium <span class="dashicons dashicons-arrow-right-alt ezd-pro-alert__cta-icon"></span>
 			</a>
 		`,
-		footer: '<a href="https://eazydocs.spider-themes.net/" target="_blank">Explore All Premium Features →</a>',
+		footer: '<a href="https://eazydocs.spiderthemes.net/" target="_blank">Explore All Premium Features →</a>',
 		customClass: {
 			popup: 'ezd-premium-swal-popup',
 			title: 'ezd-builder-premium-heading',

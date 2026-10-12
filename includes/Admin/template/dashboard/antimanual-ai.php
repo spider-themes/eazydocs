@@ -160,7 +160,7 @@ if ( is_plugin_active( 'antimanual-pro/antimanual.php' ) ) {
                     <span class="dashicons dashicons-download"></span>
                     <?php esc_html_e( 'Install Antimanual Free', 'eazydocs' ); ?>
                 </a>
-                <a href="https://antimanual.spider-themes.net" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
+                <a href="https://antimanual.spiderthemes.net" target="_blank" class="ezd-ai-btn ezd-ai-btn-secondary">
                     <?php esc_html_e( 'Learn More', 'eazydocs' ); ?>
                 </a>
                 <a href="https://www.youtube.com/watch?v=X9HMPBkzDeM" target="_blank" class="ezd-ai-btn ezd-ai-btn-link">
@@ -197,7 +197,7 @@ if ( is_plugin_active( 'antimanual-pro/antimanual.php' ) ) {
                         <?php esc_html_e( 'Video Tutorials', 'eazydocs' ); ?>
                     </a>
                 <?php else : ?>
-                    <a href="https://antimanual.spider-themes.net/pricing" target="_blank" class="ezd-ai-btn ezd-ai-btn-upgrade">
+                    <a href="https://antimanual.spiderthemes.net/pricing" target="_blank" class="ezd-ai-btn ezd-ai-btn-upgrade">
                         <span class="dashicons dashicons-star-filled"></span>
                         <?php esc_html_e( 'Upgrade to Pro', 'eazydocs' ); ?>
                     </a>

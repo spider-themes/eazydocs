@@ -53,7 +53,7 @@ function ezd_gutenberg_info_notice()
 					<?php esc_html_e('EazyDocs is fully optimized for the WordPress Block Editor. You have everything you need to create professional help centers and documentation landing pages right out of the box—no third-party page builders like Elementor required.', 'eazydocs'); ?>
 				</p>
 				<div style="margin-top: 12px;">
-					<a href="https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/gutenberg-blocks/"
+					<a href="https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/gutenberg-blocks/"
 						target="_blank"
 						style="color: #2271b1; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">
 						<?php esc_html_e('See Gutenberg Blocks in Action', 'eazydocs'); ?>

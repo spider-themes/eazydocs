@@ -364,11 +364,11 @@ class Admin {
                     <a class="button button-primary ezd-btn ezd-btn-pro btn-lg" href="<?php echo esc_url( admin_url( 'admin.php?page=eazydocs-pricing' ) ); ?>">
 						<?php esc_html_e( 'Go Pro', 'eazydocs' ); ?>
                     </a>
-                    <a class="button button-secondary ezd-btn btn-lg" target="_blank" href="https://wordpress-plugins.spider-themes.net/eazydocs-pro/doc/rogan-documentation/"
+                    <a class="button button-secondary ezd-btn btn-lg" target="_blank" href="https://wordpress-plugins.spiderthemes.net/eazydocs-pro/doc/rogan-documentation/"
                        title="<?php esc_attr_e( 'View Classic Frontend Demo', 'eazydocs' ); ?>">
 						<?php esc_html_e( 'Classic Layout Demo', 'eazydocs' ); ?>
                     </a>
-                    <a class="button button-secondary ezd-btn btn-lg" target="_blank" href="https://wordpress-plugins.spider-themes.net/eazydocs-pro/doc/banca-wordpress-theme/"
+                    <a class="button button-secondary ezd-btn btn-lg" target="_blank" href="https://wordpress-plugins.spiderthemes.net/eazydocs-pro/doc/banca-wordpress-theme/"
                        title="<?php esc_attr_e( 'View Fullscreen Frontend Demo', 'eazydocs' ); ?>">
 		                <?php esc_html_e( 'Fullscreen Layout Demo', 'eazydocs' ); ?>
                     </a>

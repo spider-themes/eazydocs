@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<span class="dashicons dashicons-chart-bar"></span>
 						<?php esc_html_e( 'Get Promax Plan', 'eazydocs' ); ?>
 					</a>
-					<a href="https://eazydocs.spider-themes.net/features/analytics/" target="_blank" class="ezd-anp-btn ezd-anp-btn-secondary">
+					<a href="https://eazydocs.spiderthemes.net/features/analytics/" target="_blank" class="ezd-anp-btn ezd-anp-btn-secondary">
 						<span class="dashicons dashicons-external"></span>
 						<?php esc_html_e( 'Learn More', 'eazydocs' ); ?>
 					</a>

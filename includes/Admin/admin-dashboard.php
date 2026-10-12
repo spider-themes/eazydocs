@@ -71,7 +71,7 @@ $ezd_has_docs  = $ezd_dashboard['kpis']['total_docs'] > 0;
 				printf(
 					/* translators: %s: EazyDocs link */
 					esc_html__( 'Thank you for using %s!', 'eazydocs' ),
-					'<a href="https://eazydocs.spider-themes.net/" target="_blank">EazyDocs</a>'
+					'<a href="https://eazydocs.spiderthemes.net/" target="_blank">EazyDocs</a>'
 				);
 				?>
 			</p>

@@ -107,7 +107,7 @@ function ezd_offer_notice() {
 
 	$message     = ezd_get_personalized_message();
 	$coupon_code = 'DASH30';
-	$pricing_url = 'https://eazydocs.spider-themes.net/pricing/';
+	$pricing_url = 'https://eazydocs.spiderthemes.net/pricing/';
 
 	// Pro features to highlight
 	$pro_features = array(

@@ -7,7 +7,7 @@ Requires PHP: 7.4
 Stable tag: 2.15.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Donate link: https://eazydocs.spider-themes.net/
+Donate link: https://eazydocs.spiderthemes.net/
 
 Build professional knowledge bases with unlimited docs, drag-and-drop editor, live search, and SEO optimization.
 
@@ -38,9 +38,9 @@ Integrate EazyDocs with [Antimanual](https://wordpress.org/plugins/antimanual/) 
 From small teams to enterprise organizations, EazyDocs is the go-to solution for professional documentation.
 
 ### Real Success Stories
-- **[Bit Apps](https://eazydocs.spider-themes.net/bit-apps/)** - Complete SaaS documentation
-- **[Glamsy Designs](https://eazydocs.spider-themes.net/glamsydesigns/)** - Product knowledge base
-- **[Quomodosoft](https://eazydocs.spider-themes.net/quomodosoft/)** - Product knowledge base
+- **[Bit Apps](https://eazydocs.spiderthemes.net/bit-apps/)** - Complete SaaS documentation
+- **[Glamsy Designs](https://eazydocs.spiderthemes.net/glamsydesigns/)** - Product knowledge base
+- **[Quomodosoft](https://eazydocs.spiderthemes.net/quomodosoft/)** - Product knowledge base
 
 == Getting Started ==
 
@@ -50,11 +50,11 @@ From small teams to enterprise organizations, EazyDocs is the go-to solution for
 4. Create your first knowledge base and organize with drag-and-drop.
 
 ==Need Help?==
-*   [Full Documentation](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+*   [Full Documentation](https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/)
 *   [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 *   [Support Forum](https://wordpress.org/support/plugin/eazydocs/)
-*   [Live Demo](https://wordpress-plugins.spider-themes.net/eazydocs-pro/)
-*   [Upgrade to Premium](https://eazydocs.spider-themes.net/)
+*   [Live Demo](https://wordpress-plugins.spiderthemes.net/eazydocs-pro/)
+*   [Upgrade to Premium](https://eazydocs.spiderthemes.net/)
 
 == Core Features👇==
 
@@ -170,7 +170,7 @@ Integrate EazyDocs with [Antimanual](https://wordpress.org/plugins/antimanual/) 
 4. Customize chatbot appearance and response style
 5. Add to your docs with a simple shortcode – Done!
 
-**[Learn More About Antimanual](https://wordpress.org/plugins/antimanual/) • [View Full Integration Guide](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)**
+**[Learn More About Antimanual](https://wordpress.org/plugins/antimanual/) • [View Full Integration Guide](https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/)**
 
 == Premium Plans & Features ==
 
@@ -221,14 +221,14 @@ EazyDocs comes with flexible pricing to suit businesses of all sizes:
 *   Author/Contributor profile pages.
 *   Daily/Weekly/Monthly Statistics Email Reporting.
 
-[View All Premium Features & Pricing](https://eazydocs.spider-themes.net/features)
+[View All Premium Features & Pricing](https://eazydocs.spiderthemes.net/features)
 
 ### How to Migrate from BetterDocs to EazyDocs
 [youtube https://youtu.be/cOo0o7Hwfwg?si=kAGqBzW4J0k0V4jW]
 
 == About the Developer ==
 
-EazyDocs is developed by [Spider Themes](https://spider-themes.net), a team of experienced WordPress developers dedicated to creating powerful, user-friendly plugins. Our mission is to help businesses and creators build professional documentation without complexity.
+EazyDocs is developed by [Spider Themes](https://spiderthemes.net), a team of experienced WordPress developers dedicated to creating powerful, user-friendly plugins. Our mission is to help businesses and creators build professional documentation without complexity.
 
 ==Why You Can Trust EazyDocs:==
 *   Over 2,000+ active installations.
@@ -289,7 +289,7 @@ Best of all, it's completely free. You simply bring your own AI provider API key
 = How do I get support if I have issues? =
 EazyDocs has multiple support channels:
 *   [Support Forum](https://wordpress.org/support/plugin/eazydocs/)
-*   [Documentation & Guides](https://helpdesk.spider-themes.net/docs/eazydocs-wordpress-plugin/)
+*   [Documentation & Guides](https://helpdesk.spiderthemes.net/docs/eazydocs-wordpress-plugin/)
 *   [Video Tutorials](https://www.youtube.com/playlist?list=PLeCjxMdg411XgYy-AekTE-bhvCXQguZWJ)
 
 = Can I use EazyDocs on multiple websites? =
@@ -342,13 +342,13 @@ If you like EazyDocs, then consider checking out our other WordPress Plugins:
 
 = Spider Themes Helpdesk (support assistant) =
 
-EazyDocs admin pages show a chat button that opens the EazyDocs documentation assistant hosted on the Spider Themes helpdesk (helpdesk.spider-themes.net), so you can search the docs and ask questions without leaving WordPress.
+EazyDocs admin pages show a chat button that opens the EazyDocs documentation assistant hosted on the Spider Themes helpdesk (helpdesk.spiderthemes.net), so you can search the docs and ask questions without leaving WordPress.
 
-Nothing is loaded from the helpdesk until you press the chat button. Hovering over the button only opens a network connection to the helpdesk so the chat loads faster; no data is sent. When you open it, the assistant is loaded in an iframe from `https://helpdesk.spider-themes.net/iframe-assistant/`, and your browser sends the product name and the documentation section to show. If you opted in through the Freemius opt-in screen and you are the administrator who opted in, your name and email address are also sent so the support chat is pre-filled. Messages you type in the chat are sent to the helpdesk to be answered.
+Nothing is loaded from the helpdesk until you press the chat button. Hovering over the button only opens a network connection to the helpdesk so the chat loads faster; no data is sent. When you open it, the assistant is loaded in an iframe from `https://helpdesk.spiderthemes.net/iframe-assistant/`, and your browser sends the product name and the documentation section to show. If you opted in through the Freemius opt-in screen and you are the administrator who opted in, your name and email address are also sent so the support chat is pre-filled. Messages you type in the chat are sent to the helpdesk to be answered.
 
 You can turn the assistant off under EazyDocs → Settings → General Settings → Hide Support Chat (or with `add_filter( 'ezd_support_assistant_enabled', '__return_false' );`).
 
-* [Spider Themes](https://spider-themes.net) — [Terms](https://spider-themes.net/terms) — [Privacy](https://spider-themes.net/privacy)
+* [Spider Themes](https://spiderthemes.net) — [Terms](https://spiderthemes.net/terms) — [Privacy](https://spiderthemes.net/privacy)
 
 == Screenshots ==
 
@@ -578,7 +578,7 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 * Performance: Optimized doc builder queries for faster load times.
 * Updated: Added admin-settings.css and limited settings styling to the Settings page only.
 * Updated: Twitter logo replaced with the X logo in admin UI.
-* [Read the full v2.10.0 release article](https://eazydocs.spider-themes.net/eazydocs-2-10-0/).
+* [Read the full v2.10.0 release article](https://eazydocs.spiderthemes.net/eazydocs-2-10-0/).
 
 
 = 2.9.0 (03 January 2026) =
@@ -594,7 +594,7 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 * Improved: Streamlined Setup Wizard steps by removing redundant text and improving layout consistency.
 * Added: Sample data import from demo.xml using WordPress Importer with fallback manual import support.
 
-[See changelog for all versions](https://eazydocs.spider-themes.net/changelog/).
+[See changelog for all versions](https://eazydocs.spiderthemes.net/changelog/).
 
 == Upgrade Notice ==
 

@@ -234,7 +234,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<h4><?php esc_html_e( 'Unlock More Layouts with Pro', 'eazydocs' ); ?></h4>
 					<p><?php esc_html_e( 'Get access to advanced layout options, floating TOC, print mode, and more.', 'eazydocs' ); ?></p>
 				</div>
-				<a href="https://eazydocs.spider-themes.net/pricing" target="_blank" class="ezd-btn ezd-btn-pro">
+				<a href="https://eazydocs.spiderthemes.net/pricing" target="_blank" class="ezd-btn ezd-btn-pro">
 					<?php esc_html_e( 'Upgrade Now', 'eazydocs' ); ?>
 				</a>
 			</div>

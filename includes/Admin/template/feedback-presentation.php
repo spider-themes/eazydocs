@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<span class="dashicons dashicons-unlock"></span>
 						<?php esc_html_e( 'Unlock This Feature', 'eazydocs' ); ?>
 					</a>
-						<a href="https://wordpress-plugins.spider-themes.net/eazydocs-pro/" target="_blank" class="ezd-fprp-btn ezd-fprp-btn-secondary">
+						<a href="https://wordpress-plugins.spiderthemes.net/eazydocs-pro/" target="_blank" class="ezd-fprp-btn ezd-fprp-btn-secondary">
 						<span class="dashicons dashicons-external"></span>
 						<?php esc_html_e( 'Learn More', 'eazydocs' ); ?>
 					</a>

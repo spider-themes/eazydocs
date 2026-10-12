@@ -16,7 +16,7 @@ require_once __DIR__ . '/class-remote-notice-client.php';
  * NoticePilot — remote admin-notice campaigns (SDK v1.7.0).
  *
  * Product id .......... 'Eazydocs' (used for every SDK call below — keep consistent).
- * Hub endpoint ........ manage.spider-themes.net → /content/eazydocs
+ * Hub endpoint ........ manage.spiderthemes.net → /content/eazydocs
  *
  * This lives in the free EazyDocs plugin, which is always active (EazyDocs Pro
  * requires it), so this single integration covers both free and Pro users —
@@ -28,7 +28,7 @@ add_action( 'plugins_loaded', function () {
     }
 
     Noticepilot_Remote_Notice_Client::init( 'Eazydocs', [
-        'api_url'          => 'https://manage.spider-themes.net/wp-json/noticepilot/v1/content/eazydocs',
+        'api_url'          => 'https://manage.spiderthemes.net/wp-json/noticepilot/v1/content/eazydocs',
 
         // How often to pull campaigns, and who may see them.
         'schedule'         => 'daily',            // hourly | twicedaily | daily

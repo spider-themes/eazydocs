@@ -96,7 +96,7 @@ class AntimanualNotice {
                                 <?php esc_html_e( 'Install Plugin', 'eazydocs' ); ?>
                             </a>
                         <?php endif; ?>
-                        <a href="https://antimanual.spider-themes.net" target="_blank" class="button button-secondary">
+                        <a href="https://antimanual.spiderthemes.net" target="_blank" class="button button-secondary">
                             <?php esc_html_e( 'Learn More', 'eazydocs' ); ?>
                         </a>
                     </div>
