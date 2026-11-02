@@ -96,7 +96,7 @@ if ( $credit_enable == '1' ) {
             endif;
 
             echo '<div class="additional-content">';
-                $parent_doc_id_left      = function_exists('get_root_parent_id') ? get_root_parent_id( get_queried_object_id() ) : '';
+                $parent_doc_id_left      = function_exists( 'get_root_parent_id' ) ? get_root_parent_id( get_queried_object_id() ) : ( function_exists( 'ezd_get_doc_parent_id' ) ? ezd_get_doc_parent_id( get_queried_object_id() ) : '' );
                 $content_type_left       = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar_type', true );
                 $ezd_shortcode_left      = get_post_meta( $parent_doc_id_left, 'ezd_doc_left_sidebar', true );
                 $left_sidebar_content    = ezd_get_renderable_sidebar_content( $ezd_shortcode_left );

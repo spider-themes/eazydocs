@@ -2314,11 +2314,29 @@ if ( ! function_exists( 'get_root_parent_id' ) ) {
 	/**
 	 * Backward compatibility alias for ezd_get_doc_parent_id.
 	 *
+	 * Declared on 'plugins_loaded' to allow legacy versions of EazyDocs Pro
+	 * (<= 2.14.0) that declare get_root_parent_id() without a function_exists() check
+	 * to load safely without triggering a fatal "Cannot redeclare get_root_parent_id()" error.
+	 *
 	 * @param int $page_id Post ID.
 	 * @return int Root parent ID.
 	 */
-	function get_root_parent_id( $page_id ) {
-		return ezd_get_doc_parent_id( $page_id );
+	if ( did_action( 'plugins_loaded' ) ) {
+		function get_root_parent_id( $page_id ) {
+			return ezd_get_doc_parent_id( $page_id );
+		}
+	} else {
+		add_action(
+			'plugins_loaded',
+			function () {
+				if ( ! function_exists( 'get_root_parent_id' ) ) {
+					function get_root_parent_id( $page_id ) {
+						return ezd_get_doc_parent_id( $page_id );
+					}
+				}
+			},
+			-1
+		);
 	}
 }
 
