@@ -2,9 +2,9 @@
 Contributors: mdjwel, spiderdevs, arifrahman1
 Tags: knowledge base, wordpress wiki, faq, documentation, help desk
 Requires at least: 5.0
-Tested up to: 7.1.3
+Tested up to: 7.1.4
 Requires PHP: 7.4
-Stable tag: 2.15.0
+Stable tag: 2.15.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://eazydocs.spiderthemes.net/
@@ -365,6 +365,10 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 
 == Changelog ==
 
+= 2.15.1 (2 November 2026) =
+* Fixed: Resolved a PHP fatal error caused by function redeclaration in older EazyDocs Pro versions.
+* Improved: Enhanced backward compatibility and sidebar template reliability.
+
 = 2.15.0 (8 October 2026) =
 * New: Search Shortcode – Added the [ezd_search] shortcode so the EazyDocs search bar can be placed on any page, classic widget, or template without Gutenberg or Elementor.
 * Updated: Updated Freemius SDK to the latest version
@@ -597,6 +601,9 @@ You can turn the assistant off under EazyDocs → Settings → General Settings 
 [See changelog for all versions](https://eazydocs.spiderthemes.net/changelog/).
 
 == Upgrade Notice ==
+
+= 2.15.1 =
+Fixes a PHP fatal error when running older EazyDocs Pro versions and improves backward compatibility.
 
 = 2.15.0 =
 Adds the new search shortcode and updates the Freemius SDK. We recommend updating to the latest version.
