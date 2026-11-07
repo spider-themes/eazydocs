@@ -3763,24 +3763,60 @@ function ezd_build_docs_tree_flat_ids( $post_type ) {
 		$args['suppress_filters'] = false;
 	}
 
+	$posts = get_posts( $args );
+	if ( empty( $posts ) || ! is_array( $posts ) ) {
+		return [];
+	}
+
 	// 'id=>parent' returns an ordered [ ID => post_parent ] map. Group children
 	// under their parent, preserving the query order.
 	$children = [];
-	foreach ( get_posts( $args ) as $id => $parent_id ) {
-		$children[ (int) $parent_id ][] = (int) $id;
+	foreach ( $posts as $id => $parent_id ) {
+		// When WordPress query cache / object cache (e.g. Redis) is active,
+		// WP_Query's 'id=>parent' returns keys prefixed with 'post_parent:'.
+		if ( is_object( $parent_id ) ) {
+			$doc_id    = isset( $parent_id->ID ) ? (int) $parent_id->ID : 0;
+			$parent_id = isset( $parent_id->post_parent ) ? (int) $parent_id->post_parent : 0;
+		} else {
+			if ( is_string( $id ) && strpos( $id, 'post_parent:' ) === 0 ) {
+				$id = substr( $id, 12 );
+			}
+			$doc_id    = (int) trim( (string) $id );
+			$parent_id = (int) trim( (string) $parent_id );
+		}
+
+		if ( $doc_id <= 0 ) {
+			continue;
+		}
+
+		// Prevent direct self-parenting loops.
+		if ( $parent_id === $doc_id ) {
+			$parent_id = 0;
+		}
+
+		$children[ $parent_id ][] = $doc_id;
 	}
 
 	$ordered_ids = [];
 	$stack       = array_reverse( $children[0] ?? [] );
+	$visited     = [];
 
 	// Iterative depth-first walk (pre-order): parent first, then its children.
-	while ( $stack ) {
-		$id            = array_pop( $stack );
-		$ordered_ids[] = $id;
+	// Guard against circular hierarchies and duplicate visits.
+	while ( ! empty( $stack ) ) {
+		$id = array_pop( $stack );
+
+		if ( isset( $visited[ $id ] ) ) {
+			continue;
+		}
+		$visited[ $id ] = true;
+		$ordered_ids[]  = $id;
 
 		if ( ! empty( $children[ $id ] ) ) {
 			foreach ( array_reverse( $children[ $id ] ) as $child_id ) {
-				$stack[] = $child_id;
+				if ( ! isset( $visited[ $child_id ] ) ) {
+					$stack[] = $child_id;
+				}
 			}
 		}
 	}
