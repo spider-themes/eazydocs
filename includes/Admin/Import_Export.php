@@ -528,7 +528,7 @@ class Import_Export {
 		// root before streaming its subtree (descendants are filtered in the
 		// exporters). read_post maps through the docs CPT meta caps, so private
 		// docs correctly require read_private_docs.
-		if ( ! $root_id || ! current_user_can( 'read_post', $root_id ) ) {
+		if ( ! $root_id || ! ezd_can_read_doc_content( $root_id ) ) {
 			wp_die( esc_html__( 'You are not allowed to export this document.', 'eazydocs' ), '', [ 'response' => 403 ] );
 		}
 
@@ -615,7 +615,7 @@ class Import_Export {
 		// — edit_docs (the screen gate) does not itself grant that on every doc.
 		// The parent selector is already filtered client-side, but the request is
 		// the real security boundary.
-		if ( $parent_id && ! current_user_can( 'edit_post', $parent_id ) ) {
+		if ( $parent_id && ( 'docs' !== get_post_type( $parent_id ) || ! current_user_can( 'edit_post', $parent_id ) ) ) {
 			set_transient(
 				'ezd_md_import_result_' . get_current_user_id(),
 				[ 'error' => __( 'You are not allowed to import under the selected document.', 'eazydocs' ) ],
@@ -689,6 +689,9 @@ class Import_Export {
 
 		if ( 'zip' === $ext ) {
 			return Importer::import_zip( $tmp_name, $parent_id, $post_status, $mode );
+		}
+		if ( $size > Importer::MAX_FILE_SIZE ) {
+			return new \WP_Error( 'ezd_md_size', __( 'The Markdown file is too large.', 'eazydocs' ) );
 		}
 
 		$raw = file_get_contents( $tmp_name ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local uploaded temp file.

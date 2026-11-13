@@ -57,6 +57,9 @@ class Create_Post {
 			 wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'ezd_create_section_' . sanitize_text_field( wp_unslash( $_GET['parentID'] ) ) ) ) {
 			
 			$parent_id = absint( wp_unslash( $_GET['parentID'] ) );
+			if ( 'docs' !== get_post_type( $parent_id ) ) {
+				wp_die( esc_html__( 'The specified document does not exist.', 'eazydocs' ), '', [ 'response' => 400 ] );
+			}
 
 			if ( ! current_user_can( 'edit_post', $parent_id ) && ! current_user_can( 'manage_options' ) ) {
 				wp_die( esc_html__( 'You do not have permission to edit this document.', 'eazydocs' ) );

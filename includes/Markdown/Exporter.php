@@ -37,6 +37,9 @@ class Exporter {
 		if ( ! $root || ! in_array( $root->post_type, [ 'docs', 'onepage-docs' ], true ) ) {
 			return new WP_Error( 'ezd_md_bad_root', __( 'Selected document could not be found.', 'eazydocs' ) );
 		}
+		if ( ! ezd_can_read_doc_content( $root_id ) ) {
+			return new WP_Error( 'ezd_md_forbidden', __( 'You are not allowed to export this document.', 'eazydocs' ) );
+		}
 
 		$files = [];
 		self::collect( $root, '', $files );
@@ -91,7 +94,7 @@ class Exporter {
 				// Object-level read enforcement: never export a private/draft
 				// descendant the current user is not allowed to read. Skipping a doc
 				// also skips its subtree, so no hidden branch leaks into the archive.
-				if ( ! current_user_can( 'read_post', $child->ID ) ) {
+				if ( ! ezd_can_read_doc_content( $child->ID ) ) {
 					continue;
 				}
 				self::collect( $child, $dir, $files );

@@ -125,6 +125,11 @@ class One_Page {
             wp_die( esc_html__( 'Invalid parent ID.', 'eazydocs' ) );
         }
 
+        // The generated page is published, so editing docs alone is not enough.
+        if ( ! current_user_can( 'edit_post', $parent_id ) || ! current_user_can( 'publish_docs' ) ) {
+            wp_die( esc_html__( 'You do not have permission to publish this OnePage document.', 'eazydocs' ), '', [ 'response' => 403 ] );
+        }
+
         // Titles and slugs
         $page_title = get_the_title( $parent_id );
         $post_slug  = get_post_field( 'post_name', $parent_id ) ?: sanitize_title( $page_title );

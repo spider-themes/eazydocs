@@ -21,6 +21,8 @@ class Importer {
 	/** Hard caps to keep an import bounded. */
 	const MAX_ENTRIES   = 2000;
 	const MAX_FILE_SIZE = 2097152; // 2 MB per markdown file.
+	const MAX_TOTAL_SIZE = 20971520; // 20 MB after decompression.
+	const MAX_PATH_DEPTH = 20;
 
 	/** Number of created/updated doc IDs reported back for "view" links. */
 	const MAX_REPORTED_IDS = 50;
@@ -63,6 +65,7 @@ class Importer {
 
 		// Collect valid markdown entries only.
 		$entries = [];
+		$total_size = 0;
 		$count   = min( $zip->numFiles, self::MAX_ENTRIES );
 		for ( $i = 0; $i < $count; $i++ ) {
 			$stat = $zip->statIndex( $i );
@@ -85,6 +88,15 @@ class Importer {
 			if ( $stat['size'] > self::MAX_FILE_SIZE ) {
 				continue;
 			}
+			if ( substr_count( $name, '/' ) > self::MAX_PATH_DEPTH ) {
+				$zip->close();
+				return new WP_Error( 'ezd_md_depth', __( 'The archive folder structure is too deeply nested.', 'eazydocs' ) );
+			}
+			$total_size += $stat['size'];
+			if ( $total_size > self::MAX_TOTAL_SIZE ) {
+				$zip->close();
+				return new WP_Error( 'ezd_md_total_size', __( 'The uncompressed archive is too large.', 'eazydocs' ) );
+			}
 
 			$entries[ $name ] = $i;
 		}
@@ -103,8 +115,8 @@ class Importer {
 		$result  = self::new_result();
 
 		foreach ( $entries as $name => $index ) {
-			$raw = $zip->getFromIndex( $index );
-			if ( false === $raw ) {
+			$raw = $zip->getFromIndex( $index, self::MAX_FILE_SIZE + 1 );
+			if ( false === $raw || strlen( $raw ) > self::MAX_FILE_SIZE ) {
 				continue;
 			}
 

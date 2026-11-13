@@ -52,6 +52,7 @@ class Converter {
 			[
 				'html_input'         => 'strip',
 				'allow_unsafe_links' => false,
+				'max_nesting_level'  => 50,
 			]
 		);
 

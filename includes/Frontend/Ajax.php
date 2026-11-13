@@ -57,7 +57,7 @@ class Ajax {
 		$type     = in_array( $raw_type, [ 'positive', 'negative' ], true ) ? $raw_type : false;
 
 		// Reject votes for posts that don't exist (avoids orphan meta writes).
-		if ( ! $post_id || ! get_post( $post_id ) ) {
+		if ( ! $post_id || 'docs' !== get_post_type( $post_id ) || ! ezd_can_read_doc_content( $post_id ) ) {
 			wp_send_json_error( sprintf( $template, 'danger', esc_html__( 'Invalid document.', 'eazydocs' ) ) );
 		}
 
@@ -225,6 +225,13 @@ class Ajax {
 
 		foreach ( $search_types as $ptype ) {
 			$ids = $ids_by_type[ $ptype ] ?? [];
+			// Cached candidates are shared across visitors. Apply role restrictions
+			// per request, before counting or rendering results; admin-ajax.php
+			// does not run the Pro frontend query visibility filter.
+			if ( 'docs' === $ptype && function_exists( 'ezd_user_can_view_doc' ) && ( ! function_exists( 'ezd_is_role_visibility_enabled' ) || ezd_is_role_visibility_enabled() ) ) {
+				_prime_post_caches( $ids, false, true );
+				$ids = array_values( array_filter( $ids, 'ezd_user_can_view_doc' ) );
+			}
 			if ( empty( $ids ) ) {
 				continue;
 			}
@@ -363,6 +370,11 @@ class Ajax {
 			return;
 		}
 
+		if ( 'docs' !== get_post_type( $postid ) || ( function_exists( 'ezd_user_can_view_doc' ) && ! ezd_user_can_view_doc( $postid ) ) ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'Document not found.', 'eazydocs' ) ], 404 );
+			return;
+		}
+
 		// Check private doc access
 		if ( 'private' === get_post_status( $postid ) && ezd_is_premium() ) {
 			// Try new settings first
@@ -478,6 +490,12 @@ class Ajax {
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
 		] );
+
+		if ( function_exists( 'ezd_user_can_view_doc' ) ) {
+			$children = array_values( array_filter( $children, function ( $child ) {
+				return ezd_user_can_view_doc( $child->ID );
+			} ) );
+		}
 
 		if ( empty( $children ) ) {
 			wp_send_json_success( [ 'html' => '', 'count' => 0 ] );

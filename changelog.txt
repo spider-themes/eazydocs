@@ -1,6 +1,11 @@
-= 2.15.1 (2 November 2026) =
-Fixed: Resolved a PHP fatal error caused by function redeclaration in older EazyDocs Pro versions.
+= 2.15.1 (13 November 2026) =
+Improved: Documentation Security – Strengthened access controls across document management, settings, exports, and feedback.
+Improved: Markdown Imports – Added limits for large and deeply nested imports to improve reliability.
 Improved: Enhanced backward compatibility and sidebar template reliability.
+Fixed: Docs Builder – Corrected document reordering for authorized editors working with multiple authors.
+Fixed: One-Page Documentation – Restored document creation for authorized documentation authors.
+Fixed: Plugin Activation – Improved reliability when activating the plugin on sites with large documentation libraries.
+Fixed: Resolved a PHP fatal error caused by function redeclaration in older EazyDocs Pro versions.
 
 = 2.15.0 (8 October 2026) =
 New: Search Shortcode – Added the [ezd_search] shortcode so the EazyDocs search bar can be placed on any page, classic widget, or template without Gutenberg or Elementor.

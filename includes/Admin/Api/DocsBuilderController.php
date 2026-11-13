@@ -339,6 +339,9 @@ class Docs_Builder_Controller {
 		$parent_id    = absint( $request->get_param( 'parent_id' ) );
 
 		if ( $parent_id > 0 ) {
+			if ( 'docs' !== get_post_type( $parent_id ) || ! ezd_can_read_doc_content( $parent_id ) ) {
+				return new \WP_Error( 'forbidden', __( 'You do not have permission to read this document.', 'eazydocs' ), [ 'status' => 403 ] );
+			}
 			$children_map[ $parent_id ] = $this->get_children_tree( $parent_id );
 			return new \WP_REST_Response( $children_map, 200 );
 		}
@@ -527,6 +530,9 @@ class Docs_Builder_Controller {
 
 		while ( $query->have_posts() ) {
 			$query->the_post();
+			if ( ! ezd_can_read_doc_content( get_the_ID() ) ) {
+				continue;
+			}
 
 			$docs[] = $this->build_parent_doc_item( get_the_ID() );
 		}
@@ -567,7 +573,7 @@ class Docs_Builder_Controller {
 
 		foreach ( $child_ids as $child_id ) {
 			$child = get_post( $child_id );
-			if ( ! $child instanceof \WP_Post ) {
+			if ( ! $child instanceof \WP_Post || ! ezd_can_read_doc_content( $child->ID ) ) {
 				continue;
 			}
 
@@ -1350,9 +1356,15 @@ class Docs_Builder_Controller {
 	 * Permission check for publishing docs.
 	 *
 	 * @since  2.8.0
+	 * @param  \WP_REST_Request|null $request Creation request, if available.
 	 * @return bool
 	 */
-	public function check_publish_permission() {
+	public function check_publish_permission( $request = null ) {
+		// Editors without publishing rights may still create drafts.
+		if ( $request instanceof \WP_REST_Request && 'draft' === $request->get_param( 'post_status' ) ) {
+			return $this->check_permission();
+		}
+
 		if ( current_user_can( 'manage_options' ) ) {
 			return true;
 		}
@@ -1365,7 +1377,7 @@ class Docs_Builder_Controller {
 		$user         = wp_get_current_user();
 		$user_roles   = ! empty( $user->roles ) ? (array) $user->roles : array();
 		$author_roles = ezd_get_doc_author_roles();
-		if ( array_intersect( $user_roles, $author_roles ) && ( current_user_can( 'publish_posts' ) || current_user_can( 'edit_posts' ) ) ) {
+		if ( array_intersect( $user_roles, $author_roles ) && current_user_can( 'publish_posts' ) ) {
 			return true;
 		}
 
@@ -1576,7 +1588,7 @@ class Docs_Builder_Controller {
 	public function delete_doc( $request ) {
 		$doc_id = absint( $request->get_param( 'doc_id' ) );
 
-		if ( ! $doc_id || ! get_post( $doc_id ) ) {
+		if ( ! $doc_id || 'docs' !== get_post_type( $doc_id ) ) {
 			return new \WP_Error( 'invalid_doc', __( 'The specified document does not exist.', 'eazydocs' ), array( 'status' => 400 ) );
 		}
 
@@ -1594,11 +1606,18 @@ class Docs_Builder_Controller {
 		$all_ids = ezd_get_doc_tree_ids( $doc_id );
 		array_unshift( $all_ids, $doc_id );
 
+		// Authorize the entire operation before trashing anything. A child can
+		// belong to another author even when the current user owns the root.
+		foreach ( $all_ids as $id ) {
+			if ( 'docs' !== get_post_type( $id ) || ! current_user_can( 'delete_post', $id ) ) {
+				return new \WP_Error( 'forbidden', __( 'You do not have permission to delete every document in this tree.', 'eazydocs' ), array( 'status' => 403 ) );
+			}
+		}
+
 		$trashed = 0;
 
 		foreach ( $all_ids as $id ) {
-			if ( get_post( $id ) ) {
-				wp_trash_post( $id );
+			if ( wp_trash_post( $id ) ) {
 				++$trashed;
 			}
 		}

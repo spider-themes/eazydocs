@@ -314,6 +314,12 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			$search_logs     = $wpdb->prefix . 'eazydocs_search_log';
 			$view_logs       = $wpdb->prefix . 'eazydocs_view_log';
 
+			// dbDelta cannot parse foreign keys when diffing an existing table:
+			// it tries to add a column named FOREIGN. Include the constraint only
+			// for the initial CREATE; existing constraints remain untouched.
+			$logs_exist = $search_logs === $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $search_logs ) ) );
+			$foreign_key = $logs_exist ? '' : ",\n\t\t\tFOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE";
+
 			// SQL statements to create tables.
 			$sql = "CREATE TABLE {$search_keyword} (
 			id bigint(20) unsigned not null auto_increment,
@@ -328,8 +334,7 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 			not_found_count mediumint(8) unsigned not null,
 			created_at datetime not null,
 			PRIMARY KEY (id),
-			KEY created_at (created_at),
-			FOREIGN KEY (keyword_id) REFERENCES {$search_keyword}(id) ON DELETE CASCADE
+			KEY created_at (created_at){$foreign_key}
 		) {$charset_collate};";
 
 			$sql3 = "CREATE TABLE {$view_logs} (

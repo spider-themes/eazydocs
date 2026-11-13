@@ -228,15 +228,15 @@ function ezd_generate_embed_code_box() {
     // (see eazyDocsPro\Frontend\Assistant_Scope), with or without Antimanual.
     $scope_field = '';
     if ( defined( 'EAZYDOCSPRO_VERSION' ) ) {
-        $root_docs = get_posts( [
-            'post_type'      => 'docs',
-            'post_status'    => 'publish',
-            'post_parent'    => 0,
-            'posts_per_page' => 200,
-            'orderby'        => 'menu_order title',
-            'order'          => 'ASC',
-            'no_found_rows'  => true,
-        ] );
+        // The scope picker needs only IDs and titles. This runs during plugin
+        // setup, so loading 200 complete document bodies can exhaust PHP memory
+        // before any admin page or CLI command is allowed to execute.
+        global $wpdb;
+        $root_docs = $wpdb->get_results(
+            "SELECT ID, post_title FROM {$wpdb->posts}
+             WHERE post_type = 'docs' AND post_status = 'publish' AND post_parent = 0
+             ORDER BY menu_order ASC, post_title ASC LIMIT 200"
+        );
 
         $scope_field  = "<div class='ezd-embed-scope-field' style='margin-bottom:12px;'>";
         $scope_field .= "<label for='ezd-embed-scope-select' style='display:block;font-weight:600;font-size:13px;margin-bottom:4px;color:#1e293b;'>" . esc_html__( 'Knowledge Base Docs (optional)', 'eazydocs' ) . "</label>";

@@ -25,6 +25,18 @@ function ezd_get_opt( $option, $default = '' ) {
 	return $default;
 }
 
+/** Authorize settings saves independently of the bundled framework's nonce. */
+function ezd_authorize_settings_save( $settings = null ) {
+	$capability = ezd_get_opt( 'settings-edit-access', 'manage_options' );
+	$capability = in_array( $capability, [ 'manage_options', 'publish_pages', 'publish_posts' ], true ) ? $capability : 'manage_options';
+	if ( ! current_user_can( $capability ) ) {
+		wp_die( esc_html__( 'You do not have permission to change EazyDocs settings.', 'eazydocs' ), '', [ 'response' => 403 ] );
+	}
+	return $settings;
+}
+add_action( 'wp_ajax_csf_eazydocs_settings_ajax_save', 'ezd_authorize_settings_save', 0 );
+add_filter( 'csf_eazydocs_settings_save', 'ezd_authorize_settings_save', 0 );
+
 /**
  * Marker prefix used to identify EazyDocs-encrypted secrets at rest.
  */
@@ -1553,25 +1565,25 @@ add_action( 'add_meta_boxes', function () {
 	add_meta_box( 'EZD OnePage Options', 'EZD OnePage Options', 'ezd_onepage_docs', 'onepage-docs' );
 } );
 
-global $post;
-function ezd_onepage_docs() {
+function ezd_onepage_docs( $post ) {
+	wp_nonce_field( 'ezd_onepage_save_' . $post->ID, 'ezd_onepage_nonce' );
 	?>
     <p>
         <label for="ezd_doc_layout"><?php esc_html_e( 'Doc Layout', 'eazydocs' ); ?></label><br/>
-        <input type="text" disabled name="ezd_doc_layout" id="ezd_doc_layout" value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_layout', true ) ); ?>" class="widefat"/>
+        <input type="text" disabled name="ezd_doc_layout" id="ezd_doc_layout" value="<?php echo esc_attr( get_post_meta( $post->ID, 'ezd_doc_layout', true ) ); ?>" class="widefat"/>
     </p> <br>
 
     <p class="ezd_left_content_heading"> <?php esc_html_e( 'Left Side Content', 'eazydocs' ); ?></p>
 
     <p>
         <label for="ezd_doc_content_type"><?php esc_html_e( 'Content Type', 'eazydocs' ); ?></label><br/>
-        <input type="text" disabled name="ezd_doc_content_type" id="ezd_doc_content_type" value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_content_type', true ) ); ?>" class="widefat"/>
+        <input type="text" disabled name="ezd_doc_content_type" id="ezd_doc_content_type" value="<?php echo esc_attr( get_post_meta( $post->ID, 'ezd_doc_content_type', true ) ); ?>" class="widefat"/>
     </p>
 
     <p>
         <label for="ezd_doc_left_sidebar"><?php esc_html_e( 'Content Box', 'eazydocs' ); ?></label><br/>
         <textarea name="ezd_doc_left_sidebar" id="ezd_doc_left_sidebar" disabled cols="30" rows="3" class="widefat">
-            <?php echo esc_attr( get_post_meta( get_the_ID(), "ezd_doc_left_sidebar", true ) ); ?>
+            <?php echo esc_attr( get_post_meta( $post->ID, "ezd_doc_left_sidebar", true ) ); ?>
         </textarea>
     </p>
 
@@ -1579,12 +1591,12 @@ function ezd_onepage_docs() {
 
     <p>
         <label for="ezd_doc_content_type_right"><?php esc_html_e( 'Content Type', 'eazydocs' ); ?></label><br/>
-        <input type="text" disabled name="ezd_doc_content_type_right" id="ezd_doc_content_type_right" value="<?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_content_type_right', true ) ); ?>" class="widefat"/>
+        <input type="text" disabled name="ezd_doc_content_type_right" id="ezd_doc_content_type_right" value="<?php echo esc_attr( get_post_meta( $post->ID, 'ezd_doc_content_type_right', true ) ); ?>" class="widefat"/>
     </p>
     <p>
         <label for="ezd_doc_content_box_right"><?php esc_html_e( 'Content Box', 'eazydocs' ); ?></label><br/>
         <textarea disabled name="ezd_doc_content_box_right" id="ezd_doc_content_box_right" cols="30" rows="3" class="widefat">
-            <?php echo esc_attr( get_post_meta( get_the_ID(), 'ezd_doc_content_box_right', true ) ); ?>
+            <?php echo esc_attr( get_post_meta( $post->ID, 'ezd_doc_content_box_right', true ) ); ?>
         </textarea>
     </p>
     <?php
@@ -1596,25 +1608,32 @@ add_action( 'save_post', function ( $post_id ) {
 		return;
 	}
 
-	$std_comment_id             = $_POST['ezd_doc_layout'] ?? '';
-	$ezd_doc_content_type       = $_POST['ezd_doc_content_type'] ?? '';
-	$ezd_doc_content_type_right = $_POST['ezd_doc_content_type_right'] ?? '';
-	$ezd_doc_content_box_right  = $_POST['ezd_doc_content_box_right'] ?? '';
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+
+	if ( ! isset( $_POST['ezd_onepage_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ezd_onepage_nonce'] ) ), 'ezd_onepage_save_' . $post_id ) ) {
+		return;
+	}
 
 	if ( isset( $_POST['ezd_doc_layout'] ) ) {
-		update_post_meta( $post_id, 'ezd_doc_layout', $std_comment_id );
+		update_post_meta( $post_id, 'ezd_doc_layout', sanitize_text_field( wp_unslash( $_POST['ezd_doc_layout'] ) ) );
 	}
 
 	if ( isset( $_POST['ezd_doc_content_type'] ) ) {
-		update_post_meta( $post_id, 'ezd_doc_content_type', $ezd_doc_content_type );
+		update_post_meta( $post_id, 'ezd_doc_content_type', sanitize_text_field( wp_unslash( $_POST['ezd_doc_content_type'] ) ) );
 	}
 
 	if ( isset( $_POST['ezd_doc_content_type_right'] ) ) {
-		update_post_meta( $post_id, 'ezd_doc_content_type_right', $ezd_doc_content_type_right );
+		update_post_meta( $post_id, 'ezd_doc_content_type_right', sanitize_text_field( wp_unslash( $_POST['ezd_doc_content_type_right'] ) ) );
 	}
 
 	if ( isset( $_POST['ezd_doc_content_box_right'] ) ) {
-		update_post_meta( $post_id, 'ezd_doc_content_box_right', wp_kses_post( $ezd_doc_content_box_right ) );
+		update_post_meta( $post_id, 'ezd_doc_content_box_right', wp_kses_post( wp_unslash( $_POST['ezd_doc_content_box_right'] ) ) );
 	}	
 
 } );
@@ -2261,6 +2280,31 @@ function ezd_internal_doc_security( $doc_id = 0 ) {
 		return null;
 	}
 	return true;
+}
+
+/**
+ * Whether the current visitor may read a document's actual content.
+ * Unlike read_post alone, this also enforces passwords and Pro role visibility.
+ * Editors can already read the source through the editor and export it.
+ *
+ * @param int $post_id Document ID.
+ * @return bool
+ */
+function ezd_can_read_doc_content( $post_id ) {
+	$post = $post_id > 0 ? get_post( $post_id ) : null;
+	if ( ! $post || ! in_array( $post->post_type, [ 'docs', 'onepage-docs' ], true ) ) {
+		return false;
+	}
+	if ( current_user_can( 'edit_post', $post_id ) ) {
+		return true;
+	}
+	if ( 'publish' !== $post->post_status && ( 'private' !== $post->post_status || ! current_user_can( 'read_post', $post_id ) ) ) {
+		return false;
+	}
+	if ( post_password_required( $post ) ) {
+		return false;
+	}
+	return 'docs' !== $post->post_type || ! function_exists( 'ezd_user_can_view_doc' ) || ezd_user_can_view_doc( $post_id );
 }
 
 /**
