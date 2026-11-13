@@ -86,6 +86,14 @@ class Delete_Post {
 
 		$ids = array_merge( [ $doc_id ], ezd_get_doc_tree_ids( $doc_id ) );
 
+		// Check descendants before any writes so a mixed-author tree cannot
+		// delete another user's docs or leave a partially trashed hierarchy.
+		foreach ( $ids as $id ) {
+			if ( 'docs' !== get_post_type( $id ) || ! current_user_can( 'delete_post', $id ) ) {
+				wp_die( esc_html__( 'You do not have permission to delete every document in this tree.', 'eazydocs' ), '', [ 'response' => 403 ] );
+			}
+		}
+
 		foreach ( $ids as $id ) {
 			wp_trash_post( $id );
 		}

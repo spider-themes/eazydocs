@@ -68,6 +68,10 @@ function ezd_send_negative_feedback_notification( $post_id ) {
 function eazydocs_feedback_email() {
 
 	check_ajax_referer( 'eazydocs-ajax', 'security' );
+	$doc_id = isset( $_POST['doc_id'] ) ? absint( $_POST['doc_id'] ) : 0;
+	if ( 'docs' !== get_post_type( $doc_id ) || ! ezd_can_read_doc_content( $doc_id ) ) {
+		wp_send_json_error( esc_html__( 'Invalid document.', 'eazydocs' ), 403 );
+	}
 
 	// Sentinel: Rate limit check (10 minutes)
 	$user_ip       = ! empty( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '127.0.0.1';
@@ -101,7 +105,7 @@ function eazydocs_feedback_email() {
 			wp_send_json_error( esc_html__( 'Please provide a subject line.', 'eazydocs' ) );
 		}
 
-		if ( ! isset ( $message ) ) {
+		if ( '' === trim( $message ) ) {
 			wp_send_json_error( esc_html__( 'Please provide the message details.', 'eazydocs' ) );
 		}
 		

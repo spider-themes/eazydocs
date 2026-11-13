@@ -502,15 +502,17 @@ class Admin {
 		}
 
 		$nestedArray = ezd_sanitize_nested_objects( $nestedArray ); // ✅ sanitize all IDs
+		_prime_post_caches( $this->collect_nestable_ids( $nestedArray ), false, false );
+		$seen = [];
+		if ( ! $this->can_update_nestable_items( $nestedArray, null, $seen ) ) {
+			wp_send_json_error( [ 'message' => 'You do not have permission to move these documents.' ], 403 );
+		}
 
 		// Optimization: Unhook expensive actions to prevent massive performance hit
 		// during bulk updates (e.g. cache clearing on every single post update)
 		remove_action( 'save_post', 'ezd_clear_docs_tree_cache', 10 );
 		remove_action( 'save_post', 'ezd_flush_docs_tree_cache' );
 		remove_action( 'save_post', 'ezd_flush_elementor_doc_ids_cache' );
-
-		// Load every doc in the payload in one query before the per-item checks.
-		_prime_post_caches( $this->collect_nestable_ids( $nestedArray ), false, false );
 
 		// Recursively update doc structure
 		$this->update_nestable_children( $nestedArray );
@@ -565,6 +567,33 @@ class Admin {
 				$this->update_nestable_children( $item->children, $item->id );
 			}
 		}
+	}
+
+	/** Validate the entire proposed hierarchy before making any changes. */
+	private function can_update_nestable_items( $items, $parent_id, &$seen ) {
+		$menu_order = 0;
+		foreach ( $items as $item ) {
+			++$menu_order;
+			$doc = get_post( $item->id );
+			if ( ! $doc || 'docs' !== $doc->post_type || isset( $seen[ $item->id ] ) ) {
+				return false;
+			}
+			$seen[ $item->id ] = true;
+			$parent = null === $parent_id ? eaz_get_nestable_parent_id( $item->id ) : $parent_id;
+			$changed = (int) $doc->menu_order !== $menu_order || (int) $doc->post_parent !== (int) $parent;
+			// The UI serializes the whole tree, including unchanged docs belonging
+			// to other authors. Only targets that will actually change need edit access.
+			if ( $changed && ! current_user_can( 'edit_post', $item->id ) ) {
+				return false;
+			}
+			if ( $parent === $item->id || ( (int) $doc->post_parent !== (int) $parent && ( 'docs' !== get_post_type( $parent ) || ! current_user_can( 'edit_post', $parent ) ) ) ) {
+				return false;
+			}
+			if ( ! empty( $item->children ) && ! $this->can_update_nestable_items( $item->children, $item->id, $seen ) ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
