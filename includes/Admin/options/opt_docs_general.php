@@ -101,5 +101,16 @@ ezd_render_csf_section( $prefix, 'general_fields', esc_html__( 'General Settings
 		'title'    => esc_html__( 'Hide Support Chat', 'eazydocs' ),
 		'subtitle' => esc_html__( 'Hide the documentation support chat button on EazyDocs admin pages.', 'eazydocs' ),
 		'default'  => false,
-	)
+	),
+
+	array(
+		'id'         => 'share_anonymous_usage',
+		'type'       => 'switcher',
+		'title'      => esc_html__( 'Share anonymous usage', 'eazydocs' ),
+		'subtitle'   => esc_html__( 'Help improve EazyDocs by sharing counts of docs, views, and searches. Doc text, search keywords, and email addresses are never included.', 'eazydocs' ),
+		'text_on'    => esc_html__( 'Enabled', 'eazydocs' ),
+		'text_off'   => esc_html__( 'Disabled', 'eazydocs' ),
+		'text_width' => 92,
+		'default'    => false,
+	),
 ]);

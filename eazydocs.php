@@ -444,6 +444,8 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 	}
 }
 
+require_once __DIR__ . '/includes/telemetry.php';
+
 if ( ! function_exists( 'eazydocs' ) ) {
 	function eazydocs() {
 		return EazyDocs::init();

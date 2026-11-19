@@ -299,6 +299,14 @@ Yes! You can use EazyDocs on as many websites as you need. Each installation can
 You can report bugs and contribute to the project on [GitHub](https://github.com/spider-themes/eazydocs/issues)
 
 
+== Anonymous usage ==
+
+EazyDocs can send anonymous usage counts to Spider Themes so we can see which documentation features are in use. Reporting stays off until you allow Freemius tracking or turn on Share anonymous usage under EazyDocs → Settings → General.
+
+The report includes published doc and article counts, one-page docs, 30-day view and search totals, helpful vote totals, and whether the assistant, contributions, subscriptions, and Google sign-in are enabled. It never includes doc text, search keywords, feedback messages, names, or email addresses.
+
+Turn it off with the Share anonymous usage switch, or add `define( 'EAZYDOCS_DISABLE_TELEMETRY', true );` to wp-config.php. `define( 'SPIDER_DISABLE_TELEMETRY', true );` stops it as well.
+
 == Installation ==
 
 **Minimum Requirements**
