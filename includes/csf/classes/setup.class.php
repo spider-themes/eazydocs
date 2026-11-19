@@ -334,8 +334,27 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
 			$directory_uri  = set_url_scheme( $directory_uri, $protocol_uri );
 
 			self::$dir = $dirname;
-			self::$url = $directory_uri . $foldername;
+			self::$url = self::plugin_framework_url( $directory_uri . $foldername );
 
+		}
+
+		/**
+		 * Public URL of this framework directory.
+		 *
+		 * A symlinked plugin resolves to a real path outside wp-content/plugins,
+		 * and the directory guess above then points at the active theme.
+		 * WordPress maps that symlink back to the plugin URL.
+		 *
+		 * @param string $fallback URL from the directory guess.
+		 * @return string
+		 */
+		private static function plugin_framework_url( $fallback ) {
+			$classes_url = untrailingslashit( plugins_url( '', self::$file ) );
+			$slash       = strrpos( $classes_url, '/' );
+			if ( false === $slash || false === strpos( $classes_url, '/plugins/' ) ) {
+				return $fallback;
+			}
+			return substr( $classes_url, 0, $slash );
 		}
 
 		// Include file helper
