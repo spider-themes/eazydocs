@@ -91,7 +91,8 @@
 		right: 32px;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus-within {
 		background: rgba(#9fa2b4, 0.2);
 		--title-opacity: 1;
 		--total-page-opacity: 1;

@@ -15,6 +15,13 @@ build
 !/assets/css/elementor/ezd-pro-elementor-editor.css
 !/assets/css/support-assistant.css
 
+# Local Playwright run artifacts
+/test-results/
+/tests/test-results/
+
+# Local plugin package
+/eazydocs.zip
+
 # OS junk (any folder / subfolder)
 .DS_Store
 **/.DS_Store

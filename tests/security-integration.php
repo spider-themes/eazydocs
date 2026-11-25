@@ -462,5 +462,36 @@ audit_test( 'REST visibility filtering does not load excluded document bodies', 
 	audit_assert( 200 === $response->get_status() && [ $open ] === array_column( $response->get_data(), 'id' ), 'Visibility result incorrect' );
 	audit_assert( memory_get_usage() - $before < 6 * 1024 * 1024, 'Excluded document bodies were loaded while filtering' );
 } );
+audit_test( 'scoped Builder branch matches the full tree for order, access, and counts', function () use ( $author, $editor ) {
+	wp_set_current_user( $author );
+	$root    = audit_doc();
+	$second  = audit_doc( [ 'post_parent' => $root, 'menu_order' => 2 ] );
+	$first   = audit_doc( [ 'post_parent' => $root, 'menu_order' => 1 ] );
+	$nested  = audit_doc( [ 'post_parent' => $first ] );
+	audit_doc( [ 'post_parent' => $nested, 'post_status' => 'draft' ] );
+	audit_doc( [ 'post_parent' => $root, 'post_status' => 'trash' ] );
+	audit_doc( [ 'post_parent' => $root, 'post_author' => $editor, 'meta_input' => [ 'ezd_role_visibility' => [ 'editor' ] ] ] );
+
+	$scoped = new WP_REST_Request( 'GET', '/eazydocs/v1/docs-builder/children' );
+	$scoped->set_param( 'parent_id', $root );
+	$builder = new EazyDocs\Admin\Api\Docs_Builder_Controller();
+	$data    = $builder->get_child_docs_data( $scoped )->get_data()[ $root ];
+	$full    = $builder->get_child_docs_data( new WP_REST_Request() )->get_data()[ $root ];
+	audit_assert( $full === $data, 'Scoped branch and full tree differ' );
+	audit_assert( [ $first, $second ] === array_column( $data, 'id' ), 'Builder branch changed child order or visibility' );
+	audit_assert( 2 === $data[0]['childCount'], 'Builder branch lost deep descendants' );
+} );
+audit_test( 'Builder admin mutations reject posts outside the docs post type', function () use ( $admin ) {
+	wp_set_current_user( $admin );
+	$page = audit_doc( [ 'post_type' => 'page' ] );
+	foreach ( [ 'update-visibility', 'update-sidebar', 'duplicate' ] as $route ) {
+		$request = new WP_REST_Request( 'POST', '/eazydocs/v1/docs-builder/' . $route );
+		$request->set_param( 'doc_id', $page );
+		$request->set_param( 'visibility', 'private' );
+		$response = rest_do_request( $request );
+		audit_assert( 400 === $response->get_status() && 'invalid_doc' === $response->get_data()['code'], "$route accepted a non-doc target" );
+	}
+	audit_assert( ! metadata_exists( 'post', $page, 'ezd_doc_left_sidebar_type' ), 'Sidebar metadata was written outside Docs' );
+} );
 echo "$checks integration checks, $failures failures\n";
 exit( $failures ? 1 : 0 );

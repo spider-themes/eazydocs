@@ -6,8 +6,8 @@
  * Author: Spider Themes
  * Author URI: https://eazydocs.spiderthemes.net
  * Version: 2.15.1
- * Requires at least: 5.0
- * Requires PHP: 7.4
+ * Requires at least: 6.6
+ * Requires PHP: 8.1
  * Text Domain: eazydocs
  * Domain Path: /languages
  * License: GPLv2 or later
