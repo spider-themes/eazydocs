@@ -6,6 +6,11 @@
  * @package EazyDocs
  */
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 global $wpdb;
 // Sentinel Fix: Use deterministic table name with $wpdb->prefix instead of relying on SHOW TABLES output.
 $search_log_table    = $wpdb->prefix . 'eazydocs_search_log';

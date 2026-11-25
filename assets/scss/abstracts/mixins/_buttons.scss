@@ -1,0 +1,474 @@
+// Button mixin
+@mixin btn($fs: var(--btn-fs), $ff: var(--btn-ff), $fw: var(--fw-400), $lh: 1.5, $tt: capitalize, $td: none, $py: var(--btn-py), $px: var(--btn-px), $my: var(--btn-mx), $mx: var(--btn-mx), $bg: var(--btn-bg), $border-width: var(--border-width), $border-style: var(--border-style), $border-color: $bg, $radius: var(--btn-radius, var(--radius)), $display: inline-block, $position: relative) {
+  position: $position;
+  font-family: $ff;
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+  background: var(--btn-bg);
+  color: var(--btn-clr);
+  border: var(--btn-bw, #{$border-width}) var(--btn-bs, #{$border-style}) var(--btn-bc, #{$border-color});
+  text-transform: $tt;
+  text-decoration: $td;
+  border-radius: $radius;
+  padding: $py $px;
+  margin: $my $mx;
+  display: $display;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  @include property;
+}
+
+// Button Color
+@mixin btn-color($bg: var(--clr-black), $color: var(--clr-white), $border-color: $bg, $h-color: $bg, $h-bg: transparent, $h-border-color: $h-color, $f-width: 0.4rem, $f-color: #000000, $f-opacity: 0.25) {
+  --btn-bg: #{$bg};
+  --btn-clr: #{$color};
+  --btn-bc: #{$border-color};
+
+  @if $h-bg {
+    @include hover {
+      --btn-clr: #{$h-color};
+      --btn-bg: #{$h-bg};
+      --btn-bc: #{$h-border-color};
+    }
+  }
+
+  @include focus {
+    outline: 0;
+    box-shadow: 0 0 0 $f-width rgba($f-color, 0.5);
+  }
+}
+
+//Button hover color
+@mixin btn-hover($h-color: var(--clr-black), $h-bg: transparent, $h-border-color: $h-color, $f-width: 0.4rem, $f-color: #000000, $f-opacity: 0.25) {
+  @if $h-bg {
+    @include hover {
+      --btn-clr: #{$h-color};
+      --btn-bg: #{$h-bg};
+      --btn-bc: #{$h-border-color};
+    }
+  }
+
+  @include focus {
+    outline: 0;
+    box-shadow: 0 0 0 $f-width rgba($f-color, 0.5);
+  }
+}
+
+@mixin btn-outline($color: var(--btn-clr), $h-color: var(--clr-white), $h-bg: $color, $border-color: $color, $h-border-color: $h-bg, $f-width: 0.4rem, $f-color: $color, $f-opacity: 0.5) {
+  --btn-clr: #{$color};
+  --btn-bc: #{$border-color};
+
+  @include hover {
+    --btn-clr: #{$h-color};
+    --btn-bg: #{$h-bg};
+    --btn-bc: #{$h-border-color};
+  }
+
+  @include focus {
+    outline: 0;
+    box-shadow: 0 0 0 $f-width rgba($f-color, 0.5);
+  }
+}
+
+
+// Form Input mixin 
+@mixin form-input($ff: $font, $fs: inherit, $fw: null, $lh: null, $color: $global-color, $bg: transparent, $opacity: 1, $tt: capitalize, $py: 1rem, $px: 1.25rem, $my: 0, $mx: 0, $width: 100%, $max-width: null, $height: auto, $border-type: null, $border-size: 1px, $border-style: solid, $border-color: $global-color, $radius-type: null, $radius-size: 0, $shadow: null, $focus: false, $f-fw: null, $f-color: $color, $f-bg: null, $f-opacity: 1, $f-border-type: null, $f-border-size: $border-size, $f-border-style: $border-style, $f-border-color: $black, $f-radius-type: null, $f-radius-size: null, $f-shadow: null) {
+
+  font-family: $ff;
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+  color: rgba($color, $opacity);
+  background: $bg;
+  text-transform: $tt;
+  padding: $py $px;
+  margin: $my $mx;
+  @include size($width, $height);
+  max-width: $max-width;
+  @include border($border-type, $border-size, $border-style, $border-color);
+  @include radius($radius-type, $radius-size);
+  box-shadow: $shadow;
+  @include property;
+
+  @if $focus==true {
+    &:focus {
+      outline: none;
+      font-weight: $f-fw;
+      color: rgba($f-color, $f-opacity);
+      background: $f-bg;
+      @include border($f-border-type, $f-border-size, $f-border-style, $f-border-color);
+      @include radius($f-radius-type, $f-radius-size);
+      box-shadow: $f-shadow;
+    }
+  } @else {
+    @include focus {
+      outline: none;
+    }
+  }
+
+}
+
+// Form Textarea mixin 
+@mixin textarea($fs: null, $fw: null, $lh: null, $color: $global-color, $bg: transparent, $opacity: 1, $tt: capitalize, $py: 15px, $px: 20px, $my: 0.9375rem, $mx: 0, $width: 100%, $max-width: null, $height: auto, $border-type: null, $border-size: 1px, $border-style: solid, $border-color: transparent, $radius-type: null, $radius-size: 0, $shadow: null, $focus: false, $f-fw: null, $f-color: $color, $f-opacity: 1, $f-border-type: null, $f-border-size: $border-size, $f-border-style: $border-style, $f-border-color: $border-color, $f-radius-type: null, $f-radius-size: null, $f-shadow: null) {
+
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+  padding: $py $px;
+  margin: $my $mx;
+  color: rgba($color, $opacity);
+  background: $bg;
+  text-transform: $tt;
+  @include size($width, $height);
+  max-width: $max-width;
+  @include border($border-type, $border-size, $border-style, $border-color);
+  @include radius($radius-type, $radius-size);
+  box-shadow: $shadow;
+  @include property;
+
+  @if $focus==true {
+    &:focus {
+      font-weight: $f-fw;
+      color: rgba($f-color, $f-opacity);
+      @include border($f-border-type, $f-border-size, $f-border-style, $f-border-color);
+      @include radius($f-radius-type, $f-radius-size);
+      box-shadow: $f-shadow;
+    }
+  }
+}
+
+// Dropdown Menu Mixin
+@mixin dropdown-menu($position:top 100% left 0, $width: 100%, $max-width: null, $padding: 15px, $m-name: mx, $m-value: auto, $fs: 16px, $a-color: $global-color, $a-padding: 0.625rem, $a-margin: 5px, $align: left, $index: 99, $radius: null, $shadow: null, $hover-bg: $black, $hover-color: $white) {
+  @include absolute($position);
+  width: $width;
+
+  @if $max-width {
+    max-width: $max-width;
+    @include margin($m-name, $m-value);
+  }
+
+  padding: $padding;
+  text-align: $align;
+  z-index: $index;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  opacity: 0;
+  visibility: hidden;
+
+  li {
+    display: block;
+
+    a {
+      color: $a-color;
+      font-size: $fs;
+      border-radius: $radius;
+      padding: $a-padding;
+      margin-bottom: $a-margin;
+      display: block;
+
+      &:hover {
+        background: $hover-bg;
+        color: $hover-color;
+      }
+    }
+  }
+}
+
+// Social Link
+@mixin social($name, $display: inline-block, $m-type: ml, $m-size: .75rem, $before: false, $divide-li: false, $before-content: '', $position: null, $before-width: 1px, $before-height: 20px, $before-bg: $global-color, $fs: 20px, $bg: transparent, $color: $global-color, $width: null, $height: $width, $lh: $width, $b-type: null, $b-size: 1px, $b-style: solid, $b-color: transparent, $radius: null, $p-name: null, $p-value: null, $shadow-x: null, $shadow-y: null, $shadow-b: null, $shadow-color: $color, $shadow-opacity: 1, $h-bg: null, $h-color: $color, $hb-type: $b-type, $hb-size: $b-size, $hb-style: $b-style, $hb-color: $b-color, $hs-x: null, $hs-y: null, $hs-b: null, $hs-color: $color, $hs-opacity: 1) {
+  .#{$name} {
+    li {
+      + li {
+        @include margin($m-type, $m-size);
+      }
+
+      position: relative;
+
+      @if $display==inline-flex {
+        display: inline-flex;
+        flex-wrap: wrap;
+      } @else {
+        display: $display;
+      }
+
+      @if $before==true {
+        @if $divide-li==true {
+          & + li {
+            &::before {
+              content: $before-content;
+              @include absolute($position);
+              @include size($before-width, $before-height);
+              background: $before-bg;
+            }
+          }
+        } @else {
+          &::before {
+            content: $before-content;
+            @include absolute($position);
+            @include size($before-width, $before-height);
+            background: $before-bg;
+          }
+        }
+      }
+
+      a {
+        font-size: $fs;
+        line-height: $lh;
+        background: $bg;
+        color: $color;
+        display: block;
+        text-align: center;
+        @include size($width, $height);
+        @include border($b-type, $b-size, $b-style, $b-color);
+        @include radius($size: $radius);
+        @include property;
+
+        @if $p-name {
+          @include padding($p-name, $p-value);
+        }
+
+        @if $shadow-color==true {
+          @include shadow($shadow-x, $shadow-y, $shadow-b, $shadow-color, $shadow-opacity);
+        }
+
+        @if $h-bg {
+          @include hover {
+            background: $h-bg;
+            color: $h-color;
+
+            @if $hb-color {
+              @include border($hb-type, $hb-size, $hb-style, $hb-color);
+            }
+
+            @if $hs-color {
+              @include shadow($hs-x, $hs-y, $hs-b, $hs-color, $hs-opacity);
+            }
+          }
+        } @else {
+          @include hover {
+            color: $h-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Owl Carousel Nav
+@mixin owl-nav($name: null, $fs: 20px, $bg: transparent, $color: $global-color, $position: null, $width: 50px, $height: $width, $lh: null, $radius: 0, $border: 2px solid $global-color, $transform: null, $p: 0, $owl-prev-left: null, $owl-prev-right: null, $owl-next-left: null, $owl-next-right: null, $h-bg: null, $h-color: null, $h-border: null) {
+  @if $name {
+    .#{$name} {
+      button {
+        @include absolute($position);
+        @include size($width, $height);
+        font: inherit;
+        font-size: $fs;
+        background: $bg;
+        color: $color;
+        line-height: $lh;
+        border-radius: $radius;
+        border: $border;
+        transform: $transform;
+        padding: $p;
+        cursor: pointer;
+        @include property;
+
+        &.owl-prev {
+          left: $owl-prev-left;
+          right: $owl-prev-right;
+        }
+
+        &.owl-next {
+          left: $owl-next-left;
+          right: $owl-next-right;
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          background: $h-bg;
+          color: $h-color;
+          border: $h-border;
+        }
+      }
+    }
+  } @else {
+    .owl-nav {
+      button {
+        @include absolute($position);
+        @include size($width, $height);
+        font: inherit;
+        font-size: $fs;
+        background: $bg;
+        color: $color;
+        line-height: $lh;
+        border-radius: $radius;
+        border: $border;
+        transform: $transform;
+        padding: $p;
+        cursor: pointer;
+        @include property;
+
+        &.owl-prev {
+          left: $owl-prev-left;
+          right: $owl-prev-right;
+        }
+
+        &.owl-next {
+          left: $owl-next-left;
+          right: $owl-next-right;
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          background: $h-bg;
+          color: $h-color;
+          border: $h-border;
+        }
+      }
+    }
+  }
+}
+
+// OWl Carousel Dots 
+@mixin owl-dots($dots-position: left 50% bottom 0, $translateX: -50%, $translateY: -50%, $width: 8px, $height: $width, $display: inline-block, $text-center: center, $bg: $global-color, $border-size: 1px, $border-style: solid, $border-color: transparent, $radius-type: null, $radius-size: 50%, $p-name: null, $p-value: .25rem, $m-name: ml, $m-value: .5rem, $before: false, $b-content: '', $b-position: left -9px top -9px, $b-width: 25px, $b-height: $b-width, $b-radius-type: null, $b-radius-size: 50%, $b-border: 1px solid $global-color, $active: true, $a-width: $width, $a-height: $height, $a-bg: $bg, $a-border-size: 1px, $a-border-style: solid, $a-border-color: transparent, $active-before: false, $ab-content: '', $ab-position: left -9px top -9px, $ab-width: 25px, $ab-height: $ab-width, $ab-border: 2px solid $global-color, $ab-radius-type: null, $ab-radius-size: 50%) {
+
+  @include absolute($dots-position);
+  text-align: $text-center;
+
+  @if $translateY==true {
+    transform: translateY($translateY);
+  } @else {
+    transform: translateX($translateX);
+  }
+
+  button {
+    position: relative;
+    @include size($width, $height);
+    display: $display;
+    background: $bg;
+    @include border(null, $border-size, $border-style, $border-color);
+    @include radius($radius-type, $radius-size);
+    @include padding($p-name, $p-value);
+    @include margin($m-name, $m-value);
+
+    @if $before==true {
+      &::before {
+        content: $b-content;
+        @include absolute($b-position);
+        @include size($b-width, $b-height);
+        @include radius($b-radius-type, $b-radius-size);
+        border: $b-border;
+      }
+    }
+
+    @if $active==true {
+      &.active {
+        @include size($a-width, $a-height);
+        background: $a-bg;
+        @include border(null, $a-border-size, $a-border-style, $a-border-color);
+
+        @if $active-before==true {
+          &::before {
+            content: $ab-content;
+            @include absolute($ab-position);
+            @include size($ab-width, $ab-height);
+            @include radius($ab-radius-type, $ab-radius-size);
+            border: $ab-border;
+          }
+        }
+      }
+    }
+
+    @include focus {
+      outline: none;
+    }
+  }
+}
+
+// Footer Menu 
+@mixin footer-menu($size: 18px, $color: $black, $padding: 10px, $opacity: 1, $display: block, $tt: capitalize, $td: none, $h-color: $black, $h-td: none) {
+  li {
+    a {
+      font-size: $size;
+      color: $color;
+      opacity: $opacity;
+      padding-bottom: $padding;
+      display: $display;
+      text-transform: $tt;
+      text-decoration: $td;
+
+      @include hover {
+        color: $h-color;
+        text-decoration: $h-td;
+      }
+    }
+  }
+}
+
+// Footer Widget 
+@mixin footer-widget($value, $weight: 600, $prefix: top, $padding: 0) {
+  h3 {
+    font-size: $value;
+    padding-#{$prefix}: $padding;
+    font-weight: $weight;
+  }
+
+  @include footer-menu;
+}
+
+//Extra Small Screen Only
+@mixin xs {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+//Small Screen
+@mixin xsm {
+  @media screen and (min-width: 425px) {
+    @content;
+  }
+}
+
+//Small Screen
+@mixin sm {
+  @media screen and (min-width: 576px) {
+    @content;
+  }
+}
+
+//Medium Screen
+@mixin md {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+//Large Screen
+@mixin lg {
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+//Extra Large Screen
+@mixin xl {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+//Desktop Screen
+@mixin xxl {
+  @media screen and (min-width: 1441px) {
+    @content;
+  }
+}

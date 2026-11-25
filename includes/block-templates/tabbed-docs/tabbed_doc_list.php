@@ -8,6 +8,11 @@
  * @package EazyDocs
  */
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Check if Pro is active
 $is_pro_active = function_exists( 'ezd_is_premium' ) && ezd_is_premium();
 

@@ -6,6 +6,11 @@
  * @package EazyDocs
  */
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Get plugin version.
 $plugin_data = get_plugin_data( EZD_FILE );
 $plugin_version = $plugin_data['Version'] ?? '1.0.0';

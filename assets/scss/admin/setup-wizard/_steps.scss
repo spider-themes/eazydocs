@@ -1,0 +1,1037 @@
+@use "sass:color";
+
+// ========================================
+// STEP 1: Welcome - Compact
+// ========================================
+.ezd-welcome-step {
+	.ezd-welcome-content {
+		max-width: 860px;
+		width: 100%;
+		margin: 0 auto;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		// Balance the content within the full-height card; "safe" keeps it
+		// top-aligned (and scrollable) when the viewport is short.
+		justify-content: safe center;
+		gap: 22px;
+		min-height: 0;
+	}
+
+	.ezd-welcome-video {
+		flex-shrink: 0;
+
+		.ezd-video-wrapper {
+			border-radius: $radius-lg;
+			overflow: hidden;
+			box-shadow: $shadow-lg;
+			background: #000;
+
+			iframe {
+				display: block;
+				border: none;
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				height: auto;
+				max-height: 42vh;
+			}
+		}
+
+		.ezd-video-caption {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+			margin-top: 6px;
+			font-size: 12px;
+			color: $text-secondary;
+
+			.dashicons {
+				color: $danger-color;
+				font-size: 14px;
+				width: 14px;
+				height: 14px;
+			}
+		}
+	}
+
+	.ezd-features-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 12px;
+		flex-shrink: 0;
+
+		@media (max-width: 768px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.ezd-feature-card {
+		background: $bg-light;
+		border: 1px solid $border-light;
+		border-radius: $radius-md;
+		padding: 16px 12px;
+		text-align: center;
+		transition: all $transition-base;
+
+		&:hover {
+			background: $bg-white;
+			border-color: $primary-color;
+			box-shadow: $shadow-md;
+			transform: translateY(-2px);
+		}
+
+		.ezd-feature-icon {
+			width: 40px;
+			height: 40px;
+			background: $primary-light;
+			border-radius: $radius-md;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 10px;
+
+			.dashicons {
+				font-size: 20px;
+				width: 20px;
+				height: 20px;
+				color: $primary-color;
+			}
+		}
+
+		h4 {
+			font-size: 13px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 6px;
+		}
+
+		p {
+			font-size: 12px;
+			color: $text-secondary;
+			margin: 0;
+			line-height: 1.45;
+		}
+	}
+
+	.ezd-quick-links {
+		display: flex;
+		justify-content: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		flex-shrink: 0;
+
+		.ezd-quick-link {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 8px 14px;
+			background: $bg-white;
+			border: 1px solid $border-color;
+			border-radius: $radius-full;
+			color: $text-secondary;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: 500;
+			transition: all $transition-fast;
+
+			.dashicons {
+				font-size: 16px;
+				width: 16px;
+				height: 16px;
+			}
+
+			&:hover {
+				background: $primary-color;
+				border-color: $primary-color;
+				color: white;
+				transform: translateY(-2px);
+				box-shadow: $shadow-md;
+			}
+		}
+	}
+}
+
+// ========================================
+// STEP 2 & 3: Settings - Compact
+// ========================================
+.ezd-settings-step,
+.ezd-layout-step {
+
+	.ezd-settings-content,
+	.ezd-layout-content {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+}
+
+.ezd-setting-card {
+	background: $bg-white;
+	border: 1px solid $border-color;
+	border-radius: $radius-sm;
+	margin-bottom: 8px;
+	overflow: hidden;
+	transition: all $transition-base;
+
+	&:hover {
+		border-color: rgba($primary-color, 0.3);
+		box-shadow: $shadow-sm;
+	}
+
+	.ezd-setting-header {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 7px 12px;
+		background: $bg-light;
+		border-bottom: 1px solid $border-light;
+	}
+
+	.ezd-setting-icon {
+		width: 26px;
+		height: 26px;
+		background: $primary-light;
+		border-radius: $radius-sm;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+
+		.dashicons {
+			font-size: 15px;
+			width: 15px;
+			height: 15px;
+			color: $primary-color;
+		}
+	}
+
+	.ezd-setting-title {
+		flex: 1;
+
+		h3 {
+			font-size: 14px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 1px;
+		}
+
+		p {
+			font-size: 11px;
+			color: $text-secondary;
+			margin: 0;
+			line-height: 1.35;
+		}
+	}
+
+	.ezd-setting-body {
+		padding: 10px 12px;
+	}
+
+	// Toggle Card
+	&.ezd-toggle-card {
+		.ezd-setting-header {
+			border-bottom: none;
+		}
+	}
+}
+
+// Select Styling
+.archive-page-selection-wrap {
+
+	.ezd-select,
+	select {
+		width: 100%;
+		padding: 8px 16px;
+		font-size: 15px;
+		border: 2px solid $border-color;
+		border-radius: $radius-sm;
+		background: $bg-white;
+		color: $text-primary;
+		cursor: pointer;
+		transition: all $transition-fast;
+		appearance: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 16px center;
+
+		&:focus {
+			outline: none;
+			border-color: $primary-color;
+			box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+		}
+	}
+
+	.ezd-setting-hint {
+		display: flex;
+		gap: 8px;
+		margin-top: 12px;
+		padding: 5px 10px;
+		background: rgba(245, 166, 35, 0.1);
+		border-radius: 6px;
+		font-size: 12px;
+		color: #c37d09;
+		line-height: 1.5;
+		align-items: center;
+
+		.dashicons {
+			flex-shrink: 0;
+			margin-top: 2px;
+		}
+	}
+}
+
+// Brand Color Picker
+.brand-color-picker-wrap {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+
+	.wp-picker-container {
+		display: flex !important;
+		align-items: center;
+
+		.wp-color-result {
+			border-radius: $radius-sm !important;
+			border: 2px solid $border-color !important;
+			box-shadow: none !important;
+		}
+	}
+
+	.ezd-color-preview {
+		padding: 12px 24px;
+		background: var(--preview-color, $primary-color);
+		color: white;
+		border-radius: $radius-sm;
+		font-size: 14px;
+		font-weight: 500;
+		box-shadow: $shadow-sm;
+	}
+}
+
+// Slug Options
+.root-slug-wrap {
+	.ezd-slug-options {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-bottom: 16px;
+	}
+
+	.ezd-slug-option {
+		display: flex;
+		align-items: center;
+		padding: 8px 10px;
+		background: $bg-white;
+		border: 1px solid $border-color;
+		border-radius: $radius-sm;
+		cursor: pointer;
+		transition: all $transition-fast;
+		position: relative;
+
+		// Custom Radio Input
+		input[type="radio"] {
+			appearance: none;
+			width: 18px;
+			height: 18px;
+			border: 2px solid $text-muted;
+			border-radius: 50%;
+			margin: 0 12px 0 0;
+			position: relative;
+			transition: all $transition-fast;
+			flex-shrink: 0;
+
+			&:checked {
+				border-color: $primary-color;
+				background: $primary-color;
+				box-shadow: inset 0 0 0 3px white;
+			}
+		}
+
+		.ezd-option-label {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.ezd-option-title {
+			font-size: 14px;
+			font-weight: 600;
+			color: $text-primary;
+		}
+
+		.ezd-option-example {
+			font-size: 12px;
+			color: $text-secondary;
+			font-family: monospace;
+		}
+
+		&:hover {
+			border-color: $primary-color;
+			background: $bg-light;
+		}
+
+		&:focus-within {
+			border-color: $primary-color;
+			box-shadow: 0 0 0 3px rgba($primary-color, 0.15);
+		}
+
+		&.active {
+			border-color: $primary-color;
+			background: $primary-light;
+
+			input[type="radio"] {
+				border-color: $primary-color;
+				background: $primary-color;
+				box-shadow: inset 0 0 0 3px white;
+			}
+		}
+	}
+
+	.ezd-custom-slug-input {
+		display: none;
+		align-items: center;
+		padding: 5px 12px;
+		background: $bg-light;
+		border: 2px solid $success-color;
+		border-radius: $radius-sm;
+
+		&.active {
+			display: flex;
+		}
+
+		.ezd-slug-prefix,
+		.ezd-slug-suffix {
+			font-size: 14px;
+			color: $text-muted;
+			font-family: monospace;
+		}
+
+		.custom-slug-field {
+			flex: 1;
+			border: none;
+			background: transparent;
+			font-size: 14px;
+			font-family: monospace;
+			color: $text-primary;
+			padding: 4px 8px;
+
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+}
+
+// ========================================
+// STEP 3: Layout Options - Compact
+// ========================================
+.ezd-layout-options {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+
+	@media (max-width: 600px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.ezd-layout-option {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 8px 6px;
+	background: $bg-white;
+	border: 1px solid $border-color;
+	border-radius: $radius-sm;
+	cursor: pointer;
+	transition: all $transition-base;
+	position: relative;
+	text-align: center;
+
+	input[type="radio"] {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.ezd-layout-preview {
+		width: 100%;
+		margin-bottom: 4px;
+		border-radius: $radius-sm;
+		overflow: hidden;
+		box-shadow: $shadow-sm;
+
+		img {
+			max-width: 100%;
+			height: 58px;
+			display: block;
+			transition: transform 0.3s ease;
+			margin: 0 auto;
+			padding: 4px;
+			border-radius: 10px;
+		}
+	}
+
+	.ezd-layout-name {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 12px;
+		font-weight: 600;
+		color: $text-primary;
+		margin-bottom: 2px;
+	}
+
+	.ezd-layout-recommended {
+		font-size: 9px;
+		font-weight: 700;
+		letter-spacing: 0.3px;
+		text-transform: uppercase;
+		color: $primary-color;
+		background: $primary-light;
+		border-radius: $radius-full;
+		padding: 2px 6px;
+		line-height: 1;
+	}
+
+	.ezd-layout-desc {
+		font-size: 11px;
+		color: $text-secondary;
+	}
+
+	.ezd-check-icon {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		width: 20px;
+		height: 20px;
+		background: $primary-color;
+		border-radius: 50%;
+		display: none;
+		align-items: center;
+		justify-content: center;
+
+		.dashicons {
+			font-size: 14px;
+			width: 14px;
+			height: 14px;
+			color: white;
+		}
+	}
+
+	&:hover {
+		border-color: $primary-color;
+		background: $bg-light;
+
+		.ezd-layout-preview img {
+			transform: scale(1.02);
+		}
+	}
+
+	&:focus-within {
+		border-color: $primary-color;
+		box-shadow: 0 0 0 3px rgba($primary-color, 0.15);
+	}
+
+	&.active {
+		border-color: $primary-color;
+		background: $primary-light;
+		box-shadow: inset 0 0 0 1px $primary-color;
+
+		.ezd-check-icon {
+			display: flex;
+		}
+	}
+}
+
+// Width Options
+.ezd-width-options {
+	display: flex;
+	gap: 16px;
+
+	.ezd-width-option {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 10px;
+		background: $bg-light;
+		border: 2px solid $border-color;
+		border-radius: $radius-md;
+		cursor: pointer;
+		transition: all $transition-base;
+
+		input[type="radio"] {
+			position: absolute;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.ezd-width-icon {
+			margin-bottom: 8px;
+		}
+
+		.ezd-width-preview {
+			display: block;
+			width: 64px;
+			height: 40px;
+			border: 2px solid $border-color;
+			border-radius: 4px;
+			position: relative;
+			background: white;
+
+			&::before {
+				content: "";
+				position: absolute;
+				top: 6px;
+				bottom: 6px;
+				background: $primary-light;
+				border-radius: 2px;
+			}
+
+			&.boxed::before {
+				left: 16px;
+				right: 16px;
+			}
+
+			&.full-width::before {
+				left: 4px;
+				right: 4px;
+			}
+		}
+
+		.ezd-width-label {
+			font-size: 14px;
+			font-weight: 600;
+			color: $text-primary;
+		}
+
+		&:focus-within {
+			border-color: $primary-color;
+			box-shadow: 0 0 0 3px rgba($primary-color, 0.15);
+		}
+
+		// Selection state is communicated with the primary colour everywhere
+		// in the wizard; green is reserved for completion/success states.
+		&:hover,
+		&.active {
+			border-color: $primary-color;
+			background: $primary-light;
+		}
+
+		&.active {
+			box-shadow: inset 0 0 0 1px $primary-color;
+
+			.ezd-width-preview::before {
+				background: var(--ezd-preview-brand, $primary-color);
+				opacity: 0.5;
+			}
+		}
+	}
+}
+
+// Toggle Switch
+.ezd-toggle-switch {
+	input[type="checkbox"] {
+		display: none;
+
+		&+.ezd-toggle-label {
+			width: 52px;
+			height: 28px;
+			background: $border-color;
+			border-radius: $radius-full;
+			position: relative;
+			cursor: pointer;
+			transition: all $transition-fast;
+			display: block;
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 4px;
+				left: 4px;
+				width: 20px;
+				height: 20px;
+				background: white;
+				border-radius: 50%;
+				transition: all $transition-fast;
+				box-shadow: $shadow-sm;
+			}
+		}
+
+		&:checked+.ezd-toggle-label {
+			background: $success-color;
+
+			&::after {
+				left: 28px;
+			}
+		}
+	}
+}
+
+// Pro Teaser
+.ezd-pro-teaser {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 12px 16px;
+	background: linear-gradient(135deg,
+			rgba($pro-color, 0.08) 0%,
+			rgba($pro-color, 0.15) 100%);
+	border: 1px solid rgba($pro-color, 0.2);
+	border-radius: $radius-md;
+	margin-top: 12px;
+
+	.ezd-pro-badge {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		background: $pro-color;
+		color: white;
+		padding: 8px 14px;
+		border-radius: $radius-full;
+		font-size: 12px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+
+		.dashicons {
+			font-size: 14px;
+			width: 14px;
+			height: 14px;
+		}
+	}
+
+	.ezd-pro-content {
+		flex: 1;
+
+		h4 {
+			font-size: 15px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 4px;
+		}
+
+		p {
+			font-size: 14px;
+			color: $text-secondary;
+			margin: 0;
+		}
+	}
+}
+
+// ========================================
+// STEP 4: Plugins
+// ========================================
+.ezd-plugins-step {
+	.ezd-plugins-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+		margin-bottom: 0;
+
+		@media (max-width: 700px) {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+.ezd-plugin-card {
+	background: $bg-white;
+	border: 1px solid $border-color;
+	border-radius: $radius-md;
+	padding: 14px;
+	position: relative;
+	transition: all $transition-base;
+
+	&:hover {
+		border-color: $primary-color;
+		box-shadow: $shadow-md;
+		transform: translateY(-2px);
+	}
+
+	&.is-active {
+		border-color: $success-color;
+		background: $success-light;
+	}
+
+	.ezd-plugin-status {
+		position: absolute;
+		top: 8px;
+		left: 8px;
+		font-size: 10px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		padding: 3px 8px;
+		border-radius: $radius-full;
+
+		&.ezd-status-required {
+			background: rgba($danger-color, 0.1);
+			color: $danger-color;
+		}
+
+		&.ezd-status-recommended {
+			background: rgba($primary-color, 0.1);
+			color: $primary-color;
+		}
+
+		&.ezd-status-optional {
+			background: rgba($text-muted, 0.1);
+			color: $text-muted;
+		}
+	}
+
+	.ezd-plugin-active-badge {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+
+		.dashicons {
+			font-size: 20px;
+			width: 20px;
+			height: 20px;
+			color: $success-color;
+		}
+	}
+
+	.ezd-plugin-header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 10px;
+		margin-bottom: 8px;
+	}
+
+	.ezd-plugin-icon {
+		width: 40px;
+		height: 40px;
+		margin-bottom: 6px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			border-radius: $radius-sm;
+		}
+	}
+
+	.ezd-plugin-title {
+		font-size: 14px;
+		font-weight: 600;
+		color: $text-primary;
+		text-align: center;
+		margin: 0;
+	}
+
+	.ezd-plugin-description {
+		font-size: 12px;
+		color: $text-secondary;
+		text-align: center;
+		line-height: 1.4;
+		margin: 0 0 10px;
+		min-height: 36px;
+	}
+
+	.ezd-plugin-actions {
+		display: flex;
+		justify-content: center;
+		gap: 8px;
+	}
+}
+
+// ========================================
+// STEP 5: Finish
+// ========================================
+.ezd-finish-step {
+	.ezd-finish-content {
+		max-width: 720px;
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+
+		h2 {
+			font-size: 22px;
+			font-weight: 700;
+			color: $text-primary;
+			margin: 0 0 6px;
+		}
+	}
+
+	.ezd-success-animation {
+		position: relative;
+		margin-bottom: 18px;
+	}
+
+	.ezd-success-circle {
+		width: 84px;
+		height: 84px;
+		background: linear-gradient(135deg,
+				$success-color 0%,
+				color.adjust($success-color, $lightness: -10%) 100%);
+		border-radius: 50%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		animation: successPulse 2s ease-in-out infinite;
+
+		.dashicons {
+			font-size: 42px;
+			width: 42px;
+			height: 42px;
+			color: white;
+		}
+	}
+
+	@keyframes successPulse {
+
+		0%,
+		100% {
+			box-shadow: 0 0 0 0 rgba($success-color, 0.4);
+		}
+
+		50% {
+			box-shadow: 0 0 0 20px rgba($success-color, 0);
+		}
+	}
+
+	.ezd-finish-subtitle {
+		font-size: 15px;
+		color: $text-secondary;
+		margin-bottom: 24px;
+	}
+
+	.ezd-next-steps-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		text-align: left;
+
+		@media (max-width: 600px) {
+			grid-template-columns: 1fr;
+		}
+
+		// Hero + teaser cards span the full row so the grid stays balanced
+		// whether there are 3 (Pro) or 4 (free) cards.
+		.ezd-primary-action,
+		.ezd-pro-card {
+			grid-column: 1 / -1;
+		}
+	}
+
+	.ezd-next-step-card {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		padding: 16px 18px;
+		background: $bg-light;
+		border: 1px solid $border-color;
+		border-radius: $radius-md;
+		text-decoration: none;
+		transition: all $transition-base;
+
+		.ezd-card-icon {
+			width: 36px;
+			height: 36px;
+			background: $primary-light;
+			border-radius: $radius-sm;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+
+			.dashicons {
+				font-size: 18px;
+				width: 18px;
+				height: 18px;
+				color: $primary-color;
+			}
+		}
+
+		.ezd-card-content {
+			flex: 1;
+
+			h4 {
+				font-size: 15px;
+				font-weight: 600;
+				color: $text-primary;
+				margin: 0 0 4px;
+			}
+
+			p {
+				font-size: 13px;
+				color: $text-secondary;
+				margin: 0;
+			}
+		}
+
+		>.dashicons {
+			color: $text-muted;
+			transition: all $transition-fast;
+		}
+
+		&:hover {
+			border-color: $primary-color;
+			background: $bg-white;
+			box-shadow: $shadow-md;
+			transform: translateY(-2px);
+
+			>.dashicons {
+				color: $primary-color;
+				transform: translateX(4px);
+			}
+		}
+
+		&.ezd-primary-action {
+			background: linear-gradient(135deg,
+					$primary-color 0%,
+					$primary-dark 100%);
+			border-color: $primary-color;
+
+			.ezd-card-icon {
+				background: rgba(white, 0.2);
+
+				.dashicons {
+					color: white;
+				}
+			}
+
+			.ezd-card-content h4,
+			.ezd-card-content p {
+				color: white;
+			}
+
+			>.dashicons {
+				color: rgba(white, 0.7);
+			}
+
+			&:hover {
+				transform: translateY(-4px);
+				box-shadow: $shadow-lg;
+
+				>.dashicons {
+					color: white;
+				}
+			}
+		}
+
+		&.ezd-pro-card {
+			background: linear-gradient(135deg,
+					rgba($pro-color, 0.08) 0%,
+					rgba($pro-color, 0.15) 100%);
+			border-color: rgba($pro-color, 0.3);
+
+			.ezd-card-icon {
+				background: rgba($pro-color, 0.15);
+
+				.dashicons {
+					color: $pro-color;
+				}
+			}
+
+			&:hover {
+				border-color: $pro-color;
+			}
+		}
+	}
+}

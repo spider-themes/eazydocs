@@ -1,0 +1,458 @@
+/**
+ * EazyDocs Setup Wizard Styles
+ * Modern, beautiful UI with smooth animations and premium feel
+ *
+ * @package EazyDocs
+ */
+
+@use "sass:color";
+
+// Variables
+$primary-color: #007fff;
+$primary-dark: #0066cc;
+$primary-light: #e6f2ff;
+$success-color: #00b16e;
+$success-light: #e6f9f1;
+$warning-color: #f5a623;
+$danger-color: #e74c3c;
+$pro-color: #9b59b6;
+
+$text-primary: #1e1e1e;
+$text-secondary: #6b7280;
+$text-muted: #9ca3af;
+
+$border-color: #e5e7eb;
+$border-light: #f3f4f6;
+$bg-light: #f9fafb;
+$bg-white: #ffffff;
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+	0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+	0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+	0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+$radius-full: 9999px;
+
+$transition-fast: 0.15s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Reset and Base - Full Screen Mode
+.ezd-setup-page {
+	background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+}
+
+// Hide WordPress admin UI when setup wizard is active
+// Note: Body class may be 'eazydocs_page_eazydocs-initial-setup' or 'documentation_page_eazydocs-initial-setup'
+body.eazydocs_page_eazydocs-initial-setup,
+body.documentation_page_eazydocs-initial-setup {
+	overflow: hidden;
+
+	#wpcontent,
+	#wpfooter {
+		margin-left: 0 !important;
+		padding-left: 0 !important;
+	}
+
+	#adminmenumain,
+	#adminmenuback,
+	#adminmenuwrap,
+	#wpadminbar {
+		display: none !important;
+	}
+
+	// Reset the content area
+	.wrap {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+// Modern Header
+.ezd-setup-wizard-wrapper {
+	background: $bg-white;
+	box-shadow: $shadow-md;
+	display: flex;
+	height: 56px;
+	min-height: 56px;
+	flex-shrink: 0;
+	justify-content: space-between;
+	padding: 0 24px;
+	align-items: center;
+	z-index: 100;
+
+	.ezd-setup-wizard-header {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		align-items: center;
+	}
+
+	.ezd-setup-logo {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		img {
+			width: 36px;
+			height: 36px;
+		}
+
+		.ezd-logo-text {
+			font-size: 20px;
+			font-weight: 600;
+			color: $text-primary;
+		}
+
+		.ezd-setup-badge {
+			background: linear-gradient(135deg,
+					$primary-color 0%,
+					$primary-dark 100%);
+			color: white;
+			font-size: 11px;
+			font-weight: 600;
+			padding: 4px 10px;
+			border-radius: $radius-full;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+	}
+
+	.ezd-setup-header-actions {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+
+		.ezd-header-link {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			color: $text-secondary;
+			text-decoration: none;
+			font-size: 14px;
+			font-weight: 500;
+			padding: 8px 12px;
+			border-radius: $radius-sm;
+			transition: all $transition-fast;
+
+			.dashicons {
+				font-size: 16px;
+				width: 16px;
+				height: 16px;
+			}
+
+			&:hover {
+				color: $primary-color;
+				background: $primary-light;
+			}
+		}
+
+		.ezd-skip-btn {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			color: $text-secondary;
+			text-decoration: none;
+			font-size: 14px;
+			font-weight: 500;
+			padding: 8px 16px;
+			border: 1px solid $border-color;
+			border-radius: $radius-sm;
+			transition: all $transition-fast;
+
+			.dashicons {
+				font-size: 14px;
+				width: 14px;
+				height: 14px;
+			}
+
+			&:hover {
+				border-color: $primary-color;
+				color: $primary-color;
+			}
+		}
+	}
+}
+
+// Main Wizard Container
+#ezd-setup-wizard-wrap {
+	width: 100%;
+	max-width: 900px;
+	margin: 16px auto;
+	background: $bg-white;
+	border-radius: $radius-lg;
+	box-shadow: $shadow-xl;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid $border-light;
+	display: flex;
+	flex-direction: column;
+	// Fill the remaining viewport height below the fixed header.
+	flex: 1 1 auto;
+	min-height: 0;
+
+	// Hide WordPress notices and smart wizard toolbar
+	.notice,
+	.fs-notice,
+	.sw-toolbar {
+		display: none !important;
+	}
+
+	// Hide ALL SmartWizard generated buttons - we use our custom footer buttons
+	.sw-btn {
+		&:not(.ezd-btn) {
+			display: none !important;
+		}
+	}
+}
+
+// Progress Steps - Compact Design
+.ezd-wizard-progress {
+	background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+	padding: 12px 40px;
+	border-bottom: 1px solid $border-light;
+	position: relative;
+	flex-shrink: 0;
+
+	.ezd-progress-bar {
+		position: absolute;
+		top: 50%;
+		left: 80px;
+		right: 80px;
+		height: 4px;
+		background: $border-color;
+		border-radius: 2px;
+		transform: translateY(-12px);
+		z-index: 1;
+
+		.ezd-progress-fill {
+			height: 100%;
+			background: linear-gradient(90deg,
+					$success-color 0%,
+					$primary-color 100%);
+			border-radius: 2px;
+			width: 0%;
+			transition: width $transition-slow;
+		}
+	}
+
+	.ezd-progress-steps {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		z-index: 2;
+	}
+
+	.ezd-progress-step {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+		flex: 1;
+		cursor: default;
+
+		.ezd-step-indicator {
+			width: 36px;
+			height: 36px;
+			background: $bg-white;
+			border: 2px solid $border-color;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all $transition-base;
+			position: relative;
+
+			.ezd-step-number {
+				font-size: 14px;
+				font-weight: 600;
+				color: $text-muted;
+				transition: all $transition-base;
+			}
+
+			.ezd-step-check {
+				display: none;
+				color: white;
+				font-size: 18px;
+			}
+		}
+
+		.ezd-step-title {
+			font-size: 13px;
+			font-weight: 500;
+			color: $text-muted;
+			text-align: center;
+			transition: all $transition-base;
+		}
+
+		// Active State
+		&.active {
+			.ezd-step-indicator {
+				border-color: $primary-color;
+				background: $primary-color;
+				box-shadow: 0 0 0 4px rgba($primary-color, 0.2);
+
+				.ezd-step-number {
+					color: white;
+				}
+			}
+
+			.ezd-step-title {
+				color: $primary-color;
+				font-weight: 600;
+			}
+		}
+
+		// Completed State - Clickable
+		&.completed {
+			cursor: pointer;
+
+			.ezd-step-indicator {
+				border-color: $success-color;
+				background: $success-color;
+				transition: all $transition-fast;
+
+				.ezd-step-number {
+					display: none;
+				}
+
+				.ezd-step-check {
+					display: block;
+				}
+			}
+
+			.ezd-step-title {
+				color: $success-color;
+				transition: color $transition-fast;
+			}
+
+			// Hover effect for completed steps
+			&:hover {
+				.ezd-step-indicator {
+					transform: scale(1.1);
+					box-shadow: 0 0 0 4px rgba($success-color, 0.2);
+				}
+
+				.ezd-step-title {
+					color: darken($success-color, 10%);
+				}
+			}
+		}
+	}
+}
+
+// Tab Content Area - Compact
+.tab-content {
+	min-height: 0;
+	flex: 1;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 20px 32px;
+	position: relative;
+
+	.tab-pane {
+		animation: fadeInUp 0.4s ease;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		// Vertically centre shorter steps within the full-height card, while
+		// "safe" keeps tall steps top-aligned so scrolling never clips them.
+		justify-content: safe center;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Step Header - Compact
+.ezd-step-header {
+	text-align: center;
+	margin-bottom: 12px;
+	flex-shrink: 0;
+
+	h2 {
+		font-size: 18px;
+		font-weight: 700;
+		color: $text-primary;
+		margin: 0 0 4px;
+		line-height: 1.3;
+	}
+
+	.ezd-step-description {
+		font-size: 13px;
+		color: $text-secondary;
+		max-width: 500px;
+		margin: 6px auto 12px;
+		line-height: 1.4;
+	}
+
+	// Reset-to-defaults affordance (Layout / Design step).
+	.ezd-restore-defaults {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		padding: 5px 12px;
+		background: $bg-white;
+		border: 1px solid $border-color;
+		border-radius: $radius-full;
+		font-size: 12px;
+		font-weight: 600;
+		color: $text-secondary;
+		cursor: pointer;
+		transition: all $transition-fast;
+
+		.dashicons {
+			font-size: 14px;
+			width: 14px;
+			height: 14px;
+		}
+
+		&:hover {
+			border-color: $primary-color;
+			color: $primary-color;
+			background: $primary-light;
+		}
+
+		&:focus-visible {
+			outline: none;
+			box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+		}
+	}
+}

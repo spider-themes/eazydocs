@@ -6,6 +6,11 @@
  * @package EazyDocs
  */
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 global $wpdb;
 
 // Get table names.

@@ -1,0 +1,15 @@
+parameters:
+	level: 2
+	phpVersion: 80100
+	paths:
+		- eazydocs.php
+		- blocks.php
+		- includes
+		- shortcodes
+		- templates
+	excludePaths:
+		- includes/csf
+		- freemius-sdk
+		- vendor
+		- node_modules
+		- build
