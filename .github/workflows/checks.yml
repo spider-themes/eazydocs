@@ -1,0 +1,67 @@
+name: Checks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  free:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: '8.1'
+            wordpress: '6.6'
+            link_free: '0'
+          - php: '8.4'
+            wordpress: '6.8.3'
+            link_free: '1'
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: disposable
+          MYSQL_DATABASE: ezd_audit
+          MYSQL_USER: ezd
+          MYSQL_PASSWORD: disposable
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=15
+    env:
+      EZD_DB_USER: ezd
+      EZD_DB_PASSWORD: disposable
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, dom, mbstring, xml, zip
+          tools: composer, wp-cli
+          coverage: none
+      - run: composer install --no-dev --no-interaction
+      - run: npm ci
+      - run: bash scripts/check.sh
+      - name: Build test ZIP
+        env:
+          PROD_FILES: ${{ vars.PROD_FILES }}
+        run: bash scripts/package.sh "$RUNNER_TEMP/packages"
+      - run: npx playwright install --with-deps chromium
+      - name: Smoke test Free ZIP
+        env:
+          EZD_WP_VERSION: ${{ matrix.wordpress }}
+          EZD_LINK_FREE: ${{ matrix.link_free }}
+        run: bash tests/run-wordpress-smoke.sh "$RUNNER_TEMP/site" "$RUNNER_TEMP/packages/eazydocs.zip"

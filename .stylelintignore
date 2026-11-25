@@ -1,0 +1,9 @@
+build/
+vendor/
+node_modules/
+freemius-sdk/
+includes/csf/
+assets/vendors/
+assets/css/
+src/css/
+*.min.css

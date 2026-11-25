@@ -67,7 +67,7 @@ interface SortableParentItemProps {
 	onBulkToggle: ( e: React.MouseEvent< HTMLSpanElement > | React.KeyboardEvent< HTMLSpanElement >, docId: number ) => void;
 }
 
-const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
+const ParentItem: React.FC< SortableParentItemProps & { sortable?: ReturnType< typeof useSortable > } > = ( {
 	doc,
 	isActive,
 	isPremium,
@@ -80,31 +80,16 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 	onNavKeyDown,
 	onDelete,
 	onBulkToggle,
+	sortable,
 } ) => {
 	const renameDoc = useRenameDoc();
 	const [ isRenaming, setIsRenaming ] = useState( false );
 
-	const {
-		attributes,
-		listeners,
-		setNodeRef,
-		setActivatorNodeRef,
-		transform,
-		transition,
-		isDragging,
-	} = useSortable( {
-		id: doc.id,
-		data: {
-			type: 'parent-doc',
-			doc,
-		},
-	} );
-
 	const style: React.CSSProperties = {
-		transform: CSS.Transform.toString( transform ),
-		transition,
-		opacity: isDragging ? 0.4 : 1,
-		position: 'relative' as const,
+		transform: CSS.Transform.toString( sortable?.transform ?? null ),
+		transition: sortable?.transition,
+		opacity: sortable?.isDragging ? 0.4 : 1,
+		position: 'relative',
 	};
 
 	// Determine status icon.
@@ -118,13 +103,14 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 
 	return (
 		<li
-			ref={ setNodeRef }
+			ref={ sortable?.setNodeRef }
 			key={ doc.id }
-			className={ `easydocs-navitem dd-item dd3-item${ isActive ? ' active' : '' }${ isDragging ? ' dd-is-dragging' : '' }` }
+			className={ `easydocs-navitem dd-item dd3-item${ isActive ? ' active' : '' }${ sortable?.isDragging ? ' dd-is-dragging' : '' }` }
 			data-rel={ `tab-${ doc.id }` }
 			data-id={ doc.id }
 			role="tab"
-			tabIndex={ 0 }
+			tabIndex={ sortable ? 0 : undefined }
+			aria-hidden={ sortable ? undefined : true }
 			aria-selected={ isActive ? 'true' : 'false' }
 			aria-controls={ `tab-${ doc.id }` }
 			onClick={ ( e ) => onNavClick( e, doc.id ) }
@@ -171,102 +157,116 @@ const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( {
 					{ doc.childCount > 0 ? doc.childCount : '' }
 				</span>
 			</div>
-			<div className="link link-wrapper">
-				{ capabilities.canManageOptions && (
-					<span
-						ref={ setActivatorNodeRef }
-						className="dd-handle dd3-handle"
-						aria-label={ __( 'Drag to reorder', 'eazydocs' ) }
-						title={ __( 'Drag, or focus and press Space then arrow keys, to reorder', 'eazydocs' ) }
-						{ ...attributes }
-						{ ...listeners }
-					>
-						<DragHandleIcon size={ 16 } />
-					</span>
-				) }
+			{ sortable && (
+				<div className="link link-wrapper">
+					{ capabilities.canManageOptions && (
+						<span
+							ref={ sortable.setActivatorNodeRef }
+							className="dd-handle dd3-handle"
+							aria-label={ __( 'Drag to reorder', 'eazydocs' ) }
+							title={ __( 'Drag, or focus and press Space then arrow keys, to reorder', 'eazydocs' ) }
+							{ ...sortable.attributes }
+							{ ...sortable.listeners }
+						>
+							<DragHandleIcon size={ 16 } />
+						</span>
+					) }
 
-				{ doc.canEdit && ! isRenaming && (
-					<a
-						href="#"
-						className="link rename"
-						aria-label={ __( 'Rename this doc', 'eazydocs' ) }
-						title={ __( 'Rename', 'eazydocs' ) }
-						onClick={ ( e ) => {
-							e.preventDefault();
-							e.stopPropagation();
-							setIsRenaming( true );
-						} }
-					>
-						<span className="dashicons dashicons-edit"></span>
-					</a>
-				) }
+					{ doc.canEdit && ! isRenaming && (
+						<a
+							href="#"
+							className="link rename"
+							aria-label={ __( 'Rename this doc', 'eazydocs' ) }
+							title={ __( 'Rename', 'eazydocs' ) }
+							onClick={ ( e ) => {
+								e.preventDefault();
+								e.stopPropagation();
+								setIsRenaming( true );
+							} }
+						>
+							<span className="dashicons dashicons-edit"></span>
+						</a>
+					) }
 
-				{ doc.canEdit && (
+					{ doc.canEdit && (
+						<a
+							href={ doc.editLink }
+							className="link edit"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={ __( 'Edit content in the editor', 'eazydocs' ) }
+							title={ __( 'Edit content', 'eazydocs' ) }
+							onClick={ ( e ) => e.stopPropagation() }
+						>
+							<span className="dashicons dashicons-welcome-write-blog"></span>
+						</a>
+					) }
+
 					<a
-						href={ doc.editLink }
-						className="link edit"
+						href={ doc.permalink }
+						className="link external-link"
 						target="_blank"
 						rel="noopener noreferrer"
-						aria-label={ __( 'Edit content in the editor', 'eazydocs' ) }
-						title={ __( 'Edit content', 'eazydocs' ) }
+						data-id={ `tab-${ doc.id }` }
+						aria-label={ __( 'View this doc item in new tab', 'eazydocs' ) }
+						title={ __( 'View this doc item in new tab', 'eazydocs' ) }
 						onClick={ ( e ) => e.stopPropagation() }
 					>
-						<span className="dashicons dashicons-welcome-write-blog"></span>
+						<span className="dashicons dashicons-external"></span>
 					</a>
-				) }
 
-				<a
-					href={ doc.permalink }
-					className="link external-link"
-					target="_blank"
-					rel="noopener noreferrer"
-					data-id={ `tab-${ doc.id }` }
-					aria-label={ __( 'View this doc item in new tab', 'eazydocs' ) }
-					title={ __( 'View this doc item in new tab', 'eazydocs' ) }
-					onClick={ ( e ) => e.stopPropagation() }
-				>
-					<span className="dashicons dashicons-external"></span>
-				</a>
+					{ doc.canDelete && (
+						<a
+							href="#"
+							className="link delete parent-delete"
+							aria-label={ __( 'Move to Trash', 'eazydocs' ) }
+							title={ __( 'Move to Trash', 'eazydocs' ) }
+							onClick={ ( e ) => onDelete( e, doc ) }
+						>
+							<span className="dashicons dashicons-trash"></span>
+						</a>
+					) }
 
-				{ doc.canDelete && (
-					<a
-						href="#"
-						className="link delete parent-delete"
-						aria-label={ __( 'Move to Trash', 'eazydocs' ) }
-						title={ __( 'Move to Trash', 'eazydocs' ) }
-						onClick={ ( e ) => onDelete( e, doc ) }
-					>
-						<span className="dashicons dashicons-trash"></span>
-					</a>
-				) }
-
-				{ capabilities.canManageOptions && (
-					<span
-						className={ `ezd-admin-bulk-options link${ openBulk === doc.id ? ' active' : '' }` }
-						id={ `bulk-options-${ doc.id }` }
-						role="button"
-						tabIndex={ 0 }
-						aria-label={ __( 'More options', 'eazydocs' ) }
-						aria-expanded={ openBulk === doc.id }
-						onClick={ ( e ) => onBulkToggle( e, doc.id ) }
-						onKeyDown={ ( e ) => onBulkToggle( e, doc.id ) }
-					>
-						<span className={ `dashicons dashicons-arrow-down-alt2${ openBulk === doc.id ? ' arrow-active' : '' }` } aria-hidden="true"></span>
-						<span className="ezd-admin-bulk-actions">
-							<ProActionsButtons
-								docId={ doc.id }
-								proActions={ doc.proActions }
-								isPremium={ isPremium }
-								urls={ urls }
-								roleVisibility={ roleVisibility }
-								context="parent"
-							/>
+					{ capabilities.canManageOptions && (
+						<span
+							className={ `ezd-admin-bulk-options link${ openBulk === doc.id ? ' active' : '' }` }
+							id={ `bulk-options-${ doc.id }` }
+							role="button"
+							tabIndex={ 0 }
+							aria-label={ __( 'More options', 'eazydocs' ) }
+							aria-expanded={ openBulk === doc.id }
+							onClick={ ( e ) => onBulkToggle( e, doc.id ) }
+							onKeyDown={ ( e ) => onBulkToggle( e, doc.id ) }
+						>
+							<span className={ `dashicons dashicons-arrow-down-alt2${ openBulk === doc.id ? ' arrow-active' : '' }` } aria-hidden="true"></span>
+							<span className="ezd-admin-bulk-actions">
+								<ProActionsButtons
+									docId={ doc.id }
+									proActions={ doc.proActions }
+									isPremium={ isPremium }
+									urls={ urls }
+									roleVisibility={ roleVisibility }
+									context="parent"
+								/>
+							</span>
 						</span>
-					</span>
-				) }
-			</div>
+					) }
+				</div>
+			) }
 		</li>
 	);
+};
+
+const SortableParentItemComponent: React.FC< SortableParentItemProps > = ( props ) => {
+	const sortable = useSortable( {
+		id: props.doc.id,
+		data: {
+			type: 'parent-doc',
+			doc: props.doc,
+		},
+	} );
+
+	return <ParentItem { ...props } sortable={ sortable } />;
 };
 
 const SortableParentItem = memo( SortableParentItemComponent, ( prevProps, nextProps ) => {
@@ -436,12 +436,16 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 		}
 	}, [] );
 
+	const clearDrag = useCallback( (): void => {
+		document.body.classList.remove( 'ezd-is-dragging' );
+		setActiveDragItem( null );
+	}, [] );
+
 	/**
 	 * Handle drag end – reorder parent docs.
 	 */
 	const handleDragEnd = useCallback( ( event: DragEndEvent ): void => {
-		document.body.classList.remove( 'ezd-is-dragging' );
-		setActiveDragItem( null );
+		clearDrag();
 
 		const { active, over } = event;
 
@@ -481,7 +485,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 				},
 			}
 		);
-	}, [ displayDocs, reorderDocs, showToast ] );
+	}, [ clearDrag, displayDocs, reorderDocs, showToast ] );
 
 	// Close bulk options when clicking outside.
 	const handleClickOutside = useCallback( (): void => {
@@ -494,7 +498,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 		return () => document.removeEventListener( 'click', handleClickOutside );
 	}, [] );
 
-	const sortableIds = filteredDocs.map( ( doc ) => doc.id );;
+	const sortableIds = filteredDocs.map( ( doc ) => doc.id );
 
 	return (
 		<DndContext
@@ -502,6 +506,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 			collisionDetection={ closestCenter }
 			onDragStart={ handleDragStart }
 			onDragEnd={ handleDragEnd }
+			onDragCancel={ clearDrag }
 		>
 			<SortableContext
 				items={ sortableIds }
@@ -539,7 +544,7 @@ const ParentDocs: React.FC< ParentDocsProps > = ( { parentDocs, activeTab, onTab
 			</SortableContext>
 			<DragOverlay dropAnimation={{ duration: 250, easing: 'ease' }}>
 				{ activeDragItem ? (
-					<SortableParentItem
+					<ParentItem
 						doc={ activeDragItem.doc }
 						isActive={ activeDragItem.doc.id === activeTab }
 						isPremium={ isPremium }

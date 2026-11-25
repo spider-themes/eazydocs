@@ -3,8 +3,7 @@
     "allow": [
       "Bash(npm audit *)",
       "Bash(node -e \"const pkg = require\\('./package.json'\\); console.log\\('@wordpress/scripts:', pkg.dependencies?.['@wordpress/scripts'] || pkg.devDependencies?.['@wordpress/scripts']\\)\")",
-      "Bash(npm list *)",
-      "Read(//Users/arif/Downloads/docy/project/**)"
+      "Bash(npm list *)"
     ]
   }
 }

@@ -10,7 +10,7 @@ const jquery = process.argv[3] || path.resolve(__dirname, '../../../../wp-includ
 
 (async () => {
   const browser = await chromium.launch({
-    executablePath: process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: process.env.CHROME_PATH,
     headless: true,
   });
   let checks = 0;

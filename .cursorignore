@@ -1,0 +1,22 @@
+# Third-party / bundled frameworks (do not index or edit)
+includes/csf/
+freemius-sdk/
+vendor/
+node_modules/
+assets/vendors/
+
+# Generated / compiled / localization artifacts
+build/
+languages/
+*.min.js
+*.min.css
+*.css.map
+*.po
+*.pot
+*.mo
+
+# Sample XML / binary fixtures and local test outputs
+sample-data/
+test-results/
+tests/test-results/
+*.zip

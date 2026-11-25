@@ -4,8 +4,8 @@
 
 ![Version](https://img.shields.io/badge/version-2.12.0-blue)
 ![License](https://img.shields.io/badge/license-GPLv2%20or%20later-green)
-![WordPress](https://img.shields.io/badge/wordpress-5.0%2B-blue)
-![PHP](https://img.shields.io/badge/php-7.4%2B-blue)
+![WordPress](https://img.shields.io/badge/wordpress-6.6%2B-blue)
+![PHP](https://img.shields.io/badge/php-8.1%2B-blue)
 
 ## About EazyDocs
 
@@ -91,8 +91,8 @@ EazyDocs is the most comprehensive knowledge base and documentation plugin for W
 
 ## System Requirements
 
-- **WordPress:** 5.0 or higher
-- **PHP:** 7.4 or higher
+- **WordPress:** 6.6 or higher
+- **PHP:** 8.1 or higher
 - **Tested up to:** 6.8
 - **License:** GPLv2 or later
 
@@ -122,6 +122,8 @@ eazydocs/
 ```
 
 ## Development
+
+See the [development guide](docs/development.md) for the feature map, test commands, and release assets.
 
 ### Build System
 The plugin uses WordPress Script packages for building assets.
