@@ -1,0 +1,1023 @@
+@use "sass:math";
+
+/*--------------------------------------
+	- Base
+----------------------------------------*/
+
+// Body Mixin
+@mixin body($font-family: $font, $font-weight: 400, $color: $global-color, $font-size: $global-font-size, $line-height: 1.5) {
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+  text-rendering: optimizeSpeed;
+  color: $color;
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+    & {
+      font-size: $min-font-size;
+
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+//Before Icon mixin
+@mixin before-icon($content, $color) {
+  content: $content;
+  font-family: IcoFont;
+  color: $color;
+  vertical-align: middle;
+}
+
+/**
+ * Convert font-size from px to rem with px fallback
+ *
+ * @param $size - the value in pixel you want to convert
+ *
+ * e.g. p {@include fontSize(12px);}
+ *
+ */
+
+// Mixin that will include the fall back px declaration as well as the calculated rem value.
+@mixin fs-rem($size) {
+  font-size: rem($size);
+}
+
+// Font Size Class
+@mixin font($size, $breakpoint: null, $pre: px) {
+
+  @if $breakpoint {
+    @include media-up(#{$breakpoint}) {
+      .font-#{$breakpoint}-#{$size} {
+        font-size: #{$size}#{$pre};
+      }
+    }
+  } @else {
+    .font-#{$size} {
+      font-size: #{$size}#{$pre};
+    }
+  }
+}
+
+//Line Height
+@mixin line-height($size, $breakpoint: null, $pre: px) {
+  @if $breakpoint {
+    @include media-up(#{$breakpoint}) {
+      .line-height-#{$breakpoint}-#{$size} {
+        line-height: #{$size}#{$pre};
+      }
+    }
+  } @else {
+    .line-height-#{$size} {
+      line-height: #{$size}#{$pre};
+    }
+  }
+}
+
+// hr mixin
+@mixin hr($bg: $global-color, $width: 50px, $height: 5px, $my: 50px, $mx: 0, $p: 0, $radius: 0) {
+  background: $bg;
+  width: $width;
+  height: $height;
+  margin: $my $mx;
+  padding: $p;
+  border: none;
+  border-radius: $radius;
+  opacity: 1;
+}
+
+@mixin media-up($name, $breakpoints: $breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-down($name, $breakpoints: $breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+@mixin media-between($lower, $upper, $breakpoints: $breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min !=null and $max !=null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max==null {
+    @include media-up($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min==null {
+    @include media-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin container-max-widths($max-widths: $container-widths, $breakpoints: $breakpoints) {
+
+  @each $breakpoint,
+  $container-width in $max-widths {
+    @include media-up($breakpoint) {
+      max-width: $container-width;
+    }
+  }
+}
+
+/// Grid system
+//
+// Generate semantic grid columns with these mixins.
+@mixin container($name: container, $gutter: $gutter-width) {
+  .#{$name} {
+    width: 100%;
+    padding-right: math.div($gutter, 2);
+    padding-left: math.div($gutter, 2);
+    margin-right: auto;
+    margin-left: auto;
+    @include container-max-widths();
+  }
+}
+
+@mixin container-fluid($name: container-fluid, $gutter: $gutter-width) {
+  .#{$name} {
+    width: 100%;
+    padding-right: math.div($gutter, 2);
+    padding-left: math.div($gutter, 2);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+// Row
+//
+// Rows contain your columns.
+@mixin row($name: row, $gutter: $gutter-width, $max-width: false) {
+  @if $max-width==true {
+    .#{$name} {
+      margin-right: auto;
+      margin-left: auto;
+      display: flex;
+      flex-flow: row wrap;
+      @include container-max-widths();
+    }
+  } @else {
+    .#{$name} {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: math.div(-$gutter, 2);
+      margin-left: math.div(-$gutter, 2);
+    }
+  }
+}
+
+@mixin column($size, $column: $columns) {
+  flex: 0 0 percentage(math.div($size, $column));
+  // Add a `max-width` to ensure content within each column does not blow out
+  // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+  // do not appear to require this.
+  max-width: percentage(math.div($size, $column));
+}
+
+@mixin col-offset($size, $columns: $columns) {
+  $num: math.div($size, $columns);
+  margin-left: if($num==0, 0, percentage($num));
+}
+
+.col {
+  position: relative;
+  width: 100%;
+  padding-right: math.div($gutter-width, 2);
+  padding-left: math.div($gutter-width, 2);
+}
+
+@mixin col-ready($gutter: $gutter-width) {
+  @extend .col;
+}
+
+//Gird Columns Width Responsive
+@mixin col($name: null, $columns: null, $breakpoint: null) {
+  @if $name==col {
+    @if ($breakpoint==sm, md, lg, xl, xxl) {
+      .#{$name}-#{$breakpoint}-#{$columns} {
+        @include col-ready();
+
+        @include media-up(#{$breakpoint}) {
+          @include column($columns);
+        }
+      }
+    } @else {
+      .#{$name}#{$columns} {
+        @include col-ready();
+      }
+    }
+  } @else {
+    .#{$name} {
+      @include col-ready();
+    }
+
+    .#{$breakpoint}-#{$columns} {
+      @include media-up(#{$breakpoint}) {
+        @include column($columns);
+      }
+    }
+  }
+}
+
+//Gird Columns Offset Width Responsive
+@mixin offset($name, $columns, $breakpoint: null) {
+  @if ($breakpoint==sm, md, lg, xl, xxl) {
+    .#{$name}-#{$breakpoint}-#{$columns} {
+      @include media-up($breakpoint) {
+        @include col-offset($columns);
+      }
+    }
+  } @else {
+    .#{$name}-#{$columns} {
+      @include col-offset($columns);
+    }
+  }
+}
+
+// Mixins for controlling flex.
+@mixin flex($name, $value, $breakpoint: null) {
+  @if $value==1 {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex: 1 1 0%;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex: 1 1 0%;
+      }
+    }
+  } @else if $value==auto {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex: 1 1 auto;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex: 1 1 auto;
+      }
+    }
+
+  } @else if $value==initial {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex: 0 1 auto;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex: 0 1 auto;
+      }
+    }
+  } @else {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex: none;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex: none;
+      }
+    }
+  }
+}
+
+// Controlling gutters between rows and columns.
+@mixin gap($size, $position: x) {
+  @if $position==y {
+    row-gap: $size;
+    grid-row-gap: $size;
+  } @else {
+    gap: $size;
+    grid-gap: $size;
+  }
+}
+
+/*--------------------------------------
+	- Utilities
+----------------------------------------*/
+@mixin hover() {
+  &:hover {
+    @content;
+  }
+}
+
+@mixin focus() {
+  &:focus {
+    @content;
+  }
+}
+
+@mixin hover-focus() {
+
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin plain-hover-focus() {
+
+  &,
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin hover-focus-active() {
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}
+
+@mixin before($content: null) {
+  @if $content {
+    &::before {
+      content: $content;
+      @content;
+    }
+  } @else {
+    &::before {
+      @content;
+    }
+  }
+}
+
+@mixin after($content: null) {
+  @if $content {
+    &::after {
+      content: $content;
+      @content;
+    }
+  } @else {
+    &::after {
+      @content;
+    }
+  }
+}
+
+@mixin before-after($content: null) {
+  @if $content {
+
+    &::before,
+    &::after {
+      content: $content;
+      @content;
+    }
+  } @else {
+
+    &::before,
+    &::after {
+      @content;
+    }
+  }
+}
+
+@mixin pseudo($args: top 0 left 0, $loca: before, $position: absolute, $content: "") {
+  @if ($loca==after) {
+    @include after($content) {
+      @if ($position==relative) {
+        @include relative($args);
+        @content;
+      } @else {
+        @include absolute($args);
+        @content;
+      }
+    }
+  } @else if ($loca==before-after) {
+    @include before-after($content) {
+      @if ($position==relative) {
+        @include relative($args);
+        @content;
+      } @else {
+        @include absolute($args);
+        @content;
+      }
+    }
+  } @else {
+    @include before($content) {
+      @if ($position==relative) {
+        @include relative($args);
+        @content;
+      } @else {
+        @include absolute($args);
+        @content;
+      }
+    }
+  }
+}
+
+//Create the mixin for theme colors
+@mixin color($name, $color) {
+  // Define colors in your theme
+  $primary: $color;
+  $bg-color: $color;
+  $name-str: "#{$name}";
+
+  // Add your Prefix classes name
+  .text-#{$name-str} {
+    color: $primary !important;
+  }
+
+  .bg-#{$name-str} {
+    background: $primary;
+  }
+
+}
+
+// Gradient Color Mixin
+@mixin gradient($direction, $first, $last) {
+  background-color: $first;
+  background-image: linear-gradient($direction, $first 0%, $last 100%);
+}
+
+// Gradient Color Class Name with Mixin
+@mixin gradient-color($class, $direction, $first, $last) {
+  .#{$class} {
+    @include gradient($direction, $first, $last);
+  }
+}
+
+// Mixins for controlling the direction of flex items.
+@mixin flex-direction($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        flex-direction: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      flex-direction: $value;
+    }
+  }
+}
+
+// Mixins for controlling how flex items wrap.
+@mixin flex-wrap($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        flex-wrap: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      flex-wrap: $value;
+    }
+  }
+}
+
+// Mixins for controlling flex.
+@mixin flex($name, $value, $breakpoint: null) {
+  @if $value==1 {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex: 1 1 0%;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex: 1 1 0%;
+      }
+    }
+  } @else if $value==auto {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex: 1 1 auto;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex: 1 1 auto;
+      }
+    }
+
+  } @else if $value==initial {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex: 0 1 auto;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex: 0 1 auto;
+      }
+    }
+  } @else {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex: none;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex: none;
+      }
+    }
+  }
+}
+
+// Mixins for controlling how flex item grow.
+@mixin flex-grow($name, $value, $breakpoint: null) {
+  @if $value==0 {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex-grow: 0;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex-grow: 0;
+      }
+    }
+  } @else {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex-grow: 1;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+// Mixins for controlling how flex item shrink.
+@mixin flex-shrink($name, $value, $breakpoint: null) {
+  @if $value==0 {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex-shrink: 0;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex-shrink: 0;
+      }
+    }
+  } @else {
+    @if $breakpoint {
+      @include media-up($breakpoint) {
+        .#{$name} {
+          flex-shrink: 1;
+        }
+      }
+    } @else {
+      .#{$name} {
+        flex-shrink: 1;
+      }
+    }
+  }
+}
+
+// The justify-content property.
+@mixin justify-content($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        justify-content: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      justify-content: $value;
+    }
+  }
+}
+
+// The justify-items property.
+@mixin justify-items($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        justify-items: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      justify-items: $value;
+    }
+  }
+}
+
+// The justify-self property.
+@mixin justify-self($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        justify-self: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      justify-self: $value;
+    }
+  }
+}
+
+// The align-content property.
+@mixin align-content($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        align-content: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      align-content: $value;
+    }
+  }
+}
+
+// The align-items property.
+@mixin align-items($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        align-items: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      align-items: $value;
+    }
+  }
+}
+
+// The align-self property.
+@mixin align-self($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        align-self: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      align-self: $value;
+    }
+  }
+}
+
+// The align-content property.
+@mixin align-content($name, $value, $breakpoint: null) {
+  @if $breakpoint {
+    @include media-up($breakpoint) {
+      .#{$name} {
+        align-content: $value;
+      }
+    }
+  } @else {
+    .#{$name} {
+      align-content: $value;
+    }
+  }
+}
+
+// margin Name with Mixin
+@mixin margin($name, $value) {
+
+  // Add your Prefix name
+  @if $name==mt {
+    @if $value==auto {
+      margin-top: #{$value};
+    } @else if $value==0 {
+      margin-top: #{$value};
+    } @else {
+      margin-top: #{$value};
+    }
+  } @else if $name==mb {
+    @if $value==auto {
+      margin-bottom: #{$value};
+    } @else if $value==0 {
+      margin-bottom: #{$value};
+    } @else {
+      margin-bottom: #{$value};
+    }
+  } @else if $name==ml {
+    @if $value==auto {
+      margin-left: #{$value};
+    } @else if $value==0 {
+      margin-left: #{$value};
+    } @else {
+      margin-left: #{$value};
+    }
+  } @else if $name==mr {
+    @if $value==auto {
+      margin-right: #{$value};
+    } @else if $value==0 {
+      margin-right: #{$value};
+    } @else {
+      margin-right: #{$value};
+    }
+  } @else if $name==mx {
+    @if $value==auto {
+      margin-left: #{$value};
+      margin-right: #{$value};
+    } @else if $value==0 {
+      margin-left: #{$value};
+      margin-right: #{$value};
+    } @else {
+      margin-left: #{$value};
+      margin-right: #{$value};
+    }
+  } @else if $name==my {
+    @if $value==auto {
+      margin-top: #{$value};
+      margin-bottom: #{$value};
+    } @else if $value==0 {
+      margin-top: #{$value};
+      margin-bottom: #{$value};
+    } @else {
+      margin-top: #{$value};
+      margin-bottom: #{$value};
+    }
+  } @else {
+    @if $value==auto {
+      margin: #{$value};
+    } @else if $value==0 {
+      margin: #{$value};
+    } @else {
+      margin: #{$value};
+    }
+  }
+}
+
+@mixin margin-rs($name, $breakpoint, $value) {
+
+  // Add your Prefix name
+  @if $name==mt {
+    @if $value==auto {
+      @include media-up(#{$breakpoint}) {
+        margin-top: #{$value};
+      }
+    } @else if $value==0 {
+      @include media-up(#{$breakpoint}) {
+        margin-top: #{$value};
+      }
+    } @else {
+      @include media-up(#{$breakpoint}) {
+        margin-top: #{$value};
+      }
+    }
+  } @else if $name==mb {
+    @if $value==auto {
+      @include media-up(#{$breakpoint}) {
+        margin-bottom: #{$value};
+      }
+    } @else if $value==0 {
+      @include media-up(#{$breakpoint}) {
+        margin-bottom: #{$value};
+      }
+    } @else {
+      @include media-up(#{$breakpoint}) {
+        margin-bottom: #{$value};
+      }
+    }
+  } @else if $name==ml {
+    @if $value==auto {
+      @include media-up(#{$breakpoint}) {
+        margin-left: #{$value};
+      }
+    } @else if $value==0 {
+      @include media-up(#{$breakpoint}) {
+        margin-left: #{$value};
+      }
+    } @else {
+      @include media-up(#{$breakpoint}) {
+        margin-left: #{$value};
+      }
+    }
+  } @else if $name==mr {
+    @if $value==auto {
+      @include media-up(#{$breakpoint}) {
+        margin-right: #{$value};
+      }
+    } @else if $value==0 {
+      @include media-up(#{$breakpoint}) {
+        margin-right: #{$value};
+      }
+    } @else {
+      @include media-up(#{$breakpoint}) {
+        margin-right: #{$value};
+      }
+    }
+  } @else if $name==mx {
+    @if $value==auto {
+      @include media-up(#{$breakpoint}) {
+        margin-left: #{$value};
+        margin-right: #{$value};
+      }
+    } @else if $value==0 {
+      @include media-up(#{$breakpoint}) {
+        margin-left: #{$value};
+        margin-right: #{$value};
+      }
+    } @else {
+      @include media-up(#{$breakpoint}) {
+        margin-left: #{$value};
+        margin-right: #{$value};
+      }
+    }
+  } @else if $name==my {
+    @if $value==auto {
+      @include media-up(#{$breakpoint}) {
+        margin-top: #{$value};
+        margin-bottom: #{$value};
+      }
+    } @else if $value==0 {
+      @include media-up(#{$breakpoint}) {
+        margin-top: #{$value};
+        margin-bottom: #{$value};
+      }
+    } @else {
+      @include media-up(#{$breakpoint}) {
+        margin-top: #{$value};
+        margin-bottom: #{$value};
+      }
+    }
+  } @else {
+    @if $value==auto {
+      @include media-up(#{$breakpoint}) {
+        margin: #{$value};
+      }
+    } @else if $value==0 {
+      @include media-up(#{$breakpoint}) {
+        margin: #{$value};
+      }
+    } @else {
+      @include media-up(#{$breakpoint}) {
+        margin: #{$value};
+      }
+    }
+  }
+}
+
+// margin Class Name with Mixin
+@mixin margin-class($name, $property, $value, $pre: $active-prefix) {
+
+  // Add your Prefix classes name
+  @if $property==mt {
+    @if $value==auto {
+      .#{$name} {
+        margin-top: #{$value};
+      }
+    } @else if $value==0 {
+      .#{$name} {
+        margin-top: #{$value};
+      }
+    } @else {
+      .#{$name} {
+        margin-top: #{$value}#{$pre};
+      }
+    }
+  } @else if $property==mb {
+    @if $value==auto {
+      .#{$name} {
+        margin-bottom: #{$value};
+      }
+    } @else if $value==0 {
+      .#{$name} {
+        margin-bottom: #{$value};
+      }
+    } @else {
+      .#{$name} {
+        margin-bottom: #{$value}#{$pre};
+      }
+    }
+  } @else if $property==ml {
+    @if $value==auto {
+      .#{$name} {
+        margin-left: #{$value};
+      }
+    } @else if $value==0 {
+      .#{$name} {
+        margin-left: #{$value};
+      }
+    } @else {
+      .#{$name} {
+        margin-left: #{$value}#{$pre};
+      }
+    }
+  } @else if $property==mr {
+    @if $value==auto {
+      .#{$name} {
+        margin-right: #{$value};
+      }
+    } @else if $value==0 {
+      .#{$name} {
+        margin-right: #{$value};
+      }
+    } @else {
+      .#{$name} {
+        margin-right: #{$value}#{$pre};
+      }
+    }
+  } @else if $property==mx {
+    @if $value==auto {
+      .#{$name} {
+        margin-left: #{$value};
+        margin-right: #{$value};
+      }
+    } @else if $value==0 {
+      .#{$name} {
+        margin-left: #{$value};
+        margin-right: #{$value};
+      }
+    } @else {
+      .#{$name} {
+        margin-left: #{$value}#{$pre};
+        margin-right: #{$value}#{$pre};
+      }
+    }
+  } @else if $property==my {
+    @if $value==auto {
+      .#{$name} {
+        margin-top: #{$value};
+        margin-bottom: #{$value};
+      }
+    } @else if $value==0 {
+      .#{$name} {
+        margin-top: #{$value};
+        margin-bottom: #{$value};
+      }
+    } @else {
+      .#{$name} {
+        margin-top: #{$value}#{$pre};
+        margin-bottom: #{$value}#{$pre};
+      }
+    }
+  } @else {
+    @if $value==auto {
+      .#{$name} {
+        margin: #{$value};
+      }
+    } @else if $value==0 {
+      .#{$name} {
+        margin: #{$value};
+      }
+    } @else {
+      .#{$name} {
+        margin: #{$value}#{$pre};
+      }
+    }
+  }
+}

@@ -15,4 +15,5 @@
 ## Verification
 - **Fast iteration check** (PHP lint, lockfile, TypeScript, helper parity, security regressions): `bash scripts/check-fast.sh`
 - **Full pre-handoff check** (includes `npm run build`): `bash scripts/check.sh`
+- **Static analysis configs:** [phpcs.xml.dist](phpcs.xml.dist) (WPCS) and [phpstan.neon](phpstan.neon)
 - Use a disposable WordPress site (`ezd_audit`) for integration and browser smoke tests.

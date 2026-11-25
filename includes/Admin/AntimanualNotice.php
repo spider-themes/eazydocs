@@ -2,6 +2,10 @@
 
 namespace EazyDocs\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Antimanual Integration Notice
  * 

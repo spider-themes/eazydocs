@@ -139,12 +139,9 @@ if ( ! class_exists( 'EazyDocs' ) ) {
 
 			$core_files = array(
 				'/includes/sidebars.php',
-				'/includes/Frontend/Ajax.php',
 				'/includes/Frontend/Mailer.php',
 				'/includes/Post_Types.php',
 				'/includes/One_Page_Docs.php',
-				'/includes/One_Page.php',
-				'/includes/Frontend/Shortcode.php',
 				'/includes/Frontend/post-views.php',
 				'/includes/Frontend/search-counts.php',
 				'/includes/Walker_Docs_Onepage.php',

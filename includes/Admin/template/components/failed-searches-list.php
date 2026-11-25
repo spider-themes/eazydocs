@@ -12,6 +12,11 @@
  * @var int    $limit           Maximum number of items to display (0 = all)
  */
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Set defaults.
 $failed_searches = isset( $failed_searches ) ? $failed_searches : array();
 $total_failed    = isset( $total_failed ) ? (int) $total_failed : count( $failed_searches );

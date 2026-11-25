@@ -1,5 +1,6 @@
 # Third-party / bundled frameworks (do not index or edit)
 includes/csf/
+includes/notices/class-remote-notice-client.php
 freemius-sdk/
 vendor/
 node_modules/

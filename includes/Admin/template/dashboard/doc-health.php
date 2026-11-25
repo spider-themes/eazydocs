@@ -6,6 +6,11 @@
  * @package EazyDocs
  */
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 global $wpdb;
 
 // These aggregates scan postmeta and the search log; cache them alongside the

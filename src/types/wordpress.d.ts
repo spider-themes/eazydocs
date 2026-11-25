@@ -39,6 +39,22 @@ declare module '@wordpress/api-fetch' {
 	export default apiFetch;
 }
 
+declare module '@wordpress/data' {
+	export function useSelect< T >(
+		mapSelect: ( select: ( store: string ) => Record< string, ( ...args: unknown[] ) => unknown > ) => T,
+		deps?: unknown[]
+	): T;
+}
+
+declare module '@wordpress/components' {
+	export const Notice: React.ComponentType< {
+		status?: 'warning' | 'success' | 'error' | 'info';
+		isDismissible?: boolean;
+		className?: string;
+		children?: React.ReactNode;
+	} >;
+}
+
 /**
  * EazyDocs localized object shape.
  */
@@ -48,6 +64,8 @@ interface EazydocsLocalObject {
 	create_prompt_title: string;
 	delete_prompt_title: string;
 	no_revert_title: string;
+	is_ezd_pro_block?: string;
+	ezd_pricing_url?: string;
 	reusable_blocks_options?: Array< {
 		id: string;
 		title: string;
@@ -111,6 +129,11 @@ declare global {
 	const eazydocs_local_object: EazydocsLocalObject;
 
 	interface Window {
+		eazydocs_local_object?: EazydocsLocalObject;
+		ezdBlockData?: {
+			is_ezd_pro_block?: string;
+			ezd_pricing_url?: string;
+		};
 		jQuery: JQueryStatic;
 		Swal: SwalInstance;
 		JSON: JSON;

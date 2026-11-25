@@ -54,6 +54,7 @@ jobs:
           coverage: none
       - run: composer install --no-dev --no-interaction
       - run: npm ci
+      - run: bash scripts/check-fast.sh
       - run: bash scripts/check.sh
       - name: Build test ZIP
         env:
