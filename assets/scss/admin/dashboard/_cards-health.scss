@@ -1,0 +1,321 @@
+// Dashboard Cards & Documentation Health Card
+.ezd-dashboard-container {
+	// Card Component
+	.ezd-card {
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+		padding: 1.5rem;
+		border-radius: $border-radius;
+		border: 1px solid $gray-200;
+		box-shadow: $shadow-sm;
+
+		.ezd-card-title {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: 1.125rem;
+			font-weight: 700;
+			color: $gray-900;
+			margin: 0 0 1.25rem 0;
+			padding: 0;
+
+			.dashicons {
+				font-size: 20px;
+				width: 20px;
+				height: 20px;
+				color: $gray-400;
+			}
+		}
+
+		.ezd-card-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1.25rem;
+
+			.ezd-card-title {
+				margin-bottom: 0;
+			}
+
+			.ezd-card-badge {
+				padding: 0.25rem 0.625rem;
+				border-radius: $border-radius-xs;
+				font-size: 0.75rem;
+				font-weight: 600;
+
+				&.ezd-badge-warning {
+					background: #fffbeb;
+					color: $warning-color;
+				}
+			}
+		}
+
+		.ezd-card-footer {
+			margin-top: 1rem;
+			padding-top: 1rem;
+			border-top: 1px solid $gray-100;
+		}
+
+		.ezd-view-all-link {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.25rem;
+			font-size: 0.8125rem;
+			font-weight: 600;
+			color: $primary-color;
+			text-decoration: none;
+			transition: gap 0.2s;
+
+			.dashicons {
+				font-size: 16px;
+				width: 16px;
+				height: 16px;
+			}
+
+			&:hover {
+				gap: 0.5rem;
+			}
+		}
+	}
+
+	// Documentation Health Card
+	.ezd-health-card {
+		.ezd-health-content {
+			display: flex;
+			flex-direction: column;
+			gap: 1.25rem;
+		}
+
+		.ezd-health-score-container {
+			display: flex;
+			justify-content: center;
+		}
+
+		.ezd-health-circle {
+			position: relative;
+			width: 140px;
+			height: 140px;
+
+			.ezd-health-svg {
+				transform: rotate(-90deg);
+				width: 100%;
+				height: 100%;
+			}
+
+			.ezd-health-bg {
+				fill: none;
+				stroke: $gray-100;
+				stroke-width: 8;
+			}
+
+			.ezd-health-progress {
+				fill: none;
+				stroke-width: 8;
+				stroke-linecap: round;
+				transition: stroke-dashoffset 1s ease;
+			}
+
+			.ezd-health-score-text {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+
+				.ezd-health-score-value {
+					display: block;
+					font-size: 2rem;
+					font-weight: 700;
+					color: $gray-900;
+					line-height: 1;
+				}
+
+				.ezd-health-score-label {
+					display: block;
+					font-size: 0.75rem;
+					font-weight: 600;
+					text-transform: uppercase;
+					margin-top: 0.25rem;
+				}
+			}
+		}
+
+		.ezd-health-metrics {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 0.75rem;
+		}
+
+		.ezd-health-metric {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.75rem;
+			background: $gray-50;
+			border-radius: $border-radius-sm;
+			border: 1px solid #f1f5f9;
+
+			.ezd-health-metric-icon {
+				width: 32px;
+				height: 32px;
+				border-radius: 6px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				.dashicons {
+					font-size: 16px;
+					width: 16px;
+					height: 16px;
+				}
+
+				&.ezd-icon-blue {
+					background: #eff6ff;
+					color: $primary-color;
+				}
+
+				&.ezd-icon-green {
+					background: #ecfdf5;
+					color: $success-color;
+				}
+
+				&.ezd-icon-orange {
+					background: #fffbeb;
+					color: $warning-color;
+				}
+			}
+
+			.ezd-health-metric-content {
+				display: flex;
+				flex-direction: column;
+
+				.ezd-health-metric-value {
+					font-size: 1.125rem;
+					font-weight: 700;
+					color: $gray-900;
+					line-height: 1;
+				}
+
+				.ezd-health-metric-label {
+					font-size: 0.6875rem;
+					color: $gray-500;
+					margin-top: 0.125rem;
+				}
+			}
+		}
+
+		.ezd-health-issues {
+			.ezd-health-issues-title {
+				font-size: 0.75rem;
+				font-weight: 600;
+				color: $gray-500;
+				text-transform: uppercase;
+				margin: 0 0 0.75rem 0;
+			}
+		}
+
+		.ezd-health-issue {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.625rem 0.75rem;
+			border-radius: $border-radius-sm;
+			margin-bottom: 0.5rem;
+
+			.dashicons {
+				font-size: 16px;
+				width: 16px;
+				height: 16px;
+			}
+
+			.ezd-health-issue-text {
+				flex-grow: 1;
+				font-size: 0.8125rem;
+				font-weight: 500;
+			}
+
+			.ezd-health-issue-action {
+				font-size: 0.75rem;
+				font-weight: 600;
+				text-decoration: none;
+				padding: 0.25rem 0.5rem;
+				border-radius: 4px;
+				transition: all 0.2s;
+			}
+
+			&.ezd-health-issue-warning {
+				background: #fffbeb;
+
+				.dashicons {
+					color: $warning-color;
+				}
+
+				.ezd-health-issue-text {
+					color: #92400e;
+				}
+
+				.ezd-health-issue-action {
+					color: $warning-color;
+					background: #fef3c7;
+
+					&:hover {
+						background: #fde68a;
+					}
+				}
+			}
+
+			&.ezd-health-issue-error {
+				background: #fef2f2;
+
+				.dashicons {
+					color: $danger-color;
+				}
+
+				.ezd-health-issue-text {
+					color: #991b1b;
+				}
+
+				.ezd-health-issue-action {
+					color: $danger-color;
+					background: #fee2e2;
+
+					&:hover {
+						background: #fecaca;
+					}
+				}
+			}
+
+			&.ezd-health-issue-info {
+				background: #eff6ff;
+
+				.dashicons {
+					color: $primary-color;
+				}
+
+				.ezd-health-issue-text {
+					color: #1e40af;
+				}
+			}
+		}
+
+		.ezd-health-success {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+			padding: 1rem;
+			background: #ecfdf5;
+			border-radius: $border-radius-sm;
+			color: $success-color;
+			font-size: 0.875rem;
+			font-weight: 500;
+
+			.dashicons {
+				font-size: 20px;
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+}

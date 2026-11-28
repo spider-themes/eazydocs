@@ -1,0 +1,99 @@
+// ================================================================
+// Global Toast Notifications (outside .ezd-dashboard scope)
+// These styles apply to the body-level toast container
+// ================================================================
+.ezd-toast-container {
+	position: fixed;
+	top: 40px; // Below WordPress admin bar
+	right: 20px;
+	z-index: 99999;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	max-width: 420px;
+	pointer-events: none;
+}
+
+.ezd-toast {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+	padding: 1rem 1.25rem;
+	border-radius: 8px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+	background: #fff;
+	pointer-events: auto;
+	opacity: 0;
+	transform: translateX(100%);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+	&--visible {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		font-size: 20px;
+		width: 20px;
+		height: 20px;
+		margin-top: 1px;
+	}
+
+	&__message {
+		flex: 1;
+		font-size: 0.875rem;
+		font-weight: 500;
+		line-height: 1.5;
+		color: #1f2937;
+	}
+
+	&__dismiss {
+		flex-shrink: 0;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		opacity: 0.5;
+		transition: opacity 0.2s;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		.dashicons {
+			font-size: 18px;
+			width: 18px;
+			height: 18px;
+			color: #6b7280;
+		}
+	}
+
+	// Success variant
+	&--success {
+		background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+		border-left: 4px solid #10b981;
+
+		.ezd-toast__icon {
+			color: #10b981;
+		}
+
+		.ezd-toast__message {
+			color: #065f46;
+		}
+	}
+
+	// Error variant
+	&--error {
+		background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+		border-left: 4px solid #ef4444;
+
+		.ezd-toast__icon {
+			color: #ef4444;
+		}
+
+		.ezd-toast__message {
+			color: #991b1b;
+		}
+	}
+}

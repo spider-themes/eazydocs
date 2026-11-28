@@ -1,0 +1,375 @@
+// System Status, Activity List, Filters & Charts
+.ezd-dashboard-container {
+	// System Status Card
+	.ezd-system-status-card {
+		.ezd-system-status-content {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.ezd-status-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.625rem 0;
+			border-bottom: 1px solid $gray-100;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			.ezd-status-label {
+				font-size: 0.8125rem;
+				color: $gray-600;
+			}
+
+			.ezd-status-value {
+				font-size: 0.8125rem;
+				font-weight: 500;
+				color: $gray-800;
+
+				.ezd-version-badge {
+					display: inline-block;
+					padding: 0.125rem 0.5rem;
+					background: $gray-100;
+					border-radius: 4px;
+					font-size: 0.75rem;
+
+					&.ezd-badge-pro {
+						background: linear-gradient(135deg, $secondary-color 0%, #8b5cf6 100%);
+						color: #fff;
+					}
+				}
+
+				.ezd-upgrade-link {
+					display: inline-flex;
+					align-items: center;
+					gap: 0.25rem;
+					color: $warning-color;
+					text-decoration: none;
+					font-weight: 600;
+
+					.dashicons {
+						font-size: 14px;
+						width: 14px;
+						height: 14px;
+					}
+
+					&:hover {
+						color: #d97706;
+					}
+				}
+
+				.ezd-docs-link {
+					display: inline-flex;
+					align-items: center;
+					gap: 0.25rem;
+					color: $primary-color;
+					text-decoration: none;
+					font-weight: 500;
+
+					.dashicons {
+						font-size: 14px;
+						width: 14px;
+						height: 14px;
+					}
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+
+		.ezd-system-links {
+			margin-top: 1rem;
+			padding-top: 1rem;
+			border-top: 1px solid $gray-100;
+
+			.ezd-system-links-title {
+				font-size: 0.75rem;
+				font-weight: 600;
+				color: $gray-500;
+				text-transform: uppercase;
+				margin: 0 0 0.75rem 0;
+			}
+
+			.ezd-system-links-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 0.5rem;
+			}
+
+			.ezd-system-link {
+				display: flex;
+				align-items: center;
+				gap: 0.375rem;
+				padding: 0.5rem 0.75rem;
+				background: $gray-50;
+				border-radius: $border-radius-sm;
+				font-size: 0.75rem;
+				font-weight: 500;
+				color: $gray-600;
+				text-decoration: none;
+				transition: all 0.2s;
+
+				.dashicons {
+					font-size: 14px;
+					width: 14px;
+					height: 14px;
+					color: $gray-400;
+				}
+
+				&:hover {
+					background: $primary-color;
+					color: #fff;
+
+					.dashicons {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+
+	// Activity List (shared)
+	.ezd-activity-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		// Let long lists scroll inside the card while the header stays put.
+		max-height: 320px;
+		overflow-y: auto;
+
+		&::-webkit-scrollbar {
+			width: 6px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: $gray-100;
+			border-radius: 3px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: $gray-300;
+			border-radius: 3px;
+
+			&:hover {
+				background: $gray-400;
+			}
+		}
+
+		.ezd-activity-item {
+			display: flex;
+			align-items: center;
+			gap: 0.875rem;
+			padding: 10px;
+			border-radius: $border-radius-sm;
+			transition: background-color 0.2s;
+			border-bottom: 1px solid $gray-100;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			&:hover {
+				background-color: $gray-50;
+			}
+
+			.ezd-activity-icon-wrapper {
+				width: 30px;
+				height: 30px;
+				border-radius: 6px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+
+				&.ezd-icon-bg-blue {
+					background: #eff6ff;
+					color: $primary-color;
+				}
+
+				&.ezd-icon-bg-green {
+					background: #ecfdf5;
+					color: $success-color;
+				}
+
+				&.ezd-icon-bg-yellow {
+					background: #fffbeb;
+					color: $warning-color;
+				}
+
+				&.ezd-icon-bg-red {
+					background: #fef2f2;
+					color: $danger-color;
+				}
+
+				.dashicons {
+					font-size: 14px;
+					width: 14px;
+					height: 14px;
+					color: inherit;
+				}
+
+				img {
+					width: 14px;
+					height: 14px;
+					filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(202deg) brightness(101%) contrast(95%);
+				}
+			}
+
+			.ezd-activity-content {
+				flex-grow: 1;
+				min-width: 0;
+			}
+
+			.ezd-activity-text {
+				margin: 0;
+				font-size: 0.875rem;
+				font-weight: 500;
+				color: $gray-700;
+				line-height: 1.4;
+				// Allow up to two lines, then ellipsis, instead of harsh single-line truncation.
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+
+				a {
+					color: $primary-color;
+					text-decoration: none;
+					font-weight: 600;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+
+			.ezd-activity-time {
+				font-size: 0.75rem;
+				color: $gray-400;
+				margin-top: 0.25rem;
+				display: flex;
+				align-items: center;
+				gap: 0.25rem;
+				margin-bottom: 5px;
+
+				.dashicons {
+					font-size: 12px;
+					width: 12px;
+					height: 12px;
+				}
+
+				.ezd-state-view-icon {
+					font-size: 12px;
+					width: 12px;
+					height: 12px;
+					color: $gray-400;
+				}
+			}
+
+			.ezd-activity-meta {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				margin-top: 0.375rem;
+
+				.ezd-votes {
+					display: flex;
+					gap: 0.5rem;
+					font-size: 0.75rem;
+					font-weight: 600;
+
+					span {
+						display: flex;
+						align-items: center;
+						gap: 0.125rem;
+					}
+
+					.t-success {
+						color: $success-color;
+					}
+
+					.t-danger {
+						color: $danger-color;
+					}
+
+					.dashicons {
+						font-size: 14px;
+						width: 14px;
+						height: 14px;
+					}
+				}
+
+				.ezd-progress {
+					flex-grow: 1;
+					max-width: 80px;
+
+					progress {
+						width: 100%;
+						height: 5px;
+						border-radius: 2.5px;
+
+						&::-webkit-progress-bar {
+							background-color: $gray-100;
+							border-radius: 2.5px;
+						}
+
+						&::-webkit-progress-value {
+							background-color: $success-color;
+							border-radius: 2.5px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Filter Container
+	.ezd-stat-filter-container {
+		.ezd-stat-filter {
+			display: flex;
+			gap: 0.25rem;
+			background: $gray-100;
+			padding: 0.25rem;
+			border-radius: $border-radius-sm;
+
+			button {
+				padding: 0.5rem 1rem;
+				border: none;
+				background: transparent;
+				border-radius: $border-radius-xs;
+				font-size: 0.8125rem;
+				font-weight: 600;
+				color: $gray-500;
+				cursor: pointer;
+				transition: all 0.2s;
+				margin: 0;
+
+				&.is-active {
+					background: #fff;
+					color: $gray-900;
+					box-shadow: $shadow-sm;
+				}
+
+				&:hover:not(.is-active) {
+					color: $gray-900;
+				}
+			}
+		}
+	}
+
+	// Chart Container
+	.ezd-chart-container {
+		margin-top: 0.5rem;
+	}
+
+	.ezd-search-chart-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 280px;
+	}
+}

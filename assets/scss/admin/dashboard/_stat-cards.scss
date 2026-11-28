@@ -1,0 +1,237 @@
+// Dashboard Stat Cards & Grid System
+.ezd-dashboard-container {
+	// Main Content
+	.ezd-main-content {
+		// Stat Cards Grid
+		.ezd-stat-grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 1.5rem;
+		}
+
+		// Modern Stat Card Design
+		.ezd-stat-card {
+			position: relative;
+			display: flex;
+			align-items: center;
+			gap: 1.25rem;
+			padding: 1.5rem;
+			padding-right: 4rem; // Space for arrow
+			border-radius: $border-radius;
+			background: #fff;
+			border: 1px solid $gray-200;
+			box-shadow: $shadow-sm;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			overflow: hidden;
+			cursor: pointer;
+			text-decoration: none;
+
+			// Decorative gradient overlay
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, var(--card-color) 0%, var(--card-color-light) 100%);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			&:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+				border-color: var(--card-color-light);
+
+				&::before {
+					opacity: 1;
+				}
+
+				.ezd-stat-card__icon {
+					transform: scale(1.1);
+				}
+
+				.ezd-stat-card__arrow {
+					opacity: 1;
+					transform: translateY(-50%) translateX(0);
+					background: var(--card-color);
+					color: #fff;
+				}
+			}
+
+			&:focus {
+				outline: 2px solid var(--card-color);
+				outline-offset: 2px;
+			}
+
+			// Icon Container
+			&__icon {
+				flex-shrink: 0;
+				width: 56px;
+				height: 56px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 14px;
+				background: var(--card-bg);
+				transition: transform 0.3s ease;
+
+				.dashicons {
+					font-size: 24px;
+					width: 24px;
+					height: 24px;
+					color: var(--card-color);
+				}
+			}
+
+			// Content Area
+			&__content {
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				gap: 0.25rem;
+			}
+
+			&__label {
+				font-size: 0.8125rem;
+				font-weight: 500;
+				color: $gray-500;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+			}
+
+			&__value {
+				font-size: 2rem;
+				font-weight: 800;
+				color: $gray-900;
+				line-height: 1.1;
+				letter-spacing: -0.02em;
+
+				small {
+					font-size: 1.25rem;
+					font-weight: 600;
+					color: $gray-500;
+					margin-left: 2px;
+				}
+			}
+
+			// Trend / context line under the value.
+			&__meta {
+				display: flex;
+				align-items: center;
+				gap: 0.375rem;
+				margin-top: 0.375rem;
+				font-size: 0.75rem;
+				color: $gray-500;
+			}
+
+			&__trend {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.125rem;
+				padding: 0.0625rem 0.375rem;
+				border-radius: 999px;
+				font-size: 0.6875rem;
+				font-weight: 700;
+
+				.dashicons {
+					font-size: 12px;
+					width: 12px;
+					height: 12px;
+				}
+
+				&.ezd-trend--up {
+					background: #ecfdf5;
+					color: #059669;
+				}
+
+				&.ezd-trend--down {
+					background: #fef2f2;
+					color: #dc2626;
+				}
+
+				&.ezd-trend--flat {
+					background: $gray-100;
+					color: $gray-500;
+				}
+			}
+
+			// Arrow Icon (vertically centered)
+			&__arrow {
+				position: absolute;
+				top: 50%;
+				right: 1rem;
+				transform: translateY(-50%) translateX(8px);
+				width: 36px;
+				height: 36px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 50%;
+				background: var(--card-bg);
+				color: var(--card-color);
+				opacity: 0.6;
+				transition: all 0.3s ease;
+
+				.dashicons {
+					font-size: 18px;
+					width: 18px;
+					height: 18px;
+					line-height: 1;
+				}
+			}
+
+			// Color Variants
+			&--docs {
+				--card-color: #3b82f6;
+				--card-color-light: #93c5fd;
+				--card-bg: #eff6ff;
+			}
+
+			&--views {
+				--card-color: #8b5cf6;
+				--card-color-light: #c4b5fd;
+				--card-bg: #f5f3ff;
+			}
+
+			&--positive {
+				--card-color: #10b981;
+				--card-color-light: #6ee7b7;
+				--card-bg: #ecfdf5;
+
+				.ezd-stat-card__value {
+					color: #059669;
+				}
+			}
+
+			&--negative {
+				--card-color: #ef4444;
+				--card-color-light: #fca5a5;
+				--card-bg: #fef2f2;
+
+				.ezd-stat-card__value {
+					color: #dc2626;
+				}
+			}
+		}
+	}
+
+	// Grid System
+	.ezd-grid {
+		display: grid;
+		gap: 1.5rem;
+
+		&.ezd-grid-cols-lg-3 {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		&.ezd-grid-cols-lg-4 {
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		.ezd-grid-col-lg-2 {
+			grid-column: span 2;
+		}
+	}
+}
